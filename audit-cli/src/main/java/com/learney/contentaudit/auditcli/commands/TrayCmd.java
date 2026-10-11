@@ -115,11 +115,10 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
             Map.entry("IGUALES", PairAnswer.EQUAL), Map.entry("EQUAL", PairAnswer.EQUAL),
             Map.entry("AMBOS", PairAnswer.BOTH_WRONG), Map.entry("BOTH_WRONG", PairAnswer.BOTH_WRONG));
 
-    public TrayCmd(TrayService trayService, QuizSentenceConverter quizSentenceConverter) {
-        this(trayService, quizSentenceConverter, null);
-    }
-
-    /** Con {@code publications}, al publicar nombra la lista que dejó la tanda: dónde quedó y qué lleva. */
+    /**
+     * Con {@code publications}, al publicar nombra la lista que dejó la tanda: dónde quedó y qué lleva; sin ellas
+     * ({@code null}, las pruebas que sólo miran la bandeja) dice la huella de la lista pero no dónde quedó ni qué lleva.
+     */
     public TrayCmd(TrayService trayService, QuizSentenceConverter quizSentenceConverter, BatchStore publications) {
         this.trayService = trayService;
         this.quizSentenceConverter = quizSentenceConverter;
@@ -215,14 +214,14 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
         if (!list(publication.getUndecidableFloors()).isEmpty()) {
             out.append("Pisos sin decidir: ").append(String.join(", ", publication.getUndecidableFloors())).append(".\n");
         }
-        if (publication.getStepsApproved() != null || publication.getStepsUnreviewed() != null
+        if (publication.getStepsApproved() != null || publication.getStepsPending() != null
                 || publication.getStepsRejected() != null) {
             int approved = count(publication.getStepsApproved());
-            int unreviewed = count(publication.getStepsUnreviewed());
+            int pending = count(publication.getStepsPending());
             int rejected = count(publication.getStepsRejected());
             out.append("Revisión de Correcciones: ").append(approved)
-                    .append(approved == 1 ? " paso aprobado, " : " pasos aprobados, ").append(unreviewed)
-                    .append(unreviewed == 1 ? " sin revisar (viaja igual), " : " sin revisar (viajan igual), ")
+                    .append(approved == 1 ? " paso aprobado, " : " pasos aprobados, ").append(pending)
+                    .append(pending == 1 ? " sin revisar (viaja igual), " : " sin revisar (viajan igual), ")
                     .append(rejected).append(rejected == 1 ? " rechazado (queda afuera).\n"
                     : " rechazados (quedan afuera).\n");
         }
@@ -230,9 +229,9 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
             out.append("Afuera por rechazo: ").append(String.join(", ", publication.getChangesLeftOutRejected()))
                     .append(".\n");
         }
-        if (!list(publication.getChangesLeftOutChained()).isEmpty()) {
+        if (!list(publication.getChangesLeftOutCollateral()).isEmpty()) {
             out.append("Afuera encadenados (tocaban lo mismo en el mismo ejercicio que un rechazado): ")
-                    .append(String.join(", ", publication.getChangesLeftOutChained())).append(".\n");
+                    .append(String.join(", ", publication.getChangesLeftOutCollateral())).append(".\n");
         }
         String digest = publication.getManifestDigest();
         if (digest == null || digest.isBlank()) {

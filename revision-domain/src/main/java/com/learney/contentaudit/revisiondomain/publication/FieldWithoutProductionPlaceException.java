@@ -1,6 +1,7 @@
-package com.learney.contentaudit.revisiondomain.preservation;
+package com.learney.contentaudit.revisiondomain.publication;
 
 import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.revisiondomain.preservation.ScopedField;
 
 /**
  * F-PUBPROD-R001, inv. 5: la tabla de la corrección declara un campo que no tiene lugar declarado en producción. Nada

@@ -616,11 +616,10 @@ public class DefaultBatchServiceTest {
             DefaultBatchPublisher publisher = new DefaultBatchPublisher(ledger, artifacts, courses,
                     course -> new AuditableCourse(List.of()), engine, reports, refiner, plans, active, comparator,
                     TandaFixture.correctionScope(), new DefaultPreservationFactory().createCheck(),
-                    TandaFixture.COURSE_PATH)
-                    .withReviews(review::standing)
-                    .withPublicationList(batches, new com.learney.contentaudit.revisiondomain.publicationengine
-                            .DefaultPublicationManifestBuilder(TandaFixture.correctionScope(),
-                            new com.learney.contentaudit.revisiondomain.preservationengine.DefaultProductionFieldMap(),
+                    TandaFixture.COURSE_PATH, review::standing, batches,
+                    new com.learney.contentaudit.revisiondomain.publicationengine.DefaultPublicationManifestBuilder(
+                            TandaFixture.correctionScope(),
+                            new com.learney.contentaudit.revisiondomain.publicationengine.DefaultProductionFieldMap(),
                             new com.learney.contentaudit.revisiondomain.publicationengine.EntityProjector()));
             return new DefaultBatchService(batches, plans, reports, active, baselines, courses, factory,
                     TandaFixture.briefer(), selector, new DefaultBatchCostEstimator(), rules, panelStage, ledger, closer,

@@ -273,6 +273,7 @@ final class TandaCli {
     // The command line
     // -------------------------------------------------------------------------
 
+    /** Lo que dejó un comando: cómo terminó y lo que escribió en la salida y en la de errores. */
     record Run(int exit, String out, String err) {
     }
 
@@ -284,7 +285,8 @@ final class TandaCli {
         return run(new TrayCmd(trayService, DefaultQuizSentenceConverter.create(), batches), args);
     }
 
-    private static Run run(Object command, String... args) {
+    /** Corre {@code command} con {@code args} y captura las dos salidas: el único capturador de las pruebas de tanda. */
+    static Run run(Object command, String... args) {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         ByteArrayOutputStream err = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;

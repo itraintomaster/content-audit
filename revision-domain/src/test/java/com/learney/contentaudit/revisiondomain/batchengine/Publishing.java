@@ -25,6 +25,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
 import com.learney.contentaudit.revisiondomain.batch.BatchReview;
 import com.learney.contentaudit.revisiondomain.batch.BatchReviewDecision;
 import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
+import com.learney.contentaudit.revisiondomain.batch.BatchStore;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
 import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
@@ -33,7 +34,8 @@ import com.learney.contentaudit.revisiondomain.nonregression.BatchGateVerdict;
 import com.learney.contentaudit.revisiondomain.nonregression.ChangeGateVerdict;
 import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
 import com.learney.contentaudit.revisiondomain.preservationengine.DefaultPreservationFactory;
-import com.learney.contentaudit.revisiondomain.preservationengine.DefaultProductionFieldMap;
+import com.learney.contentaudit.revisiondomain.publication.PublicationManifestBuilder;
+import com.learney.contentaudit.revisiondomain.publicationengine.DefaultProductionFieldMap;
 import com.learney.contentaudit.revisiondomain.publicationengine.DefaultPublicationManifestBuilder;
 import com.learney.contentaudit.revisiondomain.publicationengine.EntityProjector;
 import java.time.Instant;
@@ -81,6 +83,10 @@ final class Publishing {
     /** How the publisher reads José's review: as the tray reads it, unless a test says otherwise. */
     java.util.function.Function<CorrectionBatch, ReviewStanding> reviews;
 
+    /** What builds the publication list: the real table, unless a test says otherwise. */
+    PublicationManifestBuilder manifestBuilder = new DefaultPublicationManifestBuilder(TandaFixture.correctionScope(),
+            new DefaultProductionFieldMap(), new EntityProjector());
+
     final TandaFixture.Plans plans = new TandaFixture.Plans(TandaFixture.plan(
             TandaFixture.task("t-pista", MesaFixture.missingHint(), MesaFixture.AFIRMATIVAS, CefrLevel.A1),
             TandaFixture.task("t-respuesta", MesaFixture.anotherAnswer(), MesaFixture.AFIRMATIVAS, CefrLevel.A1),
@@ -116,6 +122,12 @@ final class Publishing {
     }
 
     DefaultBatchPublisher publisher() {
+        return publisher(reviews != null ? reviews : review()::standing, batches, manifestBuilder);
+    }
+
+    /** The publisher wired with exactly these: where it reads the review, where it saves, and what builds the list. */
+    DefaultBatchPublisher publisher(java.util.function.Function<CorrectionBatch, ReviewStanding> reviews,
+            BatchStore store, PublicationManifestBuilder builder) {
         AuditEngine engine = new AuditEngine() {
             @Override
             public AuditReport runAudit(AuditableCourse course) {
@@ -153,10 +165,7 @@ final class Publishing {
             mapped.add(course);
             return new AuditableCourse(List.of());
         }, engine, reports, refiner, plans, active, comparator, TandaFixture.correctionScope(),
-                new DefaultPreservationFactory().createCheck(), TandaFixture.COURSE_PATH)
-                .withReviews(reviews != null ? reviews : review()::standing)
-                .withPublicationList(batches, new DefaultPublicationManifestBuilder(TandaFixture.correctionScope(),
-                        new DefaultProductionFieldMap(), new EntityProjector()));
+                new DefaultPreservationFactory().createCheck(), TandaFixture.COURSE_PATH, reviews, store, builder);
     }
 
     /** José's review of the batch, as Correcciones reads it. */

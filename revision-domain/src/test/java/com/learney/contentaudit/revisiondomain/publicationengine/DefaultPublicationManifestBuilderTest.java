@@ -10,7 +10,6 @@ import com.learney.contentaudit.coursedomain.FormEntity;
 import com.learney.contentaudit.coursedomain.KnowledgeEntity;
 import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
 import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
-import com.learney.contentaudit.coursedomain.ProductionDocumentProjector;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
@@ -18,12 +17,11 @@ import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
 import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
 import com.learney.contentaudit.revisiondomain.preservation.CorrectionScope;
-import com.learney.contentaudit.revisiondomain.preservation.FieldWithoutProductionPlaceException;
 import com.learney.contentaudit.revisiondomain.preservation.ScopedField;
 import com.learney.contentaudit.revisiondomain.preservationengine.DefaultCorrectionScope;
-import com.learney.contentaudit.revisiondomain.preservationengine.DefaultProductionFieldMap;
 import com.learney.contentaudit.revisiondomain.publication.DocumentReviewStatus;
 import com.learney.contentaudit.revisiondomain.publication.ExclusionReason;
+import com.learney.contentaudit.revisiondomain.publication.FieldWithoutProductionPlaceException;
 import com.learney.contentaudit.revisiondomain.publication.ManifestDocument;
 import com.learney.contentaudit.revisiondomain.publication.ManifestExcluded;
 import com.learney.contentaudit.revisiondomain.publication.ManifestField;
@@ -33,7 +31,6 @@ import com.learney.contentaudit.revisiondomain.publication.ManifestVerdict;
 import com.learney.contentaudit.revisiondomain.publication.PublicationManifest;
 import com.learney.contentaudit.revisiondomain.publication.PublicationManifestRequest;
 import com.learney.contentaudit.revisiondomain.publication.PublishedElement;
-import com.learney.contentaudit.revisiondomain.publication.PublishedStep;
 import com.learney.contentaudit.revisiondomain.publication.ReviewTally;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -74,8 +71,18 @@ public class DefaultPublicationManifestBuilderTest {
         return new CourseElementSnapshot(AuditTarget.QUIZ, quiz.getId(), quiz, null);
     }
 
-    private static PublishedStep step(String changeId, ExercisePart... parts) {
-        return new PublishedStep(changeId, Set.of(parts));
+    private static Map.Entry<String, Set<ExercisePart>> step(String changeId, ExercisePart... parts) {
+        return Map.entry(changeId, Set.of(parts));
+    }
+
+    /** Las partes de cada cambio, en el orden de la tanda. */
+    @SafeVarargs
+    private static Map<String, Set<ExercisePart>> steps(Map.Entry<String, Set<ExercisePart>>... steps) {
+        Map<String, Set<ExercisePart>> byChange = new LinkedHashMap<>();
+        for (Map.Entry<String, Set<ExercisePart>> step : steps) {
+            byChange.put(step.getKey(), step.getValue());
+        }
+        return byChange;
     }
 
     private static PublicationManifestRequest request(List<PublishedElement> elements) {
@@ -104,10 +111,10 @@ public class DefaultPublicationManifestBuilderTest {
 
         PublicationManifest manifest = builder.build(request(List.of(
                 new PublishedElement(snapshot(before), snapshot(after), "prop-1", DocumentReviewStatus.APPROVED,
-                        List.of(step("rule-1", ExercisePart.TRANSLATION), step("task-2", ExercisePart.MINI_THEORY))),
+                        steps(step("rule-1", ExercisePart.TRANSLATION), step("task-2", ExercisePart.MINI_THEORY))),
                 new PublishedElement(new CourseElementSnapshot(AuditTarget.KNOWLEDGE, "k1", null, topicBefore),
                         new CourseElementSnapshot(AuditTarget.KNOWLEDGE, "k1", null, topicAfter), "prop-2",
-                        DocumentReviewStatus.PENDING, List.of(step("task-3", ExercisePart.TOPIC_INSTRUCTIONS))))));
+                        DocumentReviewStatus.PENDING, steps(step("task-3", ExercisePart.TOPIC_INSTRUCTIONS))))));
 
         assertEquals(PublicationManifest.SCHEMA, manifest.schema());
         assertEquals("tanda-A1", manifest.batchId());
@@ -146,10 +153,10 @@ public class DefaultPublicationManifestBuilderTest {
 
         PublicationManifest manifest = builder.build(request(List.of(
                 new PublishedElement(snapshot(before), snapshot(after), "prop-1", DocumentReviewStatus.PENDING,
-                        List.of(step("rule-1", ExercisePart.STATEMENT, ExercisePart.STORED_SENTENCE,
+                        steps(step("rule-1", ExercisePart.STATEMENT, ExercisePart.STORED_SENTENCE,
                                 ExercisePart.TRANSLATION, ExercisePart.AUDIO))),
                 new PublishedElement(snapshot(untouched), snapshot(untouched), "prop-2",
-                        DocumentReviewStatus.PENDING, List.of(step("rule-2", ExercisePart.TRANSLATION))))));
+                        DocumentReviewStatus.PENDING, steps(step("rule-2", ExercisePart.TRANSLATION))))));
 
         assertEquals(1, manifest.documents().size(), "el ejercicio sin campos cambiados no está");
         List<ManifestField> fields = manifest.documents().get(0).fields();
@@ -175,7 +182,7 @@ public class DefaultPublicationManifestBuilderTest {
 
         PublicationManifest manifest = builder.build(request(List.of(new PublishedElement(snapshot(before),
                 snapshot(after), "prop-1", DocumentReviewStatus.APPROVED,
-                List.of(step("rule-1", ExercisePart.OPTIONS))))));
+                steps(step("rule-1", ExercisePart.OPTIONS))))));
 
         List<ManifestField> fields = manifest.documents().get(0).fields();
         assertEquals(List.of("form.items"), fields.stream().map(ManifestField::path).toList(),
@@ -211,7 +218,7 @@ public class DefaultPublicationManifestBuilderTest {
             QuizTemplateEntity before = multipleChoice(after.getId(), "SINGLE", option("at", 1.0, "at"),
                     option("in", 0.0, "in"), option("on", 0.0, "on"));
             elements.add(new PublishedElement(snapshot(before), snapshot(after), "prop-" + n,
-                    DocumentReviewStatus.PENDING, List.of(step("task-" + n, ExercisePart.OPTIONS,
+                    DocumentReviewStatus.PENDING, steps(step("task-" + n, ExercisePart.OPTIONS,
                             ExercisePart.TRANSLATION))));
             n++;
         }
@@ -246,9 +253,9 @@ public class DefaultPublicationManifestBuilderTest {
 
         PublicationManifest manifest = builder.build(request(List.of(
                 new PublishedElement(snapshot(before), snapshot(after), "prop-1", DocumentReviewStatus.PENDING,
-                        List.of(step("task-1", ExercisePart.FORM_KIND, ExercisePart.TRANSLATION))),
+                        steps(step("task-1", ExercisePart.FORM_KIND, ExercisePart.TRANSLATION))),
                 new PublishedElement(snapshot(sameKindBefore), snapshot(sameKindAfter), "prop-2",
-                        DocumentReviewStatus.PENDING, List.of(step("task-2", ExercisePart.FORM_KIND))))));
+                        DocumentReviewStatus.PENDING, steps(step("task-2", ExercisePart.FORM_KIND))))));
 
         assertEquals(List.of(new ManifestUnsupported("task-1", "q1", ExercisePart.FORM_KIND,
                 "cambio de tipo de ejercicio: no se publica por script")), manifest.unsupported());
@@ -281,7 +288,7 @@ public class DefaultPublicationManifestBuilderTest {
 
         FieldWithoutProductionPlaceException stop = assertThrows(FieldWithoutProductionPlaceException.class,
                 () -> strict.build(request(List.of(new PublishedElement(snapshot(before), snapshot(after), "prop-1",
-                        DocumentReviewStatus.PENDING, List.of(step("rule-1", ExercisePart.HINT)))))));
+                        DocumentReviewStatus.PENDING, steps(step("rule-1", ExercisePart.HINT)))))));
 
         assertTrue(stop.getMessage().contains("form.hint"), stop.getMessage());
     }
@@ -295,7 +302,7 @@ public class DefaultPublicationManifestBuilderTest {
 
         IllegalArgumentException refusal = assertThrows(IllegalArgumentException.class,
                 () -> builder.build(request(List.of(new PublishedElement(null, snapshot(after), "prop-1",
-                        DocumentReviewStatus.PENDING, List.of(step("rule-1", ExercisePart.TRANSLATION)))))));
+                        DocumentReviewStatus.PENDING, steps(step("rule-1", ExercisePart.TRANSLATION)))))));
 
         assertTrue(refusal.getMessage().contains("q1"), refusal.getMessage());
     }

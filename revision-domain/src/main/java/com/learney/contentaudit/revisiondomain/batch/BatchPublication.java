@@ -46,7 +46,7 @@ public class BatchPublication {
     private Integer stepsApproved;
 
     /** F-PUBPROD-R004: los pasos que viajaron sin revisar. */
-    private Integer stepsUnreviewed;
+    private Integer stepsPending;
 
     /** F-PUBPROD-R003: los pasos rechazados por José, que no viajaron. */
     private Integer stepsRejected;
@@ -55,7 +55,7 @@ public class BatchPublication {
     private List<String> changesLeftOutRejected;
 
     /** F-PUBPROD-R003: los cambios que salieron encadenados con un rechazado. */
-    private List<String> changesLeftOutChained;
+    private List<String> changesLeftOutCollateral;
 
     public BatchPublication() {
     }
@@ -187,12 +187,12 @@ public class BatchPublication {
         this.stepsApproved = stepsApproved;
     }
 
-    public Integer getStepsUnreviewed() {
-        return this.stepsUnreviewed;
+    public Integer getStepsPending() {
+        return this.stepsPending;
     }
 
-    public void setStepsUnreviewed(Integer stepsUnreviewed) {
-        this.stepsUnreviewed = stepsUnreviewed;
+    public void setStepsPending(Integer stepsPending) {
+        this.stepsPending = stepsPending;
     }
 
     public Integer getStepsRejected() {
@@ -211,12 +211,12 @@ public class BatchPublication {
         this.changesLeftOutRejected = changesLeftOutRejected;
     }
 
-    public List<String> getChangesLeftOutChained() {
-        return this.changesLeftOutChained;
+    public List<String> getChangesLeftOutCollateral() {
+        return this.changesLeftOutCollateral;
     }
 
-    public void setChangesLeftOutChained(List<String> changesLeftOutChained) {
-        this.changesLeftOutChained = changesLeftOutChained;
+    public void setChangesLeftOutCollateral(List<String> changesLeftOutCollateral) {
+        this.changesLeftOutCollateral = changesLeftOutCollateral;
     }
 
     @Override
@@ -238,16 +238,16 @@ public class BatchPublication {
                     && Objects.equals(this.gatePassed, that.gatePassed)
                     && Objects.equals(this.undecidableFloors, that.undecidableFloors)
                     && Objects.equals(this.stepsApproved, that.stepsApproved)
-                    && Objects.equals(this.stepsUnreviewed, that.stepsUnreviewed)
+                    && Objects.equals(this.stepsPending, that.stepsPending)
                     && Objects.equals(this.stepsRejected, that.stepsRejected)
                     && Objects.equals(this.changesLeftOutRejected, that.changesLeftOutRejected)
-                    && Objects.equals(this.changesLeftOutChained, that.changesLeftOutChained);
+                    && Objects.equals(this.changesLeftOutCollateral, that.changesLeftOutCollateral);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(publishedAt, approvedBy, note, publishedAuditId, publishedPlanId, appliedProposalIds, completedTaskIds, reopenedTaskIds, rerecords,
-                manifestDigest, verdictKind, gatePassed, undecidableFloors, stepsApproved, stepsUnreviewed,
-                stepsRejected, changesLeftOutRejected, changesLeftOutChained);
+                manifestDigest, verdictKind, gatePassed, undecidableFloors, stepsApproved, stepsPending,
+                stepsRejected, changesLeftOutRejected, changesLeftOutCollateral);
     }
 }

@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
-import com.learney.contentaudit.revisiondomain.preservation.ProductionFieldMap;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;

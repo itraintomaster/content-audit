@@ -1,10 +1,11 @@
-package com.learney.contentaudit.revisiondomain.preservationengine;
+package com.learney.contentaudit.revisiondomain.publicationengine;
 
 import com.learney.contentaudit.auditdomain.AuditTarget;
-import com.learney.contentaudit.revisiondomain.preservation.FieldWithoutProductionPlaceException;
-import com.learney.contentaudit.revisiondomain.preservation.ProductionFieldMap;
-import com.learney.contentaudit.revisiondomain.preservation.ProductionPlace;
 import com.learney.contentaudit.revisiondomain.preservation.ScopedField;
+import com.learney.contentaudit.revisiondomain.preservationengine.DefaultCorrectionScope;
+import com.learney.contentaudit.revisiondomain.publication.FieldWithoutProductionPlaceException;
+import com.learney.contentaudit.revisiondomain.publication.ProductionFieldMap;
+import com.learney.contentaudit.revisiondomain.publication.ProductionPlace;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;

@@ -50,10 +50,11 @@ public class FileSystemBatchStore implements BatchStore {
 
     private final Path baseDir;
 
+    /**
+     * El mismo para la tanda, la revisión y la lista de publicación. La lista no lleva fechas como objetos —su
+     * {@code publishedAt} ya viene escrito— así que el módulo de fechas no cambia ni un byte de lo que se escribe.
+     */
     private final ObjectMapper mapper;
-
-    /** La lista se escribe en JSON simple: sin fechas ni módulos, sólo lo que trae el registro. */
-    private final ObjectMapper manifestMapper;
 
     public FileSystemBatchStore(Path baseDir) {
         this.baseDir = baseDir;
@@ -61,8 +62,6 @@ public class FileSystemBatchStore implements BatchStore {
         mapper.registerModule(new JavaTimeModule());
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        this.manifestMapper = new ObjectMapper();
-        manifestMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
     }
 
     @Override
@@ -70,16 +69,20 @@ public class FileSystemBatchStore implements BatchStore {
         if (batch == null || batch.getId() == null || batch.getId().isBlank()) {
             throw new IllegalArgumentException("Una tanda sin id no se puede guardar.");
         }
-        locked(batch.getId(), () -> writeAtomically(dir().resolve(identifier(batch.getId()) + SUFFIX), batch));
+        Path file = dir().resolve(identifier(batch.getId()) + SUFFIX);
+        byte[] bytes = json(batch, file);
+        locked(batch.getId(), () -> writeAtomically(file, bytes));
     }
 
     @Override public synchronized void saveIfVersion(CorrectionBatch batch, int version, BatchStatus status) {
+        Path file = dir().resolve(identifier(batch.getId()) + SUFFIX);
+        byte[] bytes = json(batch, file);
         locked(batch.getId(), () -> {
             CorrectionBatch current = load(batch.getId()).orElseThrow();
             if (current.getContentVersion() != version || current.getStatus() != status) {
                 throw new IllegalStateException("La corrección cambió mientras se guardaba; volvé a leer.");
             }
-            writeAtomically(dir().resolve(identifier(batch.getId()) + SUFFIX), batch);
+            writeAtomically(file, bytes);
         });
     }
 
@@ -93,13 +96,26 @@ public class FileSystemBatchStore implements BatchStore {
         } catch (IOException e) { throw new java.io.UncheckedIOException(e); }
     }
 
-    private void writeAtomically(Path file, Object value) {
+    /** Lo que se va a escribir en {@code file}, en JSON con sangría. */
+    private byte[] json(Object value, Path file) {
+        try {
+            return mapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(value);
+        } catch (IOException e) {
+            throw new java.io.UncheckedIOException("No se pudo armar " + file + ": " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * La única escritura: los bytes enteros a un archivo propio, que después se mueve sobre el anterior, así un corte
+     * nunca deja nada escrito a medias.
+     */
+    private static void writeAtomically(Path file, byte[] bytes) {
         Path dir = file.getParent();
         try {
             Files.createDirectories(dir);
             Path temporary = Files.createTempFile(dir, "write-", ".tmp");
             try {
-                mapper.writerWithDefaultPrettyPrinter().writeValue(temporary.toFile(), value);
+                Files.write(temporary, bytes);
                 try {
                     Files.move(temporary, file, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
                 } catch (AtomicMoveNotSupportedException e) {
@@ -109,8 +125,7 @@ public class FileSystemBatchStore implements BatchStore {
                 Files.deleteIfExists(temporary);
             }
         } catch (IOException e) {
-            throw new java.io.UncheckedIOException("No se pudo guardar " + file + ": "
-                    + e.getMessage(), e);
+            throw new java.io.UncheckedIOException("No se pudo guardar " + file + ": " + e.getMessage(), e);
         }
     }
 
@@ -161,7 +176,8 @@ public class FileSystemBatchStore implements BatchStore {
             throw new IllegalArgumentException("Revisión incompleta.");
         }
         // Each command writes a new event. Different JVMs cannot lose each other's decisions, nor batch progress.
-        writeAtomically(reviewDir(decision.batchId()).resolve(UUID.randomUUID() + SUFFIX), decision);
+        Path file = reviewDir(decision.batchId()).resolve(UUID.randomUUID() + SUFFIX);
+        writeAtomically(file, json(decision, file));
     }
 
     @Override
@@ -190,24 +206,17 @@ public class FileSystemBatchStore implements BatchStore {
             throw new IllegalArgumentException("Una lista de publicación vacía no se puede guardar.");
         }
         String id = identifier(batchId);
-        String[] digest = new String[1];
+        Path file = manifestFile(id);
+        byte[] bytes = json(manifest, file);
         locked(id, () -> {
             Optional<CorrectionBatch> batch = load(id);
             if (batch.isPresent() && batch.get().getStatus() == BatchStatus.PUBLISHED) {
                 throw new IllegalStateException("La tanda " + id
                         + " ya está publicada: su lista de publicación no se reescribe.");
             }
-            byte[] bytes;
-            try {
-                bytes = manifestMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(manifest);
-            } catch (IOException e) {
-                throw new java.io.UncheckedIOException("No se pudo armar la lista de publicación de " + id + ": "
-                        + e.getMessage(), e);
-            }
-            writeBytesAtomically(manifestFile(id), bytes);
-            digest[0] = sha256(bytes);
+            writeAtomically(file, bytes);
         });
-        return digest[0];
+        return sha256(bytes);
     }
 
     /**
@@ -247,7 +256,7 @@ public class FileSystemBatchStore implements BatchStore {
             return Optional.empty();
         }
         try {
-            return Optional.of(manifestMapper.readValue(file.toFile(), PublicationManifest.class));
+            return Optional.of(mapper.readValue(file.toFile(), PublicationManifest.class));
         } catch (IOException e) {
             throw new java.io.UncheckedIOException("No se pudo leer la lista de publicación de " + file + ": "
                     + e.getMessage(), e);
@@ -262,26 +271,6 @@ public class FileSystemBatchStore implements BatchStore {
 
     private Path manifestFile(String id) {
         return baseDir.resolve(PUBLICATIONS_SUBDIR).resolve(id).resolve(MANIFEST_FILE);
-    }
-
-    private static void writeBytesAtomically(Path file, byte[] bytes) {
-        Path dir = file.getParent();
-        try {
-            Files.createDirectories(dir);
-            Path temporary = Files.createTempFile(dir, "write-", ".tmp");
-            try {
-                Files.write(temporary, bytes);
-                try {
-                    Files.move(temporary, file, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
-                } catch (AtomicMoveNotSupportedException e) {
-                    Files.move(temporary, file, StandardCopyOption.REPLACE_EXISTING);
-                }
-            } finally {
-                Files.deleteIfExists(temporary);
-            }
-        } catch (IOException e) {
-            throw new java.io.UncheckedIOException("No se pudo guardar " + file + ": " + e.getMessage(), e);
-        }
     }
 
     private static String sha256(byte[] bytes) {

@@ -1,10 +1,11 @@
-package com.learney.contentaudit.revisiondomain.preservation;
+package com.learney.contentaudit.revisiondomain.publication;
 
 import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.revisiondomain.preservation.ScopedField;
 import java.util.Set;
 
 /**
- * F-PUBPROD-R002: dónde guarda producción cada campo de la tabla de la corrección ({@link CorrectionScope},
+ * F-PUBPROD-R002: dónde guarda producción cada campo de la tabla de la corrección ({@link com.learney.contentaudit.revisiondomain.preservation.CorrectionScope},
  * F-TAREA-R006). Un campo sin lugar declarado no se adivina: {@link #placeOf} lanza
  * {@link FieldWithoutProductionPlaceException} y la publicación se frena nombrándolo (F-PUBPROD-R001, inv. 5).
  */

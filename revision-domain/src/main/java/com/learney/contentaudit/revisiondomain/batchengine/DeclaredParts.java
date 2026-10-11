@@ -20,7 +20,7 @@ import java.util.Set;
  * partes, por cambio y todas juntas, y si el nodo es un ejercicio o un tema—. Es lo mismo que mira la preservación al
  * publicar y lo que arma la lista: los dos leen las partes de la misma manera.
  */
-final class PublishedScope {
+final class DeclaredParts {
 
     private final String nodeId;
 
@@ -28,7 +28,7 @@ final class PublishedScope {
 
     private final Map<String, EnumSet<ExercisePart>> partsByChange;
 
-    private PublishedScope(String nodeId, AuditTarget target, Map<String, EnumSet<ExercisePart>> partsByChange) {
+    private DeclaredParts(String nodeId, AuditTarget target, Map<String, EnumSet<ExercisePart>> partsByChange) {
         this.nodeId = nodeId;
         this.target = target;
         this.partsByChange = partsByChange;
@@ -39,13 +39,10 @@ final class PublishedScope {
      * siguen a lo que dice el ejercicio: un paso que toca el enunciado, las respuestas, las opciones o el tipo de
      * ejercicio también los declara.
      */
-    static PublishedScope of(CorrectionBatch batch, String nodeId) {
+    static DeclaredParts of(CorrectionBatch batch, String nodeId) {
         Map<String, EnumSet<ExercisePart>> byChange = new LinkedHashMap<>();
         AuditTarget target = AuditTarget.QUIZ;
-        for (BatchChange change : BatchBook.list(batch.getChanges())) {
-            if (change == null || change.getDroppedReason() != null) {
-                continue;
-            }
+        for (BatchChange change : BatchBook.activeChanges(batch)) {
             for (BatchChangeStep step : BatchBook.list(change.getSteps())) {
                 if (step == null || !Objects.equals(step.getQuizId(), nodeId)) {
                     continue;
@@ -61,7 +58,7 @@ final class PublishedScope {
         for (EnumSet<ExercisePart> parts : byChange.values()) {
             withWhatFollowsTheExercise(parts);
         }
-        return new PublishedScope(nodeId, target, byChange);
+        return new DeclaredParts(nodeId, target, byChange);
     }
 
     private static void withWhatFollowsTheExercise(Set<ExercisePart> parts) {
@@ -70,10 +67,6 @@ final class PublishedScope {
             parts.add(ExercisePart.STORED_SENTENCE); // la oración guardada sigue a lo que dice el ejercicio
             parts.add(ExercisePart.AUDIO);
         }
-    }
-
-    String nodeId() {
-        return nodeId;
     }
 
     AuditTarget target() {

@@ -110,7 +110,7 @@ class TrayCmdStudentViewIntegrationTest {
         PrintStream original = System.out;
         System.setOut(new PrintStream(out, true, StandardCharsets.UTF_8));
         try {
-            int exit = new CommandLine(new TrayCmd(new Fixed(tray), DefaultQuizSentenceConverter.create()))
+            int exit = new CommandLine(new TrayCmd(new Fixed(tray), DefaultQuizSentenceConverter.create(), null))
                     .execute("show");
             assertEquals(0, exit);
         } finally {

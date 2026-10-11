@@ -18,10 +18,7 @@ import com.learney.contentaudit.revisiondomain.publication.ManifestVerdict;
 import com.learney.contentaudit.revisiondomain.publication.PublicationManifest;
 import com.learney.contentaudit.revisiondomain.publication.ReviewTally;
 import com.learney.contentaudit.revisiondomain.tray.TrayService;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.lang.reflect.Proxy;
-import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +27,6 @@ import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import picocli.CommandLine;
 
 /**
  * Lo que `tray publish` le muestra a José de una tanda publicada (F-PUBPROD R001, R004 y R005): con qué veredicto y
@@ -44,9 +40,6 @@ public class TrayPublishSummaryTest {
     private static final String DIGEST = "35ebddf49dca87164550faf68201de16833990a3dce765d5e7db397c11ae7368";
 
     private static final String LOCATION = "/curso/.content-audit/batch-publications/" + BATCH + "/manifest.json";
-
-    private record Run(int exit, String out, String err) {
-    }
 
     /** La bandeja que publica y devuelve {@code publication}. */
     private static TrayService publishing(BatchPublication publication) {
@@ -106,20 +99,8 @@ public class TrayPublishSummaryTest {
         }
     }
 
-    private static Run run(TrayService tray, BatchStore saved, String... args) {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        ByteArrayOutputStream err = new ByteArrayOutputStream();
-        PrintStream originalOut = System.out;
-        PrintStream originalErr = System.err;
-        System.setOut(new PrintStream(out, true, StandardCharsets.UTF_8));
-        System.setErr(new PrintStream(err, true, StandardCharsets.UTF_8));
-        try {
-            int exit = new CommandLine(new TrayCmd(tray, DefaultQuizSentenceConverter.create(), saved)).execute(args);
-            return new Run(exit, out.toString(StandardCharsets.UTF_8), err.toString(StandardCharsets.UTF_8));
-        } finally {
-            System.setOut(originalOut);
-            System.setErr(originalErr);
-        }
+    private static TandaCli.Run run(TrayService tray, BatchStore saved, String... args) {
+        return TandaCli.run(new TrayCmd(tray, DefaultQuizSentenceConverter.create(), saved), args);
     }
 
     /** Una publicación de hoy: dos pasos aprobados, tres sin revisar, uno rechazado, con su encadenado. */
@@ -132,10 +113,10 @@ public class TrayPublishSummaryTest {
         publication.setGatePassed(true);
         publication.setUndecidableFloors(new ArrayList<>());
         publication.setStepsApproved(2);
-        publication.setStepsUnreviewed(3);
+        publication.setStepsPending(3);
         publication.setStepsRejected(1);
         publication.setChangesLeftOutRejected(new ArrayList<>(List.of("mesa-67fab6d59930102295341ec6")));
-        publication.setChangesLeftOutChained(new ArrayList<>(List.of("regla-translation-sense-67fab6d59930102295341ec6")));
+        publication.setChangesLeftOutCollateral(new ArrayList<>(List.of("regla-translation-sense-67fab6d59930102295341ec6")));
         return publication;
     }
 
@@ -172,7 +153,7 @@ public class TrayPublishSummaryTest {
         // producción.
         BatchPublication publication = publication(DIGEST);
 
-        Run run = run(publishing(publication), new Saved(published(publication), manifest()), "publish");
+        TandaCli.Run run = run(publishing(publication), new Saved(published(publication), manifest()), "publish");
 
         assertEquals(0, run.exit(), run.err());
         assertEquals("Publicada por José: entraron 2 propuestas; tareas completadas 1, reabiertas 1; audios por regrabar"
@@ -200,7 +181,7 @@ public class TrayPublishSummaryTest {
         // tanda publicada antes de que hubiera lista no muestra cuentas ni lista que no tiene.
         BatchPublication publication = publication(DIGEST);
 
-        Run another = run(publishing(publication), new Saved(published(publication(
+        TandaCli.Run another = run(publishing(publication), new Saved(published(publication(
                 "0000000000000000000000000000000000000000000000000000000000000000")), manifest()), "publish");
 
         assertEquals(0, another.exit(), another.err());
@@ -211,7 +192,7 @@ public class TrayPublishSummaryTest {
         BatchPublication old = new BatchPublication(Instant.parse("2026-09-01T10:00:00Z"), "José", null, "audit-viejo",
                 "plan-viejo", new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
 
-        Run before = run(publishing(old), new Saved(published(old), null), "publish");
+        TandaCli.Run before = run(publishing(old), new Saved(published(old), null), "publish");
 
         assertEquals(0, before.exit(), before.err());
         assertEquals("Publicada por José: entraron 0 propuestas; tareas completadas 0, reabiertas 0; audios por regrabar"

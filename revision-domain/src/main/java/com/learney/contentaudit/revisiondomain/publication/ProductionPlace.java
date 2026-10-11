@@ -1,4 +1,4 @@
-package com.learney.contentaudit.revisiondomain.preservation;
+package com.learney.contentaudit.revisiondomain.publication;
 
 import java.util.List;
 import java.util.Objects;

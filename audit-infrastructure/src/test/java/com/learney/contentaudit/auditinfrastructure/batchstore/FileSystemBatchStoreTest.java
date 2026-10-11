@@ -236,10 +236,10 @@ public class FileSystemBatchStoreTest {
         publication.setGatePassed(true);
         publication.setUndecidableFloors(List.of());
         publication.setStepsApproved(1);
-        publication.setStepsUnreviewed(2);
+        publication.setStepsPending(2);
         publication.setStepsRejected(1);
         publication.setChangesLeftOutRejected(List.of("rule-3"));
-        publication.setChangesLeftOutChained(List.of("task-9"));
+        publication.setChangesLeftOutCollateral(List.of("task-9"));
         batch.setPublication(publication);
         store.save(batch);
 
@@ -260,8 +260,8 @@ public class FileSystemBatchStoreTest {
                 .deepCopy();
         old.put("id", "tanda-vieja");
         ((com.fasterxml.jackson.databind.node.ObjectNode) old.get("publication")).remove(List.of("manifestDigest",
-                "verdictKind", "gatePassed", "undecidableFloors", "stepsApproved", "stepsUnreviewed", "stepsRejected",
-                "changesLeftOutRejected", "changesLeftOutChained"));
+                "verdictKind", "gatePassed", "undecidableFloors", "stepsApproved", "stepsPending", "stepsRejected",
+                "changesLeftOutRejected", "changesLeftOutCollateral"));
         Files.writeString(workdir.resolve(".content-audit/batches/tanda-vieja.json"), old.toPrettyString());
         BatchPublication oldPublication = store.load("tanda-vieja").orElseThrow().getPublication();
         assertNull(oldPublication.getManifestDigest(), "una tanda vieja no tiene lista");

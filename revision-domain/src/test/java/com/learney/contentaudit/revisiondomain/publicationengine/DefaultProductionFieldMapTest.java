@@ -1,4 +1,4 @@
-package com.learney.contentaudit.revisiondomain.preservationengine;
+package com.learney.contentaudit.revisiondomain.publicationengine;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -10,10 +10,11 @@ import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import com.learney.contentaudit.revisiondomain.preservation.CorrectionScope;
-import com.learney.contentaudit.revisiondomain.preservation.FieldWithoutProductionPlaceException;
-import com.learney.contentaudit.revisiondomain.preservation.ProductionFieldMap;
-import com.learney.contentaudit.revisiondomain.preservation.ProductionPlace;
 import com.learney.contentaudit.revisiondomain.preservation.ScopedField;
+import com.learney.contentaudit.revisiondomain.preservationengine.DefaultCorrectionScope;
+import com.learney.contentaudit.revisiondomain.publication.FieldWithoutProductionPlaceException;
+import com.learney.contentaudit.revisiondomain.publication.ProductionFieldMap;
+import com.learney.contentaudit.revisiondomain.publication.ProductionPlace;
 import java.util.EnumSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;

@@ -24,7 +24,7 @@ import org.junit.jupiter.api.Test;
 /**
  * F-TANDA-R009 y F-PUBPROD-R001: lo que la preservación y la lista leen de los pasos que quedan en la tanda.
  */
-public class PublishedScopeTest {
+public class DeclaredPartsTest {
 
     private static BatchChange change(String id, String dropped, BatchChangeStep... steps) {
         return new BatchChange(id, BatchChangeOrigin.RULE, "rule-" + id, "k1", List.of(), List.of(steps), null,
@@ -49,17 +49,17 @@ public class PublishedScopeTest {
                 change("c2", null, quizStep("q1", ExercisePart.ANSWERS)),
                 change("c3", "José lo sacó", quizStep("q1", ExercisePart.MINI_THEORY))));
 
-        PublishedScope scope = PublishedScope.of(batch, "q1");
+        DeclaredParts declared = DeclaredParts.of(batch, "q1");
 
-        assertEquals(AuditTarget.QUIZ, scope.target());
-        Map<String, Set<ExercisePart>> byChange = scope.partsByChange();
+        assertEquals(AuditTarget.QUIZ, declared.target());
+        Map<String, Set<ExercisePart>> byChange = declared.partsByChange();
         assertEquals(List.of("c1", "c2"), List.copyOf(byChange.keySet()));
         assertEquals(EnumSet.of(ExercisePart.TRANSLATION), byChange.get("c1"));
         assertEquals(EnumSet.of(ExercisePart.ANSWERS, ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO),
                 byChange.get("c2"));
         assertEquals(EnumSet.of(ExercisePart.TRANSLATION, ExercisePart.ANSWERS, ExercisePart.STORED_SENTENCE,
-                ExercisePart.AUDIO), scope.parts());
-        assertTrue(PublishedScope.of(batch, "q9").parts().isEmpty());
+                ExercisePart.AUDIO), declared.parts());
+        assertTrue(DeclaredParts.of(batch, "q9").parts().isEmpty());
     }
 
     @Test
@@ -76,10 +76,10 @@ public class PublishedScopeTest {
         batch.setChanges(List.of(change("c1", null, new BatchChangeStep("k1", List.of(ExercisePart.TOPIC_INSTRUCTIONS),
                 new CourseElementSnapshot(AuditTarget.KNOWLEDGE, "k1", null, topic)))));
 
-        PublishedScope scope = PublishedScope.of(batch, "k1");
+        DeclaredParts declared = DeclaredParts.of(batch, "k1");
 
-        assertEquals(AuditTarget.KNOWLEDGE, scope.target());
-        assertEquals(EnumSet.of(ExercisePart.TOPIC_INSTRUCTIONS), scope.parts());
-        assertTrue(scope.snapshot(null).isEmpty());
+        assertEquals(AuditTarget.KNOWLEDGE, declared.target());
+        assertEquals(EnumSet.of(ExercisePart.TOPIC_INSTRUCTIONS), declared.parts());
+        assertTrue(declared.snapshot(null).isEmpty());
     }
 }

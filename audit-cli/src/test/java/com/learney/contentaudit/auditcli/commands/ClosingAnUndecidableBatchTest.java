@@ -10,17 +10,13 @@ import com.learney.contentaudit.revisiondomain.comparison.BatchVerdict;
 import com.learney.contentaudit.revisiondomain.comparison.RowSubject;
 import com.learney.contentaudit.revisiondomain.comparison.UndecidableFloors;
 import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Proxy;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import picocli.CommandLine;
 
 /**
  * F-PUBPROD-R005 desde la línea de comandos: al cerrar con «no se puede decidir» la salida no dice que la tanda pasa,
@@ -28,9 +24,6 @@ import picocli.CommandLine;
  * cuenta aparte, sin llamarlo «no se puede decidir», y también termina con error.
  */
 public class ClosingAnUndecidableBatchTest {
-
-    private record Run(int exit, String out, String err) {
-    }
 
     /**
      * El servicio de la tanda de {@link BatchCmdTest}, con el veredicto del cierre cambiado por {@code verdict}: la
@@ -52,20 +45,8 @@ public class ClosingAnUndecidableBatchTest {
                 });
     }
 
-    private static Run run(BatchService service, String... args) {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        ByteArrayOutputStream err = new ByteArrayOutputStream();
-        PrintStream originalOut = System.out;
-        PrintStream originalErr = System.err;
-        System.setOut(new PrintStream(out, true, StandardCharsets.UTF_8));
-        System.setErr(new PrintStream(err, true, StandardCharsets.UTF_8));
-        try {
-            int exit = new CommandLine(new BatchCmd(service)).execute(args);
-            return new Run(exit, out.toString(StandardCharsets.UTF_8), err.toString(StandardCharsets.UTF_8));
-        } finally {
-            System.setOut(originalOut);
-            System.setErr(originalErr);
-        }
+    private static TandaCli.Run run(BatchService service, String... args) {
+        return TandaCli.run(new BatchCmd(service), args);
     }
 
     private static BatchVerdict verdict(VerdictKind kind, int undecided, String detail) {
@@ -88,7 +69,7 @@ public class ClosingAnUndecidableBatchTest {
         // copia lo que dice F y termina con error; el cierre se hizo igual.
         BatchCmdTest.Service service = new BatchCmdTest.Service();
 
-        Run run = run(closingWith(service, verdict(VerdictKind.UNDECIDABLE, 1,
+        TandaCli.Run run = run(closingWith(service, verdict(VerdictKind.UNDECIDABLE, 1,
                 "ningún piso falla, pero 1 piso sin decidir; juez sin aprobar: Consigna que no se cumple")), "close");
 
         assertEquals(1, run.exit(), run.out() + run.err());
@@ -112,7 +93,7 @@ public class ClosingAnUndecidableBatchTest {
         // de error. Pero no se lo llama «no se puede decidir»: eso es sólo el veredicto que no se puede decidir.
         BatchCmdTest.Service service = new BatchCmdTest.Service();
 
-        Run run = run(closingWith(service, verdict(VerdictKind.PASSES, 2, null)), "close");
+        TandaCli.Run run = run(closingWith(service, verdict(VerdictKind.PASSES, 2, null)), "close");
 
         assertEquals(1, run.exit(), run.out() + run.err());
         assertEquals(1, service.closeRequests.size());
@@ -134,7 +115,7 @@ public class ClosingAnUndecidableBatchTest {
         // empeora el curso: la salida lo nombra «FAILS» y cuenta el piso aparte; nunca «no se puede decidir».
         BatchCmdTest.Service service = new BatchCmdTest.Service();
 
-        Run run = run(closingWith(service, verdict(VerdictKind.FAILS, 1, "Falla: vuelve la respuesta única.")),
+        TandaCli.Run run = run(closingWith(service, verdict(VerdictKind.FAILS, 1, "Falla: vuelve la respuesta única.")),
                 "close");
 
         assertEquals(1, run.exit(), run.out() + run.err());
@@ -153,7 +134,7 @@ public class ClosingAnUndecidableBatchTest {
         // R005: sólo «pasa» sin pisos sin decidir es «pasa»; ese cierre se sigue leyendo como hasta ahora.
         BatchCmdTest.Service service = new BatchCmdTest.Service();
 
-        Run run = run(closingWith(service, verdict(VerdictKind.PASSES, 0, null)), "close");
+        TandaCli.Run run = run(closingWith(service, verdict(VerdictKind.PASSES, 0, null)), "close");
 
         assertEquals(0, run.exit(), run.out() + run.err());
         assertTrue(run.out().contains("La compuerta de «no empeorar» pasa (1 vuelta)."), run.out());

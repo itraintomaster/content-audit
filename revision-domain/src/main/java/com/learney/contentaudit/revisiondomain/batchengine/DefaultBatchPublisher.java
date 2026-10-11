@@ -9,6 +9,7 @@ import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.auditdomain.CourseMapper;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 import com.learney.contentaudit.auditdomain.finding.Finding;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
@@ -23,7 +24,6 @@ import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
 import com.learney.contentaudit.revisiondomain.RevisionOutcomeKind;
 import com.learney.contentaudit.revisiondomain.RevisionVerdict;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
-import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
 import com.learney.contentaudit.revisiondomain.batch.BatchNotPublishableException;
@@ -49,21 +49,18 @@ import com.learney.contentaudit.revisiondomain.preservation.PreservationCheck;
 import com.learney.contentaudit.revisiondomain.preservation.PreservationViolation;
 import com.learney.contentaudit.revisiondomain.preservation.ScopedField;
 import com.learney.contentaudit.revisiondomain.publication.DocumentReviewStatus;
-import com.learney.contentaudit.revisiondomain.publication.ExclusionReason;
-import com.learney.contentaudit.revisiondomain.publication.ManifestExcluded;
 import com.learney.contentaudit.revisiondomain.publication.ManifestSource;
 import com.learney.contentaudit.revisiondomain.publication.ManifestVerdict;
 import com.learney.contentaudit.revisiondomain.publication.PublicationManifest;
 import com.learney.contentaudit.revisiondomain.publication.PublicationManifestBuilder;
 import com.learney.contentaudit.revisiondomain.publication.PublicationManifestRequest;
 import com.learney.contentaudit.revisiondomain.publication.PublishedElement;
-import com.learney.contentaudit.revisiondomain.publication.PublishedStep;
 import com.learney.contentaudit.revisiondomain.publication.ReviewTally;
 import java.nio.file.Path;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.IdentityHashMap;
 import java.util.HashSet;
+import java.util.IdentityHashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -115,11 +112,18 @@ class DefaultBatchPublisher implements BatchPublisher {
 
     private final Path coursePath;
 
-    private Function<CorrectionBatch, ReviewStanding> reviews;
+    /** F-PUBPROD-R003: de dónde lee la revisión vigente de José, la misma que muestra la bandeja. */
+    private final Function<CorrectionBatch, ReviewStanding> reviews;
 
-    private BatchStore batchStore;
+    /** F-PUBPROD-R001: dónde queda la lista de publicación, y la tanda. */
+    private final BatchStore batchStore;
 
-    private PublicationManifestBuilder manifestBuilder;
+    /**
+     * F-PUBPROD-R001: con qué se arma la lista de publicación. Puede faltar: la configuración del servicio de tandas no
+     * está obligada a traer el curso como lo guarda producción —abrir, correr, cerrar o revisar una tanda no lo usan—, y
+     * sin él no hay lista. Entonces publicar se niega, con la tanda y el curso sin tocar.
+     */
+    private final PublicationManifestBuilder manifestBuilder;
 
     public DefaultBatchPublisher(BatchChangeLedger changeLedger,
             RevisionArtifactStore artifactStore, CourseRepository courseRepository,
@@ -127,7 +131,9 @@ class DefaultBatchPublisher implements BatchPublisher {
             RefinerEngine refinerEngine, RefinementPlanStore refinementPlanStore,
             ActiveAnalysisSelectionStore activeAnalysisSelectionStore,
             BatchComparator batchComparator, CorrectionScope correctionScope,
-            PreservationCheck preservationCheck, Path coursePath) {
+            PreservationCheck preservationCheck, Path coursePath,
+            Function<CorrectionBatch, ReviewStanding> reviews, BatchStore batchStore,
+            PublicationManifestBuilder manifestBuilder) {
         this.changeLedger = changeLedger;
         this.artifactStore = artifactStore;
         this.courseRepository = courseRepository;
@@ -141,31 +147,20 @@ class DefaultBatchPublisher implements BatchPublisher {
         this.correctionScope = correctionScope;
         this.preservationCheck = preservationCheck;
         this.coursePath = coursePath;
-    }
-
-    /** F-PUBPROD-R003: de dónde lee la revisión vigente de José. Sin ella no se publica. */
-    DefaultBatchPublisher withReviews(Function<CorrectionBatch, ReviewStanding> reviews) {
-        this.reviews = reviews;
-        return this;
-    }
-
-    /** F-PUBPROD-R001: dónde deja la lista de publicación y con qué la arma. Sin ellos no se publica. */
-    DefaultBatchPublisher withPublicationList(BatchStore batchStore, PublicationManifestBuilder manifestBuilder) {
-        this.batchStore = batchStore;
+        this.reviews = Objects.requireNonNull(reviews,
+                "publicar necesita de dónde leer las decisiones de la revisión: sin ellas no se publica");
+        this.batchStore = Objects.requireNonNull(batchStore,
+                "publicar necesita dónde guardar la tanda y su lista de publicación");
         this.manifestBuilder = manifestBuilder;
-        return this;
     }
 
     @Override
     public CorrectionBatch publish(CorrectionBatch batch, BatchPublishRequest request,
             CourseEntity startCourse) {
-        if (reviews == null) {
-            throw new BatchNotPublishableException(batch.getId(),
-                    "no hay de dónde leer las decisiones de la revisión: sin ellas no se publica");
-        }
-        if (batchStore == null || manifestBuilder == null) {
+        if (manifestBuilder == null) {
             throw new BatchNotPublishableException(batch.getId(), "falta con qué armar la lista de publicación");
         }
+        BatchPublishRequest asked = request != null ? request : new BatchPublishRequest(null, null, List.of());
         // F-PUBPROD-R005: the gate of «no empeorar» of the last closing must pass; the verdict is checked below.
         List<BatchClosing> closings = BatchBook.list(batch.getClosings());
         BatchClosing last = closings.isEmpty() ? null : closings.get(closings.size() - 1);
@@ -184,7 +179,7 @@ class DefaultBatchPublisher implements BatchPublisher {
         // they were.
         Undo undo = new Undo(batch, startCourse);
         try {
-            Prepared prepared = prepare(batch, request, startCourse, last, publishedAt);
+            Prepared prepared = prepare(batch, asked, startCourse, last, publishedAt);
             String digest = saveManifest(batch, prepared.manifest(), undo);
             undo.courseWritten = true;
             courseRepository.save(prepared.composed(), coursePath);
@@ -199,8 +194,8 @@ class DefaultBatchPublisher implements BatchPublisher {
                     done.setVerdict(RevisionVerdict.APPROVED);
                     done.setOutcome(RevisionOutcomeKind.APPROVED_APPLIED);
                     done.setDecidedAt(Instant.now());
-                    done.setDecisionNote("Publicada con la tanda " + batch.getId() + (request != null
-                            && request.getApprovedBy() != null ? " por " + request.getApprovedBy() : ""));
+                    done.setDecisionNote("Publicada con la tanda " + batch.getId()
+                            + (asked.getApprovedBy() != null ? " por " + asked.getApprovedBy() : ""));
                     artifactStore.save(done);
                 }
                 applied.add(ref.getProposalId());
@@ -226,8 +221,7 @@ class DefaultBatchPublisher implements BatchPublisher {
                 undo.activeMoved = true;
                 activeAnalysisSelectionStore.write(new ActiveAnalysisSelection(auditId, planId));
             }
-            BatchPublication publication = new BatchPublication(publishedAt,
-                    request != null ? request.getApprovedBy() : null, request != null ? request.getNote() : null,
+            BatchPublication publication = new BatchPublication(publishedAt, asked.getApprovedBy(), asked.getNote(),
                     auditId, planId, applied, completed, reopened, rerecords(batch));
             ReviewTally tally = prepared.tally();
             publication.setManifestDigest(digest);
@@ -235,10 +229,10 @@ class DefaultBatchPublisher implements BatchPublisher {
             publication.setGatePassed(Boolean.TRUE);
             publication.setUndecidableFloors(new ArrayList<>());
             publication.setStepsApproved(tally.approved());
-            publication.setStepsUnreviewed(tally.pending());
+            publication.setStepsPending(tally.pending());
             publication.setStepsRejected(tally.rejected());
             publication.setChangesLeftOutRejected(new ArrayList<>(tally.droppedForReviewChangeIds()));
-            publication.setChangesLeftOutChained(new ArrayList<>(tally.collateralDroppedChangeIds()));
+            publication.setChangesLeftOutCollateral(new ArrayList<>(tally.collateralDroppedChangeIds()));
             batch.setPublication(publication);
             batch.setStatus(BatchStatus.PUBLISHED);
             // The batch is saved last: once it says «publicada», the publication ended.
@@ -280,57 +274,29 @@ class DefaultBatchPublisher implements BatchPublisher {
      */
     private Prepared prepare(CorrectionBatch batch, BatchPublishRequest request, CourseEntity startCourse,
             BatchClosing last, Instant publishedAt) {
-        // What José already took out before publishing, named in the list (the gate's returns are not his).
-        Map<String, ExclusionReason> excluded = new LinkedHashMap<>();
-        for (String changeId : droppedByJose(batch)) {
-            excluded.put(changeId, ExclusionReason.DROPPED_BY_JOSE);
-        }
-        // F-PUBPROD-R003: José's review as it stands before anything leaves.
+        // F-PUBPROD-R003: José's review as it stands before anything leaves, and what he already took out.
         ReviewStanding standing = standing(batch);
-        Set<String> rejected = new LinkedHashSet<>();
-        Set<String> rejectedSteps = new LinkedHashSet<>();
-        collectRejected(standing, rejected, rejectedSteps);
+        PublicationExclusions exclusions = new PublicationExclusions(batch, changeLedger, startCourse, standing);
 
         // Rules José left out before the OK go first, through the ledger.
         boolean dropped = false;
-        for (String ruleId : request != null ? BatchBook.list(request.getExcludedRuleIds()) : List.<String>of()) {
-            for (BatchChange change : BatchBook.copy(batch.getChanges())) {
-                if (change != null && change.getDroppedReason() == null && change.getOrigin() == BatchChangeOrigin.RULE
-                        && Objects.equals(change.getRuleId(), ruleId)) {
-                    leaveOut(batch, change.getChangeId(), "José sacó la regla " + ruleId + " al publicar",
-                            ExclusionReason.RULE_EXCLUDED, rejected, excluded, startCourse);
-                    dropped = true;
-                }
-            }
+        for (String ruleId : BatchBook.list(request.getExcludedRuleIds())) {
+            dropped |= exclusions.leaveOutRule(ruleId);
         }
-        // Then every change with a step José rejected, whole, with what goes with it, until nothing rejected is left.
-        standing = standing(batch);
-        while (true) {
-            collectRejected(standing, rejected, rejectedSteps);
-            List<String> toLeaveOut = new ArrayList<>();
-            for (BatchChange change : BatchBook.list(batch.getChanges())) {
-                if (change != null && change.getDroppedReason() == null && rejected.contains(change.getChangeId())) {
-                    toLeaveOut.add(change.getChangeId());
-                }
-            }
-            if (toLeaveOut.isEmpty()) {
-                break;
-            }
-            for (String changeId : toLeaveOut) {
-                if (activeChangeIds(batch).contains(changeId)) {
-                    leaveOut(batch, changeId, REJECTED_IN_REVIEW, ExclusionReason.REVIEW_REJECTED, rejected, excluded,
-                            startCourse);
-                    dropped = true;
-                }
-            }
+        if (dropped) {
             standing = standing(batch);
         }
-        // A rejection on a content that changed afterwards stops the publication until José looks at it again.
-        Set<String> active = activeChangeIds(batch);
+        // Then every change with a step José rejected, whole, with what goes with it, until nothing rejected is left.
+        while (exclusions.leaveOutRejected(standing)) {
+            dropped = true;
+            standing = standing(batch);
+        }
+        // A rejection on a content that changed afterwards stops the publication until José looks at it again (the
+        // review reads only the changes still in the batch).
         List<String> stale = new ArrayList<>();
         for (ReviewStanding.StaleRejection rejection : standing.staleRejections()) {
             String named = rejection.changeId() + " en " + rejection.nodeId();
-            if (active.contains(rejection.changeId()) && !stale.contains(named)) {
+            if (!stale.contains(named)) {
                 stale.add(named);
             }
         }
@@ -364,28 +330,24 @@ class DefaultBatchPublisher implements BatchPublisher {
 
         // F-PUBPROD-R001 and R004: the list -- what may reach production, with its before and after -- before the
         // course.
-        ReviewTally tally = tally(standing, rejectedSteps, excluded);
+        ReviewTally tally = exclusions.tally(standing);
         List<PublishedElement> elements = new ArrayList<>();
         for (BatchProposalRef ref : BatchBook.list(batch.getQuizProposals())) {
-            PublishedScope scope = PublishedScope.of(batch, ref.getQuizId());
-            if (scope.partsByChange().isEmpty()) {
+            DeclaredParts declared = DeclaredParts.of(batch, ref.getQuizId());
+            Map<String, Set<ExercisePart>> partsByChange = declared.partsByChange();
+            if (partsByChange.isEmpty()) {
                 continue;
             }
-            List<PublishedStep> steps = new ArrayList<>();
-            scope.partsByChange().forEach((changeId, parts) -> steps.add(new PublishedStep(changeId, parts)));
-            elements.add(new PublishedElement(scope.snapshot(startCourse).orElse(null),
-                    scope.snapshot(composed).orElse(null), ref.getProposalId(),
-                    reviewStatus(standing, ref.getQuizId()), steps));
+            elements.add(new PublishedElement(declared.snapshot(startCourse).orElse(null),
+                    declared.snapshot(composed).orElse(null), ref.getProposalId(),
+                    reviewStatus(standing, ref.getQuizId()), partsByChange));
         }
-        List<ManifestExcluded> leftOut = new ArrayList<>();
-        excluded.forEach((changeId, reason) -> leftOut.add(new ManifestExcluded(changeId, reason)));
         PublicationManifestRequest manifestRequest = new PublicationManifestRequest(batch.getId(), batch.getPlanId(),
                 batch.getLevel() != null ? batch.getLevel().name() : null, publishedAt.toString(),
-                request != null ? request.getApprovedBy() : null,
-                new ManifestSource(batch.getBaselineAuditId(), batch.getStartAuditId(), null),
+                request.getApprovedBy(), new ManifestSource(batch.getBaselineAuditId(), batch.getStartAuditId(), null),
                 new ManifestVerdict(VerdictKind.PASSES, true, List.of(),
                         new ArrayList<>(BatchBook.list(verdict.getBrokenFloorGoalIds())), verdict.getDetail()),
-                tally, elements, leftOut);
+                tally, elements, exclusions.leftOut());
         PublicationManifest manifest;
         try {
             manifest = manifestBuilder.build(manifestRequest);
@@ -399,9 +361,6 @@ class DefaultBatchPublisher implements BatchPublisher {
     // -------------------------------------------------------------------------
     // F-PUBPROD-R003 and R004: José's review when publishing
     // -------------------------------------------------------------------------
-
-    /** The reason a change leaves the batch when José rejected one of its steps. */
-    static final String REJECTED_IN_REVIEW = "rechazado al revisar";
 
     /** José's review as it stands; if it cannot be read, nothing is published (R003 inv. 5). */
     private ReviewStanding standing(CorrectionBatch batch) {
@@ -419,67 +378,7 @@ class DefaultBatchPublisher implements BatchPublisher {
         return standing;
     }
 
-    private static void collectRejected(ReviewStanding standing, Set<String> rejected, Set<String> rejectedSteps) {
-        for (BatchReview.Item item : standing.items()) {
-            if (item.status() == BatchReviewDecision.Status.REJECTED) {
-                rejected.add(item.changeId());
-                rejectedSteps.add(item.changeId() + "\u0000" + (item.step() != null ? item.step().getQuizId() : null));
-            }
-        }
-    }
-
-    /**
-     * Takes a change out through the ledger -- with the later changes of the same exercise that touched the same, and
-     * their tasks back to pending -- and names in the list every change that left: rejected when José rejected it,
-     * {@code why} the one asked, chained the others.
-     */
-    private void leaveOut(CorrectionBatch batch, String changeId, String reason, ExclusionReason why,
-            Set<String> rejected, Map<String, ExclusionReason> excluded, CourseEntity startCourse) {
-        Set<String> before = activeChangeIds(batch);
-        changeLedger.drop(batch, changeId, reason, startCourse);
-        Set<String> after = activeChangeIds(batch);
-        for (String id : before) {
-            if (!after.contains(id)) {
-                excluded.put(id, rejected.contains(id) ? ExclusionReason.REVIEW_REJECTED
-                        : id.equals(changeId) ? why : ExclusionReason.COLLATERAL);
-            }
-        }
-    }
-
-    private static Set<String> activeChangeIds(CorrectionBatch batch) {
-        Set<String> active = new LinkedHashSet<>();
-        for (BatchChange change : BatchBook.list(batch.getChanges())) {
-            if (change != null && change.getDroppedReason() == null) {
-                active.add(change.getChangeId());
-            }
-        }
-        return active;
-    }
-
-    /**
-     * The changes José took out before publishing, with the ones that went with them: every change already out but
-     * the ones the gate of the batch returned at its closing, and the ones chained with those.
-     */
-    private static List<String> droppedByJose(CorrectionBatch batch) {
-        Set<String> returnedByGate = new LinkedHashSet<>();
-        List<String> jose = new ArrayList<>();
-        for (BatchChange change : BatchBook.list(batch.getChanges())) {
-            if (change == null || change.getDroppedReason() == null) {
-                continue;
-            }
-            String reason = change.getDroppedReason();
-            String chainedWith = DefaultBatchChangeLedger.chainedWith(reason);
-            if (reason.startsWith(DefaultBatchCloser.RETURNED_BY_GATE)
-                    || (chainedWith != null && returnedByGate.contains(chainedWith))) {
-                returnedByGate.add(change.getChangeId());
-            } else {
-                jose.add(change.getChangeId());
-            }
-        }
-        return jose;
-    }
-
-    /** Whether every active step of the node is approved as it stands, or something travels without review. */
+    /** Whether every active step of the node is approved as it stands, or something travels pending review. */
     private static DocumentReviewStatus reviewStatus(ReviewStanding standing, String nodeId) {
         boolean any = false;
         for (BatchReview.Item item : standing.items()) {
@@ -492,30 +391,6 @@ class DefaultBatchPublisher implements BatchPublisher {
             }
         }
         return any ? DocumentReviewStatus.APPROVED : DocumentReviewStatus.PENDING;
-    }
-
-    /** The counts of the review: approved and unreviewed among what travels, rejected among what left. */
-    private static ReviewTally tally(ReviewStanding standing, Set<String> rejectedSteps,
-            Map<String, ExclusionReason> excluded) {
-        int approved = 0;
-        int pending = 0;
-        for (BatchReview.Item item : standing.items()) {
-            if (item.status() == BatchReviewDecision.Status.APPROVED) {
-                approved++;
-            } else {
-                pending++;
-            }
-        }
-        List<String> forReview = new ArrayList<>();
-        List<String> collateral = new ArrayList<>();
-        excluded.forEach((changeId, reason) -> {
-            if (reason == ExclusionReason.REVIEW_REJECTED) {
-                forReview.add(changeId);
-            } else if (reason == ExclusionReason.COLLATERAL) {
-                collateral.add(changeId);
-            }
-        });
-        return new ReviewTally(approved, pending, rejectedSteps.size(), forReview, collateral);
     }
 
     private static String message(RuntimeException e) {
@@ -683,10 +558,7 @@ class DefaultBatchPublisher implements BatchPublisher {
      */
     private CourseEntity withOnly(CorrectionBatch batch, String nodeId, CourseEntity startCourse) {
         List<BatchChange> mine = new ArrayList<>();
-        for (BatchChange change : BatchBook.list(batch.getChanges())) {
-            if (change == null || change.getDroppedReason() != null) {
-                continue;
-            }
+        for (BatchChange change : BatchBook.activeChanges(batch)) {
             List<BatchChangeStep> steps = new ArrayList<>();
             for (BatchChangeStep step : BatchBook.list(change.getSteps())) {
                 if (step != null && Objects.equals(step.getQuizId(), nodeId)) {
@@ -712,12 +584,12 @@ class DefaultBatchPublisher implements BatchPublisher {
         if (preservationCheck == null || correctionScope == null) {
             return violations;
         }
-        PublishedScope scope = PublishedScope.of(batch, ref.getQuizId());
-        Optional<CourseElementSnapshot> revised = scope.snapshot(after);
+        DeclaredParts declared = DeclaredParts.of(batch, ref.getQuizId());
+        Optional<CourseElementSnapshot> revised = declared.snapshot(after);
         if (revised.isEmpty()) {
             return violations;
         }
-        Set<ScopedField> changeable = correctionScope.changeableFields(scope.parts(), scope.target());
+        Set<ScopedField> changeable = correctionScope.changeableFields(declared.parts(), declared.target());
         for (PreservationViolation violation : BatchBook.list(preservationCheck.verifyWithin(before, after,
                 revised.get(), changeable))) {
             violations.add(ref.getQuizId() + " " + violation.getPath());
@@ -781,8 +653,8 @@ class DefaultBatchPublisher implements BatchPublisher {
     /** The audios the batch asked to record again, its accepted changes and its rule fixes, by key. */
     private static List<AudioRerecordRequest> rerecords(CorrectionBatch batch) {
         Map<String, AudioRerecordRequest> byKey = new LinkedHashMap<>();
-        for (BatchChange change : BatchBook.list(batch.getChanges())) {
-            if (change == null || change.getDroppedReason() != null || change.getGateVerdict() == null) {
+        for (BatchChange change : BatchBook.activeChanges(batch)) {
+            if (change.getGateVerdict() == null) {
                 continue;
             }
             for (AudioRerecordRequest request : BatchBook.list(change.getGateVerdict().getRerecords())) {

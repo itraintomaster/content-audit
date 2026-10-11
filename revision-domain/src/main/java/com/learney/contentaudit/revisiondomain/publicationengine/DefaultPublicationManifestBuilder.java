@@ -5,18 +5,17 @@ import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 import com.learney.contentaudit.coursedomain.ProductionDocumentProjector;
 import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
 import com.learney.contentaudit.revisiondomain.preservation.CorrectionScope;
-import com.learney.contentaudit.revisiondomain.preservation.ProductionFieldMap;
-import com.learney.contentaudit.revisiondomain.preservation.ProductionPlace;
 import com.learney.contentaudit.revisiondomain.preservation.ScopedField;
 import com.learney.contentaudit.revisiondomain.publication.ManifestCounts;
 import com.learney.contentaudit.revisiondomain.publication.ManifestDocument;
 import com.learney.contentaudit.revisiondomain.publication.ManifestField;
 import com.learney.contentaudit.revisiondomain.publication.ManifestUnsupported;
+import com.learney.contentaudit.revisiondomain.publication.ProductionFieldMap;
+import com.learney.contentaudit.revisiondomain.publication.ProductionPlace;
 import com.learney.contentaudit.revisiondomain.publication.PublicationManifest;
 import com.learney.contentaudit.revisiondomain.publication.PublicationManifestBuilder;
 import com.learney.contentaudit.revisiondomain.publication.PublicationManifestRequest;
 import com.learney.contentaudit.revisiondomain.publication.PublishedElement;
-import com.learney.contentaudit.revisiondomain.publication.PublishedStep;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
@@ -26,6 +25,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeMap;
 
 /**
  * F-PUBPROD-R001 y R002: la lista sale de la misma tabla de partes a campos que decide qué puede cambiar una corrección
@@ -77,21 +77,13 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
         for (PublishedElement element : request.elements()) {
             document(element, unsupported).ifPresent(documents::add);
         }
-        Map<String, Integer> byPath = new LinkedHashMap<>();
+        Map<String, Integer> byPath = new TreeMap<>(BY_CANONICAL_ORDER);
         int fields = 0;
-        List<String> paths = new ArrayList<>();
         for (ManifestDocument document : documents) {
             for (ManifestField field : document.fields()) {
-                if (!paths.contains(field.path())) {
-                    paths.add(field.path());
-                }
+                byPath.merge(field.path(), 1, Integer::sum);
                 fields++;
             }
-        }
-        paths.sort(BY_CANONICAL_ORDER);
-        for (String path : paths) {
-            byPath.put(path, (int) documents.stream().flatMap(d -> d.fields().stream())
-                    .filter(f -> path.equals(f.path())).count());
         }
         return new PublicationManifest(PublicationManifest.SCHEMA, request.batchId(), request.planId(),
                 request.level(), request.publishedAt(), request.approvedBy(), request.source(), request.verdict(),
@@ -116,15 +108,12 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
         String collection = null;
         Set<String> writePaths = new LinkedHashSet<>();
         boolean held = false;
-        PublishedStep multipleChoiceStep = null;
+        String multipleChoiceChange = null;
         ExercisePart multipleChoicePart = null;
-        List<String> changeIds = new ArrayList<>();
-        for (PublishedStep step : element.steps()) {
-            if (!changeIds.contains(step.changeId())) {
-                changeIds.add(step.changeId());
-            }
+        for (Map.Entry<String, Set<ExercisePart>> step : element.partsByChange().entrySet()) {
+            String changeId = step.getKey();
             for (ExercisePart part : ExercisePart.values()) {
-                if (!step.parts().contains(part)) {
+                if (!step.getValue().contains(part)) {
                     continue;
                 }
                 for (ScopedField field : correctionScope.changeableFields(Set.of(part), target)) {
@@ -132,15 +121,15 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
                     if (place instanceof ProductionPlace.Write write) {
                         collection = write.collection();
                         writePaths.addAll(write.mongoPaths());
-                        if (multipleChoiceStep == null && (write.mongoPaths().contains(SELECTION)
+                        if (multipleChoiceChange == null && (write.mongoPaths().contains(SELECTION)
                                 || write.mongoPaths().contains(ITEMS))) {
-                            multipleChoiceStep = step;
+                            multipleChoiceChange = changeId;
                             multipleChoicePart = part;
                         }
                     } else if (place instanceof ProductionPlace.Unsupported notByScript
                             && changed(element, target, notByScript.detectionPaths())) {
                         held = true;
-                        ManifestUnsupported entry = new ManifestUnsupported(step.changeId(), nodeId, part,
+                        ManifestUnsupported entry = new ManifestUnsupported(changeId, nodeId, part,
                                 notByScript.reason());
                         if (!unsupported.contains(entry)) {
                             unsupported.add(entry);
@@ -157,8 +146,8 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
         ordered.sort(BY_CANONICAL_ORDER);
         Map<String, Object> before = project(element.before(), target, ordered);
         Map<String, Object> after = project(element.after(), target, ordered);
-        if (multipleChoiceStep != null && !onlyLabelsChanged(before, after)) {
-            ManifestUnsupported entry = new ManifestUnsupported(multipleChoiceStep.changeId(), nodeId,
+        if (multipleChoiceChange != null && !onlyLabelsChanged(before, after)) {
+            ManifestUnsupported entry = new ManifestUnsupported(multipleChoiceChange, nodeId,
                     multipleChoicePart, MULTIPLE_CHOICE_BEYOND_LABEL);
             if (!unsupported.contains(entry)) {
                 unsupported.add(entry);
@@ -180,6 +169,7 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
                     + " no tiene identificador de producción: la lista no se puede dejar");
         }
         List<String> proposalIds = element.proposalId() != null ? List.of(element.proposalId()) : List.of();
+        List<String> changeIds = new ArrayList<>(element.partsByChange().keySet());
         return Optional.of(new ManifestDocument(collection, id, nodeId, changeIds, proposalIds,
                 element.reviewStatus(), fields));
     }

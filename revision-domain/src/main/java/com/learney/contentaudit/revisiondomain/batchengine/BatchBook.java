@@ -56,6 +56,20 @@ final class BatchBook {
         return values != null ? new ArrayList<>(values) : new ArrayList<>();
     }
 
+    /**
+     * Los cambios que siguen en la tanda —los que nadie sacó—, en su orden, en una lista nueva: se puede recorrer
+     * mientras se sacan cambios.
+     */
+    static List<BatchChange> activeChanges(CorrectionBatch batch) {
+        List<BatchChange> active = new ArrayList<>();
+        for (BatchChange change : list(batch.getChanges())) {
+            if (change != null && change.getDroppedReason() == null) {
+                active.add(change);
+            }
+        }
+        return active;
+    }
+
     /** Missing ordinals in batches written before the iterative UI belong to the first correction. */
     static int correctionRevision(CorrectionBatch batch) {
         return batch != null && batch.getCorrectionRevision() > 0 ? batch.getCorrectionRevision() : 1;
@@ -360,10 +374,7 @@ final class BatchBook {
     /** The steps of the batch on one node, of the changes still in, in the order they were recorded. */
     static List<BatchChangeStep> stepsOn(CorrectionBatch batch, String nodeId) {
         List<BatchChangeStep> steps = new ArrayList<>();
-        for (BatchChange change : list(batch.getChanges())) {
-            if (change == null || change.getDroppedReason() != null) {
-                continue;
-            }
+        for (BatchChange change : activeChanges(batch)) {
             for (BatchChangeStep step : list(change.getSteps())) {
                 if (step != null && Objects.equals(step.getQuizId(), nodeId)) {
                     steps.add(step);

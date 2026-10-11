@@ -8,7 +8,7 @@ import com.learney.contentaudit.revisiondomain.engine.DefaultCourseElementLocato
 import com.learney.contentaudit.revisiondomain.nonregressionengine.DefaultGateFactory;
 import com.learney.contentaudit.revisiondomain.preservation.CorrectionScope;
 import com.learney.contentaudit.revisiondomain.preservationengine.DefaultCorrectionScope;
-import com.learney.contentaudit.revisiondomain.preservationengine.DefaultProductionFieldMap;
+import com.learney.contentaudit.revisiondomain.publicationengine.DefaultProductionFieldMap;
 import com.learney.contentaudit.revisiondomain.publicationengine.DefaultPublicationManifestBuilder;
 import javax.annotation.processing.Generated;
 
@@ -52,9 +52,8 @@ public class DefaultBatchServiceFactory implements BatchServiceFactory {
                 config.getCourseRepository(), config.getCourseMapper(), config.getAuditEngine(),
                 config.getAuditReportStore(), config.getRefinerEngine(), config.getRefinementPlanStore(),
                 config.getActiveAnalysisSelectionStore(), config.getBatchComparator(), scope,
-                config.getPreservationCheck(), config.getCoursePath())
-                .withReviews(review::standing)
-                .withPublicationList(config.getBatchStore(), config.getProductionDocumentProjector() != null
+                config.getPreservationCheck(), config.getCoursePath(), review::standing, config.getBatchStore(),
+                config.getProductionDocumentProjector() != null
                         ? new DefaultPublicationManifestBuilder(scope, new DefaultProductionFieldMap(),
                                 config.getProductionDocumentProjector())
                         : null);

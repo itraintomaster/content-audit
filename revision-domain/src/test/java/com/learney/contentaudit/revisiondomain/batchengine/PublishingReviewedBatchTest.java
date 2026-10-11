@@ -54,6 +54,7 @@ import java.util.HexFormat;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -79,8 +80,27 @@ public class PublishingReviewedBatchTest {
 
     private static final Instant REVIEWED_AT = TandaFixture.OPENED_AT.plusSeconds(600);
 
+    /** Quien publica. */
+    private static final String JOSE = "José";
+
     private static BatchPublishRequest ok() {
-        return new BatchPublishRequest("José", null, List.of());
+        return new BatchPublishRequest(JOSE, null, List.of());
+    }
+
+    /** Publicar se niega: la negativa. */
+    private static BatchNotPublishableException refusal(Publishing p, CorrectionBatch batch) {
+        return assertThrows(BatchNotPublishableException.class, () -> p.publisher().publish(batch, ok(), p.start));
+    }
+
+    /** La falla dice lo esperado. */
+    private static void assertMentions(Throwable failure, String expected) {
+        assertTrue(failure.getMessage() != null && failure.getMessage().contains(expected), failure.getMessage());
+    }
+
+    /** Ni el curso ni la lista: nada quedó escrito. */
+    private static void assertNothingWritten(Publishing p) {
+        assertTrue(p.courses.written.isEmpty(), "el curso no se toca");
+        assertTrue(p.batches.manifests.isEmpty(), "no queda lista");
     }
 
     private static QuizTemplateEntity loved(Publishing p) {
@@ -203,7 +223,7 @@ public class PublishingReviewedBatchTest {
 
         assertSame(batch, published);
         assertEquals(BatchStatus.PUBLISHED, batch.getStatus());
-        assertEquals(DefaultBatchPublisher.REJECTED_IN_REVIEW, change(batch, V1).getDroppedReason());
+        assertEquals(PublicationExclusions.REJECTED_IN_REVIEW, change(batch, V1).getDroppedReason());
         assertTrue(change(batch, V2).getDroppedReason().startsWith("sale con " + V1 + ":"),
                 change(batch, V2).getDroppedReason());
         assertNull(change(batch, C).getDroppedReason(), "lo aprobado viaja");
@@ -227,10 +247,10 @@ public class PublishingReviewedBatchTest {
         BatchPublication publication = batch.getPublication();
         assertEquals(List.of(Publishing.P_COME), publication.getAppliedProposalIds());
         assertEquals(List.of(V1), publication.getChangesLeftOutRejected());
-        assertEquals(List.of(V2), publication.getChangesLeftOutChained());
+        assertEquals(List.of(V2), publication.getChangesLeftOutCollateral());
         assertEquals(1, publication.getStepsRejected());
         assertEquals(1, publication.getStepsApproved());
-        assertEquals(0, publication.getStepsUnreviewed());
+        assertEquals(0, publication.getStepsPending());
         PublicationManifest list = manifest(p, batch);
         assertEquals(List.of(new ManifestExcluded(V1, ExclusionReason.REVIEW_REJECTED),
                 new ManifestExcluded(V2, ExclusionReason.COLLATERAL)), list.excluded());
@@ -257,13 +277,11 @@ public class PublishingReviewedBatchTest {
         String before = photo(p, batch);
         p.comparator.answer = scope -> TandaFixture.comparison(scope, List.of(), VerdictKind.FAILS);
 
-        BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
-                () -> p.publisher().publish(batch, ok(), p.start));
+        BatchNotPublishableException refused = refusal(p, batch);
 
-        assertTrue(refused.getMessage().contains("el veredicto de F es «FAILS», no «pasa»"), refused.getMessage());
+        assertMentions(refused, "el veredicto de F es «FAILS», no «pasa»");
         assertEquals(1, p.comparator.scopes.size(), "se comparó sin las verduras");
-        assertTrue(p.courses.written.isEmpty(), "el curso no se toca");
-        assertTrue(p.batches.manifests.isEmpty(), "no queda lista");
+        assertNothingWritten(p);
         assertEquals(before, photo(p, batch), "nada queda sacado");
         assertNull(change(batch, V1).getDroppedReason());
         assertEquals(RevisionVerdict.PENDING_APPROVAL, p.artifacts.load(TandaFixture.PLAN, Publishing.P_VEGETABLES)
@@ -292,21 +310,19 @@ public class PublishingReviewedBatchTest {
         p.ledger().drop(batch, V1, "lo sacó José", p.start);
         p.close(batch);
 
-        BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
-                () -> p.publisher().publish(batch, ok(), p.start));
+        BatchNotPublishableException refused = refusal(p, batch);
 
-        assertTrue(refused.getMessage().contains("José rechazó un contenido que cambió después (" + T + " en "
-                + MesaFixture.VEGETABLES + ")"), refused.getMessage());
-        assertTrue(refused.getMessage().contains("hay que volver a mirarlo antes de publicar"), refused.getMessage());
+        assertMentions(refused, "José rechazó un contenido que cambió después (" + T + " en "
+                + MesaFixture.VEGETABLES + ")");
+        assertMentions(refused, "hay que volver a mirarlo antes de publicar");
         assertNull(change(batch, T).getDroppedReason(), "T sigue en la tanda");
-        assertTrue(p.courses.written.isEmpty());
-        assertTrue(p.batches.manifests.isEmpty());
+        assertNothingWritten(p);
         assertTrue(p.comparator.scopes.isEmpty(), "no llega a comparar");
 
         // Con el rechazo dado sobre el contenido de hoy, T sale y la tanda publica.
         p.decide(batch, T, BatchReviewDecision.Status.REJECTED, REVIEWED_AT.plusSeconds(60));
         p.publisher().publish(batch, ok(), p.start);
-        assertEquals(DefaultBatchPublisher.REJECTED_IN_REVIEW, change(batch, T).getDroppedReason());
+        assertEquals(PublicationExclusions.REJECTED_IN_REVIEW, change(batch, T).getDroppedReason());
         assertEquals(BatchStatus.PUBLISHED, batch.getStatus());
     }
 
@@ -317,7 +333,7 @@ public class PublishingReviewedBatchTest {
     public void shouldRefuseToPublishWritingNothingWhenJoseDecisionsCannotBeRead() {
         // R003 inv. 5: sin las decisiones de José no se sabe qué rechazó: no se publica, ni con un error al leerlas ni
         // sin respuesta.
-        for (java.util.function.Function<CorrectionBatch, ReviewStanding> unreadable : List.<java.util.function.Function<
+        for (Function<CorrectionBatch, ReviewStanding> unreadable : List.<Function<
                 CorrectionBatch, ReviewStanding>>of(b -> {
                     throw new IllegalStateException("el registro de decisiones está roto");
                 }, b -> null)) {
@@ -326,22 +342,18 @@ public class PublishingReviewedBatchTest {
             CorrectionBatch batch = p.closedBatch();
             String before = photo(p, batch);
 
-            BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
-                    () -> p.publisher().publish(batch, ok(), p.start));
+            BatchNotPublishableException refused = refusal(p, batch);
 
-            assertTrue(refused.getMessage().contains("no se pudieron leer las decisiones de la revisión"),
-                    refused.getMessage());
-            assertTrue(refused.getMessage().contains("sin ellas no se publica"), refused.getMessage());
-            assertTrue(p.courses.written.isEmpty());
-            assertTrue(p.batches.manifests.isEmpty());
+            assertMentions(refused, "no se pudieron leer las decisiones de la revisión");
+            assertMentions(refused, "sin ellas no se publica");
+            assertNothingWritten(p);
             assertEquals(before, photo(p, batch));
         }
+        // Sin de dónde leerlas, el publicador ni se arma.
         Publishing unwired = new Publishing();
-        CorrectionBatch batch = unwired.closedBatch();
-        BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
-                () -> unwired.publisher().withReviews(null).publish(batch, ok(), unwired.start));
-        assertTrue(refused.getMessage().contains("no hay de dónde leer las decisiones de la revisión"),
-                refused.getMessage());
+        NullPointerException notWired = assertThrows(NullPointerException.class,
+                () -> unwired.publisher(null, unwired.batches, unwired.manifestBuilder));
+        assertMentions(notWired, "publicar necesita de dónde leer las decisiones de la revisión");
         assertTrue(unwired.courses.written.isEmpty());
     }
 
@@ -363,11 +375,9 @@ public class PublishingReviewedBatchTest {
         CorrectionBatch batch = reviewedAndClosed(full);
         String before = photo(full, batch);
 
-        BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
-                () -> full.publisher().publish(batch, ok(), full.start));
+        BatchNotPublishableException refused = refusal(full, batch);
 
-        assertTrue(refused.getMessage().contains("la lista de publicación no se pudo guardar: el disco está lleno"),
-                refused.getMessage());
+        assertMentions(refused, "la lista de publicación no se pudo guardar: el disco está lleno");
         assertTrue(full.courses.written.isEmpty(), "el curso no se toca");
         assertEquals(before, photo(full, batch), "nada queda sacado");
         assertEquals(RevisionVerdict.PENDING_APPROVAL, full.artifacts.load(TandaFixture.PLAN, Publishing.P_VEGETABLES)
@@ -395,12 +405,12 @@ public class PublishingReviewedBatchTest {
         Publishing unbuildable = new Publishing();
         CorrectionBatch third = reviewedAndClosed(unbuildable);
         String thirdBefore = photo(unbuildable, third);
-        BatchNotPublishableException notBuilt = assertThrows(BatchNotPublishableException.class,
-                () -> unbuildable.publisher().withPublicationList(unbuildable.batches, request -> {
-                    throw new IllegalArgumentException("el ejercicio no tiene identificador de producción");
-                }).publish(third, ok(), unbuildable.start));
-        assertTrue(notBuilt.getMessage().contains("la lista de publicación no se puede armar: el ejercicio no tiene"
-                + " identificador de producción"), notBuilt.getMessage());
+        unbuildable.manifestBuilder = request -> {
+            throw new IllegalArgumentException("el ejercicio no tiene identificador de producción");
+        };
+        BatchNotPublishableException notBuilt = refusal(unbuildable, third);
+        assertMentions(notBuilt, "la lista de publicación no se puede armar: el ejercicio no tiene"
+                + " identificador de producción");
         assertTrue(unbuildable.courses.written.isEmpty());
         assertEquals(thirdBefore, photo(unbuildable, third));
     }
@@ -434,10 +444,10 @@ public class PublishingReviewedBatchTest {
 
         BatchPublication publication = batch.getPublication();
         assertEquals(1, publication.getStepsApproved());
-        assertEquals(1, publication.getStepsUnreviewed());
+        assertEquals(1, publication.getStepsPending());
         assertEquals(1, publication.getStepsRejected());
         assertEquals(List.of(T), publication.getChangesLeftOutRejected());
-        assertEquals(List.of(), publication.getChangesLeftOutChained());
+        assertEquals(List.of(), publication.getChangesLeftOutCollateral());
         assertNull(change(batch, V1).getDroppedReason());
         assertNull(change(batch, C).getDroppedReason(), "lo que nadie revisó viaja");
         CourseEntity written = p.courses.written.get(0);
@@ -486,7 +496,7 @@ public class PublishingReviewedBatchTest {
         assertNull(change(batch, T).getDroppedReason(), "la traducción no toca lo mismo: se queda");
         BatchPublication publication = batch.getPublication();
         assertEquals(0, publication.getStepsApproved());
-        assertEquals(1, publication.getStepsUnreviewed());
+        assertEquals(1, publication.getStepsPending());
         assertEquals(1, publication.getStepsRejected());
         PublicationManifest list = manifest(p, batch);
         assertEquals(1, list.documents().size());
@@ -513,7 +523,7 @@ public class PublishingReviewedBatchTest {
         Publishing p = new Publishing();
         CorrectionBatch batch = p.closedBatch();
         batch.setAdjustments(new ArrayList<>(List.of(new BatchAdjustment(BatchAdjustmentKind.DROP_CHANGE,
-                MesaFixture.COME, List.of(), "mesa-otro", null, null, null, "no", "José",
+                MesaFixture.COME, List.of(), "mesa-otro", null, null, null, "no", JOSE,
                 Publishing.CLOSED_AT.plusSeconds(60)))));
         p.comparator.answer = scope -> {
             BatchComparison comparison = TandaFixture.comparison(scope, List.of(), VerdictKind.UNDECIDABLE);
@@ -524,14 +534,12 @@ public class PublishingReviewedBatchTest {
         };
         assertTrue(batch.getClosings().get(0).getGate().isPasses(), "la compuerta del último cierre pasa");
 
-        BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
-                () -> p.publisher().publish(batch, ok(), p.start));
+        BatchNotPublishableException refused = refusal(p, batch);
 
-        assertTrue(refused.getMessage().contains("el veredicto de F es «no se puede decidir» (1 piso sin decidir:"
-                + " lemma-absence), no «pasa»: ningún piso falla, pero 1 piso sin decidir"), refused.getMessage());
+        assertMentions(refused, "el veredicto de F es «no se puede decidir» (1 piso sin decidir:"
+                + " lemma-absence), no «pasa»: ningún piso falla, pero 1 piso sin decidir");
         assertFalse(refused.getMessage().contains("UNDECIDABLE"), refused.getMessage());
-        assertTrue(p.courses.written.isEmpty());
-        assertTrue(p.batches.manifests.isEmpty());
+        assertNothingWritten(p);
         assertNull(batch.getPublication());
     }
 
@@ -548,16 +556,14 @@ public class PublishingReviewedBatchTest {
                 new ArrayList<>(), null, null, new UndecidableFloors(1, List.of(new RowSubject("lemma-absence",
                         "Palabras del nivel")))));
 
-        BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
-                () -> p.publisher().publish(batch, ok(), p.start));
+        BatchNotPublishableException refused = refusal(p, batch);
 
-        assertTrue(refused.getMessage().contains("el veredicto de F es «PASSES», pero con 1 piso sin decidir:"
-                + " lemma-absence, no «pasa»"), refused.getMessage());
+        assertMentions(refused, "el veredicto de F es «PASSES», pero con 1 piso sin decidir:"
+                + " lemma-absence, no «pasa»");
         assertFalse(refused.getMessage().contains("no se puede decidir"), "es «pasa», con un piso sin decidir: "
                 + refused.getMessage());
         assertTrue(p.comparator.scopes.isEmpty(), "nada cambió desde el cierre: no se compara de nuevo");
-        assertTrue(p.courses.written.isEmpty());
-        assertTrue(p.batches.manifests.isEmpty());
+        assertNothingWritten(p);
     }
 
     @Test
@@ -576,26 +582,21 @@ public class PublishingReviewedBatchTest {
                         + TandaFixture.CHILD)));
         String before = photo(p, batch);
 
-        BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
-                () -> p.publisher().publish(batch, ok(), p.start));
+        BatchNotPublishableException refused = refusal(p, batch);
 
-        assertTrue(refused.getMessage().contains("la compuerta de «no empeorar» del último cierre no pasa: "
-                + "F-NOEMP-R007: cambió fuera de la tanda: " + TandaFixture.CHILD), refused.getMessage());
+        assertMentions(refused, "la compuerta de «no empeorar» del último cierre no pasa: "
+                + "F-NOEMP-R007: cambió fuera de la tanda: " + TandaFixture.CHILD);
         assertEquals(before, photo(p, batch));
         assertTrue(p.comparator.scopes.isEmpty());
-        assertTrue(p.courses.written.isEmpty());
-        assertTrue(p.batches.manifests.isEmpty());
+        assertNothingWritten(p);
 
         // Sin compuerta, tampoco; y sin cierre, menos.
         batch.getClosings().get(0).setGate(null);
-        BatchNotPublishableException noGate = assertThrows(BatchNotPublishableException.class,
-                () -> p.publisher().publish(batch, ok(), p.start));
-        assertTrue(noGate.getMessage().contains("la compuerta de «no empeorar» del último cierre no está"),
-                noGate.getMessage());
+        BatchNotPublishableException noGate = refusal(p, batch);
+        assertMentions(noGate, "la compuerta de «no empeorar» del último cierre no está");
         batch.setClosings(new ArrayList<>());
-        BatchNotPublishableException notClosed = assertThrows(BatchNotPublishableException.class,
-                () -> p.publisher().publish(batch, ok(), p.start));
-        assertTrue(notClosed.getMessage().contains("la tanda no se cerró"), notClosed.getMessage());
+        BatchNotPublishableException notClosed = refusal(p, batch);
+        assertMentions(notClosed, "la tanda no se cerró");
         assertTrue(p.courses.written.isEmpty());
     }
 
@@ -627,7 +628,7 @@ public class PublishingReviewedBatchTest {
         };
         CorrectionBatch batch = p.closedBatch();
 
-        p.publisher().publish(batch, new BatchPublishRequest("José", "la primera tanda", List.of()), p.start);
+        p.publisher().publish(batch, new BatchPublishRequest(JOSE, "la primera tanda", List.of()), p.start);
 
         assertEquals(List.of(0), writtenWhenListed, "la lista, una vez y antes del curso");
         assertEquals(1, p.courses.written.size());
@@ -645,7 +646,7 @@ public class PublishingReviewedBatchTest {
         assertEquals(batch.getId(), list.batchId());
         assertEquals(TandaFixture.PLAN, list.planId());
         assertEquals("A1", list.level());
-        assertEquals("José", list.approvedBy());
+        assertEquals(JOSE, list.approvedBy());
         assertEquals(publication.getPublishedAt().toString(), list.publishedAt(), "el mismo momento");
         assertEquals(TandaFixture.BASELINE, list.source().baselineAuditId());
         assertEquals(TandaFixture.START_AUDIT, list.source().startAuditId());
@@ -682,7 +683,7 @@ public class PublishingReviewedBatchTest {
                 ExercisePart.TRANSLATION, BatchTaskOutcomeKind.RESOLVED_BY_RULE);
         p.close(batch);
 
-        p.publisher().publish(batch, new BatchPublishRequest("José", null, List.of("translation-sense")), p.start);
+        p.publisher().publish(batch, new BatchPublishRequest(JOSE, null, List.of("translation-sense")), p.start);
 
         PublicationManifest list = manifest(p, batch);
         assertEquals(List.of(new ManifestExcluded(C, ExclusionReason.DROPPED_BY_JOSE),
@@ -702,14 +703,14 @@ public class PublishingReviewedBatchTest {
         Publishing p = new Publishing();
         CorrectionBatch batch = p.closedBatch();
 
-        BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
-                () -> p.publisher().withPublicationList(p.batches, null).publish(batch, ok(), p.start));
-        assertTrue(refused.getMessage().contains("falta con qué armar la lista de publicación"), refused.getMessage());
-        BatchNotPublishableException nowhere = assertThrows(BatchNotPublishableException.class,
-                () -> p.publisher().withPublicationList(null, request -> {
+        p.manifestBuilder = null;
+        BatchNotPublishableException refused = refusal(p, batch);
+        assertMentions(refused, "falta con qué armar la lista de publicación");
+        NullPointerException nowhere = assertThrows(NullPointerException.class, () -> p.publisher(p.review()::standing,
+                null, request -> {
                     throw new AssertionError("no se arma una lista que no se puede guardar");
-                }).publish(batch, ok(), p.start));
-        assertTrue(nowhere.getMessage().contains("falta con qué armar la lista de publicación"), nowhere.getMessage());
+                }));
+        assertMentions(nowhere, "publicar necesita dónde guardar la tanda y su lista de publicación");
         assertTrue(p.courses.written.isEmpty());
         assertEquals(BatchStatus.CLOSED, batch.getStatus());
 
@@ -722,9 +723,8 @@ public class PublishingReviewedBatchTest {
             }
         };
         CorrectionBatch other = blank.closedBatch();
-        BatchNotPublishableException noDigest = assertThrows(BatchNotPublishableException.class,
-                () -> blank.publisher().publish(other, ok(), blank.start));
-        assertTrue(noDigest.getMessage().contains("la lista de publicación quedó sin huella"), noDigest.getMessage());
+        BatchNotPublishableException noDigest = refusal(blank, other);
+        assertMentions(noDigest, "la lista de publicación quedó sin huella");
         assertTrue(blank.courses.written.isEmpty());
     }
 
@@ -876,10 +876,10 @@ public class PublishingReviewedBatchTest {
         IllegalStateException failed = assertThrows(IllegalStateException.class,
                 () -> p.publisher().publish(batch, ok(), p.start));
 
-        assertTrue(failed.getMessage().contains("La publicación de la tanda " + batch.getId()
+        assertMentions(failed, "La publicación de la tanda " + batch.getId()
                 + " no terminó (no se pudo guardar la tanda) y no se pudo deshacer del todo: el curso en "
                 + TandaFixture.COURSE_PATH + " quedó como lo escribió esta publicación, o a medio escribir (el disco se"
-                + " llenó)"), failed.getMessage());
+                + " llenó)");
         assertEquals("no se pudo guardar la tanda", failed.getCause().getMessage());
         assertEquals(1, failed.getSuppressed().length);
         assertTrue(p.batches.publicationManifest(batch.getId()).isEmpty(), "la lista de ese intento se borró igual");
