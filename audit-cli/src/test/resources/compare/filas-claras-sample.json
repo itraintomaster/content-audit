@@ -1123,7 +1123,42 @@
       }
     } ],
     "fixedFindings" : [ ],
-    "undecidedAnalyzers" : [ "single-answer" ]
+    "undecidedAnalyzers" : [ "single-answer" ],
+    "afterFindings" : [ {
+      "analyzer" : "lemma-absence",
+      "rule" : "misplaced-word",
+      "node" : {
+        "target" : "QUIZ",
+        "nodeId" : "67fab6d59930102295341ec4",
+        "label" : "My grandmother comes every year."
+      },
+      "severity" : "MEDIUM",
+      "evidence" : {
+        "examined" : [ {
+          "label" : "Oración",
+          "text" : "My grandmother comes every year."
+        }, {
+          "label" : "Palabra",
+          "text" : "grandmother"
+        }, {
+          "label" : "Nivel de la palabra",
+          "text" : "A2"
+        }, {
+          "label" : "Nivel del ejercicio",
+          "text" : "A1"
+        } ],
+        "observation" : "grandmother es una palabra de A2 en un ejercicio de A1",
+        "relatedNodes" : [ ]
+      },
+      "resolution" : "PANEL",
+      "cost" : "INSTANT",
+      "identity" : {
+        "key" : "lemma-absence|misplaced-word|67fab6d59930102295341ec4|grandmother",
+        "marker" : "grandmother"
+      }
+    } ],
+    "persistentFindings" : [ ],
+    "evaluatedAnalyzers" : [ ]
   }, {
     "proposalId" : "077-afirmativas-regulares-hat",
     "nodeTarget" : "QUIZ",
@@ -1154,7 +1189,10 @@
         "marker" : "hat"
       }
     } ],
-    "undecidedAnalyzers" : [ "single-answer" ]
+    "undecidedAnalyzers" : [ "single-answer" ],
+    "afterFindings" : [ ],
+    "persistentFindings" : [ ],
+    "evaluatedAnalyzers" : [ ]
   } ],
   "breaches" : [ ],
   "verdict" : {

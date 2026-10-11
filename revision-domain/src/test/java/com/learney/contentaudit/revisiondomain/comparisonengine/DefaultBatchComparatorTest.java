@@ -553,6 +553,39 @@ public class DefaultBatchComparatorTest {
     }
 
     @Test
+    @DisplayName("should say with each change what remained after: every finding of its exercise, those already there at the start and the analyzers that evaluated the whole exercise")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R009")
+    public void shouldSayWithEachChangeWhatRemainedAfterEveryFindingOfItsExerciseThoseAlreadyThereAtTheStartAndTheAnalyzersThatEvaluatedTheWholeExercise(
+            ) {
+        // Al inicio la consigna ya tenía un hallazgo; en la proyección sigue (con otras palabras) y aparece uno de
+        // gramática que trajo la tanda. hint-coherence juzgó el ejercicio entero; quiz-instruction sólo tiene número
+        // en el tema; grammar lo evaluó a medias.
+        Finding stays = hallazgo(INSTRUCTION, "instruction-mismatch", VEGETABLES, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, null, "La consigna no pide la forma");
+        Finding staysReworded = hallazgo(INSTRUCTION, "instruction-mismatch", VEGETABLES, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, null, "La consigna sigue sin pedir la forma");
+        Finding brought = hallazgo(GRAMMAR, "english-error", VEGETABLES, FindingSeverity.HIGH,
+                FindingResolution.PANEL, null, "Falta el artículo");
+        Mesa mesa = new Mesa().baseline(Foto.deHoy());
+        mesa.batch(Foto.deHoy().finding(stays), Foto.deHoy().finding(staysReworded).finding(brought)
+                .judged(VEGETABLES, HINT).judged(REGULAR, INSTRUCTION).judged(VEGETABLES, GRAMMAR)
+                .partially(VEGETABLES, GRAMMAR), cambio(P_VEGETABLES, VEGETABLES));
+
+        ChangeOutcome outcome = mesa.compare().getChanges().get(0);
+
+        assertEquals(java.util.Set.of(staysReworded, brought), new java.util.HashSet<>(outcome.getAfterFindings()),
+                "R009: every finding of the exercise in the projection, counting or not");
+        assertEquals(List.of(staysReworded), outcome.getPersistentFindings(),
+                "R009: of those, the one already there at the start, with what it says in the projection");
+        assertEquals(List.of(HINT), outcome.getEvaluatedAnalyzers(),
+                "R009: only the analyzer with a number of the exercise itself, not opened nor evaluated halfway");
+        assertNull(new ChangeOutcome().getAfterFindings(),
+                "R009 inv. 2: an old comparison that does not bring them is not one without findings");
+        assertNull(new ChangeOutcome().getEvaluatedAnalyzers(), "R009 inv. 2");
+    }
+
+    @Test
     @DisplayName("should leave a change undecided for an analyzer that did not evaluate it in the projection, instead of not returning it")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R003")

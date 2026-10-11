@@ -275,6 +275,29 @@ cuando todos los pisos se deciden. Lo pidió la app el 1/10: hasta entonces sól
 `evaluated` en `true` o `false`. Con `quiz-instruction` sin tope sólo en la proyección, la fila dice «no evaluado», pero la
 línea base y el inicio de la tanda siguen diciendo que se evaluaron. Lo pidió la app el 1/10.
 
+<a id="F-FILAS-R009"></a>
+### Rule[F-FILAS-R009] - Cada cambio de la comparación dice qué quedó después
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> Cada cambio de la comparación, además de los hallazgos que lo hacen volver y los que arregla
+> ([F-METAS-R003](#F-METAS-R003)), dice qué quedó en la proyección:
+> - todos los hallazgos de su ejercicio —y de lo que cuelga de él— en la proyección, cuenten o no como error;
+> - de ésos, los que ya estaban al inicio de la tanda, con lo que dicen en la proyección;
+> - los analizadores que evaluaron el ejercicio entero en la proyección: con un número propio del ejercicio, sin
+>   dejarlo abierto ni evaluarlo a medias, y sin un juez sin aprobar.
+>
+> Invariantes:
+> 1. que un analizador evaluó se dice explícitamente: nunca se deduce de que no haya hallazgos, y el número de un tema
+>    o de un nivel no vale por sus ejercicios;
+> 2. una comparación vieja que no los trae se distingue de una sin hallazgos: vacío no es lo mismo que ausente;
+> 3. los campos de antes no cambian ([F-FILAS-R006](#F-FILAS-R006)).
+
+**Criterio**: en `compare -f json`, cada elemento de `changes` lleva `afterFindings`, `persistentFindings` y
+`evaluatedAnalyzers`. En el JSON de muestra, «My grandmother ___ (come) every year.» trae en `afterFindings` la palabra
+de A2 y en `persistentFindings` nada, porque la trajo la tanda; «She ___ (wear) a hat every day.» no trae ninguno,
+porque la tanda arregló el de gramática; ninguno de los dos trae analizadores evaluados, porque la muestra no publica
+números por ejercicio. Los tres campos se sumaron a la comparación el 9/10 y la muestra se puso al día el 11/10.
+
 ## Contexto
 
 - **El criterio y los nombres** los aprobó José el 1/10: las filas de problemas dicen el problema y las de puntaje, lo
@@ -289,7 +312,7 @@ línea base y el inicio de la tanda siguen diciendo que se evaluaron. Lo pidió 
 
 ## Alcance
 
-- **Adentro**: R001 a R008.
+- **Adentro**: R001 a R009.
 - **Afuera**:
   - cómo pinta la app las filas;
   - el texto de `compare` en la terminal, que sigue igual;
