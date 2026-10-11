@@ -1,6 +1,7 @@
 """Lo que se niega antes de conectarse: la tanda, la huella, el veredicto y la lista."""
 
 import copy
+import json
 import os
 import unittest
 
@@ -97,7 +98,6 @@ class LoadTest(unittest.TestCase):
     def test_F_PUBPROD_R005_niega_si_la_publicacion_no_dice_los_pisos_sin_decidir(self):
         fakes.write_batch(self.workdir)
         path = manifest_reader.batch_record_path(self.workdir, fakes.BATCH_ID)
-        import json
         with open(path, encoding="utf-8") as fh:
             record = json.load(fh)
         del record["publication"]["undecidableFloors"]

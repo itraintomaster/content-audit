@@ -11,6 +11,7 @@ from unittest import mock
 from production_publish import cli, manifest_reader, registry
 from production_publish.registry import (ABORTED, APPLIED_VERIFIED, DRY_RUN_CLEAN, DRY_RUN_WITH_PROBLEMS,
                                          REFUSED, STARTED, VERIFY_FAILED, RegistryError)
+from production_publish.store import get_path, same_value
 from production_publish.tests import fakes
 from production_publish.tests.fakes import APPLY_ARGS, run_cli
 
@@ -74,7 +75,6 @@ class FullCycleTest(CliTestCase):
         for entry in manifest["documents"]:
             current = data[entry["collection"]][entry["id"]]
             for field in entry["fields"]:
-                from production_publish.store import get_path, same_value
                 self.assertTrue(same_value(get_path(current, field["path"]), field["after"]), field["path"])
         # Lo que nunca se toca quedó igual.
         for doc_id in (fakes.QUIZ_1, fakes.QUIZ_2, fakes.QUIZ_3):

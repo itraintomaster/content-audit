@@ -130,15 +130,20 @@ class CleanDryRunTest(unittest.TestCase):
 
     def test_F_PUBPROD_R009_habilita_solo_el_ultimo_ensayo_limpio_de_la_misma_lista_y_destino(self):
         self.assertIsNone(self.problem([self.row(DRY_RUN, DRY_RUN_CLEAN)]))
-        self.assertIsNotNone(self.problem([]))
-        self.assertIsNotNone(self.problem([self.row(DRY_RUN, DRY_RUN_WITH_PROBLEMS)]))
-        self.assertIsNotNone(self.problem([self.row(DRY_RUN, DRY_RUN_CLEAN, digest="d2")]))
-        self.assertIsNotNone(self.problem([self.row(DRY_RUN, DRY_RUN_CLEAN, destination={"host": "x", "db": "learney"})]))
-        self.assertIsNotNone(self.problem([self.row(DRY_RUN, DRY_RUN_CLEAN, batch="t2")]))
-        self.assertIsNotNone(self.problem([self.row(DRY_RUN, DRY_RUN_CLEAN,
-                                                    flags={"skipDrift": True, "skipUnsupported": False})]))
-        self.assertIsNotNone(self.problem([self.row(DRY_RUN, DRY_RUN_CLEAN), self.row(APPLY, STARTED)]))
-        self.assertIsNotNone(self.problem([self.row(DRY_RUN, DRY_RUN_CLEAN), self.row(DRY_RUN, DRY_RUN_WITH_PROBLEMS)]))
+        not_enabling = {
+            "sin ensayo": [],
+            "ensayo con problemas": [self.row(DRY_RUN, DRY_RUN_WITH_PROBLEMS)],
+            "otra lista": [self.row(DRY_RUN, DRY_RUN_CLEAN, digest="d2")],
+            "otro destino": [self.row(DRY_RUN, DRY_RUN_CLEAN, destination={"host": "x", "db": "learney"})],
+            "otra tanda": [self.row(DRY_RUN, DRY_RUN_CLEAN, batch="t2")],
+            "otras opciones": [self.row(DRY_RUN, DRY_RUN_CLEAN, flags={"skipDrift": True, "skipUnsupported": False})],
+            "aplicación después del ensayo": [self.row(DRY_RUN, DRY_RUN_CLEAN), self.row(APPLY, STARTED)],
+            "ensayo con problemas después del limpio": [self.row(DRY_RUN, DRY_RUN_CLEAN),
+                                                        self.row(DRY_RUN, DRY_RUN_WITH_PROBLEMS)],
+        }
+        for case, rows in not_enabling.items():
+            with self.subTest(case=case):
+                self.assertIsNotNone(self.problem(rows))
 
     def test_F_PUBPROD_R009_una_corrida_negada_no_borra_el_ensayo_limpio(self):
         self.assertIsNone(self.problem([self.row(DRY_RUN, DRY_RUN_CLEAN), self.row(APPLY, REFUSED)]))
