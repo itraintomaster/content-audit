@@ -14,6 +14,11 @@ APPROVED) a updates quirúrgicos sobre las colecciones `knowledges` y
 Campos que escribe (allowlist cerrada):
   knowledges:     label, instructions
   quizTemplates:  title, translation, form.sentences, form.sentenceParts
+y, salvo --no-sync-quiz-titles, la sincronización de títulos:
+  quizTemplates:  title := label de su knowledge
+  quizzes:        template.title, template.instructions (copias del original)
+Todo lo que escribe, la sincronización incluida, queda con su «old» y su «new» en
+el respaldo antes de la primera escritura.
 
 Campos que NUNCA toca (el backend Go los usa y el round-trip de la entidad
 de content-audit los anula: form.kind es el discriminador del polimorfismo
@@ -83,22 +88,34 @@ def json_escape(s):
     return json.dumps(s, ensure_ascii=False)[1:-1]
 
 
-def sync_quiz_titles(repo, db, quizzes_collection, apply_changes):
-    """quizTemplates.title es una copia desnormalizada del label del knowledge
+def plan_quiz_title_sync(repo, db, quizzes_collection, pending):
+    """Arma, sin escribir nada, la sincronización quiz.title := knowledge.label.
+
+    quizTemplates.title es una copia desnormalizada del label del knowledge
     (verificado 2026-07-15: 10165/11487 eran copias literales del label 2025).
     Esta fase re-deriva el título de CADA quiz desde el label actual de su
     knowledge — en los archivos db/ y en Mongo — y sincroniza las copias
     embebidas en las instancias de la colección `quizzes` (template.title /
-    template.instructions). Devuelve (stats, backup_entries)."""
+    template.instructions).
+
+    `pending` es {_id de quizTemplates: {campo: valor}}: lo que la corrida escribe
+    antes. La sincronización se arma sobre cómo va a quedar la base después de eso,
+    para que el respaldo (F-PUBPROD-R008) tenga todo antes de la primera escritura.
+    Devuelve {"stats", "files": {ruta: texto nuevo}, "titles": [...], "instances": [...]};
+    cada entrada es {"collection", "_id", "old", "new"} y «old» es lo que hay hoy en Mongo.
+    """
     from bson import ObjectId, json_util
-    from pymongo import UpdateOne
 
     course_dir = os.path.join(repo, "db", "english-course")
     stats = Counter()
-    backup = []
-    mongo_ops = []
-    col = db[quizzes_collection]
-    mongo_titles = {d["_id"]: d.get("title") for d in col.find({}, {"title": 1})}
+    files, titles, new_titles = {}, [], {}
+    masters = {d["_id"]: d for d in db[quizzes_collection].find({}, {"title": 1, "instructions": 1})}
+
+    def after_run(tid, field):
+        """El campo del original después de las escrituras de la corrida."""
+        if field == "title" and tid in new_titles:
+            return new_titles[tid]
+        return pending.get(tid, {}).get(field, masters[tid].get(field))
 
     for kf in glob.glob(os.path.join(course_dir, "**", "_knowledge.json"), recursive=True):
         with open(kf, encoding="utf-8") as fh:
@@ -108,43 +125,37 @@ def sync_quiz_titles(repo, db, quizzes_collection, apply_changes):
             continue
         with open(qf, encoding="utf-8") as fh:
             raw = fh.read()
-        quizzes = json_util.loads(raw)
+        text = raw
         replaced_in_file = set()  # un replace-all cubre los títulos repetidos del archivo
-        for q in quizzes:
+        for q in json_util.loads(raw):
             old = q.get("title")
             if old == label:
                 stats["title_already_synced"] += 1
             else:
                 stats["title_file_updates"] += 1
-                if apply_changes and old not in replaced_in_file:
+                if old not in replaced_in_file:
                     pat = '"title" : "%s"' % json_escape(old)
-                    repl = '"title" : "%s"' % json_escape(label)
-                    if pat not in raw:
+                    if pat not in text:
                         stats["title_file_pattern_miss"] += 1
                     else:
-                        raw = raw.replace(pat, repl)
+                        text = text.replace(pat, '"title" : "%s"' % json_escape(label))
                         replaced_in_file.add(old)
             # El estado de Mongo se evalúa SIEMPRE, con independencia de si el
             # archivo ya estaba sincronizado: son dos destinos distintos y un
             # archivo en sync no implica un Mongo en sync (es justo lo que pasa
             # al publicar en un entorno nuevo desde archivos ya sincronizados).
-            if q["_id"] in mongo_titles and mongo_titles[q["_id"]] != label:
-                backup.append({"_id": str(q["_id"]), "oldTitle": mongo_titles[q["_id"]],
-                               "newTitle": label})
-                mongo_ops.append(UpdateOne({"_id": q["_id"]}, {"$set": {"title": label}}))
-        if apply_changes:
-            with open(qf, "w", encoding="utf-8") as fh:
-                fh.write(raw)
-            json_util.loads(open(qf, encoding="utf-8").read())  # sanity parse
-
-    stats["title_mongo_updates"] = len(mongo_ops)
-    if apply_changes and mongo_ops:
-        result = col.bulk_write(mongo_ops, ordered=True)
-        stats["title_mongo_modified"] = result.modified_count
+            qid = q["_id"]
+            if qid in masters and qid not in new_titles and after_run(qid, "title") != label:
+                new_titles[qid] = label
+                titles.append({"collection": quizzes_collection, "_id": qid,
+                               "old": {"title": masters[qid].get("title")}, "new": {"title": label}})
+        if text != raw:
+            files[qf] = text
+    stats["title_mongo_updates"] = len(titles)
 
     # Copias embebidas en instancias (colección `quizzes`): title + instructions
-    inst_col = db["quizzes"]
-    for qz in inst_col.find({}, {"template": 1}):
+    instances = []
+    for qz in db["quizzes"].find({}, {"template": 1}):
         t = qz.get("template") or {}
         tid = t.get("_id")
         if tid is None:
@@ -154,19 +165,50 @@ def sync_quiz_titles(repo, db, quizzes_collection, apply_changes):
                 tid = ObjectId(str(tid))
             except Exception:
                 continue
-        master = col.find_one({"_id": tid}, {"title": 1, "instructions": 1})
-        if not master:
+        if tid not in masters:
             continue
-        sets = {}
+        old, new = {}, {}
         for field in ("title", "instructions"):
-            if master.get(field) != t.get(field):
-                sets["template.%s" % field] = master.get(field)
-        if sets:
+            value = after_run(tid, field)
+            if value != t.get(field):
+                old["template.%s" % field], new["template.%s" % field] = t.get(field), value
+        if new:
             stats["embedded_instances_synced"] += 1
-            if apply_changes:
-                inst_col.update_one({"_id": qz["_id"]}, {"$set": sets})
+            instances.append({"collection": "quizzes", "_id": qz["_id"], "old": old, "new": new})
 
-    return stats, backup
+    return {"stats": stats, "files": files, "titles": titles, "instances": instances}
+
+
+def title_sync_entries(sync):
+    """Las escrituras de la sincronización, con el _id como texto (para el respaldo y el informe)."""
+    return [dict(entry, _id=str(entry["_id"])) for entry in sync["titles"] + sync["instances"]]
+
+
+def apply_quiz_title_sync(db, sync):
+    """Escribe exactamente lo que se armó (y quedó en el respaldo) y devuelve lo que no coincide al releer."""
+    from bson import json_util
+    from pymongo import UpdateOne
+
+    for path, text in sync["files"].items():
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(text)
+        with open(path, encoding="utf-8") as fh:
+            json_util.loads(fh.read())  # sanity parse
+    if sync["titles"]:
+        col = db[sync["titles"][0]["collection"]]
+        result = col.bulk_write([UpdateOne({"_id": e["_id"]}, {"$set": e["new"]}) for e in sync["titles"]],
+                                ordered=True)
+        sync["stats"]["title_mongo_modified"] = result.modified_count
+    for e in sync["instances"]:
+        db[e["collection"]].update_one({"_id": e["_id"]}, {"$set": e["new"]})
+
+    failures = []
+    for e in sync["titles"] + sync["instances"]:
+        doc = db[e["collection"]].find_one({"_id": e["_id"]})
+        for path, expected in e["new"].items():
+            if get_path(doc, path) != expected:
+                failures.append(f"{e['collection']} {e['_id']} {path}")
+    return failures
 
 
 def load_approved_artifacts(repo, plan):
@@ -406,6 +448,19 @@ def publish_plan(args, mode, recorder, batch_ids):
         for p in problems[:20]:
             print(f"  - {p}")
 
+    # La sincronización de títulos se arma ahora, antes del respaldo: lo que escribe
+    # también tiene su «old» y su «new» antes de la primera escritura (F-PUBPROD-R008).
+    sync = None
+    if not args.no_sync_quiz_titles:
+        sync = plan_quiz_title_sync(args.repo, db, args.quizzes_collection,
+                                    {i: s for i, s, _ in updates["quizTemplates"]})
+        sync_stats = sync["stats"]
+        print(f"\nsync quiz.title := knowledge.label: {sync_stats['title_file_updates']} en archivos "
+              f"(ya en sync: {sync_stats['title_already_synced']}), {sync_stats['title_mongo_updates']} en Mongo, "
+              f"{sync_stats['embedded_instances_synced']} instancias embebidas")
+        if sync_stats.get("title_file_pattern_miss"):
+            print(f"!! patrones de título no hallados en archivo: {sync_stats['title_file_pattern_miss']}")
+
     report = {
         "mode": mode, "plan": args.plan, "db": args.db,
         "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -414,6 +469,8 @@ def publish_plan(args, mode, recorder, batch_ids):
                            "old": previous[(col, str(i))], "new": s}
                           for i, s, pr in ups] for col, ups in updates.items()},
     }
+    if sync is not None:
+        report["quizTitleSync"] = {"stats": dict(sync["stats"]), "writes": title_sync_entries(sync)}
     report_dir = os.path.join(args.repo, ".content-audit", "publish-reports")
     os.makedirs(report_dir, exist_ok=True)
     report_path = os.path.join(report_dir, f"{args.plan}_{mode}_{report['timestamp'].replace(':', '-')}.json")
@@ -426,15 +483,10 @@ def publish_plan(args, mode, recorder, batch_ids):
               "problems": len(problems), "hardProblems": len(hard_problems)}
     row_common = {"plan": args.plan, "batches": batch_ids, "report": os.path.relpath(report_path, args.repo),
                   "counts": counts}
+    if sync is not None:
+        row_common["quizTitleSync"] = dict(sync["stats"])
 
     if not args.apply:
-        if not args.no_sync_quiz_titles:
-            sync_stats, _ = sync_quiz_titles(
-                args.repo, db, args.quizzes_collection, apply_changes=False)
-            print(f"\n[dry-run] sync quiz.title := knowledge.label pendiente: "
-                  f"{sync_stats['title_file_updates']} en archivos, "
-                  f"{sync_stats['title_mongo_updates']} en Mongo, "
-                  f"{sync_stats['embedded_instances_synced']} instancias embebidas")
         print("\nDRY-RUN: no se modificó nada. Ejecutar con --apply para aplicar.")
         recorder.record(production_registry.DRY_RUN_WITH_PROBLEMS if hard_problems
                         else production_registry.DRY_RUN_CLEAN, **row_common)
@@ -450,6 +502,8 @@ def publish_plan(args, mode, recorder, batch_ids):
               "note": "Respaldo: por cada campo, «old» es lo que había en Mongo y «new» lo que se escribe.",
               "documents": [{"collection": col, "_id": str(i), "old": previous[(col, str(i))], "new": s,
                              "proposals": pr} for col, ups in updates.items() for i, s, pr in ups]}
+    if sync is not None:
+        backup["titleSync"] = title_sync_entries(sync)
     if not recorder.write_detail(json.loads(json.dumps(backup, default=str))):
         recorder.record(production_registry.ABORTED, reason={"code": "DETAIL_NOT_WRITTEN", "message":
                         "no se pudo escribir el respaldo; no se escribió nada"}, **row_common)
@@ -486,22 +540,24 @@ def publish_plan(args, mode, recorder, batch_ids):
         sys.exit(f"VERIFICACIÓN FALLÓ: {failures} campos no coinciden.")
     print(f"OK: {total} documentos verificados campo por campo contra el estado esperado.")
 
-    if not args.no_sync_quiz_titles:
+    if sync is not None:
         print("\n== Sync quiz.title := knowledge.label ==")
-        sync_stats, sync_backup = sync_quiz_titles(
-            args.repo, db, args.quizzes_collection, apply_changes=True)
-        print(f"títulos actualizados en archivos: {sync_stats['title_file_updates']} "
-              f"(ya en sync: {sync_stats['title_already_synced']})")
-        print(f"títulos actualizados en Mongo: {sync_stats.get('title_mongo_modified', 0)} "
-              f"de {sync_stats['title_mongo_updates']}")
-        print(f"instancias embebidas sincronizadas: {sync_stats['embedded_instances_synced']}")
-        if sync_stats.get("title_file_pattern_miss"):
-            print(f"!! patrones de título no hallados en archivo: {sync_stats['title_file_pattern_miss']}")
-        report["quizTitleSync"] = {"stats": dict(sync_stats), "oldTitles": sync_backup}
-        with open(report_path, "w") as fh:
-            json.dump(report, fh, indent=2, ensure_ascii=False, default=str)
-        print(f"Reporte actualizado con respaldo de títulos viejos: {report_path}")
-        row_common["quizTitleSync"] = dict(sync_stats)
+        sync_failures = apply_quiz_title_sync(db, sync)
+        for key in (f"{e['collection']}/{e['_id']}" for e in sync["titles"] + sync["instances"]):
+            if key not in written_ids:
+                written_ids.append(key)
+        print(f"archivos reescritos: {len(sync['files'])}; títulos en Mongo: "
+              f"{sync['stats'].get('title_mongo_modified', 0)} de {sync['stats']['title_mongo_updates']}; "
+              f"instancias embebidas: {len(sync['instances'])}")
+        if sync_failures:
+            for failure in sync_failures:
+                print(f"  FAIL {failure}")
+            recorder.record(production_registry.VERIFY_FAILED, writtenIds=written_ids, verified=False,
+                            reason={"code": "VERIFY_FAILED", "message":
+                                    f"{len(sync_failures)} campos de la sincronización de títulos no coinciden"},
+                            **row_common)
+            sys.exit(f"VERIFICACIÓN FALLÓ: {len(sync_failures)} campos de la sincronización de títulos no coinciden.")
+        print("OK: la sincronización de títulos quedó como dice el respaldo.")
 
     recorder.record(production_registry.APPLIED_VERIFIED, writtenIds=written_ids, verified=True, **row_common)
 

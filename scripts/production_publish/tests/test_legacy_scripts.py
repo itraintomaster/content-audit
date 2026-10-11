@@ -20,6 +20,8 @@ PLAN = "2026-10-05T10-00-00"
 QUIZ = "665f000000000000000000b1"
 QUIZ_MC = "665f000000000000000000b2"
 KNOWLEDGE = "665f000000000000000000c1"
+INSTANCE = "665f000000000000000000d1"
+LABEL = "El verbo $to be$"
 BAD_URI = "mongodb://%s:cl@ve/x@host/learney" % fakes.FAKE_USER
 
 
@@ -246,6 +248,69 @@ class PlanPathTest(LegacyTestCase):
     def test_F_PUBPROD_R008_el_camino_por_plan_sin_renglon_final_avisa_y_sale_mal(self):
         self.assert_lost_final_row_fails(self.plan_args(), self.plan_args("--apply"))
         self.assertEqual(self.mongo.find(fakes.DB, "quizTemplates", QUIZ)["translation"], "Ella es alta.")
+
+    def setup_title_sync(self):
+        """Un tema con su nombre nuevo, su ejercicio con el título viejo y una instancia con la copia vieja."""
+        write_json(os.path.join(self.repo, "db", "english-course", "u1", "_knowledge.json"), {
+            "_id": {"$oid": KNOWLEDGE}, "kind": "KNOWLEDGE", "label": LABEL})
+        with open(os.path.join(self.repo, "db", "english-course", "u1", "quizzes.json"), "w", encoding="utf-8") as fh:
+            fh.write('[{ "_id" : { "$oid" : "%s" }, "title" : "To be", "translation" : "Ella es alta.", '
+                     '"form" : { "kind" : "FILL", "sentences" : ["She is tall."], '
+                     '"sentenceParts" : [{ "kind" : "TEXT", "text" : "She is tall." }] } }]' % QUIZ)
+        template = self.mongo.find(fakes.DB, "quizTemplates", QUIZ)
+        template.update({"title": "Ser", "instructions": "Completá."})
+        self.mongo.collection(fakes.DB, "quizzes").append(
+            {"_id": ObjectId(INSTANCE), "student": "s1",
+             "template": {"_id": ObjectId(QUIZ), "title": "Ser", "instructions": "Completá con to be."}})
+
+    def test_F_PUBPROD_R008_la_sincronizacion_de_titulos_deja_su_respaldo_antes_de_escribir_y_sus_ids(self):
+        self.setup_title_sync()
+        sync_args = self.args("--plan", PLAN)
+        code, _ = run(self.module.main, sync_args)
+        self.assertIn(code, (None, 0))
+        self.assertEqual(self.mongo.writes, [])  # el ensayo arma la sincronización sin escribirla
+        self.assertEqual(self.rows()[-1]["quizTitleSync"]["embedded_instances_synced"], 1)
+
+        backups = []
+
+        def hook(collection, query, update):
+            if not backups:
+                started = self.rows()[-1]
+                self.assertEqual(started["result"], registry.STARTED)
+                backups.append(fakes.run_detail(self.repo, started))
+
+        self.mongo.write_hooks.append(hook)
+        code, _ = run(self.module.main, self.args("--plan", PLAN, "--apply"))
+        self.assertIn(code, (None, 0))
+        sync = {(e["collection"], e["_id"]): (e["old"], e["new"]) for e in backups[0]["titleSync"]}
+        self.assertEqual(sync, {
+            ("quizTemplates", QUIZ): ({"title": "Ser"}, {"title": LABEL}),
+            ("quizzes", INSTANCE): ({"template.title": "Ser", "template.instructions": "Completá con to be."},
+                                    {"template.title": LABEL, "template.instructions": "Completá."})})
+        final = self.rows()[-1]
+        self.assertEqual(final["result"], registry.APPLIED_VERIFIED)
+        self.assertEqual(final["writtenIds"], ["quizTemplates/" + QUIZ, "quizzes/" + INSTANCE])
+        self.assertEqual(self.mongo.find(fakes.DB, "quizTemplates", QUIZ)["title"], LABEL)
+        instance = self.mongo.find(fakes.DB, "quizzes", INSTANCE)
+        self.assertEqual((instance["template"]["title"], instance["template"]["instructions"], instance["student"]),
+                         (LABEL, "Completá.", "s1"))
+        with open(os.path.join(self.repo, "db", "english-course", "u1", "quizzes.json"), encoding="utf-8") as fh:
+            self.assertIn('"title" : "%s"' % LABEL, fh.read())
+
+    def test_F_PUBPROD_R008_si_la_sincronizacion_de_titulos_no_queda_lo_registra_con_sus_ids(self):
+        self.setup_title_sync()
+
+        def corrupt(collection, doc):
+            if collection == "quizzes":
+                doc["template"]["title"] = "otra cosa"
+
+        self.mongo.after_write = corrupt
+        with self.assertRaises(SystemExit) as ctx:
+            run(self.module.main, self.args("--plan", PLAN, "--apply"))
+        self.assertIn("sincronización de títulos", str(ctx.exception.code))
+        row = self.rows()[-1]
+        self.assertEqual((row["result"], row["verified"]), (registry.VERIFY_FAILED, False))
+        self.assertEqual(row["writtenIds"], ["quizTemplates/" + QUIZ, "quizzes/" + INSTANCE])
 
     def test_F_PUBPROD_R006_con_batch_va_al_paso_por_tanda(self):
         workdir = fakes.temp_workdir(self)
