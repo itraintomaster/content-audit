@@ -32,7 +32,11 @@ class MongoStore(Store):
         return list(self._db.list_collection_names())
 
     def find_document(self, collection, doc_id):
-        doc = self._db[collection].find_one({"_id": self._raw_id(collection, doc_id)})
+        raw = self._raw_id(collection, doc_id)
+        doc = self._db[collection].find_one({"_id": raw})
+        if doc is None and raw != doc_id:
+            # Un _id de 24 hexadecimales guardado como texto: se busca también así.
+            doc = self._db[collection].find_one({"_id": doc_id})
         if doc is not None:
             self._raw_ids[(collection, doc_id)] = doc["_id"]
         return doc
