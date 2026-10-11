@@ -16,12 +16,11 @@ clave ni el URI (que puede traer credenciales en el usuario o en sus opciones).
 import contextlib
 import json
 import os
-import re
 import secrets
 import tempfile
 from datetime import datetime, timezone
-from urllib.parse import urlsplit
 
+from .destination import destination_label, destination_of
 from .store import to_json_safe
 
 DRY_RUN = "DRY_RUN"
@@ -40,10 +39,6 @@ EXIT_OK = 0         # ensayo limpio o aplicación verificada
 EXIT_PROBLEMS = 1   # ensayo con problemas, aplicación abortada o verificación fallida
 EXIT_REFUSED = 2    # negada antes de conectarse
 
-URI_SCHEMES = ("mongodb", "mongodb+srv")
-# Un servidor: nombre o [IPv6], con puerto numérico opcional. Nada más.
-HOST = re.compile(r"(\[[0-9a-f:.]+\]|[a-z0-9._%-]+)(:[0-9]{1,5})?\Z")
-
 
 class RegistryError(Exception):
     """No se pudo leer o escribir el registro."""
@@ -51,49 +46,6 @@ class RegistryError(Exception):
 
 class RegistryBusy(RegistryError):
     """Otra corrida tiene tomado el registro."""
-
-
-def destination_of(uri, db):
-    """{host, db} del URI: solo los servidores (con puerto si lo trae) y la base.
-
-    Lanza ValueError con un mensaje que nunca repite el URI.
-    """
-    if not isinstance(uri, str) or not uri:
-        raise ValueError("falta el URI de la base")
-    try:
-        parts = urlsplit(uri)
-    except ValueError:
-        raise ValueError("el URI de la base no se puede leer")
-    if parts.scheme not in URI_SCHEMES:
-        raise ValueError("el URI de la base tiene que empezar con mongodb:// o mongodb+srv://")
-    # Una @ después de los servidores es una clave con caracteres sin escapar: lo que
-    # urlsplit llamaría servidor podría ser parte de la clave. No se registra nada.
-    if "@" in parts.path or "@" in parts.query or "@" in parts.fragment:
-        raise ValueError("el URI de la base está mal formado (¿la clave tiene caracteres sin escapar?)")
-    hosts = parts.netloc.rpartition("@")[2]
-    names = [h.strip().lower() for h in hosts.split(",") if h.strip()]
-    if not names or not all(HOST.match(n) for n in names):
-        raise ValueError("el URI de la base no dice a qué servidor conectarse")
-    if not isinstance(db, str) or not db:
-        raise ValueError("falta el nombre de la base")
-    return {"host": ",".join(names), "db": db}
-
-
-def destination_label(destination):
-    return "%s/%s" % (destination["host"], destination["db"]) if destination else "(sin destino)"
-
-
-def parse_expected_destination(text):
-    """`host/db` tal como lo escribe José en --expect-destination."""
-    if not isinstance(text, str) or "/" not in text:
-        raise ValueError("--expect-destination tiene que ser servidor/base, por ejemplo "
-                         "cluster-ejemplo.mongodb.net/learney")
-    host, _, db = text.rpartition("/")
-    names = [h.strip().lower() for h in host.split(",") if h.strip()]
-    host = ",".join(names)
-    if not names or not all(HOST.match(n) for n in names) or not db or ":" in db or "@" in db:
-        raise ValueError("--expect-destination tiene que ser servidor/base, sin usuario ni clave")
-    return {"host": host, "db": db}
 
 
 def new_run_id(now):

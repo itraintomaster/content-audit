@@ -23,7 +23,9 @@ SCHEMA = 1
 
 QUIZ_TEMPLATES = "quizTemplates"
 KNOWLEDGES = "knowledges"
-ALLOWED_COLLECTIONS = (KNOWLEDGES, QUIZ_TEMPLATES)
+# Las colecciones que la lista puede tocar, en orden de escritura (las copias embebidas
+# en las instancias van después de todas).
+COLLECTIONS = (KNOWLEDGES, QUIZ_TEMPLATES)
 
 # Las rutas que la tabla de la corrección (F-TAREA-R006 / F-PUBPROD-R002) puede escribir.
 # Una ruta que no esté acá se niega: la tabla es un contrato con el lado Java.
@@ -462,9 +464,9 @@ def _document_problems(index, doc, left_out, seen_docs, by_path, problems):
         return
     collection, doc_id = doc.get("collection"), doc.get("id")
     where = "%s %s (%s)" % (collection, doc_id, doc.get("nodeId"))
-    if collection not in ALLOWED_COLLECTIONS:
+    if collection not in COLLECTIONS:
         problems.append(("COLLECTION_NOT_ALLOWED", "%s: la colección «%s» no se escribe; solo %s."
-                         % (where, collection, " y ".join(ALLOWED_COLLECTIONS))))
+                         % (where, collection, " y ".join(COLLECTIONS))))
         return
     if not isinstance(doc_id, str) or not HEX_ID.match(doc_id):
         problems.append(("BAD_ID", "%s: el id tiene que ser un ObjectId en hexadecimal." % where))

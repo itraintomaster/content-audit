@@ -5,12 +5,9 @@ que se leyó de cada campo (comparar-y-fijar atómico por documento). Nunca
 inserta, reemplaza ni borra, y nunca hace upsert.
 """
 
-import re
-
+from .manifest_reader import HEX_ID
 from .store import MISSING, Store
 from .write_plan import INSTANCES
-
-HEX_ID = re.compile(r"[0-9a-f]{24}\Z")
 
 
 class MongoStore(Store):

@@ -24,6 +24,7 @@ import sys
 from datetime import datetime, timezone
 
 from . import applier, manifest_reader, registry, write_plan
+from .destination import destination_label, destination_of, parse_expected_destination
 from .manifest_reader import Refusal
 from .registry import (ABORTED, APPLIED_VERIFIED, APPLY, DRY_RUN, DRY_RUN_CLEAN, DRY_RUN_WITH_PROBLEMS, EXIT_OK,
                        EXIT_PROBLEMS, EXIT_REFUSED, REFUSED, STARTED, VERIFY_FAILED, RegistryBusy, RegistryError,
@@ -111,7 +112,7 @@ def main(argv=None, *, store_factory=None, out=None, now=None):
     args = build_parser().parse_args(argv)
     run = Run(args, out if out is not None else sys.stdout, now or _now)
     try:
-        run.destination = registry.destination_of(args.uri, args.db)
+        run.destination = destination_of(args.uri, args.db)
     except ValueError as e:
         return run.refuse(Refusal("BAD_URI", "No se puede leer el destino: %s." % e))
     try:
@@ -178,15 +179,15 @@ def _refusal_before_connecting(run):
 
     if args.expect_destination is not None:
         try:
-            expected = registry.parse_expected_destination(args.expect_destination)
+            expected = parse_expected_destination(args.expect_destination)
         except ValueError as e:
             return Refusal("BAD_EXPECTED_DESTINATION", str(e))
         if expected != run.destination:
             return Refusal("DESTINATION_MISMATCH", "El destino nombrado (%s) no es el real (%s): no se escribe."
-                           % (registry.destination_label(expected), registry.destination_label(run.destination)))
+                           % (destination_label(expected), destination_label(run.destination)))
     elif args.apply:
         return Refusal("DESTINATION_NOT_NAMED", "Para aplicar hay que nombrar el destino con "
-                       "--expect-destination %s." % registry.destination_label(run.destination))
+                       "--expect-destination %s." % destination_label(run.destination))
 
     if args.apply:
         try:
@@ -213,7 +214,7 @@ def _plan_from_store(run, store):
     if missing:
         raise _Abort("WRONG_DATABASE",
                      "La base %s no tiene %s: ¿es la base correcta? No se escribió nada."
-                     % (registry.destination_label(run.destination), ", ".join(missing)))
+                     % (destination_label(run.destination), ", ".join(missing)))
     return write_plan.build(manifest, store, run.args.skip_drift)
 
 
@@ -222,7 +223,7 @@ def _header(run):
     reviews = loaded.manifest.get("reviews", {})
     run.say("Paso a producción — tanda %s (plan %s)" % (loaded.batch_id, loaded.plan_id))
     run.say("  lista:   %s (huella %s)" % (run.registry.relative(loaded.manifest_path), loaded.digest[:12]))
-    run.say("  destino: %s" % registry.destination_label(run.destination))
+    run.say("  destino: %s" % destination_label(run.destination))
     run.say("  modo:    %s" % ("APLICACIÓN" if run.args.apply else "ENSAYO (no escribe nada)"))
     run.say("  revisión: %s aprobados, %s sin revisar (viajan), %s rechazados (quedaron afuera)"
             % (reviews.get("approved"), reviews.get("pending"), reviews.get("rejected")))
@@ -301,7 +302,7 @@ def _dry_run(run, plan):
     if result == DRY_RUN_CLEAN:
         run.say("Resultado: %s — el ensayo salió limpio; no se escribió nada. Para aplicar, con las "
                 "mismas opciones: --apply --expect-destination %s"
-                % (result, registry.destination_label(run.destination)))
+                % (result, destination_label(run.destination)))
     elif plan.blocked():
         run.say("Resultado: %s — no se escribió nada. Lo BLOQUEADO no se saltea con --skip-drift: la "
                 "lista tiene que venir sin esos cambios." % result)

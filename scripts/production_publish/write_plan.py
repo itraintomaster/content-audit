@@ -28,7 +28,7 @@ no se toca y no frena nada: queda registrada como desfasada. Es lo que
 sincronizaba `sync_quiz_titles` del camino por plan, sin pisar lo que no se sabe.
 """
 
-from .manifest_reader import KNOWLEDGES, QUIZ_TEMPLATES, only_labels_change
+from .manifest_reader import COLLECTIONS, QUIZ_TEMPLATES, only_labels_change
 from .store import MISSING, fingerprint_without, get_path, same_value, short, to_json_safe
 
 APPLY = "APPLY"
@@ -53,9 +53,6 @@ INSTANCES = "quizzes"
 # Campo del template -> copia embebida en la instancia (como sync_quiz_titles; el título no
 # está en la tabla de lo que se escribe).
 EMBEDDED_COPIES = {"instructions": "template.instructions"}
-
-# Orden de escritura: knowledges -> quizTemplates -> copias embebidas en quizzes.
-COLLECTION_ORDER = (KNOWLEDGES, QUIZ_TEMPLATES)
 
 
 def required_collections(manifest):
@@ -281,7 +278,7 @@ def form_block(doc, fields):
 
 def build(manifest, store, skip_drift):
     """Lee cada documento de la lista y arma el plan. No escribe nada."""
-    ordered = sorted(manifest["documents"], key=lambda d: COLLECTION_ORDER.index(d["collection"]))
+    ordered = sorted(manifest["documents"], key=lambda d: COLLECTIONS.index(d["collection"]))
     documents = []
     for entry in ordered:
         doc = store.find_document(entry["collection"], entry["id"])
