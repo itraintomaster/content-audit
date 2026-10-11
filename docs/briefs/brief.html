@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>La noche: A, B y C</title>
-<meta name="description" content="Lo hecho la noche del 11 al 12/10: lo común del tablero, los riesgos de publicar y la pantalla Ejecuciones, en ramas propias y sin subir; el orden para juntarlas y las decisiones pendientes.">
+<title>Opinión de los jueces</title>
+<meta name="description" content="La opinión de los jueces ya se ve en Correcciones y en el Mapa, con lo que midió A4 y sin gastar consultas; está en una rama propia de ittm, sin juntar ni subir.">
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -244,234 +244,129 @@
   }
 
 
-  /* ============ propios del 100 ============ */
-  details{margin-top:14px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
-  details>summary{cursor:pointer;padding:10px 14px;font-size:13.5px;font-weight:600;color:var(--fg-2)}
-  details[open]>summary{border-bottom:1px solid var(--line-soft)}
-  details>.tw{border:0;border-radius:0}
-  details>pre{margin:12px 14px}
-  pre code{white-space:pre-wrap}
-  table.mx tr.g td{background:var(--line-soft);color:var(--fg-3);font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
-  table.mx td:first-child{white-space:nowrap}
-  table.pend td:last-child{white-space:nowrap;color:var(--fg-3);font-size:12.5px}
-  table.pend .pill{margin-right:4px}
-  table.hecho td:nth-child(2),table.hecho td:last-child{white-space:nowrap;font-variant-numeric:tabular-nums}
-  /* ============ propios del 102 ============ */
-  table.dec td:first-child{font-weight:600}
-  table.dec td:last-child{color:var(--accent);font-weight:600}
-  table.dec td{font-size:13.5px}
-  table.riesgo td:last-child{white-space:nowrap}
-  table.ramas td:nth-child(2){font-family:ui-monospace,monospace;font-size:12.5px;white-space:nowrap}
+  /* ============ propios del 104 ============ */
+  .stk{display:grid;gap:14px}
+  .stk .fila{display:grid;grid-template-columns:minmax(90px,22%) minmax(0,1fr);gap:12px;align-items:center}
+  .stk .rt{font-size:13px;font-weight:650;color:var(--fg-2);line-height:1.3}
+  .stk .rt small{display:block;font-weight:400;color:var(--fg-3);font-size:12px}
+  .stk .bar{display:flex;height:16px;border-radius:99px;overflow:hidden;background:var(--line-soft)}
+  .stk .bar span{display:block;height:100%}
+  .stk .cu{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;color:var(--fg-2);margin-top:6px;font-variant-numeric:tabular-nums}
+  .stk .cu b{color:var(--fg)}
+  .c-ok{background:var(--ok)} .c-w{background:var(--warn)} .c-b{background:var(--bad)}
+  .c-s{background:color-mix(in srgb,var(--fg-3) 55%,transparent)} .c-i{background:var(--info)}
+  .cruce{margin-top:14px;background:var(--ok-soft);border-radius:8px;padding:9px 12px;font-size:14px}
+  table.ver td:nth-child(2){text-align:right;font-variant-numeric:tabular-nums;font-weight:650;white-space:nowrap}
+  table.ver td{font-size:13.5px}
+  @media (max-width:640px){ .stk .fila{grid-template-columns:minmax(0,1fr);gap:6px} }
 </style>
 <body>
 <div class="wrap">
 
   <header>
     <div class="kicker">
-      <span class="num">102</span>
+      <span class="num">104</span>
       <span class="badge">Resumen</span>
-      <span class="meta">tablero HTML y publicar · noche del 11 al 12/10/2026</span>
+      <span class="meta">tablero HTML · Correcciones y Mapa · 11/10/2026</span>
     </div>
-    <h1>A, B y C quedaron hechas, en ramas y sin subir</h1>
-    <p class="sub">Lo común del tablero, los riesgos de publicar y la pantalla Ejecuciones. Falta que decidas y juntes.</p>
+    <h1>Ya se ve qué opinan los jueces de cada cambio</h1>
+    <p class="sub">En Correcciones y en el Mapa, con lo que midió el último análisis. Sin gastar consultas.</p>
   </header>
 
-  <div class="lede"><p><strong>Las tres partes están terminadas, en verde y en ramas propias; no junté ni subí nada.</strong> Se junta primero lo de publicar en content-audit; abajo, las decisiones que tomé solo.</p></div>
+  <div class="lede"><p><strong>Está hecho, en verde y en una rama propia de ittm; no lo junté ni lo subí.</strong> De tus 1.752 pendientes, los jueces ya dan por buenos 1.631.</p></div>
 
   <section>
-    <h2>Las tres terminaron con todas sus pruebas en verde</h2>
-    <div class="kpis">
-      <div class="kpi dest"><div class="n">45<small>commits</small></div><div class="l">B · publicar sin sorpresas, en content-audit: 3.491 pruebas Java y 195 de Python</div></div>
-      <div class="kpi"><div class="n">68<small>commits</small></div><div class="l">A · lo común del tablero, en ittm: 1.280 pruebas del navegador y 935 del servidor</div></div>
-      <div class="kpi"><div class="n">71<small>commits</small></div><div class="l">C · Ejecuciones, sobre A: 1.792 pruebas del navegador y 1.345 del servidor</div></div>
-      <div class="kpi"><div class="n">0<small>consultas</small></div><div class="l">pagas, conexiones a Mongo y publicaciones: todo se probó con un CLI falso</div></div>
+    <h2>La barra de los jueces, al lado de la tuya</h2>
+    <div class="card mk" role="img" aria-label="Las dos barras de la corrección en el Mapa: tus decisiones y lo que opinan los jueces">
+      <div class="stk">
+        <div class="fila">
+          <span class="rt">Tus decisiones<small>la barra que ya estaba</small></span>
+          <div><div class="bar"><span class="c-ok" style="width:0.8%"></span><span class="c-s" style="width:99.2%"></span></div>
+            <div class="cu"><span><b>14</b> aprobados</span><span><b>0</b> rechazados</span><span><b>1.752</b> pendientes</span></div></div>
+        </div>
+        <div class="fila">
+          <span class="rt">Según los jueces<small>lo nuevo · A4, 9/10</small></span>
+          <div><div class="bar"><span class="c-ok" style="width:93.1%"></span><span class="c-w" style="width:5%"></span><span class="c-s" style="width:1.7%"></span><span class="c-i" style="width:0.2%"></span></div>
+            <div class="cu"><span><b>1.645</b> bueno</span><span><b>88</b> falta medir</span><span><b>30</b> no consta</span><span><b>3</b> otro contenido</span><span><b>0</b> empeoró</span></div></div>
+        </div>
+      </div>
+      <div class="cruce">De tus <b>1.752</b> pendientes, <b>1.631</b> ya los dan por buenos. <u>Revisarlos en grupo</u></div>
     </div>
-    <p class="pie">Son las suites completas de cada repo. La única falla de Java es la de siempre, del juez de duplicados: arreglarla obliga a re-examinarlo.</p>
+    <p class="pie">Así queda la ficha de la corrección en el Mapa, con los datos reales de a1-v11. Cada número lleva a Correcciones con ese filtro puesto.</p>
+  </section>
+
+  <section>
+    <h2>Cada cambio lleva su veredicto, sin consultar a nadie</h2>
+    <div class="tw"><table class="ver">
+      <thead><tr><th>Veredicto</th><th>Cambios</th><th>Qué quiere decir</th></tr></thead>
+      <tbody>
+        <tr><td><span class="pill p-ok">bueno</span></td><td>1.645</td><td>Arregló lo suyo, sin errores nuevos, medido sobre el contenido de hoy.</td></tr>
+        <tr><td><span class="pill p-warn">falta medir</span></td><td>88</td><td>El juez de miniteoría no llegó a medirlo.</td></tr>
+        <tr><td><span class="pill p-idle">no consta</span></td><td>30</td><td>El juez lo midió y no lo da por arreglado: son todos de traducción.</td></tr>
+        <tr><td><span class="pill p-info">otro contenido</span></td><td>3</td><td>Un solo ejercicio, editado después de medir.</td></tr>
+        <tr><td><span class="pill p-bad">empeoró</span></td><td>0</td><td>Ningún cambio trajo un error nuevo.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="pie">En Correcciones, cada cambio muestra su veredicto como un chip, y el filtro «Según los jueces» arma la lista por veredicto.</p>
+  </section>
+
+  <section>
+    <h2>Aprobar en grupo pide mirar una muestra antes</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">Revisarlos en grupo</span><span class="d">desde el Mapa, o en Correcciones</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Muestra de 12</span><span class="d">al azar, siempre la misma; se recorre con J y K</span></div>
+      <div class="st"><span class="i">3</span><span class="h">Se habilita Aprobar</span><span class="d">recién con las 12 vistas; Espacio saca una</span></div>
+      <div class="st end"><span class="i">4</span><span class="h">Deshacer</span><span class="d">con U, si algo no convence</span></div>
+    </div>
+    <p class="pie">«Dado por bueno» no es «quedó perfecto»: aprobar mueve tu barra y el cruce, nunca la de los jueces.</p>
+  </section>
+
+  <section>
+    <h2>Los 88 sin medir cuestan unas 4 consultas</h2>
+    <div class="hb">
+      <div class="r"><span class="t"><i>Really</i>, <i>much</i> o <i>a lot</i></span><span class="tr"><span class="f w" style="width:100%"></span></span><span class="n">36</span></div>
+      <div class="r"><span class="t">Señalar objetos</span><span class="tr"><span class="f w" style="width:55.6%"></span></span><span class="n">20</span></div>
+      <div class="r"><span class="t">Contable o incontable</span><span class="tr"><span class="f w" style="width:41.7%"></span></span><span class="n">15</span></div>
+      <div class="r"><span class="t">Lugar: <i>in</i> y <i>on</i></span><span class="tr"><span class="f w" style="width:41.7%"></span></span><span class="n">15</span></div>
+    </div>
+    <p class="pie">Ejercicios por tema. El juez de miniteoría mide una vez por tema, y A4 ya anotó justo esas 4 como faltantes.</p>
   </section>
 
   <section>
     <h2>Qué cambia cuando lo juntes</h2>
     <div class="cambia">
-      <div class="si"><p class="ptl">B · Publicar</p><ul>
-        <li>Lo que rechazaste en la revisión no se publica.</li>
-        <li>Solo publica «pasa»; «no se puede decidir» ya no alcanza.</li>
-        <li>Cada publicación deja su lista, con el antes y el después.</li>
-        <li>A producción se va por tanda: ensayo, verificación y registro.</li>
-      </ul></div>
-      <div class="si"><p class="ptl">A · Lo común</p><ul>
-        <li>Las 8 pantallas comparten capas, avisos, atajos y arranque.</li>
-        <li>Los 10 errores chicos, arreglados.</li>
-        <li>Las mismas palabras en todas: «pasa», «no pasa», «no se puede decidir».</li>
-      </ul></div>
-      <div class="si"><p class="ptl">C · Ejecuciones</p><ul>
-        <li>Qué corre, qué corrió y por qué terminó así.</li>
-        <li>Franja «en curso» e insignia en las 9 pantallas.</li>
-        <li>Tres botones prendidos, con estimación gratis, tope y confirmación.</li>
-        <li>Cancelar, forzar, reconocer una huérfana y retomar con el saldo.</li>
-        <li>«Adónde va», en Publicar, cuenta el camino nuevo a producción.</li>
+      <div class="si"><p class="ptl">Cambia</p><ul>
+        <li>Correcciones: el chip, el filtro, «Por qué quedan afuera» y el grupo.</li>
+        <li>El Mapa: la barra de los jueces, en la caja y en la ficha.</li>
+        <li>Sobre qué contenido se midió, a la vista.</li>
       </ul></div>
       <div class="no"><p class="ptl">No cambia</p><ul>
-        <li>Producción y Mongo: nadie los tocó.</li>
-        <li>master y main, como los dejaste.</li>
-        <li>Exámenes, análisis, selectiva, miniteoría y Publicar siguen apagados.</li>
+        <li>Los jueces y sus instrucciones.</li>
+        <li>Nada consulta a un modelo ni publica.</li>
+        <li>master y main siguen como los dejaste.</li>
       </ul></div>
     </div>
-    <p class="pie">Los botones: Otra vuelta, Completar análisis y Volver a medir y cerrar.</p>
-  </section>
-
-  <section>
-    <h2>Para juntar: publicar primero; Ejecuciones ya trae lo común</h2>
-    <div class="diagram">
-      <svg viewBox="0 0 760 230" role="img" aria-label="En content-audit, B va a main. En ittm, lo común está adentro de Ejecuciones, que va a master. Publicar del tablero lee lo nuevo de B.">
-        <defs><marker id="fl" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L8,4 L0,8 z" style="fill:var(--fg-3)"/></marker></defs>
-        <text class="lbl-s" x="20" y="14">content-audit</text>
-        <rect class="box-a" x="20" y="24" width="230" height="64" rx="10"/>
-        <text class="lbl" x="36" y="52">1 · B · Publicar</text><text class="lbl-s" x="36" y="72">45 commits</text>
-        <rect class="box-ok" x="300" y="24" width="150" height="64" rx="10"/>
-        <text class="lbl" x="316" y="52">main</text><text class="lbl-s" x="316" y="72">y recompilar el CLI</text>
-        <path class="arrow" d="M250 56 H296" marker-end="url(#fl)"/>
-        <text class="lbl-s" x="20" y="132">ittm</text>
-        <rect class="box" x="20" y="142" width="170" height="64" rx="10"/>
-        <text class="lbl" x="36" y="170">A · Lo común</text><text class="lbl-s" x="36" y="190">adentro de C</text>
-        <rect class="box-a" x="230" y="142" width="220" height="64" rx="10"/>
-        <text class="lbl" x="246" y="170">2 · C · Ejecuciones</text><text class="lbl-s" x="246" y="190">trae A completa</text>
-        <rect class="box-ok" x="500" y="142" width="150" height="64" rx="10"/>
-        <text class="lbl" x="516" y="170">master</text><text class="lbl-s" x="516" y="190">y reiniciar el tablero</text>
-        <path class="arrow" d="M190 174 H226" marker-end="url(#fl)"/>
-        <path class="arrow" d="M450 174 H496" marker-end="url(#fl)"/>
-        <path class="arrow" d="M450 56 H575 V138" stroke-dasharray="4 4" marker-end="url(#fl)"/>
-        <text class="lbl-s" x="586" y="104">Publicar lee</text><text class="lbl-s" x="586" y="118">lo nuevo de B</text>
-      </svg>
-    </div>
-    <p class="pie">Sin B en main, la pantalla Publicar dice «no se sabe» donde iría lo nuevo; no inventa nada. Los comandos están abajo.</p>
-    <details><summary>Ramas, puntas y comandos para juntar</summary>
-      <div class="tw"><table class="ramas">
-        <thead><tr><th>Parte</th><th>Rama · punta</th><th>Dónde</th></tr></thead>
-        <tbody>
-          <tr><td>B · Publicar</td><td>claude/riesgos-publicar-huerfanos · 20d8b627</td><td>content-audit, 45 commits sobre main: la rama de antes más los 3 arreglos de la mañana</td></tr>
-          <tr><td>A · Lo común</td><td>claude/tablero-comun · 3d254d28a</td><td>ittm, 68 commits sobre master</td></tr>
-          <tr><td>C · Ejecuciones</td><td>claude/tablero-ejecuciones · f411e64e0</td><td>ittm, 71 commits sobre lo común</td></tr>
-        </tbody>
-      </table></div>
-<pre><code># 1 · content-audit
-git -C ~/projects/learney/content-audit merge --no-ff claude/riesgos-publicar-huerfanos
-# 2 · ittm: antes, sacar las copias sin trackear de escritorio/ (son iguales a las de la rama; si quedan, git se niega)
-git -C ~/projects/learney/ittm status --short pipeline/vocabulary_dashboard/escritorio
-git -C ~/projects/learney/ittm merge --no-ff claude/tablero-ejecuciones
-# 3 · reiniciar el tablero del ícono: doble clic con ⌥ → Reiniciar</code></pre>
-    </details>
-  </section>
-
-  <section>
-    <h2>Quedan cuatro puntos flojos; ninguno publica fuera de la lista</h2>
-    <div class="tw"><table class="riesgo">
-      <thead><tr><th>Dónde</th><th>Qué pasa</th><th>Gravedad</th></tr></thead>
-      <tbody>
-        <tr><td>C · Ejecuciones</td><td>Una corrida de Flutter que cancelaste desde el tablero queda «cancelada» aunque haya fallado por otra cosa.</td><td><span class="sev m">media</span></td></tr>
-        <tr><td>B · producción</td><td>Corregir el enunciado de una opción múltiple no sale por script: el ejercicio queda retenido y contado.</td><td><span class="sev l">baja</span></td></tr>
-        <tr><td>A · Publicar</td><td>«Qué llega a producción» sigue la lista del script viejo: marca miniteoría, consigna y opciones como «no llega», y ahora sí viajan.</td><td><span class="sev m">media</span></td></tr>
-        <tr><td>A · Publicar</td><td>«Lo publicado» lee los informes del script viejo, no el registro nuevo de producción: lo que pase por tanda no aparece ahí.</td><td><span class="sev l">baja</span></td></tr>
-      </tbody>
-    </table></div>
-    <p class="call c-info"><b>Aviso.</b> Antes de que un control me frenara, edité por la terminal archivos Python de la copia de B; su agente los revisó y commiteó.</p>
+    <p class="pie">Para mirarlo ya: un tablero aparte en 127.0.0.1:7852, sobre la copia de prueba de a1-v11. La campaña real no se toca.</p>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Junto las ramas?</span>
-        <div class="ops"><span class="op rec">B en main, C en master · recomendado</span><span class="op">Primero las miro yo</span></div>
-        <span class="why">Dos uniones sin choques esperados; subir, aparte.</span></div>
-      <div class="ask"><span class="q">2 · ¿Valen las decisiones que tomé solo?</span>
-        <div class="ops"><span class="op rec">Sí, salvo las que marques · recomendado</span><span class="op">Las vemos una por una</span></div>
-        <span class="why">Están abajo, en tres tablas, cada una con lo que hice y lo que recomiendo.</span></div>
-      <div class="ask"><span class="q">3 · ¿Hasta 10.000 consultas por tope?</span>
-        <div class="ops"><span class="op rec">Sí, sin tope total del cierre · recomendado</span><span class="op">Otro número</span></div>
-        <span class="why">Es el freno que no depende de la estimación; con suscripción no hay precio por consulta.</span></div>
-      <div class="ask"><span class="q">4 · Las tandas publicadas antes no tienen lista: ¿siguen solo por el camino viejo?</span>
-        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">Les armo una lista</span></div>
-        <span class="why">Armarla hoy dependería del curso del disco, justo lo que la lista evita.</span></div>
+      <div class="ask"><span class="q">1 · ¿Junto la rama a master de ittm?</span>
+        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">Primero lo miro en el 7852</span></div>
+        <span class="why">Probé la unión con lo que master sumó hoy: no choca. Después hay que reiniciar Tablero.app.</span></div>
+      <div class="ask"><span class="q">2 · ¿Medimos los 88?</span>
+        <div class="ops"><span class="op rec">Vos, con «Medir y cerrar» · recomendado</span><span class="op">Lo lanzo yo con tu ok</span></div>
+        <span class="why">Con tope 4 para miniteoría, después de ver la estimación gratis.</span></div>
+      <div class="ask"><span class="q">3 · Sigue sin subir lo de antes</span>
+        <div class="ops"><span class="op rec">Lo decidimos aparte · recomendado</span><span class="op">Subir todo</span></div>
+        <span class="why">ittm master tiene 154 commits sin subir y content-audit main, 54.</span></div>
     </div>
-
-    <details><summary>B · publicar: 12 decisiones</summary>
-      <div class="tw"><table class="dec">
-        <thead><tr><th>Tema</th><th>Qué hice</th><th>Recomiendo</th></tr></thead>
-        <tbody>
-          <tr><td>Rechazo de un paso</td><td>Saca el cambio entero de la tanda, con los que dependen de él, como si lo sacaras vos.</td><td>Dejarlo</td></tr>
-          <tr><td>Rechazo viejo</td><td>Si el contenido cambió después de rechazarlo, publicar se niega y lo nombra hasta que lo mires.</td><td>Dejarlo</td></tr>
-          <tr><td>Tandas sin lista</td><td>No pasan a producción por tanda; el camino viejo por plan sigue.</td><td>Dejarlo</td></tr>
-          <tr><td>Ensayo</td><td>Escribir exige un ensayo limpio antes, de la misma lista y al mismo destino; no hay cómo saltearlo.</td><td>Dejarlo</td></tr>
-          <tr><td>Destino</td><td>Hay que nombrarlo al escribir; si no coincide con el real, no escribe.</td><td>Dejarlo</td></tr>
-          <tr><td>Cambio a mano en producción</td><td>Si un campo no tiene ni el antes ni el después, se niega todo, salvo que pidas saltear esos ejercicios.</td><td>Dejarlo</td></tr>
-          <tr><td>Opción múltiple</td><td>Solo viaja el texto de las opciones; cualquier otro cambio retiene el ejercicio entero.</td><td>Dejarlo hasta poder publicarlo</td></tr>
-          <tr><td>Cambio de tipo de ejercicio</td><td>No se publica por script.</td><td>Dejarlo</td></tr>
-          <tr><td>Nivel o aprobador vacíos</td><td>Se niega a armar la lista.</td><td>Dejarlo</td></tr>
-          <tr><td>Ensayo de los scripts viejos</td><td>Un tema o ejercicio que no está en la base cuenta como problema y el ensayo termina con error, en los tres scripts.</td><td>Dejarlo</td></tr>
-          <tr><td>Publicar que falla a mitad</td><td>Descarta el análisis y el plan que alcanzó a guardar; si el análisis vigente no pudo volver, los deja y la falla lo dice.</td><td>Dejarlo</td></tr>
-          <tr><td>Escritura cortada a mitad</td><td>Todo el lote en curso queda como «no se sabe si quedó», con el antes y el después para revisarlo a mano.</td><td>Dejarlo</td></tr>
-        </tbody>
-      </table></div>
-    </details>
-
-    <details><summary>A · lo común: 7 decisiones</summary>
-      <div class="tw"><table class="dec">
-        <thead><tr><th>Tema</th><th>Qué hice</th><th>Recomiendo</th></tr></thead>
-        <tbody>
-          <tr><td>Estado que no conoce</td><td>Dice «sin estado conocido» y deja el código en el globito; se lee bien dentro de una oración.</td><td>Dejarlo</td></tr>
-          <tr><td>Rótulo de los (?)</td><td>«Qué es», «Qué son» o «Ayuda:» según la primera palabra; una prueba obliga a decidir cada caso nuevo.</td><td>Dejarlo</td></tr>
-          <tr><td>Celular</td><td>Cada pantalla conserva sus reglas de pantalla chica.</td><td>Dejarlo</td></tr>
-          <tr><td>El ? de Exámenes</td><td>Con una capa abierta hace lo de siempre; no se unificó.</td><td>Dejarlo</td></tr>
-          <tr><td>Duración de los avisos</td><td>Una por pantalla, entre 4 y 9 segundos; los errores duran más.</td><td>Dejarlo</td></tr>
-          <tr><td>Rechazos en Publicar</td><td>Con rechazos dice «hasta N cambios»: no adivina cuáles salen arrastrados.</td><td>Dejarlo</td></tr>
-          <tr><td>Muestra ciega cerrada</td><td>Muestra la meta guardada con la muestra; si falta, la de hoy, y avisa si difieren.</td><td>Dejarlo</td></tr>
-        </tbody>
-      </table></div>
-    </details>
-
-    <details><summary>C · Ejecuciones: 21 decisiones</summary>
-      <div class="tw"><table class="dec">
-        <thead><tr><th>Tema</th><th>Qué hice</th><th>Recomiendo</th></tr></thead>
-        <tbody>
-          <tr><td>Tope</td><td>Entero de 1 a 10.000 por juez y por vuelta; sin tope total del cierre.</td><td>Dejarlo</td></tr>
-          <tr><td>Vuelta sin tope</td><td>No se ofrece, ni siquiera solo con reglas.</td><td>Dejarlo por ahora</td></tr>
-          <tr><td>Reusar la estimación</td><td>Nunca: al confirmar se vuelve a estimar, y si cambió, pide revisarla.</td><td>Dejarlo</td></tr>
-          <tr><td>Perfiles</td><td>Solo suscripción: Codex por defecto y Claude opus, sonnet o haiku; nunca los de clave.</td><td>Dejarlo</td></tr>
-          <tr><td>Claves</td><td>A la corrida no le llega nada con KEY, TOKEN, SECRET o PASSWORD, salvo el token de suscripción de Claude.</td><td>Dejarlo</td></tr>
-          <tr><td>Juez sin examen aprobado</td><td>Queda afuera, sin tope, y el diálogo dice por qué.</td><td>Dejarlo</td></tr>
-          <tr><td>Un modelo por corrida</td><td>Flutter permite otro para las consignas; acá corre todo con uno.</td><td>Dejarlo hasta que haga falta</td></tr>
-          <tr><td>Cancelar y forzar</td><td>Cancelar le pide al CLI que cierre prolijo; a los 20 s se puede forzar, y eso corta todo su grupo de procesos.</td><td>Dejarlo</td></tr>
-          <tr><td>Corridas de Flutter</td><td>Se pueden cancelar desde el tablero, con el mismo control de que sea esa corrida.</td><td>Dejarlo hasta retirar Flutter</td></tr>
-          <tr><td>Huérfana</td><td>Sin proceso conocido, a los 30 min; «Reconocer» la marca fallida.</td><td>Dejarlo</td></tr>
-          <tr><td>Confirmar en el lugar</td><td>Cancelar y Reconocer piden un clic más.</td><td>Dejarlo</td></tr>
-          <tr><td>Franja</td><td>Muestra la última terminada 10 min, con una ✕ para descartarla.</td><td>Dejarlo</td></tr>
-          <tr><td>Insignia</td><td>Cuenta las que corren; con solo huérfanas, «!».</td><td>Dejarlo</td></tr>
-          <tr><td>Mapa</td><td>«Analizar» pasó a «Analizar lo propuesto»; «lo aprobado» sigue apagado.</td><td>Dejarlo</td></tr>
-          <tr><td>Retomar</td><td>Abre el diálogo con lo que falta del tope; una corrida ya retomada no se retoma otra vez.</td><td>Dejarlo</td></tr>
-          <tr><td>Registros viejos</td><td>Se guardan para siempre.</td><td>Borrar los de más de 30 días</td></tr>
-          <tr><td>Arranque doble en content-audit</td><td>No se tocó: lo frena el candado del tablero.</td><td>Endurecerlo igual, es chico</td></tr>
-          <tr><td>Falla sin gastar</td><td>Ofrece «Volver a lanzar» en vez de retomar con saldo; cuenta solo si no gastó ni una consulta.</td><td>Dejarlo</td></tr>
-          <tr><td>Corrida trabada</td><td>La decide el servidor, y la pantalla usa las mismas palabras.</td><td>Dejarlo</td></tr>
-          <tr><td>«Adónde va»</td><td>Dos pasos en palabras de todos los días; los comandos, solo en «Para quien opera».</td><td>Dejarlo</td></tr>
-          <tr><td>«Lanzar…» desde Ejecuciones</td><td>No entró.</td><td>Para la próxima</td></tr>
-        </tbody>
-      </table></div>
-    </details>
-  </section>
-
-  <section>
-    <h2>Qué sigue después de juntar</h2>
-    <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">Juntar B y C</span><span class="d">vos, o yo con tu ok</span></div>
-      <div class="st"><span class="i">2</span><span class="h">Prender Rendir</span><span class="d">los exámenes de jueces, desde el tablero</span></div>
-      <div class="st"><span class="i">3</span><span class="h">Prender Analizar</span><span class="d">análisis nuevo y lo aprobado</span></div>
-      <div class="st end"><span class="i">4</span><span class="h">Retirar Historial</span><span class="d">Ejecuciones lo reemplaza en Flutter</span></div>
-    </div>
-    <p class="pie">Quedan dos ordenamientos internos sin apuro: un armador común para la memoria de cada pantalla y renombrar algunos archivos comunes.</p>
   </section>
 
   <footer>
-    <span>Fuentes: content-audit claude/riesgos-publicar-huerfanos 20d8b627 (reglas F-PUBPROD R001–R010, F-FILAS-R009); ittm claude/tablero-comun 3d254d28a y claude/tablero-ejecuciones f411e64e0; suites: Maven 3.491 (falla ajena AgentDefinitionsExamGuardIntegrationTest), Python 195, npm y flutter test completos; prueba a mano de Ejecuciones en :7862 con raíz y CLI falsos.</span>
-    <span>brief 102 · docs/briefs/102-la-noche.html</span>
+    <span>Fuentes: ittm claude/opinion-de-los-jueces 3bccd1d3e (servidor fed2453b0, Mapa 223acb961, Correcciones 6cfc47553, unión 769255aea); npm test 1.896, flutter test test/tablero_html 907, guardian_test y hook pre-commit en verde; caché batch-tanda-A1-20261007T084434Z; A4 mini-theory queriesMissing 4.</span>
+    <span>brief 104 · docs/briefs/104-opinion-de-los-jueces.html</span>
   </footer>
 
 </div>
