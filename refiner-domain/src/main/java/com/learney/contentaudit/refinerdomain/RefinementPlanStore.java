@@ -13,4 +13,12 @@ public interface RefinementPlanStore {
     Optional<RefinementPlan> load(String id);
 
     Optional<RefinementPlan> loadLatest();
+
+    /**
+     * F-PUBPROD-R010: descarta el plan guardado con ese id, de modo que «el último plan» no lo vuelva a encontrar. Si no
+     * hay un plan con ese id, no hace nada.
+     */
+    default void discard(String id) {
+        throw new UnsupportedOperationException("El store no descarta planes.");
+    }
 }

@@ -92,6 +92,24 @@ public FileSystemRefinementPlanStore(Path baseDir) {
         }
     }
 
+    /**
+     * F-PUBPROD-R010: deletes the file of that plan, the only one its save writes, so that {@link #loadLatest()} does
+     * not find it again. Nothing saved under that id is not an error; an id that would reach out of the store is.
+     */
+    @Override
+    public void discard(String id) {
+        if (id == null || id.isBlank() || id.contains("/") || id.contains("\\") || id.contains("..")) {
+            throw new IllegalArgumentException("No es un id de plan: " + id);
+        }
+        Path file = resolvePlansDir().resolve(FILE_PREFIX + id + FILE_SUFFIX);
+        try {
+            Files.deleteIfExists(file);
+        } catch (IOException e) {
+            throw new AuditPersistenceException("No se pudo descartar el plan " + id + ": no se pudo borrar " + file
+                    + " (" + e.getMessage() + ")", e);
+        }
+    }
+
     // -------------------------------------------------------------------------
     // Internal helpers
     // -------------------------------------------------------------------------

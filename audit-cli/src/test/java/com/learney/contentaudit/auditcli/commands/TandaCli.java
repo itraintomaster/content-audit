@@ -700,6 +700,11 @@ final class TandaCli {
         public Optional<AuditDigest> loadDigest(String id) {
             return Optional.empty();
         }
+
+        @Override
+        public void discard(String id) {
+            saved.remove(id);
+        }
     }
 
     /** The plans, in memory. */
@@ -723,6 +728,11 @@ final class TandaCli {
         @Override
         public Optional<RefinementPlan> loadLatest() {
             return saved.values().stream().reduce((a, b) -> b);
+        }
+
+        @Override
+        public void discard(String id) {
+            saved.remove(id);
         }
     }
 }
