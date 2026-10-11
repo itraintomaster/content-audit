@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "batchId": "a1-v11-tanda-01",
+  "planId": "2026-10-05T10-00-00",
+  "level": "A1",
+  "publishedAt": "2026-10-12T03:10:44Z",
+  "approvedBy": "José",
+  "source": {"baselineAuditId": "audit-base", "startAuditId": "audit-inicio", "publishedAuditId": "audit-publicado"},
+  "verdict": {"kind": "PASSES", "gatePassed": true, "undecidableFloors": [], "brokenFloorGoalIds": [], "detail": null},
+  "reviews": {"approved": 2, "pending": 3, "rejected": 1,
+              "droppedForReviewChangeIds": ["c-rechazado"], "collateralDroppedChangeIds": ["c-encadenado"]},
+  "documents": [
+    {
+      "collection": "quizTemplates",
+      "id": "665f00000000000000000001",
+      "nodeId": "A1.01.02.03",
+      "changeIds": ["c-001"], "proposalIds": ["p-001"],
+      "reviewStatus": "PENDING",
+      "fields": [
+        {"path": "form.sentenceParts",
+         "before": [{"kind": "TEXT", "text": "I "}, {"kind": "GAP", "text": "am", "answers": ["am"]}, {"kind": "TEXT", "text": " happy."}],
+         "after": [{"kind": "TEXT", "text": "I "}, {"kind": "GAP", "text": "am", "answers": ["am", "'m"]}, {"kind": "TEXT", "text": " happy today."}]},
+        {"path": "miniTheory", "before": "", "after": "Con $I$ va $am$."},
+        {"path": "instructions", "before": "Completá.", "after": "Completá con el verbo $to be$."}
+      ]
+    },
+    {
+      "collection": "quizTemplates",
+      "id": "665f00000000000000000002",
+      "nodeId": "A1.01.02.04",
+      "changeIds": ["c-002"], "proposalIds": ["p-002"],
+      "reviewStatus": "APPROVED",
+      "fields": [
+        {"path": "translation", "before": "Ella es alta.", "after": "Ella es alta (de estatura)."},
+        {"path": "form.sentences", "before": [], "after": ["She is tall."]}
+      ]
+    },
+    {
+      "collection": "quizTemplates",
+      "id": "665f00000000000000000003",
+      "nodeId": "A1.01.02.05",
+      "changeIds": ["c-004"], "proposalIds": ["p-004"],
+      "reviewStatus": "PENDING",
+      "fields": [
+        {"path": "form.items",
+         "before": [{"id": "am", "label": "am", "incidence": 1.0}, {"id": "is", "label": "Is", "incidence": 0.0}],
+         "after": [{"id": "am", "label": "am", "incidence": 1.0}, {"id": "is", "label": "is", "incidence": 0.0}]}
+      ]
+    },
+    {
+      "collection": "knowledges",
+      "id": "665f000000000000000000a1",
+      "nodeId": "A1.01.02",
+      "changeIds": ["c-003"], "proposalIds": ["p-003"],
+      "reviewStatus": "APPROVED",
+      "fields": [
+        {"path": "instructions", "before": "El verbo to be.", "after": "El verbo $to be$ en presente."}
+      ]
+    }
+  ],
+  "unsupported": [],
+  "excluded": [
+    {"changeId": "c-rechazado", "reason": "REVIEW_REJECTED"},
+    {"changeId": "c-encadenado", "reason": "COLLATERAL"}
+  ],
+  "counts": {"documents": 4, "fields": 7,
+             "byPath": {"form.sentenceParts": 1, "miniTheory": 1, "instructions": 2, "translation": 1,
+                        "form.sentences": 1, "form.items": 1}}
+}
