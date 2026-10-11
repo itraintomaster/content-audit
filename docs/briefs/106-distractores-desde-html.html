@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Distractores: la ruta y la evidencia ya están conectadas</title>
+<style>
+/* Tokens y componentes del template de visual-brief; UI Learney conservada. */
+:root{--bg:#fbfaf8;--bg-elev:#ffffff;--line:#e6e2db;--line-soft:#f0ece5;--fg:#1c1a17;--fg-2:#57524b;--fg-3:#8b847a;--accent:#b4531f;--accent-soft:#fdf1e7;--ok:#2f6b46;--ok-soft:#e9f4ed;--warn:#8a6314;--warn-soft:#fbf2dd;--bad:#a3342c;--bad-soft:#fbecea;--radius:10px;--shadow:0 1px 2px rgba(28,26,23,.05),0 8px 24px -16px rgba(28,26,23,.25)}
+@media(prefers-color-scheme:dark){:root{--bg:#131211;--bg-elev:#1b1a18;--line:#302d29;--line-soft:#252320;--fg:#efece7;--fg-2:#a8a29a;--fg-3:#7b756c;--accent:#e08b4f;--accent-soft:#2a1f16;--ok:#7fc79c;--ok-soft:#16241c;--warn:#e0b657;--warn-soft:#272013;--bad:#e58b82;--bad-soft:#2a1917;--shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.7)}}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",system-ui,sans-serif;padding:40px 24px 80px}.wrap{max-width:940px;margin:auto}a{color:var(--accent)}a,code{overflow-wrap:anywhere}code{font-family:ui-monospace,"SF Mono",Menlo,monospace}
+header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}.kicker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}.num{font:700 12px ui-monospace,monospace;color:var(--fg-3);background:var(--line-soft);padding:3px 8px;border-radius:6px}.badge{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:100px;background:var(--accent-soft);color:var(--accent)}.meta{font-size:12.5px;color:var(--fg-3)}h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2;margin:0;letter-spacing:-.02em;font-weight:650}.sub{margin:10px 0 0;color:var(--fg-2);max-width:62ch}
+.lede{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);padding:16px 18px;margin-bottom:34px;box-shadow:var(--shadow)}.lede p{margin:0;font-size:17.5px;line-height:1.5;max-width:68ch}section{margin:0 0 38px}h2{font-size:19px;line-height:1.3;font-weight:650;letter-spacing:-.01em;margin:0 0 14px}.pie{font-size:13.5px;line-height:1.5;color:var(--fg-2);margin:10px 0 0;max-width:78ch}
+.flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:16px}.st{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 13px;display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow);min-width:0}.st:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:8px;height:8px;border-top:2px solid var(--fg-3);border-right:2px solid var(--fg-3);transform:translateY(-50%) rotate(45deg)}.i{font:700 12px/24px ui-monospace,monospace;width:24px;height:24px;border-radius:7px;text-align:center;background:var(--accent-soft);color:var(--accent)}.h{font-weight:650;font-size:14px;line-height:1.25}.d{font-size:12.5px;line-height:1.4;color:var(--fg-2)}.end{background:var(--accent-soft)}
+.captura{margin:0;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:10px;box-shadow:var(--shadow);min-width:0}.captura img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft)}.captura figcaption{font-size:12.5px;color:var(--fg-3);margin-top:8px}
+.ad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}.lado{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;display:flex;flex-direction:column;gap:8px;min-width:0;box-shadow:var(--shadow)}.antes{border-top:3px solid var(--warn)}.despues{border-top:3px solid var(--ok)}.rot{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-3)}.ad .despues::before{content:"→";position:absolute;left:-24px;top:50%;font-size:19px;color:var(--fg-3)}.ad ol{margin:0;padding-left:20px;font-size:13.5px;line-height:1.45;color:var(--fg-2);display:grid;gap:4px}.res{font-weight:650;font-size:14.5px;border-top:1px dashed var(--line);padding-top:7px;margin-top:auto}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}table{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line)}td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}tr:last-child td{border-bottom:0}
+.cambia{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}.cambia>div{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 15px;box-shadow:var(--shadow)}.ptl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-3);font-weight:700;margin:0 0 10px}.cambia ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13.5px;line-height:1.45}.cambia li{position:relative;padding-left:22px}.cambia li::before{position:absolute;left:0;top:0;font-weight:800}.si li::before{content:"✓";color:var(--ok)}.no li::before{content:"=";color:var(--fg-3)}
+footer{border-top:1px solid var(--line);margin-top:36px;padding-top:14px;font-size:12.5px;color:var(--fg-3);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}details{width:100%}summary{cursor:pointer}details ul{padding-left:18px}details li{margin:5px 0}
+@media(max-width:640px){body{padding:24px 16px 60px}h2{font-size:17px}.flow{grid-auto-flow:row}.st:not(:last-child)::after{right:auto;left:22px;top:auto;bottom:-11px;transform:rotate(135deg)}.ad{grid-template-columns:minmax(0,1fr);gap:28px}.ad .despues::before{content:"↓";left:50%;top:-25px}}
+</style>
+</head>
+<body><main class="wrap">
+<header><div class="kicker"><span class="num">106</span><span class="badge">Implementado</span><span class="meta">ContentAudit · A1 V11 · 11 octubre 2026</span></div><h1>Distractores: la ruta y la evidencia ya están conectadas</h1><p class="sub">Integrado desde worktree y activo en la app HTML principal.</p></header>
+<div class="lede"><p><strong>Ya podés iniciar sólo distractores desde Analizadores.</strong> El examen enlaza su evidencia en Ejecuciones; el gasto desconocido deja de aparecer como cero.</p></div>
+
+<section><h2>El lanzamiento empieza en la ficha del juez</h2><div class="flow">
+<div class="st"><span class="i">1</span><span class="h">Abrir Distractores</span><span class="d">Analizadores → Calidad de distractores → Analizar sólo distractores.</span></div>
+<div class="st"><span class="i">2</span><span class="h">Revisar sin gastar</span><span class="d">Contenido, pendientes, reutilización, perfil y tope nuevo.</span></div>
+<div class="st end"><span class="i">3</span><span class="h">Confirmar el tope</span><span class="d">Sólo entonces comienza; la operación queda en Ejecuciones.</span></div>
+</div><p class="pie">El servidor vuelve a comprobar contenido, versión y disponibilidad. Un pedido repetido no lanza otra corrida.</p></section>
+
+<section><h2>La estimación real encontró 710 pendientes, sin ejecutar</h2><figure class="captura"><img src="106-distractores-desde-html/preflight.png" alt="Diálogo real: contenido v6, 710 pendientes y confirmación de un tope nuevo"><figcaption>App principal · estimación gratuita · diálogo cancelado sin iniciar.</figcaption></figure><p class="pie">Podés bajar el tope. Los 710 son la estimación actual, no un presupuesto ya autorizado ni una garantía de aprobación.</p></section>
+
+<section><h2>El examen aprobado lleva a su registro exacto</h2><div class="ad">
+<div class="lado antes"><span class="rot">Exámenes</span><ol><li>Calidad de distractores: 16 de 16 casos aprobados.</li><li>Versión, fecha, proveedor, modelo y esfuerzo conservados.</li><li>«Ver este registro en Ejecuciones».</li></ol><span class="res">Califica al juez, no mide el curso.</span></div>
+<div class="lado despues"><span class="rot">Ejecuciones</span><ol><li>Abre esa misma evidencia de la campaña activa.</li><li>Dice «registrado», no inventa un proceso.</li><li>Cero consultas nuevas sólo con respaldo verificable.</li></ol><span class="res">Sin actividad retroactiva escrita.</span></div>
+</div><p class="pie">Las corridas antiguas fallidas permanecen. La recuperación del 11/10 aparece como registro del resultado, no como una ejecución nueva.</p></section>
+
+<section><h2>Sin dato de gasto ya no significa cero</h2><div class="tw"><table><thead><tr><th>Evidencia disponible</th><th>Qué muestra ahora</th></tr></thead><tbody>
+<tr><td>Recuperación oficial del examen</td><td>0 consultas nuevas confirmadas</td></tr>
+<tr><td>Progreso antiguo en «llamadas físicas» o casos</td><td>Sin dato de gasto; no se suma como cero</td></tr>
+<tr><td>Análisis selectivo terminado y consolidado</td><td>Consultas del registro durable de esa operación</td></tr>
+<tr><td>Resultado incierto o proceso en curso</td><td>No inventa gasto ni reutiliza automáticamente el saldo</td></tr>
+</tbody></table></div><p class="pie">El total de Ejecuciones suma gasto confirmado del historial leído; no representa el saldo de la campaña.</p></section>
+
+<section><h2>La app cambió; el contenido sigue conservado</h2><div class="cambia">
+<div class="si"><div class="ptl">Activo y probado</div><ul><li>Lanzamiento selectivo con estimación y confirmación.</li><li>Examen e historial enlazados por identidad.</li><li>Registro, progreso y gasto distinguidos.</li><li>1.907 pruebas HTML y 428 del servidor aprobadas.</li></ul></div>
+<div class="no"><div class="ptl">No se ejecutó ni se alteró</div><ul><li>Ninguna consulta nueva a modelos.</li><li>Checkpoint, examen y libro de respuestas idénticos.</li><li>No se reescribe ni se cierra la tanda.</li><li>No se aprueba, publica ni crea Corrección 2.</li></ul></div>
+</div><p class="pie">El diseño conserva los componentes de Learney. Se verificó en escritorio y celular; los cambios ajenos del árbol principal se preservaron.</p></section>
+
+<footer><span>Estado comprobado en la app principal · estimación gratuita · cero consultas nuevas</span><span>brief 106 · 11/10/2026</span>
+<details><summary>Trazabilidad técnica</summary><ul>
+<li>UI: trabajo <code>fb1ce1c20</code>, pruebas <code>a661416e0</code> y ajuste <code>9a6e1b216</code>; integrado en master <code>a0ef163b2</code>. Servidor principal en <code>http://127.0.0.1:7800</code>, contexto A1 · V11.</li>
+<li>Verificación: 1.900 pruebas HTML aisladas y 1.907 en el árbol combinado; 428 pruebas Dart amplias y 58 finales de foco. Análisis estático sin incidencias. Tests con CLI falso, sin modelos.</li>
+<li>Preflight real de <code>batch selective estimate</code>: Corrección 1, contenido v6, juez <code>9f164016</code>, codex-cli/gpt-6.1-sol/medium, 710 pendientes, cero reutilizados. No se confirmó <code>analyze</code>.</li>
+<li>SHA256 conservados: checkpoint <code>a230c579…</code>; registro de examen <code>578b8137…</code>; ledger EXAM <code>13c67cc4…</code>. No se escriben registros históricos de actividad para simular un proceso.</li>
+<li><a href="105-distractores-rutas-y-registros.html">Diagnóstico previo</a> · <a href="103-distractores-examen-oficial.html">Examen oficial recuperado</a>.</li>
+</ul></details></footer>
+</main></body></html>
