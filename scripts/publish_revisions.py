@@ -29,6 +29,14 @@ Uso:
   python3 scripts/publish_revisions.py --apply        # aplica y verifica
   python3 scripts/publish_revisions.py --uri mongodb://localhost:27017 \
       --db learney --plan 2026-07-03T02-00-25
+
+Tandas: el plan de una tanda publicada NO se aplica por este camino (se niega y
+queda en el registro). Una tanda va a producción con su lista de publicación:
+  python3 scripts/publish_revisions.py --batch <id> --workdir <campaña> --uri "$URI"
+  python3 scripts/publish_revisions.py --batch <id> --workdir <campaña> --uri "$URI" \
+      --apply --expect-destination <servidor>/<base>
+(ver scripts/production_publish/cli.py). Cada corrida, por plan o por tanda, deja
+su renglón en <repo>/.content-audit/production/registry.jsonl.
 """
 
 import argparse
@@ -39,17 +47,25 @@ import sys
 from collections import Counter
 from datetime import datetime, timezone
 
-from bson import json_util
-from pymongo import MongoClient, UpdateOne
+# pymongo y bson se importan adentro de las funciones que los usan: así el script
+# se puede importar (y probar) sin conectarse ni tener el driver.
+
+SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
+if SCRIPTS_DIR not in sys.path:
+    sys.path.insert(0, SCRIPTS_DIR)
+
+from production_publish import registry as production_registry  # noqa: E402
+from production_publish.manifest_reader import find_batches_for_plan  # noqa: E402
 
 REPO_DEFAULT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TOOL = "publish_revisions"
 
 QUIZ_SET_FIELDS = ("title", "translation")  # top-level directos
 FORM_SET_FIELDS = ("sentences", "sentenceParts")  # bajo form.*
 FORM_PROTECTED = ("kind", "incidence", "label", "name")
 
 
-def parse_args():
+def parse_args(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--uri", default="mongodb://localhost:27017")
     p.add_argument("--db", default="learney")
@@ -60,7 +76,7 @@ def parse_args():
     p.add_argument("--apply", action="store_true", help="aplica los updates (default: dry-run)")
     p.add_argument("--no-sync-quiz-titles", action="store_true",
                    help="omite la fase de sincronización quiz.title := knowledge.label")
-    return p.parse_args()
+    return p.parse_args(argv)
 
 
 def json_escape(s):
@@ -74,7 +90,8 @@ def sync_quiz_titles(repo, db, quizzes_collection, apply_changes):
     knowledge — en los archivos db/ y en Mongo — y sincroniza las copias
     embebidas en las instancias de la colección `quizzes` (template.title /
     template.instructions). Devuelve (stats, backup_entries)."""
-    from bson import ObjectId
+    from bson import ObjectId, json_util
+    from pymongo import UpdateOne
 
     course_dir = os.path.join(repo, "db", "english-course")
     stats = Counter()
@@ -178,6 +195,8 @@ def load_approved_artifacts(repo, plan):
 
 def load_file_state(repo):
     """Estado final verificado desde db/english-course, parseado como BSON."""
+    from bson import json_util
+
     course_dir = os.path.join(repo, "db", "english-course")
     knowledges, quizzes = {}, {}
     for kf in glob.glob(os.path.join(course_dir, "**", "_knowledge.json"), recursive=True):
@@ -235,6 +254,8 @@ def build_quiz_update(file_doc, mongo_doc, stats):
 
 def check_course_doc_labels(db, changed_labels):
     """Alerta si el doc de courses embebe algún label viejo de knowledge."""
+    from bson import json_util
+
     course = db["courses"].find_one()
     if course is None:
         return ["WARN: colección courses vacía — no se pudo chequear embedding de labels"]
@@ -246,10 +267,66 @@ def check_course_doc_labels(db, changed_labels):
     return []
 
 
-def main():
-    args = parse_args()
+def get_path(doc, path):
+    value = doc
+    for key in path.split("."):
+        value = (value or {}).get(key)
+    return value
+
+
+def batches_of_plan(repo, plan):
+    """Tandas cuyo planId es este plan: en --repo, en el repo del script y en sus campañas."""
+    roots = []
+    for root in (repo, REPO_DEFAULT):
+        real = os.path.realpath(root)
+        if real not in roots:
+            roots.append(real)
+    return find_batches_for_plan(roots, plan)
+
+
+def main(argv=None):
+    argv = sys.argv[1:] if argv is None else list(argv)
+    if any(a == "--batch" or a.startswith("--batch=") for a in argv):
+        # Una tanda va a producción solo con su lista de publicación (F-PUBPROD-R006).
+        from production_publish import cli
+        return cli.main(argv)
+
+    args = parse_args(argv)
     mode = "APPLY" if args.apply else "DRY-RUN"
     print(f"== publish_revisions [{mode}] plan={args.plan} db={args.db} ==\n")
+
+    recorder = production_registry.LegacyRecorder(args.repo, TOOL, args.uri, args.db, args.apply)
+    if recorder.destination is None:
+        return recorder.refuse_bad_destination()
+
+    # F-PUBPROD-R006 inv. 5: el camino por plan no escribe el plan de una tanda.
+    batches, unreadable = batches_of_plan(args.repo, args.plan)
+    batch_ids = sorted({str(batch_id) for _, batch_id in batches})
+    if args.apply and (batches or unreadable):
+        if batches:
+            message = (f"el plan {args.plan} es de la tanda {', '.join(batch_ids)}: una tanda va a "
+                       f"producción solo con su lista (--batch), nunca por plan")
+        else:
+            message = (f"no se pudo leer {len(unreadable)} archivo(s) de tandas ({unreadable[0]}), así que no "
+                       f"se sabe si el plan {args.plan} es de una tanda")
+        print(f"NEGADO: {message}. No se conectó a ninguna base y no se escribió nada.")
+        recorder.record(production_registry.REFUSED, plan=args.plan, batches=batch_ids,
+                        reason={"code": "PLAN_OF_BATCH" if batches else "BATCHES_UNREADABLE",
+                                "message": message})
+        return 2
+    if batches:
+        print(f"AVISO: el plan {args.plan} es de la tanda {', '.join(batch_ids)}: este ensayo se puede mirar, "
+              f"pero --apply se va a negar. Una tanda va a producción con --batch.\n")
+    elif unreadable:
+        print(f"AVISO: no se pudo leer {len(unreadable)} archivo(s) de tandas ({unreadable[0]}); "
+              f"--apply se va a negar hasta que se puedan leer.\n")
+
+    # Una excepción de pymongo se muestra solo por su clase: su mensaje puede traer el destino.
+    return recorder.run(lambda: publish_plan(args, mode, recorder, batch_ids), plan=args.plan)
+
+
+def publish_plan(args, mode, recorder, batch_ids):
+    from pymongo import MongoClient, UpdateOne
 
     approved, skipped = load_approved_artifacts(args.repo, args.plan)
     n_k, n_q = len(approved["KNOWLEDGE"]), len(approved["QUIZ"])
@@ -269,6 +346,7 @@ def main():
 
     stats = Counter()
     updates = {"knowledges": [], "quizTemplates": []}
+    previous = {}  # (colección, _id) -> {campo: valor en Mongo antes de escribir}: el respaldo
     problems, samples, old_labels = [], [], []
 
     for node_id, proposals in sorted(approved["KNOWLEDGE"].items()):
@@ -286,6 +364,7 @@ def main():
             continue
         old_labels.append(mdoc.get("label"))
         updates["knowledges"].append((fdoc["_id"], sets, proposals))
+        previous[("knowledges", str(fdoc["_id"]))] = {f: get_path(mdoc, f) for f in sets}
         stats["knowledge_updates"] += 1
         if len(samples) < 3:
             samples.append(f"  knowledge {node_id} ({proposals[0]}): "
@@ -307,6 +386,7 @@ def main():
         forbidden = [k for k in sets if k.startswith("form.") and k.split(".", 1)[1] in FORM_PROTECTED]
         assert not forbidden, f"allowlist violada: {forbidden}"
         updates["quizTemplates"].append((fdoc["_id"], sets, proposals))
+        previous[("quizTemplates", str(fdoc["_id"]))] = {f: get_path(mdoc, f) for f in sets}
         stats["quiz_updates"] += 1
         stats.update({f"field:{k.split('.')[-1]}": 1 for k in sets})
 
@@ -330,15 +410,22 @@ def main():
         "mode": mode, "plan": args.plan, "db": args.db,
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "stats": dict(stats), "problems": problems,
-        "updates": {col: [{"_id": str(i), "fields": sorted(s), "proposals": pr}
+        "updates": {col: [{"_id": str(i), "fields": sorted(s), "proposals": pr,
+                           "old": previous[(col, str(i))], "new": s}
                           for i, s, pr in ups] for col, ups in updates.items()},
     }
     report_dir = os.path.join(args.repo, ".content-audit", "publish-reports")
     os.makedirs(report_dir, exist_ok=True)
     report_path = os.path.join(report_dir, f"{args.plan}_{mode}_{report['timestamp'].replace(':', '-')}.json")
     with open(report_path, "w") as fh:
-        json.dump(report, fh, indent=2, ensure_ascii=False)
+        json.dump(report, fh, indent=2, ensure_ascii=False, default=str)
     print(f"\nReporte guardado: {report_path}")
+
+    hard_problems = [p for p in problems if not p.startswith("WARN")]
+    counts = {"knowledgeUpdates": len(updates["knowledges"]), "quizTemplateUpdates": len(updates["quizTemplates"]),
+              "problems": len(problems), "hardProblems": len(hard_problems)}
+    row_common = {"plan": args.plan, "batches": batch_ids, "report": os.path.relpath(report_path, args.repo),
+                  "counts": counts}
 
     if not args.apply:
         if not args.no_sync_quiz_titles:
@@ -349,11 +436,26 @@ def main():
                   f"{sync_stats['title_mongo_updates']} en Mongo, "
                   f"{sync_stats['embedded_instances_synced']} instancias embebidas")
         print("\nDRY-RUN: no se modificó nada. Ejecutar con --apply para aplicar.")
+        recorder.record(production_registry.DRY_RUN_WITH_PROBLEMS if hard_problems
+                        else production_registry.DRY_RUN_CLEAN, **row_common)
         return
 
-    hard_problems = [p for p in problems if not p.startswith("WARN")]
     if hard_problems:
+        recorder.record(production_registry.ABORTED, reason={"code": "HARD_PROBLEMS", "message":
+                        f"{len(hard_problems)} problemas duros; no se escribió nada"}, **row_common)
         sys.exit(f"\nABORTADO: {len(hard_problems)} problemas duros; resolver antes de --apply.")
+
+    # F-PUBPROD-R008: el respaldo y el renglón de inicio, antes de la primera escritura.
+    backup = {"plan": args.plan, "report": row_common["report"],
+              "note": "Respaldo: por cada campo, «old» es lo que había en Mongo y «new» lo que se escribe.",
+              "documents": [{"collection": col, "_id": str(i), "old": previous[(col, str(i))], "new": s,
+                             "proposals": pr} for col, ups in updates.items() for i, s, pr in ups]}
+    if not recorder.write_detail(json.loads(json.dumps(backup, default=str))):
+        recorder.record(production_registry.ABORTED, reason={"code": "DETAIL_NOT_WRITTEN", "message":
+                        "no se pudo escribir el respaldo; no se escribió nada"}, **row_common)
+        sys.exit("\nABORTADO: no se pudo escribir el respaldo de la corrida; no se escribió nada.")
+    if not recorder.record(production_registry.STARTED, **row_common):
+        sys.exit("\nABORTADO: no se pudo dejar el renglón de inicio en el registro; no se escribió nada.")
 
     print("\n== Aplicando ==")
     for col_name, col in (("knowledges", col_k), ("quizTemplates", col_q)):
@@ -376,7 +478,11 @@ def main():
                     failures += 1
                     print(f"  FAIL {col_name} {_id} {path} ({proposals[0]})")
     total = len(updates["knowledges"]) + len(updates["quizTemplates"])
+    written_ids = [f"{col}/{i}" for col, ups in updates.items() for i, _, _ in ups]
     if failures:
+        recorder.record(production_registry.VERIFY_FAILED, writtenIds=written_ids, verified=False,
+                        reason={"code": "VERIFY_FAILED", "message": f"{failures} campos no coinciden"},
+                        **row_common)
         sys.exit(f"VERIFICACIÓN FALLÓ: {failures} campos no coinciden.")
     print(f"OK: {total} documentos verificados campo por campo contra el estado esperado.")
 
@@ -393,9 +499,12 @@ def main():
             print(f"!! patrones de título no hallados en archivo: {sync_stats['title_file_pattern_miss']}")
         report["quizTitleSync"] = {"stats": dict(sync_stats), "oldTitles": sync_backup}
         with open(report_path, "w") as fh:
-            json.dump(report, fh, indent=2, ensure_ascii=False)
+            json.dump(report, fh, indent=2, ensure_ascii=False, default=str)
         print(f"Reporte actualizado con respaldo de títulos viejos: {report_path}")
+        row_common["quizTitleSync"] = dict(sync_stats)
+
+    recorder.record(production_registry.APPLIED_VERIFIED, writtenIds=written_ids, verified=True, **row_common)
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

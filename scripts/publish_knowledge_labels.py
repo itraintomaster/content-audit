@@ -14,21 +14,33 @@ Allowlist cerrada: escribe únicamente `label`. Nada más.
 Uso:
   python3 scripts/publish_knowledge_labels.py --uri "$URI"           # dry-run
   python3 scripts/publish_knowledge_labels.py --uri "$URI" --apply
+
+Cada corrida deja su renglón en <repo>/.content-audit/production/registry.jsonl
+(destino servidor/base, nunca el URI) y, antes de escribir, el respaldo de los
+labels viejos en runs/<runId>.json (F-PUBPROD-R008).
 """
 
 import argparse
 import glob
 import json
 import os
+import sys
 from datetime import datetime, timezone
 
-from bson import json_util
-from pymongo import MongoClient, UpdateOne
+# pymongo y bson se importan adentro de main: así el script se puede importar
+# (y probar) sin conectarse ni tener el driver.
+
+SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
+if SCRIPTS_DIR not in sys.path:
+    sys.path.insert(0, SCRIPTS_DIR)
+
+from production_publish import registry as production_registry  # noqa: E402
 
 REPO_DEFAULT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TOOL = "publish_knowledge_labels"
 
 
-def parse_args():
+def parse_args(argv=None):
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--uri", default="mongodb://localhost:27017")
@@ -36,20 +48,32 @@ def parse_args():
     p.add_argument("--repo", default=REPO_DEFAULT)
     p.add_argument("--collection", default="knowledges")
     p.add_argument("--apply", action="store_true", help="aplica (default: dry-run)")
-    return p.parse_args()
+    return p.parse_args(argv)
 
 
-def main():
-    args = parse_args()
+def main(argv=None):
+    args = parse_args(argv)
     mode = "APPLY" if args.apply else "DRY-RUN"
     print(f"== publish_knowledge_labels [{mode}] db={args.db} ==\n")
+
+    recorder = production_registry.LegacyRecorder(args.repo, TOOL, args.uri, args.db, args.apply)
+    if recorder.destination is None:
+        return recorder.refuse_bad_destination()
+    # Una excepción de pymongo se muestra solo por su clase: su mensaje puede traer el destino.
+    return recorder.run(lambda: publish_labels(args, mode, recorder))
+
+
+def publish_labels(args, mode, recorder):
+    from bson import json_util
+    from pymongo import MongoClient, UpdateOne
 
     course_dir = os.path.join(args.repo, "db", "english-course")
     col = MongoClient(args.uri, serverSelectionTimeoutMS=20000)[args.db][args.collection]
 
     pending, missing = [], []
     for kf in sorted(glob.glob(os.path.join(course_dir, "**", "_knowledge.json"), recursive=True)):
-        doc = json_util.loads(open(kf, encoding="utf-8").read())
+        with open(kf, encoding="utf-8") as fh:
+            doc = json_util.loads(fh.read())
         label = doc.get("label")
         if not label:
             continue
@@ -66,11 +90,27 @@ def main():
     for e in pending[:5]:
         print(f"  {e['oldLabel']!r} -> {e['newLabel']!r}")
 
+    counts = {"labels": len(pending), "missing": len(missing)}
     if not args.apply:
         print("\nDRY-RUN: no se modificó nada. Ejecutar con --apply para aplicar.")
+        recorder.record(production_registry.DRY_RUN_WITH_PROBLEMS if missing else production_registry.DRY_RUN_CLEAN,
+                        counts=counts)
         return
 
     if pending:
+        # F-PUBPROD-R008: el respaldo y el renglón de inicio, antes de la primera escritura.
+        backup = {"note": "Respaldo: «old» es el label que había y «new» el que se escribe.",
+                  "documents": [{"collection": args.collection, "_id": str(e["_id"]),
+                                 "old": {"label": e["oldLabel"]}, "new": {"label": e["newLabel"]}}
+                                for e in pending]}
+        if not recorder.write_detail(json.loads(json.dumps(backup, default=str))):
+            recorder.record(production_registry.ABORTED, counts=counts, reason={
+                "code": "DETAIL_NOT_WRITTEN", "message": "no se pudo escribir el respaldo; no se escribió nada"})
+            print("\nABORTADO: no se pudo escribir el respaldo de la corrida; no se escribió nada.")
+            return 1
+        if not recorder.record(production_registry.STARTED, counts=counts):
+            print("\nABORTADO: no se pudo dejar el renglón de inicio en el registro; no se escribió nada.")
+            return 1
         res = col.bulk_write([UpdateOne({"_id": e["_id"]}, {"$set": {"label": e["newLabel"]}})
                               for e in pending], ordered=True)
         print(f"\nmatched={res.matched_count} modified={res.modified_count}")
@@ -89,9 +129,18 @@ def main():
                    "missing": missing,
                    "oldLabels": [{"_id": str(e["_id"]), "oldLabel": e["oldLabel"],
                                   "newLabel": e["newLabel"]} for e in pending]},
-                  fh, indent=2, ensure_ascii=False)
+                  fh, indent=2, ensure_ascii=False, default=str)
     print(f"Reporte con respaldo de labels viejos: {path}")
+
+    written_ids = ["%s/%s" % (args.collection, e["_id"]) for e in pending]
+    if failures:
+        recorder.record(production_registry.VERIFY_FAILED, counts=counts, writtenIds=written_ids, verified=False,
+                        report=os.path.relpath(path, args.repo),
+                        reason={"code": "VERIFY_FAILED", "message": f"{len(failures)} labels no coinciden"})
+        return 1
+    recorder.record(production_registry.APPLIED_VERIFIED, counts=counts, writtenIds=written_ids, verified=True,
+                    report=os.path.relpath(path, args.repo))
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

@@ -19,6 +19,7 @@ import os
 import re
 import secrets
 import tempfile
+from datetime import datetime, timezone
 from urllib.parse import urlsplit
 
 from .store import to_json_safe
@@ -269,3 +270,105 @@ def record_legacy(workdir, row, out=None):
         if out is not None:
             print("!! %s" % e, file=out)
         return False
+
+
+def is_database_error(error):
+    """Una excepción de pymongo o bson: se muestra solo por su clase."""
+    return type(error).__module__.split(".")[0] in ("pymongo", "bson")
+
+
+class LegacyRecorder:
+    """Los renglones de los otros escritores de producción (F-PUBPROD-R008, inv. 4).
+
+    `publish_revisions.py --plan`, `publish_knowledge_labels.py` y
+    `publish_knowledge_instructions.py` dejan su renglón en
+    <repo>/.content-audit/production/registry.jsonl, con el mismo destino
+    {host, db} y los mismos resultados. El valor previo de lo que escriben va a
+    runs/<runId>.json antes de la primera escritura.
+    """
+
+    def __init__(self, workdir, tool, uri, db, apply, out=None, now=None):
+        clock = now or (lambda: datetime.now(timezone.utc))
+        self.clock = clock
+        self.registry = Registry(workdir)
+        self.tool = tool
+        self.mode = APPLY if apply else DRY_RUN
+        self.out = out
+        self.run_id = new_run_id(clock())
+        self.detail_path = None
+        self.last_result = None
+        try:
+            self.destination = destination_of(uri, db)
+            self.destination_error = None
+        except ValueError as e:
+            self.destination = None
+            self.destination_error = str(e)
+
+    def say(self, text):
+        print(text, file=self.out)
+
+    def record(self, result, **extra):
+        self.last_result = result
+        row = {"runId": self.run_id, "at": utc_iso(self.clock()), "tool": self.tool, "mode": self.mode,
+               "result": result, "destination": self.destination}
+        if self.detail_path is not None:
+            row["detail"] = self.registry.relative(self.detail_path)
+        row.update(extra)
+        return record_legacy(self.registry.workdir, row, self.out)
+
+    def write_detail(self, detail):
+        """El respaldo previo a escribir. Devuelve False (y lo dice) si no pudo."""
+        try:
+            base = {"runId": self.run_id, "tool": self.tool, "mode": self.mode, "destination": self.destination,
+                    "at": utc_iso(self.clock())}
+            base.update(detail)
+            self.detail_path = self.registry.write_run(self.run_id, base)
+            return True
+        except RegistryError as e:
+            self.say("!! %s" % e)
+            return False
+
+    def refuse_bad_destination(self):
+        """Si el URI no se puede leer: lo dice sin repetirlo, deja el renglón y devuelve 2."""
+        self.say("NEGADO: no se puede leer el destino: %s. No se conectó a ninguna base." % self.destination_error)
+        self.record(REFUSED, reason={"code": "BAD_URI", "message": self.destination_error})
+        return 2
+
+    def database_failed(self, error, **extra):
+        """La base falló: se muestra solo la clase, se registra ABORTED y devuelve 1."""
+        name = type(error).__name__
+        self.say("ABORTADO: la base falló (%s)." % name)
+        if self.unfinished():
+            self.record(ABORTED, reason={"code": "STORE_ERROR", "message": "la base falló (%s)" % name},
+                        errorClass=name, **extra)
+        return 1
+
+    def unfinished(self):
+        """Todavía no hay renglón final: no se dejó ninguno o el último es STARTED."""
+        return self.last_result in (None, STARTED)
+
+    def run(self, body, **extra):
+        """Corre el cuerpo del script; si termina mal sin renglón final, deja ABORTED.
+
+        Una excepción de la base se muestra solo por su clase y devuelve 1; las
+        demás se registran y siguen su curso (con su traza, que no trae el URI).
+        """
+        try:
+            return body()
+        except SystemExit as e:
+            if self.unfinished():
+                self.record(ABORTED, reason={"code": "EXIT", "message": str(e.code)[:300]}, **extra)
+            raise
+        except KeyboardInterrupt:
+            if self.unfinished():
+                self.record(ABORTED, reason={"code": "INTERRUPTED", "message": "corrida interrumpida a mano"},
+                            **extra)
+            raise
+        except Exception as e:
+            if is_database_error(e):
+                return self.database_failed(e, **extra)
+            if self.unfinished():
+                self.record(ABORTED, errorClass=type(e).__name__,
+                            reason={"code": "ERROR", "message": "falló el script (%s)" % type(e).__name__},
+                            **extra)
+            raise
