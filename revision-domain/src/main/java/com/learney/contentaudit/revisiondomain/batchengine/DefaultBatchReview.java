@@ -86,7 +86,7 @@ final class DefaultBatchReview implements BatchReviewService {
             }
         }
         batches.saveReview(new BatchReviewDecision(batch.getId(), List.copyOf(request.selections()), request.status(),
-                request.reviewer().trim(), Instant.now()));
+                request.reviewer().trim(), Instant.now(), request.expectedReviewCount()));
         return read(batch);
     }
 

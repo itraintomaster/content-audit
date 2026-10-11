@@ -412,6 +412,12 @@ class Main {
 
         // ----------------------------------------------------------------
         // A saved review needs no NLP process, model discovery or judge bootstrap.
+        Path problemProject = Path.of(System.getProperty("contentaudit.project.dir", System.getProperty("user.dir")));
+        Integer problemExit = ProblemCmd.execute(remainingArgs, baseDir, problemProject, System.out, System.err);
+        if (problemExit != null) {
+            if (problemExit != 0) System.exit(problemExit);
+            return;
+        }
         Integer miniExit = SavedMiniTheoryCorrectionCmd.execute(remainingArgs, baseDir, System.out, System.err);
         if (miniExit != null) {
             if (miniExit != 0) System.exit(miniExit);
@@ -1438,6 +1444,7 @@ class Main {
                     runtime);
         })));
         cmd.addSubcommand("batch", batchCommand);            // E · FEAT-TANDA
+        cmd.addSubcommand("problem", new ProblemCmd(baseDir, problemProject, System.out));
         cmd.addSubcommand("tray", new picocli.CommandLine(new TrayCmd(trayService, quizSentenceConverter, batchStore))); // E · BANDEJA
 
         // ----------------------------------------------------------------

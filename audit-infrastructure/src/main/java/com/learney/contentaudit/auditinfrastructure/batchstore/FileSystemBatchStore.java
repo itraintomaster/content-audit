@@ -175,10 +175,23 @@ public class FileSystemBatchStore implements BatchStore {
                 || decision.selections() == null || decision.selections().isEmpty()) {
             throw new IllegalArgumentException("Revisión incompleta.");
         }
-        // Each command writes a new event. Different JVMs cannot lose each other's decisions, nor batch progress.
-        Path file = reviewDir(decision.batchId()).resolve(UUID.randomUUID() + SUFFIX);
-        writeAtomically(file, json(decision, file));
+        Path lockFile = baseDir.toAbsolutePath().normalize().resolve(".content-audit/locks/reviews")
+                .resolve(identifier(decision.batchId()) + ".lock");
+        synchronized (REVIEW_MONITORS.computeIfAbsent(lockFile, ignored -> new Object())) {
+            try {
+                Files.createDirectories(lockFile.getParent());
+                try (var channel = java.nio.channels.FileChannel.open(lockFile,
+                        java.nio.file.StandardOpenOption.CREATE, java.nio.file.StandardOpenOption.WRITE);
+                        var lock = channel.lock()) {
+                    if (decision.expectedReviewCount() != null && decision.expectedReviewCount() != reviews(decision.batchId()).size())
+                        throw new IllegalStateException("La decisión cambió después de leer. Volvé a leer antes de anotar o deshacer.");
+                    Path file = reviewDir(decision.batchId()).resolve(UUID.randomUUID() + SUFFIX);
+                    writeAtomically(file, json(decision, file));
+                }
+            } catch (IOException e) { throw new java.io.UncheckedIOException(e); }
+        }
     }
+    private static final java.util.Map<Path, Object> REVIEW_MONITORS = new java.util.concurrent.ConcurrentHashMap<>();
 
     @Override
     public List<BatchReviewDecision> reviews(String batchId) {
