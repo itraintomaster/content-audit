@@ -58,6 +58,19 @@ EMBEDDED_COPIES = {"instructions": "template.instructions"}
 COLLECTION_ORDER = (KNOWLEDGES, QUIZ_TEMPLATES)
 
 
+def required_collections(manifest):
+    """Las colecciones que la base tiene que tener para esta lista (si falta una, no es la base correcta).
+
+    Las de sus documentos y, si la lista cambia la consigna de un ejercicio, la de las
+    instancias, donde están sus copias embebidas.
+    """
+    needed = {d["collection"] for d in manifest["documents"]}
+    if any(f["path"] in EMBEDDED_COPIES for d in manifest["documents"]
+           if d["collection"] == QUIZ_TEMPLATES for f in d["fields"]):
+        needed.add(INSTANCES)
+    return needed
+
+
 def as_listed(path, value):
     """El valor de la base tal como lo representa la lista."""
     if path in ABSENT_AS_EMPTY_LIST and (value is MISSING or value is None):

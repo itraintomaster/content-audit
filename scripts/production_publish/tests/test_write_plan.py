@@ -51,6 +51,13 @@ class FieldPlanTest(unittest.TestCase):
 
 
 class BuildTest(unittest.TestCase):
+    def test_F_PUBPROD_R008_colecciones_requeridas_las_de_la_lista_y_las_instancias_si_cambia_la_consigna(self):
+        manifest = fakes.example_manifest()
+        self.assertEqual(write_plan.required_collections(manifest), {"knowledges", "quizTemplates", "quizzes"})
+        for document in manifest["documents"]:
+            document["fields"] = [f for f in document["fields"] if f["path"] != "instructions"]
+        self.assertEqual(write_plan.required_collections(manifest), {"knowledges", "quizTemplates"})
+
     def test_F_PUBPROD_R006_lee_cada_documento_y_ordena_knowledges_antes_que_quizTemplates(self):
         plan = plan_for()
         collections = [d.collection for d in plan.to_write()]

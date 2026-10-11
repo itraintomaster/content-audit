@@ -505,7 +505,8 @@ def _counts_problems(counts, documents, by_path, problems):
         problems.append(("BAD_COUNTS", "La lista cuenta %s documentos y trae %d."
                          % (_shown(counts["documents"]), len(documents))))
     if "fields" in counts and (not _is_count(counts["fields"]) or counts["fields"] != total_fields):
-        problems.append(("BAD_COUNTS", "La lista cuenta %s campos y trae %d." % (_shown(counts["fields"]), total_fields)))
+        problems.append(("BAD_COUNTS", "La lista cuenta %s campos y trae %d."
+                         % (_shown(counts["fields"]), total_fields)))
     if "byPath" in counts:
         declared = counts["byPath"]
         if (not isinstance(declared, dict) or not all(_is_count(v) for v in declared.values())

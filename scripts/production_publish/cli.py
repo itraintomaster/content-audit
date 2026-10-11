@@ -95,8 +95,15 @@ class Run(RunLog):
             self.say("  … y %d problemas más." % (len(refusal.problems) - manifest_reader.MAX_LISTED_PROBLEMS))
         self.say("No se conectó a ninguna base y no se escribió nada.")
         self.record(REFUSED, reason=refusal.as_reason())
-        self.say("Registro: %s (corrida %s)" % (self.registry.relative(self.registry.path), self.run_id))
+        self.say_registry()
         return EXIT_REFUSED
+
+    def say_registry(self, detail=None):
+        where = self.registry.relative(self.registry.path)
+        if detail:
+            self.say("Registro: %s; detalle y respaldo: %s (corrida %s)" % (where, detail, self.run_id))
+        else:
+            self.say("Registro: %s (corrida %s)" % (where, self.run_id))
 
 
 def main(argv=None, *, store_factory=None, out=None, now=None):
@@ -124,41 +131,9 @@ def _locked(run, store_factory):
         run.loaded = manifest_reader.load(run.workdir, args.batch)
     except Refusal as refusal:
         return run.refuse(refusal)
-    manifest = run.loaded.manifest
-
-    unsupported = manifest.get("unsupported") or []
-    if unsupported and not args.skip_unsupported:
-        return run.refuse(Refusal(
-            "UNSUPPORTED",
-            "La lista declara %d cambio(s) sin lugar en producción (%s). Para seguir sin ellos, "
-            "pedilo con --skip-unsupported." % (len(unsupported), ", ".join(
-                "%s/%s" % (u.get("changeId"), u.get("part")) for u in unsupported[:10]))))
-
-    if args.expect_destination is not None:
-        try:
-            expected = registry.parse_expected_destination(args.expect_destination)
-        except ValueError as e:
-            return run.refuse(Refusal("BAD_EXPECTED_DESTINATION", str(e)))
-        if expected != run.destination:
-            return run.refuse(Refusal(
-                "DESTINATION_MISMATCH",
-                "El destino nombrado (%s) no es el real (%s): no se escribe."
-                % (registry.destination_label(expected), registry.destination_label(run.destination))))
-    elif args.apply:
-        return run.refuse(Refusal(
-            "DESTINATION_NOT_NAMED",
-            "Para aplicar hay que nombrar el destino con --expect-destination %s."
-            % registry.destination_label(run.destination)))
-
-    if args.apply:
-        try:
-            rows = run.registry.rows()
-        except RegistryError as e:
-            return run.refuse(Refusal("REGISTRY_UNREADABLE", str(e)))
-        problem = registry.clean_dry_run_problem(rows, TOOL, args.batch, run.loaded.digest,
-                                                 run.destination, run.flags)
-        if problem:
-            return run.refuse(Refusal("NO_CLEAN_DRY_RUN", problem))
+    refusal = _refusal_before_connecting(run)
+    if refusal:
+        return run.refuse(refusal)
 
     if store_factory is None:
         from .mongo_store import open_store
@@ -169,22 +144,60 @@ def _locked(run, store_factory):
     try:
         try:
             store = store_factory(args.uri, args.db)
-            plan = _read(run, store, manifest)
+            plan = _plan_from_store(run, store)
         except _Abort as abort:
             return _aborted(run, abort.code, abort.message)
         except Exception as e:  # la clase alcanza: el mensaje de la base puede traer el destino
             return _aborted(run, "STORE_ERROR", "La base falló al leer (%s); no se escribió nada."
                             % type(e).__name__, errorClass=type(e).__name__)
-        _report(run, plan)
+        _plan_summary(run, plan)
         if not args.apply:
             return _dry_run(run, plan)
-        return _apply(run, store, plan)
+        return _execute(run, store, plan)
     finally:
         if store is not None:
             try:
                 store.close()
             except Exception:
                 pass
+
+
+def _refusal_before_connecting(run):
+    """Con la lista ya leída: lo sin lugar en producción, el destino nombrado y el ensayo limpio previo.
+
+    Devuelve la negativa, o None si se puede seguir.
+    """
+    args = run.args
+    unsupported = run.loaded.manifest.get("unsupported") or []
+    if unsupported and not args.skip_unsupported:
+        return Refusal(
+            "UNSUPPORTED",
+            "La lista declara %d cambio(s) sin lugar en producción (%s). Para seguir sin ellos, "
+            "pedilo con --skip-unsupported." % (len(unsupported), ", ".join(
+                "%s/%s" % (u.get("changeId"), u.get("part")) for u in unsupported[:10])))
+
+    if args.expect_destination is not None:
+        try:
+            expected = registry.parse_expected_destination(args.expect_destination)
+        except ValueError as e:
+            return Refusal("BAD_EXPECTED_DESTINATION", str(e))
+        if expected != run.destination:
+            return Refusal("DESTINATION_MISMATCH", "El destino nombrado (%s) no es el real (%s): no se escribe."
+                           % (registry.destination_label(expected), registry.destination_label(run.destination)))
+    elif args.apply:
+        return Refusal("DESTINATION_NOT_NAMED", "Para aplicar hay que nombrar el destino con "
+                       "--expect-destination %s." % registry.destination_label(run.destination))
+
+    if args.apply:
+        try:
+            rows = run.registry.rows()
+        except RegistryError as e:
+            return Refusal("REGISTRY_UNREADABLE", str(e))
+        problem = registry.clean_dry_run_problem(rows, TOOL, args.batch, run.loaded.digest,
+                                                 run.destination, run.flags)
+        if problem:
+            return Refusal("NO_CLEAN_DRY_RUN", problem)
+    return None
 
 
 class _Abort(Exception):
@@ -194,13 +207,9 @@ class _Abort(Exception):
         self.message = message
 
 
-def _read(run, store, manifest):
-    present = set(store.collections())
-    needed = {d["collection"] for d in manifest["documents"]}
-    if any(f["path"] in write_plan.EMBEDDED_COPIES for d in manifest["documents"]
-           if d["collection"] == manifest_reader.QUIZ_TEMPLATES for f in d["fields"]):
-        needed.add(write_plan.INSTANCES)
-    missing = sorted(needed - present)
+def _plan_from_store(run, store):
+    manifest = run.loaded.manifest
+    missing = sorted(write_plan.required_collections(manifest) - set(store.collections()))
     if missing:
         raise _Abort("WRONG_DATABASE",
                      "La base %s no tiene %s: ¿es la base correcta? No se escribió nada."
@@ -221,7 +230,7 @@ def _header(run):
         run.say("  sin lugar en producción, se sigue sin ellos: %d" % len(loaded.manifest["unsupported"]))
 
 
-def _report(run, plan):
+def _plan_summary(run, plan):
     c = plan.counts()
     run.say("  documentos de la lista: %d; copias embebidas en %s: %d"
             % (c["documents"], write_plan.INSTANCES, c["instances"]))
@@ -299,7 +308,7 @@ def _dry_run(run, plan):
     else:
         run.say("Resultado: %s — no se escribió nada. Resolvé lo de arriba (o seguí sin esos documentos "
                 "con --skip-drift) y ensayá de nuevo." % result)
-    run.say("Registro: %s (corrida %s)" % (run.registry.relative(run.registry.path), run.run_id))
+    run.say_registry()
     return EXIT_OK if result == DRY_RUN_CLEAN else EXIT_PROBLEMS
 
 
@@ -316,11 +325,11 @@ def _plan_problem(plan):
 def _aborted(run, code, message, **extra):
     run.say("ABORTADO (%s): %s" % (code, message))
     run.record(ABORTED, reason={"code": code, "message": message}, **extra)
-    run.say("Registro: %s (corrida %s)" % (run.registry.relative(run.registry.path), run.run_id))
+    run.say_registry()
     return EXIT_PROBLEMS
 
 
-def _apply(run, store, plan):
+def _execute(run, store, plan):
     if not plan.is_clean():
         # El ensayo limpio pudo quedar viejo: alguien cambió la base entretanto.
         problem = _plan_problem(plan)
@@ -330,22 +339,16 @@ def _apply(run, store, plan):
     problem = run.begin_writing(_run_detail(run, plan, STARTED), planned=len(to_write), **_common(run, plan))
     if problem:
         run.say("ABORTADO: %s." % problem)
+        run.say_registry()
         return EXIT_PROBLEMS
     detail_rel = run.registry.relative(run.detail_path)
 
     run.say("Escribiendo %d documento(s)…" % len(to_write))
     outcome = applier.apply(plan, store)  # un Ctrl-C no se lleva el resultado: queda adentro
-
-    if not outcome.verified:
-        result = VERIFY_FAILED
-    elif outcome.stopped_reason or outcome.indeterminate:
-        result = ABORTED
-    else:
-        result = APPLIED_VERIFIED
+    result = _result_of(outcome)
 
     written_ids = ["%s/%s" % (d.collection, d.doc_id) for d in outcome.written]
     stopped_at = outcome.stopped_at.key if outcome.stopped_at is not None else None
-    indeterminate = outcome.indeterminate_keys()
     extra = {
         "written": written_ids,
         "verification": outcome.verification,
@@ -357,21 +360,38 @@ def _apply(run, store, plan):
     if not run.write_detail(_run_detail(run, plan, result, extra)):
         run.say("!! El respaldo previo a escribir quedó en %s." % detail_rel)
 
-    failures = outcome.failures()
     reason = None
     if result == VERIFY_FAILED:
         reason = {"code": "VERIFY_FAILED", "message": "%d documento(s) no quedaron como dice la lista"
-                  % len(failures)}
+                  % len(outcome.failures())}
     elif result == ABORTED:
         reason = {"code": outcome.stopped_reason,
                   "message": "se dejó de escribir en %s" % (stopped_at or "(antes de empezar)")}
     recorded = run.record(result, reason=reason, writtenIds=written_ids,
-                          indeterminate=indeterminate, verified=result == APPLIED_VERIFIED,
+                          indeterminate=outcome.indeterminate_keys(), verified=result == APPLIED_VERIFIED,
                           pendingTraveled=plan.pending_documents(outcome.written),
                           stoppedReason=outcome.stopped_reason, stoppedAt=stopped_at,
                           errorClass=outcome.error_class, **_common(run, plan))
 
-    run.say("Escritos: %d de %d." % (len(outcome.written), len(to_write)))
+    _print_outcome(run, plan, outcome, result, stopped_at)
+    run.say_registry(detail_rel)
+    if not recorded:
+        return EXIT_PROBLEMS
+    return EXIT_OK if result == APPLIED_VERIFIED else EXIT_PROBLEMS
+
+
+def _result_of(outcome):
+    """Verificación fallida antes que corte: lo que no quedó como dice la lista es lo más grave."""
+    if not outcome.verified:
+        return VERIFY_FAILED
+    if outcome.stopped_reason or outcome.indeterminate:
+        return ABORTED
+    return APPLIED_VERIFIED
+
+
+def _print_outcome(run, plan, outcome, result, stopped_at):
+    failures = outcome.failures()
+    run.say("Escritos: %d de %d." % (len(outcome.written), len(plan.to_write())))
     if outcome.stopped_reason == applier.CONCURRENT_CHANGE:
         run.say("Se dejó de escribir en %s: cambió en la base entre la lectura y la escritura." % stopped_at)
     elif outcome.stopped_reason == applier.STORE_ERROR:
@@ -391,11 +411,6 @@ def _apply(run, store, plan):
         ABORTED: " — no se reintenta ni se corrige; lo escrito está verificado y el respaldo, en el detalle.",
         VERIFY_FAILED: " — no se reintenta ni se corrige: revisá el detalle; el respaldo (old) está ahí.",
     }[result]))
-    run.say("Registro: %s; detalle y respaldo: %s (corrida %s)"
-            % (run.registry.relative(run.registry.path), detail_rel, run.run_id))
-    if not recorded:
-        return EXIT_PROBLEMS
-    return EXIT_OK if result == APPLIED_VERIFIED else EXIT_PROBLEMS
 
 
 def _applied_summary(plan, outcome):
