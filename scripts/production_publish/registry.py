@@ -163,22 +163,23 @@ class Registry:
         """Todos los renglones. Lanza RegistryError si alguno no se puede leer."""
         if not os.path.exists(self.path):
             return []
-        rows = []
         try:
-            with open(self.path, encoding="utf-8") as fh:
-                for number, line in enumerate(fh, start=1):
-                    if not line.strip():
-                        continue
-                    try:
-                        row = json.loads(line)
-                    except ValueError:
-                        raise RegistryError("el renglón %d del registro %s no se puede leer; revisalo a mano "
-                                            "antes de seguir" % (number, self.path))
-                    if not isinstance(row, dict):
-                        raise RegistryError("el renglón %d del registro %s no es un objeto" % (number, self.path))
-                    rows.append(row)
+            with open(self.path, "rb") as fh:
+                data = fh.read()
         except OSError as e:
             raise RegistryError("no se pudo leer el registro %s (%s)" % (self.path, type(e).__name__))
+        rows = []
+        for number, line in enumerate(data.split(b"\n"), start=1):
+            if not line.strip():
+                continue
+            try:
+                row = json.loads(line.decode("utf-8"))  # un renglón que no es UTF-8 tampoco se lee
+            except ValueError:
+                raise RegistryError("el renglón %d del registro %s no se puede leer; revisalo a mano "
+                                    "antes de seguir" % (number, self.path))
+            if not isinstance(row, dict):
+                raise RegistryError("el renglón %d del registro %s no es un objeto" % (number, self.path))
+            rows.append(row)
         return rows
 
     def write_run(self, run_id, detail):

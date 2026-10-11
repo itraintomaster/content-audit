@@ -652,12 +652,19 @@ class RegistryFailureTest(CliTestCase):
         self.assertEqual(self.rows()[-1]["result"], ABORTED)
 
     def test_F_PUBPROD_R008_un_registro_ilegible_niega_la_aplicacion(self):
-        self.run_cli()
-        with open(os.path.join(self.workdir, ".content-audit", "production", "registry.jsonl"), "a") as fh:
-            fh.write("esto no es json\n")
-        code, out, factory = self.run_cli(*APPLY_ARGS)
-        self.assertEqual(code, 2, out)
-        self.assertEqual(factory.calls, [])
+        # Un renglón que no es JSON, o que ni siquiera es UTF-8: se niega antes de conectarse.
+        for garbage in (b"esto no es json\n", b'{"runId": "\xff\xfe"}\n'):
+            with self.subTest(garbage=garbage):
+                self.workdir = fakes.temp_workdir(self)
+                fakes.write_batch(self.workdir)
+                self.run_cli()
+                with open(os.path.join(self.workdir, ".content-audit", "production", "registry.jsonl"), "ab") as fh:
+                    fh.write(garbage)
+                code, out, factory = self.run_cli(*APPLY_ARGS)
+                self.assertEqual(code, 2, out)
+                self.assertEqual(factory.calls, [])
+                self.assertIn("NEGADO (REGISTRY_UNREADABLE)", out)
+                self.assertEqual(self.store.attempts, [])
 
 
 class ConnectionTest(CliTestCase):
