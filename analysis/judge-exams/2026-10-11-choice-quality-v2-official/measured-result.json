@@ -1,0 +1,27 @@
+{
+  "juez": "multiple-choice-quality",
+  "version": "9f164016f0612d83ee29e835741ed05c67362b251c3da164ac69f719ad3cacc4",
+  "estado": "APROBADO",
+  "proveedor": "codex-cli",
+  "modelo": "gpt-6.1-sol",
+  "esfuerzo": "medium",
+  "grupos": [
+    {
+      "grupo": "Defectos pedagógicos",
+      "casos": 9,
+      "comoSeEspera": 9,
+      "noComoSeEspera": 0
+    },
+    {
+      "grupo": "Distractores útiles y práctica introductoria",
+      "casos": 7,
+      "comoSeEspera": 7,
+      "noComoSeEspera": 0
+    }
+  ],
+  "noDieronLoEsperado": [],
+  "alcanzoLaMeta": true,
+  "medidoPor": "Comparación local de la exportación oficial con el corpus y la rúbrica v2 congelados antes de la corrida del 9/10: 16/16 estados y categorías compatibles; reutilización nativa con presupuesto cero, sin reinterpretar el examen v1.",
+  "corpusSha256": "99cacf3e860b58582187c107b9ef8e7f608fb9461a3a988aadb1d14fa90558dd",
+  "newModelQueries": 0
+}

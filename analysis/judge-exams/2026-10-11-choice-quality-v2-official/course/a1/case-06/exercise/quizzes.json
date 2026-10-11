@@ -1,0 +1,72 @@
+[
+  {
+    "_id": {
+      "$oid": "df0000000000000000000006"
+    },
+    "id": "df0000000000000000000006",
+    "kind": "MULTIPLE_CHOICE",
+    "knowledgeId": {
+      "$oid": "da4000000000000000000006"
+    },
+    "title": "Preguntas en presente simple",
+    "instructions": "Forma preguntas en presente simple con do o does antes del sujeto indicado.",
+    "translation": "",
+    "miniTheory": "",
+    "form": {
+      "kind": "MULTIPLE_CHOICE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "selection": "SINGLE",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "TEXT",
+          "text": " collect stamps? (you)",
+          "options": null
+        }
+      ],
+      "items": [
+        {
+          "id": "Do you",
+          "label": "Do you",
+          "incidence": {
+            "$numberDouble": "1.0"
+          }
+        },
+        {
+          "id": "Does you",
+          "label": "Does you",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        },
+        {
+          "id": "You do",
+          "label": "You do",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        },
+        {
+          "id": "You does",
+          "label": "You does",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        }
+      ]
+    }
+  }
+]

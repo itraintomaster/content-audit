@@ -1,0 +1,17 @@
+{
+  "source": "/Users/josecullen/.codex/worktrees/examen-calidad-distractores/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2",
+  "sourceCasesSha256": "99cacf3e860b58582187c107b9ef8e7f608fb9461a3a988aadb1d14fa90558dd",
+  "sourceArchiveSha256": "d4a8293d80ddca8de572783e4a528662e42f84f14f1e02146bfdae35b38b88c7",
+  "originalJudgeVersion": "9f164016f0612d83ee29e835741ed05c67362b251c3da164ac69f719ad3cacc4",
+  "runtime": {
+    "providerName": "codex-cli",
+    "modelName": "gpt-6.1-sol",
+    "reasoningEffort": "medium",
+    "runtimeKind": "EXPLICIT"
+  },
+  "recoveredInitialRecords": 16,
+  "newModelQueries": 0,
+  "rubric": "16/16 status matches; any compatible allowed issue kind on FAIL; no issues on PASS; reasoning and repair reviewed separately",
+  "historicalExamModified": false,
+  "officiallyRegistered": false
+}
