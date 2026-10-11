@@ -231,7 +231,7 @@ def write_batch(workdir, manifest=None, *, batch_id=BATCH_ID, plan_id=PLAN_ID, s
         "gatePassed": True,
         "undecidableFloors": None,
         "stepsApproved": 2,
-        "stepsUnreviewed": 3,
+        "stepsPending": 3,
         "stepsRejected": 1,
     }
     if publication:
