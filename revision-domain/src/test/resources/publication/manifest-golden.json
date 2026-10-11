@@ -49,15 +49,26 @@
           "path": "form.sentenceParts",
           "before": [
             {"kind": "TEXT", "text": "I am ", "options": null},
-            {"kind": "CLOZE", "text": "", "options": null},
+            {"kind": "CLOZE", "text": "", "options": ["at"]},
             {"kind": "TEXT", "text": " home.", "options": null}
           ],
           "after": [
             {"kind": "TEXT", "text": "She is ", "options": null},
-            {"kind": "CLOZE", "text": "", "options": null},
+            {"kind": "CLOZE", "text": "", "options": ["at"]},
             {"kind": "TEXT", "text": " home.", "options": null}
           ]
-        },
+        }
+      ]
+    },
+    {
+      "collection": "quizTemplates",
+      "id": "67fab6d59930102295342c80",
+      "nodeId": "67fab6d59930102295342c80",
+      "changeIds": ["task-12"],
+      "proposalIds": ["prop-4"],
+      "reviewStatus": "PENDING",
+      "fields": [
+        {"path": "translation", "before": "Estoy en casa.", "after": "Estoy en mi casa."},
         {
           "path": "form.items",
           "before": [
@@ -91,6 +102,12 @@
       "nodeId": "67fab6d59930102295341fb0",
       "part": "FORM_KIND",
       "reason": "cambio de tipo de ejercicio: no se publica por script"
+    },
+    {
+      "changeId": "task-13",
+      "nodeId": "67fab6d59930102295342c81",
+      "part": "STATEMENT",
+      "reason": "opción múltiple: sólo se publica el texto de cada opción; cambiar el enunciado, la oración guardada, cuál es la correcta, la forma de elegir o las opciones no se publica por script"
     }
   ],
   "excluded": [
@@ -100,8 +117,8 @@
     {"changeId": "task-11", "reason": "DROPPED_BY_JOSE"}
   ],
   "counts": {
-    "documents": 3,
-    "fields": 5,
-    "byPath": {"translation": 1, "instructions": 1, "miniTheory": 1, "form.sentenceParts": 1, "form.items": 1}
+    "documents": 4,
+    "fields": 6,
+    "byPath": {"translation": 2, "instructions": 1, "miniTheory": 1, "form.sentenceParts": 1, "form.items": 1}
   }
 }

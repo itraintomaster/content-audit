@@ -38,10 +38,14 @@ public class PublicationManifestContractTest {
     }
 
     private static Map<String, Object> part(String kind, String text) {
+        return part(kind, text, null);
+    }
+
+    private static Map<String, Object> part(String kind, String text, List<String> options) {
         Map<String, Object> part = new LinkedHashMap<>();
         part.put("kind", kind);
         part.put("text", text);
-        part.put("options", null);
+        part.put("options", options);
         return part;
     }
 
@@ -60,7 +64,7 @@ public class PublicationManifestContractTest {
     /** La misma lista que el golden, armada con los registros de la publicación. */
     private static PublicationManifest theGoldenList() {
         Map<String, Integer> byPath = new LinkedHashMap<>();
-        byPath.put("translation", 1);
+        byPath.put("translation", 2);
         byPath.put("instructions", 1);
         byPath.put("miniTheory", 1);
         byPath.put("form.sentenceParts", 1);
@@ -82,10 +86,14 @@ public class PublicationManifestContractTest {
                                 "67fab6d59930102295342c7f", List.of("task-7"), List.of("prop-2"),
                                 DocumentReviewStatus.PENDING, List.of(
                                         new ManifestField("form.sentenceParts",
-                                                List.of(part("TEXT", "I am "), part("CLOZE", ""),
+                                                List.of(part("TEXT", "I am "), part("CLOZE", "", List.of("at")),
                                                         part("TEXT", " home.")),
-                                                List.of(part("TEXT", "She is "), part("CLOZE", ""),
-                                                        part("TEXT", " home."))),
+                                                List.of(part("TEXT", "She is "), part("CLOZE", "", List.of("at")),
+                                                        part("TEXT", " home."))))),
+                        new ManifestDocument(ProductionFieldMap.QUIZ_COLLECTION, "67fab6d59930102295342c80",
+                                "67fab6d59930102295342c80", List.of("task-12"), List.of("prop-4"),
+                                DocumentReviewStatus.PENDING, List.of(
+                                        new ManifestField("translation", "Estoy en casa.", "Estoy en mi casa."),
                                         new ManifestField("form.items",
                                                 List.of(item("in", 0.0), item("at", 1.0), item("on", 0.0)),
                                                 List.of(item("in", 0.0), item("at", 1.0), item("on", 0.0, "to"))))),
@@ -94,12 +102,16 @@ public class PublicationManifestContractTest {
                                 DocumentReviewStatus.PENDING, List.of(new ManifestField("instructions",
                                         "Elige la opcion correcta.", "Elige la opción correcta.")))),
                 List.of(new ManifestUnsupported("task-10", "67fab6d59930102295341fb0", ExercisePart.FORM_KIND,
-                        "cambio de tipo de ejercicio: no se publica por script")),
+                        "cambio de tipo de ejercicio: no se publica por script"),
+                        new ManifestUnsupported("task-13", "67fab6d59930102295342c81", ExercisePart.STATEMENT,
+                                "opción múltiple: sólo se publica el texto de cada opción; cambiar el enunciado, la "
+                                        + "oración guardada, cuál es la correcta, la forma de elegir o las opciones no "
+                                        + "se publica por script")),
                 List.of(new ManifestExcluded("rule-3", ExclusionReason.REVIEW_REJECTED),
                         new ManifestExcluded("task-9", ExclusionReason.COLLATERAL),
                         new ManifestExcluded("rule-4", ExclusionReason.RULE_EXCLUDED),
                         new ManifestExcluded("task-11", ExclusionReason.DROPPED_BY_JOSE)),
-                new ManifestCounts(3, 5, byPath));
+                new ManifestCounts(4, 6, byPath));
     }
 
     /** Igualdad de árbol que además exige el mismo orden de claves en cada objeto. */
@@ -140,7 +152,7 @@ public class PublicationManifestContractTest {
         assertSameTree(golden(), written, "la lista");
         assertEquals(List.of("schema", "batchId", "planId", "level", "publishedAt", "approvedBy", "source", "verdict",
                 "reviews", "documents", "unsupported", "excluded", "counts"), keys(written));
-        assertTrue(written.get("documents").get(1).get("fields").get(1).get("after").get(1).get("incidence")
+        assertTrue(written.get("documents").get(2).get("fields").get(1).get("after").get(1).get("incidence")
                 .isDouble(), "la incidencia va como número");
         assertEquals("", written.get("documents").get(1).get("fields").get(0).get("after").get(1).get("text")
                 .asText(), "el texto vacío va como texto vacío");
@@ -180,7 +192,7 @@ public class PublicationManifestContractTest {
     }
 
     @Test
-    @DisplayName("should keep the shared golden publishable: verdict «pasa» with no undecidable floor, counts that add up against its documents and a multiple choice that changes only the text of its options")
+    @DisplayName("should keep the shared golden publishable: verdict «pasa» with no undecidable floor, counts that add up against its documents, a multiple choice that carries only the text of its options among its form, and what does not travel declared apart")
     @Tag("FEAT-PUBPROD")
     @Tag("F-PUBPROD-R001")
     @Tag("F-PUBPROD-R002")
@@ -195,6 +207,16 @@ public class PublicationManifestContractTest {
         int fields = 0;
         Map<String, Integer> byPath = new LinkedHashMap<>();
         for (JsonNode document : golden.get("documents")) {
+            List<String> formPaths = new ArrayList<>();
+            for (JsonNode field : document.get("fields")) {
+                if (field.get("path").asText().startsWith("form.")) {
+                    formPaths.add(field.get("path").asText());
+                }
+            }
+            if (formPaths.contains("form.items")) {
+                assertEquals(List.of("form.items"), formPaths,
+                        "de una opción múltiple sólo viaja el texto de sus opciones, nada más de su formulario");
+            }
             for (JsonNode field : document.get("fields")) {
                 fields++;
                 byPath.merge(field.get("path").asText(), 1, Integer::sum);
@@ -212,6 +234,9 @@ public class PublicationManifestContractTest {
                     }
                 }
             }
+        }
+        for (JsonNode held : golden.get("unsupported")) {
+            assertTrue(held.get("reason").asText().endsWith("no se publica por script"), held.toString());
         }
         JsonNode counts = golden.get("counts");
         assertEquals(golden.get("documents").size(), counts.get("documents").asInt());

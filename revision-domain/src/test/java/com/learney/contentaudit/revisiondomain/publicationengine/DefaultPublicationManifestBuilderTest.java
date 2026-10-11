@@ -239,6 +239,57 @@ public class DefaultPublicationManifestBuilderTest {
     }
 
     @Test
+    @DisplayName("should carry from a multiple choice exercise only the text of its options among its form, with its translation, instructions and mini theory, and declare apart, counted, any other change of its form")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R001")
+    @Tag("F-PUBPROD-R002")
+    public void shouldCarryFromAMultipleChoiceOnlyTheTextOfItsOptionsAmongItsForm() {
+        // q1: la traducción, la consigna, la miniteoría y el texto de una opción — va.
+        QuizTemplateEntity labelsBefore = multipleChoice("q1", "SINGLE", "on");
+        QuizTemplateEntity labelsAfter = multipleChoice("q1", "SINGLE", option("at", 1.0, "at"),
+                option("in", 0.0, "in"), option("on", 0.0, "to"));
+        labelsAfter.setTranslation("Estoy en casa.");
+        labelsAfter.setInstructions("Elegí la preposición.");
+        labelsAfter.setMiniTheory("«at home» va sin artículo.");
+        // q2: el enunciado de la opción múltiple, con el texto de una opción y la traducción — no va.
+        QuizTemplateEntity statementBefore = multipleChoice("q2", "SINGLE", "on");
+        QuizTemplateEntity statementAfter = multipleChoice("q2", "SINGLE", option("at", 1.0, "at"),
+                option("in", 0.0, "in"), option("on", 0.0, "to"));
+        statementAfter.getForm().setSentenceParts(List.of(new SentencePartEntity(SentencePartKind.TEXT, "She is ", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, null, null),
+                new SentencePartEntity(SentencePartKind.TEXT, " home.", null)));
+        statementAfter.setTranslation("Ella está en casa.");
+        // q3: la oración guardada de la opción múltiple — no va.
+        QuizTemplateEntity storedBefore = multipleChoice("q3", "SINGLE", "on");
+        QuizTemplateEntity storedAfter = multipleChoice("q3", "SINGLE", "on");
+        storedAfter.setSentences(List.of("I am at home."));
+
+        PublicationManifest manifest = builder.build(request(List.of(
+                new PublishedElement(snapshot(labelsBefore), snapshot(labelsAfter), "prop-1",
+                        DocumentReviewStatus.PENDING, steps(step("task-1", ExercisePart.OPTIONS,
+                                ExercisePart.TRANSLATION, ExercisePart.INSTRUCTIONS, ExercisePart.MINI_THEORY))),
+                new PublishedElement(snapshot(statementBefore), snapshot(statementAfter), "prop-2",
+                        DocumentReviewStatus.PENDING, steps(step("task-2", ExercisePart.OPTIONS,
+                                ExercisePart.TRANSLATION), step("task-3", ExercisePart.STATEMENT))),
+                new PublishedElement(snapshot(storedBefore), snapshot(storedAfter), "prop-3",
+                        DocumentReviewStatus.PENDING, steps(step("task-4", ExercisePart.STORED_SENTENCE,
+                                ExercisePart.TRANSLATION))))));
+
+        assertEquals(List.of("q1"), manifest.documents().stream().map(ManifestDocument::id).toList());
+        assertEquals(List.of("translation", "instructions", "miniTheory", "form.items"),
+                manifest.documents().get(0).fields().stream().map(ManifestField::path).toList());
+        assertEquals(List.of(new ManifestUnsupported("task-3", "q2", ExercisePart.STATEMENT,
+                        DefaultPublicationManifestBuilder.MULTIPLE_CHOICE_BEYOND_LABEL),
+                new ManifestUnsupported("task-4", "q3", ExercisePart.STORED_SENTENCE,
+                        DefaultPublicationManifestBuilder.MULTIPLE_CHOICE_BEYOND_LABEL)), manifest.unsupported(),
+                "cada cambio que tocó el formulario más allá del texto de las opciones queda declarado aparte");
+        assertTrue(manifest.unsupported().get(0).reason().contains("el enunciado"), manifest.unsupported().get(0)
+                .reason());
+        assertEquals(1, manifest.counts().documents());
+        assertEquals(4, manifest.counts().fields(), "la traducción de q2 y q3 no viaja sola");
+    }
+
+    @Test
     @DisplayName("should declare a change of the type of exercise apart, with the change, the exercise, the part and the reason, and leave that exercise out of the list")
     @Tag("FEAT-PUBPROD")
     @Tag("F-PUBPROD-R001")

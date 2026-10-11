@@ -2,7 +2,9 @@ package com.learney.contentaudit.revisiondomain.publicationengine;
 
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.coursedomain.FormKind;
 import com.learney.contentaudit.coursedomain.ProductionDocumentProjector;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
 import com.learney.contentaudit.revisiondomain.preservation.CorrectionScope;
 import com.learney.contentaudit.revisiondomain.preservation.ScopedField;
@@ -32,8 +34,9 @@ import java.util.TreeMap;
  * ({@link CorrectionScope}) y de dónde guarda producción cada campo ({@link ProductionFieldMap}). Los valores salen del
  * curso tal como lo guarda producción ({@link ProductionDocumentProjector}): el antes, del curso del que partió la
  * tanda; el después, del curso que se publica. Un campo que no cambió no está; un ejercicio cuyo tipo cambió no va, y
- * queda declarado aparte. De la opción múltiple sólo viaja el texto de cada opción (R002 inv. 4): un ejercicio cuya
- * opción múltiple cambió en algo más tampoco va, y queda declarado aparte.
+ * queda declarado aparte. De un ejercicio de opción múltiple —lo dice su propio tipo— sólo viajan, de su formulario, el
+ * texto de cada opción (R002 inv. 4): si cambió cualquier otra cosa del formulario tampoco va, y queda declarado aparte;
+ * su traducción, su consigna y su miniteoría viajan como las de cualquier ejercicio.
  */
 public class DefaultPublicationManifestBuilder implements PublicationManifestBuilder {
 
@@ -51,11 +54,15 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
 
     private static final String ITEMS = "form.items";
 
+    /** El formulario en producción: de una opción múltiple, sólo el texto de sus opciones se publica por script. */
+    private static final String FORM = "form.";
+
     /** La etiqueta de una opción: lo único de la opción múltiple que se publica por script. */
     private static final String LABEL = "label";
 
     static final String MULTIPLE_CHOICE_BEYOND_LABEL = "opción múltiple: sólo se publica el texto de cada opción; "
-            + "cambiar cuál es la correcta, la forma de elegir o las opciones no se publica por script";
+            + "cambiar el enunciado, la oración guardada, cuál es la correcta, la forma de elegir o las opciones no se "
+            + "publica por script";
 
     private final CorrectionScope correctionScope;
 
@@ -139,9 +146,9 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
         String nodeId = reference.getNodeId();
         String collection = null;
         Set<String> writePaths = new LinkedHashSet<>();
+        // De cada ruta, el primer cambio que la declaró y con qué parte: a ése se le atribuye si no se puede publicar.
+        Map<String, ManifestUnsupported> declaredBy = new LinkedHashMap<>();
         boolean held = false;
-        String multipleChoiceChange = null;
-        ExercisePart multipleChoicePart = null;
         for (Map.Entry<String, Set<ExercisePart>> step : element.partsByChange().entrySet()) {
             String changeId = step.getKey();
             for (ExercisePart part : ExercisePart.values()) {
@@ -153,10 +160,9 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
                     if (place instanceof ProductionPlace.Write write) {
                         collection = write.collection();
                         writePaths.addAll(write.mongoPaths());
-                        if (multipleChoiceChange == null && (write.mongoPaths().contains(SELECTION)
-                                || write.mongoPaths().contains(ITEMS))) {
-                            multipleChoiceChange = changeId;
-                            multipleChoicePart = part;
+                        for (String path : write.mongoPaths()) {
+                            declaredBy.putIfAbsent(path, new ManifestUnsupported(changeId, nodeId, part,
+                                    MULTIPLE_CHOICE_BEYOND_LABEL));
                         }
                     } else if (place instanceof ProductionPlace.Unsupported notByScript
                             && changed(element, target, notByScript.detectionPaths())) {
@@ -178,19 +184,34 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
         ordered.sort(BY_CANONICAL_ORDER);
         Map<String, Object> before = project(element.before(), target, ordered);
         Map<String, Object> after = project(element.after(), target, ordered);
-        if (multipleChoiceChange != null && !onlyLabelsChanged(before, after)) {
-            ManifestUnsupported entry = new ManifestUnsupported(multipleChoiceChange, nodeId,
-                    multipleChoicePart, MULTIPLE_CHOICE_BEYOND_LABEL);
-            if (!unsupported.contains(entry)) {
-                unsupported.add(entry);
+        boolean multipleChoice = target == AuditTarget.QUIZ && (multipleChoice(element.before())
+                || multipleChoice(element.after()));
+        List<ManifestField> fields = new ArrayList<>();
+        List<ManifestUnsupported> notByScript = new ArrayList<>();
+        for (String path : ordered) {
+            if (Objects.equals(before.get(path), after.get(path))) {
+                continue;
+            }
+            boolean multipleChoicePath = SELECTION.equals(path) || ITEMS.equals(path);
+            if ((multipleChoice && path.startsWith(FORM)) || multipleChoicePath) {
+                if (!ITEMS.equals(path) || !onlyLabelsChanged(before.get(ITEMS), after.get(ITEMS))) {
+                    ManifestUnsupported entry = declaredBy.get(path);
+                    if (!notByScript.contains(entry)) {
+                        notByScript.add(entry);
+                    }
+                    continue;
+                }
+            }
+            fields.add(new ManifestField(path, before.get(path), after.get(path)));
+        }
+        if (!notByScript.isEmpty()) {
+            // R002 inv. 4: el ejercicio no va, y cada cambio que tocó lo que no se publica queda declarado aparte.
+            for (ManifestUnsupported entry : notByScript) {
+                if (!unsupported.contains(entry)) {
+                    unsupported.add(entry);
+                }
             }
             return Optional.empty();
-        }
-        List<ManifestField> fields = new ArrayList<>();
-        for (String path : ordered) {
-            if (!Objects.equals(before.get(path), after.get(path))) {
-                fields.add(new ManifestField(path, before.get(path), after.get(path)));
-            }
         }
         if (fields.isEmpty()) {
             return Optional.empty();
@@ -206,17 +227,18 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
                 element.reviewStatus(), fields));
     }
 
+    /** R002 inv. 4: si el ejercicio es de opción múltiple, por su propio tipo o por el de su formulario. */
+    private static boolean multipleChoice(CourseElementSnapshot snapshot) {
+        QuizTemplateEntity quiz = snapshot.getQuiz();
+        return quiz != null && (FormKind.from(quiz.getKind()) == FormKind.MULTIPLE_CHOICE
+                || (quiz.getForm() != null && FormKind.from(quiz.getForm().getKind()) == FormKind.MULTIPLE_CHOICE));
+    }
+
     /**
-     * R002 inv. 4: la forma de elegir igual, la misma cantidad de opciones y cada opción igual salvo su etiqueta. El
-     * identificador de una opción es la etiqueta original en minúscula y la incidencia marca la correcta: ninguno de los
-     * dos viaja por script.
+     * R002 inv. 4: la misma cantidad de opciones y cada opción igual salvo su etiqueta. El identificador de una opción
+     * es la etiqueta original en minúscula y la incidencia marca la correcta: ninguno de los dos viaja por script.
      */
-    private static boolean onlyLabelsChanged(Map<String, Object> before, Map<String, Object> after) {
-        if (!Objects.equals(before.get(SELECTION), after.get(SELECTION))) {
-            return false;
-        }
-        Object itemsBefore = before.get(ITEMS);
-        Object itemsAfter = after.get(ITEMS);
+    private static boolean onlyLabelsChanged(Object itemsBefore, Object itemsAfter) {
         if (Objects.equals(itemsBefore, itemsAfter)) {
             return true;
         }

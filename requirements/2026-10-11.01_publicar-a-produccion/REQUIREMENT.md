@@ -96,9 +96,11 @@ una lista con ese ejercicio —`translation` y `miniTheory`, cada uno con su ant
 >    tampoco: se regraba ([F-TANDA-R012](#F-TANDA-R012));
 > 3. los valores van como los guarda producción: los números como números, un texto vacío como texto vacío —nunca
 >    ausente— y la oración guardada ausente como una lista vacía;
-> 4. de la opción múltiple sólo se publica el texto de cada opción: un cambio de cuál es la correcta, de la forma de
->    elegir, de la cantidad de opciones o del identificador de una opción no se publica por script; se declara aparte,
->    como un cambio de tipo ([F-PUBPROD-R001](#F-PUBPROD-R001), inv. 6), y ese ejercicio no va en la lista.
+> 4. de un ejercicio de opción múltiple —lo dice su propio tipo— sólo se publica, de su formulario, el texto de cada
+>    opción: un cambio de su enunciado, de su oración guardada, de cuál es la correcta, de la forma de elegir, de la
+>    cantidad de opciones o del identificador de una opción no se publica por script; se declara aparte, con cada
+>    cambio que lo tocó, como un cambio de tipo ([F-PUBPROD-R001](#F-PUBPROD-R001), inv. 6), y ese ejercicio no va en
+>    la lista; su traducción, su consigna y su miniteoría van como las de cualquier ejercicio.
 
 <details><summary>Detail</summary>
 
@@ -108,9 +110,9 @@ una lista con ese ejercicio —`translation` y `miniTheory`, cada uno con su ant
 | la traducción | `translation` |
 | la consigna del ejercicio | `instructions` |
 | la miniteoría | `miniTheory` |
-| las partes del enunciado, su texto y las respuestas de los huecos | `form.sentenceParts`, entero |
+| las partes del enunciado, su texto y las respuestas de los huecos | `form.sentenceParts`, entero (salvo en la opción múltiple) |
 | el texto de cada opción de la opción múltiple | `form.items`, entero, con sólo la etiqueta de cada opción cambiada |
-| cuál es la correcta, la forma de elegir, la cantidad o el identificador de las opciones | no se publica por script (inv. 4) |
+| de la opción múltiple: el enunciado, la oración guardada, cuál es la correcta, la forma de elegir, la cantidad o el identificador de las opciones | no se publica por script (inv. 4) |
 | la consigna del tema | `instructions` del tema |
 | el nombre del tema, el título de los ejercicios | no va: camino por plan |
 | lo que se oye | no va: regrabación |
@@ -121,8 +123,9 @@ inv. 5): nada viaja sin lugar declarado.
 
 **Criterio**: un cambio del texto de una opción de un ejercicio de opción múltiple de B2 lleva `form.items` entero,
 con cada incidencia como número (`1.0`, no `{"$numberDouble": "1.0"}`) y sólo esa etiqueta cambiada; un cambio de cuál
-es la correcta en ese ejercicio no va en la lista y queda declarado aparte; una parte del enunciado sin texto lleva
-`"text": ""`.
+es la correcta en ese ejercicio no va en la lista y queda declarado aparte; si en otro ejercicio de opción múltiple
+cambiaron el enunciado y la traducción, ese ejercicio no va —tampoco su traducción— y el cambio del enunciado queda
+declarado aparte; una parte del enunciado sin texto lleva `"text": ""`.
 
 </details>
 
