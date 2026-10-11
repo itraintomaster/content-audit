@@ -225,8 +225,16 @@ class FakeMongo:
 
 
 def load_script(name):
-    """Importa scripts/<name>.py con un nombre propio (no se cachea entre pruebas)."""
+    """Importa scripts/<name>.py con un nombre propio (no se cachea entre pruebas).
+
+    Sin dejar bytecode en scripts/__pycache__: el repo no lo ignora ahí.
+    """
     spec = importlib.util.spec_from_file_location("bajo_prueba_" + name, os.path.join(SCRIPTS, name + ".py"))
     module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    previous = sys.dont_write_bytecode
+    sys.dont_write_bytecode = True
+    try:
+        spec.loader.exec_module(module)
+    finally:
+        sys.dont_write_bytecode = previous
     return module
