@@ -25,15 +25,12 @@ from datetime import datetime, timezone
 
 from . import applier, manifest_reader, registry, write_plan
 from .manifest_reader import Refusal
-from .registry import (ABORTED, APPLIED_VERIFIED, APPLY, DRY_RUN, DRY_RUN_CLEAN, DRY_RUN_WITH_PROBLEMS,
-                       REFUSED, STARTED, VERIFY_FAILED, Registry, RegistryBusy, RegistryError)
+from .registry import (ABORTED, APPLIED_VERIFIED, APPLY, DRY_RUN, DRY_RUN_CLEAN, DRY_RUN_WITH_PROBLEMS, EXIT_OK,
+                       EXIT_PROBLEMS, EXIT_REFUSED, REFUSED, STARTED, VERIFY_FAILED, RegistryBusy, RegistryError,
+                       RunLog)
 
 TOOL = "production_publish"
 REPO_DEFAULT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-EXIT_OK = 0
-EXIT_PROBLEMS = 1
-EXIT_REFUSED = 2
 
 # Cualquier cosa con forma de URI («esquema://…») se tapa antes de mostrarse.
 URI_LIKE = re.compile(r"[A-Za-z][A-Za-z0-9+.-]*://\S*")
@@ -74,49 +71,21 @@ def _now():
     return datetime.now(timezone.utc)
 
 
-class Run:
-    """Una corrida: arma los renglones del registro y lo que se imprime."""
+class Run(RunLog):
+    """Una corrida del paso por tanda: cada renglón lleva además la tanda, la lista y las opciones."""
 
     def __init__(self, args, out, clock):
-        self.args = args
-        self.out = out
-        self.clock = clock
-        self.started = clock()
-        self.run_id = registry.new_run_id(self.started)
         self.workdir = os.path.abspath(args.workdir)
-        self.registry = Registry(self.workdir)
-        self.mode = APPLY if args.apply else DRY_RUN
+        super().__init__(self.workdir, TOOL, APPLY if args.apply else DRY_RUN, clock, out)
+        self.args = args
         self.flags = {"skipDrift": bool(args.skip_drift), "skipUnsupported": bool(args.skip_unsupported)}
-        self.destination = None
         self.loaded = None
 
-    def say(self, text=""):
-        print(text, file=self.out)
-
     def row(self, result, **extra):
-        row = {
-            "runId": self.run_id,
-            "at": registry.utc_iso(self.clock()),
-            "tool": TOOL,
-            "mode": self.mode,
-            "result": result,
-            "destination": self.destination,
-            "batchId": self.args.batch,
-            "planId": self.loaded.plan_id if self.loaded else None,
-            "manifestDigest": self.loaded.digest if self.loaded else None,
-            "flags": self.flags,
-        }
-        row.update(extra)
-        return row
-
-    def record(self, result, **extra):
-        """Agrega el renglón. Devuelve False (y lo dice) si no pudo."""
-        try:
-            self.registry.append(self.row(result, **extra))
-            return True
-        except RegistryError as e:
-            self.say("!! %s" % e)
-            return False
+        return super().row(result, batchId=self.args.batch,
+                           planId=self.loaded.plan_id if self.loaded else None,
+                           manifestDigest=self.loaded.digest if self.loaded else None,
+                           flags=self.flags, **extra)
 
     def refuse(self, refusal):
         self.say("NEGADO (%s): %s" % (refusal.code, refusal.message))
@@ -270,13 +239,8 @@ def _report(run, plan):
 def _run_detail(run, plan, result, extra=None):
     loaded = run.loaded
     detail = {
-        "runId": run.run_id,
-        "tool": TOOL,
-        "mode": run.mode,
         "result": result,
         "startedAt": registry.utc_iso(run.started),
-        "at": registry.utc_iso(run.clock()),
-        "destination": run.destination,
         "batchId": loaded.batch_id,
         "planId": loaded.plan_id,
         "manifestDigest": loaded.digest,
@@ -314,17 +278,12 @@ def _common(run, plan):
 def _dry_run(run, plan):
     result = DRY_RUN_CLEAN if plan.is_clean() else DRY_RUN_WITH_PROBLEMS
     reason = None
-    detail_path = None
-    try:
-        detail_path = run.registry.write_run(run.run_id, _run_detail(run, plan, result))
-    except RegistryError as e:
-        run.say("!! %s" % e)
+    if not run.write_detail(_run_detail(run, plan, result)):
         result = DRY_RUN_WITH_PROBLEMS
-        reason = {"code": "DETAIL_NOT_WRITTEN", "message": str(e)}
+        reason = {"code": "DETAIL_NOT_WRITTEN", "message": "no se pudo escribir el detalle del ensayo"}
     if result == DRY_RUN_WITH_PROBLEMS and reason is None:
         reason = _plan_problem(plan)
     recorded = run.record(result, reason=reason,
-                          detail=run.registry.relative(detail_path) if detail_path else None,
                           wouldWrite=len(plan.to_write()),
                           pendingTraveled=plan.pending_documents(plan.to_write()),
                           **_common(run, plan))
@@ -368,15 +327,11 @@ def _apply(run, store, plan):
         return _aborted(run, problem["code"], "%s desde el ensayo; no se escribió nada." % problem["message"],
                         **_common(run, plan))
     to_write = plan.to_write()
-    try:
-        detail_path = run.registry.write_run(run.run_id, _run_detail(run, plan, STARTED))
-    except RegistryError as e:
-        return _aborted(run, "DETAIL_NOT_WRITTEN",
-                        "No se pudo escribir el respaldo de la corrida (%s); no se escribió nada." % e)
-    detail_rel = run.registry.relative(detail_path)
-    if not run.record(STARTED, detail=detail_rel, planned=len(to_write), **_common(run, plan)):
-        run.say("ABORTADO: no se pudo dejar el renglón de inicio en el registro; no se escribió nada.")
+    problem = run.begin_writing(_run_detail(run, plan, STARTED), planned=len(to_write), **_common(run, plan))
+    if problem:
+        run.say("ABORTADO: %s." % problem)
         return EXIT_PROBLEMS
+    detail_rel = run.registry.relative(run.detail_path)
 
     run.say("Escribiendo %d documento(s)…" % len(to_write))
     outcome = applier.apply(plan, store)  # un Ctrl-C no se lleva el resultado: queda adentro
@@ -399,10 +354,8 @@ def _apply(run, store, plan):
         "stoppedAt": stopped_at,
         "errorClass": outcome.error_class,
     }
-    try:
-        run.registry.write_run(run.run_id, _run_detail(run, plan, result, extra))
-    except RegistryError as e:
-        run.say("!! %s (el respaldo previo a escribir quedó en %s)" % (e, detail_rel))
+    if not run.write_detail(_run_detail(run, plan, result, extra)):
+        run.say("!! El respaldo previo a escribir quedó en %s." % detail_rel)
 
     failures = outcome.failures()
     reason = None
@@ -412,7 +365,7 @@ def _apply(run, store, plan):
     elif result == ABORTED:
         reason = {"code": outcome.stopped_reason,
                   "message": "se dejó de escribir en %s" % (stopped_at or "(antes de empezar)")}
-    recorded = run.record(result, reason=reason, detail=detail_rel, writtenIds=written_ids,
+    recorded = run.record(result, reason=reason, writtenIds=written_ids,
                           indeterminate=indeterminate, verified=result == APPLIED_VERIFIED,
                           pendingTraveled=plan.pending_documents(outcome.written),
                           stoppedReason=outcome.stopped_reason, stoppedAt=stopped_at,

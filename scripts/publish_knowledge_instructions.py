@@ -107,25 +107,21 @@ def publish_instructions(args, recorder):
             recorder.record(production_registry.APPLIED_VERIFIED, counts=counts, writtenIds=[], verified=True)
         else:
             recorder.record(production_registry.DRY_RUN_CLEAN, counts=counts)
-        return 0
+        return production_registry.EXIT_OK
     if not args.apply:
         print("\nDRY-RUN: no se modifico nada. Ejecutar con --apply para aplicar.")
         recorder.record(production_registry.DRY_RUN_CLEAN, counts=counts)
-        return 0
+        return production_registry.EXIT_OK
 
     # F-PUBPROD-R008: el respaldo y el renglón de inicio, antes de la primera escritura.
     backup = {"note": "Respaldo: «old» es la consigna que había y «new» la que se escribe.",
               "documents": [{"collection": args.collection, "_id": oid, "label": label,
                              "old": {"instructions": viejo}, "new": {"instructions": nuevo}}
                             for oid, viejo, nuevo, label in pendientes]}
-    if not recorder.write_detail(json.loads(json.dumps(backup, default=str))):
-        recorder.record(production_registry.ABORTED, counts=counts, reason={
-            "code": "DETAIL_NOT_WRITTEN", "message": "no se pudo escribir el respaldo; no se escribió nada"})
-        print("\nABORTADO: no se pudo escribir el respaldo de la corrida; no se escribio nada.")
-        return 1
-    if not recorder.record(production_registry.STARTED, counts=counts):
-        print("\nABORTADO: no se pudo dejar el renglon de inicio en el registro; no se escribio nada.")
-        return 1
+    problem = recorder.begin_writing(backup, counts=counts)
+    if problem:
+        print(f"\nABORTADO: {problem}.")
+        return production_registry.EXIT_PROBLEMS
 
     ops = [UpdateOne({"_id": ObjectId(oid)}, {"$set": {"instructions": nuevo}})
            for oid, _, nuevo, _ in pendientes]
@@ -144,9 +140,9 @@ def publish_instructions(args, recorder):
     if malos:
         recorder.record(production_registry.VERIFY_FAILED, counts=counts, writtenIds=written_ids, verified=False,
                         reason={"code": "VERIFY_FAILED", "message": f"{malos} consignas no coinciden"})
-        return 1
+        return production_registry.EXIT_PROBLEMS
     recorder.record(production_registry.APPLIED_VERIFIED, counts=counts, writtenIds=written_ids, verified=True)
-    return 0
+    return production_registry.EXIT_OK
 
 
 if __name__ == "__main__":

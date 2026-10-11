@@ -371,7 +371,7 @@ def main(argv=None):
         recorder.record(production_registry.REFUSED, plan=args.plan, batches=batch_ids,
                         reason={"code": "PLAN_OF_BATCH" if batches else "BATCHES_UNREADABLE",
                                 "message": message})
-        return 2
+        return production_registry.EXIT_REFUSED
     if batches:
         print(f"AVISO: el plan {args.plan} es de la tanda {', '.join(batch_ids)}: este ensayo se puede mirar, "
               f"pero --apply se va a negar. Una tanda va a producción con --batch.\n")
@@ -520,12 +520,9 @@ def publish_plan(args, mode, recorder, batch_ids):
                              "proposals": pr} for col, ups in updates.items() for i, s, pr in ups]}
     if sync is not None:
         backup["titleSync"] = title_sync_entries(sync)
-    if not recorder.write_detail(json.loads(json.dumps(backup, default=str))):
-        recorder.record(production_registry.ABORTED, reason={"code": "DETAIL_NOT_WRITTEN", "message":
-                        "no se pudo escribir el respaldo; no se escribió nada"}, **row_common)
-        sys.exit("\nABORTADO: no se pudo escribir el respaldo de la corrida; no se escribió nada.")
-    if not recorder.record(production_registry.STARTED, **row_common):
-        sys.exit("\nABORTADO: no se pudo dejar el renglón de inicio en el registro; no se escribió nada.")
+    problem = recorder.begin_writing(backup, **row_common)
+    if problem:
+        sys.exit(f"\nABORTADO: {problem}.")
 
     print("\n== Aplicando ==")
     for col_name, col in (("knowledges", col_k), ("quizTemplates", col_q)):

@@ -90,6 +90,36 @@ class LegacyTestCase(unittest.TestCase):
                 self.assertIn("!! La corrida no quedó registrada", out)
 
 
+    def assert_begin_writing_guards(self, argv):
+        """Sin el respaldo de la corrida o sin el renglón de inicio, no escribe nada y lo dice."""
+        real_append = registry.Registry.append
+
+        def no_detail(reg, run_id, detail):
+            raise registry.RegistryError("no se pudo escribir el detalle (OSError)")
+
+        def no_started(reg, row):
+            if row["result"] == registry.STARTED:
+                raise registry.RegistryError("no se pudo escribir el registro (OSError)")
+            return real_append(reg, row)
+
+        for name, broken in (("write_run", no_detail), ("append", no_started)):
+            with self.subTest(falla=name):
+                before = len(self.rows())
+                with mock.patch.object(registry.Registry, name, broken):
+                    try:
+                        code, out = run(self.module.main, argv)
+                    except SystemExit as e:
+                        code, out = 1, str(e.code)
+                self.assertEqual(code, registry.EXIT_PROBLEMS, out)
+                self.assertIn("no se escribió nada", out)
+                self.assertEqual(self.mongo.writes, [])
+                new_rows = self.rows()[before:]
+                self.assertNotIn(registry.STARTED, [r["result"] for r in new_rows])
+                if name == "write_run":
+                    self.assertEqual((new_rows[-1]["result"], new_rows[-1]["reason"]["code"]),
+                                     (registry.ABORTED, "DETAIL_NOT_WRITTEN"))
+
+
 class PlanPathTest(LegacyTestCase):
     script = "publish_revisions"
 
@@ -224,6 +254,9 @@ class PlanPathTest(LegacyTestCase):
             run(self.module.main, self.plan_args("--apply"))
         self.assertIn("no se escribió nada", str(ctx.exception.code))
         self.assertEqual(self.mongo.writes, [])
+
+    def test_F_PUBPROD_R008_el_camino_por_plan_sin_respaldo_o_sin_inicio_no_escribe(self):
+        self.assert_begin_writing_guards(self.plan_args("--apply"))
 
     def test_F_PUBPROD_R008_si_la_verificacion_falla_queda_registrado(self):
         def corrupt(collection, doc):
@@ -392,6 +425,9 @@ class KnowledgeWritersMixin:
         code, out = run(self.module.main, self.args("--apply"))
         self.assertEqual(code, 1)
         self.assertEqual(self.mongo.writes, [])
+
+    def test_F_PUBPROD_R008_sin_respaldo_o_sin_inicio_no_escribe(self):
+        self.assert_begin_writing_guards(self.args("--apply"))
 
     def test_F_PUBPROD_R008_un_error_de_la_base_se_muestra_solo_por_su_clase(self):
         self.mongo.fail_connect = ServerSelectionTimeoutError(

@@ -1,5 +1,6 @@
 """El registro de producción: destino sin credenciales, solo crece, y el ensayo que habilita."""
 
+import io
 import json
 import os
 import re
@@ -107,7 +108,12 @@ class AppendOnlyTest(unittest.TestCase):
             fh.write("un archivo donde va la carpeta")
         with self.assertRaises(RegistryError):
             self.registry.append({"runId": "1"})
-        self.assertFalse(registry.record_legacy(self.workdir, {"runId": "1"}))
+        out = io.StringIO()
+        log = registry.RunLog(self.workdir, "prueba", DRY_RUN, fakes.Clock(), out=out)
+        self.assertFalse(log.record(DRY_RUN_CLEAN))
+        self.assertIn("!! no se pudo escribir el registro", out.getvalue())
+        self.assertIn("!! La corrida no quedó registrada (DRY_RUN_CLEAN)", out.getvalue())
+        self.assertTrue(log.row_lost)
 
     def test_F_PUBPROD_R008_el_detalle_de_la_corrida_se_escribe_entero(self):
         path = self.registry.write_run("corrida-1", {"documents": [{"old": "a", "new": "b"}]})

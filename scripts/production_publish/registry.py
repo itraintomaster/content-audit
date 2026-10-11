@@ -35,6 +35,11 @@ STARTED = "STARTED"
 APPLIED_VERIFIED = "APPLIED_VERIFIED"
 VERIFY_FAILED = "VERIFY_FAILED"
 
+# La salida de los escritores de producción.
+EXIT_OK = 0         # ensayo limpio o aplicación verificada
+EXIT_PROBLEMS = 1   # ensayo con problemas, aplicación abortada o verificación fallida
+EXIT_REFUSED = 2    # negada antes de conectarse
+
 URI_SCHEMES = ("mongodb", "mongodb+srv")
 # Un servidor: nombre o [IPv6], con puerto numérico opcional. Nada más.
 HOST = re.compile(r"(\[[0-9a-f:.]+\]|[a-z0-9._%-]+)(:[0-9]{1,5})?\Z")
@@ -258,26 +263,82 @@ def clean_dry_run_problem(rows, tool, batch_id, digest, destination, flags):
     return None
 
 
-def record_legacy(workdir, row, out=None):
-    """Para los scripts del camino viejo: agrega el renglón y avisa si no pudo.
-
-    Devuelve True si quedó registrado.
-    """
-    try:
-        Registry(workdir).append(row)
-        return True
-    except RegistryError as e:
-        if out is not None:
-            print("!! %s" % e, file=out)
-        return False
-
-
 def is_database_error(error):
     """Una excepción de pymongo o bson: se muestra solo por su clase."""
     return type(error).__module__.split(".")[0] in ("pymongo", "bson")
 
 
-class LegacyRecorder:
+class RunLog:
+    """Una corrida de un escritor de producción: lo que imprime, sus renglones y su detalle.
+
+    La usan el paso por tanda (cli.Run) y los escritores del camino viejo (LegacyRecorder).
+    """
+
+    def __init__(self, workdir, tool, mode, clock, out=None):
+        self.clock = clock
+        self.started = clock()
+        self.run_id = new_run_id(self.started)
+        self.registry = Registry(workdir)
+        self.tool = tool
+        self.mode = mode
+        self.out = out
+        self.destination = None
+        self.detail_path = None
+        self.last_result = None
+        self.row_lost = False  # no se pudo dejar el renglón final: la corrida no puede salir con 0
+
+    def say(self, text=""):
+        print(text, file=self.out)
+
+    def row(self, result, **extra):
+        row = {"runId": self.run_id, "at": utc_iso(self.clock()), "tool": self.tool, "mode": self.mode,
+               "result": result, "destination": self.destination}
+        if self.detail_path is not None:
+            row["detail"] = self.registry.relative(self.detail_path)
+        row.update(extra)
+        return row
+
+    def record(self, result, **extra):
+        """Agrega el renglón. Devuelve False (y lo dice) si no pudo."""
+        self.last_result = result
+        try:
+            self.registry.append(self.row(result, **extra))
+            return True
+        except RegistryError as e:
+            self.say("!! %s" % e)
+            if result != STARTED:  # sin el de inicio no se escribe; sin el final, se avisa y sale mal
+                self.row_lost = True
+                self.say("!! La corrida no quedó registrada (%s): anotala a mano." % result)
+            return False
+
+    def write_detail(self, detail):
+        """El detalle de la corrida (el respaldo, si va a escribir). Devuelve False (y lo dice) si no pudo."""
+        base = {"runId": self.run_id, "tool": self.tool, "mode": self.mode, "destination": self.destination,
+                "at": utc_iso(self.clock())}
+        base.update(detail)
+        try:
+            self.detail_path = self.registry.write_run(self.run_id, base)
+            return True
+        except RegistryError as e:
+            self.say("!! %s" % e)
+            return False
+
+    def begin_writing(self, backup, **row):
+        """El respaldo y el renglón de inicio, antes de la primera escritura (F-PUBPROD-R008).
+
+        Devuelve None si quedaron los dos. Si no, el motivo para mostrar: no se escribe nada
+        (y si lo que faltó es el respaldo, queda un renglón ABORTED).
+        """
+        if not self.write_detail(backup):
+            self.record(ABORTED, reason={"code": "DETAIL_NOT_WRITTEN",
+                                         "message": "no se pudo escribir el respaldo; no se escribió nada"}, **row)
+            return "no se pudo escribir el respaldo de la corrida; no se escribió nada"
+        if not self.record(STARTED, **row):
+            return "no se pudo dejar el renglón de inicio en el registro; no se escribió nada"
+        return None
+
+
+class LegacyRecorder(RunLog):
     """Los renglones de los otros escritores de producción (F-PUBPROD-R008, inv. 4).
 
     `publish_revisions.py --plan`, `publish_knowledge_labels.py` y
@@ -288,67 +349,27 @@ class LegacyRecorder:
     """
 
     def __init__(self, workdir, tool, uri, db, apply):
-        self.clock = lambda: datetime.now(timezone.utc)
-        self.registry = Registry(workdir)
-        self.tool = tool
-        self.mode = APPLY if apply else DRY_RUN
-        self.run_id = new_run_id(self.clock())
-        self.detail_path = None
-        self.last_result = None
-        self.row_lost = False  # no se pudo dejar el renglón final: la corrida no puede salir con 0
+        super().__init__(workdir, tool, APPLY if apply else DRY_RUN, lambda: datetime.now(timezone.utc))
         try:
             self.destination = destination_of(uri, db)
             self.destination_error = None
         except ValueError as e:
-            self.destination = None
             self.destination_error = str(e)
 
-    def say(self, text):
-        print(text)
-
-    def record(self, result, **extra):
-        self.last_result = result
-        row = {"runId": self.run_id, "at": utc_iso(self.clock()), "tool": self.tool, "mode": self.mode,
-               "result": result, "destination": self.destination}
-        if self.detail_path is not None:
-            row["detail"] = self.registry.relative(self.detail_path)
-        row.update(extra)
-        try:
-            self.registry.append(row)
-            return True
-        except RegistryError as e:
-            self.say("!! %s" % e)
-            if result != STARTED:  # sin el de inicio no se escribe; sin el final, se avisa y sale mal
-                self.row_lost = True
-                self.say("!! La corrida no quedó registrada (%s): anotala a mano." % result)
-            return False
-
-    def write_detail(self, detail):
-        """El respaldo previo a escribir. Devuelve False (y lo dice) si no pudo."""
-        try:
-            base = {"runId": self.run_id, "tool": self.tool, "mode": self.mode, "destination": self.destination,
-                    "at": utc_iso(self.clock())}
-            base.update(detail)
-            self.detail_path = self.registry.write_run(self.run_id, base)
-            return True
-        except RegistryError as e:
-            self.say("!! %s" % e)
-            return False
-
     def refuse_bad_destination(self):
-        """Si el URI no se puede leer: lo dice sin repetirlo, deja el renglón y devuelve 2."""
+        """Si el URI no se puede leer: lo dice sin repetirlo y deja el renglón."""
         self.say("NEGADO: no se puede leer el destino: %s. No se conectó a ninguna base." % self.destination_error)
         self.record(REFUSED, reason={"code": "BAD_URI", "message": self.destination_error})
-        return 2
+        return EXIT_REFUSED
 
     def database_failed(self, error, **extra):
-        """La base falló: se muestra solo la clase, se registra ABORTED y devuelve 1."""
+        """La base falló: se muestra solo la clase y se registra ABORTED."""
         name = type(error).__name__
         self.say("ABORTADO: la base falló (%s)." % name)
         if self.unfinished():
             self.record(ABORTED, reason={"code": "STORE_ERROR", "message": "la base falló (%s)" % name},
                         errorClass=name, **extra)
-        return 1
+        return EXIT_PROBLEMS
 
     def unfinished(self):
         """Todavía no hay renglón final: no se dejó ninguno o el último es STARTED."""
@@ -357,7 +378,7 @@ class LegacyRecorder:
     def run(self, body, **extra):
         """Corre el cuerpo del script; si termina mal sin renglón final, deja ABORTED.
 
-        Una excepción de la base se muestra solo por su clase y devuelve 1; las
+        Una excepción de la base se muestra solo por su clase y sale con EXIT_PROBLEMS; las
         demás se registran y siguen su curso (con su traza, que no trae el URI).
         """
         try:
@@ -366,7 +387,7 @@ class LegacyRecorder:
             if self.unfinished():
                 self.record(ABORTED, reason={"code": "EXIT", "message": str(e.code)[:300]}, **extra)
             if self.row_lost and e.code in (0, None):
-                raise SystemExit(1)
+                raise SystemExit(EXIT_PROBLEMS)
             raise
         except KeyboardInterrupt:
             if self.unfinished():
@@ -382,5 +403,5 @@ class LegacyRecorder:
                             **extra)
             raise
         if self.row_lost and not code:
-            return 1
+            return EXIT_PROBLEMS
         return code

@@ -103,14 +103,10 @@ def publish_labels(args, mode, recorder):
                   "documents": [{"collection": args.collection, "_id": str(e["_id"]),
                                  "old": {"label": e["oldLabel"]}, "new": {"label": e["newLabel"]}}
                                 for e in pending]}
-        if not recorder.write_detail(json.loads(json.dumps(backup, default=str))):
-            recorder.record(production_registry.ABORTED, counts=counts, reason={
-                "code": "DETAIL_NOT_WRITTEN", "message": "no se pudo escribir el respaldo; no se escribió nada"})
-            print("\nABORTADO: no se pudo escribir el respaldo de la corrida; no se escribió nada.")
-            return 1
-        if not recorder.record(production_registry.STARTED, counts=counts):
-            print("\nABORTADO: no se pudo dejar el renglón de inicio en el registro; no se escribió nada.")
-            return 1
+        problem = recorder.begin_writing(backup, counts=counts)
+        if problem:
+            print(f"\nABORTADO: {problem}.")
+            return production_registry.EXIT_PROBLEMS
         res = col.bulk_write([UpdateOne({"_id": e["_id"]}, {"$set": {"label": e["newLabel"]}})
                               for e in pending], ordered=True)
         print(f"\nmatched={res.matched_count} modified={res.modified_count}")
@@ -137,7 +133,7 @@ def publish_labels(args, mode, recorder):
         recorder.record(production_registry.VERIFY_FAILED, counts=counts, writtenIds=written_ids, verified=False,
                         report=os.path.relpath(path, args.repo),
                         reason={"code": "VERIFY_FAILED", "message": f"{len(failures)} labels no coinciden"})
-        return 1
+        return production_registry.EXIT_PROBLEMS
     recorder.record(production_registry.APPLIED_VERIFIED, counts=counts, writtenIds=written_ids, verified=True,
                     report=os.path.relpath(path, args.repo))
 
