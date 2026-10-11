@@ -11,6 +11,7 @@ import com.learney.contentaudit.auditapplication.DefaultLemmaAbsenceConfig;
 import com.learney.contentaudit.auditapplication.DefaultLemmaCountConfig;
 import com.learney.contentaudit.auditapplication.DefaultLemmaCountConfigLoader;
 import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AnalyzerProvider;
 import com.learney.contentaudit.auditdomain.IAuditEngine;
 import com.learney.contentaudit.auditdomain.KnowledgeInstructionsLengthAnalyzerProvider;
@@ -1348,8 +1349,10 @@ class Main {
                 Map.entry("multiple-choice-quality", agentExamProvenance),
                 Map.entry("naturalness", agentExamProvenance),
                 Map.entry("near-duplicates", agentExamProvenance));
+        // F-JEXAM-R015: exam status -f json asks the catalog who to read, only when it is used.
         cmd.addSubcommand("exam", new picocli.CommandLine(
-                new ExamCmd(judgeExamService, examProvenance)));   // C · FEAT-JEXAM
+                new ExamCmd(judgeExamService, examProvenance, () -> analyzerCatalog.list().stream()
+                        .map(AnalyzerDescriptor::getName).toList())));   // C · FEAT-JEXAM
 
         // FEAT-RONDA2 (hooks F-06 and E-09): the commands of packages F and E, each registered by
         // its package with its picocli wrapper: set-baseline, save-projection, compare, get-goals

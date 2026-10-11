@@ -346,7 +346,7 @@ Todo con `JAVA_HOME=/Users/josecullen/.sdkman/candidates/java/25.0.2-open`, Mave
   2. Symlink `ittm` al lado.
   3. Compilar con `mvn -o -q -Dexec.skip=true -DskipTests compile` y usar el launcher reproducible del reactor. Maven ya no ejecuta `sentinel-verify`.
   4. `exam run <analizador> --cases <archivo> --course <foto>` **sin `--budget`** da la versión, gratis. **Con `--budget N --concurrency 4`** rinde, y paga.
-  5. Medir con el `medir*.py` de la carpeta del examen. `exam record` registra y `exam status` muestra el estado.
+  5. Medir con el `medir*.py` de la carpeta del examen. `exam record` registra y `exam status` muestra el estado; `exam status -f json` da el historial de todos los jueces en JSON, sin consultar (F-JEXAM-R015, lo lee la pantalla Exámenes del tablero).
   6. Las corridas largas se lanzan desenganchadas, con guardia: tope de rechazos en un 25 % de los casos y 3 fallas seguidas. Antes, un ensayo de 10 casos.
 - **Probar la CLI sin gastar:** en las corridas históricas, `control.sh` en `MODO=sin` bloquea Claude. Para Codex hay que crear una copia nueva y adaptar primero ese control; no asumir que el fake viejo intercepta `codex`.
 

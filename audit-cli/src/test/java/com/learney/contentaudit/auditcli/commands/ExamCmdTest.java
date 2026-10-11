@@ -234,6 +234,93 @@ public class ExamCmdTest {
                 "legacy history is explicit, never assigned a default: " + lines.get(4));
     }
 
+    @Test
+    @DisplayName("should give the exam history of a judge as JSON, one entry per version and runtime with its standing and every record, without consulting nor writing")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R015")
+    public void shouldGiveTheExamHistoryOfAJudgeAsJSONOneEntryPerVersionAndRuntimeWithItsStandingAndEveryRecordWithoutConsultingNorWriting(
+            ) throws IOException {
+        JudgeExamRegistry registry = new FileSystemJudgeExamRegistry(workdir);
+        registry.record(record("u1", JudgeExamStatus.TAKEN, "2026-10-01T10:00:00Z"));
+        registry.record(record("u1", JudgeExamStatus.FAILED, "2026-10-01T11:00:00Z"));
+        registry.record(record("u2", JudgeExamStatus.TAKEN, "2026-10-02T09:00:00Z",
+                "codex-cli", "gpt-6.1-sol", "medium"));
+        registry.record(new JudgeExamRecord("single-answer", "u2", JudgeExamStatus.APPROVED, 39, 0,
+                List.of(new JudgeExamGroupResult("b", 39, 37, 2)), List.of("caso-7", "caso-9"), true,
+                "2026-09-29", "medir.py", "codex-cli", "gpt-6.1-sol", "medium",
+                Instant.parse("2026-10-02T10:30:00Z")));
+        Path exams = workdir.resolve(".content-audit/judge-exams/single-answer.jsonl");
+        String before = Files.readString(exams, StandardCharsets.UTF_8);
+
+        Captured run = run(new ExamCmd(realRecordingService(registry)), "status", "single-answer", "-f", "json");
+
+        assertEquals(0, run.exit(), run.err());
+        JsonNode judges = new ObjectMapper().readTree(run.out()).get("judges");
+        assertEquals(1, judges.size(), run.out());
+        assertEquals("single-answer", judges.get(0).get("judge").asText());
+        JsonNode versions = judges.get(0).get("versions");
+        assertEquals(2, versions.size(), "one per version and runtime: " + run.out());
+        assertEquals("u1", versions.get(0).get("judgeVersion").asText());
+        assertEquals("FAILED", versions.get(0).get("status").asText(), "the standing is the last record");
+        assertEquals("procedencia legacy desconocida", versions.get(0).get("provenance").asText());
+        assertEquals(2, versions.get(0).get("records").size());
+        JsonNode approved = versions.get(1);
+        assertEquals("APPROVED", approved.get("status").asText());
+        assertEquals("codex-cli/gpt-6.1-sol (esfuerzo medium)", approved.get("provenance").asText());
+        assertEquals("codex-cli", approved.get("providerName").asText());
+        JsonNode last = approved.get("records").get(1);
+        assertEquals("2026-10-02T10:30:00Z", last.get("recordedAt").asText());
+        assertEquals(39, last.get("casesJudged").asInt());
+        assertEquals("b", last.get("groups").get(0).get("group").asText());
+        assertEquals(37, last.get("groups").get(0).get("asExpected").asInt());
+        assertEquals(2, last.get("groups").get(0).get("notAsExpected").asInt());
+        assertEquals("caso-9", last.get("mismatchedCaseIds").get(1).asText());
+        assertTrue(last.get("goalMet").asBoolean());
+        assertEquals("medir.py", last.get("measuredBy").asText());
+        assertEquals(before, Files.readString(exams, StandardCharsets.UTF_8), "reading writes nothing");
+    }
+
+    @Test
+    @DisplayName("should give, without a judge, every analyzer of the catalog that has records or takes the exam, in the order of the catalog")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R015")
+    public void shouldGiveWithoutAJudgeEveryAnalyzerOfTheCatalogThatHasRecordsOrTakesTheExamInTheOrderOfTheCatalog(
+            ) throws IOException {
+        JudgeExamRegistry registry = new FileSystemJudgeExamRegistry(workdir);
+        registry.record(record("u1", JudgeExamStatus.APPROVED, "2026-10-01T11:00:00Z"));
+        RecordingService consulted = new RecordingService();
+        JudgeExamService reader = new JudgeExamService() {
+            @Override
+            public JudgeExamTaken take(JudgeExamRequest request) {
+                return consulted.take(request);
+            }
+
+            @Override
+            public JudgeExamStanding record(JudgeExamRecord measured) {
+                return consulted.record(measured);
+            }
+
+            @Override
+            public List<JudgeExamRecord> history(String judgeName) {
+                return registry.history(judgeName);
+            }
+        };
+        Map<String, ExamCmd.ExamProvenance> takesTheExam = Map.of(
+                "quiz-instruction", ExamCmd.ExamProvenance.NONE);
+
+        Captured run = run(new ExamCmd(reader, takesTheExam,
+                () -> List.of("sentence-length", "quiz-instruction", "single-answer")), "status", "-f", "json");
+
+        assertEquals(0, run.exit(), run.err());
+        JsonNode judges = new ObjectMapper().readTree(run.out()).get("judges");
+        assertEquals(2, judges.size(), "an analyzer without exam is not a judge: " + run.out());
+        assertEquals("quiz-instruction", judges.get(0).get("judge").asText(), "the order of the catalog");
+        assertEquals(0, judges.get(0).get("versions").size(), "takes the exam and never took it");
+        assertEquals("single-answer", judges.get(1).get("judge").asText());
+        assertEquals("APPROVED", judges.get(1).get("versions").get(0).get("status").asText());
+        assertTrue(consulted.taken.isEmpty() && consulted.recorded.isEmpty(), "never a judge, never a record");
+    }
+
     // -------------------------------------------------------------------------
     // Fixtures: never a judge, never a model.
     // -------------------------------------------------------------------------
