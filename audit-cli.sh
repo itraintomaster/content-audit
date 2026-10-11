@@ -90,5 +90,5 @@ done
 REACTOR_CLASSPATH="$(IFS=:; printf '%s' "${REACTOR_CLASSES[*]}")"
 RUNTIME_CLASSPATH="$(<"$RUNTIME_CLASSPATH_FILE")"
 
-exec java -cp "$REACTOR_CLASSPATH:$RUNTIME_CLASSPATH" \
+exec java -Dcontentaudit.project.dir="$PROJECT_DIR" -cp "$REACTOR_CLASSPATH:$RUNTIME_CLASSPATH" \
     com.learney.contentaudit.auditcli.commands.Main "$@"

@@ -22,6 +22,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class DefaultBatchReviewTest {
+    @Test void forwardsTheReviewJournalGuardToTheAtomicStore() {
+        var item = review.read("batch").items().get(0);
+        review.decide(new BatchReviewDecision("batch", List.of(new BatchReviewDecision.Selection(
+                item.changeId(), item.step(), item.before(), item.after())), BatchReviewDecision.Status.REJECTED,
+                "Problemas", Instant.now(), 0L));
+        verify(store).saveReview(argThat(d -> Long.valueOf(0).equals(d.expectedReviewCount())));
+    }
     private final BatchStore store = mock(BatchStore.class);
     private final RevisionArtifactStore artifacts = mock(RevisionArtifactStore.class);
     private final RefinementPlanStore plans = mock(RefinementPlanStore.class);
