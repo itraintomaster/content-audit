@@ -1,0 +1,439 @@
+"""El paso a producción de una tanda publicada (F-PUBPROD R006 a R009).
+
+  python3 scripts/publish_revisions.py --batch <id> --workdir <campaña> --uri <URI>
+      Ensayo: lee la tanda y su lista, se conecta, compara campo por campo y
+      cuenta qué escribiría. No escribe nada en la base ni en el curso.
+
+  python3 scripts/publish_revisions.py --batch <id> --workdir <campaña> --uri <URI> \\
+      --apply --expect-destination <servidor>/<base>
+      Aplicación: exige un ensayo limpio previo de la misma lista contra el mismo
+      destino, con las mismas opciones, y que el destino nombrado sea el real.
+
+Todo lo que se niega se niega antes de conectarse. El URI nunca se imprime ni se
+registra: solo el servidor y la base. Las excepciones de la base se muestran solo
+por su clase.
+
+Salida: 0 ensayo limpio o aplicación verificada; 1 ensayo con problemas,
+aplicación abortada o verificación fallida; 2 negada.
+"""
+
+import argparse
+import os
+import re
+import sys
+from datetime import datetime, timezone
+
+from . import applier, manifest_reader, registry, write_plan
+from .manifest_reader import Refusal
+from .registry import (ABORTED, APPLIED_VERIFIED, APPLY, DRY_RUN, DRY_RUN_CLEAN, DRY_RUN_WITH_PROBLEMS,
+                       REFUSED, STARTED, VERIFY_FAILED, Registry, RegistryBusy, RegistryError)
+
+TOOL = "production_publish"
+REPO_DEFAULT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+EXIT_OK = 0
+EXIT_PROBLEMS = 1
+EXIT_REFUSED = 2
+
+# Cualquier cosa con forma de URI («esquema://…») se tapa antes de mostrarse.
+URI_LIKE = re.compile(r"[A-Za-z][A-Za-z0-9+.-]*://\S*")
+
+
+def hide_uris(text):
+    return URI_LIKE.sub("<URI oculto>", text)
+
+
+class _Parser(argparse.ArgumentParser):
+    def error(self, message):
+        self.print_usage(sys.stderr)
+        self.exit(EXIT_REFUSED, "%s: error: %s\n" % (self.prog, hide_uris(message)))
+
+
+def build_parser():
+    p = _Parser(prog="publish_revisions.py --batch", allow_abbrev=False,
+                description="Lleva a producción lo que dice la lista de una tanda publicada. "
+                            "Sin --apply es un ensayo y no escribe nada.")
+    p.add_argument("--batch", required=True, help="identidad de la tanda publicada")
+    p.add_argument("--workdir", default=REPO_DEFAULT,
+                   help="carpeta de la campaña (la que tiene .content-audit/batches/); "
+                        "ahí queda también el registro de producción (default: el repo)")
+    p.add_argument("--uri", required=True, help="URI de la base; nunca se imprime ni se registra")
+    p.add_argument("--db", default="learney", help="base (default: learney)")
+    p.add_argument("--apply", action="store_true",
+                   help="escribe; exige un ensayo limpio previo y --expect-destination")
+    p.add_argument("--expect-destination", metavar="SERVIDOR/BASE",
+                   help="el destino que José nombra; si no es el real, no se escribe")
+    p.add_argument("--skip-drift", action="store_true",
+                   help="sigue sin los documentos con deriva o inexistentes, y los registra")
+    p.add_argument("--skip-unsupported", action="store_true",
+                   help="sigue aunque la lista declare cambios sin lugar en producción, y los registra")
+    return p
+
+
+def _now():
+    return datetime.now(timezone.utc)
+
+
+class Run:
+    """Una corrida: arma los renglones del registro y lo que se imprime."""
+
+    def __init__(self, args, out, clock):
+        self.args = args
+        self.out = out
+        self.clock = clock
+        self.started = clock()
+        self.run_id = registry.new_run_id(self.started)
+        self.workdir = os.path.abspath(args.workdir)
+        self.registry = Registry(self.workdir)
+        self.mode = APPLY if args.apply else DRY_RUN
+        self.flags = {"skipDrift": bool(args.skip_drift), "skipUnsupported": bool(args.skip_unsupported)}
+        self.destination = None
+        self.loaded = None
+
+    def say(self, text=""):
+        print(text, file=self.out)
+
+    def row(self, result, **extra):
+        row = {
+            "runId": self.run_id,
+            "at": registry.utc_iso(self.clock()),
+            "tool": TOOL,
+            "mode": self.mode,
+            "result": result,
+            "destination": self.destination,
+            "batchId": self.args.batch,
+            "planId": self.loaded.plan_id if self.loaded else None,
+            "manifestDigest": self.loaded.digest if self.loaded else None,
+            "flags": self.flags,
+        }
+        row.update(extra)
+        return row
+
+    def record(self, result, **extra):
+        """Agrega el renglón. Devuelve False (y lo dice) si no pudo."""
+        try:
+            self.registry.append(self.row(result, **extra))
+            return True
+        except RegistryError as e:
+            self.say("!! %s" % e)
+            return False
+
+    def refuse(self, refusal):
+        self.say("NEGADO (%s): %s" % (refusal.code, refusal.message))
+        for code, message in refusal.problems[1:manifest_reader.MAX_LISTED_PROBLEMS]:
+            self.say("  - (%s) %s" % (code, message))
+        if len(refusal.problems) > manifest_reader.MAX_LISTED_PROBLEMS:
+            self.say("  … y %d problemas más." % (len(refusal.problems) - manifest_reader.MAX_LISTED_PROBLEMS))
+        self.say("No se conectó a ninguna base y no se escribió nada.")
+        self.record(REFUSED, reason=refusal.as_reason())
+        self.say("Registro: %s (corrida %s)" % (self.registry.relative(self.registry.path), self.run_id))
+        return EXIT_REFUSED
+
+
+def main(argv=None, *, store_factory=None, out=None, now=None):
+    """`store_factory(uri, db)` abre la base (en las pruebas, una colección falsa)."""
+    args = build_parser().parse_args(argv)
+    run = Run(args, out if out is not None else sys.stdout, now or _now)
+    try:
+        run.destination = registry.destination_of(args.uri, args.db)
+    except ValueError as e:
+        return run.refuse(Refusal("BAD_URI", "No se puede leer el destino: %s." % e))
+    try:
+        with run.registry.lock():
+            return _locked(run, store_factory)
+    except RegistryBusy as e:
+        return run.refuse(Refusal("REGISTRY_BUSY", str(e)))
+    except RegistryError as e:
+        run.say("!! %s" % e)
+        run.say("No se escribió nada en la base.")
+        return EXIT_REFUSED
+
+
+def _locked(run, store_factory):
+    args = run.args
+    try:
+        run.loaded = manifest_reader.load(run.workdir, args.batch)
+    except Refusal as refusal:
+        return run.refuse(refusal)
+    manifest = run.loaded.manifest
+
+    unsupported = manifest.get("unsupported") or []
+    if unsupported and not args.skip_unsupported:
+        return run.refuse(Refusal(
+            "UNSUPPORTED",
+            "La lista declara %d cambio(s) sin lugar en producción (%s). Para seguir sin ellos, "
+            "pedilo con --skip-unsupported." % (len(unsupported), ", ".join(
+                "%s/%s" % (u.get("changeId"), u.get("part")) for u in unsupported[:10]))))
+
+    if args.expect_destination is not None:
+        try:
+            expected = registry.parse_expected_destination(args.expect_destination)
+        except ValueError as e:
+            return run.refuse(Refusal("BAD_EXPECTED_DESTINATION", str(e)))
+        if expected != run.destination:
+            return run.refuse(Refusal(
+                "DESTINATION_MISMATCH",
+                "El destino nombrado (%s) no es el real (%s): no se escribe."
+                % (registry.destination_label(expected), registry.destination_label(run.destination))))
+    elif args.apply:
+        return run.refuse(Refusal(
+            "DESTINATION_NOT_NAMED",
+            "Para aplicar hay que nombrar el destino con --expect-destination %s."
+            % registry.destination_label(run.destination)))
+
+    if args.apply:
+        try:
+            rows = run.registry.rows()
+        except RegistryError as e:
+            return run.refuse(Refusal("REGISTRY_UNREADABLE", str(e)))
+        problem = registry.clean_dry_run_problem(rows, TOOL, args.batch, run.loaded.digest,
+                                                 run.destination, run.flags)
+        if problem:
+            return run.refuse(Refusal("NO_CLEAN_DRY_RUN", problem))
+
+    if store_factory is None:
+        from .mongo_store import open_store
+        store_factory = open_store
+
+    _header(run)
+    store = None
+    try:
+        try:
+            store = store_factory(args.uri, args.db)
+            plan = _read(run, store, manifest)
+        except _Abort as abort:
+            return _aborted(run, abort.code, abort.message)
+        except Exception as e:  # la clase alcanza: el mensaje de la base puede traer el destino
+            return _aborted(run, "STORE_ERROR", "La base falló al leer (%s); no se escribió nada."
+                            % type(e).__name__, errorClass=type(e).__name__)
+        _report(run, plan)
+        if not args.apply:
+            return _dry_run(run, plan)
+        return _apply(run, store, plan)
+    finally:
+        if store is not None:
+            try:
+                store.close()
+            except Exception:
+                pass
+
+
+class _Abort(Exception):
+    def __init__(self, code, message):
+        super().__init__(message)
+        self.code = code
+        self.message = message
+
+
+def _read(run, store, manifest):
+    present = set(store.collections())
+    needed = {d["collection"] for d in manifest["documents"]}
+    if any(f["path"] in write_plan.EMBEDDED_COPIES for d in manifest["documents"]
+           if d["collection"] == manifest_reader.QUIZ_TEMPLATES for f in d["fields"]):
+        needed.add(write_plan.INSTANCES)
+    missing = sorted(needed - present)
+    if missing:
+        raise _Abort("WRONG_DATABASE",
+                     "La base %s no tiene %s: ¿es la base correcta? No se escribió nada."
+                     % (registry.destination_label(run.destination), ", ".join(missing)))
+    return write_plan.build(manifest, store, run.args.skip_drift)
+
+
+def _header(run):
+    loaded = run.loaded
+    reviews = loaded.manifest.get("reviews", {})
+    run.say("Paso a producción — tanda %s (plan %s)" % (loaded.batch_id, loaded.plan_id))
+    run.say("  lista:   %s (huella %s)" % (run.registry.relative(loaded.manifest_path), loaded.digest[:12]))
+    run.say("  destino: %s" % registry.destination_label(run.destination))
+    run.say("  modo:    %s" % ("APLICACIÓN" if run.args.apply else "ENSAYO (no escribe nada)"))
+    run.say("  revisión: %s aprobados, %s sin revisar (viajan), %s rechazados (quedaron afuera)"
+            % (reviews.get("approved"), reviews.get("pending"), reviews.get("rejected")))
+    if run.args.skip_unsupported and loaded.manifest.get("unsupported"):
+        run.say("  sin lugar en producción, se sigue sin ellos: %d" % len(loaded.manifest["unsupported"]))
+
+
+def _report(run, plan):
+    c = plan.counts()
+    run.say("  documentos de la lista: %d; copias embebidas en %s: %d"
+            % (c["documents"], write_plan.INSTANCES, c["instances"]))
+    run.say("  a escribir: %d documento(s), %d campo(s); ya aplicados: %d; con deriva: %d; inexistentes: %d"
+            % (c["documentsToWrite"], c["fieldsToWrite"], c["already"], c["drift"], c["missing"]))
+    if c["skippedDrift"] or c["skippedWithMaster"]:
+        run.say("  salteados por --skip-drift: %d (más %d copias de esos ejercicios)"
+                % (c["skippedDrift"], c["skippedWithMaster"]))
+    if c["staleCopies"]:
+        run.say("  copias embebidas que ya estaban desfasadas (no se tocan): %d" % c["staleCopies"])
+    for line in plan.report_lines():
+        run.say(line)
+
+
+def _run_detail(run, plan, result, extra=None):
+    loaded = run.loaded
+    detail = {
+        "runId": run.run_id,
+        "tool": TOOL,
+        "mode": run.mode,
+        "result": result,
+        "startedAt": registry.utc_iso(run.started),
+        "at": registry.utc_iso(run.clock()),
+        "destination": run.destination,
+        "batchId": loaded.batch_id,
+        "planId": loaded.plan_id,
+        "manifestDigest": loaded.digest,
+        "manifest": run.registry.relative(loaded.manifest_path),
+        "flags": run.flags,
+        "note": ("Ensayo: «old» es lo que hay hoy y «new» lo que se escribiría; no se escribió nada."
+                 if run.mode == DRY_RUN else
+                 "Respaldo: por cada campo escrito, «old» es lo que había y «new» lo que se escribió."),
+        "counts": plan.counts(),
+        "skippedUnsupported": _skipped_unsupported(run),
+        "documents": [d.detail(include_values=True) for d in plan.all()],
+    }
+    if extra:
+        detail.update(extra)
+    return detail
+
+
+def _skipped_unsupported(run):
+    if not run.args.skip_unsupported:
+        return []
+    return run.loaded.manifest.get("unsupported") or []
+
+
+def _common(run, plan):
+    c = plan.counts()
+    return {
+        "counts": c,
+        "reviews": run.loaded.manifest.get("reviews"),
+        "skippedDrift": [d.key for d in plan.skipped(write_plan.SKIP_DRIFT)],
+        "staleCopies": len(plan.skipped(write_plan.SKIP_STALE_COPY)),
+        "skippedUnsupported": [u.get("changeId") for u in _skipped_unsupported(run)],
+    }
+
+
+def _dry_run(run, plan):
+    result = DRY_RUN_CLEAN if plan.is_clean() else DRY_RUN_WITH_PROBLEMS
+    reason = None
+    detail_path = None
+    try:
+        detail_path = run.registry.write_run(run.run_id, _run_detail(run, plan, result))
+    except RegistryError as e:
+        run.say("!! %s" % e)
+        result = DRY_RUN_WITH_PROBLEMS
+        reason = {"code": "DETAIL_NOT_WRITTEN", "message": str(e)}
+    if result == DRY_RUN_WITH_PROBLEMS and reason is None:
+        reason = {"code": "DRIFT", "message": "%d documento(s) con deriva o inexistentes" % len(plan.problems())}
+    recorded = run.record(result, reason=reason,
+                          detail=run.registry.relative(detail_path) if detail_path else None,
+                          wouldWrite=len(plan.to_write()),
+                          pendingTraveled=plan.pending_documents(plan.to_write()),
+                          **_common(run, plan))
+    if not recorded:
+        result = DRY_RUN_WITH_PROBLEMS
+    if result == DRY_RUN_CLEAN:
+        run.say("Resultado: %s — el ensayo salió limpio; no se escribió nada. Para aplicar, con las "
+                "mismas opciones: --apply --expect-destination %s"
+                % (result, registry.destination_label(run.destination)))
+    else:
+        run.say("Resultado: %s — no se escribió nada. Resolvé lo de arriba (o seguí sin esos documentos "
+                "con --skip-drift) y ensayá de nuevo." % result)
+    run.say("Registro: %s (corrida %s)" % (run.registry.relative(run.registry.path), run.run_id))
+    return EXIT_OK if result == DRY_RUN_CLEAN else EXIT_PROBLEMS
+
+
+def _aborted(run, code, message, **extra):
+    run.say("ABORTADO (%s): %s" % (code, message))
+    run.record(ABORTED, reason={"code": code, "message": message}, **extra)
+    run.say("Registro: %s (corrida %s)" % (run.registry.relative(run.registry.path), run.run_id))
+    return EXIT_PROBLEMS
+
+
+def _apply(run, store, plan):
+    if not plan.is_clean():
+        # El ensayo limpio pudo quedar viejo: alguien cambió la base entretanto.
+        return _aborted(run, "DRIFT",
+                        "%d documento(s) con deriva o inexistentes desde el ensayo; no se escribió nada."
+                        % len(plan.problems()), **_common(run, plan))
+    to_write = plan.to_write()
+    try:
+        detail_path = run.registry.write_run(run.run_id, _run_detail(run, plan, STARTED))
+    except RegistryError as e:
+        return _aborted(run, "DETAIL_NOT_WRITTEN",
+                        "No se pudo escribir el respaldo de la corrida (%s); no se escribió nada." % e)
+    detail_rel = run.registry.relative(detail_path)
+    if not run.record(STARTED, detail=detail_rel, planned=len(to_write), **_common(run, plan)):
+        run.say("ABORTADO: no se pudo dejar el renglón de inicio en el registro; no se escribió nada.")
+        return EXIT_PROBLEMS
+
+    run.say("Escribiendo %d documento(s)…" % len(to_write))
+    try:
+        outcome = applier.apply(plan, store)
+    except KeyboardInterrupt:
+        # Interrumpido al verificar: no se sabe qué quedó verificado. El respaldo previo
+        # (todo lo planeado, con su old) está en el detalle.
+        outcome = applier.ApplyOutcome()
+        outcome.stopped_reason = applier.INTERRUPTED
+        outcome.verification = [{"collection": None, "id": None, "ok": False,
+                                 "problems": ["se interrumpió antes de terminar de verificar"]}]
+
+    if not outcome.verified:
+        result = VERIFY_FAILED
+    elif outcome.stopped_reason:
+        result = ABORTED
+    else:
+        result = APPLIED_VERIFIED
+
+    written_ids = ["%s/%s" % (d.collection, d.doc_id) for d in outcome.written]
+    stopped_at = outcome.stopped_at.key if outcome.stopped_at is not None else None
+    extra = {
+        "written": written_ids,
+        "verification": outcome.verification,
+        "stoppedReason": outcome.stopped_reason,
+        "stoppedAt": stopped_at,
+        "errorClass": outcome.error_class,
+    }
+    try:
+        run.registry.write_run(run.run_id, _run_detail(run, plan, result, extra))
+    except RegistryError as e:
+        run.say("!! %s (el respaldo previo a escribir quedó en %s)" % (e, detail_rel))
+
+    failures = outcome.failures()
+    reason = None
+    if result == VERIFY_FAILED:
+        reason = {"code": "VERIFY_FAILED", "message": "%d documento(s) no quedaron como dice la lista"
+                  % len(failures)}
+    elif result == ABORTED:
+        reason = {"code": outcome.stopped_reason,
+                  "message": "se dejó de escribir en %s" % (stopped_at or "(antes de empezar)")}
+    recorded = run.record(result, reason=reason, detail=detail_rel, writtenIds=written_ids,
+                          verified=result == APPLIED_VERIFIED,
+                          pendingTraveled=plan.pending_documents(outcome.written),
+                          stoppedReason=outcome.stopped_reason, stoppedAt=stopped_at,
+                          errorClass=outcome.error_class, **_common(run, plan))
+
+    run.say("Escritos: %d de %d." % (len(outcome.written), len(to_write)))
+    if outcome.stopped_reason == applier.CONCURRENT_CHANGE:
+        run.say("Se dejó de escribir en %s: cambió en la base entre la lectura y la escritura." % stopped_at)
+    elif outcome.stopped_reason == applier.STORE_ERROR:
+        run.say("Se dejó de escribir en %s: la base falló (%s)." % (stopped_at, outcome.error_class))
+    elif outcome.stopped_reason == applier.INTERRUPTED:
+        run.say("Se interrumpió la escritura%s." % (" en %s" % stopped_at if stopped_at else ""))
+    for failure in failures[:30]:
+        run.say("  NO VERIFICA %s/%s: %s" % (failure["collection"], failure["id"],
+                                            "; ".join(failure["problems"])))
+    if len(failures) > 30:
+        run.say("  … y %d más (todo queda en el detalle de la corrida)." % (len(failures) - 30))
+    run.say("Resultado: %s%s" % (result, {
+        APPLIED_VERIFIED: " — todo quedó como dice la lista y el resto de cada documento quedó idéntico.",
+        ABORTED: " — no se reintenta ni se corrige; lo escrito está verificado y el respaldo, en el detalle.",
+        VERIFY_FAILED: " — no se reintenta ni se corrige: revisá el detalle; el respaldo (old) está ahí.",
+    }[result]))
+    run.say("Registro: %s; detalle y respaldo: %s (corrida %s)"
+            % (run.registry.relative(run.registry.path), detail_rel, run.run_id))
+    if not recorded:
+        return EXIT_PROBLEMS
+    return EXIT_OK if result == APPLIED_VERIFIED else EXIT_PROBLEMS
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
