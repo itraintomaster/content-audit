@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.publicationengine;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -263,6 +264,72 @@ public class DefaultPublicationManifestBuilderTest {
                 "el ejercicio cuyo tipo cambió no va; el que declaró el tipo sin cambiarlo, sí");
         assertEquals(List.of("form.items"), manifest.documents().get(0).fields().stream().map(ManifestField::path)
                 .toList());
+    }
+
+    @Test
+    @DisplayName("should never write the title of an exercise nor the name of a topic, even when the correction that changed them declares them")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R002")
+    public void shouldNeverWriteTheTitleOfAnExerciseNorTheNameOfATopic() {
+        // Un ejercicio entero corregido cuyo título también cambió.
+        QuizTemplateEntity before = quiz("q1", "Hace calor.", "Clima.", "It's hot ", "_inside", ".");
+        before.setTitle("El clima");
+        QuizTemplateEntity after = quiz("q1", "Hace calor adentro.", "Clima.", "It's hot ", "_inside", ".");
+        after.setTitle("El clima en casa");
+        // Un tema cuyo nombre y consigna cambió una corrección de título, que declara el nombre, la consigna y el
+        // título de sus ejercicios; y otro al que sólo le cambió el nombre.
+        CorrectionScope titleCorrection = new CorrectionScope() {
+            @Override
+            public Set<ScopedField> changeableFields(DiagnosisKind kind, AuditTarget target) {
+                return Set.of();
+            }
+
+            @Override
+            public Set<ScopedField> changeableFields(Set<ExercisePart> parts, AuditTarget target) {
+                return target == AuditTarget.KNOWLEDGE ? new DefaultCorrectionScope().changeableFields(
+                        DiagnosisKind.KNOWLEDGE_TITLE_LENGTH, AuditTarget.KNOWLEDGE)
+                        : new DefaultCorrectionScope().changeableFields(parts, target);
+            }
+        };
+        DefaultPublicationManifestBuilder withTitles = new DefaultPublicationManifestBuilder(titleCorrection,
+                new DefaultProductionFieldMap(), new EntityProjector());
+        KnowledgeEntity topicBefore = topic("k1", "El clima", "Elige la opcion correcta.");
+        KnowledgeEntity topicAfter = topic("k1", "El clima en casa", "Elige la opción correcta.");
+        KnowledgeEntity onlyNameBefore = topic("k2", "Rutinas", "Completá.");
+        KnowledgeEntity onlyNameAfter = topic("k2", "Rutinas de la mañana", "Completá.");
+
+        PublicationManifest manifest = withTitles.build(request(List.of(
+                new PublishedElement(snapshot(before), snapshot(after), "prop-1", DocumentReviewStatus.PENDING,
+                        steps(step("task-1", ExercisePart.WHOLE_EXERCISE))),
+                new PublishedElement(new CourseElementSnapshot(AuditTarget.KNOWLEDGE, "k1", null, topicBefore),
+                        new CourseElementSnapshot(AuditTarget.KNOWLEDGE, "k1", null, topicAfter), "prop-2",
+                        DocumentReviewStatus.PENDING, steps(step("task-2", ExercisePart.TOPIC_INSTRUCTIONS))),
+                new PublishedElement(new CourseElementSnapshot(AuditTarget.KNOWLEDGE, "k2", null, onlyNameBefore),
+                        new CourseElementSnapshot(AuditTarget.KNOWLEDGE, "k2", null, onlyNameAfter), "prop-3",
+                        DocumentReviewStatus.PENDING, steps(step("task-3", ExercisePart.TOPIC_INSTRUCTIONS))))));
+
+        assertEquals(List.of("q1", "k1"), manifest.documents().stream().map(ManifestDocument::id).toList(),
+                "el tema al que sólo le cambió el nombre no va en la lista");
+        assertEquals(List.of("translation"), manifest.documents().get(0).fields().stream().map(ManifestField::path)
+                .toList(), "del ejercicio va la traducción, no el título");
+        assertEquals(List.of(new ManifestField("instructions", "Elige la opcion correcta.",
+                "Elige la opción correcta.")), manifest.documents().get(1).fields(), "del tema va la consigna");
+        for (ManifestDocument document : manifest.documents()) {
+            for (ManifestField field : document.fields()) {
+                assertFalse(String.valueOf(field.after()).contains("en casa"),
+                        "ni el título ni el nombre nuevos viajan, en ninguna ruta: " + field);
+            }
+        }
+        assertEquals(Set.of("translation", "instructions"), manifest.counts().byPath().keySet());
+        assertTrue(manifest.unsupported().isEmpty(), "no es algo que falte publicar: sigue su camino por plan");
+    }
+
+    private static KnowledgeEntity topic(String id, String label, String instructions) {
+        KnowledgeEntity topic = new KnowledgeEntity();
+        topic.setId(id);
+        topic.setLabel(label);
+        topic.setInstructions(instructions);
+        return topic;
     }
 
     @Test
