@@ -47,7 +47,8 @@
 1. **No se publica sin todos los jueces aprobados.** El sistema lo hace cumplir (FEAT-CJUEZ R004): un juez sin aprobar que lee algo cambiado bloquea la publicación.
 2. **Corregir sin empeorar.** Un cambio que empeora cualquier analizador no se publica. El cierre compara antes y después.
 3. **Producción es de José.**
-   - content-audit nunca escribe en producción.
+   - El CLI de content-audit nunca escribe en producción: publicar una tanda deja la lista de lo que puede llegar (FEAT-PUBPROD R001).
+   - Llevar una tanda a producción es `scripts/publish_revisions.py --batch <id>`, sólo con orden expresa de José: toma sólo lo de la lista, ensaya primero y deja registro (FEAT-PUBPROD R006 a R009).
    - Nada escribe en Mongo de producción sin su OK explícito.
    - `scripts/publish_*` corren sólo en ensayo, salvo que José lo pida.
    - Nunca escribir la URI de producción en un archivo.
