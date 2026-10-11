@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Calidad de distractores: examen aprobado · ContentAudit</title>
-
+<title>Opinión de los jueces</title>
+<meta name="description" content="La opinión de los jueces ya se ve en Correcciones y en el Mapa, con lo que midió A4 y sin gastar consultas; está en una rama propia de ittm, sin juntar ni subir.">
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -243,53 +243,132 @@
     .kpi .n{font-size:28px}
   }
 
+
+  /* ============ propios del 104 ============ */
+  .stk{display:grid;gap:14px}
+  .stk .fila{display:grid;grid-template-columns:minmax(90px,22%) minmax(0,1fr);gap:12px;align-items:center}
+  .stk .rt{font-size:13px;font-weight:650;color:var(--fg-2);line-height:1.3}
+  .stk .rt small{display:block;font-weight:400;color:var(--fg-3);font-size:12px}
+  .stk .bar{display:flex;height:16px;border-radius:99px;overflow:hidden;background:var(--line-soft)}
+  .stk .bar span{display:block;height:100%}
+  .stk .cu{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;color:var(--fg-2);margin-top:6px;font-variant-numeric:tabular-nums}
+  .stk .cu b{color:var(--fg)}
+  .c-ok{background:var(--ok)} .c-w{background:var(--warn)} .c-b{background:var(--bad)}
+  .c-s{background:color-mix(in srgb,var(--fg-3) 55%,transparent)} .c-i{background:var(--info)}
+  .cruce{margin-top:14px;background:var(--ok-soft);border-radius:8px;padding:9px 12px;font-size:14px}
+  table.ver td:nth-child(2){text-align:right;font-variant-numeric:tabular-nums;font-weight:650;white-space:nowrap}
+  table.ver td{font-size:13.5px}
+  @media (max-width:640px){ .stk .fila{grid-template-columns:minmax(0,1fr);gap:6px} }
 </style>
-</head>
 <body>
 <div class="wrap">
+
   <header>
-    <div class="kicker"><span class="num">103</span><span class="badge">Verificado</span><span class="meta">Calidad de distractores · 11 octubre 2026</span></div>
-    <h1>Calidad de distractores ya rindió y aprobó</h1>
-    <p class="sub">La mejora anterior se recuperó, se midió y quedó visible en el tablero HTML.</p>
+    <div class="kicker">
+      <span class="num">104</span>
+      <span class="badge">Resumen</span>
+      <span class="meta">tablero HTML · Correcciones y Mapa · 11/10/2026</span>
+    </div>
+    <h1>Ya se ve qué opinan los jueces de cada cambio</h1>
+    <p class="sub">En Correcciones y en el Mapa, con lo que midió el último análisis. Sin gastar consultas.</p>
   </header>
-  <div class="lede"><p><strong>16 de 16 casos correctos, sin consultas nuevas.</strong> Faltaba registrar el examen en la campaña que lee la UI; no volver a desarrollar el juez.</p></div>
+
+  <div class="lede"><p><strong>Está hecho, en verde y en una rama propia de ittm; no lo junté ni lo subí.</strong> De tus 1.752 pendientes, los jueces ya dan por buenos 1.631.</p></div>
+
   <section>
-    <h2>El trabajo estaba; faltaba conectarlo al examen oficial</h2>
-    <div class="ad">
-      <div class="lado antes"><span class="rot">Antes</span><ol><li>Versión anterior: examen reprobado.</li><li>Versión mejorada: evidencia sintética conservada.</li><li>Campaña del tablero: sin registro de distractores.</li></ol><span class="res">La UI decía «Nunca rindió»</span></div>
-      <div class="lado despues"><span class="rot">Ahora</span><ol><li>Recuperados los 16 juicios originales compatibles.</li><li>Examen completo medido con su rúbrica congelada.</li><li>Resultado aceptado por el registro oficial.</li></ol><span class="res">La UI muestra «Aprobado»</span></div>
+    <h2>La barra de los jueces, al lado de la tuya</h2>
+    <div class="card mk" role="img" aria-label="Las dos barras de la corrección en el Mapa: tus decisiones y lo que opinan los jueces">
+      <div class="stk">
+        <div class="fila">
+          <span class="rt">Tus decisiones<small>la barra que ya estaba</small></span>
+          <div><div class="bar"><span class="c-ok" style="width:0.8%"></span><span class="c-s" style="width:99.2%"></span></div>
+            <div class="cu"><span><b>14</b> aprobados</span><span><b>0</b> rechazados</span><span><b>1.752</b> pendientes</span></div></div>
+        </div>
+        <div class="fila">
+          <span class="rt">Según los jueces<small>lo nuevo · A4, 9/10</small></span>
+          <div><div class="bar"><span class="c-ok" style="width:93.1%"></span><span class="c-w" style="width:5%"></span><span class="c-s" style="width:1.7%"></span><span class="c-i" style="width:0.2%"></span></div>
+            <div class="cu"><span><b>1.645</b> bueno</span><span><b>88</b> falta medir</span><span><b>30</b> no consta</span><span><b>3</b> otro contenido</span><span><b>0</b> empeoró</span></div></div>
+        </div>
+      </div>
+      <div class="cruce">De tus <b>1.752</b> pendientes, <b>1.631</b> ya los dan por buenos. <u>Revisarlos en grupo</u></div>
     </div>
-    <p class="pie">El examen anterior sigue reprobado. No se cambiaron sus expectativas para hacerlo pasar.</p>
+    <p class="pie">Así queda la ficha de la corrección en el Mapa, con los datos reales de a1-v11. Cada número lleva a Correcciones con ese filtro puesto.</p>
   </section>
+
   <section>
-    <h2>Detecta los defectos sin castigar los casos válidos</h2>
-    <div class="hb">
-      <div class="r"><span class="t">Defectos pedagógicos<small>Los encuentra y clasifica</small></span><span class="tr"><span class="f g" style="width:100%"></span></span><span class="n">9 de 9</span></div>
-      <div class="r"><span class="t">Distractores útiles<small>Respeta la práctica introductoria</small></span><span class="tr"><span class="f g" style="width:100%"></span></span><span class="n">7 de 7</span></div>
-    </div>
-    <p class="pie">Los 16 resultados ya existían: misma entrada, versión y modelo. El recorrido oficial los reutilizó con presupuesto cero.</p>
+    <h2>Cada cambio lleva su veredicto, sin consultar a nadie</h2>
+    <div class="tw"><table class="ver">
+      <thead><tr><th>Veredicto</th><th>Cambios</th><th>Qué quiere decir</th></tr></thead>
+      <tbody>
+        <tr><td><span class="pill p-ok">bueno</span></td><td>1.645</td><td>Arregló lo suyo, sin errores nuevos, medido sobre el contenido de hoy.</td></tr>
+        <tr><td><span class="pill p-warn">falta medir</span></td><td>88</td><td>El juez de miniteoría no llegó a medirlo.</td></tr>
+        <tr><td><span class="pill p-idle">no consta</span></td><td>30</td><td>El juez lo midió y no lo da por arreglado: son todos de traducción.</td></tr>
+        <tr><td><span class="pill p-info">otro contenido</span></td><td>3</td><td>Un solo ejercicio, editado después de medir.</td></tr>
+        <tr><td><span class="pill p-bad">empeoró</span></td><td>0</td><td>Ningún cambio trajo un error nuevo.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="pie">En Correcciones, cada cambio muestra su veredicto como un chip, y el filtro «Según los jueces» arma la lista por veredicto.</p>
   </section>
+
   <section>
-    <h2>Se habilitó el juez, no se aprobó el curso</h2>
-    <div class="cambia">
-      <div class="si"><div class="ptl">Cambió</div><ul><li>Registro oficial de distractores aprobado en A1 V11.</li><li>Tablero: nueve jueces con su última versión examinada aprobada.</li><li>Recuperación con controles y 12 pruebas offline aprobadas.</li></ul></div>
-      <div class="no"><div class="ptl">Se conserva</div><ul><li>1.917 archivos previos de campaña idénticos.</li><li>Correcciones, decisiones humanas y análisis guardados intactos.</li><li>Examen anterior reprobado y sin consultas adicionales.</li><li>No se publicó ni se evaluó el curso real.</li></ul></div>
-    </div>
-    <p class="pie">Sólo se agregaron el libro separado del examen y su aprobación. Dieciséis casos sintéticos no garantizan rendimiento perfecto en todo el curso.</p>
-  </section>
-  <section>
-    <h2>Qué sigue</h2>
+    <h2>Aprobar en grupo pide mirar una muestra antes</h2>
     <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">Ver el resultado</span><span class="d">Exámenes → Calidad de distractores. Ya quedó releído y seleccionado.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">Definir el alcance</span><span class="d">Elegir qué contenido real querés evaluar y con qué tope nuevo.</span></div>
-      <div class="st end"><span class="i">3</span><span class="h">Medir antes de corregir</span><span class="d">La aprobación habilita consultas; no las dispara automáticamente.</span></div>
+      <div class="st"><span class="i">1</span><span class="h">Revisarlos en grupo</span><span class="d">desde el Mapa, o en Correcciones</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Muestra de 12</span><span class="d">al azar, siempre la misma; se recorre con J y K</span></div>
+      <div class="st"><span class="i">3</span><span class="h">Se habilita Aprobar</span><span class="d">recién con las 12 vistas; Espacio saca una</span></div>
+      <div class="st end"><span class="i">4</span><span class="h">Deshacer</span><span class="d">con U, si algo no convence</span></div>
     </div>
-    <p class="pie">La UI advierte que el registro no identifica la versión en ejecución. Para este juez sí comprobamos la identidad actual mediante el CLI oficial.</p>
+    <p class="pie">«Dado por bueno» no es «quedó perfecto»: aprobar mueve tu barra y el cruce, nunca la de los jueces.</p>
   </section>
+
+  <section>
+    <h2>Los 88 sin medir cuestan unas 4 consultas</h2>
+    <div class="hb">
+      <div class="r"><span class="t"><i>Really</i>, <i>much</i> o <i>a lot</i></span><span class="tr"><span class="f w" style="width:100%"></span></span><span class="n">36</span></div>
+      <div class="r"><span class="t">Señalar objetos</span><span class="tr"><span class="f w" style="width:55.6%"></span></span><span class="n">20</span></div>
+      <div class="r"><span class="t">Contable o incontable</span><span class="tr"><span class="f w" style="width:41.7%"></span></span><span class="n">15</span></div>
+      <div class="r"><span class="t">Lugar: <i>in</i> y <i>on</i></span><span class="tr"><span class="f w" style="width:41.7%"></span></span><span class="n">15</span></div>
+    </div>
+    <p class="pie">Ejercicios por tema. El juez de miniteoría mide una vez por tema, y A4 ya anotó justo esas 4 como faltantes.</p>
+  </section>
+
+  <section>
+    <h2>Qué cambia cuando lo juntes</h2>
+    <div class="cambia">
+      <div class="si"><p class="ptl">Cambia</p><ul>
+        <li>Correcciones: el chip, el filtro, «Por qué quedan afuera» y el grupo.</li>
+        <li>El Mapa: la barra de los jueces, en la caja y en la ficha.</li>
+        <li>Sobre qué contenido se midió, a la vista.</li>
+      </ul></div>
+      <div class="no"><p class="ptl">No cambia</p><ul>
+        <li>Los jueces y sus instrucciones.</li>
+        <li>Nada consulta a un modelo ni publica.</li>
+        <li>master y main siguen como los dejaste.</li>
+      </ul></div>
+    </div>
+    <p class="pie">Para mirarlo ya: un tablero aparte en 127.0.0.1:7852, sobre la copia de prueba de a1-v11. La campaña real no se toca.</p>
+  </section>
+
+  <section>
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask"><span class="q">1 · ¿Junto la rama a master de ittm?</span>
+        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">Primero lo miro en el 7852</span></div>
+        <span class="why">Probé la unión con lo que master sumó hoy: no choca. Después hay que reiniciar Tablero.app.</span></div>
+      <div class="ask"><span class="q">2 · ¿Medimos los 88?</span>
+        <div class="ops"><span class="op rec">Vos, con «Medir y cerrar» · recomendado</span><span class="op">Lo lanzo yo con tu ok</span></div>
+        <span class="why">Con tope 4 para miniteoría, después de ver la estimación gratis.</span></div>
+      <div class="ask"><span class="q">3 · Sigue sin subir lo de antes</span>
+        <div class="ops"><span class="op rec">Lo decidimos aparte · recomendado</span><span class="op">Subir todo</span></div>
+        <span class="why">ittm master tiene 154 commits sin subir y content-audit main, 54.</span></div>
+    </div>
+  </section>
+
   <footer>
-    <span>Registro oficial: 11/10, 15:30 ART · codex-cli / gpt-6.1-sol / medium · versión 9f164016…</span>
-    <span><a href="../../analysis/judge-exams/2026-10-11-choice-quality-v2-official/README.md">Evidencia y límites</a> · <a href="http://127.0.0.1:7800/examenes.html">Abrir Exámenes</a></span>
+    <span>Fuentes: ittm claude/opinion-de-los-jueces 3bccd1d3e (servidor fed2453b0, Mapa 223acb961, Correcciones 6cfc47553, unión 769255aea); npm test 1.896, flutter test test/tablero_html 907, guardian_test y hook pre-commit en verde; caché batch-tanda-A1-20261007T084434Z; A4 mini-theory queriesMissing 4.</span>
+    <span>brief 104 · docs/briefs/104-opinion-de-los-jueces.html</span>
   </footer>
+
 </div>
 </body>
 </html>
