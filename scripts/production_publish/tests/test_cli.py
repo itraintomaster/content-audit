@@ -13,6 +13,7 @@ from production_publish.registry import (ABORTED, APPLIED_VERIFIED, DRY_RUN_CLEA
                                          REFUSED, STARTED, VERIFY_FAILED, RegistryError)
 from production_publish.store import get_path, same_value
 from production_publish.tests import fakes
+from production_publish.tests.fake_driver import FakeMongo, ObjectId
 from production_publish.tests.fakes import APPLY_ARGS, run_cli
 
 
@@ -527,6 +528,53 @@ class VerifyTest(CliTestCase):
         self.assertEqual(row["writtenIds"], ["knowledges/" + fakes.KNOWLEDGE, "quizTemplates/" + fakes.QUIZ_1])
         detail = fakes.run_detail(self.workdir, row)
         self.assertTrue(all(v["ok"] for v in detail["verification"]))
+
+
+    def test_F_PUBPROD_R007_con_el_driver_cada_copia_embebida_se_escribe_una_vez_y_la_huella_verifica(self):
+        """La huella del resto del documento no da un falso «no verifica» en las instancias.
+
+        Con la base de juguete detrás del acceso real: dos instancias del mismo ejercicio (una con el
+        id del ejercicio en texto y otra como ObjectId), cada una recibe una sola escritura y todo
+        verifica, con la huella entera.
+        """
+        mongo = FakeMongo()
+        mongo.install(self)
+        second_copy = "770000000000000000000004"
+        for collection, docs in fakes.production_documents().items():
+            for doc_id, doc in docs.items():
+                doc = copy.deepcopy(doc)
+                doc["_id"] = ObjectId(doc_id) if manifest_reader.HEX_ID.match(doc_id) else doc_id
+                mongo.collection(fakes.DB, collection).append(doc)
+        mongo.collection(fakes.DB, "quizzes").append(
+            {"_id": ObjectId(second_copy), "user": "u4", "score": 1.0,
+             "template": {"_id": ObjectId(fakes.QUIZ_1), "title": "To be", "instructions": "Completá."}})
+
+        def run_with_driver(*extra):
+            out = io.StringIO()
+            code = cli.main(["--batch", fakes.BATCH_ID, "--workdir", self.workdir, "--uri", fakes.URI,
+                             "--db", fakes.DB] + list(extra), store_factory=None, out=out, now=self.clock)
+            return code, out.getvalue()
+
+        code, out = run_with_driver()
+        self.assertEqual(code, 0, out)
+        code, out = run_with_driver(*APPLY_ARGS)
+        self.assertEqual(code, 0, out)
+        row = self.rows()[-1]
+        self.assertEqual(row["result"], APPLIED_VERIFIED)
+        self.assertIn("quizzes/" + second_copy, row["writtenIds"])
+        self.assertIn("quizzes/" + fakes.INSTANCE_IN_SYNC, row["writtenIds"])
+        writes_per_document = {}
+        for collection, query, _ in mongo.writes:
+            key = "%s/%s" % (collection, query["_id"])
+            writes_per_document[key] = writes_per_document.get(key, 0) + 1
+        self.assertEqual(set(writes_per_document.values()), {1})
+        self.assertEqual(sorted(writes_per_document), sorted(row["writtenIds"]))
+        detail = fakes.run_detail(self.workdir, row)
+        copies = [v for v in detail["verification"] if v["collection"] == "quizzes"]
+        self.assertEqual(len(copies), 2)
+        for check in copies:
+            self.assertTrue(check["ok"], check)
+            self.assertEqual(check["restFingerprintBefore"], check["restFingerprintAfter"])
 
 
 class InterruptedOrLostWriteTest(CliTestCase):
