@@ -136,7 +136,7 @@ class MultipleChoiceTest(unittest.TestCase):
         self.assertEqual(plan.counts()["blocked"], 1)
         self.assertTrue(any(line.startswith("  BLOQUEADO quizTemplates/" + fakes.QUIZ_3)
                             for line in plan.report_lines()))
-        self.assertEqual(quiz.detail(include_values=True)["blocked"]["code"], code)
+        self.assertEqual(quiz.detail()["blocked"]["code"], code)
 
     def test_F_PUBPROD_R002_de_opcion_multiple_solo_las_etiquetas_no_bloquean(self):
         plan = plan_for()

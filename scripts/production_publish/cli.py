@@ -287,7 +287,7 @@ def _run_detail(run, plan, result, extra=None):
                  "Respaldo: por cada campo escrito, «old» es lo que había y «new» lo que se escribió."),
         "counts": plan.counts(),
         "skippedUnsupported": _skipped_unsupported(run),
-        "documents": [d.detail(include_values=True) for d in plan.all()],
+        "documents": [d.detail() for d in plan.all()],
     }
     if extra:
         detail.update(extra)

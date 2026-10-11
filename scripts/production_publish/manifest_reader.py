@@ -83,14 +83,12 @@ class Refusal(Exception):
 
 
 class LoadedBatch:
-    def __init__(self, batch_id, plan_id, batch_path, manifest_path, digest, manifest, publication):
+    def __init__(self, batch_id, plan_id, manifest_path, digest, manifest):
         self.batch_id = batch_id
         self.plan_id = plan_id
-        self.batch_path = batch_path
         self.manifest_path = manifest_path
         self.digest = digest
         self.manifest = manifest
-        self.publication = publication
 
 
 def batch_record_path(workdir, batch_id):
@@ -190,7 +188,7 @@ def load(workdir, batch_id):
         raise Refusal("UNREADABLE", "La lista de %s no es UTF-8." % batch_id)
     plan_id = record.get("planId")
     validate_manifest(manifest, expected_batch_id=batch_id, expected_plan_id=plan_id)
-    return LoadedBatch(batch_id, plan_id, bpath, mpath, actual, manifest, publication)
+    return LoadedBatch(batch_id, plan_id, mpath, actual, manifest)
 
 
 def _no_floors(value, allow_null):

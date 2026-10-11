@@ -11,7 +11,7 @@ import shutil
 import tempfile
 from datetime import datetime, timedelta, timezone
 
-from production_publish.store import Store, get_path, same_value, set_path
+from production_publish.store import Store, get_path, same_value
 
 FIXTURES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fixtures")
 EXAMPLE_MANIFEST = os.path.join(FIXTURES, "manifest-ejemplo.json")
@@ -88,6 +88,19 @@ def production_documents():
                              "template": {"_id": "665f00000000000000000099", "instructions": "x"}},
         },
     }
+
+
+def set_path(doc, path, value):
+    """Fija `path` creando los subdocumentos que falten (como `$set`)."""
+    keys = path.split(".")
+    current = doc
+    for key in keys[:-1]:
+        nxt = current.get(key)
+        if not isinstance(nxt, dict):
+            nxt = {}
+            current[key] = nxt
+        current = nxt
+    current[keys[-1]] = value
 
 
 class FakeStore(Store):
@@ -257,7 +270,7 @@ def all_text_under(path):
 APPLY_ARGS = ("--apply", "--expect-destination", DESTINATION)
 
 
-def run_cli(workdir, *extra, factory=None, clock=None, uri=URI, batch_id=BATCH_ID):
+def run_cli(workdir, *extra, factory=None, clock=None, uri=URI):
     """Corre el paso a producción con la colección falsa. Devuelve (salida, texto, fábrica)."""
     import io
 
@@ -265,6 +278,6 @@ def run_cli(workdir, *extra, factory=None, clock=None, uri=URI, batch_id=BATCH_I
 
     out = io.StringIO()
     factory = factory if factory is not None else FakeStoreFactory()
-    code = cli.main(["--batch", batch_id, "--workdir", workdir, "--uri", uri, "--db", DB] + list(extra),
+    code = cli.main(["--batch", BATCH_ID, "--workdir", workdir, "--uri", uri, "--db", DB] + list(extra),
                     store_factory=factory, out=out, now=clock if clock is not None else Clock())
     return code, out.getvalue(), factory

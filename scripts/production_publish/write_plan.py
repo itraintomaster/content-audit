@@ -50,8 +50,9 @@ BLOCK_ITEMS_WITHOUT_MC = "ITEMS_WITHOUT_MULTIPLE_CHOICE"
 ABSENT_AS_EMPTY_LIST = ("form.sentences",)
 
 INSTANCES = "quizzes"
-# Campo del template -> copia embebida en la instancia (como sync_quiz_titles).
-EMBEDDED_COPIES = {"instructions": "template.instructions", "title": "template.title"}
+# Campo del template -> copia embebida en la instancia (como sync_quiz_titles; el título no
+# está en la tabla de lo que se escribe).
+EMBEDDED_COPIES = {"instructions": "template.instructions"}
 
 # Orden de escritura: knowledges -> quizTemplates -> copias embebidas en quizzes.
 COLLECTION_ORDER = (KNOWLEDGES, QUIZ_TEMPLATES)
@@ -92,8 +93,7 @@ class DocPlan:
         self.template_id = template_id
         self.fields = fields
         self.doc = doc
-        self.skipped = False
-        self.skip_reason = None
+        self.skip_reason = None  # por qué se saltea (SKIP_*), o None
         self.blocked = None  # (código, mensaje): frena la corrida y no se saltea
         if doc is None:
             self.status = MISSING_DOC
@@ -103,6 +103,10 @@ class DocPlan:
             self.status = ALREADY
         else:
             self.status = APPLY
+
+    @property
+    def skipped(self):
+        return self.skip_reason is not None
 
     @property
     def is_instance(self):
@@ -134,10 +138,9 @@ class DocPlan:
         return label
 
     def skip(self, reason):
-        self.skipped = True
         self.skip_reason = reason
 
-    def detail(self, include_values):
+    def detail(self):
         out = {"collection": self.collection, "id": self.doc_id, "status": self.status,
                "skipped": self.skipped}
         if self.skip_reason is not None:
@@ -155,7 +158,7 @@ class DocPlan:
         fields = []
         for f in self.fields:
             entry = {"path": f.path, "status": f.status}
-            if include_values and f.status == APPLY:
+            if f.status == APPLY:
                 # El respaldo: lo que había (old) y lo que se escribe (new).
                 entry["old"] = to_json_safe(f.current)
                 entry["new"] = to_json_safe(f.after)
@@ -165,16 +168,15 @@ class DocPlan:
                 entry["after"] = to_json_safe(f.after)
             fields.append(entry)
         out["fields"] = fields
-        if self.doc is not None and include_values and self.status == APPLY:
+        if self.doc is not None and self.status == APPLY:
             out["restFingerprintBefore"] = self.rest_fingerprint()
         return out
 
 
 class WritePlan:
-    def __init__(self, documents, instances, skip_drift):
+    def __init__(self, documents, instances):
         self.documents = documents
         self.instances = instances
-        self.skip_drift = skip_drift
 
     def all(self):
         return list(self.documents) + list(self.instances)
@@ -300,7 +302,7 @@ def build(manifest, store, skip_drift):
             instances.append(DocPlan(INSTANCES, instance_id, fields, inst, node_id=master.node_id,
                                      template_id=template_id))
 
-    plan = WritePlan(documents, instances, skip_drift)
+    plan = WritePlan(documents, instances)
     for inst in instances:
         if inst.status == DRIFT:
             inst.skip(SKIP_STALE_COPY)

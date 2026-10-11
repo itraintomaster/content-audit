@@ -34,7 +34,6 @@ ABORTED = "ABORTED"
 STARTED = "STARTED"
 APPLIED_VERIFIED = "APPLIED_VERIFIED"
 VERIFY_FAILED = "VERIFY_FAILED"
-RESULTS = (DRY_RUN_CLEAN, DRY_RUN_WITH_PROBLEMS, REFUSED, ABORTED, STARTED, APPLIED_VERIFIED, VERIFY_FAILED)
 
 URI_SCHEMES = ("mongodb", "mongodb+srv")
 # Un servidor: nombre o [IPv6], con puerto numérico opcional. Nada más.
@@ -288,14 +287,12 @@ class LegacyRecorder:
     runs/<runId>.json antes de la primera escritura.
     """
 
-    def __init__(self, workdir, tool, uri, db, apply, out=None, now=None):
-        clock = now or (lambda: datetime.now(timezone.utc))
-        self.clock = clock
+    def __init__(self, workdir, tool, uri, db, apply):
+        self.clock = lambda: datetime.now(timezone.utc)
         self.registry = Registry(workdir)
         self.tool = tool
         self.mode = APPLY if apply else DRY_RUN
-        self.out = out
-        self.run_id = new_run_id(clock())
+        self.run_id = new_run_id(self.clock())
         self.detail_path = None
         self.last_result = None
         self.row_lost = False  # no se pudo dejar el renglón final: la corrida no puede salir con 0
@@ -307,7 +304,7 @@ class LegacyRecorder:
             self.destination_error = str(e)
 
     def say(self, text):
-        print(text, file=self.out)
+        print(text)
 
     def record(self, result, **extra):
         self.last_result = result

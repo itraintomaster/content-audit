@@ -41,36 +41,19 @@ class _Missing:
 MISSING = _Missing()
 
 
-def split_path(path):
-    return path.split(".")
-
-
 def get_path(doc, path):
     """Valor de `path` (con puntos, sin índices de lista) o MISSING."""
     current = doc
-    for key in split_path(path):
+    for key in path.split("."):
         if not isinstance(current, Mapping) or key not in current:
             return MISSING
         current = current[key]
     return current
 
 
-def set_path(doc, path, value):
-    """Fija `path` creando los subdocumentos que falten (como `$set`)."""
-    keys = split_path(path)
-    current = doc
-    for key in keys[:-1]:
-        nxt = current.get(key)
-        if not isinstance(nxt, dict):
-            nxt = {}
-            current[key] = nxt
-        current = nxt
-    current[keys[-1]] = value
-
-
 def remove_path(doc, path):
     """Saca `path` y los subdocumentos que quedan vacíos en ese camino."""
-    keys = split_path(path)
+    keys = path.split(".")
     chain = [doc]
     current = doc
     for key in keys[:-1]:
