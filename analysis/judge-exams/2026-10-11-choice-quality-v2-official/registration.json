@@ -1,0 +1,39 @@
+{
+  "campaign": "/Users/josecullen/projects/learney/content-audit/.content-audit/campaigns/a1-v11",
+  "authorization": "Solicitud humana del 11/10/2026 de hacer rendir Calidad de distractores reutilizando el trabajo previo; alcance operativo de esta recuperación: cero consultas nuevas, sin procesos del curso.",
+  "judge": "multiple-choice-quality",
+  "effectiveVersion": "9f164016f0612d83ee29e835741ed05c67362b251c3da164ac69f719ad3cacc4",
+  "runtime": {"provider": "codex-cli", "model": "gpt-6.1-sol", "reasoningEffort": "medium"},
+  "takenAt": "2026-10-11T18:30:01.103004Z",
+  "approvedAt": "2026-10-11T18:30:20.176035Z",
+  "casesJudged": 16,
+  "casesAsExpected": 16,
+  "casesNotJudged": 0,
+  "newModelQueries": 0,
+  "previousCampaignFilesChecked": 1917,
+  "previousCampaignFilesChanged": 0,
+  "addedCampaignFiles": [
+    ".content-audit/evaluations/exam_choice-quality-judge.jsonl",
+    ".content-audit/judge-exams/multiple-choice-quality.jsonl"
+  ],
+  "examLedgerSha256": "13c67cc49064fcc74b070551b56e5b2940e910df23aaea887d5dfd59542563e6",
+  "examRegistrySha256": "578b813724ed2afa7c714cc89d8af490e0ed6290cc154d3c5957c69057562709",
+  "unchangedCheckpointSha256": "a230c57959b2a3fa9136e4bff7c87fefafe9c39476a554f8b2d9529c7de2bbb4",
+  "unchangedRootHistoricalV1RegistrySha256": "855e5b54cea0c2a5030dfe7cdb99fb7319f4b4d8a56b5ab2d30ddfbc3c95d1ea",
+  "backup": "/private/tmp/content-audit-choice-quality-official.wjwj0G/campaign-before.tgz",
+  "backupSha256": "a4f1cdf9fe66396a5194e52aff6db5ad3c8552d170f03a1793347fd2fa49e784",
+  "uiVerified": {
+    "url": "http://127.0.0.1:7800/examenes.html",
+    "context": "Propuesta · A1 · V11",
+    "summary": "9 jueces: 9 aprobados",
+    "selectedJudge": "Calidad de distractores",
+    "selectedExam": "16 de 16; defectos 9/9 y controles válidos 7/7",
+    "serverRestarted": false
+  },
+  "limitations": [
+    "Acredita los 16 casos sintéticos fijos v2, no generalización perfecta al curso.",
+    "El examen anterior v1 permanece reprobado y no se reinterpretó.",
+    "La aprobación no inicia ni autoriza consultas del curso sin un nuevo tope.",
+    "No se corrigió, aprobó ni publicó contenido del curso."
+  ]
+}
