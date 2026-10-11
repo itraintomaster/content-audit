@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>098 · Correcciones completa en HTML</title>
+<title>Mapa en HTML</title>
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -242,125 +242,109 @@
     .kpi .n{font-size:28px}
   }
 
-  .caps{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:14px}
-  .caps .captura.cel img{max-width:240px}
+  /* dos capturas lado a lado */
+  .par{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .par .captura{margin:0}
+  .par .captura.cel img{max-height:560px;object-fit:cover;object-position:top}
 </style>
 </head>
-<body>
 <div class="wrap">
 
   <header>
     <div class="kicker">
-      <span class="num">098</span>
+      <span class="num">091</span>
       <span class="badge">Resumen</span>
-      <span class="meta">Dashboard de content-audit, después del brief 089 · 10/10/2026</span>
+      <span class="meta">Dashboard de content-audit, después del brief 088 · 10/10/2026</span>
     </div>
-    <h1>Correcciones queda completa en HTML, sin gastar una consulta</h1>
-    <p class="sub">Muestra ciega, miniteoría a mano y elegir corrección, probadas contra una copia de la campaña.</p>
+    <h1>El Mapa ya anda en HTML: dónde está parada la tanda</h1>
+    <p class="sub">Qué muestra, qué no hace, qué datos faltaron y qué pasar a lo común.</p>
   </header>
 
-  <div class="lede"><p><strong>Las tres piezas que faltaban del brief 089 andan.</strong> Lo que consulta a un modelo quedó apagado con su (!); falta tu OK para mergear la rama.</p></div>
+  <div class="lede"><p><strong>El Mapa ya anda en HTML sobre la tanda A1: la base, la corrección 1, lo aprobado y cinco análisis.</strong> Sólo lee; lo que gasta o publica está apagado y dice por qué.</p></div>
 
   <section>
-    <h2>Tres piezas, 67 pruebas nuevas y cero consultas</h2>
-    <div class="kpis">
-      <div class="kpi dest"><div class="n">288<small>de 288</small></div><div class="l">pruebas de la pantalla en verde; antes de esta tanda eran 221</div></div>
-      <div class="kpi"><div class="n">121<small>de 121</small></div><div class="l">pruebas del servidor del tablero en verde</div></div>
-      <div class="kpi"><div class="n">0</div><div class="l">consultas a modelos o jueces: todo lo que escribe va a la copia</div></div>
-      <div class="kpi"><div class="n">5</div><div class="l">fallas que encontró la revisión, arregladas y cada una con su prueba</div></div>
+    <h2>Base, corrección y análisis, en tres carriles</h2>
+    <figure class="captura"><img src="091-mapa-en-html/pantalla.jpg" alt="La pantalla Mapa: arriba la brújula con producción, base, estás acá y comparás; la historia de la base a hoy; el mapa en tres carriles con la base, la corrección 1, lo aprobado y los análisis A0 a A4; abajo la ficha de la corrección">
+      <figcaption>Tanda A1, hoy, sobre una copia de la campaña</figcaption></figure>
+    <div class="par" style="margin-top:12px">
+      <figure class="captura cel"><img src="091-mapa-en-html/celular.jpg" alt="La misma pantalla en un celular, en modo oscuro: la brújula en dos columnas y el mapa que se desliza de costado">
+        <figcaption>En el celular, en oscuro</figcaption></figure>
+      <figure class="captura"><img src="091-mapa-en-html/en-a1.jpg" alt="El mapa parado en A1: sólo se ve lo que ya había pasado ese día, y la brújula compara A1 contra A0, con 308 ejercicios de más">
+        <figcaption>Parado en A1: se ve sólo lo que había ese día</figcaption></figure>
     </div>
-    <p class="pie">Lo del navegador lo miré a 1280 y a 390 px, en claro y en oscuro, contra la copia de la campaña A1.</p>
+    <p class="pie">La historia recorre las siete paradas con las flechas; tocar una caja o un disco abre su ficha abajo.</p>
   </section>
 
   <section>
-    <h2>La muestra ciega se contesta par por par</h2>
-    <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">Contestás cada par</span><span class="eg">teclas 1 · 2 · 3 · 4</span><span class="d">A mejor, iguales, B mejor o las dos mal.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">El último par espera</span><span class="d">Cierra la muestra: va cuando estén los demás.</span></div>
-      <div class="st"><span class="i">3</span><span class="h">Pide confirmación</span><span class="d">Cerrar es definitivo: no se reabre ni se resortea.</span></div>
-      <div class="st end"><span class="i">4</span><span class="h">Sale el resultado</span><span class="eg">4 mejor o igual · 1 peor</span><span class="d">Contra la meta; recién ahí se sabe cuál era cuál.</span></div>
+    <h2>De la base a A4: 593 ejercicios con error menos</h2>
+    <div class="card">
+      <div class="hb">
+        <div class="r"><span class="t">A0 <small>la base, antes de corregir</small></span><span class="tr"><span class="f s" style="width:86.4%"></span></span><span class="n">1.959</span></div>
+        <div class="r"><span class="t">A1 <small>8/10 · +308</small></span><span class="tr"><span class="f b" style="width:100%"></span></span><span class="n">2.267</span></div>
+        <div class="r"><span class="t">A2 <small>+271</small></span><span class="tr"><span class="f b" style="width:98.4%"></span></span><span class="n">2.230</span></div>
+        <div class="r"><span class="t">A3 <small>−664</small></span><span class="tr"><span class="f g" style="width:57.1%"></span></span><span class="n">1.295</span></div>
+        <div class="r"><span class="t">A4 <small>9/10 · −593 (−30 %)</small></span><span class="tr"><span class="f g" style="width:60.3%"></span></span><span class="n">1.366</span></div>
+      </div>
     </div>
-    <div class="caps">
-      <figure class="captura"><img src="098-correcciones-completa-en-html/muestra-par.jpg" alt="Par 3 de la muestra, con el cambio de consigna marcado en el lado B">
-        <figcaption>Par 3: sin decir cuál es el después; lo que cambia, marcado</figcaption></figure>
-      <figure class="captura"><img src="098-correcciones-completa-en-html/muestra-cerrada.jpg" alt="La muestra cerrada: cumple la meta con 4 mejor o igual y 1 peor">
-        <figcaption>Cerrada en la copia: 4 mejor o igual, 1 peor, cumple la meta</figcaption></figure>
-      <figure class="captura cel"><img src="098-correcciones-completa-en-html/muestra-celular-oscuro.jpg" alt="En el celular y en oscuro, la confirmación antes de cerrar la muestra">
-        <figcaption>En el celular, en oscuro: la confirmación del último par</figcaption></figure>
-    </div>
-    <p class="pie">La muestra de la copia la armé a mano con 5 cambios reales: sortearla no estaba autorizado. El cierre la cuenta cuando se vuelva a comparar la tanda.</p>
+    <figure class="captura" style="margin-top:12px"><img src="091-mapa-en-html/ficha.jpg" alt="La ficha de A4: midió la corrección 1 con 1.481 propuestas en 2 vueltas; 14 analizadores medidos, 6 heredados y 1 que no corrió; la compuerta no pasó, con sus razones; y cada analizador del catálogo con su color">
+      <figcaption>La ficha de A4: lo que costó, la compuerta y cada analizador</figcaption></figure>
+    <p class="pie">Ejercicios con algún error en cada análisis. Ningún cierre pasó la compuerta; de 1.766 cambios propuestos, 14 están aprobados.</p>
   </section>
 
   <section>
-    <h2>La miniteoría se corrige sin consultar a nadie</h2>
-    <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">La mesa propuso</span><span class="eg">are va con you.</span><span class="d">Quiz 7 de «Afirmativas con be»: perdía am e is.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">Busqué otra</span><span class="eg">«con you», entre 2.556</span><span class="d">Del curso, de la mesa y borradores.</span></div>
-      <div class="st"><span class="i">3</span><span class="h">Guardé borrador y contexto</span><span class="d">Quedan en la copia; el contexto es para el agente.</span></div>
-      <div class="st end"><span class="i">4</span><span class="h">Incorporé</span><span class="eg">contenido v6 → v7</span><span class="d">Vuelve la del curso, sin revisar como cualquier cambio.</span></div>
+    <h2>Cada zona se explica; lo que gasta está apagado</h2>
+    <figure class="captura"><img src="091-mapa-en-html/ayuda.jpg" alt="Panel de ayuda «Un análisis y su anillo», en oscuro: dónde está en la pantalla, qué es cada color del anillo y cómo se lee, con los números de A4">
+      <figcaption>(?) del anillo, con los números de A4</figcaption></figure>
+    <div class="cambia" style="margin-top:12px">
+      <div class="si"><div class="ptl">Hace</div><ul><li>Lee la tanda, su revisión, el catálogo y la base.</li><li>Recorre la historia con flechas, Tab y Enter.</li><li>22 temas de ayuda: 14 (?) y 8 (!).</li><li>Enlaza a Correcciones, ya en HTML.</li></ul></div>
+      <div class="no"><div class="ptl">Dibuja apagado, con su (!)</div><ul><li>Analizar y correr lo que falta: gastan.</li><li>Publicar lo aprobado.</li><li>Comparar contra otro análisis que no sea A0.</li><li>Las pantallas vecinas que faltan: «pronto».</li></ul></div>
     </div>
-    <div class="caps">
-      <figure class="captura"><img src="098-correcciones-completa-en-html/mini-elegir.jpg" alt="El cajón de la miniteoría buscando entre las explicaciones existentes">
-        <figcaption>Elegir una existente, con buscador y de dónde viene cada una</figcaption></figure>
-      <figure class="captura"><img src="098-correcciones-completa-en-html/mini-incorporar.jpg" alt="La confirmación antes de incorporar un borrador">
-        <figcaption>Incorporar pide confirmación: no aprueba ni publica</figcaption></figure>
-      <figure class="captura"><img src="098-correcciones-completa-en-html/mini-aviso.jpg" alt="El panel (!) que explica por qué reescribir está apagado">
-        <figcaption>El (!) de reescribir: qué haría, cuánto cuesta, qué hacer hoy</figcaption></figure>
-      <figure class="captura cel"><img src="098-correcciones-completa-en-html/mini-celular-oscuro.jpg" alt="El cajón de la miniteoría en el celular y en oscuro">
-        <figcaption>El mismo cajón en el celular, en oscuro</figcaption></figure>
-    </div>
-    <p class="pie">Reescribir y volver a analizar se ven en gris, cada uno con su (!). Un (!) abierto desde el cajón vuelve al cajón, con lo escrito.</p>
   </section>
 
   <section>
-    <h2>Elegir corrección sólo lee; lo que gasta queda apagado</h2>
+    <h2>Cuatro datos que el CLI no tiene</h2>
     <div class="tw"><table>
-      <thead><tr><th>Qué</th><th>Estado</th><th>Por qué</th></tr></thead>
+      <thead><tr><th>Qué falta</th><th>Qué hace la pantalla</th></tr></thead>
       <tbody>
-        <tr><td>Elegir otra corrección del historial</td><td><span class="pill p-ok">anda</span></td><td>Sólo lee. La copia tiene una sola corrección: el cambio lo cubren 8 pruebas.</td></tr>
-        <tr><td>Otro nivel</td><td><span class="pill p-idle">después</span></td><td>El CLI todavía no tiene cómo leerlo.</td></tr>
-        <tr><td>Reescribir la miniteoría</td><td><span class="pill p-warn">apagado (!)</span></td><td>Consulta un modelo.</td></tr>
-        <tr><td>Volver a analizar</td><td><span class="pill p-warn">apagado (!)</span></td><td>Consulta a los jueces.</td></tr>
-        <tr><td>Sortear una muestra nueva</td><td><span class="pill p-idle">afuera</span></td><td>No estaba autorizado; la pantalla contesta la que haya.</td></tr>
-        <tr><td>Selectiva de distractores</td><td><span class="pill p-warn">apagado (!)</span></td><td>Consulta un modelo; sigue en el tablero de Flutter.</td></tr>
-      </tbody></table></div>
-    <div class="caps">
-      <figure class="captura"><img src="098-correcciones-completa-en-html/elegir-correccion.jpg" alt="El menú de correcciones con la abierta marcada">
-        <figcaption>El menú: la corrección abierta, marcada, y volver a la del CLI</figcaption></figure>
-    </div>
-    <p class="pie">Cada apagado tiene su (!), que dice qué haría, cuánto cuesta y qué se puede hacer hoy sin gastar.</p>
+        <tr><td>Qué ve hoy el alumno</td><td>Lo supone por el estado de la tanda; un (!) lo dice.</td></tr>
+        <tr><td>Comparaciones entre dos análisis cualquiera</td><td>Sólo contra A0, la base; el resto, apagado.</td></tr>
+        <tr><td>Una medición de lo aprobado solo</td><td>La caja va sin disco, con su (!).</td></tr>
+        <tr><td>Las tandas anteriores del curso</td><td>Se ve sólo la abierta; un (!) en la leyenda.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="pie">No hizo falta un comando nuevo: alcanzan la revisión, el catálogo y dos archivos de la campaña. Un análisis sin detalle por analizador va sin anillo.</p>
+    <div class="call c-warn"><b>No sé</b> si producción está de verdad en la base: content-audit no anota qué se publicó fuera de la tanda.</div>
   </section>
 
   <section>
-    <h2>Lo común, apenas un renglón; quedan tres deudas</h2>
+    <h2>Lo repetido, listo para pasar a lo común</h2>
     <div class="cambia">
-      <div class="si"><div class="ptl">Toqué</div><ul>
-        <li>El servidor le pasa a Correcciones las rutas que no atiende, en un commit aparte.</li>
-        <li>En el celular, los modos anchos dejaban 76 px vacíos a la izquierda.</li>
-        <li>El cierre ya no pide contestar una muestra que cerraste.</li></ul></div>
-      <div class="no"><div class="ptl">Queda debiendo</div><ul>
-        <li>El fetch de prueba está repetido en una prueba común.</li>
-        <li>La muestra cerrada muestra la meta de hoy, no la guardada.</li>
-        <li>Cerrar la muestra tarda 12 a 15 s: relee la bandeja entera.</li></ul></div>
+      <div class="no"><div class="ptl">Copiado de Correcciones</div><ul><li>Qué se mira y el estado de la tanda, arriba.</li><li>El arranque de la página: capas, foco y Tab.</li><li>La regla que valida un id de archivo.</li><li>La lista de huecos de las pruebas de ayuda.</li></ul></div>
+      <div class="si"><div class="ptl">Hecho acá, le sirve a otras</div><ul><li>El modelo de estados: base, corrección, análisis.</li><li>La lectura guardada que se puede releer.</li><li>Botón apagado con su (!) y enlace a una vecina.</li><li>Contar en singular o plural.</li><li>El lugar fijo del aviso de error.</li></ul></div>
     </div>
-    <p class="pie">Ninguna deuda rompe nada. La primera es de código común: no la toqué para no pisar a las otras pantallas.</p>
+    <p class="pie">No toqué lo común: dos renglones reservados y la marca de pantalla hecha.</p>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Mergeo la rama a master, sin push?</span>
-        <div class="ops"><span class="op rec">Sí, mergeo local · recomendado</span><span class="op">Lo miro antes</span></div>
-        <span class="why">Pasan las 288 y las 121. El guardián sólo marca los 4 archivos de Flutter que ya fallaban en master.</span></div>
-      <div class="ask"><span class="q">2 · ¿Paso el fetch de prueba repetido a lo común?</span>
-        <div class="ops"><span class="op rec">En una tarea aparte · recomendado</span><span class="op">Lo dejo así</span></div>
-        <span class="why">Vive en una prueba de todas las pantallas; arreglarlo acá pisaría a las otras sesiones.</span></div>
+      <div class="ask"><div class="q">¿La paso a master?</div>
+        <div class="ops"><span class="op rec">Sí, después de probarla</span><span class="op">Esperar a las otras pantallas</span></div>
+        <div class="why">Sólo toca el Mapa y sus renglones reservados. 147 pruebas del navegador y 46 del servidor, en verde; Flutter sigue igual.</div></div>
+      <div class="ask"><div class="q">¿Qué dato de content-audit va primero?</div>
+        <div class="ops"><span class="op rec">Qué se publicó y cuándo</span><span class="op">Medir lo aprobado</span><span class="op">Las tandas anteriores</span></div>
+        <div class="why">Es lo que hoy el Mapa supone: dónde está producción.</div></div>
+      <div class="ask"><div class="q">¿Cuándo se pasa lo repetido a lo común?</div>
+        <div class="ops"><span class="op rec">Al final, en una sesión aparte</span><span class="op">Ahora</span></div>
+        <div class="why">Ocho pantallas se arman en paralelo: moverlo ahora choca.</div></div>
     </div>
+<pre>cd ~/projects/learney/ittm/.claude/worktrees/laughing-mccarthy-5ac876/pipeline/vocabulary_dashboard
+CONTENT_AUDIT_ROOT=~/projects/learney/content-audit CONTENT_AUDIT_WORKDIR=/ruta/a/la/copia CONTENT_AUDIT_CONTEXT_KIND=Copia ~/DevDependencies/flutter/bin/dart run bin/tablero_html.dart --puerto 7831</pre>
   </section>
 
   <footer>
-    <span>Copia de la campaña A1 (tanda-A1-20261007T084434Z), servidor en el puerto 7838. Rama claude/vigilant-jepsen-45d02a: 8832ab046, 95c6a2fe2 y 059911fb2; lo común: 43c75bcce. Fetch repetido: html/test/api.test.js.</span>
-    <span>brief 098 · docs/briefs/098-correcciones-completa-en-html.html</span>
+    <span>Rama claude/recursing-banach-09318b de ittm (sin push): 7930cff58 servidor, 67729f55d pantalla. Servidor en lib/tablero_html/mapa/ (GET /api/mapa/estado; ?releer=1 vuelve al CLI; lectura en otro isolate, guardada; readAt lo pone el servidor). Lee batch review, get analyzers, .content-audit/baseline.json y el audit-digest de la base; una base o un resumen ilegibles cuentan como ausentes. Pantalla en html/mapa.html, html/js/mapa/ (store, selectores con armarModelo, vistas puras, gestos, ayuda con crearAyuda y dibujarMapa) y html/css/mapa.css. Una tanda = una corrección; la revisión 0 o ausente es la 1; A0 es de la base y A1…An de c{r}. Para promover: .ctx y .estado-tanda copiados de correcciones.css; _idSeguro duplicado de Correcciones; el andamio de main.js (poner/dibujado, claveDeCapa, foco de la capa, guarda del fondo, trampa de Tab); HUECOS de test/ayuda-comun.js sin exportar; armarModelo y vista_del_mapa.dart (estados Base / Correcciones / Análisis); contado, cuantos y cuentaEnPalabras; apagado e irA de vistas/comun.js; la lectura guardada con releer de rutas_de_mapa.dart; mapa-recorrido.js; el lugar fijo .mp-aviso para el morph. Pendiente: el Mapa no se entera si Correcciones aprueba algo hasta releer. npm test: 368 en verde (147 del Mapa); flutter test test/tablero_html: 116 en verde (46 del Mapa); guardian_test falla sólo por los 8 archivos de miniteoría de master. Capturas con Chrome sin ventana sobre http://localhost:7831, con una copia de la campaña a1-v11.</span>
+    <span>brief 091 · docs/briefs/091-mapa-en-html.html</span>
   </footer>
 
 </div>
