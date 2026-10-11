@@ -274,8 +274,10 @@ y el cierre dicen «no pasa, y además 2 pisos sin decidir», nunca «no se pued
 > 2. la lista que dejó ese intento se borra, o vuelve la que había antes; una lista que el intento no llegó a escribir no
 >    se toca;
 > 3. las propuestas, los cambios sacados, las tareas de la tanda y las del plan quedan como estaban;
-> 4. el análisis vigente sigue siendo el de antes: el análisis del curso publicado que se alcanzó a guardar queda, pero no
->    es el vigente;
+> 4. el análisis vigente vuelve a ser el de antes, y el análisis y el plan del curso publicado que el intento alcanzó a
+>    guardar, aunque sea a medias, se descartan: el próximo comando que busque el último análisis o el último plan
+>    encuentra el de antes. Lo que ya estaba guardado antes del intento no se borra ni queda pisado. Si el análisis
+>    vigente no pudo volver al de antes, esos dos quedan guardados —el vigente todavía los nombra— y la falla lo dice;
 > 5. la tanda no queda publicada;
 > 6. si algo no se puede volver atrás, la falla lo dice —qué quedó a medio hacer— junto con la falla original;
 > 7. volver a publicar después de una falla deja la misma lista que si la falla no hubiera pasado.
@@ -286,10 +288,16 @@ Una tanda está publicada sólo cuando su registro lo dice, y eso es lo último 
 la tanda publicada y que la huella de la lista sea la que registró la publicación ([F-PUBPROD-R006](#F-PUBPROD-R006)):
 aunque una lista quedara de un intento que no terminó, nunca pasaría por la de la tanda.
 
+No alcanza con que el análisis del curso publicado deje de ser el vigente: hay comandos —consultar, revisar, los planes
+de la tanda— que toman el último análisis o el último plan guardado, no el vigente, y encontrarían los de una
+publicación que no pasó.
+
 **Criterio**: una tanda de A1 que pasa y cuyo análisis del curso publicado no se puede guardar deja el curso como
 estaba, sin lista, sin publicar y con sus propuestas pendientes; lo mismo si lo que falla es guardar la tanda; si además
 el curso no se puede volver a escribir, la falla dice que el curso quedó a medio hacer; publicarla otra vez después deja
-la misma lista que si no hubiera fallado.
+la misma lista que si no hubiera fallado. Si falla guardar la tanda cuando ya estaban guardados el análisis y el plan
+del curso publicado, los dos se descartan y el último análisis y el último plan vuelven a ser los de antes; si el
+análisis no se puede descartar, la falla lo nombra junto con la original, y el plan se descarta igual.
 
 </details>
 
