@@ -248,7 +248,9 @@ y el cierre dicen «no pasa, y además 2 pisos sin decidir», nunca «no se pued
 > 3. una aplicación deja un renglón de inicio antes de la primera escritura —si no puede dejarlo, no escribe— y uno de
 >    fin;
 > 4. los otros dos escritores de producción, el de los nombres y el de las consignas de los temas, también dejan su
->    renglón.
+>    renglón;
+> 5. un ensayo que encuentra problemas —por ejemplo, un tema o un ejercicio que no está en la base— queda registrado
+>    como ensayo con problemas y termina con error, en cualquiera de los escritores; sólo un ensayo limpio termina bien.
 
 <a id="F-PUBPROD-R009"></a>
 ### Rule[F-PUBPROD-R009] - Escribir exige ensayar y nombrar el destino

@@ -517,9 +517,10 @@ def publish_plan(args, mode, recorder, batch_ids):
 
     if not args.apply:
         print("\nDRY-RUN: no se modificó nada. Ejecutar con --apply para aplicar.")
+        # F-PUBPROD-R008: un ensayo con problemas termina con error, como el paso por tanda.
         recorder.record(production_registry.DRY_RUN_WITH_PROBLEMS if hard_problems
                         else production_registry.DRY_RUN_CLEAN, **row_common)
-        return
+        return production_registry.EXIT_PROBLEMS if hard_problems else production_registry.EXIT_OK
 
     if hard_problems:
         recorder.record(production_registry.ABORTED, reason={"code": "HARD_PROBLEMS", "message":

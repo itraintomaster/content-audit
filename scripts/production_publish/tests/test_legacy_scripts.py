@@ -21,6 +21,7 @@ QUIZ = "665f000000000000000000b1"
 QUIZ_MC = "665f000000000000000000b2"
 KNOWLEDGE = "665f000000000000000000c1"
 INSTANCE = "665f000000000000000000d1"
+MISSING_KNOWLEDGE = "665f000000000000000000c9"
 LABEL = "El verbo $to be$"
 BAD_URI = "mongodb://%s:cl@ve/x@host/learney" % fakes.FAKE_USER
 
@@ -246,6 +247,15 @@ class PlanPathTest(LegacyTestCase):
         self.assertEqual((row["result"], row["reason"]["code"]), (registry.ABORTED, "HARD_PROBLEMS"))
         self.assertNotIn(registry.STARTED, [r["result"] for r in self.rows()])
 
+    def test_F_PUBPROD_R008_el_ensayo_del_camino_por_plan_con_problemas_duros_termina_con_error(self):
+        write_json(os.path.join(self.repo, ".content-audit", "revisions", PLAN, "p3.json"), {
+            "verdict": "APPROVED",
+            "proposal": {"proposalId": "p3", "elementAfter": {"nodeTarget": "QUIZ", "nodeId": QUIZ_MC}}})
+        code, out = run(self.module.main, self.plan_args())
+        self.assertEqual(code, registry.EXIT_PROBLEMS, out)
+        self.assertEqual(self.mongo.writes, [])
+        self.assertEqual(self.rows()[-1]["result"], registry.DRY_RUN_WITH_PROBLEMS)
+
     def test_F_PUBPROD_R008_si_no_puede_dejar_el_respaldo_no_escribe(self):
         os.makedirs(os.path.join(self.repo, ".content-audit"), exist_ok=True)
         with open(os.path.join(self.repo, ".content-audit", "production"), "w") as fh:
@@ -413,6 +423,18 @@ class KnowledgeWritersMixin:
         self.assertEqual((row["tool"], row["mode"], row["result"]),
                          (self.script, registry.DRY_RUN, registry.DRY_RUN_CLEAN))
         self.assertEqual(row["destination"], {"host": fakes.HOST, "db": fakes.DB})
+
+    def test_F_PUBPROD_R008_un_tema_del_arbol_que_no_esta_en_la_base_hace_un_ensayo_con_problemas_que_termina_con_error(self):
+        write_json(os.path.join(self.repo, "db", "english-course", "u2", "_knowledge.json"), {
+            "_id": {"$oid": MISSING_KNOWLEDGE}, "kind": "KNOWLEDGE", "label": "Los pronombres",
+            "instructions": "Elegí el pronombre."})
+        code, out = run(self.module.main, self.args())
+        self.assertEqual(code, registry.EXIT_PROBLEMS, out)
+        self.assertIn(MISSING_KNOWLEDGE, out)
+        self.assertEqual(self.mongo.writes, [])
+        row = self.rows()[-1]
+        self.assertEqual((row["mode"], row["result"]), (registry.DRY_RUN, registry.DRY_RUN_WITH_PROBLEMS))
+        self.assertEqual(row["counts"]["missing"], 1)
 
     def test_F_PUBPROD_R008_aplicar_deja_el_respaldo_y_el_inicio_antes_de_escribir(self):
         seen = self.assert_started_before_first_write()

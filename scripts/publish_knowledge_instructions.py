@@ -68,6 +68,7 @@ def publish_instructions(args, recorder):
     col = MongoClient(args.uri)[args.db][args.collection]
 
     pendientes = []
+    faltan = []  # temas del árbol que no están en la base: el ensayo no sale limpio
     leidos = 0
     patron = os.path.join(args.repo, "db", "english-course", "**", "*.json")
     for f in glob.glob(patron, recursive=True):
@@ -89,28 +90,31 @@ def publish_instructions(args, recorder):
             continue
         actual = col.find_one({"_id": ObjectId(oid)}, {"instructions": 1})
         if actual is None:
+            faltan.append(oid)
             continue
         if (actual.get("instructions") or "") != instr:
             pendientes.append((oid, actual.get("instructions"), instr, doc.get("label")))
 
     print(f"knowledges leidos del arbol : {leidos}")
     print(f"pendientes de publicar      : {len(pendientes)}\n")
+    if faltan:
+        print(f"!! {len(faltan)} knowledges del arbol no existen en la base: {sorted(faltan)[:5]}\n")
     for oid, viejo, nuevo, label in pendientes:
         print(f"  {oid}  {label!r}")
         print(f"     prod  : {viejo!r}")
         print(f"     arbol : {nuevo!r}")
 
-    counts = {"knowledgesRead": leidos, "instructions": len(pendientes)}
+    counts = {"knowledgesRead": leidos, "instructions": len(pendientes), "missing": len(faltan)}
+    if not args.apply:
+        print("\nNada que hacer." if not pendientes else
+              "\nDRY-RUN: no se modifico nada. Ejecutar con --apply para aplicar.")
+        # F-PUBPROD-R008: un ensayo con problemas termina con error, como el paso por tanda.
+        recorder.record(production_registry.DRY_RUN_WITH_PROBLEMS if faltan else production_registry.DRY_RUN_CLEAN,
+                        counts=counts)
+        return production_registry.EXIT_PROBLEMS if faltan else production_registry.EXIT_OK
     if not pendientes:
         print("\nNada que hacer.")
-        if args.apply:
-            recorder.record(production_registry.APPLIED_VERIFIED, counts=counts, writtenIds=[], verified=True)
-        else:
-            recorder.record(production_registry.DRY_RUN_CLEAN, counts=counts)
-        return production_registry.EXIT_OK
-    if not args.apply:
-        print("\nDRY-RUN: no se modifico nada. Ejecutar con --apply para aplicar.")
-        recorder.record(production_registry.DRY_RUN_CLEAN, counts=counts)
+        recorder.record(production_registry.APPLIED_VERIFIED, counts=counts, writtenIds=[], verified=True)
         return production_registry.EXIT_OK
 
     # F-PUBPROD-R008: el respaldo y el renglón de inicio, antes de la primera escritura.

@@ -93,9 +93,10 @@ def publish_labels(args, mode, recorder):
     counts = {"labels": len(pending), "missing": len(missing)}
     if not args.apply:
         print("\nDRY-RUN: no se modificó nada. Ejecutar con --apply para aplicar.")
+        # F-PUBPROD-R008: un ensayo con problemas termina con error, como el paso por tanda.
         recorder.record(production_registry.DRY_RUN_WITH_PROBLEMS if missing else production_registry.DRY_RUN_CLEAN,
                         counts=counts)
-        return
+        return production_registry.EXIT_PROBLEMS if missing else production_registry.EXIT_OK
 
     if pending:
         # F-PUBPROD-R008: el respaldo y el renglón de inicio, antes de la primera escritura.
