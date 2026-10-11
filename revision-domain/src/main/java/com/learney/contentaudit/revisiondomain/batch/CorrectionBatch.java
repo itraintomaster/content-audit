@@ -69,6 +69,11 @@ public class CorrectionBatch {
 
     private List<BatchClosing> closings;
 
+    private List<ContextOpinion.Run> opinionRuns;
+
+    public List<ContextOpinion.Run> getOpinionRuns() { return opinionRuns; }
+    public void setOpinionRuns(List<ContextOpinion.Run> runs) { opinionRuns = runs; }
+
     private List<SelectiveCorrection.Run> selectiveRuns;
 
     public List<SelectiveCorrection.Run> getSelectiveRuns() { return selectiveRuns; }
@@ -377,6 +382,7 @@ public class CorrectionBatch {
                     && Objects.equals(this.panelDecisions, that.panelDecisions)
                     && Objects.equals(this.adjustments, that.adjustments)
                     && Objects.equals(this.closings, that.closings)
+                    && Objects.equals(this.opinionRuns, that.opinionRuns)
                     && Objects.equals(this.selectiveRuns, that.selectiveRuns)
                     && Objects.equals(this.blindSampleId, that.blindSampleId)
                     && Objects.equals(this.queryCap, that.queryCap)
@@ -388,6 +394,6 @@ public class CorrectionBatch {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, level, status, interruptionReason, correctionRevision, contentVersion, baselineAuditId, startAuditId, planId, analyzers, settings, conversionOrders, taskIds, notTakenTaskIds, unevaluated, courseTies, changes, quizProposals, outcomes, panelDecisions, adjustments, closings, selectiveRuns, blindSampleId, queryCap, queriesSpent, openedAt, publication, pendingRerecords);
+        return Objects.hash(id, level, status, interruptionReason, correctionRevision, contentVersion, baselineAuditId, startAuditId, planId, analyzers, settings, conversionOrders, taskIds, notTakenTaskIds, unevaluated, courseTies, changes, quizProposals, outcomes, panelDecisions, adjustments, closings, opinionRuns, selectiveRuns, blindSampleId, queryCap, queriesSpent, openedAt, publication, pendingRerecords);
     }
 }

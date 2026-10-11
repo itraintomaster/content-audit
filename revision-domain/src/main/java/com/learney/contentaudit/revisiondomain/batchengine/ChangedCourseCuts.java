@@ -85,7 +85,7 @@ record ChangedCourseCuts(CourseEntity exercisesBefore, CourseEntity exercisesAft
     }
 
     /** The course with each topic replaced by what {@code keep} makes of it, and without what ends up empty. */
-    private static CourseEntity cut(CourseEntity course, Function<KnowledgeEntity, KnowledgeEntity> keep) {
+    static CourseEntity cut(CourseEntity course, Function<KnowledgeEntity, KnowledgeEntity> keep) {
         if (course == null || course.getRoot() == null) {
             return null;
         }

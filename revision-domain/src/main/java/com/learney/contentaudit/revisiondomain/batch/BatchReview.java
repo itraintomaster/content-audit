@@ -9,11 +9,16 @@ import java.util.List;
 /** Saved data for review: no analyzer, judge or comparison is executed by this query. */
 public record BatchReview(String batchId, int correctionRevision, int contentVersion, BatchReport report,
         List<RefinementTask> tasks, List<RevisionProposal> proposals, List<Item> items, List<BatchClosing> analyses,
-        List<Version> history, List<SelectiveCorrection.Run> selectiveRuns) {
+        List<Version> history, List<SelectiveCorrection.Run> selectiveRuns, List<ContextOpinion.Run> opinionRuns) {
     public BatchReview(String batchId, int correctionRevision, int contentVersion, BatchReport report,
             List<RefinementTask> tasks, List<RevisionProposal> proposals, List<Item> items,
             List<BatchClosing> analyses, List<Version> history) {
-        this(batchId, correctionRevision, contentVersion, report, tasks, proposals, items, analyses, history, List.of());
+        this(batchId, correctionRevision, contentVersion, report, tasks, proposals, items, analyses, history, List.of(), List.of());
+    }
+    public BatchReview(String batchId, int correctionRevision, int contentVersion, BatchReport report,
+            List<RefinementTask> tasks, List<RevisionProposal> proposals, List<Item> items,
+            List<BatchClosing> analyses, List<Version> history, List<SelectiveCorrection.Run> selectiveRuns) {
+        this(batchId, correctionRevision, contentVersion, report, tasks, proposals, items, analyses, history, selectiveRuns, List.of());
     }
     public record Version(String batchId, int correctionRevision, int contentVersion, BatchStatus status,
             Instant openedAt, int analyses, String baselineAuditId, String startAuditId) {}
