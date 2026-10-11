@@ -14,7 +14,8 @@ from unittest import mock
 
 from production_publish import registry
 from production_publish.tests import fakes
-from production_publish.tests.fake_driver import FakeMongo, ObjectId, ServerSelectionTimeoutError, load_script
+from production_publish.tests.fake_driver import (FakeCollection, FakeMongo, ObjectId, OperationFailure,
+                                                  ServerSelectionTimeoutError, load_script)
 
 PLAN = "2026-10-05T10-00-00"
 QUIZ = "665f000000000000000000b1"
@@ -22,6 +23,7 @@ QUIZ_MC = "665f000000000000000000b2"
 KNOWLEDGE = "665f000000000000000000c1"
 INSTANCE = "665f000000000000000000d1"
 MISSING_KNOWLEDGE = "665f000000000000000000c9"
+KNOWLEDGE_2 = "665f000000000000000000c2"
 LABEL = "El verbo $to be$"
 BAD_URI = "mongodb://%s:cl@ve/x@host/learney" % fakes.FAKE_USER
 
@@ -387,6 +389,33 @@ class PlanPathTest(LegacyTestCase):
         self.assertEqual((row["result"], row["verified"]), (registry.VERIFY_FAILED, False))
         self.assertEqual(row["writtenIds"], ["quizTemplates/" + QUIZ, "quizzes/" + INSTANCE])
 
+    def test_F_PUBPROD_R008_si_la_sincronizacion_de_titulos_se_corta_el_renglon_de_fin_nombra_lo_escrito(self):
+        self.setup_title_sync()
+
+        def fail_on_instance(collection, query, update):
+            if collection == "quizzes":
+                raise OperationFailure("la base no responde")
+
+        self.mongo.write_hooks.append(fail_on_instance)
+        code, out = run(self.module.main, self.args("--plan", PLAN, "--apply"))
+        self.assertEqual(code, registry.EXIT_PROBLEMS, out)
+        started, row = self.rows()[-2:]
+        self.assertEqual((started["result"], row["result"], row["reason"]["code"]),
+                         (registry.STARTED, registry.ABORTED, "STORE_ERROR"))
+        self.assertEqual(row["runId"], started["runId"])
+        self.assertEqual(row["writtenIds"], ["quizTemplates/" + QUIZ])
+        self.assertEqual(row["indeterminate"], ["quizzes/" + INSTANCE])
+        self.assertIs(row["verified"], False)
+        self.assertIn("NO SE SABE si quedó escrito quizzes/%s" % INSTANCE, out)
+        detail = fakes.run_detail(self.repo, row)
+        self.assertEqual((detail["documents"][0]["old"], detail["documents"][0]["new"]),
+                         ({"title": "Ser", "translation": "Ella es muy alta."},
+                          {"title": "To be", "translation": "Ella es alta."}))
+        sync = {(e["collection"], e["_id"]): (e["old"], e["new"]) for e in detail["titleSync"]}
+        self.assertEqual(sync[("quizzes", INSTANCE)],
+                         ({"template.title": "Ser", "template.instructions": "Completá con to be."},
+                          {"template.title": LABEL, "template.instructions": "Completá."}))
+
     def test_F_PUBPROD_R006_con_batch_va_al_paso_por_tanda(self):
         workdir = fakes.temp_workdir(self)
         for argv in (["--batch", "no-existe"], ["--batch=no-existe"]):
@@ -462,6 +491,57 @@ class KnowledgeWritersMixin:
         row = self.rows()[-1]
         self.assertEqual((row["result"], row["verified"]), (registry.VERIFY_FAILED, False))
 
+    def add_second_knowledge(self):
+        """Otro tema con su nombre y su consigna nuevos: la escritura en lote lleva dos."""
+        write_json(os.path.join(self.repo, "db", "english-course", "u2", "_knowledge.json"), {
+            "_id": {"$oid": KNOWLEDGE_2}, "kind": "KNOWLEDGE", "label": "Los pronombres",
+            "instructions": "Elegí el pronombre."})
+        self.mongo.collection(fakes.DB, "knowledges").append(
+            {"_id": ObjectId(KNOWLEDGE_2), "kind": "KNOWLEDGE", "label": "Pronombres",
+             "instructions": "Elegí.", "order": 4})
+
+    def test_F_PUBPROD_R008_si_la_base_falla_a_mitad_de_escribir_el_renglon_de_fin_dice_que_no_se_sabe_que_quedo(self):
+        self.add_second_knowledge()
+
+        def fail_on_second(collection, query, update):
+            if len(self.mongo.writes) == 1:
+                raise OperationFailure("la base no responde")
+
+        self.mongo.write_hooks.append(fail_on_second)
+        code, out = run(self.module.main, self.args("--apply"))
+        self.assertEqual(code, registry.EXIT_PROBLEMS, out)
+        self.assertEqual(len(self.mongo.writes), 1)  # el primero llegó; el lote no terminó
+        started, final = self.rows()
+        self.assertEqual((started["result"], final["result"], final["reason"]["code"]),
+                         (registry.STARTED, registry.ABORTED, "STORE_ERROR"))
+        self.assertEqual(final["runId"], started["runId"])
+        self.assertEqual(final["writtenIds"], [])
+        self.assertEqual(sorted(final["indeterminate"]), ["knowledges/" + KNOWLEDGE, "knowledges/" + KNOWLEDGE_2])
+        self.assertIs(final["verified"], False)
+        self.assertIn("NO SE SABE si quedó escrito knowledges/%s" % KNOWLEDGE, out)
+        backup = {d["_id"]: (d["old"], d["new"]) for d in fakes.run_detail(self.repo, final)["documents"]}
+        self.assertEqual(set(backup), {KNOWLEDGE, KNOWLEDGE_2})
+        self.assertEqual(backup[KNOWLEDGE], ({self.field: self.mongo_value}, {self.field: self.file_value}))
+
+    def test_F_PUBPROD_R008_un_ctrl_c_despues_de_escribir_deja_el_renglon_de_fin_con_lo_escrito(self):
+        real_find_one = FakeCollection.find_one
+
+        def find_one(collection, query=None, projection=None):
+            if self.mongo.writes:  # ya escribió: el Ctrl-C llega al verificar
+                raise KeyboardInterrupt
+            return real_find_one(collection, query, projection)
+
+        with mock.patch.object(FakeCollection, "find_one", find_one), self.assertRaises(KeyboardInterrupt):
+            run(self.module.main, self.args("--apply"))
+        started, final = self.rows()
+        self.assertEqual((final["result"], final["reason"]["code"]), (registry.ABORTED, "INTERRUPTED"))
+        self.assertEqual(final["runId"], started["runId"])
+        self.assertEqual(final["writtenIds"], ["knowledges/" + KNOWLEDGE])
+        self.assertEqual(final["indeterminate"], [])
+        self.assertIs(final["verified"], False)
+        document = fakes.run_detail(self.repo, final)["documents"][0]
+        self.assertEqual((document["old"], document["new"]), ({self.field: self.mongo_value}, {self.field: self.file_value}))
+
     def test_F_PUBPROD_R008_si_no_puede_dejar_el_inicio_no_escribe(self):
         os.makedirs(os.path.join(self.repo, ".content-audit"), exist_ok=True)
         with open(os.path.join(self.repo, ".content-audit", "production"), "w") as fh:
@@ -504,6 +584,19 @@ class LabelsTest(KnowledgeWritersMixin, LegacyTestCase):
         self.mongo.data[fakes.DB]["knowledges"].clear()
         run(self.module.main, self.args())
         self.assertEqual(self.rows()[-1]["result"], registry.DRY_RUN_WITH_PROBLEMS)
+
+    def test_F_PUBPROD_R008_si_el_informe_no_se_puede_guardar_despues_de_escribir_el_renglon_de_fin_nombra_lo_escrito(self):
+        os.makedirs(os.path.join(self.repo, ".content-audit"), exist_ok=True)
+        with open(os.path.join(self.repo, ".content-audit", "publish-reports"), "w") as fh:
+            fh.write("un archivo donde va la carpeta de los informes")
+        with self.assertRaises(OSError):
+            run(self.module.main, self.args("--apply"))
+        row = self.rows()[-1]
+        self.assertEqual((row["result"], row["reason"]["code"], row["errorClass"]),
+                         (registry.ABORTED, "ERROR", "FileExistsError"))
+        self.assertEqual(row["writtenIds"], ["knowledges/" + KNOWLEDGE])
+        self.assertEqual(row["indeterminate"], [])
+        self.assertEqual(fakes.run_detail(self.repo, row)["documents"][0]["old"], {"label": "To be"})
 
     def test_F_PUBPROD_R008_conserva_el_informe_con_los_nombres_viejos(self):
         run(self.module.main, self.args("--apply"))

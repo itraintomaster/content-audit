@@ -250,7 +250,11 @@ y el cierre dicen «no pasa, y además 2 pisos sin decidir», nunca «no se pued
 > 4. los otros dos escritores de producción, el de los nombres y el de las consignas de los temas, también dejan su
 >    renglón;
 > 5. un ensayo que encuentra problemas —por ejemplo, un tema o un ejercicio que no está en la base— queda registrado
->    como ensayo con problemas y termina con error, en cualquiera de los escritores; sólo un ensayo limpio termina bien.
+>    como ensayo con problemas y termina con error, en cualquiera de los escritores; sólo un ensayo limpio termina bien;
+> 6. si una aplicación se corta después de su renglón de inicio —la base falla, aparece un error inesperado o la
+>    interrumpen a mano, aunque sea al cerrar la corrida—, igual deja su renglón de fin, que nombra lo que alcanzó a
+>    escribir y lo que no se sabe si quedó escrito, y lo muestra; el detalle de la corrida conserva el antes y el después
+>    de cada campo para deshacerlo a mano. Vale para todos los escritores.
 
 <a id="F-PUBPROD-R009"></a>
 ### Rule[F-PUBPROD-R009] - Escribir exige ensayar y nombrar el destino

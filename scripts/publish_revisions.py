@@ -183,8 +183,12 @@ def title_sync_entries(sync):
     return [dict(entry, _id=str(entry["_id"])) for entry in sync["titles"] + sync["instances"]]
 
 
-def apply_quiz_title_sync(db, sync):
-    """Escribe exactamente lo que se armó (y quedó en el respaldo) y devuelve lo que no coincide al releer."""
+def apply_quiz_title_sync(db, sync, recorder):
+    """Escribe exactamente lo que se armó (y quedó en el respaldo) y devuelve lo que no coincide al releer.
+
+    Cada escritura a la base pasa por `recorder.writing`: si se corta, el renglón de fin nombra lo
+    escrito y lo que no se sabe si quedó (F-PUBPROD-R008).
+    """
     from bson import json_util
     from pymongo import UpdateOne
 
@@ -195,11 +199,13 @@ def apply_quiz_title_sync(db, sync):
             json_util.loads(fh.read())  # sanity parse
     if sync["titles"]:
         col = db[sync["titles"][0]["collection"]]
-        result = col.bulk_write([UpdateOne({"_id": e["_id"]}, {"$set": e["new"]}) for e in sync["titles"]],
-                                ordered=True)
+        with recorder.writing(f"{e['collection']}/{e['_id']}" for e in sync["titles"]):
+            result = col.bulk_write([UpdateOne({"_id": e["_id"]}, {"$set": e["new"]}) for e in sync["titles"]],
+                                    ordered=True)
         sync["stats"]["title_mongo_modified"] = result.modified_count
     for e in sync["instances"]:
-        db[e["collection"]].update_one({"_id": e["_id"]}, {"$set": e["new"]})
+        with recorder.writing([f"{e['collection']}/{e['_id']}"]):
+            db[e["collection"]].update_one({"_id": e["_id"]}, {"$set": e["new"]})
 
     failures = []
     for e in sync["titles"] + sync["instances"]:
@@ -543,7 +549,9 @@ def publish_plan(args, mode, recorder, batch_ids):
         ops = [UpdateOne({"_id": u.id}, {"$set": u.sets}) for u in updates[col_name]]
         if not ops:
             continue
-        result = col.bulk_write(ops, ordered=True)
+        # F-PUBPROD-R008: si se corta, el renglón de fin nombra lo escrito y lo que no se sabe.
+        with recorder.writing(f"{col_name}/{u.id}" for u in updates[col_name]):
+            result = col.bulk_write(ops, ordered=True)
         print(f"{col_name}: matched={result.matched_count} modified={result.modified_count}")
 
     print("\n== Verificación post-apply ==")
@@ -566,7 +574,7 @@ def publish_plan(args, mode, recorder, batch_ids):
 
     if sync is not None:
         print("\n== Sync quiz.title := knowledge.label ==")
-        sync_failures = apply_quiz_title_sync(db, sync)
+        sync_failures = apply_quiz_title_sync(db, sync, recorder)
         for key in (f"{e['collection']}/{e['_id']}" for e in sync["titles"] + sync["instances"]):
             if key not in written_ids:
                 written_ids.append(key)

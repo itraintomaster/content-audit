@@ -238,6 +238,7 @@ class RunLog:
         self.detail_path = None
         self.last_result = None
         self.row_lost = False  # no se pudo dejar el renglón final: la corrida no puede salir con 0
+        self.writes_began = False  # quedó el renglón de inicio: desde acá puede haber escrito en la base
 
     def say(self, text=""):
         print(text, file=self.out)
@@ -251,17 +252,39 @@ class RunLog:
         return row
 
     def record(self, result, **extra):
-        """Agrega el renglón. Devuelve False (y lo dice) si no pudo."""
-        self.last_result = result
+        """Agrega el renglón. Devuelve False (y lo dice) si no pudo.
+
+        `last_result` cambia recién cuando el renglón quedó o cuando el registro dijo que no: si un
+        corte llega a mitad de la escritura del renglón, la corrida sigue sin renglón de fin y el
+        corte deja el suyo (mejor un renglón de más que uno de menos).
+        """
         try:
             self.registry.append(self.row(result, **extra))
-            return True
         except RegistryError as e:
+            self.last_result = result
             self.say("!! %s" % e)
             if result != STARTED:  # sin el de inicio no se escribe; sin el final, se avisa y sale mal
                 self.row_lost = True
                 self.say("!! La corrida no quedó registrada (%s): anotala a mano." % result)
             return False
+        self.last_result = result
+        if result == STARTED:
+            self.writes_began = True
+        return True
+
+    def cut_after_start(self):
+        """Si la corrida dejó su renglón de inicio y todavía no el de fin (F-PUBPROD-R008, inv. 6)."""
+        return self.writes_began and self.last_result == STARTED
+
+    def say_cut(self, written, unknown, planned=None):
+        """Lo que alcanzó a escribir una aplicación cortada, lo que no se sabe y dónde está el respaldo."""
+        of = " de %d" % planned if planned is not None else ""
+        self.say("Alcanzó a escribir %d documento(s)%s; no se sabe si quedaron %d." % (len(written), of, len(unknown)))
+        for key in unknown:
+            self.say("  NO SE SABE si quedó escrito %s: revisalo contra el respaldo (old) del detalle." % key)
+        if self.detail_path is not None:
+            self.say("El respaldo (old y new de cada campo a escribir) está en %s."
+                     % self.registry.relative(self.detail_path))
 
     def write_detail(self, detail):
         """El detalle de la corrida (el respaldo, si va a escribir). Devuelve False (y lo dice) si no pudo."""
@@ -307,6 +330,30 @@ class LegacyRecorder(RunLog):
             self.destination_error = None
         except ValueError as e:
             self.destination_error = str(e)
+        self.written = []    # «colección/id» de las escrituras que la base terminó
+        self.in_flight = []  # los de la escritura en curso: si se corta, no se sabe si quedaron
+
+    @contextlib.contextmanager
+    def writing(self, ids):
+        """Envuelve una escritura a la base (F-PUBPROD-R008, inv. 6).
+
+        Si termina, sus «colección/id» quedan como escritos; si se corta (la base falla, un
+        error, un Ctrl-C), quedan como «no se sabe»: una escritura en lote pudo haber llegado
+        en parte. Un id puede quedar en las dos listas si una escritura anterior suya terminó.
+        """
+        self.in_flight = list(ids)
+        yield
+        for key in self.in_flight:
+            if key not in self.written:
+                self.written.append(key)
+        self.in_flight = []
+
+    def _cut(self):
+        """Lo que suma el renglón de fin de una aplicación cortada después de su inicio; nada si no empezó."""
+        if not self.cut_after_start():
+            return {}
+        self.say_cut(self.written, self.in_flight)
+        return {"writtenIds": list(self.written), "indeterminate": list(self.in_flight), "verified": False}
 
     def refuse_bad_destination(self):
         """Si el URI no se puede leer: lo dice sin repetirlo y deja el renglón."""
@@ -320,7 +367,7 @@ class LegacyRecorder(RunLog):
         self.say("ABORTADO: la base falló (%s)." % name)
         if self.unfinished():
             self.record(ABORTED, reason={"code": "STORE_ERROR", "message": "la base falló (%s)" % name},
-                        errorClass=name, **extra)
+                        errorClass=name, **self._cut(), **extra)
         return EXIT_PROBLEMS
 
     def unfinished(self):
@@ -331,20 +378,21 @@ class LegacyRecorder(RunLog):
         """Corre el cuerpo del script; si termina mal sin renglón final, deja ABORTED.
 
         Una excepción de la base se muestra solo por su clase y sale con EXIT_PROBLEMS; las
-        demás se registran y siguen su curso (con su traza, que no trae el URI).
+        demás se registran y siguen su curso (con su traza, que no trae el URI). Si ya había
+        empezado a escribir, el ABORTED nombra lo escrito y lo que no se sabe (inv. 6).
         """
         try:
             code = body()
         except SystemExit as e:
             if self.unfinished():
-                self.record(ABORTED, reason={"code": "EXIT", "message": str(e.code)[:300]}, **extra)
+                self.record(ABORTED, reason={"code": "EXIT", "message": str(e.code)[:300]}, **self._cut(), **extra)
             if self.row_lost and e.code in (0, None):
                 raise SystemExit(EXIT_PROBLEMS)
             raise
         except KeyboardInterrupt:
             if self.unfinished():
                 self.record(ABORTED, reason={"code": "INTERRUPTED", "message": "corrida interrumpida a mano"},
-                            **extra)
+                            **self._cut(), **extra)
             raise
         except Exception as e:
             if is_database_error(e):
@@ -352,7 +400,7 @@ class LegacyRecorder(RunLog):
             if self.unfinished():
                 self.record(ABORTED, errorClass=type(e).__name__,
                             reason={"code": "ERROR", "message": "falló el script (%s)" % type(e).__name__},
-                            **extra)
+                            **self._cut(), **extra)
             raise
         if self.row_lost and not code:
             return EXIT_PROBLEMS

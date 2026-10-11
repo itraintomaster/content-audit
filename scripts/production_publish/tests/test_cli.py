@@ -8,7 +8,7 @@ import os
 import unittest
 from unittest import mock
 
-from production_publish import cli, manifest_reader, registry
+from production_publish import applier, cli, manifest_reader, registry
 from production_publish.registry import (ABORTED, APPLIED_VERIFIED, DRY_RUN_CLEAN, DRY_RUN_WITH_PROBLEMS,
                                          REFUSED, STARTED, VERIFY_FAILED, RegistryError)
 from production_publish.store import get_path, same_value
@@ -620,6 +620,76 @@ class InterruptedOrLostWriteTest(CliTestCase):
         self.assertIn("ConnectionError", out)
         detail = fakes.run_detail(self.workdir, row)
         self.assertEqual(detail["indeterminate"][0]["problem"], "no se pudo releer (ConnectionError)")
+
+    def assert_backup_of_every_write(self, row):
+        """El detalle que nombra el renglón tiene el old y el new de cada documento escrito."""
+        detail = fakes.run_detail(self.workdir, row)
+        backed_up = {"%s/%s" % (d["collection"], d["id"]) for d in detail["documents"]
+                     if any("old" in f and "new" in f for f in d["fields"])}
+        self.assertEqual(backed_up, set(self.ALL_WRITTEN))
+        return detail
+
+    def test_F_PUBPROD_R008_un_ctrl_c_al_cerrar_la_corrida_igual_deja_el_renglon_de_fin_con_lo_escrito(self):
+        real_write_run = registry.Registry.write_run
+
+        def write_run(reg, run_id, detail):
+            if detail["result"] != STARTED:  # el detalle final, después de escribir y verificar
+                raise KeyboardInterrupt
+            return real_write_run(reg, run_id, detail)
+
+        with mock.patch.object(registry.Registry, "write_run", write_run), self.assertRaises(KeyboardInterrupt):
+            self.run_cli(*APPLY_ARGS)
+        self.assertEqual(self.results(), [DRY_RUN_CLEAN, STARTED, ABORTED])
+        started, row = self.rows()[-2:]
+        self.assertEqual(row["runId"], started["runId"])
+        self.assertEqual(row["reason"]["code"], "INTERRUPTED")
+        self.assertEqual(row["writtenIds"], self.ALL_WRITTEN)
+        self.assertEqual(row["indeterminate"], [])
+        self.assertIs(row["verified"], True)  # lo escrito se llegó a verificar entero
+        self.assertEqual(self.assert_backup_of_every_write(row)["result"], STARTED)
+
+    def test_F_PUBPROD_R008_un_ctrl_c_justo_despues_del_inicio_deja_el_renglon_de_fin_sin_escritos(self):
+        real_say = cli.Run.say
+
+        def say(run, text=""):
+            if text.startswith("Escribiendo"):  # ya quedó el renglón de inicio; todavía no escribió
+                raise KeyboardInterrupt
+            return real_say(run, text)
+
+        with mock.patch.object(cli.Run, "say", say), self.assertRaises(KeyboardInterrupt):
+            self.run_cli(*APPLY_ARGS)
+        self.assertEqual(self.results(), [DRY_RUN_CLEAN, STARTED, ABORTED])
+        row = self.rows()[-1]
+        self.assertEqual(row["reason"]["code"], "INTERRUPTED")
+        self.assertEqual((row["writtenIds"], row["indeterminate"]), ([], []))
+        self.assertEqual(self.store.writes, [])
+
+    def test_F_PUBPROD_R008_un_error_inesperado_al_verificar_igual_deja_el_renglon_de_fin_con_lo_escrito(self):
+        with mock.patch.object(applier, "_verify", side_effect=RuntimeError("falla del verificador")), \
+                self.assertRaises(RuntimeError):
+            self.run_cli(*APPLY_ARGS)
+        self.assertEqual(self.results(), [DRY_RUN_CLEAN, STARTED, ABORTED])
+        row = self.rows()[-1]
+        self.assertEqual((row["reason"]["code"], row["errorClass"]), ("ERROR", "RuntimeError"))
+        self.assertEqual(row["writtenIds"], self.ALL_WRITTEN)
+        self.assertEqual(row["indeterminate"], [])
+        self.assertIs(row["verified"], False)
+        self.assert_backup_of_every_write(row)
+
+    def test_F_PUBPROD_R008_un_error_inesperado_a_mitad_de_escribir_nombra_lo_que_no_se_sabe(self):
+        def explode(store, collection, doc_id):
+            if doc_id == fakes.QUIZ_2:
+                raise ConnectionError("se cortó")
+
+        self.store.on_write = explode
+        with mock.patch.object(applier, "_resolve", side_effect=RuntimeError("falla al releer")), \
+                self.assertRaises(RuntimeError):
+            self.run_cli(*APPLY_ARGS)
+        row = self.rows()[-1]
+        self.assertEqual((row["result"], row["reason"]["code"]), (ABORTED, "ERROR"))
+        self.assertEqual(row["writtenIds"], self.ALL_WRITTEN[:2])
+        self.assertEqual(row["indeterminate"], ["quizTemplates/" + fakes.QUIZ_2])
+        self.assertIs(row["verified"], False)
 
 
 class RegistryFailureTest(CliTestCase):

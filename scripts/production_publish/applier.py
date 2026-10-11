@@ -55,8 +55,9 @@ class ApplyOutcome:
             self.unresolved = doc
 
 
-def apply(plan, store):
-    outcome = ApplyOutcome()
+def apply(plan, store, outcome=None):
+    """Escribe y verifica. Si el que llama pasa `outcome`, ve lo escrito aunque se escape un error inesperado."""
+    outcome = outcome if outcome is not None else ApplyOutcome()
     try:
         _write(plan, store, outcome)
     except KeyboardInterrupt:

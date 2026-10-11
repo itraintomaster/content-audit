@@ -337,15 +337,54 @@ def _execute(run, store, plan):
         return _aborted(run, problem["code"], "%s desde el ensayo; no se escribió nada." % problem["message"],
                         **_common(run, plan))
     to_write = plan.to_write()
-    problem = run.begin_writing(_run_detail(run, plan, STARTED), planned=len(to_write), **_common(run, plan))
-    if problem:
-        run.say("ABORTADO: %s." % problem)
-        run.say_registry()
-        return EXIT_PROBLEMS
-    detail_rel = run.registry.relative(run.detail_path)
+    outcome = applier.ApplyOutcome()
+    applied = False
+    try:  # desde el renglón de inicio, un corte igual deja el de fin
+        problem = run.begin_writing(_run_detail(run, plan, STARTED), planned=len(to_write), **_common(run, plan))
+        if problem:
+            run.say("ABORTADO: %s." % problem)
+            run.say_registry()
+            return EXIT_PROBLEMS
+        detail_rel = run.registry.relative(run.detail_path)
 
-    run.say("Escribiendo %d documento(s)…" % len(to_write))
-    outcome = applier.apply(plan, store)  # un Ctrl-C no se lleva el resultado: queda adentro
+        run.say("Escribiendo %d documento(s)…" % len(to_write))
+        applier.apply(plan, store, outcome)  # un Ctrl-C no se lleva el resultado: queda adentro
+        applied = True
+        return _close_run(run, plan, outcome, detail_rel)
+    except BaseException as error:
+        _cut_after_start(run, plan, outcome, applied, error)
+        raise
+
+
+def _cut_after_start(run, plan, outcome, applied, error):
+    """Una aplicación cortada después de su renglón de inicio deja igual el de fin (F-PUBPROD-R008, inv. 6).
+
+    Nombra lo que alcanzó a escribir y lo que no se sabe si quedó; el respaldo ya está en el detalle.
+    Si el renglón de fin ya quedó, no agrega otro.
+    """
+    if not run.cut_after_start():
+        return
+    written = ["%s/%s" % (d.collection, d.doc_id) for d in outcome.written]
+    unknown = outcome.indeterminate_keys()
+    if not applied:  # no terminó: la escritura en curso o la que había que releer pudo haber llegado
+        for doc in (outcome.in_flight, outcome.unresolved):
+            key = None if doc is None else "%s/%s" % (doc.collection, doc.doc_id)
+            if key is not None and key not in written and key not in unknown:
+                unknown.append(key)
+    interrupted = isinstance(error, KeyboardInterrupt)
+    code = applier.INTERRUPTED if interrupted else "ERROR"
+    name = type(error).__name__
+    message = "corrida interrumpida a mano" if interrupted else "falló la corrida (%s)" % name
+    run.say("ABORTADO (%s): %s." % (code, message))
+    run.say_cut(written, unknown, len(plan.to_write()))
+    run.record(ABORTED, reason={"code": code, "message": message}, writtenIds=written, indeterminate=unknown,
+               verified=applied and _result_of(outcome) == APPLIED_VERIFIED,
+               pendingTraveled=plan.pending_documents(outcome.written),
+               errorClass=None if interrupted else name, **_common(run, plan))
+
+
+def _close_run(run, plan, outcome, detail_rel):
+    """El detalle y el renglón de fin de una aplicación que terminó; lo que se muestra al final."""
     result = _result_of(outcome)
 
     written_ids = ["%s/%s" % (d.collection, d.doc_id) for d in outcome.written]

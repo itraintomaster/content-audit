@@ -108,8 +108,10 @@ def publish_labels(args, mode, recorder):
         if problem:
             print(f"\nABORTADO: {problem}.")
             return production_registry.EXIT_PROBLEMS
-        res = col.bulk_write([UpdateOne({"_id": e["_id"]}, {"$set": {"label": e["newLabel"]}})
-                              for e in pending], ordered=True)
+        # F-PUBPROD-R008: si se corta, el renglón de fin nombra lo escrito y lo que no se sabe.
+        with recorder.writing("%s/%s" % (args.collection, e["_id"]) for e in pending):
+            res = col.bulk_write([UpdateOne({"_id": e["_id"]}, {"$set": {"label": e["newLabel"]}})
+                                  for e in pending], ordered=True)
         print(f"\nmatched={res.matched_count} modified={res.modified_count}")
 
     failures = [e for e in pending

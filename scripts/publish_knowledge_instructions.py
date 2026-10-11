@@ -129,7 +129,9 @@ def publish_instructions(args, recorder):
 
     ops = [UpdateOne({"_id": ObjectId(oid)}, {"$set": {"instructions": nuevo}})
            for oid, _, nuevo, _ in pendientes]
-    res = col.bulk_write(ops, ordered=False)
+    # F-PUBPROD-R008: si se corta, el renglón de fin nombra lo escrito y lo que no se sabe.
+    with recorder.writing("%s/%s" % (args.collection, oid) for oid, _, _, _ in pendientes):
+        res = col.bulk_write(ops, ordered=False)
     print(f"\n== Aplicando ==\nknowledges: matched={res.matched_count} modified={res.modified_count}")
 
     malos = 0
