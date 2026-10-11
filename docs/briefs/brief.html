@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mapa en HTML</title>
+<title>Mapa contra el CLI</title>
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -248,81 +248,89 @@
   .par .captura.cel img{max-height:560px;object-fit:cover;object-position:top}
 </style>
 </head>
+<body>
 <div class="wrap">
 
   <header>
     <div class="kicker">
-      <span class="num">091</span>
-      <span class="badge">Resumen</span>
-      <span class="meta">Dashboard de content-audit, después del brief 088 · 10/10/2026</span>
+      <span class="num">099</span>
+      <span class="badge">Diagnóstico</span>
+      <span class="meta">El Mapa del brief 091, revisado contra el CLI · 10/10/2026</span>
     </div>
-    <h1>El Mapa ya anda en HTML: dónde está parada la tanda</h1>
-    <p class="sub">Qué muestra, qué no hace, qué datos faltaron y qué pasar a lo común.</p>
+    <h1>El Mapa, contrastado con el CLI: dos textos corregidos</h1>
+    <p class="sub">Qué confirmó la revisión, qué estaba mal dicho y qué sigue sin leerse.</p>
   </header>
 
-  <div class="lede"><p><strong>El Mapa ya anda en HTML sobre la tanda A1: la base, la corrección 1, lo aprobado y cinco análisis.</strong> Sólo lee; lo que gasta o publica está apagado y dice por qué.</p></div>
+  <div class="lede"><p><strong>La revisión contra el CLI encontró dos cosas mal dichas, y ya están arregladas.</strong> A2 se cuenta contra A0 medida de nuevo (+310, no +271), y publicar escribe el curso de content-audit, nunca la app.</p></div>
 
   <section>
-    <h2>Base, corrección y análisis, en tres carriles</h2>
-    <figure class="captura"><img src="091-mapa-en-html/pantalla.jpg" alt="La pantalla Mapa: arriba la brújula con producción, base, estás acá y comparás; la historia de la base a hoy; el mapa en tres carriles con la base, la corrección 1, lo aprobado y los análisis A0 a A4; abajo la ficha de la corrección">
-      <figcaption>Tanda A1, hoy, sobre una copia de la campaña</figcaption></figure>
-    <div class="par" style="margin-top:12px">
-      <figure class="captura cel"><img src="091-mapa-en-html/celular.jpg" alt="La misma pantalla en un celular, en modo oscuro: la brújula en dos columnas y el mapa que se desliza de costado">
-        <figcaption>En el celular, en oscuro</figcaption></figure>
-      <figure class="captura"><img src="091-mapa-en-html/en-a1.jpg" alt="El mapa parado en A1: sólo se ve lo que ya había pasado ese día, y la brújula compara A1 contra A0, con 308 ejercicios de más">
-        <figcaption>Parado en A1: se ve sólo lo que había ese día</figcaption></figure>
+    <h2>Los números del Mapa coinciden con el CLI</h2>
+    <div class="cambia">
+      <div class="si"><div class="ptl">Confirmado</div><ul><li>Nadie anota qué curso está en la app: el Mapa hace bien en suponerlo.</li><li>Hay una sola tanda y una sola base: no hay historia vieja que mostrar.</li><li>Cada número de la ficha es el que guarda el análisis, sin cuentas propias.</li></ul></div>
+      <div class="no"><div class="ptl">El explorador se equivocó</div><ul><li>Dijo que no había nada aprobado: hay 14, en 20 archivos de decisiones.</li><li>El Mapa dice 14 aprobados y 1.752 pendientes, y está bien.</li></ul></div>
     </div>
-    <p class="pie">La historia recorre las siete paradas con las flechas; tocar una caja o un disco abre su ficha abajo.</p>
+    <p class="pie">El explorador es un agente que leyó el código del CLI y la copia de la campaña, sin correr nada que gaste.</p>
   </section>
 
   <section>
-    <h2>De la base a A4: 593 ejercicios con error menos</h2>
-    <div class="card">
-      <div class="hb">
-        <div class="r"><span class="t">A0 <small>la base, antes de corregir</small></span><span class="tr"><span class="f s" style="width:86.4%"></span></span><span class="n">1.959</span></div>
-        <div class="r"><span class="t">A1 <small>8/10 · +308</small></span><span class="tr"><span class="f b" style="width:100%"></span></span><span class="n">2.267</span></div>
-        <div class="r"><span class="t">A2 <small>+271</small></span><span class="tr"><span class="f b" style="width:98.4%"></span></span><span class="n">2.230</span></div>
-        <div class="r"><span class="t">A3 <small>−664</small></span><span class="tr"><span class="f g" style="width:57.1%"></span></span><span class="n">1.295</span></div>
-        <div class="r"><span class="t">A4 <small>9/10 · −593 (−30 %)</small></span><span class="tr"><span class="f g" style="width:60.3%"></span></span><span class="n">1.366</span></div>
+    <h2>A2 sube 310 contra la base medida de nuevo</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">A0 midió la base</span><span class="eg">1.959 con algún error</span><span class="d">El 7/10, con las reglas de ese día.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Cambiaron dos reglas</span><span class="eg">Oración poco natural · Ejercicio casi repetido</span><span class="d">Ya no miden como cuando se midió A0.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">content-audit midió A0 de nuevo</span><span class="eg">1.920 con algún error</span><span class="d">Con las reglas de A2, para no mezclar.</span></div>
+      <div class="st end"><span class="i">4</span><span class="h">Cuenta el cambio desde ahí</span><span class="eg">2.230 − 1.920 = +310</span><span class="d">Contra la A0 de siempre daría +271.</span></div>
+    </div>
+    <p class="pie">Sólo A2 se contó así. A1, A3 y A4 se cuentan contra A0 tal como se midió.</p>
+  </section>
+
+  <section>
+    <h2>Ahora la pantalla dice contra qué contó</h2>
+    <div class="ad">
+      <div class="lado antes"><span class="rot">Antes</span>
+        <ol><li>La brújula decía «A2 contra A0 · +310».</li><li>Pero A0 muestra 1.959, y 2.230 − 1.959 da 271.</li><li>El brief 091 había puesto +271.</li></ol>
+        <span class="res">Dos números que no cerraban</span></div>
+      <div class="lado despues"><span class="rot">Ahora</span>
+        <ol><li>Dice «A2 contra A0 medida de nuevo · +310».</li><li>Muestra el 1.920 desde donde se contó.</li><li>Un (!) nombra las dos reglas que cambiaron.</li></ol>
+        <span class="res">+310, con su base a la vista</span></div>
+    </div>
+    <figure class="captura" style="margin-top:12px"><img src="099-mapa-contra-el-cli/a2.jpg" alt="El Mapa con A2 elegido: la brújula dice «A2 contra A0 medida de nuevo · +310» y abajo «A0 medida de nuevo: 1.920»; el arco del mapa repite lo mismo">
+      <figcaption>A2 elegido: la brújula y el arco dicen contra qué se contó</figcaption></figure>
+    <div class="par" style="margin-top:12px">
+      <figure class="captura cel"><img src="099-mapa-contra-el-cli/a2-ayuda.jpg" alt="Ayuda «A0 medida de nuevo», en oscuro: por qué se vuelve a medir la base y, para A2, que da 1.920 medida de nuevo y 1.959 como se midió, por eso +310 y no +271">
+        <figcaption>El (!) nuevo, con los números de A2</figcaption></figure>
+      <figure class="captura"><img src="099-mapa-contra-el-cli/a2-ficha.jpg" alt="La ficha de A2: 2.230 ejercicios con algún error, +310 contra los 1.920 de A0 medida de nuevo; y qué dos analizadores cambiaron de medida">
+        <figcaption>La ficha de A2</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Publicar escribe el curso de content-audit, no la app</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">Aprobás cambios</span><span class="d">En Correcciones; quedan en lo aprobado.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Publicar</span><span class="eg">content-audit</span><span class="d">Escribe lo aprobado en el curso de la carpeta y lo analiza.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">Llevarlo a producción</span><span class="eg">a mano</span><span class="d">Subir el curso a la app y grabar los audios.</span></div>
+      <div class="st end"><span class="i">4</span><span class="h">Lo ve el alumno</span><span class="d">Recién acá.</span></div>
+    </div>
+    <div class="par" style="margin-top:12px">
+      <figure class="captura cel"><img src="099-mapa-contra-el-cli/produccion-ayuda.jpg" alt="Ayuda «Producción es un supuesto»: publicar escribe lo aprobado en el curso de la carpeta y lo vuelve a analizar, pero nunca toca la app">
+        <figcaption>La ayuda de producción, corregida</figcaption></figure>
+      <div class="cambia">
+        <div class="no"><div class="ptl">Decían las ayudas</div><ul><li>Publicar cambia el curso que ven los alumnos.</li><li>Lo aprobado, solo, nunca se midió.</li></ul></div>
+        <div class="si"><div class="ptl">Dicen ahora</div><ul><li>Publicar escribe el curso y lo analiza; la app es un paso aparte.</li><li>Publicada la tanda, lo aprobado se midió al publicar.</li></ul></div>
       </div>
     </div>
-    <figure class="captura" style="margin-top:12px"><img src="091-mapa-en-html/ficha.jpg" alt="La ficha de A4: midió la corrección 1 con 1.481 propuestas en 2 vueltas; 14 analizadores medidos, 6 heredados y 1 que no corrió; la compuerta no pasó, con sus razones; y cada analizador del catálogo con su color">
-      <figcaption>La ficha de A4: lo que costó, la compuerta y cada analizador</figcaption></figure>
-    <p class="pie">Ejercicios con algún error en cada análisis. Ningún cierre pasó la compuerta; de 1.766 cambios propuestos, 14 están aprobados.</p>
   </section>
 
   <section>
-    <h2>Cada zona se explica; lo que gasta está apagado</h2>
-    <figure class="captura"><img src="091-mapa-en-html/ayuda.jpg" alt="Panel de ayuda «Un análisis y su anillo», en oscuro: dónde está en la pantalla, qué es cada color del anillo y cómo se lee, con los números de A4">
-      <figcaption>(?) del anillo, con los números de A4</figcaption></figure>
-    <div class="cambia" style="margin-top:12px">
-      <div class="si"><div class="ptl">Hace</div><ul><li>Lee la tanda, su revisión, el catálogo y la base.</li><li>Recorre la historia con flechas, Tab y Enter.</li><li>22 temas de ayuda: 14 (?) y 8 (!).</li><li>Enlaza a Correcciones, ya en HTML.</li></ul></div>
-      <div class="no"><div class="ptl">Dibuja apagado, con su (!)</div><ul><li>Analizar y correr lo que falta: gastan.</li><li>Publicar lo aprobado.</li><li>Comparar contra otro análisis que no sea A0.</li><li>Las pantallas vecinas que faltan: «pronto».</li></ul></div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Cuatro datos que el CLI no tiene</h2>
+    <h2>Dos datos que siguen sin leerse</h2>
     <div class="tw"><table>
-      <thead><tr><th>Qué falta</th><th>Qué hace la pantalla</th></tr></thead>
+      <thead><tr><th>Qué</th><th>Por qué el Mapa no lo usa</th></tr></thead>
       <tbody>
-        <tr><td>Qué ve hoy el alumno</td><td>Lo supone por el estado de la tanda; un (!) lo dice.</td></tr>
-        <tr><td>Comparaciones entre dos análisis cualquiera</td><td>Sólo contra A0, la base; el resto, apagado.</td></tr>
-        <tr><td>Una medición de lo aprobado solo</td><td>La caja va sin disco, con su (!).</td></tr>
-        <tr><td>Las tandas anteriores del curso</td><td>Se ve sólo la abierta; un (!) en la leyenda.</td></tr>
+        <tr><td>El análisis que hace publicar</td><td>Queda anotado en la tanda, pero la revisión que lee el Mapa no lo trae. La copia no tiene ninguna tanda publicada para probarlo.</td></tr>
+        <tr><td>El «inicio de tanda» de cada cierre</td><td>Se midió al cerrar, con 0 o 1 aprobado; los 14 de hoy llegaron después.</td></tr>
       </tbody>
     </table></div>
-    <p class="pie">No hizo falta un comando nuevo: alcanzan la revisión, el catálogo y dos archivos de la campaña. Un análisis sin detalle por analizador va sin anillo.</p>
-    <div class="call c-warn"><b>No sé</b> si producción está de verdad en la base: content-audit no anota qué se publicó fuera de la tanda.</div>
-  </section>
-
-  <section>
-    <h2>Lo repetido, listo para pasar a lo común</h2>
-    <div class="cambia">
-      <div class="no"><div class="ptl">Copiado de Correcciones</div><ul><li>Qué se mira y el estado de la tanda, arriba.</li><li>El arranque de la página: capas, foco y Tab.</li><li>La regla que valida un id de archivo.</li><li>La lista de huecos de las pruebas de ayuda.</li></ul></div>
-      <div class="si"><div class="ptl">Hecho acá, le sirve a otras</div><ul><li>El modelo de estados: base, corrección, análisis.</li><li>La lectura guardada que se puede releer.</li><li>Botón apagado con su (!) y enlace a una vecina.</li><li>Contar en singular o plural.</li><li>El lugar fijo del aviso de error.</li></ul></div>
-    </div>
-    <p class="pie">No toqué lo común: dos renglones reservados y la marca de pantalla hecha.</p>
+    <div class="call c-warn"><b>No sé</b> por qué ese inicio da 2.671 con algún error, más que la base (1.959).</div>
   </section>
 
   <section>
@@ -330,21 +338,16 @@
     <div class="asks">
       <div class="ask"><div class="q">¿La paso a master?</div>
         <div class="ops"><span class="op rec">Sí, después de probarla</span><span class="op">Esperar a las otras pantallas</span></div>
-        <div class="why">Sólo toca el Mapa y sus renglones reservados. 147 pruebas del navegador y 46 del servidor, en verde; Flutter sigue igual.</div></div>
-      <div class="ask"><div class="q">¿Qué dato de content-audit va primero?</div>
-        <div class="ops"><span class="op rec">Qué se publicó y cuándo</span><span class="op">Medir lo aprobado</span><span class="op">Las tandas anteriores</span></div>
-        <div class="why">Es lo que hoy el Mapa supone: dónde está producción.</div></div>
-      <div class="ask"><div class="q">¿Cuándo se pasa lo repetido a lo común?</div>
-        <div class="ops"><span class="op rec">Al final, en una sesión aparte</span><span class="op">Ahora</span></div>
-        <div class="why">Ocho pantallas se arman en paralelo: moverlo ahora choca.</div></div>
+        <div class="why">Cuatro commits, sólo del Mapa. 154 pruebas del navegador y 48 del servidor, en verde.</div></div>
+      <div class="ask"><div class="q">¿Leemos el análisis de la publicación?</div>
+        <div class="ops"><span class="op rec">Sí, con la primera tanda publicada</span><span class="op">Más adelante</span></div>
+        <div class="why">Es leer la tanda, sin gastar. Sin una publicada, no hay con qué probarlo.</div></div>
     </div>
-<pre>cd ~/projects/learney/ittm/.claude/worktrees/laughing-mccarthy-5ac876/pipeline/vocabulary_dashboard
-CONTENT_AUDIT_ROOT=~/projects/learney/content-audit CONTENT_AUDIT_WORKDIR=/ruta/a/la/copia CONTENT_AUDIT_CONTEXT_KIND=Copia ~/DevDependencies/flutter/bin/dart run bin/tablero_html.dart --puerto 7831</pre>
   </section>
 
   <footer>
-    <span>Rama claude/recursing-banach-09318b de ittm (sin push): 7930cff58 servidor, 67729f55d pantalla. Servidor en lib/tablero_html/mapa/ (GET /api/mapa/estado; ?releer=1 vuelve al CLI; lectura en otro isolate, guardada; readAt lo pone el servidor). Lee batch review, get analyzers, .content-audit/baseline.json y el audit-digest de la base; una base o un resumen ilegibles cuentan como ausentes. Pantalla en html/mapa.html, html/js/mapa/ (store, selectores con armarModelo, vistas puras, gestos, ayuda con crearAyuda y dibujarMapa) y html/css/mapa.css. Una tanda = una corrección; la revisión 0 o ausente es la 1; A0 es de la base y A1…An de c{r}. Para promover: .ctx y .estado-tanda copiados de correcciones.css; _idSeguro duplicado de Correcciones; el andamio de main.js (poner/dibujado, claveDeCapa, foco de la capa, guarda del fondo, trampa de Tab); HUECOS de test/ayuda-comun.js sin exportar; armarModelo y vista_del_mapa.dart (estados Base / Correcciones / Análisis); contado, cuantos y cuentaEnPalabras; apagado e irA de vistas/comun.js; la lectura guardada con releer de rutas_de_mapa.dart; mapa-recorrido.js; el lugar fijo .mp-aviso para el morph. Pendiente: el Mapa no se entera si Correcciones aprueba algo hasta releer. npm test: 368 en verde (147 del Mapa); flutter test test/tablero_html: 116 en verde (46 del Mapa); guardian_test falla sólo por los 8 archivos de miniteoría de master. Capturas con Chrome sin ventana sobre http://localhost:7831, con una copia de la campaña a1-v11.</span>
-    <span>brief 091 · docs/briefs/091-mapa-en-html.html</span>
+    <span>Rama claude/recursing-banach-09318b de ittm (sin push): 7930cff58 servidor y 67729f55d pantalla (brief 091); e4ca2c5d2 y 10b56eb20, esta revisión. Re-medición: cuando comparison.measureChanges trae analizadores (R007 / F-METAS-R007), el cambio de cada fila se cuenta desde remeasuredBaseline (Values.reference()). El servidor manda por cierre remeasured (los ids de measureChanges[].analyzer) y, en cada medida, r = remeasuredBaseline.value; el navegador lo dice en la brújula, el arco, la historia, la ficha y el tema de ayuda a0-de-nuevo. Publicar: tray publish → DefaultBatchPublisher (F-TANDA-R009) escribe el curso local, lo analiza (BatchPublication.publishedAuditId) y mueve el par activo; nunca escribe producción. publication.publishedAuditId y publishedAt no salen en batch review. La columna approved de ComparisonRow es el inicio de tanda al cerrar. Copia a1-v11: 20 archivos de decisiones, 14 APPROVED y 1.752 PENDING; una tanda, un análisis de base. npm test: 375 en verde (154 del Mapa); flutter test test/tablero_html: 118 en verde (48 del Mapa); guardian_test sin nada del Mapa. Capturas con Chrome sin ventana sobre http://localhost:7831.</span>
+    <span>brief 099 · docs/briefs/099-mapa-contra-el-cli.html</span>
   </footer>
 
 </div>
