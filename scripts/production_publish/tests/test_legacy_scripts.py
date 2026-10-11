@@ -140,6 +140,16 @@ class PlanPathTest(LegacyTestCase):
         self.assertEqual(self.mongo.clients, [])
         self.assertEqual(self.rows()[-1]["reason"]["code"], "BATCHES_UNREADABLE")
 
+    def test_F_PUBPROD_R006_encuentra_las_tandas_de_un_plan_en_el_repo_y_en_las_campanas(self):
+        fakes.write_batch(self.repo, batch_id="tanda-raiz", plan_id="plan-x")
+        campaign = os.path.join(self.repo, ".content-audit", "campaigns", "a1-v11")
+        fakes.write_batch(campaign, batch_id="tanda-campana", plan_id="plan-x")
+        fakes.write_batch(campaign, batch_id="tanda-otra", plan_id="plan-y")
+        # La misma raíz dos veces (--repo y el repo del script): cada tanda cuenta una sola vez.
+        matches, unreadable = self.module.batches_of_plan((self.repo, self.repo + os.sep), "plan-x")
+        self.assertEqual(sorted(i for _, i in matches), ["tanda-campana", "tanda-raiz"])
+        self.assertEqual(unreadable, [])
+
     def test_F_PUBPROD_R006_el_ensayo_del_plan_de_una_tanda_avisa_y_no_escribe(self):
         fakes.write_batch(self.repo, plan_id=PLAN)
         code, out = run(self.module.main, self.plan_args())

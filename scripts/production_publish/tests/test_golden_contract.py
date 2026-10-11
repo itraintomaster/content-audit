@@ -52,8 +52,7 @@ class GoldenContractTest(unittest.TestCase):
             self.skipTest("todavía no existe el golden del lado Java (%s); se valida cuando se junten las ramas "
                           "o con PUBPROD_GOLDEN=<ruta>" % GOLDEN)
         with open(GOLDEN, "rb") as fh:
-            raw = fh.read()
-        manifest = manifest_reader._strict_json(raw.decode("utf-8"), "el golden")
+            manifest = manifest_reader._strict_json(fh.read(), "el golden")
         check_contract(self, manifest)
 
 

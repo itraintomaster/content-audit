@@ -2,7 +2,6 @@
 
 import copy
 import json
-import os
 import unittest
 
 from production_publish import manifest_reader
@@ -116,6 +115,17 @@ class LoadTest(unittest.TestCase):
             b'"schema": 1,', b'"schema": 1, "schema": 1,', 1)
         fakes.write_batch(self.workdir, raw_manifest=raw)
         self.assertRefused("UNREADABLE", load, self.workdir, fakes.BATCH_ID)
+
+    def test_F_PUBPROD_R006_niega_una_tanda_o_una_lista_que_no_es_utf8(self):
+        raw = fakes.manifest_bytes(fakes.example_manifest()).replace(b'"schema": 1,', b'"schema": 1, "x": "\xff",', 1)
+        fakes.write_batch(self.workdir, raw_manifest=raw)
+        refusal = self.assertRefused("UNREADABLE", load, self.workdir, fakes.BATCH_ID)
+        self.assertIn("no es UTF-8", refusal.message)
+        fakes.write_batch(self.workdir)
+        with open(manifest_reader.batch_record_path(self.workdir, fakes.BATCH_ID), "ab") as fh:
+            fh.write(b"\xff")
+        refusal = self.assertRefused("UNREADABLE", load, self.workdir, fakes.BATCH_ID)
+        self.assertIn("no es UTF-8", refusal.message)
 
     def test_F_PUBPROD_R006_niega_una_lista_de_otra_tanda_o_de_otro_plan(self):
         manifest = fakes.example_manifest()
@@ -365,18 +375,6 @@ class ValidateManifestTest(unittest.TestCase):
         doc(self.manifest, fakes.KNOWLEDGE)["collection"] = "users"
         codes = self.assertRefused("REJECTED_DOCUMENT", self.manifest)
         self.assertIn("COLLECTION_NOT_ALLOWED", codes)
-
-
-class FindBatchesForPlanTest(unittest.TestCase):
-    def test_F_PUBPROD_R006_encuentra_las_tandas_de_un_plan_en_el_repo_y_en_las_campanas(self):
-        repo = fakes.temp_workdir(self)
-        fakes.write_batch(repo, batch_id="tanda-raiz", plan_id="plan-x")
-        campaign = os.path.join(repo, ".content-audit", "campaigns", "a1-v11")
-        fakes.write_batch(campaign, batch_id="tanda-campana", plan_id="plan-x")
-        fakes.write_batch(campaign, batch_id="tanda-otra", plan_id="plan-y")
-        matches, unreadable = manifest_reader.find_batches_for_plan([repo], "plan-x")
-        self.assertEqual(sorted(i for _, i in matches), ["tanda-campana", "tanda-raiz"])
-        self.assertEqual(unreadable, [])
 
 
 if __name__ == "__main__":

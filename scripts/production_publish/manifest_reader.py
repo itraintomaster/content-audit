@@ -12,7 +12,6 @@ Lee solamente:
 Nunca lee el árbol `db/`: lo que se escribe sale de la lista.
 """
 
-import glob
 import hashlib
 import json
 import os
@@ -100,7 +99,7 @@ def manifest_file_path(workdir, batch_id):
 
 
 def _strict_json(data, what):
-    """JSON sin claves repetidas ni NaN/Infinity: una lista ambigua no se publica."""
+    """Los bytes de un JSON en UTF-8, sin claves repetidas ni NaN/Infinity: una lista ambigua no se publica."""
 
     def pairs(items):
         out = {}
@@ -114,7 +113,11 @@ def _strict_json(data, what):
         raise ValueError("valor no permitido %s" % name)
 
     try:
-        return json.loads(data, object_pairs_hook=pairs, parse_constant=bad_constant)
+        text = data.decode("utf-8")
+    except UnicodeDecodeError:
+        raise Refusal("UNREADABLE", "No se pudo leer %s: no es UTF-8." % what)
+    try:
+        return json.loads(text, object_pairs_hook=pairs, parse_constant=bad_constant)
     except ValueError as e:
         raise Refusal("UNREADABLE", "No se pudo leer %s: %s." % (what, e))
 
@@ -123,16 +126,31 @@ def load(workdir, batch_id):
     """Lee y valida la tanda y su lista. Lanza Refusal ante cualquier duda."""
     if not isinstance(batch_id, str) or not BATCH_ID.match(batch_id):
         raise Refusal("BAD_BATCH_ID", "Identidad de tanda inválida.")
-    bpath = batch_record_path(workdir, batch_id)
-    if not os.path.isfile(bpath):
+    record = _published_record(workdir, batch_id)
+    publication = record["publication"]
+    digest = _registered_digest(publication, batch_id)
+    manifest_path, raw = _published_manifest(workdir, batch_id, digest)
+    problems = []
+    _verdict_problems("La publicación de la tanda", publication.get("verdictKind"), publication.get("gatePassed"),
+                      "undecidableFloors" in publication and _no_floors(publication["undecidableFloors"]),
+                      problems)
+    if problems:
+        raise Refusal(problems[0][0], problems[0][1], problems)
+    manifest = _strict_json(raw, "la lista de %s" % batch_id)
+    plan_id = record.get("planId")
+    validate_manifest(manifest, expected_batch_id=batch_id, expected_plan_id=plan_id)
+    return LoadedBatch(batch_id, plan_id, manifest_path, digest, manifest)
+
+
+def _published_record(workdir, batch_id):
+    """El registro de la tanda, si es de esta tanda, está publicada y registra su publicación."""
+    path = batch_record_path(workdir, batch_id)
+    if not os.path.isfile(path):
         raise Refusal("BATCH_NOT_FOUND",
                       "No existe la tanda %s en %s (¿pasaste el --workdir de la campaña?)."
-                      % (batch_id, os.path.dirname(bpath)))
-    with open(bpath, "rb") as fh:
-        try:
-            record = _strict_json(fh.read().decode("utf-8"), "la tanda %s" % batch_id)
-        except UnicodeDecodeError:
-            raise Refusal("UNREADABLE", "La tanda %s no es UTF-8." % batch_id)
+                      % (batch_id, os.path.dirname(path)))
+    with open(path, "rb") as fh:
+        record = _strict_json(fh.read(), "la tanda %s" % batch_id)
     if not isinstance(record, dict):
         raise Refusal("UNREADABLE", "La tanda %s no es un objeto JSON." % batch_id)
     if record.get("id") != batch_id:
@@ -141,9 +159,13 @@ def load(workdir, batch_id):
         raise Refusal("NOT_PUBLISHED",
                       "La tanda %s no está publicada (estado %s): solo una tanda publicada va a producción."
                       % (batch_id, record.get("status")))
-    publication = record.get("publication")
-    if not isinstance(publication, dict):
+    if not isinstance(record.get("publication"), dict):
         raise Refusal("NOT_PUBLISHED", "La tanda %s no registra su publicación." % batch_id)
+    return record
+
+
+def _registered_digest(publication, batch_id):
+    """La huella sha256 de la lista que registró la publicación, en minúscula."""
     digest = publication.get("manifestDigest")
     if not digest:
         # Decisión 14: las tandas publicadas antes de la lista no tienen qué llevar.
@@ -153,50 +175,48 @@ def load(workdir, batch_id):
                       "no se puede llevar por acá." % batch_id)
     if not isinstance(digest, str) or not SHA256_HEX.match(digest.lower()):
         raise Refusal("BAD_DIGEST", "La huella registrada de la lista de %s no es un sha256." % batch_id)
-    mpath = manifest_file_path(workdir, batch_id)
-    if not os.path.isfile(mpath):
-        raise Refusal("MANIFEST_MISSING", "Falta la lista de publicación de %s en %s." % (batch_id, mpath))
-    with open(mpath, "rb") as fh:
+    return digest.lower()
+
+
+def _published_manifest(workdir, batch_id, digest):
+    """(ruta, bytes) de la lista, si es la que se publicó: una lista cambiada se niega."""
+    path = manifest_file_path(workdir, batch_id)
+    if not os.path.isfile(path):
+        raise Refusal("MANIFEST_MISSING", "Falta la lista de publicación de %s en %s." % (batch_id, path))
+    with open(path, "rb") as fh:
         raw = fh.read()
     actual = hashlib.sha256(raw).hexdigest()
-    if actual != digest.lower():
+    if actual != digest:
         raise Refusal("DIGEST_MISMATCH",
                       "La lista de %s no es la que se publicó: su huella es %s y la tanda registró %s. "
-                      "No se publica una lista cambiada." % (batch_id, actual, digest.lower()))
-
-    problems = []
-    if publication.get("verdictKind") != "PASSES":
-        problems.append(("VERDICT_NOT_PASSES",
-                         "La publicación registra el veredicto «%s», no «PASSES»."
-                         % publication.get("verdictKind")))
-    if publication.get("gatePassed") is not True:
-        problems.append(("GATE_NOT_PASSED",
-                         "La publicación no registra que la compuerta del último cierre pasó "
-                         "(gatePassed=%s)." % json.dumps(publication.get("gatePassed"))))
-    if "undecidableFloors" not in publication:
-        problems.append(("UNDECIDABLE_FLOORS", "La publicación no registra los pisos sin decidir."))
-    elif not _no_floors(publication.get("undecidableFloors"), allow_null=True):
-        problems.append(("UNDECIDABLE_FLOORS",
-                         "La publicación registra pisos que no se pueden decidir: con «no se puede "
-                         "decidir» no se publica."))
-    if problems:
-        raise Refusal(problems[0][0], problems[0][1], problems)
-
-    try:
-        manifest = _strict_json(raw.decode("utf-8"), "la lista de %s" % batch_id)
-    except UnicodeDecodeError:
-        raise Refusal("UNREADABLE", "La lista de %s no es UTF-8." % batch_id)
-    plan_id = record.get("planId")
-    validate_manifest(manifest, expected_batch_id=batch_id, expected_plan_id=plan_id)
-    return LoadedBatch(batch_id, plan_id, mpath, actual, manifest)
+                      "No se publica una lista cambiada." % (batch_id, actual, digest))
+    return path, raw
 
 
-def _no_floors(value, allow_null):
-    """Si `value` dice que no hay pisos sin decidir (lista vacía, cantidad 0, objeto con count 0)."""
+def _verdict_problems(where, kind, gate_passed, floors_clear, problems):
+    """Lo que habilita publicar: veredicto «PASSES», compuerta pasada y ningún piso sin decidir.
+
+    Se mira dos veces (F-PUBPROD-R005): en la publicación que registró la tanda y en la lista.
+    """
+    if kind != "PASSES":
+        problems.append(("VERDICT_NOT_PASSES", "%s registra el veredicto %s, no «PASSES»." % (where, _shown(kind))))
+    if gate_passed is not True:
+        problems.append(("GATE_NOT_PASSED", "%s no registra que la compuerta del último cierre pasó "
+                                            "(gatePassed=%s)." % (where, _shown(gate_passed))))
+    if not floors_clear:
+        problems.append(("UNDECIDABLE_FLOORS", "%s registra pisos sin decidir (o no dice cuáles): con «no se "
+                                               "puede decidir» no se publica." % where))
+
+
+def _no_floors(value):
+    """Si la publicación de la tanda dice que no hay pisos sin decidir.
+
+    Java usa null para «todos los pisos decididos» (DefaultBatchComparator.undecidableFloors);
+    también valen la lista vacía, la cantidad 0 o un objeto con count 0 y sin analizadores.
+    En la lista, en cambio, el esquema pide exactamente [].
+    """
     if value is None:
-        # En el registro de la tanda, Java usa null para «todos los pisos decididos»
-        # (DefaultBatchComparator.undecidableFloors). En la lista, el esquema pide [].
-        return allow_null
+        return True
     if isinstance(value, bool):
         return False
     if isinstance(value, list):
@@ -357,15 +377,8 @@ def _source_problems(source, problems):
 
 
 def _manifest_verdict_problems(verdict, problems):
-    if verdict.get("kind") != "PASSES":
-        problems.append(("VERDICT_NOT_PASSES", "La lista trae el veredicto «%s», no «PASSES»."
-                         % verdict.get("kind")))
-    if verdict.get("gatePassed") is not True:
-        problems.append(("GATE_NOT_PASSED", "La lista no dice que la compuerta pasó."))
-    if verdict.get("undecidableFloors") != []:
-        problems.append(("UNDECIDABLE_FLOORS",
-                         "La lista trae pisos sin decidir (o no dice cuáles): con «no se puede "
-                         "decidir» no se publica."))
+    _verdict_problems("La lista", verdict.get("kind"), verdict.get("gatePassed"),
+                      verdict.get("undecidableFloors") == [], problems)
     if verdict.get("brokenFloorGoalIds") != []:
         problems.append(("BROKEN_FLOORS", "La lista trae pisos rotos (o no dice cuáles): %s."
                          % _shown(verdict.get("brokenFloorGoalIds"))))
@@ -536,29 +549,3 @@ def validate_manifest(manifest, expected_batch_id=None, expected_plan_id=None):
                       % problems[0][1], problems)
     return manifest
 
-
-def find_batches_for_plan(roots, plan_id):
-    """Tandas cuyo planId es `plan_id`, buscando en cada raíz y en sus campañas.
-
-    Devuelve (coincidencias, ilegibles): listas de (ruta, id de tanda) y de rutas.
-    """
-    matches, unreadable = [], []
-    seen = set()
-    for root in roots:
-        patterns = (os.path.join(root, ".content-audit", "batches", "*.json"),
-                    os.path.join(root, ".content-audit", "campaigns", "*", ".content-audit", "batches", "*.json"))
-        for pattern in patterns:
-            for path in sorted(glob.glob(pattern)):
-                real = os.path.realpath(path)
-                if real in seen:
-                    continue
-                seen.add(real)
-                try:
-                    with open(path, encoding="utf-8") as fh:
-                        record = json.load(fh)
-                except (OSError, ValueError):
-                    unreadable.append(path)
-                    continue
-                if isinstance(record, dict) and record.get("planId") == plan_id:
-                    matches.append((path, record.get("id")))
-    return matches, unreadable

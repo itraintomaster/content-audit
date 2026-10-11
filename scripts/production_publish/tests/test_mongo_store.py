@@ -2,7 +2,7 @@
 
 import unittest
 
-from production_publish.mongo_store import MongoStore, open_store
+from production_publish.mongo_store import open_store
 from production_publish.store import MISSING
 from production_publish.tests import fakes
 from production_publish.tests.fake_driver import FakeMongo, ObjectId

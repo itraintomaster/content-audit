@@ -60,7 +60,6 @@ if SCRIPTS_DIR not in sys.path:
     sys.path.insert(0, SCRIPTS_DIR)
 
 from production_publish import registry as production_registry  # noqa: E402
-from production_publish.manifest_reader import find_batches_for_plan  # noqa: E402
 
 REPO_DEFAULT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TOOL = "publish_revisions"
@@ -316,14 +315,31 @@ def get_path(doc, path):
     return value
 
 
-def batches_of_plan(repo, plan):
-    """Tandas cuyo planId es este plan: en --repo, en el repo del script y en sus campañas."""
-    roots = []
-    for root in (repo, REPO_DEFAULT):
-        real = os.path.realpath(root)
-        if real not in roots:
-            roots.append(real)
-    return find_batches_for_plan(roots, plan)
+def batches_of_plan(roots, plan):
+    """Tandas cuyo planId es este plan, en cada raíz y en sus campañas.
+
+    Devuelve (coincidencias, ilegibles): listas de (ruta, id de tanda) y de rutas. Un
+    archivo que se ve desde dos raíces (o por un enlace) cuenta una sola vez.
+    """
+    matches, unreadable, seen = [], [], set()
+    for root in roots:
+        for pattern in (os.path.join(root, ".content-audit", "batches", "*.json"),
+                        os.path.join(root, ".content-audit", "campaigns", "*", ".content-audit", "batches",
+                                     "*.json")):
+            for path in sorted(glob.glob(pattern)):
+                real = os.path.realpath(path)
+                if real in seen:
+                    continue
+                seen.add(real)
+                try:
+                    with open(path, encoding="utf-8") as fh:
+                        record = json.load(fh)
+                except (OSError, ValueError):
+                    unreadable.append(path)
+                    continue
+                if isinstance(record, dict) and record.get("planId") == plan:
+                    matches.append((path, record.get("id")))
+    return matches, unreadable
 
 
 def main(argv=None):
@@ -342,7 +358,7 @@ def main(argv=None):
         return recorder.refuse_bad_destination()
 
     # F-PUBPROD-R006 inv. 5: el camino por plan no escribe el plan de una tanda.
-    batches, unreadable = batches_of_plan(args.repo, args.plan)
+    batches, unreadable = batches_of_plan((args.repo, REPO_DEFAULT), args.plan)
     batch_ids = sorted({str(batch_id) for _, batch_id in batches})
     if args.apply and (batches or unreadable):
         if batches:
