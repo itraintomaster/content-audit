@@ -104,6 +104,9 @@ final class Publishing {
     /** What the published analysis still marks. */
     List<Finding> remaining = new ArrayList<>();
 
+    /** The id the plan of the published analysis comes with; none, unless a test says otherwise: the store gives one. */
+    String newPlanId;
+
     Publishing() {
         this(TandaFixture.course());
     }
@@ -143,7 +146,7 @@ final class Publishing {
         RefinerEngine refiner = new RefinerEngine() {
             @Override
             public RefinementPlan plan(AuditReport report, String auditId) {
-                return new RefinementPlan(null, auditId, Instant.parse("2026-10-01T18:00:00Z"), new ArrayList<>());
+                return new RefinementPlan(newPlanId, auditId, Instant.parse("2026-10-01T18:00:00Z"), new ArrayList<>());
             }
 
             @Override

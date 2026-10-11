@@ -176,7 +176,7 @@ class DefaultBatchPublisher implements BatchPublisher {
         Instant publishedAt = Instant.now();
         // F-PUBPROD-R003 inv. 6 and R010: if the publication does not end, nothing is left half done -- the course, the
         // list of this attempt, the proposals, the tasks of the plan, the active analysis and the batch go back to how
-        // they were.
+        // they were, and the analysis and the plan of the published course it saved are discarded.
         Undo undo = new Undo(batch, startCourse);
         try {
             Prepared prepared = prepare(batch, asked, startCourse, last, publishedAt);
@@ -201,12 +201,16 @@ class DefaultBatchPublisher implements BatchPublisher {
                 applied.add(ref.getProposalId());
             }
 
-            // The written course analyzed with the same analyzers, its plan, and the active pair moved.
+            // The written course analyzed with the same analyzers, its plan, and the active pair moved. The analysis and
+            // the plan this attempt saves are noted as they are saved, to discard them if it does not end (R010 inv. 4).
             AuditReport published = auditEngine.runAudit(courseMapper.map(courseRepository.load(coursePath)),
                     selection(batch));
             String auditId = auditReportStore.save(published);
+            undo.savedAuditId = auditId;
             RefinementPlan plan = refinerEngine.plan(published, auditId);
+            undo.savingPlan(plan.getId());
             String planId = refinementPlanStore.save(plan);
+            undo.savedPlanId = planId;
             Set<String> stillThere = new HashSet<>();
             for (AuditNode node : BatchBook.nodes(published)) {
                 for (Finding finding : BatchBook.list(node.getFindings())) {
@@ -401,8 +405,11 @@ class DefaultBatchPublisher implements BatchPublisher {
      * F-PUBPROD-R003 inv. 6 and R010: everything publishing changes, kept to put it back if it does not end -- which
      * changes are out, the proposals of the batch, the outcomes of its tasks, its state and publication, and the saved
      * proposals (copied, since a store in memory may hand back the very instance it keeps) -- and what it wrote, as it
-     * writes it: the list of this attempt, the course, the tasks of the plan and the active analysis. The analysis and
-     * the plan of the published course may stay saved, but they are not the active ones.
+     * writes it: the list of this attempt, the course, the analysis and the plan of the published course, the tasks of
+     * the plan and the active analysis. The analysis and the plan it saved are discarded, so that the next command that
+     * looks for «the latest» finds the one before; a plan that already had the id of the new one is put back instead,
+     * and a save of an analysis always gives a new id. While the active analysis could not be put back, they stay: it
+     * still names them.
      */
     private final class Undo {
         private final CorrectionBatch batch;
@@ -428,6 +435,14 @@ class DefaultBatchPublisher implements BatchPublisher {
 
         /** Whether this attempt wrote the course (or started to). */
         private boolean courseWritten;
+
+        /** The analysis of the published course this attempt saved. */
+        private String savedAuditId;
+
+        /** The plan of the published course this attempt saves or saved, and the plan that had its id before, if any. */
+        private String savedPlanId;
+
+        private Optional<RefinementPlan> previousPlan = Optional.empty();
 
         /** The status each task of the batch plan had before this attempt settled it. */
         private final Map<String, RefinementTaskStatus> taskStatuses = new LinkedHashMap<>();
@@ -462,14 +477,26 @@ class DefaultBatchPublisher implements BatchPublisher {
         }
 
         /**
+         * Notes the plan about to be saved before saving it -- so that a save that fails halfway is discarded too -- with
+         * the plan that already had that id, if any, to put it back instead of discarding it.
+         */
+        void savingPlan(String planId) {
+            if (planId != null) {
+                previousPlan = refinementPlanStore.load(planId);
+                savedPlanId = planId;
+            }
+        }
+
+        /**
          * Puts everything back, last written first, and gives what to throw: the failure as it came when everything went
          * back, or one that names what was left half done -- with the failure as its cause -- when something could not.
          */
         RuntimeException restore(RuntimeException failure) {
             List<String> halfDone = new ArrayList<>();
             List<RuntimeException> undoFailures = new ArrayList<>();
+            boolean activeBack = true;
             if (activeMoved) {
-                step(halfDone, undoFailures, "el análisis vigente quedó en el del curso publicado", () -> {
+                activeBack = step(halfDone, undoFailures, "el análisis vigente quedó en el del curso publicado", () -> {
                     if (previousActive.isPresent()) {
                         activeAnalysisSelectionStore.write(previousActive.get());
                     } else {
@@ -487,6 +514,29 @@ class DefaultBatchPublisher implements BatchPublisher {
                             }
                             refinementPlanStore.save(plan);
                         }));
+            }
+            if (!activeBack) {
+                // The active analysis still names the analysis and the plan of the published course: they stay.
+                halfDone.add("el análisis " + savedAuditId + " y el plan " + savedPlanId + " del curso publicado"
+                        + " quedaron guardados, porque el análisis vigente todavía los nombra");
+            } else {
+                if (savedPlanId != null) {
+                    String planId = savedPlanId;
+                    step(halfDone, undoFailures, previousPlan.isPresent()
+                            ? "el plan " + planId + " quedó como el del curso publicado y no como estaba"
+                            : "el plan " + planId + " del curso publicado quedó guardado", () -> {
+                                if (previousPlan.isPresent()) {
+                                    refinementPlanStore.save(previousPlan.get());
+                                } else {
+                                    refinementPlanStore.discard(planId);
+                                }
+                            });
+                }
+                if (savedAuditId != null) {
+                    String auditId = savedAuditId;
+                    step(halfDone, undoFailures, "el análisis " + auditId + " del curso publicado quedó guardado",
+                            () -> auditReportStore.discard(auditId));
+                }
             }
             if (courseWritten) {
                 step(halfDone, undoFailures, "el curso en " + coursePath + " quedó como lo escribió esta publicación, o a"
@@ -524,13 +574,16 @@ class DefaultBatchPublisher implements BatchPublisher {
             return unfinished;
         }
 
-        private static void step(List<String> halfDone, List<RuntimeException> undoFailures, String whatIsLeft,
+        /** Runs one step of putting back; when it fails, notes what was left and gives false. */
+        private static boolean step(List<String> halfDone, List<RuntimeException> undoFailures, String whatIsLeft,
                 Runnable action) {
             try {
                 action.run();
+                return true;
             } catch (RuntimeException e) {
                 halfDone.add(whatIsLeft + " (" + message(e) + ")");
                 undoFailures.add(e);
+                return false;
             }
         }
     }

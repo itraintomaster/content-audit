@@ -403,12 +403,19 @@ public final class TandaFixture {
             }
         }
 
+        /** Si no es nulo, guardar el plan con este id lo deja guardado a medias y falla, una vez. */
+        public String halfSaving;
+
         @Override
         public String save(RefinementPlan plan) {
             if (plan.getId() == null) {
                 plan.setId("plan-" + (saved.size() + 1));
             }
             saved.put(plan.getId(), plan);
+            if (plan.getId().equals(halfSaving)) {
+                halfSaving = null;
+                throw new IllegalStateException("el plan quedó a medio guardar");
+            }
             return plan.getId();
         }
 
@@ -421,6 +428,15 @@ public final class TandaFixture {
         public Optional<RefinementPlan> loadLatest() {
             return saved.values().stream().reduce((a, b) -> b);
         }
+
+        /** Los ids que se pidió descartar, en orden. */
+        public final List<String> discarded = new ArrayList<>();
+
+        @Override
+        public void discard(String id) {
+            discarded.add(id);
+            saved.remove(id);
+        }
     }
 
     public static final class Reports implements AuditReportStore {
@@ -428,6 +444,21 @@ public final class TandaFixture {
 
         /** Si no es nulo, el próximo análisis que se guarde falla con esto; después vuelve a andar. */
         public RuntimeException failure;
+
+        /** Si no es nulo, descartar un análisis falla con esto y el análisis queda. */
+        public RuntimeException discardFailure;
+
+        /** Los ids que se pidió descartar, en orden. */
+        public final List<String> discarded = new ArrayList<>();
+
+        @Override
+        public void discard(String id) {
+            discarded.add(id);
+            if (discardFailure != null) {
+                throw discardFailure;
+            }
+            saved.remove(id);
+        }
 
         public Reports put(String id, AuditReport report) {
             saved.put(id, report);
@@ -511,6 +542,9 @@ public final class TandaFixture {
     public static final class ActivePair implements ActiveAnalysisSelectionStore {
         public ActiveAnalysisSelection selection;
 
+        /** Si no es nulo, escribir el par vigente falla con esto y el par queda como estaba. */
+        public RuntimeException writeFailure;
+
         @Override
         public Optional<ActiveAnalysisSelection> read() {
             return Optional.ofNullable(selection);
@@ -518,6 +552,9 @@ public final class TandaFixture {
 
         @Override
         public void write(ActiveAnalysisSelection selection) {
+            if (writeFailure != null) {
+                throw writeFailure;
+            }
             this.selection = selection;
         }
 

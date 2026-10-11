@@ -14,9 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learney.contentaudit.auditdomain.ActiveAnalysisSelection;
+import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
 import com.learney.contentaudit.revisiondomain.RevisionArtifact;
@@ -804,6 +806,8 @@ public class PublishingReviewedBatchTest {
 
         assertEquals("no se pudo guardar el análisis", failed.getMessage(), "la falla sube tal cual");
         assertEquals(2, p.courses.written.size(), "el curso se escribió y se volvió a escribir como estaba");
+        assertTrue(p.reports.discarded.isEmpty(), "no se descarta un análisis que este intento no guardó");
+        assertTrue(p.plans.discarded.isEmpty(), "ni un plan");
         assertNothingHalfDone(p, batch, before, tasksBefore);
     }
 
@@ -813,8 +817,8 @@ public class PublishingReviewedBatchTest {
     @Tag("F-PUBPROD-R010")
     public void shouldPutEverythingBackWhenSavingTheBatchAsPublishedFails() {
         // R010 inv. 1 a 5: falla lo último, guardar la tanda como publicada; para entonces las tareas del plan ya se
-        // asentaron y el análisis vigente ya se movió. Todo vuelve; el análisis del curso publicado queda guardado,
-        // pero no es el vigente.
+        // asentaron y el análisis vigente ya se movió. Todo vuelve, y el análisis y el plan del curso publicado que se
+        // alcanzaron a guardar se descartan.
         Publishing p = new Publishing();
         p.batches = failingToSavePublished(() -> {
         });
@@ -826,8 +830,145 @@ public class PublishingReviewedBatchTest {
                 () -> p.publisher().publish(batch, ok(), p.start));
 
         assertEquals("no se pudo guardar la tanda", failed.getMessage(), "la falla sube tal cual");
-        assertFalse(p.reports.saved.isEmpty(), "el análisis del curso publicado se alcanzó a guardar");
+        assertEquals(List.of("audit-publicado-1"), p.reports.discarded, "el análisis del curso publicado se descarta");
+        assertTrue(p.reports.saved.isEmpty());
+        assertEquals(List.of("plan-2"), p.plans.discarded, "el plan del curso publicado se descarta");
+        assertEquals(List.of(TandaFixture.PLAN), List.copyOf(p.plans.saved.keySet()));
         assertNothingHalfDone(p, batch, before, tasksBefore);
+    }
+
+    @Test
+    @DisplayName("should leave the latest analysis and the latest plan as they were before when the publication does not end after saving the analysis and the plan of the published course")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R010")
+    public void shouldLeaveTheLatestAnalysisAndPlanAsTheyWereWhenThePublicationDoesNotEnd() {
+        // R010 inv. 4: había un análisis y un plan de antes; la publicación guarda los del curso publicado y después
+        // falla guardar la tanda. El último análisis y el último plan vuelven a ser los de antes: lo que guardó el
+        // intento se descarta, y lo de antes queda.
+        Publishing p = new Publishing();
+        AuditReport analysisBefore = p.measure(p.start);
+        p.reports.put("audit-de-partida", analysisBefore);
+        p.batches = failingToSavePublished(() -> {
+        });
+        CorrectionBatch batch = readyToPublish(p);
+        RefinementPlan planBefore = p.plans.loadLatest().orElseThrow();
+        assertEquals(TandaFixture.PLAN, planBefore.getId());
+
+        assertThrows(IllegalStateException.class, () -> p.publisher().publish(batch, ok(), p.start));
+
+        assertSame(analysisBefore, p.reports.loadLatest().orElseThrow(), "el último análisis es el de antes");
+        assertEquals(List.of("audit-de-partida"), List.copyOf(p.reports.saved.keySet()));
+        assertEquals(List.of("audit-publicado-2"), p.reports.discarded, "se descarta sólo el de este intento");
+        assertSame(planBefore, p.plans.loadLatest().orElseThrow(), "el último plan es el de antes");
+        assertEquals(List.of(TandaFixture.PLAN), List.copyOf(p.plans.saved.keySet()));
+        assertEquals(List.of("plan-2"), p.plans.discarded, "se descarta sólo el de este intento");
+    }
+
+    @Test
+    @DisplayName("should discard the plan of the published course and its analysis when saving that plan fails halfway, and throw the failure as it came")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R010")
+    public void shouldDiscardThePlanAndTheAnalysisWhenSavingThatPlanFailsHalfway() {
+        // R010 inv. 4: el plan del curso publicado queda guardado a medias y su guardado falla. Se descarta igual, con
+        // el análisis que ya estaba guardado; como todo volvió, la falla sube tal cual.
+        Publishing p = new Publishing();
+        p.newPlanId = "2026-10-01T18-00-00";
+        p.plans.halfSaving = p.newPlanId;
+        CorrectionBatch batch = readyToPublish(p);
+        String before = photo(p, batch);
+        Map<String, RefinementTaskStatus> tasksBefore = statuses(p);
+
+        IllegalStateException failed = assertThrows(IllegalStateException.class,
+                () -> p.publisher().publish(batch, ok(), p.start));
+
+        assertEquals("el plan quedó a medio guardar", failed.getMessage(), "la falla sube tal cual");
+        assertEquals(List.of(p.newPlanId), p.plans.discarded);
+        assertEquals(List.of(TandaFixture.PLAN), List.copyOf(p.plans.saved.keySet()), "el plan a medias no queda");
+        assertEquals(List.of("audit-publicado-1"), p.reports.discarded);
+        assertTrue(p.reports.saved.isEmpty());
+        assertNothingHalfDone(p, batch, before, tasksBefore);
+    }
+
+    @Test
+    @DisplayName("should put back the plan that already had the id of the plan of the published course instead of discarding it")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R010")
+    public void shouldPutBackThePlanThatAlreadyHadTheIdOfTheNewOneInsteadOfDiscardingIt() {
+        // R010 inv. 4: el plan del curso publicado sale con el id del plan de la tanda, que ya estaba guardado, y lo
+        // pisa. Cuando la publicación no termina, el plan de antes vuelve con sus tareas: no se borra lo que ya estaba.
+        Publishing p = new Publishing();
+        p.newPlanId = TandaFixture.PLAN;
+        p.batches = failingToSavePublished(() -> {
+        });
+        CorrectionBatch batch = readyToPublish(p);
+        RefinementPlan planBefore = p.plans.load(TandaFixture.PLAN).orElseThrow();
+        String before = photo(p, batch);
+        Map<String, RefinementTaskStatus> tasksBefore = statuses(p);
+
+        IllegalStateException failed = assertThrows(IllegalStateException.class,
+                () -> p.publisher().publish(batch, ok(), p.start));
+
+        assertEquals("no se pudo guardar la tanda", failed.getMessage(), "la falla sube tal cual");
+        assertSame(planBefore, p.plans.load(TandaFixture.PLAN).orElseThrow(), "el plan de antes vuelve");
+        assertTrue(p.plans.discarded.isEmpty(), "el plan que ya estaba no se borra");
+        assertEquals(List.of("audit-publicado-1"), p.reports.discarded);
+        assertNothingHalfDone(p, batch, before, tasksBefore);
+    }
+
+    @Test
+    @DisplayName("should name the analysis of the published course that stayed saved, with the original failure as its cause, when it cannot be discarded, and still discard its plan")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R010")
+    public void shouldNameTheAnalysisThatStayedWhenItCannotBeDiscarded() {
+        // R010 inv. 4 y 6: falla guardar la tanda y, al volver atrás, el análisis del curso publicado no se puede
+        // descartar. La falla lo nombra, con la original como causa; el plan se descarta igual y lo demás vuelve.
+        Publishing p = new Publishing();
+        IllegalStateException cannotDelete = new IllegalStateException("el disco no deja borrar");
+        p.batches = failingToSavePublished(() -> p.reports.discardFailure = cannotDelete);
+        CorrectionBatch batch = readyToPublish(p);
+        String before = photo(p, batch);
+
+        IllegalStateException failed = assertThrows(IllegalStateException.class,
+                () -> p.publisher().publish(batch, ok(), p.start));
+
+        assertMentions(failed, "La publicación de la tanda " + batch.getId()
+                + " no terminó (no se pudo guardar la tanda) y no se pudo deshacer del todo: el análisis"
+                + " audit-publicado-1 del curso publicado quedó guardado (el disco no deja borrar)");
+        assertEquals("no se pudo guardar la tanda", failed.getCause().getMessage());
+        assertEquals(1, failed.getSuppressed().length);
+        assertSame(cannotDelete, failed.getSuppressed()[0]);
+        assertTrue(p.reports.saved.containsKey("audit-publicado-1"), "el análisis quedó");
+        assertEquals(List.of("plan-2"), p.plans.discarded, "el plan se descarta igual");
+        assertFalse(p.plans.saved.containsKey("plan-2"));
+        assertEquals(before, photo(p, batch));
+        assertSame(ACTIVE_BEFORE, p.active.selection);
+        assertSame(p.start, p.courses.course);
+    }
+
+    @Test
+    @DisplayName("should keep the analysis and the plan of the published course, and say so, while the active analysis could not be put back and still names them")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R010")
+    public void shouldKeepTheAnalysisAndPlanOfThePublishedCourseWhileTheActiveAnalysisStillNamesThem() {
+        // R010 inv. 4 y 6: falla guardar la tanda y el análisis vigente no puede volver al de antes. Sigue nombrando el
+        // análisis y el plan del curso publicado, así que esos dos quedan guardados, y la falla lo dice.
+        Publishing p = new Publishing();
+        p.batches = failingToSavePublished(
+                () -> p.active.writeFailure = new IllegalStateException("no se pudo escribir el par vigente"));
+        CorrectionBatch batch = readyToPublish(p);
+
+        IllegalStateException failed = assertThrows(IllegalStateException.class,
+                () -> p.publisher().publish(batch, ok(), p.start));
+
+        assertMentions(failed, "no se pudo deshacer del todo: el análisis vigente quedó en el del curso publicado (no"
+                + " se pudo escribir el par vigente); el análisis audit-publicado-1 y el plan plan-2 del curso publicado"
+                + " quedaron guardados, porque el análisis vigente todavía los nombra");
+        assertEquals("no se pudo guardar la tanda", failed.getCause().getMessage());
+        assertEquals(new ActiveAnalysisSelection("audit-publicado-1", "plan-2"), p.active.selection);
+        assertTrue(p.reports.saved.containsKey("audit-publicado-1"), "el análisis que nombra el vigente queda");
+        assertTrue(p.plans.saved.containsKey("plan-2"), "el plan que nombra el vigente queda");
+        assertTrue(p.reports.discarded.isEmpty());
+        assertTrue(p.plans.discarded.isEmpty());
     }
 
     @Test
