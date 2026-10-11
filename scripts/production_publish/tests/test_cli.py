@@ -358,8 +358,16 @@ class RefusalsTest(CliTestCase):
 
     def test_F_PUBPROD_R008_si_otra_corrida_tiene_el_registro_se_niega(self):
         fakes.write_batch(self.workdir)
-        with mock.patch.object(registry.Registry, "lock", side_effect=registry.RegistryBusy("ocupado")):
-            self.assertRefused("REGISTRY_BUSY")
+        self.run_cli()  # un ensayo limpio: lo único que frena la aplicación es el registro tomado
+        with registry.Registry(self.workdir).lock():  # otra corrida, con el candado de verdad
+            with self.assertRaises(registry.RegistryBusy):
+                with registry.Registry(self.workdir).lock():
+                    pass
+            self.assertRefused("REGISTRY_BUSY", *APPLY_ARGS)
+        # Soltado el candado, la misma aplicación sigue.
+        code, out, _ = self.run_cli(*APPLY_ARGS)
+        self.assertEqual(code, 0, out)
+        self.assertEqual(self.results(), [DRY_RUN_CLEAN, REFUSED, STARTED, APPLIED_VERIFIED])
 
 
 class DriftTest(CliTestCase):
