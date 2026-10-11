@@ -258,6 +258,28 @@ class PlanPathTest(LegacyTestCase):
     def test_F_PUBPROD_R008_el_camino_por_plan_sin_respaldo_o_sin_inicio_no_escribe(self):
         self.assert_begin_writing_guards(self.plan_args("--apply"))
 
+    def test_F_PUBPROD_R008_el_camino_por_plan_respalda_y_verifica_los_campos_anidados(self):
+        write_json(os.path.join(self.repo, "db", "english-course", "u1", "quizzes.json"), [
+            {"_id": {"$oid": QUIZ}, "title": "To be", "translation": "Ella es muy alta.",
+             "form": {"kind": "FILL", "sentences": ["She is tall."],
+                      "sentenceParts": [{"kind": "TEXT", "text": "She is very tall."}]}}])
+
+        def corrupt(collection, doc):
+            doc["form"]["sentenceParts"] = [{"kind": "TEXT", "text": "otra cosa"}]
+
+        self.mongo.after_write = corrupt
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out), self.assertRaises(SystemExit):
+            self.module.main(self.plan_args("--apply"))
+        self.assertIn("FAIL quizTemplates %s form.sentenceParts (p1)" % QUIZ, out.getvalue())
+        row = self.rows()[-1]
+        self.assertEqual((row["result"], row["reason"]["message"]), (registry.VERIFY_FAILED, "1 campos no coinciden"))
+        detail = fakes.run_detail(self.repo, row)
+        self.assertEqual(detail["documents"][0]["old"],
+                         {"form.sentenceParts": [{"kind": "TEXT", "text": "She is tall."}]})
+        self.assertEqual(detail["documents"][0]["new"],
+                         {"form.sentenceParts": [{"kind": "TEXT", "text": "She is very tall."}]})
+
     def test_F_PUBPROD_R008_si_la_verificacion_falla_queda_registrado(self):
         def corrupt(collection, doc):
             doc["translation"] = "otra cosa"

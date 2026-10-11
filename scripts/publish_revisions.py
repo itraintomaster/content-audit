@@ -49,7 +49,7 @@ import glob
 import json
 import os
 import sys
-from collections import Counter
+from collections import Counter, namedtuple
 from datetime import datetime, timezone
 
 # pymongo y bson se importan adentro de las funciones que los usan: así el script
@@ -308,6 +308,11 @@ def check_course_doc_labels(db, changed_labels):
     return []
 
 
+# Lo que el camino por plan escribe en un documento: su _id, los campos con su valor nuevo,
+# las propuestas que lo piden y lo que había en Mongo en esos campos (el respaldo).
+Update = namedtuple("Update", "id sets proposals old")
+
+
 def get_path(doc, path):
     value = doc
     for key in path.split("."):
@@ -357,11 +362,24 @@ def main(argv=None):
     if recorder.destination is None:
         return recorder.refuse_bad_destination()
 
-    # F-PUBPROD-R006 inv. 5: el camino por plan no escribe el plan de una tanda.
     batches, unreadable = batches_of_plan((args.repo, REPO_DEFAULT), args.plan)
     batch_ids = sorted({str(batch_id) for _, batch_id in batches})
-    if args.apply and (batches or unreadable):
-        if batches:
+    refused = _refuse_if_plan_of_batch(args, recorder, batch_ids, unreadable)
+    if refused is not None:
+        return refused
+
+    # Una excepción de pymongo se muestra solo por su clase: su mensaje puede traer el destino.
+    return recorder.run(lambda: publish_plan(args, mode, recorder, batch_ids), plan=args.plan)
+
+
+def _refuse_if_plan_of_batch(args, recorder, batch_ids, unreadable):
+    """F-PUBPROD-R006 inv. 5: el camino por plan no escribe el plan de una tanda.
+
+    Con --apply se niega si el plan es de una tanda o si no se pudieron leer las tandas (no
+    se sabe); sin --apply solo avisa. Devuelve la salida si se negó, None si se puede seguir.
+    """
+    if args.apply and (batch_ids or unreadable):
+        if batch_ids:
             message = (f"el plan {args.plan} es de la tanda {', '.join(batch_ids)}: una tanda va a "
                        f"producción solo con su lista (--batch), nunca por plan")
         else:
@@ -369,18 +387,16 @@ def main(argv=None):
                        f"se sabe si el plan {args.plan} es de una tanda")
         print(f"NEGADO: {message}. No se conectó a ninguna base y no se escribió nada.")
         recorder.record(production_registry.REFUSED, plan=args.plan, batches=batch_ids,
-                        reason={"code": "PLAN_OF_BATCH" if batches else "BATCHES_UNREADABLE",
+                        reason={"code": "PLAN_OF_BATCH" if batch_ids else "BATCHES_UNREADABLE",
                                 "message": message})
         return production_registry.EXIT_REFUSED
-    if batches:
+    if batch_ids:
         print(f"AVISO: el plan {args.plan} es de la tanda {', '.join(batch_ids)}: este ensayo se puede mirar, "
               f"pero --apply se va a negar. Una tanda va a producción con --batch.\n")
     elif unreadable:
         print(f"AVISO: no se pudo leer {len(unreadable)} archivo(s) de tandas ({unreadable[0]}); "
               f"--apply se va a negar hasta que se puedan leer.\n")
-
-    # Una excepción de pymongo se muestra solo por su clase: su mensaje puede traer el destino.
-    return recorder.run(lambda: publish_plan(args, mode, recorder, batch_ids), plan=args.plan)
+    return None
 
 
 def publish_plan(args, mode, recorder, batch_ids):
@@ -403,8 +419,7 @@ def publish_plan(args, mode, recorder, batch_ids):
     col_k, col_q = db[args.knowledges_collection], db[args.quizzes_collection]
 
     stats = Counter()
-    updates = {"knowledges": [], "quizTemplates": []}
-    previous = {}  # (colección, _id) -> {campo: valor en Mongo antes de escribir}: el respaldo
+    updates = {"knowledges": [], "quizTemplates": []}  # colección -> [Update]
     problems, samples, old_labels = [], [], []
 
     for node_id, proposals in sorted(approved["KNOWLEDGE"].items()):
@@ -421,8 +436,7 @@ def publish_plan(args, mode, recorder, batch_ids):
             stats["knowledge_already_equal"] += 1
             continue
         old_labels.append(mdoc.get("label"))
-        updates["knowledges"].append((fdoc["_id"], sets, proposals))
-        previous[("knowledges", str(fdoc["_id"]))] = {f: get_path(mdoc, f) for f in sets}
+        updates["knowledges"].append(Update(fdoc["_id"], sets, proposals, {f: get_path(mdoc, f) for f in sets}))
         stats["knowledge_updates"] += 1
         if len(samples) < 3:
             samples.append(f"  knowledge {node_id} ({proposals[0]}): "
@@ -443,8 +457,7 @@ def publish_plan(args, mode, recorder, batch_ids):
             continue
         forbidden = [k for k in sets if k.startswith("form.") and k.split(".", 1)[1] in FORM_PROTECTED]
         assert not forbidden, f"allowlist violada: {forbidden}"
-        updates["quizTemplates"].append((fdoc["_id"], sets, proposals))
-        previous[("quizTemplates", str(fdoc["_id"]))] = {f: get_path(mdoc, f) for f in sets}
+        updates["quizTemplates"].append(Update(fdoc["_id"], sets, proposals, {f: get_path(mdoc, f) for f in sets}))
         stats["quiz_updates"] += 1
         stats.update({f"field:{k.split('.')[-1]}": 1 for k in sets})
 
@@ -469,7 +482,7 @@ def publish_plan(args, mode, recorder, batch_ids):
     sync = None
     if not args.no_sync_quiz_titles:
         sync = plan_quiz_title_sync(args.repo, db, args.quizzes_collection,
-                                    {i: s for i, s, _ in updates["quizTemplates"]})
+                                    {u.id: u.sets for u in updates["quizTemplates"]})
         sync_stats = sync["stats"]
         print(f"\nsync quiz.title := knowledge.label: {sync_stats['title_file_updates']} en archivos "
               f"(ya en sync: {sync_stats['title_already_synced']}), {sync_stats['title_mongo_updates']} en Mongo, "
@@ -481,9 +494,9 @@ def publish_plan(args, mode, recorder, batch_ids):
         "mode": mode, "plan": args.plan, "db": args.db,
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "stats": dict(stats), "problems": problems,
-        "updates": {col: [{"_id": str(i), "fields": sorted(s), "proposals": pr,
-                           "old": previous[(col, str(i))], "new": s}
-                          for i, s, pr in ups] for col, ups in updates.items()},
+        "updates": {col: [{"_id": str(u.id), "fields": sorted(u.sets), "proposals": u.proposals,
+                           "old": u.old, "new": u.sets}
+                          for u in ups] for col, ups in updates.items()},
     }
     if sync is not None:
         report["quizTitleSync"] = {"stats": dict(sync["stats"]), "writes": title_sync_entries(sync)}
@@ -516,8 +529,8 @@ def publish_plan(args, mode, recorder, batch_ids):
     # F-PUBPROD-R008: el respaldo y el renglón de inicio, antes de la primera escritura.
     backup = {"plan": args.plan, "report": row_common["report"],
               "note": "Respaldo: por cada campo, «old» es lo que había en Mongo y «new» lo que se escribe.",
-              "documents": [{"collection": col, "_id": str(i), "old": previous[(col, str(i))], "new": s,
-                             "proposals": pr} for col, ups in updates.items() for i, s, pr in ups]}
+              "documents": [{"collection": col, "_id": str(u.id), "old": u.old, "new": u.sets,
+                             "proposals": u.proposals} for col, ups in updates.items() for u in ups]}
     if sync is not None:
         backup["titleSync"] = title_sync_entries(sync)
     problem = recorder.begin_writing(backup, **row_common)
@@ -526,7 +539,7 @@ def publish_plan(args, mode, recorder, batch_ids):
 
     print("\n== Aplicando ==")
     for col_name, col in (("knowledges", col_k), ("quizTemplates", col_q)):
-        ops = [UpdateOne({"_id": _id}, {"$set": sets}) for _id, sets, _ in updates[col_name]]
+        ops = [UpdateOne({"_id": u.id}, {"$set": u.sets}) for u in updates[col_name]]
         if not ops:
             continue
         result = col.bulk_write(ops, ordered=True)
@@ -535,17 +548,14 @@ def publish_plan(args, mode, recorder, batch_ids):
     print("\n== Verificación post-apply ==")
     failures = 0
     for col_name, col in (("knowledges", col_k), ("quizTemplates", col_q)):
-        for _id, sets, proposals in updates[col_name]:
-            mdoc = col.find_one({"_id": _id})
-            for path, expected in sets.items():
-                actual = mdoc
-                for key in path.split("."):
-                    actual = (actual or {}).get(key)
-                if actual != expected:
+        for u in updates[col_name]:
+            mdoc = col.find_one({"_id": u.id})
+            for path, expected in u.sets.items():
+                if get_path(mdoc, path) != expected:
                     failures += 1
-                    print(f"  FAIL {col_name} {_id} {path} ({proposals[0]})")
+                    print(f"  FAIL {col_name} {u.id} {path} ({u.proposals[0]})")
     total = len(updates["knowledges"]) + len(updates["quizTemplates"])
-    written_ids = [f"{col}/{i}" for col, ups in updates.items() for i, _, _ in ups]
+    written_ids = [f"{col}/{u.id}" for col, ups in updates.items() for u in ups]
     if failures:
         recorder.record(production_registry.VERIFY_FAILED, writtenIds=written_ids, verified=False,
                         reason={"code": "VERIFY_FAILED", "message": f"{failures} campos no coinciden"},
