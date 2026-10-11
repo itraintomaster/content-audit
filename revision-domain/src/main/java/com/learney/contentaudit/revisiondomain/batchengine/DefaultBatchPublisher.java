@@ -40,9 +40,8 @@ import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparator;
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
 import com.learney.contentaudit.revisiondomain.comparison.BatchVerdict;
-import com.learney.contentaudit.revisiondomain.comparison.RowSubject;
-import com.learney.contentaudit.revisiondomain.comparison.UndecidableFloors;
 import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
+import com.learney.contentaudit.revisiondomain.comparison.VerdictWording;
 import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
 import com.learney.contentaudit.revisiondomain.nonregression.BatchGateVerdict;
 import com.learney.contentaudit.revisiondomain.preservation.CorrectionScope;
@@ -346,17 +345,10 @@ class DefaultBatchPublisher implements BatchPublisher {
             comparison = batchComparator.compare(coursePath, DefaultBatchCloser.scope(batch));
         }
         BatchVerdict verdict = comparison != null ? comparison.getVerdict() : null;
-        VerdictKind kind = verdict != null ? verdict.getKind() : null;
-        String detail = verdict != null && verdict.getDetail() != null ? ": " + verdict.getDetail() : "";
-        if (kind != VerdictKind.PASSES) {
-            throw new BatchNotPublishableException(batch.getId(), "el veredicto de F es «" + verdictName(kind)
-                    + "», no «pasa»" + detail);
-        }
-        List<String> undecided = undecidableFloors(verdict);
-        if (!undecided.isEmpty()) {
-            throw new BatchNotPublishableException(batch.getId(), "no se puede decidir: " + undecided.size()
-                    + (undecided.size() == 1 ? " piso sin decidir (" : " pisos sin decidir (")
-                    + String.join(", ", undecided) + ")" + detail);
+        if (!VerdictWording.publishable(verdict)) {
+            throw new BatchNotPublishableException(batch.getId(), "el veredicto de F es "
+                    + VerdictWording.quoted(verdict) + ", no «pasa»"
+                    + (verdict != null && verdict.getDetail() != null ? ": " + verdict.getDetail() : ""));
         }
 
         // The course composed with every accepted change left in the batch, and no other, checked exercise by exercise.
@@ -524,35 +516,6 @@ class DefaultBatchPublisher implements BatchPublisher {
             }
         });
         return new ReviewTally(approved, pending, rejectedSteps.size(), forReview, collateral);
-    }
-
-    // -------------------------------------------------------------------------
-    // F-PUBPROD-R005: only «pasa» publishes
-    // -------------------------------------------------------------------------
-
-    private static String verdictName(VerdictKind kind) {
-        if (kind == null) {
-            return "sin veredicto";
-        }
-        return kind == VerdictKind.UNDECIDABLE ? "no se puede decidir" : kind.name();
-    }
-
-    /** The floors F could not decide, by analyzer when it names them. */
-    private static List<String> undecidableFloors(BatchVerdict verdict) {
-        UndecidableFloors floors = verdict != null ? verdict.getUndecidableFloors() : null;
-        if (floors == null || floors.getCount() <= 0) {
-            return List.of();
-        }
-        List<String> named = new ArrayList<>();
-        for (RowSubject subject : BatchBook.list(floors.getAnalyzers())) {
-            if (subject != null && subject.getSubject() != null && !named.contains(subject.getSubject())) {
-                named.add(subject.getSubject());
-            }
-        }
-        while (named.size() < floors.getCount()) {
-            named.add("piso " + (named.size() + 1));
-        }
-        return named;
     }
 
     private static String message(RuntimeException e) {

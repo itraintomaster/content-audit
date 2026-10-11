@@ -55,7 +55,7 @@ public class PublishingFromTheTrayTest {
     }
 
     @Test
-    @DisplayName("should refuse the OK with «no se puede decidir» when the verdict cannot be decided or keeps an undecidable floor, although the gate passes, writing nothing")
+    @DisplayName("should refuse the OK with «no se puede decidir» when the verdict cannot be decided, and name the undecidable floor of a verdict «pasa» or «no pasa» without calling it «no se puede decidir», although the gate passes, writing nothing")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R008")
     @Tag("FEAT-PUBPROD")
@@ -71,8 +71,8 @@ public class PublishingFromTheTrayTest {
         BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
                 () -> bandeja.tray.publish("José", null));
 
-        assertTrue(refused.getMessage().contains("el veredicto de F es «no se puede decidir» (1 piso sin decidir), no"
-                + " «pasa»"), refused.getMessage());
+        assertTrue(refused.getMessage().contains("el veredicto de F es «no se puede decidir» (1 piso sin decidir:"
+                + " lemma-absence), no «pasa»"), refused.getMessage());
         assertTrue(refused.getMessage().contains("juez sin aprobar: Consigna que no se cumple"),
                 "copia lo que dice F: " + refused.getMessage());
         assertFalse(refused.getMessage().contains("compuerta"), refused.getMessage());
@@ -82,16 +82,31 @@ public class PublishingFromTheTrayTest {
         assertFalse(bandeja.saved().getStatus() == BatchStatus.PUBLISHED);
         assertNull(bandeja.saved().getPublication());
 
-        // «pasa» con un piso sin decidir tampoco es «pasa».
+        // «pasa» con un piso sin decidir tampoco es «pasa»: se nombra «pasa», con el piso que quedó sin decidir.
         BandejaFixture.Bandeja floor = ready();
         floor.comparator.answer = scope -> undecidable(scope, VerdictKind.PASSES, null);
 
         BatchNotPublishableException byFloor = assertThrows(BatchNotPublishableException.class,
                 () -> floor.tray.publish("José", null));
 
-        assertTrue(byFloor.getMessage().contains("«no se puede decidir» (1 piso sin decidir)"), byFloor.getMessage());
+        assertTrue(byFloor.getMessage().contains("el veredicto de F es «PASSES», pero con 1 piso sin decidir:"
+                + " lemma-absence, no «pasa»"), byFloor.getMessage());
+        assertFalse(byFloor.getMessage().contains("no se puede decidir"), byFloor.getMessage());
         assertTrue(floor.courses.written.isEmpty());
         assertTrue(floor.batches.manifests.isEmpty());
+
+        // Y un «no pasa» con un piso sin decidir es «no pasa», no «no se puede decidir»: se sabe que empeora.
+        BandejaFixture.Bandeja failing = ready();
+        failing.comparator.answer = scope -> undecidable(scope, VerdictKind.FAILS, "Falla: vuelve la respuesta única.");
+
+        BatchNotPublishableException byFailure = assertThrows(BatchNotPublishableException.class,
+                () -> failing.tray.publish("José", null));
+
+        assertTrue(byFailure.getMessage().contains("el veredicto de F es «FAILS», y además 1 piso sin decidir:"
+                + " lemma-absence, no «pasa»: Falla: vuelve la respuesta única."), byFailure.getMessage());
+        assertFalse(byFailure.getMessage().contains("no se puede decidir"), byFailure.getMessage());
+        assertTrue(failing.courses.written.isEmpty());
+        assertTrue(failing.batches.manifests.isEmpty());
     }
 
     @Test

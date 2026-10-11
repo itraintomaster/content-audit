@@ -118,8 +118,8 @@ public class FPubprodJ001JourneyTest {
         TandaCli.Run undecidable = cli.tray("publish");
 
         assertEquals(1, undecidable.exit(), undecidable.out() + undecidable.err());
-        assertTrue(undecidable.err().contains("el veredicto de F es «no se puede decidir» (1 piso sin decidir), no"
-                + " «pasa»: ningún piso falla, pero 1 piso sin decidir"), undecidable.err());
+        assertTrue(undecidable.err().contains("el veredicto de F es «no se puede decidir» (1 piso sin decidir:"
+                + " lemma-absence), no «pasa»: ningún piso falla, pero 1 piso sin decidir"), undecidable.err());
         assertTrue(cli.courses.written.isEmpty(), "el curso no se toca");
         assertFalse(Files.exists(manifestFile(batchId)), "no queda lista");
     }

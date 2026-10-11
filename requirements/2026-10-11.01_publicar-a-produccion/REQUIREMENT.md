@@ -186,7 +186,12 @@ La regla de la muestra de regla sin responder no cambia: una regla cuya muestra 
 > 2. la negativa nombra el veredicto o la compuerta que falta;
 > 3. la publicación y la lista registran el veredicto, si la compuerta pasó y los pisos sin decidir;
 > 4. al cerrar con «no se puede decidir», la salida no dice que la tanda pasa: dice que no se puede decidir y termina con
->    error, con el cierre guardado.
+>    error, con el cierre guardado;
+> 5. «no se puede decidir» se dice sólo del veredicto que no se puede decidir; cualquier otro veredicto se nombra por lo
+>    que es y sus pisos sin decidir se cuentan aparte, con el nombre de cada uno cuando se sabe: un «no pasa» con pisos
+>    sin decidir se nombra «no pasa, y además N pisos sin decidir», porque ya se sabe que empeora el curso; un «pasa» con
+>    pisos sin decidir se nombra «pasa, pero con N pisos sin decidir», no publica y su cierre termina con error. Las
+>    negativas de publicar —desde la bandeja y desde la tanda— y la salida del cierre lo dicen con las mismas palabras.
 
 <details><summary>Detail</summary>
 
@@ -196,7 +201,8 @@ lo que el tablero ya lee como «resultado de la compuerta», no como una falla d
 
 **Criterio**: una tanda cuya compuerta pasa y cuyo veredicto es «no se puede decidir: 1 piso sin decidir» no se
 publica, ni desde la bandeja ni desde la tanda, y la negativa dice «no se puede decidir»; `batch close` sobre esa tanda
-dice «no se puede decidir» y termina con 1.
+dice «no se puede decidir» y termina con 1. Si en cambio el veredicto es «no pasa» con 2 pisos sin decidir, la negativa
+y el cierre dicen «no pasa, y además 2 pisos sin decidir», nunca «no se puede decidir».
 
 </details>
 

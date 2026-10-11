@@ -23,8 +23,9 @@ import org.junit.jupiter.api.Test;
 import picocli.CommandLine;
 
 /**
- * F-PUBPROD-R005 desde la línea de comandos: al cerrar con «no se puede decidir» —o con un piso sin decidir— la salida
- * no dice que la tanda pasa, dice que no se puede decidir y termina con error, con el cierre hecho.
+ * F-PUBPROD-R005 desde la línea de comandos: al cerrar con «no se puede decidir» la salida no dice que la tanda pasa,
+ * dice que no se puede decidir y termina con error, con el cierre hecho. Con pisos sin decidir bajo otro veredicto, los
+ * cuenta aparte, sin llamarlo «no se puede decidir», y también termina con error.
  */
 public class ClosingAnUndecidableBatchTest {
 
@@ -94,8 +95,9 @@ public class ClosingAnUndecidableBatchTest {
         assertEquals(1, service.closeRequests.size(), "el cierre se hizo");
         assertTrue(run.out().contains("No se puede decidir si la tanda empeora el curso: 1 piso sin decidir"),
                 run.out());
-        assertTrue(run.out().contains("Veredicto de la comparación: no se puede decidir — ningún piso falla, pero 1"
-                + " piso sin decidir; juez sin aprobar: Consigna que no se cumple"), run.out());
+        assertTrue(run.out().contains("Veredicto de la comparación: no se puede decidir (1 piso sin decidir:"
+                + " lemma-absence) — ningún piso falla, pero 1 piso sin decidir; juez sin aprobar: Consigna que no se"
+                + " cumple"), run.out());
         assertFalse(run.out().contains("pasa ("), "no dice que la tanda pasa: " + run.out());
         assertFalse(run.out().contains("UNDECIDABLE"), "lo dice con palabras: " + run.out());
         assertFalse(run.out().contains("PASSES"), run.out());
@@ -106,17 +108,41 @@ public class ClosingAnUndecidableBatchTest {
     @Tag("FEAT-PUBPROD")
     @Tag("F-PUBPROD-R005")
     public void shouldNotSayWithBatchCloseThatTheBatchPassesWhenTheVerdictPassesButKeepsUndecidableFloors() {
-        // R005 inv. 2: «pasa» con pisos sin decidir tampoco es «pasa»: se nombran cuántos y la salida es de error.
+        // R005 inv. 2 y 5: «pasa» con pisos sin decidir tampoco es «pasa»: se nombran cuántos y cuáles, y la salida es
+        // de error. Pero no se lo llama «no se puede decidir»: eso es sólo el veredicto que no se puede decidir.
         BatchCmdTest.Service service = new BatchCmdTest.Service();
 
         Run run = run(closingWith(service, verdict(VerdictKind.PASSES, 2, null)), "close");
 
         assertEquals(1, run.exit(), run.out() + run.err());
         assertEquals(1, service.closeRequests.size());
-        assertTrue(run.out().contains("No se puede decidir si la tanda empeora el curso: 2 pisos sin decidir"),
+        assertTrue(run.out().contains("La compuerta de «no empeorar» pasa, pero con 2 pisos sin decidir (1 vuelta)."),
                 run.out());
-        assertTrue(run.out().contains("Veredicto de la comparación: no se puede decidir"), run.out());
+        assertTrue(run.out().contains("Veredicto de la comparación: PASSES, pero con 2 pisos sin decidir:"
+                + " lemma-absence, hint-coherence"), run.out());
         assertFalse(run.out().contains("pasa ("), run.out());
+        assertFalse(run.out().contains("No se puede decidir"), run.out());
+        assertFalse(run.out().contains("no se puede decidir"), run.out());
+    }
+
+    @Test
+    @DisplayName("should name with 'batch close' a failing verdict that keeps undecidable floors as failing, counting the floors, never as 'no se puede decidir', and exit with 1")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R005")
+    public void shouldNameWithBatchCloseAFailingVerdictThatKeepsUndecidableFloorsAsFailing() {
+        // R005 inv. 5: F dice «no pasa» —un piso se rompe— y además deja un piso sin decidir. Se sabe que la tanda
+        // empeora el curso: la salida lo nombra «FAILS» y cuenta el piso aparte; nunca «no se puede decidir».
+        BatchCmdTest.Service service = new BatchCmdTest.Service();
+
+        Run run = run(closingWith(service, verdict(VerdictKind.FAILS, 1, "Falla: vuelve la respuesta única.")),
+                "close");
+
+        assertEquals(1, run.exit(), run.out() + run.err());
+        assertEquals(1, service.closeRequests.size(), "el cierre se hizo");
+        assertTrue(run.out().contains("Veredicto de la comparación: FAILS, y además 1 piso sin decidir: lemma-absence"
+                + " — Falla: vuelve la respuesta única."), run.out());
+        assertFalse(run.out().contains("No se puede decidir"), run.out());
+        assertFalse(run.out().contains("no se puede decidir"), run.out());
     }
 
     @Test

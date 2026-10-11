@@ -527,8 +527,8 @@ public class PublishingReviewedBatchTest {
         BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
                 () -> p.publisher().publish(batch, ok(), p.start));
 
-        assertTrue(refused.getMessage().contains("el veredicto de F es «no se puede decidir», no «pasa»: ningún piso"
-                + " falla, pero 1 piso sin decidir"), refused.getMessage());
+        assertTrue(refused.getMessage().contains("el veredicto de F es «no se puede decidir» (1 piso sin decidir:"
+                + " lemma-absence), no «pasa»: ningún piso falla, pero 1 piso sin decidir"), refused.getMessage());
         assertFalse(refused.getMessage().contains("UNDECIDABLE"), refused.getMessage());
         assertTrue(p.courses.written.isEmpty());
         assertTrue(p.batches.manifests.isEmpty());
@@ -551,8 +551,10 @@ public class PublishingReviewedBatchTest {
         BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
                 () -> p.publisher().publish(batch, ok(), p.start));
 
-        assertTrue(refused.getMessage().contains("no se puede decidir: 1 piso sin decidir (lemma-absence)"),
-                refused.getMessage());
+        assertTrue(refused.getMessage().contains("el veredicto de F es «PASSES», pero con 1 piso sin decidir:"
+                + " lemma-absence, no «pasa»"), refused.getMessage());
+        assertFalse(refused.getMessage().contains("no se puede decidir"), "es «pasa», con un piso sin decidir: "
+                + refused.getMessage());
         assertTrue(p.comparator.scopes.isEmpty(), "nada cambió desde el cierre: no se compara de nuevo");
         assertTrue(p.courses.written.isEmpty());
         assertTrue(p.batches.manifests.isEmpty());
