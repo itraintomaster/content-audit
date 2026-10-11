@@ -55,7 +55,39 @@ Desde la raíz del repositorio, con JDK 25 y el runtime explícito:
    idénticos. Si faltara cobertura o cambiara la versión, conservar evidencia y
    pedir un plan nuevo; no abrir consultas automáticamente.
 
-## Pruebas
+## Registro completado el 11/10
+
+La campaña A1 V11 aceptó **TAKEN** a las 15:30:01 ART y **APPROVED** a las
+15:30:20 ART mediante las dos operaciones oficiales, sin presupuesto nuevo.
+La identidad efectiva examinada fue `9f164016f0612d83ee29e835741ed05c67362b251c3da164ac69f719ad3cacc4`,
+`codex-cli / gpt-6.1-sol / medium`. No se cambió la definición del juez.
+
+- `campaign-verdicts.jsonl`: exportación real del examen completo en la campaña.
+- `campaign-measured-result.json`: medición de esa exportación contra el oro v2.
+- `campaign-status.json`: estado público posterior de los nueve jueces.
+- `campaign-before.sha256` y `campaign-after.sha256`: los **1.917 archivos
+  previos idénticos**. Sólo se agregaron el libro de examen de este juez y sus
+  registros TAKEN/APPROVED; ningún libro del curso ni checkpoint fue editado.
+- La UI HTML del puerto 7800 se recargó y releyó: «9 jueces: 9 aprobados»,
+  Calidad de distractores seleccionado, «16 de 16», grupos 9/9 y 7/7.
+  No se reinició ni se recompiló el servidor.
+
+Respaldo recuperable anterior:
+`/private/tmp/content-audit-choice-quality-official.wjwj0G/campaign-before.tgz`,
+SHA-256 `a4f1cdf9fe66396a5194e52aff6db5ad3c8552d170f03a1793347fd2fa49e784`.
+El registro histórico v1 de la raíz conserva
+`855e5b54cea0c2a5030dfe7cdb99fb7319f4b4d8a56b5ab2d30ddfbc3c95d1ea`;
+el checkpoint de Corrección 1 conserva
+`a230c57959b2a3fa9136e4bff7c87fefafe9c39476a554f8b2d9529c7de2bbb4`.
+Las salidas aisladas de ensayo se mantienen identificadas como ensayo, no
+como el registro posterior de la campaña.
+
+Esta aprobación no dispara consultas ni autoriza evaluación, corrección o
+publicación del curso. El HTML advierte que el historial no identifica el
+runtime actual; para este juez se comprobó el runtime efectivo mediante el
+CLI, no inferido sólo a partir del historial.
+
+## Pruebas ejecutadas
 
 12 tests offline de `scripts/exams/test_*.py` aprobados, incluidos 7 nuevos
 controles de recuperación/medición, más el ensayo real de 16 casos mediante

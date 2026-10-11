@@ -1,0 +1,1273 @@
+{
+  "judges" : [ {
+    "judge" : "quiz-instruction",
+    "versions" : [ {
+      "judgeVersion" : "f38f063f3b814d43f6b612d5e11e01d06c3fdd414f606ff8e26f3067b7ee6695",
+      "provenance" : "procedencia legacy desconocida",
+      "providerName" : null,
+      "modelName" : null,
+      "reasoningEffort" : null,
+      "status" : "APPROVED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-03T20:55:36.012788Z",
+        "casesJudged" : 238,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/mongo-buckups/2026-09-29-revision-de-ejercicios/foto-content-audit-78815c3a/db/english-course",
+        "measuredBy" : null
+      }, {
+        "status" : "APPROVED",
+        "recordedAt" : "2026-10-03T20:56:20.465938Z",
+        "casesJudged" : 239,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "a_verduras",
+          "cases" : 1,
+          "asExpected" : 1,
+          "notAsExpected" : 0
+        }, {
+          "group" : "b_imposibles",
+          "cases" : 149,
+          "asExpected" : 142,
+          "notAsExpected" : 7
+        }, {
+          "group" : "b_resueltos_por_el_corrector",
+          "cases" : 39,
+          "asExpected" : 39,
+          "notAsExpected" : 0
+        }, {
+          "group" : "c_buenos",
+          "cases" : 50,
+          "asExpected" : 48,
+          "notAsExpected" : 2
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d59930102295343214", "67fab6d5993010229534373d", "67fab6d59930102295344795", "67fab6d59930102295342fa4", "67fab6d59930102295343e83", "67fab6d59930102295343e8d", "67fab6d59930102295343e8e", "67fab6d599301022953442ba", "67fab6d599301022953448b5" ],
+        "goalMet" : true,
+        "photo" : "2026-09-29 (foto-content-audit-78815c3a)",
+        "measuredBy" : "quien rinde (3/10) con medir.py contra examen-fijo-oro-corregido.json (sha256 79629d9d…), --meta-b 135, tope de c en 2, sin tope para los 39 resueltos; examen entero de f38f063f sin consultas nuevas en la medición"
+      } ]
+    }, {
+      "judgeVersion" : "533462b9b23f613d16368f934b397056f726c65111c2821ad0112e1f85f9f0fe",
+      "provenance" : "codex-cli/gpt-6.1-sol (esfuerzo medium)",
+      "providerName" : "codex-cli",
+      "modelName" : "gpt-6.1-sol",
+      "reasoningEffort" : "medium",
+      "status" : "APPROVED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-06T01:23:41.428289Z",
+        "casesJudged" : 40,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-05-primer-lote-palabras-codex-v2/content-audit/db/english-course",
+        "measuredBy" : null
+      }, {
+        "status" : "APPROVED",
+        "recordedAt" : "2026-10-06T01:24:32.676449Z",
+        "casesJudged" : 40,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "consigna_cumplida",
+          "cases" : 8,
+          "asExpected" : 8,
+          "notAsExpected" : 0
+        }, {
+          "group" : "consigna_imposible",
+          "cases" : 8,
+          "asExpected" : 8,
+          "notAsExpected" : 0
+        }, {
+          "group" : "respuesta_forma_explicita",
+          "cases" : 8,
+          "asExpected" : 8,
+          "notAsExpected" : 0
+        }, {
+          "group" : "alternativa_valida_fuera_scope",
+          "cases" : 8,
+          "asExpected" : 8,
+          "notAsExpected" : 0
+        }, {
+          "group" : "pistas_contexto",
+          "cases" : 8,
+          "asExpected" : 8,
+          "notAsExpected" : 0
+        } ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : true,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-05-primer-lote-palabras-codex-v2/content-audit/db/english-course",
+        "measuredBy" : "qinst-formal-v2-20261005/medir.py"
+      } ]
+    } ]
+  }, {
+    "judge" : "multiple-choice-validity",
+    "versions" : [ {
+      "judgeVersion" : "4f8b7cdfb2841601f22a894379c57e3d1a359c9547b7f6ce60427420e5c70812",
+      "provenance" : "procedencia legacy desconocida",
+      "providerName" : null,
+      "modelName" : null,
+      "reasoningEffort" : null,
+      "status" : "FAILED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-01T04:16:17.530682Z",
+        "casesJudged" : 13,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/mongo-buckups/2026-09-29-revision-de-ejercicios/foto-content-audit-78815c3a/db/english-course",
+        "measuredBy" : null
+      }, {
+        "status" : "FAILED",
+        "recordedAt" : "2026-10-01T04:16:48.555320Z",
+        "casesJudged" : 13,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "b_imposible_opcion_multiple",
+          "cases" : 1,
+          "asExpected" : 1,
+          "notAsExpected" : 0
+        }, {
+          "group" : "c_buenos_opcion_multiple",
+          "cases" : 12,
+          "asExpected" : 9,
+          "notAsExpected" : 3
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d59930102295342cba", "67fab6d59930102295344982", "67fab6d59930102295344a69" ],
+        "goalMet" : false,
+        "photo" : "2026-09-29 (foto-content-audit-78815c3a)",
+        "measuredBy" : "paquete C con medir.py contra examen-fijo-oro.json del 077 (sólo el examen fijo; la meta sobre escribir/ no se midió)"
+      }, {
+        "status" : "FAILED",
+        "recordedAt" : "2026-10-01T05:19:37.298637Z",
+        "casesJudged" : 13,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "b_imposible_opcion_multiple",
+          "cases" : 1,
+          "asExpected" : 1,
+          "notAsExpected" : 0
+        }, {
+          "group" : "c_buenos_opcion_multiple",
+          "cases" : 12,
+          "asExpected" : 9,
+          "notAsExpected" : 3
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d59930102295342cba", "67fab6d59930102295344982", "67fab6d59930102295344a69" ],
+        "goalMet" : false,
+        "photo" : "2026-09-29 (foto-content-audit-78815c3a)",
+        "measuredBy" : "paquete C con medir.py contra examen-fijo.json corregido el 1/10 (sha256 2977081b…: 39 de b resueltos por el corrector, 12 marcas reales según el revisor independiente); sin consultas nuevas; la meta sobre escribir/ no se midió"
+      } ]
+    }, {
+      "judgeVersion" : "36ea896303216f1cb439e7dbcc23167f4f367d9749380e5c61978192e812aa8e",
+      "provenance" : "procedencia legacy desconocida",
+      "providerName" : null,
+      "modelName" : null,
+      "reasoningEffort" : null,
+      "status" : "FAILED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-01T14:41:02.166682Z",
+        "casesJudged" : 43,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/mongo-buckups/2026-09-29-revision-de-ejercicios/foto-content-audit-78815c3a/db/english-course",
+        "measuredBy" : null
+      }, {
+        "status" : "FAILED",
+        "recordedAt" : "2026-10-01T14:41:48.021586Z",
+        "casesJudged" : 43,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "positivos",
+          "cases" : 17,
+          "asExpected" : 11,
+          "notAsExpected" : 6
+        }, {
+          "group" : "negativos_defendibles",
+          "cases" : 7,
+          "asExpected" : 6,
+          "notAsExpected" : 1
+        }, {
+          "group" : "negativos_la_consigna_decide",
+          "cases" : 4,
+          "asExpected" : 4,
+          "notAsExpected" : 0
+        }, {
+          "group" : "negativos_limpios",
+          "cases" : 15,
+          "asExpected" : 15,
+          "notAsExpected" : 0
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d59930102295344a4f", "67fab6d599301022953439a6", "67fab6d59930102295343d44", "67fab6d59930102295344786", "67fab6d59930102295343d26", "67fab6d599301022953446da", "67fab6d59930102295343ce9" ],
+        "goalMet" : false,
+        "photo" : "2026-09-29 (foto-content-audit-78815c3a)",
+        "measuredBy" : "examinador con medir.py contra el examen nuevo SA-MC del 1/10 (2026-10-01-examen-sa-mc, oro sha256 en congelado.sha256): meta 12 de 17 positivos y como mucho 2 falsas alarmas de 26 negativos"
+      } ]
+    }, {
+      "judgeVersion" : "64aea3b693fae5723159bd9f5d52f19312398149a2ab7142ffb1b13379be83a2",
+      "provenance" : "procedencia legacy desconocida",
+      "providerName" : null,
+      "modelName" : null,
+      "reasoningEffort" : null,
+      "status" : "APPROVED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-03T19:48:19.424713Z",
+        "casesJudged" : 43,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/mongo-buckups/2026-09-29-revision-de-ejercicios/foto-content-audit-78815c3a/db/english-course",
+        "measuredBy" : null
+      }, {
+        "status" : "APPROVED",
+        "recordedAt" : "2026-10-03T19:48:43.376257Z",
+        "casesJudged" : 39,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "positivos",
+          "cases" : 19,
+          "asExpected" : 16,
+          "notAsExpected" : 3
+        }, {
+          "group" : "negativos_defendibles",
+          "cases" : 1,
+          "asExpected" : 0,
+          "notAsExpected" : 1
+        }, {
+          "group" : "negativos_la_consigna_decide",
+          "cases" : 4,
+          "asExpected" : 4,
+          "notAsExpected" : 0
+        }, {
+          "group" : "negativos_limpios",
+          "cases" : 15,
+          "asExpected" : 15,
+          "notAsExpected" : 0
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d599301022953439a6", "67fab6d59930102295343d44", "67fab6d59930102295343d26", "67fab6d59930102295344976" ],
+        "goalMet" : true,
+        "photo" : "2026-09-29 (foto-content-audit-78815c3a)",
+        "measuredBy" : "examinador con v2/medir.py contra el oro v2 del examen SA-MC (criterio de José, 3/10; sha256 c447c0fb…): meta 14 de 19 positivos y como mucho 2 falsas alarmas de 20 negativos; 4 dudosos rendidos que no cuentan"
+      } ]
+    }, {
+      "judgeVersion" : "dda2f44396164eb5c61681a40f3e857cfe9624445342d1cfcb28e50fce1c9d9f",
+      "provenance" : "codex-cli/gpt-6.1-sol (esfuerzo medium)",
+      "providerName" : "codex-cli",
+      "modelName" : "gpt-6.1-sol",
+      "reasoningEffort" : "medium",
+      "status" : "FAILED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-06T00:40:03.482468Z",
+        "casesJudged" : 13,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-05-primer-lote-palabras-codex-v2/content-audit/db/english-course",
+        "measuredBy" : null
+      }, {
+        "status" : "FAILED",
+        "recordedAt" : "2026-10-06T00:46:37.950256Z",
+        "casesJudged" : 39,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "positivos",
+          "cases" : 19,
+          "asExpected" : 18,
+          "notAsExpected" : 1
+        }, {
+          "group" : "negativos_defendibles",
+          "cases" : 1,
+          "asExpected" : 0,
+          "notAsExpected" : 1
+        }, {
+          "group" : "negativos_la_consigna_decide",
+          "cases" : 4,
+          "asExpected" : 4,
+          "notAsExpected" : 0
+        }, {
+          "group" : "negativos_limpios",
+          "cases" : 15,
+          "asExpected" : 13,
+          "notAsExpected" : 2
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d599301022953439a6", "67fab6d59930102295344976", "67fab6d599301022953442f9", "67fab6d59930102295342e1b" ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-05-primer-lote-palabras-codex-v2/content-audit/db/english-course",
+        "measuredBy" : "oro v2 congelado el 3/10 antes de esta corrida; criterio de José; runtime codex-cli · gpt-6.1-sol · medium"
+      } ]
+    }, {
+      "judgeVersion" : "fcc689bc5fe1aeefd59d97b211342fa07aa9adde0331dfb77ea2b13772001ed0",
+      "provenance" : "codex-cli/gpt-6.1-sol (esfuerzo medium)",
+      "providerName" : "codex-cli",
+      "modelName" : "gpt-6.1-sol",
+      "reasoningEffort" : "medium",
+      "status" : "APPROVED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-06T01:01:32.763755Z",
+        "casesJudged" : 43,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-05-primer-lote-palabras-codex-v2/content-audit/db/english-course",
+        "measuredBy" : null
+      }, {
+        "status" : "APPROVED",
+        "recordedAt" : "2026-10-06T01:02:29.203226Z",
+        "casesJudged" : 38,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "positivos",
+          "cases" : 20,
+          "asExpected" : 20,
+          "notAsExpected" : 0
+        }, {
+          "group" : "negativos_defendibles",
+          "cases" : 0,
+          "asExpected" : 0,
+          "notAsExpected" : 0
+        }, {
+          "group" : "negativos_la_consigna_decide",
+          "cases" : 5,
+          "asExpected" : 5,
+          "notAsExpected" : 0
+        }, {
+          "group" : "negativos_limpios",
+          "cases" : 13,
+          "asExpected" : 11,
+          "notAsExpected" : 2
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d5993010229534422e", "67fab6d599301022953434ec" ],
+        "goalMet" : true,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-05-primer-lote-palabras-codex-v2/content-audit/db/english-course",
+        "measuredBy" : "oro corregido congelado antes de esta nueva corrida; sha256 e355699dee12322c98fd90d03e56b72376d219707514644ffe74770eb8635e30; criterio de José; runtime codex-cli · gpt-6.1-sol · medium; meta 14 de 20 positivos y como mucho 2 falsas alarmas de 18 negativos; 5 dudosos rendidos que no cuentan"
+      } ]
+    } ]
+  }, {
+    "judge" : "translation-sense",
+    "versions" : [ {
+      "judgeVersion" : "2e7d443f7f3ef65defd59907a8328a756c8508dabfa624b74f741c91abd0cb30+ac7abfd9ee134a14e0fcace49d2e430ef4df4e2b43379418aa20a03b46963a9d",
+      "provenance" : "procedencia legacy desconocida",
+      "providerName" : null,
+      "modelName" : null,
+      "reasoningEffort" : null,
+      "status" : "APPROVED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-01T04:12:08.407298Z",
+        "casesJudged" : 51,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/mongo-buckups/2026-09-29-revision-de-ejercicios/foto-content-audit-78815c3a/db/english-course",
+        "measuredBy" : null
+      }, {
+        "status" : "APPROVED",
+        "recordedAt" : "2026-10-01T04:12:31.011418Z",
+        "casesJudged" : 51,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "a_verduras",
+          "cases" : 1,
+          "asExpected" : 1,
+          "notAsExpected" : 0
+        }, {
+          "group" : "c_buenos",
+          "cases" : 50,
+          "asExpected" : 49,
+          "notAsExpected" : 1
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d59930102295343b22" ],
+        "goalMet" : true,
+        "photo" : "2026-09-29 (foto-content-audit-78815c3a)",
+        "measuredBy" : "paquete C con medir.py contra examen-fijo-oro.json del 077 (sólo el examen fijo; la meta sobre escribir/ no se midió)"
+      }, {
+        "status" : "APPROVED",
+        "recordedAt" : "2026-10-01T05:19:36.387493Z",
+        "casesJudged" : 51,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "a_verduras",
+          "cases" : 1,
+          "asExpected" : 1,
+          "notAsExpected" : 0
+        }, {
+          "group" : "c_buenos",
+          "cases" : 49,
+          "asExpected" : 49,
+          "notAsExpected" : 0
+        }, {
+          "group" : "c_buenos_reales_segun_revisor",
+          "cases" : 1,
+          "asExpected" : 1,
+          "notAsExpected" : 0
+        } ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : true,
+        "photo" : "2026-09-29 (foto-content-audit-78815c3a)",
+        "measuredBy" : "paquete C con medir.py contra examen-fijo.json corregido el 1/10 (sha256 2977081b…: 39 de b resueltos por el corrector, 12 marcas reales según el revisor independiente); sin consultas nuevas; la meta sobre escribir/ no se midió"
+      } ]
+    }, {
+      "judgeVersion" : "0ff707d23a1daebac68cbffd53cffce1e72faf614397585ae3e682dda203c5a8+053744abf099d2fbc8b48cc240b890f68cf4d810af15d6f1958e9b4edadcc395",
+      "provenance" : "codex-cli/gpt-6.1-sol (esfuerzo medium)",
+      "providerName" : "codex-cli",
+      "modelName" : "gpt-6.1-sol",
+      "reasoningEffort" : "medium",
+      "status" : "APPROVED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-06T00:47:46.964862Z",
+        "casesJudged" : 51,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-05-primer-lote-palabras-codex-v2/content-audit/db/english-course",
+        "measuredBy" : null
+      }, {
+        "status" : "APPROVED",
+        "recordedAt" : "2026-10-06T00:47:57.074539Z",
+        "casesJudged" : 51,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "a_verduras",
+          "cases" : 1,
+          "asExpected" : 1,
+          "notAsExpected" : 0
+        }, {
+          "group" : "c_buenos",
+          "cases" : 49,
+          "asExpected" : 48,
+          "notAsExpected" : 1
+        }, {
+          "group" : "c_buenos_reales_segun_revisor",
+          "cases" : 1,
+          "asExpected" : 0,
+          "notAsExpected" : 1
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d59930102295343979", "67fab6d59930102295343b22" ],
+        "goalMet" : true,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-05-primer-lote-palabras-codex-v2/content-audit/db/english-course",
+        "measuredBy" : "paquete C contra oro corregido y congelado del 1/10 (sha256 2977081b…); runtime codex-cli · gpt-6.1-sol · medium; medición local sin consultas nuevas"
+      } ]
+    } ]
+  }, {
+    "judge" : "single-answer",
+    "versions" : [ {
+      "judgeVersion" : "d6ff57d60849a99f1039afbeca07971d94b4a77b844853106c2dae175f873587",
+      "provenance" : "procedencia legacy desconocida",
+      "providerName" : null,
+      "modelName" : null,
+      "reasoningEffort" : null,
+      "status" : "FAILED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-01T04:14:50.894591Z",
+        "casesJudged" : 39,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/mongo-buckups/2026-09-29-revision-de-ejercicios/foto-content-audit-78815c3a/db/english-course",
+        "measuredBy" : null
+      }, {
+        "status" : "FAILED",
+        "recordedAt" : "2026-10-01T04:15:03.740076Z",
+        "casesJudged" : 39,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "a_verduras",
+          "cases" : 1,
+          "asExpected" : 1,
+          "notAsExpected" : 0
+        }, {
+          "group" : "c_buenos_cloze",
+          "cases" : 38,
+          "asExpected" : 32,
+          "notAsExpected" : 6
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d59930102295342df5", "67fab6d59930102295343c01", "67fab6d59930102295343cd0", "67fab6d59930102295343d88", "67fab6d599301022953446f8", "67fab6d599301022953442ba" ],
+        "goalMet" : false,
+        "photo" : "2026-09-29 (foto-content-audit-78815c3a)",
+        "measuredBy" : "paquete C con medir.py contra examen-fijo-oro.json del 077 (sólo el examen fijo; la meta sobre escribir/ no se midió)"
+      }, {
+        "status" : "FAILED",
+        "recordedAt" : "2026-10-01T05:19:36.847181Z",
+        "casesJudged" : 39,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "a_verduras",
+          "cases" : 1,
+          "asExpected" : 1,
+          "notAsExpected" : 0
+        }, {
+          "group" : "c_buenos_cloze",
+          "cases" : 35,
+          "asExpected" : 32,
+          "notAsExpected" : 3
+        }, {
+          "group" : "c_buenos_cloze_reales_segun_revisor",
+          "cases" : 3,
+          "asExpected" : 3,
+          "notAsExpected" : 0
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d59930102295343c01", "67fab6d59930102295343cd0", "67fab6d59930102295343d88" ],
+        "goalMet" : false,
+        "photo" : "2026-09-29 (foto-content-audit-78815c3a)",
+        "measuredBy" : "paquete C con medir.py contra examen-fijo.json corregido el 1/10 (sha256 2977081b…: 39 de b resueltos por el corrector, 12 marcas reales según el revisor independiente); sin consultas nuevas; la meta sobre escribir/ no se midió"
+      } ]
+    }, {
+      "judgeVersion" : "721c7878e30d326913a42f5d2ad11fb165a1d5c5a7ce46030480fa5fc0a18d27",
+      "provenance" : "procedencia legacy desconocida",
+      "providerName" : null,
+      "modelName" : null,
+      "reasoningEffort" : null,
+      "status" : "FAILED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-03T19:44:19.001628Z",
+        "casesJudged" : 62,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/mongo-buckups/2026-09-29-revision-de-ejercicios/foto-content-audit-78815c3a/db/english-course",
+        "measuredBy" : null
+      }, {
+        "status" : "FAILED",
+        "recordedAt" : "2026-10-03T19:45:23.566533Z",
+        "casesJudged" : 58,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "positivos",
+          "cases" : 25,
+          "asExpected" : 25,
+          "notAsExpected" : 0
+        }, {
+          "group" : "negativos_defendibles",
+          "cases" : 4,
+          "asExpected" : 3,
+          "notAsExpected" : 1
+        }, {
+          "group" : "negativos_la_consigna_decide",
+          "cases" : 5,
+          "asExpected" : 4,
+          "notAsExpected" : 1
+        }, {
+          "group" : "negativos_limpios",
+          "cases" : 24,
+          "asExpected" : 23,
+          "notAsExpected" : 1
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d59930102295344aa9", "67fab6d599301022953445b9", "67fab6d59930102295343854" ],
+        "goalMet" : false,
+        "photo" : "2026-09-29 (foto-content-audit-78815c3a)",
+        "measuredBy" : "examinador con v2/medir.py contra el oro v2 del examen SA-MC (criterio de José, 3/10; sha256 c447c0fb…): meta 18 de 25 positivos y como mucho 2 falsas alarmas de 33 negativos; 4 dudosos rendidos que no cuentan"
+      } ]
+    }, {
+      "judgeVersion" : "46aaf591cbacd1d3c2da829a097b84863a803b2b74a048f98c0dc13e266b5cb2",
+      "provenance" : "procedencia legacy desconocida",
+      "providerName" : null,
+      "modelName" : null,
+      "reasoningEffort" : null,
+      "status" : "APPROVED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-03T20:44:26.166474Z",
+        "casesJudged" : 62,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/mongo-buckups/2026-09-29-revision-de-ejercicios/foto-content-audit-78815c3a/db/english-course",
+        "measuredBy" : null
+      }, {
+        "status" : "APPROVED",
+        "recordedAt" : "2026-10-03T20:45:17.121872Z",
+        "casesJudged" : 58,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "positivos",
+          "cases" : 27,
+          "asExpected" : 25,
+          "notAsExpected" : 2
+        }, {
+          "group" : "negativos_defendibles",
+          "cases" : 3,
+          "asExpected" : 3,
+          "notAsExpected" : 0
+        }, {
+          "group" : "negativos_la_consigna_decide",
+          "cases" : 5,
+          "asExpected" : 5,
+          "notAsExpected" : 0
+        }, {
+          "group" : "negativos_limpios",
+          "cases" : 23,
+          "asExpected" : 23,
+          "notAsExpected" : 0
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d59930102295343854", "67fab6d59930102295344aa9" ],
+        "goalMet" : true,
+        "photo" : "2026-09-29 (foto-content-audit-78815c3a)",
+        "measuredBy" : "examinador con v3/medir.py contra el oro v3 del examen SA-MC (criterio de José, 3/10). v3 se congeló antes de rendir esta versión; dos de sus casos se re-etiquetaron después de medir la anterior (721c7878, REPROBADO con v2). Meta 19 de 27 positivos y como mucho 2 falsas alarmas de 31 negativos; 4 dudosos rendidos que no cuentan"
+      } ]
+    }, {
+      "judgeVersion" : "3bb9cd108ba301a0bfedd5c40b3cf1ac61b93d6341095911d3cfd2db43c3fdad",
+      "provenance" : "codex-cli/gpt-6.1-sol (esfuerzo medium)",
+      "providerName" : "codex-cli",
+      "modelName" : "gpt-6.1-sol",
+      "reasoningEffort" : "medium",
+      "status" : "APPROVED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-06T12:57:54.346566Z",
+        "casesJudged" : 39,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/mongo-buckups/2026-09-29-revision-de-ejercicios/foto-content-audit-78815c3a/db/english-course",
+        "measuredBy" : null
+      }, {
+        "status" : "APPROVED",
+        "recordedAt" : "2026-10-06T13:10:30.491343Z",
+        "casesJudged" : 39,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "a_verduras",
+          "cases" : 1,
+          "asExpected" : 1,
+          "notAsExpected" : 0
+        }, {
+          "group" : "c_buenos_cloze",
+          "cases" : 31,
+          "asExpected" : 29,
+          "notAsExpected" : 2
+        }, {
+          "group" : "c_buenos_cloze_reales_segun_revisor",
+          "cases" : 7,
+          "asExpected" : 7,
+          "notAsExpected" : 0
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d599301022953438ed", "67fab6d599301022953446f9" ],
+        "goalMet" : true,
+        "photo" : "/Users/josecullen/projects/learney/mongo-buckups/2026-09-29-revision-de-ejercicios/foto-content-audit-78815c3a/db/english-course",
+        "measuredBy" : "oro corregido tras reauditoria ciega de QA; runtime codex-cli · gpt-6.1-sol · medium; 39 inferencias exactas, sin reintentos ni fallos tecnicos. El segundo desacuerdo se conserva como discrepancia del oro vigente aunque QA lo considera un defecto real."
+      } ]
+    } ]
+  }, {
+    "judge" : "mini-theory",
+    "versions" : [ {
+      "judgeVersion" : "63f16ebddec6098100d92c709f592cd740ce77f4e88714cf048856c7c4cc77fc",
+      "provenance" : "procedencia legacy desconocida",
+      "providerName" : null,
+      "modelName" : null,
+      "reasoningEffort" : null,
+      "status" : "APPROVED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-01T04:26:20.132013Z",
+        "casesJudged" : 51,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/mongo-buckups/2026-09-29-revision-de-ejercicios/foto-content-audit-78815c3a/db/english-course",
+        "measuredBy" : null
+      }, {
+        "status" : "FAILED",
+        "recordedAt" : "2026-10-01T04:26:39.909404Z",
+        "casesJudged" : 47,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "a_tema_de_las_verduras",
+          "cases" : 1,
+          "asExpected" : 1,
+          "notAsExpected" : 0
+        }, {
+          "group" : "c_temas_de_los_buenos",
+          "cases" : 46,
+          "asExpected" : 38,
+          "notAsExpected" : 8
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d59930102295342216", "67fab6d59930102295342225", "67fab6d599301022953425a4", "67fab6d5993010229534349d", "67fab6d599301022953446f8", "67fab6d599301022953446f9", "67fab6d59930102295343f26", "67fab6d59930102295343f33", "67fab6d59930102295344484", "67fab6d599301022953448b5" ],
+        "goalMet" : false,
+        "photo" : "2026-09-29 (foto-content-audit-78815c3a)",
+        "measuredBy" : "paquete C con medir.py contra examen-fijo-oro.json del 077 (sólo el examen fijo; la meta sobre escribir/ no se midió)"
+      }, {
+        "status" : "APPROVED",
+        "recordedAt" : "2026-10-01T05:19:37.756812Z",
+        "casesJudged" : 47,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "a_tema_de_las_verduras",
+          "cases" : 1,
+          "asExpected" : 1,
+          "notAsExpected" : 0
+        }, {
+          "group" : "c_temas_de_los_buenos",
+          "cases" : 38,
+          "asExpected" : 38,
+          "notAsExpected" : 0
+        }, {
+          "group" : "c_temas_reales_segun_revisor",
+          "cases" : 8,
+          "asExpected" : 8,
+          "notAsExpected" : 0
+        } ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : true,
+        "photo" : "2026-09-29 (foto-content-audit-78815c3a)",
+        "measuredBy" : "paquete C con medir.py contra examen-fijo.json corregido el 1/10 (sha256 2977081b…: 39 de b resueltos por el corrector, 12 marcas reales según el revisor independiente); sin consultas nuevas; la meta sobre escribir/ no se midió"
+      } ]
+    }, {
+      "judgeVersion" : "26c7b66ddb83f7f5bf6344a755269465ec430e2259b13df3bb063427303fc978",
+      "provenance" : "codex-cli/gpt-6.1-sol (esfuerzo medium)",
+      "providerName" : "codex-cli",
+      "modelName" : "gpt-6.1-sol",
+      "reasoningEffort" : "medium",
+      "status" : "FAILED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-06T01:16:52.224657Z",
+        "casesJudged" : 40,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-05-primer-lote-palabras-codex-v2/content-audit/db/english-course",
+        "measuredBy" : null
+      }, {
+        "status" : "FAILED",
+        "recordedAt" : "2026-10-06T01:17:38.635362Z",
+        "casesJudged" : 40,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "SANO",
+          "cases" : 8,
+          "asExpected" : 6,
+          "notAsExpected" : 2
+        }, {
+          "group" : "FALSE_RULE",
+          "cases" : 8,
+          "asExpected" : 2,
+          "notAsExpected" : 6
+        }, {
+          "group" : "INSUFFICIENT_FOR_QUIZ",
+          "cases" : 8,
+          "asExpected" : 7,
+          "notAsExpected" : 1
+        }, {
+          "group" : "OVERSTATED_FOR_QUIZ",
+          "cases" : 8,
+          "asExpected" : 0,
+          "notAsExpected" : 8
+        }, {
+          "group" : "OTHER_SUBTOPIC_CONTENT",
+          "cases" : 8,
+          "asExpected" : 0,
+          "notAsExpected" : 8
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d59930102295342868", "67fab6d59930102295342084", "67fab6d5993010229534207c", "67fab6d5993010229534365c", "67fab6d5993010229534365f", "67fab6d5993010229534208f", "67fab6d599301022953443ea", "67fab6d599301022953443f5", "67fab6d599301022953434c0", "67fab6d59930102295342a89", "67fab6d59930102295344898", "67fab6d59930102295343f23", "67fab6d59930102295343e02", "67fab6d599301022953448df", "67fab6d599301022953420ab", "67fab6d5993010229534424b", "67fab6d5993010229534424e", "67fab6d59930102295342864", "67fab6d599301022953428ac", "67fab6d59930102295342ef8", "67fab6d59930102295342d06", "67fab6d59930102295342725", "67fab6d599301022953425bf", "67fab6d59930102295342d04", "67fab6d599301022953444a2" ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-05-primer-lote-palabras-codex-v2/content-audit/db/english-course",
+        "measuredBy" : "medir.py minitheory-formal-v2-20261005"
+      } ]
+    }, {
+      "judgeVersion" : "92055c60d26db343f1af54352ae013037cd65ef3ad04f57e946fcbd69211f636",
+      "provenance" : "codex-cli/gpt-6.1-sol (esfuerzo medium)",
+      "providerName" : "codex-cli",
+      "modelName" : "gpt-6.1-sol",
+      "reasoningEffort" : "medium",
+      "status" : "FAILED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-06T01:46:37.634330Z",
+        "casesJudged" : 40,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-05-primer-lote-palabras-codex-v2/content-audit/db/english-course",
+        "measuredBy" : null
+      }, {
+        "status" : "FAILED",
+        "recordedAt" : "2026-10-06T01:50:40.105316Z",
+        "casesJudged" : 40,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "FALSE_RULE",
+          "cases" : 5,
+          "asExpected" : 5,
+          "notAsExpected" : 0
+        }, {
+          "group" : "INSUFFICIENT_FOR_QUIZ",
+          "cases" : 6,
+          "asExpected" : 6,
+          "notAsExpected" : 0
+        }, {
+          "group" : "OTHER_SUBTOPIC_CONTENT",
+          "cases" : 18,
+          "asExpected" : 7,
+          "notAsExpected" : 11
+        }, {
+          "group" : "OVERSTATED_FOR_QUIZ",
+          "cases" : 2,
+          "asExpected" : 1,
+          "notAsExpected" : 1
+        }, {
+          "group" : "SANO",
+          "cases" : 9,
+          "asExpected" : 8,
+          "notAsExpected" : 1
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d59930102295343f3d", "67fab6d5993010229534208f", "67fab6d59930102295342068", "67fab6d59930102295342069", "67fab6d59930102295342a89", "67fab6d59930102295344898", "67fab6d59930102295343f23", "67fab6d59930102295343e02", "67fab6d599301022953448df", "67fab6d599301022953420ab", "67fab6d5993010229534424b", "67fab6d5993010229534424e", "67fab6d599301022953425bf" ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-05-primer-lote-palabras-codex-v2/content-audit/db/english-course",
+        "measuredBy" : "medir.py"
+      } ]
+    }, {
+      "judgeVersion" : "738388a5fa6cc3ad123269dc5022273da67b18b72fdf5708f801649f8d61c6e7",
+      "provenance" : "codex-cli/gpt-6.1-sol (esfuerzo medium)",
+      "providerName" : "codex-cli",
+      "modelName" : "gpt-6.1-sol",
+      "reasoningEffort" : "medium",
+      "status" : "APPROVED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-06T02:11:13.548781Z",
+        "casesJudged" : 40,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "db/english-course",
+        "measuredBy" : null
+      }, {
+        "status" : "APPROVED",
+        "recordedAt" : "2026-10-06T02:14:16.942031Z",
+        "casesJudged" : 40,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "FALSE_RULE",
+          "cases" : 5,
+          "asExpected" : 5,
+          "notAsExpected" : 0
+        }, {
+          "group" : "INSUFFICIENT_FOR_QUIZ",
+          "cases" : 8,
+          "asExpected" : 7,
+          "notAsExpected" : 1
+        }, {
+          "group" : "OTHER_SUBTOPIC_CONTENT",
+          "cases" : 16,
+          "asExpected" : 16,
+          "notAsExpected" : 0
+        }, {
+          "group" : "OVERSTATED_FOR_QUIZ",
+          "cases" : 2,
+          "asExpected" : 2,
+          "notAsExpected" : 0
+        }, {
+          "group" : "SANO",
+          "cases" : 9,
+          "asExpected" : 8,
+          "notAsExpected" : 1
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d59930102295343f3d", "67fab6d599301022953425bf" ],
+        "goalMet" : true,
+        "photo" : "db/english-course",
+        "measuredBy" : "medir.py"
+      } ]
+    } ]
+  }, {
+    "judge" : "grammar",
+    "versions" : [ {
+      "judgeVersion" : "LanguageTool 6.8 · filtro-031b0555",
+      "provenance" : "procedencia legacy desconocida",
+      "providerName" : null,
+      "modelName" : null,
+      "reasoningEffort" : null,
+      "status" : "APPROVED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-01T09:06:45.620890Z",
+        "casesJudged" : 122,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/mongo-buckups/2026-09-29-revision-de-ejercicios/foto-content-audit-78815c3a/db/english-course",
+        "measuredBy" : null
+      }, {
+        "status" : "FAILED",
+        "recordedAt" : "2026-10-01T09:17:31.444851Z",
+        "casesJudged" : 122,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "escribir_gramatica_encontrados",
+          "cases" : 47,
+          "asExpected" : 4,
+          "notAsExpected" : 43
+        }, {
+          "group" : "examinar_gramatica_encontrados",
+          "cases" : 75,
+          "asExpected" : 6,
+          "notAsExpected" : 69
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d59930102295341ea4", "67fab6d59930102295341ecb", "67fab6d59930102295342404", "67fab6d59930102295342670", "67fab6d599301022953426c6", "67fab6d599301022953427cb", "67fab6d59930102295342804", "67fab6d59930102295342809", "67fab6d599301022953428f0", "67fab6d599301022953428f1", "67fab6d599301022953428f2", "67fab6d599301022953428f3", "67fab6d599301022953428f4", "67fab6d599301022953428f5", "67fab6d599301022953428f6", "67fab6d599301022953428f7", "67fab6d599301022953428f9", "67fab6d599301022953428fa", "67fab6d599301022953428fd", "67fab6d599301022953428fe", "67fab6d599301022953428ff", "67fab6d59930102295342900", "67fab6d59930102295342901", "67fab6d59930102295342902", "67fab6d59930102295342903", "67fab6d5993010229534298b", "67fab6d59930102295342b89", "67fab6d59930102295342b98", "67fab6d59930102295342ba5", "67fab6d59930102295342bd6", "67fab6d59930102295342c06", "67fab6d59930102295342c0c", "67fab6d59930102295342cc9", "67fab6d59930102295342d04", "67fab6d59930102295342d0d", "67fab6d59930102295342d8d", "67fab6d59930102295342ec4", "67fab6d59930102295342f7f", "67fab6d59930102295342f81", "67fab6d599301022953430c0", "67fab6d599301022953430e0", "67fab6d5993010229534393f", "67fab6d59930102295343948" ],
+        "goalMet" : false,
+        "photo" : "2026-09-29 (foto-content-audit-78815c3a)",
+        "measuredBy" : "paquete B con medir_idioma.py contra el oro del 077 (las dos mitades), sin consultas pagas; a mano, fuera del oro: escribir 13 de 13 reales, examinar 15 de 24 (sin saber cuáles están en su oro) (revisó el paquete B, no José); en noDieronLoEsperado, sólo escribir/"
+      }, {
+        "status" : "APPROVED",
+        "recordedAt" : "2026-10-01T13:53:45.320589Z",
+        "casesJudged" : 122,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "escribir_gramatica_encontrados",
+          "cases" : 47,
+          "asExpected" : 4,
+          "notAsExpected" : 43
+        }, {
+          "group" : "examinar_gramatica_encontrados",
+          "cases" : 75,
+          "asExpected" : 6,
+          "notAsExpected" : 69
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d59930102295341ea4", "67fab6d59930102295341ecb", "67fab6d59930102295342404", "67fab6d59930102295342670", "67fab6d599301022953426c6", "67fab6d599301022953427cb", "67fab6d59930102295342804", "67fab6d59930102295342809", "67fab6d599301022953428f0", "67fab6d599301022953428f1", "67fab6d599301022953428f2", "67fab6d599301022953428f3", "67fab6d599301022953428f4", "67fab6d599301022953428f5", "67fab6d599301022953428f6", "67fab6d599301022953428f7", "67fab6d599301022953428f9", "67fab6d599301022953428fa", "67fab6d599301022953428fd", "67fab6d599301022953428fe", "67fab6d599301022953428ff", "67fab6d59930102295342900", "67fab6d59930102295342901", "67fab6d59930102295342902", "67fab6d59930102295342903", "67fab6d5993010229534298b", "67fab6d59930102295342b89", "67fab6d59930102295342b98", "67fab6d59930102295342ba5", "67fab6d59930102295342bd6", "67fab6d59930102295342c06", "67fab6d59930102295342c0c", "67fab6d59930102295342cc9", "67fab6d59930102295342d04", "67fab6d59930102295342d0d", "67fab6d59930102295342d8d", "67fab6d59930102295342ec4", "67fab6d59930102295342f7f", "67fab6d59930102295342f81", "67fab6d599301022953430c0", "67fab6d599301022953430e0", "67fab6d5993010229534393f", "67fab6d59930102295343948" ],
+        "goalMet" : true,
+        "photo" : "2026-09-29 (foto-content-audit-78815c3a)",
+        "measuredBy" : "José lo aprobó con ±1 el 1/10/2026 (brief 109): encontró 6 de 75 en examinar contra una meta de 7. Queda como control gratis; la gramática de cada respuesta también la revisa el juez de consigna. Medición, la misma del registro REPROBADO: paquete B con medir_idioma.py contra el oro del 077 (las dos mitades), sin consultas pagas; a mano, fuera del oro: escribir 13 de 13 reales, examinar 15 de 24 (sin saber cuáles están en su oro) (revisó el paquete B, no José); en noDieronLoEsperado, sólo escribir/"
+      } ]
+    } ]
+  }, {
+    "judge" : "naturalness",
+    "versions" : [ {
+      "judgeVersion" : "llama3:8b@365c0bd3c000 · native-yes-no-1",
+      "provenance" : "procedencia legacy desconocida",
+      "providerName" : null,
+      "modelName" : null,
+      "reasoningEffort" : null,
+      "status" : "APPROVED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-01T09:11:58.403636Z",
+        "casesJudged" : 446,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/mongo-buckups/2026-09-29-revision-de-ejercicios/foto-content-audit-78815c3a/db/english-course",
+        "measuredBy" : null
+      }, {
+        "status" : "APPROVED",
+        "recordedAt" : "2026-10-01T09:17:51.488180Z",
+        "casesJudged" : 446,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "escribir_antinaturales_y_sin_sentido_en_la_cola_del_5",
+          "cases" : 185,
+          "asExpected" : 51,
+          "notAsExpected" : 134
+        }, {
+          "group" : "examinar_antinaturales_y_sin_sentido_en_la_cola_del_5",
+          "cases" : 261,
+          "asExpected" : 56,
+          "notAsExpected" : 205
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d59930102295341ead", "67fab6d59930102295341eae", "67fab6d59930102295341ec4", "67fab6d59930102295341edc", "67fab6d59930102295341f0b", "67fab6d59930102295341f47", "67fab6d59930102295341f65", "67fab6d59930102295342020", "67fab6d599301022953420ac", "67fab6d599301022953420c5", "67fab6d599301022953420fa", "67fab6d59930102295342135", "67fab6d5993010229534213a", "67fab6d5993010229534214a", "67fab6d59930102295342159", "67fab6d5993010229534218b", "67fab6d59930102295342258", "67fab6d599301022953422ea", "67fab6d599301022953423ad", "67fab6d599301022953423dc", "67fab6d599301022953423f6", "67fab6d59930102295342449", "67fab6d5993010229534245d", "67fab6d5993010229534245e", "67fab6d59930102295342462", "67fab6d5993010229534246a", "67fab6d59930102295342489", "67fab6d5993010229534248b", "67fab6d599301022953424c4", "67fab6d59930102295342536", "67fab6d599301022953425a6", "67fab6d599301022953425ec", "67fab6d599301022953425ee", "67fab6d59930102295342647", "67fab6d5993010229534267c", "67fab6d599301022953426b3", "67fab6d599301022953426ec", "67fab6d599301022953426ee", "67fab6d599301022953426fa", "67fab6d59930102295342715", "67fab6d59930102295342727", "67fab6d5993010229534272a", "67fab6d599301022953427a7", "67fab6d599301022953427da", "67fab6d599301022953427fc", "67fab6d599301022953427fd", "67fab6d59930102295342825", "67fab6d5993010229534282d", "67fab6d59930102295342840", "67fab6d5993010229534287c", "67fab6d59930102295342892", "67fab6d59930102295342899", "67fab6d5993010229534289d", "67fab6d599301022953428ab", "67fab6d599301022953428ba", "67fab6d599301022953428c5", "67fab6d599301022953428ce", "67fab6d599301022953428cf", "67fab6d599301022953428d7", "67fab6d599301022953428ec", "67fab6d59930102295342925", "67fab6d59930102295342928", "67fab6d59930102295342946", "67fab6d59930102295342954", "67fab6d59930102295342956", "67fab6d59930102295342964", "67fab6d59930102295342980", "67fab6d599301022953429b4", "67fab6d599301022953429bd", "67fab6d599301022953429da", "67fab6d599301022953429fd", "67fab6d59930102295342a6c", "67fab6d59930102295342a96", "67fab6d59930102295342a9d", "67fab6d59930102295342aa4", "67fab6d59930102295342b33", "67fab6d59930102295342b56", "67fab6d59930102295342b5c", "67fab6d59930102295342b66", "67fab6d59930102295342b9b", "67fab6d59930102295342ba8", "67fab6d59930102295342beb", "67fab6d59930102295342bec", "67fab6d59930102295342bef", "67fab6d59930102295342c1c", "67fab6d59930102295342c28", "67fab6d59930102295342c31", "67fab6d59930102295342c33", "67fab6d59930102295342c55", "67fab6d59930102295342c5c", "67fab6d59930102295342c5d", "67fab6d59930102295342c66", "67fab6d59930102295342c78", "67fab6d59930102295342c83", "67fab6d59930102295342d3a", "67fab6d59930102295342d3d", "67fab6d59930102295342d48", "67fab6d59930102295342d66", "67fab6d59930102295342d8a", "67fab6d59930102295342d9e", "67fab6d59930102295342da9", "67fab6d59930102295342dbf", "67fab6d59930102295342e32", "67fab6d59930102295342e66", "67fab6d59930102295342e90", "67fab6d59930102295342ed2", "67fab6d59930102295342ee1", "67fab6d59930102295342efb", "67fab6d59930102295342f05", "67fab6d59930102295342f2a", "67fab6d59930102295342f34", "67fab6d59930102295342f39", "67fab6d59930102295342f4b", "67fab6d59930102295342f53", "67fab6d5993010229534305f", "67fab6d599301022953430cc", "67fab6d599301022953434cc", "67fab6d599301022953434cd", "67fab6d59930102295343589", "67fab6d59930102295343597", "67fab6d599301022953435b0", "67fab6d59930102295343955", "67fab6d5993010229534395a", "67fab6d5993010229534395b", "67fab6d5993010229534395d", "67fab6d59930102295343962", "67fab6d59930102295343968", "67fab6d5993010229534396c", "67fab6d5993010229534397e", "67fab6d59930102295343981", "67fab6d59930102295343988", "67fab6d59930102295343aff", "67fab6d59930102295343b9e", "67fab6d59930102295343ba6" ],
+        "goalMet" : true,
+        "photo" : "2026-09-29 (foto-content-audit-78815c3a)",
+        "measuredBy" : "paquete B con medir_idioma.py contra el oro del 077 (las dos mitades), sin consultas pagas; en noDieronLoEsperado, sólo escribir/"
+      } ]
+    } ]
+  }, {
+    "judge" : "near-duplicates",
+    "versions" : [ {
+      "judgeVersion" : "nomic-embed-text@0a109f422b47 · clustering-1 · candidatos-0,80 · juez-68eec0b7e9fe",
+      "provenance" : "codex-cli/gpt-6.1-sol (esfuerzo medium)",
+      "providerName" : "codex-cli",
+      "modelName" : "gpt-6.1-sol",
+      "reasoningEffort" : "medium",
+      "status" : "TAKEN",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-06T20:57:51.143120Z",
+        "casesJudged" : 14,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-03-duplicados-v2/content-audit/db/english-course",
+        "measuredBy" : null
+      } ]
+    }, {
+      "judgeVersion" : "nomic-embed-text@0a109f422b47 · clustering-1 · candidatos-0,80 · juez-afeceb7d0fdf",
+      "provenance" : "codex-cli/gpt-6.1-sol (esfuerzo medium)",
+      "providerName" : "codex-cli",
+      "modelName" : "gpt-6.1-sol",
+      "reasoningEffort" : "medium",
+      "status" : "TAKEN",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-06T21:15:11.682819Z",
+        "casesJudged" : 14,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-03-duplicados-v2/content-audit/db/english-course",
+        "measuredBy" : null
+      } ]
+    }, {
+      "judgeVersion" : "nomic-embed-text@0a109f422b47 · clustering-1 · candidatos-0,80 · juez-7a60fc49db6e",
+      "provenance" : "codex-cli/gpt-6.1-sol (esfuerzo medium)",
+      "providerName" : "codex-cli",
+      "modelName" : "gpt-6.1-sol",
+      "reasoningEffort" : "medium",
+      "status" : "TAKEN",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-06T21:27:59.205759Z",
+        "casesJudged" : 14,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-03-duplicados-v2/content-audit/db/english-course",
+        "measuredBy" : null
+      } ]
+    }, {
+      "judgeVersion" : "nomic-embed-text@0a109f422b47 · clustering-1 · candidatos-0,80 · juez-8d41af24f288",
+      "provenance" : "codex-cli/gpt-6.1-sol (esfuerzo medium)",
+      "providerName" : "codex-cli",
+      "modelName" : "gpt-6.1-sol",
+      "reasoningEffort" : "medium",
+      "status" : "TAKEN",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-06T21:40:08.239100Z",
+        "casesJudged" : 14,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-03-duplicados-v2/content-audit/db/english-course",
+        "measuredBy" : null
+      } ]
+    }, {
+      "judgeVersion" : "nomic-embed-text@0a109f422b47 · clustering-1 · candidatos-0,80 · juez-8d41af24f288",
+      "provenance" : "codex-cli/gpt-6-astra (esfuerzo medium)",
+      "providerName" : "codex-cli",
+      "modelName" : "gpt-6-astra",
+      "reasoningEffort" : "medium",
+      "status" : "TAKEN",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-06T21:50:43.215043Z",
+        "casesJudged" : 14,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-03-duplicados-v2/content-audit/db/english-course",
+        "measuredBy" : null
+      } ]
+    }, {
+      "judgeVersion" : "nomic-embed-text@0a109f422b47 · clustering-1 · candidatos-0,80 · juez-b4782405ed71",
+      "provenance" : "codex-cli/gpt-6.1-sol (esfuerzo medium)",
+      "providerName" : "codex-cli",
+      "modelName" : "gpt-6.1-sol",
+      "reasoningEffort" : "medium",
+      "status" : "TAKEN",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-06T22:14:50.126090Z",
+        "casesJudged" : 14,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-03-duplicados-v2/content-audit/db/english-course",
+        "measuredBy" : null
+      } ]
+    }, {
+      "judgeVersion" : "nomic-embed-text@0a109f422b47 · clustering-1 · candidatos-0,80 · juez-10691b85be31",
+      "provenance" : "codex-cli/gpt-6.1-sol (esfuerzo medium)",
+      "providerName" : "codex-cli",
+      "modelName" : "gpt-6.1-sol",
+      "reasoningEffort" : "medium",
+      "status" : "TAKEN",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-06T22:45:04.724133Z",
+        "casesJudged" : 14,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-03-duplicados-v2/content-audit/db/english-course",
+        "measuredBy" : null
+      } ]
+    }, {
+      "judgeVersion" : "nomic-embed-text@0a109f422b47 · clustering-1 · candidatos-0,80 · juez-6514b64abccc",
+      "provenance" : "codex-cli/gpt-6.1-sol (esfuerzo medium)",
+      "providerName" : "codex-cli",
+      "modelName" : "gpt-6.1-sol",
+      "reasoningEffort" : "medium",
+      "status" : "TAKEN",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-07T00:01:53.006601Z",
+        "casesJudged" : 14,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-06-evaluacion-ampliada-v1/content-audit/db/english-course",
+        "measuredBy" : null
+      } ]
+    }, {
+      "judgeVersion" : "nomic-embed-text@0a109f422b47 · clustering-1 · candidatos-0,80 · juez-b35d65aa6382",
+      "provenance" : "codex-cli/gpt-6.1-sol (esfuerzo medium)",
+      "providerName" : "codex-cli",
+      "modelName" : "gpt-6.1-sol",
+      "reasoningEffort" : "medium",
+      "status" : "TAKEN",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-07T00:21:23.693232Z",
+        "casesJudged" : 14,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-06-evaluacion-ampliada-v1/content-audit/db/english-course",
+        "measuredBy" : null
+      } ]
+    }, {
+      "judgeVersion" : "nomic-embed-text@0a109f422b47 · clustering-1 · candidatos-0,80 · juez-6a1a8bb95071",
+      "provenance" : "codex-cli/gpt-6.1-sol (esfuerzo medium)",
+      "providerName" : "codex-cli",
+      "modelName" : "gpt-6.1-sol",
+      "reasoningEffort" : "medium",
+      "status" : "TAKEN",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-07T00:33:45.936324Z",
+        "casesJudged" : 14,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/content-audit-corridas/2026-10-06-evaluacion-ampliada-v1/content-audit/db/english-course",
+        "measuredBy" : null
+      } ]
+    }, {
+      "judgeVersion" : "nomic-embed-text@0a109f422b47 · clustering-1 · candidatos-0,80 · juez-04c290f901e3",
+      "provenance" : "codex-cli/gpt-6.1-sol (esfuerzo medium)",
+      "providerName" : "codex-cli",
+      "modelName" : "gpt-6.1-sol",
+      "reasoningEffort" : "medium",
+      "status" : "APPROVED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-07T00:47:26.203232Z",
+        "casesJudged" : 14,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "db/english-course",
+        "measuredBy" : null
+      }, {
+        "status" : "APPROVED",
+        "recordedAt" : "2026-10-07T01:57:12.805707Z",
+        "casesJudged" : 3030,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "historico",
+          "cases" : 7,
+          "asExpected" : 7,
+          "notAsExpected" : 0
+        }, {
+          "group" : "oro_formal",
+          "cases" : 111,
+          "asExpected" : 111,
+          "notAsExpected" : 0
+        }, {
+          "group" : "estabilidad_por_ejercicio_A1",
+          "cases" : 2402,
+          "asExpected" : 2399,
+          "notAsExpected" : 3
+        }, {
+          "group" : "estabilidad_por_par_A1",
+          "cases" : 510,
+          "asExpected" : 506,
+          "notAsExpected" : 4
+        } ],
+        "mismatchedCaseIds" : [ "67fab6d59930102295342034::67fab6d5993010229534203c", "67fab6d5993010229534221f::67fab6d5993010229534224f", "67fab6d59930102295342275::67fab6d5993010229534227f", "67fab6d599301022953424af::67fab6d59930102295342cdf" ],
+        "goalMet" : true,
+        "photo" : "db/english-course",
+        "measuredBy" : "histórico 7/7; oro formal 111/111, con 87/87 duplicados marcados y 0/24 omisiones; dos pasadas completas A1 con 99,875% de acuerdo por ejercicio, Jaccard 98,881% entre copias marcadas y las cuatro divergencias enumeradas para revisión humana; criterio operativo F-DUPAR-R007.3 aceptado por José el 2026-10-06"
+      } ]
+    } ]
+  }, {
+    "judge" : "multiple-choice-quality",
+    "versions" : [ {
+      "judgeVersion" : "9f164016f0612d83ee29e835741ed05c67362b251c3da164ac69f719ad3cacc4",
+      "provenance" : "codex-cli/gpt-6.1-sol (esfuerzo medium)",
+      "providerName" : "codex-cli",
+      "modelName" : "gpt-6.1-sol",
+      "reasoningEffort" : "medium",
+      "status" : "APPROVED",
+      "records" : [ {
+        "status" : "TAKEN",
+        "recordedAt" : "2026-10-11T18:30:01.103004Z",
+        "casesJudged" : 16,
+        "casesNotJudged" : 0,
+        "groups" : [ ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : false,
+        "photo" : "/Users/josecullen/projects/learney/content-audit/analysis/judge-exams/2026-10-11-choice-quality-v2-official/course",
+        "measuredBy" : null
+      }, {
+        "status" : "APPROVED",
+        "recordedAt" : "2026-10-11T18:30:20.176035Z",
+        "casesJudged" : 16,
+        "casesNotJudged" : 0,
+        "groups" : [ {
+          "group" : "Defectos pedagógicos",
+          "cases" : 9,
+          "asExpected" : 9,
+          "notAsExpected" : 0
+        }, {
+          "group" : "Distractores útiles y práctica introductoria",
+          "cases" : 7,
+          "asExpected" : 7,
+          "notAsExpected" : 0
+        } ],
+        "mismatchedCaseIds" : [ ],
+        "goalMet" : true,
+        "photo" : "/Users/josecullen/projects/learney/content-audit/analysis/judge-exams/2026-10-11-choice-quality-v2-official/course",
+        "measuredBy" : "Comparación local de la exportación oficial con el corpus y la rúbrica v2 congelados antes de la corrida del 9/10: 16/16 estados y categorías compatibles; reutilización nativa con presupuesto cero, sin reinterpretar el examen v1."
+      } ]
+    } ]
+  } ]
+}
