@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Estadísticas en HTML</title>
+<title>Tablero consolidado</title>
+<meta name="description" content="Lo que hicieron las sesiones 089 a 099 del tablero HTML, los 57 pendientes que dejaron y cómo probarlo junto antes de subirlo.">
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -242,10 +243,19 @@
     .kpi .n{font-size:28px}
   }
 
-  /* dos capturas lado a lado */
-  .par{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-  .par .captura{margin:0}
-  .par .captura.cel img{max-height:560px;object-fit:cover;object-position:top}
+
+  /* ============ propios del 100 ============ */
+  details{margin-top:14px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
+  details>summary{cursor:pointer;padding:10px 14px;font-size:13.5px;font-weight:600;color:var(--fg-2)}
+  details[open]>summary{border-bottom:1px solid var(--line-soft)}
+  details>.tw{border:0;border-radius:0}
+  details>pre{margin:12px 14px}
+  pre code{white-space:pre-wrap}
+  table.mx tr.g td{background:var(--line-soft);color:var(--fg-3);font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+  table.mx td:first-child{white-space:nowrap}
+  table.pend td:last-child{white-space:nowrap;color:var(--fg-3);font-size:12.5px}
+  table.pend .pill{margin-right:4px}
+  table.hecho td:nth-child(2),table.hecho td:last-child{white-space:nowrap;font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body>
@@ -253,97 +263,214 @@
 
   <header>
     <div class="kicker">
-      <span class="num">092</span>
+      <span class="num">100</span>
       <span class="badge">Resumen</span>
-      <span class="meta">Dashboard de content-audit, pantalla reservada en el brief 088 · 10/10/2026</span>
+      <span class="meta">tablero HTML · las ramas 089 a 099 juntas · 11/10/2026</span>
     </div>
-    <h1>Estadísticas anda en HTML: del curso al ejercicio, sin gastar nada</h1>
-    <p class="sub">Qué se ve sobre la copia de A1, qué no hace y por qué, qué dato falta y qué conviene pasar a lo común.</p>
+    <h1>Ocho pantallas listas para juntar y 57 pendientes anotados</h1>
+    <p class="sub">Lo que hizo cada sesión del tablero, todo lo que dejó pendiente y cómo lo probamos juntos antes de subirlo.</p>
   </header>
 
-  <div class="lede"><p><strong>La pantalla de Estadísticas lee un análisis y lo muestra del curso entero a un solo ejercicio: la calidad, los errores y el vocabulario.</strong> Sólo lee: lo que gasta consultas queda apagado, con su (!).</p></div>
+  <div class="lede"><p><strong>Las ocho pantallas se juntan sin un solo choque, pero todavía no están juntas:</strong> el permiso de git me frena el merge. Quedan 57 pendientes y 24 botones apagados, uno por uno.</p></div>
 
   <section>
-    <h2>A1 da 87,4 de calidad; la miniteoría la baja más</h2>
-    <figure class="captura"><img src="092-estadisticas-en-html/pantalla.jpg" alt="La pantalla de Estadísticas en el nivel A1: a la izquierda el índice con la calidad, cada analizador de errores y el vocabulario; en el centro el radar con las 14 medidas y la miniteoría hundida en 36">
-      <figcaption>A1, análisis del 7/10: 2.402 ejercicios; la miniteoría falla en el 64 %</figcaption></figure>
-    <div class="par" style="margin-top:12px">
-      <figure class="captura"><img src="092-estadisticas-en-html/errores.jpg" alt="La unidad Present Simple con los errores puestos: cada tema es una fila de cuadraditos, uno por ejercicio, del color de su error más grave">
-        <figcaption>Con los errores puestos, un cuadradito por ejercicio</figcaption></figure>
-      <figure class="captura cel"><img src="092-estadisticas-en-html/celular.jpg" alt="La misma unidad en un celular: el índice se esconde detrás del botón de arriba y los temas van uno debajo del otro">
-        <figcaption>En el celular, el índice va detrás del menú</figcaption></figure>
+    <h2>Ocho pantallas hechas, cada una con sus pruebas</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">8<small>de 8</small></div><div class="l">pantallas planeadas, hechas; la 9.ª, Ejecuciones, está propuesta</div></div>
+      <div class="kpi"><div class="n">1.070</div><div class="l">pruebas del navegador, más 367 del servidor, sumando las ramas</div></div>
+      <div class="kpi"><div class="n">0<small>choques</small></div><div class="l">al juntar las 8 en una copia: solo comparten 2 archivos</div></div>
     </div>
-    <p class="pie">Se elige qué mirar (la calidad, los errores, el vocabulario o un analizador solo) y dónde: tocar una unidad o un tema acerca todo.</p>
-  </section>
-
-  <section>
-    <h2>Cada ejercicio muestra qué le encontró cada analizador</h2>
-    <div class="par">
-      <figure class="captura"><img src="092-estadisticas-en-html/ficha.jpg" alt="En modo oscuro, la ficha de un ejercicio de opción múltiple de Afirmativas con be: consigna, oración, opciones, respuesta, traducción y miniteoría, y abajo dos hallazgos, uno de gravedad alta y otro baja">
-        <figcaption>La ficha: el ejercicio como lo ve el alumno y sus hallazgos</figcaption></figure>
-      <figure class="captura"><img src="092-estadisticas-en-html/juez.jpg" alt="En modo oscuro, un analizador que juzga con un modelo: su mapa de ejercicios por tema, la leyenda y, abajo, quién juzga y su examen aprobado">
-        <figcaption>Un analizador con juez: su modelo y su examen</figcaption></figure>
-    </div>
-    <p class="pie">La oración se lee del contenido de hoy; si el tema cambió después del análisis, un (!) lo avisa.</p>
-  </section>
-
-  <section>
-    <h2>26 ayudas, con los números del lugar abierto</h2>
-    <div class="par">
-      <figure class="captura"><img src="092-estadisticas-en-html/ayuda.jpg" alt="Panel de ayuda «La calidad», en modo oscuro, con el mapa de la pantalla, la cuenta con los números de A1 y el paso Medir marcado">
-        <figcaption>(?) cómo se calcula la calidad, con los números de A1</figcaption></figure>
-      <figure class="captura"><img src="092-estadisticas-en-html/aviso.jpg" alt="Panel de aviso «Esto gasta consultas a modelos», que explica por qué el botón está apagado y cómo se hace hoy">
-        <figcaption>(!) por qué no examina al juez y cómo se hace hoy</figcaption></figure>
-    </div>
-    <p class="pie">19 ayudas y 7 avisos; todas marcan «Medir» como el paso del proceso. Los nombres salen del catálogo, nunca escritos a mano.</p>
-  </section>
-
-  <section>
-    <h2>Lo que gasta o falta queda apagado y explicado</h2>
-    <div class="tw"><table>
-      <thead><tr><th>Qué no hace</th><th>Por qué, y qué muestra en su lugar</th></tr></thead>
+    <div class="tw"><table class="hecho">
+      <thead><tr><th>Pantalla</th><th>Brief</th><th>Qué hace hoy</th><th>Pruebas</th></tr></thead>
       <tbody>
-        <tr><td>Hacer un análisis nuevo o examinar un juez</td><td>Consultan modelos pagos. Apagados, con un (!) que dice que van por línea de comandos.</td></tr>
-        <tr><td>El vocabulario palabra por palabra</td><td>El resumen no lo trae. Se ven el puntaje y los hallazgos; falta un comando que sólo lea.</td></tr>
-        <tr><td>Contar como bien lo que no se miró</td><td>Lo que el juez no evaluó no tiñe ni suma; el (!) dice cuántos quedaron.</td></tr>
-        <tr><td>Inventar lo que no corrió</td><td>Un analizador sin resultados va en gris, «no corrió», y no entra en la calidad.</td></tr>
-        <tr><td>Abrir un análisis viejo</td><td>Los de antes del resumen aparecen en la lista, sin abrirse, con su (!).</td></tr>
-        <tr><td>Completar la ficha de un analizador</td><td>Si el catálogo no la trae, sólo su nombre, con su (!).</td></tr>
+        <tr><td>Mapa</td><td>091 · 099</td><td>Base, corrección y análisis en tres carriles; del análisis 0 al 4, de 1.959 a 1.366 ejercicios con error (−30 %).</td><td>154 / 48</td></tr>
+        <tr><td>Estadísticas</td><td>092</td><td>Del curso entero a un ejercicio: A1 da 87,4 de calidad y la miniteoría falla en el 64 %.</td><td>167 / 70</td></tr>
+        <tr><td>Analizadores</td><td>093</td><td>Los 21 analizadores con tres fotos: 14 mejoraron y los 2 que empeoraron rompen su piso.</td><td>107 / 31</td></tr>
+        <tr><td>Exámenes</td><td>094</td><td>Cada juez con su examen: 8 de 9 aprobados; Calidad de distractores frena el cierre.</td><td>101 / —</td></tr>
+        <tr><td>Correcciones</td><td>089 · 098</td><td>La muestra ciega par por par, la miniteoría a mano y elegir una corrección del historial.</td><td>288 / 121</td></tr>
+        <tr><td>Vueltas</td><td>095</td><td>Vuelta por vuelta: de 1.959 a 654 ejercicios con algún error en dos vueltas.</td><td>102 / 30</td></tr>
+        <tr><td>Comparar</td><td>096</td><td>Cualquier medición contra la base o el inicio, y por qué no está aprobada.</td><td>84 / 35</td></tr>
+        <tr><td>Publicar</td><td>097</td><td>Qué viajaría: 1.334 cambios, de los que 892 no llegarían a producción.</td><td>67 / 32</td></tr>
       </tbody>
     </table></div>
-    <p class="pie">Ninguna ruta del servidor escribe ni consulta modelos: lee la lista de análisis, el resumen, el catálogo y el tema como lo ve el alumno.</p>
+    <p class="pie">Pruebas: navegador / servidor. Cada número es de su rama, medido por separado: juntas todavía no corrieron.</p>
   </section>
 
   <section>
-    <h2>Lo repetido, listo para pasar a lo común</h2>
-    <div class="cambia">
-      <div class="no"><div class="ptl">Tomado de Correcciones</div><ul><li>La etiqueta del contenido, los (?) y (!) y la búsqueda: importados.</li><li>Ocho estilos suyos, copiados: la página no puede cargar su hoja.</li><li>El arranque, los gestos comunes y las pruebas de clics: copiados casi iguales.</li></ul></div>
-      <div class="si"><div class="ptl">Aprendido acá, le sirve a otras</div><ul><li>El hueco de una oración necesita texto para lectores de pantalla.</li><li>El foco vuelve a lo que abrió una ficha o una ayuda.</li><li>Un estilo común se metía en la búsqueda: usé otro nombre.</li><li>El guardián confunde rótulos como «Consigna» con analizadores.</li></ul></div>
+    <h2>Quedan 57 pendientes; 22 son datos de content-audit</h2>
+    <div class="hb">
+      <div class="r"><span class="t">Datos y arreglos de content-audit<small>3 pueden publicar algo mal</small></span><span class="tr"><span class="f" style="width:92%"></span></span><span class="n">22</span></div>
+      <div class="r"><span class="t">Errores chicos</span><span class="tr"><span class="f" style="width:46%"></span></span><span class="n">11</span></div>
+      <div class="r"><span class="t">Agregados del 090 sin confirmar</span><span class="tr"><span class="f w" style="width:33%"></span></span><span class="n">8</span></div>
+      <div class="r"><span class="t">Código repetido para pasar a común</span><span class="tr"><span class="f" style="width:29%"></span></span><span class="n">7</span></div>
+      <div class="r"><span class="t">Decisiones tuyas</span><span class="tr"><span class="f" style="width:21%"></span></span><span class="n">5</span></div>
+      <div class="r"><span class="t">Dudas sobre los datos</span><span class="tr"><span class="f w" style="width:13%"></span></span><span class="n">3</span></div>
+      <div class="r"><span class="t">Pantalla nueva: Ejecuciones</span><span class="tr"><span class="f" style="width:4%"></span></span><span class="n">1</span></div>
+      <div class="r"><span class="t">Botones apagados<small>se prenden juntos, con Ejecuciones</small></span><span class="tr"><span class="f s" style="width:100%"></span></span><span class="n">24</span></div>
     </div>
-    <p class="pie">No toqué lo común; cada candidato, con su archivo, en el pie.</p>
-    <div class="call c-warn"><b>Ojo:</b> el guardián sigue fallando en master por la miniteoría; nada de esta pantalla aparece en su lista.</div>
+    <div class="leyenda"><span><i class="sw"></i>hay que hacerlo</span><span><i class="sw w"></i>hay que averiguarlo</span><span><i class="sw s"></i>se resuelven juntos</span></div>
+    <p class="pie">Cada uno con el brief de donde sale, en la lista de abajo. Los marcados «riesgo» pueden mandar a producción algo que nadie miró.</p>
+
+    <details>
+      <summary>Los 57 pendientes, uno por uno</summary>
+      <div class="tw"><table class="mx pend">
+        <thead><tr><th>#</th><th>Pendiente</th><th>Brief</th></tr></thead>
+        <tbody>
+          <tr class="g"><td colspan="3">Datos y arreglos de content-audit · 22</td></tr>
+          <tr><td>1</td><td><span class="pill p-bad">riesgo</span> Rechazar una corrección no la saca de lo publicado: hoy viajarían 1.321 cambios sin revisar.</td><td>097</td></tr>
+          <tr><td>2</td><td><span class="pill p-bad">riesgo</span> Publicar no escribe miniteoría, opciones ni consigna: 892 de 1.334 cambios no llegarían.</td><td>097</td></tr>
+          <tr><td>3</td><td><span class="pill p-bad">riesgo</span> Publicar no mira el veredicto: sale una tanda con pisos sin decidir.</td><td>096</td></tr>
+          <tr><td>4</td><td>Nadie anota qué está en producción ni cuándo se publicó.</td><td>091 · 097 · 099</td></tr>
+          <tr><td>5</td><td>La revisión de la tanda no dice qué análisis se publicó ni cuándo.</td><td>099</td></tr>
+          <tr><td>6</td><td>Corregir una tanda cerrada no la vuelve a medir: queda medida la versión anterior.</td><td>097</td></tr>
+          <tr><td>7</td><td>La estimación cuenta el plan entero: 3.499 tareas, aunque a la tanda le quedan 494.</td><td>095</td></tr>
+          <tr><td>8</td><td>El tope de una corrida vive solo en el archivo de la tanda.</td><td>095</td></tr>
+          <tr><td>9</td><td>Los audios no tienen estado propio.</td><td>097</td></tr>
+          <tr><td>10</td><td>La muestra ciega no dice en qué estado está.</td><td>097</td></tr>
+          <tr><td>11</td><td>El catálogo no dice qué versión tiene cada analizador.</td><td>093</td></tr>
+          <tr><td>12</td><td>Exámenes: qué versión de juez corre hoy, el caso entero y no solo su número, y cruzar los casos guardados con los grupos (Gramática guarda 43 para 112 que no dieron).</td><td>094</td></tr>
+          <tr><td>13</td><td>Medir producción con los analizadores de hoy.</td><td>093</td></tr>
+          <tr><td>14</td><td>Estimar cuánto cuesta correr un analizador.</td><td>093</td></tr>
+          <tr><td>15</td><td>Vocabulario palabra por palabra, como consulta de solo lectura.</td><td>092</td></tr>
+          <tr><td>16</td><td>Comparar dos análisis cualesquiera.</td><td>091</td></tr>
+          <tr><td>17</td><td>Medir solo lo aprobado.</td><td>091</td></tr>
+          <tr><td>18</td><td>Ver las tandas anteriores del curso.</td><td>091</td></tr>
+          <tr><td>19</td><td>Elegir otro nivel: hoy todo es A1.</td><td>098</td></tr>
+          <tr><td>20</td><td>La historia de un ejercicio vuelta por vuelta; los motivos salen solo del último análisis.</td><td>095</td></tr>
+          <tr><td>21</td><td>Las medidas de cada cierre no las da la herramienta: el servidor lee 97 MB para quedarse con 140 KB.</td><td>096</td></tr>
+          <tr><td>22</td><td>Los análisis anteriores al resumen no se abren; la ficha del analizador sale incompleta si el catálogo no tiene sus datos.</td><td>092</td></tr>
+
+          <tr class="g"><td colspan="3">Errores chicos · 11</td></tr>
+          <tr><td>23</td><td><span class="pill p-bad">riesgo</span> La ayuda de Correcciones dice que solo se publica lo aprobado; no es así.</td><td>097</td></tr>
+          <tr><td>24</td><td>La app de Flutter pierde 334 audios a regrabar: espera otro nombre de estado.</td><td>095 · 097</td></tr>
+          <tr><td>25</td><td>Una tanda sin compuerta sale como «no pasa».</td><td>097</td></tr>
+          <tr><td>26</td><td>Un estado de tanda desconocido muestra el código en vez de un texto.</td><td>095 · 097</td></tr>
+          <tr><td>27</td><td>El ícono de reintentar sale sin su estilo.</td><td>097</td></tr>
+          <tr><td>28</td><td>Los títulos «Qué es…» quedan mal con rótulos en plural.</td><td>097</td></tr>
+          <tr><td>29</td><td>La muestra ciega cerrada muestra la meta de hoy, no la que se guardó.</td><td>098</td></tr>
+          <tr><td>30</td><td>Cerrar la muestra tarda 12 a 15 segundos: relee toda la bandeja.</td><td>098</td></tr>
+          <tr><td>31</td><td>El Mapa no ve lo aprobado en Correcciones hasta volver a leer.</td><td>091</td></tr>
+          <tr><td>32</td><td>La prueba que vigila los nombres de los analizadores falla en master de ittm.</td><td>089 · 090 · 092</td></tr>
+          <tr><td>33</td><td>Una prueba de comparar falla en content-audit.</td><td>094</td></tr>
+
+          <tr class="g"><td colspan="3">Agregados del 090 sin confirmar · 8</td></tr>
+          <tr><td>34</td><td>Mapa: «sin evaluar» en cada celda del anillo.</td><td>090</td></tr>
+          <tr><td>35</td><td>Mapa: el recorte por analizador de vocabulario, para las 588 tareas.</td><td>090</td></tr>
+          <tr><td>36</td><td>Estadísticas: «se resuelve con…» y el ejercicio con el que choca, en cada marca.</td><td>090</td></tr>
+          <tr><td>37</td><td>Estadísticas: las miniteorías del tema, con cuántas hay.</td><td>090</td></tr>
+          <tr><td>38</td><td>Correcciones: las conversiones del informe, separar vinculados, deshacer más de una, ver el cambio exacto de un paso y reintentar el guardado.</td><td>090</td></tr>
+          <tr><td>39</td><td>Comparar: los cambios de medida y las metas selladas.</td><td>090</td></tr>
+          <tr><td>40</td><td>Exámenes: «Ver la corrida». Espera a Ejecuciones.</td><td>090</td></tr>
+          <tr><td>41</td><td>Vueltas: ir a la corrida de cada vuelta. Espera a Ejecuciones.</td><td>090</td></tr>
+
+          <tr class="g"><td colspan="3">Código repetido para pasar a común · 7</td></tr>
+          <tr><td>42</td><td>Los estilos del contexto y del estado de la tanda, copiados en 6 hojas.</td><td>091–098</td></tr>
+          <tr><td>43</td><td>La ayuda (?) y (!), el estado de la tanda y los mensajes de error, tomados de Correcciones.</td><td>091–098</td></tr>
+          <tr><td>44</td><td>El arranque de cada página: capas, foco, tabulador, cerrar, atajos y avisos.</td><td>091–098</td></tr>
+          <tr><td>45</td><td>Los gestos y las pruebas comunes, incluida la ayuda de prueba que tiene «correcciones» fijo.</td><td>091–098</td></tr>
+          <tr><td>46</td><td>Una sola lectura de la revisión de la tanda: pesa de 66 a 97 MB y hoy cada pantalla la lee por su lado.</td><td>091–098</td></tr>
+          <tr><td>47</td><td>Correr la herramienta de content-audit desde cualquier pantalla, con tiempo límite.</td><td>091–098</td></tr>
+          <tr><td>48</td><td>Piezas chicas: singular y plural, fechas legibles, barra apilada, botón apagado con (!), lectura del catálogo.</td><td>091–098</td></tr>
+
+          <tr class="g"><td colspan="3">Decisiones tuyas · 5</td></tr>
+          <tr><td>49</td><td>Las 6 que tomó solo Comparar: A1 por defecto; aprobar sigue la medida elegida; un piso roto o sin decidir siempre tiene fila; un eje sin medir no se dibuja; los cambios sin comparar, por juez; la tanda se lee una vez.</td><td>096</td></tr>
+          <tr><td>50</td><td>Ejecuciones: ¿muestra consultas o plata?</td><td>090</td></tr>
+          <tr><td>51</td><td>¿Hace falta el vocabulario palabra por palabra?</td><td>092</td></tr>
+          <tr><td>52</td><td>¿El Mapa lee el análisis de la publicación?</td><td>099</td></tr>
+          <tr><td>53</td><td>Qué dato de content-audit va primero: cada sesión pidió uno distinto.</td><td>091 · 093 · 095 · 097</td></tr>
+
+          <tr class="g"><td colspan="3">Dudas sobre los datos · 3</td></tr>
+          <tr><td>54</td><td>Por qué el inicio de la tanda da 2.671 ejercicios con algún error, más que la base (1.959).</td><td>099</td></tr>
+          <tr><td>55</td><td>Si «rebota», «la trajo una corrección» y «la rechazaste» dan 0 porque no pasó o porque no se anota.</td><td>095</td></tr>
+          <tr><td>56</td><td>Si producción está de verdad en la base.</td><td>091</td></tr>
+
+          <tr class="g"><td colspan="3">Pantalla nueva · 1</td></tr>
+          <tr><td>57</td><td>Ejecuciones y el diálogo de lanzar, común a todas; Historial se retira recién después.</td><td>090</td></tr>
+        </tbody>
+      </table></div>
+    </details>
+
+    <details>
+      <summary>Los 24 botones apagados, por pantalla</summary>
+      <div class="tw"><table class="mx">
+        <thead><tr><th>Pantalla</th><th>Botones</th></tr></thead>
+        <tbody>
+          <tr><td>Mapa</td><td>Analizar · Correr lo que falta · Publicar lo aprobado</td></tr>
+          <tr><td>Estadísticas</td><td>Análisis nuevo · Examinar juez</td></tr>
+          <tr><td>Analizadores</td><td>Correr · Invalidar · Estimar costo</td></tr>
+          <tr><td>Exámenes</td><td>Rendir · Pedir un caso · Marcar esperado mal</td></tr>
+          <tr><td>Correcciones</td><td>Reescribir miniteoría · Volver a analizar · Selectiva de distractores · Sortear muestra nueva</td></tr>
+          <tr><td>Vueltas</td><td>Otra vuelta · Completar análisis · Revisar analizador · Volver a corregir · Arreglar a mano · Un ejercicio vuelta por vuelta</td></tr>
+          <tr><td>Comparar</td><td>Cerrar · Volver a medir</td></tr>
+          <tr><td>Publicar</td><td>Publicar</td></tr>
+        </tbody>
+      </table></div>
+    </details>
+    <div class="call c-warn"><b>No lo sé:</b> los 8 agregados del 090 no los encontré en el código; pueden estar con otro nombre. Se confirman al probar.</div>
+  </section>
+
+  <section>
+    <h2>Para probarlo juntos: juntar, copiar la campaña y abrir</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">Juntar las ramas</span><span class="eg">8 en ittm</span><span class="d">Sin choques: ya lo probé en una copia.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Copiar la campaña</span><span class="eg">a1-v11 · 550 MB</span><span class="d">Una copia que no ocupa lugar; ahí se escriben las decisiones.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">Abrir el tablero</span><span class="eg">puerto 7840</span><span class="d">Contra la copia, nunca contra producción.</span></div>
+      <div class="st end"><span class="i">4</span><span class="h">Recorrerlo juntos</span><span class="d">Pantalla por pantalla; recién después subo los dos repos.</span></div>
+    </div>
+    <p class="pie">Para probar alcanza con ittm. Content-audit se junta después: su merge choca solo en el índice de briefs.</p>
+    <details>
+      <summary>Los comandos, para correrlos vos</summary>
+<pre><code># 1 · juntar las 8 pantallas en master de ittm
+for par in Mapa:recursing-banach-09318b Estadísticas:admiring-carson-69115e Analizadores:awesome-austin-05fddb Exámenes:nice-bassi-b81f65 "Correcciones, lo que falta:vigilant-jepsen-45d02a" Vueltas:blissful-williams-e0ed75 Comparar:mystifying-davinci-ac8f4e Publicar:quirky-jang-d41356; do git -C ~/projects/learney/ittm merge --no-ff -m "Merge worktree: tablero HTML, ${par%%:*}" "claude/${par##*:}" || break; done
+
+# 2 · copiar la campaña (copia APFS: no ocupa lugar)
+mkdir -p ~/projects/learney/content-audit-corridas/2026-10-11-prueba-tablero && cp -cR ~/projects/learney/content-audit/.content-audit/campaigns/a1-v11 ~/projects/learney/content-audit-corridas/2026-10-11-prueba-tablero/
+
+# 3 · abrir el tablero contra la copia (Exámenes usa la herramienta de la rama exam-status-json)
+cd ~/projects/learney/ittm/pipeline/vocabulary_dashboard && CONTENT_AUDIT_ROOT=~/projects/learney/content-audit CONTENT_AUDIT_WORKDIR=~/projects/learney/content-audit-corridas/2026-10-11-prueba-tablero/a1-v11 CONTENT_AUDIT_CONTEXT_KIND=Copia CONTENT_AUDIT_CLI=~/projects/learney/content-audit/.claude/worktrees/exam-status-json/audit-cli.sh ~/DevDependencies/flutter/bin/dart run bin/tablero_html.dart --puerto 7840
+
+# después de probar · juntar content-audit (el índice se regenera)
+git -C ~/projects/learney/content-audit merge --no-ff -m "Merge worktree: exam status en JSON" claude/exam-status-json
+git -C ~/projects/learney/content-audit merge --no-ff -m "Merge worktree: cobertura y consolidado del tablero" claude/dazzling-proskuriakova-e0a601
+git -C ~/projects/learney/content-audit checkout --theirs docs/briefs/brief.html
+python3 ~/projects/learney/content-audit/docs/indice.py
+git -C ~/projects/learney/content-audit commit -am "Merge worktree: cobertura y consolidado del tablero"</code></pre>
+    </details>
+  </section>
+
+  <section>
+    <h2>Después de subir: primero lo común, después Ejecuciones</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">Juntar y probar</span><span class="eg">hoy</span><span class="d">Las 8 ramas en master y el recorrido juntos.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Subir</span><span class="eg">ittm y content-audit</span><span class="d">Recién cuando el recorrido salga bien.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">Pasar lo repetido</span><span class="eg">7 piezas · 11 errores</span><span class="d">En una sesión sola, antes de sumar pantallas.</span></div>
+      <div class="st"><span class="i">4</span><span class="h">Arreglar content-audit</span><span class="eg">los 3 de riesgo</span><span class="d">Que no se publique nada sin revisar.</span></div>
+      <div class="st end"><span class="i">5</span><span class="h">Ejecuciones y lanzar</span><span class="d">Con eso se prenden los 24 botones.</span></div>
+    </div>
+    <p class="pie">Ejecuciones sumaría una novena copia de lo repetido: conviene que llegue con lo común ya armado.</p>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><div class="q">¿La paso a master?</div>
-        <div class="ops"><span class="op rec">Sí, después de probarla</span><span class="op">Esperar a las otras pantallas</span></div>
-        <div class="why">Tres commits; sólo archivos de Estadísticas y dos renglones compartidos. 167 pruebas del navegador y 70 del servidor, en verde.</div></div>
-      <div class="ask"><div class="q">¿Pedimos el vocabulario palabra por palabra a content-audit?</div>
-        <div class="ops"><span class="op rec">Sí, un comando que sólo lea</span><span class="op">Dejarlo apagado</span></div>
-        <div class="why">Es lo que más ayuda a escribir contenido nuevo, y no hace falta volver a analizar.</div></div>
-      <div class="ask"><div class="q">¿Cuándo se pasa lo repetido a lo común?</div>
-        <div class="ops"><span class="op rec">Al final, en una sesión aparte</span><span class="op">Ahora</span></div>
-        <div class="why">Varias pantallas se arman en paralelo: moverlo ahora choca.</div></div>
+      <div class="ask"><span class="q">1 · ¿Cómo juntamos las ramas?</span>
+        <div class="ops"><span class="op rec">Las juntás vos con los comandos · recomendado</span><span class="op">Me das permiso de git</span></div>
+        <span class="why">El permiso me frenó el merge tres veces, aun con tu «dale». Después sigo yo: pruebas, tablero y recorrido.</span></div>
+      <div class="ask"><span class="q">2 · ¿Qué va primero después de subir?</span>
+        <div class="ops"><span class="op rec">Pasar lo repetido a común · recomendado</span><span class="op">Ejecuciones</span></div>
+        <span class="why">Las ocho pantallas copian las mismas piezas; cada pantalla nueva suma otra copia.</span></div>
+      <div class="ask"><span class="q">3 · ¿Qué arreglo de content-audit va primero?</span>
+        <div class="ops"><span class="op rec">Que rechazar saque de lo publicado · recomendado</span><span class="op">Estimar solo lo que falta</span></div>
+        <span class="why">Hoy saldrían 1.321 cambios que nadie miró.</span></div>
+      <div class="ask"><span class="q">4 · ¿Valen las 6 decisiones que Comparar tomó solo?</span>
+        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">Las revisamos al probar</span></div>
+        <span class="why">Están en el pendiente 49: casi todas son de qué se muestra y dónde.</span></div>
     </div>
-<pre>cd ~/projects/learney/ittm/.claude/worktrees/lucid-rubin-432b86/pipeline/vocabulary_dashboard
-CONTENT_AUDIT_ROOT=~/projects/learney/content-audit CONTENT_AUDIT_WORKDIR=/ruta/a/la/copia CONTENT_AUDIT_CONTEXT_KIND=Copia ~/DevDependencies/flutter/bin/dart run bin/tablero_html.dart --puerto 7832</pre>
   </section>
 
   <footer>
-    <span>Rama <code>claude/admiring-carson-69115e</code> (ittm): ff6af1381 servidor, 094660fbb pantalla, 8cca79f28 riel. Rutas <code>GET /api/estadisticas/vista</code> y <code>/tema</code>. Candidatos a lo común: <code>main.js</code> → <code>lib/arranque.js</code>; <code>gestos.js</code> → <code>lib/gestos-comunes.js</code>; <code>CERRAR</code>, <code>CHEVRON</code> y atajos → <code>lib/capas.js</code>; <code>.ctx .batch .searchbtn .mobile-only .stage .seg .menu .mi[aria-current] .c/.gap/.opts/.opt</code> → <code>base.css</code>; <code>conHuecos</code> → <code>lib/texto.js</code>; <code>recordarElFoco</code>; entorno y <code>zonas</code> de las pruebas; en Dart, <code>idSeguro</code> y <code>mensajeDelError</code>. <code>.sr</code> necesita un ancestro posicionado; <code>.palette .res</code> de <code>base.css</code> pisaba la ficha (ahora <code>.fds</code>). El guardián marca un <code>displayName</code> entre comillas: los rótulos van como claves. Probado a 1280 y 390, claro y oscuro: ahí salieron y se arreglaron la evidencia que quedaba abierta al cambiar de análisis y el cartelito fuera de lugar.</span>
-    <span>brief 092 · docs/briefs/092-estadisticas-en-html.html</span>
+    <span>Fuentes: briefs 089 a 099 (docs/briefs, main 33bf48fd); ramas de ittm sobre master 8071f5d2f; rama claude/exam-status-json (df186ea8); merge de prueba de las 8 ramas en un clon descartable, sin choques (comparten html/js/lib/rail.js y bin/tablero_html.dart).</span>
+    <span>brief 100 · docs/briefs/100-tablero-consolidado.html</span>
   </footer>
 
 </div>
