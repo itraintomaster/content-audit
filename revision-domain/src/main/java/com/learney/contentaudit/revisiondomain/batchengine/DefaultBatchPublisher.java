@@ -259,30 +259,14 @@ class DefaultBatchPublisher implements BatchPublisher {
         if (preservationCheck == null || correctionScope == null) {
             return violations;
         }
-        List<BatchChangeStep> steps = BatchBook.stepsOn(batch, ref.getQuizId());
-        Set<ExercisePart> parts = EnumSet.noneOf(ExercisePart.class);
-        AuditTarget target = AuditTarget.QUIZ;
-        for (BatchChangeStep step : steps) {
-            parts.addAll(BatchBook.list(step.getParts()));
-            if (step.getAfter() != null && step.getAfter().getNodeTarget() == AuditTarget.KNOWLEDGE) {
-                target = AuditTarget.KNOWLEDGE;
-            }
-        }
-        if (parts.contains(ExercisePart.STATEMENT) || parts.contains(ExercisePart.ANSWERS)
-                || parts.contains(ExercisePart.OPTIONS) || parts.contains(ExercisePart.FORM_KIND)) {
-            parts.add(ExercisePart.STORED_SENTENCE); // the stored sentence follows what the exercise says
-            parts.add(ExercisePart.AUDIO);
-        }
-        Optional<BatchBook.Place> place = BatchBook.place(after, ref.getQuizId());
-        if (place.isEmpty()) {
+        PublishedScope scope = PublishedScope.of(batch, ref.getQuizId());
+        Optional<CourseElementSnapshot> revised = scope.snapshot(after);
+        if (revised.isEmpty()) {
             return violations;
         }
-        CourseElementSnapshot revised = target == AuditTarget.KNOWLEDGE
-                ? new CourseElementSnapshot(AuditTarget.KNOWLEDGE, ref.getQuizId(), null, place.get().knowledge())
-                : new CourseElementSnapshot(AuditTarget.QUIZ, ref.getQuizId(), place.get().quiz(), null);
-        Set<ScopedField> changeable = correctionScope.changeableFields(parts, target);
-        for (PreservationViolation violation : BatchBook.list(preservationCheck.verifyWithin(before, after, revised,
-                changeable))) {
+        Set<ScopedField> changeable = correctionScope.changeableFields(scope.parts(), scope.target());
+        for (PreservationViolation violation : BatchBook.list(preservationCheck.verifyWithin(before, after,
+                revised.get(), changeable))) {
             violations.add(ref.getQuizId() + " " + violation.getPath());
         }
         return violations;
