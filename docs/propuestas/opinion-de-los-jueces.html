@@ -1,0 +1,1205 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Opinión de los jueces</title>
+<meta name="description" content="Propuesta para mostrar en Correcciones y en el Mapa qué opinan los jueces de cada cambio de una corrección, y aprobar en grupo lo que dan por bueno.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════════════════════════
+   TOKENS — dos registros deliberadamente distintos.
+   --ed-*  editorial: papel, serif, aire. Es la parte que VENDE.
+   --app-* producto:  UI real, sans, denso. Es la parte que MUESTRA.
+   Cambiar --app-accent por el color de marca del proyecto.
+
+   TEMA: claro por defecto, oscuro por sistema, y el toggle manda sobre ambos.
+   Los valores oscuros están dos veces a propósito (media query + override);
+   si se toca uno hay que tocar el otro.
+   ══════════════════════════════════════════════════════════════════════ */
+:root{
+  --ed-bg:#F7F6FB; --ed-paper:#FFFFFF; --ed-line:#E4E2EE; --ed-line-soft:#EFEDF5;
+  --ed-fg:#1C1934; --ed-fg-2:#4B4866; --ed-fg-3:#807C99;
+  --ed-accent:#4B33B8; --ed-accent-soft:#ECE8FC;
+
+  --app-accent:#4B33B8; --app-accent-2:#ECE8FC; --on-accent:#FFFFFF; --on-bad:#FFFFFF;
+  --app-bg:#EFEEF6; --app-sup:#FFFFFF; --app-line:#E4E2EE; --app-line-soft:#F4F3F9;
+  --app-fg:#1C1934; --app-fg-2:#4B4866; --app-fg-3:#807C99;
+  --app-warn:#9A5F00; --app-warn-2:#FFF2D2;
+  --app-bad:#C42A55;  --app-bad-2:#FCE7EE;
+  --app-info:#2F5DA8; --app-info-2:#E7EEFA;
+
+  --r:12px; --r-s:8px;
+  --sh:0 1px 2px rgba(28,25,52,.05), 0 10px 30px -20px rgba(28,25,52,.4);
+  --sh-lg:0 2px 6px rgba(28,25,52,.06), 0 24px 60px -30px rgba(28,25,52,.5);
+  --serif:"Literata",ui-serif,Georgia,serif;
+  --sans:"Instrument Sans",ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-tema="claro"]){
+    --ed-bg:#12102A; --ed-paper:#1B1937; --ed-line:#2B2850; --ed-line-soft:#221F44;
+    --ed-fg:#EDEBF9; --ed-fg-2:#BDB9DA; --ed-fg-3:#8C88AD;
+    --ed-accent:#A496FF; --ed-accent-soft:#29235A;
+    --app-accent:#A496FF; --app-accent-2:#29235A; --on-accent:#12102A; --on-bad:#2A0A14;
+    --app-bg:#0E0C22; --app-sup:#1B1937; --app-line:#2B2850; --app-line-soft:#221F44;
+    --app-fg:#EDEBF9; --app-fg-2:#BDB9DA; --app-fg-3:#8C88AD;
+    --app-warn:#F5B843; --app-warn-2:#3A2C0D;
+    --app-bad:#FF6F96;  --app-bad-2:#3A1424;
+    --app-info:#8AB6F5; --app-info-2:#16213A;
+    --sh:0 1px 2px rgba(0,0,0,.5), 0 10px 30px -20px rgba(0,0,0,.9);
+    --sh-lg:0 2px 6px rgba(0,0,0,.5), 0 24px 60px -30px rgba(0,0,0,1);
+  }
+}
+:root[data-tema="oscuro"]{
+  --ed-bg:#12102A; --ed-paper:#1B1937; --ed-line:#2B2850; --ed-line-soft:#221F44;
+  --ed-fg:#EDEBF9; --ed-fg-2:#BDB9DA; --ed-fg-3:#8C88AD;
+  --ed-accent:#A496FF; --ed-accent-soft:#29235A;
+  --app-accent:#A496FF; --app-accent-2:#29235A; --on-accent:#12102A; --on-bad:#2A0A14;
+  --app-bg:#0E0C22; --app-sup:#1B1937; --app-line:#2B2850; --app-line-soft:#221F44;
+  --app-fg:#EDEBF9; --app-fg-2:#BDB9DA; --app-fg-3:#8C88AD;
+  --app-warn:#F5B843; --app-warn-2:#3A2C0D;
+  --app-bad:#FF6F96;  --app-bad-2:#3A1424;
+  --app-info:#8AB6F5; --app-info-2:#16213A;
+  --sh:0 1px 2px rgba(0,0,0,.5), 0 10px 30px -20px rgba(0,0,0,.9);
+  --sh-lg:0 2px 6px rgba(0,0,0,.5), 0 24px 60px -30px rgba(0,0,0,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ed-bg);color:var(--ed-fg);font:16px/1.65 var(--sans);
+  font-feature-settings:"kern","liga";transition:background .25s ease,color .25s ease}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.narrow{max-width:720px}
+h1,h2,h3,h4{margin:0;letter-spacing:-.02em}
+p{margin:0 0 14px}
+a{color:var(--ed-accent)}
+code{font-family:var(--mono);font-size:.9em}
+.sprite{display:none}
+
+/* ═══════════════ TOGGLE DE TEMA ═══════════════ */
+.tema{position:fixed;top:16px;right:16px;z-index:50;appearance:none;cursor:pointer;
+  width:38px;height:38px;border-radius:99px;display:grid;place-items:center;
+  background:var(--ed-paper);border:1px solid var(--ed-line);color:var(--ed-fg-2);
+  box-shadow:var(--sh);transition:color .15s,transform .15s}
+.tema:hover{color:var(--ed-fg);transform:scale(1.06)}
+.tema svg{width:17px;height:17px;display:block;fill:none;stroke:currentColor;stroke-width:1.9;
+  stroke-linecap:round;stroke-linejoin:round}
+.tema .sol{display:none}
+:root[data-tema="oscuro"] .tema .sol{display:block}
+:root[data-tema="oscuro"] .tema .luna{display:none}
+@media (prefers-color-scheme:dark){
+  :root:not([data-tema="claro"]) .tema .sol{display:block}
+  :root:not([data-tema="claro"]) .tema .luna{display:none}
+}
+
+/* ═══════════════ 1 · EDITORIAL ═══════════════ */
+.hero{padding:80px 0 56px;border-bottom:1px solid var(--ed-line)}
+.eyebrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:24px;
+  font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ed-fg-3);font-weight:600}
+.eyebrow .dot{width:4px;height:4px;border-radius:99px;background:var(--ed-fg-3)}
+.hero h1{font-family:var(--serif);font-size:clamp(38px,6.2vw,68px);line-height:1.04;
+  font-weight:600;letter-spacing:-.03em;max-width:16ch}
+.hero .tag{font-family:var(--serif);font-size:clamp(19px,2.4vw,25px);line-height:1.45;
+  color:var(--ed-fg-2);margin:24px 0 0;max-width:34ch;font-style:italic}
+.duo{display:grid;grid-template-columns:1fr 1fr;margin:56px 0 0;
+  border:1px solid var(--ed-line);border-radius:var(--r);overflow:hidden;background:var(--ed-paper)}
+.duo>div{padding:26px 28px;min-width:0}
+.duo>div+div{border-left:1px solid var(--ed-line)}
+.duo .dato{font-family:var(--serif);font-size:clamp(30px,4.2vw,46px);line-height:1;font-weight:600;
+  letter-spacing:-.02em;margin:0 0 10px;color:var(--ed-fg)}
+.duo .sol .dato{color:var(--ed-accent)}
+.duo .sol{position:relative}
+.duo .sol::before{content:"→";position:absolute;left:-18px;top:50%;transform:translateY(-50%);z-index:1;
+  width:36px;height:36px;border-radius:99px;display:grid;place-items:center;font-size:17px;
+  background:var(--ed-paper);border:1px solid var(--ed-line);color:var(--ed-accent);box-shadow:var(--sh)}
+.duo .k{font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;
+  color:var(--ed-fg-3);margin-bottom:10px}
+.duo .sol .k{color:var(--ed-accent)}
+.duo p{font-size:17px;line-height:1.55;margin:0;color:var(--ed-fg)}
+.duo .sol{background:var(--ed-accent-soft)}
+.ed{padding:64px 0}
+.ed-h{font-family:var(--serif);font-size:clamp(26px,3.6vw,38px);line-height:1.15;font-weight:600;
+  margin-bottom:14px;max-width:20ch}
+.ed-sub{font-size:17px;color:var(--ed-fg-2);max-width:60ch;margin-bottom:34px}
+.rule{height:1px;background:var(--ed-line);border:0;margin:0}
+.pillars{display:grid;gap:1px;background:var(--ed-line);border:1px solid var(--ed-line);
+  border-radius:var(--r);overflow:hidden;grid-template-columns:repeat(auto-fit,minmax(238px,1fr))}
+.pillar{position:relative;background:var(--ed-paper);padding:24px 22px;display:grid;gap:10px;align-content:start;min-width:0}
+.pillar .n{position:absolute;top:22px;right:22px;font-family:var(--mono);font-size:11px;font-weight:700;
+  color:var(--ed-fg-3);letter-spacing:.1em}
+.pillar h3{font-size:17px;font-weight:640;letter-spacing:-.01em}
+.pillar p{font-size:14.5px;color:var(--ed-fg-2);line-height:1.5;margin:0}
+/* el ícono de un pilar o de un paso: <div class="pi"><svg class="ico"><use href="#i-…"/></svg></div> */
+.pi{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex:none;
+  background:var(--ed-accent-soft);color:var(--ed-accent)}
+.pi .ico{width:22px;height:22px;stroke-width:1.7}
+.flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:24px;counter-reset:paso;margin-top:8px}
+.paso{position:relative;counter-increment:paso;background:var(--ed-paper);border:1px solid var(--ed-line);
+  border-radius:var(--r);padding:20px 18px 18px;display:grid;gap:10px;align-content:start;min-width:0}
+.paso::before{content:counter(paso,decimal-leading-zero);position:absolute;top:18px;right:18px;
+  font-family:var(--mono);font-size:11px;font-weight:700;color:var(--ed-fg-3);letter-spacing:.08em}
+.paso:not(:last-child)::after{content:"";position:absolute;right:-16px;top:50%;width:9px;height:9px;
+  border-top:2px solid var(--ed-accent);border-right:2px solid var(--ed-accent);transform:translateY(-50%) rotate(45deg)}
+.paso.fin{background:var(--ed-accent-soft);border-color:color-mix(in srgb,var(--ed-accent) 40%,var(--ed-line))}
+.paso.fin .pi{background:var(--ed-paper)}
+.paso h4{font-size:15.5px;font-weight:640}
+.paso p{font-size:14px;color:var(--ed-fg-2);margin:0;line-height:1.5}
+.quote{border-left:3px solid var(--ed-accent);padding:6px 0 6px 24px;margin:0;
+  font-family:var(--serif);font-size:clamp(20px,2.6vw,27px);line-height:1.4;font-style:italic;
+  max-width:26ch;letter-spacing:-.01em}
+.tw{overflow-x:auto;border:1px solid var(--ed-line);border-radius:var(--r);background:var(--ed-paper)}
+/* Ojo: scopeado a .tw. Sin el scope, el min-width pisaba a .ui-tbl dentro de los mockups. */
+.tw table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:460px}
+.tw th{text-align:left;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ed-fg-3);
+  font-weight:700;padding:12px 18px;border-bottom:1px solid var(--ed-line);white-space:nowrap}
+.tw td{padding:13px 18px;border-bottom:1px solid var(--ed-line-soft);vertical-align:top}
+.tw tr:last-child td{border-bottom:0}
+.si{color:var(--app-accent);font-weight:640}
+.no{color:var(--ed-fg-3)}
+
+/* ═══════════════ 2 · BISAGRA ═══════════════ */
+.bisagra{background:var(--app-bg);border-top:1px solid var(--app-line);
+  border-bottom:1px solid var(--app-line);padding:52px 0 0;color:var(--app-fg);font-family:var(--sans)}
+.bisagra .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+  color:var(--app-accent);margin-bottom:12px}
+.bisagra h2{font-family:var(--serif);font-size:clamp(24px,3.4vw,34px);font-weight:600;margin-bottom:12px}
+.bisagra .d{font-size:16px;color:var(--app-fg-2);max-width:58ch;margin-bottom:30px}
+.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;
+  border-bottom:1px solid var(--app-line);margin-top:4px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{appearance:none;background:none;border:0;border-bottom:2px solid transparent;
+  font:inherit;font-size:14px;font-weight:560;color:var(--app-fg-3);padding:12px 16px;
+  cursor:pointer;white-space:nowrap;margin-bottom:-1px;transition:color .12s,border-color .12s}
+.tab:hover{color:var(--app-fg-2)}
+.tab[aria-selected="true"]{color:var(--app-accent);border-bottom-color:var(--app-accent)}
+.tab .i{font-family:var(--mono);font-size:10.5px;opacity:.65;margin-right:7px}
+
+/* ═══════════════ 3 · PANTALLAS ═══════════════
+   Orden: A) QUÉ ES ESTA PANTALLA + mockup completo (el golpe de vista)
+          B) LAS FUNCIONES, una por una, cada una con su acercamiento */
+.pantallas{background:var(--app-bg);color:var(--app-fg);padding:0 0 72px;font-family:var(--sans)}
+.pantalla[hidden]{display:none}
+.vista{padding:32px 0 40px}
+.vista .rol{font-size:11px;letter-spacing:.11em;text-transform:uppercase;font-weight:700;
+  color:var(--app-accent);margin-bottom:10px}
+.vista h3{font-family:var(--serif);font-size:clamp(23px,3vw,31px);font-weight:600;
+  margin-bottom:12px;max-width:22ch}
+.vista .txt{max-width:62ch;margin-bottom:26px}
+.vista .txt p{font-size:16px;color:var(--app-fg-2);line-height:1.65}
+.vista .txt p:last-child{margin-bottom:0}
+.nota{background:var(--app-line-soft);border-radius:var(--r-s);padding:11px 13px;font-size:13.5px;
+  color:var(--app-fg-2);border-left:2px solid var(--app-accent);margin:0}
+.pie-mk{font-size:11.5px;color:var(--app-fg-3);margin:9px 0 0;text-align:center}
+.funcs{border-top:1px solid var(--app-line);padding-top:34px}
+.funcs-h{margin-bottom:20px}
+.funcs-h h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+  color:var(--app-fg-3);margin-bottom:7px}
+.funcs-h p{font-size:15px;color:var(--app-fg-2);max-width:56ch;margin:0}
+.split{display:grid;grid-template-columns:250px 1fr;gap:26px;align-items:start}
+.side{position:sticky;top:20px}
+.feats{display:flex;flex-direction:column;gap:1px}
+.f{appearance:none;text-align:left;background:none;border:0;font:inherit;cursor:pointer;
+  padding:10px 12px;border-radius:var(--r-s);color:var(--app-fg-2);font-size:14px;line-height:1.35;
+  display:flex;gap:9px;align-items:baseline;transition:background .12s,color .12s}
+.f:hover{background:var(--app-line-soft);color:var(--app-fg)}
+.f .fn{font-family:var(--mono);font-size:10px;color:var(--app-fg-3);flex:none;padding-top:1px}
+.f[aria-selected="true"]{background:var(--app-accent);color:#fff;font-weight:560}
+.f[aria-selected="true"] .fn{color:rgba(255,255,255,.7)}
+.lienzo{min-width:0}
+.det{background:var(--app-sup);border:1px solid var(--app-line);border-radius:var(--r);
+  padding:22px 24px;box-shadow:var(--sh)}
+.det[hidden]{display:none}
+.det .rol{font-size:11px;letter-spacing:.11em;text-transform:uppercase;font-weight:700;
+  color:var(--app-accent);margin-bottom:9px}
+.det h3{font-size:20px;font-weight:640;margin-bottom:9px}
+.det p{font-size:15px;color:var(--app-fg-2);line-height:1.6;margin:0 0 13px}
+.det ul{margin:0 0 13px;padding-left:18px;font-size:14.5px;color:var(--app-fg-2);line-height:1.6}
+.det li{margin-bottom:5px}
+.det strong{color:var(--app-fg);font-weight:600}
+.det>*:last-child{margin-bottom:0}
+.donde{display:inline-flex;align-items:center;gap:7px;background:var(--app-line-soft);
+  border-radius:99px;padding:4px 12px;font-size:12px;color:var(--app-fg-2);margin-bottom:16px}
+.donde::before{content:"";width:5px;height:5px;border-radius:99px;background:var(--app-accent);flex:none}
+.donde b{color:var(--app-fg);font-weight:640}
+.zoom{background:var(--app-bg);border:1px solid var(--app-line);border-radius:var(--r);
+  padding:26px 24px;margin:0 0 16px;display:grid;gap:11px}
+.zoom-l{font-size:10px;letter-spacing:.11em;text-transform:uppercase;font-weight:700;
+  color:var(--app-fg-3);margin-bottom:-3px}
+
+/* ══════════════════════════════════════════════════════════════════════
+   4 · KIT DE MOCKUP
+   Todo con tokens --app-*: nunca un color a mano, o se rompe en un tema.
+   Si falta una pieza se agrega ACÁ, con los mismos tokens.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* — iconos: <svg class="ico"><use href="#i-nombre"/></svg> — */
+.ico{width:16px;height:16px;flex:none;display:inline-block;vertical-align:-3px;
+  fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ico.xs{width:12px;height:12px;stroke-width:2.1}
+.ico.sm{width:14px;height:14px;stroke-width:2}
+.ico.lg{width:20px;height:20px;stroke-width:1.7}
+.ico.xl{width:30px;height:30px;stroke-width:1.4}
+.ico.on{fill:currentColor}
+
+/* — marco — */
+.mkw{overflow-x:auto;padding-bottom:4px}
+.mk{background:var(--app-sup);border:1px solid var(--app-line);border-radius:var(--r);
+  overflow:hidden;box-shadow:var(--sh-lg);min-width:660px;position:relative}
+.mk[data-device="mobile"]{min-width:0;max-width:330px;margin:0 auto;border-radius:26px;padding:8px}
+.mk-chrome{display:flex;align-items:center;gap:7px;padding:9px 12px;background:var(--app-line-soft);
+  border-bottom:1px solid var(--app-line)}
+.mk-chrome .b{width:9px;height:9px;border-radius:99px;background:var(--app-line);flex:none}
+.mk-url{flex:1;background:var(--app-sup);border:1px solid var(--app-line);border-radius:99px;
+  font-family:var(--mono);font-size:10.5px;color:var(--app-fg-3);padding:3px 11px;margin-left:6px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mk-app{display:grid;grid-template-columns:172px 1fr;min-height:340px}
+.mk-app[data-nav="none"]{grid-template-columns:1fr}
+.mk-nav{background:var(--app-line-soft);border-right:1px solid var(--app-line);padding:14px 10px;
+  display:flex;flex-direction:column;gap:2px}
+.mk-brand{font-size:13px;font-weight:700;letter-spacing:-.01em;padding:2px 8px 14px;display:flex;
+  align-items:center;gap:8px}
+.mk-brand::before{content:"";width:16px;height:16px;border-radius:5px;background:var(--app-accent);flex:none}
+.mk-ni{font-size:12px;color:var(--app-fg-2);padding:6px 8px;border-radius:6px;display:flex;
+  align-items:center;gap:9px}
+.mk-ni.on{background:var(--app-sup);color:var(--app-fg);font-weight:600;box-shadow:var(--sh)}
+.mk-ni.on .ico{color:var(--app-accent)}
+.mk-main{display:flex;flex-direction:column;min-width:0}
+.mk-head{padding:14px 18px;border-bottom:1px solid var(--app-line);display:flex;
+  align-items:center;justify-content:space-between;gap:12px}
+.mk-head h4{font-size:15px;font-weight:650}
+.mk-head .sub{font-size:11.5px;color:var(--app-fg-3);margin-top:2px}
+.mk-body{padding:16px 18px;display:grid;gap:13px;align-content:start;flex:1;background:var(--app-bg)}
+
+/* — superficies — */
+.ui-card{background:var(--app-sup);border:1px solid var(--app-line);border-radius:10px;padding:13px 15px}
+.ui-card .ct{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  color:var(--app-fg-3);margin-bottom:7px;display:flex;align-items:center;gap:6px}
+.ui-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+.ui-flex{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.ui-between{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.ui-grow{flex:1;min-width:0}
+.ui-div{display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--app-fg-3);font-weight:700}
+.ui-div::before,.ui-div::after{content:"";height:1px;background:var(--app-line);flex:1}
+
+/* — métricas — */
+.ui-kpi{display:grid;gap:3px}
+.ui-kpi .v{font-size:20px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.ui-kpi .d{font-size:10.5px;color:var(--app-fg-2);line-height:1.4}
+.ui-kpi.dest{background:var(--app-accent);border-color:var(--app-accent);color:#fff;
+  border-radius:10px;padding:13px 15px}
+.ui-kpi.dest .ct,.ui-kpi.dest .d{color:rgba(255,255,255,.78)}
+.ui-delta{font-size:10.5px;font-weight:700;display:inline-flex;align-items:center;gap:3px}
+.ui-delta.up{color:var(--app-accent)} .ui-delta.down{color:var(--app-bad)}
+
+/* — filas y listas — */
+.ui-row{display:flex;align-items:center;gap:11px;padding:9px 13px;background:var(--app-sup);
+  border:1px solid var(--app-line);border-radius:8px;font-size:12.5px}
+.ui-row+.ui-row{margin-top:-1px}
+.ui-row.on{border-color:var(--app-accent);background:var(--app-accent-2)}
+.ui-t{font-weight:600;color:var(--app-fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ui-s{font-size:11px;color:var(--app-fg-3);margin-top:1px}
+.ui-av{width:24px;height:24px;border-radius:99px;background:var(--app-accent-2);flex:none;
+  display:grid;place-items:center;font-size:10px;font-weight:700;color:var(--app-accent)}
+.ui-av.sq{border-radius:7px}
+.ui-avs{display:flex}
+.ui-avs .ui-av{border:2px solid var(--app-sup);margin-left:-8px}
+.ui-avs .ui-av:first-child{margin-left:0}
+
+/* — controles — */
+.ui-btn{background:var(--app-accent);color:#fff;border-radius:7px;padding:6px 12px;font-size:12px;
+  font-weight:600;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.ui-btn.gh{background:none;color:var(--app-fg-2);border:1px solid var(--app-line)}
+.ui-btn.dg{background:var(--app-bad);color:#fff}
+.ui-btn.sm{padding:4px 9px;font-size:11px}
+.ui-ib{width:28px;height:28px;border-radius:7px;border:1px solid var(--app-line);display:grid;
+  place-items:center;color:var(--app-fg-2);background:var(--app-sup);flex:none}
+.ui-fab{width:46px;height:46px;border-radius:99px;background:var(--app-accent);color:#fff;
+  display:grid;place-items:center;box-shadow:var(--sh-lg);position:absolute;right:16px;bottom:16px}
+.ui-in{background:var(--app-sup);border:1px solid var(--app-line);border-radius:7px;padding:6px 11px;
+  font-size:12px;color:var(--app-fg-3);flex:1;min-width:0;display:flex;align-items:center;gap:7px}
+.ui-in.foco{border-color:var(--app-accent);box-shadow:0 0 0 3px var(--app-accent-2)}
+.ui-in .cursor{width:1px;height:13px;background:var(--app-accent);display:inline-block}
+.ui-sel{background:var(--app-sup);border:1px solid var(--app-line);border-radius:7px;padding:6px 10px;
+  font-size:12px;color:var(--app-fg-2);display:inline-flex;align-items:center;gap:8px}
+.ui-ta{background:var(--app-sup);border:1px solid var(--app-line);border-radius:8px;padding:9px 11px;
+  font-size:12px;color:var(--app-fg-3);min-height:58px;display:block}
+.ui-sw{width:32px;height:18px;border-radius:99px;background:var(--app-line);position:relative;flex:none}
+.ui-sw::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:99px;
+  background:var(--app-sup);box-shadow:var(--sh);transition:left .15s}
+.ui-sw.on{background:var(--app-accent)}
+.ui-sw.on::after{left:16px}
+.ui-cb{width:15px;height:15px;border-radius:4px;border:1.5px solid var(--app-line);flex:none;
+  display:grid;place-items:center;color:transparent}
+.ui-cb.on{background:var(--app-accent);border-color:var(--app-accent);color:#fff}
+.ui-rd{width:15px;height:15px;border-radius:99px;border:1.5px solid var(--app-line);flex:none;
+  display:grid;place-items:center}
+.ui-rd.on{border-color:var(--app-accent)}
+.ui-rd.on::after{content:"";width:7px;height:7px;border-radius:99px;background:var(--app-accent)}
+
+/* — estado y etiquetas — */
+.ui-chip{background:var(--app-line-soft);color:var(--app-fg-2);border-radius:99px;padding:2.5px 9px;
+  font-size:10.5px;font-weight:600;white-space:nowrap;display:inline-flex;align-items:center;gap:5px}
+.ui-chip::before{content:"";width:5px;height:5px;border-radius:99px;background:currentColor;flex:none}
+.ui-chip.ok{background:var(--app-accent-2);color:var(--app-accent)}
+.ui-chip.warn{background:var(--app-warn-2);color:var(--app-warn)}
+.ui-chip.bad{background:var(--app-bad-2);color:var(--app-bad)}
+.ui-chip.info{background:var(--app-info-2);color:var(--app-info)}
+.ui-chip.plain::before{display:none}
+.ui-badge{background:var(--app-bad);color:#fff;border-radius:99px;min-width:16px;height:16px;
+  padding:0 5px;font-size:9.5px;font-weight:700;display:inline-grid;place-items:center}
+.ui-stars{display:inline-flex;gap:2px;color:var(--app-line)}
+.ui-stars .ico{color:inherit}
+.ui-stars .on{color:var(--app-warn)}
+.ui-bar{height:5px;border-radius:99px;background:var(--app-line);overflow:hidden;margin-top:5px}
+.ui-bar i{display:block;height:100%;background:var(--app-accent);border-radius:99px}
+.ui-alert{border-radius:9px;padding:10px 12px;font-size:11.5px;display:flex;gap:9px;
+  align-items:flex-start;line-height:1.45;border:1px solid}
+.ui-alert.info{background:var(--app-info-2);border-color:var(--app-info);color:var(--app-info)}
+.ui-alert.warn{background:var(--app-warn-2);border-color:var(--app-warn);color:var(--app-warn)}
+.ui-alert.bad{background:var(--app-bad-2);border-color:var(--app-bad);color:var(--app-bad)}
+.ui-alert.ok{background:var(--app-accent-2);border-color:var(--app-accent);color:var(--app-accent)}
+
+/* — navegación interna — */
+.ui-tabs{display:flex;gap:16px;border-bottom:1px solid var(--app-line);font-size:12px}
+.ui-tabs span{padding:0 0 7px;color:var(--app-fg-3);border-bottom:2px solid transparent;margin-bottom:-1px}
+.ui-tabs span.on{color:var(--app-accent);border-bottom-color:var(--app-accent);font-weight:600}
+.ui-crumbs{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--app-fg-3)}
+.ui-crumbs b{color:var(--app-fg);font-weight:600}
+.ui-pager{display:flex;gap:4px;align-items:center;font-size:11px;color:var(--app-fg-3)}
+.ui-pager i{width:22px;height:22px;border-radius:6px;border:1px solid var(--app-line);
+  display:grid;place-items:center;font-style:normal}
+.ui-pager i.on{background:var(--app-accent);border-color:var(--app-accent);color:#fff;font-weight:700}
+.ui-menu{background:var(--app-sup);border:1px solid var(--app-line);border-radius:9px;padding:5px;
+  box-shadow:var(--sh-lg);display:inline-grid;gap:1px;min-width:150px}
+.ui-menu span{font-size:11.5px;color:var(--app-fg-2);padding:6px 9px;border-radius:6px;
+  display:flex;align-items:center;gap:8px}
+.ui-menu span.on{background:var(--app-line-soft);color:var(--app-fg)}
+.ui-menu span.dg{color:var(--app-bad)}
+.ui-menu hr{border:0;border-top:1px solid var(--app-line);margin:4px 0}
+.ui-bottom{display:flex;justify-content:space-around;padding:9px 4px 4px;background:var(--app-sup);
+  border-top:1px solid var(--app-line)}
+.ui-bottom span{display:grid;justify-items:center;gap:3px;font-size:9px;color:var(--app-fg-3)}
+.ui-bottom span.on{color:var(--app-accent);font-weight:700}
+
+/* — tablas — */
+.ui-tbl{width:100%;border-collapse:collapse;font-size:11.5px}
+.ui-tbl th{font-size:9px;letter-spacing:.09em;padding:7px 10px;color:var(--app-fg-3);
+  border-bottom:1px solid var(--app-line);text-transform:uppercase}
+.ui-tbl td{padding:8px 10px;border-bottom:1px solid var(--app-line-soft);color:var(--app-fg-2)}
+.ui-tbl tr:last-child td{border-bottom:0}
+.ui-tbl td.n{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:11px}
+
+/* — datos / gráficos — */
+.ui-bars{display:flex;align-items:flex-end;gap:6px;height:70px}
+.ui-bars i{flex:1;background:var(--app-accent);border-radius:3px 3px 0 0;opacity:.45;min-height:3px}
+.ui-bars i.on{opacity:1}
+.ui-spark{width:100%;height:34px;display:block;overflow:visible}
+.ui-spark path{fill:none;stroke:var(--app-accent);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ui-spark .area{fill:var(--app-accent);opacity:.12;stroke:none}
+.ui-donut{width:74px;height:74px;flex:none;transform:rotate(-90deg)}
+.ui-donut circle{fill:none;stroke-width:9}
+.ui-donut .bg{stroke:var(--app-line)}
+.ui-donut .fg{stroke:var(--app-accent);stroke-linecap:round}
+.ui-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;font-size:9.5px;text-align:center}
+.ui-cal b{color:var(--app-fg-3);font-weight:700;padding-bottom:2px}
+.ui-cal span{padding:4px 0;border-radius:5px;color:var(--app-fg-2)}
+.ui-cal span.on{background:var(--app-accent);color:#fff;font-weight:700}
+.ui-cal span.hito{background:var(--app-accent-2);color:var(--app-accent);font-weight:600}
+.ui-cal span.off{color:var(--app-line)}
+
+/* — flujo / proceso — */
+.ui-steps{display:flex;align-items:center;gap:0;font-size:10.5px;flex-wrap:wrap;row-gap:7px}
+.ui-steps span{display:flex;align-items:center;gap:6px;color:var(--app-fg-3);white-space:nowrap}
+.ui-steps span::before{content:"";width:16px;height:16px;border-radius:99px;border:1.5px solid var(--app-line);flex:none}
+.ui-steps span.done{color:var(--app-fg-2)}
+.ui-steps span.done::before{background:var(--app-accent);border-color:var(--app-accent)}
+.ui-steps span.on{color:var(--app-accent);font-weight:700}
+.ui-steps span.on::before{border-color:var(--app-accent);border-width:4px}
+.ui-steps hr{flex:1;border:0;border-top:1px solid var(--app-line);margin:0 8px;min-width:14px}
+.ui-kan{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.ui-kan>div{background:var(--app-line-soft);border-radius:9px;padding:8px;display:grid;gap:6px;
+  align-content:start;min-width:0;overflow-wrap:anywhere}
+.ui-kan .kt{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+  color:var(--app-fg-3);display:flex;justify-content:space-between}
+.ui-kan .kc{background:var(--app-sup);border:1px solid var(--app-line);border-radius:7px;
+  padding:7px 9px;font-size:11px;color:var(--app-fg-2);display:grid;gap:5px}
+
+/* — contenido — */
+.ui-media{background:var(--app-line-soft);border-radius:8px;display:grid;place-items:center;
+  color:var(--app-fg-3);min-height:76px}
+.ui-media.wide{aspect-ratio:16/9;min-height:0}
+.ui-map{background:var(--app-line-soft);border-radius:8px;min-height:110px;position:relative;
+  display:grid;place-items:center;color:var(--app-fg-3);overflow:hidden}
+.ui-map::before{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--app-line) 1px,transparent 1px) 0 0/26px 26px,
+             linear-gradient(0deg,var(--app-line) 1px,transparent 1px) 0 0/26px 26px;opacity:.5}
+.ui-map .ico{position:relative;color:var(--app-bad)}
+.ui-file{display:flex;align-items:center;gap:9px;padding:7px 10px;border:1px solid var(--app-line);
+  border-radius:7px;font-size:11.5px;background:var(--app-sup)}
+.ui-file .ico{color:var(--app-info)}
+.ui-cmt{display:flex;gap:9px;font-size:11.5px}
+.ui-cmt .bod{background:var(--app-line-soft);border-radius:9px;padding:8px 11px;color:var(--app-fg-2);flex:1}
+.ui-cmt .who{font-weight:700;color:var(--app-fg);font-size:11px;margin-bottom:2px}
+.ui-cmt .when{font-size:9.5px;color:var(--app-fg-3);margin-top:4px}
+.ui-ia{border:1px solid var(--app-accent);background:var(--app-accent-2);border-radius:9px;
+  padding:10px 12px;font-size:11.5px;color:var(--app-fg-2);display:grid;gap:7px}
+.ui-ia .h{display:flex;align-items:center;gap:7px;font-weight:700;color:var(--app-accent);font-size:10.5px;
+  letter-spacing:.06em;text-transform:uppercase}
+.sk{background:var(--app-line);border-radius:99px;height:7px;display:block}
+.sk.w40{width:40%} .sk.w60{width:60%} .sk.w80{width:80%}
+.ui-empty{border:1px dashed var(--app-line);border-radius:9px;padding:22px;text-align:center;
+  font-size:12px;color:var(--app-fg-3);display:grid;gap:7px;justify-items:center}
+
+/* — capas — */
+.ui-modal{background:var(--app-sup);border:1px solid var(--app-line);border-radius:12px;
+  box-shadow:var(--sh-lg);padding:16px 18px;display:grid;gap:11px;max-width:min(330px,100%)}
+.ui-modal .mt{font-size:14px;font-weight:650}
+.ui-modal p{font-size:11.5px;color:var(--app-fg-2);margin:0;line-height:1.5}
+.ui-toast{background:var(--app-fg);color:var(--app-bg);border-radius:9px;padding:9px 13px;
+  font-size:11.5px;display:inline-flex;align-items:center;gap:9px;box-shadow:var(--sh-lg)}
+.ui-tip{background:var(--app-fg);color:var(--app-bg);border-radius:6px;padding:4px 8px;
+  font-size:10.5px;display:inline-block;position:relative}
+.ui-tip::after{content:"";position:absolute;left:50%;bottom:-4px;width:8px;height:8px;
+  background:inherit;transform:translateX(-50%) rotate(45deg)}
+
+/* ═══════════════ 5 · CIERRE ═══════════════ */
+.cierre{background:var(--ed-bg);color:var(--ed-fg);padding:64px 0 40px;font-family:var(--sans)}
+.abiertos{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.ab{background:var(--ed-paper);border:1px solid var(--ed-line);border-radius:var(--r);padding:16px 18px;
+  display:grid;gap:8px;align-content:start}
+.ab .est{justify-self:start;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:2px 9px;border-radius:99px;background:var(--ed-line-soft);color:var(--ed-fg-2)}
+.ab .est.dec{background:var(--ed-accent-soft);color:var(--ed-accent)}
+.ab .est.ya{background:var(--ed-accent);color:var(--ed-paper)}
+.ab h4{font-size:15px;font-weight:640}
+.ab p{font-size:13.5px;color:var(--ed-fg-2);margin:0;line-height:1.5}
+.ab .rec{font-size:13px;border-top:1px dashed var(--ed-line);padding-top:8px}
+.ab .rec b{color:var(--ed-accent)}
+footer{border-top:1px solid var(--ed-line);margin-top:44px;padding:16px 0 0;font-size:12px;
+  color:var(--ed-fg-3);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+/* ═══════════════ CATÁLOGO (se borra al generar) ═══════════════ */
+.cat{background:var(--app-bg);color:var(--app-fg);padding:56px 0;font-family:var(--sans);
+  border-top:3px solid var(--app-bad)}
+.cat h2{font-size:17px;margin-bottom:5px}
+.cat .adv{font-size:12.5px;color:var(--app-bad);margin-bottom:26px;font-weight:600}
+.cat h3{font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--app-fg-3);
+  margin:26px 0 10px;font-weight:700}
+.cat-g{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));align-items:start}
+.cat-i{background:var(--app-sup);border:1px solid var(--app-line);border-radius:9px;padding:11px}
+.cat-i>.n{font-family:var(--mono);font-size:9.5px;color:var(--app-fg-3);margin-bottom:8px;display:block}
+.cat-ico{display:grid;grid-template-columns:repeat(auto-fill,minmax(74px,1fr));gap:2px}
+.cat-ico div{display:grid;justify-items:center;gap:5px;padding:9px 3px;border-radius:7px;
+  font-family:var(--mono);font-size:8.5px;color:var(--app-fg-3);text-align:center;word-break:break-all}
+.cat-ico div:hover{background:var(--app-line-soft);color:var(--app-fg)}
+.cat-ico .ico{color:var(--app-fg-2);width:19px;height:19px}
+
+/* ═══════════════ RESPONSIVE / PRINT ═══════════════ */
+@media (max-width:900px){
+  .split{grid-template-columns:minmax(0,1fr);gap:16px}
+  /* min-width:0 es obligatorio, no cosmético: sin él el ítem de grilla toma el
+     min-content de la fila de botones (que llevan white-space:nowrap) y estira
+     el documento entero — scroll horizontal en el body, en el teléfono. */
+  .side{position:static;min-width:0}
+  .feats{flex-direction:row;overflow-x:auto;gap:6px;padding-bottom:4px;scrollbar-width:none;min-width:0}
+  .feats::-webkit-scrollbar{display:none}
+  .f{white-space:nowrap;border:1px solid var(--app-line)}
+  .duo{grid-template-columns:1fr}
+  .duo>div+div{border-left:0;border-top:1px solid var(--ed-line)}
+  .duo .sol::before{content:"↓";left:50%;top:-18px;transform:translateX(-50%)}
+  .flow{grid-auto-flow:row;gap:22px}
+  .paso:not(:last-child)::after{right:auto;left:38px;top:auto;bottom:-16px;transform:rotate(135deg)}
+  .tema{top:10px;right:10px}
+}
+@media print{
+  .tabs,.side,.tema,.cat{display:none}
+  .pantalla[hidden],.det[hidden]{display:block !important}
+  .det{break-inside:avoid}
+  body{background:#fff}
+}
+/* ── Piezas propias de Ejecuciones (mismos tokens del kit) ── */
+.mk-sep{height:1px;background:var(--app-line);margin:8px 6px}
+.mk-ni .ui-badge{margin-left:auto}
+.ui-log{font:11px/1.55 var(--mono);color:var(--app-fg-2);background:var(--app-bg);border:1px solid var(--app-line-soft);
+  border-radius:var(--r-s);padding:7px 9px;display:grid;gap:1px;min-width:0;overflow:hidden}
+.ui-log span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ui-log span:last-child{color:var(--app-fg)}
+.ui-banda{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--app-fg);
+  background:var(--app-accent-2);border:1px solid var(--app-line);border-radius:var(--r-s);padding:6px 10px}
+.ui-banda .pt{width:8px;height:8px;border-radius:50%;background:var(--app-accent);flex:none}
+.ui-banda .ui-grow{min-width:0}
+.ui-num{font-variant-numeric:tabular-nums;font-weight:600}
+.ui-in.num{width:64px;justify-content:flex-end;font-variant-numeric:tabular-nums}
+.ui-modal.ancho{max-width:none;width:100%}
+.ui-tbl td.why{color:var(--app-fg-2);font-size:12px}
+.ui-between{flex-wrap:wrap}
+.ui-between>.ui-t{min-width:0;white-space:normal}
+.ui-tbl td.n{white-space:nowrap}
+.ui-btn,.ui-fab{color:var(--on-accent)}
+.ui-btn.dg,.ui-badge{color:var(--on-bad)}
+
+/* ── piezas propias de esta propuesta: la opinión de los jueces ── */
+.jbar{display:flex;height:7px;border-radius:99px;overflow:hidden;background:var(--app-line);gap:1px;min-width:0}
+.jbar i{display:block;height:100%;min-width:2px}
+.jbar .ok,.sw.ok{background:var(--app-accent)}
+.jbar .wa,.sw.wa{background:var(--app-warn)}
+.jbar .ba,.sw.ba{background:var(--app-bad)}
+.jbar .un,.sw.un{background:var(--app-fg-3)}
+.jbar .in,.sw.in{background:var(--app-info)}
+.jbar.gr{height:11px}
+.jleg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11px;color:var(--app-fg-2);margin-top:7px}
+.jleg span{display:inline-flex;align-items:center;gap:5px}
+.sw{width:8px;height:8px;border-radius:99px;display:inline-block;flex:none}
+.nodo{border:1.5px solid var(--app-accent);border-radius:12px;padding:10px 12px;background:var(--app-sup);
+  width:100%;max-width:290px;box-shadow:0 0 0 4px var(--app-accent-2)}
+.nodo .t{font-weight:650;font-size:13px}
+.nodo .s{font-size:11px;color:var(--app-fg-3)}
+.nodo .fila{display:flex;align-items:center;gap:8px;font-size:10.5px;color:var(--app-fg-2);margin-top:7px}
+.nodo .fila .lb{width:44px;flex:none;color:var(--app-fg-3)}
+.nodo .fila .jbar{flex:1}
+.nodo .fila .n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.nuevo{outline:2px dashed var(--app-accent);outline-offset:3px;border-radius:10px;position:relative}
+.nuevo-l{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--app-accent);margin-bottom:5px}
+.aca{outline:2px solid var(--app-warn);outline-offset:3px;border-radius:10px}
+.aca-l{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--app-warn);margin-bottom:5px}
+.seg{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.seg>span{border:1px solid var(--app-line);border-radius:99px;padding:3px 9px;font-size:11px;color:var(--app-fg-2);
+  background:var(--app-sup);display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.seg>span.on{border-color:var(--app-accent);background:var(--app-accent-2);color:var(--app-accent);font-weight:600}
+.seg>.lb{border:0;background:none;padding:3px 2px;color:var(--app-fg-3)}
+.cols3{display:grid;grid-template-columns:150px minmax(0,1fr) 210px;gap:10px;align-items:start}
+.cols3>*{min-width:0}
+.lst{display:grid;gap:4px;font-size:11px}
+.lst>div{padding:6px 8px;border-radius:7px;background:var(--app-sup);border:1px solid var(--app-line-soft);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--app-fg-2)}
+.lst>div.on{border-color:var(--app-accent);color:var(--app-fg);font-weight:600}
+.ad2{display:grid;gap:6px;font-size:12px}
+.ad2 .a{background:var(--app-bad-2);border-radius:7px;padding:7px 9px;color:var(--app-fg)}
+.ad2 .d{background:var(--app-accent-2);border-radius:7px;padding:7px 9px;color:var(--app-fg)}
+.ad2 .k{font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--app-fg-3);display:block}
+.mrg{display:grid;gap:8px;font-size:11px}
+.mrg h5{margin:0;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--app-fg-3)}
+.jz{display:flex;justify-content:space-between;gap:8px;padding:6px 8px;border-radius:7px;background:var(--app-sup);
+  border:1px solid var(--app-line-soft)}
+.jz b{font-weight:600;color:var(--app-fg)}
+.jz span{color:var(--app-accent);white-space:nowrap}
+.jz span.wa{color:var(--app-warn)}
+.fresca{display:flex;gap:6px;align-items:flex-start;font-size:10.5px;color:var(--app-warn);background:var(--app-warn-2);
+  border-radius:7px;padding:6px 8px}
+.fresca.ok{color:var(--app-accent);background:var(--app-accent-2)}
+.cambio{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:center;padding:9px 12px;
+  background:var(--app-sup);border:1px solid var(--app-line);border-radius:9px}
+.cambio+.cambio{margin-top:6px}
+.cambio .ui-s{grid-column:1}
+.cambio .ui-chip{grid-row:1 / span 2;grid-column:2;justify-self:end}
+.mk-cols{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.flecha-j{color:var(--app-fg-3);font-size:18px}
+.estados td{vertical-align:top}
+.estados td:first-child{white-space:nowrap}
+@media (max-width:760px){
+  .cols3{grid-template-columns:1fr}
+  .cols3 .lst{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ SPRITE DE ICONOS · uso: <svg class="ico"><use href="#i-nombre"/></svg> ══ -->
+<svg class="sprite" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></symbol>
+<symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><path d="M3 5h18v16H3zM3 10h18M8 3v4M16 3v4"/></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+<symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3v5h5M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM12 2.5V5M12 19v2.5M2.5 12H5M19 12h2.5M5.2 5.2 7 7M17 17l1.8 1.8M18.8 5.2 17 7M7 17l-1.8 1.8"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3"/></symbol>
+<symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></symbol>
+<symbol id="i-sort" viewBox="0 0 24 24"><path d="M7 4v16M7 20l-3-3M7 20l3-3M17 20V4M17 4l-3 3M17 4l3 3"/></symbol>
+<symbol id="i-chev-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+<symbol id="i-chev-up" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></symbol>
+<symbol id="i-chev-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+<symbol id="i-chev-left" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M20 12H4M10 6l-6 6 6 6"/></symbol>
+<symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+<symbol id="i-dots" viewBox="0 0 24 24"><path d="M12 6h.01M12 12h.01M12 18h.01"/></symbol>
+<symbol id="i-dots-h" viewBox="0 0 24 24"><path d="M6 12h.01M12 12h.01M18 12h.01"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24"><path d="m4 20 1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19zM14 7l3 3"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13M9 7V4h6v3"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M8 11l4 4 4-4M4 19h16"/></symbol>
+<symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 21V9M8 13l4-4 4 4M4 5h16"/></symbol>
+<symbol id="i-share" viewBox="0 0 24 24"><path d="M4 12v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8M12 3v13M8 7l4-4 4 4"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><path d="M9 9h11v12H9zM5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/></symbol>
+<symbol id="i-save" viewBox="0 0 24 24"><path d="M5 3h11l3 3v15H5zM8 3v6h7V3M8 21v-7h8v7"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 4v16M16 4v16"/></symbol>
+<symbol id="i-print" viewBox="0 0 24 24"><path d="M7 8V3h10v5M7 18H5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-2M7 14h10v7H7z"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.9l1.1-6.5L2.6 9.8l6.5-.9z"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.4A4.1 4.1 0 0 1 12 7.5 4.1 4.1 0 0 1 19 10.6c0 5-7 9.4-7 9.4z"/></symbol>
+<symbol id="i-thumb" viewBox="0 0 24 24"><path d="M7 22V10l5-8a2 2 0 0 1 2 2v5h5a2 2 0 0 1 2 2.3l-1.3 8A2 2 0 0 1 17.7 22zM7 10H3v12h4"/></symbol>
+<symbol id="i-comment" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 9a6 6 0 1 0-12 0c0 6-2 8-2 8h16s-2-2-2-8M10.5 21a2 2 0 0 0 3 0"/></symbol>
+<symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4h13l-2.5 4L18 12H5"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 21a7 7 0 0 1 14 0M17 4.5a4 4 0 0 1 0 7.5M18.5 14.5a7 7 0 0 1 3.5 6.5"/></symbol>
+<symbol id="i-card" viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 10h18M6.5 14.5h3"/></symbol>
+<symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a1 1 0 0 0 1 .8h8.4a1 1 0 0 0 1-.8L20 8H6M9 20h.01M17 20h.01"/></symbol>
+<symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 3h7.5L21 13.5 13.5 21 3 10.5zM7.5 7.5h.01"/></symbol>
+<symbol id="i-dollar" viewBox="0 0 24 24"><path d="M12 2v20M16.5 6.5H10a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6H7"/></symbol>
+<symbol id="i-receipt" viewBox="0 0 24 24"><path d="M5 21V3l2 1.5L9 3l2 1.5L13 3l2 1.5L17 3l2 1.5V21l-2-1.5-2 1.5-2-1.5L11 21l-2-1.5L7 21zM8 8h8M8 12h8M8 16h5"/></symbol>
+<symbol id="i-chart-bar" viewBox="0 0 24 24"><path d="M4 20h16M7 20v-6M12 20V8M17 20v-9"/></symbol>
+<symbol id="i-chart-line" viewBox="0 0 24 24"><path d="M4 20h16M5 16l4-5 3.5 3L20 6"/></symbol>
+<symbol id="i-pie" viewBox="0 0 24 24"><path d="M12 3v9h9a9 9 0 0 0-9-9zM21 14a9 9 0 1 1-9-9"/></symbol>
+<symbol id="i-trend-up" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></symbol>
+<symbol id="i-trend-down" viewBox="0 0 24 24"><path d="M3 7l6 6 4-4 8 8M15 17h6v-6"/></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM8.5 12.5l2.5 2.5 4.5-5"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l9.5 17H2.5zM12 10v4M12 17h.01"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 11v5M12 8h.01"/></symbol>
+<symbol id="i-x-circle" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM9.5 9.5l5 5M14.5 9.5l-5 5"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5.2l3.2 2"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><path d="M6 11h12v10H6zM9 11V7.5a3 3 0 0 1 6 0V11"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12zM12 14.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></symbol>
+<symbol id="i-image" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 16l5-5 4 4 3-3 6 6M8.5 9.5h.01"/></symbol>
+<symbol id="i-camera" viewBox="0 0 24 24"><path d="M3 8h4l1.5-2.5h7L17 8h4v12H3zM12 17a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></symbol>
+<symbol id="i-video" viewBox="0 0 24 24"><path d="M3 6h12v12H3zM15 10l6-3.5v11L15 14"/></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zM5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+<symbol id="i-clip" viewBox="0 0 24 24"><path d="M20 11l-8.5 8.5a5 5 0 0 1-7-7L13 4a3.5 3.5 0 0 1 5 5l-8.5 8.5a2 2 0 0 1-3-3L15 6"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 6l9 7 9-7"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M6 3h3.5l1.8 4.5-2.3 1.4a12.5 12.5 0 0 0 6.1 6.1l1.4-2.3L21 14.5V18a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3z"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11zM12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/></symbol>
+<symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M11 3l1.7 4.3L17 9l-4.3 1.7L11 15l-1.7-4.3L5 9l4.3-1.7zM18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9z"/></symbol>
+<symbol id="i-wand" viewBox="0 0 24 24"><path d="M4 20 15 9M13.5 3.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9zM19.5 10l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6z"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5zM3 12.5l9 5 9-5M3 16.5l9 5 9-5"/></symbol>
+<symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3l8 4v10l-8 4-8-4V7zM4 7l8 4 8-4M12 11v10"/></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7zM7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM17.5 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></symbol>
+<symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V4h10v17M14 10h6v11M7 8h4M7 12h4M7 16h4M17 14h.01M17 18h.01"/></symbol>
+<symbol id="i-tool" viewBox="0 0 24 24"><path d="M14 6a4 4 0 0 1 5.5-3.7l-2.8 2.8 2.2 2.2 2.8-2.8A4 4 0 0 1 18 10a4 4 0 0 1-1.4-.25L7 19.3a2.4 2.4 0 0 1-3.4-3.4l9.6-9.6A4 4 0 0 1 14 6z"/></symbol>
+<symbol id="i-database" viewBox="0 0 24 24"><path d="M12 8c4.4 0 8-1.1 8-2.5S16.4 3 12 3 4 4.1 4 5.5 7.6 8 12 8zM4 5.5v13c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-13M4 12c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24"><path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 4l-4 16"/></symbol>
+<symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17l-6-4z"/></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM9.5 9.5a2.5 2.5 0 1 1 3.4 2.3c-.6.3-.9.8-.9 1.4v.3M12 17h.01"/></symbol>
+<symbol id="i-logout" viewBox="0 0 24 24"><path d="M15 4h3a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-3M10 8l-4 4 4 4M6 12h10"/></symbol>
+</defs></svg>
+
+<button class="tema" type="button" aria-label="Cambiar entre modo claro y oscuro" title="Modo claro / oscuro">
+  <svg class="luna" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  <svg class="sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+</button>
+
+
+<!-- ═══════════ PORTADA EDITORIAL ═══════════ -->
+<section class="hero"><div class="wrap">
+  <div class="eyebrow">
+    <span>Propuesta de producto</span><span class="dot"></span>
+    <span>content-audit · tablero</span><span class="dot"></span>
+    <span>v2 · 11 octubre 2026</span>
+  </div>
+  <h1>Lo que opinan los jueces, a la vista</h1>
+  <p class="tag">Para quien revisa la Corrección 1: saber qué cambios ya dieron por buenos los jueces antes de aprobar.</p>
+  <div class="duo">
+    <div><div class="k">Hoy</div><div class="dato">1 de 1.481</div><p>La opinión existe, pero se lee de a un ejercicio, en el margen derecho, sin resumen ni filtro.</p></div>
+    <div class="sol"><div class="k">Con la propuesta</div><div class="dato">1.631</div><p>Pendientes que los jueces dan por buenos, juntos en un grupo para revisar y aprobar.</p></div>
+  </div>
+</div></section>
+
+<section class="ed"><div class="wrap">
+  <h2 class="ed-h">Qué tiene</h2>
+  <div class="pillars">
+    <div class="pillar"><div class="pi"><svg class="ico"><use href="#i-tag"/></svg></div><h3>Un chip por cambio</h3><p>Qué opinó el juez que lo motivó, en la misma fila.</p></div>
+    <div class="pillar"><div class="pi"><svg class="ico"><use href="#i-filter"/></svg></div><h3>Filtrar por opinión</h3><p>Lo que dan por bueno, lo que falta medir, lo dudoso.</p></div>
+    <div class="pillar"><div class="pi"><svg class="ico"><use href="#i-check-circle"/></svg></div><h3>Aprobar en grupo</h3><p>Lo que dan por bueno, con una muestra antes de aprobar.</p></div>
+    <div class="pillar"><div class="pi"><svg class="ico"><use href="#i-chart-bar"/></svg></div><h3>La barra de los jueces</h3><p>En el Mapa, debajo de tu barra, la de ellos.</p></div>
+  </div>
+</div></section>
+
+<hr class="rule">
+
+<section class="ed"><div class="wrap">
+  <h2 class="ed-h">Cómo funciona</h2>
+  <div class="flow">
+    <div class="paso"><div class="pi"><svg class="ico"><use href="#i-chart-line"/></svg></div><h4>Ya se midió</h4><p>A4 volvió a medir el curso con todos los cambios puestos.</p></div>
+    <div class="paso"><div class="pi"><svg class="ico"><use href="#i-link"/></svg></div><h4>Cruzar cambio y hallazgo</h4><p>Cada cambio con el error que lo motivó, en el después.</p></div>
+    <div class="paso"><div class="pi"><svg class="ico"><use href="#i-tag"/></svg></div><h4>Un veredicto por cambio</h4><p>Bueno, falta medir, no consta arreglado o empeoró.</p></div>
+    <div class="paso"><div class="pi"><svg class="ico"><use href="#i-eye"/></svg></div><h4>Revisar en grupo</h4><p>Mirás una muestra y aprobás el grupo entero.</p></div>
+    <div class="paso fin"><div class="pi"><svg class="ico"><use href="#i-check-circle"/></svg></div><h4>Lo dudoso, a mano</h4><p>Quedan 121 para mirar de a uno, con su motivo.</p></div>
+  </div>
+</div></section>
+
+<hr class="rule">
+
+<section class="ed"><div class="wrap narrow">
+  <blockquote class="quote">Lo que ya pagaste en jueces tiene que ahorrarte revisar uno por uno.</blockquote>
+</div></section>
+
+<!-- ═══════════ BISAGRA ═══════════ -->
+<section class="bisagra"><div class="wrap">
+  <div class="lbl">El producto</div>
+  <h2>Así se ve</h2>
+  <p class="d">Primero, dónde está hoy la opinión. Después, Correcciones y el Mapa con el cambio.</p>
+  <div class="tabs" role="tablist" aria-label="Pantallas">
+    <button class="tab" role="tab" aria-selected="true"  aria-controls="p-1" id="t-1"><span class="i">01</span>Hoy: el margen</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-2" id="t-2"><span class="i">02</span>Correcciones</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-3" id="t-3"><span class="i">03</span>Mapa de estados</button>
+  </div>
+</div></section>
+
+<!-- ═══════════ PANTALLAS ═══════════ -->
+<div class="pantallas"><div class="wrap">
+
+  <!-- ══ 01 · HOY ══ -->
+  <section class="pantalla" id="p-1" role="tabpanel" aria-labelledby="t-1">
+    <div class="vista">
+      <div class="txt">
+        <div class="rol">Lo que ya existe</div>
+        <h3>La opinión está, pero de a un ejercicio</h3>
+        <p>En Correcciones, margen derecho, «El después, según los jueces»: una fila por juez con su estado. Es lo que viste en el quiz 7. No llega a la lista, no se filtra y el Mapa no la cuenta.</p>
+        <p class="nota">En amarillo, lo que ya hay. Abajo, qué quiere decir cada estado y el aviso de la versión.</p>
+      </div>
+      <div class="mkw">
+        <div class="mk">
+          <div class="mk-chrome"><i class="b"></i><i class="b"></i><i class="b"></i><div class="mk-url">127.0.0.1:7800 · Correcciones</div></div>
+          <div class="mk-app" data-nav="none">
+            <div class="mk-main">
+              <div class="mk-head"><div><h4>Corrección 1</h4><div class="sub">Quiz 7 de 20 · Afirmativas con <i>be</i> · 14 aprobados · 1.752 pendientes</div></div>
+                <span class="ui-btn gh sm"><svg class="ico xs"><use href="#i-layers"/></svg>Revisar en grupo</span></div>
+              <div class="mk-body">
+                <div class="cols3">
+                  <div class="lst">
+                    <div>Be: preguntas yes / no</div><div>Afirmativas con be</div><div class="on">Afirmativas con be</div><div>Negativas con be</div><div>Contable o incontable</div>
+                  </div>
+                  <div class="ui-card">
+                    <div class="ui-between"><span class="ui-t">Miniteoría</span><span class="ui-s">motivo: Miniteoría con error</span></div>
+                    <div class="ad2" style="margin-top:8px">
+                      <div class="a"><span class="k">Antes</span>Con he, she e it el verbo be va como «are».</div>
+                      <div class="d"><span class="k">Después</span>Con he, she e it va <b>is</b>: <i>He is at home.</i></div>
+                    </div>
+                  </div>
+                  <div class="mrg">
+                    <div class="aca">
+                      <span class="aca-l">Acá está hoy</span>
+                      <h5>El después, según los jueces</h5>
+                      <div class="fresca"><svg class="ico xs"><use href="#i-clock"/></svg><span>Medido sobre la versión 5. Hoy es la 6.</span></div>
+                      <div class="jz" style="margin-top:6px"><b>Miniteoría con error</b><span>Error resuelto</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="pie-mk">Redibujado de tu captura (quiz 7 de 20). El texto de la miniteoría es ilustrativo.</p>
+    </div>
+
+    <div class="funcs">
+      <div class="funcs-h"><h4>Lo que hay hoy, de cerca</h4><p>Qué dice cada estado, qué tan vigente es y qué falta.</p></div>
+      <div class="split">
+        <aside class="side">
+          <div class="feats" role="tablist" aria-orientation="vertical">
+            <button class="f" role="tab" aria-selected="true"  data-det="d-1-1"><span class="fn">01</span>Qué dice cada estado</button>
+            <button class="f" role="tab" aria-selected="false" data-det="d-1-2"><span class="fn">02</span>«Resuelto» no es «limpio»</button>
+            <button class="f" role="tab" aria-selected="false" data-det="d-1-3"><span class="fn">03</span>El aviso de la versión</button>
+            <button class="f" role="tab" aria-selected="false" data-det="d-1-4"><span class="fn">04</span>Lo que falta</button>
+          </div>
+        </aside>
+        <div class="lienzo">
+          <article class="det" id="d-1-1">
+            <div class="rol">Hoy · 01</div>
+            <h3>Qué dice cada estado</h3>
+            <div class="donde">Vive <b>en cada fila del margen, a la derecha</b></div>
+            <div class="zoom"><div class="zoom-l">Los seis estados, y cuántas veces salen en esta tanda</div>
+              <table class="ui-tbl estados">
+                <tbody>
+                  <tr><td><span class="ui-chip ok">Error resuelto</span></td><td>El error que motivó el cambio ya no aparece.</td><td class="n">2.150</td></tr>
+                  <tr><td><span class="ui-chip warn">Sin evaluar</span></td><td>El juez no llegó a medir este ejercicio.</td><td class="n">86</td></tr>
+                  <tr><td><span class="ui-chip plain">Sin veredicto completo</span></td><td>No figura arreglado, y no se sabe más.</td><td class="n">26</td></tr>
+                  <tr><td><span class="ui-chip bad">Error nuevo</span></td><td>Apareció un error que antes no estaba.</td><td class="n">0</td></tr>
+                  <tr><td><span class="ui-chip bad">El error persiste</span></td><td>Sigue el mismo error.</td><td class="n">—</td></tr>
+                  <tr><td><span class="ui-chip ok">Sin errores detectados</span></td><td>El juez midió todo y no encontró nada.</td><td class="n">—</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Son 2.262 lecturas juez por ejercicio, del último análisis (A4, 9/10). Los dos de abajo nunca salen en esta tanda: ver «Resuelto no es limpio».</p>
+          </article>
+
+          <article class="det" id="d-1-2" hidden>
+            <div class="rol">Hoy · 02</div>
+            <h3>«Resuelto» no es «limpio»</h3>
+            <div class="donde">Vive <b>en la diferencia entre dos filas verdes</b></div>
+            <div class="zoom"><div class="zoom-l">Lo que sabemos y lo que no, por ejercicio</div>
+              <div style="display:grid;gap:6px">
+                <div class="ui-alert ok"><svg class="ico sm"><use href="#i-check-circle"/></svg>Se fue el error que lo motivó: lo sabemos.</div>
+                <div class="ui-alert ok"><svg class="ico sm"><use href="#i-check-circle"/></svg>No apareció ningún error nuevo: lo sabemos.</div>
+                <div class="ui-alert warn"><svg class="ico sm"><use href="#i-help"/></svg>¿Le queda algún error viejo que nadie tocó? No se guardó.</div>
+              </div>
+            </div>
+            <p>A4 se guardó con un formato anterior al que distingue «limpio» de «persiste». Para aprobar alcanza: el cambio arregló lo suyo y no rompió nada. Para decir «quedó perfecto», hay que volver a analizar.</p>
+          </article>
+
+          <article class="det" id="d-1-3" hidden>
+            <div class="rol">Hoy · 03</div>
+            <h3>El aviso de la versión exagera</h3>
+            <div class="donde">Vive <b>arriba de las filas del margen, en amarillo</b></div>
+            <div class="zoom"><div class="zoom-l">Mismo ejercicio, dos avisos</div>
+              <div style="display:grid;gap:6px">
+                <div class="fresca"><svg class="ico xs"><use href="#i-clock"/></svg><span>Hoy: «Medido sobre la versión 5. Hoy es la 6: puede haber cambiado».</span></div>
+                <div class="fresca ok"><svg class="ico xs"><use href="#i-check-circle"/></svg><span>Propuesto: «Medido sobre este mismo contenido».</span></div>
+              </div>
+            </div>
+            <p>La versión de la tanda subió por un solo ejercicio editado. Los otros 1.480 de 1.481 se midieron con el contenido de hoy, letra por letra. El aviso los pinta a todos como viejos.</p>
+          </article>
+
+          <article class="det" id="d-1-4" hidden>
+            <div class="rol">Hoy · 04</div>
+            <h3>Lo que falta</h3>
+            <div class="donde">Falta <b>en la lista, el filtro y el Mapa</b></div>
+            <div class="zoom"><div class="zoom-l">Dónde no aparece</div>
+              <div style="display:grid;gap:6px">
+                <div class="ui-row"><svg class="ico sm"><use href="#i-list"/></svg><span class="ui-grow">La lista de cambios</span><span class="ui-chip plain">sin opinión</span></div>
+                <div class="ui-row"><svg class="ico sm"><use href="#i-filter"/></svg><span class="ui-grow">«Todos los motivos»</span><span class="ui-chip plain">filtra por quién lo pidió</span></div>
+                <div class="ui-row"><svg class="ico sm"><use href="#i-layers"/></svg><span class="ui-grow">Revisar en grupo</span><span class="ui-chip plain">sin grupo por opinión</span></div>
+                <div class="ui-row"><svg class="ico sm"><use href="#i-chart-bar"/></svg><span class="ui-grow">Nodo del Mapa</span><span class="ui-chip plain">solo tu barra</span></div>
+              </div>
+            </div>
+            <p>«Todos los motivos» parece un filtro por opinión, pero agrupa por el juez que pidió el cambio, no por lo que opinó después.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 02 · CORRECCIONES ══ -->
+  <section class="pantalla" id="p-2" role="tabpanel" aria-labelledby="t-2" hidden>
+    <div class="vista">
+      <div class="txt">
+        <div class="rol">La pantalla</div>
+        <h3>Correcciones: la opinión en cada cambio</h3>
+        <p>Cada cambio lleva un chip con el veredicto. Arriba, un filtro por opinión con sus números. Y un grupo nuevo, «Los jueces lo dan por bueno», que se revisa con una muestra y se aprueba entero.</p>
+        <p class="nota">Con línea punteada, lo nuevo. El resto ya existe.</p>
+      </div>
+      <div class="mkw">
+        <div class="mk">
+          <div class="mk-chrome"><i class="b"></i><i class="b"></i><i class="b"></i><div class="mk-url">127.0.0.1:7800 · Correcciones</div></div>
+          <div class="mk-app" data-nav="none">
+            <div class="mk-main">
+              <div class="mk-head"><div><h4>Corrección 1</h4><div class="sub">1.766 cambios · 14 aprobados · 1.752 pendientes · opinión de A4, 9/10</div></div>
+                <span class="ui-btn gh sm"><svg class="ico xs"><use href="#i-layers"/></svg>Revisar en grupo</span></div>
+              <div class="mk-body">
+                <div class="nuevo"><div class="seg">
+                  <span class="lb">Según los jueces</span>
+                  <span>Todos 1.766</span>
+                  <span class="on"><i class="sw ok"></i>Lo dan por bueno 1.645</span>
+                  <span><i class="sw wa"></i>Falta medir 88</span>
+                  <span><i class="sw un"></i>No consta arreglado 30</span>
+                  <span><i class="sw in"></i>Otro contenido 3</span>
+                  <span><i class="sw ba"></i>Empeoró 0</span>
+                </div></div>
+                <div class="nuevo ui-card" style="margin-top:14px">
+                  <div class="ui-between"><div><span class="ui-t">Los jueces lo dan por bueno</span><div class="ui-s">1.631 pendientes · arreglaron lo suyo, sin errores nuevos, medidos con el contenido de hoy</div></div>
+                    <span class="ui-btn sm">Revisar el grupo</span></div>
+                </div>
+                <div style="margin-top:12px">
+                  <div class="cambio"><span class="ui-t">Be: preguntas yes / no</span><span class="ui-chip ok nuevo">Opción múltiple: resuelto</span><span class="ui-s">Opciones · regla</span></div>
+                  <div class="cambio"><span class="ui-t">Afirmativas con be</span><span class="ui-chip ok nuevo">Miniteoría: resuelto</span><span class="ui-s">Miniteoría · mesa</span></div>
+                  <div class="cambio"><span class="ui-t">Contable o incontable</span><span class="ui-chip warn nuevo">Miniteoría: falta medir</span><span class="ui-s">Miniteoría · mesa</span></div>
+                  <div class="cambio"><span class="ui-t">Afirmativas regulares</span><span class="ui-chip plain nuevo">Traducción: no consta arreglado</span><span class="ui-s">Traducción · mesa</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="pie-mk">Números y ejercicios reales de la tanda a1-v11, calculados con lo que ya está guardado de A4.</p>
+    </div>
+
+    <div class="funcs">
+      <div class="funcs-h"><h4>Las funciones de esta pantalla</h4><p>Cada una de cerca, con su número de hoy.</p></div>
+      <div class="split">
+        <aside class="side">
+          <div class="feats" role="tablist" aria-orientation="vertical">
+            <button class="f" role="tab" aria-selected="true"  data-det="d-2-1"><span class="fn">01</span>El chip del cambio</button>
+            <button class="f" role="tab" aria-selected="false" data-det="d-2-2"><span class="fn">02</span>Filtrar por opinión</button>
+            <button class="f" role="tab" aria-selected="false" data-det="d-2-3"><span class="fn">03</span>El grupo «lo dan por bueno»</button>
+            <button class="f" role="tab" aria-selected="false" data-det="d-2-4"><span class="fn">04</span>Los 121 que quedan</button>
+            <button class="f" role="tab" aria-selected="false" data-det="d-2-5"><span class="fn">05</span>El aviso, por ejercicio</button>
+          </div>
+        </aside>
+        <div class="lienzo">
+          <article class="det" id="d-2-1">
+            <div class="rol">Función 01</div>
+            <h3>El chip del cambio</h3>
+            <div class="donde">Vive <b>a la derecha de cada cambio, en la lista</b></div>
+            <div class="zoom"><div class="zoom-l">Un chip por estado</div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px">
+                <span class="ui-chip ok">Miniteoría: resuelto</span>
+                <span class="ui-chip warn">Miniteoría: falta medir</span>
+                <span class="ui-chip plain">Traducción: no consta arreglado</span>
+                <span class="ui-chip info">medido sobre otro contenido</span>
+                <span class="ui-chip bad">Opción múltiple: error nuevo</span>
+              </div>
+            </div>
+            <p>Dice qué opinó, después de aplicar el ejercicio entero, el juez que pidió ese cambio. Si cambiaste la oración por un error de traducción, habla el juez de traducción.</p>
+          </article>
+
+          <article class="det" id="d-2-2" hidden>
+            <div class="rol">Función 02</div>
+            <h3>Filtrar por opinión</h3>
+            <div class="donde">Vive <b>arriba de la lista, junto a los motivos</b></div>
+            <div class="zoom"><div class="zoom-l">Los cinco veredictos suman los 1.766</div>
+              <div class="jbar gr"><i class="ok" style="width:93.1%"></i><i class="wa" style="width:5%"></i><i class="un" style="width:1.7%"></i><i class="in" style="width:.2%"></i></div>
+              <div class="jleg"><span><i class="sw ok"></i>Lo dan por bueno 1.645</span><span><i class="sw wa"></i>Falta medir 88</span><span><i class="sw un"></i>No consta arreglado 30</span><span><i class="sw in"></i>Otro contenido 3</span><span><i class="sw ba"></i>Empeoró 0</span></div>
+            </div>
+            <p>Se combina con los filtros de hoy: por ejemplo, «Miniteoría» y «Falta medir» dejan los 58 donde el juez de miniteoría no llegó.</p>
+          </article>
+
+          <article class="det" id="d-2-3" hidden>
+            <div class="rol">Función 03</div>
+            <h3>El grupo «Los jueces lo dan por bueno»</h3>
+            <div class="donde">Vive <b>en «Revisar en grupo», primero de la lista</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve el grupo abierto</div>
+              <div class="ui-card">
+                <div class="ui-between"><span class="ui-t">Los jueces lo dan por bueno</span><span class="ui-chip ok">1.631 pendientes</span></div>
+                <div class="ui-s" style="margin-top:6px">Muestra de 12 al azar: 12 de 12 vistas</div>
+                <div class="ui-bar"><i style="width:100%"></i></div>
+                <div class="ui-flex" style="margin-top:10px"><span class="ui-btn sm">Aprobar los 1.631</span><span class="ui-btn gh sm">Sacar uno del grupo</span><span class="ui-s">se puede deshacer</span></div>
+              </div>
+            </div>
+            <p>Entran los cambios que arreglaron lo suyo, sin errores nuevos, con todos los jueces del ejercicio midiendo y sobre el contenido de hoy. El botón se habilita después de mirar la muestra.</p>
+          </article>
+
+          <article class="det" id="d-2-4" hidden>
+            <div class="rol">Función 04</div>
+            <h3>Los 121 que quedan, con su motivo</h3>
+            <div class="donde">Vive <b>en el filtro, fuera del grupo</b></div>
+            <div class="zoom"><div class="zoom-l">Por qué cada uno no entra</div>
+              <div>
+                <div class="ui-row"><i class="sw wa"></i><span class="ui-grow">El juez que lo pidió no lo midió (Miniteoría)</span><span class="ui-num">58</span></div>
+                <div class="ui-row"><i class="sw wa"></i><span class="ui-grow">Otro juez del ejercicio no lo midió (Miniteoría)</span><span class="ui-num">30</span></div>
+                <div class="ui-row"><i class="sw un"></i><span class="ui-grow">No figura arreglado (Traducción)</span><span class="ui-num">30</span></div>
+                <div class="ui-row"><i class="sw in"></i><span class="ui-grow">Ejercicio editado después de medir</span><span class="ui-num">3</span></div>
+              </div>
+            </div>
+            <p>Los 30 de traducción son los más importantes: el juez midió y no dio por arreglado el error. Probablemente persiste; conviene mirarlos primero.</p>
+          </article>
+
+          <article class="det" id="d-2-5" hidden>
+            <div class="rol">Función 05</div>
+            <h3>El aviso, ejercicio por ejercicio</h3>
+            <div class="donde">Vive <b>arriba del margen, donde hoy está el amarillo</b></div>
+            <div class="zoom"><div class="zoom-l">Tres casos</div>
+              <div style="display:grid;gap:6px">
+                <div class="fresca ok"><svg class="ico xs"><use href="#i-check-circle"/></svg><span>Medido sobre este mismo contenido (1.480 ejercicios).</span></div>
+                <div class="fresca"><svg class="ico xs"><use href="#i-clock"/></svg><span>Editado después de medir: la opinión es vieja (1).</span></div>
+                <div class="fresca"><svg class="ico xs"><use href="#i-alert"/></svg><span>Sin medición del después.</span></div>
+              </div>
+            </div>
+            <p>Compara el contenido medido con el de hoy en cada ejercicio, en vez del número de versión de toda la tanda. Así el aviso aparece solo donde importa.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 03 · MAPA ══ -->
+  <section class="pantalla" id="p-3" role="tabpanel" aria-labelledby="t-3" hidden>
+    <div class="vista">
+      <div class="txt">
+        <div class="rol">La pantalla</div>
+        <h3>Mapa: tu barra y la de los jueces</h3>
+        <p>El nodo «Corrección 1» suma una segunda barra con la opinión de los jueces sobre los mismos 1.766 cambios. En la ficha de abajo, el cruce: cuántos de tus pendientes ya dan por buenos.</p>
+        <p class="nota">Cada tramo de la barra abre Correcciones con ese filtro puesto.</p>
+      </div>
+      <div class="mkw">
+        <div class="mk">
+          <div class="mk-chrome"><i class="b"></i><i class="b"></i><i class="b"></i><div class="mk-url">127.0.0.1:7800 · Mapa de estados</div></div>
+          <div class="mk-app" data-nav="none">
+            <div class="mk-main">
+              <div class="mk-head"><div><h4>Mapa de estados</h4><div class="sub">Tanda A1 · Trabajo</div></div></div>
+              <div class="mk-body">
+                <div class="mk-cols">
+                  <div class="nodo">
+                    <div class="t">Corrección 1</div><div class="s">1.766 cambios</div>
+                    <div class="fila"><span class="lb">Vos</span><div class="jbar"><i class="ok" style="width:.8%"></i><i class="un" style="width:99.2%;opacity:.35"></i></div><span class="n">14 · 0 · 1.752</span></div>
+                    <div class="fila nuevo"><span class="lb">Jueces</span><div class="jbar"><i class="ok" style="width:93.1%"></i><i class="wa" style="width:5%"></i><i class="un" style="width:1.7%"></i><i class="in" style="width:.2%"></i></div><span class="n">1.645 · 88 · 33</span></div>
+                  </div>
+                  <span class="flecha-j">→</span>
+                  <div class="ui-card" style="max-width:170px"><span class="ui-t">Lo aprobado</span><div class="ui-s">base + 14 cambios</div></div>
+                </div>
+                <div class="ui-card" style="margin-top:16px">
+                  <div class="ui-t">Corrección 1</div>
+                  <div class="ui-s" style="margin-top:8px">Tus decisiones</div>
+                  <div class="jbar gr"><i class="ok" style="width:.8%"></i><i class="un" style="width:99.2%;opacity:.35"></i></div>
+                  <div class="jleg"><span><i class="sw ok"></i>14 aprobados</span><span><i class="sw ba"></i>0 rechazados</span><span><i class="sw un"></i>1.752 pendientes</span></div>
+                  <div class="nuevo" style="margin-top:12px">
+                    <div class="ui-s">Según los jueces · A4, 9/10 10:19</div>
+                    <div class="jbar gr"><i class="ok" style="width:93.1%"></i><i class="wa" style="width:5%"></i><i class="un" style="width:1.7%"></i><i class="in" style="width:.2%"></i></div>
+                    <div class="jleg"><span><i class="sw ok"></i>1.645 bueno</span><span><i class="sw wa"></i>88 falta medir</span><span><i class="sw un"></i>30 no consta</span><span><i class="sw in"></i>3 otro contenido</span><span><i class="sw ba"></i>0 empeoró</span></div>
+                    <div class="ui-alert ok" style="margin-top:10px"><svg class="ico sm"><use href="#i-check-circle"/></svg>De tus 1.752 pendientes, 1.631 ya los dan por buenos. Revisarlos en grupo</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="pie-mk">El nodo y la ficha simplificados del Mapa de hoy; la segunda barra usa los números reales de A4.</p>
+    </div>
+
+    <div class="funcs">
+      <div class="funcs-h"><h4>Las funciones de esta pantalla</h4><p>La barra, el cruce y lo que la barra no dice.</p></div>
+      <div class="split">
+        <aside class="side">
+          <div class="feats" role="tablist" aria-orientation="vertical">
+            <button class="f" role="tab" aria-selected="true"  data-det="d-3-1"><span class="fn">01</span>La barra en el nodo</button>
+            <button class="f" role="tab" aria-selected="false" data-det="d-3-2"><span class="fn">02</span>De qué análisis sale</button>
+            <button class="f" role="tab" aria-selected="false" data-det="d-3-3"><span class="fn">03</span>El cruce con tu barra</button>
+            <button class="f" role="tab" aria-selected="false" data-det="d-3-4"><span class="fn">04</span>Lo que la barra no dice</button>
+          </div>
+        </aside>
+        <div class="lienzo">
+          <article class="det" id="d-3-1">
+            <div class="rol">Función 01</div>
+            <h3>La barra en el nodo</h3>
+            <div class="donde">Vive <b>debajo de tu barra, en «Corrección 1»</b></div>
+            <div class="zoom"><div class="zoom-l">Las dos barras, una arriba de la otra</div>
+              <div class="nodo">
+                <div class="t">Corrección 1</div>
+                <div class="fila"><span class="lb">Vos</span><div class="jbar"><i class="ok" style="width:.8%"></i><i class="un" style="width:99.2%;opacity:.35"></i></div><span class="n">14 · 0 · 1.752</span></div>
+                <div class="fila"><span class="lb">Jueces</span><div class="jbar"><i class="ok" style="width:93.1%"></i><i class="wa" style="width:5%"></i><i class="un" style="width:1.7%"></i><i class="in" style="width:.2%"></i></div><span class="n">1.645 · 88 · 33</span></div>
+              </div>
+            </div>
+            <p>Misma unidad que tu barra: cambios. El tercer número junta «no consta arreglado» y «otro contenido»; el detalle está en la ficha.</p>
+          </article>
+
+          <article class="det" id="d-3-2" hidden>
+            <div class="rol">Función 02</div>
+            <h3>De qué análisis sale</h3>
+            <div class="donde">Vive <b>en el rótulo de la barra, en la ficha</b></div>
+            <div class="zoom"><div class="zoom-l">El rótulo dice cuál y cuándo</div>
+              <div class="ui-s">Según los jueces · A4, 9/10 10:19</div>
+              <div class="ui-s" style="margin-top:6px">Sin análisis del después: «Todavía nadie midió esta corrección».</div>
+            </div>
+            <p>Sale del último análisis, el anillo A4. Si mañana corrés «Analizar lo propuesto», la barra pasa a A5. Lo que se editó después de medir va aparte, en azul.</p>
+          </article>
+
+          <article class="det" id="d-3-3" hidden>
+            <div class="rol">Función 03</div>
+            <h3>El cruce con tu barra</h3>
+            <div class="donde">Vive <b>en la ficha, debajo de las dos barras</b></div>
+            <div class="zoom"><div class="zoom-l">Una frase y un botón</div>
+              <div class="ui-alert ok"><svg class="ico sm"><use href="#i-check-circle"/></svg>De tus 1.752 pendientes, 1.631 ya los dan por buenos. Revisarlos en grupo</div>
+            </div>
+            <p>El botón abre Correcciones con el grupo «Los jueces lo dan por bueno» ya armado. El Mapa no aprueba nada por su cuenta.</p>
+          </article>
+
+          <article class="det" id="d-3-4" hidden>
+            <div class="rol">Función 04</div>
+            <h3>Lo que la barra no dice</h3>
+            <div class="donde">Vive <b>en la pestaña Cierre, no en esta barra</b></div>
+            <div class="zoom"><div class="zoom-l">Aunque apruebes los 1.631, el Cierre sigue frenado por</div>
+              <div>
+                <div class="ui-row"><i class="sw ba"></i><span class="ui-grow">Frecuencia del vocabulario</span><span class="ui-num">100 → 72,5</span></div>
+                <div class="ui-row"><i class="sw ba"></i><span class="ui-grow">Palabras que vuelven</span><span class="ui-num">45 → 9</span></div>
+                <div class="ui-row"><i class="sw wa"></i><span class="ui-grow">Muestra ciega</span><span class="ui-num">sin responder</span></div>
+              </div>
+            </div>
+            <p>La barra juzga cambio por cambio; los pisos miden el curso entero. Todos los cambios pasaron su compuerta individual y aun así el curso cae: hay que mirarlo aparte.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div></div>
+
+<!-- ═══════════ CÓMO LO HARÍA ═══════════ -->
+<section class="ed"><div class="wrap">
+  <h2 class="ed-h">Cómo lo haría</h2>
+  <p class="ed-sub">Todo sale de lo que ya está guardado: no hace falta gastar consultas ni tocar el motor.</p>
+  <div class="flow">
+    <div class="paso"><div class="pi"><svg class="ico"><use href="#i-link"/></svg></div><h4>Cruzar en el servidor</h4><p>Cada cambio con su hallazgo y con el después de A4.</p></div>
+    <div class="paso"><div class="pi"><svg class="ico"><use href="#i-clock"/></svg></div><h4>Vigencia por ejercicio</h4><p>Contenido medido contra contenido de hoy, uno por uno.</p></div>
+    <div class="paso"><div class="pi"><svg class="ico"><use href="#i-edit"/></svg></div><h4>Pintar en dos pantallas</h4><p>Chip, filtro y grupo en Correcciones; barra en el Mapa.</p></div>
+    <div class="paso"><div class="pi"><svg class="ico"><use href="#i-check-circle"/></svg></div><h4>Aprobar como siempre</h4><p>El grupo usa la misma decisión de hoy y se deshace.</p></div>
+    <div class="paso fin"><div class="pi"><svg class="ico"><use href="#i-shield"/></svg></div><h4>Reglas y pruebas</h4><p>Cada comportamiento con su regla en español y su prueba.</p></div>
+  </div>
+  <p class="ed-sub" style="font-size:13px;margin-top:22px">Para rastrear: vista de la tanda y vista del Mapa en el servidor; grupos a medida en Correcciones.</p>
+</div></section>
+
+<!-- ═══════════ CIERRE ═══════════ -->
+<section class="cierre"><div class="wrap">
+  <h2 class="ed-h">Qué falta definir</h2>
+  <div class="abiertos">
+    <div class="ab"><span class="est ya">decidido</span><h4>¿Aprobar el grupo entero o solo filtrar?</h4><p>Aprobar 1.631 de un golpe ahorra horas; también es fácil aprobar algo sin mirarlo.</p>
+      <div class="rec"><b>Decidido:</b> grupo con muestra obligatoria de 12 antes del botón, y deshacer.</div></div>
+    <div class="ab"><span class="est ya">decidido</span><h4>¿Alcanza «resuelto», o esperamos «limpio»?</h4><p>Limpio exige volver a analizar lo propuesto; casi todo saldría de respuestas ya pagadas.</p>
+      <div class="rec"><b>Decidido:</b> aprobar con «resuelto» ahora y volver a analizar antes de publicar.</div></div>
+    <div class="ab"><span class="est ya">decidido</span><h4>¿Qué hacemos con los 88 sin medir?</h4><p>El juez de miniteoría no llegó a esos ejercicios: medirlos cuesta pocas consultas.</p>
+      <div class="rec"><b>Decidido:</b> estimar el costo gratis y decidir con el número.</div></div>
+    <div class="ab"><span class="est">falta un dato</span><h4>¿Por qué cae la frecuencia del vocabulario?</h4><p>Ningún cambio suelto la rompe según su compuerta, pero el curso pasa de 100 a 72,5.</p></div>
+  </div>
+  <footer>
+    <span>La opinión de los jueces · propuesta v2</span>
+    <span>Actualizado 11 octubre 2026</span>
+  </footer>
+</div></section>
+
+<script type="application/json" id="taller-ficha">
+{"v":1,"slug":"contentaudit-opinion-de-los-jueces","cliente":"ContentAudit","alcance":"Mostrar en el tablero la opinión de los jueces sobre cada cambio de una corrección","detalle":"Chip por cambio con el veredicto del juez que lo motivó, filtro por opinión, grupo «Los jueces lo dan por bueno» con muestra y aprobación en bloque en Correcciones, segunda barra en el nodo de la corrección del Mapa y aviso de vigencia por ejercicio. Todo con lo ya guardado del último análisis, sin gastar consultas.","estado":"aprobada","responsable":"José","origen":"Pregunta de José sobre Correcciones y el Mapa, 11 octubre 2026"}
+</script>
+
+<script>
+(function(){
+  /* ── tema: el toggle manda sobre la preferencia del sistema ── */
+  var root = document.documentElement, K = 'propuesta-tema';
+  try{ var g = localStorage.getItem(K); if(g) root.setAttribute('data-tema', g); }catch(e){}
+  document.querySelector('.tema').addEventListener('click', function(){
+    var oscuro = root.getAttribute('data-tema')
+      ? root.getAttribute('data-tema') === 'oscuro'
+      : matchMedia('(prefers-color-scheme: dark)').matches;
+    var nuevo = oscuro ? 'claro' : 'oscuro';
+    root.setAttribute('data-tema', nuevo);
+    try{ localStorage.setItem(K, nuevo); }catch(e){}
+  });
+
+  /* ── tabs = pantallas ── */
+  var tabs  = [].slice.call(document.querySelectorAll('.tab'));
+  var panes = [].slice.call(document.querySelectorAll('.pantalla'));
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      var id = t.getAttribute('aria-controls');
+      tabs.forEach(function(o){ o.setAttribute('aria-selected', o.getAttribute('aria-controls') === id); });
+      panes.forEach(function(p){ p.hidden = (p.id !== id); });
+    });
+  });
+
+  /* ── navegador de funciones ── */
+  document.addEventListener('click', function(e){
+    var f = e.target.closest ? e.target.closest('.f') : null;
+    if(!f) return;
+    var pane = f.closest('.pantalla');
+    pane.querySelectorAll('.f').forEach(function(o){ o.setAttribute('aria-selected', o === f); });
+    pane.querySelectorAll('.det').forEach(function(d){ d.hidden = (d.id !== f.dataset.det); });
+  });
+
+})();
+</script>
+</body>
+</html>
