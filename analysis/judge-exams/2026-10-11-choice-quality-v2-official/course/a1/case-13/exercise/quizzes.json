@@ -1,0 +1,72 @@
+[
+  {
+    "_id": {
+      "$oid": "df000000000000000000000d"
+    },
+    "id": "df000000000000000000000d",
+    "kind": "MULTIPLE_CHOICE",
+    "knowledgeId": {
+      "$oid": "da400000000000000000000d"
+    },
+    "title": "Plurales irregulares",
+    "instructions": "Forma el plural irregular de child; practica cómo cambia esa palabra.",
+    "translation": "",
+    "miniTheory": "",
+    "form": {
+      "kind": "MULTIPLE_CHOICE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "selection": "SINGLE",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "One child; two ",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "items": [
+        {
+          "id": "children",
+          "label": "children",
+          "incidence": {
+            "$numberDouble": "1.0"
+          }
+        },
+        {
+          "id": "dogs",
+          "label": "dogs",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        },
+        {
+          "id": "houses",
+          "label": "houses",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        },
+        {
+          "id": "cars",
+          "label": "cars",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        }
+      ]
+    }
+  }
+]

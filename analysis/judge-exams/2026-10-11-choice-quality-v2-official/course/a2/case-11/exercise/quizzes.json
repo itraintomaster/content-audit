@@ -1,0 +1,72 @@
+[
+  {
+    "_id": {
+      "$oid": "df000000000000000000000b"
+    },
+    "id": "df000000000000000000000b",
+    "kind": "MULTIPLE_CHOICE",
+    "knowledgeId": {
+      "$oid": "da400000000000000000000b"
+    },
+    "title": "Comparativos",
+    "instructions": "Completa con el comparativo de tall.",
+    "translation": "",
+    "miniTheory": "",
+    "form": {
+      "kind": "MULTIPLE_CHOICE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "selection": "SINGLE",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Leo is ",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "TEXT",
+          "text": " than his sister.",
+          "options": null
+        }
+      ],
+      "items": [
+        {
+          "id": "taller",
+          "label": "taller",
+          "incidence": {
+            "$numberDouble": "1.0"
+          }
+        },
+        {
+          "id": "###",
+          "label": "###",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        },
+        {
+          "id": "9+9",
+          "label": "9+9",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        },
+        {
+          "id": "@@",
+          "label": "@@",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        }
+      ]
+    }
+  }
+]

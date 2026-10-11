@@ -1,0 +1,72 @@
+[
+  {
+    "_id": {
+      "$oid": "df0000000000000000000003"
+    },
+    "id": "df0000000000000000000003",
+    "kind": "MULTIPLE_CHOICE",
+    "knowledgeId": {
+      "$oid": "da4000000000000000000003"
+    },
+    "title": "Negativas con be",
+    "instructions": "Completa la negación de be en presente simple, conservando el sujeto indicado.",
+    "translation": "",
+    "miniTheory": "",
+    "form": {
+      "kind": "MULTIPLE_CHOICE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "selection": "SINGLE",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "TEXT",
+          "text": " thirsty. (it)",
+          "options": null
+        }
+      ],
+      "items": [
+        {
+          "id": "I am not",
+          "label": "I am not",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        },
+        {
+          "id": "It is not",
+          "label": "It is not",
+          "incidence": {
+            "$numberDouble": "1.0"
+          }
+        },
+        {
+          "id": "We are not",
+          "label": "We are not",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        },
+        {
+          "id": "You are not",
+          "label": "You are not",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        }
+      ]
+    }
+  }
+]

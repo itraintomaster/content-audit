@@ -1,0 +1,72 @@
+[
+  {
+    "_id": {
+      "$oid": "df000000000000000000000f"
+    },
+    "id": "df000000000000000000000f",
+    "kind": "MULTIPLE_CHOICE",
+    "knowledgeId": {
+      "$oid": "da400000000000000000000f"
+    },
+    "title": "Reconocer pronombres",
+    "instructions": "Práctica introductoria: reconoce la opción que contiene el pronombre she.",
+    "translation": "",
+    "miniTheory": "",
+    "form": {
+      "kind": "MULTIPLE_CHOICE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "selection": "SINGLE",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "TEXT",
+          "text": " thirsty? (she)",
+          "options": null
+        }
+      ],
+      "items": [
+        {
+          "id": "Am I",
+          "label": "Am I",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        },
+        {
+          "id": "Are we",
+          "label": "Are we",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        },
+        {
+          "id": "Is she",
+          "label": "Is she",
+          "incidence": {
+            "$numberDouble": "1.0"
+          }
+        },
+        {
+          "id": "Is it",
+          "label": "Is it",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        }
+      ]
+    }
+  }
+]

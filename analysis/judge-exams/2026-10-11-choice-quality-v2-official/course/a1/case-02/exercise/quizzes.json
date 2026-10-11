@@ -1,0 +1,72 @@
+[
+  {
+    "_id": {
+      "$oid": "df0000000000000000000002"
+    },
+    "id": "df0000000000000000000002",
+    "kind": "MULTIPLE_CHOICE",
+    "knowledgeId": {
+      "$oid": "da4000000000000000000002"
+    },
+    "title": "Preguntas con be",
+    "instructions": "Forma preguntas en presente simple con be antes del sujeto.",
+    "translation": "",
+    "miniTheory": "",
+    "form": {
+      "kind": "MULTIPLE_CHOICE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "selection": "SINGLE",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "TEXT",
+          "text": " thirsty? (she)",
+          "options": null
+        }
+      ],
+      "items": [
+        {
+          "id": "She is",
+          "label": "She is",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        },
+        {
+          "id": "Are she",
+          "label": "Are she",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        },
+        {
+          "id": "Is she",
+          "label": "Is she",
+          "incidence": {
+            "$numberDouble": "1.0"
+          }
+        },
+        {
+          "id": "Am she",
+          "label": "Am she",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        }
+      ]
+    }
+  }
+]

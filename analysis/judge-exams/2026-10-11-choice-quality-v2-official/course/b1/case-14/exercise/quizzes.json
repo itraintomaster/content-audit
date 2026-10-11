@@ -1,0 +1,72 @@
+[
+  {
+    "_id": {
+      "$oid": "df000000000000000000000e"
+    },
+    "id": "df000000000000000000000e",
+    "kind": "MULTIPLE_CHOICE",
+    "knowledgeId": {
+      "$oid": "da400000000000000000000e"
+    },
+    "title": "Presente perfecto",
+    "instructions": "Elige have o has más participio para formar presente perfecto.",
+    "translation": "",
+    "miniTheory": "",
+    "form": {
+      "kind": "MULTIPLE_CHOICE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "selection": "SINGLE",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We ",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "TEXT",
+          "text": " the report.",
+          "options": null
+        }
+      ],
+      "items": [
+        {
+          "id": "have finished",
+          "label": "have finished",
+          "incidence": {
+            "$numberDouble": "1.0"
+          }
+        },
+        {
+          "id": "seventeen",
+          "label": "seventeen",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        },
+        {
+          "id": "Japan",
+          "label": "Japan",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        },
+        {
+          "id": "blue",
+          "label": "blue",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        }
+      ]
+    }
+  }
+]
