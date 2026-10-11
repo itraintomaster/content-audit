@@ -70,6 +70,23 @@ class LegacyTestCase(unittest.TestCase):
         self.assertNotIn(fakes.FAKE_PASSWORD, text)
         self.assertNotIn(fakes.FAKE_USER, text)
 
+    def assert_lost_final_row_fails(self, *argvs):
+        """Con el registro roto justo en el renglón final: avisa con !! y sale con error."""
+        real_append = registry.Registry.append
+
+        def append(reg, row):
+            if row["result"] != registry.STARTED:
+                raise registry.RegistryError("no se pudo escribir el registro (OSError)")
+            return real_append(reg, row)
+
+        for argv in argvs:
+            with self.subTest(argv=argv):
+                with mock.patch.object(registry.Registry, "append", append):
+                    code, out = run(self.module.main, argv)
+                self.assertNotIn(code, (None, 0), out)
+                self.assertIn("!! no se pudo escribir el registro (OSError)", out)
+                self.assertIn("!! La corrida no quedó registrada", out)
+
 
 class PlanPathTest(LegacyTestCase):
     script = "publish_revisions"
@@ -226,6 +243,10 @@ class PlanPathTest(LegacyTestCase):
         self.assert_no_secrets(out)
         self.assertEqual(self.rows()[-1]["reason"]["code"], "BAD_URI")
 
+    def test_F_PUBPROD_R008_el_camino_por_plan_sin_renglon_final_avisa_y_sale_mal(self):
+        self.assert_lost_final_row_fails(self.plan_args(), self.plan_args("--apply"))
+        self.assertEqual(self.mongo.find(fakes.DB, "quizTemplates", QUIZ)["translation"], "Ella es alta.")
+
     def test_F_PUBPROD_R006_con_batch_va_al_paso_por_tanda(self):
         workdir = fakes.temp_workdir(self)
         for argv in (["--batch", "no-existe"], ["--batch=no-existe"]):
@@ -305,6 +326,10 @@ class KnowledgeWritersMixin:
         self.assertIn("ServerSelectionTimeoutError", out)
         self.assert_no_secrets(out)
         self.assertEqual(self.rows()[-1]["errorClass"], "ServerSelectionTimeoutError")
+
+    def test_F_PUBPROD_R008_sin_renglon_final_avisa_y_sale_mal(self):
+        self.assert_lost_final_row_fails(self.args(), self.args("--apply"))
+        self.assertEqual(self.mongo.find(fakes.DB, "knowledges", KNOWLEDGE)[self.field], self.file_value)
 
     def test_F_PUBPROD_R008_un_uri_ilegible_se_niega_sin_conectarse_ni_repetirlo(self):
         code, out = run(self.module.main, self.args("--apply", uri=BAD_URI))

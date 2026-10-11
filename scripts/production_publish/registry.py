@@ -297,6 +297,7 @@ class LegacyRecorder:
         self.run_id = new_run_id(clock())
         self.detail_path = None
         self.last_result = None
+        self.row_lost = False  # no se pudo dejar el renglón final: la corrida no puede salir con 0
         try:
             self.destination = destination_of(uri, db)
             self.destination_error = None
@@ -314,7 +315,15 @@ class LegacyRecorder:
         if self.detail_path is not None:
             row["detail"] = self.registry.relative(self.detail_path)
         row.update(extra)
-        return record_legacy(self.registry.workdir, row, self.out)
+        try:
+            self.registry.append(row)
+            return True
+        except RegistryError as e:
+            self.say("!! %s" % e)
+            if result != STARTED:  # sin el de inicio no se escribe; sin el final, se avisa y sale mal
+                self.row_lost = True
+                self.say("!! La corrida no quedó registrada (%s): anotala a mano." % result)
+            return False
 
     def write_detail(self, detail):
         """El respaldo previo a escribir. Devuelve False (y lo dice) si no pudo."""
@@ -354,10 +363,12 @@ class LegacyRecorder:
         demás se registran y siguen su curso (con su traza, que no trae el URI).
         """
         try:
-            return body()
+            code = body()
         except SystemExit as e:
             if self.unfinished():
                 self.record(ABORTED, reason={"code": "EXIT", "message": str(e.code)[:300]}, **extra)
+            if self.row_lost and e.code in (0, None):
+                raise SystemExit(1)
             raise
         except KeyboardInterrupt:
             if self.unfinished():
@@ -372,3 +383,6 @@ class LegacyRecorder:
                             reason={"code": "ERROR", "message": "falló el script (%s)" % type(e).__name__},
                             **extra)
             raise
+        if self.row_lost and not code:
+            return 1
+        return code
