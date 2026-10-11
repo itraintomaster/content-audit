@@ -63,6 +63,28 @@ public class FileSystemBatchStoreTest {
         assertEquals(BatchReviewDecision.Status.APPROVED, first.reviews("batch").get(0).status());
     }
     @Test
+    void contextualOpinionsSurviveReloadIncludingTheRequestBudgetAndEvidence() {
+        var store = new FileSystemBatchStore(workdir);
+        var batch = batch("opinion-batch", Instant.now());
+        var request = new com.learney.contentaudit.revisiondomain.batch.ContextOpinion.Request("measure", batch.getId(),
+                Map.of("mini-theory", List.of("quiz")), true, "op", 2, "fingerprint", 1, "human");
+        var finding = new com.learney.contentaudit.auditdomain.finding.Finding();
+        finding.setAnalyzer("mini-theory"); finding.setRule("missing-example");
+        finding.setEvidence(new com.learney.contentaudit.auditdomain.finding.FindingEvidence(List.of(
+                new com.learney.contentaudit.auditdomain.finding.EvidencePart("Miniteoría", "texto")), "reparo", List.of()));
+        var outcome = new com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome("proposal",
+                com.learney.contentaudit.auditdomain.AuditTarget.QUIZ, "quiz", true, List.of(finding), List.of(), List.of());
+        var run = new com.learney.contentaudit.revisiondomain.batch.ContextOpinion.Run("op", request, 1, 2,
+                "fingerprint", 1, 1, "DONE", Instant.now(), Instant.now(), List.of(), List.of(),
+                List.of(new com.learney.contentaudit.revisiondomain.batch.ContextOpinion.Result("mini-theory", outcome)), null);
+        batch.setOpinionRuns(List.of(run)); store.save(batch);
+        var loaded = new FileSystemBatchStore(workdir).load(batch.getId()).orElseThrow();
+        assertEquals(List.of(run), loaded.getOpinionRuns());
+        assertEquals("Miniteoría", loaded.getOpinionRuns().get(0).results().get(0).outcome().getNewFindings().get(0)
+                .getEvidence().getExamined().get(0).getLabel());
+    }
+
+    @Test
     void reviewEventsAreAppendOnlyAndNeverOverwriteProgress() throws IOException {
         var firstProcess = new FileSystemBatchStore(workdir);
         var secondProcess = new FileSystemBatchStore(workdir);

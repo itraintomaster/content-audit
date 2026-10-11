@@ -1443,6 +1443,9 @@ class Main {
                     batchConfig.get(), new com.learney.contentaudit.auditinfrastructure.minitheory.FileSystemMiniTheoryWorkspaceStore(baseDir)::fingerprint,
                     runtime);
         })));
+        batchCommand.addSubcommand("opinion", new ContextOpinionCmd(memoized(() ->
+                new com.learney.contentaudit.revisiondomain.batchengine.DefaultContextOpinionServiceFactory().create(
+                        batchConfig.get(), new com.learney.contentaudit.auditinfrastructure.minitheory.FileSystemMiniTheoryWorkspaceStore(baseDir)::fingerprint))));
         cmd.addSubcommand("batch", batchCommand);            // E · FEAT-TANDA
         cmd.addSubcommand("problem", new ProblemCmd(baseDir, problemProject, System.out));
         cmd.addSubcommand("tray", new picocli.CommandLine(new TrayCmd(trayService, quizSentenceConverter, batchStore))); // E · BANDEJA
