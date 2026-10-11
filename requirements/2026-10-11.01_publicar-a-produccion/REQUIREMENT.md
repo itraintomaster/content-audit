@@ -62,6 +62,8 @@ todavía coincide con el antes y el después del paso ([F-TANDA-R007](#F-TANDA-R
 > 6. lo que cambió y no se lleva a producción por este camino —un cambio de tipo de ejercicio, o de la opción múltiple
 >    más allá del texto de sus opciones ([F-PUBPROD-R002](#F-PUBPROD-R002), inv. 4)— se declara aparte, con el cambio,
 >    el ejercicio, la parte y el motivo «no se publica por script», y ese ejercicio no va en la lista.
+> 7. la lista dice de qué tanda, plan y nivel sale, cuándo se publicó y quién la aprobó; si falta alguno de esos datos
+>    la lista no se deja —como en el inv. 3— y la negativa nombra lo que falta.
 
 <details><summary>Detail</summary>
 

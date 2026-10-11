@@ -72,6 +72,7 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
 
     @Override
     public PublicationManifest build(PublicationManifestRequest request) {
+        requireOrigin(request);
         List<ManifestDocument> documents = new ArrayList<>();
         List<ManifestUnsupported> unsupported = new ArrayList<>();
         for (PublishedElement element : request.elements()) {
@@ -89,6 +90,37 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
                 request.level(), request.publishedAt(), request.approvedBy(), request.source(), request.verdict(),
                 request.reviews(), documents, unsupported, request.excluded(),
                 new ManifestCounts(documents.size(), fields, byPath));
+    }
+
+    /**
+     * R001 inv. 7: la lista dice de qué tanda, plan y nivel sale, cuándo se publicó y quién la aprobó. Sin alguno de esos
+     * datos el paso a producción no sabría qué está escribiendo: la lista no se arma y la negativa nombra lo que falta.
+     */
+    private static void requireOrigin(PublicationManifestRequest request) {
+        List<String> missing = new ArrayList<>();
+        if (blank(request.batchId())) {
+            missing.add("la tanda");
+        }
+        if (blank(request.planId())) {
+            missing.add("el plan");
+        }
+        if (blank(request.level())) {
+            missing.add("el nivel");
+        }
+        if (blank(request.publishedAt())) {
+            missing.add("cuándo se publica");
+        }
+        if (blank(request.approvedBy())) {
+            missing.add("quién la aprobó");
+        }
+        if (!missing.isEmpty()) {
+            throw new IllegalArgumentException("a la lista de publicación le falta " + String.join(", ", missing)
+                    + ": sin eso el paso a producción no sabe qué escribe");
+        }
+    }
+
+    private static boolean blank(String value) {
+        return value == null || value.isBlank();
     }
 
     /** El documento de un ejercicio o tema, o ninguno si nada de lo que se lleva cambió o si su tipo cambió. */

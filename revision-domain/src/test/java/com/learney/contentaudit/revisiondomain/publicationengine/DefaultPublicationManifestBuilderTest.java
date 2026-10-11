@@ -361,6 +361,42 @@ public class DefaultPublicationManifestBuilderTest {
     }
 
     @Test
+    @DisplayName("should refuse to build the list, naming what is missing, without the batch, the plan, the level, when it is published or who approved it")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R001")
+    public void shouldRefuseToBuildTheListWithoutWhereItComesFromOrWhoApprovedIt() {
+        QuizTemplateEntity before = quiz("q1", "A.", "A.", "Hi.");
+        QuizTemplateEntity after = quiz("q1", "B.", "A.", "Hi.");
+        List<PublishedElement> elements = List.of(new PublishedElement(snapshot(before), snapshot(after), "prop-1",
+                DocumentReviewStatus.PENDING, steps(step("rule-1", ExercisePart.TRANSLATION))));
+        PublicationManifestRequest complete = request(elements);
+        Map<String, PublicationManifestRequest> withoutOne = new LinkedHashMap<>();
+        withoutOne.put("la tanda", origin(complete, null, "plan-1", "A1", "2026-10-12T03:10:44Z", "José"));
+        withoutOne.put("el plan", origin(complete, "tanda-A1", " ", "A1", "2026-10-12T03:10:44Z", "José"));
+        withoutOne.put("el nivel", origin(complete, "tanda-A1", "plan-1", null, "2026-10-12T03:10:44Z", "José"));
+        withoutOne.put("cuándo se publica", origin(complete, "tanda-A1", "plan-1", "A1", "", "José"));
+        withoutOne.put("quién la aprobó", origin(complete, "tanda-A1", "plan-1", "A1", "2026-10-12T03:10:44Z",
+                null));
+
+        withoutOne.forEach((missing, request) -> {
+            IllegalArgumentException refusal = assertThrows(IllegalArgumentException.class,
+                    () -> builder.build(request), "sin " + missing + " la lista no se arma");
+            assertTrue(refusal.getMessage().contains("le falta " + missing), refusal.getMessage());
+        });
+        IllegalArgumentException none = assertThrows(IllegalArgumentException.class, () -> builder.build(
+                origin(complete, null, null, null, null, null)));
+        assertTrue(none.getMessage().contains(
+                "le falta la tanda, el plan, el nivel, cuándo se publica, quién la aprobó"), none.getMessage());
+        assertEquals("José", builder.build(complete).approvedBy(), "con todo, la lista se arma");
+    }
+
+    private static PublicationManifestRequest origin(PublicationManifestRequest request, String batchId,
+            String planId, String level, String publishedAt, String approvedBy) {
+        return new PublicationManifestRequest(batchId, planId, level, publishedAt, approvedBy, request.source(),
+                request.verdict(), request.reviews(), request.elements(), request.excluded());
+    }
+
+    @Test
     @DisplayName("should refuse to build the list when an exercise lacks its before or its after")
     @Tag("FEAT-PUBPROD")
     @Tag("F-PUBPROD-R001")
