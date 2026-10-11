@@ -41,6 +41,22 @@ FORBIDDEN_PATHS = ("_id", "kind", "form.kind", "form.incidence", "form.label", "
 REVIEW_STATUSES = ("APPROVED", "PENDING")
 EXCLUDED_REASONS = ("REVIEW_REJECTED", "COLLATERAL", "RULE_EXCLUDED", "DROPPED_BY_JOSE")
 
+# Las claves exactas del esquema 1, con los nombres del lado Java (PublicationManifest y sus
+# records). Una clave de más o de menos no se adivina: se niega.
+MANIFEST_KEYS = ("schema", "batchId", "planId", "level", "publishedAt", "approvedBy", "source", "verdict",
+                 "reviews", "documents", "unsupported", "excluded", "counts")
+SOURCE_KEYS = ("baselineAuditId", "startAuditId", "publishedAuditId")
+VERDICT_KEYS = ("kind", "gatePassed", "undecidableFloors", "brokenFloorGoalIds", "detail")
+REVIEWS_KEYS = ("approved", "pending", "rejected", "droppedForReviewChangeIds", "collateralDroppedChangeIds")
+DOCUMENT_KEYS = ("collection", "id", "nodeId", "changeIds", "proposalIds", "reviewStatus", "fields")
+FIELD_KEYS = ("path", "before", "after")
+UNSUPPORTED_KEYS = ("changeId", "nodeId", "part", "reason")
+EXCLUDED_KEYS = ("changeId", "reason")
+COUNTS_KEYS = ("documents", "fields", "byPath")
+
+# Como lo escribe Instant.toString() del lado Java: siempre en UTC, con segundos.
+PUBLISHED_AT = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{1,9})?Z\Z")
+
 BATCH_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]*\Z")
 HEX_ID = re.compile(r"[0-9a-f]{24}\Z")
 SHA256_HEX = re.compile(r"[0-9a-f]{64}\Z")
@@ -263,176 +279,260 @@ def _check_multiple_choice(path, before, after, where, problems):
                          "en opción múltiple solo se publica la etiqueta de cada opción." % where))
 
 
+def _is_text(value):
+    return isinstance(value, str) and value != ""
+
+
+def _is_text_or_null(value):
+    """Solo donde el lado Java manda null (source.publishedAuditId y verdict.detail)."""
+    return value is None or isinstance(value, str)
+
+
+def _is_count(value):
+    """Un entero no negativo de verdad: en Python True vale 1 y 3.0 == 3."""
+    return type(value) is int and value >= 0
+
+
+def _shown(value):
+    text = json.dumps(value, ensure_ascii=False)
+    return text if len(text) <= 60 else text[:57] + "..."
+
+
+def _exact_keys(value, keys, where, code, problems):
+    """Si `value` es un objeto con exactamente las claves del esquema. Lo que sobra o falta se niega."""
+    if not isinstance(value, dict):
+        problems.append((code, "%s no es un objeto." % where))
+        return False
+    for key in value:
+        if key not in keys:
+            problems.append(("UNKNOWN_KEY", "%s trae la clave «%s», que el esquema %d no tiene."
+                             % (where, key, SCHEMA)))
+    for key in keys:
+        if key not in value:
+            problems.append(("MISSING_KEY", "%s no trae la clave «%s»." % (where, key)))
+    return True
+
+
+def _require(obj, key, ok, expected, where, code, problems):
+    """El tipo de una clave que vino (si no vino, ya se dijo MISSING_KEY)."""
+    if key in obj and not ok(obj[key]):
+        problems.append((code, "%s: «%s» tiene que ser %s y es %s." % (where, key, expected, _shown(obj[key]))))
+
+
+def _section(manifest, key, keys, code, problems):
+    """Una parte de la lista que es un objeto, con sus claves exactas. None si falta o no sirve."""
+    if key not in manifest:
+        return None
+    value = manifest[key]
+    return value if _exact_keys(value, keys, "«%s»" % key, code, problems) else None
+
+
+def _items(manifest, key, code, problems):
+    """Una parte de la lista que es una lista. [] si falta o no es una lista."""
+    if key not in manifest:
+        return []
+    value = manifest[key]
+    if not isinstance(value, list):
+        problems.append((code, "«%s» no es una lista." % key))
+        return []
+    return value
+
+
+def _header_problems(manifest, expected_batch_id, expected_plan_id, problems):
+    where = "La lista"
+    for key in ("batchId", "planId", "level", "approvedBy"):
+        _require(manifest, key, _is_text, "un texto", where, "BAD_HEADER", problems)
+    _require(manifest, "publishedAt", lambda v: isinstance(v, str) and PUBLISHED_AT.match(v),
+             "un instante UTC como 2026-10-12T03:10:44Z", where, "BAD_HEADER", problems)
+    if expected_batch_id is not None and "batchId" in manifest and manifest["batchId"] != expected_batch_id:
+        problems.append(("BATCH_ID_MISMATCH", "La lista dice ser de la tanda %s, no de %s."
+                         % (manifest["batchId"], expected_batch_id)))
+    if expected_plan_id is not None and "planId" in manifest and manifest["planId"] != expected_plan_id:
+        problems.append(("PLAN_ID_MISMATCH", "La lista dice ser del plan %s y la tanda es del plan %s."
+                         % (manifest["planId"], expected_plan_id)))
+
+
+def _source_problems(source, problems):
+    for key in ("baselineAuditId", "startAuditId"):
+        _require(source, key, _is_text, "un texto", "«source»", "BAD_SOURCE", problems)
+    _require(source, "publishedAuditId", _is_text_or_null, "un texto o null", "«source»", "BAD_SOURCE", problems)
+
+
+def _manifest_verdict_problems(verdict, problems):
+    if verdict.get("kind") != "PASSES":
+        problems.append(("VERDICT_NOT_PASSES", "La lista trae el veredicto «%s», no «PASSES»."
+                         % verdict.get("kind")))
+    if verdict.get("gatePassed") is not True:
+        problems.append(("GATE_NOT_PASSED", "La lista no dice que la compuerta pasó."))
+    if verdict.get("undecidableFloors") != []:
+        problems.append(("UNDECIDABLE_FLOORS",
+                         "La lista trae pisos sin decidir (o no dice cuáles): con «no se puede "
+                         "decidir» no se publica."))
+    if verdict.get("brokenFloorGoalIds") != []:
+        problems.append(("BROKEN_FLOORS", "La lista trae pisos rotos (o no dice cuáles): %s."
+                         % _shown(verdict.get("brokenFloorGoalIds"))))
+    _require(verdict, "detail", _is_text_or_null, "un texto o null", "«verdict»", "BAD_VERDICT", problems)
+
+
+def _reviews_problems(reviews, problems):
+    """Las cuentas de la revisión. Devuelve los cambios que quedaron afuera por la revisión."""
+    for key in ("approved", "pending", "rejected"):
+        _require(reviews, key, _is_count, "un entero no negativo", "«reviews»", "BAD_REVIEWS", problems)
+    left_out = set()
+    for key in ("droppedForReviewChangeIds", "collateralDroppedChangeIds"):
+        _require(reviews, key, _is_str_list, "una lista de textos", "«reviews»", "BAD_REVIEWS", problems)
+        if _is_str_list(reviews.get(key)):
+            left_out.update(reviews[key])
+    return left_out
+
+
+def _excluded_problems(excluded, problems):
+    """Los cambios que quedaron afuera. Devuelve sus changeId."""
+    left_out = set()
+    for index, item in enumerate(excluded):
+        where = "excluded[%d]" % index
+        if not _exact_keys(item, EXCLUDED_KEYS, where, "BAD_EXCLUDED", problems):
+            continue
+        _require(item, "changeId", _is_text, "un texto", where, "BAD_EXCLUDED", problems)
+        if "reason" in item and item["reason"] not in EXCLUDED_REASONS:
+            problems.append(("BAD_EXCLUDED", "%s quedó afuera por un motivo desconocido %s."
+                             % (where, _shown(item["reason"]))))
+        if isinstance(item.get("changeId"), str):
+            left_out.add(item["changeId"])
+    return left_out
+
+
+def _unsupported_problems(unsupported, problems):
+    """Lo que no tiene lugar en producción. La parte es un enum del lado Java: no se enumera."""
+    for index, item in enumerate(unsupported):
+        where = "unsupported[%d]" % index
+        if _exact_keys(item, UNSUPPORTED_KEYS, where, "BAD_UNSUPPORTED", problems):
+            for key in UNSUPPORTED_KEYS:
+                _require(item, key, _is_text, "un texto", where, "BAD_UNSUPPORTED", problems)
+
+
+def _field_problems(field, collection, where, seen_paths, problems):
+    """Un campo de un documento. Devuelve su ruta si cuenta, o None."""
+    if not _exact_keys(field, FIELD_KEYS, "%s: un campo" % where, "BAD_FIELD", problems):
+        return None
+    path = field.get("path")
+    if not isinstance(path, str):
+        problems.append(("BAD_FIELD", "%s: un campo no tiene ruta." % where))
+        return None
+    if path in FORBIDDEN_PATHS or any(path.startswith(p + ".") for p in FORBIDDEN_PATHS):
+        problems.append(("FORBIDDEN_PATH", "%s: la ruta «%s» está prohibida; nunca se escribe." % (where, path)))
+        return None
+    if path not in WRITABLE_PATHS[collection]:
+        problems.append(("PATH_NOT_ALLOWED", "%s: la ruta «%s» no está en la tabla de lo que se escribe en %s."
+                         % (where, path, collection)))
+        return None
+    if path in seen_paths:
+        problems.append(("DUPLICATE_FIELD", "%s: la ruta «%s» aparece dos veces." % (where, path)))
+        return None
+    seen_paths.add(path)
+    if "before" not in field or "after" not in field:
+        return None  # ya se dijo MISSING_KEY
+    before, after = field["before"], field["after"]
+    if after is None:
+        problems.append(("NULL_AFTER", "%s: el después de «%s» es nulo; nunca se escribe un nulo." % (where, path)))
+        return None
+    _walk_keys(before, path, problems, where)
+    _walk_keys(after, path, problems, where)
+    _check_after_type(path, after, where, problems)
+    _check_multiple_choice(path, before, after, where, problems)
+    if same_value(before, after):
+        problems.append(("UNCHANGED_FIELD", "%s: «%s» trae el mismo antes y después." % (where, path)))
+    return path
+
+
+def _document_problems(index, doc, left_out, seen_docs, by_path, problems):
+    """Un documento de la lista; suma sus campos a `by_path`."""
+    if not _exact_keys(doc, DOCUMENT_KEYS, "El documento %d de la lista" % index, "BAD_DOCUMENTS", problems):
+        return
+    collection, doc_id = doc.get("collection"), doc.get("id")
+    where = "%s %s (%s)" % (collection, doc_id, doc.get("nodeId"))
+    if collection not in ALLOWED_COLLECTIONS:
+        problems.append(("COLLECTION_NOT_ALLOWED", "%s: la colección «%s» no se escribe; solo %s."
+                         % (where, collection, " y ".join(ALLOWED_COLLECTIONS))))
+        return
+    if not isinstance(doc_id, str) or not HEX_ID.match(doc_id):
+        problems.append(("BAD_ID", "%s: el id tiene que ser un ObjectId en hexadecimal." % where))
+        return
+    if (collection, doc_id) in seen_docs:
+        problems.append(("DUPLICATE_DOCUMENT", "%s aparece dos veces en la lista." % where))
+        return
+    seen_docs.add((collection, doc_id))
+    _require(doc, "nodeId", _is_text, "un texto", where, "BAD_DOCUMENTS", problems)
+    change_ids = doc.get("changeIds")
+    if "changeIds" in doc and (not _is_str_list(change_ids) or not change_ids):
+        problems.append(("BAD_DOCUMENTS", "%s: no dice qué cambios lo originaron." % where))
+    _require(doc, "proposalIds", _is_str_list, "una lista de textos", where, "BAD_DOCUMENTS", problems)
+    travelling_out = sorted(set(change_ids if _is_str_list(change_ids) else []) & left_out)
+    if travelling_out:
+        problems.append(("EXCLUDED_CHANGE_TRAVELS", "%s: lo originan cambios que quedaron afuera (%s); lo "
+                         "rechazado no viaja." % (where, ", ".join(travelling_out))))
+    status = doc.get("reviewStatus")
+    if status == "REJECTED":
+        problems.append(("REJECTED_DOCUMENT",
+                         "%s: está rechazado en la revisión y lo rechazado nunca se publica." % where))
+    elif status not in REVIEW_STATUSES:
+        problems.append(("BAD_REVIEW_STATUS", "%s: estado de revisión desconocido %s." % (where, _shown(status))))
+    fields = doc.get("fields")
+    if not isinstance(fields, list) or not fields:
+        problems.append(("BAD_DOCUMENTS", "%s: no trae campos." % where))
+        return
+    seen_paths = set()
+    for field in fields:
+        path = _field_problems(field, collection, where, seen_paths, problems)
+        if path is not None:
+            by_path[path] = by_path.get(path, 0) + 1
+
+
+def _counts_problems(counts, documents, by_path, problems):
+    total_fields = sum(by_path.values())
+    if "documents" in counts and (not _is_count(counts["documents"]) or counts["documents"] != len(documents)):
+        problems.append(("BAD_COUNTS", "La lista cuenta %s documentos y trae %d."
+                         % (_shown(counts["documents"]), len(documents))))
+    if "fields" in counts and (not _is_count(counts["fields"]) or counts["fields"] != total_fields):
+        problems.append(("BAD_COUNTS", "La lista cuenta %s campos y trae %d." % (_shown(counts["fields"]), total_fields)))
+    if "byPath" in counts:
+        declared = counts["byPath"]
+        if (not isinstance(declared, dict) or not all(_is_count(v) for v in declared.values())
+                or declared != by_path):
+            problems.append(("BAD_COUNTS", "Las cuentas por ruta de la lista no coinciden con sus campos."))
+
+
 def validate_manifest(manifest, expected_batch_id=None, expected_plan_id=None):
-    """Valida la estructura y lo que se puede escribir. Lanza Refusal con todos los problemas."""
-    problems = []
+    """Valida la estructura (esquema 1, claves exactas) y lo que se puede escribir.
+
+    Lanza Refusal con todos los problemas juntos.
+    """
     if not isinstance(manifest, dict):
         raise Refusal("BAD_MANIFEST", "La lista no es un objeto JSON.")
     schema = manifest.get("schema")
-    if isinstance(schema, bool) or schema != SCHEMA:
+    if type(schema) is not int or schema != SCHEMA:
         raise Refusal("UNKNOWN_SCHEMA", "La lista es del esquema %s; este paso solo conoce el %d."
-                      % (json.dumps(schema), SCHEMA))
-    if expected_batch_id is not None and manifest.get("batchId") != expected_batch_id:
-        problems.append(("BATCH_ID_MISMATCH", "La lista dice ser de la tanda %s, no de %s."
-                         % (manifest.get("batchId"), expected_batch_id)))
-    if expected_plan_id is not None and manifest.get("planId") != expected_plan_id:
-        problems.append(("PLAN_ID_MISMATCH", "La lista dice ser del plan %s y la tanda es del plan %s."
-                         % (manifest.get("planId"), expected_plan_id)))
-
-    verdict = manifest.get("verdict")
-    if not isinstance(verdict, dict):
-        problems.append(("VERDICT_NOT_PASSES", "La lista no trae el veredicto."))
-    else:
-        if verdict.get("kind") != "PASSES":
-            problems.append(("VERDICT_NOT_PASSES", "La lista trae el veredicto «%s», no «PASSES»."
-                             % verdict.get("kind")))
-        if verdict.get("gatePassed") is not True:
-            problems.append(("GATE_NOT_PASSED", "La lista no dice que la compuerta pasó."))
-        if "undecidableFloors" not in verdict or not _no_floors(verdict.get("undecidableFloors"),
-                                                                allow_null=False):
-            problems.append(("UNDECIDABLE_FLOORS",
-                             "La lista trae pisos sin decidir (o no dice cuáles): con «no se puede "
-                             "decidir» no se publica."))
-        broken = verdict.get("brokenFloorGoalIds")
-        if broken not in (None, []):
-            problems.append(("BROKEN_FLOORS", "La lista trae pisos rotos: %s." % json.dumps(broken)))
-
-    reviews = manifest.get("reviews")
-    left_out = set()
-    if not isinstance(reviews, dict):
-        problems.append(("BAD_REVIEWS", "La lista no trae la cuenta de aprobados, sin revisar y rechazados."))
-    else:
-        for key in ("approved", "pending", "rejected"):
-            value = reviews.get(key)
-            if isinstance(value, bool) or not isinstance(value, int) or value < 0:
-                problems.append(("BAD_REVIEWS", "La lista trae reviews.%s inválido." % key))
-        for key in ("droppedForReviewChangeIds", "collateralDroppedChangeIds"):
-            value = reviews.get(key, [])
-            if not _is_str_list(value):
-                problems.append(("BAD_REVIEWS", "La lista trae reviews.%s inválido." % key))
-            else:
-                left_out.update(value)
-
-    excluded = manifest.get("excluded")
-    if not isinstance(excluded, list):
-        problems.append(("BAD_EXCLUDED", "La lista no trae los cambios que quedaron afuera."))
-    else:
-        for item in excluded:
-            if not isinstance(item, dict) or not isinstance(item.get("changeId"), str):
-                problems.append(("BAD_EXCLUDED", "Un cambio que quedó afuera no tiene changeId."))
-                continue
-            if item.get("reason") not in EXCLUDED_REASONS:
-                problems.append(("BAD_EXCLUDED", "El cambio %s quedó afuera por un motivo desconocido «%s»."
-                                 % (item["changeId"], item.get("reason"))))
-            left_out.add(item["changeId"])
-
-    unsupported = manifest.get("unsupported")
-    if not isinstance(unsupported, list):
-        problems.append(("BAD_UNSUPPORTED", "La lista no trae lo que no tiene lugar en producción."))
-    else:
-        for item in unsupported:
-            if not isinstance(item, dict) or not isinstance(item.get("changeId"), str):
-                problems.append(("BAD_UNSUPPORTED", "Un cambio sin lugar en producción no tiene changeId."))
-
-    documents = manifest.get("documents")
-    total_fields = 0
-    by_path = {}
-    if not isinstance(documents, list):
-        problems.append(("BAD_DOCUMENTS", "La lista no trae los documentos."))
-        documents = []
-    seen_docs = set()
+                      % (_shown(schema), SCHEMA))
+    problems = []
+    _exact_keys(manifest, MANIFEST_KEYS, "La lista", "BAD_MANIFEST", problems)
+    _header_problems(manifest, expected_batch_id, expected_plan_id, problems)
+    source = _section(manifest, "source", SOURCE_KEYS, "BAD_SOURCE", problems)
+    if source is not None:
+        _source_problems(source, problems)
+    verdict = _section(manifest, "verdict", VERDICT_KEYS, "BAD_VERDICT", problems)
+    if verdict is not None:
+        _manifest_verdict_problems(verdict, problems)
+    reviews = _section(manifest, "reviews", REVIEWS_KEYS, "BAD_REVIEWS", problems)
+    left_out = _reviews_problems(reviews, problems) if reviews is not None else set()
+    left_out |= _excluded_problems(_items(manifest, "excluded", "BAD_EXCLUDED", problems), problems)
+    _unsupported_problems(_items(manifest, "unsupported", "BAD_UNSUPPORTED", problems), problems)
+    documents = _items(manifest, "documents", "BAD_DOCUMENTS", problems)
+    seen_docs, by_path = set(), {}
     for index, doc in enumerate(documents):
-        if not isinstance(doc, dict):
-            problems.append(("BAD_DOCUMENTS", "El documento %d de la lista no es un objeto." % index))
-            continue
-        collection = doc.get("collection")
-        doc_id = doc.get("id")
-        where = "%s %s (%s)" % (collection, doc_id, doc.get("nodeId"))
-        if collection not in ALLOWED_COLLECTIONS:
-            problems.append(("COLLECTION_NOT_ALLOWED",
-                             "%s: la colección «%s» no se escribe; solo %s."
-                             % (where, collection, " y ".join(ALLOWED_COLLECTIONS))))
-            continue
-        if not isinstance(doc_id, str) or not HEX_ID.match(doc_id):
-            problems.append(("BAD_ID", "%s: el id tiene que ser un ObjectId en hexadecimal." % where))
-            continue
-        if (collection, doc_id) in seen_docs:
-            problems.append(("DUPLICATE_DOCUMENT", "%s aparece dos veces en la lista." % where))
-            continue
-        seen_docs.add((collection, doc_id))
-        node_id = doc.get("nodeId")
-        if node_id is not None and not isinstance(node_id, str):
-            problems.append(("BAD_DOCUMENTS", "%s: nodeId inválido." % where))
-        change_ids = doc.get("changeIds")
-        if not _is_str_list(change_ids) or not change_ids:
-            problems.append(("BAD_DOCUMENTS", "%s: no dice qué cambios lo originaron." % where))
-            change_ids = []
-        if not _is_str_list(doc.get("proposalIds")):
-            problems.append(("BAD_DOCUMENTS", "%s: proposalIds inválido." % where))
-        travelling_out = sorted(set(change_ids) & left_out)
-        if travelling_out:
-            problems.append(("EXCLUDED_CHANGE_TRAVELS",
-                             "%s: lo originan cambios que quedaron afuera (%s); lo rechazado no viaja."
-                             % (where, ", ".join(travelling_out))))
-        status = doc.get("reviewStatus")
-        if status == "REJECTED":
-            problems.append(("REJECTED_DOCUMENT",
-                             "%s: está rechazado en la revisión y lo rechazado nunca se publica." % where))
-        elif status not in REVIEW_STATUSES:
-            problems.append(("BAD_REVIEW_STATUS", "%s: estado de revisión desconocido «%s»." % (where, status)))
-        fields = doc.get("fields")
-        if not isinstance(fields, list) or not fields:
-            problems.append(("BAD_DOCUMENTS", "%s: no trae campos." % where))
-            continue
-        seen_paths = set()
-        for field in fields:
-            if not isinstance(field, dict) or not isinstance(field.get("path"), str):
-                problems.append(("BAD_FIELD", "%s: un campo no tiene ruta." % where))
-                continue
-            path = field["path"]
-            if path in FORBIDDEN_PATHS or any(path.startswith(p + ".") for p in FORBIDDEN_PATHS):
-                problems.append(("FORBIDDEN_PATH", "%s: la ruta «%s» está prohibida; nunca se escribe."
-                                 % (where, path)))
-                continue
-            if path not in WRITABLE_PATHS[collection]:
-                problems.append(("PATH_NOT_ALLOWED",
-                                 "%s: la ruta «%s» no está en la tabla de lo que se escribe en %s."
-                                 % (where, path, collection)))
-                continue
-            if path in seen_paths:
-                problems.append(("DUPLICATE_FIELD", "%s: la ruta «%s» aparece dos veces." % (where, path)))
-                continue
-            seen_paths.add(path)
-            if "before" not in field or "after" not in field:
-                problems.append(("BAD_FIELD", "%s: «%s» no trae antes y después." % (where, path)))
-                continue
-            before, after = field["before"], field["after"]
-            if after is None:
-                problems.append(("NULL_AFTER", "%s: el después de «%s» es nulo; nunca se escribe un nulo."
-                                 % (where, path)))
-                continue
-            _walk_keys(before, path, problems, where)
-            _walk_keys(after, path, problems, where)
-            _check_after_type(path, after, where, problems)
-            _check_multiple_choice(path, before, after, where, problems)
-            if same_value(before, after):
-                problems.append(("UNCHANGED_FIELD", "%s: «%s» trae el mismo antes y después." % (where, path)))
-            total_fields += 1
-            by_path[path] = by_path.get(path, 0) + 1
-
-    counts = manifest.get("counts")
-    if not isinstance(counts, dict):
-        problems.append(("BAD_COUNTS", "La lista no trae sus cuentas."))
-    else:
-        if counts.get("documents") != len(documents):
-            problems.append(("BAD_COUNTS", "La lista cuenta %s documentos y trae %d."
-                             % (json.dumps(counts.get("documents")), len(documents))))
-        if counts.get("fields") != total_fields:
-            problems.append(("BAD_COUNTS", "La lista cuenta %s campos y trae %d."
-                             % (json.dumps(counts.get("fields")), total_fields)))
-        if "byPath" in counts and counts.get("byPath") != by_path:
-            problems.append(("BAD_COUNTS", "Las cuentas por ruta de la lista no coinciden con sus campos."))
-
+        _document_problems(index, doc, left_out, seen_docs, by_path, problems)
+    counts = _section(manifest, "counts", COUNTS_KEYS, "BAD_COUNTS", problems)
+    if counts is not None:
+        _counts_problems(counts, documents, by_path, problems)
     if problems:
         raise Refusal(problems[0][0], "La lista de publicación no se puede llevar a producción: %s"
                       % problems[0][1], problems)

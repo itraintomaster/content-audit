@@ -142,11 +142,76 @@ class ValidateManifestTest(unittest.TestCase):
         validate_manifest(self.manifest, fakes.BATCH_ID, fakes.PLAN_ID)
 
     def test_F_PUBPROD_R006_niega_un_esquema_desconocido(self):
-        for schema in (2, "1", True, None):
+        for schema in (2, "1", 1.0, True, None):
             with self.subTest(schema=schema):
                 m = copy.deepcopy(self.manifest)
                 m["schema"] = schema
                 self.assertRefused("UNKNOWN_SCHEMA", m)
+
+    def test_F_PUBPROD_R001_niega_una_clave_de_mas_o_de_menos_en_cada_parte(self):
+        # Por cada parte, la clave que se borra es una que antes se perdonaba (opcional o nula).
+        unsupported = {"changeId": "c-sel", "nodeId": "A1.01.02.05", "part": "OPTIONS", "reason": "no va por script"}
+        parts = (("la raíz", lambda m: m, "approvedBy"),
+                 ("source", lambda m: m["source"], "publishedAuditId"),
+                 ("verdict", lambda m: m["verdict"], "detail"),
+                 ("reviews", lambda m: m["reviews"], "collateralDroppedChangeIds"),
+                 ("documents[]", lambda m: m["documents"][0], "nodeId"),
+                 ("fields[]", lambda m: m["documents"][0]["fields"][0], "before"),
+                 ("unsupported[]", lambda m: m["unsupported"][0], "reason"),
+                 ("excluded[]", lambda m: m["excluded"][0], "reason"),
+                 ("counts", lambda m: m["counts"], "byPath"))
+        for name, part, key in parts:
+            for code in ("UNKNOWN_KEY", "MISSING_KEY"):
+                with self.subTest(part=name, code=code):
+                    m = copy.deepcopy(self.manifest)
+                    m["unsupported"] = [dict(unsupported)]
+                    if code == "UNKNOWN_KEY":
+                        part(m)["claveNueva"] = "algo"
+                    else:
+                        del part(m)[key]
+                    self.assertRefused(code, m)
+
+    def test_F_PUBPROD_R001_niega_los_tipos_que_no_son_los_del_lado_java(self):
+        def setter(*keys, value):
+            def change(m):
+                target = m
+                for key in keys[:-1]:
+                    target = target[key]
+                target[keys[-1]] = value
+            return change
+
+        cases = [("BAD_HEADER", setter("level", value=v)) for v in (None, "", 1)]
+        cases += [("BAD_HEADER", setter("publishedAt", value=v))
+                  for v in (None, "2026-10-12 03:10:44", "2026-10-12T03:10:44+00:00", "2026-10-12", 1760238644)]
+        cases += [("BAD_HEADER", setter("approvedBy", value=v)) for v in (None, "", ["José"])]
+        cases += [("BAD_SOURCE", setter("source", "baselineAuditId", value=None)),
+                  ("BAD_SOURCE", setter("source", "startAuditId", value=3)),
+                  ("BAD_SOURCE", setter("source", "publishedAuditId", value=3)),
+                  ("BAD_SOURCE", setter("source", value="audit-base")),
+                  ("BAD_VERDICT", setter("verdict", "detail", value=3)),
+                  ("BROKEN_FLOORS", setter("verdict", "brokenFloorGoalIds", value=None)),
+                  ("UNDECIDABLE_FLOORS", setter("verdict", "undecidableFloors", value=0)),
+                  ("BAD_REVIEWS", setter("reviews", "droppedForReviewChangeIds", value=None)),
+                  ("BAD_DOCUMENTS", setter("documents", 0, "nodeId", value=None)),
+                  ("BAD_DOCUMENTS", setter("documents", 0, "nodeId", value=3)),
+                  ("BAD_UNSUPPORTED", setter("unsupported", value=[{"changeId": "c-x", "nodeId": "A1",
+                                                                     "part": None, "reason": "x"}])),
+                  ("BAD_COUNTS", setter("counts", "fields", value=7.0)),
+                  ("BAD_COUNTS", setter("counts", "byPath", "miniTheory", value=True))]
+        for index, (code, change) in enumerate(cases):
+            with self.subTest(case=index, code=code):
+                m = copy.deepcopy(self.manifest)
+                change(m)
+                self.assertRefused(code, m)
+
+    def test_F_PUBPROD_R001_solo_publishedAuditId_y_detail_pueden_venir_en_null(self):
+        m = copy.deepcopy(self.manifest)
+        m["source"]["publishedAuditId"] = None
+        m["verdict"]["detail"] = "pasa con un detalle"
+        for published_at in ("2026-10-12T03:10:44.123Z", "2026-10-12T03:10:44.123456789Z"):
+            with self.subTest(published_at=published_at):
+                m["publishedAt"] = published_at
+                validate_manifest(m, fakes.BATCH_ID, fakes.PLAN_ID)
 
     def test_F_PUBPROD_R005_niega_una_lista_cuyo_veredicto_no_es_pasa(self):
         self.manifest["verdict"]["kind"] = "UNDECIDABLE"
