@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mapa contra el CLI</title>
+<title>Estadísticas en HTML</title>
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -253,84 +253,75 @@
 
   <header>
     <div class="kicker">
-      <span class="num">099</span>
-      <span class="badge">Diagnóstico</span>
-      <span class="meta">El Mapa del brief 091, revisado contra el CLI · 10/10/2026</span>
+      <span class="num">092</span>
+      <span class="badge">Resumen</span>
+      <span class="meta">Dashboard de content-audit, pantalla reservada en el brief 088 · 10/10/2026</span>
     </div>
-    <h1>El Mapa, contrastado con el CLI: dos textos corregidos</h1>
-    <p class="sub">Qué confirmó la revisión, qué estaba mal dicho y qué sigue sin leerse.</p>
+    <h1>Estadísticas anda en HTML: del curso al ejercicio, sin gastar nada</h1>
+    <p class="sub">Qué se ve sobre la copia de A1, qué no hace y por qué, qué dato falta y qué conviene pasar a lo común.</p>
   </header>
 
-  <div class="lede"><p><strong>La revisión contra el CLI encontró dos cosas mal dichas, y ya están arregladas.</strong> A2 se cuenta contra A0 medida de nuevo (+310, no +271), y publicar escribe el curso de content-audit, nunca la app.</p></div>
+  <div class="lede"><p><strong>La pantalla de Estadísticas lee un análisis y lo muestra del curso entero a un solo ejercicio: la calidad, los errores y el vocabulario.</strong> Sólo lee: lo que gasta consultas queda apagado, con su (!).</p></div>
 
   <section>
-    <h2>Los números del Mapa coinciden con el CLI</h2>
-    <div class="cambia">
-      <div class="si"><div class="ptl">Confirmado</div><ul><li>Nadie anota qué curso está en la app: el Mapa hace bien en suponerlo.</li><li>Hay una sola tanda y una sola base: no hay historia vieja que mostrar.</li><li>Cada número de la ficha es el que guarda el análisis, sin cuentas propias.</li></ul></div>
-      <div class="no"><div class="ptl">El explorador se equivocó</div><ul><li>Dijo que no había nada aprobado: hay 14, en 20 archivos de decisiones.</li><li>El Mapa dice 14 aprobados y 1.752 pendientes, y está bien.</li></ul></div>
-    </div>
-    <p class="pie">El explorador es un agente que leyó el código del CLI y la copia de la campaña, sin correr nada que gaste.</p>
-  </section>
-
-  <section>
-    <h2>A2 sube 310 contra la base medida de nuevo</h2>
-    <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">A0 midió la base</span><span class="eg">1.959 con algún error</span><span class="d">El 7/10, con las reglas de ese día.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">Cambiaron dos reglas</span><span class="eg">Oración poco natural · Ejercicio casi repetido</span><span class="d">Ya no miden como cuando se midió A0.</span></div>
-      <div class="st"><span class="i">3</span><span class="h">content-audit midió A0 de nuevo</span><span class="eg">1.920 con algún error</span><span class="d">Con las reglas de A2, para no mezclar.</span></div>
-      <div class="st end"><span class="i">4</span><span class="h">Cuenta el cambio desde ahí</span><span class="eg">2.230 − 1.920 = +310</span><span class="d">Contra la A0 de siempre daría +271.</span></div>
-    </div>
-    <p class="pie">Sólo A2 se contó así. A1, A3 y A4 se cuentan contra A0 tal como se midió.</p>
-  </section>
-
-  <section>
-    <h2>Ahora la pantalla dice contra qué contó</h2>
-    <div class="ad">
-      <div class="lado antes"><span class="rot">Antes</span>
-        <ol><li>La brújula decía «A2 contra A0 · +310».</li><li>Pero A0 muestra 1.959, y 2.230 − 1.959 da 271.</li><li>El brief 091 había puesto +271.</li></ol>
-        <span class="res">Dos números que no cerraban</span></div>
-      <div class="lado despues"><span class="rot">Ahora</span>
-        <ol><li>Dice «A2 contra A0 medida de nuevo · +310».</li><li>Muestra el 1.920 desde donde se contó.</li><li>Un (!) nombra las dos reglas que cambiaron.</li></ol>
-        <span class="res">+310, con su base a la vista</span></div>
-    </div>
-    <figure class="captura" style="margin-top:12px"><img src="099-mapa-contra-el-cli/a2.jpg" alt="El Mapa con A2 elegido: la brújula dice «A2 contra A0 medida de nuevo · +310» y abajo «A0 medida de nuevo: 1.920»; el arco del mapa repite lo mismo">
-      <figcaption>A2 elegido: la brújula y el arco dicen contra qué se contó</figcaption></figure>
+    <h2>A1 da 87,4 de calidad; la miniteoría la baja más</h2>
+    <figure class="captura"><img src="092-estadisticas-en-html/pantalla.jpg" alt="La pantalla de Estadísticas en el nivel A1: a la izquierda el índice con la calidad, cada analizador de errores y el vocabulario; en el centro el radar con las 14 medidas y la miniteoría hundida en 36">
+      <figcaption>A1, análisis del 7/10: 2.402 ejercicios; la miniteoría falla en el 64 %</figcaption></figure>
     <div class="par" style="margin-top:12px">
-      <figure class="captura cel"><img src="099-mapa-contra-el-cli/a2-ayuda.jpg" alt="Ayuda «A0 medida de nuevo», en oscuro: por qué se vuelve a medir la base y, para A2, que da 1.920 medida de nuevo y 1.959 como se midió, por eso +310 y no +271">
-        <figcaption>El (!) nuevo, con los números de A2</figcaption></figure>
-      <figure class="captura"><img src="099-mapa-contra-el-cli/a2-ficha.jpg" alt="La ficha de A2: 2.230 ejercicios con algún error, +310 contra los 1.920 de A0 medida de nuevo; y qué dos analizadores cambiaron de medida">
-        <figcaption>La ficha de A2</figcaption></figure>
+      <figure class="captura"><img src="092-estadisticas-en-html/errores.jpg" alt="La unidad Present Simple con los errores puestos: cada tema es una fila de cuadraditos, uno por ejercicio, del color de su error más grave">
+        <figcaption>Con los errores puestos, un cuadradito por ejercicio</figcaption></figure>
+      <figure class="captura cel"><img src="092-estadisticas-en-html/celular.jpg" alt="La misma unidad en un celular: el índice se esconde detrás del botón de arriba y los temas van uno debajo del otro">
+        <figcaption>En el celular, el índice va detrás del menú</figcaption></figure>
     </div>
+    <p class="pie">Se elige qué mirar (la calidad, los errores, el vocabulario o un analizador solo) y dónde: tocar una unidad o un tema acerca todo.</p>
   </section>
 
   <section>
-    <h2>Publicar escribe el curso de content-audit, no la app</h2>
-    <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">Aprobás cambios</span><span class="d">En Correcciones; quedan en lo aprobado.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">Publicar</span><span class="eg">content-audit</span><span class="d">Escribe lo aprobado en el curso de la carpeta y lo analiza.</span></div>
-      <div class="st"><span class="i">3</span><span class="h">Llevarlo a producción</span><span class="eg">a mano</span><span class="d">Subir el curso a la app y grabar los audios.</span></div>
-      <div class="st end"><span class="i">4</span><span class="h">Lo ve el alumno</span><span class="d">Recién acá.</span></div>
+    <h2>Cada ejercicio muestra qué le encontró cada analizador</h2>
+    <div class="par">
+      <figure class="captura"><img src="092-estadisticas-en-html/ficha.jpg" alt="En modo oscuro, la ficha de un ejercicio de opción múltiple de Afirmativas con be: consigna, oración, opciones, respuesta, traducción y miniteoría, y abajo dos hallazgos, uno de gravedad alta y otro baja">
+        <figcaption>La ficha: el ejercicio como lo ve el alumno y sus hallazgos</figcaption></figure>
+      <figure class="captura"><img src="092-estadisticas-en-html/juez.jpg" alt="En modo oscuro, un analizador que juzga con un modelo: su mapa de ejercicios por tema, la leyenda y, abajo, quién juzga y su examen aprobado">
+        <figcaption>Un analizador con juez: su modelo y su examen</figcaption></figure>
     </div>
-    <div class="par" style="margin-top:12px">
-      <figure class="captura cel"><img src="099-mapa-contra-el-cli/produccion-ayuda.jpg" alt="Ayuda «Producción es un supuesto»: publicar escribe lo aprobado en el curso de la carpeta y lo vuelve a analizar, pero nunca toca la app">
-        <figcaption>La ayuda de producción, corregida</figcaption></figure>
-      <div class="cambia">
-        <div class="no"><div class="ptl">Decían las ayudas</div><ul><li>Publicar cambia el curso que ven los alumnos.</li><li>Lo aprobado, solo, nunca se midió.</li></ul></div>
-        <div class="si"><div class="ptl">Dicen ahora</div><ul><li>Publicar escribe el curso y lo analiza; la app es un paso aparte.</li><li>Publicada la tanda, lo aprobado se midió al publicar.</li></ul></div>
-      </div>
-    </div>
+    <p class="pie">La oración se lee del contenido de hoy; si el tema cambió después del análisis, un (!) lo avisa.</p>
   </section>
 
   <section>
-    <h2>Dos datos que siguen sin leerse</h2>
+    <h2>26 ayudas, con los números del lugar abierto</h2>
+    <div class="par">
+      <figure class="captura"><img src="092-estadisticas-en-html/ayuda.jpg" alt="Panel de ayuda «La calidad», en modo oscuro, con el mapa de la pantalla, la cuenta con los números de A1 y el paso Medir marcado">
+        <figcaption>(?) cómo se calcula la calidad, con los números de A1</figcaption></figure>
+      <figure class="captura"><img src="092-estadisticas-en-html/aviso.jpg" alt="Panel de aviso «Esto gasta consultas a modelos», que explica por qué el botón está apagado y cómo se hace hoy">
+        <figcaption>(!) por qué no examina al juez y cómo se hace hoy</figcaption></figure>
+    </div>
+    <p class="pie">19 ayudas y 7 avisos; todas marcan «Medir» como el paso del proceso. Los nombres salen del catálogo, nunca escritos a mano.</p>
+  </section>
+
+  <section>
+    <h2>Lo que gasta o falta queda apagado y explicado</h2>
     <div class="tw"><table>
-      <thead><tr><th>Qué</th><th>Por qué el Mapa no lo usa</th></tr></thead>
+      <thead><tr><th>Qué no hace</th><th>Por qué, y qué muestra en su lugar</th></tr></thead>
       <tbody>
-        <tr><td>El análisis que hace publicar</td><td>Queda anotado en la tanda, pero la revisión que lee el Mapa no lo trae. La copia no tiene ninguna tanda publicada para probarlo.</td></tr>
-        <tr><td>El «inicio de tanda» de cada cierre</td><td>Se midió al cerrar, con 0 o 1 aprobado; los 14 de hoy llegaron después.</td></tr>
+        <tr><td>Hacer un análisis nuevo o examinar un juez</td><td>Consultan modelos pagos. Apagados, con un (!) que dice que van por línea de comandos.</td></tr>
+        <tr><td>El vocabulario palabra por palabra</td><td>El resumen no lo trae. Se ven el puntaje y los hallazgos; falta un comando que sólo lea.</td></tr>
+        <tr><td>Contar como bien lo que no se miró</td><td>Lo que el juez no evaluó no tiñe ni suma; el (!) dice cuántos quedaron.</td></tr>
+        <tr><td>Inventar lo que no corrió</td><td>Un analizador sin resultados va en gris, «no corrió», y no entra en la calidad.</td></tr>
+        <tr><td>Abrir un análisis viejo</td><td>Los de antes del resumen aparecen en la lista, sin abrirse, con su (!).</td></tr>
+        <tr><td>Completar la ficha de un analizador</td><td>Si el catálogo no la trae, sólo su nombre, con su (!).</td></tr>
       </tbody>
     </table></div>
-    <div class="call c-warn"><b>No sé</b> por qué ese inicio da 2.671 con algún error, más que la base (1.959).</div>
+    <p class="pie">Ninguna ruta del servidor escribe ni consulta modelos: lee la lista de análisis, el resumen, el catálogo y el tema como lo ve el alumno.</p>
+  </section>
+
+  <section>
+    <h2>Lo repetido, listo para pasar a lo común</h2>
+    <div class="cambia">
+      <div class="no"><div class="ptl">Tomado de Correcciones</div><ul><li>La etiqueta del contenido, los (?) y (!) y la búsqueda: importados.</li><li>Ocho estilos suyos, copiados: la página no puede cargar su hoja.</li><li>El arranque, los gestos comunes y las pruebas de clics: copiados casi iguales.</li></ul></div>
+      <div class="si"><div class="ptl">Aprendido acá, le sirve a otras</div><ul><li>El hueco de una oración necesita texto para lectores de pantalla.</li><li>El foco vuelve a lo que abrió una ficha o una ayuda.</li><li>Un estilo común se metía en la búsqueda: usé otro nombre.</li><li>El guardián confunde rótulos como «Consigna» con analizadores.</li></ul></div>
+    </div>
+    <p class="pie">No toqué lo común; cada candidato, con su archivo, en el pie.</p>
+    <div class="call c-warn"><b>Ojo:</b> el guardián sigue fallando en master por la miniteoría; nada de esta pantalla aparece en su lista.</div>
   </section>
 
   <section>
@@ -338,16 +329,21 @@
     <div class="asks">
       <div class="ask"><div class="q">¿La paso a master?</div>
         <div class="ops"><span class="op rec">Sí, después de probarla</span><span class="op">Esperar a las otras pantallas</span></div>
-        <div class="why">Cuatro commits, sólo del Mapa. 154 pruebas del navegador y 48 del servidor, en verde.</div></div>
-      <div class="ask"><div class="q">¿Leemos el análisis de la publicación?</div>
-        <div class="ops"><span class="op rec">Sí, con la primera tanda publicada</span><span class="op">Más adelante</span></div>
-        <div class="why">Es leer la tanda, sin gastar. Sin una publicada, no hay con qué probarlo.</div></div>
+        <div class="why">Tres commits; sólo archivos de Estadísticas y dos renglones compartidos. 167 pruebas del navegador y 70 del servidor, en verde.</div></div>
+      <div class="ask"><div class="q">¿Pedimos el vocabulario palabra por palabra a content-audit?</div>
+        <div class="ops"><span class="op rec">Sí, un comando que sólo lea</span><span class="op">Dejarlo apagado</span></div>
+        <div class="why">Es lo que más ayuda a escribir contenido nuevo, y no hace falta volver a analizar.</div></div>
+      <div class="ask"><div class="q">¿Cuándo se pasa lo repetido a lo común?</div>
+        <div class="ops"><span class="op rec">Al final, en una sesión aparte</span><span class="op">Ahora</span></div>
+        <div class="why">Varias pantallas se arman en paralelo: moverlo ahora choca.</div></div>
     </div>
+<pre>cd ~/projects/learney/ittm/.claude/worktrees/lucid-rubin-432b86/pipeline/vocabulary_dashboard
+CONTENT_AUDIT_ROOT=~/projects/learney/content-audit CONTENT_AUDIT_WORKDIR=/ruta/a/la/copia CONTENT_AUDIT_CONTEXT_KIND=Copia ~/DevDependencies/flutter/bin/dart run bin/tablero_html.dart --puerto 7832</pre>
   </section>
 
   <footer>
-    <span>Rama claude/recursing-banach-09318b de ittm (sin push): 7930cff58 servidor y 67729f55d pantalla (brief 091); e4ca2c5d2 y 10b56eb20, esta revisión. Re-medición: cuando comparison.measureChanges trae analizadores (R007 / F-METAS-R007), el cambio de cada fila se cuenta desde remeasuredBaseline (Values.reference()). El servidor manda por cierre remeasured (los ids de measureChanges[].analyzer) y, en cada medida, r = remeasuredBaseline.value; el navegador lo dice en la brújula, el arco, la historia, la ficha y el tema de ayuda a0-de-nuevo. Publicar: tray publish → DefaultBatchPublisher (F-TANDA-R009) escribe el curso local, lo analiza (BatchPublication.publishedAuditId) y mueve el par activo; nunca escribe producción. publication.publishedAuditId y publishedAt no salen en batch review. La columna approved de ComparisonRow es el inicio de tanda al cerrar. Copia a1-v11: 20 archivos de decisiones, 14 APPROVED y 1.752 PENDING; una tanda, un análisis de base. npm test: 375 en verde (154 del Mapa); flutter test test/tablero_html: 118 en verde (48 del Mapa); guardian_test sin nada del Mapa. Capturas con Chrome sin ventana sobre http://localhost:7831.</span>
-    <span>brief 099 · docs/briefs/099-mapa-contra-el-cli.html</span>
+    <span>Rama <code>claude/admiring-carson-69115e</code> (ittm): ff6af1381 servidor, 094660fbb pantalla, 8cca79f28 riel. Rutas <code>GET /api/estadisticas/vista</code> y <code>/tema</code>. Candidatos a lo común: <code>main.js</code> → <code>lib/arranque.js</code>; <code>gestos.js</code> → <code>lib/gestos-comunes.js</code>; <code>CERRAR</code>, <code>CHEVRON</code> y atajos → <code>lib/capas.js</code>; <code>.ctx .batch .searchbtn .mobile-only .stage .seg .menu .mi[aria-current] .c/.gap/.opts/.opt</code> → <code>base.css</code>; <code>conHuecos</code> → <code>lib/texto.js</code>; <code>recordarElFoco</code>; entorno y <code>zonas</code> de las pruebas; en Dart, <code>idSeguro</code> y <code>mensajeDelError</code>. <code>.sr</code> necesita un ancestro posicionado; <code>.palette .res</code> de <code>base.css</code> pisaba la ficha (ahora <code>.fds</code>). El guardián marca un <code>displayName</code> entre comillas: los rótulos van como claves. Probado a 1280 y 390, claro y oscuro: ahí salieron y se arreglaron la evidencia que quedaba abierta al cambiar de análisis y el cartelito fuera de lugar.</span>
+    <span>brief 092 · docs/briefs/092-estadisticas-en-html.html</span>
   </footer>
 
 </div>
