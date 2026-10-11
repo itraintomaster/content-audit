@@ -159,7 +159,9 @@ es una acción distinta, no un efecto automático de continuar ni de analizar.
 La revisión desde Correcciones admite una decisión humana por paso o por todos los pasos de un ejercicio. Cada
 decisión conserva el contenido exacto que se vio y se guarda separada de la corrida: refrescar o guardar la decisión
 no sobrescribe su avance. Si el paso o su antes/después cambian, debe revisarse otra vez; una aprobación anterior no
-se hereda. Esta revisión no aplica contenido ni reemplaza las compuertas de publicación.
+se hereda. Revisar no cambia el contenido por sí mismo ni reemplaza las compuertas de publicación: al publicar, lo que
+José rechazó sale de la tanda, y un rechazo sobre un contenido que cambió después frena la publicación hasta que José lo
+vuelva a mirar ([F-PUBPROD-R003](#F-PUBPROD-R003)).
 
 Correcciones y Comparación leen los resultados guardados por el backend, sin ejecutar auditorías al abrirse.
 El historial permite consultar las correcciones del mismo nivel y Base, y sus mediciones previas; elegir una
@@ -176,7 +178,8 @@ Mantiene [F-EVCOST-R004](#F-EVCOST-R004) (cada resultado queda disponible apenas
 
 > Mientras la tanda no se publica, José puede sacar un cambio, o todos los de una regla: su propuesta queda rechazada,
 > el ejercicio queda como estaba antes de ese cambio y su tarea vuelve a pendiente. La tanda se recalcula y vuelve a
-> pasar la compuerta. Invariantes:
+> pasar la compuerta. Un cambio también sale así cuando José rechaza alguno de sus pasos en la revisión: sale al
+> publicar ([F-PUBPROD-R003](#F-PUBPROD-R003)). Invariantes:
 > 1. los cambios posteriores del mismo ejercicio que tocaron lo mismo que el que sale, salen con él, y el informe los
 >    nombra; los que tocaron otras partes se conservan [ASSUMPTION];
 > 2. sacar un cambio de un ejercicio no saca la miniteoría reescrita de su tema, que se saca sólo por sí misma.
@@ -191,16 +194,20 @@ conserva se vuelve a medir y a juzgar al recalcular.
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
 > Publicar exige que el veredicto de la tanda sea «pasa» ([F-METAS-R008](#F-METAS-R008)), que la compuerta de «no
-> empeorar» pase y el OK de José en la bandeja ([F-BANDEJA-R008](#F-BANDEJA-R008)). Invariantes:
-> 1. aplica al curso de content-audit todos los cambios aceptados que quedan en la tanda, y ninguno más;
+> empeorar» del último cierre pase y el OK de José en la bandeja ([F-BANDEJA-R008](#F-BANDEJA-R008)). Invariantes:
+> 1. aplica al curso de content-audit todos los cambios aceptados que quedan en la tanda, y ninguno más; lo que José
+>    rechazó en la revisión ya salió ([F-PUBPROD-R003](#F-PUBPROD-R003));
 > 2. sus tareas quedan completadas;
 > 3. el análisis del curso publicado da los mismos hallazgos y números que el recálculo que pasó la compuerta, y es desde
 >    donde abre la tanda siguiente;
 > 4. la línea base no se mueve ([F-TANDA-R001](#F-TANDA-R001));
-> 5. no escribe en producción.
+> 5. no escribe en producción: deja la lista de lo que puede llegar ([F-PUBPROD-R001](#F-PUBPROD-R001));
+> 6. «no se puede decidir» no es «pasa»: con ese veredicto no se publica, aunque la compuerta pase
+>    ([F-PUBPROD-R005](#F-PUBPROD-R005)).
 
 Mantiene [F-REVAPR-R011](#F-REVAPR-R011) (aprobar aplica al curso) y la preservación de FEAT-RPRES al aplicar. Llevar el
-curso a producción y regrabar los audios siguen siendo pasos de José, fuera de content-audit.
+curso a producción y regrabar los audios siguen siendo pasos de José, fuera de la publicación: el paso a producción sólo
+toma lo que dice la lista de la tanda ([F-PUBPROD-R006](#F-PUBPROD-R006)).
 
 <a id="F-TANDA-R010"></a>
 ### Rule[F-TANDA-R010] - El informe de la tanda cierra sus cuentas

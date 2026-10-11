@@ -13,6 +13,7 @@ import com.learney.contentaudit.coursedomain.MilestoneEntity;
 import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
 import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
 import com.learney.contentaudit.coursedomain.NodeKind;
+import com.learney.contentaudit.coursedomain.ProductionDocumentProjector;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.RootNodeEntity;
 import com.learney.contentaudit.coursedomain.SentenceMode;
@@ -40,7 +41,7 @@ import java.util.Set;
  * {@code unmodeledFields}, in its original order, and written back after the known keys — so a
  * load->save round trip returns every quiz document byte for byte.
  */
-public class FileSystemCourseRepository implements CourseRepository {
+public class FileSystemCourseRepository implements CourseRepository, ProductionDocumentProjector {
 
     private static final String COURSE_FILE = "_course.json";
     private static final String MILESTONE_FILE = "_milestone.json";
@@ -584,6 +585,17 @@ public class FileSystemCourseRepository implements CourseRepository {
         Path knowledgeDir = topicDir.resolve(slug);
         Files.createDirectories(knowledgeDir);
 
+        Map<String, Object> json = knowledgeToJson(knowledge);
+
+        Path knowledgeFile = knowledgeDir.resolve(KNOWLEDGE_FILE);
+        objectMapper.writerWithDefaultPrettyPrinter().writeValue(knowledgeFile.toFile(), json);
+
+        // Write quizzes
+        writeQuizzes(knowledge.getQuizTemplates(), knowledgeDir);
+    }
+
+    /** The knowledge document as it is written to {@code _knowledge.json}. */
+    private Map<String, Object> knowledgeToJson(KnowledgeEntity knowledge) {
         Map<String, Object> json = new LinkedHashMap<>();
         json.put("_id", oidWrapper(knowledge.getId()));
         json.put("code", knowledge.getCode());
@@ -597,12 +609,7 @@ public class FileSystemCourseRepository implements CourseRepository {
         if (knowledge.getSentenceMode() != null) {
             json.put("sentenceMode", knowledge.getSentenceMode().name());
         }
-
-        Path knowledgeFile = knowledgeDir.resolve(KNOWLEDGE_FILE);
-        objectMapper.writerWithDefaultPrettyPrinter().writeValue(knowledgeFile.toFile(), json);
-
-        // Write quizzes
-        writeQuizzes(knowledge.getQuizTemplates(), knowledgeDir);
+        return json;
     }
 
     private void writeQuizzes(List<QuizTemplateEntity> quizzes, Path knowledgeDir)
@@ -611,33 +618,126 @@ public class FileSystemCourseRepository implements CourseRepository {
 
         List<Map<String, Object>> jsonArray = new ArrayList<>();
         for (QuizTemplateEntity quiz : quizzes) {
-            Map<String, Object> q = new LinkedHashMap<>();
-            q.put("_id", oidWrapper(quiz.getOidId() != null ? quiz.getOidId() : quiz.getId()));
-            q.put("id", quiz.getId());
-            q.put("kind", quiz.getKind());
-            q.put("knowledgeId", oidWrapper(quiz.getKnowledgeId()));
-            q.put("title", quiz.getTitle());
-            q.put("instructions", quiz.getInstructions());
-            q.put("translation", quiz.getTranslation());
-            q.put("theoryId", quiz.getTheoryId());
-            q.put("topicName", quiz.getTopicName());
-            q.put("difficulty", numberDoubleWrapper(quiz.getDifficulty()));
-            q.put("retries", numberDoubleWrapper(quiz.getRetries()));
-            q.put("noScoreRetries", numberDoubleWrapper(quiz.getNoScoreRetries()));
-            q.put("code", quiz.getCode());
-            q.put("audioUrl", quiz.getAudioUrl());
-            q.put("imageUrl", quiz.getImageUrl());
-            q.put("answerAudioUrl", quiz.getAnswerAudioUrl());
-            q.put("answerImageUrl", quiz.getAnswerImageUrl());
-            q.put("miniTheory", quiz.getMiniTheory());
-            q.put("successMessage", quiz.getSuccessMessage());
-            q.put("form", formToJson(quiz.getForm(), quiz.getSentences()));
-            putUnmodeled(q, quiz.getUnmodeledFields());
-            jsonArray.add(q);
+            jsonArray.add(quizToJson(quiz));
         }
 
         Path quizzesFile = knowledgeDir.resolve(QUIZZES_FILE);
         objectMapper.writerWithDefaultPrettyPrinter().writeValue(quizzesFile.toFile(), jsonArray);
+    }
+
+    /** The quiz document as it is written to {@code quizzes.json}. */
+    private Map<String, Object> quizToJson(QuizTemplateEntity quiz) {
+        Map<String, Object> q = new LinkedHashMap<>();
+        q.put("_id", oidWrapper(quiz.getOidId() != null ? quiz.getOidId() : quiz.getId()));
+        q.put("id", quiz.getId());
+        q.put("kind", quiz.getKind());
+        q.put("knowledgeId", oidWrapper(quiz.getKnowledgeId()));
+        q.put("title", quiz.getTitle());
+        q.put("instructions", quiz.getInstructions());
+        q.put("translation", quiz.getTranslation());
+        q.put("theoryId", quiz.getTheoryId());
+        q.put("topicName", quiz.getTopicName());
+        q.put("difficulty", numberDoubleWrapper(quiz.getDifficulty()));
+        q.put("retries", numberDoubleWrapper(quiz.getRetries()));
+        q.put("noScoreRetries", numberDoubleWrapper(quiz.getNoScoreRetries()));
+        q.put("code", quiz.getCode());
+        q.put("audioUrl", quiz.getAudioUrl());
+        q.put("imageUrl", quiz.getImageUrl());
+        q.put("answerAudioUrl", quiz.getAnswerAudioUrl());
+        q.put("answerImageUrl", quiz.getAnswerImageUrl());
+        q.put("miniTheory", quiz.getMiniTheory());
+        q.put("successMessage", quiz.getSuccessMessage());
+        q.put("form", formToJson(quiz.getForm(), quiz.getSentences()));
+        putUnmodeled(q, quiz.getUnmodeledFields());
+        return q;
+    }
+
+    // -------------------------------------------------------------------------
+    // ProductionDocumentProjector (F-PUBPROD-R001 / R002)
+    // -------------------------------------------------------------------------
+
+    private static final String STORED_SENTENCE_PATH = "form.sentences";
+    private static final String SENTENCE_PARTS_PATH = "form.sentenceParts";
+
+    @Override
+    public Map<String, Object> project(QuizTemplateEntity quiz, List<String> mongoPaths) {
+        return project(quiz != null ? quizToJson(quiz) : null, mongoPaths);
+    }
+
+    @Override
+    public Map<String, Object> project(KnowledgeEntity knowledge, List<String> mongoPaths) {
+        return project(knowledge != null ? knowledgeToJson(knowledge) : null, mongoPaths);
+    }
+
+    @Override
+    public String documentId(QuizTemplateEntity quiz) {
+        if (quiz == null) return null;
+        return quiz.getOidId() != null ? quiz.getOidId() : quiz.getId();
+    }
+
+    @Override
+    public String documentId(KnowledgeEntity knowledge) {
+        return knowledge != null ? knowledge.getId() : null;
+    }
+
+    /**
+     * The values of the paths in the document exactly as it is written to disk, in plain JSON: production keeps
+     * numbers as numbers, the text of a part with no text as an empty text, and an absent stored sentence as an empty
+     * list (F-PUBPROD-R002, inv. 3).
+     */
+    private Map<String, Object> project(Map<String, Object> document, List<String> mongoPaths) {
+        Map<String, Object> values = new LinkedHashMap<>();
+        if (mongoPaths == null) return values;
+        for (String path : mongoPaths) {
+            Object value = relaxed(at(document, path));
+            if (STORED_SENTENCE_PATH.equals(path) && value == null) {
+                value = new ArrayList<>();
+            }
+            if (SENTENCE_PARTS_PATH.equals(path) && value instanceof List<?> parts) {
+                for (Object part : parts) {
+                    if (part instanceof Map<?, ?> map && map.get("text") == null) {
+                        @SuppressWarnings("unchecked")
+                        Map<String, Object> editable = (Map<String, Object>) map;
+                        editable.put("text", "");
+                    }
+                }
+            }
+            values.put(path, value);
+        }
+        return values;
+    }
+
+    private static Object at(Map<String, Object> document, String path) {
+        Object current = document;
+        for (String key : path.split("\\.")) {
+            if (!(current instanceof Map<?, ?> map)) return null;
+            current = map.get(key);
+        }
+        return current;
+    }
+
+    /** A fresh copy in plain JSON: {@code {"$numberDouble": "1.0"}} is 1.0 and {@code {"$oid": "…"}} is its text. */
+    private static Object relaxed(Object value) {
+        if (value instanceof Map<?, ?> map) {
+            if (map.size() == 1 && map.containsKey("$numberDouble")) {
+                Object number = map.get("$numberDouble");
+                return number instanceof Number n ? n.doubleValue() : Double.parseDouble(String.valueOf(number));
+            }
+            if (map.size() == 1 && map.containsKey("$oid")) {
+                return String.valueOf(map.get("$oid"));
+            }
+            Map<String, Object> copy = new LinkedHashMap<>();
+            map.forEach((key, inner) -> copy.put(String.valueOf(key), relaxed(inner)));
+            return copy;
+        }
+        if (value instanceof List<?> list) {
+            List<Object> copy = new ArrayList<>();
+            for (Object inner : list) {
+                copy.add(relaxed(inner));
+            }
+            return copy;
+        }
+        return value;
     }
 
     /**

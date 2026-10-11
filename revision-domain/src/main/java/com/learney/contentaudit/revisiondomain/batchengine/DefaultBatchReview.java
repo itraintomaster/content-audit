@@ -143,7 +143,19 @@ final class DefaultBatchReview implements BatchReviewService {
         return proposals;
     }
 
+    /**
+     * F-PUBPROD-R003: la revisión vigente de la tanda tal como está ahora, sin caché: la misma cuenta que muestra la
+     * pantalla de Correcciones, más los rechazos vencidos. Publicar la lee para dejar afuera lo rechazado.
+     */
+    ReviewStanding standing(CorrectionBatch batch) {
+        return standing(batch, proposals(batch));
+    }
+
     private List<BatchReview.Item> items(CorrectionBatch batch, List<RevisionProposal> proposals) {
+        return standing(batch, proposals).items();
+    }
+
+    private ReviewStanding standing(CorrectionBatch batch, List<RevisionProposal> proposals) {
         Map<String, CourseElementSnapshot> states = new LinkedHashMap<>();
         for (RevisionProposal proposal : proposals) states.put(proposal.getNodeId(), proposal.getElementBefore());
         Map<String, BatchReviewDecision> decisions = new LinkedHashMap<>();
@@ -155,6 +167,7 @@ final class DefaultBatchReview implements BatchReviewService {
             }
         }
         List<BatchReview.Item> items = new ArrayList<>();
+        List<ReviewStanding.StaleRejection> stale = new ArrayList<>();
         for (BatchChange change : BatchBook.list(batch.getChanges())) {
             if (change == null || change.getDroppedReason() != null) continue;
             for (BatchChangeStep step : BatchBook.list(change.getSteps())) {
@@ -166,6 +179,9 @@ final class DefaultBatchReview implements BatchReviewService {
                 boolean matches = decision != null && decision.selections().stream().anyMatch(s ->
                         Objects.equals(s.changeId(), change.getChangeId()) && Objects.equals(s.step(), step)
                                 && Objects.equals(s.before(), before) && Objects.equals(s.after(), after));
+                if (decision != null && !matches && decision.status() == BatchReviewDecision.Status.REJECTED) {
+                    stale.add(new ReviewStanding.StaleRejection(change.getChangeId(), step.getQuizId()));
+                }
                 items.add(new BatchReview.Item(change.getChangeId(), step, before, after,
                         change.getOrigin() == null ? null : change.getOrigin().name(), change.getRuleId(),
                         matches ? decision.status() : BatchReviewDecision.Status.PENDING,
@@ -173,7 +189,7 @@ final class DefaultBatchReview implements BatchReviewService {
                         BatchBook.copy(change.getTaskIds()), rationale(batch, change, step, before, after)));
             }
         }
-        return items;
+        return new ReviewStanding(items, stale);
     }
 
     /** Explain only an accepted candidate that reproduces this exact persisted step, not the last request on a quiz. */

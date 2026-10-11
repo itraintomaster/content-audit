@@ -20,6 +20,8 @@ import com.learney.contentaudit.revisiondomain.batch.NoOpenBatchException;
 import com.learney.contentaudit.revisiondomain.blindsample.BlindPairView;
 import com.learney.contentaudit.revisiondomain.blindsample.BlindSampleService;
 import com.learney.contentaudit.revisiondomain.comparison.BatchVerdict;
+import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
+import com.learney.contentaudit.revisiondomain.comparison.VerdictWording;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
 import com.learney.contentaudit.revisiondomain.panel.PanelDecision;
@@ -154,10 +156,24 @@ class DefaultTrayService implements TrayService {
         List<String> excluded = TrayBook.rulesToSample(batch);
         // R008: the verdict with every decision of José in; publishing closes with no request (no judges paid here).
         BatchClosing closing = batchService.close(new BatchCloseRequest(new LinkedHashMap<>(), null));
+        // F-PUBPROD-R005: «no se puede decidir» no es «pasa», y un piso sin decidir tampoco: la negativa lo dice antes
+        // que la compuerta, aunque pase, con las palabras de siempre (VerdictWording) y con lo que dice el veredicto
+        // (por ejemplo, los jueces sin aprobar de F-CJUEZ-R004).
+        BatchVerdict verdict = closing != null && closing.getComparison() != null
+                ? closing.getComparison().getVerdict() : null;
+        String refusedVerdict = "el veredicto de F es " + VerdictWording.quoted(verdict) + ", no «pasa»"
+                + (verdict != null && verdict.getDetail() != null ? ": " + verdict.getDetail() : "");
+        if (verdict != null && (verdict.getKind() == VerdictKind.UNDECIDABLE
+                || VerdictWording.undecidedFloors(verdict) > 0)) {
+            throw new BatchNotPublishableException(batch.getId(), refusedVerdict);
+        }
         if (closing == null || closing.getGate() == null || !closing.getGate().isPasses()) {
             throw new BatchNotPublishableException(batch.getId(), "la compuerta de «no empeorar» no pasa"
                     + (closing != null && closing.getGate() != null ? ": " + String.join("; ",
                     TrayBook.list(closing.getGate().getReasons())) : ""));
+        }
+        if (!VerdictWording.publishable(verdict)) {
+            throw new BatchNotPublishableException(batch.getId(), refusedVerdict);
         }
         return batchService.publish(new BatchPublishRequest(approvedBy != null ? approvedBy : JOSE, note, excluded));
     }

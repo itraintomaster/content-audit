@@ -199,6 +199,47 @@ public class DefaultCompareCommandTest {
                 + written.toAbsolutePath());
     }
 
+    @Test
+    @DisplayName("should bring with each change of compare -f json what remained after: every finding, those already there at the start and the analyzers that evaluated the exercise")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R009")
+    public void shouldBringWithEachChangeOfCompareFJsonWhatRemainedAfterEveryFindingThoseAlreadyThereAtTheStartAndTheAnalyzersThatEvaluatedTheExercise(
+            ) throws Exception {
+        Muestra muestra = new Muestra();
+        DefaultCompareCommand command = new DefaultCompareCommand(muestra.comparator(),
+                new DefaultBatchComparisonFormatter());
+
+        FHistorial.Salida printed = FHistorial.run(() -> command.compare("db/english-course", List.of(), Map.of(),
+                "json"));
+
+        assertEquals(0, printed.exit(), printed.err());
+        com.fasterxml.jackson.databind.JsonNode changes = new com.fasterxml.jackson.databind.ObjectMapper()
+                .readTree(printed.out()).get("changes");
+        assertEquals(2, changes.size());
+        Map<String, com.fasterxml.jackson.databind.JsonNode> byQuiz = new LinkedHashMap<>();
+        for (com.fasterxml.jackson.databind.JsonNode change : changes) {
+            for (String field : List.of("afterFindings", "persistentFindings", "evaluatedAnalyzers")) {
+                assertTrue(change.has(field) && change.get(field).isArray(),
+                        "R009: every change brings " + field + " as a list, empty or not: " + change);
+            }
+            for (String field : List.of("newFindings", "fixedFindings", "undecidedAnalyzers")) {
+                assertTrue(change.has(field), "R009 inv. 3: the fields of before stay: " + field);
+            }
+            byQuiz.put(change.get("nodeId").asText(), change);
+        }
+        com.fasterxml.jackson.databind.JsonNode grandmother = byQuiz.get(Muestra.GRANDMOTHER);
+        assertEquals(1, grandmother.get("afterFindings").size(), "R009: the A2 word remains after");
+        assertEquals("grandmother", grandmother.get("afterFindings").get(0).get("identity").get("marker").asText());
+        assertEquals(0, grandmother.get("persistentFindings").size(), "R009: the batch brought it: not persistent");
+        com.fasterxml.jackson.databind.JsonNode hat = byQuiz.get(Muestra.HAT);
+        assertEquals(0, hat.get("afterFindings").size(), "R009: the grammar error was fixed");
+        assertEquals(0, hat.get("persistentFindings").size());
+        for (com.fasterxml.jackson.databind.JsonNode change : changes) {
+            assertEquals(0, change.get("evaluatedAnalyzers").size(),
+                    "R009 inv. 1: no number of the exercise itself: no analyzer said to have evaluated it");
+        }
+    }
+
     /** The sample of compare -f json the review app is built against (F-FILAS-R006). */
     static final String SAMPLE = "/compare/filas-claras-sample.json";
 

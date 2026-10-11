@@ -1,5 +1,13 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.learney.contentaudit.revisiondomain.batch.BatchReviewDecision;
+import com.learney.contentaudit.revisiondomain.publication.PublicationManifest;
+import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.HexFormat;
 import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.choice;
 import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.cloze;
 import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.quiz;
@@ -318,7 +326,73 @@ public final class TandaFixture {
             return saved.values().stream().filter(b -> b.getStatus() == BatchStatus.PUBLISHED && b.getPublication() != null)
                     .reduce((a, b) -> b);
         }
+
+        /** Las decisiones de José, en el orden en que llegaron. */
+        public final List<BatchReviewDecision> decisions = new ArrayList<>();
+
+        /** Las listas de publicación guardadas, con los bytes exactos y su huella. */
+        public final Map<String, byte[]> manifests = new LinkedHashMap<>();
+
+        public final Map<String, String> digests = new LinkedHashMap<>();
+
+        @Override
+        public synchronized void saveReview(BatchReviewDecision decision) {
+            decisions.add(decision);
+        }
+
+        @Override
+        public synchronized List<BatchReviewDecision> reviews(String batchId) {
+            return decisions.stream().filter(d -> Objects.equals(d.batchId(), batchId)).toList();
+        }
+
+        @Override
+        public synchronized String savePublicationManifest(String batchId, PublicationManifest manifest) {
+            CorrectionBatch batch = saved.get(batchId);
+            if (batch != null && batch.getStatus() == BatchStatus.PUBLISHED) {
+                throw new IllegalStateException("La tanda " + batchId + " ya está publicada: su lista no se reescribe.");
+            }
+            try {
+                byte[] bytes = MANIFEST_WRITER.writeValueAsBytes(manifest);
+                String digest = HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(bytes));
+                manifests.put(batchId, bytes);
+                digests.put(batchId, digest);
+                return digest;
+            } catch (IOException | NoSuchAlgorithmException e) {
+                throw new IllegalStateException(e);
+            }
+        }
+
+        @Override
+        public synchronized void discardPublicationManifest(String batchId) {
+            CorrectionBatch batch = saved.get(batchId);
+            if (batch != null && batch.getStatus() == BatchStatus.PUBLISHED) {
+                throw new IllegalStateException("La tanda " + batchId + " ya está publicada: su lista no se borra.");
+            }
+            manifests.remove(batchId);
+            digests.remove(batchId);
+        }
+
+        @Override
+        public synchronized Optional<PublicationManifest> publicationManifest(String batchId) {
+            byte[] bytes = manifests.get(batchId);
+            if (bytes == null) {
+                return Optional.empty();
+            }
+            try {
+                return Optional.of(new ObjectMapper().readValue(bytes, PublicationManifest.class));
+            } catch (IOException e) {
+                throw new IllegalStateException(e);
+            }
+        }
+
+        @Override
+        public synchronized Optional<String> publicationManifestLocation(String batchId) {
+            return manifests.containsKey(batchId)
+                    ? Optional.of("batch-publications/" + batchId + "/manifest.json") : Optional.empty();
+        }
     }
+
+    private static final ObjectWriter MANIFEST_WRITER = new ObjectMapper().writerWithDefaultPrettyPrinter();
 
     public static final class Plans implements RefinementPlanStore {
         public final Map<String, RefinementPlan> saved = new LinkedHashMap<>();
@@ -329,12 +403,19 @@ public final class TandaFixture {
             }
         }
 
+        /** Si no es nulo, guardar el plan con este id lo deja guardado a medias y falla, una vez. */
+        public String halfSaving;
+
         @Override
         public String save(RefinementPlan plan) {
             if (plan.getId() == null) {
                 plan.setId("plan-" + (saved.size() + 1));
             }
             saved.put(plan.getId(), plan);
+            if (plan.getId().equals(halfSaving)) {
+                halfSaving = null;
+                throw new IllegalStateException("el plan quedó a medio guardar");
+            }
             return plan.getId();
         }
 
@@ -347,10 +428,37 @@ public final class TandaFixture {
         public Optional<RefinementPlan> loadLatest() {
             return saved.values().stream().reduce((a, b) -> b);
         }
+
+        /** Los ids que se pidió descartar, en orden. */
+        public final List<String> discarded = new ArrayList<>();
+
+        @Override
+        public void discard(String id) {
+            discarded.add(id);
+            saved.remove(id);
+        }
     }
 
     public static final class Reports implements AuditReportStore {
         public final Map<String, AuditReport> saved = new LinkedHashMap<>();
+
+        /** Si no es nulo, el próximo análisis que se guarde falla con esto; después vuelve a andar. */
+        public RuntimeException failure;
+
+        /** Si no es nulo, descartar un análisis falla con esto y el análisis queda. */
+        public RuntimeException discardFailure;
+
+        /** Los ids que se pidió descartar, en orden. */
+        public final List<String> discarded = new ArrayList<>();
+
+        @Override
+        public void discard(String id) {
+            discarded.add(id);
+            if (discardFailure != null) {
+                throw discardFailure;
+            }
+            saved.remove(id);
+        }
 
         public Reports put(String id, AuditReport report) {
             saved.put(id, report);
@@ -359,6 +467,11 @@ public final class TandaFixture {
 
         @Override
         public String save(AuditReport report) {
+            if (failure != null) {
+                RuntimeException thrown = failure;
+                failure = null;
+                throw thrown;
+            }
             String id = "audit-publicado-" + (saved.size() + 1);
             saved.put(id, report);
             return id;
@@ -429,6 +542,9 @@ public final class TandaFixture {
     public static final class ActivePair implements ActiveAnalysisSelectionStore {
         public ActiveAnalysisSelection selection;
 
+        /** Si no es nulo, escribir el par vigente falla con esto y el par queda como estaba. */
+        public RuntimeException writeFailure;
+
         @Override
         public Optional<ActiveAnalysisSelection> read() {
             return Optional.ofNullable(selection);
@@ -436,6 +552,9 @@ public final class TandaFixture {
 
         @Override
         public void write(ActiveAnalysisSelection selection) {
+            if (writeFailure != null) {
+                throw writeFailure;
+            }
             this.selection = selection;
         }
 
@@ -471,6 +590,9 @@ public final class TandaFixture {
 
         public final List<Path> paths = new ArrayList<>();
 
+        /** Si no es nulo, la próxima escritura del curso falla con esto (el disco lleno, por ejemplo); después anda. */
+        public RuntimeException failure;
+
         public Courses(CourseEntity course) {
             this.course = course;
         }
@@ -482,6 +604,11 @@ public final class TandaFixture {
 
         @Override
         public void save(CourseEntity course, Path path) {
+            if (failure != null) {
+                RuntimeException thrown = failure;
+                failure = null;
+                throw thrown;
+            }
             written.add(course);
             paths.add(path);
             this.course = course;

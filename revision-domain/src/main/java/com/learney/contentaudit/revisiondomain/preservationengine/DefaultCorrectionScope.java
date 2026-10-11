@@ -55,7 +55,7 @@ public class DefaultCorrectionScope implements CorrectionScope {
     }
 
     /** The permission to change what is heard: no field carries it (F-NOEMP-R004, FEAT-TAREA). */
-    static final String AUDIO_PERMISSION = "(audio)";
+    public static final String AUDIO_PERMISSION = "(audio)";
 
     private static final ScopedField COMPOSITION = new ScopedField("form.sentenceParts[]", null);
     private static final ScopedField TEXT_OF_TEXT_PARTS = new ScopedField("form.sentenceParts[].text", "TEXT");

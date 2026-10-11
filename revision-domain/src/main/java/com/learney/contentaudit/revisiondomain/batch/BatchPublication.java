@@ -1,5 +1,6 @@
 package com.learney.contentaudit.revisiondomain.batch;
 
+import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
 import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
 import java.time.Instant;
 import java.util.List;
@@ -28,6 +29,33 @@ public class BatchPublication {
     private List<String> reopenedTaskIds;
 
     private List<AudioRerecordRequest> rerecords;
+
+    /** F-PUBPROD-R001: la huella (sha256 en hexadecimal) de la lista de publicación tal como quedó escrita. */
+    private String manifestDigest;
+
+    /** F-PUBPROD-R005: el veredicto de la comparación con que se publicó. */
+    private VerdictKind verdictKind;
+
+    /** F-PUBPROD-R005: si la compuerta del último cierre pasó. */
+    private Boolean gatePassed;
+
+    /** F-PUBPROD-R005: los pisos que no se pudieron decidir (vacío cuando se publica). */
+    private List<String> undecidableFloors;
+
+    /** F-PUBPROD-R004: los pasos que viajaron aprobados por José. */
+    private Integer stepsApproved;
+
+    /** F-PUBPROD-R004: los pasos que viajaron sin revisar. */
+    private Integer stepsPending;
+
+    /** F-PUBPROD-R003: los pasos rechazados por José, que no viajaron. */
+    private Integer stepsRejected;
+
+    /** F-PUBPROD-R003: los cambios que salieron porque José rechazó alguno de sus pasos. */
+    private List<String> changesLeftOutRejected;
+
+    /** F-PUBPROD-R003: los cambios que salieron encadenados con un rechazado. */
+    private List<String> changesLeftOutCollateral;
 
     public BatchPublication() {
     }
@@ -119,6 +147,78 @@ public class BatchPublication {
         this.rerecords = rerecords;
     }
 
+    public String getManifestDigest() {
+        return this.manifestDigest;
+    }
+
+    public void setManifestDigest(String manifestDigest) {
+        this.manifestDigest = manifestDigest;
+    }
+
+    public VerdictKind getVerdictKind() {
+        return this.verdictKind;
+    }
+
+    public void setVerdictKind(VerdictKind verdictKind) {
+        this.verdictKind = verdictKind;
+    }
+
+    public Boolean getGatePassed() {
+        return this.gatePassed;
+    }
+
+    public void setGatePassed(Boolean gatePassed) {
+        this.gatePassed = gatePassed;
+    }
+
+    public List<String> getUndecidableFloors() {
+        return this.undecidableFloors;
+    }
+
+    public void setUndecidableFloors(List<String> undecidableFloors) {
+        this.undecidableFloors = undecidableFloors;
+    }
+
+    public Integer getStepsApproved() {
+        return this.stepsApproved;
+    }
+
+    public void setStepsApproved(Integer stepsApproved) {
+        this.stepsApproved = stepsApproved;
+    }
+
+    public Integer getStepsPending() {
+        return this.stepsPending;
+    }
+
+    public void setStepsPending(Integer stepsPending) {
+        this.stepsPending = stepsPending;
+    }
+
+    public Integer getStepsRejected() {
+        return this.stepsRejected;
+    }
+
+    public void setStepsRejected(Integer stepsRejected) {
+        this.stepsRejected = stepsRejected;
+    }
+
+    public List<String> getChangesLeftOutRejected() {
+        return this.changesLeftOutRejected;
+    }
+
+    public void setChangesLeftOutRejected(List<String> changesLeftOutRejected) {
+        this.changesLeftOutRejected = changesLeftOutRejected;
+    }
+
+    public List<String> getChangesLeftOutCollateral() {
+        return this.changesLeftOutCollateral;
+    }
+
+    public void setChangesLeftOutCollateral(List<String> changesLeftOutCollateral) {
+        this.changesLeftOutCollateral = changesLeftOutCollateral;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -132,11 +232,22 @@ public class BatchPublication {
                     && Objects.equals(this.appliedProposalIds, that.appliedProposalIds)
                     && Objects.equals(this.completedTaskIds, that.completedTaskIds)
                     && Objects.equals(this.reopenedTaskIds, that.reopenedTaskIds)
-                    && Objects.equals(this.rerecords, that.rerecords);
+                    && Objects.equals(this.rerecords, that.rerecords)
+                    && Objects.equals(this.manifestDigest, that.manifestDigest)
+                    && Objects.equals(this.verdictKind, that.verdictKind)
+                    && Objects.equals(this.gatePassed, that.gatePassed)
+                    && Objects.equals(this.undecidableFloors, that.undecidableFloors)
+                    && Objects.equals(this.stepsApproved, that.stepsApproved)
+                    && Objects.equals(this.stepsPending, that.stepsPending)
+                    && Objects.equals(this.stepsRejected, that.stepsRejected)
+                    && Objects.equals(this.changesLeftOutRejected, that.changesLeftOutRejected)
+                    && Objects.equals(this.changesLeftOutCollateral, that.changesLeftOutCollateral);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(publishedAt, approvedBy, note, publishedAuditId, publishedPlanId, appliedProposalIds, completedTaskIds, reopenedTaskIds, rerecords);
+        return Objects.hash(publishedAt, approvedBy, note, publishedAuditId, publishedPlanId, appliedProposalIds, completedTaskIds, reopenedTaskIds, rerecords,
+                manifestDigest, verdictKind, gatePassed, undecidableFloors, stepsApproved, stepsPending,
+                stepsRejected, changesLeftOutRejected, changesLeftOutCollateral);
     }
 }

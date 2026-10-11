@@ -43,6 +43,18 @@ class DefaultBatchChangeLedger implements BatchChangeLedger {
 
     static final String REVISER_KIND = "tanda";
 
+    /** Cómo empieza el motivo de un cambio que salió encadenado con otro: «sale con <cambio>: …». */
+    static final String CHAINED_PREFIX = "sale con ";
+
+    /** El cambio con el que salió encadenado un cambio, o {@code null} si su motivo no es de encadenado. */
+    static String chainedWith(String droppedReason) {
+        if (droppedReason == null || !droppedReason.startsWith(CHAINED_PREFIX)) {
+            return null;
+        }
+        int colon = droppedReason.indexOf(':', CHAINED_PREFIX.length());
+        return colon < 0 ? null : droppedReason.substring(CHAINED_PREFIX.length(), colon);
+    }
+
     public DefaultBatchChangeLedger(RevisionArtifactStore artifactStore,
             CourseElementLocator elementLocator) {
         this.artifactStore = artifactStore;
@@ -93,7 +105,7 @@ class DefaultBatchChangeLedger implements BatchChangeLedger {
                 continue;
             }
             if (overlaps(dropped, later) || chained.stream().anyMatch(c -> overlaps(c, later))) {
-                later.setDroppedReason("sale con " + dropped.getChangeId() + ": tocó lo mismo en el mismo ejercicio");
+                later.setDroppedReason(CHAINED_PREFIX + dropped.getChangeId() + ": tocó lo mismo en el mismo ejercicio");
                 chained.add(later);
                 touched.addAll(nodesOf(later));
             }

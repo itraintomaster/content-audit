@@ -132,7 +132,7 @@ public class TrayCmdTest {
         System.setOut(new PrintStream(out, true, StandardCharsets.UTF_8));
         System.setErr(new PrintStream(err, true, StandardCharsets.UTF_8));
         try {
-            int exit = new CommandLine(new TrayCmd(tray, DefaultQuizSentenceConverter.create())).execute(args);
+            int exit = new CommandLine(new TrayCmd(tray, DefaultQuizSentenceConverter.create(), null)).execute(args);
             return new Run(exit, out.toString(StandardCharsets.UTF_8), err.toString(StandardCharsets.UTF_8));
         } finally {
             System.setOut(originalOut);

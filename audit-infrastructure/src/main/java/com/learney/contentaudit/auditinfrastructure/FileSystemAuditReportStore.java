@@ -77,6 +77,11 @@ public class FileSystemAuditReportStore implements AuditReportStore {
     // AuditReportStore
     // -------------------------------------------------------------------------
 
+    /**
+     * F-PUBPROD-R010: the id is the second of the save, or the next free one when an analysis was already saved in that
+     * second, so a save never takes the place of an analysis of before and discarding the id it gave never deletes one.
+     * A save that fails leaves nothing behind: what it wrote of the report or of its digest is deleted.
+     */
     @Override
     public String save(AuditReport report) {
         Path auditsDir = resolveAuditsDir();
@@ -86,21 +91,74 @@ public class FileSystemAuditReportStore implements AuditReportStore {
             throw new AuditPersistenceException("Failed to create audit storage directory: " + e.getMessage(), e);
         }
 
-        String id = TIMESTAMP_FORMATTER.format(Instant.now());
-        Path file = auditsDir.resolve(FILE_PREFIX + id + FILE_SUFFIX);
+        String id = freeId();
+        Path file = reportFile(id);
 
         try {
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(file.toFile(), report);
-        } catch (IOException e) {
-            throw new AuditPersistenceException("Failed to write audit report to " + file + ": " + e.getMessage(), e);
+            try {
+                objectMapper.writerWithDefaultPrettyPrinter().writeValue(file.toFile(), report);
+            } catch (IOException e) {
+                throw new AuditPersistenceException("Failed to write audit report to " + file + ": " + e.getMessage(),
+                        e);
+            }
+            saveDigest(id, report);
+        } catch (RuntimeException e) {
+            try {
+                deleteFiles(id);
+            } catch (RuntimeException leftOver) {
+                e.addSuppressed(leftOver);
+            }
+            throw e;
         }
-        saveDigest(id, report);
         return id;
+    }
+
+    /** The second of now, or the first one after it with neither a report nor a digest saved. */
+    private String freeId() {
+        Instant at = Instant.now();
+        String id = TIMESTAMP_FORMATTER.format(at);
+        while (Files.exists(reportFile(id)) || Files.exists(digestFile(id))) {
+            at = at.plusSeconds(1);
+            id = TIMESTAMP_FORMATTER.format(at);
+        }
+        return id;
+    }
+
+    /**
+     * F-PUBPROD-R010: deletes the report and the digest of that id, the report first, so that neither {@link #list()}
+     * nor {@link #loadLatest()} find it again. Nothing saved under that id is not an error; an id that would reach out of
+     * the store is.
+     */
+    @Override
+    public void discard(String id) {
+        if (id == null || id.isBlank() || id.contains("/") || id.contains("\\") || id.contains("..")) {
+            throw new IllegalArgumentException("No es un id de análisis: " + id);
+        }
+        deleteFiles(id);
+    }
+
+    private void deleteFiles(String id) {
+        for (Path file : List.of(reportFile(id), digestFile(id))) {
+            try {
+                Files.deleteIfExists(file);
+            } catch (IOException e) {
+                throw new AuditPersistenceException("No se pudo descartar el análisis " + id + ": no se pudo borrar "
+                        + file + " (" + e.getMessage() + ")", e);
+            }
+        }
+    }
+
+    private Path reportFile(String id) {
+        return resolveAuditsDir().resolve(FILE_PREFIX + id + FILE_SUFFIX);
+    }
+
+    private Path digestFile(String id) {
+        return resolveDigestsDir().resolve(FILE_PREFIX + id + FILE_SUFFIX);
     }
 
     private void saveDigest(String id, AuditReport report) {
         Path digestsDir = resolveDigestsDir();
-        Path file = digestsDir.resolve(FILE_PREFIX + id + FILE_SUFFIX);
+        Path file = digestFile(id);
         try {
             Files.createDirectories(digestsDir);
             objectMapper.writeValue(file.toFile(), toDigest(id, report));

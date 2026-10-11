@@ -1403,6 +1403,9 @@ class Main {
                             baselineStore, blindSampleService, topicWordLightsQuery, null,
                             preservationFactory.createCheck(), Paths.get(batchCourse), goalBook, analyzerCatalog);
             config.setReviewCache(new com.learney.contentaudit.auditinfrastructure.FileSystemBatchReviewCache(baseDir));
+            // F-PUBPROD-R002: la lista de publicación lleva cada campo como lo guarda producción, con la misma forma
+            // con la que el curso se escribe en disco.
+            config.setProductionDocumentProjector(courseRepository);
             return config;
         });
         batchFactory.set(memoized(() -> new com.learney.contentaudit.revisiondomain.batchengine.DefaultBatchServiceFactory().create(batchConfig.get())));
@@ -1435,7 +1438,7 @@ class Main {
                     runtime);
         })));
         cmd.addSubcommand("batch", batchCommand);            // E · FEAT-TANDA
-        cmd.addSubcommand("tray", new picocli.CommandLine(new TrayCmd(trayService, quizSentenceConverter))); // E · BANDEJA
+        cmd.addSubcommand("tray", new picocli.CommandLine(new TrayCmd(trayService, quizSentenceConverter, batchStore))); // E · BANDEJA
 
         // ----------------------------------------------------------------
         // Step 9: Execute

@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "batchId": "tanda-A1-20261011T120000Z",
+  "planId": "plan-20260929",
+  "level": "A1",
+  "publishedAt": "2026-10-12T03:10:44Z",
+  "approvedBy": "José",
+  "source": {
+    "baselineAuditId": "audit-20260929",
+    "startAuditId": "audit-20261010",
+    "publishedAuditId": null
+  },
+  "verdict": {
+    "kind": "PASSES",
+    "gatePassed": true,
+    "undecidableFloors": [],
+    "brokenFloorGoalIds": [],
+    "detail": null
+  },
+  "reviews": {
+    "approved": 1,
+    "pending": 2,
+    "rejected": 1,
+    "droppedForReviewChangeIds": ["rule-3"],
+    "collateralDroppedChangeIds": ["task-9"]
+  },
+  "documents": [
+    {
+      "collection": "quizTemplates",
+      "id": "67fab6d59930102295341fa5",
+      "nodeId": "67fab6d59930102295341fa5",
+      "changeIds": ["rule-1"],
+      "proposalIds": ["prop-1"],
+      "reviewStatus": "APPROVED",
+      "fields": [
+        {"path": "translation", "before": "Hace calor adentro.", "after": "Hace calor aquí dentro."},
+        {"path": "miniTheory", "before": "Usamos «it's» para el clima.", "after": "Usamos «it's» para hablar del clima."}
+      ]
+    },
+    {
+      "collection": "quizTemplates",
+      "id": "67fab6d59930102295342c7f",
+      "nodeId": "67fab6d59930102295342c7f",
+      "changeIds": ["task-7"],
+      "proposalIds": ["prop-2"],
+      "reviewStatus": "PENDING",
+      "fields": [
+        {
+          "path": "form.sentenceParts",
+          "before": [
+            {"kind": "TEXT", "text": "I am ", "options": null},
+            {"kind": "CLOZE", "text": "", "options": ["at"]},
+            {"kind": "TEXT", "text": " home.", "options": null}
+          ],
+          "after": [
+            {"kind": "TEXT", "text": "She is ", "options": null},
+            {"kind": "CLOZE", "text": "", "options": ["at"]},
+            {"kind": "TEXT", "text": " home.", "options": null}
+          ]
+        }
+      ]
+    },
+    {
+      "collection": "quizTemplates",
+      "id": "67fab6d59930102295342c80",
+      "nodeId": "67fab6d59930102295342c80",
+      "changeIds": ["task-12"],
+      "proposalIds": ["prop-4"],
+      "reviewStatus": "PENDING",
+      "fields": [
+        {"path": "translation", "before": "Estoy en casa.", "after": "Estoy en mi casa."},
+        {
+          "path": "form.items",
+          "before": [
+            {"id": "in", "incidence": 0.0, "label": "in"},
+            {"id": "at", "incidence": 1.0, "label": "at"},
+            {"id": "on", "incidence": 0.0, "label": "on"}
+          ],
+          "after": [
+            {"id": "in", "incidence": 0.0, "label": "in"},
+            {"id": "at", "incidence": 1.0, "label": "at"},
+            {"id": "on", "incidence": 0.0, "label": "to"}
+          ]
+        }
+      ]
+    },
+    {
+      "collection": "knowledges",
+      "id": "400000000000000000000001",
+      "nodeId": "400000000000000000000001",
+      "changeIds": ["task-8"],
+      "proposalIds": ["prop-3"],
+      "reviewStatus": "PENDING",
+      "fields": [
+        {"path": "instructions", "before": "Elige la opcion correcta.", "after": "Elige la opción correcta."}
+      ]
+    }
+  ],
+  "unsupported": [
+    {
+      "changeId": "task-10",
+      "nodeId": "67fab6d59930102295341fb0",
+      "part": "FORM_KIND",
+      "reason": "cambio de tipo de ejercicio: no se publica por script"
+    },
+    {
+      "changeId": "task-13",
+      "nodeId": "67fab6d59930102295342c81",
+      "part": "STATEMENT",
+      "reason": "opción múltiple: sólo se publica el texto de cada opción; cambiar el enunciado, la oración guardada, cuál es la correcta, la forma de elegir o las opciones no se publica por script"
+    }
+  ],
+  "excluded": [
+    {"changeId": "rule-3", "reason": "REVIEW_REJECTED"},
+    {"changeId": "task-9", "reason": "COLLATERAL"},
+    {"changeId": "rule-4", "reason": "RULE_EXCLUDED"},
+    {"changeId": "task-11", "reason": "DROPPED_BY_JOSE"}
+  ],
+  "counts": {
+    "documents": 4,
+    "fields": 6,
+    "byPath": {"translation": 2, "instructions": 1, "miniTheory": 1, "form.sentenceParts": 1, "form.items": 1}
+  }
+}

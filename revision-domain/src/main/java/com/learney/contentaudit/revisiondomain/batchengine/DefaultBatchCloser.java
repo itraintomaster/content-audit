@@ -103,6 +103,9 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
     /** A guard: the gate returns at least one change each round, so the rounds end; this only stops a broken comparator. */
     static final int MAX_ROUNDS = 20;
 
+    /** El motivo con que sale un cambio que la compuerta de la tanda devolvió; publicar no lo cuenta como de José. */
+    static final String RETURNED_BY_GATE = "la compuerta de la tanda lo devolvió: ";
+
     static final int DEFAULT_MAX_ATTEMPTS = 3;
 
     DefaultBatchCloser withPlans(RefinementPlanStore plans, AnalyzerCorrectionCatalog corrections) {
@@ -272,7 +275,7 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
             for (String taskId : BatchBook.list(change.getTaskIds())) {
                 attempts.put(taskId, BatchBook.outcome(batch, taskId).map(BatchTaskOutcome::getAttempts).orElse(0));
             }
-            changeLedger.drop(batch, change.getChangeId(), "la compuerta de la tanda lo devolvió: " + reason, startCourse);
+            changeLedger.drop(batch, change.getChangeId(), RETURNED_BY_GATE + reason, startCourse);
             dropped.add(change.getChangeId());
             for (Map.Entry<String, Integer> entry : attempts.entrySet()) {
                 int spent = entry.getValue() + 1; // returning spends one attempt more

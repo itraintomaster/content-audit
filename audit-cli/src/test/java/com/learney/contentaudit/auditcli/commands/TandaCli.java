@@ -161,6 +161,8 @@ final class TandaCli {
     final Comparison comparison = new Comparison();
     final Blind blind = new Blind();
     final List<AnalyzerRunSelection> published = new ArrayList<>();
+    /** What the analysis of the published course still marks: the tea and the fruit, unless a test says otherwise. */
+    List<Finding> remaining = List.of(teaAnswer(), fruitTie());
     final List<AuditableCourse> vocabularySeeds = new ArrayList<>();
     final BatchService batchService;
     final TrayService trayService;
@@ -193,7 +195,7 @@ final class TandaCli {
             @Override
             public AuditReport runAudit(AuditableCourse auditable, AnalyzerRunSelection selection) {
                 published.add(selection);
-                return report(courses.course, List.of(teaAnswer(), fruitTie()));
+                return report(courses.course, remaining);
             }
 
             @Override
@@ -249,7 +251,7 @@ final class TandaCli {
         }));
         // The locator of the course and the table of parts to fields go null, as in Main: the factory builds the ones
         // of revision-domain.
-        batchService = new DefaultBatchServiceFactory().create(new BatchServiceConfig(batches, plans, reports, active,
+        BatchServiceConfig config = new BatchServiceConfig(batches, plans, reports, active,
                 artifacts, courses, null, value -> new AuditableCourse(report(value, List.of()).getRoot().getChildren()
                         .stream().map(node -> (AuditableMilestone) node.getEntity()).toList()), engine, refiner,
                 new DefaultErrorTaskBriefer(corrections, new DefaultAuditNodeIndexFactory(), renderer), corrections,
@@ -257,7 +259,11 @@ final class TandaCli {
                 (report, auditId, knowledgeId, criteria) -> new TopicWordLights(auditId, knowledgeId,
                         "Afirmativas regulares", CefrLevel.A1, List.of(), List.of()), null,
                 new DefaultPreservationFactory().createCheck(), workdir.resolve("english-course.json"), new Goals(),
-                null));
+                null);
+        // F-PUBPROD-R002: el curso tal como lo guarda producción, como en Main.
+        config.setProductionDocumentProjector(new com.learney.contentaudit.courseinfrastructure.FileSystemCourseRepository(
+                new com.learney.contentaudit.courseinfrastructure.CourseValidatorImpl()));
+        batchService = new DefaultBatchServiceFactory().create(config);
         trayService = new DefaultTrayServiceFactory().create(new TrayServiceConfig(batchService, batches, decisions,
                 blind, panel, new DefaultPanelRunnerFactory(), renderer, new Sha256ContentFingerprinter(), courses,
                 workdir.resolve("english-course.json")));
@@ -267,6 +273,7 @@ final class TandaCli {
     // The command line
     // -------------------------------------------------------------------------
 
+    /** Lo que dejó un comando: cómo terminó y lo que escribió en la salida y en la de errores. */
     record Run(int exit, String out, String err) {
     }
 
@@ -275,10 +282,11 @@ final class TandaCli {
     }
 
     Run tray(String... args) {
-        return run(new TrayCmd(trayService, DefaultQuizSentenceConverter.create()), args);
+        return run(new TrayCmd(trayService, DefaultQuizSentenceConverter.create(), batches), args);
     }
 
-    private static Run run(Object command, String... args) {
+    /** Corre {@code command} con {@code args} y captura las dos salidas: el único capturador de las pruebas de tanda. */
+    static Run run(Object command, String... args) {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         ByteArrayOutputStream err = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -551,6 +559,9 @@ final class TandaCli {
     static final class Comparison implements BatchComparator {
         final List<ProjectionScope> scopes = new ArrayList<>();
 
+        /** What F says of each scope, when a test changes it: «pasa» unless said otherwise (F-PUBPROD-R005). */
+        java.util.function.Function<ProjectionScope, BatchVerdict> verdict;
+
         @Override
         public BatchComparison compare(Path coursePath, ProjectionScope scope) {
             scopes.add(scope);
@@ -572,8 +583,9 @@ final class TandaCli {
             comparison.setChanges(outcomes);
             comparison.setRows(new ArrayList<>());
             comparison.setBreaches(new ArrayList<>());
-            comparison.setVerdict(new BatchVerdict(VerdictKind.PASSES, new ArrayList<>(), new ArrayList<>(), null,
-                    "Pasa: se cumplen los pisos y no vuelve ningún cambio.", null));
+            comparison.setVerdict(verdict != null ? verdict.apply(scope) : new BatchVerdict(VerdictKind.PASSES,
+                    new ArrayList<>(), new ArrayList<>(), null, "Pasa: se cumplen los pisos y no vuelve ningún cambio.",
+                    null));
             return comparison;
         }
     }
@@ -688,6 +700,11 @@ final class TandaCli {
         public Optional<AuditDigest> loadDigest(String id) {
             return Optional.empty();
         }
+
+        @Override
+        public void discard(String id) {
+            saved.remove(id);
+        }
     }
 
     /** The plans, in memory. */
@@ -711,6 +728,11 @@ final class TandaCli {
         @Override
         public Optional<RefinementPlan> loadLatest() {
             return saved.values().stream().reduce((a, b) -> b);
+        }
+
+        @Override
+        public void discard(String id) {
+            saved.remove(id);
         }
     }
 }

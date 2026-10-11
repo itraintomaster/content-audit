@@ -135,10 +135,13 @@ se decidió, no por el id del ejercicio, que sobrevive a los cambios.
 
 > José publica la tanda con un solo OK, que sólo se acepta si, con todas sus decisiones ya incorporadas, el veredicto de
 > la tanda es «pasa» ([F-METAS-R008](#F-METAS-R008)) y la compuerta de «no empeorar» pasó ([F-NOEMP-R005](#F-NOEMP-R005) a
-> [F-NOEMP-R007](#F-NOEMP-R007)). La publicación registra quién, cuándo y qué entró. Aprobar de a una una propuesta de
+> [F-NOEMP-R007](#F-NOEMP-R007)). Con «no se puede decidir» tampoco se acepta, aunque la compuerta pase, y la negativa
+> nombra el veredicto ([F-PUBPROD-R005](#F-PUBPROD-R005)). La publicación registra quién, cuándo y qué entró, y deja la
+> lista de lo que puede llegar a producción ([F-PUBPROD-R001](#F-PUBPROD-R001)). Aprobar de a una una propuesta de
 > la tanda abierta se rechaza: entra al curso sólo al publicar ([F-TANDA-R009](#F-TANDA-R009)).
 
-Sacar un cambio de la tanda sigue siendo rechazarlo ([F-TANDA-R008](#F-TANDA-R008)). El mensaje es [ASSUMPTION].
+Sacar un cambio de la tanda sigue siendo rechazarlo ([F-TANDA-R008](#F-TANDA-R008)), y lo que José rechazó en la revisión
+sale al publicar ([F-PUBPROD-R003](#F-PUBPROD-R003)). El mensaje es [ASSUMPTION].
 
 **Error**: "La propuesta <id> es de la tanda <id>: entra al curso al publicar la tanda."
 

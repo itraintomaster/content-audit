@@ -1,8 +1,12 @@
 package com.learney.contentaudit.auditinfrastructure.batchstore;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.revisiondomain.batch.BatchPublication;
@@ -13,6 +17,12 @@ import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
+import com.learney.contentaudit.revisiondomain.publication.ManifestCounts;
+import com.learney.contentaudit.revisiondomain.publication.ManifestSource;
+import com.learney.contentaudit.revisiondomain.publication.ManifestVerdict;
+import com.learney.contentaudit.revisiondomain.publication.PublicationManifest;
+import com.learney.contentaudit.revisiondomain.publication.ReviewTally;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
 import com.learney.contentaudit.revisiondomain.panel.PanelDecision;
@@ -22,8 +32,11 @@ import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.security.MessageDigest;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HexFormat;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -134,6 +147,165 @@ public class FileSystemBatchStoreTest {
         assertEquals(List.of(file.getFileName().toString()), names(file.getParent()), "no half file behind");
     }
 
+
+    @Test
+    @DisplayName("should save the publication list of a batch and give the fingerprint of the exact bytes written, replacing it while the batch is not published")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R001")
+    public void shouldSaveThePublicationListAndGiveTheFingerprintOfTheExactBytesWritten() throws Exception {
+        FileSystemBatchStore store = new FileSystemBatchStore(workdir);
+        CorrectionBatch batch = batch("tanda-A1-20261011T120000Z", Instant.parse("2026-10-11T12:00:00Z"));
+        batch.setStatus(BatchStatus.CLOSED);
+        store.save(batch);
+
+        String first = store.savePublicationManifest(batch.getId(), list(batch.getId(), "primera"));
+
+        Path file = workdir.resolve(".content-audit/batch-publications/tanda-A1-20261011T120000Z/manifest.json");
+        assertTrue(Files.isRegularFile(file), "la lista queda junto al registro de la tanda");
+        assertEquals(sha256(Files.readAllBytes(file)), first, "la huella es la de los bytes exactos del archivo");
+        assertEquals(64, first.length());
+        assertEquals(file.toString(), store.publicationManifestLocation(batch.getId()).orElseThrow());
+        assertEquals(list(batch.getId(), "primera"), new FileSystemBatchStore(workdir)
+                .publicationManifest(batch.getId()).orElseThrow(), "se lee de vuelta");
+
+        String second = store.savePublicationManifest(batch.getId(), list(batch.getId(), "segunda"));
+
+        assertFalse(first.equals(second), "una lista que cambió ya no tiene la misma huella");
+        assertEquals(sha256(Files.readAllBytes(file)), second);
+        assertEquals(List.of("manifest.json"), names(file.getParent()), "ningún archivo a medias");
+        assertTrue(store.publicationManifest("otra-tanda").isEmpty());
+        assertTrue(store.publicationManifestLocation("otra-tanda").isEmpty());
+        assertThrows(IllegalArgumentException.class, () -> store.savePublicationManifest("../afuera",
+                list("afuera", "x")));
+    }
+
+    @Test
+    @DisplayName("should never rewrite the publication list of a batch that is already published")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R001")
+    public void shouldNeverRewriteThePublicationListOfABatchThatIsAlreadyPublished() throws Exception {
+        FileSystemBatchStore store = new FileSystemBatchStore(workdir);
+        CorrectionBatch batch = batch("tanda-A1-20261011T120000Z", Instant.parse("2026-10-11T12:00:00Z"));
+        store.save(batch);
+        String digest = store.savePublicationManifest(batch.getId(), list(batch.getId(), "la publicada"));
+        batch.setStatus(BatchStatus.PUBLISHED);
+        store.save(batch);
+        Path file = workdir.resolve(".content-audit/batch-publications/tanda-A1-20261011T120000Z/manifest.json");
+
+        IllegalStateException refusal = assertThrows(IllegalStateException.class,
+                () -> store.savePublicationManifest(batch.getId(), list(batch.getId(), "otra")));
+
+        assertTrue(refusal.getMessage().contains("ya está publicada"), refusal.getMessage());
+        assertEquals(digest, sha256(Files.readAllBytes(file)), "la lista de la tanda publicada sigue igual");
+    }
+
+    @Test
+    @DisplayName("should read the shared golden list and write it again with the same keys, order and values")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R001")
+    @Tag("F-PUBPROD-R002")
+    public void shouldReadTheSharedGoldenListAndWriteItAgainWithTheSameKeysOrderAndValues() throws Exception {
+        Path golden = Path.of(System.getProperty("basedir", ".")).resolve(
+                "../revision-domain/src/test/resources/publication/manifest-golden.json").normalize();
+        Path copied = workdir.resolve(".content-audit/batch-publications/tanda-golden/manifest.json");
+        Files.createDirectories(copied.getParent());
+        Files.copy(golden, copied);
+        FileSystemBatchStore store = new FileSystemBatchStore(workdir);
+
+        PublicationManifest read = store.publicationManifest("tanda-golden").orElseThrow();
+        store.savePublicationManifest("tanda-copia", read);
+
+        ObjectMapper mapper = new ObjectMapper();
+        assertSameTree(mapper.readTree(golden.toFile()), mapper.readTree(workdir.resolve(
+                ".content-audit/batch-publications/tanda-copia/manifest.json").toFile()), "la lista");
+    }
+
+    @Test
+    @DisplayName("should keep in the record of the batch the keys the step to production reads, and read an old batch without them")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R001")
+    @Tag("F-PUBPROD-R005")
+    public void shouldKeepInTheRecordOfTheBatchTheKeysTheStepToProductionReads() throws Exception {
+        FileSystemBatchStore store = new FileSystemBatchStore(workdir);
+        CorrectionBatch batch = batch("tanda-A1-20261011T120000Z", Instant.parse("2026-10-11T12:00:00Z"));
+        batch.setStatus(BatchStatus.PUBLISHED);
+        BatchPublication publication = new BatchPublication(Instant.parse("2026-10-12T03:10:44Z"), "José", null,
+                "audit-2", "plan-2", List.of(), List.of(), List.of(), List.of());
+        publication.setManifestDigest("ab".repeat(32));
+        publication.setVerdictKind(VerdictKind.PASSES);
+        publication.setGatePassed(true);
+        publication.setUndecidableFloors(List.of());
+        publication.setStepsApproved(1);
+        publication.setStepsPending(2);
+        publication.setStepsRejected(1);
+        publication.setChangesLeftOutRejected(List.of("rule-3"));
+        publication.setChangesLeftOutCollateral(List.of("task-9"));
+        batch.setPublication(publication);
+        store.save(batch);
+
+        JsonNode record = new ObjectMapper().readTree(workdir.resolve(
+                ".content-audit/batches/tanda-A1-20261011T120000Z.json").toFile());
+
+        assertEquals("PUBLISHED", record.get("status").asText());
+        assertEquals("plan-20260929", record.get("planId").asText());
+        JsonNode written = record.get("publication");
+        assertEquals("ab".repeat(32), written.get("manifestDigest").asText());
+        assertEquals("PASSES", written.get("verdictKind").asText());
+        assertTrue(written.get("gatePassed").isBoolean() && written.get("gatePassed").asBoolean());
+        assertTrue(written.get("undecidableFloors").isArray() && written.get("undecidableFloors").isEmpty());
+        assertEquals(publication, store.load(batch.getId()).orElseThrow().getPublication(), "se lee de vuelta entera");
+
+        // Una tanda publicada antes de la lista: su registro no tiene ninguna de las claves nuevas.
+        com.fasterxml.jackson.databind.node.ObjectNode old = (com.fasterxml.jackson.databind.node.ObjectNode) record
+                .deepCopy();
+        old.put("id", "tanda-vieja");
+        ((com.fasterxml.jackson.databind.node.ObjectNode) old.get("publication")).remove(List.of("manifestDigest",
+                "verdictKind", "gatePassed", "undecidableFloors", "stepsApproved", "stepsPending", "stepsRejected",
+                "changesLeftOutRejected", "changesLeftOutCollateral"));
+        Files.writeString(workdir.resolve(".content-audit/batches/tanda-vieja.json"), old.toPrettyString());
+        BatchPublication oldPublication = store.load("tanda-vieja").orElseThrow().getPublication();
+        assertNull(oldPublication.getManifestDigest(), "una tanda vieja no tiene lista");
+        assertNull(oldPublication.getVerdictKind());
+        assertNull(oldPublication.getGatePassed());
+        assertEquals("audit-2", oldPublication.getPublishedAuditId());
+    }
+
+    private static PublicationManifest list(String batchId, String detail) {
+        return new PublicationManifest(PublicationManifest.SCHEMA, batchId, "plan-20260929", "A1",
+                "2026-10-12T03:10:44Z", "José", new ManifestSource("audit-20260929", "audit-20261010", null),
+                new ManifestVerdict(VerdictKind.PASSES, true, List.of(), List.of(), detail),
+                new ReviewTally(0, 0, 0, List.of(), List.of()), List.of(), List.of(), List.of(),
+                new ManifestCounts(0, 0, Map.of()));
+    }
+
+    private static String sha256(byte[] bytes) throws Exception {
+        return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(bytes));
+    }
+
+    /** Igualdad de árbol que además exige el mismo orden de claves en cada objeto. */
+    private static void assertSameTree(JsonNode expected, JsonNode actual, String where) {
+        if (expected.isObject()) {
+            assertTrue(actual.isObject(), where + " debería ser un objeto");
+            List<String> expectedKeys = new ArrayList<>();
+            expected.fieldNames().forEachRemaining(expectedKeys::add);
+            List<String> actualKeys = new ArrayList<>();
+            actual.fieldNames().forEachRemaining(actualKeys::add);
+            assertEquals(expectedKeys, actualKeys, "las claves de " + where + ", en orden");
+            for (String key : expectedKeys) {
+                assertSameTree(expected.get(key), actual.get(key), where + "." + key);
+            }
+        } else if (expected.isArray()) {
+            assertTrue(actual.isArray(), where + " debería ser una lista");
+            assertEquals(expected.size(), actual.size(), "el largo de " + where);
+            Iterator<JsonNode> e = expected.elements();
+            Iterator<JsonNode> a = actual.elements();
+            for (int i = 0; e.hasNext(); i++) {
+                assertSameTree(e.next(), a.next(), where + "[" + i + "]");
+            }
+        } else {
+            assertEquals(expected, actual, where);
+        }
+    }
 
     @TempDir
     Path workdir;
