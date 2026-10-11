@@ -161,6 +161,8 @@ final class TandaCli {
     final Comparison comparison = new Comparison();
     final Blind blind = new Blind();
     final List<AnalyzerRunSelection> published = new ArrayList<>();
+    /** What the analysis of the published course still marks: the tea and the fruit, unless a test says otherwise. */
+    List<Finding> remaining = List.of(teaAnswer(), fruitTie());
     final List<AuditableCourse> vocabularySeeds = new ArrayList<>();
     final BatchService batchService;
     final TrayService trayService;
@@ -193,7 +195,7 @@ final class TandaCli {
             @Override
             public AuditReport runAudit(AuditableCourse auditable, AnalyzerRunSelection selection) {
                 published.add(selection);
-                return report(courses.course, List.of(teaAnswer(), fruitTie()));
+                return report(courses.course, remaining);
             }
 
             @Override
@@ -279,7 +281,7 @@ final class TandaCli {
     }
 
     Run tray(String... args) {
-        return run(new TrayCmd(trayService, DefaultQuizSentenceConverter.create()), args);
+        return run(new TrayCmd(trayService, DefaultQuizSentenceConverter.create(), batches), args);
     }
 
     private static Run run(Object command, String... args) {
@@ -555,6 +557,9 @@ final class TandaCli {
     static final class Comparison implements BatchComparator {
         final List<ProjectionScope> scopes = new ArrayList<>();
 
+        /** What F says of each scope, when a test changes it: «pasa» unless said otherwise (F-PUBPROD-R005). */
+        java.util.function.Function<ProjectionScope, BatchVerdict> verdict;
+
         @Override
         public BatchComparison compare(Path coursePath, ProjectionScope scope) {
             scopes.add(scope);
@@ -576,8 +581,9 @@ final class TandaCli {
             comparison.setChanges(outcomes);
             comparison.setRows(new ArrayList<>());
             comparison.setBreaches(new ArrayList<>());
-            comparison.setVerdict(new BatchVerdict(VerdictKind.PASSES, new ArrayList<>(), new ArrayList<>(), null,
-                    "Pasa: se cumplen los pisos y no vuelve ningún cambio.", null));
+            comparison.setVerdict(verdict != null ? verdict.apply(scope) : new BatchVerdict(VerdictKind.PASSES,
+                    new ArrayList<>(), new ArrayList<>(), null, "Pasa: se cumplen los pisos y no vuelve ningún cambio.",
+                    null));
             return comparison;
         }
     }

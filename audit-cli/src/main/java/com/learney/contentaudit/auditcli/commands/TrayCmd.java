@@ -11,12 +11,17 @@ import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceConverter;
 import com.learney.contentaudit.revisiondomain.batch.BatchNotPublishableException;
 import com.learney.contentaudit.revisiondomain.batch.BatchPublication;
+import com.learney.contentaudit.revisiondomain.batch.BatchStore;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
 import com.learney.contentaudit.revisiondomain.batch.NoOpenBatchException;
 import com.learney.contentaudit.revisiondomain.blindsample.BlindPairView;
 import com.learney.contentaudit.revisiondomain.blindsample.PairAnswer;
 import com.learney.contentaudit.revisiondomain.blindsample.StudentSide;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
+import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
+import com.learney.contentaudit.revisiondomain.publication.ManifestUnsupported;
+import com.learney.contentaudit.revisiondomain.publication.PublicationManifest;
 import com.learney.contentaudit.revisiondomain.tray.Tray;
 import com.learney.contentaudit.revisiondomain.tray.TrayAnswer;
 import com.learney.contentaudit.revisiondomain.tray.TrayItem;
@@ -74,6 +79,9 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
 
     private final QuizSentenceConverter quizSentenceConverter;
 
+    /** De dónde se lee la lista de publicación de la tanda para nombrarla al publicar (F-PUBPROD-R001); puede faltar. */
+    private final BatchStore publications;
+
     @Parameters(index = "0", description = "show, answer or publish")
     private String action;
 
@@ -108,8 +116,14 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
             Map.entry("AMBOS", PairAnswer.BOTH_WRONG), Map.entry("BOTH_WRONG", PairAnswer.BOTH_WRONG));
 
     public TrayCmd(TrayService trayService, QuizSentenceConverter quizSentenceConverter) {
+        this(trayService, quizSentenceConverter, null);
+    }
+
+    /** Con {@code publications}, al publicar nombra la lista que dejó la tanda: dónde quedó y qué lleva. */
+    public TrayCmd(TrayService trayService, QuizSentenceConverter quizSentenceConverter, BatchStore publications) {
         this.trayService = trayService;
         this.quizSentenceConverter = quizSentenceConverter;
+        this.publications = publications;
     }
 
     @Override
@@ -169,15 +183,109 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
             System.err.println("Error: " + e.getMessage());
             return 1;
         }
-        System.out.println("Publicada por " + publication.getApprovedBy() + ": entraron "
-                + list(publication.getAppliedProposalIds()).size() + " propuestas; tareas completadas "
-                + list(publication.getCompletedTaskIds()).size() + ", reabiertas "
-                + list(publication.getReopenedTaskIds()).size() + "; audios por regrabar "
-                + list(publication.getRerecords()).size() + ". Análisis publicado: " + publication.getPublishedAuditId()
-                + " (plan " + publication.getPublishedPlanId() + "). Llevar el curso a producción y grabar los audios"
-                + " siguen siendo pasos de José.");
+        StringBuilder out = new StringBuilder();
+        out.append("Publicada por ").append(publication.getApprovedBy()).append(": entraron ")
+                .append(list(publication.getAppliedProposalIds()).size()).append(" propuestas; tareas completadas ")
+                .append(list(publication.getCompletedTaskIds()).size()).append(", reabiertas ")
+                .append(list(publication.getReopenedTaskIds()).size()).append("; audios por regrabar ")
+                .append(list(publication.getRerecords()).size()).append(". Análisis publicado: ")
+                .append(publication.getPublishedAuditId()).append(" (plan ").append(publication.getPublishedPlanId())
+                .append(").\n");
+        out.append(publicationSummary(publication));
+        out.append("Llevar el curso a producción y grabar los audios siguen siendo pasos de José; a producción sólo va"
+                + " lo que dice la lista.");
+        System.out.println(out);
         return 0;
     }
+
+    /**
+     * F-PUBPROD R001, R004 y R005, lo que José tiene que ver al publicar: el veredicto y la compuerta con los que se
+     * publicó, cuántos pasos aprobó, cuántos viajaron sin revisar y cuántos rechazó —con los cambios que quedaron afuera
+     * por eso y los encadenados—, y la lista que dejó la tanda: dónde quedó, su huella, cuántos documentos y campos lleva
+     * y cuántos cambios no tienen lugar en producción. Una tanda publicada antes de que hubiera lista no muestra nada de
+     * esto.
+     */
+    private String publicationSummary(BatchPublication publication) {
+        StringBuilder out = new StringBuilder();
+        if (publication.getVerdictKind() != null || publication.getGatePassed() != null) {
+            out.append("Veredicto de F: ").append(verdictName(publication.getVerdictKind()))
+                    .append("; compuerta de «no empeorar»: ").append(publication.getGatePassed() == null ? "sin dato"
+                    : publication.getGatePassed() ? "pasa" : "no pasa").append(".\n");
+        }
+        if (!list(publication.getUndecidableFloors()).isEmpty()) {
+            out.append("Pisos sin decidir: ").append(String.join(", ", publication.getUndecidableFloors())).append(".\n");
+        }
+        if (publication.getStepsApproved() != null || publication.getStepsUnreviewed() != null
+                || publication.getStepsRejected() != null) {
+            int approved = count(publication.getStepsApproved());
+            int unreviewed = count(publication.getStepsUnreviewed());
+            int rejected = count(publication.getStepsRejected());
+            out.append("Revisión de Correcciones: ").append(approved)
+                    .append(approved == 1 ? " paso aprobado, " : " pasos aprobados, ").append(unreviewed)
+                    .append(unreviewed == 1 ? " sin revisar (viaja igual), " : " sin revisar (viajan igual), ")
+                    .append(rejected).append(rejected == 1 ? " rechazado (queda afuera).\n"
+                    : " rechazados (quedan afuera).\n");
+        }
+        if (!list(publication.getChangesLeftOutRejected()).isEmpty()) {
+            out.append("Afuera por rechazo: ").append(String.join(", ", publication.getChangesLeftOutRejected()))
+                    .append(".\n");
+        }
+        if (!list(publication.getChangesLeftOutChained()).isEmpty()) {
+            out.append("Afuera encadenados (tocaban lo mismo en el mismo ejercicio que un rechazado): ")
+                    .append(String.join(", ", publication.getChangesLeftOutChained())).append(".\n");
+        }
+        String digest = publication.getManifestDigest();
+        if (digest == null || digest.isBlank()) {
+            return out.toString();
+        }
+        CorrectionBatch published = publishedWith(digest);
+        String location = published != null
+                ? publications.publicationManifestLocation(published.getId()).orElse(null) : null;
+        out.append("Lista de publicación: ").append(location != null ? location + " " : "")
+                .append("(huella sha256 ").append(digest).append(").\n");
+        PublicationManifest manifest = published != null
+                ? publications.publicationManifest(published.getId()).orElse(null) : null;
+        if (manifest != null) {
+            List<ManifestUnsupported> unsupported = list(manifest.unsupported());
+            int documents = manifest.counts() != null ? manifest.counts().documents() : list(manifest.documents()).size();
+            int fields = manifest.counts() != null ? manifest.counts().fields() : 0;
+            out.append("En la lista: ").append(documents).append(documents == 1 ? " documento, " : " documentos, ")
+                    .append(fields).append(fields == 1 ? " campo" : " campos").append("; sin lugar en producción: ")
+                    .append(unsupported.size()).append(unsupported.isEmpty() ? ".\n" : ":\n");
+            for (ManifestUnsupported each : unsupported) {
+                out.append("  ").append(each.changeId()).append(" en ").append(each.nodeId()).append(" (")
+                        .append(each.part()).append("): ").append(each.reason()).append('\n');
+            }
+        }
+        return out.toString();
+    }
+
+    /** La tanda que se acaba de publicar, si es la que guardó esta huella: la lista se nombra sólo si es la suya. */
+    private CorrectionBatch publishedWith(String digest) {
+        if (publications == null) {
+            return null;
+        }
+        CorrectionBatch latest = publications.latestPublished().orElse(null);
+        return latest != null && latest.getPublication() != null
+                && digest.equals(latest.getPublication().getManifestDigest()) ? latest : null;
+    }
+
+    private static String verdictName(VerdictKind kind) {
+        if (kind == null) {
+            return "sin veredicto";
+        }
+        return switch (kind) {
+            case PASSES -> "pasa";
+            case FAILS -> "no pasa";
+            case UNDECIDABLE -> "no se puede decidir";
+            case BLIND_SAMPLE_MISSING -> "falta la muestra ciega";
+        };
+    }
+
+    private static int count(Integer value) {
+        return value != null ? value : 0;
+    }
+
 
     @Override
     public Integer call() {
