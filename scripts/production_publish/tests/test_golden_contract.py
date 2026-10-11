@@ -1,8 +1,11 @@
 """El contrato con el lado Java: el golden de la lista (esquema 1) que escribe Java.
 
-El golden vive del lado Java (revision-domain/src/test/resources/publication/manifest-golden.json)
-y llega a esta rama al juntarlas; mientras tanto la prueba se saltea diciendo por qué. Para
-correrla contra otra copia (por ejemplo, la del worktree de Java), PUBPROD_GOLDEN=<ruta>.
+El golden es un solo archivo para los dos lados: vive en
+revision-domain/src/test/resources/publication/manifest-golden.json, y del lado Java lo leen
+PublicationManifestContractTest (escribe la misma lista y la compara clave por clave) y
+FileSystemBatchStoreTest (lo lee y lo vuelve a escribir igual). Si cambia el contrato, cambia ahí
+y las dos suites lo ven. Para correr estas pruebas contra otra copia, PUBPROD_GOLDEN=<ruta>.
+Si el archivo no está (alguien lo borró o lo movió), las pruebas se saltean diciendo dónde lo buscaron.
 
 Las claves están escritas acá a mano, a propósito: son el contrato, no lo que dice el lector.
 """
@@ -10,7 +13,8 @@ Las claves están escritas acá a mano, a propósito: son el contrato, no lo que
 import os
 import unittest
 
-from production_publish import manifest_reader
+from production_publish import manifest_reader, write_plan
+from production_publish.tests import fakes
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 GOLDEN = os.environ.get("PUBPROD_GOLDEN") or os.path.join(
@@ -26,6 +30,11 @@ FIELD_KEYS = {"path", "before", "after"}
 UNSUPPORTED_KEYS = {"changeId", "nodeId", "part", "reason"}
 EXCLUDED_KEYS = {"changeId", "reason"}
 COUNTS_KEYS = {"documents", "fields", "byPath"}
+
+
+def missing_golden():
+    return ("no está el golden de la lista en %s: o lo borraron o lo movieron (se lo puede apuntar con "
+            "PUBPROD_GOLDEN=<ruta>)" % GOLDEN)
 
 
 def check_contract(test, manifest):
@@ -49,11 +58,40 @@ def check_contract(test, manifest):
 class GoldenContractTest(unittest.TestCase):
     def test_F_PUBPROD_R001_el_golden_del_lado_java_cumple_el_contrato(self):
         if not os.path.isfile(GOLDEN):
-            self.skipTest("todavía no existe el golden del lado Java (%s); se valida cuando se junten las ramas "
-                          "o con PUBPROD_GOLDEN=<ruta>" % GOLDEN)
+            self.skipTest(missing_golden())
         with open(GOLDEN, "rb") as fh:
             manifest = manifest_reader._strict_json(fh.read(), "el golden")
         check_contract(self, manifest)
+
+    def test_F_PUBPROD_R006_lo_que_declara_el_golden_se_ensaya_limpio_contra_una_base_con_su_antes(self):
+        """Lo que Java declara, Python lo puede escribir: ni bloqueos ni derivas con la base en el «antes»."""
+        if not os.path.isfile(GOLDEN):
+            self.skipTest(missing_golden())
+        with open(GOLDEN, "rb") as fh:
+            manifest = manifest_reader._strict_json(fh.read(), "el golden")
+        plan = write_plan.build(manifest, fakes.FakeStore(base_with_before(manifest)), skip_drift=False)
+        self.assertEqual([d.describe() for d in plan.problems()], [])
+        counts = plan.counts()
+        self.assertEqual(counts["documentsToWrite"], manifest["counts"]["documents"])
+        self.assertEqual(counts["fieldsToWrite"], manifest["counts"]["fields"])
+        self.assertEqual(counts["byPath"], manifest["counts"]["byPath"])
+
+
+def base_with_before(manifest):
+    """Una base falsa con el «antes» de cada campo; el ejercicio que trae opciones es de opción múltiple."""
+    data = {collection: {} for collection in manifest_reader.COLLECTIONS}
+    data[write_plan.INSTANCES] = {}  # sin instancias: las copias embebidas no cuentan acá
+    for entry in manifest["documents"]:
+        doc = {"_id": entry["id"]}
+        for field in entry["fields"]:
+            fakes.set_path(doc, field["path"], field["before"])
+        if entry["collection"] == manifest_reader.QUIZ_TEMPLATES:
+            kind = ("MULTIPLE_CHOICE" if any(f["path"] == "form.items" for f in entry["fields"])
+                    else "FILL_GAPS")
+            doc["kind"] = kind
+            fakes.set_path(doc, "form.kind", kind)
+        data[entry["collection"]][entry["id"]] = doc
+    return data
 
 
 if __name__ == "__main__":
