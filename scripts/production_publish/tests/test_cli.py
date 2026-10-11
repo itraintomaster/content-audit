@@ -205,7 +205,7 @@ class DryRunRequiredTest(CliTestCase):
 
     def test_F_PUBPROD_R009_si_el_destino_nombrado_no_es_el_real_no_escribe(self):
         self.run_cli()
-        for named in ("learney-cluster.6wxv5.mongodb.net/learney", fakes.HOST + "/otra", "localhost/learney"):
+        for named in (fakes.OTHER_DESTINATION, fakes.HOST + "/otra", "localhost/learney"):
             with self.subTest(named=named):
                 code, out, factory = self.run_cli("--apply", "--expect-destination", named)
                 self.assertRefusedWithoutConnecting(code, out, factory, "DESTINATION_MISMATCH")

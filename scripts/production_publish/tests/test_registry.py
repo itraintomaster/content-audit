@@ -2,6 +2,7 @@
 
 import json
 import os
+import re
 import unittest
 
 from production_publish import registry
@@ -51,6 +52,27 @@ class DestinationTest(unittest.TestCase):
             with self.subTest(bad=bad):
                 with self.assertRaises(ValueError):
                     parse_expected_destination(bad)
+
+    def test_F_PUBPROD_R009_ningun_archivo_nombra_un_servidor_de_verdad(self):
+        # Un servidor de Atlas tiene la forma <nombre>.<5 letras o números>.mongodb.net. En el
+        # código, las pruebas y los ejemplos solo pueden aparecer los inventados de fakes.
+        atlas = re.compile(r"[a-z0-9-]+\.[a-z0-9]{5}\.mongodb\.net", re.IGNORECASE)
+        invented = {fakes.HOST, fakes.OTHER_DESTINATION.split("/")[0]}
+        package = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        scripts = os.path.dirname(package)
+        paths = [os.path.join(scripts, name) for name in
+                 ("publish_revisions.py", "publish_knowledge_labels.py", "publish_knowledge_instructions.py")]
+        for root, dirs, files in os.walk(package):
+            dirs[:] = [d for d in dirs if d != "__pycache__"]
+            paths += [os.path.join(root, f) for f in files if f.endswith((".py", ".json", ".sh", ".md"))]
+        found = {}
+        for path in paths:
+            with open(path, encoding="utf-8") as fh:
+                hosts = {h.lower() for h in atlas.findall(fh.read())} - invented
+            if hosts:
+                found[os.path.relpath(path, scripts)] = sorted(hosts)
+        self.assertGreater(len(paths), 10)
+        self.assertEqual(found, {})
 
 
 class AppendOnlyTest(unittest.TestCase):

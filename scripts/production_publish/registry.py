@@ -83,7 +83,7 @@ def parse_expected_destination(text):
     """`host/db` tal como lo escribe José en --expect-destination."""
     if not isinstance(text, str) or "/" not in text:
         raise ValueError("--expect-destination tiene que ser servidor/base, por ejemplo "
-                         "learney-cluster.6wxv5.mongodb.net/learney")
+                         "cluster-ejemplo.mongodb.net/learney")
     host, _, db = text.rpartition("/")
     names = [h.strip().lower() for h in host.split(",") if h.strip()]
     host = ",".join(names)

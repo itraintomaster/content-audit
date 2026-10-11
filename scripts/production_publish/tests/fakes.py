@@ -35,6 +35,8 @@ URI = ("mongodb+srv://%s:%s@cluster-falso.abc12.mongodb.net/?retryWrites=true&au
 HOST = "cluster-falso.abc12.mongodb.net"
 DB = "learney"
 DESTINATION = HOST + "/" + DB
+# Otro servidor inventado, con la misma forma que el real: nombrarlo no tiene que alcanzar.
+OTHER_DESTINATION = "otro-cluster-falso.xyz98.mongodb.net/" + DB
 
 
 def example_manifest():
