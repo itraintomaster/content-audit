@@ -199,7 +199,8 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
             if (declared != null) {
                 // F-QINST-R018, for every judge: the declared set is consulted again, the rest only
                 // reuses whatever it has.
-                modes.add(hits.isEmpty() ? EvaluationRequestMode.REUSE_ONLY : EvaluationRequestMode.PREFER_NEW);
+                modes.add(hits.isEmpty() ? EvaluationRequestMode.REUSE_ONLY
+                        : purpose == EvaluationRunPurpose.REANALYSIS ? EvaluationRequestMode.FORCE : EvaluationRequestMode.PREFER_NEW);
             } else if (policy != null && policy.isReevaluate() && inScope(unit, policy.getReevaluationScope())) {
                 // F-QINST-R012: an explicit re-evaluation by area (or of the whole course).
                 modes.add(EvaluationRequestMode.FORCE);

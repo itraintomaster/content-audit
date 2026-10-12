@@ -27,13 +27,21 @@ public final class SelectiveCorrection {
     public record State(String batchId, int correctionRevision, int contentVersion, String analyzer,
             String fingerprint, String judgeVersion, String runtime, boolean allowed, String reason,
             int reached, int evaluated, int missing, int pendingQueries, int reusedQueries,
-            List<Task> tasks, List<Run> runs, String displayName) {
+            List<Task> tasks, List<Run> runs, String displayName, List<ReanalysisState> scopes) {
+        public State(String batchId, int correctionRevision, int contentVersion, String analyzer,
+                String fingerprint, String judgeVersion, String runtime, boolean allowed, String reason,
+                int reached, int evaluated, int missing, int pendingQueries, int reusedQueries,
+                List<Task> tasks, List<Run> runs, String displayName) {
+            this(batchId, correctionRevision, contentVersion, analyzer, fingerprint, judgeVersion, runtime, allowed,
+                    reason, reached, evaluated, missing, pendingQueries, reusedQueries, tasks, runs, displayName, List.of());
+        }
         public State(String batchId, int correctionRevision, int contentVersion, String analyzer,
                 String fingerprint, String judgeVersion, String runtime, boolean allowed, String reason,
                 int reached, int evaluated, int missing, int pendingQueries, int reusedQueries,
                 List<Task> tasks, List<Run> runs) {
             this(batchId, correctionRevision, contentVersion, analyzer, fingerprint, judgeVersion, runtime,
-                    allowed, reason, reached, evaluated, missing, pendingQueries, reusedQueries, tasks, runs, analyzer);
+                    allowed, reason, reached, evaluated, missing, pendingQueries, reusedQueries, tasks, runs, analyzer, List.of());
         }
     }
+    public record ReanalysisState(String state, int quizzes, int queries, int sharedQuizzes) {}
 }

@@ -92,6 +92,32 @@ class SelectiveCorrectionServiceTest {
                 5, "context", "v1", cap, tasks, approved, "human");
     }
     State analyze() { return service.execute(req("analyze", "analysis", List.of(), 2, false)); }
+    @Test void bothStatesShareOneCapReuseOnlyFreshSharedInputsAndDoNotAutomaticallyReplay() {
+        var current = mock(CurrentAnalysisService.class);
+        when(current.supportedAnalyzers()).thenReturn(Set.of("multiple-choice-quality"));
+        when(current.reanalysisScope(anyString(), any(), any(), any())).thenReturn(
+                new CurrentAnalysisService.ReanalysisScope(Set.of("shared"), Set.of(quiz), 1, 1));
+        doAnswer(i -> ((java.util.function.Supplier<?>)i.getArgument(1)).get()).when(store).withAnalysisLock(anyString(),any());
+        var config = new BatchServiceConfig(); config.setBatchStore(store); config.setCourseRepository(repository);
+        config.setCoursePath(TandaFixture.COURSE_PATH); config.setCourseMapper(mapper); config.setAuditEngine(engine);
+        config.setAuditReportStore(audits); config.setRefinementPlanStore(plans); config.setRefinerEngine(refiner);
+        config.setCurrentAnalysisService(current);
+        var joint = new DefaultSelectiveCorrectionService(config,ledger,panel,reviews,c -> "context");
+        var estimate = joint.execute(new Request("estimate","batch","multiple-choice-quality",null,null,null,null,null,null,List.of(),false,"human","both",true));
+        assertEquals(3,estimate.pendingQueries()); assertEquals(2,estimate.scopes().size());
+        assertEquals(1,estimate.scopes().get(1).sharedQuizzes());
+        var request = new Request("reanalyze","batch","multiple-choice-quality","joint",null,5,estimate.fingerprint(),"v1",2,List.of(),false,"human","both",true);
+        var result = joint.execute(request);
+        var operation = result.runs().stream().filter(x -> x.id().equals("joint")).findFirst().orElseThrow();
+        assertEquals(2,operation.spent()); assertEquals(12,batch.getQueriesSpent());
+        assertTrue(result.runs().stream().anyMatch(x -> x.id().equals("joint-base")));
+        verify(engine).runAudit(any(),argThat(s -> s.getPolicies().get("multiple-choice-quality").getMaxNewEvaluations()==1
+                && s.getPolicies().get("multiple-choice-quality").getPurpose()==EvaluationRunPurpose.REANALYSIS
+                && s.getPolicies().get("multiple-choice-quality").getReevaluationSubjectIds().equals(Set.of(quiz))));
+        clearInvocations(engine);
+        joint.execute(request);
+        verifyNoInteractions(engine);
+    }
     @Test void explicitReanalysisForcesNewVerdictsAndFinishedStateRetainsExamStanding() {
         var state = service.execute(req("reanalyze", "new-version", List.of(), 2, false));
         assertTrue(state.allowed());

@@ -15,6 +15,29 @@ import java.util.function.Function;
 final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
     private static final String QUALITY = "multiple-choice-quality";
     @Override public Set<String> supportedAnalyzers() { return composer.supportedAnalyzers(); }
+    @Override public ReanalysisScope reanalysisScope(String analyzer, AuditReport base, AuditReport correction, String requiredVersion) {
+        var corrected = DefaultAnalysisComposer.index(correction.getRoot());
+        var shared = new LinkedHashSet<String>(); var onlyBase = new LinkedHashSet<String>();
+        var units = new LinkedHashSet<String>(); var sharedUnits = new LinkedHashSet<String>();
+        for (var node : DefaultAnalysisComposer.index(base.getRoot()).values()) {
+            if (!DefaultAnalysisComposer.eligible(node, analyzer)) continue;
+            String id = node.getEntity().getId(); var other = corrected.get(id);
+            boolean matches = other != null && DefaultAnalysisComposer.eligible(other, analyzer)
+                    && Objects.equals(composer.fingerprint(analyzer, node), composer.fingerprint(analyzer, other))
+                    && (requiredVersion == null || DefaultAnalysisComposer.evaluated(other, analyzer)
+                    && Objects.equals(requiredVersion, DefaultAnalysisComposer.version(other, analyzer, correction)));
+            String unit = "mini-theory".equals(analyzer) ? node.ancestor(AuditTarget.KNOWLEDGE)
+                    .map(n -> n.getEntity().getId()).orElse(id) : id;
+            if (matches) { shared.add(id); sharedUnits.add(unit); }
+            else {
+                onlyBase.add(id);
+                units.add(unit);
+            }
+        }
+        // A topic is one query unit even though it contains several quizzes.
+        sharedUnits.removeAll(units);
+        return new ReanalysisScope(Set.copyOf(shared), Set.copyOf(onlyBase), units.size(), sharedUnits.size());
+    }
     @Override public void seed(CorrectionBatch batch, CourseEntity course) {
         if (batch.getAnalysisSeedAuditId() != null && batch.getAnalysisSeedContentVersion() == batch.getContentVersion()) return;
         AuditReport raw = primary(batch, "correction", cut(ledger.composedCourse(batch, course), batch.getLevel()));
@@ -127,6 +150,9 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                         var origin = new LinkedHashMap<String, Object>();
                         if (v instanceof Map<?,?> o) o.forEach((key, val) -> origin.put(key.toString(), val));
                         var sourceIndex = sourceIndexes.get(origin.get("runId"));
+                        BatchBook.list(batch.getSelectiveRuns()).stream()
+                                .filter(r -> r.id().equals(origin.get("runId"))).findFirst()
+                                .ifPresent(r -> { origin.put("contentVersion", r.contentVersion()); origin.put("activityId", activityId(batch,r)); });
                         var savedNode = sourceIndex == null ? node : sourceIndex.get(id);
                         if (savedNode != null && savedNode.getEntity() instanceof AuditableQuiz quiz)
                             origin.put("studentView", renderer.render(quiz));
@@ -150,10 +176,12 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                 warnings.addAll(approvalWarnings(items, tasks, sources.get(e.runId()), report, e.analyzer()));
             states.add(new State(state, "base".equals(state) ? "La base" : "Corrección " + BatchBook.correctionRevision(batch),
                     courseFingerprint.apply("base".equals(state) ? baseCourse : current), digest("current-" + state, report.getRoot()),
-                    studentViews, provenance, List.copyOf(warnings), comparable(reports.get("base"), report)));
+                    studentViews, provenance, List.copyOf(warnings), comparable(reports.get("base"), report),
+                    "base".equals(state) ? "A0" : BatchBook.list(batch.getClosings()).isEmpty() ? null : "A" + batch.getClosings().size()));
         }
         var loose = new ArrayList<LooseRun>();
         for (var run : BatchBook.list(batch.getSelectiveRuns())) {
+            if ("reanalyze-both".equals(run.action())) continue; // Coordination record; its two measurements have their own sources.
             AuditReport source = sources.get(run.id());
             if (source == null || !List.of("DONE", "PARTIAL").contains(run.status()) || !composer.supportedAnalyzers().contains(run.analyzer())) continue;
             var sourceNodes = DefaultAnalysisComposer.index(source.getRoot());
@@ -167,7 +195,8 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                     .map(n -> DefaultAnalysisComposer.version(n, run.analyzer(), source)).filter(Objects::nonNull).distinct().sorted().toList();
             loose.add(new LooseRun(run.id(), run.analyzer(), run.auditId(), run.status(), run.contentVersion(), run.runtime(),
                     String.join(", ", versions), run.finishedAt() != null ? run.finishedAt() : run.createdAt(),
-                    run.spent(), evaluated, errors, fits));
+                    run.spent(), evaluated, errors, fits, config.getAnalyzerCatalog() == null ? run.analyzer()
+                            : config.getAnalyzerCatalog().find(run.analyzer()).map(AnalyzerDescriptor::getDisplayName).orElse(run.analyzer()), activityId(batch,run)));
         }
         return new View(batch.getId(), batch.getContentVersion(), history.size(), states, loose, List.copyOf(history), composer.supportedAnalyzers().stream().sorted().toList());
     }
@@ -315,8 +344,16 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         }
         var preview = composer.compose(current, List.of(new AnalysisSupplement(run.id(), run.auditId(), run.analyzer(),
                 run.runtime(), run.finishedAt(), new LinkedHashSet<>(ids), source)));
+        int compatibleErrors = (int) ids.stream().filter(id -> error(from.get(id), run.analyzer())).count();
+        int currentErrors = (int) to.values().stream().filter(n -> n.getTarget() == AuditTarget.QUIZ && error(n, run.analyzer())).count();
+        int resultErrors = (int) DefaultAnalysisComposer.index(preview.getRoot()).values().stream()
+                .filter(n -> n.getTarget() == AuditTarget.QUIZ && error(n, run.analyzer())).count();
+        var currentVersions = to.values().stream().filter(n -> n.getTarget() == AuditTarget.QUIZ
+                        && DefaultAnalysisComposer.evaluated(n, run.analyzer()))
+                .map(n -> DefaultAnalysisComposer.version(n, run.analyzer(), current)).filter(Objects::nonNull).distinct().sorted().toList();
         return new Fit(state, reached, ids.size(), reached - ids.size(), replaces, selected, ids, lost, gained,
-                approvalWarnings(items, tasks, current, preview, run.analyzer()), ids.isEmpty() ? "Midió otro contenido o no dejó veredictos utilizables." : null);
+                approvalWarnings(items, tasks, current, preview, run.analyzer()), ids.isEmpty() ? "Midió otro contenido o no dejó veredictos utilizables." : null,
+                compatibleErrors, currentErrors, resultErrors, currentVersions);
     }
 
     private static List<String> approvalWarnings(List<BatchReview.Item> items, List<com.learney.contentaudit.refinerdomain.RefinementTask> tasks, AuditReport before, AuditReport after, String analyzer) {
@@ -369,6 +406,10 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
     }
     private static void requireId(String id) {
         if (id == null || !id.matches("[A-Za-z0-9][A-Za-z0-9._-]{0,127}")) throw new IllegalArgumentException("Identidad inválida.");
+    }
+    private static String activityId(CorrectionBatch batch, SelectiveCorrection.Run run) {
+        return BatchBook.list(batch.getSelectiveRuns()).stream().anyMatch(r -> Objects.equals(r.id(),run.sourceRunId())
+                && "reanalyze-both".equals(r.action())) ? run.sourceRunId() : run.id();
     }
     static CourseEntity cut(CourseEntity course, CefrLevel level) {
         var result = new CourseEntity(course.getId(), course.getTitle(), course.getKnowledgeIds(), null, course.getSlug());

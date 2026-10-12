@@ -15,6 +15,10 @@ public interface CurrentAnalysisService {
     java.util.Set<String> supportedAnalyzers();
     void seed(CorrectionBatch batch, CourseEntity course);
     ComparisonReports comparisonReports(CorrectionBatch batch, CourseEntity start, CourseEntity composed);
+    default ReanalysisScope reanalysisScope(String analyzer, AuditReport base, AuditReport correction, String requiredVersion) {
+        throw new UnsupportedOperationException("El servicio no declara el encaje de reanálisis.");
+    }
+    record ReanalysisScope(java.util.Set<String> sharedQuizIds, java.util.Set<String> baseOnlyQuizIds, int baseOnlyUnits, int sharedUnits) {}
     record ComparisonReports(AuditReport baseline, AuditReport approved, AuditReport projected) {}
 
     record Request(String action, String batchId, String state, String runId, String operationId,
@@ -24,11 +28,12 @@ public interface CurrentAnalysisService {
             List<LooseRun> looseRuns, List<AnalysisSelection> history, List<String> supportedAnalyzers) {}
     record State(String id, String label, String fingerprint, AuditDigest digest,
             Map<String, QuizStudentView> studentViews, Map<String, Map<String, Object>> provenance,
-            List<String> approvalWarnings, Map<String, List<String>> comparableAnalyzers) {}
+            List<String> approvalWarnings, Map<String, List<String>> comparableAnalyzers, String analysisCode) {}
     record LooseRun(String id, String analyzer, String auditId, String status, int contentVersion,
             String runtime, String judgeVersion, Instant measuredAt, int spent, int evaluated, int withError,
-            List<Fit> fits) {}
+            List<Fit> fits, String displayName, String activityId) {}
     record Fit(String state, int reached, int compatible, int missing, int replaces, int selected,
             List<String> nodeIds, List<String> lostErrors, List<String> newErrors,
-            List<String> approvalWarnings, String reason) {}
+            List<String> approvalWarnings, String reason, int compatibleWithError,
+            int currentWithError, int resultWithError, List<String> currentVersions) {}
 }

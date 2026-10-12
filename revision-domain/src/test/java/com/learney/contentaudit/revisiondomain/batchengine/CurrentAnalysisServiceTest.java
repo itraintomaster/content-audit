@@ -95,6 +95,10 @@ class CurrentAnalysisServiceTest {
     @Test void looseRunDoesNotCountUntilExplicitlyIntegratedAndRemovalRestoresEverything() {
         assertEquals(0, errors(read()));
         assertEquals("v1", read().looseRuns().get(0).judgeVersion());
+        var preview = read().looseRuns().get(0).fits().get(0);
+        assertEquals(1, preview.compatibleWithError());
+        assertEquals(0, preview.currentWithError());
+        assertEquals(1, preview.resultWithError());
         var selected = service.execute(select("integrate", "r1", "s1", null));
         assertEquals(1, errors(selected)); assertEquals(1, history.size());
         assertEquals("human", history.get(0).reviewer());
@@ -102,6 +106,17 @@ class CurrentAnalysisServiceTest {
         assertEquals(2, history.size()); assertEquals(1, batch.getClosings().size());
         verify(repository, never()).save(any(), any()); verify(store, never()).save(any());
         verify(engine, atLeastOnce()).runAudit(any(), argThat(s -> s.getPolicies().values().stream().allMatch(p -> p.getMaxNewEvaluations() == 0)));
+    }
+
+    @Test void jointReanalysisSharesOnlyIdenticalInputsAndOnlyFreshVerdictsAtTheRequiredVersion() {
+        var base = report(false, false, "v1");
+        var fresh = report(true, true, "v2");
+        var planned = service.reanalysisScope(NAME, base, fresh, null);
+        assertTrue(planned.sharedQuizIds().contains(TandaFixture.CHILD));
+        assertTrue(service.reanalysisScope(NAME, base, fresh, "v2").sharedQuizIds().contains(TandaFixture.CHILD));
+        assertFalse(service.reanalysisScope(NAME, base, fresh, "v1").sharedQuizIds().contains(TandaFixture.CHILD));
+        ((AuditableQuiz)DefaultAnalysisComposer.index(fresh.getRoot()).get(TandaFixture.CHILD).getEntity()).setInstructions("Otra consigna");
+        assertTrue(service.reanalysisScope(NAME, base, fresh, "v2").baseOnlyQuizIds().contains(TandaFixture.CHILD));
     }
     @Test void replacementRequiresExplicitActionKeepsOtherAnalyzersAndCanBeUndone() {
         service.execute(select("integrate", "r1", "s1", null)); run("r2", false, "v2");

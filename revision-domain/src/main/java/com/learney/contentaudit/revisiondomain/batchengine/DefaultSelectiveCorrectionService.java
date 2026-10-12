@@ -35,6 +35,11 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
 
     @Override public State execute(Request r) {
         Objects.requireNonNull(r, "Falta el pedido.");
+        return "both".equals(r.state()) ? both(r) : executeSingle(r, null, null);
+    }
+
+    private State executeSingle(Request r, Set<String> forceOnly, String coordinatedBy) {
+        Objects.requireNonNull(r, "Falta el pedido.");
         String judge = r.analyzer();
         var supported = config.getCurrentAnalysisService() == null ? java.util.Set.of(JUDGE) : config.getCurrentAnalysisService().supportedAnalyzers();
         if (blank(judge) || !supported.contains(judge)) fail("El juez no declara una huella de integración: " + judge);
@@ -66,8 +71,8 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         if (r.state() != null && !List.of("base", "correction").contains(r.state())) fail("Elegí la base o la corrección.");
         if (base && "correct".equals(r.action())) fail("Las correcciones se aplican sólo a la corrección vigente.");
         CourseEntity cut = level(base ? start : ledger.composedCourse(batch, start), batch.getLevel());
-        AuditReport trial = audit(cut, judge, 0, r.force() || r.action().startsWith("reanalyze"));
-        State estimate = state(batch, trial, cut, judge);
+        AuditReport trial = audit(cut, judge, 0, r.force() || r.action().startsWith("reanalyze"), forceOnly);
+        State estimate = state(batch, trial, cut, judge, coordinatedBy);
         if (List.of("read", "estimate").contains(r.action())) return estimate;
         if (batch.getStatus() != BatchStatus.CLOSED) fail("La tanda debe estar cerrada y sin otra operación activa.");
         if (r.contentVersion() == null || r.contentVersion() != batch.getContentVersion()
@@ -116,7 +121,7 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
             if (!"correct".equals(r.action())) {
                 // The allowance is for the whole run, including judges with multiple evaluators.
                 int evaluatorCount = Math.max(1, BatchBook.list(coverage(trial, judge).getEvaluators()).size());
-                result = audit(cut, judge, r.queryCap() / evaluatorCount, r.force() || r.action().startsWith("reanalyze"));
+                result = audit(cut, judge, r.queryCap() / evaluatorCount, r.force() || r.action().startsWith("reanalyze"), forceOnly);
                 String auditId = config.getAuditReportStore().save(result);
                 RefinementPlan plan = config.getRefinerEngine().plan(result, auditId);
                 List<RefinementTask> tasks = BatchBook.list(plan.getTasks()).stream()
@@ -178,10 +183,13 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         config.getBatchStore().save(batch);
         // A finished pass carries real coverage and exam standing; never fabricate an unavailable judge from null.
         AuditReport finished = run.auditId() == null ? trial : config.getAuditReportStore().load(run.auditId()).orElse(trial);
-        return state(batch, finished, cut, judge);
+        return state(batch, finished, cut, judge, coordinatedBy);
     }
 
     private State state(CorrectionBatch b, AuditReport report, CourseEntity cut, String judge) {
+        return state(b, report, cut, judge, null);
+    }
+    private State state(CorrectionBatch b, AuditReport report, CourseEntity cut, String judge, String coordinatedBy) {
         JudgeCoverageDiagnosis c = coverage(report, judge);
         Run latest = BatchBook.list(b.getSelectiveRuns()).stream().filter(x -> judge.equals(x.analyzer()) && List.of("analyze", "reanalyze").contains(x.action()))
                 .reduce((a, z) -> z).orElse(null);
@@ -199,7 +207,8 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
             });
         }
         boolean uncertain = BatchBook.list(b.getSelectiveRuns()).stream()
-                .anyMatch(r -> List.of("RUNNING", "NEEDS_REVIEW").contains(r.status()));
+                .anyMatch(r -> List.of("RUNNING", "NEEDS_REVIEW").contains(r.status())
+                        && !(Objects.equals(coordinatedBy, r.id()) && "reanalyze-both".equals(r.action()) && "RUNNING".equals(r.status())));
         boolean enabled = b.getStatus() == BatchStatus.CLOSED && !uncertain && allowed(c);
         String reason = enabled ? null : uncertain ? "Hay una operación interrumpida o incierta. Conservá su reserva y conciliá los resultados antes de iniciar otra."
                 : b.getStatus() != BatchStatus.CLOSED ? "Hay otra operación activa o la tanda no está cerrada."
@@ -248,8 +257,103 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         return audit(course, analyzer, cap, false);
     }
     private AuditReport audit(CourseEntity course, String analyzer, int cap, boolean force) {
+        return audit(course, analyzer, cap, force, null);
+    }
+    private AuditReport audit(CourseEntity course, String analyzer, int cap, boolean force, Set<String> forceOnly) {
+        if (forceOnly != null && forceOnly.isEmpty()) return config.getAuditEngine().runAudit(config.getCourseMapper().map(course),
+                new AnalyzerRunSelection(List.of(analyzer), Map.of(analyzer, new EvaluationRunPolicy(0, false, null, null, EvaluationRunPurpose.READING, 1))));
         return config.getAuditEngine().runAudit(config.getCourseMapper().map(course),
-                new AnalyzerRunSelection(List.of(analyzer), Map.of(analyzer, new EvaluationRunPolicy(cap, force, null, null, null, 1))));
+                new AnalyzerRunSelection(List.of(analyzer), Map.of(analyzer, new EvaluationRunPolicy(cap, forceOnly == null && force, null, forceOnly,
+                        forceOnly == null ? null : EvaluationRunPurpose.REANALYSIS, 1))));
+    }
+
+    private State both(Request r) {
+        if (!(r.force() || "reanalyze".equals(r.action())) || !List.of("read", "estimate", "reanalyze", "analyze").contains(r.action()))
+            fail("Elegir ambos estados requiere reanálisis forzado.");
+        if (config.getCurrentAnalysisService() == null || !config.getCurrentAnalysisService().supportedAnalyzers().contains(r.analyzer()))
+            fail("El juez no declara el encaje entre ambos estados.");
+        CorrectionBatch batch = batch(r.batchId());
+        boolean estimateOnly = List.of("read", "estimate").contains(r.action());
+        if (!estimateOnly) {
+            if (blank(r.operationId()) || !r.operationId().matches("[A-Za-z0-9][A-Za-z0-9._-]{0,115}")) fail("Falta una identidad válida.");
+            var previous = BatchBook.list(batch.getSelectiveRuns()).stream().filter(x -> r.operationId().equals(x.id())).findFirst();
+            if (previous.isPresent()) {
+                Run old = previous.get();
+                if (!"reanalyze-both".equals(old.action()) || !Objects.equals(old.fingerprint(), r.fingerprint())
+                        || !Objects.equals(old.judgeVersion(), r.judgeVersion()) || !Objects.equals(old.analyzer(), r.analyzer())
+                        || r.contentVersion() == null || r.queryCap() == null
+                        || old.contentVersion() != r.contentVersion() || old.queryCap() != r.queryCap()
+                        || !Objects.equals(old.reviewer(), r.reviewer())) fail("La identidad ya pertenece a otro pedido.");
+                return bothState(batch, old, List.of()); // Never automatically resume an uncertain two-state reservation.
+            }
+        }
+        CourseEntity start = config.getCourseRepository().load(config.getCoursePath());
+        CourseEntity base = level(start, batch.getLevel()), corrected = level(ledger.composedCourse(batch, start), batch.getLevel());
+        AuditReport trialCorrection = audit(corrected, r.analyzer(), 0, true), trialBase = audit(base, r.analyzer(), 0, true);
+        State correction = state(batch, trialCorrection, corrected, r.analyzer()), original = state(batch, trialBase, base, r.analyzer());
+        var scope = config.getCurrentAnalysisService().reanalysisScope(r.analyzer(), trialBase, trialCorrection, null);
+        int evaluators = Math.max(1, BatchBook.list(coverage(trialBase, r.analyzer()).getEvaluators()).size());
+        int baseQueries = Math.multiplyExact(scope.baseOnlyUnits(), evaluators);
+        List<ReanalysisState> scopes = List.of(new ReanalysisState("correction", correction.reached(), correction.pendingQueries(), 0),
+                new ReanalysisState("base", original.reached(), baseQueries, scope.sharedQuizIds().size()));
+        String input = fingerprint.apply(base) + "\n" + fingerprint.apply(corrected);
+        String joint;
+        try { joint = java.util.HexFormat.of().formatHex(java.security.MessageDigest.getInstance("SHA-256").digest(input.getBytes(java.nio.charset.StandardCharsets.UTF_8))); }
+        catch (java.security.NoSuchAlgorithmException e) { throw new IllegalStateException(e); }
+        int reached = correction.reached() + original.reached() - scope.sharedUnits();
+        State estimate = new State(batch.getId(), BatchBook.correctionRevision(batch), batch.getContentVersion(), r.analyzer(), joint,
+                correction.judgeVersion(), correction.runtime(), correction.allowed() && original.allowed(),
+                correction.allowed() ? original.reason() : correction.reason(), reached, 0, reached,
+                Math.addExact(correction.pendingQueries(), baseQueries), 0, correction.tasks(), BatchBook.copy(batch.getSelectiveRuns()), correction.displayName(), scopes);
+        if (estimateOnly) return estimate;
+        if (r.contentVersion() == null || r.contentVersion() != batch.getContentVersion() || !Objects.equals(joint, r.fingerprint())
+                || !Objects.equals(estimate.judgeVersion(), r.judgeVersion())) fail("El contenido o el juez cambió: volvé a estimar.");
+        if (!estimate.allowed()) fail(estimate.reason());
+        if (batch.getStatus() != BatchStatus.CLOSED || r.queryCap() == null || r.queryCap() < 0 || blank(r.reviewer()))
+            fail("La tanda debe estar cerrada; hace falta autor y un tope explícito.");
+        Run reservation = new Run(r.operationId(), "reanalyze-both", r.analyzer(), null, BatchBook.correctionRevision(batch), batch.getContentVersion(),
+                joint, estimate.judgeVersion(), estimate.runtime(), null, null, List.of(), List.of(), r.queryCap(), r.queryCap(), 0,
+                reached, 0, reached, "RUNNING", r.reviewer(), Instant.now(), null, null, false, batch.getContentVersion(), joint, null);
+        final CorrectionBatch before = batch;
+        return config.getBatchStore().withAnalysisLock(batch.getId(), () -> {
+            put(before, reservation);
+            config.getBatchStore().saveIfVersion(before, r.contentVersion(), BatchStatus.CLOSED);
+            Run completed = reservation;
+            try {
+                executeSingle(child(r, r.operationId()+"-correction", "correction", correction.fingerprint(), r.queryCap()), null, r.operationId());
+                CorrectionBatch current = batch(r.batchId());
+                Run first = BatchBook.list(current.getSelectiveRuns()).stream().filter(x -> x.id().equals(r.operationId()+"-correction")).findFirst().orElseThrow();
+                if (!List.of("DONE", "PARTIAL").contains(first.status())) fail("La corrección necesita revisión; no se continúa ni se recupera la reserva.");
+                AuditReport fresh = config.getAuditReportStore().load(first.auditId()).orElseThrow();
+                var remaining = config.getCurrentAnalysisService().reanalysisScope(r.analyzer(), trialBase, fresh, estimate.judgeVersion());
+                executeSingle(child(r, r.operationId()+"-base", "base", original.fingerprint(), Math.max(0,r.queryCap()-first.spent())), remaining.baseOnlyQuizIds(), r.operationId());
+                current = batch(r.batchId());
+                Run second = BatchBook.list(current.getSelectiveRuns()).stream().filter(x -> x.id().equals(r.operationId()+"-base")).findFirst().orElseThrow();
+                int queries = first.spent()+second.spent();
+                if (queries > r.queryCap()) throw new IllegalStateException("El gasto excedió el presupuesto compartido.");
+                int evaluated = Math.max(0,Math.min(reached, first.evaluated()+second.evaluated()-remaining.sharedUnits()));
+                String status = List.of("DONE", "PARTIAL").contains(second.status()) ? evaluated == reached ? "DONE" : "PARTIAL" : "NEEDS_REVIEW";
+                completed = finish(reservation, status, queries, "Dos mediciones guardadas; integración manual por estado.");
+                completed = new Run(completed.id(),completed.action(),completed.analyzer(),null,completed.correctionRevision(),completed.contentVersion(),
+                        completed.fingerprint(),completed.judgeVersion(),completed.runtime(),null,null,List.of(),List.of(),completed.queryCap(),completed.reserved(),queries,
+                        reached,evaluated,reached-evaluated,status,completed.reviewer(),completed.createdAt(),completed.finishedAt(),completed.detail(),false,
+                        completed.resultContentVersion(),completed.resultFingerprint(),null);
+            } catch (RuntimeException failure) {
+                CorrectionBatch current = batch(r.batchId());
+                int known = BatchBook.list(current.getSelectiveRuns()).stream().filter(x -> r.operationId().equals(x.sourceRunId())).mapToInt(Run::spent).sum();
+                completed = finish(reservation,"NEEDS_REVIEW",known,failure.getMessage()+". No reanudar automáticamente esta reserva.");
+            }
+            CorrectionBatch current = batch(r.batchId()); put(current,completed); config.getBatchStore().save(current);
+            return bothState(current,completed,scopes);
+        });
+    }
+    private static Request child(Request r, String id, String state, String fingerprint, int cap) {
+        return new Request("reanalyze",r.batchId(),r.analyzer(),id,r.operationId(),r.contentVersion(),fingerprint,r.judgeVersion(),cap,List.of(),false,r.reviewer(),state,true);
+    }
+    private State bothState(CorrectionBatch batch, Run run, List<ReanalysisState> scopes) {
+        return new State(batch.getId(),BatchBook.correctionRevision(batch),batch.getContentVersion(),run.analyzer(),run.fingerprint(),run.judgeVersion(),run.runtime(),
+                List.of("DONE", "PARTIAL").contains(run.status()),run.detail(),run.reached(),run.evaluated(),run.missing(),0,0,List.of(),BatchBook.copy(batch.getSelectiveRuns()),
+                config.getAnalyzerCatalog() == null ? run.analyzer() : config.getAnalyzerCatalog().find(run.analyzer()).map(AnalyzerDescriptor::getDisplayName).orElse(run.analyzer()),scopes);
     }
     private static JudgeCoverageDiagnosis coverage(AuditReport report, String analyzer) {
         if (report != null && report.getRoot() != null && report.getRoot().getDiagnoses() instanceof CourseDiagnoses d)
