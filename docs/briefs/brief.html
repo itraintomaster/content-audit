@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<title>Distractores: se guardó el análisis, falta conectarlo entre pantallas</title>
+<title>El análisis general puede actualizarse por juez</title>
 <style>
 /* Tokens y componentes del template de visual-brief. */
 :root{--bg:#fbfaf8;--bg-elev:#ffffff;--line:#e6e2db;--line-soft:#f0ece5;--fg:#1c1a17;--fg-2:#57524b;--fg-3:#8b847a;--accent:#b4531f;--accent-soft:#fdf1e7;--ok:#2f6b46;--ok-soft:#e9f4ed;--warn:#8a6314;--warn-soft:#fbf2dd;--bad:#a3342c;--bad-soft:#fbecea;--radius:10px;--shadow:0 1px 2px rgba(28,26,23,.05),0 8px 24px -16px rgba(28,26,23,.25)}
@@ -18,54 +18,55 @@ header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24p
 .tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}table{border-collapse:collapse;width:100%;font-size:14px;min-width:600px}th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line)}td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}tr:last-child td{border-bottom:0}.pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}.p-ok{background:var(--ok-soft);color:var(--ok)}.p-warn{background:var(--warn-soft);color:var(--warn)}.p-bad{background:var(--bad-soft);color:var(--bad)}
 footer{border-top:1px solid var(--line);margin-top:36px;padding-top:14px;font-size:12.5px;color:var(--fg-3);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}footer details{width:100%}footer ul{padding-left:20px}
 @media(max-width:640px){body{padding:24px 16px 60px}h2{font-size:17px}.flow{grid-auto-flow:row}.flow .st:not(:last-child)::after{right:auto;left:22px;top:auto;bottom:-11px;transform:rotate(135deg)}.ad{grid-template-columns:minmax(0,1fr);gap:28px}.ad .despues::before{content:"↓";left:50%;top:-25px}.kpi .n{font-size:28px}}
+
+.cambia{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.cambia>div{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 15px;box-shadow:var(--shadow)}
+.ptl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-3);font-weight:700;margin:0 0 10px}
+.cambia ul{margin:0;padding-left:20px;display:grid;gap:6px;font-size:13.5px;line-height:1.45}
 </style>
 </head>
 <body><main class="wrap">
-<header><div class="kicker"><span class="num">107</span><span class="badge">Diagnóstico</span><span class="meta">Opción múltiple · consistencia de pantallas · 11 octubre 2026</span></div><h1>Se guardó el análisis; falta conectarlo entre pantallas</h1><p class="sub">La corrida de distractores está completa. Las pantallas mezclan alcances y fechas sin explicarlo bien.</p></header>
-<div class="lede"><p><strong>No se perdió la corrida.</strong> La integración conecta el lanzamiento y su registro, pero no lleva el resultado nuevo a todas las vistas; Redux no corrige esa diferencia.</p></div>
+<header><div class="kicker"><span class="num">108</span><span class="badge">Criterio de funcionamiento</span><span class="meta">Opción múltiple · análisis incremental · 11 octubre 2026</span></div><h1>Un análisis general que se actualiza por juez</h1><p class="sub">Correr después debe completar o reemplazar resultados dentro de la misma base de trabajo.</p></header>
+<div class="lede"><p><strong>Sí, se puede.</strong> No hay un impedimento de fondo: falta componer el análisis vigente por juez, conservando correcciones, decisiones e historial; la fecha no determina si un resultado sirve.</p></div>
 
-<section><h2>Distractores evaluó todo su alcance, no todos los jueces</h2><div class="kpis">
-<div class="kpi"><div class="n">710<small>de 710</small></div><div class="l">quizzes aplicables evaluados: 100 %</div></div>
-<div class="kpi dest"><div class="n">85<small>de 710</small></div><div class="l">con error de distractores: 12 %; otros 625 sin ese error</div></div>
-<div class="kpi"><div class="n">0<small>de 710</small></div><div class="l">pendientes en esta medición; gastó exactamente 710 consultas</div></div>
-</div><p class="pie">Contenido v6. Terminó el 11/10 a las 22:38 ART. Completar este juez no aprueba la corrección ni actualiza su cierre general.</p></section>
+<section><h2>Distractores se agrega, no reemplaza al análisis entero</h2><div class="tw"><table><thead><tr><th>En la misma Corrección 1</th><th>Al integrar distractores</th></tr></thead><tbody>
+<tr><td>Resultados de otros jueces</td><td>Se conservan donde el contenido que leyeron siga igual</td></tr>
+<tr><td>Distractores: 710 evaluados, 85 errores</td><td>Se agregan al análisis general y a sus filtros</td></tr>
+<tr><td>Totales y estado por ejercicio</td><td>Se recalculan con todos los resultados aplicables, sin duplicar errores</td></tr>
+<tr><td>Correcciones y tus decisiones</td><td>No se borran ni se vuelven a generar por integrar una medición</td></tr>
+</tbody></table></div><p class="pie">Las cuatro pantallas deben leer ese mismo análisis general. Los registros anteriores quedan como historial, no como una barrera para incorporar lo nuevo.</p></section>
 
-<section><h2>Cada pantalla selecciona una fuente diferente</h2><div class="tw"><table><thead><tr><th>Pantalla</th><th>Qué lee hoy</th><th>Por eso muestra</th></tr></thead><tbody>
-<tr><td>Ejecuciones</td><td>Registro de la operación nueva</td><td>710/710; terminó bien</td></tr>
-<tr><td>Estadísticas</td><td>Último análisis: sólo distractores, v6</td><td>85 errores; otros jueces «no corrió»</td></tr>
-<tr><td>Analizadores</td><td>Comparación histórica del 9/10, v5</td><td>Distractores «no corrió» en las tres fotos</td></tr>
-<tr><td>Correcciones</td><td>Motivos originales + cierre v5 + opiniones puntuales</td><td>No incorpora el análisis selectivo de distractores</td></tr>
-</tbody></table></div><p class="pie">Comprobado en la misma campaña y tras releer. «No corrió» debería aclarar «no incluido en esta medición». El 88 de Estadísticas corresponde sólo a distractores.</p></section>
+<section><h2>Arreglar un juez permite reemplazar sólo lo suyo</h2><div class="flow">
+<div class="st"><span class="i">1</span><span class="h">Arreglar y examinar</span><span class="d">Verificar la nueva versión del juez con sus casos de prueba.</span></div>
+<div class="st"><span class="i">2</span><span class="h">Reevaluar su alcance</span><span class="d">Pedir consultas nuevas explícitamente, sin repetir a los demás jueces.</span></div>
+<div class="st end"><span class="i">3</span><span class="h">Actualizar el análisis general</span><span class="d">El resultado nuevo reemplaza al anterior para ese contenido y juez.</span></div>
+</div><p class="pie">Rendir el examen no reevalúa el curso. El motor ya permite reevaluar contenido y conservar resultados anteriores; falta conectar ese recorrido al análisis general.</p></section>
 
-<section><h2>Redux ordena cada pantalla, no unifica las mediciones</h2><div class="flow">
-<div class="st"><span class="i">1</span><span class="h">Archivos compartidos</span><span class="d">La misma campaña guarda historia, análisis selectivos y decisiones.</span></div>
-<div class="st"><span class="i">2</span><span class="h">Lecturas distintas</span><span class="d">Cada API arma su vista con reglas diferentes.</span></div>
-<div class="st end"><span class="i">3</span><span class="h">Un store por página</span><span class="d">Un reductor ordena lo recibido, aunque esté incompleto.</span></div>
-</div><p class="pie">Es una implementación propia compatible con Redux, no la biblioteca oficial ni un estado global entre páginas. Cambiar la biblioteca no resolvería los datos omitidos.</p></section>
+<section><h2>La coherencia depende del contenido, no de la fecha</h2><div class="cambia">
+<div><div class="ptl">Se puede reutilizar</div><ul>
+<li>Una evaluación anterior si sigue describiendo exactamente lo que leyó ese juez.</li>
+<li>Los otros jueces, aunque hayan corrido en momentos distintos.</li>
+<li>Un resultado nuevo sin cambiar tus aprobaciones automáticamente.</li>
+</ul></div>
+<div><div class="ptl">No se debe afirmar</div><ul>
+<li>Que un fallo al ejecutar equivale a cero errores.</li>
+<li>Que una corrida parcial reemplazó todo el alcance del juez.</li>
+<li>Que mejoró contra Base si no existe una comparación con el mismo criterio.</li>
+</ul></div>
+</div><p class="pie">Miniteoría puede leer un tema entero: cambiar otro quiz puede afectar su resultado. Si una medición contradice una aprobación, debe avisarse, no ocultarse.</p></section>
 
-<section><h2>El mismo quiz puede quedar verde con un error</h2><div class="ad">
-<div class="lado antes"><span class="rot">Correcciones · cierre anterior</span><ol><li>Quiz: «___ a child? (He)».</li><li>Se corrigieron mayúsculas en las opciones.</li><li>Ese motivo figura resuelto.</li></ol><span class="res">Sólo informa la comprobación anterior</span></div>
-<div class="lado despues"><span class="rot">Estadísticas · análisis nuevo</span><ol><li>«Is he» es la única opción con «he».</li><li>Se acierta por coincidencia sin practicar la regla.</li><li>El juez detecta un error de gravedad alta.</li></ol><span class="res">Este hallazgo no llega a Correcciones</span></div>
-</div><p class="pie">Resolver mayúsculas no prueba calidad pedagógica. Deben verse ambas comprobaciones, con fecha y alcance; no afirmar que apareció un error nuevo sin una medición anterior comparable.</p></section>
+<section><h2>Falta implementación, no volver a pagar distractores</h2><div class="flow">
+<div class="st"><span class="i">1</span><span class="h">Componer una base vigente</span><span class="d">Integrar resultados generales, selectivos y puntuales sobre las correcciones actuales.</span></div>
+<div class="st"><span class="i">2</span><span class="h">Compartirla entre pantallas</span><span class="d">Usar los mismos hallazgos, cobertura, totales y estados de revisión.</span></div>
+<div class="st end"><span class="i">3</span><span class="h">Reevaluar y verificar controles</span><span class="d">Ofrecer reemplazo explícito y recalcular controles sin publicar automáticamente.</span></div>
+</div><p class="pie">Tu corrida ya guardada se puede integrar sin consultas nuevas. Publicar seguirá requiriendo controles válidos; hoy el código los toma de una evaluación general separada.</p></section>
 
-<section><h2>El mensaje final de consola también es engañoso</h2><div class="tw"><table><thead><tr><th>Evidencia guardada</th><th>Respuesta final defectuosa</th></tr></thead><tbody>
-<tr><td><span class="pill p-ok">DONE · 710/710</span></td><td><span class="pill p-bad">Juez debe aprobar examen</span></td></tr>
-<tr><td>Examen aprobado y 710 resultados consolidados</td><td>Se calcula habilitación sin pasar la medición terminada</td></tr>
-</tbody></table></div><p class="pie">No demuestra un rechazo real del examen ni justifica repetir consultas. El cierre de la operación construye el mensaje con datos vacíos.</p></section>
-
-<section><h2>Recomiendo unificar la lectura, conservando la historia</h2><div class="flow">
-<div class="st"><span class="i">1</span><span class="h">Una verdad de lectura</span><span class="d">Último resultado válido por juez, contenido y alcance.</span></div>
-<div class="st"><span class="i">2</span><span class="h">Todas las pantallas</span><span class="d">Mostrar esos resultados y distinguirlos de los cierres históricos.</span></div>
-<div class="st end"><span class="i">3</span><span class="h">Prueba entre vistas</span><span class="d">Una corrida guardada debe coincidir en las cuatro pantallas.</span></div>
-</div><p class="pie">Incluir hallazgos sin propuesta, invalidación de cachés y aviso al terminar. Diagnóstico solamente: no cambié código, decisiones, producción ni ejecuté modelos.</p></section>
-
-<footer><span>Lecturas verificadas el 11/10, después de la corrida. Brief 107 · diagnóstico, no arreglo implementado.</span><span>docs/briefs/107-distractores-lecturas-inconsistentes.html</span>
-<details><summary>Fuentes técnicas para rastrear</summary><ul>
-<li>Corrida: <code>ui-2026-10-11T23-39-26.507091Z-batch-selective</code>. Tanda: <code>tanda-A1-20261007T084434Z</code>; revisión 1, contenido 6. Análisis: <code>2026-10-12T01-38-25</code>.</li>
-<li>Registro, resumen y ledger: campaña <code>.content-audit/campaigns/a1-v11</code>; <code>selectiveRuns</code>, <code>audit-digests/audit-2026-10-12T01-38-25.json</code>, <code>evaluations/choice-quality-judge.jsonl</code> (710 entradas). Juez <code>9f164016</code>, codex-cli / gpt-6.1-sol / medium.</li>
-<li>Backend: <code>DefaultSelectiveCorrectionService.execute</code> guarda informe y plan separados; devuelve <code>state(batch, null, null)</code>. <code>state</code> interpreta la ausencia de cobertura como falta de aprobación.</li>
-<li>Dashboard: <code>fuente_de_estadisticas.dart</code> lee el último digest; <code>vista_de_analizadores.dart</code> usa el último cierre y muestra la selectiva sólo en la ficha. <code>BatchReviewData.fromJson</code> conserva <code>opinionRuns</code>, pero no <code>selectiveRuns</code>; <code>indices.js</code> arma motivos con hallazgos de las correcciones originales.</li>
-<li>GET locales: <code>/api/estadisticas/vista</code>, <code>/api/analizadores/vista?releer=1</code>, <code>/api/correcciones/tanda</code>. El quiz <code>67fab6d59930102295341e87</code> está entre los 85 afectados y figura «ok». Esos quizzes tienen 81 correcciones previas: 79 «ok», 2 «falta»; no son 81 quizzes.</li>
-<li>Stores: <code>html/js/lib/store.js</code>; un <code>createStore</code> por <code>main.js</code>. Hay cachés y sondeo, pero no selección común de mediciones. Estadísticas interpreta el ID UTC sin zona: muestra 01:38 en vez de 22:38 ART.</li>
+<footer><span>Brief 108 · criterio propuesto, todavía no implementado. Sin consultas reales ni cambios en decisiones.</span><span>docs/briefs/108-analisis-general-actualizable.html</span>
+<details><summary>Evidencia técnica</summary><ul>
+<li><code>F-EVCOST-R008</code> autoriza reevaluación explícita acotada y establece que el resultado nuevo gana sin destruir anteriores. <code>EvaluationSession.resolveForced</code> y <code>EvaluationRunPolicy.reevaluate</code> ya existen.</li>
+<li>La identidad incluye evaluador, huella de sus entradas y runtime efectivo. <code>F-EVCOST-R001</code> conserva la versión de proceso como procedencia: cambiarla solo no dispara nuevas consultas.</li>
+<li><code>SelectiveCorrection</code> guarda análisis separados; las rutas actuales componen <code>BatchClosing</code>, <code>selectiveRuns</code> y <code>opinionRuns</code> de formas distintas. La vista unificada aún no existe.</li>
+<li><code>DefaultBatchPublisher.publish</code> exige la compuerta del último <code>BatchClosing</code>. La integración debe definir un estado general verificable y compartido, no editar ese registro para aparentar aprobación.</li>
+<li>Corrección 1, contenido v6: corrida <code>ui-2026-10-11T23-39-26.507091Z-batch-selective</code>; 710 evaluados, 85 errores, 625 sin ese error. La conciliación no implica gasto ni cambio de contenido.</li>
 </ul></details></footer>
 </main></body></html>
