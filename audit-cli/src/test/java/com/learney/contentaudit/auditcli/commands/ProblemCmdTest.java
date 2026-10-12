@@ -62,6 +62,33 @@ class ProblemCmdTest {
         annotate("--keep-correction"); assertEquals(BatchReviewDecision.Status.PENDING, review().items().get(0).status());
         annotate("--usage", "good"); assertEquals(BatchReviewDecision.Status.PENDING, review().items().get(0).status());
     }
+    @Test void anotherQuizNeedsOnlyTheExistingProblemAndItsFrozenContent() throws Exception {
+        var p = annotate();
+        var before = CommandJsonTest.snapshot("before-2"); before.getQuiz().setId("quiz-2");
+        var after = CommandJsonTest.snapshot("after-2"); after.getQuiz().setId("quiz-2");
+        before = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-2", before.getQuiz(), null);
+        after = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-2", after.getQuiz(), null);
+        var proposal = new RevisionProposal(); proposal.setProposalId("proposal-2"); proposal.setPlanId("plan");
+        proposal.setNodeTarget(AuditTarget.QUIZ); proposal.setNodeId("quiz-2");
+        proposal.setElementBefore(before); proposal.setElementAfter(after);
+        var artifact = new RevisionArtifact(); artifact.setProposal(proposal); new FileSystemRevisionArtifactStore(work).save(artifact);
+        var other = new BatchChange(); other.setChangeId("other");
+        other.setSteps(List.of(new BatchChangeStep("quiz-2", List.of(ExercisePart.MINI_THEORY), after)));
+        var batch = new FileSystemBatchStore(work).load("batch").orElseThrow();
+        var changes = new ArrayList<>(batch.getChanges()); changes.add(other); batch.setChanges(changes);
+        batch.setQuizProposals(List.of(new BatchProposalRef("quiz", "proposal"), new BatchProposalRef("quiz-2", "proposal-2")));
+        new FileSystemBatchStore(work).save(batch);
+        var review = review();
+        assertEquals(0, run("annotate", p.id(), "--revision", "" + p.revision(), "--batch", "batch", "--quiz", "quiz-2",
+                "--content-version", "" + review.contentVersion(), "--correction-revision", "" + review.correctionRevision()), errors.toString());
+        var saved = new FileSystemProblemStore(course).load(p.id()).orElseThrow();
+        assertEquals(p.criterion(), saved.criterion()); assertEquals(2, saved.cases().size());
+        assertEquals("", saved.cases().get(1).comment());
+        assertEquals(0, run("request", saved.id()));
+        String request = (String) CommandJson.read(output.toString(), Map.class).get("text");
+        assertTrue(request.contains("Explicar el contraste")); assertTrue(request.contains("quiz-2"));
+        assertTrue(request.contains("La descripción general se aplica a todos los quizzes"));
+    }
     @Test void undoRefusesALaterHumanDecisionAndKeepsTheFrozenCase() {
         var p = annotate(); var i = review().items().get(0);
         var decision = new BatchReviewDecision("batch", List.of(new BatchReviewDecision.Selection(i.changeId(), i.step(), i.before(), i.after())),
@@ -83,6 +110,8 @@ class ProblemCmdTest {
         var guide = root.resolve(".sentinel/agents/mini-theory-judge/nodes/general.md"); Files.createDirectories(guide.getParent()); Files.writeString(guide, "GUÍA GENERAL V2");
         var eval = guide.getParent().getParent().resolve("eval/cases.json"); Files.createDirectories(eval.getParent()); Files.writeString(eval, "SECRET_EVAL_DATA");
         var p = annotate();
+        assertEquals(0, run("edit", p.id(), "--revision", "" + p.revision(), "--clear-parts"));
+        p = new FileSystemProblemStore(course).load(p.id()).orElseThrow(); assertTrue(p.parts().isEmpty());
         assertEquals(0, run("request", p.id()));
         String request = (String) CommandJson.read(output.toString(), Map.class).get("text");
         for (String text : List.of("before", "after", "Mi observación", "Contraste explícito", "GUÍA GENERAL V2", "--state en-trabajo", "--state para-probar", "--revision " + p.revision(), course.toString())) assertTrue(request.contains(text), text);

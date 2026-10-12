@@ -243,6 +243,7 @@ final class ProblemCmd implements Callable<Integer> {
         String flags = " --course " + quote(course.toString());
         String instructions = "Trabajá el problema " + p.id() + ": " + p.title() + ".\n"
                 + "Hay dos roles. Vos recibís TODOS los casos y podés elegir algunos para validar. Recomendá ajustar un juez existente, crear uno, una regla fija o la guía del corrector, explicando por qué.\n"
+                + "La descripción general se aplica a todos los quizzes de la lista. Inferí cómo se manifiesta el mismo patrón en cada quiz a partir de su contenido congelado; no hace falta que el operador repita la explicación para cada caso.\n"
                 + "El juez recibe solo una guía general y el quiz evaluado. No copies estos ejemplos ni respuestas esperadas a su contexto.\n"
                 + "Probá primero sin consultas. No ejecutes jueces, exámenes ni correcciones con modelos sin autorización explícita y un tope. codex-cli es el proveedor por omisión; el operador puede elegir otro. No hagas fallback silencioso. Registrá proveedor, modelo y versión efectivos.\n"
                 + "Actualizar el estado ES parte de tu trabajo. Necesitás acceso al proyecto para ejecutar cambios. Proyecto: " + project.toAbsolutePath() + ".\n"
@@ -260,12 +261,15 @@ final class ProblemCmd implements Callable<Integer> {
                 + "FICHA Y CASOS COMPLETOS (antes, después, procedencia, comentarios y expectativas):\n" + CommandJson.write(p) + "\n\nGUÍAS ACTUALES:\n";
         StringBuilder guides = new StringBuilder();
         Set<String> names = new LinkedHashSet<>();
-        for (String part : p.parts()) {
+        Set<String> parts = new LinkedHashSet<>(p.parts());
+        for (var c : p.cases()) for (var item : items(c))
+            item.step().getParts().forEach(part -> parts.add(part.name()));
+        for (String part : parts) {
             String lower = part.toLowerCase(Locale.ROOT);
             if (lower.contains("mini") || lower.contains("theory")) names.add("mini-theory-judge");
             if (lower.contains("instruction") || lower.contains("consigna")) names.add("quiz-instruction-validator");
-            if (lower.contains("option") || lower.contains("choice")) names.add("choice-quality-judge");
-            if (lower.contains("statement") || lower.contains("translation")) {
+            if (lower.contains("option") || lower.contains("choice") || lower.equals("form") || lower.equals("form_kind")) names.add("choice-quality-judge");
+            if (lower.contains("statement") || lower.contains("sentence") || lower.contains("translation")) {
                 names.addAll(List.of("naturalness-yes-no", "translation-sense-from-english", "translation-sense-from-translation"));
             }
             if (lower.contains("answer")) names.add("single-answer-judge");

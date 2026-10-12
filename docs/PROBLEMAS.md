@@ -3,9 +3,11 @@
 Implementación inicial de `docs/propuestas/problemas.html`. El tablero HTML está en
 `ittm/pipeline/vocabulary_dashboard`; el registro y los comandos están en ContentAudit.
 
-Desde Correcciones, el botón **Problema** y el atajo **P** guardan el antes y el después,
-el comentario, la expectativa opcional y la procedencia. Se puede elegir un problema
-existente o crear uno. Por omisión se rechaza la corrección; la opción se puede quitar y
+El operador describe cada problema una sola vez: nombre, descripción general y lista
+de quizzes. Desde Correcciones, el botón **Problema** y el atajo **P** permiten elegir
+un problema existente o crear uno con esos dos campos. Sumar otro quiz no pide texto
+adicional; durante la revisión se recuerda el último problema usado. Se guardan el
+antes, el después y la procedencia automáticamente. Por omisión se rechaza la corrección; la opción se puede quitar y
 la anotación se puede deshacer mientras la corrección y la decisión sigan siendo compatibles.
 Las decisiones pendientes en la cola deben guardarse o descartarse antes de anotar.
 
@@ -14,7 +16,7 @@ tanda: las campañas del mismo curso comparten los problemas. Los casos son snap
 congelados y sobreviven a cambios en la campaña. Un caso nuevo reabre el problema y
 retira la entrega anterior.
 
-La pantalla **Problemas** permite editar el criterio, buscar textos o expresiones
+La pantalla **Problemas** permite editar el nombre y la descripción, buscar textos o expresiones
 regulares en una tanda y agregar grupos de quizzes como Examen o Está bien. El agente
 puede seleccionar ejemplos para el examen; sólo el operador redefine los controles
 Está bien. Detección y corrección se presentan por separado; un resultado ausente se
