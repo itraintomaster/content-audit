@@ -32,6 +32,26 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 )
 public class FileSystemCourseRepositoryTest {
 
+    @Test
+    void keepsACompleteOriginalThroughSaveReloadAndProductionProjection(@TempDir Path root) throws IOException {
+        writeCourseWithQuiz(root, List.of(Map.of("kind", "CLOZE", "text", "", "options", List.of("plays"))), List.of("plays"));
+        var repository = new FileSystemCourseRepository(org.mockito.Mockito.mock(com.learney.contentaudit.coursedomain.CourseValidator.class));
+        var course = repository.load(root);
+        var q = course.getRoot().getMilestones().get(0).getTopics().get(0).getKnowledges().get(0).getQuizTemplates().get(0);
+        q.setUnmodeledFields(Map.of("opaque", Map.of("kept", true)));
+        var original = mapper.convertValue(q, QuizTemplateEntity.class);
+        q.setClozeOriginal(original);
+        q.setKind("MULTIPLE_CHOICE"); q.getForm().setKind("MULTIPLE_CHOICE");
+        repository.save(course, root);
+        var restored = repository.load(root).getRoot().getMilestones().get(0).getTopics().get(0).getKnowledges().get(0).getQuizTemplates().get(0);
+        assertEquals(original, restored.getClozeOriginal());
+        assertNull(restored.getClozeOriginal().getClozeOriginal());
+        var backup = (Map<?, ?>) repository.project(restored, List.of("clozeOriginal")).get("clozeOriginal");
+        assertEquals(Q1_ID, backup.get("id"));
+        assertEquals("CLOZE", backup.get("kind"));
+        assertEquals(Map.of("kept", true), backup.get("opaque"));
+    }
+
     // -------------------------------------------------------------------------
     // IDs de fixture — misma convencion que FileSystemCourseRepositoryIntegrationTest
     // -------------------------------------------------------------------------

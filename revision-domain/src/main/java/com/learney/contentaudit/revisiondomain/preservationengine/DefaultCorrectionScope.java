@@ -95,6 +95,7 @@ public class DefaultCorrectionScope implements CorrectionScope {
                 case ANSWERS -> fields.add(ANSWERS_OF_GAPS);
                 case OPTIONS -> fields.add(MULTIPLE_CHOICE);
                 case FORM_KIND -> {
+                    fields.add(new ScopedField("clozeOriginal", null));
                     fields.add(new ScopedField("kind", null));
                     fields.add(new ScopedField("form.kind", null));
                     fields.add(MULTIPLE_CHOICE);

@@ -33,8 +33,15 @@ public class DefaultBatchServiceFactory implements BatchServiceFactory {
         DefaultGateFactory gates = new DefaultGateFactory();
         BatchChangeLedger ledger = new DefaultBatchChangeLedger(config.getArtifactStore(), locator);
         BatchTaskSelector selector = new DefaultBatchTaskSelector(config.getArtifactStore(), config.getCorrectionCatalog());
-        RuleStage rules = new DefaultRuleStage(config.getRuleFixes(), config.getTopicMeter(), gates.changeGate(), ledger,
+        DefaultMultipleChoiceConversionService conversions = new DefaultMultipleChoiceConversionService(
+                config.getBatchStore(), config.getRefinementPlanStore(), config.getCourseRepository(), config.getCoursePath(), ledger);
+        DefaultRuleStage ruleStage = new DefaultRuleStage(config.getRuleFixes(), config.getTopicMeter(), gates.changeGate(), ledger,
                 config.getBatchStore()).withPlans(config.getRefinementPlanStore());
+        RuleStage rules = (batch, report, course) -> {
+            var changed = ruleStage.apply(batch, report, course);
+            conversions.suggestAll(changed, course);
+            return changed;
+        };
         PanelStage panels = new DefaultPanelStage(config.getPanelRunner(), config.getBriefer(),
                 config.getCorrectionCatalog(), config.getWordLightsQuery(), ledger, config.getBatchStore(),
                 config.getAuditEngine(), config.getCourseMapper())

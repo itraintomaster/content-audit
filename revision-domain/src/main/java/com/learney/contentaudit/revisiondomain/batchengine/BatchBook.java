@@ -295,6 +295,7 @@ final class BatchBook {
         }
         if (fields.contains(Field.KIND)) {
             result.setKind(after.getKind());
+            result.setClozeOriginal(after.getClozeOriginal());
         }
         if (fields.contains(Field.PARTS) || fields.contains(Field.CHOICE) || fields.contains(Field.KIND)) {
             FormEntity form = result.getForm() != null ? FormEntities.copyOf(result.getForm()) : new FormEntity();
@@ -323,7 +324,9 @@ final class BatchBook {
         }
         boolean sentenceInputsChanged = fields.contains(Field.PARTS) || fields.contains(Field.CHOICE)
                 || fields.contains(Field.KIND);
-        if (sentenceInputsChanged) {
+        if (fields.contains(Field.KIND) && (after.getClozeOriginal() != null || current.getClozeOriginal() != null)) {
+            result.setSentences(after.getSentences() == null ? null : new ArrayList<>(after.getSentences()));
+        } else if (sentenceInputsChanged) {
             result.setSentences(StoredSentenceRehydrator.rebuild(result));
         } else if (fields.contains(Field.SENTENCES)) {
             result.setSentences(after.getSentences() != null ? new ArrayList<>(after.getSentences()) : null);

@@ -34,12 +34,14 @@ public final class QuizTemplateEntities {
      */
     public static QuizTemplateEntity copyOf(QuizTemplateEntity other) {
         Objects.requireNonNull(other, "quiz to copy");
-        return new QuizTemplateEntity(other.getId(), other.getOidId(), other.getKind(),
+        QuizTemplateEntity copy = new QuizTemplateEntity(other.getId(), other.getOidId(), other.getKind(),
                 other.getKnowledgeId(), other.getTitle(), other.getInstructions(),
                 other.getTranslation(), other.getTheoryId(), other.getTopicName(), other.getForm(),
                 other.getDifficulty(), other.getRetries(), other.getNoScoreRetries(),
                 other.getCode(), other.getAudioUrl(), other.getImageUrl(),
                 other.getAnswerAudioUrl(), other.getAnswerImageUrl(), other.getMiniTheory(),
                 other.getSuccessMessage(), other.getSentences(), other.getUnmodeledFields());
+        copy.setClozeOriginal(other.getClozeOriginal());
+        return copy;
     }
 }

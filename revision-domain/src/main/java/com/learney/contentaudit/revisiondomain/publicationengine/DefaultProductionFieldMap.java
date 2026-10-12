@@ -46,6 +46,7 @@ public class DefaultProductionFieldMap implements ProductionFieldMap {
         places.put(new Key("form.multipleChoice", null, AuditTarget.QUIZ), quiz("form.selection", "form.items"));
         places.put(new Key(DefaultCorrectionScope.AUDIO_PERMISSION, null, AuditTarget.QUIZ),
                 new ProductionPlace.NotWritten(RE_RECORDING));
+        places.put(new Key("clozeOriginal", null, AuditTarget.QUIZ), quiz("clozeOriginal"));
         places.put(new Key("kind", null, AuditTarget.QUIZ),
                 new ProductionPlace.Unsupported(EXERCISE_TYPE_CHANGE, List.of("kind")));
         places.put(new Key("form.kind", null, AuditTarget.QUIZ),

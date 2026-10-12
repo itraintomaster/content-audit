@@ -54,7 +54,7 @@ public class FileSystemCourseRepository implements CourseRepository, ProductionD
     private static final Set<String> QUIZ_KNOWN_KEYS = Set.of(
             "_id", "id", "kind", "knowledgeId", "title", "instructions", "translation", "theoryId",
             "topicName", "difficulty", "retries", "noScoreRetries", "code", "audioUrl", "imageUrl",
-            "answerAudioUrl", "answerImageUrl", "miniTheory", "successMessage", "form", "sentences");
+            "answerAudioUrl", "answerImageUrl", "miniTheory", "clozeOriginal", "successMessage", "form", "sentences");
 
     // Keys loadForm consumes. A multiple-choice form also consumes selection and items; on any
     // other form those two keys, if present, are preserved like any unknown key.
@@ -335,51 +335,60 @@ public class FileSystemCourseRepository implements CourseRepository, ProductionD
             Map<String, Object> q = asMap(item);
             if (q == null) continue;
 
-            String oidId = extractOid(q.get("_id"));
-            String id = (String) q.get("id");
-            // R011: both id and oidId contain the same value
-            if (id == null) id = oidId;
-
-            String kind = (String) q.get("kind");
-            String knowledgeId = extractOid(q.get("knowledgeId"));
-            String title = (String) q.get("title");
-            String instructions = (String) q.get("instructions");
-            String translation = (String) q.get("translation");
-            String theoryId = (String) q.get("theoryId");
-            String topicName = (String) q.get("topicName");
-            double difficulty = extractNumberDouble(q.get("difficulty"));
-            double retries = extractNumberDouble(q.get("retries"));
-            double noScoreRetries = extractNumberDouble(q.get("noScoreRetries"));
-            String code = (String) q.get("code");
-            String audioUrl = (String) q.get("audioUrl");
-            String imageUrl = (String) q.get("imageUrl");
-            String answerAudioUrl = (String) q.get("answerAudioUrl");
-            String answerImageUrl = (String) q.get("answerImageUrl");
-            String miniTheory = (String) q.get("miniTheory");
-            String successMessage = (String) q.get("successMessage");
-
-            Map<String, Object> formMap = asMap(q.get("form"));
-            FormEntity form = loadForm(formMap);
-            List<String> sentences = extractStringList(formMap, "sentences");
-            if (sentences == null || sentences.isEmpty()) {
-                // F-DBSENT: canonical course quizzes persist their plain sentences under
-                // form.sentences. Quizzes serialized straight from the entity model — e.g. a
-                // revision proposal's elementAfter materialized into a projected course — carry
-                // them at the top level (QuizTemplateEntity.sentences) instead. Fall back to that
-                // so the sentence (and its tokens) survive re-analysis; otherwise the analyzer,
-                // which never re-derives at runtime, reads an empty sentence for that quiz.
-                sentences = extractStringList(q, "sentences");
-            }
-
-            QuizTemplateEntity quiz = new QuizTemplateEntity(
-                    id, oidId, kind, knowledgeId, title, instructions, translation,
-                    theoryId, topicName, form, difficulty, retries, noScoreRetries,
-                    code, audioUrl, imageUrl, answerAudioUrl, answerImageUrl,
-                    miniTheory, successMessage, sentences, unmodeledFields(q, QUIZ_KNOWN_KEYS)
-            );
-            quizzes.add(quiz);
+            quizzes.add(loadQuiz(q));
         }
         return quizzes;
+    }
+
+    private QuizTemplateEntity loadQuiz(Map<String, Object> q) {
+        String oidId = extractOid(q.get("_id"));
+        String id = (String) q.get("id");
+        // R011: both id and oidId contain the same value
+        if (id == null) id = oidId;
+
+        String kind = (String) q.get("kind");
+        String knowledgeId = extractOid(q.get("knowledgeId"));
+        String title = (String) q.get("title");
+        String instructions = (String) q.get("instructions");
+        String translation = (String) q.get("translation");
+        String theoryId = (String) q.get("theoryId");
+        String topicName = (String) q.get("topicName");
+        double difficulty = extractNumberDouble(q.get("difficulty"));
+        double retries = extractNumberDouble(q.get("retries"));
+        double noScoreRetries = extractNumberDouble(q.get("noScoreRetries"));
+        String code = (String) q.get("code");
+        String audioUrl = (String) q.get("audioUrl");
+        String imageUrl = (String) q.get("imageUrl");
+        String answerAudioUrl = (String) q.get("answerAudioUrl");
+        String answerImageUrl = (String) q.get("answerImageUrl");
+        String miniTheory = (String) q.get("miniTheory");
+        String successMessage = (String) q.get("successMessage");
+
+        Map<String, Object> formMap = asMap(q.get("form"));
+        FormEntity form = loadForm(formMap);
+        List<String> sentences = extractStringList(formMap, "sentences");
+        if (sentences == null || sentences.isEmpty()) {
+            // F-DBSENT: canonical course quizzes persist their plain sentences under
+            // form.sentences. Quizzes serialized straight from the entity model — e.g. a
+            // revision proposal's elementAfter materialized into a projected course — carry
+            // them at the top level (QuizTemplateEntity.sentences) instead. Fall back to that
+            // so the sentence (and its tokens) survive re-analysis; otherwise the analyzer,
+            // which never re-derives at runtime, reads an empty sentence for that quiz.
+            sentences = extractStringList(q, "sentences");
+        }
+
+        QuizTemplateEntity quiz = new QuizTemplateEntity(
+                id, oidId, kind, knowledgeId, title, instructions, translation,
+                theoryId, topicName, form, difficulty, retries, noScoreRetries,
+                code, audioUrl, imageUrl, answerAudioUrl, answerImageUrl,
+                miniTheory, successMessage, sentences, unmodeledFields(q, QUIZ_KNOWN_KEYS)
+        );
+        Map<String, Object> original = asMap(q.get("clozeOriginal"));
+        if (original != null) {
+            if (original.containsKey("clozeOriginal")) throw new IllegalArgumentException("La copia del cloze no puede contener otra copia.");
+            quiz.setClozeOriginal(loadQuiz(original));
+        }
+        return quiz;
     }
 
     private FormEntity loadForm(Map<String, Object> formJson) {
@@ -648,6 +657,7 @@ public class FileSystemCourseRepository implements CourseRepository, ProductionD
         q.put("miniTheory", quiz.getMiniTheory());
         q.put("successMessage", quiz.getSuccessMessage());
         q.put("form", formToJson(quiz.getForm(), quiz.getSentences()));
+        if (quiz.getClozeOriginal() != null) q.put("clozeOriginal", quizToJson(quiz.getClozeOriginal()));
         putUnmodeled(q, quiz.getUnmodeledFields());
         return q;
     }

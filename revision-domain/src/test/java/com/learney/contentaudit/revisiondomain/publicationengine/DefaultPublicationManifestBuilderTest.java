@@ -461,6 +461,27 @@ public class DefaultPublicationManifestBuilderTest {
         assertTrue(refusal.getMessage().contains("q1"), refusal.getMessage());
     }
 
+    @Test
+    void conversionAndRestorationTravelAsOneReviewedTransitionWithTheirOriginal() {
+        var before = quiz("q1", "Igual.", "Teoría.", "I am ", "_at", " home.");
+        var after = new com.fasterxml.jackson.databind.ObjectMapper().convertValue(before, QuizTemplateEntity.class);
+        after.setKind("MULTIPLE_CHOICE"); after.getForm().setKind("MULTIPLE_CHOICE");
+        after.setClozeOriginal(before);
+        var parts = steps(step("conversion", ExercisePart.FORM_KIND, ExercisePart.OPTIONS,
+                ExercisePart.STATEMENT, ExercisePart.ANSWERS, ExercisePart.INSTRUCTIONS, ExercisePart.STORED_SENTENCE));
+        var manifest = builder.build(request(List.of(new PublishedElement(snapshot(before), snapshot(after), "proposal",
+                DocumentReviewStatus.APPROVED, parts))));
+        assertTrue(manifest.unsupported().isEmpty());
+        assertEquals(List.of("kind", "form", "instructions", "clozeOriginal"),
+                manifest.documents().get(0).fields().stream().map(ManifestField::path).toList());
+        assertThrows(IllegalArgumentException.class, () -> builder.build(request(List.of(new PublishedElement(
+                snapshot(before), snapshot(after), "proposal", DocumentReviewStatus.PENDING, parts)))));
+        var restored = new com.fasterxml.jackson.databind.ObjectMapper().convertValue(before, QuizTemplateEntity.class);
+        restored.setClozeOriginal(before);
+        assertEquals(4, builder.build(request(List.of(new PublishedElement(snapshot(after), snapshot(restored), "restore",
+                DocumentReviewStatus.APPROVED, parts)))).documents().get(0).fields().size());
+    }
+
     private static QuizTemplateEntity multipleChoice(String id, String selection, String third) {
         return multipleChoice(id, selection, option("at", 1.0, "at"), option("in", 0.0, "in"),
                 option(third, 0.0, third));

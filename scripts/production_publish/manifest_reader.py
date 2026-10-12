@@ -18,6 +18,7 @@ import os
 import re
 
 from .store import same_value
+from . import conversion
 
 SCHEMA = 1
 
@@ -31,7 +32,7 @@ COLLECTIONS = (KNOWLEDGES, QUIZ_TEMPLATES)
 # Una ruta que no esté acá se niega: la tabla es un contrato con el lado Java.
 WRITABLE_PATHS = {
     QUIZ_TEMPLATES: ("form.sentences", "translation", "instructions", "miniTheory",
-                     "form.sentenceParts", "form.items"),
+                     "form.sentenceParts", "form.items", "kind", "form", "clozeOriginal"),
     KNOWLEDGES: ("instructions",),
 }
 
@@ -255,7 +256,11 @@ def _is_str_list(value):
 
 
 def _check_after_type(path, after, where, problems):
-    if path in ("translation", "instructions", "miniTheory"):
+    if path == "kind":
+        ok, expected = after in ("CLOZE", "MULTIPLE_CHOICE"), "un tipo de conversión conocido"
+    elif path in ("form", "clozeOriginal"):
+        ok, expected = isinstance(after, dict), "un documento completo"
+    elif path in ("translation", "instructions", "miniTheory"):
         ok = isinstance(after, str)
         expected = "un texto"
     elif path == "form.sentences":
@@ -424,7 +429,7 @@ def _unsupported_problems(unsupported, problems):
                 _require(item, key, _is_text, "un texto", where, "BAD_UNSUPPORTED", problems)
 
 
-def _field_problems(field, collection, where, seen_paths, problems):
+def _field_problems(field, collection, where, seen_paths, problems, atomic_conversion=False):
     """Un campo de un documento. Devuelve su ruta si cuenta, o None."""
     if not _exact_keys(field, FIELD_KEYS, "%s: un campo" % where, "BAD_FIELD", problems):
         return None
@@ -432,10 +437,10 @@ def _field_problems(field, collection, where, seen_paths, problems):
     if not isinstance(path, str):
         problems.append(("BAD_FIELD", "%s: un campo no tiene ruta." % where))
         return None
-    if path in FORBIDDEN_PATHS or any(path.startswith(p + ".") for p in FORBIDDEN_PATHS):
+    if (path in FORBIDDEN_PATHS or any(path.startswith(p + ".") for p in FORBIDDEN_PATHS)) and not (atomic_conversion and path == "kind"):
         problems.append(("FORBIDDEN_PATH", "%s: la ruta «%s» está prohibida; nunca se escribe." % (where, path)))
         return None
-    if path not in WRITABLE_PATHS[collection]:
+    if path not in WRITABLE_PATHS[collection] or path in ("form", "clozeOriginal") and not atomic_conversion:
         problems.append(("PATH_NOT_ALLOWED", "%s: la ruta «%s» no está en la tabla de lo que se escribe en %s."
                          % (where, path, collection)))
         return None
@@ -446,14 +451,16 @@ def _field_problems(field, collection, where, seen_paths, problems):
     if "before" not in field or "after" not in field:
         return None  # ya se dijo MISSING_KEY
     before, after = field["before"], field["after"]
-    if after is None:
+    restored_null_instruction = atomic_conversion and path == "instructions" and after is None
+    if after is None and not restored_null_instruction:
         problems.append(("NULL_AFTER", "%s: el después de «%s» es nulo; nunca se escribe un nulo." % (where, path)))
         return None
     _walk_keys(before, path, problems, where)
     _walk_keys(after, path, problems, where)
-    _check_after_type(path, after, where, problems)
+    if not restored_null_instruction:
+        _check_after_type(path, after, where, problems)
     _check_multiple_choice(path, before, after, where, problems)
-    if same_value(before, after):
+    if same_value(before, after) and not (atomic_conversion and path in conversion.PATHS):
         problems.append(("UNCHANGED_FIELD", "%s: «%s» trae el mismo antes y después." % (where, path)))
     return path
 
@@ -476,6 +483,9 @@ def _document_problems(index, doc, left_out, seen_docs, by_path, problems):
         return
     seen_docs.add((collection, doc_id))
     _require(doc, "nodeId", _is_text, "un texto", where, "BAD_DOCUMENTS", problems)
+    conversion_problem = conversion.problem(doc)
+    if conversion_problem:
+        problems.append(("BAD_CONVERSION", "%s: %s" % (where, conversion_problem)))
     change_ids = doc.get("changeIds")
     if "changeIds" in doc and (not _is_str_list(change_ids) or not change_ids):
         problems.append(("BAD_DOCUMENTS", "%s: no dice qué cambios lo originaron." % where))
@@ -496,7 +506,7 @@ def _document_problems(index, doc, left_out, seen_docs, by_path, problems):
         return
     seen_paths = set()
     for field in fields:
-        path = _field_problems(field, collection, where, seen_paths, problems)
+        path = _field_problems(field, collection, where, seen_paths, problems, conversion.is_conversion(doc.get("fields", [])) and conversion_problem is None)
         if path is not None:
             by_path[path] = by_path.get(path, 0) + 1
 

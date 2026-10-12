@@ -1,0 +1,1672 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pasar a opción múltiple · Propuesta</title>
+<style>
+/* ══════════════════════════════════════════════════════════════════════
+   TOKENS — dos registros deliberadamente distintos.
+   --ed-*  editorial: papel, serif, aire. Es la parte que VENDE.
+   --app-* producto:  UI real, sans, denso. Es la parte que MUESTRA.
+   Cambiar --app-accent por el color de marca del proyecto.
+
+   TEMA: claro por defecto, oscuro por sistema, y el toggle manda sobre ambos.
+   Los valores oscuros están dos veces a propósito (media query + override);
+   si se toca uno hay que tocar el otro.
+   ══════════════════════════════════════════════════════════════════════ */
+:root{
+  --ed-bg:#F7F6FB; --ed-paper:#FFFFFF; --ed-line:#E4E2EE; --ed-line-soft:#EFEDF5;
+  --ed-fg:#1C1934; --ed-fg-2:#4B4866; --ed-fg-3:#807C99;
+  --ed-accent:#4B33B8; --ed-accent-soft:#ECE8FC;
+
+  --app-accent:#4B33B8; --app-accent-2:#ECE8FC; --on-accent:#FFFFFF; --on-bad:#FFFFFF;
+  --app-bg:#EFEEF6; --app-sup:#FFFFFF; --app-line:#E4E2EE; --app-line-soft:#F4F3F9;
+  --app-fg:#1C1934; --app-fg-2:#4B4866; --app-fg-3:#807C99;
+  --app-warn:#9A5F00; --app-warn-2:#FFF2D2;
+  --app-bad:#C42A55;  --app-bad-2:#FCE7EE;
+  --app-info:#2F5DA8; --app-info-2:#E7EEFA;
+  --app-ok:#0C7A66; --app-ok-2:#DAF2EA; --app-pen:#EE5A1F;
+  --app-ins:#0C7A66; --app-ins-bg:#DAF2EA; --app-del:#B5245A; --app-del-bg:#FBE5ED;
+
+  --r:12px; --r-s:8px;
+  --sh:0 1px 2px rgba(28,25,52,.05), 0 10px 30px -20px rgba(28,25,52,.4);
+  --sh-lg:0 2px 6px rgba(28,25,52,.06), 0 24px 60px -30px rgba(28,25,52,.5);
+  --serif:"Literata",ui-serif,Georgia,serif;
+  --sans:"Instrument Sans",ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-tema="claro"]){
+    --ed-bg:#12102A; --ed-paper:#1B1937; --ed-line:#2B2850; --ed-line-soft:#221F44;
+    --ed-fg:#EDEBF9; --ed-fg-2:#BDB9DA; --ed-fg-3:#8C88AD;
+    --ed-accent:#A496FF; --ed-accent-soft:#29235A;
+    --app-accent:#A496FF; --app-accent-2:#29235A; --on-accent:#12102A; --on-bad:#2A0A14;
+    --app-bg:#0E0C22; --app-sup:#1B1937; --app-line:#2B2850; --app-line-soft:#221F44;
+    --app-fg:#EDEBF9; --app-fg-2:#BDB9DA; --app-fg-3:#8C88AD;
+    --app-warn:#F5B843; --app-warn-2:#3A2C0D;
+    --app-bad:#FF6F96;  --app-bad-2:#3A1424;
+    --app-info:#8AB6F5; --app-info-2:#16213A;
+    --app-ok:#5BD8B9; --app-ok-2:#11382F; --app-pen:#FF7D4A;
+    --app-ins:#5BD8B9; --app-ins-bg:#11382F; --app-del:#FF86AA; --app-del-bg:#401A2B;
+    --sh:0 1px 2px rgba(0,0,0,.5), 0 10px 30px -20px rgba(0,0,0,.9);
+    --sh-lg:0 2px 6px rgba(0,0,0,.5), 0 24px 60px -30px rgba(0,0,0,1);
+  }
+}
+:root[data-tema="oscuro"]{
+  --ed-bg:#12102A; --ed-paper:#1B1937; --ed-line:#2B2850; --ed-line-soft:#221F44;
+  --ed-fg:#EDEBF9; --ed-fg-2:#BDB9DA; --ed-fg-3:#8C88AD;
+  --ed-accent:#A496FF; --ed-accent-soft:#29235A;
+  --app-accent:#A496FF; --app-accent-2:#29235A; --on-accent:#12102A; --on-bad:#2A0A14;
+  --app-bg:#0E0C22; --app-sup:#1B1937; --app-line:#2B2850; --app-line-soft:#221F44;
+  --app-fg:#EDEBF9; --app-fg-2:#BDB9DA; --app-fg-3:#8C88AD;
+  --app-warn:#F5B843; --app-warn-2:#3A2C0D;
+  --app-bad:#FF6F96;  --app-bad-2:#3A1424;
+  --app-info:#8AB6F5; --app-info-2:#16213A;
+  --app-ok:#5BD8B9; --app-ok-2:#11382F; --app-pen:#FF7D4A;
+  --app-ins:#5BD8B9; --app-ins-bg:#11382F; --app-del:#FF86AA; --app-del-bg:#401A2B;
+  --sh:0 1px 2px rgba(0,0,0,.5), 0 10px 30px -20px rgba(0,0,0,.9);
+  --sh-lg:0 2px 6px rgba(0,0,0,.5), 0 24px 60px -30px rgba(0,0,0,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ed-bg);color:var(--ed-fg);font:16px/1.65 var(--sans);
+  font-feature-settings:"kern","liga";transition:background .25s ease,color .25s ease}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.narrow{max-width:720px}
+h1,h2,h3,h4{margin:0;letter-spacing:-.02em}
+p{margin:0 0 14px}
+a{color:var(--ed-accent)}
+code{font-family:var(--mono);font-size:.9em}
+.sprite{display:none}
+
+/* ═══════════════ TOGGLE DE TEMA ═══════════════ */
+.tema{position:fixed;top:16px;right:16px;z-index:50;appearance:none;cursor:pointer;
+  width:38px;height:38px;border-radius:99px;display:grid;place-items:center;
+  background:var(--ed-paper);border:1px solid var(--ed-line);color:var(--ed-fg-2);
+  box-shadow:var(--sh);transition:color .15s,transform .15s}
+.tema:hover{color:var(--ed-fg);transform:scale(1.06)}
+.tema svg{width:17px;height:17px;display:block;fill:none;stroke:currentColor;stroke-width:1.9;
+  stroke-linecap:round;stroke-linejoin:round}
+.tema .sol{display:none}
+:root[data-tema="oscuro"] .tema .sol{display:block}
+:root[data-tema="oscuro"] .tema .luna{display:none}
+@media (prefers-color-scheme:dark){
+  :root:not([data-tema="claro"]) .tema .sol{display:block}
+  :root:not([data-tema="claro"]) .tema .luna{display:none}
+}
+
+/* ═══════════════ 1 · EDITORIAL ═══════════════ */
+.hero{padding:80px 0 56px;border-bottom:1px solid var(--ed-line)}
+.eyebrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:24px;
+  font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ed-fg-3);font-weight:600}
+.eyebrow .dot{width:4px;height:4px;border-radius:99px;background:var(--ed-fg-3)}
+.hero h1{font-family:var(--serif);font-size:clamp(38px,6.2vw,68px);line-height:1.04;
+  font-weight:600;letter-spacing:-.03em;max-width:16ch}
+.hero .tag{font-family:var(--serif);font-size:clamp(19px,2.4vw,25px);line-height:1.45;
+  color:var(--ed-fg-2);margin:24px 0 0;max-width:34ch;font-style:italic}
+.duo{display:grid;grid-template-columns:1fr 1fr;margin:56px 0 0;
+  border:1px solid var(--ed-line);border-radius:var(--r);overflow:hidden;background:var(--ed-paper)}
+.duo>div{padding:26px 28px;min-width:0}
+.duo>div+div{border-left:1px solid var(--ed-line)}
+.duo .dato{font-family:var(--serif);font-size:clamp(30px,4.2vw,46px);line-height:1;font-weight:600;
+  letter-spacing:-.02em;margin:0 0 10px;color:var(--ed-fg)}
+.duo .sol .dato{color:var(--ed-accent)}
+.duo .sol{position:relative}
+.duo .sol::before{content:"→";position:absolute;left:-18px;top:50%;transform:translateY(-50%);z-index:1;
+  width:36px;height:36px;border-radius:99px;display:grid;place-items:center;font-size:17px;
+  background:var(--ed-paper);border:1px solid var(--ed-line);color:var(--ed-accent);box-shadow:var(--sh)}
+.duo .k{font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;
+  color:var(--ed-fg-3);margin-bottom:10px}
+.duo .sol .k{color:var(--ed-accent)}
+.duo p{font-size:17px;line-height:1.55;margin:0;color:var(--ed-fg)}
+.duo .sol{background:var(--ed-accent-soft)}
+.ed{padding:64px 0}
+.ed-h{font-family:var(--serif);font-size:clamp(26px,3.6vw,38px);line-height:1.15;font-weight:600;
+  margin-bottom:14px;max-width:20ch}
+.ed-sub{font-size:17px;color:var(--ed-fg-2);max-width:60ch;margin-bottom:34px}
+.rule{height:1px;background:var(--ed-line);border:0;margin:0}
+.pillars{display:grid;gap:1px;background:var(--ed-line);border:1px solid var(--ed-line);
+  border-radius:var(--r);overflow:hidden;grid-template-columns:repeat(auto-fit,minmax(238px,1fr))}
+.pillar{position:relative;background:var(--ed-paper);padding:24px 22px;display:grid;gap:10px;align-content:start;min-width:0}
+.pillar .n{position:absolute;top:22px;right:22px;font-family:var(--mono);font-size:11px;font-weight:700;
+  color:var(--ed-fg-3);letter-spacing:.1em}
+.pillar h3{font-size:17px;font-weight:640;letter-spacing:-.01em}
+.pillar p{font-size:14.5px;color:var(--ed-fg-2);line-height:1.5;margin:0}
+/* el ícono de un pilar o de un paso: <div class="pi"><svg class="ico"><use href="#i-…"/></svg></div> */
+.pi{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex:none;
+  background:var(--ed-accent-soft);color:var(--ed-accent)}
+.pi .ico{width:22px;height:22px;stroke-width:1.7}
+.flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:24px;counter-reset:paso;margin-top:8px}
+.paso{position:relative;counter-increment:paso;background:var(--ed-paper);border:1px solid var(--ed-line);
+  border-radius:var(--r);padding:20px 18px 18px;display:grid;gap:10px;align-content:start;min-width:0}
+.paso::before{content:counter(paso,decimal-leading-zero);position:absolute;top:18px;right:18px;
+  font-family:var(--mono);font-size:11px;font-weight:700;color:var(--ed-fg-3);letter-spacing:.08em}
+.paso:not(:last-child)::after{content:"";position:absolute;right:-16px;top:50%;width:9px;height:9px;
+  border-top:2px solid var(--ed-accent);border-right:2px solid var(--ed-accent);transform:translateY(-50%) rotate(45deg)}
+.paso.fin{background:var(--ed-accent-soft);border-color:color-mix(in srgb,var(--ed-accent) 40%,var(--ed-line))}
+.paso.fin .pi{background:var(--ed-paper)}
+.paso h4{font-size:15.5px;font-weight:640}
+.paso p{font-size:14px;color:var(--ed-fg-2);margin:0;line-height:1.5}
+.quote{border-left:3px solid var(--ed-accent);padding:6px 0 6px 24px;margin:0;
+  font-family:var(--serif);font-size:clamp(20px,2.6vw,27px);line-height:1.4;font-style:italic;
+  max-width:26ch;letter-spacing:-.01em}
+.tw{overflow-x:auto;border:1px solid var(--ed-line);border-radius:var(--r);background:var(--ed-paper)}
+/* Ojo: scopeado a .tw. Sin el scope, el min-width pisaba a .ui-tbl dentro de los mockups. */
+.tw table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:460px}
+.tw th{text-align:left;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ed-fg-3);
+  font-weight:700;padding:12px 18px;border-bottom:1px solid var(--ed-line);white-space:nowrap}
+.tw td{padding:13px 18px;border-bottom:1px solid var(--ed-line-soft);vertical-align:top}
+.tw tr:last-child td{border-bottom:0}
+.si{color:var(--app-accent);font-weight:640}
+.no{color:var(--ed-fg-3)}
+
+/* ═══════════════ 2 · BISAGRA ═══════════════ */
+.bisagra{background:var(--app-bg);border-top:1px solid var(--app-line);
+  padding:52px 0 34px;color:var(--app-fg);font-family:var(--sans)}
+.bisagra .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+  color:var(--app-accent);margin-bottom:12px}
+.bisagra h2{font-family:var(--serif);font-size:clamp(24px,3.4vw,34px);font-weight:600;margin-bottom:12px}
+.bisagra .d{font-size:16px;color:var(--app-fg-2);max-width:58ch;margin:0}
+
+/* ═══════════════ 3 · PANTALLAS · el estudio ═══════════════
+   La barra de pestañas (.barra-p) queda PEGADA arriba mientras se recorren las
+   pantallas. Vive adentro de .pantallas a propósito: un sticky sólo se pega dentro
+   de su padre, y en la bisagra se despegaba apenas terminaba.
+   Cada pantalla es un ESTUDIO de dos columnas, todo a la vista sin scrollear:
+     izquierda  .escena  el mockup entero; queda pegado mientras se lee la otra columna
+     derecha    .txt     qué es la pantalla (≤ 40 palabras + nota ≤ 20)
+                .funcs   las funciones en acordeón, de a una abierta
+   El dibujo es un mapa:
+     data-ir="<id>"      navega: a otra pantalla, a una función, a otra vista o etapa
+     data-f="<id det>"   la pieza de esa función: se marca al abrirla, y tocarla la abre
+   En el celular se apila en el orden del DOM: texto, dibujo, funciones. */
+.pantallas{background:var(--app-bg);color:var(--app-fg);padding:0 0 80px;font-family:var(--sans)}
+.barra-p{position:sticky;top:var(--pegado-p,0px);z-index:30;border-top:1px solid var(--app-line);
+  border-bottom:1px solid var(--app-line);background:color-mix(in srgb,var(--app-bg) 90%,transparent);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.barra-p .wrap{display:flex;align-items:center;gap:12px}
+.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.tabs::-webkit-scrollbar{display:none}
+.tab{appearance:none;background:none;border:0;border-bottom:2px solid transparent;
+  font:inherit;font-size:14px;font-weight:560;color:var(--app-fg-3);padding:15px 14px 13px;
+  cursor:pointer;white-space:nowrap;transition:color .12s,border-color .12s}
+.tab:hover{color:var(--app-fg-2)}
+.tab[aria-selected="true"]{color:var(--app-accent);border-bottom-color:var(--app-accent)}
+.tab .i{font-family:var(--mono);font-size:10.5px;opacity:.65;margin-right:7px}
+.pasar{display:flex;gap:6px;flex:none}
+.pasar button{appearance:none;border:1px solid var(--app-line);background:var(--app-sup);
+  color:var(--app-fg-2);width:32px;height:32px;border-radius:99px;display:grid;place-items:center;
+  cursor:pointer;transition:color .12s,border-color .12s}
+.pasar button:hover:not(:disabled){color:var(--app-accent);border-color:var(--app-accent)}
+.pasar button:disabled{opacity:.35;cursor:default}
+.pantalla[hidden]{display:none}
+.pantalla{scroll-margin-top:var(--pegado,0px)}   /* el salto nativo a #p-N no queda bajo las barras */
+
+.estudio{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,400px);
+  grid-template-areas:"escena txt" "escena funcs";grid-template-rows:auto 1fr;
+  column-gap:48px;align-items:start;padding-top:36px}
+.estudio:has(.mk[data-device="mobile"]){grid-template-columns:minmax(300px,370px) minmax(0,1fr);column-gap:64px}
+.escena{grid-area:escena;position:sticky;top:calc(var(--pegado,0px) + 20px);min-width:0}
+.estudio>.txt{grid-area:txt;min-width:0}
+.estudio>.txt .rol{font-size:11px;letter-spacing:.11em;text-transform:uppercase;font-weight:700;
+  color:var(--app-accent);margin-bottom:10px}
+.estudio>.txt h3{font-family:var(--serif);font-size:clamp(23px,2.6vw,30px);font-weight:600;
+  margin-bottom:12px;max-width:22ch}
+.estudio>.txt p{font-size:16px;color:var(--app-fg-2);line-height:1.65}
+.estudio>.txt p:last-child{margin-bottom:0}
+.nota{background:var(--app-line-soft);border-radius:var(--r-s);padding:11px 13px;font-size:13.5px;
+  color:var(--app-fg-2);border-left:2px solid var(--app-accent);margin:0}
+.pie-mk{font-size:11.5px;color:var(--app-fg-3);margin:10px 0 0;text-align:center}
+.pista{font-size:11.5px;color:var(--app-fg-3);margin:6px 0 0;display:flex;gap:6px;
+  justify-content:center;align-items:center;text-align:center}
+.pista .ico{color:var(--app-accent)}
+
+/* — las funciones: acordeón — */
+.funcs{grid-area:funcs;min-width:0;padding-top:26px}
+.funcs-h{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+  color:var(--app-fg-3);margin:0 0 10px}
+.det{background:var(--app-sup);border:1px solid var(--app-line);border-radius:var(--r);
+  margin-bottom:8px;scroll-margin-top:calc(var(--pegado,0px) + 16px);transition:border-color .15s,box-shadow .15s}
+.det[open]{box-shadow:var(--sh);border-color:color-mix(in srgb,var(--app-accent) 40%,var(--app-line))}
+.det summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;
+  padding:13px 16px;border-radius:var(--r)}
+.det summary::-webkit-details-marker{display:none}
+.det summary .fn{font-family:var(--mono);font-size:10px;color:var(--app-fg-3);flex:none}
+.det summary h3{font-size:15px;font-weight:620;margin:0;flex:1;min-width:0;transition:color .12s}
+.det summary:hover h3{color:var(--app-accent)}
+.det summary .chev{color:var(--app-fg-3);transition:transform .18s}
+.det[open] summary .chev{transform:rotate(180deg)}
+.det[open] summary .fn{color:var(--app-accent)}
+.det-c{padding:0 16px 16px}
+.det p{font-size:14.5px;color:var(--app-fg-2);line-height:1.6;margin:0 0 12px}
+.det ul{margin:0 0 12px;padding-left:18px;font-size:14px;color:var(--app-fg-2);line-height:1.6}
+.det li{margin-bottom:5px}
+.det strong{color:var(--app-fg);font-weight:600}
+.det-c>*:last-child{margin-bottom:0}
+.donde{display:inline-flex;align-items:center;gap:7px;background:var(--app-line-soft);
+  border-radius:99px;padding:4px 12px;font-size:12px;color:var(--app-fg-2);margin-bottom:12px}
+.donde::before{content:"";width:5px;height:5px;border-radius:99px;background:var(--app-accent);flex:none}
+.donde b{color:var(--app-fg);font-weight:640}
+.zoom{background:var(--app-bg);border:1px solid var(--app-line);border-radius:var(--r);
+  padding:20px 18px;margin:0 0 14px;display:grid;gap:11px}
+.zoom-l{font-size:10px;letter-spacing:.11em;text-transform:uppercase;font-weight:700;
+  color:var(--app-fg-3);margin-bottom:-3px}
+.sigue{display:flex;gap:12px;margin-top:20px;padding-top:16px;border-top:1px solid var(--app-line)}
+.sigue button{appearance:none;background:none;border:0;font:inherit;cursor:pointer;padding:4px 0;
+  color:var(--app-fg-3);font-size:12.5px;display:flex;flex-direction:column;gap:2px;text-align:left}
+.sigue button b{color:var(--app-fg);font-size:14px;font-weight:600;transition:color .12s}
+.sigue button:hover b{color:var(--app-accent)}
+.sigue .sig{margin-left:auto;text-align:right;align-items:flex-end}
+
+/* — un salto escrito: «Ver la pantalla →» en el texto, en una función o en otra vista — */
+.ver{appearance:none;background:none;border:0;padding:2px 0;font:inherit;font-size:13px;font-weight:650;
+  color:var(--app-accent);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.ver:hover{text-decoration:underline;text-underline-offset:3px}
+.ed .ver{color:var(--ed-accent)}
+
+/* — el dibujo como mapa: lo que navega (data-ir) y lo que señala (data-f) — */
+.mk [data-ir],.mk [data-f]{cursor:pointer;outline:2px solid transparent;outline-offset:2px;
+  transition:outline-color .15s,outline-offset .15s}
+.mk [data-ir]:hover{outline:1.5px dashed color-mix(in srgb,var(--app-accent) 65%,transparent)}
+.mk [data-f]:hover,.mk [data-f].asoma{outline-color:color-mix(in srgb,var(--app-accent) 45%,transparent)}
+.mk [data-f].foco{outline:2px solid var(--app-accent);animation:foco .45s ease-out}
+@keyframes foco{from{outline-offset:9px;outline-color:transparent}to{outline-offset:2px}}
+@media (prefers-reduced-motion:reduce){.mk [data-f].foco{animation:none}}
+
+/* ══════════════════════════════════════════════════════════════════════
+   4 · KIT DE MOCKUP
+   Todo con tokens --app-*: nunca un color a mano, o se rompe en un tema.
+   Si falta una pieza se agrega ACÁ, con los mismos tokens.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* — iconos: <svg class="ico"><use href="#i-nombre"/></svg> — */
+.ico{width:16px;height:16px;flex:none;display:inline-block;vertical-align:-3px;
+  fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ico.xs{width:12px;height:12px;stroke-width:2.1}
+.ico.sm{width:14px;height:14px;stroke-width:2}
+.ico.lg{width:20px;height:20px;stroke-width:1.7}
+.ico.xl{width:30px;height:30px;stroke-width:1.4}
+.ico.on{fill:currentColor}
+
+/* — marco — */
+.mkw{overflow-x:auto;padding-bottom:4px}
+.mk{background:var(--app-sup);border:1px solid var(--app-line);border-radius:var(--r);
+  overflow:hidden;box-shadow:var(--sh-lg);min-width:660px;position:relative}
+.mk[data-device="mobile"]{min-width:0;max-width:330px;margin:0 auto;border-radius:26px;padding:8px}
+.mk-chrome{display:flex;align-items:center;gap:7px;padding:9px 12px;background:var(--app-line-soft);
+  border-bottom:1px solid var(--app-line)}
+.mk-chrome .b{width:9px;height:9px;border-radius:99px;background:var(--app-line);flex:none}
+.mk-url{flex:1;background:var(--app-sup);border:1px solid var(--app-line);border-radius:99px;
+  font-family:var(--mono);font-size:10.5px;color:var(--app-fg-3);padding:3px 11px;margin-left:6px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mk-app{display:grid;grid-template-columns:172px 1fr;min-height:340px}
+.mk-app[data-nav="none"]{grid-template-columns:1fr}
+.mk-nav{background:var(--app-line-soft);border-right:1px solid var(--app-line);padding:14px 10px;
+  display:flex;flex-direction:column;gap:2px}
+.mk-brand{font-size:13px;font-weight:700;letter-spacing:-.01em;padding:2px 8px 14px;display:flex;
+  align-items:center;gap:8px}
+.mk-brand::before{content:"";width:16px;height:16px;border-radius:5px;background:var(--app-accent);flex:none}
+.mk-ni{font-size:12px;color:var(--app-fg-2);padding:6px 8px;border-radius:6px;display:flex;
+  align-items:center;gap:9px}
+.mk-ni.on{background:var(--app-sup);color:var(--app-fg);font-weight:600;box-shadow:var(--sh)}
+.mk-ni.on .ico{color:var(--app-accent)}
+.mk-main{display:flex;flex-direction:column;min-width:0}
+.mk-head{padding:14px 18px;border-bottom:1px solid var(--app-line);display:flex;
+  align-items:center;justify-content:space-between;gap:12px}
+.mk-head h4{font-size:15px;font-weight:650}
+.mk-head .sub{font-size:11.5px;color:var(--app-fg-3);margin-top:2px}
+.mk-body{padding:16px 18px;display:grid;gap:13px;align-content:start;flex:1;background:var(--app-bg)}
+
+/* — superficies — */
+.ui-card{background:var(--app-sup);border:1px solid var(--app-line);border-radius:10px;padding:13px 15px}
+.ui-card .ct{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  color:var(--app-fg-3);margin-bottom:7px;display:flex;align-items:center;gap:6px}
+.ui-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+.ui-flex{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.ui-between{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.ui-grow{flex:1;min-width:0}
+.ui-div{display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--app-fg-3);font-weight:700}
+.ui-div::before,.ui-div::after{content:"";height:1px;background:var(--app-line);flex:1}
+
+/* — métricas — */
+.ui-kpi{display:grid;gap:3px}
+.ui-kpi .v{font-size:20px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.ui-kpi .d{font-size:10.5px;color:var(--app-fg-2);line-height:1.4}
+.ui-kpi.dest{background:var(--app-accent);border-color:var(--app-accent);color:#fff;
+  border-radius:10px;padding:13px 15px}
+.ui-kpi.dest .ct,.ui-kpi.dest .d{color:rgba(255,255,255,.78)}
+.ui-delta{font-size:10.5px;font-weight:700;display:inline-flex;align-items:center;gap:3px}
+.ui-delta.up{color:var(--app-accent)} .ui-delta.down{color:var(--app-bad)}
+
+/* — filas y listas — */
+.ui-row{display:flex;align-items:center;gap:11px;padding:9px 13px;background:var(--app-sup);
+  border:1px solid var(--app-line);border-radius:8px;font-size:12.5px}
+.ui-row+.ui-row{margin-top:-1px}
+.ui-row.on{border-color:var(--app-accent);background:var(--app-accent-2)}
+.ui-t{font-weight:600;color:var(--app-fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ui-s{font-size:11px;color:var(--app-fg-3);margin-top:1px}
+.ui-av{width:24px;height:24px;border-radius:99px;background:var(--app-accent-2);flex:none;
+  display:grid;place-items:center;font-size:10px;font-weight:700;color:var(--app-accent)}
+.ui-av.sq{border-radius:7px}
+.ui-avs{display:flex}
+.ui-avs .ui-av{border:2px solid var(--app-sup);margin-left:-8px}
+.ui-avs .ui-av:first-child{margin-left:0}
+
+/* — controles — */
+.ui-btn{background:var(--app-accent);color:#fff;border-radius:7px;padding:6px 12px;font-size:12px;
+  font-weight:600;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.ui-btn.gh{background:none;color:var(--app-fg-2);border:1px solid var(--app-line)}
+.ui-btn.dg{background:var(--app-bad);color:#fff}
+.ui-btn.sm{padding:4px 9px;font-size:11px}
+.ui-ib{width:28px;height:28px;border-radius:7px;border:1px solid var(--app-line);display:grid;
+  place-items:center;color:var(--app-fg-2);background:var(--app-sup);flex:none}
+.ui-fab{width:46px;height:46px;border-radius:99px;background:var(--app-accent);color:#fff;
+  display:grid;place-items:center;box-shadow:var(--sh-lg);position:absolute;right:16px;bottom:16px}
+.ui-in{background:var(--app-sup);border:1px solid var(--app-line);border-radius:7px;padding:6px 11px;
+  font-size:12px;color:var(--app-fg-3);flex:1;min-width:0;display:flex;align-items:center;gap:7px}
+.ui-in.foco{border-color:var(--app-accent);box-shadow:0 0 0 3px var(--app-accent-2)}
+.ui-in .cursor{width:1px;height:13px;background:var(--app-accent);display:inline-block}
+.ui-sel{background:var(--app-sup);border:1px solid var(--app-line);border-radius:7px;padding:6px 10px;
+  font-size:12px;color:var(--app-fg-2);display:inline-flex;align-items:center;gap:8px}
+.ui-ta{background:var(--app-sup);border:1px solid var(--app-line);border-radius:8px;padding:9px 11px;
+  font-size:12px;color:var(--app-fg-3);min-height:58px;display:block}
+.ui-sw{width:32px;height:18px;border-radius:99px;background:var(--app-line);position:relative;flex:none}
+.ui-sw::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:99px;
+  background:var(--app-sup);box-shadow:var(--sh);transition:left .15s}
+.ui-sw.on{background:var(--app-accent)}
+.ui-sw.on::after{left:16px}
+.ui-cb{width:15px;height:15px;border-radius:4px;border:1.5px solid var(--app-line);flex:none;
+  display:grid;place-items:center;color:transparent}
+.ui-cb.on{background:var(--app-accent);border-color:var(--app-accent);color:#fff}
+.ui-rd{width:15px;height:15px;border-radius:99px;border:1.5px solid var(--app-line);flex:none;
+  display:grid;place-items:center}
+.ui-rd.on{border-color:var(--app-accent)}
+.ui-rd.on::after{content:"";width:7px;height:7px;border-radius:99px;background:var(--app-accent)}
+
+/* — estado y etiquetas — */
+.ui-chip{background:var(--app-line-soft);color:var(--app-fg-2);border-radius:99px;padding:2.5px 9px;
+  font-size:10.5px;font-weight:600;white-space:nowrap;display:inline-flex;align-items:center;gap:5px}
+.ui-chip::before{content:"";width:5px;height:5px;border-radius:99px;background:currentColor;flex:none}
+.ui-chip.ok{background:var(--app-accent-2);color:var(--app-accent)}
+.ui-chip.warn{background:var(--app-warn-2);color:var(--app-warn)}
+.ui-chip.bad{background:var(--app-bad-2);color:var(--app-bad)}
+.ui-chip.info{background:var(--app-info-2);color:var(--app-info)}
+.ui-chip.plain::before{display:none}
+.ui-badge{background:var(--app-bad);color:#fff;border-radius:99px;min-width:16px;height:16px;
+  padding:0 5px;font-size:9.5px;font-weight:700;display:inline-grid;place-items:center}
+.ui-stars{display:inline-flex;gap:2px;color:var(--app-line)}
+.ui-stars .ico{color:inherit}
+.ui-stars .on{color:var(--app-warn)}
+.ui-bar{height:5px;border-radius:99px;background:var(--app-line);overflow:hidden;margin-top:5px}
+.ui-bar i{display:block;height:100%;background:var(--app-accent);border-radius:99px}
+.ui-alert{border-radius:9px;padding:10px 12px;font-size:11.5px;display:flex;gap:9px;
+  align-items:flex-start;line-height:1.45;border:1px solid}
+.ui-alert.info{background:var(--app-info-2);border-color:var(--app-info);color:var(--app-info)}
+.ui-alert.warn{background:var(--app-warn-2);border-color:var(--app-warn);color:var(--app-warn)}
+.ui-alert.bad{background:var(--app-bad-2);border-color:var(--app-bad);color:var(--app-bad)}
+.ui-alert.ok{background:var(--app-accent-2);border-color:var(--app-accent);color:var(--app-accent)}
+
+/* — navegación interna — */
+.ui-tabs{display:flex;gap:16px;border-bottom:1px solid var(--app-line);font-size:12px}
+.ui-tabs span{padding:0 0 7px;color:var(--app-fg-3);border-bottom:2px solid transparent;margin-bottom:-1px}
+.ui-tabs span.on{color:var(--app-accent);border-bottom-color:var(--app-accent);font-weight:600}
+.ui-crumbs{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--app-fg-3)}
+.ui-crumbs b{color:var(--app-fg);font-weight:600}
+.ui-pager{display:flex;gap:4px;align-items:center;font-size:11px;color:var(--app-fg-3)}
+.ui-pager i{width:22px;height:22px;border-radius:6px;border:1px solid var(--app-line);
+  display:grid;place-items:center;font-style:normal}
+.ui-pager i.on{background:var(--app-accent);border-color:var(--app-accent);color:#fff;font-weight:700}
+.ui-menu{background:var(--app-sup);border:1px solid var(--app-line);border-radius:9px;padding:5px;
+  box-shadow:var(--sh-lg);display:inline-grid;gap:1px;min-width:150px}
+.ui-menu span{font-size:11.5px;color:var(--app-fg-2);padding:6px 9px;border-radius:6px;
+  display:flex;align-items:center;gap:8px}
+.ui-menu span.on{background:var(--app-line-soft);color:var(--app-fg)}
+.ui-menu span.dg{color:var(--app-bad)}
+.ui-menu hr{border:0;border-top:1px solid var(--app-line);margin:4px 0}
+.ui-bottom{display:flex;justify-content:space-around;padding:9px 4px 4px;background:var(--app-sup);
+  border-top:1px solid var(--app-line)}
+.ui-bottom span{display:grid;justify-items:center;gap:3px;font-size:9px;color:var(--app-fg-3)}
+.ui-bottom span.on{color:var(--app-accent);font-weight:700}
+
+/* — tablas — */
+.ui-tbl{width:100%;border-collapse:collapse;font-size:11.5px}
+.ui-tbl th{font-size:9px;letter-spacing:.09em;padding:7px 10px;color:var(--app-fg-3);
+  border-bottom:1px solid var(--app-line);text-transform:uppercase}
+.ui-tbl td{padding:8px 10px;border-bottom:1px solid var(--app-line-soft);color:var(--app-fg-2)}
+.ui-tbl tr:last-child td{border-bottom:0}
+.ui-tbl td.n{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:11px}
+
+/* — datos / gráficos — */
+.ui-bars{display:flex;align-items:flex-end;gap:6px;height:70px}
+.ui-bars i{flex:1;background:var(--app-accent);border-radius:3px 3px 0 0;opacity:.45;min-height:3px}
+.ui-bars i.on{opacity:1}
+.ui-spark{width:100%;height:34px;display:block;overflow:visible}
+.ui-spark path{fill:none;stroke:var(--app-accent);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ui-spark .area{fill:var(--app-accent);opacity:.12;stroke:none}
+.ui-donut{width:74px;height:74px;flex:none;transform:rotate(-90deg)}
+.ui-donut circle{fill:none;stroke-width:9}
+.ui-donut .bg{stroke:var(--app-line)}
+.ui-donut .fg{stroke:var(--app-accent);stroke-linecap:round}
+.ui-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;font-size:9.5px;text-align:center}
+.ui-cal b{color:var(--app-fg-3);font-weight:700;padding-bottom:2px}
+.ui-cal span{padding:4px 0;border-radius:5px;color:var(--app-fg-2)}
+.ui-cal span.on{background:var(--app-accent);color:#fff;font-weight:700}
+.ui-cal span.hito{background:var(--app-accent-2);color:var(--app-accent);font-weight:600}
+.ui-cal span.off{color:var(--app-line)}
+
+/* — flujo / proceso — */
+.ui-steps{display:flex;align-items:center;gap:0;font-size:10.5px;flex-wrap:wrap;row-gap:7px}
+.ui-steps span{display:flex;align-items:center;gap:6px;color:var(--app-fg-3);white-space:nowrap}
+.ui-steps span::before{content:"";width:16px;height:16px;border-radius:99px;border:1.5px solid var(--app-line);flex:none}
+.ui-steps span.done{color:var(--app-fg-2)}
+.ui-steps span.done::before{background:var(--app-accent);border-color:var(--app-accent)}
+.ui-steps span.on{color:var(--app-accent);font-weight:700}
+.ui-steps span.on::before{border-color:var(--app-accent);border-width:4px}
+.ui-steps hr{flex:1;border:0;border-top:1px solid var(--app-line);margin:0 8px;min-width:14px}
+.ui-kan{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.ui-kan>div{background:var(--app-line-soft);border-radius:9px;padding:8px;display:grid;gap:6px;
+  align-content:start;min-width:0;overflow-wrap:anywhere}
+.ui-kan .kt{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+  color:var(--app-fg-3);display:flex;justify-content:space-between}
+.ui-kan .kc{background:var(--app-sup);border:1px solid var(--app-line);border-radius:7px;
+  padding:7px 9px;font-size:11px;color:var(--app-fg-2);display:grid;gap:5px}
+
+/* — contenido — */
+.ui-media{background:var(--app-line-soft);border-radius:8px;display:grid;place-items:center;
+  color:var(--app-fg-3);min-height:76px}
+.ui-media.wide{aspect-ratio:16/9;min-height:0}
+.ui-map{background:var(--app-line-soft);border-radius:8px;min-height:110px;position:relative;
+  display:grid;place-items:center;color:var(--app-fg-3);overflow:hidden}
+.ui-map::before{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--app-line) 1px,transparent 1px) 0 0/26px 26px,
+             linear-gradient(0deg,var(--app-line) 1px,transparent 1px) 0 0/26px 26px;opacity:.5}
+.ui-map .ico{position:relative;color:var(--app-bad)}
+.ui-file{display:flex;align-items:center;gap:9px;padding:7px 10px;border:1px solid var(--app-line);
+  border-radius:7px;font-size:11.5px;background:var(--app-sup)}
+.ui-file .ico{color:var(--app-info)}
+.ui-cmt{display:flex;gap:9px;font-size:11.5px}
+.ui-cmt .bod{background:var(--app-line-soft);border-radius:9px;padding:8px 11px;color:var(--app-fg-2);flex:1}
+.ui-cmt .who{font-weight:700;color:var(--app-fg);font-size:11px;margin-bottom:2px}
+.ui-cmt .when{font-size:9.5px;color:var(--app-fg-3);margin-top:4px}
+.ui-ia{border:1px solid var(--app-accent);background:var(--app-accent-2);border-radius:9px;
+  padding:10px 12px;font-size:11.5px;color:var(--app-fg-2);display:grid;gap:7px}
+.ui-ia .h{display:flex;align-items:center;gap:7px;font-weight:700;color:var(--app-accent);font-size:10.5px;
+  letter-spacing:.06em;text-transform:uppercase}
+.sk{background:var(--app-line);border-radius:99px;height:7px;display:block}
+.sk.w40{width:40%} .sk.w60{width:60%} .sk.w80{width:80%}
+.ui-empty{border:1px dashed var(--app-line);border-radius:9px;padding:22px;text-align:center;
+  font-size:12px;color:var(--app-fg-3);display:grid;gap:7px;justify-items:center}
+
+/* — capas — */
+.ui-modal{background:var(--app-sup);border:1px solid var(--app-line);border-radius:12px;
+  box-shadow:var(--sh-lg);padding:16px 18px;display:grid;gap:11px;max-width:min(330px,100%)}
+.ui-modal .mt{font-size:14px;font-weight:650}
+.ui-modal p{font-size:11.5px;color:var(--app-fg-2);margin:0;line-height:1.5}
+.ui-toast{background:var(--app-fg);color:var(--app-bg);border-radius:9px;padding:9px 13px;
+  font-size:11.5px;display:inline-flex;align-items:center;gap:9px;box-shadow:var(--sh-lg)}
+.ui-tip{background:var(--app-fg);color:var(--app-bg);border-radius:6px;padding:4px 8px;
+  font-size:10.5px;display:inline-block;position:relative}
+.ui-tip::after{content:"";position:absolute;left:50%;bottom:-4px;width:8px;height:8px;
+  background:inherit;transform:translateX(-50%) rotate(45deg)}
+
+/* ═══════════════ 5 · CIERRE ═══════════════ */
+.cierre{background:var(--ed-bg);color:var(--ed-fg);padding:64px 0 40px;font-family:var(--sans)}
+.abiertos{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.ab{background:var(--ed-paper);border:1px solid var(--ed-line);border-radius:var(--r);padding:16px 18px;
+  display:grid;gap:8px;align-content:start}
+.ab .est{justify-self:start;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:2px 9px;border-radius:99px;background:var(--ed-line-soft);color:var(--ed-fg-2)}
+.ab .est.dec{background:var(--ed-accent-soft);color:var(--ed-accent)}
+.ab h4{font-size:15px;font-weight:640}
+.ab p{font-size:13.5px;color:var(--ed-fg-2);margin:0;line-height:1.5}
+.ab .rec{font-size:13px;border-top:1px dashed var(--ed-line);padding-top:8px}
+.ab .rec b{color:var(--ed-accent)}
+footer{border-top:1px solid var(--ed-line);margin-top:44px;padding:16px 0 0;font-size:12px;
+  color:var(--ed-fg-3);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+/* ═══════════════ CATÁLOGO (se borra al generar) ═══════════════ */
+.cat{background:var(--app-bg);color:var(--app-fg);padding:56px 0;font-family:var(--sans);
+  border-top:3px solid var(--app-bad)}
+.cat h2{font-size:17px;margin-bottom:5px}
+.cat .adv{font-size:12.5px;color:var(--app-bad);margin-bottom:26px;font-weight:600}
+.cat h3{font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--app-fg-3);
+  margin:26px 0 10px;font-weight:700}
+.cat-g{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));align-items:start}
+.cat-i{background:var(--app-sup);border:1px solid var(--app-line);border-radius:9px;padding:11px}
+.cat-i>.n{font-family:var(--mono);font-size:9.5px;color:var(--app-fg-3);margin-bottom:8px;display:block}
+.cat-ico{display:grid;grid-template-columns:repeat(auto-fill,minmax(74px,1fr));gap:2px}
+.cat-ico div{display:grid;justify-items:center;gap:5px;padding:9px 3px;border-radius:7px;
+  font-family:var(--mono);font-size:8.5px;color:var(--app-fg-3);text-align:center;word-break:break-all}
+.cat-ico div:hover{background:var(--app-line-soft);color:var(--app-fg)}
+.cat-ico .ico{color:var(--app-fg-2);width:19px;height:19px}
+
+/* ═══════════════ RESPONSIVE / PRINT ═══════════════ */
+@media (max-width:900px){
+  /* en el celular el estudio se apila en el orden del DOM: texto, dibujo, funciones */
+  .estudio,.estudio:has(.mk[data-device="mobile"]){grid-template-columns:minmax(0,1fr);
+    grid-template-areas:"txt" "escena" "funcs";grid-template-rows:auto;padding-top:26px}
+  .escena{position:static;margin-top:22px}
+  .tab{padding:13px 11px 11px}
+  .duo{grid-template-columns:1fr}
+  .duo>div+div{border-left:0;border-top:1px solid var(--ed-line)}
+  .duo .sol::before{content:"↓";left:50%;top:-18px;transform:translateX(-50%)}
+  .flow{grid-auto-flow:row;gap:22px}
+  .paso:not(:last-child)::after{right:auto;left:38px;top:auto;bottom:-16px;transform:rotate(135deg)}
+  .tema{top:10px;right:10px}
+}
+@media print{
+  .barra-p,.pasar,.sigue,.pista,.tema,.cat{display:none}
+  .pantalla[hidden]{display:block !important}
+  .escena{position:static}
+  .det{break-inside:avoid}
+  body{background:#fff}
+}
+/* ── piezas propias de esta propuesta (mismos tokens del kit) ── */
+.ui-btn,.ui-fab{color:var(--on-accent)}
+.ui-btn.dg,.ui-badge{color:var(--on-bad)}
+.ui-btn.gh{color:var(--app-fg-2)}
+.ui-between{flex-wrap:wrap}
+
+/* la galerada de Correcciones, en chico (la misma de «opinión en contexto») */
+.mk.angosta{min-width:0}
+.mk.angosta .mk-head{flex-wrap:wrap;gap:8px}
+.g-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.g-top .ui-grow{min-width:0}
+.g-top .ui-t{white-space:normal}
+.g-vistas{display:flex;background:var(--app-line);border-radius:8px;padding:2px;gap:2px;flex:none}
+.g-vistas span{font-size:10.5px;padding:3px 8px;border-radius:6px;color:var(--app-fg-3);font-weight:550;white-space:nowrap}
+.g-vistas span.on{background:var(--app-sup);color:var(--app-fg);box-shadow:var(--sh)}
+.g-hoja{background:var(--app-sup);border-radius:12px;box-shadow:var(--sh);overflow:hidden;border:1px solid var(--app-line-soft);min-width:0}
+.g-row{display:grid;grid-template-columns:84px minmax(0,1fr);gap:0 14px;padding:12px 16px 12px 0;
+  border-top:1px solid var(--app-line);position:relative}
+.g-row:first-child{border-top:0}
+.g-lbl{font-size:11px;font-weight:550;color:var(--app-fg-3);text-align:right;padding-top:3px;padding-left:8px;line-height:1.3}
+.g-row.ch>.g-lbl{color:var(--app-fg)}
+.g-row.ch::before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:3px;border-radius:0 3px 3px 0;background:var(--app-pen)}
+.g-row.nuevo::before{background:var(--app-ok)}
+.g-c{font-family:var(--serif);color:var(--app-fg);font-size:13.5px;line-height:1.5;min-width:0}
+.g-c.big{font-size:18px;line-height:1.32}
+.g-c.tr{font-style:italic;color:var(--app-fg-2)}
+.g-c.chico{font-size:12.5px;color:var(--app-fg-2)}
+.g-was{display:block;font-size:11.5px;color:var(--app-del);margin-bottom:5px;line-height:1.4;font-style:normal}
+.g-was .w{font:600 9.5px var(--sans);color:var(--app-fg-3);margin-right:6px;letter-spacing:.04em;text-transform:uppercase}
+.g-c del{background:var(--app-del-bg);color:var(--app-del);text-decoration:line-through;border-radius:3px;padding:0 1px}
+.g-c ins{background:var(--app-ins-bg);color:var(--app-ins);text-decoration:none;border-radius:3px;padding:0 1px;box-shadow:inset 0 -1.5px 0 currentColor}
+.g-c .en{color:var(--app-accent)}
+.g-gap{display:inline-block;min-width:2.2em;border-bottom:2px solid var(--app-fg-2);height:.9em;vertical-align:-.08em;margin:0 .1em}
+.g-nota{padding:9px 16px 10px 98px;font-size:11px;color:var(--app-fg-3);border-top:1px solid var(--app-line);line-height:1.45}
+.g-opts{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.g-opt{font:500 12.5px/1 var(--serif);padding:6px 10px;border-radius:99px;border:1.5px solid var(--app-line);
+  background:var(--app-sup);color:var(--app-fg);display:inline-flex;align-items:center;gap:5px}
+.g-opt.bien{border-color:var(--app-ok);background:var(--app-ok-2);color:var(--app-ok)}
+.g-opt.bien .ico{width:11px;height:11px}
+.g-de{font:500 10.5px/1.4 var(--sans);color:var(--app-fg-3);margin-top:7px;display:flex;align-items:center;gap:5px;font-style:normal}
+.g-de .ico{width:11px;height:11px;color:var(--app-accent)}
+.g-igual{font:600 9.5px var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--app-fg-3);
+  border:1px solid var(--app-line);border-radius:99px;padding:1px 7px;margin-left:6px;vertical-align:1px;font-style:normal}
+
+/* el cambio de tipo, arriba de la hoja */
+.tipo{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:650;color:var(--app-fg);
+  background:var(--app-sup);border:1px solid var(--app-line);border-radius:99px;padding:3px 10px 3px 8px;white-space:nowrap}
+.tipo .de{color:var(--app-fg-3);text-decoration:line-through;font-weight:550}
+.tipo .ico{width:12px;height:12px;color:var(--app-pen)}
+.decidir{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+
+/* la opinión, en el renglón */
+.op{display:flex;flex-wrap:wrap;align-items:center;gap:5px 6px;margin-top:9px;padding-top:8px;
+  border-top:1px dashed var(--app-line);font-family:var(--sans);font-style:normal}
+.op-c{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;border-radius:99px;
+  padding:2px 9px 2px 6px;white-space:nowrap;border:1px solid transparent;line-height:1.5}
+.op-c .ico{width:12px;height:12px;flex:none}
+.op-c.ok{background:var(--app-ok-2);color:var(--app-ok)}
+.op-c.un{background:none;color:var(--app-fg-2);border:1px dashed var(--app-fg-3)}
+.op-c.wa{background:var(--app-warn-2);color:var(--app-warn)}
+.op-c.ba{background:var(--app-bad-2);color:var(--app-bad)}
+.op-c.vi{background:var(--app-line-soft);color:var(--app-fg-2)}
+.op-yapa{font-size:10.5px;color:var(--app-fg-3)}
+.op-mas{font-size:10.5px;color:var(--app-fg-3);margin-left:auto;display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
+.op-mas .ico{width:11px;height:11px}
+.op-dl{display:grid;gap:6px;margin-top:2px;font-family:var(--sans);font-style:normal}
+.op-j{display:grid;gap:4px;padding:8px 10px;border-radius:8px;background:var(--app-bg);border:1px solid var(--app-line-soft);min-width:0}
+.op-j .q{font-size:11px;font-weight:650;color:var(--app-fg);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.op-j .q .op-c{margin-left:auto}
+.op-j .ln{font-size:11px;line-height:1.45;color:var(--app-fg-2)}
+
+/* la lista: de dónde salen las opciones */
+.orig{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.orig>div{background:var(--app-sup);border:1px solid var(--app-line);border-radius:10px;padding:10px 12px;display:grid;gap:3px;min-width:0}
+.orig>div.on{border-color:var(--app-accent);box-shadow:0 0 0 3px var(--app-accent-2)}
+.orig .v{font-size:19px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.orig .d{font-size:10.5px;color:var(--app-fg-2);line-height:1.35}
+.orig .k{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--app-fg-3)}
+.orig>div.apaga .v{color:var(--app-fg-3)}
+.fila-q{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:center;padding:9px 12px;
+  background:var(--app-sup);border:1px solid var(--app-line);border-radius:8px}
+.fila-q+.fila-q{margin-top:-1px}
+.fila-q .fr{font-family:var(--serif);font-size:13px;color:var(--app-fg);min-width:0}
+.fila-q .mt{font-size:10.5px;color:var(--app-fg-3);grid-column:1/-1;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.fila-q.on{border-color:var(--app-accent);background:var(--app-accent-2)}
+
+/* el alumno: lo que ve en el teléfono */
+.alu{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+.alu>div{min-width:0}
+.alu .k{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--app-fg-3);margin:0 0 6px;text-align:center}
+.tel{background:var(--app-sup);border:1px solid var(--app-line);border-radius:20px;padding:14px 12px;display:grid;gap:10px;
+  box-shadow:var(--sh);min-height:260px;align-content:start}
+.tel .cons{font-size:10.5px;color:var(--app-fg-2);line-height:1.4}
+.tel .frase{font-family:var(--serif);font-size:14px;line-height:1.45;color:var(--app-fg)}
+.tel .trad{font-size:10.5px;font-style:italic;color:var(--app-fg-3)}
+.tel .teclado{display:grid;grid-template-columns:repeat(10,1fr);gap:2px;margin-top:4px}
+.tel .teclado i{height:14px;border-radius:3px;background:var(--app-line-soft)}
+.tel .bot{display:grid;gap:6px}
+.tel .bot span{font-family:var(--serif);font-size:13px;text-align:center;padding:8px;border-radius:10px;
+  border:1.5px solid var(--app-line);color:var(--app-fg);background:var(--app-sup)}
+.tel .bot span.toca{border-color:var(--app-accent);background:var(--app-accent-2);color:var(--app-accent)}
+
+/* pedirla: la cuenta antes de consultar */
+.capa{position:relative}
+.capa .velo{position:absolute;inset:0;background:color-mix(in srgb,var(--app-fg) 22%,transparent);border-radius:12px}
+.capa .ui-modal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(340px,92%);z-index:1;
+  display:grid;gap:9px;box-shadow:var(--sh-lg)}
+.estima{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px;font-size:11px;color:var(--app-fg-2);
+  background:var(--app-bg);border-radius:8px;padding:8px 10px}
+.estima b{color:var(--app-fg);font-variant-numeric:tabular-nums}
+.no-se{display:grid;gap:6px}
+.no-se>div{display:flex;gap:8px;align-items:flex-start;font-size:11.5px;color:var(--app-fg-2);background:var(--app-sup);
+  border:1px solid var(--app-line);border-radius:8px;padding:8px 10px;line-height:1.45}
+.no-se .ico{color:var(--app-fg-3);margin-top:1px}
+.no-se b{color:var(--app-fg);font-weight:620}
+
+/* aceptada: lo que se escribe */
+.escribe{display:grid;gap:5px;font-size:11px;color:var(--app-fg-2)}
+.escribe>div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px;align-items:baseline;padding:6px 10px;
+  border-radius:7px;background:var(--app-bg)}
+.escribe .k{font-family:var(--mono);font-size:10px;color:var(--app-fg-3)}
+.escribe b{color:var(--app-fg);font-weight:620}
+.era{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:11px;color:var(--app-fg-2);
+  background:var(--app-sup);border:1px dashed var(--app-fg-3);border-radius:9px;padding:7px 10px}
+.era .ui-grow{min-width:0}
+
+/* aprobada: lo que dice Publicar */
+.pub{display:grid;gap:0;background:var(--app-sup);border:1px solid var(--app-line);border-radius:9px;padding:6px 10px;
+  font-size:11px;color:var(--app-fg-2);min-width:0}
+.pub-h{display:flex;align-items:center;gap:6px;font-weight:650;color:var(--app-fg);padding:2px 0 6px}
+.pub-h .ico{color:var(--app-fg-3)}
+.pub-f{display:flex;justify-content:space-between;align-items:center;gap:6px 10px;flex-wrap:wrap;padding:6px 0;
+  border-top:1px solid var(--app-line-soft)}
+.pub-f:first-child{border-top:0}
+
+@media (max-width:520px){
+  .g-row{grid-template-columns:1fr;padding:12px 14px 12px 12px}
+  .g-lbl{text-align:left;padding:0 0 4px}
+  .g-nota{padding-left:12px}
+  .op-mas{margin-left:0}
+  .orig{grid-template-columns:1fr}
+  .alu{grid-template-columns:1fr}
+  .escribe>div{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ SPRITE DE ICONOS · uso: <svg class="ico"><use href="#i-nombre"/></svg> ══ -->
+<svg class="sprite" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></symbol>
+<symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><path d="M3 5h18v16H3zM3 10h18M8 3v4M16 3v4"/></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+<symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3v5h5M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM12 2.5V5M12 19v2.5M2.5 12H5M19 12h2.5M5.2 5.2 7 7M17 17l1.8 1.8M18.8 5.2 17 7M7 17l-1.8 1.8"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3"/></symbol>
+<symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></symbol>
+<symbol id="i-sort" viewBox="0 0 24 24"><path d="M7 4v16M7 20l-3-3M7 20l3-3M17 20V4M17 4l-3 3M17 4l3 3"/></symbol>
+<symbol id="i-chev-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+<symbol id="i-chev-up" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></symbol>
+<symbol id="i-chev-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+<symbol id="i-chev-left" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M20 12H4M10 6l-6 6 6 6"/></symbol>
+<symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+<symbol id="i-dots" viewBox="0 0 24 24"><path d="M12 6h.01M12 12h.01M12 18h.01"/></symbol>
+<symbol id="i-dots-h" viewBox="0 0 24 24"><path d="M6 12h.01M12 12h.01M18 12h.01"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24"><path d="m4 20 1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19zM14 7l3 3"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13M9 7V4h6v3"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M8 11l4 4 4-4M4 19h16"/></symbol>
+<symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 21V9M8 13l4-4 4 4M4 5h16"/></symbol>
+<symbol id="i-share" viewBox="0 0 24 24"><path d="M4 12v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8M12 3v13M8 7l4-4 4 4"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><path d="M9 9h11v12H9zM5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/></symbol>
+<symbol id="i-save" viewBox="0 0 24 24"><path d="M5 3h11l3 3v15H5zM8 3v6h7V3M8 21v-7h8v7"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 4v16M16 4v16"/></symbol>
+<symbol id="i-print" viewBox="0 0 24 24"><path d="M7 8V3h10v5M7 18H5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-2M7 14h10v7H7z"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.9l1.1-6.5L2.6 9.8l6.5-.9z"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.4A4.1 4.1 0 0 1 12 7.5 4.1 4.1 0 0 1 19 10.6c0 5-7 9.4-7 9.4z"/></symbol>
+<symbol id="i-thumb" viewBox="0 0 24 24"><path d="M7 22V10l5-8a2 2 0 0 1 2 2v5h5a2 2 0 0 1 2 2.3l-1.3 8A2 2 0 0 1 17.7 22zM7 10H3v12h4"/></symbol>
+<symbol id="i-comment" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 9a6 6 0 1 0-12 0c0 6-2 8-2 8h16s-2-2-2-8M10.5 21a2 2 0 0 0 3 0"/></symbol>
+<symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4h13l-2.5 4L18 12H5"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 21a7 7 0 0 1 14 0M17 4.5a4 4 0 0 1 0 7.5M18.5 14.5a7 7 0 0 1 3.5 6.5"/></symbol>
+<symbol id="i-card" viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 10h18M6.5 14.5h3"/></symbol>
+<symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a1 1 0 0 0 1 .8h8.4a1 1 0 0 0 1-.8L20 8H6M9 20h.01M17 20h.01"/></symbol>
+<symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 3h7.5L21 13.5 13.5 21 3 10.5zM7.5 7.5h.01"/></symbol>
+<symbol id="i-dollar" viewBox="0 0 24 24"><path d="M12 2v20M16.5 6.5H10a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6H7"/></symbol>
+<symbol id="i-receipt" viewBox="0 0 24 24"><path d="M5 21V3l2 1.5L9 3l2 1.5L13 3l2 1.5L17 3l2 1.5V21l-2-1.5-2 1.5-2-1.5L11 21l-2-1.5L7 21zM8 8h8M8 12h8M8 16h5"/></symbol>
+<symbol id="i-chart-bar" viewBox="0 0 24 24"><path d="M4 20h16M7 20v-6M12 20V8M17 20v-9"/></symbol>
+<symbol id="i-chart-line" viewBox="0 0 24 24"><path d="M4 20h16M5 16l4-5 3.5 3L20 6"/></symbol>
+<symbol id="i-pie" viewBox="0 0 24 24"><path d="M12 3v9h9a9 9 0 0 0-9-9zM21 14a9 9 0 1 1-9-9"/></symbol>
+<symbol id="i-trend-up" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></symbol>
+<symbol id="i-trend-down" viewBox="0 0 24 24"><path d="M3 7l6 6 4-4 8 8M15 17h6v-6"/></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM8.5 12.5l2.5 2.5 4.5-5"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l9.5 17H2.5zM12 10v4M12 17h.01"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 11v5M12 8h.01"/></symbol>
+<symbol id="i-x-circle" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM9.5 9.5l5 5M14.5 9.5l-5 5"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5.2l3.2 2"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><path d="M6 11h12v10H6zM9 11V7.5a3 3 0 0 1 6 0V11"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12zM12 14.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></symbol>
+<symbol id="i-image" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 16l5-5 4 4 3-3 6 6M8.5 9.5h.01"/></symbol>
+<symbol id="i-camera" viewBox="0 0 24 24"><path d="M3 8h4l1.5-2.5h7L17 8h4v12H3zM12 17a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></symbol>
+<symbol id="i-video" viewBox="0 0 24 24"><path d="M3 6h12v12H3zM15 10l6-3.5v11L15 14"/></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zM5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+<symbol id="i-clip" viewBox="0 0 24 24"><path d="M20 11l-8.5 8.5a5 5 0 0 1-7-7L13 4a3.5 3.5 0 0 1 5 5l-8.5 8.5a2 2 0 0 1-3-3L15 6"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 6l9 7 9-7"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M6 3h3.5l1.8 4.5-2.3 1.4a12.5 12.5 0 0 0 6.1 6.1l1.4-2.3L21 14.5V18a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3z"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11zM12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/></symbol>
+<symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M11 3l1.7 4.3L17 9l-4.3 1.7L11 15l-1.7-4.3L5 9l4.3-1.7zM18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9z"/></symbol>
+<symbol id="i-wand" viewBox="0 0 24 24"><path d="M4 20 15 9M13.5 3.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9zM19.5 10l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6z"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5zM3 12.5l9 5 9-5M3 16.5l9 5 9-5"/></symbol>
+<symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3l8 4v10l-8 4-8-4V7zM4 7l8 4 8-4M12 11v10"/></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7zM7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM17.5 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></symbol>
+<symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V4h10v17M14 10h6v11M7 8h4M7 12h4M7 16h4M17 14h.01M17 18h.01"/></symbol>
+<symbol id="i-tool" viewBox="0 0 24 24"><path d="M14 6a4 4 0 0 1 5.5-3.7l-2.8 2.8 2.2 2.2 2.8-2.8A4 4 0 0 1 18 10a4 4 0 0 1-1.4-.25L7 19.3a2.4 2.4 0 0 1-3.4-3.4l9.6-9.6A4 4 0 0 1 14 6z"/></symbol>
+<symbol id="i-database" viewBox="0 0 24 24"><path d="M12 8c4.4 0 8-1.1 8-2.5S16.4 3 12 3 4 4.1 4 5.5 7.6 8 12 8zM4 5.5v13c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-13M4 12c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24"><path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 4l-4 16"/></symbol>
+<symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17l-6-4z"/></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM9.5 9.5a2.5 2.5 0 1 1 3.4 2.3c-.6.3-.9.8-.9 1.4v.3M12 17h.01"/></symbol>
+<symbol id="i-logout" viewBox="0 0 24 24"><path d="M15 4h3a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-3M10 8l-4 4 4 4M6 12h10"/></symbol>
+<symbol id="i-pointer" viewBox="0 0 24 24"><path d="M4 3l6.6 16.5 2.4-6.9 6.9-2.4zM13.5 13.5 19 19"/></symbol>
+</defs></svg>
+
+<button class="tema" type="button" aria-label="Cambiar entre modo claro y oscuro" title="Modo claro / oscuro">
+  <svg class="luna" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  <svg class="sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+</button>
+
+<!-- ═══════════ PORTADA EDITORIAL ═══════════ -->
+<section class="hero"><div class="wrap">
+  <div class="eyebrow">
+    <span>Propuesta de producto</span><span class="dot"></span>
+    <span>content-audit · Correcciones</span><span class="dot"></span>
+    <span>v1 · 12/10/2026</span>
+  </div>
+  <h1>Pasar a opción múltiple, como una corrección más</h1>
+  <p class="tag">Para revisar el curso: el sistema propone las opciones, los jueces las miran y aprobar convierte el ejercicio.</p>
+  <div class="duo">
+    <div><div class="k">Hoy</div><div class="dato">Sólo a pedido</div><p>La tanda convierte sólo el tema que nombrás al abrirla, con opciones inventadas y pensada para contracciones.</p></div>
+    <div class="sol"><div class="k">Con la sugerencia</div><div class="dato">320 listas</div><p>320 cloze ya traen sus opciones. Llegan solos a Correcciones, con jueces, y aprobarlos los convierte.</p></div>
+  </div>
+</div></section>
+
+<section class="ed"><div class="wrap">
+  <h2 class="ed-h">Qué tiene</h2>
+  <div class="pillars">
+    <div class="pillar"><div class="pi"><svg class="ico"><use href="#i-search"/></svg></div><h3>Opciones que no se inventan</h3><p>Primero las del ejercicio o sus hermanos; inventar, sólo al final.</p></div>
+    <div class="pillar"><div class="pi"><svg class="ico"><use href="#i-layers"/></svg></div><h3>Una corrección más</h3><p>Llega a Correcciones con su antes y después, como cualquier cambio.</p></div>
+    <div class="pillar"><div class="pi"><svg class="ico"><use href="#i-shield"/></svg></div><h3>Jueces de opción múltiple</h3><p>Una sola correcta, y ninguna incorrecta que también valga.</p></div>
+    <div class="pillar"><div class="pi"><svg class="ico"><use href="#i-check-circle"/></svg></div><h3>Aprobar la convierte</h3><p>Queda como opción múltiple en el curso, con el cloze guardado.</p></div>
+  </div>
+</div></section>
+
+<hr class="rule">
+
+<section class="ed"><div class="wrap">
+  <h2 class="ed-h">Cómo funciona</h2>
+  <div class="flow">
+    <div class="paso"><div class="pi"><svg class="ico"><use href="#i-search"/></svg></div><h4>Encuentra los candidatos</h4><p>Marca el cloze cuya pista o consigna ya nombra las opciones.</p></div>
+    <div class="paso"><div class="pi"><svg class="ico"><use href="#i-list"/></svg></div><h4>Arma las opciones</h4><p>Del ejercicio o de sus hermanos; si no hay, las pide.</p></div>
+    <div class="paso"><div class="pi"><svg class="ico"><use href="#i-shield"/></svg></div><h4>Los jueces opinan</h4><p>Revisan que haya una sola correcta y distractores que no valgan.</p></div>
+    <div class="paso"><div class="pi"><svg class="ico"><use href="#i-eye"/></svg></div><h4>Lo revisás</h4><p>Consigna, ejercicio y opciones, con el antes y el después.</p></div>
+    <div class="paso fin"><div class="pi"><svg class="ico"><use href="#i-check-circle"/></svg></div><h4>Aprobás y queda</h4><p>Al publicar la tanda pasa a opción múltiple, con el cloze guardado.</p></div>
+  </div>
+</div></section>
+
+<hr class="rule">
+
+<section class="ed"><div class="wrap narrow">
+  <blockquote class="quote">La oración que aprende el alumno no cambia: cambia cómo la contesta.</blockquote>
+</div></section>
+
+<!-- ═══════════ BISAGRA ═══════════ -->
+<section class="bisagra"><div class="wrap">
+  <div class="lbl">El producto</div>
+  <h2>Así se ve</h2>
+  <p class="d">Cinco pantallas de Correcciones, con un ejercicio real de A1. El dibujo se toca como la app.</p>
+</div></section>
+
+<!-- ═══════════ PANTALLAS ═══════════ -->
+<div class="pantallas">
+<nav class="barra-p" aria-label="Pantallas"><div class="wrap">
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true"  aria-controls="p-1" id="t-1"><span class="i">01</span>Las sugeridas</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-2" id="t-2"><span class="i">02</span>La sugerencia</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-3" id="t-3"><span class="i">03</span>Lo que ve el alumno</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-4" id="t-4"><span class="i">04</span>Pedirla</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-5" id="t-5"><span class="i">05</span>Aprobada</button>
+  </div>
+</div></nav>
+<div class="wrap">
+
+  <!-- ─────────── 01 · LAS SUGERIDAS ─────────── -->
+  <section class="pantalla" id="p-1" role="tabpanel" aria-labelledby="t-1">
+    <div class="estudio">
+      <div class="txt">
+        <div class="rol">Pantalla 01</div>
+        <h3>Las sugeridas, agrupadas por tema</h3>
+        <p>Hoy la tanda convierte sólo el tema que nombrás al abrirla. Con esto trae sola los cloze que ya tienen sus opciones, y Correcciones suma el filtro «Pasar a opción múltiple». Arriba, de dónde salen; abajo, los temas.</p>
+        <p class="nota">Los 260 de la pista caen en 11 temas, y en 9 de ellos son todos los cloze.</p>
+      </div>
+      <div class="escena">
+        <div class="mkw">
+          <div class="mk angosta">
+            <div class="mk-chrome"><i class="b"></i><i class="b"></i><i class="b"></i>
+              <div class="mk-url">localhost:7800/correcciones?tipo=opcion-multiple</div></div>
+            <div class="mk-app" data-nav="none">
+              <div class="mk-main">
+                <div class="mk-head">
+                  <div class="ui-grow"><h4>Correcciones</h4><div class="sub">Pasar a opción múltiple · 320 sugeridas · 0 decididas</div></div>
+                  <span class="ui-sel" data-f="d-1-3"><svg class="ico xs"><use href="#i-filter"/></svg>A1 · A2 · B1 · B2<svg class="ico xs"><use href="#i-chev-down"/></svg></span>
+                </div>
+                <div class="mk-body">
+                  <div class="orig" data-f="d-1-1">
+                    <div class="on"><span class="k">En el ejercicio</span><span class="v">260</span><span class="d">la pista o la consigna ya nombran las opciones</span></div>
+                    <div><span class="k">En los hermanos</span><span class="v">60</span><span class="d">otros ejercicios del tema ya son opción múltiple</span></div>
+                    <div class="apaga"><span class="k">A inventar</span><span class="v">—</span><span class="d">sólo si las pedís, con su cuenta</span></div>
+                  </div>
+                  <div>
+                    <div class="fila-q on" data-ir="p-2" data-f="d-1-2">
+                      <span class="fr">Adjetivo o pronombre</span><span class="ui-chip warn">39 de 40</span>
+                      <span class="mt">A1 · en la pista: <i>your / yours</i>, <i>my / mine</i>…</span>
+                    </div>
+                    <div class="fila-q" data-ir="p-2">
+                      <span class="fr">Adjetivo o adverbio</span><span class="ui-chip warn">40 de 40</span>
+                      <span class="mt">A1 · en la pista: <i>good / well</i>, <i>quick / quickly</i>…</span>
+                    </div>
+                    <div class="fila-q" data-f="d-1-4">
+                      <span class="fr">Sujeto u objeto</span><span class="ui-chip">20 de 40</span>
+                      <span class="mt">A1 · en la pista: <i>she / her</i>… · los otros 20 ya son opción múltiple</span>
+                    </div>
+                    <div class="fila-q" data-ir="p-2">
+                      <span class="fr">Indefinidos con <span class="en">some</span> o <span class="en">any</span></span><span class="ui-chip warn">20 de 50</span>
+                      <span class="mt">A2 · de los hermanos: <i>something / anything</i>…</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="pie-mk">Cuentas medidas sobre el curso de hoy (db rearmada desde producción el 29/9): 8.477 cloze.</p>
+      </div>
+      <div class="funcs">
+        <h4 class="funcs-h">Las funciones</h4>
+        <details class="det" id="d-1-1" open>
+          <summary><span class="fn">01</span><h3>De dónde salen las opciones</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>las tres tarjetas de arriba</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="orig">
+                <div class="on"><span class="k">En el ejercicio</span><span class="v">260</span><span class="d">«(your / yours)» ya está en la oración</span></div>
+                <div><span class="k">En los hermanos</span><span class="v">60</span><span class="d">el tema ya tiene opción múltiple</span></div>
+                <div class="apaga"><span class="k">A inventar</span><span class="v">—</span><span class="d">se cuenta al pedirla</span></div>
+              </div>
+            </div>
+            <p>Lo que decide cuánto confiar. Las dos primeras no inventan nada: copian lo que el curso ya dice. La tercera la escribe un modelo y cuesta consultas, así que no se sugiere sola.</p>
+          </div>
+        </details>
+        <details class="det" id="d-1-2">
+          <summary><span class="fn">02</span><h3>Un renglón por tema</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>la lista, debajo de las tarjetas</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="fila-q on"><span class="fr">Adjetivo o pronombre</span><span class="ui-chip warn">39 de 40</span>
+                <span class="mt">A1 · en la pista: <i>your / yours</i>, <i>my / mine</i>…</span></div>
+            </div>
+            <p>Cuántos ejercicios del tema tienen sugerencia, sobre el total, y un adelanto de las opciones. Tocarlo abre el primero en la hoja de siempre.</p>
+            <button type="button" class="ver" data-ir="p-2">Ver la sugerencia<svg class="ico xs"><use href="#i-arrow-right"/></svg></button>
+          </div>
+        </details>
+        <details class="det" id="d-1-3">
+          <summary><span class="fn">03</span><h3>Por nivel</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el selector de arriba a la derecha</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="ui-menu"><span class="on"><svg class="ico sm"><use href="#i-check"/></svg>A1 · 118</span><span>A2 · 85</span><span>B1 · 57</span><span>B2 · 60</span></div>
+            </div>
+            <p>Para seguir el orden de las tandas, que van por nivel. A1 es donde más hay.</p>
+          </div>
+        </details>
+        <details class="det" id="d-1-4">
+          <summary><span class="fn">04</span><h3>El tema que ya es mixto</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el renglón en gris</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="fila-q"><span class="fr">Sujeto u objeto</span><span class="ui-chip">20 de 40</span>
+                <span class="mt">A1 · los otros 20 ya son opción múltiple</span></div>
+            </div>
+            <p>Diez temas ya mezclan los dos tipos desde septiembre. El renglón lo dice, para decidir si se completa la mezcla o se deja como está. Los que toman las opciones de los hermanos son mixtos por definición.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── 02 · LA SUGERENCIA ─────────── -->
+  <section class="pantalla" id="p-2" role="tabpanel" aria-labelledby="t-2" hidden>
+    <div class="estudio">
+      <div class="txt">
+        <div class="rol">Pantalla 02</div>
+        <h3>La sugerencia, en la hoja de siempre</h3>
+        <p>Arriba, el cambio de tipo. Cambian la consigna y el ejercicio, que pierde la pista; aparece el renglón Opciones con la opinión de los jueces. La oración guardada queda igual.</p>
+        <p class="nota">Se aprueba o se rechaza entera: media conversión dejaría un ejercicio que no se puede contestar.</p>
+      </div>
+      <div class="escena">
+        <div class="mkw">
+          <div class="mk angosta">
+            <div class="mk-chrome"><i class="b"></i><i class="b"></i><i class="b"></i>
+              <div class="mk-url">localhost:7800/correcciones?tipo=opcion-multiple</div></div>
+            <div class="mk-app" data-nav="none">
+              <div class="mk-main">
+                <div class="mk-head">
+                  <div class="g-top">
+                    <div class="ui-grow"><div class="ui-crumbs" data-ir="p-1">Pronouns <svg class="ico xs"><use href="#i-chev-right"/></svg> <b>Adjetivo o pronombre</b></div>
+                      <h4>Quiz 4 de 39</h4><div class="sub">3 de 39 decididos</div></div>
+                  </div>
+                  <div class="g-vistas"><span class="on">Marcas</span><span>Lado a lado</span><span data-ir="p-3">Como el alumno</span></div>
+                </div>
+                <div class="mk-body">
+                  <div class="ui-between">
+                    <span class="tipo" data-f="d-2-1"><span class="de">Completar</span><svg class="ico"><use href="#i-arrow-right"/></svg>Opción múltiple</span>
+                    <div class="decidir" data-f="d-2-5"><span class="ui-btn gh sm">Rechazar</span><span class="ui-btn sm" data-ir="p-5"><svg class="ico xs"><use href="#i-check"/></svg>Aprobar</span></div>
+                  </div>
+                  <div class="g-hoja">
+                    <div class="g-row ch" data-f="d-2-3"><div class="g-lbl">Consigna</div>
+                      <div class="g-c chico"><del>Escribe</del> <ins>Elige</ins> la palabra correcta.</div></div>
+                    <div class="g-row ch"><div class="g-lbl">Ejercicio</div>
+                      <div class="g-c big">Is that pen <span class="g-gap"></span>? <del>(your / yours)</del></div></div>
+                    <div class="g-row ch nuevo" data-f="d-2-2"><div class="g-lbl">Opciones</div>
+                      <div class="g-c">
+                        <div class="g-opts"><span class="g-opt">your</span><span class="g-opt bien"><svg class="ico"><use href="#i-check"/></svg>yours</span></div>
+                        <div class="g-de"><svg class="ico"><use href="#i-search"/></svg>Salen de la pista del ejercicio: no se inventó nada.</div>
+                        <div class="op" data-f="d-2-4">
+                          <span class="op-c ok"><svg class="ico"><use href="#i-check"/></svg>3 de 3 de acuerdo</span>
+                          <span class="op-yapa">Una sola correcta · Otra que valga · Distractores</span>
+                          <span class="op-mas">Qué dijo cada uno <svg class="ico"><use href="#i-chev-down"/></svg></span>
+                        </div>
+                      </div></div>
+                    <div class="g-row"><div class="g-lbl">Traducción</div>
+                      <div class="g-c tr">¿Ese bolígrafo es tuyo?</div></div>
+                    <div class="g-row"><div class="g-lbl">Miniteoría</div>
+                      <div class="g-c chico"><span class="en">my</span>, <span class="en">our</span>, <span class="en">her</span> van pegados al sustantivo. <span class="en">mine</span>, <span class="en">ours</span>, <span class="en">hers</span> van solos.</div></div>
+                    <div class="g-row" data-f="d-2-6"><div class="g-lbl">Oración guardada</div>
+                      <div class="g-c chico">Is that pen yours? <span class="g-igual">no cambia</span></div></div>
+                    <div class="g-nota">La oración y su audio quedan como están: se miden igual antes y después.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="pie-mk">«Is that pen ___?», A1 · Pronouns. El ejercicio y su consigna son los de hoy; las opiniones, ilustrativas.</p>
+      </div>
+      <div class="funcs">
+        <h4 class="funcs-h">Las funciones</h4>
+        <details class="det" id="d-2-1" open>
+          <summary><span class="fn">01</span><h3>El cambio de tipo, a la vista</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>arriba de la hoja, a la izquierda</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <span class="tipo" style="justify-self:start"><span class="de">Completar</span><svg class="ico"><use href="#i-arrow-right"/></svg>Opción múltiple</span>
+            </div>
+            <p>Lo primero que se lee, porque es lo que más cambia: el alumno deja de escribir y pasa a elegir. Distingue esta sugerencia de una corrección de texto común.</p>
+          </div>
+        </details>
+        <details class="det" id="d-2-2">
+          <summary><span class="fn">02</span><h3>El renglón Opciones</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>la hoja, debajo del ejercicio</b></div>
+            <div class="zoom"><div class="zoom-l">Las tres procedencias</div>
+              <div class="g-c"><div class="g-opts"><span class="g-opt">your</span><span class="g-opt bien"><svg class="ico"><use href="#i-check"/></svg>yours</span></div>
+                <div class="g-de"><svg class="ico"><use href="#i-search"/></svg>Salen de la pista del ejercicio.</div></div>
+              <div class="g-c"><div class="g-opts"><span class="g-opt">something</span><span class="g-opt bien"><svg class="ico"><use href="#i-check"/></svg>anything</span></div>
+                <div class="g-de"><svg class="ico"><use href="#i-users"/></svg>Salen de los hermanos del tema.</div></div>
+              <div class="g-c"><div class="g-opts"><span class="g-opt bien"><svg class="ico"><use href="#i-check"/></svg>at</span><span class="g-opt">in</span><span class="g-opt">on</span></div>
+                <div class="g-de"><svg class="ico"><use href="#i-sparkles"/></svg>Propuestas por el modelo: revisalas con más cuidado.</div></div>
+            </div>
+            <p>Un renglón nuevo, en verde porque antes no existía, con la correcta marcada y de dónde salió cada opción. Hoy la tanda exige tres contracciones; acá valen las que trae el ejercicio.</p>
+          </div>
+        </details>
+        <details class="det" id="d-2-3">
+          <summary><span class="fn">03</span><h3>La consigna que acompaña</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el renglón Consigna</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="g-c chico"><del>Escribe</del> <ins>Elige</ins> la palabra correcta.</div>
+              <div class="g-c chico">Elige el pronombre correcto. <span class="g-igual">ya dice elige</span></div>
+            </div>
+            <p>Si la consigna manda escribir o completar, se cambia el verbo para que no contradiga la pantalla. Si ya dice «Elige» o «Selecciona», no se toca.</p>
+          </div>
+        </details>
+        <details class="det" id="d-2-4">
+          <summary><span class="fn">04</span><h3>Qué opinan los jueces</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>la línea punteada del renglón Opciones</b></div>
+            <div class="zoom"><div class="zoom-l">Abierta</div>
+              <div class="op-dl">
+                <div class="op-j"><div class="q">Una sola correcta<span class="op-c ok"><svg class="ico"><use href="#i-check"/></svg>de acuerdo</span></div><div class="ln">Exactamente una opción completa bien la oración.</div></div>
+                <div class="op-j"><div class="q">Otra que valga<span class="op-c ok"><svg class="ico"><use href="#i-check"/></svg>de acuerdo</span></div><div class="ln">«Is that pen your?» no es correcto ni natural.</div></div>
+                <div class="op-j"><div class="q">Distractores<span class="op-c wa"><svg class="ico"><use href="#i-alert"/></svg>flojo</span></div><div class="ln">Con dos opciones, adivinar acierta la mitad.</div></div>
+              </div>
+            </div>
+            <p>Los tres que ya juzgan opción múltiple: las reglas de validez, el de «otra opción también vale» y el de calidad. Van en el renglón que juzgan, y uno sin aprobar se nombra y bloquea, como hoy.</p>
+          </div>
+        </details>
+        <details class="det" id="d-2-5">
+          <summary><span class="fn">05</span><h3>Aprobar o rechazar, entera</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>arriba de la hoja, a la derecha</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="decidir" style="justify-content:flex-start"><span class="ui-btn gh sm">Rechazar</span><span class="ui-btn sm"><svg class="ico xs"><use href="#i-check"/></svg>Aprobar</span></div>
+            </div>
+            <p>No se aprueban las opciones sin la consigna, ni al revés: esta corrección no se decide por partes. Rechazar deja el cloze como estaba y no la vuelve a sugerir.</p>
+            <button type="button" class="ver" data-ir="p-5">Ver qué pasa al aprobar<svg class="ico xs"><use href="#i-arrow-right"/></svg></button>
+          </div>
+        </details>
+        <details class="det" id="d-2-6">
+          <summary><span class="fn">06</span><h3>Lo que no cambia</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el renglón Oración guardada</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="g-c chico">Is that pen yours? <span class="g-igual">no cambia</span></div>
+            </div>
+            <p>Una opción múltiple se mide con la correcta puesta en el hueco: la misma oración que medía el cloze. Largo, palabras y nivel dan lo mismo, y el audio no se regraba.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── 03 · LO QUE VE EL ALUMNO ─────────── -->
+  <section class="pantalla" id="p-3" role="tabpanel" aria-labelledby="t-3" hidden>
+    <div class="estudio">
+      <div class="txt">
+        <div class="rol">Pantalla 03</div>
+        <h3>Lo que ve el alumno, antes y después</h3>
+        <p>«Como el alumno» pone los dos teléfonos lado a lado: hoy escribe la palabra con el teclado; aprobada, toca una de las opciones. Es lo que se está decidiendo de verdad.</p>
+        <p class="nota">Elegir es más fácil que escribir. Por eso la sugerencia no sale sola donde hay que producir la forma.</p>
+      </div>
+      <div class="escena">
+        <div class="mkw">
+          <div class="mk angosta">
+            <div class="mk-chrome"><i class="b"></i><i class="b"></i><i class="b"></i>
+              <div class="mk-url">localhost:7800/correcciones?tipo=opcion-multiple</div></div>
+            <div class="mk-app" data-nav="none">
+              <div class="mk-main">
+                <div class="mk-head">
+                  <div class="g-top">
+                    <div class="ui-grow"><div class="ui-crumbs" data-ir="p-1">Pronouns <svg class="ico xs"><use href="#i-chev-right"/></svg> <b>Adjetivo o pronombre</b></div>
+                      <h4>Quiz 4 de 39</h4><div class="sub">3 de 39 decididos</div></div>
+                  </div>
+                  <div class="g-vistas"><span data-ir="p-2">Marcas</span><span>Lado a lado</span><span class="on">Como el alumno</span></div>
+                </div>
+                <div class="mk-body">
+                  <div class="alu">
+                    <div data-f="d-3-1"><div class="k">Hoy · escribe</div>
+                      <div class="tel">
+                        <div class="cons">Escribe la palabra correcta.</div>
+                        <div class="frase">Is that pen <span class="ui-in foco" style="display:inline-flex;flex:none;padding:2px 8px"><i class="cursor"></i></span> (your / yours)?</div>
+                        <div class="trad">¿Ese bolígrafo es tuyo?</div>
+                        <div class="teclado"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                      </div></div>
+                    <div data-f="d-3-2"><div class="k">Aprobada · elige</div>
+                      <div class="tel">
+                        <div class="cons">Elige la palabra correcta.</div>
+                        <div class="frase">Is that pen <span class="g-gap"></span>?</div>
+                        <div class="trad">¿Ese bolígrafo es tuyo?</div>
+                        <div class="bot"><span>your</span><span class="toca">yours</span></div>
+                      </div></div>
+                  </div>
+                  <div class="decidir" data-f="d-3-3"><span class="ui-btn gh sm">Rechazar</span><span class="ui-btn sm" data-ir="p-5"><svg class="ico xs"><use href="#i-check"/></svg>Aprobar</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="funcs">
+        <h4 class="funcs-h">Las funciones</h4>
+        <details class="det" id="d-3-1" open>
+          <summary><span class="fn">01</span><h3>Hoy: lo escribe</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el teléfono de la izquierda</b></div>
+            <p>El alumno lee la pista «(your / yours)» y tipea una de las dos. Ya está eligiendo, pero con el teclado y con riesgo de errar por ortografía.</p>
+          </div>
+        </details>
+        <details class="det" id="d-3-2">
+          <summary><span class="fn">02</span><h3>Aprobada: la elige</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el teléfono de la derecha</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="tel" style="min-height:0"><div class="frase">Is that pen <span class="g-gap"></span>?</div><div class="bot"><span>your</span><span class="toca">yours</span></div></div>
+            </div>
+            <p>La pista se va de la oración porque ahora son los botones. Las opciones salen en el orden guardado, el mismo que ven los jueces.</p>
+          </div>
+        </details>
+        <details class="det" id="d-3-3">
+          <summary><span class="fn">03</span><h3>Decidir desde acá</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>debajo de los dos teléfonos</b></div>
+            <p>Los mismos dos botones de la hoja, para decidir sin volver a la vista Marcas.</p>
+            <button type="button" class="ver" data-ir="p-5">Ver qué pasa al aprobar<svg class="ico xs"><use href="#i-arrow-right"/></svg></button>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── 04 · PEDIRLA ─────────── -->
+  <section class="pantalla" id="p-4" role="tabpanel" aria-labelledby="t-4" hidden>
+    <div class="estudio">
+      <div class="txt">
+        <div class="rol">Pantalla 04</div>
+        <h3>Pedirla para un cloze que no la trae</h3>
+        <p>En cualquier cloze de Correcciones, el menú suma «Sugerir opción múltiple». Si las opciones existen, sale gratis; si hay que inventarlas, primero muestra la cuenta. Si no se puede, dice por qué.</p>
+        <p class="nota">Nada consulta a un modelo sin que lo confirmes con el número delante.</p>
+      </div>
+      <div class="escena">
+        <div class="mkw">
+          <div class="mk angosta">
+            <div class="mk-chrome"><i class="b"></i><i class="b"></i><i class="b"></i>
+              <div class="mk-url">localhost:7800/correcciones</div></div>
+            <div class="mk-app" data-nav="none">
+              <div class="mk-main">
+                <div class="mk-head">
+                  <div class="g-top">
+                    <div class="ui-grow"><div class="ui-crumbs">Prepositions <svg class="ico xs"><use href="#i-chev-right"/></svg> <b>Después de adjetivos</b></div>
+                      <h4>Quiz 1 de 20</h4><div class="sub">Cloze · sin correcciones pendientes</div></div>
+                    <span class="ui-ib" data-f="d-4-1"><svg class="ico sm"><use href="#i-dots"/></svg></span>
+                  </div>
+                </div>
+                <div class="mk-body capa">
+                  <div class="g-hoja">
+                    <div class="g-row"><div class="g-lbl">Consigna</div><div class="g-c chico">Completa con la preposición correcta.</div></div>
+                    <div class="g-row"><div class="g-lbl">Ejercicio</div><div class="g-c big">I'm really good <span class="g-gap"></span> drawing.</div></div>
+                    <div class="g-row"><div class="g-lbl">Traducción</div><div class="g-c tr">Soy realmente bueno dibujando.</div></div>
+                  </div>
+                  <div class="velo"></div>
+                  <div class="ui-modal" data-f="d-4-2">
+                    <div class="mt">Sugerir opción múltiple</div>
+                    <p>Este ejercicio no trae sus opciones y sus hermanos tampoco: hay que pedírselas al modelo.</p>
+                    <div class="estima"><span>Consultas</span><b>1 propuesta + 3 jueces</b><span>Proveedor</span><b>codex-cli · el de siempre</b><span>Se paga</span><b>sólo si tocás Pedir</b></div>
+                    <div class="ui-flex" style="justify-content:flex-end"><span class="ui-btn gh sm">Cancelar</span><span class="ui-btn sm" data-ir="p-2">Pedir</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="pie-mk">«I'm really good ___ drawing.», A1 · Prepositions: cloze de hoy, sin pista ni hermanos de opción múltiple.</p>
+      </div>
+      <div class="funcs">
+        <h4 class="funcs-h">Las funciones</h4>
+        <details class="det" id="d-4-1" open>
+          <summary><span class="fn">01</span><h3>El pedido, en el menú</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>los tres puntos, arriba a la derecha</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="ui-menu"><span>Pedir opinión</span><span class="on"><svg class="ico sm"><use href="#i-list"/></svg>Sugerir opción múltiple</span><hr><span>Ver en el curso</span></div>
+            </div>
+            <p>Sólo aparece en un cloze. Las sugerencias que el sistema encuentra solo llegan por la lista; este pedido es para el ejercicio que vos mirás y querés probar.</p>
+          </div>
+        </details>
+        <details class="det" id="d-4-2">
+          <summary><span class="fn">02</span><h3>La cuenta, antes de inventar</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el diálogo que se abre</b></div>
+            <p>Si las opciones están en la pista o en los hermanos, la sugerencia aparece sin preguntar. Si no, el diálogo dice cuántas consultas hace y con qué proveedor, y espera tu «Pedir».</p>
+            <button type="button" class="ver" data-ir="p-2">Ver cómo llega la sugerencia<svg class="ico xs"><use href="#i-arrow-right"/></svg></button>
+          </div>
+        </details>
+        <details class="det" id="d-4-3">
+          <summary><span class="fn">03</span><h3>Cuando no se puede, el porqué</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el mismo diálogo, en lugar de la cuenta</b></div>
+            <div class="zoom"><div class="zoom-l">Los motivos</div>
+              <div class="no-se">
+                <div><svg class="ico sm"><use href="#i-x-circle"/></svg><span><b>Tiene dos huecos.</b> Opción múltiple elige uno solo. Hay 281.</span></div>
+                <div><svg class="ico sm"><use href="#i-x-circle"/></svg><span><b>La respuesta es una oración entera.</b> Es reescribir, no elegir.</span></div>
+                <div><svg class="ico sm"><use href="#i-x-circle"/></svg><span><b>La pista repite la opción:</b> «(his / his)». Se corrige antes.</span></div>
+              </div>
+            </div>
+            <p>Un intento que no sale no es un error: queda dicho y no se vuelve a ofrecer.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── 05 · APROBADA ─────────── -->
+  <section class="pantalla" id="p-5" role="tabpanel" aria-labelledby="t-5" hidden>
+    <div class="estudio">
+      <div class="txt">
+        <div class="rol">Pantalla 05</div>
+        <h3>Aprobada: opción múltiple al publicar la tanda</h3>
+        <p>Aprobar no te deja nada por hacer a mano: el cambio ya está entero. Al publicar la tanda, el ejercicio queda como opción múltiple en el curso, con el cloze guardado al lado. La hoja pasa al siguiente.</p>
+        <p class="nota">El paso a producción es lo único que falta construir, y es tuyo.</p>
+      </div>
+      <div class="escena">
+        <div class="mkw">
+          <div class="mk angosta">
+            <div class="mk-chrome"><i class="b"></i><i class="b"></i><i class="b"></i>
+              <div class="mk-url">localhost:7800/correcciones?tipo=opcion-multiple</div></div>
+            <div class="mk-app" data-nav="none">
+              <div class="mk-main">
+                <div class="mk-head">
+                  <div class="g-top">
+                    <div class="ui-grow"><div class="ui-crumbs" data-ir="p-1">Pronouns <svg class="ico xs"><use href="#i-chev-right"/></svg> <b>Adjetivo o pronombre</b></div>
+                      <h4>Quiz 4 de 39</h4><div class="sub">4 de 39 decididos</div></div>
+                  </div>
+                  <span class="ui-btn gh sm" data-ir="p-2">Siguiente<svg class="ico xs"><use href="#i-arrow-right"/></svg></span>
+                </div>
+                <div class="mk-body">
+                  <div class="ui-alert ok" data-f="d-5-1"><svg class="ico sm"><use href="#i-check-circle"/></svg>Aprobada. Pasa a opción múltiple cuando publiques la tanda.</div>
+                  <div class="g-hoja">
+                    <div class="g-row"><div class="g-lbl">Tipo</div><div class="g-c chico">Opción múltiple · una correcta</div></div>
+                    <div class="g-row"><div class="g-lbl">Consigna</div><div class="g-c chico">Elige la palabra correcta.</div></div>
+                    <div class="g-row"><div class="g-lbl">Ejercicio</div><div class="g-c big">Is that pen <span class="g-gap"></span>?</div></div>
+                    <div class="g-row"><div class="g-lbl">Opciones</div><div class="g-c"><div class="g-opts"><span class="g-opt">your</span><span class="g-opt bien"><svg class="ico"><use href="#i-check"/></svg>yours</span></div></div></div>
+                  </div>
+                  <div class="era" data-f="d-5-2"><svg class="ico sm"><use href="#i-refresh"/></svg><span class="ui-grow">Era Completar hasta el 12/10. El original queda guardado.</span><span class="ui-btn gh sm">Volver a Completar</span></div>
+                  <div class="pub" data-f="d-5-3">
+                    <div class="pub-h"><svg class="ico sm"><use href="#i-upload"/></svg>En Publicar, este cambio</div>
+                    <div class="pub-f"><span>tipo de ejercicio</span><span class="ui-chip bad">hoy no llega</span></div>
+                    <div class="pub-f"><span>opciones y consigna</span><span class="ui-chip warn">esperan al tipo</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="pie-mk">Aprobar no escribe nada todavía: el curso cambia al publicar la tanda, como con cualquier corrección.</p>
+      </div>
+      <div class="funcs">
+        <h4 class="funcs-h">Las funciones</h4>
+        <details class="det" id="d-5-1" open>
+          <summary><span class="fn">01</span><h3>Qué cambia en el curso</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el aviso de arriba y la hoja nueva</b></div>
+            <div class="zoom"><div class="zoom-l">Lo que cambia en el ejercicio</div>
+              <div class="escribe">
+                <div><span class="k">tipo</span><span><b>opción múltiple</b>, una sola correcta</span></div>
+                <div><span class="k">opciones</span><span><b>your</b> · <b>yours</b>, con la correcta marcada</span></div>
+                <div><span class="k">ejercicio</span><span>el hueco, sin la pista</span></div>
+                <div><span class="k">consigna</span><span>«<b>Elige</b> la palabra correcta.»</span></div>
+                <div><span class="k">copia</span><span>el cloze entero, como estaba</span></div>
+              </div>
+            </div>
+            <p>La tanda ya sabe escribir el tipo y las opciones. Lo nuevo es guardar la copia, como hizo el script de septiembre con los 2.810. Todo lo demás del ejercicio queda igual.</p>
+          </div>
+        </details>
+        <details class="det" id="d-5-2">
+          <summary><span class="fn">02</span><h3>Volver a Completar</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el recuadro punteado</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="era"><svg class="ico sm"><use href="#i-refresh"/></svg><span class="ui-grow">Era Completar hasta el 12/10.</span><span class="ui-btn gh sm">Volver a Completar</span></div>
+            </div>
+            <p>Antes de publicar la tanda, volver es cambiar la decisión. Después, como el original quedó guardado, es restaurarlo tal cual: otra corrección, que viaja igual.</p>
+          </div>
+        </details>
+        <details class="det" id="d-5-3">
+          <summary><span class="fn">03</span><h3>Cómo llega a producción</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>la pantalla Publicar del tablero</b></div>
+            <div class="zoom"><div class="zoom-l">Lo que habría que sumar</div>
+              <div class="pub">
+                <div class="pub-f"><span>tipo de ejercicio</span><span class="ui-chip ok">llega si allá sigue siendo Completar</span></div>
+                <div class="pub-f"><span>si allá ya cambió</span><span class="ui-chip warn">no se pisa, se avisa</span></div>
+              </div>
+            </div>
+            <p>Hoy Publicar lo frena a propósito: el tipo de ejercicio no viaja a producción. La propuesta es una escritura entera, condicionada a que allá siga siendo cloze, como el script de septiembre.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</div></div>
+
+<!-- ═══════════ CIERRE ═══════════ -->
+<section class="cierre"><div class="wrap">
+  <h2 class="ed-h">Qué falta definir</h2>
+  <div class="abiertos">
+    <div class="ab"><span class="est dec">a decidir</span><h4>¿Publicar puede cambiar el tipo en producción?</h4><p>Hoy lo frena a propósito. Sin esto, la conversión queda en db/ y no llega a los alumnos.</p>
+      <div class="rec"><b>Recomiendo:</b> una escritura entera, sólo si allá sigue siendo cloze.</div></div>
+    <div class="ab"><span class="est dec">a decidir</span><h4>¿Se inventan opciones cuando no las trae?</h4><p>Es la fuente que más ejercicios abre, y la única que cuesta consultas y puede equivocarse.</p>
+      <div class="rec"><b>Recomiendo:</b> arrancar con los 320 que no inventan; inventar después de un examen.</div></div>
+    <div class="ab"><span class="est dec">a decidir</span><h4>¿Y si la pista da la forma base?</h4><p>«She ___ (go)» pasa de producir la forma a reconocerla: el ejercicio se vuelve más fácil.</p>
+      <div class="rec"><b>Recomiendo:</b> no sugerirlo solo; queda para pedirlo a mano.</div></div>
+    <div class="ab"><span class="est dec">a decidir</span><h4>¿Y si el ejercicio trae otra corrección?</h4><p>Una que cambie la respuesta choca con la conversión, que usa esa respuesta como opción correcta.</p>
+      <div class="rec"><b>Recomiendo:</b> en esa tanda no sugerirla; vuelve en la siguiente.</div></div>
+    <div class="ab"><span class="est dec">a decidir</span><h4>¿De a uno o por tema?</h4><p>En 9 de los 11 temas con pista, todos los cloze son candidatos y se parecen mucho.</p>
+      <div class="rec"><b>Recomiendo:</b> de a uno los primeros diez; después, «Aprobar los del tema».</div></div>
+    <div class="ab"><span class="est">hallazgo</span><h4>Los 140 de septiembre con opciones del grupo</h4><p>«Did you arrive ___ (late / lately)» ofrece también hard y hardly: opciones del grupo, no del ejercicio.</p>
+      <div class="rec"><b>Recomiendo:</b> después de esto, usar la misma sugerencia para afinarlos.</div></div>
+  </div>
+  <footer>
+    <span>Pasar a opción múltiple · propuesta v1</span>
+    <span>Actualizado 12/10/2026</span>
+  </footer>
+</div></section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     LA FICHA · la lee scripts/push-propuesta.mjs al mandar esto al Taller.
+     No se renderiza. `slug` es la identidad y tiene que ser único entre TODOS
+     los proyectos, no sólo dentro de éste. Lo que no esté, no se escribe:
+     una propuesta interna va sin `modelo` ni `precio`.
+     Se corrige cuando se corrige el documento — si acá dice otra cosa que el
+     cuadro, el catálogo miente y no se ve mirando la página. Ver §10.
+     ══════════════════════════════════════════════════════════════════════ -->
+<script type="application/json" id="taller-ficha">
+{
+  "v": 1,
+  "slug": "learney-pasar-a-opcion-multiple",
+  "cliente": "Learney",
+  "alcance": "Sugerir pasar un cloze a opción múltiple",
+  "detalle": "Correcciones sugiere pasar a opción múltiple los cloze que ya traen sus opciones en la pista o en sus hermanos; los jueces de opción múltiple las miran y aprobar convierte el ejercicio, con el cloze guardado.",
+  "estado": "borrador",
+  "responsable": "José",
+  "origen": "Pedido de José en Claude Code (12/10/2026)"
+}
+</script>
+
+<script>
+(function(){
+  /* ── tema: el toggle manda sobre la preferencia del sistema ── */
+  var root = document.documentElement, K = 'propuesta-tema';
+  try{ var g = localStorage.getItem(K); if(g) root.setAttribute('data-tema', g); }catch(e){}
+  document.querySelector('.tema').addEventListener('click', function(){
+    var oscuro = root.getAttribute('data-tema')
+      ? root.getAttribute('data-tema') === 'oscuro'
+      : matchMedia('(prefers-color-scheme: dark)').matches;
+    var nuevo = oscuro ? 'claro' : 'oscuro';
+    root.setAttribute('data-tema', nuevo);
+    try{ localStorage.setItem(K, nuevo); }catch(e){}
+  });
+
+  /* ═══════════ NAVEGACIÓN · etapas › vistas › pantallas › funciones ═══════════
+     Todo pasa por ir(id): muestra lo que haga falta —la etapa, la vista, la pantalla,
+     la función abierta— y lleva la página hasta ahí. Lo usan las pestañas, las flechas,
+     el teclado (← →), el #hash de la URL y cualquier data-ir del documento.
+     Las barras de etapas (.nav-e) y de vistas (.nav-p) son opcionales: si no están,
+     esto anda igual. No hace falta tocarlo para armar una propuesta. */
+  function todos(s, en){ return [].slice.call((en || document).querySelectorAll(s)); }
+  var etb = todos('.nav-e button'), eps = todos('.ep');
+  var navb = todos('.nav-p button'), vps = todos('.vp');
+  var barraE = document.querySelector('.nav-e'), barraV = document.querySelector('.nav-p');
+  var quieto = matchMedia('(prefers-reduced-motion: reduce)'), ancho = matchMedia('(min-width: 901px)');
+  var PEG = 0;
+
+  function claveDe(el, botones, attr){
+    for(var i = 0; i < botones.length; i++){ var k = botones[i].dataset[attr]; if(k && el.classList.contains(k)) return k; }
+    return null;
+  }
+  function irEtapa(k){
+    etb.forEach(function(o){ o.setAttribute('aria-selected', o.dataset.et === k); });
+    eps.forEach(function(p){ p.hidden = !p.classList.contains(k); });
+    navb.forEach(function(b){ if(b.dataset.et) b.hidden = b.dataset.et !== k; });
+    var primero = navb.filter(function(b){ return !b.hidden; })[0];
+    if(primero) irVista(primero.dataset.vp); else medir();
+  }
+  function irVista(k){
+    navb.forEach(function(o){ o.setAttribute('aria-selected', o.dataset.vp === k); });
+    vps.forEach(function(v){ v.hidden = !v.classList.contains(k); });
+    medir();
+  }
+
+  /* ⚠ las pantallas se resuelven POR GRUPO (.pantallas): con dos juegos en el documento,
+     un selector global hace que abrir una de la etapa 1 cierre todas las de la 2. */
+  function grupo(el){ return el.closest('.pantallas') || document.body; }
+  function tabsDe(g){ return todos('.tab', g); }
+  function vecinos(g){
+    var ts = tabsDe(g), i = -1;
+    ts.forEach(function(t, j){ if(t.getAttribute('aria-selected') === 'true') i = j; });
+    return { ant: ts[i - 1] || null, sig: ts[i + 1] || null };
+  }
+  function irPantalla(id){
+    var p = document.getElementById(id), g = grupo(p);
+    tabsDe(g).forEach(function(t){
+      var si = t.getAttribute('aria-controls') === id;
+      t.setAttribute('aria-selected', si);
+      if(si){ var c = t.parentElement, a = t.getBoundingClientRect(), b = c.getBoundingClientRect();
+        if(a.left < b.left || a.right > b.right) c.scrollLeft += a.left - b.left - 24; }
+    });
+    todos('.pantalla', g).forEach(function(o){ o.hidden = (o.id !== id); });
+    var v = vecinos(g);
+    todos('.pasar button', g).forEach(function(b){ b.disabled = !(b.dataset.paso === '-1' ? v.ant : v.sig); });
+    marcar(p); ajustarEscenas();
+  }
+
+  /* ── funciones: acordeón de a una; la abierta se marca en el dibujo ── */
+  function lista(e){ return (e.getAttribute('data-f') || '').split(/\s+/); }
+  function marcar(p){
+    if(!p) return;
+    var abiertas = todos('details.det[open]', p).map(function(d){ return d.id; });
+    todos('[data-f]', p).forEach(function(e){
+      e.classList.toggle('foco', lista(e).some(function(i){ return abiertas.indexOf(i) >= 0; }));
+    });
+  }
+  function abrir(det){
+    var p = det.closest('.pantalla');
+    todos('details.det', p).forEach(function(o){ if(o !== det) o.open = false; });
+    det.open = true; marcar(p);
+  }
+  todos('details.det').forEach(function(d){
+    var s = d.querySelector('summary');
+    s.addEventListener('click', function(e){
+      e.preventDefault();
+      if(d.open){ d.open = false; marcar(d.closest('.pantalla')); }
+      else { abrir(d); anotar(d.id, false); }
+    });
+    function asomar(si){ todos('[data-f]', d.closest('.pantalla')).forEach(function(e){
+      if(lista(e).indexOf(d.id) >= 0) e.classList.toggle('asoma', si); }); }
+    s.addEventListener('mouseenter', function(){ asomar(true); });
+    s.addEventListener('mouseleave', function(){ asomar(false); });
+    d.addEventListener('toggle', function(){ marcar(d.closest('.pantalla')); });
+  });
+
+  /* ── ir(id): el único camino ── */
+  function ir(id, op){
+    op = op || {};
+    var el = id ? document.getElementById(id) : null;
+    if(!el){
+      if(navb.some(function(b){ return b.dataset.vp === id; })){ irEtapaDe(navb, id); irVista(id); anotar(id, op.historial !== false); return true; }
+      if(etb.some(function(b){ return b.dataset.et === id; })){ irEtapa(id); anotar(id, op.historial !== false); window.scrollTo(0, 0); return true; }
+      return false;
+    }
+    var cambio = false;
+    var ep = el.closest('.ep'); if(ep && ep.hidden){ var k = claveDe(ep, etb, 'et'); if(k){ irEtapa(k); cambio = true; } }
+    var vp = el.closest('.vp'); if(vp && vp.hidden){ var v = claveDe(vp, navb, 'vp'); if(v){ irVista(v); cambio = true; } }
+    var p = el.closest('.pantalla'); if(p && p.hidden){ irPantalla(p.id); cambio = true; }
+    var det = el.closest('details.det'); if(det && !det.open) abrir(det);
+    anotar(id, op.historial !== false);
+    llevar(det || el, cambio || op.suave === false);
+    return true;
+  }
+  function irEtapaDe(botones, vpKey){
+    var b = botones.filter(function(x){ return x.dataset.vp === vpKey; })[0];
+    if(b && b.dataset.et && b.hidden) irEtapa(b.dataset.et);
+  }
+  function llevar(el, seco){
+    var r = el.getBoundingClientRect(), pantalla = el.classList.contains('pantalla');
+    if(pantalla){ if(r.top >= PEG - 1 && r.top < innerHeight * .7) return; }
+    else if(r.top >= PEG && r.bottom <= innerHeight) return;
+    var y = r.top + window.scrollY - PEG - (pantalla ? 0 : 16);
+    /* que el dibujo no se vaya: con la función al final de una columna corta, se baja
+       sólo hasta donde la escena sigue entera y pegada (la función igual queda a la vista) */
+    var est = !pantalla && ancho.matches && el.closest('.estudio'), esc = est && est.querySelector('.escena');
+    if(esc){
+      var tope = est.getBoundingClientRect().bottom + window.scrollY - (parseFloat(getComputedStyle(esc).top) || 0) - esc.offsetHeight;
+      y = Math.min(y, tope);
+    }
+    window.scrollTo({ top: Math.max(0, y), behavior: (seco || quieto.matches) ? 'auto' : 'smooth' });
+  }
+  /* el #hash queda siempre en lo que se está mirando: recargar o compartir el link vuelve ahí */
+  function anotar(id, nueva){
+    if(location.hash === '#' + id) return;
+    try{ history[nueva ? 'pushState' : 'replaceState'](null, '', '#' + id); }catch(e){}
+  }
+  if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.addEventListener('popstate', function(){ var h = decodeURIComponent(location.hash.slice(1)); if(h) ir(h, { historial: false }); });
+
+  /* ── lo que se toca ── */
+  etb.forEach(function(b){ b.addEventListener('click', function(){ ir(b.dataset.et); }); });
+  navb.forEach(function(b){ b.addEventListener('click', function(){
+    ir(b.dataset.vp);
+    /* si ya se había bajado, la vista nueva arranca desde su principio */
+    var v = vps.filter(function(x){ return !x.hidden; })[0];
+    if(v){ var y = v.getBoundingClientRect().top + window.scrollY - alto(barraE) - alto(barraV);
+      if(window.scrollY > y) window.scrollTo(0, y); }
+  }); });
+  tabsDe(document).forEach(function(t){ t.addEventListener('click', function(){ ir(t.getAttribute('aria-controls')); }); });
+  document.addEventListener('click', function(e){
+    var t = e.target.closest ? e.target.closest('[data-ir],[data-f]') : null;
+    if(!t) return;
+    if(t.hasAttribute('data-ir')){ e.preventDefault(); ir(t.getAttribute('data-ir')); return; }
+    var d = document.getElementById(lista(t)[0]);
+    if(d && d.matches('details.det')){ abrir(d); anotar(d.id, false); llevar(d, false); }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    if(e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    var a = document.activeElement;
+    if(a && (/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName) || a.isContentEditable)) return;
+    var g = todos('.pantallas').filter(function(x){ return x.offsetParent !== null; })[0];
+    if(!g) return;
+    var r = g.getBoundingClientRect();
+    if(r.top > innerHeight * .6 || r.bottom < PEG) return;
+    var v = vecinos(g), t = e.key === 'ArrowLeft' ? v.ant : v.sig;
+    if(t){ e.preventDefault(); ir(t.getAttribute('aria-controls')); }
+  });
+
+  /* ── lo que se arma solo: flechas en la barra, «anterior / siguiente» y la pista ── */
+  function flecha(paso, ico, rotulo){
+    var b = document.createElement('button');
+    b.type = 'button'; b.dataset.paso = paso; b.setAttribute('aria-label', rotulo); b.title = rotulo + ' (' + (paso === '-1' ? '←' : '→') + ')';
+    b.innerHTML = '<svg class="ico sm"><use href="#' + ico + '"/></svg>';
+    b.addEventListener('click', function(){
+      var v = vecinos(grupo(b)), t = paso === '-1' ? v.ant : v.sig;
+      if(t) ir(t.getAttribute('aria-controls'));
+    });
+    return b;
+  }
+  todos('.barra-p .wrap').forEach(function(w){
+    if(w.querySelector('.pasar')) return;
+    var c = document.createElement('div'); c.className = 'pasar';
+    c.appendChild(flecha('-1', 'i-chev-left', 'Pantalla anterior'));
+    c.appendChild(flecha('1', 'i-chev-right', 'Pantalla siguiente'));
+    w.appendChild(c);
+  });
+  todos('.pantallas').forEach(function(g){
+    var ts = tabsDe(g);
+    ts.forEach(function(t, i){
+      var p = document.getElementById(t.getAttribute('aria-controls'));
+      if(!p || p.querySelector('.sigue')) return;
+      var n = document.createElement('nav'); n.className = 'sigue'; n.setAttribute('aria-label', 'Otras pantallas');
+      [[ts[i - 1], '← Anterior', 'ant'], [ts[i + 1], 'Siguiente →', 'sig']].forEach(function(x){
+        if(!x[0]) return;
+        var b = document.createElement('button'); b.type = 'button'; b.className = x[2];
+        b.setAttribute('data-ir', x[0].getAttribute('aria-controls'));
+        var s = document.createElement('span'); s.textContent = x[1];
+        var nom = x[0].cloneNode(true), num = nom.querySelector('.i'); if(num) num.remove();
+        var bb = document.createElement('b'); bb.textContent = nom.textContent.trim();
+        b.appendChild(s); b.appendChild(bb); n.appendChild(b);
+      });
+      (p.querySelector('.funcs') || p).appendChild(n);
+    });
+  });
+  todos('.escena').forEach(function(s){
+    if(s.querySelector('.pista') || !s.querySelector('[data-ir],[data-f]')) return;
+    var p = document.createElement('p'); p.className = 'pista';
+    p.innerHTML = '<svg class="ico xs"><use href="#i-pointer"/></svg>' +
+      (s.querySelector('[data-ir]') ? 'Tocá el dibujo: navega como la app.' : 'Tocá una pieza para ver su función.');
+    s.appendChild(p);
+  });
+
+  /* ── lo que se mide: el alto de las barras pegadas y el de cada escena ──
+     ⚠ se mide, no se fija: las barras cambian de alto cuando los rótulos se envuelven. */
+  function alto(el){ return el && el.offsetParent !== null ? el.offsetHeight : 0; }
+  function medir(){
+    var e = alto(barraE);
+    if(barraV) barraV.style.top = e + 'px';
+    var base = e + alto(barraV);
+    var b = todos('.barra-p').filter(function(x){ return x.offsetParent !== null; })[0];
+    PEG = base + alto(b);
+    document.documentElement.style.setProperty('--pegado-p', base + 'px');
+    document.documentElement.style.setProperty('--pegado', PEG + 'px');
+    ajustarEscenas();
+  }
+  /* una escena más alta que la ventana se pega por abajo (top negativo) para que el
+     final del dibujo se pueda ver; si entra, se pega arriba con el CSS */
+  function ajustarEscenas(){
+    todos('.escena').forEach(function(s){
+      if(s.offsetParent === null) return;
+      s.style.top = '';
+      if(ancho.matches && s.offsetHeight > innerHeight - PEG - 40)
+        s.style.top = Math.round(innerHeight - s.offsetHeight - 20) + 'px';
+    });
+  }
+  window.addEventListener('resize', medir);
+  if(window.ResizeObserver){ var ro = new ResizeObserver(medir);
+    [barraE, barraV].concat(todos('.barra-p')).forEach(function(x){ if(x) ro.observe(x); }); }
+
+  /* ── al imprimir: todas las funciones abiertas ── */
+  var cerradas = [];
+  window.addEventListener('beforeprint', function(){
+    cerradas = todos('details.det').filter(function(d){ return !d.open; });
+    cerradas.forEach(function(d){ d.open = true; });
+  });
+  window.addEventListener('afterprint', function(){ cerradas.forEach(function(d){ d.open = false; }); cerradas = []; });
+
+  /* ── arranque ── */
+  var et0 = etb.filter(function(b){ return b.getAttribute('aria-selected') === 'true'; })[0] || etb[0];
+  if(et0) irEtapa(et0.dataset.et);
+  else if(navb.length){ var vp0 = navb.filter(function(b){ return b.getAttribute('aria-selected') === 'true'; })[0] || navb[0]; irVista(vp0.dataset.vp); }
+  todos('.pantallas').forEach(function(g){
+    var ts = tabsDe(g), t0 = ts.filter(function(t){ return t.getAttribute('aria-selected') === 'true'; })[0] || ts[0];
+    todos('.pantalla', g).forEach(function(p){
+      if(!p.querySelector('details.det[open]')){ var d0 = p.querySelector('details.det'); if(d0) d0.open = true; }
+    });
+    if(t0) irPantalla(t0.getAttribute('aria-controls'));
+  });
+  medir();
+  var h0 = decodeURIComponent(location.hash.slice(1));
+  if(h0) ir(h0, { historial: false, suave: false });
+
+})();
+</script>
+</body>
+</html>

@@ -3,6 +3,7 @@ package com.learney.contentaudit.revisiondomain.batch;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.revisiondomain.RevisionProposal;
 import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
+import com.learney.contentaudit.revisiondomain.conversion.MultipleChoiceConversion;
 import java.time.Instant;
 import java.util.List;
 
@@ -26,7 +27,17 @@ public record BatchReview(String batchId, int correctionRevision, int contentVer
     public record Item(String changeId, BatchChangeStep step, CourseElementSnapshot before, CourseElementSnapshot after,
             String origin, String ruleId,
             BatchReviewDecision.Status status, String reviewer, Instant decidedAt,
-            List<String> taskIds, String rationale) {
+            List<String> taskIds, String rationale, List<String> requiredJudges) {
+        /** Approval requirements are supplied by the domain, not guessed by clients. */
+        public Item {
+            requiredJudges = ruleId != null && ruleId.startsWith(MultipleChoiceConversion.RULE + ":")
+                    && !ruleId.endsWith(":RESTORE") ? MultipleChoiceConversion.JUDGES : List.of();
+        }
+        public Item(String changeId, BatchChangeStep step, CourseElementSnapshot before, CourseElementSnapshot after,
+                String origin, String ruleId, BatchReviewDecision.Status status, String reviewer, Instant decidedAt,
+                List<String> taskIds, String rationale) {
+            this(changeId, step, before, after, origin, ruleId, status, reviewer, decidedAt, taskIds, rationale, List.of());
+        }
         /** Legacy projections have no provenance, and must be rebuilt before being cached. */
         public Item(String changeId, BatchChangeStep step, CourseElementSnapshot before, CourseElementSnapshot after,
                 String origin, String ruleId, BatchReviewDecision.Status status, String reviewer, Instant decidedAt) {

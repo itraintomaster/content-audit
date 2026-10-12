@@ -28,6 +28,7 @@ no se toca y no frena nada: queda registrada como desfasada. Es lo que
 sincronizaba `sync_quiz_titles` del camino por plan, sin pisar lo que no se sabe.
 """
 
+from . import conversion
 from .manifest_reader import COLLECTIONS, QUIZ_TEMPLATES, only_labels_change
 from .store import MISSING, fingerprint_without, get_path, same_value, short, to_json_safe
 
@@ -70,6 +71,8 @@ def required_collections(manifest):
 
 def as_listed(path, value):
     """El valor de la base tal como lo representa la lista."""
+    if path == "clozeOriginal" and value is MISSING:
+        return None
     if path in ABSENT_AS_EMPTY_LIST and (value is MISSING or value is None):
         return []
     return value
@@ -134,7 +137,8 @@ class DocPlan:
         return {f.path: f.after for f in self.fields if f.status == APPLY}
 
     def expected(self):
-        return {f.path: f.current for f in self.fields if f.status == APPLY}
+        atomic = any(f.path == "form" for f in self.fields)
+        return {f.path: f.current for f in self.fields if atomic or f.status == APPLY}
 
     def rest_fingerprint(self):
         return fingerprint_without(self.doc, list(self.writes()))
@@ -261,6 +265,16 @@ class WritePlan:
 
 def form_block(doc, fields):
     """(código, mensaje) si la lista toca el formulario de un modo que no se publica; si no, None."""
+    if conversion.is_conversion(fields):
+        current = get_path(doc, "form.kind")
+        form = next(f for f in fields if f["path"] == "form")
+        if current not in (form["before"]["kind"], form["after"]["kind"]):
+            return ("CONVERSION_TYPE_DRIFT", "El tipo cambió en producción; no se pisa.")
+        statuses = [FieldPlan(f["path"], f["before"], f["after"], get_path(doc, f["path"])).status
+                    for f in fields if not same_value(f["before"], f["after"])]
+        if APPLY in statuses and ALREADY in statuses:
+            return ("PARTIAL_CONVERSION", "La conversión está aplicada por partes; requiere revisión.")
+        return None
     form_kind = get_path(doc, "form.kind")
     if MULTIPLE_CHOICE in (form_kind, get_path(doc, "kind")):
         beyond = [f["path"] for f in fields if f["path"].startswith("form.")

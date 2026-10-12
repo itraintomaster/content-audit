@@ -296,6 +296,13 @@ class DefaultBatchPublisher implements BatchPublisher {
             BatchClosing last, Instant publishedAt) {
         // F-PUBPROD-R003: José's review as it stands before anything leaves, and what he already took out.
         ReviewStanding standing = standing(batch);
+        for (var item : standing.items()) {
+            if (ConversionJudgments.conversion(item) && item.status() != BatchReviewDecision.Status.REJECTED) {
+                if (item.status() != BatchReviewDecision.Status.APPROVED)
+                    throw new BatchNotPublishableException(batch.getId(), "la conversión necesita aprobación explícita");
+                ConversionJudgments.requireApproved(batch, item);
+            }
+        }
         PublicationExclusions exclusions = new PublicationExclusions(batch, changeLedger, startCourse, standing);
 
         // Rules José left out before the OK go first, through the ledger.

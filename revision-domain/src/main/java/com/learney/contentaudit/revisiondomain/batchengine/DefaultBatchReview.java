@@ -85,6 +85,11 @@ final class DefaultBatchReview implements BatchReviewService {
                 throw new IllegalArgumentException("La corrección cambió o fue retirada. Volvé a leer antes de aprobar.");
             }
         }
+        if (request.status() == BatchReviewDecision.Status.APPROVED)
+            for (var selected : request.selections())
+                current.stream().filter(i -> Objects.equals(i.changeId(), selected.changeId())
+                        && Objects.equals(i.step(), selected.step())).findFirst()
+                        .ifPresent(i -> ConversionJudgments.requireApproved(batch, i));
         batches.saveReview(new BatchReviewDecision(batch.getId(), List.copyOf(request.selections()), request.status(),
                 request.reviewer().trim(), Instant.now(), request.expectedReviewCount()));
         return read(batch);

@@ -99,6 +99,35 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
                 new ManifestCounts(documents.size(), fields, byPath));
     }
 
+    /** A recognized conversion travels atomically, with its original; arbitrary polymorphic edits remain unsupported. */
+    private Optional<ManifestDocument> conversion(PublishedElement element) {
+        QuizTemplateEntity beforeQuiz = element.before().getQuiz();
+        QuizTemplateEntity afterQuiz = element.after().getQuiz();
+        if (beforeQuiz == null || afterQuiz == null || beforeQuiz.getForm() == null || afterQuiz.getForm() == null
+                || Objects.equals(beforeQuiz.getForm().getKind(), afterQuiz.getForm().getKind())) return Optional.empty();
+        boolean forward = "CLOZE".equals(beforeQuiz.getForm().getKind()) && "MULTIPLE_CHOICE".equals(afterQuiz.getForm().getKind())
+                && afterQuiz.getClozeOriginal() != null && Objects.equals(beforeQuiz, afterQuiz.getClozeOriginal());
+        boolean restore = "MULTIPLE_CHOICE".equals(beforeQuiz.getForm().getKind()) && "CLOZE".equals(afterQuiz.getForm().getKind())
+                && beforeQuiz.getClozeOriginal() != null;
+        if (restore) {
+            var restored = com.learney.contentaudit.coursedomain.QuizTemplateEntities.copyOf(afterQuiz);
+            restored.setClozeOriginal(null);
+            restore = Objects.equals(restored, beforeQuiz.getClozeOriginal());
+        }
+        if (!forward && !restore) return Optional.empty();
+        if (element.reviewStatus() != com.learney.contentaudit.revisiondomain.publication.DocumentReviewStatus.APPROVED)
+            throw new IllegalArgumentException("La conversión necesita aprobación explícita y completa.");
+        if (element.partsByChange().values().stream().noneMatch(parts -> parts.contains(ExercisePart.FORM_KIND)))
+            throw new IllegalArgumentException("La conversión no declara el cambio de tipo.");
+        List<String> paths = List.of("kind", "form", "instructions", "clozeOriginal");
+        Map<String, Object> before = projector.project(beforeQuiz, paths), after = projector.project(afterQuiz, paths);
+        List<ManifestField> fields = new ArrayList<>();
+        for (String path : paths) fields.add(new ManifestField(path, before.get(path), after.get(path)));
+        return Optional.of(new ManifestDocument(ProductionFieldMap.QUIZ_COLLECTION, projector.documentId(afterQuiz),
+                element.after().getNodeId(), new ArrayList<>(element.partsByChange().keySet()), element.proposalId() == null ? List.of() : List.of(element.proposalId()),
+                element.reviewStatus(), fields));
+    }
+
     /**
      * R001 inv. 7: la lista dice de qué tanda, plan y nivel sale, cuándo se publicó y quién la aprobó. Sin alguno de esos
      * datos el paso a producción no sabría qué está escribiendo: la lista no se arma y la negativa nombra lo que falta.
@@ -140,6 +169,8 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
                             : element.before() != null ? element.before().getNodeId() : "un ejercicio")
                     + " para armar la lista de publicación");
         }
+        Optional<ManifestDocument> conversion = conversion(element);
+        if (conversion.isPresent()) return conversion;
         CourseElementSnapshot reference = element.after();
         AuditTarget target = reference.getNodeTarget() == AuditTarget.KNOWLEDGE ? AuditTarget.KNOWLEDGE
                 : AuditTarget.QUIZ;

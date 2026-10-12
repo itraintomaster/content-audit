@@ -72,7 +72,7 @@ TOPIC_KEYS = ("_id", "children", "code", "kind", "label", "oldId", "parentId", "
 KNOWLEDGE_KEYS = ("_id", "code", "isRule", "kind", "label", "oldId", "parentId", "instructions", "sentenceMode")
 QUIZ_KEYS = ("_id", "id", "kind", "knowledgeId", "title", "instructions", "translation", "theoryId", "topicName",
              "difficulty", "retries", "noScoreRetries", "code", "audioUrl", "imageUrl", "answerAudioUrl",
-             "answerImageUrl", "miniTheory", "successMessage", "form")
+             "answerImageUrl", "miniTheory", "successMessage", "form", "clozeOriginal")
 # Mismo orden que escribe FileSystemCourseRepository.formToJson; QUIZ_KEYS y estos se
 # mantienen a mano en sincronía con QUIZ_KNOWN_KEYS/FORM_KNOWN_KEYS de ese archivo.
 FORM_KEYS = ("kind", "incidence", "label", "name", "sentenceParts", "sentences", "selection", "items")

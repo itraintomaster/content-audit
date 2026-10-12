@@ -423,6 +423,11 @@ class Main {
             if (miniExit != 0) System.exit(miniExit);
             return;
         }
+        Integer conversionExit = SavedMultipleChoiceConversionCmd.execute(remainingArgs, baseDir, System.out, System.err);
+        if (conversionExit != null) {
+            if (conversionExit != 0) System.exit(conversionExit);
+            return;
+        }
         Integer reviewExit = SavedBatchReviewCmd.execute(remainingArgs, baseDir, System.out, System.err);
         if (reviewExit != null) {
             if (reviewExit != 0) System.exit(reviewExit);
@@ -1450,6 +1455,7 @@ class Main {
                     runtime);
         })));
         batchCommand.addSubcommand("analysis", new CurrentAnalysisCmd(() -> batchConfig.get().getCurrentAnalysisService()));
+        batchCommand.addSubcommand("conversion", new MultipleChoiceConversionCmd(() -> SavedMultipleChoiceConversionCmd.create(baseDir)));
         batchCommand.addSubcommand("opinion", new ContextOpinionCmd(memoized(() ->
                 new com.learney.contentaudit.revisiondomain.batchengine.DefaultContextOpinionServiceFactory().create(
                         batchConfig.get(), new com.learney.contentaudit.auditinfrastructure.minitheory.FileSystemMiniTheoryWorkspaceStore(baseDir)::fingerprint))));
