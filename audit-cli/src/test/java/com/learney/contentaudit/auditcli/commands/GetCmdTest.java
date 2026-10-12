@@ -4508,6 +4508,10 @@ public class GetCmdTest {
         assertEquals(0, withChoice.exit(), withChoice.err());
         assertEquals(latest, new ObjectMapper().readTree(withoutChoice.out()).get("auditId").asText(), "the latest one");
         assertEquals(earlier, new ObjectMapper().readTree(withChoice.out()).get("auditId").asText(), "the chosen one");
+        Base299.Captured explicit = Base299.run(studentViewGetCmd(workdir), "student-view", AFIRMATIVAS_REGULARES,
+                "--audit", latest);
+        assertEquals(0, explicit.exit(), explicit.err());
+        assertEquals(latest, new ObjectMapper().readTree(explicit.out()).get("auditId").asText(), "an explicit snapshot overrides the active source");
     }
 
     @Test

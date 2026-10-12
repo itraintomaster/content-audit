@@ -8,7 +8,14 @@ public final class SelectiveCorrection {
     private SelectiveCorrection() {}
     public record Request(String action, String batchId, String analyzer, String operationId,
             String sourceRunId, Integer contentVersion, String fingerprint, String judgeVersion,
-            Integer queryCap, List<String> taskIds, boolean includeApproved, String reviewer) {}
+            Integer queryCap, List<String> taskIds, boolean includeApproved, String reviewer, String state, boolean force) {
+        public Request(String action, String batchId, String analyzer, String operationId, String sourceRunId,
+                Integer contentVersion, String fingerprint, String judgeVersion, Integer queryCap,
+                List<String> taskIds, boolean includeApproved, String reviewer) {
+            this(action, batchId, analyzer, operationId, sourceRunId, contentVersion, fingerprint, judgeVersion,
+                    queryCap, taskIds, includeApproved, reviewer, "correction", false);
+        }
+    }
     public record Task(String id, String quizId, String rule, String explanation, boolean approved,
             boolean attempted, String outcome) {}
     public record Run(String id, String action, String analyzer, String sourceRunId,
@@ -20,5 +27,13 @@ public final class SelectiveCorrection {
     public record State(String batchId, int correctionRevision, int contentVersion, String analyzer,
             String fingerprint, String judgeVersion, String runtime, boolean allowed, String reason,
             int reached, int evaluated, int missing, int pendingQueries, int reusedQueries,
-            List<Task> tasks, List<Run> runs) {}
+            List<Task> tasks, List<Run> runs, String displayName) {
+        public State(String batchId, int correctionRevision, int contentVersion, String analyzer,
+                String fingerprint, String judgeVersion, String runtime, boolean allowed, String reason,
+                int reached, int evaluated, int missing, int pendingQueries, int reusedQueries,
+                List<Task> tasks, List<Run> runs) {
+            this(batchId, correctionRevision, contentVersion, analyzer, fingerprint, judgeVersion, runtime,
+                    allowed, reason, reached, evaluated, missing, pendingQueries, reusedQueries, tasks, runs, analyzer);
+        }
+    }
 }

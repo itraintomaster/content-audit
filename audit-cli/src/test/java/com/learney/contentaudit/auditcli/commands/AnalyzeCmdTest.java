@@ -1350,6 +1350,7 @@ public class AnalyzeCmdTest {
         static void copyTree(Path from, Path to) {
             try (Stream<Path> paths = Files.walk(from)) {
                 for (Path path : paths.toList()) {
+                    if (Files.exists(from.resolve("_course.json")) && from.relativize(path).startsWith(".content-audit")) continue;
                     Path target = to.resolve(from.relativize(path).toString());
                     if (Files.isDirectory(path)) {
                         Files.createDirectories(target);
@@ -1371,6 +1372,8 @@ public class AnalyzeCmdTest {
             try (Stream<Path> paths = Files.walk(dir)) {
                 MessageDigest sha = MessageDigest.getInstance("SHA-256");
                 for (Path path : paths.filter(Files::isRegularFile).toList()) {
+                    // Operator runtime state beside the corpus is not course content. Store checks keep it.
+                    if (Files.exists(dir.resolve("_course.json")) && dir.relativize(path).startsWith(".content-audit")) continue;
                     result.put(dir.relativize(path).toString(), HexFormat.of().formatHex(sha.digest(Files.readAllBytes(path))));
                 }
             } catch (IOException e) {

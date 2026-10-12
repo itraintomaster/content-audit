@@ -144,6 +144,7 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
         JudgeExamStanding standing = standing(judgeName, judgeVersion, runtimeIdentity,
                 compatibleJudgeVersions);
         int effective = Math.max(0, requested);
+        if (purpose == EvaluationRunPurpose.READING) effective = 0;
         if (judgeVersion == null) {
             // No version: nothing to consult with, on the course or in an exam.
             effective = 0;
@@ -191,6 +192,10 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
                 continue;
             }
             planned.add(unit);
+            if (purpose == EvaluationRunPurpose.READING) {
+                modes.add(EvaluationRequestMode.REUSE_ONLY);
+                continue;
+            }
             if (declared != null) {
                 // F-QINST-R018, for every judge: the declared set is consulted again, the rest only
                 // reuses whatever it has.

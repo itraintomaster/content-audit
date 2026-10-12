@@ -642,6 +642,12 @@ public final class TandaFixture {
 
     /** F's comparison, written by hand: what each scope gives. */
     public static final class Comparator implements BatchComparator {
+        public AuditReport suppliedProjection;
+
+        @Override public BatchComparison compareMeasured(Path path, ProjectionScope scope,
+                AuditReport baseline, AuditReport approved, AuditReport projected) {
+            suppliedProjection = projected; return compare(path, scope);
+        }
         public final List<ProjectionScope> scopes = new ArrayList<>();
 
         public final List<Path> paths = new ArrayList<>();

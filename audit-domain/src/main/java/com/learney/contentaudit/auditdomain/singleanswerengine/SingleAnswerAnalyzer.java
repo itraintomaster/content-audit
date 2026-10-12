@@ -164,6 +164,7 @@ class SingleAnswerAnalyzer implements ContentAnalyzer {
             AuditNode unit = units.get(i);
             EvaluationResolution resolution = resolutionByUnit[i];
             if (judge(unit, resolution)) {
+                com.learney.contentaudit.auditdomain.analysis.RecordedVerdictVersions.stamp(unit, getName(), resolution.getEvaluatorVersion());
                 evaluated++;
                 if (resolution.getEvaluatorVersion() != null) {
                     // One evaluator: its version is the version of the judge.

@@ -149,6 +149,9 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
             closing.setContentVersion(batch.getContentVersion());
             closings.add(closing);
             batch.setClosings(closings);
+            // A native closing establishes a new raw analysis; selective overlays remain separate history.
+            batch.setAnalysisSeedAuditId(null);
+            batch.setAnalysisSeedContentVersion(0);
             if (verdict.isPasses() && blindSampleService != null && batch.getBlindSampleId() == null) {
                 // one sample per batch: closing again with José's decisions keeps the one he answers
                 BlindSample sample = blindSampleService.draw(coursePath, scope, null);
@@ -241,7 +244,7 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
     }
 
     /** What José approved in the tray knowing it did not pass: its proposals are exceptions of the gate. */
-    private static List<String> exceptions(CorrectionBatch batch) {
+    static List<String> exceptions(CorrectionBatch batch) {
         List<String> exceptions = new ArrayList<>();
         for (BatchAdjustment adjustment : BatchBook.list(batch.getAdjustments())) {
             if (adjustment != null && adjustment.getKind() == BatchAdjustmentKind.ACCEPT_AS_EXCEPTION
@@ -361,6 +364,11 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
      */
     private List<String> changedOutside(CorrectionBatch batch, CourseEntity startCourse, Map<String, RefinementTask> tasks) {
         CourseEntity composed = changeLedger.composedCourse(batch, startCourse);
+        return changedOutside(batch, startCourse, composed, tasks);
+    }
+
+    static List<String> changedOutside(CorrectionBatch batch, CourseEntity startCourse, CourseEntity composed,
+            Map<String, RefinementTask> tasks) {
         Set<String> allowed = new HashSet<>();
         Set<String> topics = new HashSet<>();
         for (String taskId : BatchBook.list(batch.getTaskIds())) {

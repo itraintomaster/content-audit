@@ -74,6 +74,16 @@ class DefaultCourseProjector implements CourseProjector {
 
     @Override
     public CourseProjection project(Path coursePath, ProjectionScope scope) {
+        return project(coursePath, scope, null, null);
+    }
+
+    @Override public CourseProjection projectWithMeasurements(Path coursePath, ProjectionScope scope,
+            AuditReport approved, AuditReport projected) {
+        return project(coursePath, scope, approved, projected);
+    }
+
+    private CourseProjection project(Path coursePath, ProjectionScope scope, AuditReport measuredApproved,
+            AuditReport measuredProjected) {
         // The active pair: the projection starts from it (F-PROYU-R006).
         Optional<ActiveAnalysisSelection> selection = activeAnalysisSelectionStore.read();
         if (selection.isEmpty() || selection.get().getAuditId() == null || selection.get().getPlanId() == null) {
@@ -152,8 +162,8 @@ class DefaultCourseProjector implements CourseProjector {
         AuditReport approvedPhoto;
         AuditReport projectedPhoto;
         try {
-            approvedPhoto = projectionMeasurer.measure(withApproved.getCourse(), original, budgets);
-            projectedPhoto = withPending.getApplied().isEmpty()
+            approvedPhoto = measuredApproved != null ? measuredApproved : projectionMeasurer.measure(withApproved.getCourse(), original, budgets);
+            projectedPhoto = measuredProjected != null ? measuredProjected : withPending.getApplied().isEmpty()
                     ? approvedPhoto
                     : projectionMeasurer.measure(withPending.getCourse(), original, budgets);
         } catch (RuntimeException e) {

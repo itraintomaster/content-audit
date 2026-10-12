@@ -167,6 +167,8 @@ class MiniTheoryAnalyzer implements ContentAnalyzer {
                         kind == EvaluationResolutionKind.REUSED);
                 checkAligned(outcomes, exercises);
                 apply(exercises, outcomes);
+                for (AuditNode exercise : exercises) com.learney.contentaudit.auditdomain.analysis.RecordedVerdictVersions
+                        .stamp(exercise, getName(), resolution.getEvaluatorVersion());
                 evaluated++;
                 quizzesEvaluated += exercises.size();
                 if (resolution.getEvaluatorVersion() != null) {

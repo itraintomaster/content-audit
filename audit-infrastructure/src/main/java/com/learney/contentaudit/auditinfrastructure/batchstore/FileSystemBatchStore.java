@@ -87,13 +87,31 @@ public class FileSystemBatchStore implements BatchStore {
     }
 
     private void locked(String id, Runnable action) {
+        Path monitor = baseDir.toAbsolutePath().normalize().resolve(".content-audit/locks/batches").resolve(identifier(id) + ".lock");
+        synchronized (BATCH_MONITORS.computeIfAbsent(monitor, ignored -> new Object())) {
+        if (HELD_BATCH_LOCKS.get().contains(monitor)) { action.run(); return; }
         try {
             Path locks = baseDir.resolve(".content-audit/locks/batches");
             Files.createDirectories(locks);
             try (var channel = java.nio.channels.FileChannel.open(locks.resolve(identifier(id) + ".lock"),
                     java.nio.file.StandardOpenOption.CREATE, java.nio.file.StandardOpenOption.WRITE);
-                    var lock = channel.lock()) { action.run(); }
+                    var lock = channel.lock()) {
+                HELD_BATCH_LOCKS.get().add(monitor);
+                try { action.run(); } finally {
+                    HELD_BATCH_LOCKS.get().remove(monitor);
+                    if (HELD_BATCH_LOCKS.get().isEmpty()) HELD_BATCH_LOCKS.remove();
+                }
+            }
         } catch (IOException e) { throw new java.io.UncheckedIOException(e); }
+        }
+    }
+    private static final java.util.Map<Path, Object> BATCH_MONITORS = new java.util.concurrent.ConcurrentHashMap<>();
+    private static final ThreadLocal<java.util.Set<Path>> HELD_BATCH_LOCKS = ThreadLocal.withInitial(java.util.HashSet::new);
+
+    @Override public synchronized <T> T withAnalysisLock(String batchId, java.util.function.Supplier<T> action) {
+        var result = new java.util.concurrent.atomic.AtomicReference<T>();
+        locked(batchId, () -> result.set(action.get()));
+        return result.get();
     }
 
     /** Lo que se va a escribir en {@code file}, en JSON con sangría. */
@@ -192,6 +210,44 @@ public class FileSystemBatchStore implements BatchStore {
         }
     }
     private static final java.util.Map<Path, Object> REVIEW_MONITORS = new java.util.concurrent.ConcurrentHashMap<>();
+
+    @Override public synchronized List<com.learney.contentaudit.revisiondomain.batch.AnalysisSelection> analysisSelections(String batchId) {
+        Path file = selectionFile(batchId);
+        if (!Files.exists(file)) return List.of();
+        try {
+            return mapper.readValue(file.toFile(), mapper.getTypeFactory().constructCollectionType(List.class,
+                    com.learney.contentaudit.revisiondomain.batch.AnalysisSelection.class));
+        } catch (IOException e) { throw new java.io.UncheckedIOException("No se pudo leer el historial de análisis", e); }
+    }
+
+    @Override public synchronized void saveAnalysisSelection(com.learney.contentaudit.revisiondomain.batch.AnalysisSelection selection) {
+        locked(selection.batchId(), () -> {
+            var history = new ArrayList<>(analysisSelections(selection.batchId()));
+            var duplicate = history.stream().filter(x -> x.operationId().equals(selection.operationId())).findFirst();
+            if (duplicate.isPresent()) {
+                var previous = duplicate.get();
+                if (!previous.state().equals(selection.state()) || !previous.action().equals(selection.action())
+                        || !java.util.Objects.equals(previous.runId(), selection.runId())
+                        || !java.util.Objects.equals(previous.removesOperationId(), selection.removesOperationId())
+                        || !java.util.Objects.equals(previous.reviewer(), selection.reviewer())
+                        || !java.util.Objects.equals(previous.nodeIds(), selection.nodeIds())
+                        || !java.util.Objects.equals(previous.contentFingerprint(), selection.contentFingerprint()))
+                    throw new IllegalStateException("La operación ya pertenece a otra selección.");
+                return;
+            }
+            CorrectionBatch batch = load(selection.batchId()).orElseThrow();
+            if (batch.getStatus() != BatchStatus.CLOSED || batch.getContentVersion() != selection.contentVersion()
+                    || history.size() != selection.expectedRevision())
+                throw new IllegalStateException("El análisis o el contenido cambió: volvé a leer antes de confirmar.");
+            history.add(selection);
+            Path file = selectionFile(selection.batchId());
+            writeAtomically(file, json(history, file));
+        });
+    }
+
+    private Path selectionFile(String batchId) {
+        return baseDir.resolve(".content-audit/analysis-selections").resolve(identifier(batchId) + SUFFIX);
+    }
 
     @Override
     public List<BatchReviewDecision> reviews(String batchId) {

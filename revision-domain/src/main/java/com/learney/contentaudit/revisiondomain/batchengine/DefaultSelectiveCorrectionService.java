@@ -35,8 +35,11 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
 
     @Override public State execute(Request r) {
         Objects.requireNonNull(r, "Falta el pedido.");
-        if (!JUDGE.equals(r.analyzer())) fail("Este recorrido sólo admite el juez de calidad de distractores.");
-        if (!List.of("read", "estimate", "analyze", "correct").contains(Objects.toString(r.action(), "")))
+        String judge = r.analyzer();
+        var supported = config.getCurrentAnalysisService() == null ? java.util.Set.of(JUDGE) : config.getCurrentAnalysisService().supportedAnalyzers();
+        if (blank(judge) || !supported.contains(judge)) fail("El juez no declara una huella de integración: " + judge);
+        if ("correct".equals(r.action()) && !JUDGE.equals(judge)) fail("La corrección selectiva de este recorrido es sólo de distractores.");
+        if (!List.of("read", "estimate", "analyze", "reanalyze", "analyze-base", "reanalyze-base", "correct").contains(Objects.toString(r.action(), "")))
             fail("Operación selectiva desconocida.");
         CorrectionBatch batch = batch(r.batchId());
         if (!List.of("read", "estimate").contains(r.action())) {
@@ -46,7 +49,7 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
                     .filter(run -> r.operationId().equals(run.id())).findFirst();
             if (existing.isPresent()) {
                 Run run = existing.get();
-                if (!Objects.equals(run.action(), r.action()) || !Objects.equals(run.sourceRunId(), r.sourceRunId())
+                if (!Objects.equals(run.analyzer(), judge) || !Objects.equals(run.action(), recordedAction(r)) || !Objects.equals(run.sourceRunId(), r.sourceRunId())
                         || !Objects.equals(run.judgeVersion(), r.judgeVersion())
                         || !Objects.equals(run.fingerprint(), r.fingerprint())
                         || !Objects.equals(run.contentVersion(), r.contentVersion())
@@ -54,13 +57,17 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
                         || !Objects.equals(run.reviewer(), r.reviewer()) || !Objects.equals(run.queryCap(), r.queryCap())
                         || ("correct".equals(r.action()) && !new HashSet<>(run.taskIds()).equals(new HashSet<>(safe(r.taskIds())))))
                     fail("La identidad ya pertenece a otro pedido; no se puede relanzar.");
-                return state(batch, null, null); // Finished or uncertain operations are never paid twice.
+                AuditReport recorded = run.auditId() == null ? null : config.getAuditReportStore().load(run.auditId()).orElse(null);
+                return state(batch, recorded, null, judge); // Finished or uncertain operations are never paid twice.
             }
         }
         CourseEntity start = config.getCourseRepository().load(config.getCoursePath());
-        CourseEntity cut = level(ledger.composedCourse(batch, start), batch.getLevel());
-        AuditReport trial = audit(cut, JUDGE, 0);
-        State estimate = state(batch, trial, cut);
+        boolean base = "base".equals(r.state()) || r.action().endsWith("-base");
+        if (r.state() != null && !List.of("base", "correction").contains(r.state())) fail("Elegí la base o la corrección.");
+        if (base && "correct".equals(r.action())) fail("Las correcciones se aplican sólo a la corrección vigente.");
+        CourseEntity cut = level(base ? start : ledger.composedCourse(batch, start), batch.getLevel());
+        AuditReport trial = audit(cut, judge, 0, r.force() || r.action().startsWith("reanalyze"));
+        State estimate = state(batch, trial, cut, judge);
         if (List.of("read", "estimate").contains(r.action())) return estimate;
         if (batch.getStatus() != BatchStatus.CLOSED) fail("La tanda debe estar cerrada y sin otra operación activa.");
         if (r.contentVersion() == null || r.contentVersion() != batch.getContentVersion()
@@ -91,11 +98,12 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         }
         List<String> ids = selected.stream().map(RefinementTask::getId).toList();
         List<String> quizzes = selected.stream().map(RefinementTask::getNodeId).distinct().toList();
-        Run run = new Run(r.operationId(), r.action(), JUDGE, r.sourceRunId(), BatchBook.correctionRevision(batch),
+        Run run = new Run(r.operationId(), recordedAction(r), judge, r.sourceRunId(), BatchBook.correctionRevision(batch),
                 batch.getContentVersion(), estimate.fingerprint(), estimate.judgeVersion(), estimate.runtime(),
                 null, null, ids, quizzes, r.queryCap(), r.queryCap(), 0, 0, 0, 0, "RUNNING", r.reviewer(),
                 Instant.now(), null, null, r.includeApproved(), batch.getContentVersion(), estimate.fingerprint(),
                 "correct".equals(r.action()) ? correctorRuntime : null);
+        if (!base && config.getCurrentAnalysisService() != null) config.getCurrentAnalysisService().seed(batch, start);
         put(batch, run);
         batch.setStatus(BatchStatus.RUNNING);
         // The entire allowance is durable before the first call. An uncertain run needs a new human decision,
@@ -105,21 +113,23 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         int initialSpent = batch.getQueriesSpent();
         try {
             AuditReport result;
-            if ("analyze".equals(r.action())) {
-                result = audit(cut, JUDGE, r.queryCap());
+            if (!"correct".equals(r.action())) {
+                // The allowance is for the whole run, including judges with multiple evaluators.
+                int evaluatorCount = Math.max(1, BatchBook.list(coverage(trial, judge).getEvaluators()).size());
+                result = audit(cut, judge, r.queryCap() / evaluatorCount, r.force() || r.action().startsWith("reanalyze"));
                 String auditId = config.getAuditReportStore().save(result);
                 RefinementPlan plan = config.getRefinerEngine().plan(result, auditId);
                 List<RefinementTask> tasks = BatchBook.list(plan.getTasks()).stream()
                         .filter(t -> t.getNodeTarget() == AuditTarget.QUIZ && t.getOrigin() != null
                                 && t.getOrigin().getFinding() != null
-                                && JUDGE.equals(t.getOrigin().getFinding().getAnalyzer()))
+                                && judge.equals(t.getOrigin().getFinding().getAnalyzer()))
                         .toList();
                 for (RefinementTask t : tasks) t.setId("selective-" + run.id() + "-" + t.getId());
                 plan.setTasks(new ArrayList<>(tasks));
                 plan.setId("selective-" + run.id());
                 config.getRefinementPlanStore().save(plan);
                 run = evaluated(run, result, auditId, plan.getId(), tasks.stream().map(RefinementTask::getId).toList(),
-                        tasks.stream().map(RefinementTask::getNodeId).distinct().toList(), spent(result));
+                        tasks.stream().map(RefinementTask::getNodeId).distinct().toList(), spent(result, judge));
                 batch.setQueriesSpent(batch.getQueriesSpent() + run.spent());
             } else {
                 RefinementPlan plan = config.getRefinementPlanStore().load(batch.getPlanId()).orElseThrow();
@@ -166,12 +176,14 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         put(batch, run);
         batch.setStatus(BatchStatus.CLOSED);
         config.getBatchStore().save(batch);
-        return state(batch, null, null);
+        // A finished pass carries real coverage and exam standing; never fabricate an unavailable judge from null.
+        AuditReport finished = run.auditId() == null ? trial : config.getAuditReportStore().load(run.auditId()).orElse(trial);
+        return state(batch, finished, cut, judge);
     }
 
-    private State state(CorrectionBatch b, AuditReport report, CourseEntity cut) {
-        JudgeCoverageDiagnosis c = coverage(report, JUDGE);
-        Run latest = BatchBook.list(b.getSelectiveRuns()).stream().filter(x -> "analyze".equals(x.action()))
+    private State state(CorrectionBatch b, AuditReport report, CourseEntity cut, String judge) {
+        JudgeCoverageDiagnosis c = coverage(report, judge);
+        Run latest = BatchBook.list(b.getSelectiveRuns()).stream().filter(x -> judge.equals(x.analyzer()) && List.of("analyze", "reanalyze").contains(x.action()))
                 .reduce((a, z) -> z).orElse(null);
         List<Task> tasks = new ArrayList<>();
         Set<String> approved = approved(b);
@@ -193,7 +205,7 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
                 : b.getStatus() != BatchStatus.CLOSED ? "Hay otra operación activa o la tanda no está cerrada."
                 : c != null && c.getUnavailableReason() != null ? c.getUnavailableReason()
                 : c != null && c.getStanding() != null ? c.getStanding().getReason() : "El juez debe aprobar su examen vigente.";
-        return new State(b.getId(), BatchBook.correctionRevision(b), b.getContentVersion(), JUDGE,
+        return new State(b.getId(), BatchBook.correctionRevision(b), b.getContentVersion(), judge,
                 cut != null ? fingerprint.apply(cut) : null, c != null && c.getStanding() != null ? c.getStanding().getJudgeVersion() : null,
                 c != null && c.getStanding() != null ? Objects.toString(c.getStanding().getRuntimeIdentity(), "") : null,
                 enabled, reason, c != null ? c.getReached() : 0, c != null ? c.getEvaluated() : 0,
@@ -201,7 +213,8 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
                 c != null && c.getCost() != null ? c.getCost().getPendingConsultations() : 0,
                 c != null ? BatchBook.list(c.getEvaluators()).stream().filter(e -> e.getCoverage() != null)
                         .mapToInt(e -> e.getCoverage().getReused()).sum() : 0,
-                tasks, BatchBook.copy(b.getSelectiveRuns()));
+                tasks, BatchBook.copy(b.getSelectiveRuns()), config.getAnalyzerCatalog() == null ? judge
+                        : config.getAnalyzerCatalog().find(judge).map(com.learney.contentaudit.auditdomain.AnalyzerDescriptor::getDisplayName).orElse(judge));
     }
 
     private Set<String> approved(CorrectionBatch b) {
@@ -228,12 +241,15 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         return config.getBatchStore().load(id).orElseThrow(() -> new IllegalArgumentException("No existe la tanda."));
     }
     private static Run source(CorrectionBatch b, String id) {
-        return BatchBook.list(b.getSelectiveRuns()).stream().filter(r -> Objects.equals(id, r.id()) && "analyze".equals(r.action()))
+        return BatchBook.list(b.getSelectiveRuns()).stream().filter(r -> Objects.equals(id, r.id()) && List.of("analyze", "reanalyze").contains(r.action()))
                 .findFirst().orElseThrow(() -> new IllegalArgumentException("Elegí una medición selectiva guardada."));
     }
     private AuditReport audit(CourseEntity course, String analyzer, int cap) {
+        return audit(course, analyzer, cap, false);
+    }
+    private AuditReport audit(CourseEntity course, String analyzer, int cap, boolean force) {
         return config.getAuditEngine().runAudit(config.getCourseMapper().map(course),
-                new AnalyzerRunSelection(List.of(analyzer), Map.of(analyzer, new EvaluationRunPolicy(cap, false, null, null, null, 1))));
+                new AnalyzerRunSelection(List.of(analyzer), Map.of(analyzer, new EvaluationRunPolicy(cap, force, null, null, null, 1))));
     }
     private static JudgeCoverageDiagnosis coverage(AuditReport report, String analyzer) {
         if (report != null && report.getRoot() != null && report.getRoot().getDiagnoses() instanceof CourseDiagnoses d)
@@ -243,8 +259,8 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
     private static boolean allowed(JudgeCoverageDiagnosis c) {
         return c != null && c.getStanding() != null && c.getStanding().isConsultsOnCourse() && c.getUnavailableReason() == null;
     }
-    private static int spent(AuditReport r) {
-        JudgeCoverageDiagnosis c = coverage(r, JUDGE);
+    private static int spent(AuditReport r, String judge) {
+        JudgeCoverageDiagnosis c = coverage(r, judge);
         return c == null ? 0 : BatchBook.list(c.getEvaluators()).stream().filter(e -> e.getCoverage() != null)
                 .mapToInt(e -> e.getCoverage().getEvaluatedInRun()).sum();
     }
@@ -257,7 +273,7 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         result.setRoot(root); return result;
     }
     private static Run evaluated(Run r, AuditReport report, String audit, String plan, List<String> ids, List<String> quizzes, int spent) {
-        JudgeCoverageDiagnosis c = coverage(report, JUDGE);
+        JudgeCoverageDiagnosis c = coverage(report, r.analyzer());
         Run evaluated = new Run(r.id(), r.action(), r.analyzer(), r.sourceRunId(), r.correctionRevision(), r.contentVersion(),
                 r.fingerprint(), r.judgeVersion(), r.runtime(), audit, plan, ids, quizzes, r.queryCap(), r.reserved(), spent,
                 c != null ? c.getReached() : 0, c != null ? c.getEvaluated() : 0, c != null ? c.getNotEvaluated() : 0,
@@ -277,6 +293,10 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         b.setSelectiveRuns(runs);
     }
     private static boolean blank(String s) { return s == null || s.isBlank(); }
+    private static String recordedAction(Request request) {
+        String action = request.force() && "analyze".equals(request.action()) ? "reanalyze" : request.action();
+        return "base".equals(request.state()) && !action.endsWith("-base") ? action + "-base" : action;
+    }
     private static <T> List<T> safe(List<T> l) { return l == null ? List.of() : l; }
     private static void fail(String message) { throw new IllegalArgumentException(message); }
 }

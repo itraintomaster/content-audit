@@ -344,3 +344,26 @@ con la misma paridad estructural que usa la auditoría.
 ```bash
 content-audit lexis -q "She ____ [reads] books." -l B1 [-m FILL|REWRITE]
 ```
+
+
+## Análisis vigente e integración de corridas
+
+`batch analysis` compone la base y la corrección a partir de las mediciones guardadas y las selecciones explícitas del operador. Leer, previsualizar, integrar, reemplazar o quitar no consulta modelos. Los cierres anteriores conservan su foto.
+
+```bash
+content-audit batch analysis --request-json '{"action":"read","batchId":"tanda-A1"}' -f json
+```
+
+La respuesta tiene `states` (base/correction, huella, digest, procedencia y ejercicio guardado por juez), `looseRuns` (cobertura y encaje exacto por estado), `history` y `revision`. La huella se construye con el mismo subject builder que usa cada juez. Una medición parcial sólo reemplaza su parte evaluada y compatible. Un extremo sin medir, una versión desconocida o criterios diferentes no prueban mejoras ni regresiones.
+
+Para confirmar se envían los valores que se acaban de revisar, sin inventar ids ni huellas:
+
+```json
+{"action":"integrate","batchId":"tanda-A1","state":"correction","runId":"corrida-guardada","operationId":"operacion-unica","expectedRevision":0,"contentVersion":6,"contentFingerprint":"huella-devuelta-por-read","reviewer":"operador"}
+```
+
+`replace` exige confirmación cuando hay mediciones previas. `remove` lleva `removesOperationId`: deja de usar esa selección y restaura la anterior, conservando la corrida y el registro de quién confirmó y cuándo. Las confirmaciones son idempotentes y rechazan una revisión obsoleta. El registro separado vive en `.content-audit/analysis-selections/` y comparte el bloqueo de publicación.
+
+`batch selective-correction` acepta `state: "base"|"correction"` y `force: true`/`action: "reanalyze"`. Primero se usa `estimate` con el proveedor/modelo elegido; luego se confirma un `queryCap` explícito con huella y versión. El tope incluye todos los evaluadores del juez. La versión nueva queda suelta hasta su integración manual; los veredictos anteriores conservan su versión. Se admiten Calidad de distractores, Consigna, Respuesta única, Sentido de traducción, Validez de opciones y Mini teoría. Mini teoría usa la entrada del tema completo.
+
+Publicar recalcula la comparación y la compuerta desde la selección vigente, respeta las aprobaciones y exclusiones y guarda el informe compuesto. No reutiliza una compuerta histórica como autorización ni ejecuta consultas adicionales. `get student-view <tema> --audit <id> -f json` permite leer el ejercicio de un informe histórico concreto.

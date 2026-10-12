@@ -152,6 +152,16 @@ public class DefaultBatchComparator implements BatchComparator {
     }
 
     private BatchComparison compare(Path coursePath, ProjectionScope scope, boolean attributeBreaches) {
+        return compare(coursePath, scope, attributeBreaches, null, null, null);
+    }
+
+    @Override public BatchComparison compareMeasured(Path coursePath, ProjectionScope scope,
+            AuditReport baseline, AuditReport approved, AuditReport projected) {
+        return compare(coursePath, scope, false, baseline, approved, projected);
+    }
+
+    private BatchComparison compare(Path coursePath, ProjectionScope scope, boolean attributeBreaches,
+            AuditReport measuredBase, AuditReport measuredStart, AuditReport measuredProjected) {
         EffectiveGoals goals = goalBook.effective();
         Optional<SealedGoals> sealed = goalBook.sealed();
         BatchComparison comparison = new BatchComparison();
@@ -173,12 +183,18 @@ public class DefaultBatchComparator implements BatchComparator {
         }
         comparison.setBaselineAuditId(baseline.getAuditId());
         AuditReport baselineReport = auditReportStore.load(baseline.getAuditId()).orElse(null);
+        if (measuredBase != null) baselineReport = measuredBase;
         if (baselineReport == null || baselineReport.getRoot() == null) {
             return unavailable(comparison, ConsolidatedViewUnavailabilityReason.OTHER,
                     "La línea base '" + baseline.getAuditId() + "' no está en el historial de análisis.");
         }
 
-        CourseProjection projection = courseProjector.project(coursePath, scope);
+        CourseProjection projection = measuredProjected == null ? courseProjector.project(coursePath, scope)
+                : courseProjector.projectWithMeasurements(coursePath, scope, measuredStart, measuredProjected);
+        if (measuredProjected != null) {
+            projection.setApproved(measuredStart);
+            projection.setProjected(measuredProjected);
+        }
         comparison.setActiveAuditId(projection.getActiveAuditId());
         comparison.setActivePlanId(projection.getActivePlanId());
         comparison.setScopeId(projection.getScopeId());
@@ -224,7 +240,7 @@ public class DefaultBatchComparator implements BatchComparator {
                 remeasuredSubjects.add(family == AnalyzerFamily.ERRORS ? DefaultGoalBook.ANY_ERROR
                         : DefaultGoalBook.VOCABULARY);
             }
-            AuditReport remeasured = remeasure(baselineReport, scope);
+            AuditReport remeasured = measuredProjected != null ? null : remeasure(baselineReport, scope);
             remeasuredIndex = remeasured != null ? ReportTree.index(remeasured) : null;
         }
 

@@ -106,7 +106,8 @@ public class NaturalnessAnalyzerProvider implements AnalyzerProvider {
         if (decision.getStatus() != null && decision.getStatus().isAvailable()) {
             opened = judgeRuntime.open(NaturalnessAnalyzer.ANALYZER_NAME,
                     List.of(new NaturalnessEvaluator(yesNoModel, config, decision.getExaminedVersion())),
-                    decision.getLocalPolicy());
+                    policy != null && policy.getPurpose() == com.learney.contentaudit.auditdomain.EvaluationRunPurpose.READING
+                            ? policy : decision.getLocalPolicy());
         } else {
             opened = judgeRuntime.open(NaturalnessAnalyzer.ANALYZER_NAME, List.of(alternativeJudge), policy);
         }

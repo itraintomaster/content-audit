@@ -9,5 +9,8 @@ import javax.annotation.processing.Generated;
 public enum EvaluationRunPurpose {
     COURSE,
 
-    EXAM
+    EXAM,
+
+    /** Reading recorded results, including local models; never consults an evaluator. */
+    READING
 }

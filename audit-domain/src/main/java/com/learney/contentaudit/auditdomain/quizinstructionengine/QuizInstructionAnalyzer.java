@@ -203,6 +203,7 @@ public QuizInstructionAnalyzer(EvaluationSession session, QuizInstructionSubject
             EvaluationResolution resolution = resolutions != null && i < resolutions.size() ? resolutions.get(i) : null;
             try {
                 if (apply(node, resolution)) {
+                    com.learney.contentaudit.auditdomain.analysis.RecordedVerdictVersions.stamp(node, ANALYZER_NAME, resolution.getEvaluatorVersion());
                     evaluatedQuizzes++;
                 } else {
                     unevaluatedQuizzes++;

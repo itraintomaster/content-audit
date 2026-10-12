@@ -276,6 +276,9 @@ class LedgerBackedChoiceAlternativeJudgeRun implements ChoiceAlternativeJudgeRun
                 if (judgment == null) {
                     throw new IllegalStateException("el clasificador no devolvió ningún juicio");
                 }
+                if (judgment.getEvaluatorVersion() != null)
+                    com.learney.contentaudit.auditdomain.analysis.RecordedVerdictVersions.stamp(unit,
+                            "multiple-choice-validity", judgment.getEvaluatorVersion());
                 return judgment;
             } catch (RuntimeException e) {
                 return notJudged(unit, ChoiceAlternativeJudgmentStatus.FAILED, REASON_UNREADABLE + messageOf(e));

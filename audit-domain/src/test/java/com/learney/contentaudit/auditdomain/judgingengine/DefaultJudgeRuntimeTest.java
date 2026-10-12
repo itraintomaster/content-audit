@@ -868,6 +868,16 @@ public class DefaultJudgeRuntimeTest {
         }
     }
 
+    @Test void readingNeverConsultsAnEvaluatorEvenIfALocalProviderAsksForUnlimitedBudget() {
+        approved(SINGLE_ANSWER, "v1");
+        var policy = new EvaluationRunPolicy(Integer.MAX_VALUE, false, null, null, EvaluationRunPurpose.READING, 1);
+        var judge = ScriptedJudge.healthy(SINGLE_ANSWER + "-judge", "v1");
+        var opened = runtime.open(SINGLE_ANSWER, List.of(judge), policy);
+        assertEquals(0, opened.getEffectivePolicy().getMaxNewEvaluations());
+        assertEquals(List.of(EvaluationRequestMode.REUSE_ONLY, EvaluationRequestMode.REUSE_ONLY),
+                runtime.plan(quizUnits("q1", "q2"), policy).getModes());
+    }
+
     @Test
     @DisplayName("should declare as unmatched every id of the declared set that no unit of the course corresponds to")
     @Tag("FEAT-JEXAM")

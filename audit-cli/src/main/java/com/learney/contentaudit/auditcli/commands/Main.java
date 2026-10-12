@@ -1412,6 +1412,12 @@ class Main {
             // F-PUBPROD-R002: la lista de publicación lleva cada campo como lo guarda producción, con la misma forma
             // con la que el curso se escribe en disco.
             config.setProductionDocumentProjector(courseRepository);
+            config.setCurrentAnalysisService(new com.learney.contentaudit.revisiondomain.batchengine.DefaultCurrentAnalysisServiceFactory().create(
+                    config, new com.learney.contentaudit.auditdomain.analysis.DefaultAnalysisComposer(analyzerCatalog,
+                    scoreAggregator, new DefaultContextNumbersCalculator(),
+                    studentViewRenderer, evaluationContentFingerprinter),
+                    new com.learney.contentaudit.auditinfrastructure.minitheory.FileSystemMiniTheoryWorkspaceStore(baseDir)::fingerprint,
+                    studentViewRenderer));
             return config;
         });
         batchFactory.set(memoized(() -> new com.learney.contentaudit.revisiondomain.batchengine.DefaultBatchServiceFactory().create(batchConfig.get())));
@@ -1443,6 +1449,7 @@ class Main {
                     batchConfig.get(), new com.learney.contentaudit.auditinfrastructure.minitheory.FileSystemMiniTheoryWorkspaceStore(baseDir)::fingerprint,
                     runtime);
         })));
+        batchCommand.addSubcommand("analysis", new CurrentAnalysisCmd(() -> batchConfig.get().getCurrentAnalysisService()));
         batchCommand.addSubcommand("opinion", new ContextOpinionCmd(memoized(() ->
                 new com.learney.contentaudit.revisiondomain.batchengine.DefaultContextOpinionServiceFactory().create(
                         batchConfig.get(), new com.learney.contentaudit.auditinfrastructure.minitheory.FileSystemMiniTheoryWorkspaceStore(baseDir)::fingerprint))));
@@ -1597,7 +1604,7 @@ class Main {
      * The projection of package F, asked of its factory on first use (hook F-06): only the
      * commands that compare or project build it.
      */
-    private static CourseProjector lazyCourseProjector(Supplier<CourseProjector> factory) {
+    static CourseProjector lazyCourseProjector(Supplier<CourseProjector> factory) {
         return new CourseProjector() {
             private CourseProjector delegate;
 
@@ -1611,6 +1618,11 @@ class Main {
             @Override
             public CourseProjection project(Path coursePath, ProjectionScope scope) {
                 return delegate().project(coursePath, scope);
+            }
+
+            @Override public CourseProjection projectWithMeasurements(Path coursePath, ProjectionScope scope,
+                    com.learney.contentaudit.auditdomain.AuditReport approved, com.learney.contentaudit.auditdomain.AuditReport projected) {
+                return delegate().projectWithMeasurements(coursePath, scope, approved, projected);
             }
         };
     }

@@ -165,6 +165,9 @@ final class GetCmd implements GetCommand, Callable<Integer> {
             description = "For 'tasks': filter by AuditTarget enum: QUIZ, KNOWLEDGE, TOPIC, MILESTONE, COURSE.")
     private String targetArg;
 
+    @Option(names = "--audit", description = "For 'student-view': the exact saved analysis to show.")
+    private String studentViewAuditId;
+
     @Option(names = {"-d", "--diagnosis"},
             description = "For 'tasks': filter by DiagnosisKind enum: SENTENCE_LENGTH, LEMMA_ABSENCE, COCA_BUCKETS, etc.")
     private String diagnosisArg;
@@ -1686,7 +1689,12 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
         String auditId;
         Optional<com.learney.contentaudit.auditdomain.ActiveAnalysisSelection> active =
                 activeAnalysisSelectionStore != null ? activeAnalysisSelectionStore.read() : Optional.empty();
-        if (active.isPresent() && active.get().getAuditId() != null && !active.get().getAuditId().isBlank()) {
+        if (studentViewAuditId != null) {
+            if (!studentViewAuditId.matches("[A-Za-z0-9][A-Za-z0-9._-]*") || studentViewAuditId.contains("..")) {
+                System.err.println("Error: invalid saved analysis id."); return 1;
+            }
+            auditId = studentViewAuditId;
+        } else if (active.isPresent() && active.get().getAuditId() != null && !active.get().getAuditId().isBlank()) {
             auditId = active.get().getAuditId();
         } else {
             Optional<String> latest = latestAuditId();

@@ -171,6 +171,7 @@ class TranslationSenseAnalyzer implements ContentAnalyzer {
                 continue;
             }
             write(node, judged);
+            com.learney.contentaudit.auditdomain.analysis.RecordedVerdictVersions.stamp(node, getName(), judged.pairVersion());
             evaluated++;
             if (judged.pairVersion() != null) {
                 verdictsByVersion.merge(judged.pairVersion(), 1, Integer::sum);

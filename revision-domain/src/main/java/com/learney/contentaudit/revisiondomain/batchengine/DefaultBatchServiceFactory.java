@@ -56,7 +56,7 @@ public class DefaultBatchServiceFactory implements BatchServiceFactory {
                 config.getProductionDocumentProjector() != null
                         ? new DefaultPublicationManifestBuilder(scope, new DefaultProductionFieldMap(),
                                 config.getProductionDocumentProjector())
-                        : null);
+                        : null).withCurrentAnalysis(config.getCurrentAnalysisService());
         return new DefaultBatchService(config.getBatchStore(), config.getRefinementPlanStore(),
                 config.getAuditReportStore(), config.getActiveAnalysisSelectionStore(), config.getBaselineStore(),
                 config.getCourseRepository(), config.getPanelRunnerFactory(), config.getBriefer(), selector,

@@ -92,6 +92,33 @@ class SelectiveCorrectionServiceTest {
                 5, "context", "v1", cap, tasks, approved, "human");
     }
     State analyze() { return service.execute(req("analyze", "analysis", List.of(), 2, false)); }
+    @Test void explicitReanalysisForcesNewVerdictsAndFinishedStateRetainsExamStanding() {
+        var state = service.execute(req("reanalyze", "new-version", List.of(), 2, false));
+        assertTrue(state.allowed());
+        verify(engine, times(2)).runAudit(any(), argThat(s -> s.getAnalyzers().equals(List.of("multiple-choice-quality"))
+                && s.getPolicies().get("multiple-choice-quality").isReevaluate()));
+        assertEquals("reanalyze", state.runs().get(0).action());
+    }
+    @Test void aMultiEvaluatorJudgeCannotSpendMoreThanTheSingleReservedAllowance() {
+        quality.setJudgeName("translation-sense");
+        var current = mock(CurrentAnalysisService.class); when(current.supportedAnalyzers()).thenReturn(Set.of("translation-sense"));
+        // The generic route shares the same native config; correction remains restricted to quality.
+        var config = new BatchServiceConfig(); config.setBatchStore(store); config.setCourseRepository(repository);
+        config.setCoursePath(TandaFixture.COURSE_PATH); config.setCourseMapper(mapper); config.setAuditEngine(engine);
+        config.setAuditReportStore(audits); config.setRefinementPlanStore(plans); config.setRefinerEngine(refiner);
+        config.setCurrentAnalysisService(current);
+        when(engine.runAudit(any(), any())).thenAnswer(i -> {
+            var selection = i.getArgument(1, AnalyzerRunSelection.class);
+            var c = new EvaluationCoverage(); c.setEvaluatedInRun(selection.getPolicies().get("translation-sense").getMaxNewEvaluations() > 0 ? 1 : 0);
+            quality.setEvaluators(List.of(new EvaluatorCoverage("english", c, "v1"), new EvaluatorCoverage("translation", c, "v1")));
+            return report;
+        });
+        var generic = new DefaultSelectiveCorrectionService(config, ledger, panel, reviews, c -> "context");
+        var request = new Request("reanalyze", "batch", "translation-sense", "two-evaluators", null, 5, "context", "v1", 3, List.of(), false, "human");
+        var result = generic.execute(request);
+        assertEquals(2, result.runs().get(0).spent()); assertEquals(3, result.runs().get(0).reserved());
+        verify(engine).runAudit(any(), argThat(s -> s.getPolicies().get("translation-sense").getMaxNewEvaluations() == 1));
+    }
     @Test void estimateUsesOnlySelectedJudgeAtZeroBudgetAndDoesNotWriteOrStartPanel() {
         assertTrue(service.execute(req("estimate", null, List.of(), null, false)).allowed());
         verify(engine).runAudit(any(), argThat(s -> s.getAnalyzers().equals(List.of("multiple-choice-quality"))
