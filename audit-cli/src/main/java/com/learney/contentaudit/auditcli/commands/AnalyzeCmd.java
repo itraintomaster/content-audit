@@ -182,7 +182,36 @@ class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
                     + "for (default: 4). A judge with no budget consults nothing.")
     private Integer concurrency;
 
+    @Option(names = "--metrics-out", description = "Archivo nuevo con cobertura, costo y procedencia efectivos")
+    private Path metricsOut;
+
 private final ReevaluationQuizSetResolver reevaluationQuizSetResolver;
+
+    private void writeRunMetrics(AuditReport report) {
+        if (metricsOut == null) return;
+        var root = report.getRoot();
+        var coverages = root != null && root.getDiagnoses() instanceof com.learney.contentaudit.auditdomain.CourseDiagnoses diagnoses
+                ? diagnoses.getJudgeCoverages() : null;
+        var judges = new java.util.ArrayList<Map<String, Object>>();
+        if (coverages != null) for (var coverage : coverages) {
+            var measured = new LinkedHashMap<String, Object>();
+            measured.put("judgeName", coverage.getJudgeName());
+            measured.put("judgeVersion", coverage.getStanding() == null ? null : coverage.getStanding().getJudgeVersion());
+            measured.put("runtime", coverage.getStanding() == null ? null : coverage.getStanding().getRuntimeIdentity());
+            measured.put("queriesUsed", coverage.getEvaluators() == null ? 0 : coverage.getEvaluators().stream()
+                    .filter(e -> e != null && e.getCoverage() != null)
+                    .mapToInt(e -> e.getCoverage().getEvaluatedInRun() + e.getCoverage().getFailed()).sum());
+            measured.put("expectedQuizzes", coverage.getQuizzes() == null ? 0 : coverage.getQuizzes().getReached());
+            measured.put("judgedQuizzes", coverage.getQuizzes() == null ? 0 : coverage.getQuizzes().getEvaluated());
+            judges.add(measured);
+        }
+        try {
+            java.nio.file.Files.writeString(metricsOut, CommandJson.writeCompact(Map.of("judges", judges)),
+                    java.nio.file.StandardOpenOption.CREATE_NEW);
+        } catch (java.io.IOException error) {
+            throw new java.io.UncheckedIOException("No se pudo guardar la cobertura y el costo efectivos.", error);
+        }
+    }
 
 public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, ReportViewModelTransformer viewModelTransformer, RawReportFormatter rawReportFormatter, DrillDownResolver drillDownResolver, Map<String, DetailedFormatter> detailedFormatters, AuditReportStore auditReportStore, Function<String, String> pathResolver, ReevaluationQuizSetResolver reevaluationQuizSetResolver) {
     this.auditRunner = auditRunner;
@@ -199,6 +228,10 @@ public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, 
     @Override
     public Integer call() {
         try {
+            if (metricsOut != null && java.nio.file.Files.exists(metricsOut)) {
+                System.err.println("Error: the metrics file already exists and will not be overwritten: " + metricsOut);
+                return 2;
+            }
             // F-QINST-R018/R019: resolution (and any I/O it needs to read an external
             // origin) happens here, in call() -- analyze(path, options) stays free of
             // I/O and takes the set already resolved. Absent BOTH options, no set is
@@ -301,6 +334,7 @@ public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, 
                     : null;
 
             AuditReport report = auditRunner.runAudit(Path.of(resolvedPath), names);
+            writeRunMetrics(report);
 
             // Persist the audit report
             String auditId = auditReportStore.save(report);
@@ -394,6 +428,7 @@ public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, 
             AuditRunRequest request = toAuditRunRequest(options);
 
             AuditReport report = auditRunner.runAudit(Path.of(resolvedPath), request);
+            writeRunMetrics(report);
 
             // Persist the audit report
             String auditId = auditReportStore.save(report);

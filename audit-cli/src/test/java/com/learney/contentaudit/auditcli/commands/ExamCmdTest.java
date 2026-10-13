@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -21,6 +22,7 @@ import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamVerdict;
 import com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime;
 import com.learney.contentaudit.auditinfrastructure.FileSystemJudgeExamRegistry;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -46,6 +48,23 @@ public class ExamCmdTest {
 
     @TempDir
     Path workdir;
+
+    @Test void metricsPreserveEffectiveRuntimeAndNeverOverwriteAnExistingFile() throws IOException {
+        var service = new RecordingService();
+        var command = new ExamCmd(service, Map.of("quiz-instruction", new ExamCmd.ExamProvenance("codex-cli", "synthetic", "medium")));
+        Path cases = write("metrics-cases.json", "[{\"ejercicio\":\"" + VERDURAS + "\"}]");
+        Path metrics = workdir.resolve("metrics.json");
+        var result = run(command, "run", "quiz-instruction", "--cases", cases.toString(), "--course", PHOTO,
+                "--budget", "1", "--out", workdir.resolve("metrics-verdicts.jsonl").toString(), "--metrics-out", metrics.toString());
+        assertEquals(0, result.exit(), result.err());
+        JsonNode data = new ObjectMapper().readTree(Files.readString(metrics));
+        assertEquals(0, data.path("queriesUsed").asInt());
+        assertEquals("synthetic", data.path("runtime").path("modelName").asText());
+        var again = run(command, "run", "quiz-instruction", "--cases", cases.toString(), "--course", PHOTO,
+                "--budget", "1", "--out", workdir.resolve("another-verdicts.jsonl").toString(), "--metrics-out", metrics.toString());
+        assertEquals(2, again.exit());
+        assertEquals(1, service.taken.size(), "A repeated output must be rejected before consulting.");
+    }
 
     @Test
     @DisplayName("should read a synthetic exam file of the form [{ejercicio}] and write one JSON line per exercise with ejercicio, juez, version, resultado, gravedad, reglas and detalle")
@@ -323,6 +342,25 @@ public class ExamCmdTest {
 
     // -------------------------------------------------------------------------
     // Fixtures: never a judge, never a model.
+    @Test
+    void exposesTheCurrentUnexaminedVersionWithoutInvalidatingHistoricalRecords() throws IOException {
+        JudgeExamRegistry registry = new FileSystemJudgeExamRegistry(workdir);
+        registry.record(record("old-version", JudgeExamStatus.APPROVED, "2026-10-01T11:00:00Z"));
+        var current = new JudgeExamStanding("single-answer", "new-version", JudgeExamStatus.NOT_TAKEN,
+                false, "La versión actual no rindió.",
+                EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "medium"));
+        Captured result = run(new ExamCmd(realRecordingService(registry), Map.of(),
+                () -> List.of("single-answer"), () -> Map.of("single-answer", current)),
+                "status", "single-answer", "-f", "json");
+        assertEquals(0, result.exit(), result.err());
+        var judge = new ObjectMapper().readTree(result.out()).path("judges").get(0);
+        assertEquals("new-version", judge.path("current").path("judgeVersion").asText());
+        assertEquals("NOT_TAKEN", judge.path("current").path("status").asText());
+        assertFalse(judge.path("current").path("consultsOnCourse").asBoolean());
+        assertEquals("codex-cli", judge.path("current").path("providerName").asText());
+        assertEquals("APPROVED", judge.path("versions").get(0).path("status").asText());
+        assertEquals(1, registry.history("single-answer").size());
+    }
     // -------------------------------------------------------------------------
 
     private static final String PHOTO = "db/fotos/2026-09-29/english-course";

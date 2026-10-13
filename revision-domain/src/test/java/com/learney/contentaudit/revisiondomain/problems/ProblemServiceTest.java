@@ -31,6 +31,41 @@ class ProblemServiceTest {
     Map<String, Object> delivery(List<?> results) {
         return Map.of("changes", List.of(Map.of("path", "judge/guide.md", "version", "guide-v2", "summary", "Contraste general", "scope", "judge")), "results", results);
     }
+    @Test void operatorCanChooseAMeasuredHealthyControlWithoutRetiringTheDelivery() {
+        var p = withCases();
+        p = service.update(p.id(), p.revision(), Status.WORKING, "entrega", "",
+                delivery(List.of(result("bad", true), result("good", false))), Actor.AGENT);
+        var snapshot = new LinkedHashMap<>(example("extra", Use.GOOD).snapshot());
+        snapshot.put("evaluation", Map.of("observado", Map.of("resultado", "PASSES")));
+        var control = new Case("extra", "quiz-extra", "batch", "/tmp/work", 1, 1,
+                Use.GOOD, "Elegido por el operador", "Está bien", snapshot, clock.instant());
+        var measured = delivery(List.of(result("bad", true), result("good", false), result("extra", false)));
+        var before = p;
+        assertThrows(IllegalArgumentException.class, () -> service.selectMeasuredControl(
+                before.id(), before.revision(), control, measured, Actor.AGENT));
+        var selected = service.selectMeasuredControl(p.id(), p.revision(), control, measured, Actor.OPERATOR);
+        assertEquals(Status.WORKING, selected.status());
+        assertEquals(p.delivery().get("changes"), selected.delivery().get("changes"));
+        assertEquals(3, selected.cases().size());
+        var testing = service.update(p.id(), selected.revision(), Status.FOR_TESTING, "probar", "", null, Actor.OPERATOR);
+        assertEquals(Status.RESOLVED, service.update(p.id(), testing.revision(), Status.RESOLVED,
+                "resuelto", "", null, Actor.OPERATOR).status());
+    }
+
+    @Test void aControlCannotHideAFailingCaseOrIntroduceAnotherRuntime() {
+        var p = withCases();
+        p = service.update(p.id(), p.revision(), Status.WORKING, "entrega", "",
+                delivery(List.of(result("bad", true), result("good", false))), Actor.AGENT);
+        var snapshot = Map.<String, Object>of("evaluation", Map.of("observado", Map.of("resultado", "PASSES")));
+        var control = new Case("extra", "quiz-extra", "batch", "/tmp", 1, 1,
+                Use.GOOD, "", "", snapshot, clock.instant());
+        var before = p;
+        assertThrows(IllegalArgumentException.class, () -> service.selectMeasuredControl(before.id(), before.revision(),
+                control, delivery(List.of(result("bad", false), result("good", false), result("extra", false))), Actor.OPERATOR));
+        var other = new LinkedHashMap<>(result("extra", false)); other.put("version", "other");
+        assertThrows(IllegalArgumentException.class, () -> service.selectMeasuredControl(before.id(), before.revision(),
+                control, delivery(List.of(result("bad", true), result("good", false), other)), Actor.OPERATOR));
+    }
     @Test void passingJudgeNeedsAllExamCasesAndGoodControlsAndOnlyOperatorCanResolve() {
         var p = withCases();
         var incomplete = delivery(List.of(result("bad", true)));

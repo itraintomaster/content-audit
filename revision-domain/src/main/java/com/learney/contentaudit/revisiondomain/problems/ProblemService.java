@@ -47,6 +47,38 @@ public final class ProblemService {
         return save(p, p.title(), p.criterion(), p.failures(), p.parts(), Status.COLLECTING,
                 cases, Map.of(), Actor.OPERATOR, "deshacer", "Casos retirados por el operador");
     }
+
+    /** A human selects a healthy case already judged with this delivery's runtime. */
+    public ContentProblem selectMeasuredControl(String id, long revision, Case control,
+            Map<String, Object> measuredDelivery, Actor actor) {
+        var p = current(id, revision);
+        if (actor != Actor.OPERATOR || control.use() != Use.GOOD)
+            throw new IllegalArgumentException("Solo el operador elige un control Está bien.");
+        if (p.delivery().isEmpty() || !Objects.equals(p.delivery().get("changes"), measuredDelivery.get("changes"))
+                || !Objects.equals(p.delivery().get("nextSteps"), measuredDelivery.get("nextSteps")))
+            throw new IllegalArgumentException("El control debe conservar los cambios y pasos de la entrega vigente.");
+        if (!(control.snapshot().get("evaluation") instanceof Map<?, ?> evidence)
+                || !(evidence.get("observado") instanceof Map<?, ?> observed)
+                || !"PASSES".equals(observed.get("resultado")))
+            throw new IllegalArgumentException("El control necesita su veredicto sano guardado.");
+        var cases = new ArrayList<>(p.cases());
+        if (cases.stream().anyMatch(c -> c.id().equals(control.id()))) return p;
+        cases.add(control);
+        var combined = new ContentProblem(p.id(), p.title(), p.criterion(), p.failures(), p.parts(),
+                p.status(), p.revision(), cases, p.activity(), p.delivery(), p.createdAt(), p.updatedAt());
+        var delivery = validateDelivery(combined, measuredDelivery);
+        verifyPassingDelivery(combined, delivery);
+        var results = (List<?>) delivery.get("results");
+        Map<?, ?> selected = results.stream().map(r -> (Map<?, ?>) r)
+                .filter(r -> control.id().equals(r.get("caseId"))).findFirst().orElseThrow();
+        if (!Boolean.FALSE.equals(selected.get("detected")) || results.stream().map(r -> (Map<?, ?>) r)
+                .anyMatch(r -> !Objects.equals(selected.get("version"), r.get("version"))
+                        || !Objects.equals(selected.get("provider"), r.get("provider"))
+                        || !Objects.equals(selected.get("model"), r.get("model"))))
+            throw new IllegalArgumentException("El control y los casos deben usar la misma versión y procedencia.");
+        return save(p, p.title(), p.criterion(), p.failures(), p.parts(), p.status(), cases,
+                delivery, actor, "control", "Control Está bien elegido por el operador: " + control.quizId());
+    }
     public ContentProblem rollbackAnnotation(ContentProblem before, long revision) {
         var current = current(before.id(), revision);
         return save(current, before.title(), before.criterion(), before.failures(), before.parts(),

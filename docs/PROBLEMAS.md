@@ -36,6 +36,7 @@ arranque de NLP y de modelos:
 ```sh
 ./audit-cli.sh --workdir /ruta/campaña problem list --course /ruta/curso
 ./audit-cli.sh --workdir /ruta/campaña problem show PRB-id --course /ruta/curso
+./audit-cli.sh --workdir /ruta/campaña problem inspect PRB-id --course /ruta/curso
 ./audit-cli.sh --workdir /ruta/campaña problem request PRB-id --course /ruta/curso -f text
 ./audit-cli.sh --workdir /ruta/campaña problem update PRB-id --course /ruta/curso \
   --revision 3 --state en-trabajo --step diagnostico --note 'Revisando la guía'
@@ -78,7 +79,58 @@ casos Examen y Está bien, con al menos un positivo y un negativo. Un falso posi
 un problema no detectado o una corrección fallida deja el trabajo En trabajo. Resuelto
 lo decide el operador después de una entrega Para probar.
 
-Esta primera implementación registra las evaluaciones entregadas por el agente. La
-ejecución de exámenes y nuevas vueltas con un tope desde la ficha todavía queda por
-integrar con el lanzador del tablero. Estos comandos no ejecutan consultas ni publican
-contenido.
+El tablero ofrece **Probar la solución** desde la ficha: contrastes, examen fijo,
+medir, registrar y reanalizar, en ese orden. Un solo diálogo muestra el costo completo,
+el juez, proveedor, modelo y versión efectivos, y un tope para las cinco etapas.
+Medir y registrar no consultan modelos. El servidor guarda la autorización y el avance;
+la prueba sigue al cerrar la página y se recupera al reiniciar el tablero. Las corridas
+se ven también en Ejecuciones. **Frenar** termina el tema en curso y guarda lo medido;
+**Seguir** retoma lo pendiente con el saldo autorizado, sin repetir los temas terminados.
+Las actualizaciones del historial no invalidan la cuenta; cambiar el juez, el oro o el
+contenido exige revisar una cuenta nueva.
+
+Un contraste con otro veredicto frena antes del examen fijo. Las reglas se comparan
+normalizando mayúsculas y guiones bajos; `OVERSTATED_FOR_QUIZ` y `overstated-for-quiz`
+son la misma regla, pero un cambio de veredicto o gravedad sigue siendo una diferencia.
+El resultado muestra las dos vallas, diferencias ordenadas por gravedad y lo esperado
+plegado. Cada caso conserva qué se evaluó, qué se esperaba y qué dio, con explicaciones,
+señales de revisión del oro y procedencia. JSON y comandos quedan plegados.
+
+El operador puede confirmar el oro, adoptar el veredicto del juez o excluir un caso
+como dudoso. Revisar el oro fijo requiere una nota y conserva la etiqueta anterior;
+medir de nuevo es gratis. Registrar y reanalizar usan la misma autorización. Un
+reanálisis incompleto no habilita el cierre. **Marcar resuelto** requiere un control
+**Está bien** elegido por el operador; elegir un caso sano ya medido conserva la entrega
+sin otra consulta. El servidor avisa al terminar o cuando hace falta revisar.
+
+La ficha muestra **Ver cambios del juez**, comparando el último commit con los archivos actuales,
+y advierte si sus hashes ya no coinciden con la entrega. `inspect` sólo lee archivos del proyecto.
+Una entrega puede adjuntar `judgeName` y `nextSteps` (id, title, detail, command, budget,
+expectedJudgeVersion, requiresTakenExam, requiresApprovedExam y modelConsulted). Las cinco etapas aparecen en el recuadro **Probar la solución**; los comandos se
+conservan en **Ver los comandos**, sin ejecutarlos al abrirlos. La reauditoría queda
+bloqueada hasta que el runtime habilite la versión actual.
+
+`exam status -f json` incluye la situación `current` de los jueces de agentes de la ronda 1.
+La pantalla conserva el historial, pero una aprobación de otra versión no habilita el juez actual.
+Las lecturas se actualizan cuando cambian las definiciones o los registros del examen.
+
+### Ejecución desde la ficha
+
+Un paso ejecutable adjunta `execution`, separado de su `command` opcional:
+
+- `type: exam`, `mode: focused|historical`, `casesPath`, `coursePath`, `goldPath`.
+- `type: measure`, `steps`: ids de las corridas que debe comparar.
+- `type: record`, `steps`: id de la medición revisada por el operador.
+- `type: analyzer`, `coursePath`: propuestas congeladas; exige examen aprobado.
+
+La API valida la revisión, hashes de la entrega, versión/runtime actual, oro y dependencias
+al preparar y antes de lanzar. El navegador manda sólo id, paso, huella, tope e id de pedido.
+Nunca manda un programa o argumentos ejecutables. Las salidas tienen rutas únicas y no se
+sobrescriben. El mismo id de pedido recupera la corrida anterior incluso tras reiniciar.
+El oro queda fuera del pedido al juez; la medición del histórico conserva los umbrales
+del oro canónico v4. La aprobación requiere también pasar los contrastes específicos.
+
+La ficha actualiza progreso y resultados automáticamente. Una corrida incompleta o con
+procedencia mezclada no habilita registrar una aprobación. Los controles GOOD de la ficha
+los sigue eligiendo el operador. El botón de cierre registra la entrega completa como
+Para probar y sólo entonces permite al operador marcar Resuelto.

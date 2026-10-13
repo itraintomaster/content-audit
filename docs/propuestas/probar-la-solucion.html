@@ -1,0 +1,1890 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Probar la solución · Propuesta</title>
+<style>
+/* ══════════════════════════════════════════════════════════════════════
+   TOKENS — dos registros deliberadamente distintos.
+   --ed-*  editorial: papel, serif, aire. Es la parte que VENDE.
+   --app-* producto:  UI real, sans, denso. Es la parte que MUESTRA.
+   Cambiar --app-accent por el color de marca del proyecto.
+
+   TEMA: claro por defecto, oscuro por sistema, y el toggle manda sobre ambos.
+   Los valores oscuros están dos veces a propósito (media query + override);
+   si se toca uno hay que tocar el otro.
+   ══════════════════════════════════════════════════════════════════════ */
+:root{
+  --ed-bg:#F7F6FB; --ed-paper:#FFFFFF; --ed-line:#E4E2EE; --ed-line-soft:#EFEDF5;
+  --ed-fg:#1C1934; --ed-fg-2:#4B4866; --ed-fg-3:#807C99;
+  --ed-accent:#4B33B8; --ed-accent-soft:#ECE8FC;
+
+  --app-accent:#4B33B8; --app-accent-2:#ECE8FC; --on-accent:#FFFFFF; --on-bad:#FFFFFF;
+  --app-bg:#EFEEF6; --app-sup:#FFFFFF; --app-line:#E4E2EE; --app-line-soft:#F4F3F9;
+  --app-fg:#1C1934; --app-fg-2:#4B4866; --app-fg-3:#807C99;
+  --app-warn:#9A5F00; --app-warn-2:#FFF2D2;
+  --app-bad:#C42A55;  --app-bad-2:#FCE7EE;
+  --app-info:#2F5DA8; --app-info-2:#E7EEFA;
+  --app-ok:#0C7A66; --app-ok-2:#DAF2EA; --app-pen:#EE5A1F;
+  --app-ins:#0C7A66; --app-ins-bg:#DAF2EA; --app-del:#B5245A; --app-del-bg:#FBE5ED;
+
+  --r:12px; --r-s:8px;
+  --sh:0 1px 2px rgba(28,25,52,.05), 0 10px 30px -20px rgba(28,25,52,.4);
+  --sh-lg:0 2px 6px rgba(28,25,52,.06), 0 24px 60px -30px rgba(28,25,52,.5);
+  --serif:"Literata",ui-serif,Georgia,serif;
+  --sans:"Instrument Sans",ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-tema="claro"]){
+    --ed-bg:#12102A; --ed-paper:#1B1937; --ed-line:#2B2850; --ed-line-soft:#221F44;
+    --ed-fg:#EDEBF9; --ed-fg-2:#BDB9DA; --ed-fg-3:#8C88AD;
+    --ed-accent:#A496FF; --ed-accent-soft:#29235A;
+    --app-accent:#A496FF; --app-accent-2:#29235A; --on-accent:#12102A; --on-bad:#2A0A14;
+    --app-bg:#0E0C22; --app-sup:#1B1937; --app-line:#2B2850; --app-line-soft:#221F44;
+    --app-fg:#EDEBF9; --app-fg-2:#BDB9DA; --app-fg-3:#8C88AD;
+    --app-warn:#F5B843; --app-warn-2:#3A2C0D;
+    --app-bad:#FF6F96;  --app-bad-2:#3A1424;
+    --app-info:#8AB6F5; --app-info-2:#16213A;
+    --app-ok:#5BD8B9; --app-ok-2:#11382F; --app-pen:#FF7D4A;
+    --app-ins:#5BD8B9; --app-ins-bg:#11382F; --app-del:#FF86AA; --app-del-bg:#401A2B;
+    --sh:0 1px 2px rgba(0,0,0,.5), 0 10px 30px -20px rgba(0,0,0,.9);
+    --sh-lg:0 2px 6px rgba(0,0,0,.5), 0 24px 60px -30px rgba(0,0,0,1);
+  }
+}
+:root[data-tema="oscuro"]{
+  --ed-bg:#12102A; --ed-paper:#1B1937; --ed-line:#2B2850; --ed-line-soft:#221F44;
+  --ed-fg:#EDEBF9; --ed-fg-2:#BDB9DA; --ed-fg-3:#8C88AD;
+  --ed-accent:#A496FF; --ed-accent-soft:#29235A;
+  --app-accent:#A496FF; --app-accent-2:#29235A; --on-accent:#12102A; --on-bad:#2A0A14;
+  --app-bg:#0E0C22; --app-sup:#1B1937; --app-line:#2B2850; --app-line-soft:#221F44;
+  --app-fg:#EDEBF9; --app-fg-2:#BDB9DA; --app-fg-3:#8C88AD;
+  --app-warn:#F5B843; --app-warn-2:#3A2C0D;
+  --app-bad:#FF6F96;  --app-bad-2:#3A1424;
+  --app-info:#8AB6F5; --app-info-2:#16213A;
+  --app-ok:#5BD8B9; --app-ok-2:#11382F; --app-pen:#FF7D4A;
+  --app-ins:#5BD8B9; --app-ins-bg:#11382F; --app-del:#FF86AA; --app-del-bg:#401A2B;
+  --sh:0 1px 2px rgba(0,0,0,.5), 0 10px 30px -20px rgba(0,0,0,.9);
+  --sh-lg:0 2px 6px rgba(0,0,0,.5), 0 24px 60px -30px rgba(0,0,0,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ed-bg);color:var(--ed-fg);font:16px/1.65 var(--sans);
+  font-feature-settings:"kern","liga";transition:background .25s ease,color .25s ease}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.narrow{max-width:720px}
+h1,h2,h3,h4{margin:0;letter-spacing:-.02em}
+p{margin:0 0 14px}
+a{color:var(--ed-accent)}
+code{font-family:var(--mono);font-size:.9em}
+.sprite{display:none}
+
+/* ═══════════════ TOGGLE DE TEMA ═══════════════ */
+.tema{position:fixed;top:16px;right:16px;z-index:50;appearance:none;cursor:pointer;
+  width:38px;height:38px;border-radius:99px;display:grid;place-items:center;
+  background:var(--ed-paper);border:1px solid var(--ed-line);color:var(--ed-fg-2);
+  box-shadow:var(--sh);transition:color .15s,transform .15s}
+.tema:hover{color:var(--ed-fg);transform:scale(1.06)}
+.tema svg{width:17px;height:17px;display:block;fill:none;stroke:currentColor;stroke-width:1.9;
+  stroke-linecap:round;stroke-linejoin:round}
+.tema .sol{display:none}
+:root[data-tema="oscuro"] .tema .sol{display:block}
+:root[data-tema="oscuro"] .tema .luna{display:none}
+@media (prefers-color-scheme:dark){
+  :root:not([data-tema="claro"]) .tema .sol{display:block}
+  :root:not([data-tema="claro"]) .tema .luna{display:none}
+}
+
+/* ═══════════════ 1 · EDITORIAL ═══════════════ */
+.hero{padding:80px 0 56px;border-bottom:1px solid var(--ed-line)}
+.eyebrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:24px;
+  font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ed-fg-3);font-weight:600}
+.eyebrow .dot{width:4px;height:4px;border-radius:99px;background:var(--ed-fg-3)}
+.hero h1{font-family:var(--serif);font-size:clamp(38px,6.2vw,68px);line-height:1.04;
+  font-weight:600;letter-spacing:-.03em;max-width:16ch}
+.hero .tag{font-family:var(--serif);font-size:clamp(19px,2.4vw,25px);line-height:1.45;
+  color:var(--ed-fg-2);margin:24px 0 0;max-width:34ch;font-style:italic}
+.duo{display:grid;grid-template-columns:1fr 1fr;margin:56px 0 0;
+  border:1px solid var(--ed-line);border-radius:var(--r);overflow:hidden;background:var(--ed-paper)}
+.duo>div{padding:26px 28px;min-width:0}
+.duo>div+div{border-left:1px solid var(--ed-line)}
+.duo .dato{font-family:var(--serif);font-size:clamp(30px,4.2vw,46px);line-height:1;font-weight:600;
+  letter-spacing:-.02em;margin:0 0 10px;color:var(--ed-fg)}
+.duo .sol .dato{color:var(--ed-accent)}
+.duo .sol{position:relative}
+.duo .sol::before{content:"→";position:absolute;left:-18px;top:50%;transform:translateY(-50%);z-index:1;
+  width:36px;height:36px;border-radius:99px;display:grid;place-items:center;font-size:17px;
+  background:var(--ed-paper);border:1px solid var(--ed-line);color:var(--ed-accent);box-shadow:var(--sh)}
+.duo .k{font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;
+  color:var(--ed-fg-3);margin-bottom:10px}
+.duo .sol .k{color:var(--ed-accent)}
+.duo p{font-size:17px;line-height:1.55;margin:0;color:var(--ed-fg)}
+.duo .sol{background:var(--ed-accent-soft)}
+.ed{padding:64px 0}
+.ed-h{font-family:var(--serif);font-size:clamp(26px,3.6vw,38px);line-height:1.15;font-weight:600;
+  margin-bottom:14px;max-width:20ch}
+.ed-sub{font-size:17px;color:var(--ed-fg-2);max-width:60ch;margin-bottom:34px}
+.rule{height:1px;background:var(--ed-line);border:0;margin:0}
+.pillars{display:grid;gap:1px;background:var(--ed-line);border:1px solid var(--ed-line);
+  border-radius:var(--r);overflow:hidden;grid-template-columns:repeat(auto-fit,minmax(238px,1fr))}
+.pillar{position:relative;background:var(--ed-paper);padding:24px 22px;display:grid;gap:10px;align-content:start;min-width:0}
+.pillar .n{position:absolute;top:22px;right:22px;font-family:var(--mono);font-size:11px;font-weight:700;
+  color:var(--ed-fg-3);letter-spacing:.1em}
+.pillar h3{font-size:17px;font-weight:640;letter-spacing:-.01em}
+.pillar p{font-size:14.5px;color:var(--ed-fg-2);line-height:1.5;margin:0}
+/* el ícono de un pilar o de un paso: <div class="pi"><svg class="ico"><use href="#i-…"/></svg></div> */
+.pi{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex:none;
+  background:var(--ed-accent-soft);color:var(--ed-accent)}
+.pi .ico{width:22px;height:22px;stroke-width:1.7}
+.flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:24px;counter-reset:paso;margin-top:8px}
+.paso{position:relative;counter-increment:paso;background:var(--ed-paper);border:1px solid var(--ed-line);
+  border-radius:var(--r);padding:20px 18px 18px;display:grid;gap:10px;align-content:start;min-width:0}
+.paso::before{content:counter(paso,decimal-leading-zero);position:absolute;top:18px;right:18px;
+  font-family:var(--mono);font-size:11px;font-weight:700;color:var(--ed-fg-3);letter-spacing:.08em}
+.paso:not(:last-child)::after{content:"";position:absolute;right:-16px;top:50%;width:9px;height:9px;
+  border-top:2px solid var(--ed-accent);border-right:2px solid var(--ed-accent);transform:translateY(-50%) rotate(45deg)}
+.paso.fin{background:var(--ed-accent-soft);border-color:color-mix(in srgb,var(--ed-accent) 40%,var(--ed-line))}
+.paso.fin .pi{background:var(--ed-paper)}
+.paso h4{font-size:15.5px;font-weight:640}
+.paso p{font-size:14px;color:var(--ed-fg-2);margin:0;line-height:1.5}
+.quote{border-left:3px solid var(--ed-accent);padding:6px 0 6px 24px;margin:0;
+  font-family:var(--serif);font-size:clamp(20px,2.6vw,27px);line-height:1.4;font-style:italic;
+  max-width:26ch;letter-spacing:-.01em}
+.tw{overflow-x:auto;border:1px solid var(--ed-line);border-radius:var(--r);background:var(--ed-paper)}
+/* Ojo: scopeado a .tw. Sin el scope, el min-width pisaba a .ui-tbl dentro de los mockups. */
+.tw table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:460px}
+.tw th{text-align:left;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ed-fg-3);
+  font-weight:700;padding:12px 18px;border-bottom:1px solid var(--ed-line);white-space:nowrap}
+.tw td{padding:13px 18px;border-bottom:1px solid var(--ed-line-soft);vertical-align:top}
+.tw tr:last-child td{border-bottom:0}
+.si{color:var(--app-accent);font-weight:640}
+.no{color:var(--ed-fg-3)}
+
+/* ═══════════════ 2 · BISAGRA ═══════════════ */
+.bisagra{background:var(--app-bg);border-top:1px solid var(--app-line);
+  padding:52px 0 34px;color:var(--app-fg);font-family:var(--sans)}
+.bisagra .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+  color:var(--app-accent);margin-bottom:12px}
+.bisagra h2{font-family:var(--serif);font-size:clamp(24px,3.4vw,34px);font-weight:600;margin-bottom:12px}
+.bisagra .d{font-size:16px;color:var(--app-fg-2);max-width:58ch;margin:0}
+
+/* ═══════════════ 3 · PANTALLAS · el estudio ═══════════════
+   La barra de pestañas (.barra-p) queda PEGADA arriba mientras se recorren las
+   pantallas. Vive adentro de .pantallas a propósito: un sticky sólo se pega dentro
+   de su padre, y en la bisagra se despegaba apenas terminaba.
+   Cada pantalla es un ESTUDIO de dos columnas, todo a la vista sin scrollear:
+     izquierda  .escena  el mockup entero; queda pegado mientras se lee la otra columna
+     derecha    .txt     qué es la pantalla (≤ 40 palabras + nota ≤ 20)
+                .funcs   las funciones en acordeón, de a una abierta
+   El dibujo es un mapa:
+     data-ir="<id>"      navega: a otra pantalla, a una función, a otra vista o etapa
+     data-f="<id det>"   la pieza de esa función: se marca al abrirla, y tocarla la abre
+   En el celular se apila en el orden del DOM: texto, dibujo, funciones. */
+.pantallas{background:var(--app-bg);color:var(--app-fg);padding:0 0 80px;font-family:var(--sans)}
+.barra-p{position:sticky;top:var(--pegado-p,0px);z-index:30;border-top:1px solid var(--app-line);
+  border-bottom:1px solid var(--app-line);background:color-mix(in srgb,var(--app-bg) 90%,transparent);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.barra-p .wrap{display:flex;align-items:center;gap:12px}
+.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.tabs::-webkit-scrollbar{display:none}
+.tab{appearance:none;background:none;border:0;border-bottom:2px solid transparent;
+  font:inherit;font-size:14px;font-weight:560;color:var(--app-fg-3);padding:15px 14px 13px;
+  cursor:pointer;white-space:nowrap;transition:color .12s,border-color .12s}
+.tab:hover{color:var(--app-fg-2)}
+.tab[aria-selected="true"]{color:var(--app-accent);border-bottom-color:var(--app-accent)}
+.tab .i{font-family:var(--mono);font-size:10.5px;opacity:.65;margin-right:7px}
+.pasar{display:flex;gap:6px;flex:none}
+.pasar button{appearance:none;border:1px solid var(--app-line);background:var(--app-sup);
+  color:var(--app-fg-2);width:32px;height:32px;border-radius:99px;display:grid;place-items:center;
+  cursor:pointer;transition:color .12s,border-color .12s}
+.pasar button:hover:not(:disabled){color:var(--app-accent);border-color:var(--app-accent)}
+.pasar button:disabled{opacity:.35;cursor:default}
+.pantalla[hidden]{display:none}
+.pantalla{scroll-margin-top:var(--pegado,0px)}   /* el salto nativo a #p-N no queda bajo las barras */
+
+.estudio{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,400px);
+  grid-template-areas:"escena txt" "escena funcs";grid-template-rows:auto 1fr;
+  column-gap:48px;align-items:start;padding-top:36px}
+.estudio:has(.mk[data-device="mobile"]){grid-template-columns:minmax(300px,370px) minmax(0,1fr);column-gap:64px}
+.escena{grid-area:escena;position:sticky;top:calc(var(--pegado,0px) + 20px);min-width:0}
+.estudio>.txt{grid-area:txt;min-width:0}
+.estudio>.txt .rol{font-size:11px;letter-spacing:.11em;text-transform:uppercase;font-weight:700;
+  color:var(--app-accent);margin-bottom:10px}
+.estudio>.txt h3{font-family:var(--serif);font-size:clamp(23px,2.6vw,30px);font-weight:600;
+  margin-bottom:12px;max-width:22ch}
+.estudio>.txt p{font-size:16px;color:var(--app-fg-2);line-height:1.65}
+.estudio>.txt p:last-child{margin-bottom:0}
+.nota{background:var(--app-line-soft);border-radius:var(--r-s);padding:11px 13px;font-size:13.5px;
+  color:var(--app-fg-2);border-left:2px solid var(--app-accent);margin:0}
+.pie-mk{font-size:11.5px;color:var(--app-fg-3);margin:10px 0 0;text-align:center}
+.pista{font-size:11.5px;color:var(--app-fg-3);margin:6px 0 0;display:flex;gap:6px;
+  justify-content:center;align-items:center;text-align:center}
+.pista .ico{color:var(--app-accent)}
+
+/* — las funciones: acordeón — */
+.funcs{grid-area:funcs;min-width:0;padding-top:26px}
+.funcs-h{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+  color:var(--app-fg-3);margin:0 0 10px}
+.det{background:var(--app-sup);border:1px solid var(--app-line);border-radius:var(--r);
+  margin-bottom:8px;scroll-margin-top:calc(var(--pegado,0px) + 16px);transition:border-color .15s,box-shadow .15s}
+.det[open]{box-shadow:var(--sh);border-color:color-mix(in srgb,var(--app-accent) 40%,var(--app-line))}
+.det summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;
+  padding:13px 16px;border-radius:var(--r)}
+.det summary::-webkit-details-marker{display:none}
+.det summary .fn{font-family:var(--mono);font-size:10px;color:var(--app-fg-3);flex:none}
+.det summary h3{font-size:15px;font-weight:620;margin:0;flex:1;min-width:0;transition:color .12s}
+.det summary:hover h3{color:var(--app-accent)}
+.det summary .chev{color:var(--app-fg-3);transition:transform .18s}
+.det[open] summary .chev{transform:rotate(180deg)}
+.det[open] summary .fn{color:var(--app-accent)}
+.det-c{padding:0 16px 16px}
+.det p{font-size:14.5px;color:var(--app-fg-2);line-height:1.6;margin:0 0 12px}
+.det ul{margin:0 0 12px;padding-left:18px;font-size:14px;color:var(--app-fg-2);line-height:1.6}
+.det li{margin-bottom:5px}
+.det strong{color:var(--app-fg);font-weight:600}
+.det-c>*:last-child{margin-bottom:0}
+.donde{display:inline-flex;align-items:center;gap:7px;background:var(--app-line-soft);
+  border-radius:99px;padding:4px 12px;font-size:12px;color:var(--app-fg-2);margin-bottom:12px}
+.donde::before{content:"";width:5px;height:5px;border-radius:99px;background:var(--app-accent);flex:none}
+.donde b{color:var(--app-fg);font-weight:640}
+.zoom{background:var(--app-bg);border:1px solid var(--app-line);border-radius:var(--r);
+  padding:20px 18px;margin:0 0 14px;display:grid;gap:11px}
+.zoom-l{font-size:10px;letter-spacing:.11em;text-transform:uppercase;font-weight:700;
+  color:var(--app-fg-3);margin-bottom:-3px}
+.sigue{display:flex;gap:12px;margin-top:20px;padding-top:16px;border-top:1px solid var(--app-line)}
+.sigue button{appearance:none;background:none;border:0;font:inherit;cursor:pointer;padding:4px 0;
+  color:var(--app-fg-3);font-size:12.5px;display:flex;flex-direction:column;gap:2px;text-align:left}
+.sigue button b{color:var(--app-fg);font-size:14px;font-weight:600;transition:color .12s}
+.sigue button:hover b{color:var(--app-accent)}
+.sigue .sig{margin-left:auto;text-align:right;align-items:flex-end}
+
+/* — un salto escrito: «Ver la pantalla →» en el texto, en una función o en otra vista — */
+.ver{appearance:none;background:none;border:0;padding:2px 0;font:inherit;font-size:13px;font-weight:650;
+  color:var(--app-accent);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.ver:hover{text-decoration:underline;text-underline-offset:3px}
+.ed .ver{color:var(--ed-accent)}
+
+/* — el dibujo como mapa: lo que navega (data-ir) y lo que señala (data-f) — */
+.mk [data-ir],.mk [data-f]{cursor:pointer;outline:2px solid transparent;outline-offset:2px;
+  transition:outline-color .15s,outline-offset .15s}
+.mk [data-ir]:hover{outline:1.5px dashed color-mix(in srgb,var(--app-accent) 65%,transparent)}
+.mk [data-f]:hover,.mk [data-f].asoma{outline-color:color-mix(in srgb,var(--app-accent) 45%,transparent)}
+.mk [data-f].foco{outline:2px solid var(--app-accent);animation:foco .45s ease-out}
+@keyframes foco{from{outline-offset:9px;outline-color:transparent}to{outline-offset:2px}}
+@media (prefers-reduced-motion:reduce){.mk [data-f].foco{animation:none}}
+
+/* ══════════════════════════════════════════════════════════════════════
+   4 · KIT DE MOCKUP
+   Todo con tokens --app-*: nunca un color a mano, o se rompe en un tema.
+   Si falta una pieza se agrega ACÁ, con los mismos tokens.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* — iconos: <svg class="ico"><use href="#i-nombre"/></svg> — */
+.ico{width:16px;height:16px;flex:none;display:inline-block;vertical-align:-3px;
+  fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ico.xs{width:12px;height:12px;stroke-width:2.1}
+.ico.sm{width:14px;height:14px;stroke-width:2}
+.ico.lg{width:20px;height:20px;stroke-width:1.7}
+.ico.xl{width:30px;height:30px;stroke-width:1.4}
+.ico.on{fill:currentColor}
+
+/* — marco — */
+.mkw{overflow-x:auto;padding-bottom:4px}
+.mk{background:var(--app-sup);border:1px solid var(--app-line);border-radius:var(--r);
+  overflow:hidden;box-shadow:var(--sh-lg);min-width:660px;position:relative}
+.mk[data-device="mobile"]{min-width:0;max-width:330px;margin:0 auto;border-radius:26px;padding:8px}
+.mk-chrome{display:flex;align-items:center;gap:7px;padding:9px 12px;background:var(--app-line-soft);
+  border-bottom:1px solid var(--app-line)}
+.mk-chrome .b{width:9px;height:9px;border-radius:99px;background:var(--app-line);flex:none}
+.mk-url{flex:1;background:var(--app-sup);border:1px solid var(--app-line);border-radius:99px;
+  font-family:var(--mono);font-size:10.5px;color:var(--app-fg-3);padding:3px 11px;margin-left:6px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mk-app{display:grid;grid-template-columns:172px 1fr;min-height:340px}
+.mk-app[data-nav="none"]{grid-template-columns:1fr}
+.mk-nav{background:var(--app-line-soft);border-right:1px solid var(--app-line);padding:14px 10px;
+  display:flex;flex-direction:column;gap:2px}
+.mk-brand{font-size:13px;font-weight:700;letter-spacing:-.01em;padding:2px 8px 14px;display:flex;
+  align-items:center;gap:8px}
+.mk-brand::before{content:"";width:16px;height:16px;border-radius:5px;background:var(--app-accent);flex:none}
+.mk-ni{font-size:12px;color:var(--app-fg-2);padding:6px 8px;border-radius:6px;display:flex;
+  align-items:center;gap:9px}
+.mk-ni.on{background:var(--app-sup);color:var(--app-fg);font-weight:600;box-shadow:var(--sh)}
+.mk-ni.on .ico{color:var(--app-accent)}
+.mk-main{display:flex;flex-direction:column;min-width:0}
+.mk-head{padding:14px 18px;border-bottom:1px solid var(--app-line);display:flex;
+  align-items:center;justify-content:space-between;gap:12px}
+.mk-head h4{font-size:15px;font-weight:650}
+.mk-head .sub{font-size:11.5px;color:var(--app-fg-3);margin-top:2px}
+.mk-body{padding:16px 18px;display:grid;gap:13px;align-content:start;flex:1;background:var(--app-bg)}
+
+/* — superficies — */
+.ui-card{background:var(--app-sup);border:1px solid var(--app-line);border-radius:10px;padding:13px 15px}
+.ui-card .ct{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  color:var(--app-fg-3);margin-bottom:7px;display:flex;align-items:center;gap:6px}
+.ui-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+.ui-flex{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.ui-between{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.ui-grow{flex:1;min-width:0}
+.ui-div{display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--app-fg-3);font-weight:700}
+.ui-div::before,.ui-div::after{content:"";height:1px;background:var(--app-line);flex:1}
+
+/* — métricas — */
+.ui-kpi{display:grid;gap:3px}
+.ui-kpi .v{font-size:20px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.ui-kpi .d{font-size:10.5px;color:var(--app-fg-2);line-height:1.4}
+.ui-kpi.dest{background:var(--app-accent);border-color:var(--app-accent);color:#fff;
+  border-radius:10px;padding:13px 15px}
+.ui-kpi.dest .ct,.ui-kpi.dest .d{color:rgba(255,255,255,.78)}
+.ui-delta{font-size:10.5px;font-weight:700;display:inline-flex;align-items:center;gap:3px}
+.ui-delta.up{color:var(--app-accent)} .ui-delta.down{color:var(--app-bad)}
+
+/* — filas y listas — */
+.ui-row{display:flex;align-items:center;gap:11px;padding:9px 13px;background:var(--app-sup);
+  border:1px solid var(--app-line);border-radius:8px;font-size:12.5px}
+.ui-row+.ui-row{margin-top:-1px}
+.ui-row.on{border-color:var(--app-accent);background:var(--app-accent-2)}
+.ui-t{font-weight:600;color:var(--app-fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ui-s{font-size:11px;color:var(--app-fg-3);margin-top:1px}
+.ui-av{width:24px;height:24px;border-radius:99px;background:var(--app-accent-2);flex:none;
+  display:grid;place-items:center;font-size:10px;font-weight:700;color:var(--app-accent)}
+.ui-av.sq{border-radius:7px}
+.ui-avs{display:flex}
+.ui-avs .ui-av{border:2px solid var(--app-sup);margin-left:-8px}
+.ui-avs .ui-av:first-child{margin-left:0}
+
+/* — controles — */
+.ui-btn{background:var(--app-accent);color:#fff;border-radius:7px;padding:6px 12px;font-size:12px;
+  font-weight:600;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.ui-btn.gh{background:none;color:var(--app-fg-2);border:1px solid var(--app-line)}
+.ui-btn.dg{background:var(--app-bad);color:#fff}
+.ui-btn.sm{padding:4px 9px;font-size:11px}
+.ui-ib{width:28px;height:28px;border-radius:7px;border:1px solid var(--app-line);display:grid;
+  place-items:center;color:var(--app-fg-2);background:var(--app-sup);flex:none}
+.ui-fab{width:46px;height:46px;border-radius:99px;background:var(--app-accent);color:#fff;
+  display:grid;place-items:center;box-shadow:var(--sh-lg);position:absolute;right:16px;bottom:16px}
+.ui-in{background:var(--app-sup);border:1px solid var(--app-line);border-radius:7px;padding:6px 11px;
+  font-size:12px;color:var(--app-fg-3);flex:1;min-width:0;display:flex;align-items:center;gap:7px}
+.ui-in.foco{border-color:var(--app-accent);box-shadow:0 0 0 3px var(--app-accent-2)}
+.ui-in .cursor{width:1px;height:13px;background:var(--app-accent);display:inline-block}
+.ui-sel{background:var(--app-sup);border:1px solid var(--app-line);border-radius:7px;padding:6px 10px;
+  font-size:12px;color:var(--app-fg-2);display:inline-flex;align-items:center;gap:8px}
+.ui-ta{background:var(--app-sup);border:1px solid var(--app-line);border-radius:8px;padding:9px 11px;
+  font-size:12px;color:var(--app-fg-3);min-height:58px;display:block}
+.ui-sw{width:32px;height:18px;border-radius:99px;background:var(--app-line);position:relative;flex:none}
+.ui-sw::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:99px;
+  background:var(--app-sup);box-shadow:var(--sh);transition:left .15s}
+.ui-sw.on{background:var(--app-accent)}
+.ui-sw.on::after{left:16px}
+.ui-cb{width:15px;height:15px;border-radius:4px;border:1.5px solid var(--app-line);flex:none;
+  display:grid;place-items:center;color:transparent}
+.ui-cb.on{background:var(--app-accent);border-color:var(--app-accent);color:#fff}
+.ui-rd{width:15px;height:15px;border-radius:99px;border:1.5px solid var(--app-line);flex:none;
+  display:grid;place-items:center}
+.ui-rd.on{border-color:var(--app-accent)}
+.ui-rd.on::after{content:"";width:7px;height:7px;border-radius:99px;background:var(--app-accent)}
+
+/* — estado y etiquetas — */
+.ui-chip{background:var(--app-line-soft);color:var(--app-fg-2);border-radius:99px;padding:2.5px 9px;
+  font-size:10.5px;font-weight:600;white-space:nowrap;display:inline-flex;align-items:center;gap:5px}
+.ui-chip::before{content:"";width:5px;height:5px;border-radius:99px;background:currentColor;flex:none}
+.ui-chip.ok{background:var(--app-accent-2);color:var(--app-accent)}
+.ui-chip.warn{background:var(--app-warn-2);color:var(--app-warn)}
+.ui-chip.bad{background:var(--app-bad-2);color:var(--app-bad)}
+.ui-chip.info{background:var(--app-info-2);color:var(--app-info)}
+.ui-chip.plain::before{display:none}
+.ui-badge{background:var(--app-bad);color:#fff;border-radius:99px;min-width:16px;height:16px;
+  padding:0 5px;font-size:9.5px;font-weight:700;display:inline-grid;place-items:center}
+.ui-stars{display:inline-flex;gap:2px;color:var(--app-line)}
+.ui-stars .ico{color:inherit}
+.ui-stars .on{color:var(--app-warn)}
+.ui-bar{height:5px;border-radius:99px;background:var(--app-line);overflow:hidden;margin-top:5px}
+.ui-bar i{display:block;height:100%;background:var(--app-accent);border-radius:99px}
+.ui-alert{border-radius:9px;padding:10px 12px;font-size:11.5px;display:flex;gap:9px;
+  align-items:flex-start;line-height:1.45;border:1px solid}
+.ui-alert.info{background:var(--app-info-2);border-color:var(--app-info);color:var(--app-info)}
+.ui-alert.warn{background:var(--app-warn-2);border-color:var(--app-warn);color:var(--app-warn)}
+.ui-alert.bad{background:var(--app-bad-2);border-color:var(--app-bad);color:var(--app-bad)}
+.ui-alert.ok{background:var(--app-accent-2);border-color:var(--app-accent);color:var(--app-accent)}
+
+/* — navegación interna — */
+.ui-tabs{display:flex;gap:16px;border-bottom:1px solid var(--app-line);font-size:12px}
+.ui-tabs span{padding:0 0 7px;color:var(--app-fg-3);border-bottom:2px solid transparent;margin-bottom:-1px}
+.ui-tabs span.on{color:var(--app-accent);border-bottom-color:var(--app-accent);font-weight:600}
+.ui-crumbs{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--app-fg-3)}
+.ui-crumbs b{color:var(--app-fg);font-weight:600}
+.ui-pager{display:flex;gap:4px;align-items:center;font-size:11px;color:var(--app-fg-3)}
+.ui-pager i{width:22px;height:22px;border-radius:6px;border:1px solid var(--app-line);
+  display:grid;place-items:center;font-style:normal}
+.ui-pager i.on{background:var(--app-accent);border-color:var(--app-accent);color:#fff;font-weight:700}
+.ui-menu{background:var(--app-sup);border:1px solid var(--app-line);border-radius:9px;padding:5px;
+  box-shadow:var(--sh-lg);display:inline-grid;gap:1px;min-width:150px}
+.ui-menu span{font-size:11.5px;color:var(--app-fg-2);padding:6px 9px;border-radius:6px;
+  display:flex;align-items:center;gap:8px}
+.ui-menu span.on{background:var(--app-line-soft);color:var(--app-fg)}
+.ui-menu span.dg{color:var(--app-bad)}
+.ui-menu hr{border:0;border-top:1px solid var(--app-line);margin:4px 0}
+.ui-bottom{display:flex;justify-content:space-around;padding:9px 4px 4px;background:var(--app-sup);
+  border-top:1px solid var(--app-line)}
+.ui-bottom span{display:grid;justify-items:center;gap:3px;font-size:9px;color:var(--app-fg-3)}
+.ui-bottom span.on{color:var(--app-accent);font-weight:700}
+
+/* — tablas — */
+.ui-tbl{width:100%;border-collapse:collapse;font-size:11.5px}
+.ui-tbl th{font-size:9px;letter-spacing:.09em;padding:7px 10px;color:var(--app-fg-3);
+  border-bottom:1px solid var(--app-line);text-transform:uppercase}
+.ui-tbl td{padding:8px 10px;border-bottom:1px solid var(--app-line-soft);color:var(--app-fg-2)}
+.ui-tbl tr:last-child td{border-bottom:0}
+.ui-tbl td.n{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:11px}
+
+/* — datos / gráficos — */
+.ui-bars{display:flex;align-items:flex-end;gap:6px;height:70px}
+.ui-bars i{flex:1;background:var(--app-accent);border-radius:3px 3px 0 0;opacity:.45;min-height:3px}
+.ui-bars i.on{opacity:1}
+.ui-spark{width:100%;height:34px;display:block;overflow:visible}
+.ui-spark path{fill:none;stroke:var(--app-accent);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ui-spark .area{fill:var(--app-accent);opacity:.12;stroke:none}
+.ui-donut{width:74px;height:74px;flex:none;transform:rotate(-90deg)}
+.ui-donut circle{fill:none;stroke-width:9}
+.ui-donut .bg{stroke:var(--app-line)}
+.ui-donut .fg{stroke:var(--app-accent);stroke-linecap:round}
+.ui-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;font-size:9.5px;text-align:center}
+.ui-cal b{color:var(--app-fg-3);font-weight:700;padding-bottom:2px}
+.ui-cal span{padding:4px 0;border-radius:5px;color:var(--app-fg-2)}
+.ui-cal span.on{background:var(--app-accent);color:#fff;font-weight:700}
+.ui-cal span.hito{background:var(--app-accent-2);color:var(--app-accent);font-weight:600}
+.ui-cal span.off{color:var(--app-line)}
+
+/* — flujo / proceso — */
+.ui-steps{display:flex;align-items:center;gap:0;font-size:10.5px;flex-wrap:wrap;row-gap:7px}
+.ui-steps span{display:flex;align-items:center;gap:6px;color:var(--app-fg-3);white-space:nowrap}
+.ui-steps span::before{content:"";width:16px;height:16px;border-radius:99px;border:1.5px solid var(--app-line);flex:none}
+.ui-steps span.done{color:var(--app-fg-2)}
+.ui-steps span.done::before{background:var(--app-accent);border-color:var(--app-accent)}
+.ui-steps span.on{color:var(--app-accent);font-weight:700}
+.ui-steps span.on::before{border-color:var(--app-accent);border-width:4px}
+.ui-steps hr{flex:1;border:0;border-top:1px solid var(--app-line);margin:0 8px;min-width:14px}
+.ui-kan{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.ui-kan>div{background:var(--app-line-soft);border-radius:9px;padding:8px;display:grid;gap:6px;
+  align-content:start;min-width:0;overflow-wrap:anywhere}
+.ui-kan .kt{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+  color:var(--app-fg-3);display:flex;justify-content:space-between}
+.ui-kan .kc{background:var(--app-sup);border:1px solid var(--app-line);border-radius:7px;
+  padding:7px 9px;font-size:11px;color:var(--app-fg-2);display:grid;gap:5px}
+
+/* — contenido — */
+.ui-media{background:var(--app-line-soft);border-radius:8px;display:grid;place-items:center;
+  color:var(--app-fg-3);min-height:76px}
+.ui-media.wide{aspect-ratio:16/9;min-height:0}
+.ui-map{background:var(--app-line-soft);border-radius:8px;min-height:110px;position:relative;
+  display:grid;place-items:center;color:var(--app-fg-3);overflow:hidden}
+.ui-map::before{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--app-line) 1px,transparent 1px) 0 0/26px 26px,
+             linear-gradient(0deg,var(--app-line) 1px,transparent 1px) 0 0/26px 26px;opacity:.5}
+.ui-map .ico{position:relative;color:var(--app-bad)}
+.ui-file{display:flex;align-items:center;gap:9px;padding:7px 10px;border:1px solid var(--app-line);
+  border-radius:7px;font-size:11.5px;background:var(--app-sup)}
+.ui-file .ico{color:var(--app-info)}
+.ui-cmt{display:flex;gap:9px;font-size:11.5px}
+.ui-cmt .bod{background:var(--app-line-soft);border-radius:9px;padding:8px 11px;color:var(--app-fg-2);flex:1}
+.ui-cmt .who{font-weight:700;color:var(--app-fg);font-size:11px;margin-bottom:2px}
+.ui-cmt .when{font-size:9.5px;color:var(--app-fg-3);margin-top:4px}
+.ui-ia{border:1px solid var(--app-accent);background:var(--app-accent-2);border-radius:9px;
+  padding:10px 12px;font-size:11.5px;color:var(--app-fg-2);display:grid;gap:7px}
+.ui-ia .h{display:flex;align-items:center;gap:7px;font-weight:700;color:var(--app-accent);font-size:10.5px;
+  letter-spacing:.06em;text-transform:uppercase}
+.sk{background:var(--app-line);border-radius:99px;height:7px;display:block}
+.sk.w40{width:40%} .sk.w60{width:60%} .sk.w80{width:80%}
+.ui-empty{border:1px dashed var(--app-line);border-radius:9px;padding:22px;text-align:center;
+  font-size:12px;color:var(--app-fg-3);display:grid;gap:7px;justify-items:center}
+
+/* — capas — */
+.ui-modal{background:var(--app-sup);border:1px solid var(--app-line);border-radius:12px;
+  box-shadow:var(--sh-lg);padding:16px 18px;display:grid;gap:11px;max-width:min(330px,100%)}
+.ui-modal .mt{font-size:14px;font-weight:650}
+.ui-modal p{font-size:11.5px;color:var(--app-fg-2);margin:0;line-height:1.5}
+.ui-toast{background:var(--app-fg);color:var(--app-bg);border-radius:9px;padding:9px 13px;
+  font-size:11.5px;display:inline-flex;align-items:center;gap:9px;box-shadow:var(--sh-lg)}
+.ui-tip{background:var(--app-fg);color:var(--app-bg);border-radius:6px;padding:4px 8px;
+  font-size:10.5px;display:inline-block;position:relative}
+.ui-tip::after{content:"";position:absolute;left:50%;bottom:-4px;width:8px;height:8px;
+  background:inherit;transform:translateX(-50%) rotate(45deg)}
+
+/* ═══════════════ 5 · CIERRE ═══════════════ */
+.cierre{background:var(--ed-bg);color:var(--ed-fg);padding:64px 0 40px;font-family:var(--sans)}
+.abiertos{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.ab{background:var(--ed-paper);border:1px solid var(--ed-line);border-radius:var(--r);padding:16px 18px;
+  display:grid;gap:8px;align-content:start}
+.ab .est{justify-self:start;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:2px 9px;border-radius:99px;background:var(--ed-line-soft);color:var(--ed-fg-2)}
+.ab .est.dec{background:var(--ed-accent-soft);color:var(--ed-accent)}
+.ab h4{font-size:15px;font-weight:640}
+.ab p{font-size:13.5px;color:var(--ed-fg-2);margin:0;line-height:1.5}
+.ab .rec{font-size:13px;border-top:1px dashed var(--ed-line);padding-top:8px}
+.ab .rec b{color:var(--ed-accent)}
+footer{border-top:1px solid var(--ed-line);margin-top:44px;padding:16px 0 0;font-size:12px;
+  color:var(--ed-fg-3);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+/* ═══════════════ CATÁLOGO (se borra al generar) ═══════════════ */
+.cat{background:var(--app-bg);color:var(--app-fg);padding:56px 0;font-family:var(--sans);
+  border-top:3px solid var(--app-bad)}
+.cat h2{font-size:17px;margin-bottom:5px}
+.cat .adv{font-size:12.5px;color:var(--app-bad);margin-bottom:26px;font-weight:600}
+.cat h3{font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--app-fg-3);
+  margin:26px 0 10px;font-weight:700}
+.cat-g{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));align-items:start}
+.cat-i{background:var(--app-sup);border:1px solid var(--app-line);border-radius:9px;padding:11px}
+.cat-i>.n{font-family:var(--mono);font-size:9.5px;color:var(--app-fg-3);margin-bottom:8px;display:block}
+.cat-ico{display:grid;grid-template-columns:repeat(auto-fill,minmax(74px,1fr));gap:2px}
+.cat-ico div{display:grid;justify-items:center;gap:5px;padding:9px 3px;border-radius:7px;
+  font-family:var(--mono);font-size:8.5px;color:var(--app-fg-3);text-align:center;word-break:break-all}
+.cat-ico div:hover{background:var(--app-line-soft);color:var(--app-fg)}
+.cat-ico .ico{color:var(--app-fg-2);width:19px;height:19px}
+
+/* ═══════════════ RESPONSIVE / PRINT ═══════════════ */
+@media (max-width:900px){
+  /* en el celular el estudio se apila en el orden del DOM: texto, dibujo, funciones */
+  .estudio,.estudio:has(.mk[data-device="mobile"]){grid-template-columns:minmax(0,1fr);
+    grid-template-areas:"txt" "escena" "funcs";grid-template-rows:auto;padding-top:26px}
+  .escena{position:static;margin-top:22px}
+  .tab{padding:13px 11px 11px}
+  .duo{grid-template-columns:1fr}
+  .duo>div+div{border-left:0;border-top:1px solid var(--ed-line)}
+  .duo .sol::before{content:"↓";left:50%;top:-18px;transform:translateX(-50%)}
+  .flow{grid-auto-flow:row;gap:22px}
+  .paso:not(:last-child)::after{right:auto;left:38px;top:auto;bottom:-16px;transform:rotate(135deg)}
+  .tema{top:10px;right:10px}
+}
+@media print{
+  .barra-p,.pasar,.sigue,.pista,.tema,.cat{display:none}
+  .pantalla[hidden]{display:block !important}
+  .escena{position:static}
+  .det{break-inside:avoid}
+  body{background:#fff}
+}
+/* ── piezas propias de esta propuesta (mismos tokens del kit) ── */
+.ui-btn,.ui-fab{color:var(--on-accent)}
+.ui-btn.dg,.ui-badge{color:var(--on-bad)}
+.ui-btn.gh{color:var(--app-fg-2)}
+.ui-btn.apag{background:var(--app-line);color:var(--app-fg-3)}
+.ui-between{flex-wrap:wrap}
+.mk.angosta{min-width:0}
+.mk.angosta .mk-head{flex-wrap:wrap;gap:8px}
+.mk-head .ui-grow h4{white-space:normal}
+
+/* un título chico adentro de la ficha */
+.mh{display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;color:var(--app-fg-3);margin-bottom:-5px}
+.mh .ui-grow{min-width:0}
+.mh .lk{font-size:11px;letter-spacing:0;text-transform:none;font-weight:600;color:var(--app-accent);
+  display:inline-flex;align-items:center;gap:4px}
+.pedido{font-family:var(--serif);font-size:12.5px;line-height:1.5;color:var(--app-fg-2)}
+
+/* el recuadro de Probar: el botón y las cinco etapas */
+.pb{background:var(--app-sup);border:1px solid color-mix(in srgb,var(--app-accent) 45%,var(--app-line));
+  border-radius:12px;padding:14px 16px;display:grid;gap:12px;box-shadow:var(--sh);min-width:0}
+.pb-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.pb-top .ui-grow{min-width:0}
+.pb-top h5{font-size:14px;font-weight:650;margin:0;letter-spacing:-.01em}
+.pb-top .s{font-size:11px;color:var(--app-fg-3);margin-top:2px;line-height:1.4}
+.pb-go{font-size:13px;padding:8px 16px;border-radius:9px}
+.etapas{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.et{display:grid;gap:3px;align-content:start;padding:7px 8px 8px;border-radius:8px;background:var(--app-bg);
+  border:1px solid var(--app-line-soft);min-width:0;font-size:10px;color:var(--app-fg-3);line-height:1.3}
+.et b{font-size:11px;color:var(--app-fg);font-weight:620;display:flex;align-items:center;gap:5px;min-width:0}
+.et b::before{content:"";width:8px;height:8px;border-radius:99px;border:1.5px solid var(--app-fg-3);flex:none;box-sizing:border-box}
+.et.hecha b::before{background:var(--app-ok);border-color:var(--app-ok)}
+.et.va{border-color:var(--app-accent);background:var(--app-accent-2)}
+.et.va b::before{border-color:var(--app-accent);border-width:3px}
+.et.frena b::before{background:var(--app-warn);border-color:var(--app-warn)}
+.et.espera{opacity:.6}
+.et .ui-bar{margin-top:3px}
+.zoom .etapas{grid-template-columns:repeat(3,minmax(0,1fr))}
+.gasto{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:11px;color:var(--app-fg-2)}
+.gasto .ui-grow{min-width:120px}
+.gasto b{color:var(--app-fg);font-variant-numeric:tabular-nums}
+
+/* lo que cambió el agente, leído y no como paso */
+.arch{display:grid;background:var(--app-sup);border:1px solid var(--app-line);border-radius:10px;overflow:hidden;min-width:0}
+.arch>div{display:grid;grid-template-columns:16px minmax(0,1fr);gap:2px 8px;padding:8px 12px;border-top:1px solid var(--app-line-soft)}
+.arch>div:first-child{border-top:0}
+.arch .ico{color:var(--app-fg-3);margin-top:1px}
+.arch .ar{font-family:var(--mono);font-size:10.5px;color:var(--app-fg);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.arch .rs{grid-column:2;font-size:10.5px;color:var(--app-fg-2);line-height:1.4}
+
+/* filas plegadas: los controles, los comandos, lo que dio bien */
+.pleg{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:11.5px;color:var(--app-fg-2);padding:8px 12px;
+  border:1px dashed var(--app-line);border-radius:8px;background:var(--app-sup)}
+.pleg .ui-grow{min-width:0}
+.pleg .ico{color:var(--app-fg-3);flex:none}
+.cmd{font-family:var(--mono);font-size:10px;line-height:1.6;background:var(--app-bg);border:1px solid var(--app-line);
+  border-radius:7px;padding:8px 10px;color:var(--app-fg-2);overflow-x:auto;white-space:pre;margin:0}
+.cmd .cm{color:var(--app-fg-3)}
+
+/* antes de gastar: el diálogo encima de la ficha (apilado en la misma celda, no se recorta) */
+.capa{display:grid}
+.capa>*{grid-area:1/1;min-width:0}
+.capa .velo{background:color-mix(in srgb,var(--app-fg) 26%,transparent);z-index:1}
+.capa>.ui-modal{z-index:2;align-self:center;justify-self:center;margin:18px 0;width:min(400px,calc(100% - 28px));max-width:none}
+.cuenta{display:grid;border:1px solid var(--app-line);border-radius:9px;overflow:hidden}
+.cuenta>div{display:grid;grid-template-columns:16px minmax(0,1fr) auto;gap:8px;align-items:center;padding:7px 10px;
+  font-size:11.5px;border-top:1px solid var(--app-line-soft);color:var(--app-fg-2)}
+.cuenta>div:first-child{border-top:0}
+.cuenta .n{font-family:var(--mono);font-size:10px;color:var(--app-fg-3)}
+.cuenta b{color:var(--app-fg);font-weight:600}
+.cuenta .c{font-variant-numeric:tabular-nums;font-size:11px;color:var(--app-fg);font-weight:600;white-space:nowrap}
+.cuenta .c.cero{color:var(--app-fg-3);font-weight:500}
+.cuenta .tot{background:var(--app-bg)}
+.cuenta .tot b,.cuenta .tot .c{font-weight:700}
+.cuenta>div.freno{display:flex;gap:6px;align-items:center;padding:5px 10px;font-size:10.5px;
+  background:var(--app-warn-2);color:var(--app-warn)}
+.cuenta>div.ya{color:var(--app-fg-3)}
+.cuenta>div.ya b{color:var(--app-fg-3);font-weight:500;text-decoration:line-through}
+.quien{font-size:10.5px;color:var(--app-fg-3);display:flex;gap:6px;align-items:center;flex-wrap:wrap;line-height:1.4}
+.quien b{color:var(--app-fg-2);font-weight:600}
+
+/* el resultado */
+.res-h{display:grid;gap:5px}
+.res-h .t{font-family:var(--serif);font-size:17px;line-height:1.3;color:var(--app-fg);font-weight:600;letter-spacing:-.01em}
+.res-h .s{font-size:11.5px;color:var(--app-fg-2);line-height:1.45}
+.barra52{display:flex;height:9px;border-radius:99px;overflow:hidden;gap:2px}
+.barra52 i{display:block;height:100%}
+.barra52 .b-ok{background:var(--app-ok)}
+.barra52 .b-mal{background:var(--app-bad)}
+.barra52 .b-dud{background:var(--app-warn)}
+.ley{display:flex;gap:6px 14px;flex-wrap:wrap;font-size:10.5px;color:var(--app-fg-2)}
+.ley span{display:inline-flex;align-items:center;gap:5px}
+.ley i{width:8px;height:8px;border-radius:2px;display:inline-block;flex:none}
+.vallas{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.valla{background:var(--app-sup);border:1px solid var(--app-line);border-radius:10px;padding:10px 12px;display:grid;gap:3px;min-width:0}
+.valla .k{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--app-fg-3);
+  display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.valla .v{font-size:20px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--app-fg);line-height:1.1}
+.valla .v small{font-size:11.5px;color:var(--app-fg-3);font-weight:600;letter-spacing:0}
+.valla .d{font-size:10.5px;color:var(--app-fg-2);line-height:1.4}
+.valla.frena{border-color:var(--app-warn);box-shadow:inset 3px 0 0 var(--app-warn)}
+.valla .ui-bar i.ok{background:var(--app-ok)}
+
+.grupo-h{display:flex;align-items:center;gap:8px;font-size:10.5px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--app-fg-2);margin:4px 0 -5px}
+.grupo-h .ui-grow{min-width:0}
+.grupo-h .cnt{font-family:var(--mono);background:var(--app-line);border-radius:99px;padding:0 7px;font-size:10px;letter-spacing:0}
+.grupo-h.bad{color:var(--app-bad)} .grupo-h.warn{color:var(--app-warn)} .grupo-h.ok{color:var(--app-ok)}
+.grupo-h .ico{flex:none}
+
+/* una diferencia, en palabras */
+.dif{background:var(--app-sup);border:1px solid var(--app-line);border-radius:10px;overflow:hidden;min-width:0}
+.dif.mal{box-shadow:inset 3px 0 0 var(--app-bad)}
+.dif.dud{box-shadow:inset 3px 0 0 var(--app-warn)}
+.dif-h{display:flex;align-items:center;gap:6px 8px;flex-wrap:wrap;padding:9px 12px 8px}
+.dif-h .q{font-family:var(--serif);font-size:13px;color:var(--app-fg);flex:1;min-width:150px;line-height:1.35}
+.dif-h .q small{display:block;font-family:var(--sans);font-size:10px;color:var(--app-fg-3);margin-top:1px}
+.dif-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1px;background:var(--app-line-soft);border-top:1px solid var(--app-line-soft)}
+.dif-g>div{background:var(--app-sup);padding:7px 12px 9px;display:grid;gap:2px;align-content:start;min-width:0}
+.dif-g .k{font-size:9px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--app-fg-3)}
+.dif-g .v{font-size:11.5px;font-weight:620;color:var(--app-fg);display:flex;align-items:center;gap:5px;flex-wrap:wrap;line-height:1.35}
+.dif-g .v .ico{width:12px;height:12px;flex:none}
+.dif-g .x{font-size:10.5px;color:var(--app-fg-2);line-height:1.4}
+.pasa{color:var(--app-ok)} .falla{color:var(--app-bad)}
+.dif-s{display:flex;gap:6px;flex-wrap:wrap;padding:7px 12px;border-top:1px solid var(--app-line-soft);align-items:center}
+.dif-s .ui-grow{min-width:0}
+.sen{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;border-radius:99px;
+  padding:2px 8px 2px 6px;background:var(--app-warn-2);color:var(--app-warn);white-space:nowrap}
+.sen .ico{width:11px;height:11px;flex:none}
+.sen.gris{background:var(--app-line-soft);color:var(--app-fg-2)}
+.sen.roja{background:var(--app-bad-2);color:var(--app-bad)}
+.grav{font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:4px;padding:0 5px;
+  border:1px solid currentColor;line-height:1.5;white-space:nowrap}
+.esc{font-family:var(--mono);font-size:10px;background:var(--app-bg);border-radius:4px;padding:0 4px;color:var(--app-fg-2)}
+
+.decide{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;background:var(--app-sup);
+  border:1px solid var(--app-line);border-radius:10px}
+.decide .por{font-size:11px;color:var(--app-fg-2);flex:1;min-width:170px;line-height:1.4}
+.decide .por b{color:var(--app-fg)}
+
+/* un caso de cerca */
+.caso{display:grid;background:var(--app-sup);border:1px solid var(--app-line);border-radius:12px;overflow:hidden;min-width:0}
+.caso-f{display:grid;grid-template-columns:92px minmax(0,1fr);gap:0 14px;padding:11px 14px 11px 0;border-top:1px solid var(--app-line)}
+.caso-f:first-child{border-top:0}
+.caso-f>.l{font-size:10.5px;font-weight:650;color:var(--app-fg-3);text-align:right;padding:2px 0 0 8px;line-height:1.3}
+.caso-f>.c{display:grid;gap:6px;min-width:0;align-content:start}
+.caso-f.dio{background:color-mix(in srgb,var(--app-bad-2) 45%,var(--app-sup))}
+.ej{font-family:var(--serif);font-size:15px;color:var(--app-fg);line-height:1.4}
+.ej .hueco{display:inline-block;min-width:2.4em;border-bottom:2px solid var(--app-fg-2);height:.9em;vertical-align:-.08em;margin:0 .1em}
+.mini{font-family:var(--serif);font-size:12.5px;color:var(--app-fg-2);background:var(--app-bg);border-radius:7px;padding:6px 9px;line-height:1.45}
+.mini .en,.ej .en{color:var(--app-accent);font-style:italic}
+.meta{font-size:10.5px;color:var(--app-fg-3);display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.ver-v{font-size:13px;font-weight:650;display:flex;align-items:center;gap:7px;flex-wrap:wrap;color:var(--app-fg)}
+.ver-v .ico{width:14px;height:14px;flex:none}
+.porque{font-size:11.5px;color:var(--app-fg-2);line-height:1.5}
+.porque .w{font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--app-fg-3);margin-right:5px}
+.senal{display:grid;gap:6px;padding:9px 11px;border-radius:9px;background:var(--app-warn-2);border:1px solid color-mix(in srgb,var(--app-warn) 40%,transparent)}
+.senal .t{display:flex;gap:7px;align-items:center;font-size:11.5px;font-weight:650;color:var(--app-warn)}
+.senal .t .ico{flex:none}
+.senal p{margin:0;font-size:11px;color:var(--app-fg-2);line-height:1.45}
+.hist{display:grid;gap:3px;font-size:10.5px}
+.hist>div{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:8px;align-items:center;color:var(--app-fg-2);
+  background:var(--app-sup);border-radius:6px;padding:4px 8px}
+.hist .vv{font-family:var(--mono);font-size:9.5px;color:var(--app-fg-3)}
+.hist .igual{font-size:9.5px;color:var(--app-ok);font-weight:700;white-space:nowrap}
+.hist .ahora{font-size:9.5px;color:var(--app-warn);font-weight:700;white-space:nowrap}
+.razon{display:flex;gap:6px;flex-wrap:wrap}
+.razon .ui-btn{font-size:11.5px}
+
+/* el freno en la tabla editorial */
+.tw .esc{font-size:12px}
+.tw td.ig{color:var(--app-ok);font-weight:640;white-space:nowrap}
+
+@media (max-width:620px){
+  .etapas{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .vallas,.dif-g{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .caso-f{grid-template-columns:1fr;padding:11px 12px}
+  .caso-f>.l{text-align:left;padding:0 0 4px}
+  .etapas{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+/* agregados al armar las pantallas */
+.pie-d{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+.sen.verde{background:var(--app-ok-2);color:var(--app-ok)}
+.et.corta{border-color:var(--app-bad);background:var(--app-bad-2)}
+.et.corta b::before{background:var(--app-bad);border-color:var(--app-bad)}
+.mk-body .lk,.dif-s .lk{font-size:11px;font-weight:600;color:var(--app-accent);display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.ord{display:grid;gap:7px}
+.ord>div{display:grid;grid-template-columns:20px minmax(0,1fr);gap:8px;align-items:start;font-size:11.5px;color:var(--app-fg-2);line-height:1.4}
+.ord .n{font-family:var(--mono);font-size:10px;font-weight:700;border-radius:99px;width:20px;height:20px;display:grid;place-items:center}
+.ord .n.bad{background:var(--app-bad-2);color:var(--app-bad)}
+.ord .n.warn{background:var(--app-warn-2);color:var(--app-warn)}
+.ord .n.amb{background:var(--app-line);color:var(--app-fg-2)}
+.ord b{color:var(--app-fg);font-weight:620;display:block}
+.sens{display:grid;gap:6px}
+.sens>div{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px;align-items:center;font-size:11px;color:var(--app-fg-2);line-height:1.4}
+.ui-tbl .esc{font-size:9.5px}
+</style>
+</head>
+<body>
+
+<!-- ══ SPRITE DE ICONOS · uso: <svg class="ico"><use href="#i-nombre"/></svg> ══ -->
+<svg class="sprite" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></symbol>
+<symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><path d="M3 5h18v16H3zM3 10h18M8 3v4M16 3v4"/></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+<symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3v5h5M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM12 2.5V5M12 19v2.5M2.5 12H5M19 12h2.5M5.2 5.2 7 7M17 17l1.8 1.8M18.8 5.2 17 7M7 17l-1.8 1.8"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3"/></symbol>
+<symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></symbol>
+<symbol id="i-sort" viewBox="0 0 24 24"><path d="M7 4v16M7 20l-3-3M7 20l3-3M17 20V4M17 4l-3 3M17 4l3 3"/></symbol>
+<symbol id="i-chev-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+<symbol id="i-chev-up" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></symbol>
+<symbol id="i-chev-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+<symbol id="i-chev-left" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M20 12H4M10 6l-6 6 6 6"/></symbol>
+<symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+<symbol id="i-dots" viewBox="0 0 24 24"><path d="M12 6h.01M12 12h.01M12 18h.01"/></symbol>
+<symbol id="i-dots-h" viewBox="0 0 24 24"><path d="M6 12h.01M12 12h.01M18 12h.01"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24"><path d="m4 20 1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19zM14 7l3 3"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13M9 7V4h6v3"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M8 11l4 4 4-4M4 19h16"/></symbol>
+<symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 21V9M8 13l4-4 4 4M4 5h16"/></symbol>
+<symbol id="i-share" viewBox="0 0 24 24"><path d="M4 12v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8M12 3v13M8 7l4-4 4 4"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><path d="M9 9h11v12H9zM5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/></symbol>
+<symbol id="i-save" viewBox="0 0 24 24"><path d="M5 3h11l3 3v15H5zM8 3v6h7V3M8 21v-7h8v7"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 4v16M16 4v16"/></symbol>
+<symbol id="i-print" viewBox="0 0 24 24"><path d="M7 8V3h10v5M7 18H5a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-2M7 14h10v7H7z"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 20.9l1.1-6.5L2.6 9.8l6.5-.9z"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.4A4.1 4.1 0 0 1 12 7.5 4.1 4.1 0 0 1 19 10.6c0 5-7 9.4-7 9.4z"/></symbol>
+<symbol id="i-thumb" viewBox="0 0 24 24"><path d="M7 22V10l5-8a2 2 0 0 1 2 2v5h5a2 2 0 0 1 2 2.3l-1.3 8A2 2 0 0 1 17.7 22zM7 10H3v12h4"/></symbol>
+<symbol id="i-comment" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 9a6 6 0 1 0-12 0c0 6-2 8-2 8h16s-2-2-2-8M10.5 21a2 2 0 0 0 3 0"/></symbol>
+<symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4h13l-2.5 4L18 12H5"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 21a7 7 0 0 1 14 0M17 4.5a4 4 0 0 1 0 7.5M18.5 14.5a7 7 0 0 1 3.5 6.5"/></symbol>
+<symbol id="i-card" viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 10h18M6.5 14.5h3"/></symbol>
+<symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a1 1 0 0 0 1 .8h8.4a1 1 0 0 0 1-.8L20 8H6M9 20h.01M17 20h.01"/></symbol>
+<symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 3h7.5L21 13.5 13.5 21 3 10.5zM7.5 7.5h.01"/></symbol>
+<symbol id="i-dollar" viewBox="0 0 24 24"><path d="M12 2v20M16.5 6.5H10a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6H7"/></symbol>
+<symbol id="i-receipt" viewBox="0 0 24 24"><path d="M5 21V3l2 1.5L9 3l2 1.5L13 3l2 1.5L17 3l2 1.5V21l-2-1.5-2 1.5-2-1.5L11 21l-2-1.5L7 21zM8 8h8M8 12h8M8 16h5"/></symbol>
+<symbol id="i-chart-bar" viewBox="0 0 24 24"><path d="M4 20h16M7 20v-6M12 20V8M17 20v-9"/></symbol>
+<symbol id="i-chart-line" viewBox="0 0 24 24"><path d="M4 20h16M5 16l4-5 3.5 3L20 6"/></symbol>
+<symbol id="i-pie" viewBox="0 0 24 24"><path d="M12 3v9h9a9 9 0 0 0-9-9zM21 14a9 9 0 1 1-9-9"/></symbol>
+<symbol id="i-trend-up" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></symbol>
+<symbol id="i-trend-down" viewBox="0 0 24 24"><path d="M3 7l6 6 4-4 8 8M15 17h6v-6"/></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM8.5 12.5l2.5 2.5 4.5-5"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l9.5 17H2.5zM12 10v4M12 17h.01"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 11v5M12 8h.01"/></symbol>
+<symbol id="i-x-circle" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM9.5 9.5l5 5M14.5 9.5l-5 5"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5.2l3.2 2"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><path d="M6 11h12v10H6zM9 11V7.5a3 3 0 0 1 6 0V11"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12zM12 14.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></symbol>
+<symbol id="i-image" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 16l5-5 4 4 3-3 6 6M8.5 9.5h.01"/></symbol>
+<symbol id="i-camera" viewBox="0 0 24 24"><path d="M3 8h4l1.5-2.5h7L17 8h4v12H3zM12 17a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></symbol>
+<symbol id="i-video" viewBox="0 0 24 24"><path d="M3 6h12v12H3zM15 10l6-3.5v11L15 14"/></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zM5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+<symbol id="i-clip" viewBox="0 0 24 24"><path d="M20 11l-8.5 8.5a5 5 0 0 1-7-7L13 4a3.5 3.5 0 0 1 5 5l-8.5 8.5a2 2 0 0 1-3-3L15 6"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 6l9 7 9-7"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M6 3h3.5l1.8 4.5-2.3 1.4a12.5 12.5 0 0 0 6.1 6.1l1.4-2.3L21 14.5V18a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3z"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11zM12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/></symbol>
+<symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M11 3l1.7 4.3L17 9l-4.3 1.7L11 15l-1.7-4.3L5 9l4.3-1.7zM18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9z"/></symbol>
+<symbol id="i-wand" viewBox="0 0 24 24"><path d="M4 20 15 9M13.5 3.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9zM19.5 10l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6z"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5zM3 12.5l9 5 9-5M3 16.5l9 5 9-5"/></symbol>
+<symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3l8 4v10l-8 4-8-4V7zM4 7l8 4 8-4M12 11v10"/></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7zM7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM17.5 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></symbol>
+<symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V4h10v17M14 10h6v11M7 8h4M7 12h4M7 16h4M17 14h.01M17 18h.01"/></symbol>
+<symbol id="i-tool" viewBox="0 0 24 24"><path d="M14 6a4 4 0 0 1 5.5-3.7l-2.8 2.8 2.2 2.2 2.8-2.8A4 4 0 0 1 18 10a4 4 0 0 1-1.4-.25L7 19.3a2.4 2.4 0 0 1-3.4-3.4l9.6-9.6A4 4 0 0 1 14 6z"/></symbol>
+<symbol id="i-database" viewBox="0 0 24 24"><path d="M12 8c4.4 0 8-1.1 8-2.5S16.4 3 12 3 4 4.1 4 5.5 7.6 8 12 8zM4 5.5v13c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-13M4 12c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24"><path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 4l-4 16"/></symbol>
+<symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17l-6-4z"/></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM9.5 9.5a2.5 2.5 0 1 1 3.4 2.3c-.6.3-.9.8-.9 1.4v.3M12 17h.01"/></symbol>
+<symbol id="i-logout" viewBox="0 0 24 24"><path d="M15 4h3a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-3M10 8l-4 4 4 4M6 12h10"/></symbol>
+<symbol id="i-pointer" viewBox="0 0 24 24"><path d="M4 3l6.6 16.5 2.4-6.9 6.9-2.4zM13.5 13.5 19 19"/></symbol>
+</defs></svg>
+
+<button class="tema" type="button" aria-label="Cambiar entre modo claro y oscuro" title="Modo claro / oscuro">
+  <svg class="luna" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  <svg class="sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+</button>
+
+
+<!-- ═══════════ PORTADA EDITORIAL ═══════════ -->
+<section class="hero"><div class="wrap">
+  <div class="eyebrow">
+    <span>Propuesta de producto</span><span class="dot"></span>
+    <span>content-audit · Problemas</span><span class="dot"></span>
+    <span>v1 · 13/10/2026</span>
+  </div>
+  <h1>Probar la solución con un solo botón</h1>
+  <p class="tag">Para cerrar un problema sin leer JSON: un botón corre todo y cada diferencia se lee en palabras.</p>
+  <div class="duo">
+    <div><div class="k">Hoy</div><div class="dato">7 pasos</div><p>Siete pasos con hasta tres botones cada uno, y las diferencias llegan como JSON.</p></div>
+    <div class="sol"><div class="k">Con Probar</div><div class="dato">1 botón</div><p>Corre todo en orden y muestra primero lo que salió mal, avisando cuando la evaluación parece equivocada.</p></div>
+  </div>
+</div></section>
+
+<section class="ed"><div class="wrap">
+  <h2 class="ed-h">Qué tiene</h2>
+  <div class="pillars">
+    <div class="pillar"><div class="pi"><svg class="ico"><use href="#i-play"/></svg></div><h3>Un botón que sigue</h3><p>Dice siempre lo próximo: Probar, Seguir o Marcar resuelto.</p></div>
+    <div class="pillar"><div class="pi"><svg class="ico"><use href="#i-list"/></svg></div><h3>Cada diferencia en palabras</h3><p>Qué se evaluó, qué se esperaba y qué dio el juez.</p></div>
+    <div class="pillar"><div class="pi"><svg class="ico"><use href="#i-flag"/></svg></div><h3>Primero lo que salió mal</h3><p>Ordenado por gravedad; lo que dio bien queda plegado.</p></div>
+    <div class="pillar"><div class="pi"><svg class="ico"><use href="#i-eye"/></svg></div><h3>La evaluación también se revisa</h3><p>Señales cuando el que parece equivocado es el oro, no el juez.</p></div>
+  </div>
+</div></section>
+
+<hr class="rule">
+
+<section class="ed"><div class="wrap">
+  <h2 class="ed-h">Cómo funciona</h2>
+  <div class="flow">
+    <div class="paso"><div class="pi"><svg class="ico"><use href="#i-play"/></svg></div><h4>Apretás Probar</h4><p>Ves la cuenta entera y un solo tope de consultas.</p></div>
+    <div class="paso"><div class="pi"><svg class="ico"><use href="#i-layers"/></svg></div><h4>Corre todo, en orden</h4><p>Contrastes, examen fijo, medir, registrar y reanalizar, sin pedirte nada.</p></div>
+    <div class="paso"><div class="pi"><svg class="ico"><use href="#i-alert"/></svg></div><h4>Ves lo que falló</h4><p>Primero lo que cambia el veredicto, al final lo dudoso.</p></div>
+    <div class="paso"><div class="pi"><svg class="ico"><use href="#i-eye"/></svg></div><h4>Decidís quién tiene razón</h4><p>Juez u oro, caso por caso; medir de nuevo es gratis.</p></div>
+    <div class="paso fin"><div class="pi"><svg class="ico"><use href="#i-check-circle"/></svg></div><h4>Marcás resuelto</h4><p>Con el examen registrado y las propuestas reanalizadas.</p></div>
+  </div>
+</div></section>
+
+<hr class="rule">
+
+<section class="ed"><div class="wrap narrow">
+  <blockquote class="quote">Cuando se equivoca la evaluación, tiene que verse sin abrir un JSON.</blockquote>
+</div></section>
+
+<hr class="rule">
+
+<section class="ed"><div class="wrap">
+  <h2 class="ed-h">Lo que escondía el JSON</h2>
+  <p class="ed-sub">Las 4 diferencias que hoy frenan PRB-fbaeac6f son la misma regla, escrita de otra forma.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Contraste</th><th>Se esperaba</th><th>Dio el juez</th><th>¿Lo mismo?</th></tr></thead>
+    <tbody>
+      <tr><td>She ___ English. <span class="no">· caso tuyo</span></td><td>Falla · media · <span class="esc">OVERSTATED_FOR_QUIZ</span></td><td>Falla · media · <span class="esc">overstated-for-quiz</span></td><td class="ig">Sí</td></tr>
+      <tr><td>They ___ very short. <span class="no">· caso tuyo</span></td><td>Falla · media · <span class="esc">OVERSTATED_FOR_QUIZ</span></td><td>Falla · media · <span class="esc">overstated-for-quiz</span></td><td class="ig">Sí</td></tr>
+      <tr><td>He ___ play tennis. <span class="no">· del agente</span></td><td>Falla · media · <span class="esc">OVERSTATED_FOR_QUIZ</span></td><td>Falla · media · <span class="esc">overstated-for-quiz</span></td><td class="ig">Sí</td></tr>
+      <tr><td>I ___ at home yesterday. <span class="no">· del agente</span></td><td>Falla · media · <span class="esc">OVERSTATED_FOR_QUIZ</span></td><td>Falla · media · <span class="esc">overstated-for-quiz</span></td><td class="ig">Sí</td></tr>
+    </tbody>
+  </table></div>
+  <p class="ed-sub" style="margin:18px 0 0">El juez acertó los 12 contrastes; la comparación compara texto, no reglas.</p>
+  <button type="button" class="ver" data-ir="d-4-4">Ver cómo se mostraría<svg class="ico xs"><use href="#i-arrow-right"/></svg></button>
+</div></section>
+
+<!-- ═══════════ BISAGRA ═══════════ -->
+<section class="bisagra"><div class="wrap">
+  <div class="lbl">El producto</div>
+  <h2>Así se ve</h2>
+  <p class="d">Cinco momentos de la ficha de un problema, con PRB-fbaeac6f y sus corridas reales del 13/10.</p>
+</div></section>
+
+<!-- ═══════════ PANTALLAS ═══════════ -->
+<div class="pantallas">
+<nav class="barra-p" aria-label="Pantallas"><div class="wrap">
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true"  aria-controls="p-1" id="t-1"><span class="i">01</span>La ficha</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-2" id="t-2"><span class="i">02</span>Antes de gastar</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-3" id="t-3"><span class="i">03</span>Mientras corre</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-4" id="t-4"><span class="i">04</span>El resultado</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-5" id="t-5"><span class="i">05</span>Un caso de cerca</button>
+  </div>
+</div></nav>
+<div class="wrap">
+
+  <!-- ─────────── 01 · LA FICHA ─────────── -->
+  <section class="pantalla" id="p-1" role="tabpanel" aria-labelledby="t-1">
+    <div class="estudio">
+      <div class="txt">
+        <div class="rol">Pantalla 01</div>
+        <h3>La ficha, con un solo botón</h3>
+        <p>Los siete pasos se vuelven un recuadro: Probar la solución, con lo que va a correr y cuánto cuesta. Lo que cambió el agente y los casos se leen; no son pasos.</p>
+        <p class="nota">Hoy: 7 pasos con hasta 3 botones cada uno. Con esto, uno solo.</p>
+      </div>
+      <div class="escena">
+        <div class="mkw">
+          <div class="mk angosta">
+            <div class="mk-chrome"><i class="b"></i><i class="b"></i><i class="b"></i>
+              <div class="mk-url">localhost:7800/problemas/PRB-fbaeac6f</div></div>
+            <div class="mk-app" data-nav="none">
+              <div class="mk-main">
+                <div class="mk-head">
+                  <div class="ui-grow"><h4>Mini-teoría no muy precisa</h4><div class="sub">PRB-fbaeac6f · juez de miniteoría · 2 casos</div></div>
+                  <span class="ui-chip info">En trabajo</span>
+                </div>
+                <div class="mk-body">
+                  <p class="pedido">La mini teoría dice «is va con she», cuando en verdad «she va con is»…</p>
+                  <div class="pb">
+                    <div class="pb-top">
+                      <div class="ui-grow"><h5>Probar la solución</h5><div class="s">Hasta 22 consultas · unos 12 min</div></div>
+                      <span class="ui-btn pb-go" data-ir="p-2" data-f="d-1-1"><svg class="ico sm"><use href="#i-play"/></svg>Probar</span>
+                    </div>
+                    <div class="etapas" data-f="d-1-2">
+                      <div class="et"><b>Contrastes</b><span>12 casos · 1</span></div>
+                      <div class="et"><b>Examen fijo</b><span>40 quizzes · 20</span></div>
+                      <div class="et"><b>Medir</b><span>gratis</span></div>
+                      <div class="et"><b>Registrar</b><span>gratis</span></div>
+                      <div class="et"><b>Reanalizar</b><span>2 propuestas · 1</span></div>
+                    </div>
+                  </div>
+                  <div class="mh"><span class="ui-grow">Qué cambió el agente · 3 archivos del juez</span><span class="lk">Ver el diff<svg class="ico xs"><use href="#i-arrow-right"/></svg></span></div>
+                  <div class="arch" data-f="d-1-3">
+                    <div><svg class="ico sm"><use href="#i-file"/></svg><span class="ar">mini-theory-judge/nodes/evaluate.md</span><span class="rs">Reprueba las correspondencias parciales engañosas como «exagera el alcance».</span></div>
+                    <div><svg class="ico sm"><use href="#i-file"/></svg><span class="ar">mini-theory-judge/eval/fixtures.json</span><span class="rs">Regresión de la guía: dirección, alcance y precisión.</span></div>
+                    <div><svg class="ico sm"><use href="#i-code"/></svg><span class="ar">MiniTheoryAnalyzerTest.java</span><span class="rs">La explicación llega al hallazgo sin tocar una tarjeta sana.</span></div>
+                  </div>
+                  <div class="mh"><span class="ui-grow">Casos · 2</span></div>
+                  <div>
+                    <div class="ui-row"><div class="ui-grow"><div class="ui-t">She ___ English.</div><div class="ui-s">«is va con she.» · lo esperado: «she va con is»</div></div><span class="ui-chip plain">examen</span></div>
+                    <div class="ui-row"><div class="ui-grow"><div class="ui-t">They ___ very short.</div><div class="ui-s">«are va con they.»</div></div><span class="ui-chip plain">examen</span></div>
+                  </div>
+                  <div class="pleg" data-f="d-1-4"><svg class="ico sm"><use href="#i-info"/></svg><span class="ui-grow">Ningún caso marcado <b>Está bien</b>: hace falta uno para marcar resuelto.</span><span class="ui-btn gh sm">Elegir uno</span></div>
+                  <div class="pleg" data-f="d-1-5"><svg class="ico sm"><use href="#i-code"/></svg><span class="ui-grow">Ver los comandos</span><svg class="ico sm"><use href="#i-chev-right"/></svg></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="pie-mk">Archivos, casos y costos tomados de la entrega del agente para PRB-fbaeac6f.</p>
+      </div>
+      <div class="funcs">
+        <h4 class="funcs-h">Las funciones</h4>
+        <details class="det" id="d-1-1" open>
+          <summary><span class="fn">01</span><h3>Un solo botón, que sigue</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el recuadro de Probar, a la derecha</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve, según en qué va</div>
+              <div class="ui-flex">
+                <span class="ui-btn pb-go"><svg class="ico sm"><use href="#i-play"/></svg>Probar</span>
+                <svg class="ico sm"><use href="#i-arrow-right"/></svg>
+                <span class="ui-btn">Seguir</span>
+                <svg class="ico sm"><use href="#i-arrow-right"/></svg>
+                <span class="ui-btn"><svg class="ico sm"><use href="#i-check-circle"/></svg>Marcar resuelto</span>
+              </div>
+            </div>
+            <p>Dice lo próximo y nada más. Probar corre todo; si algo frena, Seguir retoma ahí sin repetir lo hecho; con todo aprobado, Marcar resuelto. Reemplaza los Repetir, Ver comando y Copiar comando de cada paso.</p>
+            <button type="button" class="ver" data-ir="p-2">Ver qué pasa al apretarlo<svg class="ico xs"><use href="#i-arrow-right"/></svg></button>
+          </div>
+        </details>
+        <details class="det" id="d-1-2">
+          <summary><span class="fn">02</span><h3>Las cinco etapas, a la vista</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>la tira, debajo del botón</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="etapas">
+                <div class="et"><b>Contrastes</b><span>12 casos · 1</span></div>
+                <div class="et"><b>Examen fijo</b><span>40 quizzes · 20</span></div>
+                <div class="et"><b>Medir</b><span>gratis</span></div>
+                <div class="et"><b>Registrar</b><span>gratis</span></div>
+                <div class="et"><b>Reanalizar</b><span>2 propuestas · 1</span></div>
+              </div>
+            </div>
+            <p>Son los cinco pasos automáticos de hoy, en el mismo orden y con su costo. Se ven pero no se tocan: el botón los corre. Revisar y elegir un control dejan de ser pasos.</p>
+          </div>
+        </details>
+        <details class="det" id="d-1-3">
+          <summary><span class="fn">03</span><h3>Lo que cambió el agente</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>debajo de Probar</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="arch">
+                <div><svg class="ico sm"><use href="#i-file"/></svg><span class="ar">mini-theory-judge/nodes/evaluate.md</span><span class="rs">Reprueba las correspondencias parciales engañosas como «exagera el alcance».</span></div>
+              </div>
+            </div>
+            <p>Hoy es el paso 1, «Revisar los cambios del juez», y queda pendiente aunque lo hayas leído. Acá es lectura: los archivos con su resumen, y el diff a un toque.</p>
+          </div>
+        </details>
+        <details class="det" id="d-1-4">
+          <summary><span class="fn">04</span><h3>El control Está bien</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el pie de los casos</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="pleg"><svg class="ico sm"><use href="#i-info"/></svg><span class="ui-grow">Ningún caso marcado <b>Está bien</b>: hace falta uno para marcar resuelto.</span><span class="ui-btn gh sm">Elegir uno</span></div>
+            </div>
+            <p>Hoy es el paso 2 y no frena nada. Acá es un aviso: no impide Probar, pero sí marcar resuelto sin un control elegido por vos.</p>
+          </div>
+        </details>
+        <details class="det" id="d-1-5">
+          <summary><span class="fn">05</span><h3>Los comandos, al fondo</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el final de la ficha, plegado</b></div>
+            <div class="zoom"><div class="zoom-l">Abierto</div>
+<pre class="cmd"><span class="cm"># 1 · contrastes, tope 1</span>
+content-audit exam run mini-theory --cases=…/focused-cases.json --budget=1
+<span class="cm"># 2 · examen fijo, tope 20</span>
+content-audit exam run mini-theory --cases=…/historical-exam/cases.json --budget=20
+<span class="cm"># 4 · registrar</span>
+content-audit exam record …/measured.json
+<span class="cm"># 5 · reanalizar, tope 1</span>
+content-audit analyze …/frozen-proposals-course --analyzers=mini-theory --budget=mini-theory=1</pre>
+            </div>
+            <p>Para correr algo a mano, todos juntos y en orden, en vez de un «Ver comando» por paso. Medir no tiene comando: lo hace el tablero.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── 02 · ANTES DE GASTAR ─────────── -->
+  <section class="pantalla" id="p-2" role="tabpanel" aria-labelledby="t-2" hidden>
+    <div class="estudio">
+      <div class="txt">
+        <div class="rol">Pantalla 02</div>
+        <h3>Una cuenta antes de gastar</h3>
+        <p>Probar abre un solo diálogo: las cinco etapas en orden, lo que cuesta cada una y un tope para todo. Dice dónde se frena, y el juez, el modelo y la versión, una vez.</p>
+        <p class="nota">Hoy cada paso pagado abre su propio diálogo con su propio tope.</p>
+      </div>
+      <div class="escena">
+        <div class="mkw">
+          <div class="mk angosta">
+            <div class="mk-chrome"><i class="b"></i><i class="b"></i><i class="b"></i>
+              <div class="mk-url">localhost:7800/problemas/PRB-fbaeac6f</div></div>
+            <div class="capa">
+              <div class="mk-app" data-nav="none">
+                <div class="mk-main">
+                  <div class="mk-head">
+                    <div class="ui-grow"><h4>Mini-teoría no muy precisa</h4><div class="sub">PRB-fbaeac6f · juez de miniteoría · 2 casos</div></div>
+                    <span class="ui-chip info">En trabajo</span>
+                  </div>
+                  <div class="mk-body">
+                    <div class="pb">
+                      <div class="pb-top"><div class="ui-grow"><h5>Probar la solución</h5><div class="s">Hasta 22 consultas · unos 12 min</div></div><span class="ui-btn pb-go"><svg class="ico sm"><use href="#i-play"/></svg>Probar</span></div>
+                      <div class="etapas">
+                        <div class="et"><b>Contrastes</b><span>12 casos · 1</span></div>
+                        <div class="et"><b>Examen fijo</b><span>40 quizzes · 20</span></div>
+                        <div class="et"><b>Medir</b><span>gratis</span></div>
+                        <div class="et"><b>Registrar</b><span>gratis</span></div>
+                        <div class="et"><b>Reanalizar</b><span>2 propuestas · 1</span></div>
+                      </div>
+                    </div>
+                    <div class="sk"></div><div class="sk w40"></div><div class="sk"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="velo"></div>
+              <div class="ui-modal">
+                <div class="mt">Probar la solución</div>
+                <p data-f="d-2-4">Corre todo en orden. Lo que ya se hizo con esta versión del juez no se vuelve a pagar.</p>
+                <div class="cuenta" data-f="d-2-1">
+                  <div><span class="n">1</span><span><b>Contrastes del problema</b> · 12 casos</span><span class="c">1 consulta</span></div>
+                  <div class="freno" data-f="d-2-2"><svg class="ico xs"><use href="#i-alert"/></svg>Si acá el juez cambia un veredicto, se frena</div>
+                  <div><span class="n">2</span><span><b>Examen fijo</b> · 40 quizzes, 20 temas</span><span class="c">20</span></div>
+                  <div><span class="n">3</span><span><b>Medir contra el oro</b></span><span class="c cero">gratis</span></div>
+                  <div><span class="n">4</span><span><b>Registrar el examen</b></span><span class="c cero">gratis</span></div>
+                  <div><span class="n">5</span><span><b>Reanalizar</b> las 2 propuestas</span><span class="c">1</span></div>
+                  <div class="tot"><span></span><span><b>Tope</b> · unos 12 minutos</span><span class="c">22 consultas</span></div>
+                </div>
+                <div class="quien" data-f="d-2-3"><svg class="ico xs"><use href="#i-shield"/></svg>Juez de miniteoría · <b>codex-cli · gpt-6.1-sol</b> · esfuerzo medio · versión 33e026fa</div>
+                <div class="pie-d"><span class="ui-btn gh">Cancelar</span><span class="ui-btn" data-ir="p-3"><svg class="ico sm"><use href="#i-play"/></svg>Probar · 22 consultas</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="pie-mk">Costos y tiempos de las corridas del 13/10: contrastes en 32 s, examen fijo en 11 min.</p>
+      </div>
+      <div class="funcs">
+        <h4 class="funcs-h">Las funciones</h4>
+        <details class="det" id="d-2-1" open>
+          <summary><span class="fn">01</span><h3>Un tope para todo</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>la cuenta del diálogo</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="cuenta">
+                <div><span class="n">2</span><span><b>Examen fijo</b> · 40 quizzes, 20 temas</span><span class="c">20</span></div>
+                <div><span class="n">3</span><span><b>Medir contra el oro</b></span><span class="c cero">gratis</span></div>
+                <div class="tot"><span></span><span><b>Tope</b> · unos 12 minutos</span><span class="c">22 consultas</span></div>
+              </div>
+            </div>
+            <p>Las consultas de las cinco etapas, sumadas. El tope vale para todas juntas: si el examen fijo usa menos, sobra para reanalizar. Medir y registrar no consultan al modelo.</p>
+          </div>
+        </details>
+        <details class="det" id="d-2-2">
+          <summary><span class="fn">02</span><h3>Dónde se frena</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>entre los contrastes y el examen fijo</b></div>
+            <div class="zoom"><div class="zoom-l">Los dos casos</div>
+              <div class="pleg"><svg class="ico sm"><use href="#i-check-circle"/></svg><span class="ui-grow">Contrastes: <b>12 de 12</b> con el veredicto esperado → sigue al examen fijo</span></div>
+              <div class="pleg"><svg class="ico sm"><use href="#i-alert"/></svg><span class="ui-grow">Un contraste con otro veredicto → <b>se frena</b> y ahorra 20 consultas</span></div>
+            </div>
+            <p>Los contrastes cuestan 1 consulta y el examen fijo 20. Si el juez erra el veredicto en los casos del problema, no tiene sentido pagar el examen. Una regla escrita distinto no frena.</p>
+          </div>
+        </details>
+        <details class="det" id="d-2-3">
+          <summary><span class="fn">03</span><h3>Con qué juez, una vez</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>debajo de la cuenta</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="quien"><svg class="ico xs"><use href="#i-shield"/></svg>Juez de miniteoría · <b>codex-cli · gpt-6.1-sol</b> · esfuerzo medio · versión 33e026fa</div>
+            </div>
+            <p>Proveedor, modelo, esfuerzo y versión del juez, una sola vez. Si la versión cambia en el medio, lo dice antes de empezar y no mezcla resultados de dos versiones.</p>
+          </div>
+        </details>
+        <details class="det" id="d-2-4">
+          <summary><span class="fn">04</span><h3>Lo hecho no se paga dos veces</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>la cuenta, tachado</b></div>
+            <div class="zoom"><div class="zoom-l">Si los contrastes ya corrieron</div>
+              <div class="cuenta">
+                <div class="ya"><span class="n">1</span><span><b>Contrastes del problema</b> · ya medidos con esta versión</span><span class="c cero">0</span></div>
+                <div><span class="n">2</span><span><b>Examen fijo</b> · 40 quizzes, 20 temas</span><span class="c">20</span></div>
+                <div class="tot"><span></span><span><b>Tope</b> · unos 11 minutos</span><span class="c">21 consultas</span></div>
+              </div>
+            </div>
+            <p>Si una etapa ya corrió con la misma versión del juez y el mismo oro, se reusa y no cuenta para el tope. El tablero ya guarda cada corrida; acá se ve en la cuenta.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── 03 · MIENTRAS CORRE ─────────── -->
+  <section class="pantalla" id="p-3" role="tabpanel" aria-labelledby="t-3" hidden>
+    <div class="estudio">
+      <div class="txt">
+        <div class="rol">Pantalla 03</div>
+        <h3>Mientras corre, en qué va</h3>
+        <p>La tira de etapas se llena sola: las hechas, la que corre con su avance y las que esperan. Debajo, lo gastado contra el tope. Arriba, Frenar. La página se puede cerrar.</p>
+        <p class="nota">El primer intento del examen fijo se cortó (código 143): hubo que notarlo y repetirlo a mano.</p>
+      </div>
+      <div class="escena">
+        <div class="mkw">
+          <div class="mk angosta">
+            <div class="mk-chrome"><i class="b"></i><i class="b"></i><i class="b"></i>
+              <div class="mk-url">localhost:7800/problemas/PRB-fbaeac6f</div></div>
+            <div class="mk-app" data-nav="none">
+              <div class="mk-main">
+                <div class="mk-head">
+                  <div class="ui-grow"><h4>Mini-teoría no muy precisa</h4><div class="sub">PRB-fbaeac6f · juez de miniteoría · 2 casos</div></div>
+                  <span class="ui-chip warn">Probando</span>
+                </div>
+                <div class="mk-body">
+                  <div class="pb">
+                    <div class="pb-top">
+                      <div class="ui-grow"><h5>Probando la solución</h5><div class="s">Lleva 6 min · faltan unos 6</div></div>
+                      <span class="ui-btn gh" data-f="d-3-4"><svg class="ico sm"><use href="#i-pause"/></svg>Frenar</span>
+                    </div>
+                    <div class="etapas" data-f="d-3-1">
+                      <div class="et hecha"><b>Contrastes</b><span>12 de 12 · 32 s</span></div>
+                      <div class="et va"><b>Examen fijo</b><span>11 de 20 temas</span><div class="ui-bar"><i style="width:55%"></i></div></div>
+                      <div class="et espera"><b>Medir</b><span>espera</span></div>
+                      <div class="et espera"><b>Registrar</b><span>espera</span></div>
+                      <div class="et espera"><b>Reanalizar</b><span>espera</span></div>
+                    </div>
+                    <div class="gasto" data-f="d-3-2"><span>Consultas</span><div class="ui-grow"><div class="ui-bar"><i style="width:55%"></i></div></div><span><b>12</b> de 22</span></div>
+                  </div>
+                  <div class="ui-alert info"><svg class="ico sm"><use href="#i-info"/></svg><span>Contrastes: el veredicto esperado en los 12. Hay 4 con la regla escrita distinto; se ven al terminar.</span></div>
+                  <div class="ui-flex" data-f="d-3-3"><span class="ui-toast"><svg class="ico sm"><use href="#i-bell"/></svg>Podés cerrar la página: te aviso al terminar</span></div>
+                  <span class="lk" data-ir="p-4">Ver el resultado<svg class="ico xs"><use href="#i-arrow-right"/></svg></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="pie-mk">Momento dibujado a mitad del examen fijo; los 32 s y el código 143 son de las corridas reales.</p>
+      </div>
+      <div class="funcs">
+        <h4 class="funcs-h">Las funciones</h4>
+        <details class="det" id="d-3-1" open>
+          <summary><span class="fn">01</span><h3>En qué va cada etapa</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>la tira, debajo del título</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="etapas">
+                <div class="et hecha"><b>Contrastes</b><span>12 de 12 · 32 s</span></div>
+                <div class="et va"><b>Examen fijo</b><span>11 de 20 temas</span><div class="ui-bar"><i style="width:55%"></i></div></div>
+                <div class="et espera"><b>Medir</b><span>espera</span></div>
+                <div class="et espera"><b>Registrar</b><span>espera</span></div>
+                <div class="et espera"><b>Reanalizar</b><span>espera</span></div>
+              </div>
+            </div>
+            <p>Cada etapa dice lo suyo: la hecha, con su resultado corto; la que corre, con su avance en temas; las demás, esperando. Es la misma tira de la ficha, ahora viva.</p>
+          </div>
+        </details>
+        <details class="det" id="d-3-2">
+          <summary><span class="fn">02</span><h3>Lo gastado contra el tope</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>debajo de la tira</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="gasto"><span>Consultas</span><div class="ui-grow"><div class="ui-bar"><i style="width:55%"></i></div></div><span><b>12</b> de 22</span></div>
+            </div>
+            <p>Las consultas usadas sobre el tope que aceptaste. Si se llega al tope antes de terminar, se frena con lo juzgado y lo dice; no sigue gastando.</p>
+          </div>
+        </details>
+        <details class="det" id="d-3-3">
+          <summary><span class="fn">03</span><h3>Si se corta, Seguir</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>la etapa que se cortó</b></div>
+            <div class="zoom"><div class="zoom-l">Si el proceso se cae</div>
+              <div class="ui-flex">
+                <div class="et corta"><b>Examen fijo</b><span>se cortó · código 143</span></div>
+                <span class="ui-btn">Seguir · desde el examen fijo</span>
+              </div>
+            </div>
+            <p>Corre en el servidor: cerrar la página no lo corta. Si el proceso se cae, la etapa queda marcada y el botón pasa a Seguir, que retoma ahí sin repagar lo hecho.</p>
+          </div>
+        </details>
+        <details class="det" id="d-3-4">
+          <summary><span class="fn">04</span><h3>Frenar</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el lugar de Probar, mientras corre</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="ui-flex"><span class="ui-btn gh"><svg class="ico sm"><use href="#i-pause"/></svg>Frenar</span><span class="ui-s">Termina el tema en curso y guarda</span></div>
+            </div>
+            <p>Corta después del tema en curso y guarda lo juzgado. Lo consultado ya está gastado; lo que falta queda para Seguir.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── 04 · EL RESULTADO ─────────── -->
+  <section class="pantalla" id="p-4" role="tabpanel" aria-labelledby="t-4" hidden>
+    <div class="estudio">
+      <div class="txt">
+        <div class="rol">Pantalla 04</div>
+        <h3>El resultado, en palabras</h3>
+        <p>Arriba, si pasó y qué lo frena. Debajo, las dos vallas y las diferencias por gravedad: primero las que cambian el veredicto, al final las que parecen de la evaluación. Lo que dio bien, plegado.</p>
+        <p class="nota">Datos reales de las corridas del 13/10: 52 casos, 46 dieron lo esperado.</p>
+      </div>
+      <div class="escena">
+        <div class="mkw">
+          <div class="mk angosta">
+            <div class="mk-chrome"><i class="b"></i><i class="b"></i><i class="b"></i>
+              <div class="mk-url">localhost:7800/problemas/PRB-fbaeac6f</div></div>
+            <div class="mk-app" data-nav="none">
+              <div class="mk-main">
+                <div class="mk-head">
+                  <div class="ui-grow"><h4>Mini-teoría no muy precisa</h4><div class="sub">PRB-fbaeac6f · probado hoy · 21 de 22 consultas</div></div>
+                  <span class="ui-chip warn">No pasó</span>
+                </div>
+                <div class="mk-body">
+                  <div class="res-h" data-f="d-4-1">
+                    <div class="t">No pasó, y lo que lo frena parece de la evaluación</div>
+                    <div class="s">El juez dio el veredicto esperado en 51 de 52. Frenan 4 contrastes que dicen lo mismo con la regla escrita distinto.</div>
+                    <div class="barra52"><i class="b-ok" style="flex:46"></i><i class="b-mal" style="flex:2"></i><i class="b-dud" style="flex:4"></i></div>
+                    <div class="ley"><span><i class="b-ok"></i>46 dieron lo esperado</span><span><i class="b-mal"></i>2 no</span><span><i class="b-dud"></i>4 parecen de la evaluación</span></div>
+                  </div>
+                  <div class="vallas" data-f="d-4-2">
+                    <div class="valla frena"><span class="k">Contrastes · tienen que dar todos <span class="sen">frena</span></span><span class="v">8 <small>de 12</small></span><span class="d">Los 4 que faltan parecen de la evaluación.</span></div>
+                    <div class="valla"><span class="k">Examen fijo · mínimo 36 <span class="sen verde">alcanza</span></span><span class="v">38 <small>de 40</small></span><span class="d">Usa el único falso positivo permitido.</span></div>
+                  </div>
+
+                  <div class="grupo-h bad" data-f="d-4-3"><svg class="ico sm"><use href="#i-x-circle"/></svg><span class="ui-grow">Cambió el veredicto</span><span class="cnt">1</span></div>
+                  <div class="dif mal">
+                    <div class="dif-h"><span class="q">I painted the wall and I like the color.<small>Examen fijo · B2 · present perfect para resultados</small></span><span class="sen gris">no frena</span></div>
+                    <div class="dif-g">
+                      <div><span class="k">Se esperaba</span><span class="v pasa"><svg class="ico"><use href="#i-check-circle"/></svg>Está bien</span><span class="x">La opinión de después no activa el present perfect.</span></div>
+                      <div><span class="k">Dio el juez</span><span class="v falla"><svg class="ico"><use href="#i-x-circle"/></svg>Exagera el alcance <span class="grav">media</span></span><span class="x">El alumno podría creer que una opinión impide unir acción y resultado.</span></div>
+                    </div>
+                    <div class="dif-s"><span class="ui-grow"></span><span class="lk">Ver de cerca<svg class="ico xs"><use href="#i-arrow-right"/></svg></span></div>
+                  </div>
+
+                  <div class="grupo-h warn"><svg class="ico sm"><use href="#i-alert"/></svg><span class="ui-grow">Mismo veredicto, otro motivo</span><span class="cnt">1</span></div>
+                  <div class="dif mal">
+                    <div class="dif-h"><span class="q">Does he know the guy?<small>Examen fijo · A1 · present simple, práctica mixta</small></span><span class="sen gris">no frena</span></div>
+                    <div class="dif-g">
+                      <div><span class="k">Se esperaba</span><span class="v falla"><svg class="ico"><use href="#i-x-circle"/></svg>No alcanza para resolver <span class="grav">alta</span></span></div>
+                      <div><span class="k">Dio el juez</span><span class="v falla"><svg class="ico"><use href="#i-x-circle"/></svg>Trae otro subtema <span class="grav">baja</span></span></div>
+                    </div>
+                    <div class="dif-s"><span class="sen"><svg class="ico"><use href="#i-refresh"/></svg>El oro cambió: antes decía lo mismo que el juez</span><span class="ui-grow"></span><span class="lk" data-ir="p-5">Ver de cerca<svg class="ico xs"><use href="#i-arrow-right"/></svg></span></div>
+                  </div>
+
+                  <div class="grupo-h warn"><svg class="ico sm"><use href="#i-eye"/></svg><span class="ui-grow">Puede que la evaluación esté mal</span><span class="cnt">4</span></div>
+                  <div class="dif dud" data-f="d-4-4">
+                    <div class="dif-h"><span class="q">Misma respuesta, la regla escrita distinto · ×4<small>Contrastes · She ___ English. · They ___ very short. · y 2 del agente</small></span><span class="sen">frena</span></div>
+                    <div class="dif-g">
+                      <div><span class="k">Se esperaba</span><span class="v falla"><svg class="ico"><use href="#i-x-circle"/></svg>Exagera el alcance <span class="grav">media</span></span><span class="x"><span class="esc">OVERSTATED_FOR_QUIZ</span></span></div>
+                      <div><span class="k">Dio el juez</span><span class="v falla"><svg class="ico"><use href="#i-x-circle"/></svg>Exagera el alcance <span class="grav">media</span></span><span class="x"><span class="esc">overstated-for-quiz</span></span></div>
+                    </div>
+                    <div class="dif-s"><span class="sen"><svg class="ico"><use href="#i-eye"/></svg>Escrito distinto</span><span class="sen gris">2 de 4 con oro del agente</span><span class="ui-grow"></span><span class="ui-btn sm">Son iguales: medir de nuevo</span></div>
+                  </div>
+
+                  <div class="pleg" data-f="d-4-5"><svg class="ico sm"><use href="#i-check-circle"/></svg><span class="ui-grow">Dieron lo esperado · 46</span><svg class="ico sm"><use href="#i-chev-down"/></svg></div>
+                  <div class="decide" data-f="d-4-6"><span class="por"><b>Seguir</b> espera a que decidas los 4 de arriba. Medir de nuevo no consulta.</span><span class="ui-btn apag">Seguir · 1 consulta</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="pie-mk">Contrastes 8/12 y examen fijo 38/40 de las corridas 3e712a78 y 2c0b7f9d; mínimo y permitidos, del oro del examen.</p>
+      </div>
+      <div class="funcs">
+        <h4 class="funcs-h">Las funciones</h4>
+        <details class="det" id="d-4-1" open>
+          <summary><span class="fn">01</span><h3>El titular</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>arriba de todo</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="res-h">
+                <div class="t">No pasó, y lo que lo frena parece de la evaluación</div>
+                <div class="barra52"><i class="b-ok" style="flex:46"></i><i class="b-mal" style="flex:2"></i><i class="b-dud" style="flex:4"></i></div>
+                <div class="ley"><span><i class="b-ok"></i>46</span><span><i class="b-mal"></i>2</span><span><i class="b-dud"></i>4</span></div>
+              </div>
+            </div>
+            <p>Una frase con la respuesta: pasó o no, y qué lo frena. La barra cuenta los 52 casos: los que dieron lo esperado, los que no y los que parecen de la evaluación.</p>
+          </div>
+        </details>
+        <details class="det" id="d-4-2">
+          <summary><span class="fn">02</span><h3>Las dos vallas</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>debajo del titular</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="vallas">
+                <div class="valla frena"><span class="k">Contrastes <span class="sen">frena</span></span><span class="v">8 <small>de 12</small></span><span class="d">Tienen que dar todos.</span></div>
+                <div class="valla"><span class="k">Examen fijo <span class="sen verde">alcanza</span></span><span class="v">38 <small>de 40</small></span><span class="d">Mínimo 36.</span></div>
+              </div>
+            </div>
+            <p>Los contrastes tienen que dar todos; el examen fijo pide 36 y admite un solo falso positivo. Cada valla dice si frena y por qué, en vez de «Hay diferencias con el oro».</p>
+          </div>
+        </details>
+        <details class="det" id="d-4-3">
+          <summary><span class="fn">03</span><h3>En orden de gravedad</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>la lista, debajo de las vallas</b></div>
+            <div class="zoom"><div class="zoom-l">El orden</div>
+              <div class="ord">
+                <div><span class="n bad">1</span><span><b>Cambió el veredicto</b>Esperaba que pase y falló, o al revés.</span></div>
+                <div><span class="n warn">2</span><span><b>Mismo veredicto, otro motivo</b>Falla, pero por otra regla o con otra gravedad.</span></div>
+                <div><span class="n amb">3</span><span><b>Puede que la evaluación esté mal</b>Hay una señal de que el oro o la comparación fallan.</span></div>
+              </div>
+            </div>
+            <p>Primero lo que cambia el veredicto, que es lo que más daño hace en el curso; al final lo que parece de la evaluación. Dentro de cada grupo, lo que frena va arriba.</p>
+          </div>
+        </details>
+        <details class="det" id="d-4-4">
+          <summary><span class="fn">04</span><h3>Lo que parece de la evaluación</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el grupo ámbar, agrupado</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="dif dud">
+                <div class="dif-h"><span class="q">Misma respuesta, la regla escrita distinto · ×4</span><span class="sen">frena</span></div>
+                <div class="dif-g">
+                  <div><span class="k">Se esperaba</span><span class="v falla">Exagera el alcance <span class="grav">media</span></span><span class="x"><span class="esc">OVERSTATED_FOR_QUIZ</span></span></div>
+                  <div><span class="k">Dio el juez</span><span class="v falla">Exagera el alcance <span class="grav">media</span></span><span class="x"><span class="esc">overstated-for-quiz</span></span></div>
+                </div>
+              </div>
+            </div>
+            <p>Si varias diferencias tienen la misma causa, van juntas. Acá, mismo veredicto y gravedad, con la regla en mayúsculas en el oro. «Son iguales» las da por buenas y vuelve a medir, sin consultar.</p>
+          </div>
+        </details>
+        <details class="det" id="d-4-5">
+          <summary><span class="fn">05</span><h3>Lo que dio bien, plegado</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el final de la lista</b></div>
+            <div class="zoom"><div class="zoom-l">Abierto</div>
+              <div class="pleg"><svg class="ico sm"><use href="#i-check-circle"/></svg><span class="ui-grow">Dieron lo esperado · 46</span><svg class="ico sm"><use href="#i-chev-up"/></svg></div>
+              <div>
+                <div class="ui-row"><div class="ui-grow"><div class="ui-t">She is a teacher.</div><div class="ui-s">Contraste · se esperaba Está bien · dio Está bien</div></div></div>
+                <div class="ui-row"><div class="ui-grow"><div class="ui-t">Regla falsa · 5 de 5</div><div class="ui-s">Examen fijo · todos con el motivo y la gravedad esperados</div></div></div>
+              </div>
+            </div>
+            <p>Los 46 que coinciden quedan plegados y, abiertos, se leen con el mismo formato. Sirven para mirar un acierto que no te convence.</p>
+          </div>
+        </details>
+        <details class="det" id="d-4-6">
+          <summary><span class="fn">06</span><h3>El botón, con su motivo</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el pie del resultado</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="decide"><span class="por"><b>Seguir</b> espera a que decidas los 4 de arriba.</span><span class="ui-btn apag">Seguir · 1 consulta</span></div>
+            </div>
+            <p>Si el botón no se puede usar, dice por qué. Al decidir los 4 se mide de nuevo solo; si pasa, Seguir registra y reanaliza con la consulta que quedó.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── 05 · UN CASO DE CERCA ─────────── -->
+  <section class="pantalla" id="p-5" role="tabpanel" aria-labelledby="t-5" hidden>
+    <div class="estudio">
+      <div class="txt">
+        <div class="rol">Pantalla 05</div>
+        <h3>Un caso de cerca: ¿quién tiene razón?</h3>
+        <p>Tres renglones: qué se evaluó, qué se esperaba y qué dio el juez, cada uno con su porqué. Debajo, las señales de que el oro puede estar mal, y tres botones para decidir.</p>
+        <p class="nota">Este oro cambió de etiqueta en la v4; la v2 y la v3 decían lo mismo que el juez.</p>
+      </div>
+      <div class="escena">
+        <div class="mkw">
+          <div class="mk angosta">
+            <div class="mk-chrome"><i class="b"></i><i class="b"></i><i class="b"></i>
+              <div class="mk-url">localhost:7800/problemas/PRB-fbaeac6f/resultado/25bf</div></div>
+            <div class="mk-app" data-nav="none">
+              <div class="mk-main">
+                <div class="mk-head">
+                  <div class="ui-grow"><h4>Does he know the guy?</h4><div class="sub">Examen fijo · mismo veredicto, otro motivo · no frena</div></div>
+                  <span class="ui-btn gh sm" data-ir="p-4"><svg class="ico xs"><use href="#i-arrow-left"/></svg>Resultado</span>
+                </div>
+                <div class="mk-body">
+                  <div class="caso">
+                    <div class="caso-f" data-f="d-5-1"><span class="l">Qué se evaluó</span><div class="c">
+                      <div class="ej">Does he know the guy?</div>
+                      <div class="mini">Con he, she, it el verbo lleva <span class="en">-s</span>. Para negar y preguntar, <span class="en">do</span> / <span class="en">does</span> y verbo base.</div>
+                      <div class="meta">A1 · present simple, práctica mixta · la miniteoría</div>
+                    </div></div>
+                    <div class="caso-f" data-f="d-5-2"><span class="l">Qué se esperaba</span><div class="c">
+                      <div class="ver-v falla"><svg class="ico"><use href="#i-x-circle"/></svg>No alcanza para resolver el quiz <span class="grav">alta</span></div>
+                      <div class="porque"><span class="w">Por qué</span>El hueco pide armar <i>Does he know</i>: la tarjeta da do / does y verbo base, pero no une he con does ni explica el orden de la pregunta.</div>
+                    </div></div>
+                    <div class="caso-f dio" data-f="d-5-2"><span class="l">Qué dio</span><div class="c">
+                      <div class="ver-v falla"><svg class="ico"><use href="#i-x-circle"/></svg>Trae contenido de otro subtema <span class="grav">baja</span></div>
+                      <div class="porque"><span class="w">El juez</span>Explica auxiliar y verbo base para la pregunta, pero agrega otras polaridades.</div>
+                      <div class="meta">codex-cli · gpt-6.1-sol · versión 33e026fa</div>
+                    </div></div>
+                  </div>
+                  <div class="senal" data-f="d-5-3">
+                    <div class="t"><svg class="ico sm"><use href="#i-refresh"/></svg>El oro cambió de etiqueta</div>
+                    <div class="hist">
+                      <div><span class="vv">v2</span><span>Trae contenido de otro subtema</span><span class="igual">= juez</span></div>
+                      <div><span class="vv">v3</span><span>Trae contenido de otro subtema</span><span class="igual">= juez</span></div>
+                      <div><span class="vv">v4</span><span>No alcanza para resolver el quiz</span><span class="ahora">oro de hoy</span></div>
+                    </div>
+                    <p>Dos revisiones anteriores coincidían con el juez.</p>
+                  </div>
+                  <div class="razon" data-f="d-5-4">
+                    <span class="ui-btn" data-ir="p-4">El juez tiene razón</span>
+                    <span class="ui-btn gh">El oro tiene razón</span>
+                    <span class="ui-btn gh">Dudoso: que no puntúe</span>
+                  </div>
+                  <div class="pleg" data-f="d-5-5"><svg class="ico sm"><use href="#i-code"/></svg><span class="ui-grow">Ver el dato crudo</span><svg class="ico sm"><use href="#i-chev-right"/></svg></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="pie-mk">Quiz 67fab6d5…25bf del examen fijo: oro, historial de etiquetas y explicación del juez, tal cual están.</p>
+      </div>
+      <div class="funcs">
+        <h4 class="funcs-h">Las funciones</h4>
+        <details class="det" id="d-5-1" open>
+          <summary><span class="fn">01</span><h3>Qué se evaluó</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el primer renglón</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="ej">Does he know the guy?</div>
+              <div class="mini">Con he, she, it el verbo lleva <span class="en">-s</span>. Para negar y preguntar, <span class="en">do</span> / <span class="en">does</span> y verbo base.</div>
+            </div>
+            <p>El ejercicio y la miniteoría que juzgó el juez, con el inglés marcado. Nivel y tema, para ubicarlo.</p>
+          </div>
+        </details>
+        <details class="det" id="d-5-2">
+          <summary><span class="fn">02</span><h3>Qué se esperaba y qué dio</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el segundo y el tercer renglón</b></div>
+            <div class="zoom"><div class="zoom-l">Las reglas, con nombre</div>
+              <table class="ui-tbl">
+                <tr><th>El juez escribe</th><th>Se lee</th></tr>
+                <tr><td><span class="esc">false-rule</span></td><td>Regla falsa</td></tr>
+                <tr><td><span class="esc">insufficient-for-quiz</span></td><td>No alcanza para resolver el quiz</td></tr>
+                <tr><td><span class="esc">overstated-for-quiz</span></td><td>Exagera el alcance</td></tr>
+                <tr><td><span class="esc">other-subtopic-content</span></td><td>Trae contenido de otro subtema</td></tr>
+              </table>
+            </div>
+            <p>Cada veredicto en palabras: pasa o falla, el motivo con su nombre en castellano y la gravedad. Debajo, el porqué del oro y la explicación del juez: se comparan razones, no claves.</p>
+          </div>
+        </details>
+        <details class="det" id="d-5-3">
+          <summary><span class="fn">03</span><h3>Las señales</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el recuadro ámbar</b></div>
+            <div class="zoom"><div class="zoom-l">Las cuatro que hay</div>
+              <div class="sens">
+                <div><span class="sen"><svg class="ico"><use href="#i-refresh"/></svg>El oro cambió</span><span>antes decía lo mismo que el juez</span></div>
+                <div><span class="sen"><svg class="ico"><use href="#i-sparkles"/></svg>Oro del agente</span><span>lo escribió el agente y nadie lo revisó</span></div>
+                <div><span class="sen"><svg class="ico"><use href="#i-eye"/></svg>Escrito distinto</span><span>mismo veredicto, regla con otra forma</span></div>
+                <div><span class="sen"><svg class="ico"><use href="#i-help"/></svg>Ya fue dudoso</span><span>una revisión lo marcó dudoso</span></div>
+              </div>
+            </div>
+            <p>Salen de datos que ya existen: el historial de etiquetas del oro, quién escribió el caso y si alguna vez fue dudoso. No dicen quién tiene razón; dicen dónde mirar.</p>
+          </div>
+        </details>
+        <details class="det" id="d-5-4">
+          <summary><span class="fn">04</span><h3>Quién tiene razón</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>los tres botones de abajo</b></div>
+            <div class="zoom"><div class="zoom-l">Así se ve</div>
+              <div class="razon"><span class="ui-btn">El juez tiene razón</span><span class="ui-btn gh">El oro tiene razón</span><span class="ui-btn gh">Dudoso: que no puntúe</span></div>
+            </div>
+            <p>El juez tiene razón: el oro se reetiqueta, con nota. El oro tiene razón: queda como diferencia real. Dudoso: deja de puntuar. Cada decisión vuelve a medir sola, sin consultar.</p>
+          </div>
+        </details>
+        <details class="det" id="d-5-5">
+          <summary><span class="fn">05</span><h3>El dato crudo, si hace falta</h3><svg class="ico sm chev"><use href="#i-chev-down"/></svg></summary>
+          <div class="det-c">
+            <div class="donde">Vive en <b>el pie, plegado</b></div>
+            <div class="zoom"><div class="zoom-l">Abierto</div>
+<pre class="cmd">{ "esperado":  { "resultado": "FAILS", "gravedad": "HIGH",
+                 "reglas": ["insufficient-for-quiz"] },
+  "observado": { "resultado": "FAILS", "gravedad": "LOW",
+                 "reglas": ["other-subtopic-content"] } }</pre>
+            </div>
+            <p>El JSON sigue estando, para el día que haga falta. Ya no es lo primero que se ve.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</div></div>
+
+<!-- ═══════════ CIERRE ═══════════ -->
+<section class="cierre"><div class="wrap">
+  <h2 class="ed-h">Qué falta definir</h2>
+  <div class="abiertos">
+    <div class="ab"><span class="est">hallazgo</span><h4>El juez de este problema acertó los 12 contrastes</h4><p>Las 4 «diferencias» son de escritura, y el examen fijo ya cumple con 38 de 40.</p>
+      <div class="rec"><b>Recomiendo:</b> arreglar la comparación y medir de nuevo; con los datos de hoy, aprueba sin consultar.</div></div>
+    <div class="ab"><span class="est dec">a decidir</span><h4>¿Normalizar los nombres de las reglas al medir?</h4><p>Hoy <span class="esc">OVERSTATED_FOR_QUIZ</span> y <span class="esc">overstated-for-quiz</span> cuentan distinto y frenan la aprobación.</p>
+      <div class="rec"><b>Recomiendo:</b> sí, y que el agente escriba el oro con la forma del juez.</div></div>
+    <div class="ab"><span class="est dec">a decidir</span><h4>¿Frenar antes del examen fijo si fallan los contrastes?</h4><p>Ahorra 20 consultas cuando el juez ya erró en los casos del problema.</p>
+      <div class="rec"><b>Recomiendo:</b> frenar sólo por un veredicto distinto; la escritura no frena.</div></div>
+    <div class="ab"><span class="est dec">a decidir</span><h4>¿Quién puede cambiar el oro del examen fijo?</h4><p>Es la vara de todos los jueces: tocarlo a la ligera vuelve inútil la medición.</p>
+      <div class="rec"><b>Recomiendo:</b> en el fijo, reetiquetar con nota o marcar dudoso; el oro del agente, libre.</div></div>
+    <div class="ab"><span class="est dec">a decidir</span><h4>¿Reanalizar entra en el mismo botón?</h4><p>Necesita el examen aprobado y cuesta 1 consulta; hoy es un paso aparte.</p>
+      <div class="rec"><b>Recomiendo:</b> sí, al final y dentro del mismo tope.</div></div>
+    <div class="ab"><span class="est dec">a decidir</span><h4>¿Marcar resuelto exige un control Está bien?</h4><p>Hoy el paso existe pero no frena, y la entrega dice que no hay ninguno.</p>
+      <div class="rec"><b>Recomiendo:</b> Probar no lo exige; marcar resuelto sí, elegido por vos.</div></div>
+  </div>
+  <footer>
+    <span>Probar la solución · propuesta v1</span>
+    <span>Actualizado 13/10/2026</span>
+  </footer>
+</div></section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     LA FICHA · la lee scripts/push-propuesta.mjs al mandar esto al Taller.
+     No se renderiza. `slug` es la identidad y tiene que ser único entre TODOS
+     los proyectos, no sólo dentro de éste. Lo que no esté, no se escribe:
+     una propuesta interna va sin `modelo` ni `precio`.
+     ══════════════════════════════════════════════════════════════════════ -->
+<script type="application/json" id="taller-ficha">
+{
+  "v": 1,
+  "slug": "learney-probar-la-solucion",
+  "cliente": "Learney",
+  "alcance": "Probar un problema con un solo botón",
+  "detalle": "La ficha de un problema reemplaza los siete pasos por un botón que corre contrastes, examen fijo, medición, registro y reanálisis con un solo tope, y muestra cada diferencia en palabras —qué se evaluó, qué se esperaba y qué dio—, ordenada por gravedad y con señales cuando la que parece equivocada es la evaluación.",
+  "estado": "borrador",
+  "responsable": "José",
+  "origen": "Pedido de José en Claude Code (13/10/2026)"
+}
+</script>
+
+<script>
+(function(){
+  /* ── tema: el toggle manda sobre la preferencia del sistema ── */
+  var root = document.documentElement, K = 'propuesta-tema';
+  try{ var g = localStorage.getItem(K); if(g) root.setAttribute('data-tema', g); }catch(e){}
+  document.querySelector('.tema').addEventListener('click', function(){
+    var oscuro = root.getAttribute('data-tema')
+      ? root.getAttribute('data-tema') === 'oscuro'
+      : matchMedia('(prefers-color-scheme: dark)').matches;
+    var nuevo = oscuro ? 'claro' : 'oscuro';
+    root.setAttribute('data-tema', nuevo);
+    try{ localStorage.setItem(K, nuevo); }catch(e){}
+  });
+
+  /* ═══════════ NAVEGACIÓN · etapas › vistas › pantallas › funciones ═══════════
+     Todo pasa por ir(id): muestra lo que haga falta —la etapa, la vista, la pantalla,
+     la función abierta— y lleva la página hasta ahí. Lo usan las pestañas, las flechas,
+     el teclado (← →), el #hash de la URL y cualquier data-ir del documento.
+     Las barras de etapas (.nav-e) y de vistas (.nav-p) son opcionales: si no están,
+     esto anda igual. No hace falta tocarlo para armar una propuesta. */
+  function todos(s, en){ return [].slice.call((en || document).querySelectorAll(s)); }
+  var etb = todos('.nav-e button'), eps = todos('.ep');
+  var navb = todos('.nav-p button'), vps = todos('.vp');
+  var barraE = document.querySelector('.nav-e'), barraV = document.querySelector('.nav-p');
+  var quieto = matchMedia('(prefers-reduced-motion: reduce)'), ancho = matchMedia('(min-width: 901px)');
+  var PEG = 0;
+
+  function claveDe(el, botones, attr){
+    for(var i = 0; i < botones.length; i++){ var k = botones[i].dataset[attr]; if(k && el.classList.contains(k)) return k; }
+    return null;
+  }
+  function irEtapa(k){
+    etb.forEach(function(o){ o.setAttribute('aria-selected', o.dataset.et === k); });
+    eps.forEach(function(p){ p.hidden = !p.classList.contains(k); });
+    navb.forEach(function(b){ if(b.dataset.et) b.hidden = b.dataset.et !== k; });
+    var primero = navb.filter(function(b){ return !b.hidden; })[0];
+    if(primero) irVista(primero.dataset.vp); else medir();
+  }
+  function irVista(k){
+    navb.forEach(function(o){ o.setAttribute('aria-selected', o.dataset.vp === k); });
+    vps.forEach(function(v){ v.hidden = !v.classList.contains(k); });
+    medir();
+  }
+
+  /* ⚠ las pantallas se resuelven POR GRUPO (.pantallas): con dos juegos en el documento,
+     un selector global hace que abrir una de la etapa 1 cierre todas las de la 2. */
+  function grupo(el){ return el.closest('.pantallas') || document.body; }
+  function tabsDe(g){ return todos('.tab', g); }
+  function vecinos(g){
+    var ts = tabsDe(g), i = -1;
+    ts.forEach(function(t, j){ if(t.getAttribute('aria-selected') === 'true') i = j; });
+    return { ant: ts[i - 1] || null, sig: ts[i + 1] || null };
+  }
+  function irPantalla(id){
+    var p = document.getElementById(id), g = grupo(p);
+    tabsDe(g).forEach(function(t){
+      var si = t.getAttribute('aria-controls') === id;
+      t.setAttribute('aria-selected', si);
+      if(si){ var c = t.parentElement, a = t.getBoundingClientRect(), b = c.getBoundingClientRect();
+        if(a.left < b.left || a.right > b.right) c.scrollLeft += a.left - b.left - 24; }
+    });
+    todos('.pantalla', g).forEach(function(o){ o.hidden = (o.id !== id); });
+    var v = vecinos(g);
+    todos('.pasar button', g).forEach(function(b){ b.disabled = !(b.dataset.paso === '-1' ? v.ant : v.sig); });
+    marcar(p); ajustarEscenas();
+  }
+
+  /* ── funciones: acordeón de a una; la abierta se marca en el dibujo ── */
+  function lista(e){ return (e.getAttribute('data-f') || '').split(/\s+/); }
+  function marcar(p){
+    if(!p) return;
+    var abiertas = todos('details.det[open]', p).map(function(d){ return d.id; });
+    todos('[data-f]', p).forEach(function(e){
+      e.classList.toggle('foco', lista(e).some(function(i){ return abiertas.indexOf(i) >= 0; }));
+    });
+  }
+  function abrir(det){
+    var p = det.closest('.pantalla');
+    todos('details.det', p).forEach(function(o){ if(o !== det) o.open = false; });
+    det.open = true; marcar(p);
+  }
+  todos('details.det').forEach(function(d){
+    var s = d.querySelector('summary');
+    s.addEventListener('click', function(e){
+      e.preventDefault();
+      if(d.open){ d.open = false; marcar(d.closest('.pantalla')); }
+      else { abrir(d); anotar(d.id, false); }
+    });
+    function asomar(si){ todos('[data-f]', d.closest('.pantalla')).forEach(function(e){
+      if(lista(e).indexOf(d.id) >= 0) e.classList.toggle('asoma', si); }); }
+    s.addEventListener('mouseenter', function(){ asomar(true); });
+    s.addEventListener('mouseleave', function(){ asomar(false); });
+    d.addEventListener('toggle', function(){ marcar(d.closest('.pantalla')); });
+  });
+
+  /* ── ir(id): el único camino ── */
+  function ir(id, op){
+    op = op || {};
+    var el = id ? document.getElementById(id) : null;
+    if(!el){
+      if(navb.some(function(b){ return b.dataset.vp === id; })){ irEtapaDe(navb, id); irVista(id); anotar(id, op.historial !== false); return true; }
+      if(etb.some(function(b){ return b.dataset.et === id; })){ irEtapa(id); anotar(id, op.historial !== false); window.scrollTo(0, 0); return true; }
+      return false;
+    }
+    var cambio = false;
+    var ep = el.closest('.ep'); if(ep && ep.hidden){ var k = claveDe(ep, etb, 'et'); if(k){ irEtapa(k); cambio = true; } }
+    var vp = el.closest('.vp'); if(vp && vp.hidden){ var v = claveDe(vp, navb, 'vp'); if(v){ irVista(v); cambio = true; } }
+    var p = el.closest('.pantalla'); if(p && p.hidden){ irPantalla(p.id); cambio = true; }
+    var det = el.closest('details.det'); if(det && !det.open) abrir(det);
+    anotar(id, op.historial !== false);
+    llevar(det || el, cambio || op.suave === false);
+    return true;
+  }
+  function irEtapaDe(botones, vpKey){
+    var b = botones.filter(function(x){ return x.dataset.vp === vpKey; })[0];
+    if(b && b.dataset.et && b.hidden) irEtapa(b.dataset.et);
+  }
+  function llevar(el, seco){
+    var r = el.getBoundingClientRect(), pantalla = el.classList.contains('pantalla');
+    if(pantalla){ if(r.top >= PEG - 1 && r.top < innerHeight * .7) return; }
+    else if(r.top >= PEG && r.bottom <= innerHeight) return;
+    var y = r.top + window.scrollY - PEG - (pantalla ? 0 : 16);
+    /* que el dibujo no se vaya: con la función al final de una columna corta, se baja
+       sólo hasta donde la escena sigue entera y pegada (la función igual queda a la vista) */
+    var est = !pantalla && ancho.matches && el.closest('.estudio'), esc = est && est.querySelector('.escena');
+    if(esc){
+      var tope = est.getBoundingClientRect().bottom + window.scrollY - (parseFloat(getComputedStyle(esc).top) || 0) - esc.offsetHeight;
+      y = Math.min(y, tope);
+    }
+    window.scrollTo({ top: Math.max(0, y), behavior: (seco || quieto.matches) ? 'auto' : 'smooth' });
+  }
+  /* el #hash queda siempre en lo que se está mirando: recargar o compartir el link vuelve ahí */
+  function anotar(id, nueva){
+    if(location.hash === '#' + id) return;
+    try{ history[nueva ? 'pushState' : 'replaceState'](null, '', '#' + id); }catch(e){}
+  }
+  if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.addEventListener('popstate', function(){ var h = decodeURIComponent(location.hash.slice(1)); if(h) ir(h, { historial: false }); });
+
+  /* ── lo que se toca ── */
+  etb.forEach(function(b){ b.addEventListener('click', function(){ ir(b.dataset.et); }); });
+  navb.forEach(function(b){ b.addEventListener('click', function(){
+    ir(b.dataset.vp);
+    /* si ya se había bajado, la vista nueva arranca desde su principio */
+    var v = vps.filter(function(x){ return !x.hidden; })[0];
+    if(v){ var y = v.getBoundingClientRect().top + window.scrollY - alto(barraE) - alto(barraV);
+      if(window.scrollY > y) window.scrollTo(0, y); }
+  }); });
+  tabsDe(document).forEach(function(t){ t.addEventListener('click', function(){ ir(t.getAttribute('aria-controls')); }); });
+  document.addEventListener('click', function(e){
+    var t = e.target.closest ? e.target.closest('[data-ir],[data-f]') : null;
+    if(!t) return;
+    if(t.hasAttribute('data-ir')){ e.preventDefault(); ir(t.getAttribute('data-ir')); return; }
+    var d = document.getElementById(lista(t)[0]);
+    if(d && d.matches('details.det')){ abrir(d); anotar(d.id, false); llevar(d, false); }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    if(e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    var a = document.activeElement;
+    if(a && (/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName) || a.isContentEditable)) return;
+    var g = todos('.pantallas').filter(function(x){ return x.offsetParent !== null; })[0];
+    if(!g) return;
+    var r = g.getBoundingClientRect();
+    if(r.top > innerHeight * .6 || r.bottom < PEG) return;
+    var v = vecinos(g), t = e.key === 'ArrowLeft' ? v.ant : v.sig;
+    if(t){ e.preventDefault(); ir(t.getAttribute('aria-controls')); }
+  });
+
+  /* ── lo que se arma solo: flechas en la barra, «anterior / siguiente» y la pista ── */
+  function flecha(paso, ico, rotulo){
+    var b = document.createElement('button');
+    b.type = 'button'; b.dataset.paso = paso; b.setAttribute('aria-label', rotulo); b.title = rotulo + ' (' + (paso === '-1' ? '←' : '→') + ')';
+    b.innerHTML = '<svg class="ico sm"><use href="#' + ico + '"/></svg>';
+    b.addEventListener('click', function(){
+      var v = vecinos(grupo(b)), t = paso === '-1' ? v.ant : v.sig;
+      if(t) ir(t.getAttribute('aria-controls'));
+    });
+    return b;
+  }
+  todos('.barra-p .wrap').forEach(function(w){
+    if(w.querySelector('.pasar')) return;
+    var c = document.createElement('div'); c.className = 'pasar';
+    c.appendChild(flecha('-1', 'i-chev-left', 'Pantalla anterior'));
+    c.appendChild(flecha('1', 'i-chev-right', 'Pantalla siguiente'));
+    w.appendChild(c);
+  });
+  todos('.pantallas').forEach(function(g){
+    var ts = tabsDe(g);
+    ts.forEach(function(t, i){
+      var p = document.getElementById(t.getAttribute('aria-controls'));
+      if(!p || p.querySelector('.sigue')) return;
+      var n = document.createElement('nav'); n.className = 'sigue'; n.setAttribute('aria-label', 'Otras pantallas');
+      [[ts[i - 1], '← Anterior', 'ant'], [ts[i + 1], 'Siguiente →', 'sig']].forEach(function(x){
+        if(!x[0]) return;
+        var b = document.createElement('button'); b.type = 'button'; b.className = x[2];
+        b.setAttribute('data-ir', x[0].getAttribute('aria-controls'));
+        var s = document.createElement('span'); s.textContent = x[1];
+        var nom = x[0].cloneNode(true), num = nom.querySelector('.i'); if(num) num.remove();
+        var bb = document.createElement('b'); bb.textContent = nom.textContent.trim();
+        b.appendChild(s); b.appendChild(bb); n.appendChild(b);
+      });
+      (p.querySelector('.funcs') || p).appendChild(n);
+    });
+  });
+  todos('.escena').forEach(function(s){
+    if(s.querySelector('.pista') || !s.querySelector('[data-ir],[data-f]')) return;
+    var p = document.createElement('p'); p.className = 'pista';
+    p.innerHTML = '<svg class="ico xs"><use href="#i-pointer"/></svg>' +
+      (s.querySelector('[data-ir]') ? 'Tocá el dibujo: navega como la app.' : 'Tocá una pieza para ver su función.');
+    s.appendChild(p);
+  });
+
+  /* ── lo que se mide: el alto de las barras pegadas y el de cada escena ──
+     ⚠ se mide, no se fija: las barras cambian de alto cuando los rótulos se envuelven. */
+  function alto(el){ return el && el.offsetParent !== null ? el.offsetHeight : 0; }
+  function medir(){
+    var e = alto(barraE);
+    if(barraV) barraV.style.top = e + 'px';
+    var base = e + alto(barraV);
+    var b = todos('.barra-p').filter(function(x){ return x.offsetParent !== null; })[0];
+    PEG = base + alto(b);
+    document.documentElement.style.setProperty('--pegado-p', base + 'px');
+    document.documentElement.style.setProperty('--pegado', PEG + 'px');
+    ajustarEscenas();
+  }
+  /* una escena más alta que la ventana se pega por abajo (top negativo) para que el
+     final del dibujo se pueda ver; si entra, se pega arriba con el CSS */
+  function ajustarEscenas(){
+    todos('.escena').forEach(function(s){
+      if(s.offsetParent === null) return;
+      s.style.top = '';
+      if(ancho.matches && s.offsetHeight > innerHeight - PEG - 40)
+        s.style.top = Math.round(innerHeight - s.offsetHeight - 20) + 'px';
+    });
+  }
+  window.addEventListener('resize', medir);
+  if(window.ResizeObserver){ var ro = new ResizeObserver(medir);
+    [barraE, barraV].concat(todos('.barra-p')).forEach(function(x){ if(x) ro.observe(x); }); }
+
+  /* ── al imprimir: todas las funciones abiertas ── */
+  var cerradas = [];
+  window.addEventListener('beforeprint', function(){
+    cerradas = todos('details.det').filter(function(d){ return !d.open; });
+    cerradas.forEach(function(d){ d.open = true; });
+  });
+  window.addEventListener('afterprint', function(){ cerradas.forEach(function(d){ d.open = false; }); cerradas = []; });
+
+  /* ── arranque ── */
+  var et0 = etb.filter(function(b){ return b.getAttribute('aria-selected') === 'true'; })[0] || etb[0];
+  if(et0) irEtapa(et0.dataset.et);
+  else if(navb.length){ var vp0 = navb.filter(function(b){ return b.getAttribute('aria-selected') === 'true'; })[0] || navb[0]; irVista(vp0.dataset.vp); }
+  todos('.pantallas').forEach(function(g){
+    var ts = tabsDe(g), t0 = ts.filter(function(t){ return t.getAttribute('aria-selected') === 'true'; })[0] || ts[0];
+    todos('.pantalla', g).forEach(function(p){
+      if(!p.querySelector('details.det[open]')){ var d0 = p.querySelector('details.det'); if(d0) d0.open = true; }
+    });
+    if(t0) irPantalla(t0.getAttribute('aria-controls'));
+  });
+  medir();
+  var h0 = decodeURIComponent(location.hash.slice(1));
+  if(h0) ir(h0, { historial: false, suave: false });
+
+})();
+</script>
+</body>
+</html>

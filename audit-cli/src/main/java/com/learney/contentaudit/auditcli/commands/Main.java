@@ -1363,7 +1363,20 @@ class Main {
         // F-JEXAM-R015: exam status -f json asks the catalog who to read, only when it is used.
         cmd.addSubcommand("exam", new picocli.CommandLine(
                 new ExamCmd(judgeExamService, examProvenance, () -> analyzerCatalog.list().stream()
-                        .map(AnalyzerDescriptor::getName).toList())));   // C · FEAT-JEXAM
+                        .map(AnalyzerDescriptor::getName).toList(), () -> {
+                    Map<String, List<Evaluator>> activeJudges = Map.of(
+                            "quiz-instruction", List.of(quizInstructionJudge),
+                            "translation-sense", List.of(fromEnglishJudge, fromTranslationJudge),
+                            "single-answer", List.of(singleAnswerJudge),
+                            "mini-theory", List.of(miniTheoryJudge),
+                            "multiple-choice-validity", List.of(choiceAlternativeJudge),
+                            "multiple-choice-quality", List.of(choiceQualityJudge));
+                    Map<String, com.learney.contentaudit.auditdomain.judging.JudgeExamStanding> standings =
+                            new java.util.LinkedHashMap<>();
+                    activeJudges.forEach((name, evaluators) -> standings.put(name,
+                            judgeRuntime.open(name, evaluators, null).getStanding()));
+                    return standings;
+                })));   // C · FEAT-JEXAM
 
         // FEAT-RONDA2 (hooks F-06 and E-09): the commands of packages F and E, each registered by
         // its package with its picocli wrapper: set-baseline, save-projection, compare, get-goals

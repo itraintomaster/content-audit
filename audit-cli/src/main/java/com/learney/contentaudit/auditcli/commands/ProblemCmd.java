@@ -20,7 +20,7 @@ import picocli.CommandLine.*;
 
 /** Saved data only: every problem command, including help, bypasses the model/NLP bootstrap. */
 @Command(name = "problem", mixinStandardHelpOptions = true, description = {
-        "Problemas del curso: list, show, create, edit, annotate, search, case, undo, update, request.",
+        "Problemas del curso: list, show, inspect, create, edit, annotate, search, case, control, undo, update, request.",
         "No consulta modelos. --course identifica el registro compartido entre tandas.",
         "Escrituras: --revision exige la revisión leída; update usa --actor agent por defecto.",
         "La entrega --artifacts es JSON con changes y results; el operador decide Resuelto."})
@@ -80,11 +80,13 @@ final class ProblemCmd implements Callable<Integer> {
         Object result = switch (action) {
             case "list" -> Map.of("problems", service.list(), "course", course.toString());
             case "show" -> service.get(requireId());
+            case "inspect" -> ProblemInspection.inspect(project, service.get(requireId()));
             case "create" -> service.create(title, criterion, failures, parts);
             case "edit" -> service.edit(requireId(), requireRevision(), title, criterion,
                     clearFailures && failures == null ? List.of() : failures,
                     clearParts && parts == null ? List.of() : parts);
             case "case" -> service.use(requireId(), requireRevision(), oneCaseId(), use(), actor(false));
+            case "control" -> selectMeasuredControl(service);
             case "annotate" -> store.exclusive(() -> annotate(service));
             case "search" -> search();
             case "undo" -> store.exclusive(() -> undo(service));
@@ -96,6 +98,16 @@ final class ProblemCmd implements Callable<Integer> {
         if (action.equals("request") && format.equals("text")) out.println(((Map<?, ?>) result).get("text"));
         else out.println(CommandJson.writeCompact(result));
         return 0;
+    }
+
+    private ContentProblem selectMeasuredControl(ProblemService service) throws IOException {
+        if (artifacts == null) throw new IllegalArgumentException("El control necesita --artifacts con su snapshot y medición.");
+        var payload = readMap(Files.readString(artifacts));
+        var control = CommandJson.read(CommandJson.writeCompact(payload.get("control")), Case.class);
+        @SuppressWarnings("unchecked")
+        var delivery = (Map<String, Object>) payload.get("delivery");
+        if (control == null || delivery == null) throw new IllegalArgumentException("Falta control o delivery.");
+        return service.selectMeasuredControl(requireId(), requireRevision(), control, delivery, actor(false));
     }
 
     private Map<String, Object> annotate(ProblemService service) {

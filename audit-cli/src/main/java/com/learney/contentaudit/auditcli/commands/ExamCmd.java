@@ -109,6 +109,11 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
     /** The analyzers of the catalog, in its order: who {@code exam status -f json} asks about. */
     private final Supplier<List<String>> analyzerNames;
 
+    private final Supplier<Map<String, JudgeExamStanding>> currentStandings;
+
+    @Option(names = "--metrics-out", description = "Archivo nuevo con el costo efectivo y la procedencia de esta invocación")
+    Path metricsOut;
+
     public ExamCmd(JudgeExamService examService) {
         this(examService, Map.of());
     }
@@ -119,11 +124,18 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
 
     ExamCmd(JudgeExamService examService, Map<String, ExamProvenance> provenanceByJudge,
             Supplier<List<String>> analyzerNames) {
+        this(examService, provenanceByJudge, analyzerNames, Map::of);
+    }
+
+    ExamCmd(JudgeExamService examService, Map<String, ExamProvenance> provenanceByJudge,
+            Supplier<List<String>> analyzerNames,
+            Supplier<Map<String, JudgeExamStanding>> currentStandings) {
         this.examService = examService;
         this.provenanceByJudge = provenanceByJudge != null
                 ? Map.copyOf(provenanceByJudge)
                 : Map.of();
         this.analyzerNames = analyzerNames != null ? analyzerNames : List::of;
+        this.currentStandings = currentStandings != null ? currentStandings : Map::of;
     }
 
     @Override
@@ -164,6 +176,10 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
             System.err.println("Error: the verdicts file already exists and will not be overwritten: " + verdictsOut);
             return 2;
         }
+        if (metricsOut != null && Files.exists(metricsOut)) {
+            System.err.println("Error: the metrics file already exists and will not be overwritten: " + metricsOut);
+            return 2;
+        }
         Set<String> caseIds;
         try {
             caseIds = readCases(Path.of(casesFile));
@@ -185,6 +201,16 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
 
         try {
             writeVerdicts(output, taken.getVerdicts(), taken.getRuntimeIdentity());
+            if (metricsOut != null) {
+                int queries = taken.getCoverage() == null || taken.getCoverage().getEvaluators() == null ? 0 : taken.getCoverage().getEvaluators().stream()
+                        .filter(e -> e != null && e.getCoverage() != null)
+                        .mapToInt(e -> e.getCoverage().getEvaluatedInRun() + e.getCoverage().getFailed()).sum();
+                var metrics = new LinkedHashMap<String, Object>();
+                metrics.put("queriesUsed", queries);
+                metrics.put("judgeVersion", taken.getJudgeVersion());
+                metrics.put("runtime", taken.getRuntimeIdentity());
+                Files.writeString(metricsOut, CommandJson.writeCompact(metrics), java.nio.file.StandardOpenOption.CREATE_NEW);
+            }
         } catch (IOException e) {
             System.err.println("Error: the verdicts cannot be written to " + verdictsOut + ": " + e.getMessage());
             return 1;
@@ -299,9 +325,23 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
         }
         ObjectNode root = MAPPER.createObjectNode();
         ArrayNode judges = root.putArray("judges");
+        Map<String, JudgeExamStanding> current = currentStandings.get();
         histories.forEach((name, history) -> {
             ObjectNode judge = judges.addObject();
             judge.put("judge", name);
+            JudgeExamStanding standing = current.get(name);
+            if (standing != null) {
+                ObjectNode active = judge.putObject("current");
+                active.put("judgeVersion", standing.getJudgeVersion());
+                active.put("status", standing.getStatus().name());
+                active.put("consultsOnCourse", standing.isConsultsOnCourse());
+                active.put("reason", standing.getReason());
+                EvaluationRuntimeIdentity runtime = standing.getRuntimeIdentity();
+                active.put("providerName", runtime.isExplicit() ? runtime.getProviderName() : null);
+                active.put("modelName", runtime.isExplicit() ? runtime.getModelName() : null);
+                active.put("reasoningEffort", runtime.isExplicit() ? runtime.getReasoningEffort() : null);
+                active.put("provenance", runtimeLabel(runtime));
+            }
             ArrayNode versions = judge.putArray("versions");
             for (List<JudgeExamRecord> records : byVersionAndRuntime(history)) {
                 versions.add(versionJson(records));

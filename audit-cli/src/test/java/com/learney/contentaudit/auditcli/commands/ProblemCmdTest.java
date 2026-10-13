@@ -30,6 +30,27 @@ class ProblemCmdTest {
         batch.setChanges(List.of(change)); batch.setQuizProposals(List.of(new BatchProposalRef("quiz", "proposal")));
         new FileSystemBatchStore(work).save(batch);
     }
+    @Test void inspectionShowsCurrentContentAndRefusesFilesOutsideTheProject() throws Exception {
+        var p = annotate();
+        Path guide = Files.writeString(root.resolve("guide.md"), "Regla actual\n");
+        var delivery = Map.of("changes", List.of(
+                Map.of("path", guide.toString(), "version", "sha256:old", "summary", "Guía", "scope", "judge"),
+                Map.of("path", root.resolve("../outside.md").toString(), "version", "old", "summary", "Fuera", "scope", "judge")),
+                "results", List.of(Map.of("caseId", p.cases().get(0).id(), "fixed", false, "version", "v1", "modelConsulted", false)));
+        Path artifact = Files.writeString(root.resolve("delivery.json"), CommandJson.writeCompact(delivery));
+        assertEquals(0, run("update", p.id(), "--revision", "" + p.revision(), "--state", "en-trabajo",
+                "--step", "guia", "--artifacts", artifact.toString()), errors.toString());
+        var before = new FileSystemProblemStore(course).load(p.id()).orElseThrow();
+        assertEquals(0, run("inspect", p.id()), errors.toString());
+        var inspected = new com.fasterxml.jackson.databind.ObjectMapper().readTree(output.toString());
+        var changes = inspected.path("changes");
+        assertEquals("Regla actual\n", changes.get(0).path("after").asText());
+        assertFalse(changes.get(0).path("matchesDelivery").asBoolean());
+        assertFalse(changes.get(1).path("available").asBoolean());
+        assertFalse(changes.get(1).has("after"));
+        assertEquals(before, new FileSystemProblemStore(course).load(p.id()).orElseThrow());
+    }
+
     int run(String... args) {
         output.reset(); errors.reset(); var all = new ArrayList<>(List.of("problem")); all.addAll(List.of(args));
         all.addAll(List.of("--course", course.toString()));
