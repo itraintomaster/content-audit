@@ -38,10 +38,10 @@ description: |
   no tiene arista: corta la corrida del agente y el evaluador la informa como
   EVALUATOR_UNAVAILABLE.
 
-  Todo archivo de esta carpeta, eval/ incluido, entra en la versión del juez
-  (la del juez de consigna: definición, modelo y proveedor). Tocar la guía, un
-  script o una fixture es una versión nueva, que rinde su examen antes de
-  consultar sobre el curso (F-JEXAM-R003).
+  Todo archivo de esta carpeta menos eval/ entra en la versión del juez: las
+  pruebas no corren al medir y no la cambian (F-ALDIA-R001). Tocar la guía, el
+  formato, un script o la definición es una versión nueva, que rinde su examen
+  antes de consultar sobre el curso (F-JEXAM-R003).
 kind: agent
 strategy: graph
 initial_node: evaluate
