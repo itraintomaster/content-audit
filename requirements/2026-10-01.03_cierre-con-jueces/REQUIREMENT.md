@@ -302,20 +302,23 @@ journeys:
 
 <a id="DOUBT-CJUEZ-VERSION"></a>
 ### Doubt[DOUBT-CJUEZ-VERSION] - ¿Un veredicto del libro de otra versión del juez cuenta para decidir?
-**Status**: OPEN
+**Status**: RESOLVED (2026-10-18)
 
 El libro reusa un veredicto por contenido, sea cual sea la versión del juez que lo dio. Importa porque, en una tanda, el
 antes puede venir del libro, juzgado por una versión vieja, y el después, de la vigente: si las dos juzgan distinto, el
 cambio puede volver —o pasar— por el juez y no por el ejercicio.
 
-- [ ] Opción A (recomendada, la de hoy): sí, se reusa como en todo el curso ([F-EVCOST-R006](#F-EVCOST-R006)), y el
+- [x] Opción A (recomendada, la de hoy): sí, se reusa como en todo el curso ([F-EVCOST-R006](#F-EVCOST-R006)), y el
   informe sigue mostrando las versiones ([F-JEXAM-R001](#F-JEXAM-R001), inv. 2).
 - [ ] Opción B: el cierre sólo cuenta los veredictos de la versión vigente y vuelve a pagar los demás; cambia
   [F-EVCOST-R006](#F-EVCOST-R006) dentro de la tanda.
 
-**Answer**: Pendiente. Recomiendo A: es la regla de todo el curso, no paga dos veces un contenido ya juzgado y deja a la
-vista qué versión dio cada veredicto. B es más pareja, pero vuelve a pagar todo lo que juzgó otra versión. En las dos, un
-juez sin examen aprobado no decide nada ([F-CJUEZ-R004](#F-CJUEZ-R004)). Hasta que José conteste, rige A.
+**Answer**: **Opción A, con marca**. La resolvieron las decisiones 1 y 3 de José del 18/10, en la propuesta «Jueces
+al día». El cierre sigue reusando lo que juzgó otra versión, pero cada veredicto dice si está al día
+([F-ALDIA-R003](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md#F-ALDIA-R003)) y el informe dice cuánto de lo reusado es de antes
+([F-ALDIA-R005](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md#F-ALDIA-R005)). Publicar no cuenta lo de antes, salvo que José lo pida por nombre
+([F-ALDIA-R008](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md#F-ALDIA-R008), [F-ALDIA-R009](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md#F-ALDIA-R009)). Un juez sin examen aprobado sigue sin decidir
+nada ([F-CJUEZ-R004](#F-CJUEZ-R004)).
 
 ## References
 

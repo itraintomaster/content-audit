@@ -259,6 +259,10 @@ propuestas la granularidad pendiente de
 [F-LAGEN-R009](../2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md#F-LAGEN-R009) y, para los jueces, refuerza
 [F-JEXAM-R001](#F-JEXAM-R001) y [F-JEXAM-R003](#F-JEXAM-R003).
 
+Para un juez que se define en una carpeta, «la versión completa del proceso» es la de
+[F-ALDIA-R001](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md#F-ALDIA-R001): todo lo de la carpeta salvo sus pruebas sin modelo
+(`eval/`). Enmienda del 18/10.
+
 <a id="F-JEXAM-R015"></a>
 ### Rule[F-JEXAM-R015] - El historial de los exámenes se lee en JSON, sin consultar
 **Severity**: normal | **Validation**: VALIDATED
