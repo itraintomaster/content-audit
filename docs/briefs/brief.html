@@ -1,4 +1,26 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>114 · La conversión ahora sigue la propuesta</title><style>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Versión sin pruebas</title>
+<!--
+  TEMPLATE DE BRIEF · visual-brief
+  1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
+  2. Por cada sección: un título que dice la conclusión, UN dibujo copiado del
+     catálogo del final y un pie de dos renglones. Primero el dibujo; el texto lo rotula.
+     Si habla de una pantalla: primero DÓNDE (la captura con marcas, .map), después EL
+     PROBLEMA como un caso de uso (la foto de hoy + .mark), después CÓMO QUEDA (la maqueta
+     .mq con números y su leyenda). Si ya está hecho, los dos lados del .ad son capturas.
+     Las fotos, con capturar.mjs, en docs/briefs/NNN-slug/ (SKILL.md §4).
+  3. BORRAR el catálogo entero (la section de clase cat, al final) y las secciones que no se usan.
+  4. Verificar: node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
+     y mirarlo: node ~/.claude/skills/visual-brief/assets/diapos.mjs <el brief> <scratchpad>/d (+ --tema=dark, --celular)
+  Topes: lede ≤ 2 frases y 35 palabras · ≤ 6 secciones · pie ≤ 30 · párrafo ≤ 40 ·
+  prosa total ≤ 400 (sin tablas ni gráficos). Cada componente trae el suyo en el catálogo.
+  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
+-->
+<style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
     --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
@@ -182,6 +204,84 @@
   .captura.cel img{max-width:300px;margin:0 auto}
   .captura figcaption{font-size:12.5px;color:var(--fg-3);margin-top:8px}
 
+  /* ============ dónde estamos: la captura real, con lo que cambia rodeado y numerado ============
+     El viewBox del svg.cap es el tamaño de la foto: las marcas van en sus píxeles (capturar.mjs --medir). */
+  .map{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);box-shadow:var(--shadow);border-radius:var(--radius)}
+  .map.alta{grid-template-columns:minmax(0,200px) minmax(0,1fr)}       /* una página más alta que la pantalla */
+  .map .ex{border-radius:var(--radius) 0 0 var(--radius);padding:10px;align-content:center;box-shadow:none}
+  .map .who{display:grid;gap:9px;align-content:center;padding:14px 16px;background:var(--bg);border:1px solid var(--line);
+    border-left:0;border-radius:0 var(--radius) var(--radius) 0}
+  .map .who div{display:flex;gap:9px;align-items:center;font-size:13.5px;line-height:1.35}
+  .map .who b{font:800 11.5px/22px ui-monospace,monospace;width:22px;height:22px;border-radius:6px;text-align:center;
+    background:var(--accent);color:var(--bg-elev);flex:none}
+  .map .who b.gris{background:var(--line);color:var(--fg-3)}       /* lo que se ve pero no cambia */
+  .map .who small{color:var(--fg-3);font-size:12px}
+  .map .who .ptl{margin:0}
+  .cap{display:block;width:100%;height:auto}
+  .cap .mk circle{fill:var(--accent);stroke:var(--bg-elev);stroke-width:4}
+  .cap .mk text{fill:var(--bg-elev);font-weight:800;font-family:ui-monospace,monospace;text-anchor:middle;dominant-baseline:central}
+  .cap .mk.gris circle{fill:var(--fg-3)}
+  .cap .aro{fill:none;stroke:var(--accent);stroke-width:4}         /* rodea lo que cambia */
+  .cap .tapa{fill:var(--bg-elev);opacity:.74}                       /* atenúa lo que no */
+  .cap .raya{stroke:var(--fg-3);stroke-width:2;stroke-dasharray:9 9}  /* dónde termina cada pantalla */
+
+  /* ============ hoy → con X: la foto de hoy con el problema; la maqueta de cómo queda, con su leyenda ============ */
+  .ad.asim{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+  .hoy{display:block;max-width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft);align-self:flex-start}
+  .franja{display:flex;gap:12px;align-items:flex-end}               /* una página alta, al lado de su marca */
+  .franja .cap{width:34%;flex:none} .franja .mark{flex:1}
+  .nb{display:inline-flex;align-items:center;justify-content:center;flex:none;width:1.75em;height:1.75em;border-radius:99px;
+    background:var(--accent);color:var(--bg-elev);font:800 .74em/1 ui-monospace,monospace}
+  ol.leg{list-style:none;margin:0;padding:0;display:grid;gap:5px;font-size:13.5px;line-height:1.45;color:var(--fg-2)}
+  .leg li{display:flex;gap:8px;align-items:baseline} .leg .nb{font-size:11px}
+  /* la maqueta: .mq es su propio contenedor y la letra (en .mi) escala con su ancho, así que una
+     maqueta más ancha NO entra más. Si no entra: menos filas, o .mq.denso. El kit entero, con cada
+     pieza a la vista, está en el catálogo de presentacion.html. */
+  .mq{container-type:inline-size;background:var(--bg-elev);border:1px solid var(--line);border-radius:10px;overflow:hidden;
+    box-shadow:var(--shadow)}
+  .mi{font-size:max(10.5px,2.75cqi);line-height:1.35;padding:3cqi 3.2cqi;display:flex;flex-direction:column;gap:2.2cqi;color:var(--fg)}
+  .mq.denso .mi{font-size:max(10px,2.45cqi);gap:1.7cqi;padding:2.6cqi 2.8cqi}
+  .mi .fila{display:flex;gap:.55em;align-items:center;min-width:0} .mi .fila.env{flex-wrap:wrap;row-gap:.4em}
+  .mi .crece{flex:1;min-width:0}
+  .mi .vt{display:flex;flex-direction:column;gap:.25em;min-width:0}
+  .mi .in{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:.5em;padding:.45em .7em;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mi .sel{background:var(--bg);border:1px solid var(--line);border-radius:.5em;padding:.45em .6em;white-space:nowrap;flex:none}
+  .mi .bt{background:var(--accent);color:var(--bg-elev);border-radius:.5em;padding:.45em .85em;font-weight:700;white-space:nowrap;flex:none}
+  .mi .bt.gh{background:var(--bg-elev);color:var(--fg);border:1px solid var(--line);font-weight:600}
+  .mi .chp{display:inline-flex;align-items:center;gap:.35em;border:1px solid var(--line);background:var(--bg);border-radius:99px;
+    padding:.18em .7em;font-size:.86em;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  .mi .chp.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .mi .chp.no{color:var(--fg-3);text-decoration:line-through}
+  .mi .chp.ok{border-color:var(--ok);background:var(--ok-soft);color:var(--ok);font-weight:650}
+  .mi .chp.fal{border-color:var(--warn);background:var(--warn-soft);color:var(--warn);font-weight:650}
+  .mi .rt{font-size:.72em;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--fg-3)}
+  .mi .tt{font-weight:700;font-size:1.1em;letter-spacing:-.01em} .mi .ts{font-weight:700;font-size:1.15em;letter-spacing:-.01em}
+  .mi .s{font-size:.84em;color:var(--fg-3)} .mi .neg{font-weight:700}
+  .mi .bien{color:var(--ok);font-weight:800} .mi .mal{color:var(--bad);font-weight:800}
+  .mi .corta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .mi .th{width:5.2em;aspect-ratio:16/9;border-radius:.35em;object-fit:cover;flex:none;display:block}
+  .mi .th.ch{width:3.6em} .mi .th.gr{width:60%}
+  .mi .hr{height:1px;background:var(--line-soft)} .mi .apagado{opacity:.4}
+  .mi .expl{background:var(--bg);border:1px solid var(--line-soft);border-radius:.5em;padding:.5em .7em;font-size:.86em;color:var(--fg-2)}
+  .mi .aviso{display:flex;gap:.5em;align-items:center;border-radius:.5em;padding:.45em .7em;font-weight:650;
+    background:var(--bad-soft);color:var(--bad)}
+  .mi .aviso.ok{background:var(--ok-soft);color:var(--ok)}
+  .mi .campo{border:1.5px solid var(--accent);border-radius:.6em;padding:.6em .8em;background:var(--bg-elev);display:flex;flex-direction:column;gap:.3em}
+  .mi .hueco{border:1px dashed var(--warn);border-radius:.4em;height:1.7em;background:var(--warn-soft)}
+  .mi .av{width:2.1em;height:2.1em;border-radius:99px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;
+    font-size:.8em;background:var(--accent-soft);color:var(--accent);flex:none}
+  .mi .fase{display:grid;grid-template-columns:1.5em 1fr auto;gap:.25em .55em;align-items:center}
+  .mi .fase .ic{font-weight:800;text-align:center}
+  .mi .fase.hecha .ic{color:var(--ok)} .mi .fase.va .ic{color:var(--accent)} .mi .fase.falta{color:var(--fg-3)}
+  .mi .riel{grid-column:2/4;height:.42em;border-radius:99px;background:var(--line-soft);overflow:hidden}
+  .mi .riel i{display:block;height:100%;width:var(--hecho,40%);background:var(--accent);border-radius:99px}
+  .mi .dos{display:grid;grid-template-columns:1.15fr 1fr;border:1px solid var(--line-soft);border-radius:.6em;overflow:hidden}
+  .mi .dos>div{padding:.75em;display:flex;flex-direction:column;gap:.55em;min-width:0}
+  .mi .lat{background:var(--bg);border-left:1px solid var(--line)}
+  .mi .item{display:flex;gap:.5em;align-items:center;padding:.3em;border-radius:.4em;min-width:0}
+  .mi .item.on{background:var(--accent-soft);box-shadow:inset 0 0 0 1.5px var(--accent)}
+
   /* ============ pills de estado ============ */
   .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}
   .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
@@ -234,15 +334,95 @@
     .hb .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) auto;gap:8px}
     .heat{grid-template-columns:minmax(80px,1.3fr) repeat(var(--cols,4),minmax(0,1fr));font-size:11.5px}
     .kpi .n{font-size:28px}
+    .map,.map.alta,.ad.asim{grid-template-columns:minmax(0,1fr)}
+    .map .ex{border-radius:var(--radius) var(--radius) 0 0}
+    .map .who{border-left:1px solid var(--line);border-top:0;border-radius:0 0 var(--radius) var(--radius)}
+    .map.alta .cap{width:min(55%,220px);margin:0 auto}
   }
 
-  .captura{margin:0;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}.captura img{display:block;width:100%;height:auto}.captura figcaption{padding:12px 15px;font-size:13.5px;line-height:1.5;color:var(--fg-2)}</style></head><body><div class="wrap">
-<header><div class="kicker"><span class="num">114</span><span class="badge">UI corregida</span><span class="meta">ContentAudit · 12/10/2026</span></div><h1>La conversión ahora sigue la propuesta</h1><p class="sub">Revisión de las cinco pantallas y cambios integrados en el tablero principal.</p></header>
-<div class="lede"><p><strong>Había diferencias en la lista, la hoja y el pedido manual.</strong> Ya están corregidas e integradas para que pruebes el recorrido completo.</p></div>
-<section><h2>La estructura vuelve a ser la propuesta</h2><div class="ad"><div class="lado antes"><span class="rot">Antes</span><ol><li>Lista de temas en un diálogo.</li><li>Sin filtro por nivel.</li><li>Opciones y opiniones separadas.</li><li>Pedido manual fuera del menú del ejercicio.</li></ol><div class="res">El recorrido se alejaba del diseño.</div></div><div class="lado despues"><span class="rot">Ahora</span><ol><li>Pantalla completa con temas y tres fuentes.</li><li>Nivel junto al título.</li><li>Opciones, procedencia y jueces juntos.</li><li>Pedido desde los tres puntos del ejercicio.</li></ol><div class="res">Cada acción aparece donde la esperás.</div></div></div><p class="pie">La aprobación queda junto al cambio de tipo. La hoja aprobada conserva el original y permite volver a Completar.</p></section>
-<section><h2>La lista muestra los datos de tu tanda</h2><figure class="captura"><img src="114-ui-opcion-multiple/lista-real.jpg" alt="Lista integrada por temas, con filtro por nivel y fuentes de las opciones"><figcaption>Tablero real: 3 candidatas de esta tanda; la propuesta estimaba todo el curso.</figcaption></figure></section>
-<section><h2>Las opciones y sus controles comparten el renglón</h2><figure class="captura"><img src="114-ui-opcion-multiple/hoja-prueba.jpg" alt="Hoja de conversión con opciones, respuesta correcta, procedencia y opinión en el mismo renglón"><figcaption>Datos de prueba, opiniones ilustrativas: tres comprobaciones, dos jueces y opciones en su renglón.</figcaption></figure></section>
-<section><h2>El resultado queda limpio y el alumno puede comparar</h2><figure class="captura"><img src="114-ui-opcion-multiple/aprobada-prueba.jpg" alt="Conversión aprobada, hoja limpia y acción para restaurar Completar"><figcaption>Datos de prueba: hoja aprobada, original guardado y cambio pendiente de publicación.</figcaption></figure><p class="pie"><a href="114-ui-opcion-multiple/movil-prueba.jpg">Ver la comparación del alumno en móvil</a> · <a href="114-ui-opcion-multiple/pedido-prueba.jpg">Ver el motivo de un pedido no disponible</a>.</p></section>
-<section><h2>Las pruebas y los anchos revisados pasaron</h2><div class="kpis"><div class="kpi"><div class="n">1.945<small>/ 1.945</small></div><div class="l">Pruebas de la interfaz aprobadas.</div></div><div class="kpi"><div class="n">390–1.280<small>px</small></div><div class="l">Móvil, panel integrado y escritorio revisados; sin desborde horizontal.</div></div><div class="kpi"><div class="n">0<small>consultas</small></div><div class="l">Modelos reales ejecutados durante esta revisión.</div></div></div><p class="pie">El recorrido con decisiones se verificó con datos de prueba. La lista se comprobó en la tanda real, sin cambiar sus decisiones.</p></section>
-<section><h2>Ya podés probar el recorrido integrado</h2><div class="flow"><div class="st"><span class="i">1</span><span class="h">Entrá a la lista</span><span class="d">Correcciones → Pasar a opción múltiple.</span></div><div class="st"><span class="i">2</span><span class="h">Abrí un tema</span><span class="d">Compará Marcas, Lado a lado y Como el alumno.</span></div><div class="st end"><span class="i">3</span><span class="h">Pedí opinión y decidí</span><span class="d">Revisá el pedido antes de aprobar o rechazar.</span></div></div><p class="pie"><a href="http://127.0.0.1:7800/?tipo=opcion-multiple">Abrir la lista integrada</a>. Para un ejercicio puntual, usá Sugerir opción múltiple en su menú.</p></section>
-<footer><span>Brief 114 · Auditoría de UI</span><span>Referencia: <a href="../propuestas/convertir-a-opcion-multiple.html">propuesta original</a> · Pruebas: html/test/conversion.test.js y npm test.</span></footer></div></body></html>
+</style>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">
+      <span class="num">145</span>
+      <span class="badge">Resumen</span>
+      <span class="meta">Jueces al día · primer tramo · 18/10/2026</span>
+    </div>
+    <h1>Tocar las pruebas de un juez ya no le cambia la versión</h1>
+    <p class="sub">El primer tramo de jueces al día: la regla de la versión y el corte que conserva los exámenes.</p>
+  </header>
+
+  <div class="lede"><p><strong>Los 8 jueces conservan su examen aprobado, sin una sola consulta.</strong> Falta que corras el corte una vez en main, después de juntar la rama.</p></div>
+
+  <section>
+    <h2>Ningún juez pierde su aprobación</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">8</div><div class="l">jueces cambian de código y siguen aprobados</div></div>
+      <div class="kpi"><div class="n">0</div><div class="l">consultas: el corte no llama a ningún juez</div></div>
+      <div class="kpi"><div class="n">1</div><div class="l">vez: el corte se anota y no se repite</div></div>
+      <div class="kpi"><div class="n">3.566</div><div class="l">pruebas en verde en los módulos tocados y los que usan</div></div>
+    </div>
+    <p class="pie">El código de un juez es la huella de su carpeta. Las pruebas salen de la cuenta, así que todos cambian de código una vez.</p>
+    <div class="call c-warn"><b>Una prueba ya fallaba, ajena a esto:</b> la guarda del examen encuentra textos del examen en las pruebas del juez de pares, sin tocar desde el 8/10.</div>
+  </section>
+
+  <section>
+    <h2>Una prueba nueva ya no deja al juez sin examen</h2>
+    <div class="ad">
+      <div class="lado antes"><span class="rot">Hasta hoy</span>
+        <ol><li>Agregás un caso a las pruebas de la miniteoría.</li><li>El juez sale con un código nuevo.</li><li>Ese código no rindió el examen.</li></ol>
+        <span class="res">No consulta hasta volver a rendir</span></div>
+      <div class="lado despues"><span class="rot">Con esto</span>
+        <ol><li>Agregás el mismo caso.</li><li>El código no cambia: las pruebas no corren al medir.</li><li>El examen aprobado sigue valiendo.</li></ol>
+        <span class="res">Sigue consultando, sin rendir de nuevo</span></div>
+    </div>
+    <p class="pie">Tocar la guía, el formato, un script o la definición sigue siendo una versión nueva, igual que hoy.</p>
+  </section>
+
+  <section>
+    <h2>El corte, probado sobre una copia de main</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Juez</th><th>Código aprobado</th><th>Código nuevo</th><th>¿Sigue aprobado?</th></tr></thead>
+      <tbody>
+        <tr><td>Miniteoría</td><td><small>1eee07a9</small></td><td><small>c8ca16c9</small></td><td><span class="pill p-ok">sí</span></td></tr>
+        <tr><td>Calidad de opción múltiple</td><td><small>9f164016</small></td><td><small>c0bc2936</small></td><td><span class="pill p-ok">sí</span></td></tr>
+        <tr><td>Validez de opción múltiple</td><td><small>fcc689bc</small></td><td><small>6919e346</small></td><td><span class="pill p-ok">sí</span></td></tr>
+        <tr><td>Respuesta única</td><td><small>3bb9cd10</small></td><td><small>aff10621</small></td><td><span class="pill p-ok">sí</span></td></tr>
+        <tr><td>Sentido de la traducción (los dos)</td><td><small>0ff707d2 · 053744ab</small></td><td><small>840385d9 · 85b53147</small></td><td><span class="pill p-ok">sí</span></td></tr>
+        <tr><td>Casi repetidos, por pares</td><td><small>04c290f9</small></td><td><small>729229ed</small></td><td><span class="pill p-ok">sí</span></td></tr>
+        <tr><td>Naturalidad con claude</td><td><small>0c48e7b5</small></td><td><small>bffdfb78</small></td><td>no tenía examen</td></tr>
+      </tbody></table></div>
+    <p class="pie">Cada código aprobado es el de su último examen aprobado. Sólo cambió el párrafo que decía que las pruebas contaban; el juez de consigna no se toca.</p>
+  </section>
+
+  <section>
+    <h2>Qué cambia y qué no</h2>
+    <div class="cambia">
+      <div class="si"><div class="ptl">Cambia</div><ul><li>Las pruebas de cada juez no cuentan para su versión.</li><li>Su definición lo dice.</li><li><code>exam status</code> muestra por qué vale el examen de antes.</li></ul></div>
+      <div class="no"><div class="ptl">No cambia</div><ul><li>Los exámenes guardados no se reescriben.</li><li>El juez de consigna sigue contando sus pruebas.</li><li>Una línea agregada después a mano no hace iguales dos versiones.</li></ul></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Lo corrés vos, una vez, en main</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">Juntar la rama</span><span class="d">La terminal usa el código de main.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Mirar el corte</span><span class="eg">8 jueces</span><span class="d">No escribe nada.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">Anotarlo</span><span class="d">Escribe la equivalencia y corrige los 8 textos.</span></div>
+      <div class="st end"><span class="i">4</span><span class="h">Commitear</span><span class="d">El archivo nuevo y las 8 definiciones.</span></div>
+    </div>
+<pre><code>content-audit exam cutover
+content-audit exam cutover --apply</code></pre>
+    <div class="call c-warn"><b>Antes de tocar otro juez:</b> el corte toma la carpeta como está ese día. Un juez cambiado antes pierde su examen aprobado.</div>
+  </section>
+
+  <footer>
+    <span>F-ALDIA-R001 (versión sin eval/) y F-ALDIA-R002 (equivalencia única, inv. 1–5) · .sentinel/agents/version-equivalences.jsonl · DefaultAgentJudgeVersionResolver, DefaultAgentJudgeVersionCutover, ExamCmd cutover · pendiente: R003–R010 y FEAT-TALDIA · nada commiteado</span>
+    <span>brief 145 · docs/briefs/145-jueces-al-dia-version-sin-pruebas.html</span>
+  </footer>
+
+</div>
+</body>
+</html>

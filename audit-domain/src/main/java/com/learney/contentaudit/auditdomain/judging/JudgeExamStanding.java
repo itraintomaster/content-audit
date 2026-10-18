@@ -1,6 +1,8 @@
 package com.learney.contentaudit.auditdomain.judging;
 
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluatorVersionEquivalence;
+import java.util.List;
 import java.util.Set;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
@@ -23,6 +25,12 @@ public class JudgeExamStanding {
     private EvaluationRuntimeIdentity runtimeIdentity;
 
     private Set<String> compatibleJudgeVersions;
+
+    /**
+     * F-ALDIA-R002 inv. 3: the written equivalences that make an earlier version this one, so the
+     * history of the judge says when and why an exam of that version counts.
+     */
+    private List<EvaluatorVersionEquivalence> versionEquivalences = List.of();
 
     public JudgeExamStanding() {
     }
@@ -112,6 +120,14 @@ public class JudgeExamStanding {
         this.compatibleJudgeVersions = compatibleJudgeVersions;
     }
 
+    public List<EvaluatorVersionEquivalence> getVersionEquivalences() {
+        return versionEquivalences != null ? versionEquivalences : List.of();
+    }
+
+    public void setVersionEquivalences(List<EvaluatorVersionEquivalence> versionEquivalences) {
+        this.versionEquivalences = versionEquivalences != null ? List.copyOf(versionEquivalences) : List.of();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -123,12 +139,13 @@ public class JudgeExamStanding {
                     && Objects.equals(this.consultsOnCourse, that.consultsOnCourse)
                     && Objects.equals(this.reason, that.reason)
                     && Objects.equals(this.getRuntimeIdentity(), that.getRuntimeIdentity())
-                    && Objects.equals(this.getCompatibleJudgeVersions(), that.getCompatibleJudgeVersions());
+                    && Objects.equals(this.getCompatibleJudgeVersions(), that.getCompatibleJudgeVersions())
+                    && Objects.equals(this.getVersionEquivalences(), that.getVersionEquivalences());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(judgeName, judgeVersion, status, consultsOnCourse, reason,
-                getRuntimeIdentity(), getCompatibleJudgeVersions());
+                getRuntimeIdentity(), getCompatibleJudgeVersions(), getVersionEquivalences());
     }
 }

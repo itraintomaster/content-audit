@@ -17,6 +17,8 @@ import com.learney.contentaudit.auditdomain.judging.JudgeExamStanding;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamVerdict;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluatorVersionEquivalence;
+import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeVersionCutover;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -55,7 +57,8 @@ import picocli.CommandLine.Parameters;
                 + "  exam run <judge> --cases <file> --course <photo> [--budget N] [--concurrency N] --out <verdicts>%n"
                 + "  exam record <measured-result>%n"
                 + "  exam status <judge>%n"
-                + "  exam status [<judge>] -f json%n%n"
+                + "  exam status [<judge>] -f json%n"
+                + "  exam cutover [--apply]%n%n"
                 + "Without --budget, exam run is a rehearsal: it reuses what that version already judged and says how "
                 + "many consultations are missing, without consulting.",
         mixinStandardHelpOptions = true,
@@ -111,6 +114,12 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
 
     private final Supplier<Map<String, JudgeExamStanding>> currentStandings;
 
+    /** F-ALDIA-R002: the one moment the tests leave the count of the judges' versions. */
+    private final AgentJudgeVersionCutover versionCutover;
+
+    @Option(names = "--apply", description = "cutover: write the equivalences once (without it, only shows them)")
+    private boolean apply;
+
     @Option(names = "--metrics-out", description = "Archivo nuevo con el costo efectivo y la procedencia de esta invocación")
     Path metricsOut;
 
@@ -130,6 +139,14 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
     ExamCmd(JudgeExamService examService, Map<String, ExamProvenance> provenanceByJudge,
             Supplier<List<String>> analyzerNames,
             Supplier<Map<String, JudgeExamStanding>> currentStandings) {
+        this(examService, provenanceByJudge, analyzerNames, currentStandings, null);
+    }
+
+    ExamCmd(JudgeExamService examService, Map<String, ExamProvenance> provenanceByJudge,
+            Supplier<List<String>> analyzerNames,
+            Supplier<Map<String, JudgeExamStanding>> currentStandings,
+            AgentJudgeVersionCutover versionCutover) {
+        this.versionCutover = versionCutover;
         this.examService = examService;
         this.provenanceByJudge = provenanceByJudge != null
                 ? Map.copyOf(provenanceByJudge)
@@ -148,8 +165,9 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
             case "run" -> takeExam(target, casesFile, photoCourse, budget, concurrency, verdictsOut);
             case "record" -> recordExam(target);
             case "status" -> CommandJson.isJson(formatName) ? showExamsJson(target) : showExams(target);
+            case "cutover" -> cutover(apply);
             default -> {
-                System.err.println("Error: unknown exam action '" + action + "'. Use run, record or status.");
+                System.err.println("Error: unknown exam action '" + action + "'. Use run, record, status or cutover.");
                 yield 2;
             }
         };
@@ -301,7 +319,61 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
             }
             System.out.println(line);
         }
+        JudgeExamStanding standing = currentStandings.get().get(judgeName);
+        if (standing != null) {
+            // F-ALDIA-R002 inv. 3: why an exam of the earlier version counts for this one.
+            for (EvaluatorVersionEquivalence equivalence : standing.getVersionEquivalences()) {
+                System.out.println(equivalenceLine(equivalence));
+            }
+        }
         return 0;
+    }
+
+    /**
+     * F-ALDIA-R002: without {@code --apply}, what the cut-over would write, or what it wrote; with it,
+     * writes it, once. It never consults a judge.
+     */
+    Integer cutover(boolean apply) {
+        if (versionCutover == null) {
+            System.err.println("Error: exam cutover no está disponible en esta instalación.");
+            return 2;
+        }
+        List<EvaluatorVersionEquivalence> recorded = versionCutover.recorded();
+        if (!recorded.isEmpty()) {
+            if (apply) {
+                System.err.println("Error: la equivalencia ya se anotó; es una sola vez (F-ALDIA-R002 inv. 4).");
+            }
+            System.out.println("La equivalencia ya está anotada:");
+            recorded.forEach(equivalence -> System.out.println(equivalenceLine(equivalence)));
+            return apply ? 1 : 0;
+        }
+        if (!apply) {
+            List<EvaluatorVersionEquivalence> preview = versionCutover.preview();
+            if (preview.isEmpty()) {
+                System.out.println("Ningún juez cambia de versión al dejar de contar sus pruebas: no hay nada que anotar.");
+                return 0;
+            }
+            System.out.println("Esto se anotaría, una sola vez y sin consultar a ningún juez (no se escribió nada):");
+            preview.forEach(equivalence -> System.out.println(equivalenceLine(equivalence)));
+            System.out.println("Para anotarlo: content-audit exam cutover --apply");
+            return 0;
+        }
+        try {
+            List<EvaluatorVersionEquivalence> written = versionCutover.apply();
+            System.out.println("Anotado, " + written.size() + (written.size() == 1 ? " juez:" : " jueces:"));
+            written.forEach(equivalence -> System.out.println(equivalenceLine(equivalence)));
+            System.out.println("Queda en la carpeta de los agentes: versionalo junto con las definiciones corregidas.");
+            return 0;
+        } catch (IllegalStateException e) {
+            System.err.println("Error: " + e.getMessage());
+            return 1;
+        }
+    }
+
+    private static String equivalenceLine(EvaluatorVersionEquivalence equivalence) {
+        return "  " + equivalence.getEvaluatorId() + ": la versión " + equivalence.getEarlierVersion()
+                + " es la misma que " + equivalence.getCurrentVersion() + ", anotado "
+                + equivalence.getRecordedAt() + ". " + (equivalence.getReason() != null ? equivalence.getReason() : "");
     }
 
     /**
@@ -341,6 +413,16 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
                 active.put("modelName", runtime.isExplicit() ? runtime.getModelName() : null);
                 active.put("reasoningEffort", runtime.isExplicit() ? runtime.getReasoningEffort() : null);
                 active.put("provenance", runtimeLabel(runtime));
+                ArrayNode equivalences = active.putArray("versionEquivalences");
+                for (EvaluatorVersionEquivalence equivalence : standing.getVersionEquivalences()) {
+                    ObjectNode line = equivalences.addObject();
+                    line.put("agent", equivalence.getEvaluatorId());
+                    line.put("earlierVersion", equivalence.getEarlierVersion());
+                    line.put("currentVersion", equivalence.getCurrentVersion());
+                    line.put("recordedAt", equivalence.getRecordedAt() != null
+                            ? equivalence.getRecordedAt().toString() : null);
+                    line.put("reason", equivalence.getReason());
+                }
             }
             ArrayNode versions = judge.putArray("versions");
             for (List<JudgeExamRecord> records : byVersionAndRuntime(history)) {

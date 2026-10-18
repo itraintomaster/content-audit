@@ -8,6 +8,7 @@ import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunnerConfi
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 
 /**
@@ -44,6 +45,11 @@ class DefaultAgentDefinitionLocator implements AgentDefinitionLocator {
     @Override
     public AgentDefinitionLocation locateUnderProjectRoot(String projectRoot, String agentName) {
         return resolve(resolveBase(projectRoot), agentName);
+    }
+
+    @Override
+    public Optional<Path> agentsDirectory() {
+        return Optional.of(resolveBase(null).toAbsolutePath());
     }
 
     private Path resolveBase(String projectRoot) {

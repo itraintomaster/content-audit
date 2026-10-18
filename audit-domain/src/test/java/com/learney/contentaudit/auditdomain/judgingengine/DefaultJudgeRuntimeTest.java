@@ -44,6 +44,7 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationTimeline;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluatorVersionEquivalence;
 import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSessionFactory;
 import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamEvaluationSessionFactory;
 import java.time.Duration;
@@ -240,6 +241,7 @@ public class DefaultJudgeRuntimeTest {
         private final Function<String, EvaluationOutcome> script;
         private final EvaluationRuntimeIdentity runtimeIdentity;
         private final Set<String> compatibleVersions;
+        private List<EvaluatorVersionEquivalence> equivalences = List.of();
         private final List<String> consulted = Collections.synchronizedList(new ArrayList<>());
 
         private ScriptedJudge(String id, String version, Function<String, EvaluationOutcome> script) {
@@ -291,6 +293,16 @@ public class DefaultJudgeRuntimeTest {
         @Override
         public Set<String> compatibleEvaluatorVersions() {
             return compatibleVersions;
+        }
+
+        @Override
+        public List<EvaluatorVersionEquivalence> versionEquivalences() {
+            return equivalences;
+        }
+
+        ScriptedJudge withEquivalences(EvaluatorVersionEquivalence... declared) {
+            this.equivalences = List.of(declared);
+            return this;
         }
 
         @Override
@@ -587,6 +599,37 @@ public class DefaultJudgeRuntimeTest {
         runtime.coverage(enabledByAlias, pendingTally(AuditTarget.QUIZ, 1));
         assertEquals(codex, timeline.lastRequestedRuntime,
                 "the cost estimate samples the timeline of the selected runtime only");
+    }
+
+    @Test
+    @DisplayName("should show the judge approved by its exam under the version that counted the tests, and why")
+    @Tag("FEAT-ALDIA")
+    @Tag("F-ALDIA-R002")
+    void shouldShowTheJudgeApprovedByItsExamUnderTheVersionThatCountedTheTests() {
+        String countingTests = "1eee07a9b6ab-con-pruebas";
+        String current = "c8ca16c9e335-sin-pruebas";
+        EvaluatorVersionEquivalence equivalence = new EvaluatorVersionEquivalence(MINI_THEORY_JUDGE,
+                countingTests, current, Instant.parse("2026-10-18T15:00:00Z"),
+                "Las pruebas de eval/ dejaron de contar para la versión del juez.");
+        ScriptedJudge judge = ScriptedJudge.healthy(MINI_THEORY_JUDGE, current,
+                EvaluationRuntimeIdentity.legacyUnknown(), Set.of(current, countingTests))
+                .withEquivalences(equivalence);
+        approved(MINI_THEORY, countingTests);
+
+        JudgeSessions opened = runtime.open(MINI_THEORY, List.of(judge), onTheCourse(3));
+
+        assertEquals(JudgeExamStatus.APPROVED, opened.getStanding().getStatus(),
+                "the exam of the version that counted the tests is the exam of the current one");
+        assertEquals(current, opened.getStanding().getJudgeVersion(), "it is named by the current version");
+        assertEquals(List.of(equivalence), opened.getStanding().getVersionEquivalences(),
+                "the standing says by which recorded equivalence it is approved");
+        assertEquals(3, opened.getEffectivePolicy().getMaxNewEvaluations());
+
+        ScriptedJudge withoutEquivalence = ScriptedJudge.healthy(MINI_THEORY_JUDGE, current);
+        JudgeSessions notBridged = runtime.open(MINI_THEORY, List.of(withoutEquivalence), onTheCourse(3));
+        assertEquals(JudgeExamStatus.NOT_TAKEN, notBridged.getStanding().getStatus(),
+                "without the recorded equivalence the earlier exam does not approve the current version");
+        assertEquals(List.of(), notBridged.getStanding().getVersionEquivalences());
     }
 
     @Test

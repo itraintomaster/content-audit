@@ -23,6 +23,8 @@ import com.learney.contentaudit.auditdomain.judging.JudgeExamVerdict;
 import com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime;
 import com.learney.contentaudit.auditinfrastructure.FileSystemJudgeExamRegistry;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluatorVersionEquivalence;
+import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeVersionCutover;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -361,6 +363,122 @@ public class ExamCmdTest {
         assertEquals("APPROVED", judge.path("versions").get(0).path("status").asText());
         assertEquals(1, registry.history("single-answer").size());
     }
+    @Test
+    @DisplayName("should say in exam status, as text and as JSON, by which recorded equivalence the exam of the earlier version counts")
+    @Tag("FEAT-ALDIA")
+    @Tag("F-ALDIA-R002")
+    public void shouldSayInExamStatusByWhichRecordedEquivalenceTheExamOfTheEarlierVersionCounts() throws IOException {
+        JudgeExamRegistry registry = new FileSystemJudgeExamRegistry(workdir);
+        registry.record(record("con-pruebas", JudgeExamStatus.APPROVED, "2026-10-14T11:00:00Z"));
+        var current = new JudgeExamStanding("single-answer", "sin-pruebas", JudgeExamStatus.APPROVED,
+                true, null, EvaluationRuntimeIdentity.legacyUnknown());
+        current.setVersionEquivalences(List.of(EQUIVALENCE));
+        ExamCmd command = new ExamCmd(realRecordingService(registry), Map.of(),
+                () -> List.of("single-answer"), () -> Map.of("single-answer", current));
+
+        Captured text = run(command, "status", "single-answer");
+        assertEquals(0, text.exit(), text.err());
+        assertTrue(text.out().contains("single-answer-judge: la versión con-pruebas es la misma que sin-pruebas, "
+                + "anotado 2026-10-18T15:00:00Z. Las pruebas dejaron de contar."), text.out());
+
+        Captured json = run(new ExamCmd(realRecordingService(registry), Map.of(),
+                () -> List.of("single-answer"), () -> Map.of("single-answer", current)),
+                "status", "single-answer", "-f", "json");
+        assertEquals(0, json.exit(), json.err());
+        JsonNode line = new ObjectMapper().readTree(json.out()).path("judges").get(0)
+                .path("current").path("versionEquivalences").get(0);
+        assertEquals("single-answer-judge", line.path("agent").asText());
+        assertEquals("con-pruebas", line.path("earlierVersion").asText());
+        assertEquals("sin-pruebas", line.path("currentVersion").asText());
+        assertEquals("2026-10-18T15:00:00Z", line.path("recordedAt").asText());
+        assertEquals("Las pruebas dejaron de contar.", line.path("reason").asText());
+        assertEquals(1, registry.history("single-answer").size(), "the historical record is not rewritten");
+    }
+
+    @Test
+    @DisplayName("should show what the cut-over would write without writing, write it with --apply and refuse a second time")
+    @Tag("FEAT-ALDIA")
+    @Tag("F-ALDIA-R002")
+    public void shouldShowTheCutoverWithoutWritingWriteItWithApplyAndRefuseASecondTime() {
+        FakeCutover cutover = new FakeCutover(List.of(EQUIVALENCE));
+
+        Captured preview = run(examCmdWith(cutover), "cutover");
+        assertEquals(0, preview.exit(), preview.err());
+        assertTrue(preview.out().contains("no se escribió nada"), preview.out());
+        assertTrue(preview.out().contains("la versión con-pruebas es la misma que sin-pruebas"), preview.out());
+        assertTrue(preview.out().contains("content-audit exam cutover --apply"), preview.out());
+        assertEquals(0, cutover.applied, "without --apply nothing is written");
+
+        Captured applied = run(examCmdWith(cutover), "cutover", "--apply");
+        assertEquals(0, applied.exit(), applied.err());
+        assertTrue(applied.out().contains("Anotado, 1 juez:"), applied.out());
+        assertEquals(1, cutover.applied);
+
+        Captured again = run(examCmdWith(cutover), "cutover", "--apply");
+        assertEquals(1, again.exit(), "the equivalence is once");
+        assertTrue(again.err().contains("ya se anotó"), again.err());
+        assertTrue(again.out().contains("La equivalencia ya está anotada:"), again.out());
+        assertEquals(1, cutover.applied, "a second --apply writes nothing");
+
+        Captured shown = run(examCmdWith(cutover), "cutover");
+        assertEquals(0, shown.exit(), "without --apply it only shows what was written");
+        assertTrue(shown.out().contains("la versión con-pruebas es la misma que sin-pruebas"), shown.out());
+    }
+
+    @Test
+    @DisplayName("should say that no judge changes version and write nothing, and refuse when the cut-over is not wired")
+    @Tag("FEAT-ALDIA")
+    @Tag("F-ALDIA-R002")
+    public void shouldSayThatNoJudgeChangesVersionAndRefuseWhenTheCutoverIsNotWired() {
+        FakeCutover nothing = new FakeCutover(List.of());
+        Captured preview = run(examCmdWith(nothing), "cutover");
+        assertEquals(0, preview.exit(), preview.err());
+        assertTrue(preview.out().contains("Ningún juez cambia de versión"), preview.out());
+
+        Captured missing = run(examCmdWith(null), "cutover");
+        assertEquals(2, missing.exit());
+        assertTrue(missing.err().contains("no está disponible"), missing.err());
+    }
+
+    private static final EvaluatorVersionEquivalence EQUIVALENCE = new EvaluatorVersionEquivalence(
+            "single-answer-judge", "con-pruebas", "sin-pruebas", Instant.parse("2026-10-18T15:00:00Z"),
+            "Las pruebas dejaron de contar.");
+
+    private static ExamCmd examCmdWith(AgentJudgeVersionCutover cutover) {
+        return new ExamCmd(new RecordingService(), Map.of(), List::of, Map::of, cutover);
+    }
+
+    /** The cut-over in memory: it writes once, like the real one, and counts what it wrote. */
+    private static final class FakeCutover implements AgentJudgeVersionCutover {
+        private final List<EvaluatorVersionEquivalence> planned;
+        private List<EvaluatorVersionEquivalence> written = List.of();
+        int applied;
+
+        FakeCutover(List<EvaluatorVersionEquivalence> planned) {
+            this.planned = planned;
+        }
+
+        @Override
+        public List<EvaluatorVersionEquivalence> preview() {
+            return planned;
+        }
+
+        @Override
+        public List<EvaluatorVersionEquivalence> apply() {
+            if (!written.isEmpty()) {
+                throw new IllegalStateException("ya se anotó");
+            }
+            applied++;
+            written = planned;
+            return planned;
+        }
+
+        @Override
+        public List<EvaluatorVersionEquivalence> recorded() {
+            return written;
+        }
+    }
+
     // -------------------------------------------------------------------------
 
     private static final String PHOTO = "db/fotos/2026-09-29/english-course";

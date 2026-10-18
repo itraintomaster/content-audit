@@ -40,6 +40,30 @@ public class DefaultAgentJudgeVersionResolverTest {
         return new DefaultAgentDefinitionLocatorFactory().create(new AgentGraphRunnerConfig(agentsDir, null));
     }
 
+    /** A judge folder with every part a judge carries: definition, guide, format, gate and tests. */
+    static Path writeFullJudge(Path agentsDir, String agentName) throws IOException {
+        Path dir = agentsDir.resolve(agentName);
+        Files.createDirectories(dir.resolve("nodes"));
+        Files.createDirectories(dir.resolve("schema"));
+        Files.createDirectories(dir.resolve("scripts"));
+        Files.createDirectories(dir.resolve("eval"));
+        Files.writeString(dir.resolve("agent.yaml"), "name: " + agentName + "\n"
+                + "description: |\n"
+                + "  Juez de la miniteoría: decide si la teoría que ve el alumno enseña lo que\n"
+                + "  el ejercicio pide.\n"
+                + "\n"
+                + "  Todo archivo de esta carpeta, eval/ incluido, entra en la versión del juez\n"
+                + "  (la del juez de consigna: definición, modelo y proveedor). Tocar la guía, un\n"
+                + "  script o una fixture es una versión nueva, que rinde su examen antes de\n"
+                + "  consultar sobre el curso (F-JEXAM-R003).\n"
+                + "kind: agent\nstrategy: graph\ninitial_node: evaluate\n");
+        Files.writeString(dir.resolve("nodes").resolve("evaluate.md"), "Leé la teoría y decí si enseña lo pedido.");
+        Files.writeString(dir.resolve("schema").resolve("verdict.schema.json"), "{\"type\":\"object\"}");
+        Files.writeString(dir.resolve("scripts").resolve("gate_verdict.sh"), "#!/bin/sh\nexit 0\n");
+        Files.writeString(dir.resolve("eval").resolve("fixtures.json"), "[{\"case\":1}]");
+        return dir;
+    }
+
     private static Path writeDefinition(Path agentsDir, String agentName, String prompt) throws IOException {
         Path definition = Files.createDirectories(agentsDir.resolve(agentName).resolve("nodes"));
         Files.writeString(agentsDir.resolve(agentName).resolve("agent.yaml"),
@@ -123,5 +147,69 @@ public class DefaultAgentJudgeVersionResolverTest {
             assertFalse(version.isPresent(), "F-JEXAM-R003: no definition, no version -- not even one that looks "
                     + "like a digest -- for " + missing.getEvaluatorId());
         }
+    }
+
+    @Test
+    @DisplayName("should keep the version of a judge when only its tests under eval/ change, since they never run when the course is measured")
+    @Tag("FEAT-ALDIA")
+    @Tag("F-ALDIA-R001")
+    public void shouldKeepTheVersionOfAJudgeWhenOnlyItsTestsUnderEvalChange(@TempDir Path agentsDir)
+            throws IOException {
+        Path judge = writeFullJudge(agentsDir, "mini-theory-judge");
+        AgentJudgeSpec miniTheory = new AgentJudgeSpec("mini-theory-judge", "miniTheoryVerdict", "juez de la miniteoría");
+        DefaultAgentJudgeVersionResolver resolver = new DefaultAgentJudgeVersionResolver(locatorOver(agentsDir));
+        AgentJudgeConfig config = new AgentJudgeConfig("claude-cli", null, null, "claude-sonnet-4-5", 0.0, 120, "medium");
+        String version = resolver.resolve(miniTheory, config, CLAUDE_CLI).orElseThrow();
+
+        Files.writeString(judge.resolve("eval").resolve("fixtures.json"), "[{\"case\":1},{\"case\":2}]");
+        assertEquals(version, resolver.resolve(miniTheory, config, CLAUDE_CLI).orElseThrow(),
+                "changing a fixture keeps the version");
+        Files.createDirectories(judge.resolve("eval").resolve("cases"));
+        Files.writeString(judge.resolve("eval").resolve("cases").resolve("nuevo.json"), "{}");
+        Files.writeString(judge.resolve("eval").resolve("run.sh"), "#!/bin/sh\n");
+        assertEquals(version, resolver.resolve(miniTheory, config, CLAUDE_CLI).orElseThrow(),
+                "a new test, or a script that runs the tests, keeps it too");
+        Files.delete(judge.resolve("eval").resolve("cases").resolve("nuevo.json"));
+        Files.delete(judge.resolve("eval").resolve("cases"));
+        Files.delete(judge.resolve("eval").resolve("run.sh"));
+        Files.delete(judge.resolve("eval").resolve("fixtures.json"));
+        Files.delete(judge.resolve("eval"));
+        assertEquals(version, resolver.resolve(miniTheory, config, CLAUDE_CLI).orElseThrow(),
+                "and so does a judge without tests at all");
+
+        assertEquals(DefaultAgentJudgeVersionResolver.processVersion("mini-theory-judge", judge, java.util.Map.of()),
+                Optional.of(version), "the version measured is the one the cut-over computes as current");
+    }
+
+    @Test
+    @DisplayName("should make a new version when anything that runs when measuring changes: the guide, the format, a gate script, the definition or a new file outside eval/")
+    @Tag("FEAT-ALDIA")
+    @Tag("F-ALDIA-R001")
+    public void shouldMakeANewVersionWhenAnythingThatRunsWhenMeasuringChanges(@TempDir Path agentsDir)
+            throws IOException {
+        Path judge = writeFullJudge(agentsDir, "mini-theory-judge");
+        AgentJudgeSpec miniTheory = new AgentJudgeSpec("mini-theory-judge", "miniTheoryVerdict", "juez de la miniteoría");
+        DefaultAgentJudgeVersionResolver resolver = new DefaultAgentJudgeVersionResolver(locatorOver(agentsDir));
+        AgentJudgeConfig config = new AgentJudgeConfig("claude-cli", null, null, "claude-sonnet-4-5", 0.0, 120, "medium");
+        java.util.Set<String> seen = new java.util.HashSet<>();
+        seen.add(resolver.resolve(miniTheory, config, CLAUDE_CLI).orElseThrow());
+
+        List<Path> runWhenMeasuring = List.of(
+                judge.resolve("nodes").resolve("evaluate.md"),
+                judge.resolve("schema").resolve("verdict.schema.json"),
+                judge.resolve("scripts").resolve("gate_verdict.sh"),
+                judge.resolve("agent.yaml"));
+        for (Path part : runWhenMeasuring) {
+            Files.writeString(part, Files.readString(part) + "\n# cambio");
+            assertTrue(seen.add(resolver.resolve(miniTheory, config, CLAUDE_CLI).orElseThrow()),
+                    "changing " + judge.relativize(part) + " is a new version");
+        }
+        Files.writeString(judge.resolve("nodes").resolve("extra.md"), "Otra parte de la guía.");
+        assertTrue(seen.add(resolver.resolve(miniTheory, config, CLAUDE_CLI).orElseThrow()),
+                "a new file outside eval/ is a new version");
+        Files.createDirectories(judge.resolve("nodes").resolve("eval"));
+        Files.writeString(judge.resolve("nodes").resolve("eval").resolve("paso.md"), "Un paso de la guía.");
+        assertTrue(seen.add(resolver.resolve(miniTheory, config, CLAUDE_CLI).orElseThrow()),
+                "only the tests folder at the top of the judge is left out, not any folder named so");
     }
 }

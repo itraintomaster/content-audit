@@ -243,8 +243,10 @@ import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamEva
 import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeConfig;
 import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeFactory;
 import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeSpec;
+import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeVersionCutover;
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadinessProbe;
 import com.learney.contentaudit.quizinstructioninfrastructure.agentjudge.DefaultAgentJudgeFactory;
+import com.learney.contentaudit.quizinstructioninfrastructure.agentjudge.DefaultAgentJudgeVersionCutover;
 import com.learney.contentaudit.quizinstructioninfrastructure.agentjudge.DefaultJudgeProviderReadinessProbe;
 import com.learney.contentaudit.quizinstructioninfrastructure.choicealternativeverdict.JacksonChoiceAlternativeVerdictReader;
 import com.learney.contentaudit.quizinstructioninfrastructure.minitheoryverdict.JacksonMiniTheoryVerdictReader;
@@ -1360,6 +1362,14 @@ class Main {
                 Map.entry("multiple-choice-quality", agentExamProvenance),
                 Map.entry("naturalness", agentExamProvenance),
                 Map.entry("near-duplicates", agentExamProvenance));
+        // F-ALDIA-R002: exam cutover, once, over the judges built from an AgentJudgeSpec. The consigna
+        // judge is not among them: its version keeps its own rule (F-ALDIA-R001 inv. 4).
+        AgentJudgeVersionCutover versionCutover = new DefaultAgentJudgeVersionCutover(
+                quizInstructionAgentDefinitionLocator, Set.of(fromEnglishJudge.evaluatorId(),
+                        fromTranslationJudge.evaluatorId(), singleAnswerJudge.evaluatorId(),
+                        miniTheoryJudge.evaluatorId(), choiceAlternativeJudge.evaluatorId(),
+                        choiceQualityJudge.evaluatorId(), naturalnessAlternative.evaluatorId(),
+                        nearDuplicatesAlternative.evaluatorId()), java.time.Clock.systemUTC());
         // F-JEXAM-R015: exam status -f json asks the catalog who to read, only when it is used.
         cmd.addSubcommand("exam", new picocli.CommandLine(
                 new ExamCmd(judgeExamService, examProvenance, () -> analyzerCatalog.list().stream()
@@ -1376,7 +1386,7 @@ class Main {
                     activeJudges.forEach((name, evaluators) -> standings.put(name,
                             judgeRuntime.open(name, evaluators, null).getStanding()));
                     return standings;
-                })));   // C · FEAT-JEXAM
+                }, versionCutover)));   // C · FEAT-JEXAM
 
         // FEAT-RONDA2 (hooks F-06 and E-09): the commands of packages F and E, each registered by
         // its package with its picocli wrapper: set-baseline, save-projection, compare, get-goals
@@ -1685,6 +1695,11 @@ class Main {
             @Override
             public Set<String> compatibleEvaluatorVersions() {
                 return delegate().compatibleEvaluatorVersions();
+            }
+
+            @Override
+            public List<com.learney.contentaudit.evaluationledgerdomain.EvaluatorVersionEquivalence> versionEquivalences() {
+                return delegate().versionEquivalences();
             }
         };
     }
