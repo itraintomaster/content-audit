@@ -222,10 +222,13 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
             int missing = left.stream().filter(each -> each != null && Objects.equals(each.getJudge(), judge.getJudge()))
                     .mapToInt(BatchJudgeAccount::getQueriesMissing).findFirst().orElse(0);
             int[] own = floors.getOrDefault(judge.getJudge(), new int[2]);
-            accounts.add(new BatchJudgeAccount(judge.getJudge(), judge.getDisplayName(), judge.getUnit(),
+            BatchJudgeAccount account = new BatchJudgeAccount(judge.getJudge(), judge.getDisplayName(), judge.getUnit(),
                     judge.isApproved(), judge.getExamStatus(), judge.getReason(), judge.getUnits(), judge.getBudget(),
                     judge.getQueriesSpent(), judge.getQueriesReused(), missing, own[0], own[1],
-                    judge.getUnavailableReason(), judge.isLocal()));
+                    judge.getUnavailableReason(), judge.isLocal());
+            // F-ALDIA-R005: what of the reused was from before, as the pass read it before paying.
+            account.setFreshness(judge.getFreshness());
+            accounts.add(account);
         }
         return accounts;
     }

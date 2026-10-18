@@ -11,6 +11,7 @@ import com.learney.contentaudit.coursedomain.*;
 import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
 import com.learney.contentaudit.evaluationledgerdomain.contentfingerprint.Sha256ContentFingerprinter;
 import com.learney.contentaudit.revisiondomain.batch.*;
+import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
 import java.time.Instant;
 import java.util.*;
 import org.junit.jupiter.api.*;
@@ -35,6 +36,7 @@ class CurrentAnalysisServiceTest {
     final AnalysisComposer composer = new DefaultAnalysisComposer(catalog, new IScoreAggregator(),
             new DefaultContextNumbersCalculator(), renderer, new Sha256ContentFingerprinter());
     DefaultCurrentAnalysisService service;
+    BatchServiceConfig config;
 
     @BeforeEach void setup() {
         when(catalog.list()).thenReturn(List.of(provider.describe()));
@@ -49,7 +51,7 @@ class CurrentAnalysisServiceTest {
         when(reviews.read("batch")).thenReturn(new BatchReview("batch", 1, 6, null, List.of(), List.of(), List.of(), List.of(), List.of()));
         saved.put(batch.getBaselineAuditId(), report(false, false, "v1"));
         when(engine.runAudit(any(), any())).thenAnswer(i -> report(false, false, "v1"));
-        var config = new BatchServiceConfig(); config.setBatchStore(store); config.setAuditReportStore(audits);
+        config = new BatchServiceConfig(); config.setBatchStore(store); config.setAuditReportStore(audits);
         config.setCourseRepository(repository); config.setCoursePath(TandaFixture.COURSE_PATH); config.setAuditEngine(engine);
         var mapper = mock(CourseMapper.class); when(mapper.map(any())).thenReturn(new AuditableCourse(List.of()));
         config.setCourseMapper(mapper); config.setAnalyzerCatalog(catalog);
@@ -259,4 +261,66 @@ class CurrentAnalysisServiceTest {
         verify(engine,never()).runAudit(any(),any());
     }
 
+
+    @Test @Tag("FEAT-ALDIA") @Tag("F-ALDIA-R005") @Tag("F-ALDIA-R003")
+    void eachStateCountsItsJudgeAgainstTodaysVersionAndEveryVerdictCarriesItsMark() {
+        var zone = java.time.ZoneId.of("America/Argentina/Buenos_Aires");
+        var clock = java.time.Clock.fixed(Instant.parse("2026-10-18T15:00:00Z"), zone);
+        var xhigh = com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "xhigh");
+        var old = new com.learney.contentaudit.auditdomain.judging.JudgeExamRecord(NAME, "v1",
+                com.learney.contentaudit.auditdomain.judging.JudgeExamStatus.APPROVED, 20, 0, List.of(), List.of(), true, null,
+                "human", Instant.parse("2026-10-06T02:14:16Z"));
+        old.setRuntimeIdentity(xhigh);
+        var today = new com.learney.contentaudit.auditdomain.judging.JudgeExamRecord(NAME, "v2",
+                com.learney.contentaudit.auditdomain.judging.JudgeExamStatus.APPROVED, 20, 0, List.of(), List.of(), true, null,
+                "human", Instant.parse("2026-10-14T01:12:33Z"));
+        today.setRuntimeIdentity(xhigh);
+        var standing = new com.learney.contentaudit.auditdomain.judging.JudgeExamStanding(NAME, "v2",
+                com.learney.contentaudit.auditdomain.judging.JudgeExamStatus.APPROVED, true, null, xhigh, Set.of("v2"));
+        var reference = com.learney.contentaudit.auditdomain.judging.JudgeFreshnessReference.of(standing, List.of(old, today), zone, clock);
+        config.setJudgeFreshnessCatalog(name -> NAME.equals(name) ? Optional.of(reference) : Optional.empty());
+        var coverage = new JudgeCoverageDiagnosis(); coverage.setJudgeName(NAME); coverage.setUnit(AuditTarget.QUIZ);
+        coverage.setStanding(standing);
+        for (String id : List.of("r1")) {
+            cover(saved.get(id), coverage);
+        }
+        saved.put("r2", report(true, false, "v2"));
+        cover(saved.get("r2"), coverage);
+        var runs = new ArrayList<>(BatchBook.list(batch.getSelectiveRuns()));
+        runs.add(new SelectiveCorrection.Run("r2", "analyze", NAME, null, 1, 6, "content", "v2", xhigh.toString(), "r2", null,
+                List.of(), List.of(), 1, 1, 1, 1, 1, 0, "DONE", "human", Instant.EPOCH, Instant.EPOCH, null, false, 6, "content", null));
+        batch.setSelectiveRuns(runs);
+        var primary = report(false, false, "v1");
+        cover(primary, coverage);
+        when(engine.runAudit(any(), any())).thenReturn(primary);
+
+        service.execute(select("integrate", "r1", "s1", null));
+        var before = read().states().stream().filter(s -> s.id().equals("correction")).findFirst().orElseThrow();
+        var count = before.judges().stream().filter(j -> NAME.equals(j.judgeName())).findFirst().orElseThrow();
+        assertEquals(1, count.fromBefore());
+        assertEquals(count.total(), count.upToDate() + count.fromBefore() + count.notMeasured());
+        assertEquals("la del 13/10", count.currentVersionName());
+        assertEquals(Instant.parse("2026-10-14T01:12:33Z"), count.currentApprovedAt());
+        // r1 left its runtime as free text: it is not guessed, it has no known provenance.
+        assertTrue(count.summary().endsWith("reusa 1 ejercicio de antes (1 de procedencia desconocida)"), count.summary());
+        var mark = before.verdictMarks().get(TandaFixture.CHILD).get(NAME);
+        assertEquals(com.learney.contentaudit.auditdomain.judging.JudgeVerdictFreshness.FROM_BEFORE, mark.get("freshness"));
+        assertEquals("v1", mark.get("judgeVersion"));
+        assertEquals(com.learney.contentaudit.auditdomain.judging.JudgeVerdictStaleCause.UNKNOWN_PROVENANCE, mark.get("staleCause"));
+        assertEquals("versión del 5/10", mark.get("versionName"));
+
+        service.execute(select("replace", "r2", "s2", null));
+        var after = read().states().stream().filter(s -> s.id().equals("correction")).findFirst().orElseThrow();
+        var fresh = after.judges().stream().filter(j -> NAME.equals(j.judgeName())).findFirst().orElseThrow();
+        assertEquals(0, fresh.fromBefore());
+        assertEquals(1, fresh.upToDate());
+        assertEquals(com.learney.contentaudit.auditdomain.judging.JudgeVerdictFreshness.UP_TO_DATE,
+                after.verdictMarks().get(TandaFixture.CHILD).get(NAME).get("freshness"));
+        verify(repository, never()).save(any(), any()); verify(store, never()).save(any());
+    }
+
+    static void cover(AuditReport report, JudgeCoverageDiagnosis coverage) {
+        var d = (DefaultCourseDiagnoses) report.getRoot().getDiagnoses();
+        var list = new ArrayList<>(BatchBook.list(d.getJudgeCoverages())); list.add(coverage); d.setJudgeCoverages(list);
+    }
 }

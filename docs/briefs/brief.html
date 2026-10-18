@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Versión sin pruebas</title>
+<title>Qué viene de antes</title>
 <!--
   TEMPLATE DE BRIEF · visual-brief
   1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
@@ -346,81 +346,76 @@
 
   <header>
     <div class="kicker">
-      <span class="num">145</span>
+      <span class="num">146</span>
       <span class="badge">Resumen</span>
-      <span class="meta">Jueces al día · primer tramo · 18/10/2026</span>
+      <span class="meta">Jueces al día · segundo tramo · 18/10/2026</span>
     </div>
-    <h1>Tocar las pruebas de un juez ya no le cambia la versión</h1>
-    <p class="sub">El primer tramo de jueces al día: la regla de la versión y el corte que conserva los exámenes.</p>
+    <h1>El cierre ya dice qué viene de una versión de antes</h1>
+    <p class="sub">Cada veredicto lleva su marca, cada versión se nombra por su fecha y el análisis cuenta por juez.</p>
   </header>
 
-  <div class="lede"><p><strong>Los 8 jueces conservan su examen aprobado, sin una sola consulta.</strong> Falta que corras el corte una vez en main, después de juntar la rama.</p></div>
+  <div class="lede"><p><strong>Lo de la Corrección 1 ya no pasaría callado: el cierre diría que 82 de 83 temas vienen de antes.</strong> Falta que el tablero lo muestre y poder volver a medir sólo eso.</p></div>
 
   <section>
-    <h2>Ningún juez pierde su aprobación</h2>
-    <div class="kpis">
-      <div class="kpi dest"><div class="n">8</div><div class="l">jueces cambian de código y siguen aprobados</div></div>
-      <div class="kpi"><div class="n">0</div><div class="l">consultas: el corte no llama a ningún juez</div></div>
-      <div class="kpi"><div class="n">1</div><div class="l">vez: el corte se anota y no se repite</div></div>
-      <div class="kpi"><div class="n">3.566</div><div class="l">pruebas en verde en los módulos tocados y los que usan</div></div>
-    </div>
-    <p class="pie">El código de un juez es la huella de su carpeta. Las pruebas salen de la cuenta, así que todos cambian de código una vez.</p>
-    <div class="call c-warn"><b>Una prueba ya fallaba, ajena a esto:</b> la guarda del examen encuentra textos del examen en las pruebas del juez de pares, sin tocar desde el 8/10.</div>
-  </section>
-
-  <section>
-    <h2>Una prueba nueva ya no deja al juez sin examen</h2>
+    <h2>El cierre nombra lo de antes por fecha</h2>
     <div class="ad">
       <div class="lado antes"><span class="rot">Hasta hoy</span>
-        <ol><li>Agregás un caso a las pruebas de la miniteoría.</li><li>El juez sale con un código nuevo.</li><li>Ese código no rindió el examen.</li></ol>
-        <span class="res">No consulta hasta volver a rendir</span></div>
+        <ol><li>Miniteoría: 83 temas.</li><li>Reusadas 82, faltan 0.</li><li>Nada dice de qué versión.</li></ol>
+        <span class="res">Parece medido con la de hoy</span></div>
       <div class="lado despues"><span class="rot">Con esto</span>
-        <ol><li>Agregás el mismo caso.</li><li>El código no cambia: las pruebas no corren al medir.</li><li>El examen aprobado sigue valiendo.</li></ol>
-        <span class="res">Sigue consultando, sin rendir de nuevo</span></div>
+        <ol><li>Miniteoría: 83 temas.</li><li>Reusa 82 temas de antes.</li><li>77 de la del 5/10, 5 de la del 13/10, 13:00.</li></ol>
+        <span class="res">Se ve qué falta volver a medir</span></div>
     </div>
-    <p class="pie">Tocar la guía, el formato, un script o la definición sigue siendo una versión nueva, igual que hoy.</p>
+    <p class="pie">Lo dicen <code>batch close</code> y <code>batch report</code>. El análisis actual da los mismos conteos en su JSON.</p>
   </section>
 
   <section>
-    <h2>El corte, probado sobre una copia de main</h2>
+    <h2>Cuatro preguntas deciden si un veredicto está al día</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">¿Juez aprobado hoy?</span><span class="d">Si no, nada está al día.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">¿Se sabe de dónde vino?</span><span class="d">Sin versión o motor: procedencia desconocida.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">¿Mismo motor aprobado?</span><span class="eg">llama3 local</span><span class="d">Se mira antes que la versión.</span></div>
+      <div class="st end"><span class="i">4</span><span class="h">¿Misma versión?</span><span class="d">La de hoy o la anotada como igual: al día.</span></div>
+    </div>
+    <p class="pie">Siempre contra el juez de hoy, nunca entre los dos lados de una comparación. Marcar no consulta ni cambia qué se reusa.</p>
+  </section>
+
+  <section>
+    <h2>Una versión se llama por el día que aprobó</h2>
     <div class="tw"><table>
-      <thead><tr><th>Juez</th><th>Código aprobado</th><th>Código nuevo</th><th>¿Sigue aprobado?</th></tr></thead>
+      <thead><tr><th>Miniteoría</th><th>Aprobó por primera vez</th><th>Se llama</th></tr></thead>
       <tbody>
-        <tr><td>Miniteoría</td><td><small>1eee07a9</small></td><td><small>c8ca16c9</small></td><td><span class="pill p-ok">sí</span></td></tr>
-        <tr><td>Calidad de opción múltiple</td><td><small>9f164016</small></td><td><small>c0bc2936</small></td><td><span class="pill p-ok">sí</span></td></tr>
-        <tr><td>Validez de opción múltiple</td><td><small>fcc689bc</small></td><td><small>6919e346</small></td><td><span class="pill p-ok">sí</span></td></tr>
-        <tr><td>Respuesta única</td><td><small>3bb9cd10</small></td><td><small>aff10621</small></td><td><span class="pill p-ok">sí</span></td></tr>
-        <tr><td>Sentido de la traducción (los dos)</td><td><small>0ff707d2 · 053744ab</small></td><td><small>840385d9 · 85b53147</small></td><td><span class="pill p-ok">sí</span></td></tr>
-        <tr><td>Casi repetidos, por pares</td><td><small>04c290f9</small></td><td><small>729229ed</small></td><td><span class="pill p-ok">sí</span></td></tr>
-        <tr><td>Naturalidad con claude</td><td><small>0c48e7b5</small></td><td><small>bffdfb78</small></td><td>no tenía examen</td></tr>
+        <tr><td><small>738388a5</small></td><td>5/10, 23:14</td><td>la del 5/10</td></tr>
+        <tr><td><small>33e026fa</small></td><td>13/10, 13:00</td><td>la del 13/10, 13:00</td></tr>
+        <tr><td><small>1eee07a9</small> (la de hoy)</td><td>13/10, 22:12</td><td>la del 13/10, 22:12</td></tr>
+        <tr><td><small>c8ca16c9</small></td><td>nunca</td><td>sin aprobar (c8ca16c9)</td></tr>
       </tbody></table></div>
-    <p class="pie">Cada código aprobado es el de su último examen aprobado. Sólo cambió el párrafo que decía que las pruebas contaban; el juez de consigna no se toca.</p>
+    <p class="pie">La hora aparece sólo si otra versión aprobó el mismo día; el año, si no es este. Volver a aprobar no la renombra. El código completo queda en el JSON.</p>
   </section>
 
   <section>
     <h2>Qué cambia y qué no</h2>
     <div class="cambia">
-      <div class="si"><div class="ptl">Cambia</div><ul><li>Las pruebas de cada juez no cuentan para su versión.</li><li>Su definición lo dice.</li><li><code>exam status</code> muestra por qué vale el examen de antes.</li></ul></div>
-      <div class="no"><div class="ptl">No cambia</div><ul><li>Los exámenes guardados no se reescriben.</li><li>El juez de consigna sigue contando sus pruebas.</li><li>Una línea agregada después a mano no hace iguales dos versiones.</li></ul></div>
+      <div class="si"><div class="ptl">Cambia</div><ul><li>Cada veredicto del análisis lleva su marca, versión y nombre.</li><li>Por juez y estado: al día, de antes y sin medir, que suman el total.</li><li>El cierre lo dice en la línea de cada juez.</li></ul></div>
+      <div class="no"><div class="ptl">No cambia</div><ul><li>Qué veredicto se reusa.</li><li>Ninguna consulta nueva: leer cuesta 0.</li><li>Lo guardado no se reescribe.</li></ul></div>
     </div>
+    <div class="call c-warn"><b>Sin marca por ahora:</b> naturalidad y casi repetidos no están entre los jueces cuyo estado de hoy se lee gratis. Y la naturalidad aprobó sin motor anotado: saldría «procedencia desconocida».</div>
+    <div class="call c-warn"><b>No lo leí sobre la Corrección 1 real:</b> los 77 y 5 salen de la prueba armada con las fechas reales de los exámenes.</div>
   </section>
 
   <section>
-    <h2>Lo corrés vos, una vez, en main</h2>
+    <h2>Qué sigue</h2>
     <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">Juntar la rama</span><span class="d">La terminal usa el código de main.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">Mirar el corte</span><span class="eg">8 jueces</span><span class="d">No escribe nada.</span></div>
-      <div class="st"><span class="i">3</span><span class="h">Anotarlo</span><span class="d">Escribe la equivalencia y corrige los 8 textos.</span></div>
-      <div class="st end"><span class="i">4</span><span class="h">Commitear</span><span class="d">El archivo nuevo y las 8 definiciones.</span></div>
+      <div class="st"><span class="i">1</span><span class="h">Commitear este tramo</span><span class="d">Espera tu OK; la suite está en verde.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Remedir lo de antes</span><span class="d">Sólo lo marcado, con tope y tu OK.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">Publicar frena</span><span class="d">Salvo aceptar lo de antes a sabiendas.</span></div>
+      <div class="st end"><span class="i">4</span><span class="h">El tablero lo muestra</span><span class="d">Mapa y Correcciones, con el nombre de la versión.</span></div>
     </div>
-<pre><code>content-audit exam cutover
-content-audit exam cutover --apply</code></pre>
-    <div class="call c-warn"><b>Antes de tocar otro juez:</b> el corte toma la carpeta como está ese día. Un juez cambiado antes pierde su examen aprobado.</div>
   </section>
 
   <footer>
-    <span>F-ALDIA-R001 (versión sin eval/) y F-ALDIA-R002 (equivalencia única, inv. 1–5) · .sentinel/agents/version-equivalences.jsonl · DefaultAgentJudgeVersionResolver, DefaultAgentJudgeVersionCutover, ExamCmd cutover · pendiente: R003–R010 y FEAT-TALDIA · nada commiteado</span>
-    <span>brief 145 · docs/briefs/145-jueces-al-dia-version-sin-pruebas.html</span>
+    <span>F-ALDIA-R003 (JudgeFreshnessReference, JudgeVerdictMark), R004 (JudgeVersionNamer), R005 (JudgeFreshnessTally, CurrentAnalysisService.State.judges/verdictMarks, BatchJudgeAccount.freshness, BatchCmd) · catálogo vivo DefaultJudgeFreshnessCatalog en Main · 3.551 pruebas en verde (revision-domain, audit-cli y lo que usan), sin la guarda que ya fallaba · sigue R007, R008–R010, R006, FEAT-TALDIA · nada commiteado</span>
+    <span>brief 146 · docs/briefs/146-jueces-al-dia-marca-y-conteos.html</span>
   </footer>
 
 </div>

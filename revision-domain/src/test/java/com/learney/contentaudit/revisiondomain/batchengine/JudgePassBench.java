@@ -153,6 +153,10 @@ final class JudgePassBench {
 
     private final Map<String, String> servicesDown = new ConcurrentHashMap<>();
 
+    /** By judge, the versions its coverage says its verdicts came from, on every cut (F-ALDIA-R005). */
+    public final Map<String, List<com.learney.contentaudit.auditdomain.judging.JudgeVersionStanding>> versionsSeen =
+            new ConcurrentHashMap<>();
+
     private volatile boolean ollama = true;
 
     private final Map<String, Judge> judges = new LinkedHashMap<>();
@@ -299,6 +303,11 @@ final class JudgePassBench {
     /** The pass under test, over the engine, the mapper and the catalog of this bench. */
     public DefaultBatchJudgePass pass() {
         return new DefaultBatchJudgePass(engine, MAPPER, catalog);
+    }
+
+    /** The pass under test, marking what each judge reuses against today's judge (F-ALDIA-R005). */
+    public DefaultBatchJudgePass pass(com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCatalog freshness) {
+        return new DefaultBatchJudgePass(engine, MAPPER, catalog, freshness);
     }
 
     /** The pass under test, over this engine and mapper and the given catalog. */
@@ -1048,7 +1057,7 @@ final class JudgePassBench {
                 DefaultCourseDiagnoses diagnoses = (DefaultCourseDiagnoses) root.getDiagnoses();
                 diagnoses.addJudgeCoverage(new JudgeCoverageDiagnosis(name, unit, reached, evaluated, reached - evaluated,
                         coverages, new JudgeExamStanding(name, "v3", exam.status(), exam.approved(), exam.reason()),
-                        new ArrayList<>(), unavailableReason,
+                        new ArrayList<>(versionsSeen.getOrDefault(name, List.of())), unavailableReason,
                         new JudgeCostEstimate(reached - evaluated, missing, 0, false, 0, maxConcurrent, 0),
                         new ArrayList<>(),
                         unit == AuditTarget.QUIZ ? new JudgeQuizTally(reached, evaluated, reached - evaluated)

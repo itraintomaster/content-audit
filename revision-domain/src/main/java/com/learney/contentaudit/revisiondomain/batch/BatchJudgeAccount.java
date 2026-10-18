@@ -40,6 +40,9 @@ public class BatchJudgeAccount {
 
     private boolean local;
 
+    /** F-ALDIA-R005: how much of what the judge reused is from before, and from which version or runtime. */
+    private com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCount freshness;
+
     public BatchJudgeAccount() {
     }
 
@@ -182,6 +185,14 @@ public class BatchJudgeAccount {
 
     public void setLocal(boolean local) {
         this.local = local;
+    }
+
+    public com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCount getFreshness() {
+        return freshness;
+    }
+
+    public void setFreshness(com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCount freshness) {
+        this.freshness = freshness;
     }
 
     @Override

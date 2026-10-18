@@ -38,6 +38,12 @@ public class BatchServiceConfig {
 
     public CurrentAnalysisService getCurrentAnalysisService() { return currentAnalysisService; }
     public void setCurrentAnalysisService(CurrentAnalysisService service) { currentAnalysisService = service; }
+
+    /** F-ALDIA-R003 and R005: today's judges, to mark each verdict; null leaves verdicts unmarked. */
+    private com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCatalog judgeFreshnessCatalog;
+
+    public com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCatalog getJudgeFreshnessCatalog() { return judgeFreshnessCatalog; }
+    public void setJudgeFreshnessCatalog(com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCatalog catalog) { judgeFreshnessCatalog = catalog; }
     private BatchStore batchStore;
 
     private BatchReviewCache reviewCache;

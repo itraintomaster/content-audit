@@ -1370,10 +1370,9 @@ class Main {
                         miniTheoryJudge.evaluatorId(), choiceAlternativeJudge.evaluatorId(),
                         choiceQualityJudge.evaluatorId(), naturalnessAlternative.evaluatorId(),
                         nearDuplicatesAlternative.evaluatorId()), java.time.Clock.systemUTC());
-        // F-JEXAM-R015: exam status -f json asks the catalog who to read, only when it is used.
-        cmd.addSubcommand("exam", new picocli.CommandLine(
-                new ExamCmd(judgeExamService, examProvenance, () -> analyzerCatalog.list().stream()
-                        .map(AnalyzerDescriptor::getName).toList(), () -> {
+        // F-JEXAM-R015: exam status -f json asks the catalog who to read, only when it is used. Opening the sessions
+        // of today's judges consults nothing; F-ALDIA-R003 marks the verdicts of an analysis against the same standings.
+        Supplier<Map<String, com.learney.contentaudit.auditdomain.judging.JudgeExamStanding>> currentStandings = () -> {
                     Map<String, List<Evaluator>> activeJudges = Map.of(
                             "quiz-instruction", List.of(quizInstructionJudge),
                             "translation-sense", List.of(fromEnglishJudge, fromTranslationJudge),
@@ -1386,7 +1385,13 @@ class Main {
                     activeJudges.forEach((name, evaluators) -> standings.put(name,
                             judgeRuntime.open(name, evaluators, null).getStanding()));
                     return standings;
-                }, versionCutover)));   // C · FEAT-JEXAM
+                };
+        com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCatalog judgeFreshnessCatalog =
+                new com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeFreshnessCatalog(currentStandings,
+                        judgeExamRegistry, java.time.ZoneId.systemDefault(), java.time.Clock.systemDefaultZone());
+        cmd.addSubcommand("exam", new picocli.CommandLine(
+                new ExamCmd(judgeExamService, examProvenance, () -> analyzerCatalog.list().stream()
+                        .map(AnalyzerDescriptor::getName).toList(), currentStandings, versionCutover)));   // C · FEAT-JEXAM
 
         // FEAT-RONDA2 (hooks F-06 and E-09): the commands of packages F and E, each registered by
         // its package with its picocli wrapper: set-baseline, save-projection, compare, get-goals
@@ -1440,6 +1445,8 @@ class Main {
             // F-PUBPROD-R002: la lista de publicación lleva cada campo como lo guarda producción, con la misma forma
             // con la que el curso se escribe en disco.
             config.setProductionDocumentProjector(courseRepository);
+            // F-ALDIA-R003 and R005: each verdict of an analysis and of a closing is marked against today's judge.
+            config.setJudgeFreshnessCatalog(judgeFreshnessCatalog);
             config.setCurrentAnalysisService(new com.learney.contentaudit.revisiondomain.batchengine.DefaultCurrentAnalysisServiceFactory().create(
                     config, new com.learney.contentaudit.auditdomain.analysis.DefaultAnalysisComposer(analyzerCatalog,
                     scoreAggregator, new DefaultContextNumbersCalculator(),

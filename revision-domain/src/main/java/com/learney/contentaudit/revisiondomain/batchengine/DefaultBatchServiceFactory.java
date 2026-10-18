@@ -47,7 +47,7 @@ public class DefaultBatchServiceFactory implements BatchServiceFactory {
                 config.getAuditEngine(), config.getCourseMapper())
                 .withPlans(config.getRefinementPlanStore());
         BatchJudgePass judgePass = new DefaultBatchJudgePass(config.getAuditEngine(), config.getCourseMapper(),
-                config.getAnalyzerCatalog());
+                config.getAnalyzerCatalog(), config.getJudgeFreshnessCatalog());
         BatchCloser closer = new DefaultBatchCloser(config.getBatchComparator(), gates.batchGate(),
                 config.getBlindSampleService(), ledger, config.getBatchStore(), config.getCoursePath(), judgePass)
                 .withPlans(config.getRefinementPlanStore(), config.getCorrectionCatalog());
