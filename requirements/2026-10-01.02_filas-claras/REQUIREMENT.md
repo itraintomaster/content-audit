@@ -255,7 +255,8 @@ una con ejemplo. Lo produce una prueba con el comando de verdad, sobre una tanda
 >
 > Si no hay ninguno, lo dice vacío. Invariantes:
 > 1. lo trae con cualquier veredicto, también con «no pasa»;
-> 2. el texto del veredicto y su tipo no cambian ([F-METAS-R008](#F-METAS-R008)).
+> 2. el texto del veredicto y su tipo no cambian ([F-METAS-R008](#F-METAS-R008)). Desde el 18/10, la parte de los
+>    cambios sin comparar nombra a cada juez ([F-ALDIA-R010](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md#F-ALDIA-R010)); el tipo sigue igual.
 
 **Criterio**: en `compare -f json` es `verdict.undecidableFloors`, como
 `{"count": 32, "analyzers": [{"subject": "quiz-instruction", "displayName": "Consigna que no se cumple"}, …]}`, y `null`

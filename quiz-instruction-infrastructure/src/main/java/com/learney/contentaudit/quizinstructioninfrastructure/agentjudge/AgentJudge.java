@@ -12,6 +12,7 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluatorVersionEquivalence;
 import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeConfig;
 import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeSpec;
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadiness;
@@ -21,8 +22,9 @@ import com.sentinel.agents.framework.state.ArtifactPointer;
 import com.sentinel.agents.framework.state.RunState;
 import dev.langchain4j.model.chat.ChatModel;
 import java.nio.file.Files;
-import java.util.Map;
 import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import javax.annotation.processing.Generated;
@@ -173,7 +175,16 @@ class AgentJudge implements Evaluator {
         versionResolver.resolve(spec, config, provider).ifPresent(versions::add);
         // Schema-only alias: the previous digest coupled this exact runtime to the process.
         versionResolver.legacyRuntimeCoupledVersion(spec, config, provider).ifPresent(versions::add);
+        // F-ALDIA-R002: the version as it was counted before the tests left the count, once and in
+        // writing the same version.
+        versionResolver.equivalenceOfCurrentVersion(spec)
+                .ifPresent(equivalence -> versions.add(equivalence.getEarlierVersion()));
         return Set.copyOf(versions);
+    }
+
+    @Override
+    public List<EvaluatorVersionEquivalence> versionEquivalences() {
+        return versionResolver.equivalenceOfCurrentVersion(spec).map(List::of).orElseGet(List::of);
     }
 
     /**

@@ -605,6 +605,10 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
             line.append("gastadas ").append(judge.getQueriesSpent()).append(", ");
         }
         line.append("reusadas ").append(judge.getQueriesReused()).append(", faltan ").append(judge.getQueriesMissing());
+        if (judge.getFreshness() != null) {
+            // F-ALDIA-R005 inv. 3: how much of what it reuses is from before, by the name of each version.
+            line.append("; ").append(judge.getFreshness().detail());
+        }
         if (closed) {
             line.append("; ").append(judge.getBudget() != null ? "tope " + judge.getBudget() : "sin tope")
                     .append("; pisos decididos ").append(judge.getFloorsDecided()).append(" de ")

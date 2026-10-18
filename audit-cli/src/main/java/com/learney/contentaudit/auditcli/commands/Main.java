@@ -243,8 +243,10 @@ import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamEva
 import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeConfig;
 import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeFactory;
 import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeSpec;
+import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeVersionCutover;
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadinessProbe;
 import com.learney.contentaudit.quizinstructioninfrastructure.agentjudge.DefaultAgentJudgeFactory;
+import com.learney.contentaudit.quizinstructioninfrastructure.agentjudge.DefaultAgentJudgeVersionCutover;
 import com.learney.contentaudit.quizinstructioninfrastructure.agentjudge.DefaultJudgeProviderReadinessProbe;
 import com.learney.contentaudit.quizinstructioninfrastructure.choicealternativeverdict.JacksonChoiceAlternativeVerdictReader;
 import com.learney.contentaudit.quizinstructioninfrastructure.minitheoryverdict.JacksonMiniTheoryVerdictReader;
@@ -1379,6 +1381,17 @@ class Main {
                 Map.entry("naturalness", agentExamProvenance),
                 Map.entry("a1-didactic", agentExamProvenance),
                 Map.entry("near-duplicates", agentExamProvenance));
+        // F-ALDIA-R002: exam cutover, once, over the judges built from an AgentJudgeSpec. The consigna
+        // judge is not among them: its version keeps its own rule (F-ALDIA-R001 inv. 4).
+        AgentJudgeVersionCutover versionCutover = new DefaultAgentJudgeVersionCutover(
+                quizInstructionAgentDefinitionLocator, Set.of(fromEnglishJudge.evaluatorId(),
+                        fromTranslationJudge.evaluatorId(), singleAnswerJudge.evaluatorId(),
+                        miniTheoryJudge.evaluatorId(), choiceAlternativeJudge.evaluatorId(),
+                        choiceQualityJudge.evaluatorId(), nearDuplicatesAlternative.evaluatorId(),
+                        pragmatismJudge.evaluatorId(), nativeUsageJudge.evaluatorId(),
+                        a1DidacticJudge.evaluatorId()), java.time.Clock.systemUTC());
+        // F-JEXAM-R015: exam status -f json asks the catalog who to read, only when it is used. Opening the sessions
+        // of today's judges consults nothing; F-ALDIA-R003 marks the verdicts of an analysis against the same standings.
         java.util.function.Supplier<Map<String, com.learney.contentaudit.auditdomain.judging.JudgeExamStanding>>
                 currentJudgeStandings = () -> {
                     Map<String, List<Evaluator>> activeJudges = Map.of(
@@ -1397,10 +1410,12 @@ class Main {
                             judgeRuntime.open(name, evaluators, null).getStanding()));
                     return standings;
                 };
-        // F-JEXAM-R015: exam status -f json asks the catalog who to read, only when it is used.
+        com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCatalog judgeFreshnessCatalog =
+                new com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeFreshnessCatalog(currentJudgeStandings,
+                        judgeExamRegistry, java.time.ZoneId.systemDefault(), java.time.Clock.systemDefaultZone());
         cmd.addSubcommand("exam", new picocli.CommandLine(
                 new ExamCmd(judgeExamService, examProvenance, () -> analyzerCatalog.list().stream()
-                        .map(AnalyzerDescriptor::getName).toList(), currentJudgeStandings)));
+                        .map(AnalyzerDescriptor::getName).toList(), currentJudgeStandings, versionCutover)));   // C · FEAT-JEXAM
         cmd.addSubcommand("promote-judge", new picocli.CommandLine(
                 new PromoteJudgeCmd(judgePromotionRegistry, currentJudgeStandings)));
 
@@ -1456,6 +1471,8 @@ class Main {
             // F-PUBPROD-R002: la lista de publicación lleva cada campo como lo guarda producción, con la misma forma
             // con la que el curso se escribe en disco.
             config.setProductionDocumentProjector(courseRepository);
+            // F-ALDIA-R003 and R005: each verdict of an analysis and of a closing is marked against today's judge.
+            config.setJudgeFreshnessCatalog(judgeFreshnessCatalog);
             config.setCurrentAnalysisService(new com.learney.contentaudit.revisiondomain.batchengine.DefaultCurrentAnalysisServiceFactory().create(
                     config, new com.learney.contentaudit.auditdomain.analysis.DefaultAnalysisComposer(analyzerCatalog,
                     scoreAggregator, new DefaultContextNumbersCalculator(),
@@ -1712,6 +1729,11 @@ class Main {
             @Override
             public Set<String> compatibleEvaluatorVersions() {
                 return delegate().compatibleEvaluatorVersions();
+            }
+
+            @Override
+            public List<com.learney.contentaudit.evaluationledgerdomain.EvaluatorVersionEquivalence> versionEquivalences() {
+                return delegate().versionEquivalences();
             }
         };
     }

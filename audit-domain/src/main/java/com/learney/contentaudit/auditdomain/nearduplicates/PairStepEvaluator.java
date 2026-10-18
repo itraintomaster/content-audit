@@ -4,7 +4,9 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluatorVersionEquivalence;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import javax.annotation.processing.Generated;
@@ -109,6 +111,17 @@ class PairStepEvaluator implements Evaluator {
             // Version discovery is provenance only; never make the evaluator unusable because of it.
         }
         return Set.copyOf(compatible);
+    }
+
+    /** F-ALDIA-R002: the judge's written equivalences, which its route aliases carry through. */
+    @Override
+    public List<EvaluatorVersionEquivalence> versionEquivalences() {
+        try {
+            List<EvaluatorVersionEquivalence> wrapped = evaluator.versionEquivalences();
+            return wrapped != null ? wrapped : List.of();
+        } catch (RuntimeException e) {
+            return List.of();
+        }
     }
 
     private static String replaceEmbeddedJudgeVersion(

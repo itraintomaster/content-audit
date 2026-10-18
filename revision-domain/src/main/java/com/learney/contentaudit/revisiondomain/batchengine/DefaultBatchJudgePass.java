@@ -17,6 +17,9 @@ import com.learney.contentaudit.auditdomain.judging.EvaluatorCoverage;
 import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStanding;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCatalog;
+import com.learney.contentaudit.auditdomain.judging.JudgeFreshnessTally;
+import com.learney.contentaudit.auditdomain.judging.JudgeVersionStanding;
 import com.learney.contentaudit.auditdomain.localtools.LocalToolRunDiagnosis;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage;
@@ -63,11 +66,20 @@ class DefaultBatchJudgePass implements BatchJudgePass {
     /** The queries at once a batch without its own setting asks as many as (F-JEXAM-R010). */
     static final int DEFAULT_AT_ONCE = 4;
 
+    /** F-ALDIA-R005: today's judges, to say how much of what each reuses is from before; null says nothing of it. */
+    private final JudgeFreshnessCatalog freshnessCatalog;
+
     public DefaultBatchJudgePass(AuditEngine auditEngine, CourseMapper courseMapper,
             AnalyzerCatalog analyzerCatalog) {
+        this(auditEngine, courseMapper, analyzerCatalog, null);
+    }
+
+    public DefaultBatchJudgePass(AuditEngine auditEngine, CourseMapper courseMapper,
+            AnalyzerCatalog analyzerCatalog, JudgeFreshnessCatalog freshnessCatalog) {
         this.auditEngine = auditEngine;
         this.courseMapper = courseMapper;
         this.analyzerCatalog = analyzerCatalog;
+        this.freshnessCatalog = freshnessCatalog;
     }
 
     @Override
@@ -113,7 +125,7 @@ class DefaultBatchJudgePass implements BatchJudgePass {
         Trial trial = new Trial(ChangedCourseCuts.of(startCourse, composedCourse, changes), names, atOnce);
         List<JudgeLine> lines = new ArrayList<>();
         for (AnalyzerDescriptor card : cards) {
-            JudgeLine line = JudgeLine.read(card, trial);
+            JudgeLine line = JudgeLine.read(card, trial, freshnessCatalog);
             if (line.units > 0) {
                 lines.add(line);
             }
@@ -402,6 +414,9 @@ class DefaultBatchJudgePass implements BatchJudgePass {
 
         String unavailableReason;
 
+        /** F-ALDIA-R005: the marks of what it reuses on both sides, when today's judge is known. */
+        JudgeFreshnessTally freshness;
+
         /** What it misses on each side: pending and failed consultations. */
         final Map<Side, Integer> missing = new EnumMap<>(Side.class);
 
@@ -419,7 +434,7 @@ class DefaultBatchJudgePass implements BatchJudgePass {
          * version -- and a mark on each exercise it read. It is local if the run of its tool says it went by it, not by its
          * claude -p alternative.
          */
-        static JudgeLine read(AnalyzerDescriptor card, Trial trial) {
+        static JudgeLine read(AnalyzerDescriptor card, Trial trial, JudgeFreshnessCatalog catalog) {
             JudgeLine line = new JudgeLine(card);
             JudgeCoverageDiagnosis coverage = null;
             LocalToolRunDiagnosis tool = null;
@@ -434,6 +449,11 @@ class DefaultBatchJudgePass implements BatchJudgePass {
             if (coverage != null) {
                 line.unit = coverage.getUnit() != null ? coverage.getUnit() : AuditTarget.QUIZ;
                 line.standing(coverage.getStanding());
+                AuditTarget unit = line.unit;
+                if (catalog != null) {
+                    catalog.reference(line.name).ifPresent(reference ->
+                            line.freshness = new JudgeFreshnessTally(reference, line.displayName, unit));
+                }
             } else if (tool != null) {
                 line.examStatus = tool.getExamState();
                 line.approved = line.examStatus == null || line.examStatus == JudgeExamStatus.APPROVED
@@ -469,12 +489,25 @@ class DefaultBatchJudgePass implements BatchJudgePass {
                 units += seen.getReached();
                 reused += DefaultBatchJudgePass.reused(seen);
                 missing.put(side, DefaultBatchJudgePass.pending(seen));
+                if (freshness != null) {
+                    // The trial pays nothing: every verdict it counts by version is one the ledger had.
+                    int marked = 0;
+                    for (JudgeVersionStanding version : BatchBook.list(seen.getVersions())) {
+                        if (version != null) {
+                            freshness.add(version.getJudgeVersion(), version.getRuntimeIdentity(), version.getVerdictCount());
+                            marked += Math.max(0, version.getVerdictCount());
+                        }
+                    }
+                    freshness.notMeasured(seen.getReached() - marked);
+                }
             }
         }
 
         BatchJudgeAccount account() {
-            return new BatchJudgeAccount(name, displayName, unit, approved, examStatus, reason, units, budget, spent,
-                    reused, missing.get(Side.BEFORE) + missing.get(Side.AFTER), 0, 0, unavailableReason, local);
+            BatchJudgeAccount account = new BatchJudgeAccount(name, displayName, unit, approved, examStatus, reason, units,
+                    budget, spent, reused, missing.get(Side.BEFORE) + missing.get(Side.AFTER), 0, 0, unavailableReason, local);
+            account.setFreshness(freshness != null ? freshness.count() : null);
+            return account;
         }
     }
 }

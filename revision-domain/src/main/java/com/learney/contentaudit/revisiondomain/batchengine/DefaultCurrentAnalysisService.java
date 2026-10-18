@@ -142,6 +142,8 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
             var index = DefaultAnalysisComposer.index(report.getRoot());
             var studentViews = new LinkedHashMap<String, QuizStudentView>();
             var provenance = new LinkedHashMap<String, Map<String, Object>>();
+            var verdictMarks = new LinkedHashMap<String, Map<String, Map<String, Object>>>();
+            var judges = freshness(report, verdictMarks);
             index.forEach((id, node) -> {
                 if (node.getEntity() instanceof AuditableQuiz quiz) studentViews.put(id, renderer.render(quiz));
                 if (node.getMetadata() != null && node.getMetadata().get(DefaultAnalysisComposer.PROVENANCE) instanceof Map<?, ?> origins) {
@@ -178,7 +180,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                     courseFingerprint.apply("base".equals(state) ? baseCourse : current), digest("current-" + state, report.getRoot()),
                     studentViews, provenance, List.copyOf(warnings), comparable(reports.get("base"), report),
                     "base".equals(state) ? "A0" : BatchBook.list(batch.getClosings()).isEmpty() ? null : "A" + batch.getClosings().size(),
-                    inapplicable(batch, index)));
+                    inapplicable(batch, index), judges, verdictMarks));
         }
         var loose = new ArrayList<LooseRun>();
         for (var run : BatchBook.list(batch.getSelectiveRuns())) {
@@ -278,6 +280,71 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
             if (!excluded.isEmpty()) result.put(entry.getKey(), excluded);
         }
         return result;
+    }
+    /**
+     * F-ALDIA-R003 and R005: the mark of every verdict of the state against today's judge, and per judge how many of its
+     * exercises -- or topics, for the judge of topics -- are up to date, from before and not measured. Reads only.
+     */
+    private List<com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCount> freshness(AuditReport report,
+            Map<String, Map<String, Map<String, Object>>> marks) {
+        var catalog = config.getJudgeFreshnessCatalog();
+        if (catalog == null || !(report.getRoot().getDiagnoses() instanceof CourseDiagnoses d)) return List.of();
+        var index = DefaultAnalysisComposer.index(report.getRoot());
+        var result = new ArrayList<com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCount>();
+        for (var coverage : BatchBook.list(d.getJudgeCoverages())) {
+            String judge = coverage.getJudgeName();
+            var reference = judge == null ? Optional.<com.learney.contentaudit.auditdomain.judging.JudgeFreshnessReference>empty()
+                    : catalog.reference(judge);
+            if (reference.isEmpty()) continue;
+            AuditTarget unit = coverage.getUnit() == null ? AuditTarget.QUIZ : coverage.getUnit();
+            var namer = reference.get().getNamer();
+            var units = new LinkedHashMap<String, UnitVerdict>();
+            for (var node : index.values()) {
+                if (node.getTarget() != AuditTarget.QUIZ || !DefaultAnalysisComposer.eligible(node, judge) || !reads(node, judge)) continue;
+                String id = node.getEntity().getId();
+                String unitId = unit == AuditTarget.KNOWLEDGE
+                        ? node.ancestor(AuditTarget.KNOWLEDGE).map(n -> n.getEntity().getId()).orElse(id) : id;
+                UnitVerdict verdict = UnitVerdict.NONE;
+                if (DefaultAnalysisComposer.evaluated(node, judge)) {
+                    String version = DefaultAnalysisComposer.version(node, judge, report);
+                    var runtime = com.learney.contentaudit.auditdomain.judging.JudgeFreshnessReference.runtimeOf(runtime(node, judge, report));
+                    var mark = reference.get().mark(version, runtime);
+                    verdict = new UnitVerdict(mark, version, runtime);
+                    var shown = new LinkedHashMap<String, Object>();
+                    shown.put("freshness", mark.freshness()); shown.put("staleCause", mark.cause());
+                    shown.put("judgeVersion", version); shown.put("versionName", version == null ? null : namer.looseName(version));
+                    shown.put("runtimeName", com.learney.contentaudit.auditdomain.judging.JudgeVersionNamer.runtimeName(runtime));
+                    marks.computeIfAbsent(id, k -> new LinkedHashMap<>()).put(judge, shown);
+                }
+                units.merge(unitId, verdict, UnitVerdict::worse);
+            }
+            var tally = new com.learney.contentaudit.auditdomain.judging.JudgeFreshnessTally(reference.get(), displayName(judge), unit);
+            for (var verdict : units.values()) {
+                if (verdict.mark() == null) tally.notMeasured(1);
+                else tally.add(verdict.mark(), verdict.version(), verdict.runtime(), 1);
+            }
+            result.add(tally.count());
+        }
+        return List.copyOf(result);
+    }
+    /** What a judge left on a unit; a topic is from before as soon as one of its exercises is. */
+    private record UnitVerdict(com.learney.contentaudit.auditdomain.judging.JudgeVerdictMark mark, String version,
+            com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity runtime) {
+        static final UnitVerdict NONE = new UnitVerdict(null, null, null);
+        static UnitVerdict worse(UnitVerdict a, UnitVerdict b) {
+            if (a.mark() == null) return b;
+            if (b.mark() == null || !a.mark().isUpToDate()) return a;
+            return b;
+        }
+    }
+    private static boolean reads(AuditNode node, String judge) {
+        return node.getScores() != null && node.getScores().containsKey(judge)
+                || BatchBook.list(node.getUnevaluatedBy()).contains(judge)
+                || BatchBook.list(node.getPartiallyEvaluatedBy()).contains(judge);
+    }
+    private String displayName(String judge) {
+        return config.getAnalyzerCatalog() == null ? judge
+                : config.getAnalyzerCatalog().find(judge).map(AnalyzerDescriptor::getDisplayName).orElse(judge);
     }
     private static Object runtime(AuditNode node, String analyzer, AuditReport report) {
         if (node == null) return null;

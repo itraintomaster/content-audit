@@ -1,6 +1,7 @@
 package com.learney.contentaudit.quizinstructioninfrastructure.agentjudge;
 
 import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolved;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluatorVersionEquivalence;
 import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeConfig;
 import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeSpec;
 import java.util.Optional;
@@ -16,6 +17,14 @@ interface AgentJudgeVersionResolver {
 
     default Optional<String> legacyRuntimeCoupledVersion(AgentJudgeSpec spec,
             AgentJudgeConfig config, LlmProviderResolved provider) {
+        return Optional.empty();
+    }
+
+    /**
+     * F-ALDIA-R002: the written equivalence whose current version is the judge's version today, if
+     * there is one. Its earlier version is then the same version.
+     */
+    default Optional<EvaluatorVersionEquivalence> equivalenceOfCurrentVersion(AgentJudgeSpec spec) {
         return Optional.empty();
     }
 }

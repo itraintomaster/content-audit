@@ -568,6 +568,32 @@ public class BatchCmdTest {
     }
 
     @Test
+    @DisplayName("should say in the line of a judge at closing how much it reuses from before, by the name of each version")
+    @Tag("FEAT-ALDIA")
+    @Tag("F-ALDIA-R005")
+    public void shouldSayInTheLineOfAJudgeAtClosingHowMuchItReusesFromBeforeByTheNameOfEachVersion() {
+        // F-ALDIA-R005 inv. 3: the close and the report say what each judge reuses from before, per version by its name.
+        Service service = new Service();
+        List<BatchJudgeAccount> accounts = closingSample();
+        String detail = "reusa 82 temas de antes (77 de la del 5/10, 5 de la del 13/10, 13:00)";
+        accounts.get(1).setFreshness(new com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCount("mini-theory",
+                "Miniteoría", AuditTarget.KNOWLEDGE, 83, 1, 82, 0, "1eee07a9", "la del 13/10, 22:12", null, true, List.of(),
+                "Miniteoría: " + detail, detail));
+        service.judgeAccounts = accounts;
+
+        Run close = run(service, "close");
+        Run report = run(service, "report");
+
+        for (Run run : List.of(close, report)) {
+            assertEquals(0, run.exit(), run.err());
+            assertTrue(run.out().contains("  Miniteoría (mini-theory): 2 temas; gastadas 0, reusadas 2, faltan 0; " + detail
+                    + "; sin tope; pisos decididos 1 de 1"), run.out());
+            assertTrue(run.out().contains("  Sentido de la traducción (translation-sense): 4 ejercicios; gastadas 0,"
+                    + " reusadas 3, faltan 1; sin tope"), "a judge without marks keeps its line: " + run.out());
+        }
+    }
+
+    @Test
     @DisplayName("should print with 'batch report' the same line per judge as the last closing")
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R005")

@@ -1,5 +1,6 @@
 package com.learney.contentaudit.evaluationledgerdomain;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import javax.annotation.processing.Generated;
@@ -29,5 +30,13 @@ public interface Evaluator {
      */
     default Set<String> compatibleEvaluatorVersions() {
         return evaluatorVersion().map(Set::of).orElseGet(Set::of);
+    }
+
+    /**
+     * F-ALDIA-R002: the written equivalences that make an earlier version the current one. Their
+     * earlier versions are among {@link #compatibleEvaluatorVersions()}; this says when and why.
+     */
+    default List<EvaluatorVersionEquivalence> versionEquivalences() {
+        return List.of();
     }
 }

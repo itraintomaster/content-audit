@@ -29,11 +29,13 @@ public interface CurrentAnalysisService {
     record State(String id, String label, String fingerprint, AuditDigest digest,
             Map<String, QuizStudentView> studentViews, Map<String, Map<String, Object>> provenance,
             List<String> approvalWarnings, Map<String, List<String>> comparableAnalyzers, String analysisCode,
-            Map<String, List<String>> inapplicableAnalyzers) {
+            Map<String, List<String>> inapplicableAnalyzers,
+            List<com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCount> judges,
+            Map<String, Map<String, Map<String, Object>>> verdictMarks) {
         public State(String id, String label, String fingerprint, AuditDigest digest,
                 Map<String, QuizStudentView> studentViews, Map<String, Map<String, Object>> provenance,
                 List<String> approvalWarnings, Map<String, List<String>> comparableAnalyzers, String analysisCode) {
-            this(id, label, fingerprint, digest, studentViews, provenance, approvalWarnings, comparableAnalyzers, analysisCode, Map.of());
+            this(id, label, fingerprint, digest, studentViews, provenance, approvalWarnings, comparableAnalyzers, analysisCode, Map.of(), List.of(), Map.of());
         }
     }
     record LooseRun(String id, String analyzer, String auditId, String status, int contentVersion,

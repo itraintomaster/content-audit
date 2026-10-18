@@ -3,14 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>La pantalla conserva una aprobación del juez anterior</title>
+<title>Volver a medir desde la UI</title>
 <!--
   TEMPLATE DE BRIEF · visual-brief
   1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
   2. Por cada sección: un título que dice la conclusión, UN dibujo copiado del
      catálogo del final y un pie de dos renglones. Primero el dibujo; el texto lo rotula.
-  3. BORRAR el catálogo entero (<section class="cat">) y las secciones que no se usan.
+     Si habla de una pantalla: primero DÓNDE (la captura con marcas, .map), después EL
+     PROBLEMA como un caso de uso (la foto de hoy + .mark), después CÓMO QUEDA (la maqueta
+     .mq con números y su leyenda). Si ya está hecho, los dos lados del .ad son capturas.
+     Las fotos, con capturar.mjs, en docs/briefs/NNN-slug/ (SKILL.md §4).
+  3. BORRAR el catálogo entero (la section de clase cat, al final) y las secciones que no se usan.
   4. Verificar: node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
+     y mirarlo: node ~/.claude/skills/visual-brief/assets/diapos.mjs <el brief> <scratchpad>/d (+ --tema=dark, --celular)
   Topes: lede ≤ 2 frases y 35 palabras · ≤ 6 secciones · pie ≤ 30 · párrafo ≤ 40 ·
   prosa total ≤ 400 (sin tablas ni gráficos). Cada componente trae el suyo en el catálogo.
   Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
@@ -199,6 +204,84 @@
   .captura.cel img{max-width:300px;margin:0 auto}
   .captura figcaption{font-size:12.5px;color:var(--fg-3);margin-top:8px}
 
+  /* ============ dónde estamos: la captura real, con lo que cambia rodeado y numerado ============
+     El viewBox del svg.cap es el tamaño de la foto: las marcas van en sus píxeles (capturar.mjs --medir). */
+  .map{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);box-shadow:var(--shadow);border-radius:var(--radius)}
+  .map.alta{grid-template-columns:minmax(0,200px) minmax(0,1fr)}       /* una página más alta que la pantalla */
+  .map .ex{border-radius:var(--radius) 0 0 var(--radius);padding:10px;align-content:center;box-shadow:none}
+  .map .who{display:grid;gap:9px;align-content:center;padding:14px 16px;background:var(--bg);border:1px solid var(--line);
+    border-left:0;border-radius:0 var(--radius) var(--radius) 0}
+  .map .who div{display:flex;gap:9px;align-items:center;font-size:13.5px;line-height:1.35}
+  .map .who b{font:800 11.5px/22px ui-monospace,monospace;width:22px;height:22px;border-radius:6px;text-align:center;
+    background:var(--accent);color:var(--bg-elev);flex:none}
+  .map .who b.gris{background:var(--line);color:var(--fg-3)}       /* lo que se ve pero no cambia */
+  .map .who small{color:var(--fg-3);font-size:12px}
+  .map .who .ptl{margin:0}
+  .cap{display:block;width:100%;height:auto}
+  .cap .mk circle{fill:var(--accent);stroke:var(--bg-elev);stroke-width:4}
+  .cap .mk text{fill:var(--bg-elev);font-weight:800;font-family:ui-monospace,monospace;text-anchor:middle;dominant-baseline:central}
+  .cap .mk.gris circle{fill:var(--fg-3)}
+  .cap .aro{fill:none;stroke:var(--accent);stroke-width:4}         /* rodea lo que cambia */
+  .cap .tapa{fill:var(--bg-elev);opacity:.74}                       /* atenúa lo que no */
+  .cap .raya{stroke:var(--fg-3);stroke-width:2;stroke-dasharray:9 9}  /* dónde termina cada pantalla */
+
+  /* ============ hoy → con X: la foto de hoy con el problema; la maqueta de cómo queda, con su leyenda ============ */
+  .ad.asim{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+  .hoy{display:block;max-width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft);align-self:flex-start}
+  .franja{display:flex;gap:12px;align-items:flex-end}               /* una página alta, al lado de su marca */
+  .franja .cap{width:34%;flex:none} .franja .mark{flex:1}
+  .nb{display:inline-flex;align-items:center;justify-content:center;flex:none;width:1.75em;height:1.75em;border-radius:99px;
+    background:var(--accent);color:var(--bg-elev);font:800 .74em/1 ui-monospace,monospace}
+  ol.leg{list-style:none;margin:0;padding:0;display:grid;gap:5px;font-size:13.5px;line-height:1.45;color:var(--fg-2)}
+  .leg li{display:flex;gap:8px;align-items:baseline} .leg .nb{font-size:11px}
+  /* la maqueta: .mq es su propio contenedor y la letra (en .mi) escala con su ancho, así que una
+     maqueta más ancha NO entra más. Si no entra: menos filas, o .mq.denso. El kit entero, con cada
+     pieza a la vista, está en el catálogo de presentacion.html. */
+  .mq{container-type:inline-size;background:var(--bg-elev);border:1px solid var(--line);border-radius:10px;overflow:hidden;
+    box-shadow:var(--shadow)}
+  .mi{font-size:max(10.5px,2.75cqi);line-height:1.35;padding:3cqi 3.2cqi;display:flex;flex-direction:column;gap:2.2cqi;color:var(--fg)}
+  .mq.denso .mi{font-size:max(10px,2.45cqi);gap:1.7cqi;padding:2.6cqi 2.8cqi}
+  .mi .fila{display:flex;gap:.55em;align-items:center;min-width:0} .mi .fila.env{flex-wrap:wrap;row-gap:.4em}
+  .mi .crece{flex:1;min-width:0}
+  .mi .vt{display:flex;flex-direction:column;gap:.25em;min-width:0}
+  .mi .in{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:.5em;padding:.45em .7em;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mi .sel{background:var(--bg);border:1px solid var(--line);border-radius:.5em;padding:.45em .6em;white-space:nowrap;flex:none}
+  .mi .bt{background:var(--accent);color:var(--bg-elev);border-radius:.5em;padding:.45em .85em;font-weight:700;white-space:nowrap;flex:none}
+  .mi .bt.gh{background:var(--bg-elev);color:var(--fg);border:1px solid var(--line);font-weight:600}
+  .mi .chp{display:inline-flex;align-items:center;gap:.35em;border:1px solid var(--line);background:var(--bg);border-radius:99px;
+    padding:.18em .7em;font-size:.86em;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  .mi .chp.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .mi .chp.no{color:var(--fg-3);text-decoration:line-through}
+  .mi .chp.ok{border-color:var(--ok);background:var(--ok-soft);color:var(--ok);font-weight:650}
+  .mi .chp.fal{border-color:var(--warn);background:var(--warn-soft);color:var(--warn);font-weight:650}
+  .mi .rt{font-size:.72em;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--fg-3)}
+  .mi .tt{font-weight:700;font-size:1.1em;letter-spacing:-.01em} .mi .ts{font-weight:700;font-size:1.15em;letter-spacing:-.01em}
+  .mi .s{font-size:.84em;color:var(--fg-3)} .mi .neg{font-weight:700}
+  .mi .bien{color:var(--ok);font-weight:800} .mi .mal{color:var(--bad);font-weight:800}
+  .mi .corta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .mi .th{width:5.2em;aspect-ratio:16/9;border-radius:.35em;object-fit:cover;flex:none;display:block}
+  .mi .th.ch{width:3.6em} .mi .th.gr{width:60%}
+  .mi .hr{height:1px;background:var(--line-soft)} .mi .apagado{opacity:.4}
+  .mi .expl{background:var(--bg);border:1px solid var(--line-soft);border-radius:.5em;padding:.5em .7em;font-size:.86em;color:var(--fg-2)}
+  .mi .aviso{display:flex;gap:.5em;align-items:center;border-radius:.5em;padding:.45em .7em;font-weight:650;
+    background:var(--bad-soft);color:var(--bad)}
+  .mi .aviso.ok{background:var(--ok-soft);color:var(--ok)}
+  .mi .campo{border:1.5px solid var(--accent);border-radius:.6em;padding:.6em .8em;background:var(--bg-elev);display:flex;flex-direction:column;gap:.3em}
+  .mi .hueco{border:1px dashed var(--warn);border-radius:.4em;height:1.7em;background:var(--warn-soft)}
+  .mi .av{width:2.1em;height:2.1em;border-radius:99px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;
+    font-size:.8em;background:var(--accent-soft);color:var(--accent);flex:none}
+  .mi .fase{display:grid;grid-template-columns:1.5em 1fr auto;gap:.25em .55em;align-items:center}
+  .mi .fase .ic{font-weight:800;text-align:center}
+  .mi .fase.hecha .ic{color:var(--ok)} .mi .fase.va .ic{color:var(--accent)} .mi .fase.falta{color:var(--fg-3)}
+  .mi .riel{grid-column:2/4;height:.42em;border-radius:99px;background:var(--line-soft);overflow:hidden}
+  .mi .riel i{display:block;height:100%;width:var(--hecho,40%);background:var(--accent);border-radius:99px}
+  .mi .dos{display:grid;grid-template-columns:1.15fr 1fr;border:1px solid var(--line-soft);border-radius:.6em;overflow:hidden}
+  .mi .dos>div{padding:.75em;display:flex;flex-direction:column;gap:.55em;min-width:0}
+  .mi .lat{background:var(--bg);border-left:1px solid var(--line)}
+  .mi .item{display:flex;gap:.5em;align-items:center;padding:.3em;border-radius:.4em;min-width:0}
+  .mi .item.on{background:var(--accent-soft);box-shadow:inset 0 0 0 1.5px var(--accent)}
+
   /* ============ pills de estado ============ */
   .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}
   .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
@@ -251,20 +334,92 @@
     .hb .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) auto;gap:8px}
     .heat{grid-template-columns:minmax(80px,1.3fr) repeat(var(--cols,4),minmax(0,1fr));font-size:11.5px}
     .kpi .n{font-size:28px}
+    .map,.map.alta,.ad.asim{grid-template-columns:minmax(0,1fr)}
+    .map .ex{border-radius:var(--radius) var(--radius) 0 0}
+    .map .who{border-left:1px solid var(--line);border-top:0;border-radius:0 0 var(--radius) var(--radius)}
+    .map.alta .cap{width:min(55%,220px);margin:0 auto}
   }
 
-  /* ============ CATÁLOGO · se borra entero al generar ============ */
-  .cat{margin-top:64px;padding-top:22px;border-top:3px solid var(--bad)}
-  .cat .adv{font-size:13px;color:var(--bad);font-weight:600;margin:0 0 20px}
-  .cat-g{display:grid;gap:16px}
-  .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
-  .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
-  .cat-i>.n b{color:var(--fg-2)}
+  .asks{display:grid;gap:10px}
+  .ask{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);
+    padding:12px 15px;display:grid;gap:8px;box-shadow:var(--shadow)}
+  .ask .q{font-size:15px;font-weight:650;line-height:1.35}
+  .ask .ops{display:flex;gap:6px;flex-wrap:wrap}
+  .ask .op{font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--bg)}
+  .ask .op.rec{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .ask .why{font-size:13px;color:var(--fg-2);line-height:1.45}
 </style>
 </head>
-<body><main class="wrap"><header><div class="kicker"><span class="num">142</span><span class="badge">Diagnóstico</span><span class="meta">Miniteoría · 18 octubre 2026</span></div><h1>La pantalla conserva una aprobación del juez anterior</h1><p class="sub">El ejercicio de la silla quedó fuera de las nuevas evaluaciones e integraciones.</p></header>
-<div class="lede"><p>El juez cambió, pero este ejercicio no se volvió a medir: «resuelto» proviene del resultado anterior.</p></div>
-<section><h2>El caso sigue aprobado por la versión anterior</h2><p>Esperado: criterio pedido por el operador. Obtenido: veredicto guardado. La flecha compara ambos; pendiente de reevaluar no significa rechazado ni aprobado por el juez actual.</p><div class="tw"><table><thead><tr><th>Ejercicio</th><th>Esperado → obtenido</th></tr></thead><tbody><tr><td>It is under the chair.<br>«is va con it»</td><td>Rechazado → aprobado anteriormente</td></tr><tr><td>Motivo esperado</td><td>La forma verbal se asocia engañosamente con un único sujeto.</td></tr><tr><td>Motivo obtenido</td><td>«La tarjeta explica que con it corresponde is en esta oración».</td></tr></tbody></table></div><p class="pie">La referencia esperada es el criterio solicitado y la guía actual; no se ejecutó una nueva consulta.</p></section>
-<section><h2>Las integraciones dejaron afuera este ejercicio</h2><div class="tw"><table><thead><tr><th>Paso</th><th>Alcance</th><th>¿Incluye la silla?</th></tr></thead><tbody><tr><td>Volver a analizar las propuestas</td><td>She is English / They are very short</td><td>No</td></tr><tr><td>Integración del 13/10</td><td>180 ejercicios</td><td>No</td></tr><tr><td>Integración del 14/10</td><td>20 ejercicios</td><td>No</td></tr></tbody></table></div><p class="pie">Modificar y aprobar un juez no reemplaza automáticamente los veredictos guardados para otros ejercicios.</p></section>
-<section><h2>Qué sigue</h2><div class="flow"><div class="step">Reevaluar el tema con el juez actual</div><div class="step">Integrar el resultado de este ejercicio</div><div class="step">Advertir cuando una aprobación pertenece a otro juez</div></div><p class="pie">Diagnóstico realizado sin consultas a modelos ni modificaciones de los veredictos guardados.</p></section>
-<footer><span>Fuentes: mini-theory-judge.jsonl, frozen-quizzes.json y analysis-selections. <a href="../../analysis/reviews/2026-10-18-mini-theory-stale/evidence.json">Evidencia detallada</a></span><span>brief 142</span></footer></main></body></html>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">
+      <span class="num">147</span>
+      <span class="badge">Pasos</span>
+      <span class="meta">Jueces al día · integrar y volver a medir · 18/10/2026</span>
+    </div>
+    <h1>Para volver a medir no hace falta esperar la integración</h1>
+    <p class="sub">El botón de reanalizar del tablero ya pide veredictos nuevos. Juntar la rama en main espera una decisión tuya.</p>
+  </header>
+
+  <div class="lede"><p><strong>Podés volver a medir la miniteoría hoy desde Analizadores, con lo que ya está en main.</strong> Juntar la rama está frenado por trabajo sin commitear en main; en el ensayo, la rama no rompe nada.</p></div>
+
+  <section>
+    <h2>Seis pasos en el tablero, con el número antes</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">Analizadores → Miniteoría</span><span class="d">Abrí su ficha en el Tablero.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Reanalizar con la versión aprobada…</span><span class="d">Modo forzado: no reusa lo de antes.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">Sólo Corrección 1</span><span class="d">La base no hace falta.</span></div>
+      <div class="st"><span class="i">4</span><span class="h">Perfil y tope</span><span class="d">El motor con que aprobó; estimar es gratis.</span></div>
+      <div class="st"><span class="i">5</span><span class="h">Confirmar</span><span class="d">Queda una corrida suelta.</span></div>
+      <div class="st end"><span class="i">6</span><span class="h">Reemplazar la vigente</span><span class="d">Recién ahí cuenta para la tanda.</span></div>
+    </div>
+    <p class="pie">Reanalizar consulta de nuevo los 83 temas, también el que ya era de hoy. Antes estimé unas 165 consultas; la hoja da el número exacto.</p>
+    <div class="call c-warn"><b>Elegí el perfil con el que aprobó la del 13/10, 22:12.</b> Con otro motor el juez no está aprobado y la hoja ofrece 0 consultas.</div>
+  </section>
+
+  <section>
+    <h2>El orden importa: medir antes del corte, o después</h2>
+    <div class="opts">
+      <div class="opt rec"><div class="oh"><span class="ol">A</span><b>Medir hoy, juntar después</b><span class="pill p-ok">recomiendo</span></div>
+        <ul><li class="si">anda ya, sin tocar main</li><li class="no">el tablero todavía no marca nada</li></ul></div>
+      <div class="opt"><div class="oh"><span class="ol">B</span><b>Juntar, cortar y medir</b></div>
+        <ul><li class="si">el cierre ya cuenta lo de antes</li><li class="no">espera commitear lo pendiente</li></ul></div>
+    </div>
+    <p class="pie">Lo que no sirve es juntar sin correr el corte: la versión de la miniteoría cambia de nombre, queda sin examen y el botón se apaga.</p>
+  </section>
+
+  <section>
+    <h2>Juntar en main choca con trabajo sin commitear</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">9<small>de 73</small></div><div class="l">archivos modificados en main que la rama también toca</div></div>
+      <div class="kpi"><div class="n">6</div><div class="l">conflictos en el ensayo, todos de sumar las dos cosas</div></div>
+      <div class="kpi"><div class="n">1</div><div class="l">error de compilación: el corte nombraba al juez de naturalidad viejo</div></div>
+      <div class="kpi"><div class="n">3.689<small>de 3.691</small></div><div class="l">pruebas en verde; las 2 rotas ya vienen de lo pendiente</div></div>
+    </div>
+    <p class="pie">Lo pendiente en main es otro trabajo: tres jueces nuevos, promover un juez y opiniones previas. La miniteoría aprobada también vive ahí, sin commitear.</p>
+  </section>
+
+  <section>
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask"><span class="q">1 · ¿Quién commitea lo pendiente de main?</span>
+        <div class="ops"><span class="op rec">La sesión que lo hizo · recomendado</span><span class="op">Lo commiteo yo</span></div>
+        <span class="why">Son 73 archivos modificados y 37 nuevos que no escribí. Después junto la rama con las resoluciones ya probadas.</span></div>
+      <div class="ask"><span class="q">2 · Después de juntar, ¿corrés el corte vos?</span>
+        <div class="ops"><span class="op rec">Sí, en main · recomendado</span></div>
+        <span class="why">Es una sola vez y mide la carpeta tal como está ese día. Commitear el jsonl y los agent.yaml.</span></div>
+    </div>
+    <pre>content-audit exam cutover
+content-audit exam cutover --apply</pre>
+  </section>
+
+  <footer>
+    <span>Reanalizar desde la ficha: DefaultSelectiveCorrectionService con force → DefaultJudgeRuntime.plan da FORCE (F-QINST-R012), sin reuso del ledger · ensayo: worktree desechable sobre un snapshot del working tree de main (stash create, sin tocar la pila) + archivos nuevos copiados; conflictos en Main, CurrentAnalysisService(.State), DefaultCurrentAnalysisService, CurrentAnalysisServiceTest, brief.html, index.html; State suma inapplicableAnalyzers + judges + verdictMarks; el corte cambia naturalnessAlternative por pragmatism, native-usage y a1-didactic (sin eval/, el corte los saltea) · fallan FTareaJ001JourneyTest y GetCmdTest («May touch» suma TRANSLATION, MINI_THEORY por el panel sin commitear de main) · R007 y FEAT-TALDIA sin hacer · nada commiteado ni juntado</span>
+    <span>brief 147 · docs/briefs/147-volver-a-medir-desde-la-ui.html</span>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -29,6 +29,7 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationTimeline;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluatorVersionEquivalence;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -153,6 +154,7 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
 
         JudgeExamStanding standing = standing(judgeName, judgeVersion, runtimeIdentity,
                 compatibleJudgeVersions);
+        standing.setVersionEquivalences(versionEquivalencesOf(judges));
         int effective = Math.max(0, requested);
         if (purpose == EvaluationRunPurpose.READING) effective = 0;
         if (judgeVersion == null) {
@@ -488,6 +490,22 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
             }
         }
         return composed != null ? composed : EvaluationRuntimeIdentity.legacyUnknown();
+    }
+
+    /** F-ALDIA-R002 inv. 3: the written equivalences of every evaluator of the judge, in order. */
+    private static List<EvaluatorVersionEquivalence> versionEquivalencesOf(List<Evaluator> evaluators) {
+        List<EvaluatorVersionEquivalence> equivalences = new ArrayList<>();
+        for (Evaluator evaluator : evaluators) {
+            try {
+                List<EvaluatorVersionEquivalence> declared = evaluator.versionEquivalences();
+                if (declared != null) {
+                    equivalences.addAll(declared);
+                }
+            } catch (RuntimeException e) {
+                // Provenance only: a judge that cannot say why is shown without the why.
+            }
+        }
+        return equivalences;
     }
 
     /**

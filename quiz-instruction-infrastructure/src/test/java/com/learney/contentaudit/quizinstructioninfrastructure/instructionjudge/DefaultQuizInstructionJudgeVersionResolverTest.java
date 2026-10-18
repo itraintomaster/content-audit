@@ -171,4 +171,26 @@ public class DefaultQuizInstructionJudgeVersionResolverTest {
                 "F-QINST-R010 invariante 3: sin poder derivar la definicion del juez, el resolutor no debe "
                         + "presentar ninguna version como valida");
     }
+
+    @Test
+    @DisplayName("should keep counting the tests of the consigna judge in its version, since its own rule does not change")
+    @Tag("FEAT-ALDIA")
+    @Tag("F-ALDIA-R001")
+    public void shouldKeepCountingTheTestsOfTheConsignaJudgeInItsVersion(@TempDir Path agentDefinitionDir)
+            throws IOException {
+        Files.writeString(agentDefinitionDir.resolve("evaluate.md"), "Judge whether the quiz respects its instructions.");
+        Files.createDirectories(agentDefinitionDir.resolve("eval"));
+        Path fixtures = agentDefinitionDir.resolve("eval").resolve("fixtures.json");
+        Files.writeString(fixtures, "[{\"case\":1}]");
+        AgentDefinitionLocator locator = mock(AgentDefinitionLocator.class);
+        when(locator.locate("quiz-instruction-validator")).thenReturn(new AgentDefinitionFound(agentDefinitionDir));
+        DefaultQuizInstructionJudgeVersionResolver resolver = new DefaultQuizInstructionJudgeVersionResolver(locator);
+        QuizInstructionJudgeConfig config = config("gpt-4o-mini", "quiz-instruction-validator");
+        String before = resolver.resolve(config, PROVIDER).orElseThrow();
+
+        Files.writeString(fixtures, "[{\"case\":1},{\"case\":2}]");
+
+        assertNotEquals(before, resolver.resolve(config, PROVIDER).orElseThrow(),
+                "F-ALDIA-R001 inv. 4: the consigna judge's version still counts every file of its folder");
+    }
 }

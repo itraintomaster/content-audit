@@ -1,5 +1,7 @@
 package com.learney.contentaudit.agentruntimeinfrastructure;
 
+import java.nio.file.Path;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -10,4 +12,12 @@ public interface AgentDefinitionLocator {
     AgentDefinitionLocation locate(String agentName);
 
     AgentDefinitionLocation locateUnderProjectRoot(String projectRoot, String agentName);
+
+    /**
+     * The folder {@link #locate(String)} looks in, the one that holds every agent definition. Empty
+     * when the locator cannot say: then nothing can be written beside the definitions.
+     */
+    default Optional<Path> agentsDirectory() {
+        return Optional.empty();
+    }
 }

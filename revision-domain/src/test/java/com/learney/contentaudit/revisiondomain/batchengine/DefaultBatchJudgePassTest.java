@@ -751,6 +751,43 @@ public class DefaultBatchJudgePassTest {
         return JudgePassBench.composedCourse(Set.copyOf(CHANGED), Map.of());
     }
 
+    @Test
+    @DisplayName("should say in the account of each judge how many units it reuses from before, by the name of their version, against today's judge")
+    @Tag("FEAT-ALDIA")
+    @Tag("F-ALDIA-R005")
+    public void shouldSayInTheAccountOfEachJudgeHowManyUnitsItReusesFromBeforeByTheNameOfTheirVersion() {
+        var zone = java.time.ZoneId.of("America/Argentina/Buenos_Aires");
+        var clock = java.time.Clock.fixed(java.time.Instant.parse("2026-10-18T15:00:00Z"), zone);
+        var xhigh = com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "xhigh");
+        var old = new com.learney.contentaudit.auditdomain.judging.JudgeExamRecord(MINI_THEORY, "v-5-10", JudgeExamStatus.APPROVED,
+                20, 0, List.of(), List.of(), true, null, "human", java.time.Instant.parse("2026-10-06T02:14:16Z"));
+        old.setRuntimeIdentity(xhigh);
+        var today = new com.learney.contentaudit.auditdomain.judging.JudgeExamRecord(MINI_THEORY, "v3", JudgeExamStatus.APPROVED,
+                20, 0, List.of(), List.of(), true, null, "human", java.time.Instant.parse("2026-10-14T01:12:33Z"));
+        today.setRuntimeIdentity(xhigh);
+        var standing = new com.learney.contentaudit.auditdomain.judging.JudgeExamStanding(MINI_THEORY, "v3", JudgeExamStatus.APPROVED,
+                true, null, xhigh, Set.of("v3"));
+        var reference = com.learney.contentaudit.auditdomain.judging.JudgeFreshnessReference.of(standing, List.of(old, today), zone, clock);
+        JudgePassBench bench = new JudgePassBench();
+        bench.versionsSeen.put(MINI_THEORY, List.of(
+                new com.learney.contentaudit.auditdomain.judging.JudgeVersionStanding("v-5-10", 1, JudgeExamStatus.APPROVED, xhigh)));
+        CourseEntity start = JudgePassBench.startCourse();
+        CorrectionBatch batch = JudgePassBench.batch(List.of(MINI_THEORY, TRANSLATION_SENSE), CHANGED);
+
+        List<BatchJudgeAccount> accounts = bench.pass(name -> MINI_THEORY.equals(name) ? java.util.Optional.of(reference)
+                : java.util.Optional.empty()).judge(batch, start, composedOfTheChanged(), new BatchCloseRequest(Map.of(), null));
+
+        var freshness = account(accounts, MINI_THEORY).getFreshness();
+        assertNotNull(freshness);
+        assertTrue(freshness.fromBefore() > 0);
+        assertEquals(freshness.total(), freshness.upToDate() + freshness.fromBefore() + freshness.notMeasured());
+        assertEquals("reusa " + freshness.fromBefore() + " " + (freshness.fromBefore() == 1 ? "tema" : "temas")
+                + " de antes (" + freshness.fromBefore() + " de la del 5/10)", freshness.detail());
+        assertEquals("la del 13/10", freshness.currentVersionName());
+        assertNull(account(accounts, TRANSLATION_SENSE).getFreshness(), "a judge without a reference is not marked");
+        assertTrue(bench.queries.isEmpty(), "marking consults nothing");
+    }
+
     private static BatchJudgeAccount account(List<BatchJudgeAccount> accounts, String judge) {
         for (BatchJudgeAccount account : accounts) {
             if (judge.equals(account.getJudge())) {
