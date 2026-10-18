@@ -53,7 +53,8 @@ final class UnapprovedJudges {
             }
             for (LocalToolRunDiagnosis run : listOrEmpty(root.getLocalToolRuns())) {
                 if (run != null && run.getAnalyzer() != null && !withCoverage.contains(run.getAnalyzer())
-                        && run.getExamState() != null && run.getExamState() != JudgeExamStatus.APPROVED) {
+                        && run.getExamState() != null && run.getExamState() != JudgeExamStatus.APPROVED
+                        && run.getExamState() != JudgeExamStatus.PROMOTED) {
                     units.put(run.getAnalyzer(), AuditTarget.QUIZ);
                 }
             }

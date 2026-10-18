@@ -13,5 +13,7 @@ public enum MiniTheoryProblem {
 
     OVERSTATED_FOR_QUIZ,
 
-    OTHER_SUBTOPIC_CONTENT
+    OTHER_SUBTOPIC_CONTENT,
+
+    OVER_SPECIFIC_FOR_QUIZ
 }

@@ -40,6 +40,10 @@ mismo tema.
 Una tarjeta sana no necesita cubrir afirmación, negación, pregunta, vocabulario
 ni variantes que su propio quiz no practica. Sí debe dar una corrección verdadera,
 suficiente y específica para la forma, función y palabras de ese quiz.
+La precisión también importa: que la tarjeta permita acertar este hueco no basta
+si presenta una asociación parcial como una regla que el alumno podría aprender
+con un alcance falso. Evaluá lo que enseña la formulación, además de su utilidad
+para responder.
 
 La identidad del assessment es el `quizId`, no el texto de la tarjeta. Toda
 evidencia de otro quiz queda fuera del assessment actual, incluso cuando ese
@@ -77,6 +81,13 @@ No mezcles los átomos ni juzgues la tarjeta como un bloque global.
 Si un átomo local prescribe una respuesta incorrecta o clasifica mal la categoría,
 construcción o función semántica focal, devolvé `FALSE_RULE`. Es terminal.
 
+Cuando la tarjeta usa una categoría léxica para excluir una construcción, esa
+clasificación es local y debe ser verdadera. No deduzcas la categoría del verbo
+del tiempo de la respuesta aceptada: una forma usada para un hábito o una
+disposición general no demuestra que el verbo pertenezca a una clase que prohíbe
+otras construcciones. Una clasificación local falsa no queda sana por coincidir
+casualmente con la forma aceptada ni se rebaja por tener contenido hermano.
+
 ### 4. Decisión local no discriminada → `INSUFFICIENT_FOR_QUIZ` y fin
 
 Si los átomos locales no permiten distinguir las rutas focales, devolvé
@@ -84,6 +95,15 @@ Si los átomos locales no permiten distinguir las rutas focales, devolvé
 opciones no alcanza: decir que varios verbos están en presente simple, por ejemplo,
 no permite elegir cuál expresa disculpa, promesa o advertencia cuando ésa es la
 decisión léxica del quiz.
+
+Comprobá también las condiciones de cada átomo local. La respuesta aceptada
+puede orientar una interpretación semántica coherente de un enunciado abierto;
+no exijas una marca explícita adicional para cada lectura posible ni audites
+su resolubilidad, que pertenece a otro juez. En cambio, si la tarjeta exige
+un indicio concreto y observable para elegir esa ruta frente a otra, no inventes
+esa condición cuando el prompt no la aporta. Usar la forma marcada no demuestra
+que exista ese indicio. Si falta el requisito de la distinción focal, esa rama
+no explica la corrección y el contenido hermano no rebaja la insuficiencia.
 
 ### 5. Local suficiente + cualquier átomo hermano → `OTHER_SUBTOPIC_CONTENT` y fin
 
@@ -93,20 +113,90 @@ devolvé `OTHER_SUBTOPIC_CONTENT`. Es terminal aunque el átomo hermano contenga
 excepciones ni el alcance del contenido hermano: alcanza con que esté fuera del
 contraste focal.
 
-### 6. Sin contenido hermano, universal local refutado → `OVERSTATED_FOR_QUIZ`
+### 6. Sin contenido hermano, alcance local engañoso → `OVERSTATED_FOR_QUIZ`
 
 Sólo si no hay ningún átomo hermano, usá `OVERSTATED_FOR_QUIZ` cuando un átomo
 local contiene un universal explícito o inequívoco cuyo alcance queda refutado por
-un uso común de la misma palabra o construcción. No conviertas expresiones locales
-o simplificaciones pedagógicas en universales implícitos.
+un uso común de la misma palabra o construcción. También corresponde cuando una
+asociación parcial se presenta sin delimitar como una regla de correspondencia y
+enseña una restricción que esa palabra o construcción no tiene. No hace falta que
+aparezcan «siempre», «sólo» o «únicamente» para que esa formulación sea engañosa.
 
-### 7. Si nada anterior aplica → sano
+En una regla de concordancia, distinguí la dirección de la explicación: el sujeto
+del caso determina qué forma verbal corresponde bajo el tiempo y la construcción
+practicados. La relación inversa no queda completa por nombrar ese único sujeto
+si la misma forma admite otros sujetos comunes. Una regla formulada desde la forma
+hacia un único sujeto, sin delimitarla al ejemplo, exagera su correspondencia y
+reprueba aunque permita elegir la respuesta marcada en este quiz.
+
+Una aplicación explícita al ejemplo, una regla que parte del sujeto hacia su forma
+o una descripción verdadera de la compatibilidad sin restringirla no fallan por
+este motivo. No penalices por el orden superficial de las palabras: comprobá la
+relación y el alcance que se enseñan. Tampoco exijas enumerar todos los sujetos ni
+agregar subtemas ajenos para corregirla; una formulación atómica con la dirección
+adecuada puede ser suficiente. Mantené el tiempo, la polaridad y el orden de la
+construcción al razonar sobre la regla.
+
+Un contraejemplo debe refutar la afirmación que realmente se hizo, manteniendo
+sus condiciones. Si la tarjeta dice que un indicio no basta para acreditar un
+rasgo, no la refuta una oración que añade explícitamente ese rasgo por otra vía.
+Agregar información que cambia la decisión no demuestra una excepción a la
+misma regla local. Distinguí «este indicio no acredita el rasgo» de «este indicio
+prohíbe que el rasgo exista»: sólo la segunda es una prohibición universal.
+
+### 7. Regla correcta convertida en receta lexical → `OVER_SPECIFIC_FOR_QUIZ`
+
+Si no aplica ningún defecto anterior, comprobá si la tarjeta enseña una estructura
+mediante palabras incidentales de la respuesta. Especifica de más cuando formula
+la regla como una combinación del sujeto o verbo literal del quiz, o copia la
+oración terminada, aunque esas palabras no determinen la decisión pedagógica.
+Nombrar después una propiedad general no basta si el esquema sigue fijado al
+léxico incidental. Tampoco basta presentar ese léxico como ejemplo cuando no
+aporta ninguna distinción: la tarjeta sigue siendo una receta del ítem.
+
+Probá abstraer mentalmente sólo ese léxico manteniendo la construcción y la
+decisión focal. Si verbo base, complemento o una categoría de concordancia
+expresan la misma regla sin perder información necesaria, corresponde
+`OVER_SPECIFIC_FOR_QUIZ`. Un sujeto nominal que sólo aporta concordancia se
+explica por su categoría gramatical; su nombre no necesita figurar en el esquema.
+Un pronombre puede conservarse cuando fija la forma del auxiliar: no exijas
+enumerar otras personas ni cubrir todo el tema.
+
+Distinguí léxico incidental de marcadores estructurales. Una palabra o expresión
+interrogativa puede conservarse en la apertura del esquema para mostrar el tipo
+de pregunta y la posición del auxiliar. No la marques únicamente porque ya esté
+dada en el enunciado ni exijas reemplazarla siempre por una etiqueta abstracta.
+Lo mismo vale para auxiliares y otros elementos que hacen visible la construcción.
+Una plantilla que conserva esos marcadores pero abstrae el verbo y los
+complementos incidentales ya permite reutilizar la estructura. El defecto sigue
+existiendo cuando la receta fija un verbo principal o un nombre incidental,
+aunque tenga una apertura interrogativa correctamente situada.
+
+También puede conservarse una forma verbal conjugada que señala la ruta focal
+de tiempo o aspecto bajo la condición explicada por la tarjeta. Citar la forma
+aceptada para mostrar qué elección corresponde no es por sí solo una receta,
+ni obliga a sustituirla por el nombre del tiempo. Distinguí esa realización de
+una fórmula que fija el léxico principal dentro de la combinación a construir.
+
+La prueba cambia si la palabra determina una elección léxica, un significado,
+una colocación, una irregularidad o una excepción. Ahí nombrarla es necesario
+y no constituye sobreespecificación. Un ejemplo que permite distinguir rutas
+reales del quiz también puede ser suficiente y pertinente. No borres esas
+distinciones por buscar un esquema genérico.
+
+La longitud por sí sola no es un defecto. No repruebes una explicación útil
+por tener más palabras, por dar una razón de concordancia o por mostrar un
+ejemplo que aporta una distinción. Este paso detecta léxico incidental fijado
+como parte de una receta, no aplica un límite de palabras ni exige una única
+redacción. La concisión es una recomendación para corregir el defecto encontrado.
+
+### 8. Si nada anterior aplica → sano
 
 Devolvé `holds: true`.
 
 La precedencia terminal completa es:
 `FALSE_RULE` / `INSUFFICIENT_FOR_QUIZ` → `OTHER_SUBTOPIC_CONTENT` →
-`OVERSTATED_FOR_QUIZ` → sano. Dentro del primer nivel, usá `FALSE_RULE` cuando
+`OVERSTATED_FOR_QUIZ` → `OVER_SPECIFIC_FOR_QUIZ` → sano. Dentro del primer nivel, usá `FALSE_RULE` cuando
 hay dirección o clasificación local falsa; usá `INSUFFICIENT_FOR_QUIZ` cuando
 falta la distinción necesaria.
 
@@ -145,8 +235,11 @@ focal depende sólo de uno.
 ## Alcance y evidencia externa
 
 La única evidencia externa permitida es un uso común de la misma palabra o
-construcción para refutar un universal **local** explícito o inequívoco en el
-paso 6. No uses conocimiento externo para exigir variantes, excepciones ni
+construcción para refutar el alcance **local** explícito, inequívoco o restringido
+engañosamente por una regla de correspondencia en el paso 6. Un sujeto compatible
+con la misma forma sirve para mostrar esa restricción; no audites su quiz ni
+conviertas esa evidencia en contenido obligatorio de la tarjeta corregida.
+No uses conocimiento externo para exigir variantes, excepciones ni
 subtemas que el quiz no practica. Nunca busques contraejemplos para un átomo
 hermano: el paso 5 ya cerró el caso como `OTHER_SUBTOPIC_CONTENT`.
 
@@ -157,7 +250,9 @@ para su quiz. Entonces `problem`, `severity` y `counterexample` son `null`.
 
 No inventes un defecto por omitir formas o usos que no aparecen en ese quiz, por
 no explicar otros quizzes del tema, por simplificar algo que no cambia la
-respuesta practicada ni por compartir el texto con otra tarjeta.
+respuesta practicada **y conserva un alcance verdadero**, ni por compartir el
+texto con otra tarjeta. Una correspondencia parcial presentada como regla sin
+delimitar no queda sana sólo porque coincida con la respuesta de este quiz.
 
 ## Problemas y severidades
 
@@ -173,18 +268,34 @@ terminal aplicable. La severidad está fijada y nunca puede ser `BLOCKING`:
   respuesta aceptada. También si se dedica a otro subtema y no deja una
   corrección utilizable para el caso actual.
 - `OVERSTATED_FOR_QUIZ` → `MEDIUM`: sin contenido hermano, contiene la corrección
-  local pero un universal local explícito o inequívoco queda refutado por un uso
-  común de la misma palabra o construcción.
+  local pero enseña un alcance excesivo: un universal explícito o inequívoco, o
+  una correspondencia parcial formulada como regla sin delimitar, queda refutado
+  por un uso común de la misma palabra o construcción.
 - `OTHER_SUBTOPIC_CONTENT` → `LOW`: explica correctamente el caso, pero además
   agrega cualquier contenido que pertenece sólo a otro subtema. Si ese contenido
   reemplaza la explicación necesaria, usá `INSUFFICIENT_FOR_QUIZ`.
+- `OVER_SPECIFIC_FOR_QUIZ` → `LOW`: la regla local es verdadera y suficiente,
+  pero fija léxico incidental en una receta del ítem que se puede abstraer sin
+  perder el contraste focal. No se usa sólo porque el texto sea largo.
 
 El `counterexample` muestra evidencia breve aplicada al propio quiz: una
 completación correcta, una formulación que desmienta la regla o la decisión no
 explicada. Nunca uses otro quiz. La única excepción externa es el uso común
-admitido por el paso 6 para refutar un universal local; no sirve para exigir
+admitido por el paso 6 para refutar un alcance local engañoso; no sirve para exigir
 cobertura adicional. La `explanation` dice en castellano qué coincide o no con
 el caso.
+
+Ante una correspondencia parcial engañosa, la `explanation` identifica el fragmento
+de la tarjeta, qué restricción puede aprender el alumno y cómo recuperar una regla
+local precisa sin ampliar a otros subtemas. El `counterexample` muestra un uso común
+que refuta esa restricción. Esa evidencia debe permitir al corrector entender el
+defecto; no uses respuestas esperadas ni ejemplos de un corpus de examen.
+
+Ante sobreespecificación, la `explanation` identifica el fragmento incidental,
+explica por qué no determina la regla y qué papel gramatical se puede abstraer.
+El `counterexample` propone un esquema breve aplicado al mismo quiz, conservando
+las decisiones focales y las variantes pertinentes. No inventes otro quiz ni
+copies respuestas esperadas de un examen; deducí el esquema del caso recibido.
 
 ## Formato de la entrada
 
@@ -217,7 +328,7 @@ fences ni prosa adicional:
 - Exactamente un elemento por quiz, en el mismo orden; ningún id omitido,
   inventado o repetido.
 - `problem`: `FALSE_RULE`, `INSUFFICIENT_FOR_QUIZ`,
-  `OVERSTATED_FOR_QUIZ`, `OTHER_SUBTOPIC_CONTENT` o `null`.
+  `OVERSTATED_FOR_QUIZ`, `OTHER_SUBTOPIC_CONTENT`, `OVER_SPECIFIC_FOR_QUIZ` o `null`.
 - `severity`: `HIGH`, `MEDIUM`, `LOW` o `null`, según la correspondencia fija.
 - Si `holds` es false, problema, severidad y contraejemplo no son null.
 - No incluyas claves adicionales ni uses conocimiento de un corpus de examen.

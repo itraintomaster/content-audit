@@ -210,7 +210,7 @@ public class DefaultLocalToolGate implements LocalToolGate {
             return null;
         }
         return switch (standing.getStatus()) {
-            case APPROVED, FAILED, TAKEN -> blankToNull(standing.getReason());
+            case APPROVED, PROMOTED, FAILED, TAKEN -> blankToNull(standing.getReason());
             default -> null;
         };
     }

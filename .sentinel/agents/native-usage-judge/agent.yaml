@@ -1,0 +1,32 @@
+name: native-usage-judge
+description: Independently judges English formulation or teaching quality; no course edits.
+kind: agent
+strategy: graph
+initial_node: evaluate
+budgets:
+  max_iterations: 3
+nodes:
+  - ./nodes/evaluate.md
+  - ./nodes/gate_verdict.md
+  - ./nodes/emit.md
+goal:
+  required_artifacts:
+    - nativeUsageVerdict
+  required_nodes_done:
+    - emit
+dependencies:
+  - inputContract
+  - quizId
+  - level
+  - topic
+  - title
+  - instructions
+  - exercise
+  - sentenceMode
+  - targetStructure
+  - visibleChoices
+  - renderCompleteness
+  - acceptedSentences
+  - languagePolicy
+  - documentedPriorLearning
+  - curriculumOutline

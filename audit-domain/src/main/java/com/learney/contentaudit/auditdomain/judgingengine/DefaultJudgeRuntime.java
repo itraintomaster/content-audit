@@ -7,6 +7,7 @@ import com.learney.contentaudit.auditdomain.EmptyReevaluationSetException;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.auditdomain.EvaluationRunPurpose;
 import com.learney.contentaudit.auditdomain.JudgeExamRegistry;
+import com.learney.contentaudit.auditdomain.JudgePromotionRegistry;
 import com.learney.contentaudit.auditdomain.JudgeRuntimeConfig;
 import com.learney.contentaudit.auditdomain.judging.EvaluatorCoverage;
 import com.learney.contentaudit.auditdomain.judging.JudgeCostEstimate;
@@ -94,14 +95,23 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
 
     private final JudgeRuntimeConfig config;
 
+    private final JudgePromotionRegistry promotions;
+
     public DefaultJudgeRuntime(EvaluationSessionFactory courseSessions,
             EvaluationSessionFactory examSessions, JudgeExamRegistry examRegistry,
             EvaluationTimeline timeline, JudgeRuntimeConfig config) {
+        this(courseSessions,examSessions,examRegistry,timeline,config,null);
+    }
+
+    public DefaultJudgeRuntime(EvaluationSessionFactory courseSessions,
+            EvaluationSessionFactory examSessions, JudgeExamRegistry examRegistry,
+            EvaluationTimeline timeline, JudgeRuntimeConfig config, JudgePromotionRegistry promotions) {
         this.courseSessions = courseSessions;
         this.examSessions = examSessions;
         this.examRegistry = examRegistry;
         this.timeline = timeline;
         this.config = config;
+        this.promotions = promotions;
     }
 
     @Override
@@ -320,6 +330,22 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
         Optional<JudgeExamRecord> latest = effectiveRuntime.isExplicit()
                 ? examRegistry.latestCompatible(judgeName, acceptedVersions, effectiveRuntime)
                 : latestLegacyExam(judgeName, acceptedVersions);
+        // Operator acceptance is exact-version and exact-runtime, never inherited through
+        // schema aliases. A later measured exam supersedes it; a rehearsal does not revoke it.
+        if (promotions != null && effectiveRuntime.isExplicit()) {
+            var promoted = promotions.latest(judgeName,judgeVersion,effectiveRuntime);
+            if (promoted != null && promoted.isPresent()) {
+                var decision=promoted.get();
+                var measured=latest==null ? null : latest.orElse(null);
+                boolean laterMeasurement=measured!=null
+                        && (measured.getStatus()==JudgeExamStatus.APPROVED || measured.getStatus()==JudgeExamStatus.FAILED)
+                        && measured.getRecordedAt()!=null && !measured.getRecordedAt().isBefore(decision.promotedAt());
+                if (!laterMeasurement)
+                    return new JudgeExamStanding(judgeName,judgeVersion,JudgeExamStatus.PROMOTED,true,
+                            "Promovido por "+decision.reviewer()+" tras revisión del operador: "+decision.reason()
+                                    +(decision.reason().endsWith(".") ? " " : ". ")+"Evidencia: "+decision.evidenceFile(),effectiveRuntime,acceptedVersions);
+            }
+        }
         if (latest == null || latest.isEmpty() || latest.get().getStatus() == null) {
             return new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.NOT_TAKEN, false,
                     REASON_NOT_TAKEN, effectiveRuntime, acceptedVersions);

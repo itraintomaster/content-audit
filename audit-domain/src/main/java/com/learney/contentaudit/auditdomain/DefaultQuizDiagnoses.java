@@ -17,6 +17,17 @@ import com.learney.contentaudit.auditdomain.translationsense.TranslationSenseDia
 import java.util.Optional;
 
 public final class DefaultQuizDiagnoses implements QuizDiagnoses {
+    private com.learney.contentaudit.auditdomain.pragmatism.PragmatismDiagnosis pragmatismDiagnosis;
+
+    @Override
+    public Optional<com.learney.contentaudit.auditdomain.pragmatism.PragmatismDiagnosis> getPragmatismDiagnosis() {
+        return Optional.ofNullable(pragmatismDiagnosis);
+    }
+
+    public void setPragmatismDiagnosis(com.learney.contentaudit.auditdomain.pragmatism.PragmatismDiagnosis diagnosis) {
+        this.pragmatismDiagnosis = diagnosis;
+    }
+
     private com.learney.contentaudit.auditdomain.choicequality.ChoiceQualityDiagnosis choiceQualityDiagnosis;
 
     @Override

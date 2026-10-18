@@ -1,4 +1,21 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>114 · La conversión ahora sigue la propuesta</title><style>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La pantalla conserva una aprobación del juez anterior</title>
+<!--
+  TEMPLATE DE BRIEF · visual-brief
+  1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
+  2. Por cada sección: un título que dice la conclusión, UN dibujo copiado del
+     catálogo del final y un pie de dos renglones. Primero el dibujo; el texto lo rotula.
+  3. BORRAR el catálogo entero (<section class="cat">) y las secciones que no se usan.
+  4. Verificar: node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
+  Topes: lede ≤ 2 frases y 35 palabras · ≤ 6 secciones · pie ≤ 30 · párrafo ≤ 40 ·
+  prosa total ≤ 400 (sin tablas ni gráficos). Cada componente trae el suyo en el catálogo.
+  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
+-->
+<style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
     --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
@@ -236,13 +253,18 @@
     .kpi .n{font-size:28px}
   }
 
-  .captura{margin:0;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}.captura img{display:block;width:100%;height:auto}.captura figcaption{padding:12px 15px;font-size:13.5px;line-height:1.5;color:var(--fg-2)}</style></head><body><div class="wrap">
-<header><div class="kicker"><span class="num">114</span><span class="badge">UI corregida</span><span class="meta">ContentAudit · 12/10/2026</span></div><h1>La conversión ahora sigue la propuesta</h1><p class="sub">Revisión de las cinco pantallas y cambios integrados en el tablero principal.</p></header>
-<div class="lede"><p><strong>Había diferencias en la lista, la hoja y el pedido manual.</strong> Ya están corregidas e integradas para que pruebes el recorrido completo.</p></div>
-<section><h2>La estructura vuelve a ser la propuesta</h2><div class="ad"><div class="lado antes"><span class="rot">Antes</span><ol><li>Lista de temas en un diálogo.</li><li>Sin filtro por nivel.</li><li>Opciones y opiniones separadas.</li><li>Pedido manual fuera del menú del ejercicio.</li></ol><div class="res">El recorrido se alejaba del diseño.</div></div><div class="lado despues"><span class="rot">Ahora</span><ol><li>Pantalla completa con temas y tres fuentes.</li><li>Nivel junto al título.</li><li>Opciones, procedencia y jueces juntos.</li><li>Pedido desde los tres puntos del ejercicio.</li></ol><div class="res">Cada acción aparece donde la esperás.</div></div></div><p class="pie">La aprobación queda junto al cambio de tipo. La hoja aprobada conserva el original y permite volver a Completar.</p></section>
-<section><h2>La lista muestra los datos de tu tanda</h2><figure class="captura"><img src="114-ui-opcion-multiple/lista-real.jpg" alt="Lista integrada por temas, con filtro por nivel y fuentes de las opciones"><figcaption>Tablero real: 3 candidatas de esta tanda; la propuesta estimaba todo el curso.</figcaption></figure></section>
-<section><h2>Las opciones y sus controles comparten el renglón</h2><figure class="captura"><img src="114-ui-opcion-multiple/hoja-prueba.jpg" alt="Hoja de conversión con opciones, respuesta correcta, procedencia y opinión en el mismo renglón"><figcaption>Datos de prueba, opiniones ilustrativas: tres comprobaciones, dos jueces y opciones en su renglón.</figcaption></figure></section>
-<section><h2>El resultado queda limpio y el alumno puede comparar</h2><figure class="captura"><img src="114-ui-opcion-multiple/aprobada-prueba.jpg" alt="Conversión aprobada, hoja limpia y acción para restaurar Completar"><figcaption>Datos de prueba: hoja aprobada, original guardado y cambio pendiente de publicación.</figcaption></figure><p class="pie"><a href="114-ui-opcion-multiple/movil-prueba.jpg">Ver la comparación del alumno en móvil</a> · <a href="114-ui-opcion-multiple/pedido-prueba.jpg">Ver el motivo de un pedido no disponible</a>.</p></section>
-<section><h2>Las pruebas y los anchos revisados pasaron</h2><div class="kpis"><div class="kpi"><div class="n">1.945<small>/ 1.945</small></div><div class="l">Pruebas de la interfaz aprobadas.</div></div><div class="kpi"><div class="n">390–1.280<small>px</small></div><div class="l">Móvil, panel integrado y escritorio revisados; sin desborde horizontal.</div></div><div class="kpi"><div class="n">0<small>consultas</small></div><div class="l">Modelos reales ejecutados durante esta revisión.</div></div></div><p class="pie">El recorrido con decisiones se verificó con datos de prueba. La lista se comprobó en la tanda real, sin cambiar sus decisiones.</p></section>
-<section><h2>Ya podés probar el recorrido integrado</h2><div class="flow"><div class="st"><span class="i">1</span><span class="h">Entrá a la lista</span><span class="d">Correcciones → Pasar a opción múltiple.</span></div><div class="st"><span class="i">2</span><span class="h">Abrí un tema</span><span class="d">Compará Marcas, Lado a lado y Como el alumno.</span></div><div class="st end"><span class="i">3</span><span class="h">Pedí opinión y decidí</span><span class="d">Revisá el pedido antes de aprobar o rechazar.</span></div></div><p class="pie"><a href="http://127.0.0.1:7800/?tipo=opcion-multiple">Abrir la lista integrada</a>. Para un ejercicio puntual, usá Sugerir opción múltiple en su menú.</p></section>
-<footer><span>Brief 114 · Auditoría de UI</span><span>Referencia: <a href="../propuestas/convertir-a-opcion-multiple.html">propuesta original</a> · Pruebas: html/test/conversion.test.js y npm test.</span></footer></div></body></html>
+  /* ============ CATÁLOGO · se borra entero al generar ============ */
+  .cat{margin-top:64px;padding-top:22px;border-top:3px solid var(--bad)}
+  .cat .adv{font-size:13px;color:var(--bad);font-weight:600;margin:0 0 20px}
+  .cat-g{display:grid;gap:16px}
+  .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
+  .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
+  .cat-i>.n b{color:var(--fg-2)}
+</style>
+</head>
+<body><main class="wrap"><header><div class="kicker"><span class="num">142</span><span class="badge">Diagnóstico</span><span class="meta">Miniteoría · 18 octubre 2026</span></div><h1>La pantalla conserva una aprobación del juez anterior</h1><p class="sub">El ejercicio de la silla quedó fuera de las nuevas evaluaciones e integraciones.</p></header>
+<div class="lede"><p>El juez cambió, pero este ejercicio no se volvió a medir: «resuelto» proviene del resultado anterior.</p></div>
+<section><h2>El caso sigue aprobado por la versión anterior</h2><p>Esperado: criterio pedido por el operador. Obtenido: veredicto guardado. La flecha compara ambos; pendiente de reevaluar no significa rechazado ni aprobado por el juez actual.</p><div class="tw"><table><thead><tr><th>Ejercicio</th><th>Esperado → obtenido</th></tr></thead><tbody><tr><td>It is under the chair.<br>«is va con it»</td><td>Rechazado → aprobado anteriormente</td></tr><tr><td>Motivo esperado</td><td>La forma verbal se asocia engañosamente con un único sujeto.</td></tr><tr><td>Motivo obtenido</td><td>«La tarjeta explica que con it corresponde is en esta oración».</td></tr></tbody></table></div><p class="pie">La referencia esperada es el criterio solicitado y la guía actual; no se ejecutó una nueva consulta.</p></section>
+<section><h2>Las integraciones dejaron afuera este ejercicio</h2><div class="tw"><table><thead><tr><th>Paso</th><th>Alcance</th><th>¿Incluye la silla?</th></tr></thead><tbody><tr><td>Volver a analizar las propuestas</td><td>She is English / They are very short</td><td>No</td></tr><tr><td>Integración del 13/10</td><td>180 ejercicios</td><td>No</td></tr><tr><td>Integración del 14/10</td><td>20 ejercicios</td><td>No</td></tr></tbody></table></div><p class="pie">Modificar y aprobar un juez no reemplaza automáticamente los veredictos guardados para otros ejercicios.</p></section>
+<section><h2>Qué sigue</h2><div class="flow"><div class="step">Reevaluar el tema con el juez actual</div><div class="step">Integrar el resultado de este ejercicio</div><div class="step">Advertir cuando una aprobación pertenece a otro juez</div></div><p class="pie">Diagnóstico realizado sin consultas a modelos ni modificaciones de los veredictos guardados.</p></section>
+<footer><span>Fuentes: mini-theory-judge.jsonl, frozen-quizzes.json y analysis-selections. <a href="../../analysis/reviews/2026-10-18-mini-theory-stale/evidence.json">Evidencia detallada</a></span><span>brief 142</span></footer></main></body></html>

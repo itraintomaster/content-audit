@@ -23,6 +23,9 @@ public class PanelRequest {
 
     private List<QuizStudentView> topicView;
 
+    /** Persistent quiz identities in the same order as topicView; never inferred from rendered text. */
+    private List<String> topicQuizIds;
+
     private List<ErrorTaskBrief> briefs;
 
     private TopicWordLights wordLights;
@@ -95,6 +98,14 @@ public class PanelRequest {
         this.topicView = topicView;
     }
 
+    public List<String> getTopicQuizIds() {
+        return this.topicQuizIds;
+    }
+
+    public void setTopicQuizIds(List<String> topicQuizIds) {
+        this.topicQuizIds = topicQuizIds;
+    }
+
     public List<ErrorTaskBrief> getBriefs() {
         return this.briefs;
     }
@@ -153,6 +164,7 @@ public class PanelRequest {
                     && Objects.equals(this.knowledgeId, that.knowledgeId)
                     && Objects.equals(this.quizId, that.quizId)
                     && Objects.equals(this.topicView, that.topicView)
+                    && Objects.equals(this.topicQuizIds, that.topicQuizIds)
                     && Objects.equals(this.briefs, that.briefs)
                     && Objects.equals(this.wordLights, that.wordLights)
                     && Objects.equals(this.conversion, that.conversion)
@@ -163,6 +175,6 @@ public class PanelRequest {
 
     @Override
     public int hashCode() {
-        return Objects.hash(batchId, level, knowledgeId, quizId, topicView, briefs, wordLights, conversion, attempt, previousRejections, twoFixes);
+        return Objects.hash(batchId, level, knowledgeId, quizId, topicView, topicQuizIds, briefs, wordLights, conversion, attempt, previousRejections, twoFixes);
     }
 }

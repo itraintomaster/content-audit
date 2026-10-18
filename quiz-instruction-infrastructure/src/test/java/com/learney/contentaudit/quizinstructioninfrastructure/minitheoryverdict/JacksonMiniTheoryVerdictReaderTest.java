@@ -19,6 +19,18 @@ import org.junit.jupiter.api.Test;
 )
 public class JacksonMiniTheoryVerdictReaderTest {
 
+    @Test
+    @Tag("F-MINIT-R008")
+    void readsOverSpecificCategoryAtLowSeverityAndRejectsInflatedSeverity() {
+        String assessment = "\"quizId\":\"q-local\",\"holds\":false,\"problem\":\"OVER_SPECIFIC_FOR_QUIZ\","
+                + "\"severity\":\"LOW\",\"counterexample\":\"Auxiliar + sujeto + verbo base.\","
+                + "\"explanation\":\"El verbo incidental se puede abstraer.\"";
+        var verdict = new JacksonMiniTheoryVerdictReader().read(verdictWith(assessment));
+        assertEquals(MiniTheoryProblem.OVER_SPECIFIC_FOR_QUIZ, verdict.getAssessments().get(0).getProblem());
+        assertEquals(FindingSeverity.LOW, verdict.getAssessments().get(0).getSeverity());
+        assertUnreadable(verdictWith(assessment.replace("\"LOW\"", "\"MEDIUM\"")));
+    }
+
     private static final String VERDICT_BY_QUIZ = """
             {
               "assessments": [

@@ -7,6 +7,7 @@ import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBrief;
 import com.learney.contentaudit.revisiondomain.nonregression.ChangeGateVerdict;
 import com.learney.contentaudit.revisiondomain.nonregression.LengthDeclaration;
+import com.learney.contentaudit.revisiondomain.nonregression.UnevaluatedMark;
 import com.learney.contentaudit.revisiondomain.nonregression.UnitMeasurement;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
 import com.learney.contentaudit.revisiondomain.panel.PanelOutcomeKind;
@@ -103,26 +104,35 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
 
     // -------------------------------------------------------------------------
 
-    /** The tasks whose finding, and every finding it covers, no longer appears in the candidate's measurement. */
+    /** The tasks whose finding, and every finding it covers, was evaluated and no longer appears in the candidate. */
     private static List<String> resolved(List<ErrorTaskBrief> briefs, UnitMeasurement measurement) {
         Set<String> present = new HashSet<>();
         for (Finding finding : measurement.getFindings() != null ? measurement.getFindings() : List.<Finding>of()) {
             present.add(identity(finding));
         }
+        Set<UnevaluatedMark> unevaluated = new HashSet<>(measurement.getUnevaluated() != null
+                ? measurement.getUnevaluated() : List.of());
         List<String> resolved = new ArrayList<>();
         for (ErrorTaskBrief brief : briefs) {
             if (brief == null || brief.getTask() == null || brief.getFinding() == null) {
                 continue;
             }
-            boolean stays = present.contains(identity(brief.getFinding()));
+            boolean stays = unresolved(brief.getFinding(), present, unevaluated);
             for (Finding covered : brief.getCoveredFindings() != null ? brief.getCoveredFindings() : List.<Finding>of()) {
-                stays |= present.contains(identity(covered));
+                stays |= unresolved(covered, present, unevaluated);
             }
             if (!stays) {
                 resolved.add(brief.getTask().getId());
             }
         }
         return resolved;
+    }
+
+    /** A missing finding gives no evidence of a repair when its judge still has this node pending. */
+    private static boolean unresolved(Finding finding, Set<String> present, Set<UnevaluatedMark> unevaluated) {
+        String nodeId = finding.getNode() != null ? finding.getNode().getNodeId() : null;
+        return present.contains(identity(finding))
+                || unevaluated.contains(new UnevaluatedMark(nodeId, finding.getAnalyzer()));
     }
 
     /** F-MESA-R008: the findings of a tie rule its analyzer declares, on the exercises of the tasks. */

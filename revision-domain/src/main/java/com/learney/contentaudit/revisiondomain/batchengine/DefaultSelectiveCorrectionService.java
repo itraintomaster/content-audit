@@ -2,6 +2,7 @@ package com.learney.contentaudit.revisiondomain.batchengine;
 
 import com.learney.contentaudit.auditdomain.*;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
 import com.learney.contentaudit.coursedomain.*;
 import com.learney.contentaudit.refinerdomain.*;
@@ -15,6 +16,7 @@ import java.util.function.Function;
 /** An explicit, append-only supplement. Never runs the general rule stage, conversions or closing rollback loop. */
 final class DefaultSelectiveCorrectionService implements SelectiveCorrectionService {
     static final String JUDGE = "multiple-choice-quality";
+    private static final Set<String> CORRECTION_ANALYZERS = Set.of(JUDGE, "single-answer", "quiz-instruction", "translation-sense");
     private final BatchServiceConfig config;
     private final BatchChangeLedger ledger;
     private final DefaultPanelStage panels;
@@ -41,9 +43,9 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
     private State executeSingle(Request r, Set<String> forceOnly, String coordinatedBy) {
         Objects.requireNonNull(r, "Falta el pedido.");
         String judge = r.analyzer();
-        var supported = config.getCurrentAnalysisService() == null ? java.util.Set.of(JUDGE) : config.getCurrentAnalysisService().supportedAnalyzers();
+        var supported = config.getCurrentAnalysisService() == null ? CORRECTION_ANALYZERS : config.getCurrentAnalysisService().supportedAnalyzers();
         if (blank(judge) || !supported.contains(judge)) fail("El juez no declara una huella de integración: " + judge);
-        if ("correct".equals(r.action()) && !JUDGE.equals(judge)) fail("La corrección selectiva de este recorrido es sólo de distractores.");
+        if ("correct".equals(r.action()) && !correctable(judge)) fail("El analizador no declara una corrección selectiva habilitada: " + judge);
         if (!List.of("read", "estimate", "analyze", "reanalyze", "analyze-base", "reanalyze-base", "correct").contains(Objects.toString(r.action(), "")))
             fail("Operación selectiva desconocida.");
         CorrectionBatch batch = batch(r.batchId());
@@ -86,6 +88,8 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         List<RefinementTask> selected = List.of();
         if ("correct".equals(r.action())) {
             source = source(batch, r.sourceRunId());
+            if (!Objects.equals(source.analyzer(), judge))
+                fail("La medición elegida pertenece a otro analizador: " + source.analyzer());
             if (source.contentVersion() != batch.getContentVersion()
                     || !Objects.equals(source.fingerprint(), estimate.fingerprint())
                     || !Objects.equals(source.judgeVersion(), estimate.judgeVersion()))
@@ -98,8 +102,10 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
             Set<String> approved = approved(batch);
             if (!r.includeApproved() && selected.stream().anyMatch(t -> approved.contains(t.getNodeId())))
                 fail("Hay quizzes aprobados en el alcance: confirmá explícitamente su inclusión.");
-            JudgeCoverageDiagnosis uniqueness = coverage(audit(cut, "multiple-choice-validity", 0), "multiple-choice-validity");
-            if (!allowed(uniqueness)) fail("La comprobación de respuesta única no está habilitada; no se corrige.");
+            if (JUDGE.equals(judge)) {
+                JudgeCoverageDiagnosis uniqueness = coverage(audit(cut, "multiple-choice-validity", 0), "multiple-choice-validity");
+                if (!allowed(uniqueness)) fail("La comprobación de respuesta única no está habilitada; no se corrige.");
+            }
         }
         List<String> ids = selected.stream().map(RefinementTask::getId).toList();
         List<String> quizzes = selected.stream().map(RefinementTask::getNodeId).distinct().toList();
@@ -119,15 +125,18 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         try {
             AuditReport result;
             if (!"correct".equals(r.action())) {
-                // The allowance is for the whole run, including judges with multiple evaluators.
+                // Translation shares this total between its paired verdicts itself. Other multi-session
+                // providers retain the conservative per-evaluator limit until they declare shared budgeting.
                 int evaluatorCount = Math.max(1, BatchBook.list(coverage(trial, judge).getEvaluators()).size());
-                result = audit(cut, judge, r.queryCap() / evaluatorCount, r.force() || r.action().startsWith("reanalyze"), forceOnly);
+                int judgeBudget = "translation-sense".equals(judge) ? r.queryCap() : r.queryCap() / evaluatorCount;
+                result = audit(cut, judge, judgeBudget, r.force() || r.action().startsWith("reanalyze"), forceOnly);
                 String auditId = config.getAuditReportStore().save(result);
                 RefinementPlan plan = config.getRefinerEngine().plan(result, auditId);
                 List<RefinementTask> tasks = BatchBook.list(plan.getTasks()).stream()
                         .filter(t -> t.getNodeTarget() == AuditTarget.QUIZ && t.getOrigin() != null
                                 && t.getOrigin().getFinding() != null
-                                && judge.equals(t.getOrigin().getFinding().getAnalyzer()))
+                                && judge.equals(t.getOrigin().getFinding().getAnalyzer())
+                                && t.getOrigin().getFinding().getResolution() != FindingResolution.RANK_ONLY)
                         .toList();
                 for (RefinementTask t : tasks) t.setId("selective-" + run.id() + "-" + t.getId());
                 plan.setTasks(new ArrayList<>(tasks));
@@ -151,11 +160,11 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
                 config.getBatchStore().save(batch);
                 allowance = config.getPanelRunnerFactory().allowance(r.queryCap(), 1);
                 List<String> validation = BatchBook.copy(batch.getAnalyzers());
-                if (!validation.contains(JUDGE)) validation.add(JUDGE);
+                if (!validation.contains(judge)) validation.add(judge);
                 AuditReport sourceReport = config.getAuditReportStore().load(source.auditId()).orElseThrow();
                 batch = panels.runSelected(batch, sourceReport, start, allowance, new HashSet<>(ids), validation);
                 // The native panel judged candidates; this zero-budget pass records/reuses their final verdicts.
-                result = audit(level(ledger.composedCourse(batch, start), batch.getLevel()), JUDGE, 0);
+                result = audit(level(ledger.composedCourse(batch, start), batch.getLevel()), judge, 0);
                 String auditId = config.getAuditReportStore().save(result);
                 run = evaluated(run, result, auditId, batch.getPlanId(), ids, quizzes, allowance.spent());
                 Optional<String> stopped = allowance.tripped();
@@ -239,11 +248,18 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         for (String id : ids) {
             RefinementTask t = tasks.get(id);
             if (!source.taskIds().contains(id) || t == null || t.getOrigin() == null || t.getOrigin().getFinding() == null
-                    || !JUDGE.equals(t.getOrigin().getFinding().getAnalyzer()) || t.getNodeTarget() != AuditTarget.QUIZ)
+                    || !source.analyzer().equals(t.getOrigin().getFinding().getAnalyzer())
+                    || t.getOrigin().getFinding().getResolution() == FindingResolution.RANK_ONLY
+                    || t.getNodeTarget() != AuditTarget.QUIZ)
                 fail("La tarea no pertenece al juez y a la medición elegidos: " + id);
             result.add(t);
         }
         return result;
+    }
+    private boolean correctable(String analyzer) {
+        return CORRECTION_ANALYZERS.contains(analyzer) && config.getCorrectionCatalog() != null
+                && config.getCorrectionCatalog().find(analyzer)
+                        .map(c -> !safe(c.editScope(FindingResolution.PANEL)).isEmpty()).orElse(false);
     }
     private CorrectionBatch batch(String id) {
         if (blank(id)) fail("Falta la tanda.");

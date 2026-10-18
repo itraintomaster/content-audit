@@ -92,7 +92,8 @@ public class DefaultErrorTaskBrieferTest {
                 "the finding with its evidence");
         Assertions.assertEquals(FindingSeverity.BLOCKING, brief.getFinding().getSeverity());
         Assertions.assertEquals(List.of(ExercisePart.ANSWERS, ExercisePart.HINT, ExercisePart.STATEMENT,
-                ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO), brief.getEditScope(), "what a panel fix may touch");
+                ExercisePart.TRANSLATION, ExercisePart.MINI_THEORY, ExercisePart.STORED_SENTENCE,
+                ExercisePart.AUDIO), brief.getEditScope(), "what a panel fix may touch");
         Assertions.assertTrue(brief.isScopeDeclared());
         Assertions.assertEquals(List.of(), brief.getReachedQuizViews(), "an exercise task, not a topic one");
         Assertions.assertEquals(List.of(), brief.getCoveredFindings());

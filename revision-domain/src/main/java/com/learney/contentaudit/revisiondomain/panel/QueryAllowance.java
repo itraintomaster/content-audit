@@ -12,6 +12,16 @@ public interface QueryAllowance {
 
     void settle(int reserved, int spent);
 
+    /** Hold the whole budget of a group whose evaluations run sequentially in one consultation slot. */
+    default boolean tryReserveSequential(int queries) {
+        return tryReserve(queries);
+    }
+
+    /** Settle the budget held by {@link #tryReserveSequential(int)}. */
+    default void settleSequential(int reserved, int spent) {
+        settle(reserved, spent);
+    }
+
     void trip(String cause);
 
     Optional<String> tripped();

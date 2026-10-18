@@ -1613,6 +1613,7 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
             return "sin examen";
         }
         return switch (state) {
+            case PROMOTED -> "promovido por el operador";
             case APPROVED -> "aprobado";
             case FAILED -> "reprobado";
             case TAKEN -> "rendido, sin resultado medido";

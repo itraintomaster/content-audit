@@ -28,7 +28,14 @@ public interface CurrentAnalysisService {
             List<LooseRun> looseRuns, List<AnalysisSelection> history, List<String> supportedAnalyzers) {}
     record State(String id, String label, String fingerprint, AuditDigest digest,
             Map<String, QuizStudentView> studentViews, Map<String, Map<String, Object>> provenance,
-            List<String> approvalWarnings, Map<String, List<String>> comparableAnalyzers, String analysisCode) {}
+            List<String> approvalWarnings, Map<String, List<String>> comparableAnalyzers, String analysisCode,
+            Map<String, List<String>> inapplicableAnalyzers) {
+        public State(String id, String label, String fingerprint, AuditDigest digest,
+                Map<String, QuizStudentView> studentViews, Map<String, Map<String, Object>> provenance,
+                List<String> approvalWarnings, Map<String, List<String>> comparableAnalyzers, String analysisCode) {
+            this(id, label, fingerprint, digest, studentViews, provenance, approvalWarnings, comparableAnalyzers, analysisCode, Map.of());
+        }
+    }
     record LooseRun(String id, String analyzer, String auditId, String status, int contentVersion,
             String runtime, String judgeVersion, Instant measuredAt, int spent, int evaluated, int withError,
             List<Fit> fits, String displayName, String activityId) {}

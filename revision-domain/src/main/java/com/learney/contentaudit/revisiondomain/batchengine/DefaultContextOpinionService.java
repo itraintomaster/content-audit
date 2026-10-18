@@ -1,11 +1,13 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
 import com.learney.contentaudit.auditdomain.*;
+import com.learney.contentaudit.auditdomain.analysis.DefaultAnalysisComposer;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
 import com.learney.contentaudit.auditdomain.finding.*;
 import com.learney.contentaudit.auditdomain.judging.*;
 import com.learney.contentaudit.coursedomain.*;
 import com.learney.contentaudit.revisiondomain.RevisionProposal;
+import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
 import com.learney.contentaudit.revisiondomain.batch.*;
 import com.learney.contentaudit.revisiondomain.batch.ContextOpinion.*;
 import com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome;
@@ -21,15 +23,27 @@ final class DefaultContextOpinionService implements ContextOpinionService {
     private final BatchChangeLedger ledger;
     private final BatchReviewService reviews;
     private final Function<CourseEntity, String> fingerprint;
+    private final PreliminaryOpinionSource preliminarySource;
 
     DefaultContextOpinionService(BatchServiceConfig config, BatchChangeLedger ledger,
             BatchReviewService reviews, Function<CourseEntity, String> fingerprint) {
+        this(config, ledger, reviews, fingerprint, null);
+    }
+    DefaultContextOpinionService(BatchServiceConfig config, BatchChangeLedger ledger,
+            BatchReviewService reviews, Function<CourseEntity, String> fingerprint,
+            PreliminaryOpinionSource preliminarySource) {
         this.config = config; this.ledger = ledger; this.reviews = reviews; this.fingerprint = fingerprint;
+        this.preliminarySource = preliminarySource;
     }
     private record Scope(String analyzer, CourseEntity before, CourseEntity after,
             List<RevisionProposal> proposals, List<RevisionProposal> context, List<Integer> pendingByEvaluator, Judge judge) {}
 
     @Override public State execute(Request request) {
+        if (request != null && List.of("estimate-preliminary", "import-preliminary").contains(request.action())) {
+            if ("import-preliminary".equals(request.action()))
+                return config.getBatchStore().withAnalysisLock(request.batchId(), () -> preliminary(request));
+            return preliminary(request);
+        }
         if (request == null || !List.of("estimate", "measure").contains(request.action()))
             throw new IllegalArgumentException("Pedí estimate o measure.");
         CorrectionBatch batch = config.getBatchStore().load(request.batchId()).orElseThrow(
@@ -47,11 +61,18 @@ final class DefaultContextOpinionService implements ContextOpinionService {
             throw new IllegalArgumentException("La tanda está publicada o tiene otra operación pendiente.");
         BatchReview review = reviews.read(batch.getId());
         var start = config.getCourseRepository().load(config.getCoursePath());
+        if (request.scope() != null && !"correction".equals(request.scope()))
+            throw new IllegalArgumentException("Elegí el alcance correction o ejercicios seleccionados.");
+        boolean correction = "correction".equals(request.scope());
+        if (correction && (batch.getStatus() != BatchStatus.CLOSED || config.getCurrentAnalysisService() == null))
+            throw new IllegalArgumentException("Completar opiniones necesita una corrección cerrada con análisis vigente.");
         var composed = ledger.composedCourse(batch, start);
-        List<Scope> scopes = scopes(request, review, start, composed);
+        List<Scope> scopes = correction ? correctionScopes(batch, review, start, composed) : scopes(request, review, start, composed);
         List<Judge> judges = scopes.stream().map(Scope::judge).toList();
-        String stamp = hash(fingerprint.apply(composed) + request.wholeTopic() + selection(request) + judges);
-        State estimate = state(batch, request, stamp, judges);
+        var selected = correction ? scopeSelection(scopes) : selection(request);
+        String stamp = hash(fingerprint.apply(composed) + request.scope() + request.wholeTopic() + selected + judges
+                + (correction ? config.getBatchStore().analysisSelections(batch.getId()).size() : ""));
+        State estimate = state(batch, request, stamp, judges, selected);
         if ("estimate".equals(request.action())) return estimate;
         if (request.contentVersion() == null || request.contentVersion() != batch.getContentVersion()
                 || !Objects.equals(request.fingerprint(), stamp))
@@ -65,6 +86,7 @@ final class DefaultContextOpinionService implements ContextOpinionService {
         var proposals = scopes.stream().flatMap(s -> s.context().stream()).distinct().toList();
         Run run = new Run(request.operationId(), request, BatchBook.correctionRevision(batch), batch.getContentVersion(),
                 stamp, request.queryCap(), 0, "RUNNING", created, null, judges, proposals, List.of(), null);
+        if (correction) config.getCurrentAnalysisService().seed(batch, start);
         put(batch, run);
         batch.setStatus(BatchStatus.RUNNING);
         config.getBatchStore().saveIfVersion(batch, request.contentVersion(), previous);
@@ -79,6 +101,7 @@ final class DefaultContextOpinionService implements ContextOpinionService {
                 spent += spent(after, scope.analyzer());
                 for (RevisionProposal proposal : scope.proposals())
                     results.add(new Result(scope.analyzer(), outcome(scope.analyzer(), proposal, before, after, review)));
+                if (correction) recordSupplement(batch, request, scope, after, created);
                 put(batch, new Run(run.id(), request, run.correctionRevision(), run.contentVersion(), stamp,
                         run.reserved(), spent, "RUNNING", created, null, judges, proposals, List.copyOf(results), null));
                 config.getBatchStore().save(batch);
@@ -96,15 +119,201 @@ final class DefaultContextOpinionService implements ContextOpinionService {
             batch.setStatus(previous);
             config.getBatchStore().save(batch);
         }
-        return state(batch, request, stamp, judges);
+        if (correction) integrateSupplements(batch, request, scopes);
+        return state(batch, request, stamp, judges, selected);
+    }
+
+    /** Attaches original EXAM evidence for reading; it never opens a judge or the course analysis composer. */
+    private State preliminary(Request request) {
+        if (preliminarySource == null) throw new IllegalArgumentException("No hay una fuente de opiniones preliminares.");
+        if (blank(request.sourceRef())) throw new IllegalArgumentException("Falta la fuente original del examen.");
+        boolean importing = "import-preliminary".equals(request.action());
+        CorrectionBatch batch = config.getBatchStore().load(request.batchId()).orElseThrow(
+                () -> new IllegalArgumentException("No existe la tanda."));
+        if (importing) {
+            if (request.operationId() == null || !request.operationId().matches("[A-Za-z0-9][A-Za-z0-9._-]{0,127}"))
+                throw new IllegalArgumentException("Falta una identidad de operación válida.");
+            for (Run run : safe(batch.getOpinionRuns())) if (request.operationId().equals(run.id())) {
+                if (!"PRELIMINARY".equals(run.status()) || !Objects.equals(request, run.request()))
+                    throw new IllegalArgumentException("La identidad pertenece a otro pedido.");
+                return preliminaryState(batch, request, run.fingerprint(), run.judges(), preliminarySelection(run.preliminaryOpinions()));
+            }
+        }
+        if (batch.getStatus() != BatchStatus.CLOSED && batch.getStatus() != BatchStatus.OPEN)
+            throw new IllegalArgumentException("La tanda está publicada o tiene otra operación pendiente.");
+        if (request.wholeTopic() || request.scope() != null)
+            throw new IllegalArgumentException("La fuente preliminar sólo se adjunta a sus ejercicios medidos.");
+        List<PreliminaryOpinion> sourced = safe(preliminarySource.load(request.sourceRef()));
+        if (sourced.isEmpty()) throw new IllegalArgumentException("La fuente no tiene opiniones preliminares.");
+        var available = preliminarySelection(sourced);
+        var selected = request.selection() == null ? available : selection(request);
+        if (selected.isEmpty()) throw new IllegalArgumentException("Seleccioná al menos una opinión preliminar.");
+        for (var entry : selected.entrySet())
+            if (!safe(available.get(entry.getKey())).containsAll(entry.getValue()))
+                throw new IllegalArgumentException("La selección no existe en la fuente original.");
+        List<PreliminaryOpinion> opinions = sourced.stream()
+                .filter(o -> safe(selected.get(o.analyzer())).contains(o.quizId()))
+                .sorted(Comparator.comparing(PreliminaryOpinion::analyzer).thenComparing(PreliminaryOpinion::quizId)).toList();
+        var current = reviews.read(batch.getId()).proposals();
+        var snapshots = new ArrayList<RevisionProposal>();
+        var identities = new HashSet<String>();
+        for (PreliminaryOpinion opinion : opinions) {
+            validatePreliminary(opinion);
+            if (!identities.add(opinion.analyzer() + "\u0000" + opinion.quizId()))
+                throw new IllegalArgumentException("La fuente repite una opinión del mismo ejercicio y juez.");
+            RevisionProposal proposal = safe(current).stream().filter(p -> p.getNodeTarget() == AuditTarget.QUIZ
+                    && opinion.quizId().equals(p.getNodeId())).findFirst().orElseThrow(
+                            () -> new IllegalArgumentException("Una corrección fue retirada: volvé a leer."));
+            if (!Objects.equals(opinion.snapshot(), proposal.getElementAfter()))
+                throw new IllegalArgumentException("El ejercicio medido no coincide con la propuesta vigente: " + opinion.quizId());
+            if (!snapshots.contains(proposal)) snapshots.add(proposal);
+        }
+        CourseEntity start = config.getCourseRepository().load(config.getCoursePath());
+        CourseEntity composed = ledger.composedCourse(batch, start);
+        String stamp = hash(fingerprint.apply(composed) + request.sourceRef() + selected + opinions.stream()
+                .map(o -> List.of(o.quizId(), o.analyzer(), o.evaluatorId(), o.judgeVersion(), o.runtime().toString(),
+                        o.namespace(), o.contentFingerprint(), o.payload(), o.recordedAt().toString(),
+                        o.sourceRef(), o.sourceRecordHash())).toList());
+        List<Judge> judges = preliminaryJudges(opinions);
+        if (!importing) return preliminaryState(batch, request, stamp, judges, selected);
+        if (request.contentVersion() == null || request.contentVersion() != batch.getContentVersion()
+                || !Objects.equals(request.fingerprint(), stamp))
+            throw new IllegalArgumentException("El contenido o la fuente cambió: volvé a estimar.");
+        if (blank(request.reviewer())) throw new IllegalArgumentException("Falta el autor de la importación.");
+        if (request.queryCap() != null && request.queryCap() != 0)
+            throw new IllegalArgumentException("Importar evidencia guardada no admite consultas nuevas.");
+        Instant now = Instant.now();
+        Run run = new Run(request.operationId(), request, BatchBook.correctionRevision(batch), batch.getContentVersion(),
+                stamp, 0, 0, "PRELIMINARY", now, now, judges, List.copyOf(snapshots), List.of(),
+                "Opinión preliminar: juez sin examen aprobado. Fuente EXAM; no resuelve tareas ni habilita al juez.", opinions);
+        put(batch, run);
+        config.getBatchStore().saveIfVersion(batch, request.contentVersion(), batch.getStatus());
+        return preliminaryState(batch, request, stamp, judges, selected);
+    }
+
+    private static void validatePreliminary(PreliminaryOpinion opinion) {
+        Map<String, String> evaluators = Map.of("naturalness", "exam:native-usage-judge", "a1-didactic", "exam:a1-didactic-judge",
+                "pragmatism", "exam:pragmatism-judge");
+        if (opinion == null || blank(opinion.quizId()) || blank(opinion.analyzer()) || !evaluators.containsKey(opinion.analyzer())
+                || !Objects.equals(evaluators.get(opinion.analyzer()), opinion.evaluatorId())
+                || !"EXAM".equals(opinion.namespace()) || blank(opinion.judgeVersion())
+                || opinion.runtime() == null || !opinion.runtime().isExplicit()
+                || blank(opinion.payload()) || blank(opinion.contentFingerprint()) || opinion.recordedAt() == null
+                || blank(opinion.sourceRef()) || opinion.sourceRecordHash() == null
+                || !opinion.sourceRecordHash().matches("[a-f0-9]{64}")
+                || opinion.snapshot() == null || opinion.snapshot().getNodeTarget() != AuditTarget.QUIZ
+                || !opinion.quizId().equals(opinion.snapshot().getNodeId()) || opinion.snapshot().getQuiz() == null
+                || !opinion.quizId().equals(opinion.snapshot().getQuiz().getId()))
+            throw new IllegalArgumentException("La opinión no conserva una fuente EXAM auténtica y su contenido medido.");
+    }
+
+    private static Map<String, List<String>> preliminarySelection(List<PreliminaryOpinion> opinions) {
+        var grouped = new TreeMap<String, List<String>>();
+        for (PreliminaryOpinion opinion : opinions) {
+            validatePreliminary(opinion);
+            grouped.computeIfAbsent(opinion.analyzer(), key -> new ArrayList<>()).add(opinion.quizId());
+        }
+        grouped.replaceAll((key, ids) -> ids.stream().distinct().sorted().toList());
+        return grouped;
+    }
+
+    private List<Judge> preliminaryJudges(List<PreliminaryOpinion> opinions) {
+        var result = new ArrayList<Judge>();
+        for (var entry : preliminarySelection(opinions).entrySet()) {
+            var owned = opinions.stream().filter(o -> entry.getKey().equals(o.analyzer())).toList();
+            var first = owned.get(0);
+            if (owned.stream().anyMatch(o -> !Objects.equals(first.judgeVersion(), o.judgeVersion())
+                    || !Objects.equals(first.runtime(), o.runtime())))
+                throw new IllegalArgumentException("La fuente mezcla versiones o procedencias del mismo juez.");
+            String label = config.getAnalyzerCatalog().list().stream().filter(c -> entry.getKey().equals(c.getName()))
+                    .map(AnalyzerDescriptor::getDisplayName).filter(Objects::nonNull).findFirst().orElse(entry.getKey());
+            int topics = (int) owned.stream().map(o -> o.snapshot().getQuiz().getKnowledgeId()).distinct().count();
+            result.add(new Judge(entry.getKey(), label, "QUIZ", entry.getValue().size(), topics, 0, 0, false,
+                    "Juez sin examen aprobado. Opinión preliminar de EXAM.", first.judgeVersion(), first.runtime().toString(), 0, 0));
+        }
+        return result;
+    }
+
+    private static State preliminaryState(CorrectionBatch batch, Request request, String stamp, List<Judge> judges,
+            Map<String, List<String>> selected) {
+        return new State(batch.getId(), batch.getContentVersion(), stamp, true, null, 0, 0, judges,
+                selected, false, List.copyOf(safe(batch.getOpinionRuns())), request.scope());
+    }
+
+    private static boolean blank(String value) { return value == null || value.isBlank(); }
+
+    private List<Scope> correctionScopes(CorrectionBatch batch, BatchReview review, CourseEntity start, CourseEntity composed) {
+        CourseEntity current = DefaultCurrentAnalysisService.cut(composed, batch.getLevel());
+        AuditReport active = config.getCurrentAnalysisService().report(batch, "correction", current);
+        var missing = new TreeMap<String, List<String>>();
+        for (String analyzer : config.getCurrentAnalysisService().supportedAnalyzers()) {
+            var ids = nodes(active).stream().filter(n -> DefaultAnalysisComposer.eligible(n, analyzer)
+                    && !DefaultAnalysisComposer.hasStoredOpinion(n, analyzer)).map(n -> n.getEntity().getId()).sorted().toList();
+            if (!ids.isEmpty()) missing.put(analyzer, ids);
+        }
+        if (missing.isEmpty()) return List.of();
+        // Include unchanged exercises: an opinion belongs to the correction's content, not only to its proposals.
+        var snapshots = new ArrayList<RevisionProposal>();
+        for (var milestone : safe(current.getRoot().getMilestones())) for (var topic : safe(milestone.getTopics()))
+            for (var knowledge : safe(topic.getKnowledges())) for (var quiz : safe(knowledge.getQuizTemplates())) {
+                var p = new RevisionProposal(); p.setProposalId("opinion-" + quiz.getId());
+                p.setNodeTarget(AuditTarget.QUIZ); p.setNodeId(quiz.getId());
+                var snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, quiz.getId(), quiz, null);
+                p.setElementBefore(snapshot); p.setElementAfter(snapshot); snapshots.add(p);
+            }
+        var all = new BatchReview(review.batchId(), review.correctionRevision(), review.contentVersion(), review.report(),
+                review.tasks(), snapshots, review.items(), review.analyses(), review.history());
+        return scopes(new Request("estimate", batch.getId(), missing, false, null, null, null, null, null), all,
+                DefaultCurrentAnalysisService.cut(start, batch.getLevel()), current, true);
+    }
+
+    private static Map<String, List<String>> scopeSelection(List<Scope> scopes) {
+        var selected = new TreeMap<String, List<String>>();
+        for (Scope s : scopes) selected.put(s.analyzer(), s.proposals().stream().map(RevisionProposal::getNodeId).sorted().toList());
+        return selected;
+    }
+
+    private String supplementId(Request request, String analyzer) { return "opinion-" + hash(request.operationId() + ":" + analyzer).substring(0, 24); }
+
+    private void recordSupplement(CorrectionBatch batch, Request request, Scope scope, AuditReport after, Instant created) {
+        String auditId = config.getAuditReportStore().save(after), id = supplementId(request, scope.analyzer());
+        var ids = scope.proposals().stream().map(RevisionProposal::getNodeId).toList();
+        int evaluated = (int) nodes(after).stream().filter(n -> n.getTarget() == AuditTarget.QUIZ && n.getEntity() != null
+                && ids.contains(n.getEntity().getId()) && complete(n, scope.analyzer())).count();
+        var runs = new ArrayList<>(safe(batch.getSelectiveRuns()));
+        runs.add(new SelectiveCorrection.Run(id, "complete-opinions", scope.analyzer(), request.operationId(),
+                BatchBook.correctionRevision(batch), batch.getContentVersion(), fingerprint.apply(scope.after()),
+                scope.judge().judgeVersion(), scope.judge().runtime(), auditId, null, List.of(), ids,
+                request.queryCap(), request.queryCap(), spent(after, scope.analyzer()), ids.size(), evaluated, ids.size() - evaluated,
+                evaluated == ids.size() ? "DONE" : "PARTIAL", request.reviewer(), created, Instant.now(), null,
+                false, batch.getContentVersion(), fingerprint.apply(scope.after()), null));
+        batch.setSelectiveRuns(runs);
+    }
+
+    private void integrateSupplements(CorrectionBatch batch, Request request, List<Scope> scopes) {
+        for (Scope scope : scopes) {
+            var service = config.getCurrentAnalysisService();
+            var view = service.execute(new CurrentAnalysisService.Request("read", batch.getId(), null, null, null, null, null, null, null, null));
+            var run = view.looseRuns().stream().filter(r -> r.id().equals(supplementId(request, scope.analyzer()))).findFirst().orElseThrow();
+            var fit = run.fits().stream().filter(f -> "correction".equals(f.state())).findFirst().orElseThrow();
+            if (fit.compatible() == 0) continue; // A failed or exhausted query never becomes an opinion.
+            var state = view.states().stream().filter(s -> "correction".equals(s.id())).findFirst().orElseThrow();
+            service.execute(new CurrentAnalysisService.Request("integrate", batch.getId(), "correction", run.id(),
+                    run.id() + "-integrate", null, view.revision(), batch.getContentVersion(), state.fingerprint(), request.reviewer()));
+        }
     }
 
     private List<Scope> scopes(Request request, BatchReview review, CourseEntity start, CourseEntity composed) {
+        return scopes(request, review, start, composed, false);
+    }
+    private List<Scope> scopes(Request request, BatchReview review, CourseEntity start, CourseEntity composed,
+            boolean correctionContext) {
         var wanted = selection(request);
         if (wanted.isEmpty()) throw new IllegalArgumentException("Seleccioná al menos un ejercicio y un juez.");
         List<Scope> result = new ArrayList<>();
         for (var entry : wanted.entrySet()) {
             String analyzer = entry.getKey();
+            boolean curriculum = correctionContext && Set.of("a1-didactic", "naturalness").contains(analyzer);
             if (config.getAnalyzerCatalog().list().stream().noneMatch(c -> analyzer.equals(c.getName())))
                 throw new IllegalArgumentException("Juez desconocido: " + analyzer);
             Set<String> quizIds = new LinkedHashSet<>(entry.getValue());
@@ -113,13 +322,13 @@ final class DefaultContextOpinionService implements ContextOpinionService {
             if (selected.size() != quizIds.size()) throw new IllegalArgumentException("Una corrección fue retirada: volvé a leer.");
             Set<String> topics = new LinkedHashSet<>();
             selected.forEach(p -> topics.add(p.getElementAfter().getQuiz().getKnowledgeId()));
-            CourseEntity fullAfter = ChangedCourseCuts.cut(composed, k -> topics.contains(k.getId()) ? k : null);
+            CourseEntity fullAfter = topicCut(composed, topics, curriculum);
             AuditReport topicTrial = audit(fullAfter, analyzer, 0);
             JudgeCoverageDiagnosis coverage = coverage(topicTrial, analyzer);
             boolean thematic = coverage != null && coverage.getUnit() == AuditTarget.KNOWLEDGE;
             boolean all = thematic || request.wholeTopic();
-            CourseEntity after = all ? fullAfter : cut(composed, quizIds);
-            CourseEntity before = all ? ChangedCourseCuts.cut(start, k -> topics.contains(k.getId()) ? k : null) : cut(start, quizIds);
+            CourseEntity after = all ? fullAfter : cut(composed, quizIds, curriculum);
+            CourseEntity before = all ? topicCut(start, topics, curriculum) : cut(start, quizIds, curriculum);
             AuditReport trial = all ? topicTrial : audit(after, analyzer, 0);
             coverage = coverage(trial, analyzer);
             int pending = pending(coverage);
@@ -134,7 +343,7 @@ final class DefaultContextOpinionService implements ContextOpinionService {
                     && p.getElementAfter() != null && p.getElementAfter().getQuiz() != null
                     && topics.contains(p.getElementAfter().getQuiz().getKnowledgeId())).toList();
             var outputs = request.wholeTopic() ? context : selected;
-            int selectedCost = thematic ? pending : pending(coverage(audit(cut(composed, quizIds), analyzer, 0), analyzer));
+            int selectedCost = thematic ? pending : pending(coverage(audit(cut(composed, quizIds, curriculum), analyzer, 0), analyzer));
             int topicCost = pending(coverage(topicTrial, analyzer));
             result.add(new Scope(analyzer, before, after, outputs, context,
                     coverage == null ? List.of() : safe(coverage.getEvaluators()).stream().map(e -> e.getCoverage().getPending() + e.getCoverage().getFailed()).toList(),
@@ -159,14 +368,18 @@ final class DefaultContextOpinionService implements ContextOpinionService {
         return low;
     }
     private State state(CorrectionBatch batch, Request request, String stamp, List<Judge> judges) {
+        return state(batch, request, stamp, judges, selection(request));
+    }
+    private State state(CorrectionBatch batch, Request request, String stamp, List<Judge> judges, Map<String, List<String>> selected) {
         var blocked = judges.stream().filter(j -> !j.allowed()).findFirst();
         return new State(batch.getId(), batch.getContentVersion(), stamp, blocked.isEmpty(),
                 blocked.map(Judge::reason).orElse(null), judges.stream().mapToInt(Judge::pendingQueries).sum(),
-                judges.stream().mapToInt(Judge::reusedQueries).sum(), judges, selection(request), request.wholeTopic(),
-                List.copyOf(safe(batch.getOpinionRuns())));
+                judges.stream().mapToInt(Judge::reusedQueries).sum(), judges, selected, request.wholeTopic(),
+                List.copyOf(safe(batch.getOpinionRuns())), request.scope());
     }
     private static Map<String, List<String>> selection(Request request) {
         var result = new TreeMap<String, List<String>>();
+        if ("correction".equals(request.scope()) && request.selection() == null) return result;
         if (request.selection() == null || request.selection().size() > 100) throw new IllegalArgumentException("Alcance inválido.");
         request.selection().forEach((judge, ids) -> {
             if (judge == null || !judge.matches("[A-Za-z0-9][A-Za-z0-9._-]{0,99}") || ids == null || ids.isEmpty()
@@ -182,11 +395,20 @@ final class DefaultContextOpinionService implements ContextOpinionService {
                         new EvaluationRunPolicy(cap, false, null, null, null, 1))));
     }
     private static CourseEntity cut(CourseEntity course, Set<String> ids) {
+        return cut(course, ids, false);
+    }
+    /** Keep curriculum headers even when their exercises already have opinions. They are judge input. */
+    private static CourseEntity cut(CourseEntity course, Set<String> ids, boolean curriculum) {
         return ChangedCourseCuts.cut(course, k -> {
             var quizzes = safe(k.getQuizTemplates()).stream().filter(q -> ids.contains(q.getId())).toList();
-            return quizzes.isEmpty() ? null : new KnowledgeEntity(k.getId(), k.getCode(), k.getKind(), k.getLabel(),
+            return quizzes.isEmpty() && !curriculum ? null : new KnowledgeEntity(k.getId(), k.getCode(), k.getKind(), k.getLabel(),
                     k.getOldId(), k.getParentId(), k.isIsRule(), k.getInstructions(), k.getOrder(), k.getSlug(), quizzes, k.getSentenceMode());
         });
+    }
+    private static CourseEntity topicCut(CourseEntity course, Set<String> topics, boolean curriculum) {
+        return ChangedCourseCuts.cut(course, k -> topics.contains(k.getId()) ? k : !curriculum ? null
+                : new KnowledgeEntity(k.getId(), k.getCode(), k.getKind(), k.getLabel(), k.getOldId(), k.getParentId(),
+                        k.isIsRule(), k.getInstructions(), k.getOrder(), k.getSlug(), List.of(), k.getSentenceMode()));
     }
     private static ChangeOutcome outcome(String analyzer, RevisionProposal proposal, AuditReport before,
             AuditReport after, BatchReview review) {

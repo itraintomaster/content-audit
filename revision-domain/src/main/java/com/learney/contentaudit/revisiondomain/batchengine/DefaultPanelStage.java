@@ -209,6 +209,26 @@ class DefaultPanelStage implements PanelStage {
                 }
             }
         }
+        if (selective) {
+            // An explicitly requested supplement starts with fresh tasks, but must not forget why a previous
+            // proposal for that quiz was returned. Carry the feedback without charging its old attempts again.
+            Set<String> quizIds = new LinkedHashSet<>();
+            for (RefinementTask task : tasks) {
+                if (task.getNodeTarget() == AuditTarget.QUIZ) quizIds.add(task.getNodeId());
+            }
+            Set<String> reasons = new LinkedHashSet<>();
+            for (BatchChange change : BatchBook.list(batch.getChanges())) {
+                if (change == null || change.getDroppedReason() == null) continue;
+                for (BatchChangeStep step : BatchBook.list(change.getSteps())) {
+                    if (step != null && quizIds.contains(step.getQuizId())) {
+                        reasons.add("Propuesta anterior del quiz " + step.getQuizId() + ": " + change.getDroppedReason());
+                    }
+                }
+            }
+            for (String reason : reasons) {
+                carried.add(new CandidateRejection(0, null, List.of(reason)));
+            }
+        }
         TopicWordLights lights = null;
         if (wordLightsQuery != null && auditEngine == null) {
             try {

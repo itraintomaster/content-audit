@@ -25,7 +25,8 @@ final class ProblemInspection {
             Path path = project.resolve(raw).normalize();
             if (!Files.isRegularFile(path)
                     || !path.toRealPath().startsWith(root)
-                    || !raw.endsWith(".md") && !raw.endsWith(".yaml") && !raw.endsWith(".json") && !raw.endsWith(".java")) {
+                    || !raw.endsWith(".md") && !raw.endsWith(".yaml") && !raw.endsWith(".json")
+                    && !raw.endsWith(".java") && !raw.endsWith(".sh")) {
                 change.put("available", false);
                 change.put("reason", "El archivo de la entrega no está disponible dentro del proyecto.");
             } else {

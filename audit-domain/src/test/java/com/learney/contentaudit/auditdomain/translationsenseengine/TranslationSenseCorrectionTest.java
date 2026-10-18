@@ -23,14 +23,17 @@ public class TranslationSenseCorrectionTest {
     public void shouldLetThePanelTouchTheTranslationOrTheEnglishWithItsAudioAndOfferBothFixesAsForIALotOfVegetables(
             ) {
         // R006, F-MESA-R003 (E-04): «I ___ a lot of vegetables.» and «Me gustan mucho las verduras.» do not say the same; the
-        // panel may change the translation, or the English with its audio, and asks for both fixes.
+        // panel may change the translation, or the English with its audio, hint and quiz-local mini theory, and asks for
+        // both fixes.
         TranslationSenseCorrection correction = new TranslationSenseCorrection();
 
         Assertions.assertEquals("translation-sense", correction.analyzerName());
-        Assertions.assertEquals(List.of(ExercisePart.TRANSLATION, ExercisePart.STATEMENT, ExercisePart.ANSWERS,
-                ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO), correction.editScope(FindingResolution.PANEL));
+        Assertions.assertEquals(List.of(ExercisePart.TRANSLATION, ExercisePart.STATEMENT, ExercisePart.HINT,
+                ExercisePart.ANSWERS, ExercisePart.MINI_THEORY, ExercisePart.STORED_SENTENCE,
+                ExercisePart.AUDIO), correction.editScope(FindingResolution.PANEL));
         Assertions.assertEquals(List.of(), correction.editScope(FindingResolution.RULE), "only the panel");
         Assertions.assertTrue(correction.offersTwoFixes(), "the translation alone, and the English");
+        Assertions.assertFalse(correction.groupsByTopic(), "the correction belongs to its target quiz");
     }
 
     @Test

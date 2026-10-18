@@ -143,6 +143,62 @@ public class CatalogTopicMeterTest {
     }
 
     @Test
+    public void pairedTranslationEvaluatorsNeverStartWithOnlyOneQueryLeft() {
+        MeterBench bench = new MeterBench();
+        KnowledgeEntity topic = afirmativas();
+        bench.meter().measure(work(topic, List.of()), topic, MeterBench.ALL, allowance(null, 4));
+        KnowledgeEntity candidate = TopicState.apply(topic, VEGETABLES, candidate(PanelCandidateKind.TRANSLATION_ONLY,
+                withTranslation(exercise(topic, VEGETABLES), "Me encantan las verduras.")), List.of());
+        int before = bench.consultations.size();
+        QueryAllowance limited = allowance(1, 1);
+
+        UnitMeasurement measured = bench.meter().measure(work(topic, List.of()), candidate, MeterBench.ALL, limited);
+
+        assertEquals(before, bench.consultations.size()); assertEquals(0, limited.spent());
+        assertTrue(limited.tripped().isPresent());
+        assertTrue(measured.getUnevaluated().stream().anyMatch(m -> VEGETABLES.equals(m.getNodeId()) && "translation-sense".equals(m.getAnalyzer())));
+    }
+
+    @Test
+    public void pairedTranslationEvaluatorsUseExactlyTwoQueriesWithOneConcurrentSlot() {
+        MeterBench bench = new MeterBench();
+        KnowledgeEntity topic = afirmativas();
+        bench.meter().measure(work(topic, List.of()), topic, MeterBench.ALL, allowance(null, 4));
+        KnowledgeEntity candidate = TopicState.apply(topic, VEGETABLES, candidate(PanelCandidateKind.TRANSLATION_ONLY,
+                withTranslation(exercise(topic, VEGETABLES), "Me encantan las verduras.")), List.of());
+        int before = bench.consultations.size();
+        QueryAllowance limited = allowance(2, 1);
+
+        UnitMeasurement measured = bench.meter().measure(work(topic, List.of()), candidate, MeterBench.ALL, limited);
+
+        assertEquals(List.of("translation-sense-from-english", "translation-sense-from-translation"),
+                evaluators(bench.consultations.subList(before, bench.consultations.size())));
+        assertEquals(2, limited.spent()); assertTrue(limited.tripped().isEmpty());
+        assertFalse(measured.getUnevaluated().stream().anyMatch(m -> VEGETABLES.equals(m.getNodeId()) && "translation-sense".equals(m.getAnalyzer())));
+        assertTrue(bench.selections.stream().anyMatch(s -> s.getPolicies().containsKey("translation-sense")
+                && s.getPolicies().get("translation-sense").getMaxNewEvaluations() == 2));
+    }
+
+    @Test
+    public void cachedTranslationEvaluatorAllowsTheOtherOneWithinOneQuery() {
+        MeterBench bench = new MeterBench();
+        KnowledgeEntity topic = afirmativas();
+        bench.meter().measure(work(topic, List.of()), topic, MeterBench.ALL, allowance(null, 4));
+        KnowledgeEntity candidate = TopicState.apply(topic, VEGETABLES, candidate(PanelCandidateKind.TRANSLATION_ONLY,
+                withTranslation(exercise(topic, VEGETABLES), "Me encantan las verduras.")), List.of());
+        bench.meter().measure(work(topic, List.of()), candidate, MeterBench.ALL, allowance(null, 4));
+        bench.book.keySet().removeIf(key -> key.startsWith("translation-sense-from-translation:") && key.contains("Me encantan las verduras."));
+        int before = bench.consultations.size();
+        QueryAllowance limited = allowance(1, 1);
+
+        UnitMeasurement measured = bench.meter().measure(work(topic, List.of()), candidate, MeterBench.ALL, limited);
+
+        assertEquals(List.of("translation-sense-from-translation"), evaluators(bench.consultations.subList(before, bench.consultations.size())));
+        assertEquals(1, limited.spent()); assertTrue(limited.tripped().isEmpty());
+        assertFalse(measured.getUnevaluated().stream().anyMatch(m -> VEGETABLES.equals(m.getNodeId()) && "translation-sense".equals(m.getAnalyzer())));
+    }
+
+    @Test
     @DisplayName("should query four judges, the two of translation-sense, single-answer and quiz-instruction, when a candidate changes the English of a CLOZE")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R005")

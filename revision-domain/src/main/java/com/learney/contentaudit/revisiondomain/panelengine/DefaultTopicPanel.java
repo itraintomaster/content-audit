@@ -267,7 +267,7 @@ class DefaultTopicPanel implements TopicPanel {
 
         int maxAttempts = settings != null && settings.getMaxAttempts() > 0 ? settings.getMaxAttempts() : DEFAULT_MAX_ATTEMPTS;
         List<CandidateRejection> rejections = new ArrayList<>();
-        if (attemptsUsed > 0 && work.getCarriedRejections() != null) {
+        if (work.getCarriedRejections() != null) {
             rejections.addAll(work.getCarriedRejections());
         }
         ScoredCandidate bestFailing = null;
@@ -291,6 +291,7 @@ class DefaultTopicPanel implements TopicPanel {
             PanelRequest request = new PanelRequest(work.getBatchId(), work.getLevel(), knowledgeId, quizId,
                     topicView(current), new ArrayList<>(holding), lights, work.getConversion(), attempt + 1,
                     new ArrayList<>(rejections), twoFixes(holding));
+            request.setTopicQuizIds(topicQuizIds(current));
             PanelProposal proposal;
             try {
                 proposal = proposer.propose(request);
@@ -467,6 +468,17 @@ class DefaultTopicPanel implements TopicPanel {
             }
         }
         return view;
+    }
+
+    private static List<String> topicQuizIds(KnowledgeEntity topic) {
+        List<String> ids = new ArrayList<>();
+        for (QuizTemplateEntity quiz : topic.getQuizTemplates() != null ? topic.getQuizTemplates()
+                : List.<QuizTemplateEntity>of()) {
+            if (quiz != null) {
+                ids.add(quiz.getId());
+            }
+        }
+        return ids;
     }
 
     private static TopicWork with(TopicWork work, KnowledgeEntity topic) {

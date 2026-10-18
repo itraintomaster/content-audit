@@ -10,7 +10,8 @@ import javax.annotation.processing.Generated;
 
 /**
  * How a finding of {@code single-answer} is corrected (F-TAREA-R006, hook E-04): a rule may only add another form of the
- * accepted answer; the panel may change the answers, the hint or the sentence, with the audio following the exercise.
+ * accepted answer; the panel may change the answers, the hint or the sentence, and keep that quiz's translation and
+ * mini theory coherent with the corrected exercise, with the audio following the exercise.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -21,7 +22,9 @@ public class SingleAnswerCorrection implements AnalyzerCorrection {
 
     private static final List<ExercisePart> RULE_SCOPE = List.of(ExercisePart.ANSWERS);
 
-    private static final List<ExercisePart> PANEL_SCOPE = List.of(ExercisePart.ANSWERS, ExercisePart.HINT, ExercisePart.STATEMENT, ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO);
+    private static final List<ExercisePart> PANEL_SCOPE = List.of(ExercisePart.ANSWERS, ExercisePart.HINT,
+            ExercisePart.STATEMENT, ExercisePart.TRANSLATION, ExercisePart.MINI_THEORY,
+            ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO);
 
     @Override
     public String analyzerName() {

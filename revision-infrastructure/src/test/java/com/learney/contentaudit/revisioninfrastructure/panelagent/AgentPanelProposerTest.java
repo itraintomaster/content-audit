@@ -47,6 +47,29 @@ import org.junit.jupiter.api.Test;
 )
 public class AgentPanelProposerTest {
     @Test
+    @Tag("F-MESA-R003")
+    void keepsQuizIdentityWhenTwoTopicViewsHaveIdenticalStatementsHintsAndCards() throws Exception {
+        PanelRequest request = request(1, List.of());
+        QuizStudentView first = new QuizStudentView("How ___ ? (She)", List.of(), List.of(),
+                "Forma la pregunta.", "¿Cómo está ella?", "Con she va is.");
+        QuizStudentView second = new QuizStudentView("How ___ ? (She)", List.of(), List.of(),
+                "Forma la pregunta.", "¿Cómo está ella?", "Con she va is.");
+        assertEquals(first, second, "the student sees exactly the same content");
+        request.setQuizId("q-second");
+        request.setTopicView(List.of(first, second));
+        request.setTopicQuizIds(List.of("q-first", "q-second"));
+
+        Map<String, String> inputs = AgentPanelProposer.inputs(request);
+        var topic = new com.fasterxml.jackson.databind.ObjectMapper().readTree(inputs.get("topicView"));
+
+        assertEquals("q-second", inputs.get("quizId"));
+        assertEquals("q-first", topic.get(0).path("quizId").asText());
+        assertEquals("q-second", topic.get(1).path("quizId").asText());
+        assertEquals(topic.get(0).path("statement"), topic.get(1).path("statement"));
+        assertEquals(topic.get(0).path("miniTheory"), topic.get(1).path("miniTheory"));
+    }
+
+    @Test
     void sendsSuggestionsCountsThresholdsAndProvisionalVersionToTheActualAgentInput() throws Exception {
         AtomicReference<Map<String, String>> sent = new AtomicReference<>();
         AgentPanelProposer proposer = new AgentPanelProposer((agent, inputs, model) -> {

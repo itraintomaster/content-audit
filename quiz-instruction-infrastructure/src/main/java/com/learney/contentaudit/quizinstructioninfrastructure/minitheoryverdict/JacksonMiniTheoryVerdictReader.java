@@ -107,7 +107,7 @@ public class JacksonMiniTheoryVerdictReader implements MiniTheoryVerdictReader {
         FindingSeverity expected = switch (problem) {
             case FALSE_RULE, INSUFFICIENT_FOR_QUIZ -> FindingSeverity.HIGH;
             case OVERSTATED_FOR_QUIZ -> FindingSeverity.MEDIUM;
-            case OTHER_SUBTOPIC_CONTENT -> FindingSeverity.LOW;
+            case OTHER_SUBTOPIC_CONTENT, OVER_SPECIFIC_FOR_QUIZ -> FindingSeverity.LOW;
         };
         if (severity != expected) {
             throw new IllegalArgumentException(VERDICT + " ilegible: " + where + " clasifica " + problem

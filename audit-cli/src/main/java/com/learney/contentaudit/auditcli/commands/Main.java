@@ -270,7 +270,6 @@ import com.learney.contentaudit.auditdomain.localtools.LocalToolGate;
 import com.learney.contentaudit.auditdomain.localtools.YesNoModel;
 import com.learney.contentaudit.auditdomain.localtoolsengine.DefaultLocalToolGate;
 import com.learney.contentaudit.auditdomain.multiplechoicevalidity.MultipleChoiceValidityRuleFix;
-import com.learney.contentaudit.auditdomain.naturalness.NaturalnessAnalyzerProvider;
 import com.learney.contentaudit.auditdomain.nearduplicates.NearDuplicatesAnalyzerProvider;
 import com.learney.contentaudit.auditinfrastructure.FileSystemBlindSampleStore;
 import com.learney.contentaudit.auditinfrastructure.FileSystemGoalDeclarationSource;
@@ -549,9 +548,11 @@ class Main {
         EvaluationSessionFactory examSessionFactory =
                 new ExamEvaluationSessionFactory(evaluationLedger, evaluationContentFingerprinter);
         JudgeExamRegistry judgeExamRegistry = new FileSystemJudgeExamRegistry(baseDir);
+        com.learney.contentaudit.auditdomain.JudgePromotionRegistry judgePromotionRegistry =
+                new com.learney.contentaudit.auditinfrastructure.FileSystemJudgePromotionRegistry(baseDir);
         JudgeRuntimeConfig judgeRuntimeConfig = new DefaultJudgeRuntimeConfig();
         JudgeRuntime judgeRuntime = new DefaultJudgeRuntime(evaluationSessionFactory, examSessionFactory,
-                judgeExamRegistry, evaluationLedger, judgeRuntimeConfig);
+                judgeExamRegistry, evaluationLedger, judgeRuntimeConfig, judgePromotionRegistry);
         JudgeExamVerdictExporter judgeExamVerdictExporter = new DefaultJudgeExamVerdictExporter();
 
         QuizInstructionVerdictReader quizInstructionVerdictReader = new JacksonQuizInstructionVerdictReader();
@@ -622,6 +623,9 @@ class Main {
         Evaluator choiceQualityJudge = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
                 new AgentJudgeSpec("choice-quality-judge", "choiceQualityVerdict", "juez de calidad de distractores"),
                 quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
+        Evaluator pragmatismJudge = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+                new AgentJudgeSpec("pragmatism-judge", "pragmatismVerdict", "juez de pragmatismo comunicativo"),
+                quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
 
         // Hook C-15: the judge of package C lives in Opción múltiple, never the factory "without
         // judge" (F-RONDA1 decision: one contract, in two steps).
@@ -654,25 +658,26 @@ class Main {
         // ----------------------------------------------------------------
         // Step 4b''': FEAT-RONDA2 -- the local tools of package B (hook B-07), built once:
         // LanguageTool, Ollama (CONTENT_AUDIT_OLLAMA_URL, or this machine's; «off» turns the local
-        // models off, to take the exam of the alternative), the gate that decides which tool each
-        // run measures with -- over the judges' runtime --, the finished sentence of grammar and
-        // naturalness, and the two alternatives with claude -p (hook B-21), asked of their factory
-        // on first use like the judges of round 1.
+        // models off, to take the exam of the alternative), the local tool gate, and the
+        // finished sentences. Naturalness and A1 teaching quality use independent structured
+        // agent judges with the explicitly configured provider, budget and provenance.
         // ----------------------------------------------------------------
         GrammarChecker grammarChecker = new LanguageToolGrammarChecker();
         OllamaEndpoint ollamaEndpoint = new OllamaEndpoint(ollamaUrl(System.getenv("CONTENT_AUDIT_OLLAMA_URL")), 120);
         OllamaModelFactory ollamaModelFactory = new DefaultOllamaModelFactory();
         LocalToolGate localToolGate = new DefaultLocalToolGate(judgeRuntime);
         FinishedSentenceReader finishedSentenceReader = new DefaultFinishedSentenceReader();
-        Evaluator naturalnessAlternative = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
-                new AgentJudgeSpec("naturalness-yes-no", "naturalnessAnswer", "Naturalidad (claude -p)"),
+        Evaluator nativeUsageJudge = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+                new AgentJudgeSpec("native-usage-judge", "nativeUsageVerdict", "Naturalidad idiomática"),
+                quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
+        Evaluator a1DidacticJudge = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+                new AgentJudgeSpec("a1-didactic-judge", "a1DidacticVerdict", "Calidad didáctica A1"),
                 quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
         Evaluator nearDuplicatesAlternative = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
                 new AgentJudgeSpec("near-duplicates-pair-judge", "sameExerciseVerdict",
                         "Duplicados parecidos (claude -p)"),
                 quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
         // B · FEAT-MLOCAL: the two local models, over the same endpoint (one look at /api/tags per run).
-        YesNoModel yesNoModel = ollamaModelFactory.yesNoModel(ollamaEndpoint, "llama3:8b");
         EmbeddingModel embeddingModel = ollamaModelFactory.embeddingModel(ollamaEndpoint, "nomic-embed-text");
 
         // ----------------------------------------------------------------
@@ -723,8 +728,11 @@ class Main {
         // order -- «Gramática», «Naturalidad» and «Duplicados parecidos».
         analyzerProviders.add(new GrammarAnalyzerProvider(grammarChecker, finishedSentenceReader,
                 localToolGate));                                                              // 18 · B · FEAT-GRAMA
-        analyzerProviders.add(new NaturalnessAnalyzerProvider(yesNoModel, naturalnessAlternative, judgeRuntime,
-                finishedSentenceReader, localToolGate));                                      // 19 · B · FEAT-NATUR
+        analyzerProviders.add(new com.learney.contentaudit.auditdomain.englishquality.EnglishQualityAnalyzerProvider(
+                com.learney.contentaudit.auditdomain.englishquality.EnglishQualityAnalyzerProvider.Kind.NATURALNESS,
+                judgeRuntime, nativeUsageJudge,
+                new com.learney.contentaudit.quizinstructioninfrastructure.englishquality.JacksonEnglishQualityVerdictReader(),
+                studentViewRenderer, finishedSentenceReader));
         analyzerProviders.add(new NearDuplicatesAnalyzerProvider(embeddingModel, nearDuplicatesAlternative,
                 judgeRuntime, correctorMatcher, studentViewRenderer, localToolGate));         // 20 · B · FEAT-DUPAR
 
@@ -733,6 +741,15 @@ class Main {
                 judgeRuntime, choiceQualityJudge,
                 new com.learney.contentaudit.quizinstructioninfrastructure.choicequality.JacksonChoiceQualityVerdictReader(),
                 studentViewRenderer));
+        analyzerProviders.add(new com.learney.contentaudit.auditdomain.pragmatism.PragmatismAnalyzerProvider(
+                judgeRuntime, pragmatismJudge,
+                new com.learney.contentaudit.quizinstructioninfrastructure.pragmatism.JacksonPragmatismVerdictReader(),
+                studentViewRenderer));
+        analyzerProviders.add(new com.learney.contentaudit.auditdomain.englishquality.EnglishQualityAnalyzerProvider(
+                com.learney.contentaudit.auditdomain.englishquality.EnglishQualityAnalyzerProvider.Kind.A1_DIDACTIC,
+                judgeRuntime, a1DidacticJudge,
+                new com.learney.contentaudit.quizinstructioninfrastructure.englishquality.JacksonEnglishQualityVerdictReader(),
+                studentViewRenderer, finishedSentenceReader));
         AnalyzerCatalog analyzerCatalog = new DefaultAnalyzerCatalog(analyzerProviders);
 
         ScoreAggregator scoreAggregator =
@@ -1358,25 +1375,34 @@ class Main {
                 Map.entry("mini-theory", agentExamProvenance),
                 Map.entry("multiple-choice-validity", agentExamProvenance),
                 Map.entry("multiple-choice-quality", agentExamProvenance),
+                Map.entry("pragmatism", agentExamProvenance),
                 Map.entry("naturalness", agentExamProvenance),
+                Map.entry("a1-didactic", agentExamProvenance),
                 Map.entry("near-duplicates", agentExamProvenance));
-        // F-JEXAM-R015: exam status -f json asks the catalog who to read, only when it is used.
-        cmd.addSubcommand("exam", new picocli.CommandLine(
-                new ExamCmd(judgeExamService, examProvenance, () -> analyzerCatalog.list().stream()
-                        .map(AnalyzerDescriptor::getName).toList(), () -> {
+        java.util.function.Supplier<Map<String, com.learney.contentaudit.auditdomain.judging.JudgeExamStanding>>
+                currentJudgeStandings = () -> {
                     Map<String, List<Evaluator>> activeJudges = Map.of(
                             "quiz-instruction", List.of(quizInstructionJudge),
                             "translation-sense", List.of(fromEnglishJudge, fromTranslationJudge),
                             "single-answer", List.of(singleAnswerJudge),
                             "mini-theory", List.of(miniTheoryJudge),
                             "multiple-choice-validity", List.of(choiceAlternativeJudge),
-                            "multiple-choice-quality", List.of(choiceQualityJudge));
+                            "multiple-choice-quality", List.of(choiceQualityJudge),
+                            "pragmatism", List.of(pragmatismJudge),
+                            "naturalness", List.of(nativeUsageJudge),
+                            "a1-didactic", List.of(a1DidacticJudge));
                     Map<String, com.learney.contentaudit.auditdomain.judging.JudgeExamStanding> standings =
                             new java.util.LinkedHashMap<>();
                     activeJudges.forEach((name, evaluators) -> standings.put(name,
                             judgeRuntime.open(name, evaluators, null).getStanding()));
                     return standings;
-                })));   // C · FEAT-JEXAM
+                };
+        // F-JEXAM-R015: exam status -f json asks the catalog who to read, only when it is used.
+        cmd.addSubcommand("exam", new picocli.CommandLine(
+                new ExamCmd(judgeExamService, examProvenance, () -> analyzerCatalog.list().stream()
+                        .map(AnalyzerDescriptor::getName).toList(), currentJudgeStandings)));
+        cmd.addSubcommand("promote-judge", new picocli.CommandLine(
+                new PromoteJudgeCmd(judgePromotionRegistry, currentJudgeStandings)));
 
         // FEAT-RONDA2 (hooks F-06 and E-09): the commands of packages F and E, each registered by
         // its package with its picocli wrapper: set-baseline, save-projection, compare, get-goals
@@ -1471,7 +1497,8 @@ class Main {
         batchCommand.addSubcommand("conversion", new MultipleChoiceConversionCmd(() -> SavedMultipleChoiceConversionCmd.create(baseDir)));
         batchCommand.addSubcommand("opinion", new ContextOpinionCmd(memoized(() ->
                 new com.learney.contentaudit.revisiondomain.batchengine.DefaultContextOpinionServiceFactory().create(
-                        batchConfig.get(), new com.learney.contentaudit.auditinfrastructure.minitheory.FileSystemMiniTheoryWorkspaceStore(baseDir)::fingerprint))));
+                        batchConfig.get(), new com.learney.contentaudit.auditinfrastructure.minitheory.FileSystemMiniTheoryWorkspaceStore(baseDir)::fingerprint,
+                        com.learney.contentaudit.revisioninfrastructure.preliminary.FileSystemPreliminaryOpinionSourceFactory.create(courseRepository)))));
         cmd.addSubcommand("batch", batchCommand);            // E · FEAT-TANDA
         cmd.addSubcommand("problem", new ProblemCmd(baseDir, problemProject, System.out));
         cmd.addSubcommand("tray", new picocli.CommandLine(new TrayCmd(trayService, quizSentenceConverter, batchStore))); // E · BANDEJA

@@ -271,9 +271,7 @@ public class DefaultJudgeProviderReadinessProbeTest {
                 recordedAuthStatus(dir, "logged-in", STATUS_LOGGED_IN, 0, runs));
 
         for (String usageLimit : List.of(
-                "RuntimeException: claude CLI exited with 1: Claude AI usage limit reached|1759276800",
-                "[ERROR] top-level agent threw: claude CLI returned an error result: API Error: 429 "
-                        + "{\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\"}}")) {
+                "RuntimeException: claude CLI exited with 1: Claude AI usage limit reached|1759276800")) {
             assertExplained(probe.explain(CLAUDE_CLI, usageLimit), JudgeUnavailabilityCause.QUOTA_EXHAUSTED,
                     "cuota agotada",
                     "esperá a que se renueve el límite de uso o bajá las consultas a la vez con --concurrency",
@@ -287,6 +285,57 @@ public class DefaultJudgeProviderReadinessProbeTest {
                     "sesión vencida", "renovala con claude auth login", expiredLogin);
         }
         assertEquals(0, runsIn(runs), "explaining a failure reads its text: it runs no check");
+    }
+
+    @Test
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R011")
+    void shouldDescribeRequestThrottlingWithoutClaimingThatThePlanQuotaIsExhausted(@TempDir Path dir)
+            throws IOException {
+        Path runs = dir.resolve("runs.log");
+        DefaultJudgeProviderReadinessProbe probe = new DefaultJudgeProviderReadinessProbe(
+                recordedAuthStatus(dir, "logged-in", STATUS_LOGGED_IN, 0, runs));
+
+        for (String requestLimit : List.of(
+                "[ERROR] top-level agent threw: claude CLI returned an error result: API Error: 429 "
+                        + "{\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\"}}",
+                "HttpException: HTTP 429 TooManyRequests",
+                "TooManyRequestsException: temporarily throttled",
+                "too_many_requests: retry later",
+                "rate_limit_exceeded: reduce concurrency",
+                "rate-limit exceeded",
+                "Rate limit reached; app usage is 50%",
+                "HTTP 429; account usage is 50%")) {
+            JudgeProviderReadiness readiness = probe.explain(CODEX_CLI, requestLimit);
+            assertExplained(readiness, JudgeUnavailabilityCause.QUOTA_EXHAUSTED,
+                    "límite de solicitudes informado por el proveedor",
+                    "volvé a intentar más tarde o bajá las consultas a la vez con --concurrency", requestLimit);
+            assertFalse(readiness.getDetail().contains("cuota agotada"));
+            assertFalse(readiness.getRemedy().contains("renueve el límite de uso"));
+        }
+        assertEquals(0, runsIn(runs), "classification must not ask the CLI or a model about account usage");
+    }
+
+    @Test
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R011")
+    void shouldPreserveExplicitQuotaAndCreditFailuresEvenWhenTheyAlsoContain429() {
+        DefaultJudgeProviderReadinessProbe probe = new DefaultJudgeProviderReadinessProbe(List.of());
+
+        for (String exhausted : List.of(
+                "HTTP 429 {\"error\":{\"code\":\"insufficient_quota\"}}",
+                "HTTP 429 {\"error\":{\"code\":\"usage_limit_reached\"}}",
+                "quota exceeded",
+                "API Error: 429 credit balance is too low",
+                "HTTP 429 insufficient credits",
+                "insufficient_credits",
+                "out of credits",
+                "credits_exhausted")) {
+            assertExplained(probe.explain(REMOTE_SERVICE, exhausted), JudgeUnavailabilityCause.QUOTA_EXHAUSTED,
+                    "cuota agotada",
+                    "esperá a que se renueve el límite de uso o bajá las consultas a la vez con --concurrency",
+                    exhausted);
+        }
     }
 
     @Test

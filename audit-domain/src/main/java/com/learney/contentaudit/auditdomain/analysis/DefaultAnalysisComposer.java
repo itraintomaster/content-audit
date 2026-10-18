@@ -25,11 +25,17 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
         this.qualityInputs = new ChoiceQualitySubjectBuilder(Objects.requireNonNull(renderer));
         this.fingerprinter = Objects.requireNonNull(fingerprinter);
         inputs = Map.of(
+                "naturalness", new com.learney.contentaudit.auditdomain.englishquality.EnglishQualitySubjectBuilder(renderer,
+                        new com.learney.contentaudit.auditdomain.finishedsentence.DefaultFinishedSentenceReader())::build,
+                "a1-didactic", new com.learney.contentaudit.auditdomain.englishquality.EnglishQualitySubjectBuilder(renderer,
+                        new com.learney.contentaudit.auditdomain.finishedsentence.DefaultFinishedSentenceReader())::build,
+                "pragmatism", new com.learney.contentaudit.auditdomain.pragmatism.PragmatismSubjectBuilder(renderer)::build,
                 "multiple-choice-quality", qualityInputs::build,
                 "quiz-instruction", new com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionSubjectBuilder(renderer)::build,
                 "single-answer", new com.learney.contentaudit.auditdomain.singleanswerengine.DefaultSingleAnswerSubjectBuilder(renderer)::build,
                 "translation-sense", new com.learney.contentaudit.auditdomain.translationsenseengine.DefaultTranslationSenseSubjectBuilder(renderer)::build,
                 "multiple-choice-validity", new com.learney.contentaudit.auditdomain.choicealternativeengine.DefaultChoiceAlternativeSubjectBuilder(renderer)::build,
+                "near-duplicates", new com.learney.contentaudit.auditdomain.nearduplicates.NearDuplicatesSubjectBuilder(renderer)::build,
                 "mini-theory", n -> new com.learney.contentaudit.auditdomain.minitheoryengine.DefaultMiniTheorySubjectBuilder(renderer)
                         .build(n.getTarget() == AuditTarget.KNOWLEDGE ? n : n.ancestor(AuditTarget.KNOWLEDGE).orElseThrow()));
     }
@@ -45,6 +51,20 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
         Objects.requireNonNull(primary, "Falta el análisis de partida");
         AuditNode root = copy(primary.getRoot(), null);
         Map<String, AuditNode> target = index(root);
+        // A structured naturalness supplement must not count the historical constant
+        // ranking score as approval by the new criterion on untouched exercises.
+        boolean replacesNaturalness = safe(supplements).stream().anyMatch(s -> "naturalness".equals(s.analyzer()));
+        if (replacesNaturalness) for (AuditNode n : target.values()) {
+            if (n.getTarget() == AuditTarget.QUIZ && n.getScores().containsKey("naturalness")
+                    && !com.learney.contentaudit.auditdomain.englishquality.EnglishQualitySubjectBuilder.CONTRACT
+                            .equals(n.getMetadata().get("naturalnessInputContract"))) {
+                n.getScores().remove("naturalness");
+                n.getFindings().removeIf(f -> "naturalness".equals(f.getAnalyzer()));
+                n.getPartiallyEvaluatedBy().remove("naturalness");
+                if (n.getDiagnoses() instanceof DefaultQuizDiagnoses d) d.setNaturalnessDiagnosis(null);
+                if (!n.getUnevaluatedBy().contains("naturalness")) n.getUnevaluatedBy().add("naturalness");
+            }
+        }
         Set<String> ran = new LinkedHashSet<>();
         for (AuditNode n : target.values()) {
             ran.addAll(n.getScores().keySet().stream().filter(k -> !k.contains("/")).toList());
@@ -60,22 +80,41 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
             boolean applied = false;
             for (String id : supplement.nodeIds()) {
                 AuditNode from = source.get(id), to = target.get(id);
-                if (from == null || to == null || !evaluated(from, name)) continue;
+                if (from == null || to == null || !hasStoredOpinion(from, name)) continue;
                 if (!Objects.equals(fingerprint(name, from), fingerprint(name, to))) continue;
                 applied = true;
-                to.getScores().put(name, from.getScores().get(name));
+                to.getScores().remove(name);
+                if (from.getScores().get(name) != null) to.getScores().put(name, from.getScores().get(name));
                 to.getUnevaluatedBy().remove(name);
                 to.getPartiallyEvaluatedBy().remove(name);
+                if (from.getUnevaluatedBy().contains(name)) to.getUnevaluatedBy().add(name);
+                if (from.getPartiallyEvaluatedBy().contains(name)) to.getPartiallyEvaluatedBy().add(name);
                 to.getFindings().removeIf(f -> name.equals(f.getAnalyzer()));
                 to.getFindings().addAll(from.getFindings().stream().filter(f -> name.equals(f.getAnalyzer())).toList());
                 if (to.getDiagnoses() instanceof DefaultQuizDiagnoses d && from.getDiagnoses() instanceof QuizDiagnoses s) {
                     switch (name) {
+                        case "naturalness", "a1-didactic" -> {
+                            if ("naturalness".equals(name)) d.setNaturalnessDiagnosis(null);
+                            to.getMetadata().remove(name + "OutputIssue");
+                            for (String suffix : List.of("Verdict", "Version", "Reused", "InputContract")) {
+                                Object value = from.getMetadata().get(name + suffix);
+                                to.getMetadata().remove(name + suffix);
+                                if (value != null) to.getMetadata().put(name + suffix, value);
+                            }
+                            var versions = new LinkedHashMap<String, Object>();
+                            if (to.getMetadata().get("verdictVersions") instanceof Map<?,?> prior)
+                                prior.forEach((key,value) -> { if (!name.equals(key.toString())) versions.put(key.toString(),value); });
+                            if (from.getMetadata().get(name + "Version") != null) versions.put(name,from.getMetadata().get(name + "Version"));
+                            to.getMetadata().put("verdictVersions",versions);
+                        }
+                        case "pragmatism" -> d.setPragmatismDiagnosis(s.getPragmatismDiagnosis().orElse(null));
                         case "multiple-choice-quality" -> d.setChoiceQualityDiagnosis(s.getChoiceQualityDiagnosis().orElse(null));
                         case "quiz-instruction" -> d.setQuizInstructionDiagnosis(s.getQuizInstructionDiagnosis().orElse(null));
                         case "single-answer" -> d.setSingleAnswerDiagnosis(s.getSingleAnswerDiagnosis().orElse(null));
                         case "translation-sense" -> d.setTranslationSenseDiagnosis(s.getTranslationSenseDiagnosis().orElse(null));
                         case "multiple-choice-validity" -> d.setMultipleChoiceValidityDiagnosis(s.getMultipleChoiceValidityDiagnosis().orElse(null));
                         case "mini-theory" -> d.setMiniTheoryDiagnosis(s.getMiniTheoryDiagnosis().orElse(null));
+                        case "near-duplicates" -> d.setNearDuplicateDiagnosis(s.getNearDuplicateDiagnosis().orElse(null));
                         default -> throw new IllegalArgumentException("Sin diagnóstico de integración para " + name);
                     }
                 }
@@ -119,7 +158,9 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
                     String version = version(node, c.getJudgeName(), primary);
                     if (version != null && versionUnits.add(unit + "|" + version)) versions.merge(version, 1, Integer::sum);
                 }
-                else if (!node.getUnevaluatedBy().contains(c.getJudgeName())) node.getUnevaluatedBy().add(c.getJudgeName());
+                else if (!node.getUnevaluatedBy().contains(c.getJudgeName())
+                        && !node.getPartiallyEvaluatedBy().contains(c.getJudgeName())
+                        && !structuredVerdict(node,c.getJudgeName())) node.getUnevaluatedBy().add(c.getJudgeName());
             }
             int evaluatedUnits = (int) topicUnits.values().stream().filter(Boolean::booleanValue).count();
             diagnosis.addJudgeCoverage(new JudgeCoverageDiagnosis(c.getJudgeName(), c.getUnit(), topicUnits.size(), evaluatedUnits,
@@ -131,14 +172,48 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
                     List.of(), new JudgeQuizTally(reached, evaluated, reached - evaluated)));
         }
         root.setDiagnoses(diagnosis);
+        for (String name : List.of("naturalness", "a1-didactic")) if (ran.contains(name))
+            rebuildStructuredCounts(root,target.values(),name);
         aggregator.aggregate(root);
         numbers.compute(root, catalog.list().stream().filter(c -> ran.contains(c.getName())).toList());
         return new AuditReport(root);
     }
 
+    private static boolean structuredVerdict(AuditNode node, String name) {
+        if ("pragmatism".equals(name) && node.getDiagnoses() instanceof QuizDiagnoses diagnoses)
+            return diagnoses.getPragmatismDiagnosis().map(d -> d.verdict() != null).orElse(false);
+        return ("naturalness".equals(name) || "a1-didactic".equals(name))
+                && com.learney.contentaudit.auditdomain.englishquality.EnglishQualitySubjectBuilder.CONTRACT
+                    .equals(node.getMetadata().get(name + "InputContract"))
+                && node.getMetadata().get(name + "Verdict") != null;
+    }
+    private static void rebuildStructuredCounts(AuditNode root, Collection<AuditNode> nodes, String name) {
+        var counts = new LinkedHashMap<String,Integer>();
+        for (var node : nodes) if (eligible(node,name)) {
+            Object verdict = node.getMetadata().get(name + "Verdict");
+            if (!structuredVerdict(node,name)) { counts.merge("PENDING_PROVIDER_OR_BUDGET",1,Integer::sum); continue; }
+            if (verdict instanceof com.learney.contentaudit.auditdomain.englishquality.NativeUsageVerdict nativeVerdict)
+                nativeVerdict.assessments().forEach(a -> counts.merge(a.status().name(),1,Integer::sum));
+            else if (verdict instanceof com.learney.contentaudit.auditdomain.englishquality.A1DidacticVerdict didacticVerdict)
+                counts.merge(didacticVerdict.status().name(),1,Integer::sum);
+            else if (verdict instanceof Map<?,?> saved) {
+                if ("naturalness".equals(name) && saved.get("assessments") instanceof List<?> assessments)
+                    for (Object item : assessments) if (item instanceof Map<?,?> a && a.get("status") != null)
+                        counts.merge(a.get("status").toString(),1,Integer::sum);
+                if ("a1-didactic".equals(name) && saved.get("status") != null)
+                    counts.merge(saved.get("status").toString(),1,Integer::sum);
+            }
+        }
+        root.getMetadata().put(name + "Counts",counts);
+    }
+
     public static boolean evaluated(AuditNode n, String name) {
         return n.getScores() != null && n.getScores().containsKey(name)
                 && !safe(n.getUnevaluatedBy()).contains(name) && !safe(n.getPartiallyEvaluatedBy()).contains(name);
+    }
+    /** A saved abstention is integrable evidence, while remaining unscored and pending editorial review. */
+    public static boolean hasStoredOpinion(AuditNode node, String analyzer) {
+        return evaluated(node, analyzer) || structuredVerdict(node, analyzer);
     }
     public static String version(AuditNode n) {
         return n.getDiagnoses() instanceof QuizDiagnoses d
@@ -149,6 +224,8 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
         Object origin = origins instanceof Map<?,?> map ? map.get(analyzer) : null;
         if (origin instanceof Map<?,?> map && map.get("judgeVersion") instanceof String version) return version;
         if (ChoiceQualityAnalyzerProvider.NAME.equals(analyzer)) return version(node);
+        if ("pragmatism".equals(analyzer) && node.getDiagnoses() instanceof QuizDiagnoses d)
+            return d.getPragmatismDiagnosis().map(x -> x.evaluatorVersion()).orElse(null);
         Object versions = node.getMetadata() == null ? null : node.getMetadata().get("verdictVersions");
         if (versions instanceof Map<?,?> map && map.get(analyzer) instanceof String version) return version;
         if (source.getRoot().getDiagnoses() instanceof CourseDiagnoses d) {
@@ -161,8 +238,9 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
     public static boolean eligible(AuditNode node, String analyzer) {
         if (!(node.getEntity() instanceof AuditableQuiz q)) return false;
         return switch (analyzer) {
+            case "a1-didactic" -> "A1".equalsIgnoreCase(com.learney.contentaudit.auditdomain.englishquality.EnglishQualitySubjectBuilder.level(node));
             case "multiple-choice-quality", "multiple-choice-validity" -> q.getMultipleChoice() != null;
-            case "single-answer" -> q.getMultipleChoice() == null;
+            case "single-answer", "hint-coherence", "answer-completeness" -> q.getMultipleChoice() == null;
             case "mini-theory" -> node.ancestor(AuditTarget.KNOWLEDGE).stream().flatMap(k -> safe(k.getChildren()).stream())
                     .anyMatch(n -> n.getEntity() instanceof AuditableQuiz quiz && quiz.getMiniTheory() != null && !quiz.getMiniTheory().isBlank());
             default -> true;
@@ -191,6 +269,7 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
     private static NodeDiagnoses copyDiagnoses(NodeDiagnoses source) {
         if (source instanceof QuizDiagnoses s) {
             var d = new DefaultQuizDiagnoses();
+            d.setPragmatismDiagnosis(s.getPragmatismDiagnosis().orElse(null));
             d.setChoiceQualityDiagnosis(s.getChoiceQualityDiagnosis().orElse(null));
             d.setSentenceLengthDiagnosis(s.getSentenceLengthDiagnosis().orElse(null));
             d.setLemmaAbsenceDiagnosis(s.getLemmaAbsenceDiagnosis().orElse(null));

@@ -190,6 +190,9 @@ def _update_locked(args: argparse.Namespace) -> Path:
         progress["completed"] = max(0, min(args.completed, total))
         if progress["completed"] > old_completed:
             record["lastProgressAt"] = now
+    progress_unit = getattr(args, "progress_unit", None)
+    if progress_unit and isinstance(record.get("progress"), dict):
+        record["progress"]["unit"] = progress_unit
     last_progress_at = getattr(args, "last_progress_at", None)
     if last_progress_at is not None:
         record["lastProgressAt"] = last_progress_at
@@ -254,6 +257,7 @@ def parser() -> argparse.ArgumentParser:
     change.add_argument("--id", required=True)
     change.add_argument("--status")
     change.add_argument("--completed", type=int)
+    change.add_argument("--progress-unit")
     change.add_argument("--summary")
     change.add_argument("--next")
     change.add_argument("--finish", action="store_true")

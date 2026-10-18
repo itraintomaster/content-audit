@@ -46,6 +46,24 @@ public class DefaultMiniTheoryDistributorTest {
     private static final String SHARED = "Con do o does se forman todas las oraciones del presente simple.";
 
     @Test
+    @Tag("F-MINIT-R008")
+    void overSpecificFindingKeepsLowSeverityAndItsOwnEvidenceWithoutAffectingHealthySibling() {
+        var enough = assessment("q-affirmation", true, null, null, null, "Regla suficiente.");
+        var specific = assessment("q-question", false, MiniTheoryProblem.OVER_SPECIFIC_FOR_QUIZ,
+                FindingSeverity.LOW, "Auxiliar + sujeto + verbo base.", "El nombre incidental no determina la regla.");
+        var outcomes = distributor(STUDENT_VIEW).distribute(
+                new MiniTheoryVerdict(List.of(enough, specific), "Por quiz."), mixedTopic(), false);
+        assertTrue(outcomes.get(0).getFindings().isEmpty());
+        assertEquals(1.0, outcomes.get(0).getScore(), 1e-9);
+        var finding = outcomes.get(1).getFindings().get(0);
+        assertEquals("over-specific-for-quiz", finding.getRule());
+        assertEquals(FindingSeverity.LOW, finding.getSeverity());
+        assertEquals(FindingResolution.PANEL, finding.getResolution());
+        assertEquals(0.8, outcomes.get(1).getScore(), 1e-9);
+        assertTrue(finding.getEvidence().getObservation().contains("no determina la regla"));
+    }
+
+    @Test
     @DisplayName("should distribute opposite assessments of the same mini-theory text to their exact quizIds")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R001")

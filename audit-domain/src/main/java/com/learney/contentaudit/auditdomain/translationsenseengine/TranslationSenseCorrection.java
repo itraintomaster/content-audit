@@ -11,8 +11,9 @@ import javax.annotation.processing.Generated;
 /**
  * How a finding of {@code translation-sense} is corrected (F-TAREA-R003, R005, R006, F-MESA-R003, R008, hook E-04): only
  * at the panel, which asks for two fixes -- one that changes only the translation and one that changes the English, with
- * its audio. The disagreement of its two judges ({@code judges-disagree}) is not a task: it goes to the tray as a tie,
- * on the course and on a candidate alike.
+ * its audio, keeping that quiz's hint and mini theory coherent with the corrected sentence. The mini theory permission
+ * never reaches sibling quizzes. The disagreement of its two judges ({@code judges-disagree}) is not a task: it goes to
+ * the tray as a tie, on the course and on a candidate alike.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -23,7 +24,9 @@ public class TranslationSenseCorrection implements AnalyzerCorrection {
 
     private static final List<ExercisePart> RULE_SCOPE = List.of();
 
-    private static final List<ExercisePart> PANEL_SCOPE = List.of(ExercisePart.TRANSLATION, ExercisePart.STATEMENT, ExercisePart.ANSWERS, ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO);
+    private static final List<ExercisePart> PANEL_SCOPE = List.of(ExercisePart.TRANSLATION, ExercisePart.STATEMENT,
+            ExercisePart.HINT, ExercisePart.ANSWERS, ExercisePart.MINI_THEORY,
+            ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO);
 
     @Override
     public String analyzerName() {
