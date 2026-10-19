@@ -107,6 +107,17 @@ public final class JudgeFreshnessReference {
     }
 
     /**
+     * F-MEDJ-R002: whether a verdict is today's judge. An approved judge asks what {@link #mark} asks; one whose
+     * version of today did not approve its exam still has a version of today, and only the version is looked at.
+     */
+    public boolean isOfToday(String version, EvaluationRuntimeIdentity runtime) {
+        if (!approved) {
+            return version != null && sameVersions.contains(version);
+        }
+        return mark(version, runtime).isUpToDate();
+    }
+
+    /**
      * A runtime as an analysis carries it: the identity itself, its fields as a map, or its text
      * ({@code EXPLICIT[provider=…, model=…, reasoning=…]}). Anything else has no provenance: null.
      */

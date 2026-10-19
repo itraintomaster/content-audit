@@ -4,8 +4,14 @@ import com.learney.contentaudit.auditdomain.*;
 import com.learney.contentaudit.auditdomain.analysis.*;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
 import com.learney.contentaudit.auditdomain.contextnumbers.*;
+import com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCount;
+import com.learney.contentaudit.auditdomain.judging.JudgeFreshnessReference;
+import com.learney.contentaudit.auditdomain.judging.JudgeFreshnessTally;
+import com.learney.contentaudit.auditdomain.judging.JudgeVerdictMark;
+import com.learney.contentaudit.auditdomain.judging.JudgeVersionNamer;
 import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
 import com.learney.contentaudit.coursedomain.*;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import com.learney.contentaudit.revisiondomain.batch.*;
 import java.time.Instant;
 import java.util.*;
@@ -285,16 +291,14 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
      * F-ALDIA-R003 and R005: the mark of every verdict of the state against today's judge, and per judge how many of its
      * exercises -- or topics, for the judge of topics -- are up to date, from before and not measured. Reads only.
      */
-    private List<com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCount> freshness(AuditReport report,
+    private List<JudgeFreshnessCount> freshness(AuditReport report,
             Map<String, Map<String, Map<String, Object>>> marks) {
-        var catalog = config.getJudgeFreshnessCatalog();
-        if (catalog == null || !(report.getRoot().getDiagnoses() instanceof CourseDiagnoses d)) return List.of();
+        if (config.getJudgeFreshnessCatalog() == null || !(report.getRoot().getDiagnoses() instanceof CourseDiagnoses d)) return List.of();
         var index = DefaultAnalysisComposer.index(report.getRoot());
-        var result = new ArrayList<com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCount>();
+        var result = new ArrayList<JudgeFreshnessCount>();
         for (var coverage : BatchBook.list(d.getJudgeCoverages())) {
             String judge = coverage.getJudgeName();
-            var reference = judge == null ? Optional.<com.learney.contentaudit.auditdomain.judging.JudgeFreshnessReference>empty()
-                    : catalog.reference(judge);
+            var reference = todaysJudge(judge);
             if (reference.isEmpty()) continue;
             AuditTarget unit = coverage.getUnit() == null ? AuditTarget.QUIZ : coverage.getUnit();
             var namer = reference.get().getNamer();
@@ -307,18 +311,18 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                 UnitVerdict verdict = UnitVerdict.NONE;
                 if (DefaultAnalysisComposer.evaluated(node, judge)) {
                     String version = DefaultAnalysisComposer.version(node, judge, report);
-                    var runtime = com.learney.contentaudit.auditdomain.judging.JudgeFreshnessReference.runtimeOf(runtime(node, judge, report));
+                    var runtime = JudgeFreshnessReference.runtimeOf(runtime(node, judge, report));
                     var mark = reference.get().mark(version, runtime);
                     verdict = new UnitVerdict(mark, version, runtime);
                     var shown = new LinkedHashMap<String, Object>();
                     shown.put("freshness", mark.freshness()); shown.put("staleCause", mark.cause());
                     shown.put("judgeVersion", version); shown.put("versionName", version == null ? null : namer.looseName(version));
-                    shown.put("runtimeName", com.learney.contentaudit.auditdomain.judging.JudgeVersionNamer.runtimeName(runtime));
+                    shown.put("runtimeName", JudgeVersionNamer.runtimeName(runtime));
                     marks.computeIfAbsent(id, k -> new LinkedHashMap<>()).put(judge, shown);
                 }
                 units.merge(unitId, verdict, UnitVerdict::worse);
             }
-            var tally = new com.learney.contentaudit.auditdomain.judging.JudgeFreshnessTally(reference.get(), displayName(judge), unit);
+            var tally = new JudgeFreshnessTally(reference.get(), displayName(judge), unit);
             for (var verdict : units.values()) {
                 if (verdict.mark() == null) tally.notMeasured(1);
                 else tally.add(verdict.mark(), verdict.version(), verdict.runtime(), 1);
@@ -328,8 +332,8 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         return List.copyOf(result);
     }
     /** What a judge left on a unit; a topic is from before as soon as one of its exercises is. */
-    private record UnitVerdict(com.learney.contentaudit.auditdomain.judging.JudgeVerdictMark mark, String version,
-            com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity runtime) {
+    private record UnitVerdict(JudgeVerdictMark mark, String version,
+            EvaluationRuntimeIdentity runtime) {
         static final UnitVerdict NONE = new UnitVerdict(null, null, null);
         static UnitVerdict worse(UnitVerdict a, UnitVerdict b) {
             if (a.mark() == null) return b;
@@ -405,7 +409,10 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
     private Fit fit(String state, SelectiveCorrection.Run run, AuditReport source, AuditReport current, List<BatchReview.Item> items, List<com.learney.contentaudit.refinerdomain.RefinementTask> tasks) {
         var from = DefaultAnalysisComposer.index(source.getRoot()); var to = DefaultAnalysisComposer.index(current.getRoot());
         var ids = new ArrayList<String>(); var lost = new ArrayList<String>(); var gained = new ArrayList<String>();
-        int reached = 0, replaces = 0, selected = 0;
+        int reached = 0, replaces = 0, selected = 0, toToday = 0, toOtherVersion = 0, changesResults = 0, repeats = 0, notToday = 0;
+        // F-MEDJ-R002: today's judge is the one F-ALDIA marks against; the run's verdict carries the run's runtime once integrated.
+        var today = todaysJudge(run.analyzer());
+        var runRuntime = JudgeFreshnessReference.runtimeOf(run.runtime());
         for (var node : to.values()) if (DefaultAnalysisComposer.eligible(node, run.analyzer())) {
             if ("complete-opinions".equals(run.action()) && !run.quizIds().contains(node.getEntity().getId())) continue;
             AuditableQuiz q = (AuditableQuiz) node.getEntity();
@@ -414,13 +421,27 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
             if (old == null || !DefaultAnalysisComposer.hasStoredOpinion(old, run.analyzer())
                     || !Objects.equals(composer.fingerprint(run.analyzer(), old), composer.fingerprint(run.analyzer(), node))) continue;
             ids.add(q.getId());
+            String runVersion = DefaultAnalysisComposer.version(old, run.analyzer(), source);
+            boolean runIsToday = isOfToday(today, runVersion, runRuntime);
+            if (!runIsToday) notToday++;
+            var oldMarks = marks(node, run.analyzer()); var newMarks = marks(old, run.analyzer());
+            boolean losesMarks = oldMarks.stream().anyMatch(k -> !newMarks.contains(k)), gainsMarks = newMarks.stream().anyMatch(k -> !oldMarks.contains(k));
+            if (losesMarks) lost.add(q.getId());
+            if (gainsMarks) gained.add(q.getId());
             var origins = node.getMetadata().get(DefaultAnalysisComposer.PROVENANCE);
             Object origin = origins instanceof Map<?,?> m ? m.get(run.analyzer()) : null;
             if (origin instanceof Map<?,?> m && run.id().equals(m.get("runId"))) selected++;
-            else if (DefaultAnalysisComposer.hasStoredOpinion(node, run.analyzer())) replaces++;
-            var oldMarks = marks(node, run.analyzer()); var newMarks = marks(old, run.analyzer());
-            if (oldMarks.stream().anyMatch(k -> !newMarks.contains(k))) lost.add(q.getId());
-            if (newMarks.stream().anyMatch(k -> !oldMarks.contains(k))) gained.add(q.getId());
+            else if (DefaultAnalysisComposer.hasStoredOpinion(node, run.analyzer())) {
+                replaces++;
+                // F-MEDJ-R001: each replaced exercise is exactly one of four kinds, judged against today's judge, not between the two ends.
+                String countedVersion = DefaultAnalysisComposer.version(node, run.analyzer(), current);
+                boolean countedIsToday = isOfToday(today, countedVersion,
+                        JudgeFreshnessReference.runtimeOf(runtime(node, run.analyzer(), current)));
+                if (runIsToday && !countedIsToday) toToday++;
+                else if (!runIsToday && (countedIsToday || !Objects.equals(runVersion, countedVersion))) toOtherVersion++;
+                else if (losesMarks || gainsMarks) changesResults++;
+                else repeats++;
+            }
         }
         var preview = composer.compose(current, List.of(new AnalysisSupplement(run.id(), run.auditId(), run.analyzer(),
                 run.runtime(), run.finishedAt(), new LinkedHashSet<>(ids), source)));
@@ -433,7 +454,20 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                 .map(n -> DefaultAnalysisComposer.version(n, run.analyzer(), current)).filter(Objects::nonNull).distinct().sorted().toList();
         return new Fit(state, reached, ids.size(), reached - ids.size(), replaces, selected, ids, lost, gained,
                 approvalWarnings(items, tasks, current, preview, run.analyzer()), ids.isEmpty() ? "Midió otro contenido o no dejó veredictos utilizables." : null,
-                compatibleErrors, currentErrors, resultErrors, currentVersions);
+                compatibleErrors, currentErrors, resultErrors, currentVersions,
+                ids.size() - selected - replaces, toToday, toOtherVersion, changesResults, repeats,
+                today.isEmpty() || ids.isEmpty() ? null : notToday == 0,
+                today.map(JudgeFreshnessReference::isApproved).orElse(null));
+    }
+
+    /** F-ALDIA-R001: today's judge of an analyzer, as the catalog says; none without a catalog or for an unknown analyzer. */
+    private Optional<JudgeFreshnessReference> todaysJudge(String analyzer) {
+        var catalog = config.getJudgeFreshnessCatalog();
+        return catalog == null || analyzer == null ? Optional.empty() : catalog.reference(analyzer);
+    }
+
+    private static boolean isOfToday(Optional<JudgeFreshnessReference> today, String version, EvaluationRuntimeIdentity runtime) {
+        return today.map(judge -> judge.isOfToday(version, runtime)).orElse(false);
     }
 
     private static List<String> approvalWarnings(List<BatchReview.Item> items, List<com.learney.contentaudit.refinerdomain.RefinementTask> tasks, AuditReport before, AuditReport after, String analyzer) {

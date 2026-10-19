@@ -41,8 +41,19 @@ public interface CurrentAnalysisService {
     record LooseRun(String id, String analyzer, String auditId, String status, int contentVersion,
             String runtime, String judgeVersion, Instant measuredAt, int spent, int evaluated, int withError,
             List<Fit> fits, String displayName, String activityId) {}
+    /**
+     * Where a recorded run fits in a state. F-MEDJ-R001: what fits is split, without overlap, in {@code selected}
+     * (already counted), {@code gaps} (nothing counted there yet) and the four kinds of {@code replaces}:
+     * {@code toToday} (brings today's judge where the counted verdict is not), {@code toOtherVersion} (brings a version
+     * that is not today's), {@code changesResults} (same version, other marks) and {@code repeats}. F-MEDJ-R002:
+     * {@code runToday} says whether every verdict that fits is today's judge and {@code todayApproved} whether today's
+     * version approved its exam; both are null when the judge has no version of today, and {@code runToday} also
+     * when nothing fits.
+     */
     record Fit(String state, int reached, int compatible, int missing, int replaces, int selected,
             List<String> nodeIds, List<String> lostErrors, List<String> newErrors,
             List<String> approvalWarnings, String reason, int compatibleWithError,
-            int currentWithError, int resultWithError, List<String> currentVersions) {}
+            int currentWithError, int resultWithError, List<String> currentVersions,
+            int gaps, int toToday, int toOtherVersion, int changesResults, int repeats,
+            Boolean runToday, Boolean todayApproved) {}
 }

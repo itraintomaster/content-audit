@@ -12,6 +12,11 @@ import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSente
 import com.learney.contentaudit.evaluationledgerdomain.contentfingerprint.Sha256ContentFingerprinter;
 import com.learney.contentaudit.revisiondomain.batch.*;
 import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamRecord;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStanding;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.judging.JudgeFreshnessReference;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import java.time.Instant;
 import java.util.*;
 import org.junit.jupiter.api.*;
@@ -76,11 +81,12 @@ class CurrentAnalysisServiceTest {
         }
         return r;
     }
-    void run(String id, boolean error, String version) {
+    void run(String id, boolean error, String version) { run(id, error, version, "codex-cli / model / medium"); }
+    void run(String id, boolean error, String version, String runtime) {
         saved.put(id, report(true, error, version));
         var runs = new ArrayList<>(BatchBook.list(batch.getSelectiveRuns()));
         runs.add(new SelectiveCorrection.Run(id, "analyze", NAME, null, 1, 6, "content", "configured-version",
-                "codex-cli / model / medium", id, null, List.of(), List.of(), 1, 1, 1, 1, 1, 0,
+                runtime, id, null, List.of(), List.of(), 1, 1, 1, 1, 1, 0,
                 "DONE", "human", Instant.EPOCH, Instant.EPOCH, null, false, 6, "content", null));
         batch.setSelectiveRuns(runs);
     }
@@ -474,6 +480,74 @@ class CurrentAnalysisServiceTest {
         assertEquals(com.learney.contentaudit.auditdomain.judging.JudgeVerdictFreshness.UP_TO_DATE,
                 after.verdictMarks().get(TandaFixture.CHILD).get(NAME).get("freshness"));
         verify(repository, never()).save(any(), any()); verify(store, never()).save(any());
+    }
+
+    static final EvaluationRuntimeIdentity XHIGH = EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "xhigh");
+    /** Today's judge is v2, approved with XHIGH or not approved at all. */
+    static JudgeFreshnessReference todaysJudge(JudgeExamStatus status) {
+        var zone = java.time.ZoneId.of("America/Argentina/Buenos_Aires");
+        var exam = new JudgeExamRecord(NAME, "v2", status, 20, 0, List.of(), List.of(), true, null, "human", Instant.parse("2026-10-14T01:12:33Z"));
+        exam.setRuntimeIdentity(XHIGH);
+        return JudgeFreshnessReference.of(new JudgeExamStanding(NAME, "v2", status, true, null, XHIGH, Set.of("v2")),
+                List.of(exam), zone, java.time.Clock.fixed(Instant.parse("2026-10-18T15:00:00Z"), zone));
+    }
+    static CurrentAnalysisService.Fit fit(CurrentAnalysisService.View view, String run, String state) {
+        return view.looseRuns().stream().filter(r -> r.id().equals(run)).findFirst().orElseThrow()
+                .fits().stream().filter(f -> f.state().equals(state)).findFirst().orElseThrow();
+    }
+    /** gaps, toToday, toOtherVersion, changesResults, repeats, selected. */
+    static List<Integer> parts(CurrentAnalysisService.Fit f) {
+        return List.of(f.gaps(), f.toToday(), f.toOtherVersion(), f.changesResults(), f.repeats(), f.selected());
+    }
+
+    @Test @Tag("FEAT-MEDJ") @Tag("F-MEDJ-R001")
+    void whatALooseRunBringsIsSplitIntoGapsTodaysJudgeAnotherVersionOtherResultsAndRepeats() {
+        config.setJudgeFreshnessCatalog(name -> NAME.equals(name) ? Optional.of(todaysJudge(JudgeExamStatus.APPROVED)) : Optional.empty());
+        service.execute(select("integrate", "r1", "s1", null)); // Counted in the correction: v1, with error.
+        run("repeats", true, "v1"); run("changes", false, "v1");
+        run("today", true, "v2", XHIGH.toString()); run("other", true, "v0", XHIGH.toString());
+        var view = read();
+
+        assertEquals(List.of(0, 0, 0, 0, 0, 1), parts(fit(view, "r1", "correction")));
+        assertEquals(List.of(0, 0, 0, 0, 1, 0), parts(fit(view, "repeats", "correction")));
+        assertEquals(List.of(0, 0, 0, 1, 0, 0), parts(fit(view, "changes", "correction")));
+        // Today's judge counts even with the same marks; a version that is not today's never does.
+        assertEquals(List.of(0, 1, 0, 0, 0, 0), parts(fit(view, "today", "correction")));
+        assertEquals(List.of(0, 0, 1, 0, 0, 0), parts(fit(view, "other", "correction")));
+        // In the base nothing is counted: every run fills the gap, and a gap is never "other results" although it marks.
+        var base = fit(view, "repeats", "base");
+        assertEquals(List.of(1, 0, 0, 0, 0, 0), parts(base));
+        assertEquals(List.of(TandaFixture.CHILD), base.newErrors());
+        for (var run : view.looseRuns()) for (var f : run.fits()) {
+            assertEquals(f.compatible(), parts(f).stream().mapToInt(Integer::intValue).sum(), run.id() + " " + f.state());
+            assertEquals(f.replaces(), f.toToday() + f.toOtherVersion() + f.changesResults() + f.repeats(), run.id() + " " + f.state());
+            assertEquals(Boolean.TRUE, f.todayApproved());
+        }
+        assertEquals(Boolean.TRUE, fit(view, "today", "correction").runToday());
+        // r1 left its runtime as free text: integrated, it would be marked from before, so it is not today's judge.
+        assertEquals(Boolean.FALSE, fit(view, "r1", "correction").runToday());
+        verify(repository, never()).save(any(), any()); verify(store, never()).save(any());
+    }
+
+    @Test @Tag("FEAT-MEDJ") @Tag("F-MEDJ-R002")
+    void todaysVersionWithoutApprovalIsStillTodaysAndAJudgeWithoutOneNeverBringsTodays() {
+        config.setJudgeFreshnessCatalog(name -> NAME.equals(name) ? Optional.of(todaysJudge(JudgeExamStatus.FAILED)) : Optional.empty());
+        service.execute(select("integrate", "r1", "s1", null));
+        run("today", true, "v2"); // Without approval only the version is looked at, not the runtime.
+        var unapproved = fit(read(), "today", "correction");
+        assertEquals(List.of(0, 1, 0, 0, 0, 0), parts(unapproved));
+        assertEquals(Boolean.TRUE, unapproved.runToday());
+        assertEquals(Boolean.FALSE, unapproved.todayApproved());
+
+        config.setJudgeFreshnessCatalog(name -> Optional.empty());
+        var unknown = fit(read(), "today", "correction");
+        assertEquals(List.of(0, 0, 1, 0, 0, 0), parts(unknown));
+        assertNull(unknown.runToday());
+        assertNull(unknown.todayApproved());
+
+        config.setJudgeFreshnessCatalog(null);
+        assertEquals(parts(unknown), parts(fit(read(), "today", "correction")));
+        assertNull(fit(read(), "today", "correction").todayApproved());
     }
 
     static void cover(AuditReport report, JudgeCoverageDiagnosis coverage) {
