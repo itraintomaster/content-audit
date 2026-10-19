@@ -21,7 +21,10 @@
     "local",
     "hermana",
     "No audites la verdad",
-    "universal local explícito o inequívoco",
+    "un universal explícito o inequívoco",
+    "asociación parcial se presenta sin delimitar",
+    "distinguí la dirección de la explicación",
+    "no uses respuestas esperadas ni ejemplos de un corpus de examen",
     "La precedencia terminal completa es",
     "definición operativa del caso",
     "FALSE_RULE",
@@ -29,7 +32,18 @@
     "OVERSTATED_FOR_QUIZ",
     "OTHER_SUBTOPIC_CONTENT",
     "nunca puede ser `BLOCKING`",
-    "mismo orden"
+    "mismo orden",
+    "OVER_SPECIFIC_FOR_QUIZ",
+    "La longitud por sí sola no es un defecto",
+    "léxico incidental fijado",
+    "su categoría gramatical",
+    "Distinguí léxico incidental de marcadores estructurales",
+    "ya permite reutilizar la estructura",
+    "esa condición cuando el prompt no la aporta",
+    "No deduzcas la categoría del verbo",
+    "manteniendo sus condiciones",
+    "una forma verbal conjugada que señala la ruta focal",
+    "una interpretación semántica coherente"
   ],
   "why": "Regresión offline con microcasos inventados para las fronteras abstractas del juez: identidad por quizId, suficiencia focal, forma frente a función, universales, atomización, respuestas operativas, taxonomía y prioridad; además cubre el contrato del gate, la cobertura exacta y las severidades fijas.",
   "inputs": {
@@ -221,6 +235,65 @@
       "inputs": "shared-text",
       "raw": "esto no es json",
       "expect": {"route": "failed", "errorContains": ["objeto cerrado"]}
+    },
+    {
+      "caseId": "over-specific-low-and-healthy-neighbor",
+      "inputs": "shared-text",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-source",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "La tarjeta explica la decisión de origen de este quiz sintético."
+          },
+          {
+            "quizId": "q-destination",
+            "holds": false,
+            "problem": "OVER_SPECIFIC_FOR_QUIZ",
+            "severity": "LOW",
+            "counterexample": "Regla de destino con la marca operativa, sin el nombre incidental.",
+            "explanation": "El nombre sólo ejemplifica el destino y no determina la marca."
+          }
+        ]
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "over-specific-wrong-severity",
+      "inputs": "shared-text",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-source",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "La tarjeta explica la decisión de origen de este quiz sintético."
+          },
+          {
+            "quizId": "q-destination",
+            "holds": false,
+            "problem": "OVER_SPECIFIC_FOR_QUIZ",
+            "severity": "MEDIUM",
+            "counterexample": "Regla de destino con la marca operativa, sin el nombre incidental.",
+            "explanation": "El nombre sólo ejemplifica el destino y no determina la marca."
+          }
+        ]
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "LOW"
+        ],
+        "schemaRejects": true
+      }
     }
   ]
 }

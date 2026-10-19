@@ -17,18 +17,19 @@ import org.junit.jupiter.api.Test;
 )
 public class SingleAnswerCorrectionTest {
     @Test
-    @DisplayName("should let a rule fix of single-answer touch only the answers, and a panel fix the answers, the hint or the sentence with its audio, as for «I ___ a lot of vegetables.»")
+    @DisplayName("should let a single-answer panel fix keep the corrected quiz, its translation and its mini theory coherent while a rule changes only accepted answer forms")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
     public void shouldLetARuleFixOfSingleanswerTouchOnlyTheAnswersAndAPanelFixTheAnswersTheHintOrTheSentenceWithItsAudioAsForIALotOfVegetables(
             ) {
         // R006 (E-04): for «I ___ a lot of vegetables.» a rule may only add another form of the answer; the panel may change
-        // the answers, the hint («(love)») or the sentence, with its audio.
+        // the answers, the hint («(love)») or the sentence, with its audio, translation and quiz-local mini theory.
         SingleAnswerCorrection correction = new SingleAnswerCorrection();
 
         Assertions.assertEquals("single-answer", correction.analyzerName());
         Assertions.assertEquals(List.of(ExercisePart.ANSWERS), correction.editScope(FindingResolution.RULE));
         Assertions.assertEquals(List.of(ExercisePart.ANSWERS, ExercisePart.HINT, ExercisePart.STATEMENT,
-                ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO), correction.editScope(FindingResolution.PANEL));
+                ExercisePart.TRANSLATION, ExercisePart.MINI_THEORY, ExercisePart.STORED_SENTENCE,
+                ExercisePart.AUDIO), correction.editScope(FindingResolution.PANEL));
     }
 }

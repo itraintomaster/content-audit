@@ -30,6 +30,8 @@ class CappedQueryAllowance implements QueryAllowance {
 
     private int inFlight;
 
+    private int reservedQueries;
+
     private int spent;
 
     private String trippedBy;
@@ -45,26 +47,47 @@ class CappedQueryAllowance implements QueryAllowance {
 
     @Override
     public synchronized boolean tryReserve(int queries) {
+        return reserve(queries, queries);
+    }
+
+    @Override
+    public synchronized boolean tryReserveSequential(int queries) {
+        return reserve(queries, queries > 0 ? 1 : 0);
+    }
+
+    private boolean reserve(int queries, int slots) {
         if (trippedBy != null) {
             return false;
         }
         int asked = Math.max(0, queries);
-        if (cap != null && spent + inFlight + asked > cap) {
+        if (cap != null && spent + reservedQueries + asked > cap) {
             if (inFlight == 0) {
                 trippedBy = "se llegó al tope de " + cap + " consultas de la tanda";
             }
             return false;
         }
-        if (inFlight + asked > queriesAtOnce) {
+        int simultaneous = Math.max(0, slots);
+        if (inFlight + simultaneous > queriesAtOnce) {
             return false;
         }
-        inFlight += asked;
+        inFlight += simultaneous;
+        reservedQueries += asked;
         return true;
     }
 
     @Override
     public synchronized void settle(int reserved, int spent) {
-        inFlight = Math.max(0, inFlight - Math.max(0, reserved));
+        settle(reserved, reserved, spent);
+    }
+
+    @Override
+    public synchronized void settleSequential(int reserved, int spent) {
+        settle(reserved, reserved > 0 ? 1 : 0, spent);
+    }
+
+    private void settle(int reserved, int slots, int spent) {
+        inFlight = Math.max(0, inFlight - Math.max(0, slots));
+        reservedQueries = Math.max(0, reservedQueries - Math.max(0, reserved));
         this.spent += Math.max(0, spent);
         notifyAll();
     }
@@ -87,7 +110,7 @@ class CappedQueryAllowance implements QueryAllowance {
         return spent;
     }
 
-    /** Queries reserved and not settled yet. */
+    /** Concurrent consultation slots currently occupied. */
     synchronized int inFlight() {
         return inFlight;
     }

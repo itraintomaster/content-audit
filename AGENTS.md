@@ -33,3 +33,11 @@ ContentAudit es un proyecto Java 17, Maven multimódulo, organizado con límites
 - El operador siempre puede elegir explícitamente otro proveedor y modelo.
 - No hacer fallback silencioso entre proveedores.
 - Registrar proveedor, modelo y versión efectivos en la procedencia.
+
+## Presentación de resultados de jueces
+
+- Mostrar primero los casos cuyo resultado difiere de lo esperado, antes de los puntajes, aciertos o resumen general.
+- Incluir arriba de la misma lista una leyenda visible que explique en lenguaje simple cada estado mostrado y qué significan «esperado», «obtenido» y la flecha entre ambos. «Pendiente» debe distinguirse de aprobado, rechazado y todavía no evaluado.
+- Identificar cada ejercicio y mostrar su frase, resultado esperado, resultado obtenido y motivos de ambos; separar naturalidad de calidad didáctica cuando corresponda.
+- Explicitar la fuente de lo esperado. Una revisión editorial del asistente es una referencia de comparación, no una verdad humana certificada ni una medición de precisión.
+- Informar también cuando no hay discrepancias. Si no existe una referencia esperada, indicarlo primero; no inventarla ni construirla a partir de la salida del juez.

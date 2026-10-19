@@ -9,6 +9,9 @@ import javax.annotation.processing.Generated;
 public enum JudgeExamStatus {
     APPROVED,
 
+    /** Approved for use by an operator, independently of fixed-exam certification. */
+    PROMOTED,
+
     FAILED,
 
     TAKEN,

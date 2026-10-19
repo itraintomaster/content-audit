@@ -24,15 +24,15 @@ public class QuizInstructionCorrectionTest {
             ) {
         // R006: quiz-instruction is only corrected at the panel, within what the correction of the instruction reaches today
         // (F-QICOR-R003): the parts and gaps the violation points at, the translation that goes with the sentence, the
-        // stored sentence and, following the exercise, the audio. It declares no fix by rule.
+        // quiz-local mini theory, stored sentence and, following the exercise, the audio. It declares no fix by rule.
         QuizInstructionCorrection correction = new QuizInstructionCorrection();
 
         Assertions.assertEquals("quiz-instruction", correction.analyzerName());
         Assertions.assertEquals(List.of(), correction.editScope(FindingResolution.RULE), "no fix by rule");
         Assertions.assertEquals(List.of(ExercisePart.STATEMENT, ExercisePart.HINT, ExercisePart.ANSWERS,
-                ExercisePart.TRANSLATION, ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO),
+                ExercisePart.TRANSLATION, ExercisePart.MINI_THEORY, ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO),
                 correction.editScope(FindingResolution.PANEL));
-        Assertions.assertFalse(correction.editScope(FindingResolution.PANEL).contains(ExercisePart.MINI_THEORY));
+        Assertions.assertFalse(correction.groupsByTopic(), "the correction belongs to its target quiz");
         Assertions.assertFalse(correction.editScope(FindingResolution.PANEL).contains(ExercisePart.INSTRUCTIONS),
                 "the instruction it is judged against does not move");
     }

@@ -26,7 +26,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                     && Objects.equals(composer.fingerprint(analyzer, node), composer.fingerprint(analyzer, other))
                     && (requiredVersion == null || DefaultAnalysisComposer.evaluated(other, analyzer)
                     && Objects.equals(requiredVersion, DefaultAnalysisComposer.version(other, analyzer, correction)));
-            String unit = "mini-theory".equals(analyzer) ? node.ancestor(AuditTarget.KNOWLEDGE)
+            String unit = Set.of("mini-theory", "near-duplicates").contains(analyzer) ? node.ancestor(AuditTarget.KNOWLEDGE)
                     .map(n -> n.getEntity().getId()).orElse(id) : id;
             if (matches) { shared.add(id); sharedUnits.add(unit); }
             else {
@@ -180,7 +180,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                     courseFingerprint.apply("base".equals(state) ? baseCourse : current), digest("current-" + state, report.getRoot()),
                     studentViews, provenance, List.copyOf(warnings), comparable(reports.get("base"), report),
                     "base".equals(state) ? "A0" : BatchBook.list(batch.getClosings()).isEmpty() ? null : "A" + batch.getClosings().size(),
-                    judges, verdictMarks));
+                    inapplicable(batch, index), judges, verdictMarks));
         }
         var loose = new ArrayList<LooseRun>();
         for (var run : BatchBook.list(batch.getSelectiveRuns())) {
@@ -189,7 +189,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
             if (source == null || !List.of("DONE", "PARTIAL").contains(run.status()) || !composer.supportedAnalyzers().contains(run.analyzer())) continue;
             var sourceNodes = DefaultAnalysisComposer.index(source.getRoot());
             int evaluated = (int) sourceNodes.values().stream().filter(n -> n.getTarget() == AuditTarget.QUIZ
-                    && DefaultAnalysisComposer.evaluated(n, run.analyzer())).count();
+                    && DefaultAnalysisComposer.hasStoredOpinion(n, run.analyzer())).count();
             int errors = (int) sourceNodes.values().stream().filter(n -> n.getTarget() == AuditTarget.QUIZ && error(n, run.analyzer())).count();
             var fits = new ArrayList<Fit>();
             for (var entry : reports.entrySet()) fits.add(fit(entry.getKey(), run, source, entry.getValue(), items, tasks));
@@ -267,6 +267,17 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                         && Objects.equals(runtime(old, name, before), runtime(n, name, after)))) names.add(name);
             }
             result.put(n.getEntity().getId(), names);
+        }
+        return result;
+    }
+
+    private Map<String, List<String>> inapplicable(CorrectionBatch batch, Map<String, AuditNode> index) {
+        var names = new TreeSet<>(BatchBook.list(batch.getAnalyzers()));
+        names.addAll(composer.supportedAnalyzers());
+        var result = new LinkedHashMap<String, List<String>>();
+        for (var entry : index.entrySet()) if (entry.getValue().getTarget() == AuditTarget.QUIZ) {
+            var excluded = names.stream().filter(name -> !DefaultAnalysisComposer.eligible(entry.getValue(), name)).toList();
+            if (!excluded.isEmpty()) result.put(entry.getKey(), excluded);
         }
         return result;
     }
@@ -379,7 +390,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         for (var node : DefaultAnalysisComposer.index(annotated.getRoot()).values()) {
             if (node.getTarget() != AuditTarget.QUIZ) continue;
             var origins = new LinkedHashMap<String, Object>();
-            for (String analyzer : composer.supportedAnalyzers()) if (DefaultAnalysisComposer.evaluated(node, analyzer)) {
+            for (String analyzer : composer.supportedAnalyzers()) if (DefaultAnalysisComposer.hasStoredOpinion(node, analyzer)) {
                 var origin = new LinkedHashMap<String, Object>();
                 origin.put("auditId", "base".equals(state) ? batch.getBaselineAuditId() : batch.getAnalysisSeedAuditId());
                 origin.put("judgeVersion", DefaultAnalysisComposer.version(node, analyzer, primary));
@@ -396,16 +407,17 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         var ids = new ArrayList<String>(); var lost = new ArrayList<String>(); var gained = new ArrayList<String>();
         int reached = 0, replaces = 0, selected = 0;
         for (var node : to.values()) if (DefaultAnalysisComposer.eligible(node, run.analyzer())) {
+            if ("complete-opinions".equals(run.action()) && !run.quizIds().contains(node.getEntity().getId())) continue;
             AuditableQuiz q = (AuditableQuiz) node.getEntity();
             reached++;
             AuditNode old = from.get(q.getId());
-            if (old == null || !DefaultAnalysisComposer.evaluated(old, run.analyzer())
+            if (old == null || !DefaultAnalysisComposer.hasStoredOpinion(old, run.analyzer())
                     || !Objects.equals(composer.fingerprint(run.analyzer(), old), composer.fingerprint(run.analyzer(), node))) continue;
             ids.add(q.getId());
             var origins = node.getMetadata().get(DefaultAnalysisComposer.PROVENANCE);
             Object origin = origins instanceof Map<?,?> m ? m.get(run.analyzer()) : null;
             if (origin instanceof Map<?,?> m && run.id().equals(m.get("runId"))) selected++;
-            else if (DefaultAnalysisComposer.evaluated(node, run.analyzer())) replaces++;
+            else if (DefaultAnalysisComposer.hasStoredOpinion(node, run.analyzer())) replaces++;
             var oldMarks = marks(node, run.analyzer()); var newMarks = marks(old, run.analyzer());
             if (oldMarks.stream().anyMatch(k -> !newMarks.contains(k))) lost.add(q.getId());
             if (newMarks.stream().anyMatch(k -> !oldMarks.contains(k))) gained.add(q.getId());
@@ -417,7 +429,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         int resultErrors = (int) DefaultAnalysisComposer.index(preview.getRoot()).values().stream()
                 .filter(n -> n.getTarget() == AuditTarget.QUIZ && error(n, run.analyzer())).count();
         var currentVersions = to.values().stream().filter(n -> n.getTarget() == AuditTarget.QUIZ
-                        && DefaultAnalysisComposer.evaluated(n, run.analyzer()))
+                        && DefaultAnalysisComposer.hasStoredOpinion(n, run.analyzer()))
                 .map(n -> DefaultAnalysisComposer.version(n, run.analyzer(), current)).filter(Objects::nonNull).distinct().sorted().toList();
         return new Fit(state, reached, ids.size(), reached - ids.size(), replaces, selected, ids, lost, gained,
                 approvalWarnings(items, tasks, current, preview, run.analyzer()), ids.isEmpty() ? "Midió otro contenido o no dejó veredictos utilizables." : null,
@@ -476,6 +488,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         if (id == null || !id.matches("[A-Za-z0-9][A-Za-z0-9._-]{0,127}")) throw new IllegalArgumentException("Identidad inválida.");
     }
     private static String activityId(CorrectionBatch batch, SelectiveCorrection.Run run) {
+        if ("complete-opinions".equals(run.action())) return run.sourceRunId();
         return BatchBook.list(batch.getSelectiveRuns()).stream().anyMatch(r -> Objects.equals(r.id(),run.sourceRunId())
                 && "reanalyze-both".equals(r.action())) ? run.sourceRunId() : run.id();
     }

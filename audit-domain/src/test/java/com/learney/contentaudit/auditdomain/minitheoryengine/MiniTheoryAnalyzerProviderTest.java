@@ -71,7 +71,7 @@ public class MiniTheoryAnalyzerProviderTest {
     }
 
     @Test
-    @DisplayName("should publish the four quiz-scoped mini-theory problem rules")
+    @DisplayName("should publish the five quiz-scoped mini-theory problem rules")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R002")
     public void shouldPublishACardWithFamilyErrorsPaidModelCostTheQuizAsEvaluatedLevelAndTheRulesFalseruleOverstatedruleContradictingexerciseAndUncoveredexercise(
@@ -93,7 +93,8 @@ public class MiniTheoryAnalyzerProviderTest {
             assertEquals(AnalysisCost.PAID_MODEL, rule.getCost(), rule.getId() + " is judged by a paid model");
             assertFalse(rule.getDescription().isBlank());
         }
-        assertEquals(List.of("false-rule", "insufficient-for-quiz", "overstated-for-quiz", "other-subtopic-content"),
+        assertEquals(List.of("false-rule", "insufficient-for-quiz", "overstated-for-quiz", "other-subtopic-content",
+                        "over-specific-for-quiz"),
                 rules);
         assertEquals("¿La tarjeta explica correctamente el caso concreto de este quiz, sin traer reglas de otros subtemas?",
                 card.getQuestion());

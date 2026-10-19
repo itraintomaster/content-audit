@@ -81,6 +81,40 @@ import java.util.HashSet;
 )
 public class MiniTheoryAnalyzerTest {
     @Test
+    @Tag("F-MINIT-R002")
+    @Tag("F-MINIT-R007")
+    @Tag("F-MESA-R012")
+    void carriesMisleadingCorrespondenceEvidenceToTheCorrectionFinding() {
+        String card = "$was$ va con $I$.";
+        String explanation = "La regla parte de was y lo asocia con un único sujeto; puede enseñar una restricción falsa. "
+                + "Partir del sujeto del caso permite expresar una regla local precisa.";
+        String counterexample = "She was at home yesterday.";
+        Topic topic = new Topic("A1", "past-be-correspondence", "Be en pasado", List.of(
+                cloze("partial-correspondence", "I", "was", "at home yesterday.", "I was at home yesterday.", card),
+                cloze("subject-direction", "I", "was", "at home yesterday.", "I was at home yesterday.",
+                        "Con $I$, el pasado de $be$ en afirmativa es $was$.")));
+        World world = World.approved().answers(topic, new MiniTheoryVerdict(List.of(
+                new MiniTheoryAssessment("partial-correspondence", false, MiniTheoryProblem.OVERSTATED_FOR_QUIZ,
+                        FindingSeverity.MEDIUM, counterexample, explanation),
+                new MiniTheoryAssessment("subject-direction", true, null, null, null, "Alcance local preciso.")),
+                "Una asociación parcial engañosa."));
+
+        // Scripted verdict: verifies downstream evidence, not the model's detection.
+        AuditNode result = world.run(course(topic), budget(1));
+        Finding finding = exerciseOf(result, topic.id, "partial-correspondence").getFindings().stream()
+                .filter(f -> "mini-theory".equals(f.getAnalyzer())).findFirst().orElseThrow();
+        assertEquals("overstated-for-quiz", finding.getRule());
+        assertEquals(FindingSeverity.MEDIUM, finding.getSeverity());
+        assertTrue(finding.getEvidence().getObservation().contains(explanation));
+        List<String> evidence = finding.getEvidence().getExamined().stream()
+                .map(com.learney.contentaudit.auditdomain.finding.EvidencePart::getText).toList();
+        assertTrue(evidence.contains(card));
+        assertTrue(evidence.contains(counterexample));
+        assertTrue(evidence.contains(explanation));
+        assertTrue(rulesOf(exerciseOf(result, topic.id, "subject-direction")).isEmpty());
+    }
+
+    @Test
     @DisplayName("should keep opposite verdicts for sister quizzes with equal mini-theory text and find only the targeted quiz")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R003")

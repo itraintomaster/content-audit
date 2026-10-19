@@ -274,9 +274,14 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
             System.err.println("Error: exam status <judge>");
             return 2;
         }
+        var current=currentStandings.get().get(judgeName);
+        boolean promoted=current!=null && current.getStatus()==JudgeExamStatus.PROMOTED;
+        if(promoted)System.out.println(judgeName+": PROMOVIDO POR EL OPERADOR · "+runtimeLabel(current.getRuntimeIdentity())
+                +" · versión "+current.getJudgeVersion()+". "+current.getReason());
         List<JudgeExamRecord> history = examService.history(judgeName);
         if (history.isEmpty()) {
-            System.out.println(judgeName + ": ninguna versión rindió el examen fijo todavía.");
+            System.out.println(promoted ? "Examen fijo: sin medición registrada; la promoción del operador habilita esta versión."
+                    : judgeName + ": ninguna versión rindió el examen fijo todavía.");
             return 0;
         }
         System.out.println("Exámenes de " + judgeName + ":");
@@ -620,6 +625,7 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
             return "SIN ESTADO";
         }
         return switch (status) {
+            case PROMOTED -> "PROMOVIDO POR EL OPERADOR";
             case APPROVED -> "APROBADO";
             case FAILED -> "REPROBADO";
             case TAKEN -> "RENDIDO";

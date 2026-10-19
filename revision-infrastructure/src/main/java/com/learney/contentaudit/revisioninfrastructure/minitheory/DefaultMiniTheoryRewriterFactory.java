@@ -16,6 +16,7 @@ public final class DefaultMiniTheoryRewriterFactory {
                 config.getEndpoint(), config.getApiKey(), config.getMaxTokens() == null ? 4096 : config.getMaxTokens(),
                 config.getTemperature() == null ? 0.7 : config.getTemperature()), List.of(new FrameworkLlmListener()));
         return new MiniTheoryRewriterAdapter(model::chat,
-                config.getProviderName() + ":" + config.getModelId() + "; effort=" + reasoningEffort + "; prompt=mini-feedback-v1");
+                config.getProviderName() + ":" + config.getModelId() + "; effort=" + reasoningEffort
+                        + "; prompt=" + MiniTheoryRewriterAdapter.PROMPT_VERSION);
     }
 }

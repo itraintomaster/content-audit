@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "assessments",
+    "rationale"
+  ],
+  "properties": {
+    "assessments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sentence",
+          "status",
+          "communicativePurpose",
+          "plausibleUse",
+          "issue",
+          "severity",
+          "reason",
+          "neededContext"
+        ],
+        "properties": {
+          "sentence": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "NEEDS_CONTEXT",
+              "NOT_APPLICABLE"
+            ]
+          },
+          "communicativePurpose": {
+            "type": "string"
+          },
+          "plausibleUse": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "issue": {
+            "enum": [
+              "INCOHERENT_SCENARIO",
+              "UNLICENSED_SCENARIO",
+              "DISCOURSE_MISMATCH",
+              null
+            ]
+          },
+          "severity": {
+            "enum": [
+              "HIGH",
+              "MEDIUM",
+              null
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "neededContext": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "PASS"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "plausibleUse": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "issue": {
+                  "type": "null"
+                },
+                "severity": {
+                  "type": "null"
+                },
+                "neededContext": {
+                  "type": "null"
+                },
+                "communicativePurpose": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "FAIL"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "plausibleUse": {
+                  "type": "null"
+                },
+                "issue": {
+                  "enum": [
+                    "INCOHERENT_SCENARIO",
+                    "UNLICENSED_SCENARIO",
+                    "DISCOURSE_MISMATCH"
+                  ]
+                },
+                "severity": {
+                  "enum": [
+                    "HIGH",
+                    "MEDIUM"
+                  ]
+                },
+                "neededContext": {
+                  "type": "null"
+                },
+                "communicativePurpose": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "NEEDS_CONTEXT"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "plausibleUse": {
+                  "type": "null"
+                },
+                "issue": {
+                  "type": "null"
+                },
+                "severity": {
+                  "type": "null"
+                },
+                "neededContext": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "NOT_APPLICABLE"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "plausibleUse": {
+                  "type": "null"
+                },
+                "issue": {
+                  "type": "null"
+                },
+                "severity": {
+                  "type": "null"
+                },
+                "neededContext": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

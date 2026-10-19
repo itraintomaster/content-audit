@@ -27,6 +27,7 @@ class ContextOpinionServiceTest {
     final List<CourseEntity> mapped = new ArrayList<>();
     final List<Integer> caps = new ArrayList<>();
     final List<RevisionProposal> proposals = new ArrayList<>();
+    BatchServiceConfig config;
     DefaultContextOpinionService service;
     String quiz, second;
     boolean thematic = true, approved = true, failPaid, beforeMeasured, reuseSecond;
@@ -66,7 +67,7 @@ class ContextOpinionServiceTest {
             }
             c.setEvaluators(es); ((DefaultCourseDiagnoses)r.getRoot().getDiagnoses()).setJudgeCoverages(List.of(c)); return r;
         });
-        var config = new BatchServiceConfig(); config.setBatchStore(store); config.setCourseRepository(repository); config.setCoursePath(TandaFixture.COURSE_PATH);
+        config = new BatchServiceConfig(); config.setBatchStore(store); config.setCourseRepository(repository); config.setCoursePath(TandaFixture.COURSE_PATH);
         config.setCourseMapper(mapper); config.setAuditEngine(engine); config.setAnalyzerCatalog(catalog);
         service = new DefaultContextOpinionService(config, ledger, reviews, c -> "content");
     }
@@ -134,5 +135,69 @@ class ContextOpinionServiceTest {
         approved=false; assertFalse(service.execute(estimate(true)).allowed()); assertThrows(IllegalArgumentException.class,()->service.execute(measure(service.execute(estimate(true)),1)));
         assertThrows(IllegalArgumentException.class,()->service.execute(new Request("estimate","batch",Map.of("foreign",List.of(quiz)),true,null,null,null,null,null)));
         assertTrue(caps.stream().allMatch(c -> c==0)); verify(store,never()).saveIfVersion(any(),anyInt(),any());
+    }
+
+    @Test void correctionDidacticRecoveryKeepsPriorLearningAndCurriculumWithoutRepeatingExercises() {
+        assertCorrectionCurriculum("a1-didactic");
+    }
+    @Test void correctionNaturalnessRecoveryKeepsPriorLearningAndCurriculumWithoutRepeatingExercises() {
+        assertCorrectionCurriculum("naturalness");
+    }
+    private AuditReport correctionReport(String analyzer) {
+        var canonical = DefaultCurrentAnalysisService.cut(course, batch.getLevel());
+        var report = TandaFixture.report(canonical, List.of(), Map.of(), List.of(analyzer));
+        com.learney.contentaudit.auditdomain.analysis.DefaultAnalysisComposer.index(report.getRoot()).values()
+                .forEach(n -> n.getScores().put(analyzer, 1.0));
+        var active = mock(CurrentAnalysisService.class);
+        when(active.supportedAnalyzers()).thenReturn(Set.of(analyzer));
+        when(active.report(any(), eq("correction"), any())).thenReturn(report);
+        config.setCurrentAnalysisService(active);
+        return report;
+    }
+    private void assertCorrectionCurriculum(String analyzer) {
+        var report = correctionReport(analyzer);
+        var index = com.learney.contentaudit.auditdomain.analysis.DefaultAnalysisComposer.index(report.getRoot());
+        index.get(TandaFixture.CHILD).getScores().remove(analyzer);
+        var descriptor = new AnalyzerDescriptor(); descriptor.setName(analyzer); descriptor.setCost(AnalysisCost.PAID_MODEL);
+        when(catalog.list()).thenReturn(List.of(descriptor));
+        when(engine.runAudit(any(), any(AnalyzerRunSelection.class))).thenAnswer(i -> {
+            assertEquals(0, i.getArgument(1, AnalyzerRunSelection.class).getPolicies().get(analyzer).getMaxNewEvaluations());
+            var r = TandaFixture.report(mapped.get(mapped.size()-1), List.of(), Map.of(), List.of(analyzer));
+            var coverage = new JudgeCoverageDiagnosis(); coverage.setJudgeName(analyzer); coverage.setUnit(AuditTarget.QUIZ);
+            var standing = new JudgeExamStanding(); standing.setConsultsOnCourse(true); standing.setJudgeVersion("v1");
+            coverage.setStanding(standing); coverage.setCost(new JudgeCostEstimate(1, 1, 0, false, 0, 1, 0));
+            coverage.setEvaluators(List.of(new EvaluatorCoverage(analyzer, new EvaluationCoverage(1, 0, 0, 0, 1, 0), "v1")));
+            ((DefaultCourseDiagnoses) r.getRoot().getDiagnoses()).setJudgeCoverages(List.of(coverage));
+            return r;
+        });
+        var estimate = service.execute(new Request("estimate", "batch", null, false, null, null, null, null, null, "correction"));
+        assertEquals(List.of(TandaFixture.CHILD), estimate.selection().get(analyzer));
+        var builder = new com.learney.contentaudit.auditdomain.englishquality.EnglishQualitySubjectBuilder(
+                new com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer(
+                        com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter.create()),
+                new com.learney.contentaudit.auditdomain.finishedsentence.DefaultFinishedSentenceReader());
+        var expected = builder.build(index.get(TandaFixture.CHILD)).getContent();
+        assertFalse("[]".equals(expected.get("documentedPriorLearning")));
+        for (var cut : mapped) {
+            assertEquals(1, count(cut), "Only the missing exercise may reach the judge");
+            var cutReport = TandaFixture.report(cut, List.of(), Map.of(), List.of(analyzer));
+            var target = com.learney.contentaudit.auditdomain.analysis.DefaultAnalysisComposer.index(cutReport.getRoot()).get(TandaFixture.CHILD);
+            assertEquals(expected, builder.build(target).getContent(), "The judge must receive the same input as full Correction 1");
+            assertEquals(1, cut.getRoot().getMilestones().size(), "Other levels must remain outside A1");
+        }
+        verify(store, never()).saveIfVersion(any(), anyInt(), any());
+    }
+    @Test void correctionCompletionDoesNotRequestASavedNaturalnessAbstentionAgain() {
+        var report = correctionReport("naturalness");
+        var target = com.learney.contentaudit.auditdomain.analysis.DefaultAnalysisComposer.index(report.getRoot()).get(TandaFixture.CHILD);
+        target.getScores().remove("naturalness"); target.getUnevaluatedBy().add("naturalness");
+        target.getMetadata().put("naturalnessInputContract", "english-quality-input-v2");
+        target.getMetadata().put("naturalnessVersion", "v1");
+        target.getMetadata().put("naturalnessVerdict", Map.of("assessments", List.of(Map.of("status", "NOT_APPLICABLE"))));
+        var estimate = service.execute(new Request("estimate", "batch", null, false, null, null, null, null, null, "correction"));
+        assertTrue(estimate.selection().isEmpty());
+        assertEquals(0, estimate.pendingQueries());
+        verify(engine, never()).runAudit(any(), any(AnalyzerRunSelection.class));
+        verify(store, never()).saveIfVersion(any(), anyInt(), any());
     }
 }

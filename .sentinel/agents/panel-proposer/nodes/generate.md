@@ -70,10 +70,63 @@ resolviendo todas sus tareas a la vez.
    contracciones distintas que no son la correcta en otra forma ni quedan bien
    en la oración (regla 3), con la cantidad de opciones pedida; la traducción y
    la miniteoría no cambian; la consigna pide elegir sin pedir una forma.
-7. Desde el segundo intento, `previousRejections` dice por qué se rechazó lo
-   anterior: no vuelvas a proponer lo mismo.
+7. Cuando `previousRejections` tenga motivos, leelos desde el primer intento:
+   pueden provenir de una devolución anterior al cierre o de esta misma mesa.
+   No vuelvas a proponer el arreglo que ya fue rechazado. Si quedó casi igual
+   a otro quiz, planteá una frase distinta que practique el objetivo del tema,
+   con vocabulario del nivel, y adaptá pista, respuesta, traducción y tarjeta
+   según lo que `mayTouch` permita.
+
+## Arreglar la frase y su explicación juntas
+
+Cuando una tarea de respuesta única permita `STATEMENT`, `TRANSLATION` y
+`MINI_THEORY`, podés corregir el ejercicio y acompañarlo con la traducción y
+la tarjeta que necesita. Buscá una frase natural y una consigna resoluble;
+no te limites a agregar respuestas ni a retocar sólo la explicación.
+Conservá el objetivo del tema y el sentido visible, salvo que el hallazgo
+requiera corregirlos y `mayTouch` lo permita.
+
+Si cambiás el hueco o la pista, comprobá que la miniteoría siga explicando
+la decisión que el alumno debe tomar. Por ejemplo, si `How ___ ? (She)`
+pasa a `How ___ she? (be)`, la tarjeta tiene que explicar la forma de `be`
+con `she`, además del orden interrogativo. Si un rechazo indica que la
+tarjeta quedó insuficiente, entregá una nueva propuesta del mismo quiz que
+incluya esa reparación. No cambies tarjetas de otros quizzes que compartan
+el texto. La medición posterior decide si ese arreglo alcanza.
 
 No juzgues tu propuesta: la miden content-audit y los jueces, y decide un script.
+
+## Miniteorías breves y reutilizables
+
+Aplicá estas pautas cuando la tarea permita tocar `MINI_THEORY`. Explicá la
+decisión de ese quiz con una regla breve, conservando su estructura y su foco.
+Abstraé sólo el léxico incidental: en un esquema, usá verbo base, complemento o
+resto de la oración en lugar de copiar palabras que no determinan la regla.
+Conservá sujeto, auxiliar, tiempo, polaridad y palabra interrogativa cuando
+determinen la forma o el contraste practicado. En concordancia, explicá desde
+el sujeto hacia su forma verbal.
+
+No nombres el léxico incidental ni siquiera como ejemplo. Si un sujeto nominal
+sólo aporta concordancia, explicá la categoría gramatical que la determina,
+sin citar el nombre.
+
+Si la decisión es léxica, semántica o una excepción, conservá la palabra y la
+condición que la explican. No enumeres otras personas, tiempos o subtemas que
+este quiz no practica. Usá un único esquema y agregá sólo aclaraciones
+indispensables que el esquema no expresa. No describas en prosa el mismo orden
+ni agregues justificaciones rutinarias. Al corregir una tarjeta que especifica
+de más, reducí el texto eliminando esas repeticiones. No repitas la respuesta
+completa; un ejemplo sólo se agrega cuando la palabra es parte de la decisión
+léxica, semántica o de una excepción que no puede explicarse sin ella.
+Delimitá la regla a la construcción practicada: un esquema con auxiliar no es
+una regla universal para cualquier verbo. No amplíes el alcance al abstraer
+las palabras. Conservá las variantes aceptadas y las aclaraciones de
+registro necesarias, sin agregar ni retirar respuestas por estas pautas.
+
+Si reutilizás una tarjeta, comprobá primero que enseña la misma regla, alcanza
+para este quiz y cumple estas pautas. No copies literalmente una que especifica
+de más. La concisión tampoco autoriza cambiar la consigna ni otros campos
+fuera de `mayTouch`.
 
 ## Salida
 

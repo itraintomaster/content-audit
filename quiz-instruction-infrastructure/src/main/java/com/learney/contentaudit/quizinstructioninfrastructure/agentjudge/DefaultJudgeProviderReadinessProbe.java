@@ -49,6 +49,9 @@ public class DefaultJudgeProviderReadinessProbe implements JudgeProviderReadines
     static final String QUOTA_EXHAUSTED_DETAIL = "cuota agotada";
     static final String QUOTA_EXHAUSTED_REMEDY =
             "esperá a que se renueve el límite de uso o bajá las consultas a la vez con --concurrency";
+    static final String REQUEST_LIMIT_DETAIL = "límite de solicitudes informado por el proveedor";
+    static final String REQUEST_LIMIT_REMEDY =
+            "volvé a intentar más tarde o bajá las consultas a la vez con --concurrency";
     static final String SERVICE_UNREACHABLE_DETAIL = "servicio caído";
     static final String SERVICE_UNREACHABLE_REMEDY =
             "revisá la conexión y volvé a correr cuando el servicio responda";
@@ -75,15 +78,27 @@ public class DefaultJudgeProviderReadinessProbe implements JudgeProviderReadines
             literal("invalid api key"),
             statusCode("401"));
 
-    /** Usage limit, rate limit or credit: the session exists but cannot consult now. */
+    /** Explicit usage quota or credit shortage, including a 429 whose body identifies it. */
     private static final List<Pattern> QUOTA_EXHAUSTED_SIGNS = List.of(
             literal("usage limit"),
-            literal("rate limit"),
-            literal("rate_limit"),
+            literal("usage_limit"),
             // «insufficient_quota», «quota exceeded»; never «quotation».
             Pattern.compile("quota(?!tion)", Pattern.CASE_INSENSITIVE),
             literal("credit balance"),
+            literal("insufficient credits"),
+            literal("insufficient_credits"),
+            literal("out of credits"),
+            literal("credits exhausted"),
+            literal("credits_exhausted"));
+
+    /** Request throttling alone says nothing about whether the account's usage quota is spent. */
+    private static final List<Pattern> REQUEST_LIMIT_SIGNS = List.of(
+            literal("rate limit"),
+            literal("rate_limit"),
+            literal("rate-limit"),
             literal("too many requests"),
+            literal("too_many_requests"),
+            literal("TooManyRequests"),
             literal("limit reached"),
             statusCode("429"));
 
@@ -169,6 +184,12 @@ public class DefaultJudgeProviderReadinessProbe implements JudgeProviderReadines
         if (matchesAny(QUOTA_EXHAUSTED_SIGNS, text)) {
             return notReady(JudgeUnavailabilityCause.QUOTA_EXHAUSTED, QUOTA_EXHAUSTED_DETAIL,
                     QUOTA_EXHAUSTED_REMEDY);
+        }
+        if (matchesAny(REQUEST_LIMIT_SIGNS, text)) {
+            // Preserve the contract's existing cause while avoiding an unsupported claim that
+            // the plan or credits are exhausted merely because a request was rate limited.
+            return notReady(JudgeUnavailabilityCause.QUOTA_EXHAUSTED, REQUEST_LIMIT_DETAIL,
+                    REQUEST_LIMIT_REMEDY);
         }
         if (matchesAny(SERVICE_UNREACHABLE_SIGNS, text)) {
             return notReady(JudgeUnavailabilityCause.SERVICE_UNREACHABLE, SERVICE_UNREACHABLE_DETAIL,

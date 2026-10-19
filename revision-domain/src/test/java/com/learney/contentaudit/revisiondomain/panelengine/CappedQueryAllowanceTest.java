@@ -57,4 +57,39 @@ public class CappedQueryAllowanceTest {
         assertEquals(Optional.of("el servicio del modelo no responde"), allowance.tripped(), "the first cause");
         assertEquals(1, allowance.spent(), "what was in flight is still settled");
     }
+
+    @Test
+    public void sequentialEvaluatorsRequireTheirWholeBudgetEvenWithOneConcurrentSlot() {
+        var insufficient = new CappedQueryAllowance(1, 1);
+        assertFalse(insufficient.tryReserveSequential(2));
+        assertEquals(0, insufficient.spent()); assertEquals(0, insufficient.inFlight());
+        assertTrue(insufficient.tripped().isPresent());
+
+        var enough = new CappedQueryAllowance(2, 1);
+        assertTrue(enough.tryReserveSequential(2)); assertEquals(1, enough.inFlight());
+        assertFalse(enough.tryReserve(1), "the sequential consultation occupies its slot and whole budget");
+        assertTrue(enough.tripped().isEmpty(), "the in-flight group still has to settle");
+        enough.settleSequential(2, 2);
+        assertEquals(0, enough.inFlight()); assertEquals(2, enough.spent());
+        assertFalse(enough.tryReserve(1)); assertTrue(enough.tripped().isPresent());
+    }
+
+    @Test
+    public void cachedSequentialEvaluatorRefundsItsUnusedReservation() {
+        var allowance = new CappedQueryAllowance(2, 1);
+        assertTrue(allowance.tryReserveSequential(2));
+        allowance.settleSequential(2, 1);
+        assertEquals(1, allowance.spent()); assertEquals(0, allowance.inFlight());
+        assertTrue(allowance.tryReserve(1), "the reused evaluator costs nothing");
+        allowance.settle(1, 1); assertEquals(2, allowance.spent());
+    }
+
+    @Test
+    public void countingWrapperDelegatesSequentialBudgetAndKeepsItsOwnSpend() {
+        var shared = new CappedQueryAllowance(2, 1);
+        var counting = new Allowances.Counting(shared);
+        assertTrue(Allowances.reserveSequential(counting, 2)); assertEquals(1, shared.inFlight());
+        counting.settleSequential(2, 2);
+        assertEquals(2, shared.spent()); assertEquals(2, counting.spent()); assertEquals(0, shared.inFlight());
+    }
 }

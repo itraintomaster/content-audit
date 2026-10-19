@@ -1,0 +1,91 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "quizId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "SUITABLE",
+        "IMPROVE",
+        "REWRITE_REQUIRED",
+        "REVIEW",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "targetStructure": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affectedSentences": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "issue": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "TARGET_ALIGNMENT",
+        "OPAQUE_EXAMPLE",
+        "INCIDENTAL_STRUCTURE",
+        "SPECIAL_SENSE_OR_REGISTER",
+        "MODIFIER_SCOPE",
+        null
+      ]
+    },
+    "reason": {
+      "type": "string"
+    },
+    "neededEvidence": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "handoffs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "NATURALNESS",
+          "PRAGMATISM",
+          "FORMAT",
+          "INSTRUCTION_OR_ANSWER",
+          "INPUT"
+        ]
+      }
+    },
+    "proposedAction": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "proposedExample": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "quizId",
+    "status",
+    "targetStructure",
+    "affectedSentences",
+    "issue",
+    "reason",
+    "neededEvidence",
+    "handoffs",
+    "proposedAction",
+    "proposedExample"
+  ]
+}

@@ -4,7 +4,8 @@ description: |
   no reemplaza su control de ambigüedad ni comparte su examen o presupuesto.
   Juzga sólo información visible antes de contestar; conserva NEEDS_CONTEXT
   cuando no puede identificar un objetivo. Un fallo de esquema nunca se consolida.
-  Todo archivo de esta carpeta integra la versión efectiva del juez.
+  Todo archivo de esta carpeta menos eval/ integra la versión efectiva del
+  juez: las pruebas no corren al medir y no la cambian (F-ALDIA-R001).
 kind: agent
 strategy: graph
 initial_node: evaluate

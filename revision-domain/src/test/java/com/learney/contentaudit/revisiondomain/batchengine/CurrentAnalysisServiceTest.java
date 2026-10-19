@@ -120,6 +120,70 @@ class CurrentAnalysisServiceTest {
         ((AuditableQuiz)DefaultAnalysisComposer.index(fresh.getRoot()).get(TandaFixture.CHILD).getEntity()).setInstructions("Otra consigna");
         assertTrue(service.reanalysisScope(NAME, base, fresh, "v2").baseOnlyQuizIds().contains(TandaFixture.CHILD));
     }
+
+    @Test void integratesDidacticReviewWithoutTreatingItAsApproval() {
+        assertStoredAbstentionCanBeIntegrated("a1-didactic", false);
+    }
+    @Test void integratesNaturalnessNotApplicableWithoutInventingAScore() {
+        assertStoredAbstentionCanBeIntegrated("naturalness", false);
+    }
+    @Test void integratesPragmatismNeedsContextWithoutTreatingItAsProviderFailure() {
+        assertStoredAbstentionCanBeIntegrated("pragmatism", false);
+    }
+    @Test void doesNotIntegrateUnmeasuredProviderFailure() {
+        assertStoredAbstentionCanBeIntegrated("naturalness", true);
+    }
+    @Test void differentPriorLearningStillPreventsIntegrationOfAnIdenticalExercise() {
+        assertStoredAbstentionCanBeIntegrated("a1-didactic", false, true);
+    }
+
+    private void assertStoredAbstentionCanBeIntegrated(String analyzer, boolean providerFailure) {
+        assertStoredAbstentionCanBeIntegrated(analyzer, providerFailure, false);
+    }
+    private void assertStoredAbstentionCanBeIntegrated(String analyzer, boolean providerFailure, boolean changedCurriculum) {
+        var source = report(false, false, "v1");
+        var node = DefaultAnalysisComposer.index(source.getRoot()).get(TandaFixture.CHILD);
+        node.getUnevaluatedBy().add(analyzer);
+        if (!providerFailure) {
+            if ("pragmatism".equals(analyzer)) {
+                var verdict = new com.learney.contentaudit.auditdomain.pragmatism.PragmatismVerdict(List.of(
+                        new com.learney.contentaudit.auditdomain.pragmatism.PragmatismVerdict.Assessment(
+                                "A sentence.", com.learney.contentaudit.auditdomain.pragmatism.PragmatismVerdict.Status.NEEDS_CONTEXT,
+                                "", null, null, null, "Missing context", "Who is speaking?")), "Context required");
+                ((DefaultQuizDiagnoses) node.getDiagnoses()).setPragmatismDiagnosis(
+                        new com.learney.contentaudit.auditdomain.pragmatism.PragmatismDiagnosis(verdict, "saved-version", false));
+            } else {
+                node.getMetadata().put(analyzer + "InputContract", "english-quality-input-v2");
+                node.getMetadata().put(analyzer + "Version", "saved-version");
+                node.getMetadata().put(analyzer + "Verdict", "naturalness".equals(analyzer)
+                        ? Map.of("assessments", List.of(Map.of("status", "NOT_APPLICABLE")))
+                        : Map.of("status", "REVIEW"));
+            }
+        }
+        if (changedCurriculum) {
+            var topic = node.ancestor(AuditTarget.TOPIC).orElseThrow();
+            var knowledge = new AuditableKnowledge();
+            knowledge.setId("different-prior-learning"); knowledge.setLabel("Afirmativas con be");
+            topic.getChildren().add(0, new AuditNode(knowledge, AuditTarget.KNOWLEDGE, topic,
+                    new ArrayList<>(), new LinkedHashMap<>(), new LinkedHashMap<>(), null));
+        }
+        saved.put("abstention", source);
+        batch.setSelectiveRuns(List.of(new SelectiveCorrection.Run("abstention", "analyze", analyzer,
+                null, 1, 6, "content", "saved-version", "codex-cli / model / medium", "abstention",
+                null, List.of(), List.of(), 0, 0, 0, 1, 0, 1, "PARTIAL", "human", Instant.EPOCH,
+                Instant.EPOCH, null, false, 6, "content", null)));
+        var fit = read().looseRuns().get(0).fits().stream().filter(f -> "correction".equals(f.state())).findFirst().orElseThrow();
+        assertEquals(providerFailure || changedCurriculum ? 0 : 1, fit.compatible());
+        if (providerFailure || changedCurriculum) return;
+        var integrated = service.execute(select("integrate", "abstention", "saved-abstention", null));
+        var state = integrated.states().stream().filter(s -> "correction".equals(s.id())).findFirst().orElseThrow();
+        assertTrue(state.provenance().get(TandaFixture.CHILD).containsKey(analyzer));
+        var result = DefaultAnalysisComposer.index(service.report(batch, "correction", course).getRoot()).get(TandaFixture.CHILD);
+        assertTrue(DefaultAnalysisComposer.hasStoredOpinion(result, analyzer));
+        assertFalse(DefaultAnalysisComposer.evaluated(result, analyzer));
+        assertFalse(result.getScores().containsKey(analyzer));
+        verify(repository, never()).save(any(), any());
+    }
     @Test void replacementRequiresExplicitActionKeepsOtherAnalyzersAndCanBeUndone() {
         service.execute(select("integrate", "r1", "s1", null)); run("r2", false, "v2");
         var fit = read().looseRuns().get(1).fits().stream().filter(f -> f.state().equals("correction")).findFirst().orElseThrow();
@@ -261,6 +325,99 @@ class CurrentAnalysisServiceTest {
         verify(engine,never()).runAudit(any(),any());
     }
 
+
+    private DefaultContextOpinionService completingService(List<Integer> caps) { return completingService(caps, NAME); }
+    private DefaultContextOpinionService completingService(List<Integer> caps, String judge) {
+        if ("near-duplicates".equals(judge)) {
+            var descriptor = new AnalyzerDescriptor(); descriptor.setName(judge); descriptor.setDisplayName("Ejercicio casi repetido");
+            descriptor.setCost(AnalysisCost.PAID_MODEL); descriptor.setTarget(AuditTarget.QUIZ);
+            descriptor.setFamily(com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.ERRORS);
+            descriptor.setEvaluatedTargets(List.of(AuditTarget.QUIZ)); descriptor.setResolutions(List.of(FindingResolution.PANEL));
+            when(catalog.list()).thenReturn(List.of(descriptor));
+            var names = new ArrayList<>(batch.getAnalyzers()); names.add(judge); batch.setAnalyzers(names);
+        }
+        var bridge = mock(CurrentAnalysisService.class, org.mockito.AdditionalAnswers.delegatesTo(service));
+        doReturn(Set.of(judge)).when(bridge).supportedAnalyzers();
+        config.setCurrentAnalysisService(bridge);
+        when(audits.save(any())).thenAnswer(i -> {
+            String id = "saved-" + saved.size(); saved.put(id, i.getArgument(0)); return id;
+        });
+        when(engine.runAudit(any(), any(AnalyzerRunSelection.class))).thenAnswer(i -> {
+            var selection = i.getArgument(1, AnalyzerRunSelection.class);
+            int cap = selection.getPolicies().containsKey(judge) ? selection.getPolicies().get(judge).getMaxNewEvaluations() : 0;
+            caps.add(cap);
+            var report = report(NAME.equals(judge) && cap > 0, true, "v1");
+            if ("near-duplicates".equals(judge)) for (var node : DefaultAnalysisComposer.index(report.getRoot()).values()) {
+                if (!DefaultAnalysisComposer.eligible(node, judge)) continue;
+                node.getScores().put(judge, 1.0); node.getMetadata().put("verdictVersions", Map.of(judge, "v1"));
+                if (TandaFixture.CHILD.equals(node.getEntity().getId()) && cap == 0) node.getPartiallyEvaluatedBy().add(judge);
+            }
+            var standing = new com.learney.contentaudit.auditdomain.judging.JudgeExamStanding();
+            standing.setConsultsOnCourse(true); standing.setJudgeVersion("v1");
+            var coverage = new com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis();
+            coverage.setJudgeName(judge); coverage.setStanding(standing); coverage.setUnit("near-duplicates".equals(judge) ? AuditTarget.KNOWLEDGE : AuditTarget.QUIZ);
+            coverage.setCost(new com.learney.contentaudit.auditdomain.judging.JudgeCostEstimate(1, cap > 0 ? 0 : 1, 0, false, 0, 1, 0));
+            coverage.setEvaluators(List.of(new com.learney.contentaudit.auditdomain.judging.EvaluatorCoverage(judge,
+                    new com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage(1, cap > 0 ? 1 : 0, cap > 0 ? 1 : 0, 0, cap > 0 ? 0 : 1, 0), "v1")));
+            ((DefaultCourseDiagnoses) report.getRoot().getDiagnoses()).setJudgeCoverages(List.of(coverage));
+            return report;
+        });
+        return new DefaultContextOpinionService(config, ledger, reviews, c -> "content");
+    }
+    @Test void completionIncludesUnchangedExercisesAndIntegratesIntoTheExistingAnalysisWithoutChangingDecisions() {
+        var caps = new ArrayList<Integer>(); var opinions = completingService(caps);
+        var estimate = opinions.execute(new ContextOpinion.Request("estimate", "batch", null, false,
+                null, null, null, null, null, "correction"));
+        assertEquals("correction", estimate.scope());
+        assertTrue(estimate.selection().get(NAME).contains(TandaFixture.CHILD));
+        assertTrue(caps.stream().allMatch(c -> c == 0)); assertTrue(history.isEmpty());
+        var request = new ContextOpinion.Request("measure", "batch", estimate.selection(), false,
+                "complete-1", 6, estimate.fingerprint(), 1, "human", "correction");
+        opinions.execute(request);
+        assertEquals(1, history.size()); assertEquals("integrate", history.get(0).action());
+        assertEquals("correction", history.get(0).state());
+        assertEquals(1, errors(read())); assertEquals(6, batch.getContentVersion()); assertEquals(1, batch.getCorrectionRevision());
+        assertEquals(1, batch.getClosings().size()); assertEquals(BatchStatus.CLOSED, batch.getStatus());
+        assertEquals(1, caps.stream().filter(c -> c > 0).count());
+        assertEquals("complete-1", read().looseRuns().stream().filter(r -> r.id().equals(history.get(0).runId())).findFirst().orElseThrow().activityId());
+        int calls = caps.size(); opinions.execute(request); assertEquals(calls, caps.size()); assertEquals(1, history.size());
+    }
+    @Test void completingNeverReplacesASelectedOpinionAndZeroBudgetLeavesUnmeasuredExercisesPending() {
+        service.execute(select("integrate", "r1", "selected", null));
+        var caps = new ArrayList<Integer>(); var opinions = completingService(caps);
+        var estimate = opinions.execute(new ContextOpinion.Request("estimate", "batch", null, false,
+                null, null, null, null, null, "correction"));
+        assertFalse(estimate.selection().getOrDefault(NAME, List.of()).contains(TandaFixture.CHILD));
+        opinions.execute(new ContextOpinion.Request("measure", "batch", estimate.selection(), false,
+                "complete-2", 6, estimate.fingerprint(), 0, "human", "correction"));
+        assertEquals(1, errors(read())); assertEquals(1, history.size());
+        assertTrue(caps.stream().allMatch(c -> c == 0));
+    }
+
+    @Test void authoritativeApplicabilityDoesNotCallAMultipleChoiceHintPending() {
+        var names = new ArrayList<>(batch.getAnalyzers()); names.add("hint-coherence"); names.add("answer-completeness"); batch.setAnalyzers(names);
+        var state = read().states().stream().filter(x -> "correction".equals(x.id())).findFirst().orElseThrow();
+        assertTrue(state.inapplicableAnalyzers().get(TandaFixture.CHILD).containsAll(List.of("hint-coherence", "answer-completeness", "single-answer")));
+        assertTrue(service.supportedAnalyzers().contains("near-duplicates"));
+    }
+
+    @Test void completionFindsAPartialPairJudgeAndIntegratesItWithoutStartingAnotherCorrection() {
+        var caps = new ArrayList<Integer>(); var opinions = completingService(caps, "near-duplicates");
+        var estimate = opinions.execute(new ContextOpinion.Request("estimate", "batch", null, false,
+                null, null, null, null, null, "correction"));
+        assertEquals(List.of(TandaFixture.CHILD), estimate.selection().get("near-duplicates"));
+        assertEquals("KNOWLEDGE", estimate.judges().get(0).unit()); assertEquals(1, estimate.pendingQueries());
+        assertTrue(estimate.judges().get(0).quizzes() > 1, "The pair judge must read the other quizzes of the topic too");
+        assertTrue(caps.stream().allMatch(c -> c == 0));
+        opinions.execute(new ContextOpinion.Request("measure", "batch", estimate.selection(), false,
+                "complete-pairs", 6, estimate.fingerprint(), 1, "human", "correction"));
+        assertEquals(1, history.size()); assertEquals("near-duplicates", history.get(0).analyzer());
+        assertEquals("correction", history.get(0).state());
+        var current = service.report(batch, "correction", course);
+        assertTrue(DefaultAnalysisComposer.evaluated(DefaultAnalysisComposer.index(current.getRoot()).get(TandaFixture.CHILD), "near-duplicates"));
+        assertEquals(1, batch.getCorrectionRevision()); assertEquals(6, batch.getContentVersion()); assertEquals(1, batch.getClosings().size());
+        assertEquals(1, caps.stream().filter(c -> c > 0).count());
+    }
 
     @Test @Tag("FEAT-ALDIA") @Tag("F-ALDIA-R005") @Tag("F-ALDIA-R003")
     void eachStateCountsItsJudgeAgainstTodaysVersionAndEveryVerdictCarriesItsMark() {

@@ -51,6 +51,28 @@ class ProblemCmdTest {
         assertEquals(before, new FileSystemProblemStore(course).load(p.id()).orElseThrow());
     }
 
+    @Test void inspectionIncludesJudgeGateScriptsAsTextWithoutExecutingThem() throws Exception {
+        var p = annotate();
+        Path gate = root.resolve(".sentinel/agents/mini-theory-judge/scripts/gate_verdict.sh");
+        Files.createDirectories(gate.getParent());
+        String source = "#!/bin/sh\nexit 73\n";
+        Files.writeString(gate, source);
+        String version = "sha256:" + java.util.HexFormat.of().formatHex(
+                java.security.MessageDigest.getInstance("SHA-256").digest(Files.readAllBytes(gate)));
+        var delivery = Map.of("changes", List.of(Map.of("path", gate.toString(), "version", version,
+                        "summary", "Validación del juez", "scope", "judge")),
+                "results", List.of(Map.of("caseId", p.cases().get(0).id(), "fixed", true,
+                        "version", "v1", "modelConsulted", false)));
+        Path artifact = Files.writeString(root.resolve("script-delivery.json"), CommandJson.writeCompact(delivery));
+        assertEquals(0, run("update", p.id(), "--revision", "" + p.revision(), "--state", "en-trabajo",
+                "--step", "gate", "--artifacts", artifact.toString()), errors.toString());
+        assertEquals(0, run("inspect", p.id()), errors.toString());
+        var change = new com.fasterxml.jackson.databind.ObjectMapper().readTree(output.toString()).path("changes").get(0);
+        assertTrue(change.path("available").asBoolean());
+        assertTrue(change.path("matchesDelivery").asBoolean());
+        assertEquals(source, change.path("after").asText());
+    }
+
     int run(String... args) {
         output.reset(); errors.reset(); var all = new ArrayList<>(List.of("problem")); all.addAll(List.of(args));
         all.addAll(List.of("--course", course.toString()));

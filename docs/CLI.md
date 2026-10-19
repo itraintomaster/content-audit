@@ -59,6 +59,62 @@ juez se declara no disponible y la corrida no emite ninguna consulta.
 
 ## El flujo habitual
 
+### Naturalidad y calidad didáctica A1
+
+`naturalness` evalúa cómo se expresa la idea en todas las variantes aceptadas. Reemplaza
+el puntaje histórico de naturalidad que mantenía 100 % aunque hubiera alertas. Usa
+`native-usage-judge` con salidas `PASS`, `FAIL`, `REVIEW` y `NOT_APPLICABLE`.
+
+`a1-didactic` evalúa por separado la claridad del ejemplo, su objetivo y la carga
+incidental en el recorrido A1. Usa `a1-didactic-judge` con salidas `SUITABLE`, `IMPROVE`,
+`REWRITE_REQUIRED`, `REVIEW` y `NOT_APPLICABLE`. No invalida inglés ni respuestas
+aceptadas por recomendar un ejemplo más claro.
+
+Ambos leen la consigna, el estímulo y las opciones visibles, todas las respuestas
+reconstruidas y el orden de lecciones. Los títulos previos no prueban cada estructura
+enseñada: si falta esa evidencia, el caso queda `REVIEW`. No usan un filtro POS para
+descartar elipsis o frases comunicativas. Las opciones internas de CLOZE no se
+presentan al juez como pistas que ve el alumno.
+
+Cada criterio tiene su propia versión, presupuesto y registro de evaluaciones.
+Comparten la configuración explícita `CONTENT_AUDIT_JUDGE_PROVIDER`,
+`CONTENT_AUDIT_JUDGE_MODEL` y `CONTENT_AUDIT_REASONING_EFFORT`; el proveedor por
+omisión es `codex-cli`, sin fallback silencioso. Una salida inválida o un presupuesto
+agotado queda pendiente, nunca aprobada. No ejecutar consultas reales sin autorización.
+
+Los defectos propios producen hallazgos para panel, sin reescritura automática.
+Una derivación exclusiva a naturalidad, pragmatismo, formato o consigna conserva
+ese dueño y no genera otro hallazgo didáctico. El puntaje refleja ausencia de
+defectos propios; no mide precisión ni confianza del modelo. Los estados completos
+y las cantidades se guardan en los metadatos del informe.
+
+La prueba de desarrollo de 138 ejercicios / 162 variantes de corrección 1 está en
+[el informe de resultados](../analysis/naturalness-review/2026-10-14-native-didactic-pilot/resultados.html).
+José promovió ambos jueces después de revisar este piloto y sus discrepancias.
+Esa adopción por el operador queda registrada aparte de la certificación del
+examen fijo. La corrida completa de A1 todavía no se ejecutó.
+
+### Promoción por revisión del operador
+
+`promote-judge` registra la decisión explícita del operador de adoptar una versión
+después de revisar sus resultados. Se conserva separada de las mediciones del
+examen fijo: no cambia discrepancias, puntajes ni datos del curso.
+
+```bash
+content-audit promote-judge naturalness --expected-version <version-revisada> \
+  --reviewer José --evidence <archivo-de-decision> --reason "Acepto los resultados del piloto"
+```
+
+La versión debe coincidir con la vigente. Se guardan proveedor, modelo, esfuerzo,
+revisor, motivo, fecha y la huella del archivo revisado en `.content-audit/judge-promotions/`.
+`exam status <juez> -f json` muestra `PROMOTED` y el motivo de adopción; el
+historial de exámenes permanece separado. La aprobación no se hereda a otra
+versión o modelo, ni a versiones vinculadas solo por una migración de formato.
+Una medición de examen posterior reemplaza la decisión para esa versión.
+
+La promoción habilita consultas cuando se solicita un presupuesto. Sin un pedido
+de consultas, el tope sigue siendo cero.
+
 ```
 analyze  →  plan  →  revise  →  approve / reject
 ```
@@ -366,8 +422,26 @@ Para confirmar se envían los valores que se acaban de revisar, sin inventar ids
 
 `batch selective-correction` acepta `state: "base"|"correction"` y `force: true`/`action: "reanalyze"`. Primero se usa `estimate` con el proveedor/modelo elegido; luego se confirma un `queryCap` explícito con huella y versión. El tope incluye todos los evaluadores del juez. La versión nueva queda suelta hasta su integración manual; los veredictos anteriores conservan su versión. Se admiten Calidad de distractores, Consigna, Respuesta única, Sentido de traducción, Validez de opciones y Mini teoría. Mini teoría usa la entrada del tema completo.
 
+`action: "correct"` admite Calidad de distractores (`multiple-choice-quality`), Respuesta única (`single-answer`), Consigna (`quiz-instruction`) y Sentido de traducción (`translation-sense`), con un alcance `PANEL` declarado. El pedido elige una medición selectiva guardada con `sourceRunId` y sus `taskIds`, y exige un tope nuevo de consultas, autor, huella, versión de contenido y versión del juez. Una tarea sólo pertenece a la medición y al analizador que la originaron; las alertas `RANK_ONLY` no entran como correcciones. Las tareas ya intentadas necesitan una nueva medición antes de otro reintento.
+
+Para Respuesta única, las alternativas de un mismo quiz se trabajan juntas. La mesa puede corregir enunciado, pista, respuestas, traducción y miniteoría de ese quiz; valida la tarjeta contra el ejercicio actualizado antes de aceptar el candidato y devuelve los motivos al corrector dentro del límite de intentos. Una tarjeta compartida en otros quizzes queda sin cambios. El resultado queda como propuesta pendiente de revisión, conservando las decisiones existentes, sin volver a cerrar ni publicar la tanda completa. No se ejecuta el reintento sin un `queryCap` explícito.
+
+Un reintento selectivo conserva el motivo de propuestas descartadas previamente del mismo quiz, aunque sus tareas nuevas comiencen con cero intentos. Ese contexto llega al corrector desde el primer intento; no se vuelven a cobrar los intentos históricos. Por ejemplo, si `When is she at home?` se devolvió por parecerse a otro ejercicio, el corrector ve ese motivo y debe proponer una frase distinta dentro del objetivo del tema. Consigna y Sentido de traducción pueden acompañar ese arreglo con pista, traducción y miniteoría del quiz objetivo; los demás quizzes y sus decisiones se conservan.
+
 Publicar recalcula la comparación y la compuerta desde la selección vigente, respeta las aprobaciones y exclusiones y guarda el informe compuesto. No reutiliza una compuerta histórica como autorización ni ejecuta consultas adicionales. `get student-view <tema> --audit <id> -f json` permite leer el ejercicio de un informe histórico concreto.
 
 Para reanalizar ambos estados, `state: "both", force: true` devuelve una estimación con `scopes`: consultas de la corrección y consultas adicionales de la base. Las entradas idénticas se miden una vez. Un único `queryCap` limita el gasto completo; en la base sólo se reutilizan resultados recién medidos con la versión exigida. Se guardan dos mediciones sueltas, vinculadas a una ejecución y con integración manual independiente. Una reserva incierta nunca se retoma automáticamente.
 
 La ficha de integración incluye errores compatibles con la base, errores actuales y resultantes por juez y las versiones anteriores. Esos datos permiten mostrar el desglose y el antes/después sin atribuir los errores de ejercicios cambiados a la corrección cuando la base sigue sin medir.
+
+### Adjuntar opiniones preliminares guardadas
+
+`batch opinion` admite `estimate-preliminary` e `import-preliminary` para anexar evidencia de una prueba a las propuestas que esa prueba evaluó. `sourceRef` señala una carpeta con `photo-manifest.json`, la foto `course/`, las métricas de Naturalidad, Didáctica A1 y Pragmatismo y sus registros originales bajo `trial-workdir/.content-audit/evaluations/`. No consulta modelos.
+
+Primero se estima el pedido; luego se confirma con la `contentVersion` y la `fingerprint` devueltas, un `operationId` nuevo, `reviewer` y `queryCap: 0`. Una `selection` opcional limita los quizzes y jueces a adjuntar. La fuente debe conservar proveedor, modelo, versión, fecha, veredicto y huella del registro; la foto de cada quiz debe coincidir exactamente con su propuesta vigente.
+
+```json
+{"action":"estimate-preliminary","batchId":"tanda-A1","sourceRef":"/ruta/a/la/prueba"}
+```
+
+La importación guarda una opinión `PRELIMINARY`, visible por separado junto al quiz. Su origen `EXAM` se conserva aunque el operador habilite después al juez. No la convierte en una medición del curso, no completa la cobertura del análisis vigente ni cambia la aprobación de las propuestas o de los jueces. Las mediciones formales guardadas se integran mediante `batch analysis`.

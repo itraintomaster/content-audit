@@ -14,6 +14,7 @@ import com.learney.contentaudit.revisiondomain.nonregression.ChangeProbe;
 import com.learney.contentaudit.revisiondomain.nonregression.LengthDeclaration;
 import com.learney.contentaudit.revisiondomain.nonregression.RedWord;
 import com.learney.contentaudit.revisiondomain.nonregression.SpokenText;
+import com.learney.contentaudit.revisiondomain.nonregression.UnevaluatedMark;
 import com.learney.contentaudit.revisiondomain.nonregression.UnitMeasurement;
 import com.learney.contentaudit.revisiondomain.nonregressionengine.DefaultGateFactory;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
@@ -64,6 +65,76 @@ public class DefaultPanelDecisionScriptTest {
         assertEquals(-1, decision.getWinnerIndex());
         assertTrue(same.getGate().isPasses(), "it worsens nothing");
         assertTrue(decision.getReasons().get(0).endsWith("no resuelve ninguna tarea del ejercicio"), decision.getReasons().toString());
+    }
+
+    @Test
+    @DisplayName("should keep a translation task unresolved when its changed quiz has not been judged")
+    @Tag("F-MESA-R006")
+    @Tag("F-NOEMP-R010")
+    public void shouldKeepATranslationTaskUnresolvedWhenItsChangedQuizHasNotBeenJudged() {
+        UnitMeasurement original = measured(List.of(translationDiffers()), List.of(), "I love a lot of vegetables.", true);
+        UnitMeasurement after = measured(List.of(), List.of(), "I love vegetables.", true);
+        after.setUnevaluated(List.of(new UnevaluatedMark(VEGETABLES, "translation-sense")));
+        ScoredCandidate candidate = scored("unjudged translation", after, original);
+
+        ScriptDecision decision = script().decide(List.of(brief("t-translation", translationDiffers())), original,
+                List.of(candidate));
+
+        assertTrue(candidate.getGate().isPasses(), "the gate keeps its partial-comparison contract");
+        assertEquals("translation-sense", candidate.getGate().getNotCompared().get(0).getAnalyzer());
+        assertEquals(PanelOutcomeKind.NO_WINNER, decision.getOutcome());
+        assertTrue(decision.getResolvedTaskIds().isEmpty(), "pending is not evidence that the task was repaired");
+    }
+
+    @Test
+    @DisplayName("should leave a grouped task unresolved while any covered finding is pending at its own quiz and judge")
+    @Tag("F-MESA-R006")
+    @Tag("F-NOEMP-R010")
+    public void shouldLeaveAGroupedTaskUnresolvedWhileAnyCoveredFindingIsPendingAtItsOwnQuizAndJudge() {
+        ErrorTaskBrief grouped = comeTask();
+        grouped.setCoveredFindings(List.of(translationDiffers()));
+        UnitMeasurement original = measured(List.of(come(), translationDiffers()), List.of(), "He comes every year.", true);
+        UnitMeasurement after = measured(List.of(), List.of(), "Winter comes every year.", true);
+        after.setUnevaluated(List.of(new UnevaluatedMark(VEGETABLES, "translation-sense")));
+
+        ScriptDecision decision = script().decide(List.of(grouped), original,
+                List.of(scored("covered translation pending", after, original)));
+
+        assertEquals(PanelOutcomeKind.NO_WINNER, decision.getOutcome());
+        assertTrue(decision.getResolvedTaskIds().isEmpty());
+    }
+
+    @Test
+    @DisplayName("should accept a proven repair even when a different judge could not compare the quiz")
+    @Tag("F-MESA-R006")
+    @Tag("F-NOEMP-R010")
+    public void shouldAcceptAProvenRepairEvenWhenADifferentJudgeCouldNotCompareTheQuiz() {
+        UnitMeasurement original = measured(List.of(come()), List.of(), "He comes every year.", true);
+        UnitMeasurement after = measured(List.of(), List.of(), "Winter comes every year.", true);
+        after.setUnevaluated(List.of(new UnevaluatedMark(COME, "mini-theory")));
+        ScoredCandidate candidate = scored("answer judged, card pending", after, original);
+
+        ScriptDecision decision = script().decide(List.of(comeTask()), original, List.of(candidate));
+
+        assertEquals(PanelOutcomeKind.ACCEPTED, decision.getOutcome());
+        assertEquals(List.of("t-come"), decision.getResolvedTaskIds());
+        assertEquals("mini-theory", candidate.getGate().getNotCompared().get(0).getAnalyzer());
+    }
+
+    @Test
+    @DisplayName("should not block a proven repair because the same judge has a different quiz pending")
+    @Tag("F-MESA-R006")
+    @Tag("F-NOEMP-R010")
+    public void shouldNotBlockAProvenRepairBecauseTheSameJudgeHasADifferentQuizPending() {
+        UnitMeasurement original = measured(List.of(come()), List.of(), "He comes every year.", true);
+        UnitMeasurement after = measured(List.of(), List.of(), "Winter comes every year.", true);
+        after.setUnevaluated(List.of(new UnevaluatedMark(VEGETABLES, "single-answer")));
+
+        ScriptDecision decision = script().decide(List.of(comeTask()), original,
+                List.of(scored("other quiz pending", after, original)));
+
+        assertEquals(PanelOutcomeKind.ACCEPTED, decision.getOutcome());
+        assertEquals(List.of("t-come"), decision.getResolvedTaskIds());
     }
 
     @Test

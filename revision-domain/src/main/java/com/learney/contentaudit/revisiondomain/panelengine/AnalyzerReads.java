@@ -47,7 +47,11 @@ final class AnalyzerReads {
                     ExercisePart.ANSWERS, ExercisePart.OPTIONS, ExercisePart.STORED_SENTENCE, ExercisePart.FORM_KIND)),
             Map.entry("single-answer", EnumSet.of(ExercisePart.STATEMENT, ExercisePart.HINT, ExercisePart.ANSWERS,
                     ExercisePart.INSTRUCTIONS, ExercisePart.TOPIC_INSTRUCTIONS, ExercisePart.FORM_KIND)),
-            Map.entry("mini-theory", EnumSet.of(ExercisePart.MINI_THEORY)),
+            // The card is judged against the exercise: changing the gap, hint or instructions can make
+            // an unchanged card insufficient. Check that while the panel still has a chance to repair it.
+            Map.entry("mini-theory", EnumSet.of(ExercisePart.MINI_THEORY, ExercisePart.STATEMENT,
+                    ExercisePart.HINT, ExercisePart.ANSWERS, ExercisePart.OPTIONS, ExercisePart.INSTRUCTIONS,
+                    ExercisePart.TOPIC_INSTRUCTIONS, ExercisePart.TRANSLATION, ExercisePart.FORM_KIND)),
             Map.entry("grammar", EnumSet.of(ExercisePart.STATEMENT, ExercisePart.ANSWERS, ExercisePart.OPTIONS,
                     ExercisePart.STORED_SENTENCE, ExercisePart.FORM_KIND)),
             Map.entry("naturalness", EnumSet.of(ExercisePart.STATEMENT, ExercisePart.ANSWERS, ExercisePart.OPTIONS,

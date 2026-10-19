@@ -22,6 +22,29 @@ case "$REASONING_EFFORT" in
 esac
 
 shift
-exec "$REAL_CODEX" exec \
+run_codex() {
+    local gap="${CONTENT_AUDIT_CODEX_MIN_INTERVAL_SECONDS:-0}"
+    if [[ "$gap" == 0 ]]; then
+        exec "$@"
+    fi
+    local pace_dir="${CONTENT_AUDIT_CODEX_PACE_DIR:-}"
+    if [[ -z "$pace_dir" ]]; then
+        echo "Falta CONTENT_AUDIT_CODEX_PACE_DIR para la recuperación pausada." >&2
+        exit 64
+    fi
+    exec python3 "$(dirname "$0")/pace.py" --directory "$pace_dir" --minimum-gap "$gap" -- "$@"
+}
+# Stateless model calls use only their explicit runtime arguments. Personal Codex
+# settings must not change routing or extensions; authentication still uses the
+# same CODEX_HOME, as documented by this CLI's --ignore-user-config option.
+for arg in "$@"; do
+    if [[ "$arg" == --ignore-user-config ]]; then
+        run_codex "$REAL_CODEX" exec \
+            -c "model_reasoning_effort=\"$REASONING_EFFORT\"" \
+            "$@"
+    fi
+done
+run_codex "$REAL_CODEX" exec \
+    --ignore-user-config \
     -c "model_reasoning_effort=\"$REASONING_EFFORT\"" \
     "$@"

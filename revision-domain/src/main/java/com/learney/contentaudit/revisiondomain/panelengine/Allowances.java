@@ -19,6 +19,14 @@ final class Allowances {
 
     /** Reserves n queries, waiting for its turn; false when the allowance is (or gets) tripped. */
     static boolean reserve(QueryAllowance allowance, int queries) {
+        return reserve(allowance, queries, false);
+    }
+
+    static boolean reserveSequential(QueryAllowance allowance, int queries) {
+        return reserve(allowance, queries, true);
+    }
+
+    private static boolean reserve(QueryAllowance allowance, int queries, boolean sequential) {
         if (allowance == null) {
             return true;
         }
@@ -27,7 +35,7 @@ final class Allowances {
             if (allowance.tripped().isPresent()) {
                 return false;
             }
-            if (allowance.tryReserve(queries)) {
+            if (sequential ? allowance.tryReserveSequential(queries) : allowance.tryReserve(queries)) {
                 return true;
             }
             if (allowance.tripped().isPresent()) {
@@ -68,12 +76,27 @@ final class Allowances {
         }
 
         @Override
+        public boolean tryReserveSequential(int queries) {
+            return shared == null || shared.tryReserveSequential(queries);
+        }
+
+        @Override
         public void settle(int reserved, int spent) {
             synchronized (this) {
                 this.spent += Math.max(0, spent);
             }
             if (shared != null) {
                 shared.settle(reserved, spent);
+            }
+        }
+
+        @Override
+        public void settleSequential(int reserved, int spent) {
+            synchronized (this) {
+                this.spent += Math.max(0, spent);
+            }
+            if (shared != null) {
+                shared.settleSequential(reserved, spent);
             }
         }
 

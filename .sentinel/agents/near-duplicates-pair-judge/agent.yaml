@@ -35,13 +35,14 @@ description: |
   arista: corta la corrida del agente y el evaluador la informa como
   EVALUATOR_UNAVAILABLE.
 
-  Todo archivo de esta carpeta, eval/ incluido, entra en la versión del juez
-  (definición, modelo y proveedor). Tocar la guía, un script o una fixture es
-  una versión nueva, que rinde su examen antes de consultar sobre el curso
-  (F-DUPAR-R007). Lo que lee sale de QuizStudentViewRenderer y su salida es
-  determinista: el JSON canónico no depende de la corrida ni de la hora (gancho
-  B-22). Los ejemplos de la guía son inventados: ninguno es del curso ni del
-  corpus de eval/, para que el examen no se rinda con la respuesta a la vista.
+  Todo archivo de esta carpeta menos eval/ entra en la versión del juez: las
+  pruebas no corren al medir y no la cambian (F-ALDIA-R001). Tocar la guía, el
+  formato, un script o la definición es una versión nueva, que rinde su examen
+  antes de consultar sobre el curso (F-DUPAR-R007). Lo que lee sale de
+  QuizStudentViewRenderer y su salida es determinista: el JSON canónico no
+  depende de la corrida ni de la hora (gancho B-22). Los ejemplos de la guía
+  son inventados: ninguno es del curso ni del corpus de eval/, para que el
+  examen no se rinda con la respuesta a la vista.
 kind: agent
 strategy: graph
 initial_node: evaluate

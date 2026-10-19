@@ -456,7 +456,8 @@ class DefaultBatchJudgePass implements BatchJudgePass {
                 }
             } else if (tool != null) {
                 line.examStatus = tool.getExamState();
-                line.approved = line.examStatus == null || line.examStatus == JudgeExamStatus.APPROVED;
+                line.approved = line.examStatus == null || line.examStatus == JudgeExamStatus.APPROVED
+                        || line.examStatus == JudgeExamStatus.PROMOTED;
                 line.reason = tool.isPublished() ? null : tool.getReason();
             }
             for (Side side : Side.values()) {

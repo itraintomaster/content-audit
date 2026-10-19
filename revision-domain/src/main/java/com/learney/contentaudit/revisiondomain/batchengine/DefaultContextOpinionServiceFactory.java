@@ -7,10 +7,14 @@ import java.util.function.Function;
 
 public final class DefaultContextOpinionServiceFactory {
     public ContextOpinionService create(BatchServiceConfig config, Function<CourseEntity, String> fingerprint) {
+        return create(config, fingerprint, null);
+    }
+    public ContextOpinionService create(BatchServiceConfig config, Function<CourseEntity, String> fingerprint,
+            PreliminaryOpinionSource preliminarySource) {
         var locator = config.getElementLocator() != null ? config.getElementLocator() : new DefaultCourseElementLocator();
         var ledger = new DefaultBatchChangeLedger(config.getArtifactStore(), locator);
         var reviews = new DefaultBatchReviewServiceFactory().create(config.getBatchStore(), config.getArtifactStore(),
                 config.getRefinementPlanStore(), config.getReviewCache());
-        return new DefaultContextOpinionService(config, ledger, reviews, fingerprint);
+        return new DefaultContextOpinionService(config, ledger, reviews, fingerprint, preliminarySource);
     }
 }

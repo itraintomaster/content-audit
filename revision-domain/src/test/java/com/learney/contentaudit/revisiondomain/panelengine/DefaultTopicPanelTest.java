@@ -298,8 +298,8 @@ public class DefaultTopicPanelTest {
         panel.run(work(topic, List.of(brief("t-hint", missingHint(), List.of(ExercisePart.HINT)))), settings(), allowance(null, 4),
                 new RecordingSink());
 
-        assertEquals(List.of("translation-sense"), meter.analyzersAsked.get(0), "only what reads the translation");
-        assertEquals(List.of("quiz-instruction", "hint-coherence", "multiple-choice-validity", "exact-duplicates", "single-answer"),
+        assertEquals(List.of("translation-sense", "mini-theory"), meter.analyzersAsked.get(0), "only what reads the translation");
+        assertEquals(List.of("quiz-instruction", "hint-coherence", "multiple-choice-validity", "exact-duplicates", "single-answer", "mini-theory"),
                 meter.analyzersAsked.get(1), "only what reads the hint");
     }
 

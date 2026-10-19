@@ -141,6 +141,32 @@ Mantiene [F-HALL-R004](#F-HALL-R004): hay tarea sólo para el quiz con puntaje m
 terminar con la misma redacción, pero esa coincidencia es un resultado de sus correcciones, no una identidad compartida
 que permita modificar uno por arrastre. El tipo de tarea y la mesa son del paquete E.
 
+<a id="F-MINIT-R008"></a>
+### Rule[F-MINIT-R008] - La estructura no se enseña como una receta lexical del ítem
+**Severity**: major | **Validation**: VALIDATED
+
+> Una tarjeta verdadera y suficiente puede especificar de más si fija palabras
+> incidentales del quiz como parte de una regla de estructura. El juez la clasifica
+> como `OVER_SPECIFIC_FOR_QUIZ`, gravedad baja, después de descartar los defectos
+> anteriores. La evidencia nombra el detalle incidental y propone cómo abstraer
+> su papel sin perder la decisión focal. Un nombre que sólo determina concordancia
+> se puede expresar por su categoría gramatical; un pronombre que fija el auxiliar
+> puede conservarse. Las palabras necesarias para una elección léxica, colocación,
+> significado, irregularidad o excepción siguen siendo parte de la explicación.
+> Los marcadores estructurales, como una apertura interrogativa que muestra el
+> tipo de pregunta y la posición del auxiliar, pueden mantenerse en un esquema
+> reutilizable. Que ya estén dados en el enunciado no los convierte por sí solo
+> en un defecto; el criterio no exige abstraer todos los tokens.
+>
+> La extensión por sí sola no causa un hallazgo. Una razón de concordancia o un
+> ejemplo que distingue rutas reales puede ser útil aunque alargue la tarjeta.
+> El corrector conserva esas distinciones y evita copiar la respuesta completa o
+> repetir en prosa lo que un esquema ya explica. La nueva categoría mantiene el
+> puntaje de los hallazgos bajos y la corrección por quiz, sin propagación.
+
+Pedido del operador, 13/10/2026: mejorar también al juez para encontrar los casos
+de PRB-f35c962c; las respuestas anteriores gustaron aunque quedaron largas.
+
 ## Contexto
 
 | Ficha | `mini-theory` |

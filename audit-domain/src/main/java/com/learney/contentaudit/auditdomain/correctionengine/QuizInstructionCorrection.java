@@ -11,8 +11,9 @@ import javax.annotation.processing.Generated;
 /**
  * How a finding of {@code quiz-instruction} is corrected (F-TAREA-R006): only at the panel, within what the
  * correction of the instruction reaches today (F-QICOR-R003): the parts of the statement and the gaps with their accepted
- * answers that the violation points at, the translation that goes with the sentence, the sentence stored with them and,
- * because the audio follows the exercise, what is heard (F-NOEMP-R004). It has no fix by rule.
+ * answers that the violation points at, the translation and quiz-local mini theory that go with the sentence, the
+ * sentence stored with them and, because the audio follows the exercise, what is heard (F-NOEMP-R004). It has no fix by
+ * rule, and the mini theory permission never reaches sibling quizzes.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -23,7 +24,9 @@ public class QuizInstructionCorrection implements AnalyzerCorrection {
 
     private static final List<ExercisePart> RULE_SCOPE = List.of();
 
-    private static final List<ExercisePart> PANEL_SCOPE = List.of(ExercisePart.STATEMENT, ExercisePart.HINT, ExercisePart.ANSWERS, ExercisePart.TRANSLATION, ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO);
+    private static final List<ExercisePart> PANEL_SCOPE = List.of(ExercisePart.STATEMENT, ExercisePart.HINT,
+            ExercisePart.ANSWERS, ExercisePart.TRANSLATION, ExercisePart.MINI_THEORY,
+            ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO);
 
     @Override
     public String analyzerName() {

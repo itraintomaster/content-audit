@@ -65,7 +65,8 @@ import javax.annotation.processing.Generated;
  * <p>The judges run with the evaluation ledger: first every judge runs with budget 0, so what is recorded by the
  * fingerprint of what it reads counts and costs nothing -- an exercise nobody changed, a judge that reads nothing the
  * candidate changed. Then, for each judge with something pending and a version that consults on the course, one query
- * at a time: a turn on the shared allowance, a run with budget 1, the verdict left in the ledger by its fingerprint and
+ * at a time: a turn on the shared allowance holding the judge's pending evaluator group, a run within that budget,
+ * the verdict left in the ledger by its fingerprint and
  * the spent settled. A failure of the service trips the allowance and no query more starts; what was not judged stays as
  * not evaluated.
  *
@@ -122,14 +123,15 @@ class CatalogTopicMeter implements TopicMeter {
             }
             int pending = pending(judge);
             while (pending > 0) {
-                if (!Allowances.reserve(allowance, 1)) {
+                int reserved = pendingEvaluators(judge);
+                if (!Allowances.reserveSequential(allowance, reserved)) {
                     return measurement(work, topic, report);
                 }
-                AuditReport consulted = run(course, selection, Map.of(judge.getJudgeName(), 1));
+                AuditReport consulted = run(course, selection, Map.of(judge.getJudgeName(), reserved));
                 JudgeCoverageDiagnosis after = coverages(consulted).get(judge.getJudgeName());
                 int spent = after != null ? spent(after) : 0;
                 if (allowance != null) {
-                    allowance.settle(1, spent);
+                    allowance.settleSequential(reserved, spent);
                 }
                 report = consulted;
                 if (after == null) {
@@ -142,6 +144,7 @@ class CatalogTopicMeter implements TopicMeter {
                     }
                     break; // nothing more it can judge
                 }
+                judge = after;
                 pending = pending(after);
             }
         }
@@ -203,6 +206,15 @@ class CatalogTopicMeter implements TopicMeter {
             return judge.getCost().getPendingConsultations();
         }
         return judge.getNotEvaluated();
+    }
+
+    /** A paired judge may need both verdicts atomically; a cached evaluator needs no new reservation. */
+    private static int pendingEvaluators(JudgeCoverageDiagnosis judge) {
+        int pending = 0;
+        for (EvaluatorCoverage evaluator : judge.getEvaluators() != null ? judge.getEvaluators() : List.<EvaluatorCoverage>of()) {
+            if (evaluator != null && (evaluator.getCoverage() == null || evaluator.getCoverage().getPending() > 0)) pending++;
+        }
+        return Math.max(1, pending);
     }
 
     private static int spent(JudgeCoverageDiagnosis judge) {

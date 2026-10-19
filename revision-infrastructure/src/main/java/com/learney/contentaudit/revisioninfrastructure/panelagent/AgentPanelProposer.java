@@ -109,7 +109,7 @@ class AgentPanelProposer implements PanelProposer {
         inputs.put("quizId", orEmpty(request.getQuizId()));
         inputs.put("attempt", String.valueOf(request.getAttempt()));
         inputs.put("twoFixes", String.valueOf(request.isTwoFixes()));
-        inputs.put("topicView", json(topicView(request.getTopicView())));
+        inputs.put("topicView", json(topicView(request.getTopicView(), request.getTopicQuizIds())));
         inputs.put("tasks", json(tasks(request.getBriefs())));
         inputs.put("wordLights", json(wordLights(request.getWordLights())));
         inputs.put("conversion", json(conversion(request.getConversion())));
@@ -117,13 +117,16 @@ class AgentPanelProposer implements PanelProposer {
         return inputs;
     }
 
-    private static ArrayNode topicView(List<QuizStudentView> views) {
+    private static ArrayNode topicView(List<QuizStudentView> views, List<String> quizIds) {
         ArrayNode array = JSON.createArrayNode();
-        for (QuizStudentView view : views != null ? views : List.<QuizStudentView>of()) {
+        List<QuizStudentView> orderedViews = views != null ? views : List.of();
+        for (int i = 0; i < orderedViews.size(); i++) {
+            QuizStudentView view = orderedViews.get(i);
             if (view == null) {
                 continue;
             }
             ObjectNode node = array.addObject();
+            node.put("quizId", quizIds != null && i < quizIds.size() ? quizIds.get(i) : null);
             node.put("statement", view.getStatement());
             node.put("instructions", view.getInstructions());
             node.put("translation", view.getTranslation());

@@ -55,7 +55,7 @@ El agente adjunta un JSON mediante `--artifacts /ruta/entrega.json`:
 {
   "changes": [{
     "path": "ruta/guia.md",
-    "version": "sha256-o-commit",
+    "version": "sha256:hash-de-los-bytes-del-archivo",
     "summary": "Explica el contraste general",
     "scope": "judge"
   }],
@@ -73,6 +73,13 @@ El agente adjunta un JSON mediante `--artifacts /ruta/entrega.json`:
 `fixed`, corrección del contenido. Se puede registrar sólo la medición realizada. Si
 `modelConsulted` es `true`, el resultado exige `provider`, `model` y `runtimeVersion`
 efectivos. No se deben inventar resultados ni usar versiones sugeridas como efectivas.
+
+La inspección compara cada `version` con el SHA-256 de los bytes actuales del archivo,
+con el prefijo `sha256:`. Un commit o un alias no sustituye esa huella. Si cambió un
+archivo o la versión efectiva del juez, la pantalla identifica la diferencia y bloquea
+la ejecución. Se debe revisar el cambio y registrar una entrega nueva mediante
+`problem update --artifacts`; las mediciones anteriores conservan su procedencia como
+historial y no certifican los archivos nuevos.
 
 Para probar exige una entrega que pase. Si se cambió un juez, debe evaluar todos los
 casos Examen y Está bien, con al menos un positivo y un negativo. Un falso positivo,
