@@ -278,8 +278,7 @@ final class DefaultContextOpinionService implements ContextOpinionService {
     private void recordSupplement(CorrectionBatch batch, Request request, Scope scope, AuditReport after, Instant created) {
         String auditId = config.getAuditReportStore().save(after), id = supplementId(request, scope.analyzer());
         var ids = scope.proposals().stream().map(RevisionProposal::getNodeId).toList();
-        int evaluated = (int) nodes(after).stream().filter(n -> n.getTarget() == AuditTarget.QUIZ && n.getEntity() != null
-                && ids.contains(n.getEntity().getId()) && complete(n, scope.analyzer())).count();
+        int evaluated = evaluated(after, ids, scope.analyzer());
         var runs = new ArrayList<>(safe(batch.getSelectiveRuns()));
         runs.add(new SelectiveCorrection.Run(id, "complete-opinions", scope.analyzer(), request.operationId(),
                 BatchBook.correctionRevision(batch), batch.getContentVersion(), fingerprint.apply(scope.after()),
@@ -288,6 +287,16 @@ final class DefaultContextOpinionService implements ContextOpinionService {
                 evaluated == ids.size() ? "DONE" : "PARTIAL", request.reviewer(), created, Instant.now(), null,
                 false, batch.getContentVersion(), fingerprint.apply(scope.after()), null));
         batch.setSelectiveRuns(runs);
+    }
+
+    /**
+     * How many of {@code ids} the judge left a verdict on in {@code after}: a score, or a saved abstention, which is a
+     * verdict although it carries no score (F-ALDIA-R003 inv. 6).
+     */
+    static int evaluated(AuditReport after, List<String> ids, String analyzer) {
+        return (int) nodes(after).stream().filter(n -> n.getTarget() == AuditTarget.QUIZ && n.getEntity() != null
+                && ids.contains(n.getEntity().getId())
+                && (complete(n, analyzer) || DefaultAnalysisComposer.abstention(n, analyzer).isPresent())).count();
     }
 
     private void integrateSupplements(CorrectionBatch batch, Request request, List<Scope> scopes) {

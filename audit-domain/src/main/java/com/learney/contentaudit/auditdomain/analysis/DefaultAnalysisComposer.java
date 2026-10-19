@@ -215,6 +215,41 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
     public static boolean hasStoredOpinion(AuditNode node, String analyzer) {
         return evaluated(node, analyzer) || structuredVerdict(node, analyzer);
     }
+    /**
+     * F-ALDIA-R003 inv. 6: why a saved verdict carries no score -- the judge said it does not apply, that it lacks
+     * context or that it needs a review --, or empty when it scored or there is no verdict. A verdict without a score
+     * and without a known reason is left for review.
+     */
+    public static Optional<JudgeAbstention> abstention(AuditNode node, String analyzer) {
+        if (node == null || evaluated(node, analyzer) || !structuredVerdict(node, analyzer)) return Optional.empty();
+        var statuses = new HashSet<String>();
+        if ("pragmatism".equals(analyzer) && node.getDiagnoses() instanceof QuizDiagnoses d)
+            d.getPragmatismDiagnosis().ifPresent(p -> p.verdict().assessments().forEach(a -> statuses.add(a.status().name())));
+        Object verdict = node.getMetadata() == null ? null : node.getMetadata().get(analyzer + "Verdict");
+        if (verdict instanceof com.learney.contentaudit.auditdomain.englishquality.NativeUsageVerdict v)
+            v.assessments().forEach(a -> statuses.add(a.status().name()));
+        else if (verdict instanceof com.learney.contentaudit.auditdomain.englishquality.A1DidacticVerdict v)
+            statuses.add(v.status().name());
+        else if (verdict instanceof Map<?,?> saved) {
+            if (saved.get("status") != null) statuses.add(saved.get("status").toString());
+            if (saved.get("assessments") instanceof List<?> assessments)
+                for (Object item : assessments) if (item instanceof Map<?,?> a && a.get("status") != null) statuses.add(a.get("status").toString());
+        }
+        // What can be fixed outside the judge goes first: a missing context, then a review.
+        for (var reason : List.of(JudgeAbstention.NEEDS_CONTEXT, JudgeAbstention.REVIEW, JudgeAbstention.NOT_APPLICABLE))
+            if (statuses.contains(reason.name())) return Optional.of(reason);
+        return Optional.of(JudgeAbstention.REVIEW);
+    }
+    /**
+     * F-ALDIA-R003 inv. 6: the saved abstentions that a judge of exercises left pending in {@code report}. Its coverage
+     * counts as evaluated only what it closed, so these are measured although the coverage says not evaluated.
+     */
+    public static int pendingAbstentions(AuditReport report, String analyzer) {
+        if (report == null || report.getRoot() == null) return 0;
+        return (int) index(report.getRoot()).values().stream().filter(n -> n.getTarget() == AuditTarget.QUIZ
+                && (safe(n.getUnevaluatedBy()).contains(analyzer) || safe(n.getPartiallyEvaluatedBy()).contains(analyzer))
+                && abstention(n, analyzer).isPresent()).count();
+    }
     public static String version(AuditNode n) {
         return n.getDiagnoses() instanceof QuizDiagnoses d
                 ? d.getChoiceQualityDiagnosis().map(x -> x.evaluatorVersion()).orElse(null) : null;

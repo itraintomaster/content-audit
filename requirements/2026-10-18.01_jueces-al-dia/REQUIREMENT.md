@@ -132,7 +132,9 @@ nueva sale sin examen.
 > - **otro motor**, si su motor no es ninguno con el que la versión de hoy aprobó;
 > - **versión anterior**, si su motor es uno de esos y lo dio otra versión.
 >
-> Un ejercicio o tema sin veredicto de ese juez está **sin medir**. Invariantes:
+> Un ejercicio o tema sin veredicto de ese juez está **sin medir**. Una **abstención** —el juez miró el ejercicio y
+> dijo que no aplica, que le falta contexto o que hay que revisarlo, sin dejar puntaje— es un veredicto, y lleva su
+> marca como cualquier otro ([DOUBT-ALDIA-ABSTENCION](#DOUBT-ALDIA-ABSTENCION)). Invariantes:
 > 1. la marca se calcula contra la versión de hoy, nunca contra la otra punta: si las dos puntas tienen la misma versión
 >    vieja, las dos son de antes;
 > 2. marcar no cambia qué veredicto se reusa: se sigue reusando como hoy ([F-EVCOST-R006](#F-EVCOST-R006)), y la marca
@@ -140,7 +142,9 @@ nueva sale sin examen.
 > 3. un veredicto sin procedencia es de antes, y su causa es «procedencia desconocida» ([F-JEXAM-R014](#F-JEXAM-R014));
 > 4. si la versión de hoy no aprobó su examen, ningún veredicto de ese juez está al día, y el juez se nombra «sin
 >    aprobar» ([F-CJUEZ-R004](#F-CJUEZ-R004));
-> 5. calcular la marca no consulta ni escribe nada.
+> 5. calcular la marca no consulta ni escribe nada;
+> 6. una abstención guardada nunca está sin medir: volver a medir sin forzar la reusa y da la misma. Vale igual en la
+>    tabla de jueces, en la cuenta del cierre, en la estimación de un diálogo de medir y en el resumen de cada corrida.
 
 <details><summary>Detail</summary>
 
@@ -159,6 +163,12 @@ naturalidad la midió un modelo local, y eso se lee «otro motor» aunque su ver
 | Corrección 1 (83 temas) | 1 | 82 (77 de la del 5/10, 5 de la del 13/10, 13:00) | 0 | 0 |
 
 La naturalidad tiene, en la base, 2.333 ejercicios de otro motor (llama3 local) y ninguno al día.
+
+**Criterio de la abstención** (invariante 6), Corrección 1 de la tanda A1 al 19/10: el pragmatismo de hoy (la del
+14/10) dejó 2.402 veredictos con su motor aprobado. 88 son abstenciones: 81 «no aplica» (ejercicios de clasificar, de
+elegir *a*/*an* o de escribir la forma en *-ing*) y 7 «falta contexto». La tabla dice al día 2.402, de los que 88 se
+abstuvieron, y sin medir 0. Hoy dice al día 2.314 y sin medir 88, aunque 12 corridas sueltas los volvieron a pedir
+entre el 14/10 y el 18/10 sin gastar nada ni cambiar nada (brief 158).
 
 </details>
 
@@ -209,7 +219,9 @@ código entero y el instante de su primera aprobación.
 > 2. cada veredicto del análisis trae su marca y su versión. Esto incluye los que leen las opiniones de Correcciones;
 > 3. el informe de un cierre y el de cada análisis dicen, por juez, cuánto de lo reusado es de antes, con su nombre:
 >    «miniteoría: reusa 82 temas de antes (77 de la del 5/10, 5 de la del 13/10, 13:00)»;
-> 4. leer no consulta ni escribe nada.
+> 4. leer no consulta ni escribe nada;
+> 5. lo al día y lo de antes dicen cuántas son abstenciones y por qué, sin sacarlas de su cuenta: «al día 2.402; se
+>    abstuvo en 88 (81 no aplica, 7 falta contexto)». Las tres cuentas siguen sumando la unidad.
 
 <details><summary>Detail</summary>
 
@@ -497,7 +509,32 @@ lo medido ya cuenta.
 reemplaza sólo lo de antes de ese juez. José ya confirmó el número al pedirla. Con B hacía falta un paso más, y
 entretanto lo viejo seguía contando en el Mapa.
 
+<a id="DOUBT-ALDIA-ABSTENCION"></a>
+### Doubt[DOUBT-ALDIA-ABSTENCION] - ¿Una abstención guardada está medida?
+**Status**: RESOLVED (2026-10-19)
+
+El juez de pragmatismo de hoy se abstuvo en 88 ejercicios de Corrección 1: 81 «no aplica» y 7 «falta contexto». No
+dejó puntaje. La tabla de jueces los cuenta «sin medir» porque exige un puntaje. Las corridas sueltas, en cambio, los
+cuentan como ya medidos («repite 88», [F-MEDJ-R001](../2026-10-19.01_mediciones-por-juez/REQUIREMENT.md#F-MEDJ-R001)),
+y el registro de veredictos los reusa sin consultar ([F-EVCOST-R006](#F-EVCOST-R006)). Volver a medir sin forzar da la
+misma abstención, así que «Medir lo que falta» estima 0 consultas y no cambia nada.
+
+- [x] Opción A (recomendada): es un veredicto. Lleva su marca (al día o de antes) y la cuenta dice cuántas abstenciones
+  hay dentro de ella, por motivo (R003 inv. 6, R005 inv. 5).
+- [ ] Opción B: una cuarta cuenta, «se abstuvo», al lado de al día, de antes y sin medir. Pierde la marca: una
+  abstención de una versión anterior no se distingue de una de hoy.
+- [ ] Opción C: sigue «sin medir», y el botón de medir se apaga cuando no consultaría nada. La tabla de jueces y las
+  corridas sueltas siguen contándolas distinto.
+
+**Answer**: **Opción A** (José, 19/10, con la recomendación del brief 158): una abstención guardada es un veredicto con
+su marca, y la cuenta dice aparte cuántas hay por motivo. Con una cuarta cuenta no se vería si es de hoy o de antes, y
+dejándola sin medir las dos cuentas seguían contradiciéndose.
+
 ## Enmiendas a otros requisitos
+
+- [F-TALDIA-R009](../2026-10-18.02_jueces-al-dia-en-el-tablero/REQUIREMENT.md#F-TALDIA-R009): una abstención no es
+  «sin medir» ([F-ALDIA-R003](#F-ALDIA-R003), inv. 6), así que no suma «Medir lo que falta». La ficha dice cuántas
+  abstenciones hay y por qué, sin botón: medirlas de nuevo las reusa.
 
 - [F-JEXAM-R014](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R014): «la versión completa del
   proceso» de un juez de carpeta es la de [F-ALDIA-R001](#F-ALDIA-R001).
@@ -518,9 +555,9 @@ Ninguna prueba consulta a un modelo ni toca producción.
 |---|---|
 | R001 | Cambiar un archivo de `eval/` deja la misma versión. Cambiar uno de la guía, del formato, de un script, de la definición o uno nuevo la cambia |
 | R002 | Con la equivalencia, el examen aprobado y los veredictos de la versión del día siguen valiendo. Un cambio más da una versión sin examen, y una equivalencia no se puede agregar después |
-| R003 | Con veredictos de la versión de hoy, de otra versión, de otro motor, sin procedencia y sin veredicto, cada uno sale con su marca. La misma versión vieja en las dos puntas da dos «de antes» |
+| R003 | Con veredictos de la versión de hoy, de otra versión, de otro motor, sin procedencia y sin veredicto, cada uno sale con su marca. La misma versión vieja en las dos puntas da dos «de antes». Una abstención guardada de pragmatismo («falta contexto»), de naturalidad («no aplica») y de didáctica («revisar»), de la versión de hoy, sale al día y no sin medir; de una versión anterior, de antes. La cuenta del cierre, la estimación y el resumen de cada corrida la cuentan igual (`CurrentAnalysisServiceTest.aStoredAbstentionIsAVerdictWithItsMarkAndNeverNotMeasured`, `DefaultBatchJudgePassTest.shouldCountASavedAbstentionAsAVerdictOfItsVersionNeverAsNotMeasured`, `SelectiveCorrectionServiceTest.aSavedAbstentionCountsAsEvaluatedInTheEstimateAndInTheRunSummary`, `ContextOpinionServiceTest.aCompletionRunCountsASavedAbstentionAsEvaluated`) |
 | R004 | Dos aprobaciones el mismo día en hora local y distinto en UTC llevan la hora. Una re-aprobada se nombra por la primera, y ninguna se nombra con un número |
-| R005 | Las cuentas por juez y estado suman la unidad, y el informe del cierre dice cuánto reusó de antes |
+| R005 | Las cuentas por juez y estado suman la unidad, y el informe del cierre dice cuánto reusó de antes. Las abstenciones se cuentan dentro de su marca, por motivo, y las tres cuentas siguen sumando la unidad (`JudgeFreshnessTallyTest.abstentionsAreCountedInsideTheirMarkAndTheThreeCountsStillAddUp`) |
 | R006 | Con la lista guardada sale lo que cambió, separado en lo que cuenta y lo que no. Sin lista ni foto, dice «no se sabe qué cambió» |
 | R007 | La estimación cuenta sólo lo de antes. Con tope 0 o sin examen aprobado no consulta, y nunca pasa el tope. Al terminar integra sólo lo de antes de ese juez, y queda registrado |
 | R008 | Una tanda que «pasa» con la misma versión vieja en las dos puntas no se publica, y la negativa y `tray show` nombran al juez |

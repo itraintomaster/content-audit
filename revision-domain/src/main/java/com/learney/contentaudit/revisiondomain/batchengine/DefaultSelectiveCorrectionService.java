@@ -219,6 +219,7 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
                 .anyMatch(r -> List.of("RUNNING", "NEEDS_REVIEW").contains(r.status())
                         && !(Objects.equals(coordinatedBy, r.id()) && "reanalyze-both".equals(r.action()) && "RUNNING".equals(r.status())));
         boolean enabled = b.getStatus() == BatchStatus.CLOSED && !uncertain && allowed(c);
+        int abstained = abstained(report, c, judge);
         String reason = enabled ? null : uncertain ? "Hay una operación interrumpida o incierta. Conservá su reserva y conciliá los resultados antes de iniciar otra."
                 : b.getStatus() != BatchStatus.CLOSED ? "Hay otra operación activa o la tanda no está cerrada."
                 : c != null && c.getUnavailableReason() != null ? c.getUnavailableReason()
@@ -226,8 +227,8 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         return new State(b.getId(), BatchBook.correctionRevision(b), b.getContentVersion(), judge,
                 cut != null ? fingerprint.apply(cut) : null, c != null && c.getStanding() != null ? c.getStanding().getJudgeVersion() : null,
                 c != null && c.getStanding() != null ? Objects.toString(c.getStanding().getRuntimeIdentity(), "") : null,
-                enabled, reason, c != null ? c.getReached() : 0, c != null ? c.getEvaluated() : 0,
-                c != null ? c.getNotEvaluated() : 0,
+                enabled, reason, c != null ? c.getReached() : 0, c != null ? c.getEvaluated() + abstained : 0,
+                c != null ? Math.max(0, c.getNotEvaluated() - abstained) : 0,
                 c != null && c.getCost() != null ? c.getCost().getPendingConsultations() : 0,
                 c != null ? BatchBook.list(c.getEvaluators()).stream().filter(e -> e.getCoverage() != null)
                         .mapToInt(e -> e.getCoverage().getReused()).sum() : 0,
@@ -394,13 +395,20 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
     }
     private static Run evaluated(Run r, AuditReport report, String audit, String plan, List<String> ids, List<String> quizzes, int spent) {
         JudgeCoverageDiagnosis c = coverage(report, r.analyzer());
+        int abstained = abstained(report, c, r.analyzer());
+        int missing = c != null ? Math.max(0, c.getNotEvaluated() - abstained) : 0;
         Run evaluated = new Run(r.id(), r.action(), r.analyzer(), r.sourceRunId(), r.correctionRevision(), r.contentVersion(),
                 r.fingerprint(), r.judgeVersion(), r.runtime(), audit, plan, ids, quizzes, r.queryCap(), r.reserved(), spent,
-                c != null ? c.getReached() : 0, c != null ? c.getEvaluated() : 0, c != null ? c.getNotEvaluated() : 0,
-                c != null && c.getNotEvaluated() == 0 && c.getUnavailableReason() == null ? "DONE" : "PARTIAL",
+                c != null ? c.getReached() : 0, c != null ? c.getEvaluated() + abstained : 0, missing,
+                c != null && missing == 0 && c.getUnavailableReason() == null ? "DONE" : "PARTIAL",
                 r.reviewer(), r.createdAt(), Instant.now(), c != null ? c.getUnavailableReason() : "Sin cobertura comprobable.",
                 r.includeApproved(), r.resultContentVersion(), r.resultFingerprint(), r.correctorRuntime());
         return evaluated;
+    }
+    /** F-ALDIA-R003 inv. 6: a saved abstention is measured, although the coverage of a judge of exercises leaves it pending. */
+    private static int abstained(AuditReport report, JudgeCoverageDiagnosis c, String judge) {
+        return c == null || c.getUnit() == AuditTarget.KNOWLEDGE ? 0
+                : Math.min(c.getNotEvaluated(), com.learney.contentaudit.auditdomain.analysis.DefaultAnalysisComposer.pendingAbstentions(report, judge));
     }
     private static Run finish(Run r, String status, int spent, String detail) {
         return new Run(r.id(), r.action(), r.analyzer(), r.sourceRunId(), r.correctionRevision(), r.contentVersion(),

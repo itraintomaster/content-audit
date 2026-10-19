@@ -788,6 +788,51 @@ public class DefaultBatchJudgePassTest {
         assertTrue(bench.queries.isEmpty(), "marking consults nothing");
     }
 
+    @Test
+    @DisplayName("should count a saved abstention in the account of its judge as a verdict of its version, never as not measured")
+    @Tag("FEAT-ALDIA")
+    @Tag("F-ALDIA-R003")
+    @Tag("F-ALDIA-R005")
+    public void shouldCountASavedAbstentionAsAVerdictOfItsVersionNeverAsNotMeasured() {
+        var zone = java.time.ZoneId.of("America/Argentina/Buenos_Aires");
+        var clock = java.time.Clock.fixed(java.time.Instant.parse("2026-10-19T15:00:00Z"), zone);
+        var xhigh = com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "xhigh");
+        var today = new com.learney.contentaudit.auditdomain.judging.JudgeExamRecord(NATURALNESS, "v3", JudgeExamStatus.APPROVED,
+                20, 0, List.of(), List.of(), true, null, "human", java.time.Instant.parse("2026-10-14T14:13:57Z"));
+        today.setRuntimeIdentity(xhigh);
+        var reference = com.learney.contentaudit.auditdomain.judging.JudgeFreshnessReference.of(
+                new com.learney.contentaudit.auditdomain.judging.JudgeExamStanding(NATURALNESS, "v3", JudgeExamStatus.APPROVED,
+                        true, null, xhigh, Set.of("v3")), List.of(today), zone, clock);
+        CourseEntity start = JudgePassBench.startCourse();
+        CorrectionBatch batch = JudgePassBench.batch(List.of(NATURALNESS), CHANGED);
+
+        var counts = new ArrayList<com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCount>();
+        for (boolean abstains : List.of(false, true)) {
+            JudgePassBench bench = new JudgePassBench();
+            bench.versionsSeen.put(NATURALNESS, List.of(
+                    new com.learney.contentaudit.auditdomain.judging.JudgeVersionStanding("v3", 0, JudgeExamStatus.APPROVED, xhigh)));
+            if (abstains) {
+                bench.abstainOn.put(NATURALNESS, Set.of(AFIRM_2));
+            }
+            List<BatchJudgeAccount> accounts = bench.pass(name -> NATURALNESS.equals(name) ? java.util.Optional.of(reference)
+                    : java.util.Optional.empty()).judge(batch, start, composedOfTheChanged(), new BatchCloseRequest(Map.of(), null));
+            counts.add(account(accounts, NATURALNESS).getFreshness());
+            assertTrue(bench.queries.isEmpty(), "counting consults nothing");
+        }
+
+        var without = counts.get(0);
+        var with = counts.get(1);
+        assertEquals(0, without.abstained());
+        assertTrue(with.abstained() > 0, "the abstention is counted on each side that reads it");
+        assertEquals(com.learney.contentaudit.auditdomain.judging.JudgeAbstention.REVIEW, with.abstentions().get(0).reason());
+        assertEquals(without.total(), with.total());
+        assertEquals(without.notMeasured() - with.abstained(), with.notMeasured(), "an abstention is never not measured");
+        assertEquals(without.upToDate() + with.abstained(), with.upToDate(), "it is today's version, with an approved runtime");
+        assertEquals(with.total(), with.upToDate() + with.fromBefore() + with.notMeasured());
+        assertTrue(with.detail().endsWith("; se abstuvo en " + with.abstained() + " (" + with.abstained() + " revisar)"),
+                with.detail());
+    }
+
     private static BatchJudgeAccount account(List<BatchJudgeAccount> accounts, String judge) {
         for (BatchJudgeAccount account : accounts) {
             if (judge.equals(account.getJudge())) {

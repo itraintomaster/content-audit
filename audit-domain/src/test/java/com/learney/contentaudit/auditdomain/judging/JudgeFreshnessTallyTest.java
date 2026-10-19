@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import java.time.Instant;
+import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -54,6 +55,43 @@ class JudgeFreshnessTallyTest {
         var tally = new JudgeFreshnessTally(today(), "miniteoría", AuditTarget.KNOWLEDGE);
         tally.add(V_TODAY, XHIGH, 1_500);
         assertEquals("miniteoría: nada de antes", tally.count().summary());
+    }
+
+    /** The case of Correction 1 on 19/10: pragmatism abstained in 88 exercises, all with today's judge. */
+    @Test
+    @Tag("F-ALDIA-R003")
+    void abstentionsAreCountedInsideTheirMarkAndTheThreeCountsStillAddUp() {
+        var tally = new JudgeFreshnessTally(today(), "Pragmatismo comunicativo", AuditTarget.QUIZ);
+        tally.add(V_TODAY, XHIGH, 2_314);
+        assertTrue(tally.add(V_TODAY, XHIGH, 81, JudgeAbstention.NOT_APPLICABLE).isUpToDate());
+        tally.add(V_TODAY, XHIGH, 7, JudgeAbstention.NEEDS_CONTEXT);
+        var count = tally.count();
+        assertEquals(2_402, count.total());
+        assertEquals(2_402, count.upToDate());
+        assertEquals(0, count.notMeasured());
+        assertEquals(88, count.abstained());
+        assertEquals(List.of(new JudgeAbstentionGroup(JudgeAbstention.NOT_APPLICABLE, "no aplica", 81),
+                new JudgeAbstentionGroup(JudgeAbstention.NEEDS_CONTEXT, "falta contexto", 7)), count.abstentions());
+        assertEquals("Pragmatismo comunicativo: nada de antes; se abstuvo en 88 (81 no aplica, 7 falta contexto)",
+                count.summary());
+
+        // An abstention of an earlier version stays from before: re-measuring it may give a score.
+        var before = new JudgeFreshnessTally(today(), "Pragmatismo comunicativo", AuditTarget.QUIZ);
+        assertFalse(before.add(V_5_10, XHIGH, 1, JudgeAbstention.REVIEW).isUpToDate());
+        before.notMeasured(2);
+        var stale = before.count();
+        assertEquals(1, stale.fromBefore());
+        assertEquals(1, stale.abstained());
+        assertEquals(2, stale.notMeasured());
+        assertEquals(stale.total(), stale.upToDate() + stale.fromBefore() + stale.notMeasured());
+        assertEquals("reusa 1 ejercicio de antes (1 de la del 5/10); se abstuvo en 1 (1 revisar)", stale.detail());
+
+        // Without abstentions nothing changes in what the reports print.
+        var none = new JudgeFreshnessTally(today(), "miniteoría", AuditTarget.KNOWLEDGE);
+        none.add(V_TODAY, XHIGH, 3);
+        assertEquals(0, none.count().abstained());
+        assertEquals(List.of(), none.count().abstentions());
+        assertEquals("miniteoría: nada de antes", none.count().summary());
     }
 
     @Test

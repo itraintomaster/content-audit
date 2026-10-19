@@ -187,6 +187,27 @@ class ContextOpinionServiceTest {
         }
         verify(store, never()).saveIfVersion(any(), anyInt(), any());
     }
+    /** A completion that reached two exercises: pragmatism scored one and abstained in the other. */
+    @Test @Tag("FEAT-ALDIA") @Tag("F-ALDIA-R003")
+    void aCompletionRunCountsASavedAbstentionAsEvaluated() {
+        var after = TandaFixture.report(course, List.of(), Map.of(), List.of("pragmatism"));
+        var index = com.learney.contentaudit.auditdomain.analysis.DefaultAnalysisComposer.index(after.getRoot());
+        index.get(quiz).getScores().put("pragmatism", 1.0);
+        var abstained = index.get(second);
+        if (!(abstained.getDiagnoses() instanceof DefaultQuizDiagnoses)) abstained.setDiagnoses(new DefaultQuizDiagnoses());
+        var verdict = new com.learney.contentaudit.auditdomain.pragmatism.PragmatismVerdict(List.of(
+                new com.learney.contentaudit.auditdomain.pragmatism.PragmatismVerdict.Assessment("Dogs looked at he / him him.",
+                        com.learney.contentaudit.auditdomain.pragmatism.PragmatismVerdict.Status.NEEDS_CONTEXT, "", null, null,
+                        null, "Las opciones quedaron en la oración.", "Qué es «he / him».")), "Falta contexto.");
+        ((DefaultQuizDiagnoses) abstained.getDiagnoses()).setPragmatismDiagnosis(
+                new com.learney.contentaudit.auditdomain.pragmatism.PragmatismDiagnosis(verdict, "v1", true));
+        abstained.getUnevaluatedBy().add("pragmatism");
+        assertEquals(2, DefaultContextOpinionService.evaluated(after, List.of(quiz, second), "pragmatism"));
+
+        // Without its verdict the same exercise is missing: nothing was measured there.
+        ((DefaultQuizDiagnoses) abstained.getDiagnoses()).setPragmatismDiagnosis(null);
+        assertEquals(1, DefaultContextOpinionService.evaluated(after, List.of(quiz, second), "pragmatism"));
+    }
     @Test void correctionCompletionDoesNotRequestASavedNaturalnessAbstentionAgain() {
         var report = correctionReport("naturalness");
         var target = com.learney.contentaudit.auditdomain.analysis.DefaultAnalysisComposer.index(report.getRoot()).get(TandaFixture.CHILD);

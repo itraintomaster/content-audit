@@ -273,6 +273,46 @@ class SelectiveCorrectionServiceTest {
         verify(store, never()).save(any()); verify(store, never()).saveIfVersion(any(), anyInt(), any());
         verifyNoInteractions(audits, plans, panel, factory); verify(repository, never()).save(any(), any());
     }
+    /** Pragmatism reached 2 exercises, scored 1 and abstained in the other: its coverage says 1 not evaluated. */
+    @Test @Tag("FEAT-ALDIA") @Tag("F-ALDIA-R003")
+    void aSavedAbstentionCountsAsEvaluatedInTheEstimateAndInTheRunSummary() {
+        var pragmatism = coverage("pragmatism"); pragmatism.setUnit(AuditTarget.QUIZ);
+        var coverages = new ArrayList<>(((DefaultCourseDiagnoses) report.getRoot().getDiagnoses()).getJudgeCoverages());
+        coverages.add(pragmatism);
+        ((DefaultCourseDiagnoses) report.getRoot().getDiagnoses()).setJudgeCoverages(coverages);
+        var node = com.learney.contentaudit.auditdomain.analysis.DefaultAnalysisComposer.index(report.getRoot()).get(quiz);
+        if (!(node.getDiagnoses() instanceof DefaultQuizDiagnoses)) node.setDiagnoses(new DefaultQuizDiagnoses());
+        var verdict = new com.learney.contentaudit.auditdomain.pragmatism.PragmatismVerdict(List.of(
+                new com.learney.contentaudit.auditdomain.pragmatism.PragmatismVerdict.Assessment("stop - stopping",
+                        com.learney.contentaudit.auditdomain.pragmatism.PragmatismVerdict.Status.NOT_APPLICABLE, "", null, null,
+                        null, "Dos formas de un verbo, no una oración.", null)), "No es una oración.");
+        ((DefaultQuizDiagnoses) node.getDiagnoses()).setPragmatismDiagnosis(
+                new com.learney.contentaudit.auditdomain.pragmatism.PragmatismDiagnosis(verdict, "v1", true));
+        node.getUnevaluatedBy().add("pragmatism");
+        var current = mock(CurrentAnalysisService.class);
+        when(current.supportedAnalyzers()).thenReturn(Set.of("pragmatism"));
+        config.setCurrentAnalysisService(current);
+
+        var estimate = service.execute(new Request("estimate", "batch", "pragmatism", null, null, 5, "context", "v1", null,
+                List.of(), false, "human"));
+        assertEquals(2, estimate.reached());
+        assertEquals(2, estimate.evaluated());
+        assertEquals(0, estimate.missing());
+
+        var state = service.execute(new Request("analyze", "batch", "pragmatism", "pragmatism-analysis", null, 5, "context", "v1",
+                2, List.of(), false, "human"));
+        var run = state.runs().stream().filter(r -> r.id().equals("pragmatism-analysis")).findFirst().orElseThrow();
+        assertEquals(2, run.evaluated());
+        assertEquals(0, run.missing());
+        assertEquals("DONE", run.status());
+
+        // A pending exercise without a verdict is still missing.
+        ((DefaultQuizDiagnoses) node.getDiagnoses()).setPragmatismDiagnosis(null);
+        var pending = service.execute(new Request("estimate", "batch", "pragmatism", null, null, 5, "context", "v1", null,
+                List.of(), false, "human"));
+        assertEquals(1, pending.evaluated());
+        assertEquals(1, pending.missing());
+    }
     @Test void analysisAddsOnlyJudgeTasksAndPreservesRevisionClosingsAndCourse() {
         var state = analyze(); var run = state.runs().get(0);
         assertEquals(List.of("selective-analysis-quality"), run.taskIds()); assertEquals("PARTIAL", run.status());

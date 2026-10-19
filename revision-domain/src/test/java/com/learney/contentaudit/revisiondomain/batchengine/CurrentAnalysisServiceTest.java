@@ -550,6 +550,82 @@ class CurrentAnalysisServiceTest {
         assertNull(fit(read(), "today", "correction").todayApproved());
     }
 
+    /** Today's judge {@code judge} is v2, approved with XHIGH. */
+    static JudgeFreshnessReference todaysJudge(String judge) {
+        var zone = java.time.ZoneId.of("America/Argentina/Buenos_Aires");
+        var exam = new JudgeExamRecord(judge, "v2", JudgeExamStatus.APPROVED, 20, 0, List.of(), List.of(), true, null, "human",
+                Instant.parse("2026-10-14T14:13:57Z"));
+        exam.setRuntimeIdentity(XHIGH);
+        return JudgeFreshnessReference.of(new JudgeExamStanding(judge, "v2", JudgeExamStatus.APPROVED, true, null, XHIGH, Set.of("v2")),
+                List.of(exam), zone, java.time.Clock.fixed(Instant.parse("2026-10-19T15:00:00Z"), zone));
+    }
+    /**
+     * The correction as each judge left it: on the child, pragmatism lacks context, naturalness does not apply and the
+     * A1 didactics asks for a review, all three by {@code version} and without a score.
+     */
+    AuditReport abstained(String version) {
+        var r = TandaFixture.report(course, List.of(), Map.of(), List.of());
+        var n = DefaultAnalysisComposer.index(r.getRoot()).get(TandaFixture.CHILD);
+        n.setDiagnoses(new DefaultQuizDiagnoses());
+        var verdict = new com.learney.contentaudit.auditdomain.pragmatism.PragmatismVerdict(List.of(
+                new com.learney.contentaudit.auditdomain.pragmatism.PragmatismVerdict.Assessment("A sentence.",
+                        com.learney.contentaudit.auditdomain.pragmatism.PragmatismVerdict.Status.NEEDS_CONTEXT, "", null, null,
+                        null, "Missing context", "Who is speaking?")), "Context required");
+        ((DefaultQuizDiagnoses) n.getDiagnoses()).setPragmatismDiagnosis(
+                new com.learney.contentaudit.auditdomain.pragmatism.PragmatismDiagnosis(verdict, version, true));
+        n.getUnevaluatedBy().add("pragmatism");
+        for (String judge : List.of("naturalness", "a1-didactic")) {
+            n.getMetadata().put(judge + "InputContract", com.learney.contentaudit.auditdomain.englishquality.EnglishQualitySubjectBuilder.CONTRACT);
+            n.getMetadata().put(judge + "Version", version);
+        }
+        n.getMetadata().put("verdictVersions", Map.of("naturalness", version, "a1-didactic", version));
+        n.getMetadata().put("naturalnessVerdict", Map.of("assessments", List.of(Map.of("status", "NOT_APPLICABLE"))));
+        n.getMetadata().put("a1-didacticVerdict", Map.of("status", "REVIEW"));
+        n.getUnevaluatedBy().add("a1-didactic"); // naturalness closes a «no aplica» without leaving it pending
+        for (String judge : List.of("pragmatism", "naturalness", "a1-didactic")) {
+            var coverage = new JudgeCoverageDiagnosis(); coverage.setJudgeName(judge); coverage.setUnit(AuditTarget.QUIZ);
+            coverage.setStanding(new JudgeExamStanding(judge, "v2", JudgeExamStatus.APPROVED, true, null, XHIGH, Set.of("v2")));
+            cover(r, coverage);
+        }
+        return r;
+    }
+
+    @Test @Tag("FEAT-ALDIA") @Tag("F-ALDIA-R003") @Tag("F-ALDIA-R005")
+    void aStoredAbstentionIsAVerdictWithItsMarkAndNeverNotMeasured() {
+        var judges = List.of("pragmatism", "naturalness", "a1-didactic");
+        config.setJudgeFreshnessCatalog(name -> judges.contains(name) ? Optional.of(todaysJudge(name)) : Optional.empty());
+        when(engine.runAudit(any(), any())).thenAnswer(i -> abstained("v2"));
+        var today = read().states().stream().filter(s -> s.id().equals("correction")).findFirst().orElseThrow();
+        var reasons = Map.of("pragmatism", com.learney.contentaudit.auditdomain.judging.JudgeAbstention.NEEDS_CONTEXT,
+                "naturalness", com.learney.contentaudit.auditdomain.judging.JudgeAbstention.NOT_APPLICABLE,
+                "a1-didactic", com.learney.contentaudit.auditdomain.judging.JudgeAbstention.REVIEW);
+        for (String judge : judges) {
+            var count = today.judges().stream().filter(j -> judge.equals(j.judgeName())).findFirst().orElseThrow();
+            // Only the child has a verdict: every other exercise of the cut is really not measured.
+            assertEquals(1, count.upToDate(), judge);
+            assertEquals(count.total() - 1, count.notMeasured(), judge);
+            assertEquals(count.total(), count.upToDate() + count.fromBefore() + count.notMeasured(), judge);
+            assertEquals(1, count.abstained(), judge);
+            assertEquals(reasons.get(judge), count.abstentions().get(0).reason(), judge);
+            assertTrue(count.summary().endsWith("; se abstuvo en 1 (1 " + reasons.get(judge).label() + ")"), count.summary());
+            var mark = today.verdictMarks().get(TandaFixture.CHILD).get(judge);
+            assertEquals(com.learney.contentaudit.auditdomain.judging.JudgeVerdictFreshness.UP_TO_DATE, mark.get("freshness"), judge);
+            assertEquals(reasons.get(judge), mark.get("abstention"), judge);
+            assertEquals(reasons.get(judge).label(), mark.get("abstentionName"), judge);
+        }
+
+        // An abstention of an earlier version is from before: measuring it again with today's judge may give a score.
+        when(engine.runAudit(any(), any())).thenAnswer(i -> abstained("v1"));
+        var earlier = read().states().stream().filter(s -> s.id().equals("correction")).findFirst().orElseThrow();
+        var pragmatism = earlier.judges().stream().filter(j -> "pragmatism".equals(j.judgeName())).findFirst().orElseThrow();
+        assertEquals(1, pragmatism.fromBefore());
+        assertEquals(0, pragmatism.upToDate());
+        assertEquals(1, pragmatism.abstained());
+        assertEquals(com.learney.contentaudit.auditdomain.judging.JudgeVerdictStaleCause.EARLIER_VERSION,
+                pragmatism.fromBeforeGroups().get(0).cause());
+        verify(repository, never()).save(any(), any()); verify(store, never()).save(any());
+    }
+
     static void cover(AuditReport report, JudgeCoverageDiagnosis coverage) {
         var d = (DefaultCourseDiagnoses) report.getRoot().getDiagnoses();
         var list = new ArrayList<>(BatchBook.list(d.getJudgeCoverages())); list.add(coverage); d.setJudgeCoverages(list);

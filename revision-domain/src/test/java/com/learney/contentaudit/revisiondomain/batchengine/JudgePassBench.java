@@ -157,6 +157,12 @@ final class JudgePassBench {
     public final Map<String, List<com.learney.contentaudit.auditdomain.judging.JudgeVersionStanding>> versionsSeen =
             new ConcurrentHashMap<>();
 
+    /**
+     * By judge, the exercises where it gives a verdict without a score: «revisar», as naturalness leaves it, pending
+     * in its coverage (F-ALDIA-R003 inv. 6).
+     */
+    public final Map<String, Set<String>> abstainOn = new ConcurrentHashMap<>();
+
     private volatile boolean ollama = true;
 
     private final Map<String, Judge> judges = new LinkedHashMap<>();
@@ -983,8 +989,26 @@ final class JudgePassBench {
                     return null;
                 }
                 reached++;
-                mark(node, consult(quiz.getId(), Seen.of(node)));
+                boolean judged = consult(quiz.getId(), Seen.of(node));
+                if (abstainOn.getOrDefault(name, Set.of()).contains(quiz.getId())) { // as reused from the ledger
+                    abstain(node);
+                } else {
+                    mark(node, judged);
+                }
                 return null;
+            }
+
+            /** A verdict saved without a score: the judge leaves it for a review, and its coverage counts it pending. */
+            private void abstain(AuditNode node) {
+                if (node.getMetadata() == null) {
+                    node.setMetadata(new LinkedHashMap<>());
+                }
+                node.getMetadata().put(name + "InputContract",
+                        com.learney.contentaudit.auditdomain.englishquality.EnglishQualitySubjectBuilder.CONTRACT);
+                node.getMetadata().put(name + "Version", "v3");
+                node.getMetadata().put("verdictVersions", Map.of(name, "v3"));
+                node.getMetadata().put(name + "Verdict", Map.of("assessments", List.of(Map.of("status", "REVIEW"))));
+                node.getUnevaluatedBy().add(name);
             }
 
             @Override

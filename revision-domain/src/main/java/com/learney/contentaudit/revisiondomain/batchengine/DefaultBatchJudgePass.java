@@ -10,10 +10,12 @@ import com.learney.contentaudit.auditdomain.AuditableCourse;
 import com.learney.contentaudit.auditdomain.CourseDiagnoses;
 import com.learney.contentaudit.auditdomain.CourseMapper;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.analysis.DefaultAnalysisComposer;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
 import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
 import com.learney.contentaudit.auditdomain.judging.EvaluatorCoverage;
+import com.learney.contentaudit.auditdomain.judging.JudgeAbstention;
 import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStanding;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
@@ -498,9 +500,43 @@ class DefaultBatchJudgePass implements BatchJudgePass {
                             marked += Math.max(0, version.getVerdictCount());
                         }
                     }
+                    marked += abstentions(report, seen);
                     freshness.notMeasured(seen.getReached() - marked);
                 }
             }
+        }
+
+        /**
+         * F-ALDIA-R003 inv. 6: a saved abstention is a verdict of its version. The coverage leaves pending the ones it did
+         * not close, so they are marked here; the ones it closed are already among its versions. Returns how many it
+         * marked.
+         */
+        private int abstentions(AuditReport report, JudgeCoverageDiagnosis seen) {
+            if (unit == AuditTarget.KNOWLEDGE) {
+                return 0;
+            }
+            int marked = 0;
+            for (AuditNode node : DefaultAnalysisComposer.index(report.getRoot()).values()) {
+                JudgeAbstention abstention = node.getTarget() == AuditTarget.QUIZ
+                        ? DefaultAnalysisComposer.abstention(node, name).orElse(null) : null;
+                if (abstention == null) {
+                    continue;
+                }
+                boolean pending = BatchBook.list(node.getUnevaluatedBy()).contains(name)
+                        || BatchBook.list(node.getPartiallyEvaluatedBy()).contains(name);
+                if (!pending) {
+                    freshness.abstained(abstention, 1);
+                    continue;
+                }
+                String version = DefaultAnalysisComposer.version(node, name, report);
+                var runtime = BatchBook.list(seen.getVersions()).stream()
+                        .filter(v -> v != null && version != null && version.equals(v.getJudgeVersion()))
+                        .map(JudgeVersionStanding::getRuntimeIdentity).findFirst()
+                        .orElse(seen.getStanding() != null ? seen.getStanding().getRuntimeIdentity() : null);
+                freshness.add(version, runtime, 1, abstention);
+                marked++;
+            }
+            return marked;
         }
 
         BatchJudgeAccount account() {

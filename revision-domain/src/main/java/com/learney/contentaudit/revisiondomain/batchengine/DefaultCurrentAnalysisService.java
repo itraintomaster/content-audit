@@ -4,6 +4,7 @@ import com.learney.contentaudit.auditdomain.*;
 import com.learney.contentaudit.auditdomain.analysis.*;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
 import com.learney.contentaudit.auditdomain.contextnumbers.*;
+import com.learney.contentaudit.auditdomain.judging.JudgeAbstention;
 import com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCount;
 import com.learney.contentaudit.auditdomain.judging.JudgeFreshnessReference;
 import com.learney.contentaudit.auditdomain.judging.JudgeFreshnessTally;
@@ -289,7 +290,8 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
     }
     /**
      * F-ALDIA-R003 and R005: the mark of every verdict of the state against today's judge, and per judge how many of its
-     * exercises -- or topics, for the judge of topics -- are up to date, from before and not measured. Reads only.
+     * exercises -- or topics, for the judge of topics -- are up to date, from before and not measured. A saved abstention
+     * is a verdict: it carries its mark and is counted apart by reason, never as not measured (R003 inv. 6). Reads only.
      */
     private List<JudgeFreshnessCount> freshness(AuditReport report,
             Map<String, Map<String, Map<String, Object>>> marks) {
@@ -309,15 +311,17 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                 String unitId = unit == AuditTarget.KNOWLEDGE
                         ? node.ancestor(AuditTarget.KNOWLEDGE).map(n -> n.getEntity().getId()).orElse(id) : id;
                 UnitVerdict verdict = UnitVerdict.NONE;
-                if (DefaultAnalysisComposer.evaluated(node, judge)) {
+                if (DefaultAnalysisComposer.hasStoredOpinion(node, judge)) {
                     String version = DefaultAnalysisComposer.version(node, judge, report);
                     var runtime = JudgeFreshnessReference.runtimeOf(runtime(node, judge, report));
                     var mark = reference.get().mark(version, runtime);
-                    verdict = new UnitVerdict(mark, version, runtime);
+                    var abstention = DefaultAnalysisComposer.abstention(node, judge).orElse(null);
+                    verdict = new UnitVerdict(mark, version, runtime, abstention);
                     var shown = new LinkedHashMap<String, Object>();
                     shown.put("freshness", mark.freshness()); shown.put("staleCause", mark.cause());
                     shown.put("judgeVersion", version); shown.put("versionName", version == null ? null : namer.looseName(version));
                     shown.put("runtimeName", JudgeVersionNamer.runtimeName(runtime));
+                    shown.put("abstention", abstention); shown.put("abstentionName", abstention == null ? null : abstention.label());
                     marks.computeIfAbsent(id, k -> new LinkedHashMap<>()).put(judge, shown);
                 }
                 units.merge(unitId, verdict, UnitVerdict::worse);
@@ -325,7 +329,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
             var tally = new JudgeFreshnessTally(reference.get(), displayName(judge), unit);
             for (var verdict : units.values()) {
                 if (verdict.mark() == null) tally.notMeasured(1);
-                else tally.add(verdict.mark(), verdict.version(), verdict.runtime(), 1);
+                else tally.add(verdict.mark(), verdict.version(), verdict.runtime(), 1, verdict.abstention());
             }
             result.add(tally.count());
         }
@@ -333,8 +337,8 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
     }
     /** What a judge left on a unit; a topic is from before as soon as one of its exercises is. */
     private record UnitVerdict(JudgeVerdictMark mark, String version,
-            EvaluationRuntimeIdentity runtime) {
-        static final UnitVerdict NONE = new UnitVerdict(null, null, null);
+            EvaluationRuntimeIdentity runtime, JudgeAbstention abstention) {
+        static final UnitVerdict NONE = new UnitVerdict(null, null, null, null);
         static UnitVerdict worse(UnitVerdict a, UnitVerdict b) {
             if (a.mark() == null) return b;
             if (b.mark() == null || !a.mark().isUpToDate()) return a;
@@ -343,6 +347,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
     }
     private static boolean reads(AuditNode node, String judge) {
         return node.getScores() != null && node.getScores().containsKey(judge)
+                || DefaultAnalysisComposer.hasStoredOpinion(node, judge)
                 || BatchBook.list(node.getUnevaluatedBy()).contains(judge)
                 || BatchBook.list(node.getPartiallyEvaluatedBy()).contains(judge);
     }
