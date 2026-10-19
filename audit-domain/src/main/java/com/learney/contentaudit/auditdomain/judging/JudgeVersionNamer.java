@@ -18,7 +18,7 @@ import java.util.Set;
 
 /**
  * F-ALDIA-R004: how a version of a judge is named to José -- by the day it first approved its exam, in
- * local time: «la del 5/10». The hour joins the day when another version of the judge first approved
+ * local time: «la del 5/10» -- or the day José promoted it, when that came first (inv. 7). The hour joins the day when another version of the judge first approved
  * that same local day, and the year when it is not the current one. A version that never approved is
  * «sin aprobar» with its short code; a version is never named with a number.
  *
@@ -40,6 +40,15 @@ public final class JudgeVersionNamer {
 
     public JudgeVersionNamer(List<JudgeExamRecord> history, Collection<? extends Collection<String>> sameVersions,
             ZoneId zone, Clock clock) {
+        this(history, sameVersions, Map.of(), zone, clock);
+    }
+
+    /**
+     * Inv. 7: a promoted version approved when José promoted it, so {@code promotedAt} -- the instant
+     * each version was promoted -- names it when it came before its first approved exam.
+     */
+    public JudgeVersionNamer(List<JudgeExamRecord> history, Collection<? extends Collection<String>> sameVersions,
+            Map<String, Instant> promotedAt, ZoneId zone, Clock clock) {
         this.zone = zone;
         this.currentYear = ZonedDateTime.ofInstant(clock.instant(), zone).getYear();
         for (Collection<String> same : sameVersions != null ? sameVersions : List.<Collection<String>>of()) {
@@ -62,6 +71,11 @@ public final class JudgeVersionNamer {
             firstApprovalOf.merge(group(record.getJudgeVersion()), record.getRecordedAt(),
                     (a, b) -> a.isBefore(b) ? a : b);
         }
+        (promotedAt != null ? promotedAt : Map.<String, Instant>of()).forEach((version, at) -> {
+            if (version != null && at != null) {
+                firstApprovalOf.merge(group(version), at, (a, b) -> a.isBefore(b) ? a : b);
+            }
+        });
     }
 
     /** The instant the version first approved its exam, empty when it never did. */

@@ -17,6 +17,7 @@ import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamGroupResult;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamOutcome;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamRecord;
+import com.learney.contentaudit.auditdomain.judging.JudgeEnablement;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStanding;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamVerdict;
@@ -393,6 +394,49 @@ public class ExamCmdTest {
         assertEquals("2026-10-18T15:00:00Z", line.path("recordedAt").asText());
         assertEquals("Las pruebas dejaron de contar.", line.path("reason").asText());
         assertEquals(1, registry.history("single-answer").size(), "the historical record is not rewritten");
+    }
+
+    @Test
+    @DisplayName("should say in exam status, as text and as JSON, the motors the version of today is enabled with, even when the default motor did not take its exam")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R015")
+    @Tag("FEAT-ALDIA")
+    @Tag("F-ALDIA-R003")
+    public void shouldSayInExamStatusTheMotorsTheVersionOfTodayIsEnabledWith() throws IOException {
+        JudgeExamRegistry registry = new FileSystemJudgeExamRegistry(workdir);
+        registry.record(record("bbcf47a4", JudgeExamStatus.APPROVED, "2026-10-19T14:30:58Z"));
+        EvaluationRuntimeIdentity gemini = EvaluationRuntimeIdentity.explicit("agy", "gemini-3.8-flash-high", "high");
+        var current = new JudgeExamStanding("single-answer", "bbcf47a4", JudgeExamStatus.NOT_TAKEN, false,
+                "La versión vigente del juez no rindió el examen fijo.",
+                EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "medium"));
+        current.setEnabledWith(List.of(
+                new JudgeEnablement(gemini, JudgeExamStatus.APPROVED, Instant.parse("2026-10-19T14:30:58Z")),
+                new JudgeEnablement(EvaluationRuntimeIdentity.explicit("claude-cli", "opus", "high"),
+                        JudgeExamStatus.PROMOTED, Instant.parse("2026-10-14T11:37:18Z"))));
+
+        Captured text = run(new ExamCmd(realRecordingService(registry), Map.of(),
+                () -> List.of("single-answer"), () -> Map.of("single-answer", current)), "status", "single-answer");
+        assertEquals(0, text.exit(), text.err());
+        assertTrue(text.out().contains("Habilitada con agy/gemini-3.8-flash-high (esfuerzo high): aprobó el "
+                + "2026-10-19T14:30:58Z."), text.out());
+        assertTrue(text.out().contains("Habilitada con claude-cli/opus (esfuerzo high): promovida el "
+                + "2026-10-14T11:37:18Z."), text.out());
+
+        Captured json = run(new ExamCmd(realRecordingService(registry), Map.of(),
+                () -> List.of("single-answer"), () -> Map.of("single-answer", current)),
+                "status", "single-answer", "-f", "json");
+        assertEquals(0, json.exit(), json.err());
+        JsonNode active = new ObjectMapper().readTree(json.out()).path("judges").get(0).path("current");
+        assertEquals("NOT_TAKEN", active.path("status").asText(), "the default motor keeps its own standing");
+        JsonNode enabled = active.path("enabledWith");
+        assertEquals(2, enabled.size());
+        assertEquals("agy", enabled.get(0).path("providerName").asText());
+        assertEquals("gemini-3.8-flash-high", enabled.get(0).path("modelName").asText());
+        assertEquals("high", enabled.get(0).path("reasoningEffort").asText());
+        assertEquals("APPROVED", enabled.get(0).path("status").asText());
+        assertEquals("2026-10-19T14:30:58Z", enabled.get(0).path("since").asText());
+        assertEquals("PROMOTED", enabled.get(1).path("status").asText());
+        assertEquals(1, registry.history("single-answer").size(), "reading the motors writes nothing");
     }
 
     @Test

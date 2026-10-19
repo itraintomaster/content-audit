@@ -36,8 +36,16 @@ public final class JudgeFreshnessReference {
 
     private final JudgeVersionNamer namer;
 
+    private final List<JudgeEnablement> enabledWith;
+
     public JudgeFreshnessReference(String judgeName, String currentVersion, Set<String> sameVersions,
             boolean approved, Set<EvaluationRuntimeIdentity> approvedRuntimes, JudgeVersionNamer namer) {
+        this(judgeName, currentVersion, sameVersions, approved, approvedRuntimes, namer, List.of());
+    }
+
+    public JudgeFreshnessReference(String judgeName, String currentVersion, Set<String> sameVersions,
+            boolean approved, Set<EvaluationRuntimeIdentity> approvedRuntimes, JudgeVersionNamer namer,
+            List<JudgeEnablement> enabledWith) {
         this.judgeName = judgeName;
         this.currentVersion = currentVersion;
         Set<String> same = new LinkedHashSet<>();
@@ -51,6 +59,7 @@ public final class JudgeFreshnessReference {
         this.approved = approved && currentVersion != null;
         this.approvedRuntimes = approvedRuntimes != null ? Set.copyOf(approvedRuntimes) : Set.of();
         this.namer = namer;
+        this.enabledWith = enabledWith != null ? List.copyOf(enabledWith) : List.of();
     }
 
     /**
@@ -59,6 +68,17 @@ public final class JudgeFreshnessReference {
      */
     public static JudgeFreshnessReference of(JudgeExamStanding standing, List<JudgeExamRecord> history,
             ZoneId zone, Clock clock) {
+        return of(standing, history, List.of(), zone, clock);
+    }
+
+    /**
+     * F-ALDIA-R003: today's judge is approved when its version is enabled with some motor -- it
+     * approved its exam with it, or José promoted it with it --, whichever motor the course runs with
+     * by default; its verdicts are up to date with each of those motors. {@code promotions} name a
+     * promoted version by its promotion when it came before its first approval (F-ALDIA-R004 inv. 7).
+     */
+    public static JudgeFreshnessReference of(JudgeExamStanding standing, List<JudgeExamRecord> history,
+            List<JudgePromotionRecord> promotions, ZoneId zone, Clock clock) {
         Set<String> same = new LinkedHashSet<>();
         if (standing.getJudgeVersion() != null) {
             same.add(standing.getJudgeVersion());
@@ -78,12 +98,30 @@ public final class JudgeFreshnessReference {
                 runtimes.add(runtime);
             }
         });
-        boolean approved = standing.getStatus() == JudgeExamStatus.APPROVED;
-        if (approved && standing.getRuntimeIdentity() != null) {
+        Map<String, Instant> promotedAt = new LinkedHashMap<>();
+        for (JudgeEnablement enablement : standing.getEnabledWith()) {
+            if (enablement.runtimeIdentity() != null) {
+                runtimes.add(enablement.runtimeIdentity());
+            }
+            if (enablement.status() == JudgeExamStatus.PROMOTED && enablement.since() != null
+                    && standing.getJudgeVersion() != null) {
+                promotedAt.merge(standing.getJudgeVersion(), enablement.since(), (a, b) -> a.isBefore(b) ? a : b);
+            }
+        }
+        for (JudgePromotionRecord promotion : promotions != null ? promotions : List.<JudgePromotionRecord>of()) {
+            if (promotion != null && promotion.judgeVersion() != null && promotion.promotedAt() != null) {
+                promotedAt.merge(promotion.judgeVersion(), promotion.promotedAt(), (a, b) -> a.isBefore(b) ? a : b);
+            }
+        }
+        boolean consults = standing.getStatus() == JudgeExamStatus.APPROVED
+                || standing.getStatus() == JudgeExamStatus.PROMOTED;
+        if (consults && standing.getRuntimeIdentity() != null) {
             runtimes.add(standing.getRuntimeIdentity());
         }
+        boolean approved = consults || runtimes.stream().anyMatch(EvaluationRuntimeIdentity::isExplicit);
         return new JudgeFreshnessReference(standing.getJudgeName(), standing.getJudgeVersion(), same, approved,
-                runtimes, new JudgeVersionNamer(history, List.of(same), zone, clock));
+                runtimes, new JudgeVersionNamer(history, List.of(same), promotedAt, zone, clock),
+                standing.getEnabledWith());
     }
 
     /**
@@ -169,6 +207,11 @@ public final class JudgeFreshnessReference {
 
     public JudgeVersionNamer getNamer() {
         return namer;
+    }
+
+    /** The motors with which today's version is enabled, as its standing says them. */
+    public List<JudgeEnablement> getEnabledWith() {
+        return enabledWith;
     }
 
     /** The name of today's version: «la del 13/10, 22:12», or «sin aprobar (…)». */

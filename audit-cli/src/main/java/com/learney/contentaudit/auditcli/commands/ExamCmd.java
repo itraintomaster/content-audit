@@ -13,6 +13,7 @@ import com.learney.contentaudit.auditdomain.judging.JudgeCostEstimate;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamGroupResult;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamOutcome;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamRecord;
+import com.learney.contentaudit.auditdomain.judging.JudgeEnablement;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStanding;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamVerdict;
@@ -330,6 +331,12 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
             for (EvaluatorVersionEquivalence equivalence : standing.getVersionEquivalences()) {
                 System.out.println(equivalenceLine(equivalence));
             }
+            // F-ALDIA-R003: with which motors the version of today is enabled.
+            for (JudgeEnablement enablement : standing.getEnabledWith()) {
+                System.out.println("Habilitada con " + runtimeLabel(enablement.runtimeIdentity()) + ": "
+                        + (enablement.status() == JudgeExamStatus.PROMOTED ? "promovida" : "aprobó")
+                        + (enablement.since() != null ? " el " + enablement.since() : "") + ".");
+            }
         }
         return 0;
     }
@@ -427,6 +434,18 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
                     line.put("recordedAt", equivalence.getRecordedAt() != null
                             ? equivalence.getRecordedAt().toString() : null);
                     line.put("reason", equivalence.getReason());
+                }
+                // F-JEXAM-R015 / F-ALDIA-R003: the motors with which this version is enabled.
+                ArrayNode enabled = active.putArray("enabledWith");
+                for (JudgeEnablement enablement : standing.getEnabledWith()) {
+                    EvaluationRuntimeIdentity motor = enablement.runtimeIdentity();
+                    ObjectNode line = enabled.addObject();
+                    line.put("providerName", motor.getProviderName());
+                    line.put("modelName", motor.getModelName());
+                    line.put("reasoningEffort", motor.getReasoningEffort());
+                    line.put("provenance", runtimeLabel(motor));
+                    line.put("status", enablement.status() != null ? enablement.status().name() : null);
+                    line.put("since", enablement.since() != null ? enablement.since().toString() : null);
                 }
             }
             ArrayNode versions = judge.putArray("versions");

@@ -36,8 +36,13 @@ class JudgeOfTodayTest {
     @Test
     void aVersionRecordedAsTheSameIsAlsoTodays() {
         String afterCutover = "e9f0a1b2eeeeeeee";
+        // Its last exam failed with every motor the earlier one approved with: it is enabled with none.
+        var history = new java.util.ArrayList<>(history());
+        history.add(record(afterCutover, JudgeExamStatus.FAILED, "2026-10-16T12:00:00Z", XHIGH));
+        history.add(record(afterCutover, JudgeExamStatus.FAILED, "2026-10-16T12:05:00Z", MEDIUM));
         var reference = JudgeFreshnessReference.of(standing(afterCutover, JudgeExamStatus.FAILED,
-                Set.of(afterCutover, V_TODAY)), history(), ZONE, CLOCK);
+                Set.of(afterCutover, V_TODAY)), history, ZONE, CLOCK);
+        assertFalse(reference.isApproved());
         assertTrue(reference.isOfToday(V_TODAY, LOCAL));
         assertTrue(reference.isOfToday(afterCutover, LOCAL));
     }

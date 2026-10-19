@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.judgingengine;
 
 import com.learney.contentaudit.auditdomain.JudgeExamRegistry;
+import com.learney.contentaudit.auditdomain.JudgePromotionRegistry;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStanding;
 import com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCatalog;
 import com.learney.contentaudit.auditdomain.judging.JudgeFreshnessReference;
@@ -12,13 +13,15 @@ import java.util.function.Supplier;
 
 /**
  * F-ALDIA-R003 and R004: today's judges as their standings say -- opening their sessions consults
- * nothing -- with the exam history of each for the runtimes they approved with and the names of
- * their versions. The standings are read once, the first time a judge is asked for.
+ * nothing -- with the exam history of each for the runtimes they approved with, José's promotions,
+ * and the names of their versions. The standings are read once, the first time a judge is asked for.
  */
 public final class DefaultJudgeFreshnessCatalog implements JudgeFreshnessCatalog {
     private final Supplier<Map<String, JudgeExamStanding>> standings;
 
     private final JudgeExamRegistry examRegistry;
+
+    private final JudgePromotionRegistry promotions;
 
     private final ZoneId zone;
 
@@ -28,8 +31,15 @@ public final class DefaultJudgeFreshnessCatalog implements JudgeFreshnessCatalog
 
     public DefaultJudgeFreshnessCatalog(Supplier<Map<String, JudgeExamStanding>> standings,
             JudgeExamRegistry examRegistry, ZoneId zone, Clock clock) {
+        this(standings, examRegistry, null, zone, clock);
+    }
+
+    /** With José's promotions, which name a promoted version by the day he promoted it. */
+    public DefaultJudgeFreshnessCatalog(Supplier<Map<String, JudgeExamStanding>> standings,
+            JudgeExamRegistry examRegistry, JudgePromotionRegistry promotions, ZoneId zone, Clock clock) {
         this.standings = standings;
         this.examRegistry = examRegistry;
+        this.promotions = promotions;
         this.zone = zone;
         this.clock = clock;
     }
@@ -48,6 +58,7 @@ public final class DefaultJudgeFreshnessCatalog implements JudgeFreshnessCatalog
             standing.setJudgeName(judgeName);
         }
         return Optional.of(JudgeFreshnessReference.of(standing,
-                examRegistry != null ? examRegistry.history(judgeName) : null, zone, clock));
+                examRegistry != null ? examRegistry.history(judgeName) : null,
+                promotions != null ? promotions.history(judgeName) : null, zone, clock));
     }
 }

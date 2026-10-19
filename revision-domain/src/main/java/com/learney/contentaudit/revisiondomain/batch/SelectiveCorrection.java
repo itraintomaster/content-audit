@@ -1,5 +1,6 @@
 package com.learney.contentaudit.revisiondomain.batch;
 
+import com.learney.contentaudit.auditdomain.judging.JudgeEnablement;
 import java.time.Instant;
 import java.util.List;
 
@@ -27,7 +28,23 @@ public final class SelectiveCorrection {
     public record State(String batchId, int correctionRevision, int contentVersion, String analyzer,
             String fingerprint, String judgeVersion, String runtime, boolean allowed, String reason,
             int reached, int evaluated, int missing, int pendingQueries, int reusedQueries,
-            List<Task> tasks, List<Run> runs, String displayName, List<ReanalysisState> scopes) {
+            List<Task> tasks, List<Run> runs, String displayName, List<ReanalysisState> scopes,
+            List<JudgeEnablement> enabledWith) {
+        /**
+         * F-ALDIA-R007 inv. 3: {@code enabledWith} says with which motors the version of today is
+         * enabled, so a launch with a motor it did not approve with says with which ones it could.
+         */
+        public State {
+            enabledWith = enabledWith != null ? List.copyOf(enabledWith) : List.of();
+        }
+        public State(String batchId, int correctionRevision, int contentVersion, String analyzer,
+                String fingerprint, String judgeVersion, String runtime, boolean allowed, String reason,
+                int reached, int evaluated, int missing, int pendingQueries, int reusedQueries,
+                List<Task> tasks, List<Run> runs, String displayName, List<ReanalysisState> scopes) {
+            this(batchId, correctionRevision, contentVersion, analyzer, fingerprint, judgeVersion, runtime, allowed,
+                    reason, reached, evaluated, missing, pendingQueries, reusedQueries, tasks, runs, displayName, scopes,
+                    List.of());
+        }
         public State(String batchId, int correctionRevision, int contentVersion, String analyzer,
                 String fingerprint, String judgeVersion, String runtime, boolean allowed, String reason,
                 int reached, int evaluated, int missing, int pendingQueries, int reusedQueries,

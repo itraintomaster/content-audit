@@ -12,6 +12,8 @@ import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /** Append-only operator decisions, deliberately outside judge-exams. */
@@ -41,8 +43,14 @@ public final class FileSystemJudgePromotionRegistry implements JudgePromotionReg
     }
     @Override public Optional<JudgePromotionRecord> latest(String judge,String version,EvaluationRuntimeIdentity identity) {
         if (version==null || identity==null || !identity.isExplicit())return Optional.empty();
-        Path f=file(judge);if(!Files.exists(f))return Optional.empty();
         JudgePromotionRecord latest=null;
+        for(JudgePromotionRecord record:history(judge))
+            if(version.equals(record.judgeVersion()) && identity.equals(record.runtimeIdentity())) latest=record;
+        return Optional.ofNullable(latest);
+    }
+    @Override public List<JudgePromotionRecord> history(String judge) {
+        Path f=file(judge);if(!Files.exists(f))return List.of();
+        List<JudgePromotionRecord> records=new ArrayList<>();
         try {
             for(String line:Files.readAllLines(f,StandardCharsets.UTF_8)) {
                 try {
@@ -50,10 +58,10 @@ public final class FileSystemJudgePromotionRegistry implements JudgePromotionReg
                     var record=new JudgePromotionRecord(n.path("judgeName").asText(),n.path("judgeVersion").asText(),
                             EvaluationRuntimeIdentity.explicit(n.path("providerName").asText(),n.path("modelName").asText(),n.path("reasoningEffort").asText()),
                             n.path("reviewer").asText(),n.path("reason").asText(),n.path("evidenceFile").asText(),n.path("evidenceSha256").asText(),Instant.parse(n.path("promotedAt").asText()));
-                    if(judge.equals(record.judgeName()) && version.equals(record.judgeVersion()) && identity.equals(record.runtimeIdentity())) latest=record;
+                    if(judge.equals(record.judgeName())) records.add(record);
                 } catch(IOException | RuntimeException incomplete) { /* Cut or invalid records cannot grant approval. */ }
             }
         } catch(IOException e) { throw new UncheckedIOException("No se pudo leer la promoción",e); }
-        return Optional.ofNullable(latest);
+        return List.copyOf(records);
     }
 }

@@ -71,6 +71,66 @@ class JudgeFreshnessReferenceTest {
     }
 
     @Test
+    void aVersionJosePromotedIsApprovedAndItsVerdictsWithThatMotorAreUpToDate() {
+        // Naturalidad: its exam failed with xhigh on the 15th; José promoted it with medium on the 14th.
+        var promoted = new JudgeExamStanding(JUDGE, V_UNAPPROVED, JudgeExamStatus.PROMOTED, true,
+                "Promovido por José", MEDIUM, Set.of(V_UNAPPROVED));
+        promoted.setEnabledWith(List.of(new JudgeEnablement(MEDIUM, JudgeExamStatus.PROMOTED, PROMOTED_AT)));
+        var reference = JudgeFreshnessReference.of(promoted, history(), ZONE, CLOCK);
+        assertTrue(reference.isApproved());
+        assertEquals(JudgeVerdictMark.UP_TO_DATE, reference.mark(V_UNAPPROVED, MEDIUM));
+        assertEquals(JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.OTHER_RUNTIME), reference.mark(V_UNAPPROVED, XHIGH));
+        assertEquals("la del 14/10", reference.currentVersionName());
+        assertEquals(PROMOTED_AT, reference.currentApprovedAt().orElseThrow());
+    }
+
+    @Test
+    void aPromotionReadFromThePromotionsNamesTheVersionEvenWithoutItsMotors() {
+        // An analysis saved before the motors were said: the standing alone, and José's promotions.
+        var promoted = new JudgeExamStanding(JUDGE, V_UNAPPROVED, JudgeExamStatus.PROMOTED, true,
+                "Promovido por José", MEDIUM, Set.of(V_UNAPPROVED));
+        var promotion = new JudgePromotionRecord(JUDGE, V_UNAPPROVED, MEDIUM, "José", "Acepto el piloto",
+                "approval.json", "a".repeat(64), PROMOTED_AT);
+        var reference = JudgeFreshnessReference.of(promoted, history(), List.of(promotion), ZONE, CLOCK);
+        assertTrue(reference.isApproved());
+        assertEquals(JudgeVerdictMark.UP_TO_DATE, reference.mark(V_UNAPPROVED, MEDIUM));
+        assertEquals("la del 14/10", reference.currentVersionName());
+    }
+
+    @Test
+    void aVersionApprovedWithAMotorThatIsNotTheDefaultOneIsApprovedAndThatMotorIsUpToDate() {
+        // Miniteoría: approved with Gemini on the 19th; the course runs with ChatGPT by default.
+        var history = new java.util.ArrayList<>(history());
+        history.add(record(V_GEMINI, JudgeExamStatus.APPROVED, "2026-10-19T14:30:58Z", GEMINI));
+        var standing = new JudgeExamStanding(JUDGE, V_GEMINI, JudgeExamStatus.NOT_TAKEN, false,
+                "La versión vigente del juez no rindió el examen fijo.", MEDIUM, Set.of(V_GEMINI));
+        standing.setEnabledWith(List.of(new JudgeEnablement(GEMINI, JudgeExamStatus.APPROVED,
+                java.time.Instant.parse("2026-10-19T14:30:58Z"))));
+        var reference = JudgeFreshnessReference.of(standing, history, ZONE, CLOCK);
+        assertTrue(reference.isApproved(), "it is not «sin aprobar» because the default motor did not take it");
+        assertEquals(JudgeVerdictMark.UP_TO_DATE, reference.mark(V_GEMINI, GEMINI));
+        assertEquals(JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.OTHER_RUNTIME), reference.mark(V_GEMINI, MEDIUM));
+        assertEquals(JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.EARLIER_VERSION), reference.mark(V_TODAY, GEMINI));
+        assertEquals("la del 19/10", reference.currentVersionName());
+        assertEquals(standing.getEnabledWith(), reference.getEnabledWith());
+
+        // The history alone says it too, for an analysis saved before the motors were said.
+        standing.setEnabledWith(List.of());
+        var fromHistory = JudgeFreshnessReference.of(standing, history, ZONE, CLOCK);
+        assertTrue(fromHistory.isApproved());
+        assertEquals(JudgeVerdictMark.UP_TO_DATE, fromHistory.mark(V_GEMINI, GEMINI));
+    }
+
+    @Test
+    void aVersionThatApprovedWithNoMotorIsStillNotApproved() {
+        var standing = new JudgeExamStanding(JUDGE, V_GEMINI, JudgeExamStatus.NOT_TAKEN, false,
+                "La versión vigente del juez no rindió el examen fijo.", MEDIUM, Set.of(V_GEMINI));
+        var reference = JudgeFreshnessReference.of(standing, history(), ZONE, CLOCK);
+        assertFalse(reference.isApproved());
+        assertEquals(JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.JUDGE_NOT_APPROVED), reference.mark(V_GEMINI, GEMINI));
+    }
+
+    @Test
     void bothEndsOnTheSameOldVersionAreBothFromBefore() {
         // inv. 1: compared against today's judge, never against each other.
         var reference = today();

@@ -106,4 +106,25 @@ class JudgeFreshnessTallyTest {
         assertEquals("miniteoría (sin aprobar): reusa 3 temas de antes (2 de la versión de hoy, sin aprobar, 1 de la del 5/10)",
                 count.summary());
     }
+
+    @Test
+    void aJudgeApprovedWithAnotherMotorSaysWithWhichAndIsNotSinAprobar() {
+        var standing = new JudgeExamStanding(JUDGE, V_GEMINI, JudgeExamStatus.NOT_TAKEN, false,
+                "La versión vigente del juez no rindió el examen fijo.", MEDIUM, Set.of(V_GEMINI));
+        var enabled = List.of(new JudgeEnablement(GEMINI, JudgeExamStatus.APPROVED, Instant.parse("2026-10-19T14:30:58Z")));
+        standing.setEnabledWith(enabled);
+        var history = new java.util.ArrayList<>(history());
+        history.add(record(V_GEMINI, JudgeExamStatus.APPROVED, "2026-10-19T14:30:58Z", GEMINI));
+        var tally = new JudgeFreshnessTally(JudgeFreshnessReference.of(standing, history, ZONE, CLOCK),
+                "miniteoría", AuditTarget.KNOWLEDGE);
+        tally.add(V_GEMINI, GEMINI, 1);
+        tally.add(V_5_10, XHIGH, 82);
+        var count = tally.count();
+        assertTrue(count.approved());
+        assertEquals(enabled, count.enabledWith());
+        assertEquals(1, count.upToDate());
+        // The motor is looked at first: the 82 are from a motor today's version did not approve with.
+        assertEquals("miniteoría: reusa 82 temas de antes (82 de gpt-6.1-sol en codex-cli, xhigh)", count.summary());
+        assertEquals("la del 19/10", count.currentVersionName());
+    }
 }

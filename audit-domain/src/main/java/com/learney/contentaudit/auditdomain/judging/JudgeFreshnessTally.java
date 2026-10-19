@@ -108,7 +108,7 @@ public final class JudgeFreshnessTally {
                 upToDate, fromBefore, notMeasured, reference.getCurrentVersion(), reference.currentVersionName(),
                 reference.currentApprovedAt().orElse(null), reference.isApproved(), List.copyOf(groups),
                 displayName + (reference.isApproved() ? "" : " (sin aprobar)") + ": " + detail, detail, abstainedUnits,
-                List.copyOf(abstentions));
+                List.copyOf(abstentions), reference.getEnabledWith());
     }
 
     /** «; se abstuvo en 88 (81 no aplica, 7 falta contexto)», or nothing without abstentions. */

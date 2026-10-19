@@ -12,9 +12,11 @@ import com.learney.contentaudit.auditdomain.JudgeRuntimeConfig;
 import com.learney.contentaudit.auditdomain.judging.EvaluatorCoverage;
 import com.learney.contentaudit.auditdomain.judging.JudgeCostEstimate;
 import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.judging.JudgeEnablement;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamRecord;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStanding;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.judging.JudgePromotionRecord;
 import com.learney.contentaudit.auditdomain.judging.JudgeQuizTally;
 import com.learney.contentaudit.auditdomain.judging.JudgeRequestPlan;
 import com.learney.contentaudit.auditdomain.judging.JudgeRuntime;
@@ -155,6 +157,7 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
         JudgeExamStanding standing = standing(judgeName, judgeVersion, runtimeIdentity,
                 compatibleJudgeVersions);
         standing.setVersionEquivalences(versionEquivalencesOf(judges));
+        standing.setEnabledWith(enabledWith(judgeName, judgeVersion, compatibleJudgeVersions, standing));
         int effective = Math.max(0, requested);
         if (purpose == EvaluationRunPurpose.READING) effective = 0;
         if (judgeVersion == null) {
@@ -387,6 +390,60 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
             }
         }
         return Optional.ofNullable(latest);
+    }
+
+    /**
+     * F-ALDIA-R003: the motors with which this version is enabled, the one of {@code own} first: each
+     * motor an exam of the version (or one that is the same) was measured with, or José promoted it
+     * with, whose standing consults on the course. Approval stays per motor -- the session still
+     * consults only with its own --; this says with which ones the version could, so a version that
+     * approved with Gemini is not «sin aprobar» because the course runs with ChatGPT by default.
+     */
+    private List<JudgeEnablement> enabledWith(String judgeName, String judgeVersion,
+            Set<String> compatibleJudgeVersions, JudgeExamStanding own) {
+        if (judgeVersion == null) {
+            return List.of();
+        }
+        Set<String> accepted = acceptedVersions(compatibleJudgeVersions, judgeVersion);
+        Set<EvaluationRuntimeIdentity> candidates = new LinkedHashSet<>();
+        if (own.getRuntimeIdentity().isExplicit()) {
+            candidates.add(own.getRuntimeIdentity());
+        }
+        List<JudgeExamRecord> history = examRegistry != null ? examRegistry.history(judgeName) : null;
+        for (JudgeExamRecord record : history != null ? history : List.<JudgeExamRecord>of()) {
+            if (record != null && accepted.contains(record.getJudgeVersion())
+                    && record.getRuntimeIdentity() != null && record.getRuntimeIdentity().isExplicit()) {
+                candidates.add(record.getRuntimeIdentity());
+            }
+        }
+        List<JudgePromotionRecord> promoted = promotions != null ? promotions.history(judgeName) : null;
+        for (JudgePromotionRecord promotion : promoted != null ? promoted : List.<JudgePromotionRecord>of()) {
+            if (judgeVersion.equals(promotion.judgeVersion())) {
+                candidates.add(promotion.runtimeIdentity());
+            }
+        }
+        List<JudgeEnablement> enabled = new ArrayList<>();
+        for (EvaluationRuntimeIdentity runtime : candidates) {
+            JudgeExamStanding standing = runtime.equals(own.getRuntimeIdentity())
+                    ? own
+                    : standing(judgeName, judgeVersion, runtime, compatibleJudgeVersions);
+            if (standing.isConsultsOnCourse()) {
+                enabled.add(new JudgeEnablement(runtime, standing.getStatus(),
+                        enabledSince(judgeName, judgeVersion, accepted, runtime, standing.getStatus())));
+            }
+        }
+        return List.copyOf(enabled);
+    }
+
+    /** The promotion that enables it, or the last exam with that motor, which approved. */
+    private Instant enabledSince(String judgeName, String judgeVersion, Set<String> accepted,
+            EvaluationRuntimeIdentity runtime, JudgeExamStatus status) {
+        if (status == JudgeExamStatus.PROMOTED && promotions != null) {
+            Optional<JudgePromotionRecord> promotion = promotions.latest(judgeName, judgeVersion, runtime);
+            return promotion != null ? promotion.map(JudgePromotionRecord::promotedAt).orElse(null) : null;
+        }
+        Optional<JudgeExamRecord> exam = examRegistry.latestCompatible(judgeName, accepted, runtime);
+        return exam != null ? exam.map(JudgeExamRecord::getRecordedAt).orElse(null) : null;
     }
 
     private static Set<String> acceptedVersions(Set<String> compatibleJudgeVersions,

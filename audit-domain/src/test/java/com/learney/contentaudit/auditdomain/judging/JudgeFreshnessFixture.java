@@ -14,10 +14,14 @@ final class JudgeFreshnessFixture {
     static final String V_13_10_MORNING = "33e026fabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb";
     static final String V_TODAY = "1eee07a9cccccccccccccccccccccccccccccccccccccccccccccccccccccccc";
     static final String V_UNAPPROVED = "c8ca16c9dddddddddddddddddddddddddddddddddddddddddddddddddddddddd";
+    static final String V_GEMINI = "bbcf47a4eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
+    /** José promoted Naturalidad and Calidad didáctica at 8:37 of the 14th, Buenos Aires time. */
+    static final Instant PROMOTED_AT = Instant.parse("2026-10-14T11:37:18Z");
     static final ZoneId ZONE = ZoneId.of("America/Argentina/Buenos_Aires");
     static final Clock CLOCK = Clock.fixed(Instant.parse("2026-10-18T15:00:00Z"), ZONE);
     static final EvaluationRuntimeIdentity XHIGH = EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "xhigh");
     static final EvaluationRuntimeIdentity MEDIUM = EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "medium");
+    static final EvaluationRuntimeIdentity GEMINI = EvaluationRuntimeIdentity.explicit("agy", "gemini-3.8-flash-high", "high");
     static final EvaluationRuntimeIdentity LOCAL = EvaluationRuntimeIdentity.explicit("ollama", "llama3", "NOT_APPLICABLE");
 
     private JudgeFreshnessFixture() {

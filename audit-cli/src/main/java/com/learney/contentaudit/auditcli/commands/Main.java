@@ -1412,7 +1412,8 @@ class Main {
                 };
         com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCatalog judgeFreshnessCatalog =
                 new com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeFreshnessCatalog(currentJudgeStandings,
-                        judgeExamRegistry, java.time.ZoneId.systemDefault(), java.time.Clock.systemDefaultZone());
+                        judgeExamRegistry, judgePromotionRegistry, java.time.ZoneId.systemDefault(),
+                        java.time.Clock.systemDefaultZone());
         cmd.addSubcommand("exam", new picocli.CommandLine(
                 new ExamCmd(judgeExamService, examProvenance, () -> analyzerCatalog.list().stream()
                         .map(AnalyzerDescriptor::getName).toList(), currentJudgeStandings, versionCutover)));   // C · FEAT-JEXAM

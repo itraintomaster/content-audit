@@ -233,7 +233,8 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
                 c != null ? BatchBook.list(c.getEvaluators()).stream().filter(e -> e.getCoverage() != null)
                         .mapToInt(e -> e.getCoverage().getReused()).sum() : 0,
                 tasks, BatchBook.copy(b.getSelectiveRuns()), config.getAnalyzerCatalog() == null ? judge
-                        : config.getAnalyzerCatalog().find(judge).map(com.learney.contentaudit.auditdomain.AnalyzerDescriptor::getDisplayName).orElse(judge));
+                        : config.getAnalyzerCatalog().find(judge).map(com.learney.contentaudit.auditdomain.AnalyzerDescriptor::getDisplayName).orElse(judge),
+                List.of(), c != null && c.getStanding() != null ? c.getStanding().getEnabledWith() : List.of());
     }
 
     private Set<String> approved(CorrectionBatch b) {
@@ -321,7 +322,8 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         State estimate = new State(batch.getId(), BatchBook.correctionRevision(batch), batch.getContentVersion(), r.analyzer(), joint,
                 correction.judgeVersion(), correction.runtime(), correction.allowed() && original.allowed(),
                 correction.allowed() ? original.reason() : correction.reason(), reached, 0, reached,
-                Math.addExact(correction.pendingQueries(), baseQueries), 0, correction.tasks(), BatchBook.copy(batch.getSelectiveRuns()), correction.displayName(), scopes);
+                Math.addExact(correction.pendingQueries(), baseQueries), 0, correction.tasks(), BatchBook.copy(batch.getSelectiveRuns()), correction.displayName(), scopes,
+                correction.enabledWith());
         if (estimateOnly) return estimate;
         if (r.contentVersion() == null || r.contentVersion() != batch.getContentVersion() || !Objects.equals(joint, r.fingerprint())
                 || !Objects.equals(estimate.judgeVersion(), r.judgeVersion())) fail("El contenido o el juez cambió: volvé a estimar.");

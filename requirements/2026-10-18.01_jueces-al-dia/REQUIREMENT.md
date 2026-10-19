@@ -132,6 +132,10 @@ nueva sale sin examen.
 > - **otro motor**, si su motor no es ninguno con el que la versión de hoy aprobó;
 > - **versión anterior**, si su motor es uno de esos y lo dio otra versión.
 >
+> Una versión **aprobó con un motor** si su último examen con ese motor aprobó, o si José la promovió con ese motor y
+> ningún examen medido después con ese motor la reemplazó. Con un motor alcanza: la versión queda **habilitada** con
+> cada motor con el que aprobó, sea o no el que se usa por omisión.
+>
 > Un ejercicio o tema sin veredicto de ese juez está **sin medir**. Una **abstención** —el juez miró el ejercicio y
 > dijo que no aplica, que le falta contexto o que hay que revisarlo, sin dejar puntaje— es un veredicto, y lleva su
 > marca como cualquier otro ([DOUBT-ALDIA-ABSTENCION](#DOUBT-ALDIA-ABSTENCION)). Invariantes:
@@ -140,8 +144,9 @@ nueva sale sin examen.
 > 2. marcar no cambia qué veredicto se reusa: se sigue reusando como hoy ([F-EVCOST-R006](#F-EVCOST-R006)), y la marca
 >    va con él;
 > 3. un veredicto sin procedencia es de antes, y su causa es «procedencia desconocida» ([F-JEXAM-R014](#F-JEXAM-R014));
-> 4. si la versión de hoy no aprobó su examen, ningún veredicto de ese juez está al día, y el juez se nombra «sin
->    aprobar» ([F-CJUEZ-R004](#F-CJUEZ-R004));
+> 4. si la versión de hoy no aprobó con ningún motor, ningún veredicto de ese juez está al día, y el juez se nombra
+>    «sin aprobar» ([F-CJUEZ-R004](#F-CJUEZ-R004)). Si aprobó con alguno, no es «sin aprobar», aunque no sea el motor
+>    que se usa por omisión;
 > 5. calcular la marca no consulta ni escribe nada;
 > 6. una abstención guardada nunca está sin medir: volver a medir sin forzar la reusa y da la misma. Vale igual en la
 >    tabla de jueces, en la cuenta del cierre, en la estimación de un diálogo de medir y en el resumen de cada corrida.
@@ -163,6 +168,11 @@ naturalidad la midió un modelo local, y eso se lee «otro motor» aunque su ver
 | Corrección 1 (83 temas) | 1 | 82 (77 de la del 5/10, 5 de la del 13/10, 13:00) | 0 | 0 |
 
 La naturalidad tiene, en la base, 2.333 ejercicios de otro motor (llama3 local) y ninguno al día.
+
+**Criterio de los motores**, al 19/10: la miniteoría de hoy aprobó a las 11:30 con Gemini 3.8 Flash y nunca rindió
+con ChatGPT, que es el motor por omisión. Está habilitada con Gemini, no es «sin aprobar», y lo que midió con ChatGPT es
+de otro motor. Naturalidad idiomática y Calidad didáctica A1 no rindieron su examen con la versión de hoy: José las
+promovió el 14/10 con ChatGPT. Están habilitadas con ChatGPT, y lo que esa versión midió con ChatGPT está al día.
 
 **Criterio de la abstención** (invariante 6), Corrección 1 de la tanda A1 al 19/10: el pragmatismo de hoy (la del
 14/10) dejó 2.402 veredictos con su motor aprobado. 88 son abstenciones: 81 «no aplica» (ejercicios de clasificar, de
@@ -186,7 +196,9 @@ entre el 14/10 y el 18/10 sin gastar nada ni cambiar nada (brief 158).
 > 4. el resto se nombra así: una versión que nunca aprobó, «sin aprobar» y su código corto; un veredicto de otro motor,
 >    por su motor como lo dice su procedencia («llama3 local»); uno sin procedencia, «procedencia desconocida»;
 > 5. el código entero sigue en la salida JSON y en el detalle, para buscarlo;
-> 6. una versión de un juez nunca se nombra con un número: «versión 5» es del contenido.
+> 6. una versión de un juez nunca se nombra con un número: «versión 5» es del contenido;
+> 7. una versión que José promovió se nombra por lo primero que pasó: su primera aprobación o su promoción. La
+>    naturalidad de hoy, promovida el 14/10 y nunca aprobada en un examen, es «la del 14/10».
 
 <details><summary>Detail</summary>
 
@@ -213,8 +225,8 @@ código entero y el instante de su primera aprobación.
 
 > Leer el análisis vigente dice, por juez y por estado (la base y la corrección), cuántos ejercicios o temas están al
 > día, cuántos son de antes y cuántos están sin medir. Lo de antes va por causa y por versión o motor, cada uno con su
-> nombre ([F-ALDIA-R004](#F-ALDIA-R004)) y su código. También dice cuál es la versión de hoy de cada juez y cuándo aprobó.
-> Invariantes:
+> nombre ([F-ALDIA-R004](#F-ALDIA-R004)) y su código. También dice cuál es la versión de hoy de cada juez, cuándo aprobó y con qué motores
+> está habilitada ([F-ALDIA-R003](#F-ALDIA-R003)). Invariantes:
 > 1. las tres cuentas suman la unidad del juez en ese estado: ejercicios, o temas en la miniteoría;
 > 2. cada veredicto del análisis trae su marca y su versión. Esto incluye los que leen las opiniones de Correcciones;
 > 3. el informe de un cierre y el de cada análisis dicen, por juez, cuánto de lo reusado es de antes, con su nombre:
@@ -271,7 +283,8 @@ cuenta.
 >    Con las dos, lo que se lee igual en la base y en la corrección se mide una vez;
 > 2. no consulta sin un tope pedido y nunca pasa ese tope. Si el tope no alcanza, lo que no se midió sigue de antes y el
 >    informe dice cuánto falta ([F-CJUEZ-R003](#F-CJUEZ-R003));
-> 3. si la versión de hoy no aprobó su examen, no consulta y dice por qué ([F-JEXAM-R003](#F-JEXAM-R003));
+> 3. si la versión de hoy no aprobó con el motor elegido, no consulta y dice por qué ([F-JEXAM-R003](#F-JEXAM-R003)).
+>    La estimación dice además con qué motores sí está habilitada, para poder elegir uno de ellos;
 > 4. lo sin medir no entra. Completarlo es otro pedido, que ya existe;
 > 5. en la base mide todo lo de antes, no sólo los temas o ejercicios que la tanda cambió;
 > 6. los veredictos de antes no se borran: quedan como historia ([F-EVCOST-R006](#F-EVCOST-R006));

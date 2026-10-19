@@ -275,7 +275,10 @@ Cada juez trae sus versiones, una por versión y runtime ([F-JEXAM-R014](#F-JEXA
 en que rindieron por primera vez; cada versión trae su estado, que es su último registro, la
 procedencia escrita como la escribe `exam status`, y todos sus registros con sus grupos, los casos que
 no dieron lo esperado, la meta, la foto y quién midió. Un juez que rinde el examen y nunca lo rindió
-aparece sin versiones. Leer el historial no consulta a ningún juez ni escribe nada.
+aparece sin versiones. La versión de hoy de cada juez trae además los motores con los que está
+habilitada: con cuál aprobó o con cuál la promovió José, y desde cuándo
+([F-ALDIA-R003](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md#F-ALDIA-R003)). Leer el historial no consulta a ningún
+juez ni escribe nada.
 
 ## Contexto
 

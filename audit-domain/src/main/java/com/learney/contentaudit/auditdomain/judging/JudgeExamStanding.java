@@ -32,6 +32,14 @@ public class JudgeExamStanding {
      */
     private List<EvaluatorVersionEquivalence> versionEquivalences = List.of();
 
+    /**
+     * F-ALDIA-R003: the motors with which this version is enabled -- it approved with them or José
+     * promoted it with them --, the one of this standing first when it is one of them. Only this
+     * standing's motor consults on the course; the others say with which motor it could. It is read
+     * from the exams and the promotions, so it does not take part in equality.
+     */
+    private List<JudgeEnablement> enabledWith = List.of();
+
     public JudgeExamStanding() {
     }
 
@@ -126,6 +134,14 @@ public class JudgeExamStanding {
 
     public void setVersionEquivalences(List<EvaluatorVersionEquivalence> versionEquivalences) {
         this.versionEquivalences = versionEquivalences != null ? List.copyOf(versionEquivalences) : List.of();
+    }
+
+    public List<JudgeEnablement> getEnabledWith() {
+        return enabledWith != null ? enabledWith : List.of();
+    }
+
+    public void setEnabledWith(List<JudgeEnablement> enabledWith) {
+        this.enabledWith = enabledWith != null ? List.copyOf(enabledWith) : List.of();
     }
 
     @Override

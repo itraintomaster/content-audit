@@ -360,6 +360,20 @@ class SelectiveCorrectionServiceTest {
         service.execute(req("correct", "c", List.of("selective-analysis-quality"), 8, true));
         verify(panel, times(1)).runSelected(any(), any(), any(), any(), any(), any());
     }
+    /** Miniteoría approved with Gemini; the estimate asked with ChatGPT says with which motor it could. */
+    @Test @Tag("FEAT-ALDIA") @Tag("F-ALDIA-R007")
+    void anEstimateWithAMotorTheJudgeDidNotApproveWithSaysTheMotorsItIsEnabledWith() {
+        var gemini = new com.learney.contentaudit.auditdomain.judging.JudgeEnablement(
+                com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity.explicit("agy", "gemini-3.8-flash-high", "high"),
+                com.learney.contentaudit.auditdomain.judging.JudgeExamStatus.APPROVED, java.time.Instant.parse("2026-10-19T14:30:58Z"));
+        quality.getStanding().setConsultsOnCourse(false);
+        quality.getStanding().setReason("La versión vigente del juez no rindió el examen fijo.");
+        quality.getStanding().setEnabledWith(List.of(gemini));
+        var estimate = service.execute(req("estimate", null, List.of(), null, false));
+        assertFalse(estimate.allowed(), "a motor that did not approve does not measure");
+        assertEquals(List.of(gemini), estimate.enabledWith());
+        verify(store, never()).save(any());
+    }
     @Test void failedRunKeepsReservationKnownSpendAndBlocksNewRunsWithoutAutomaticRecovery() {
         analyze(); when(allowance.spent()).thenReturn(2);
         doThrow(new IllegalStateException("stopped")).when(panel).runSelected(any(), any(), any(), any(), any(), any());

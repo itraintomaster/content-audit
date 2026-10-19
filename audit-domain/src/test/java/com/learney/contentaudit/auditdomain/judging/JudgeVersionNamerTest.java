@@ -35,6 +35,17 @@ class JudgeVersionNamerTest {
     }
 
     @Test
+    void aPromotedVersionIsNamedByThePromotionWhenItCameBeforeItsFirstApproval() {
+        // inv. 7: Naturalidad never approved its exam; José promoted it on the 14th.
+        var promoted = new JudgeVersionNamer(history(), List.of(), java.util.Map.of(V_UNAPPROVED, PROMOTED_AT), ZONE, CLOCK);
+        assertEquals("la del 14/10", promoted.name(V_UNAPPROVED));
+        assertTrue(promoted.approved(V_UNAPPROVED));
+        // A promotion after the first approval does not rename it.
+        var late = new JudgeVersionNamer(history(), List.of(), java.util.Map.of(V_5_10, PROMOTED_AT), ZONE, CLOCK);
+        assertEquals("la del 5/10", late.name(V_5_10));
+    }
+
+    @Test
     void theYearJoinsWhenItIsNotTheCurrentOne() {
         var old = new JudgeVersionNamer(List.of(record("aaaa1111", JudgeExamStatus.APPROVED,
                 "2025-12-20T15:00:00Z", XHIGH)), List.of(), ZONE, CLOCK);

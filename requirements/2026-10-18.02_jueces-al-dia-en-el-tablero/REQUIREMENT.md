@@ -78,7 +78,7 @@ muestra de 12 antes de aprobar.
 
 Es una sola marca para que se lea igual en todas partes y sin saber qué versión es cuál. Viene de content-audit por la
 misma razón que el análisis vigente: «El servidor decide cobertura, errores, compatibilidad y comparabilidad. La UI no
-elige». El tablero no sabe con qué motores aprobó cada versión.
+elige». Con qué motores aprobó cada versión también lo dice content-audit ([F-ALDIA-R003](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md#F-ALDIA-R003)).
 
 **Criterio**: en la ficha de Corrección 1, la miniteoría dice «anterior 82 · al día 1» y la base, «anterior 83». La
 naturalidad de la base dice «otro motor». Al pasar por encima de `738388a5` se ve el código entero y «copiar».
@@ -146,14 +146,18 @@ eval/fixtures.json».
 >    temas, para poder comparar y publicar». Debajo dice «K ya está al día: se reusa gratis»;
 > 2. la estimación es gratis y la da content-audit, por estado ([F-ALDIA-R007](#F-ALDIA-R007)). El tope viene propuesto
 >    con margen, como en el diálogo común, y se puede cambiar;
-> 3. sólo se ofrecen perfiles cuyo motor aprobó con la versión de hoy;
+> 3. sólo se ofrecen perfiles cuyo motor aprobó con la versión de hoy
+>    ([F-ALDIA-R003](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md#F-ALDIA-R003)). El diálogo abre con uno de ellos: el
+>    de ChatGPT si aprobó con él, y si no, el primero que aprobó. Lo dice al lado del perfil: «Abre con Gemini 3.8 Flash:
+>    la versión de hoy aprobó con él». Los otros perfiles y esfuerzos se ven apagados, cada uno con su porqué: «no
+>    aprobó con la versión de hoy»;
 > 4. el botón dice cuánto mide: «Medir 165 temas». Nada se consulta antes de confirmarlo, y el servidor exige el tope;
 > 5. mientras mide, la línea dice «Midiendo miniteoría · 12 de 165 temas», y la corrida se ve en Ejecuciones como
 >    cualquier otra;
 > 6. al terminar, el Mapa pierde el aviso de lo que se midió ([DOUBT-ALDIA-INTEGRAR](#DOUBT-ALDIA-INTEGRAR)). Si el tope
 >    no alcanzó, el aviso queda con lo que falta;
-> 7. si la versión de hoy no aprobó su examen, el botón se apaga y dice «La versión actual todavía no rindió su examen.
->    Medir con ella no sirve para publicar.»;
+> 7. si la versión de hoy no aprobó con ningún motor, el botón se apaga y dice «La versión actual todavía no rindió su
+>    examen. Medir con ella no sirve para publicar.»;
 > 8. «Pedir de nuevo», en un renglón de Correcciones, abre el diálogo sólo con ese tema;
 > 9. lo sin medir no entra: eso se mide con «Medir lo que falta» ([F-TALDIA-R009](#F-TALDIA-R009)) o con «Completar
 >    opiniones».
@@ -290,12 +294,15 @@ la del 5/10 en los dos lados · 14 cambios; una versión distinta en cada lado �
 
 > En la ficha de jueces del Mapa ([F-TALDIA-R002](#F-TALDIA-R002), inv. 3), cada celda de un juez en un estado que
 > tiene algo «sin medir» suma un botón «Medir lo que falta». Invariantes:
-> 1. si la versión de hoy del juez aprobó su examen, el botón abre el diálogo común de lanzar con ese juez y ese
->    estado. El diálogo estima gratis, propone un tope y no consulta nada hasta que José confirma;
+> 1. si la versión de hoy del juez aprobó con algún motor, o José la promovió
+>    ([F-ALDIA-R003](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md#F-ALDIA-R003)), el botón abre el diálogo común de
+>    lanzar con ese juez y ese estado, y con un motor con el que aprobó ([F-TALDIA-R004](#F-TALDIA-R004), inv. 3). El
+>    diálogo estima gratis, propone un tope y no consulta nada hasta que José confirma. La fila dice con qué motor quedó
+>    habilitada: «habilitada con Gemini 3.8 Flash»;
 > 2. mide sin forzar: reusa todo lo que ya está medido, también lo de antes, y consulta sólo lo sin medir;
-> 3. si la versión de hoy no aprobó su examen, el botón está apagado. La fila dice una sola vez por qué: «La versión de
->    hoy no aprobó su examen: sin eso no consulta sobre el curso.», con un «Ver su examen» que lleva a Exámenes con
->    ese juez;
+> 3. si la versión de hoy no aprobó con ningún motor, el botón está apagado. La fila dice una sola vez por qué: «La
+>    versión de hoy no aprobó su examen: sin eso no consulta sobre el curso.», con un «Ver su examen» que lleva a
+>    Exámenes con ese juez;
 > 4. con la tanda publicada no hay botón ni motivo: no queda nada que medir;
 > 5. un juez que content-audit no sabe medir en esa tanda no tiene botón;
 > 6. lo medido queda como una corrida suelta, que el carril de mediciones ofrece integrar
@@ -311,8 +318,34 @@ El motivo del botón apagado es el de [F-JEXAM-R003](../2026-09-30.12_juez-de-co
 el curso. No es que «no sirve para publicar»: no mide.
 
 **Criterio**, con los datos del 19/10: Pragmatismo comunicativo dice «sin medir 88» y «Medir lo que falta» en
-Corrección 1. Calidad de distractores dice «sin medir 244» y el botón en la base. Naturalidad idiomática y Calidad
-didáctica A1 tienen el botón apagado, el motivo y «Ver su examen».
+Corrección 1. Calidad de distractores dice «sin medir 244» y el botón en la base. La miniteoría aprobó sólo con Gemini:
+su fila dice «habilitada con Gemini 3.8 Flash» y el botón abre el diálogo con Gemini. Naturalidad idiomática y Calidad
+didáctica A1 están promovidas con ChatGPT: su botón se prende como el de cualquier juez aprobado.
+
+</details>
+
+<a id="F-TALDIA-R010"></a>
+### Rule[F-TALDIA-R010] - Exámenes dice con qué motores está habilitada la versión de hoy
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> En Exámenes, la versión de hoy de cada juez dice con qué motores está habilitada
+> ([F-ALDIA-R003](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md#F-ALDIA-R003)), no sólo cómo le fue con el motor por
+> omisión. Invariantes:
+> 1. si aprobó con algún motor, dice «Habilitada con Gemini 3.8 Flash · aprobó hoy, 11:30», con cada motor y su fecha.
+>    No dice «necesita rendir» ni «la aprobación es de otra versión»;
+> 2. una versión que José promovió dice «Promovida» y cuándo, nunca la palabra en inglés;
+> 3. rendir con otro motor sigue disponible, como una acción aparte de la habilitación;
+> 4. si no aprobó con ningún motor ni está promovida, dice que necesita rendir, como hoy;
+> 5. leer Exámenes no consulta a ningún juez.
+
+<details><summary>Detail</summary>
+
+El 19/10 José rindió el examen de la miniteoría con Gemini y Exámenes le siguió diciendo que le faltaba rendir: miraba
+sólo ChatGPT, el motor por omisión. «Si alguno está disponible, entonces está disponible la medición» (José, 19/10).
+
+**Criterio**, con los datos del 19/10: la miniteoría dice «Habilitada con Gemini 3.8 Flash · aprobó hoy, 11:30».
+Pragmatismo comunicativo, habilitado con ChatGPT y con Gemini, nombra los dos. Naturalidad idiomática dice «Promovida
+el 14/10».
 
 </details>
 
@@ -414,12 +447,13 @@ Las pruebas usan respuestas grabadas de content-audit. Ninguna consulta a un mod
 | R001 | Las tres marcas salen de lo que dice content-audit, con las mismas palabras en las cuatro pantallas. Dos aprobaciones el mismo día en la zona del navegador llevan la hora, y ninguna versión de juez se muestra como «versión N» |
 | R002 | La línea y el arco aparecen sólo con algo de antes. La ficha de la base dice «anterior», no «aprobado» |
 | R003 | Lo que no cuenta va en su propio renglón; sin lista, dice «no se sabe qué cambió» |
-| R004 | Las dos casillas vienen marcadas, el botón dice el número y nada se consulta sin confirmar. Sin examen aprobado, el botón está apagado y dice por qué |
+| R004 | Las dos casillas vienen marcadas, el botón dice el número y nada se consulta sin confirmar. Sin examen aprobado, el botón está apagado y dice por qué. Con un juez aprobado sólo con Gemini, el diálogo abre con Gemini y ChatGPT se ve apagado; aprobado con los dos, abre con ChatGPT |
 | R005 | Hay un aviso por juez, no por renglón. La marca de versión y la de otro contenido son distintas y se ven juntas |
 | R006 | Un cambio con una opinión de antes no entra en el grupo y sí se aprueba de a uno. «Por qué quedan afuera» nombra al juez y la versión |
 | R007 | La mezcla dice cuánto midió cada versión y la fecha de medición va aparte |
 | R008 | La quinta condición sale de la bandeja y sin bandeja dice «no se sabe». `--accept-previous` aparece sólo donde se aplica |
-| R009 | El botón aparece sólo donde hay algo sin medir y abre el diálogo común sin forzar, con ese juez, ese estado y la tanda; nada se consulta. Sin examen aprobado está apagado, con el motivo una vez y «Ver su examen». Publicada la tanda, o con un juez que no se sabe medir, no hay botón |
+| R009 | El botón aparece sólo donde hay algo sin medir y abre el diálogo común sin forzar, con ese juez, ese estado y la tanda; nada se consulta. Sin examen aprobado con ningún motor está apagado, con el motivo una vez y «Ver su examen». Aprobado con otro motor o promovido, está prendido y la fila nombra el motor. Publicada la tanda, o con un juez que no se sabe medir, no hay botón |
+| R010 | Una versión aprobada sólo con otro motor dice «Habilitada con …» y su fecha, no «necesita rendir». Una promovida dice «Promovida». Sin aprobar con ningún motor, dice que necesita rendir |
 
 ## References
 

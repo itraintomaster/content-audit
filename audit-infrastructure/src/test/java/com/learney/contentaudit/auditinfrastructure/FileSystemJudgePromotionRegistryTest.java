@@ -20,6 +20,15 @@ class FileSystemJudgePromotionRegistryTest {
         assertTrue(reloaded.latest("naturalness","v1",EvaluationRuntimeIdentity.explicit("codex-cli","other","medium")).isEmpty());
         assertFalse(Files.exists(directory.resolve(".content-audit/judge-exams")));
     }
+    @Test @org.junit.jupiter.api.Tag("FEAT-ALDIA") @org.junit.jupiter.api.Tag("F-ALDIA-R003")
+    void historyListsEveryValidPromotionOfTheJudgeInTheOrderTheyWereRecorded() throws Exception {
+        var store=new FileSystemJudgePromotionRegistry(directory);
+        assertEquals(java.util.List.of(),store.history("naturalness"));
+        store.record(promotion("v1"));store.record(promotion("v2"));
+        Files.writeString(directory.resolve(".content-audit/judge-promotions/naturalness.jsonl"),"{\"judgeName\":\"naturalness\"}\n",StandardOpenOption.APPEND);
+        assertEquals(java.util.List.of(promotion("v1"),promotion("v2")),new FileSystemJudgePromotionRegistry(directory).history("naturalness"));
+        assertEquals(java.util.List.of(),store.history("a1-didactic"));
+    }
     @Test void preservesOldLinesAndIgnoresAnIncompleteRecord() throws Exception {
         var store=new FileSystemJudgePromotionRegistry(directory);store.record(promotion("v1"));
         var file=directory.resolve(".content-audit/judge-promotions/naturalness.jsonl");String before=Files.readString(file);
