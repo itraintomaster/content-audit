@@ -13,7 +13,8 @@ feature:
 **Qué**: El tablero muestra, con una sola marca, si cada veredicto es de la versión de hoy de su juez: «al día»,
 «anterior» u «otro motor», o «sin medir». La muestra en el Mapa, en Correcciones, en Analizadores y en Publicar. Cada
 versión se nombra por su fecha de aprobación. Desde cualquiera de esas pantallas se abre un diálogo que vuelve a medir
-sólo lo de antes, con estimación gratis y tope. Para aprobar en grupo, lo de antes cuenta como que falta medir.
+sólo lo de antes, con estimación gratis y tope. La ficha del Mapa también manda a medir lo que está sin medir de un
+juez. Para aprobar en grupo, lo de antes cuenta como que falta medir.
 
 **Por qué**: José buscó en el Mapa y en Correcciones si la miniteoría nueva había medido Corrección 1, y no lo encontró.
 82 de 83 temas tienen su veredicto de una versión anterior. El Mapa da el análisis A4 por vigente. El grupo «Los
@@ -154,7 +155,8 @@ eval/fixtures.json».
 > 7. si la versión de hoy no aprobó su examen, el botón se apaga y dice «La versión actual todavía no rindió su examen.
 >    Medir con ella no sirve para publicar.»;
 > 8. «Pedir de nuevo», en un renglón de Correcciones, abre el diálogo sólo con ese tema;
-> 9. lo sin medir no entra: eso sigue en «Completar opiniones».
+> 9. lo sin medir no entra: eso se mide con «Medir lo que falta» ([F-TALDIA-R009](#F-TALDIA-R009)) o con «Completar
+>    opiniones».
 
 <details><summary>Detail</summary>
 
@@ -282,6 +284,38 @@ la del 5/10 en los dos lados · 14 cambios; una versión distinta en cada lado �
 
 </details>
 
+<a id="F-TALDIA-R009"></a>
+### Rule[F-TALDIA-R009] - La ficha del Mapa mide lo que le falta a un juez
+**Severity**: normal | **Validation**: AUTO_VALIDATED
+
+> En la ficha de jueces del Mapa ([F-TALDIA-R002](#F-TALDIA-R002), inv. 3), cada celda de un juez en un estado que
+> tiene algo «sin medir» suma un botón «Medir lo que falta». Invariantes:
+> 1. si la versión de hoy del juez aprobó su examen, el botón abre el diálogo común de lanzar con ese juez y ese
+>    estado. El diálogo estima gratis, propone un tope y no consulta nada hasta que José confirma;
+> 2. mide sin forzar: reusa todo lo que ya está medido, también lo de antes, y consulta sólo lo sin medir;
+> 3. si la versión de hoy no aprobó su examen, el botón está apagado. La fila dice una sola vez por qué: «La versión de
+>    hoy no aprobó su examen: sin eso no consulta sobre el curso.», con un «Ver su examen» que lleva a Exámenes con
+>    ese juez;
+> 4. con la tanda publicada no hay botón ni motivo: no queda nada que medir;
+> 5. un juez que content-audit no sabe medir en esa tanda no tiene botón;
+> 6. lo medido queda como una corrida suelta, que el carril de mediciones ofrece integrar
+>    ([F-MEDJ-R003](../2026-10-19.01_mediciones-por-juez/REQUIREMENT.md#F-MEDJ-R003)).
+
+<details><summary>Detail</summary>
+
+El 19/10 José vio «sin medir» en la ficha de A4 y no lo pudo mandar a medir desde ahí. «Volver a medir» sólo aparece
+con algo de antes, y «Completar opiniones» pide a todos los jueces a la vez, sólo en la corrección. Este botón mide un
+juez en un estado, también en la base.
+
+El motivo del botón apagado es el de [F-JEXAM-R003](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R003): sin el examen aprobado, el juez no consulta sobre
+el curso. No es que «no sirve para publicar»: no mide.
+
+**Criterio**, con los datos del 19/10: Pragmatismo comunicativo dice «sin medir 88» y «Medir lo que falta» en
+Corrección 1. Calidad de distractores dice «sin medir 244» y el botón en la base. Naturalidad idiomática y Calidad
+didáctica A1 tienen el botón apagado, el motivo y «Ver su examen».
+
+</details>
+
 ## Contexto
 
 | Pantalla | Hoy | Con esto |
@@ -289,6 +323,7 @@ la del 5/10 en los dos lados · 14 cambios; una versión distinta en cada lado �
 | Mapa, tarjeta | Nada sobre la versión | «1 juez cambió · Miniteoría: 82 de 83 temas con versión anterior · Volver a medir» |
 | Mapa, anillo A4 | Vigente, sin más | «1 juez de antes», con arco ámbar |
 | Mapa, ficha | La base dice «aprobado» | La base dice «anterior 83» |
+| Mapa, ficha | «sin medir 88», sin cómo medirlo | «Medir lo que falta», o apagado con el motivo y «Ver su examen» |
 | Correcciones, grupo | 14 cambios que lo dan por bueno | 0, y «14 esperan a la miniteoría de hoy» |
 | Correcciones, renglón | La opinión sin versión | «versión del 5/10», en ámbar, y «Pedir de nuevo» |
 | Analizadores | «738388a5 · fecha no registrada» | «anterior 82», y la barra por versión |
@@ -299,11 +334,11 @@ Medir no está autorizado por este requisito: el diálogo gasta sólo con el top
 ## Alcance
 
 - **Adentro**: la marca en cada pantalla; el aviso en el Mapa y en Correcciones; qué cambió del juez; el diálogo de
-  volver a medir lo viejo; que el grupo no cuente lo de antes; la mezcla por versión en Analizadores; la quinta
-  condición de Publicar.
+  volver a medir lo viejo; medir desde la ficha lo que le falta a un juez; que el grupo no cuente lo de antes; la mezcla
+  por versión en Analizadores; la quinta condición de Publicar.
 - **Afuera**: las reglas de content-audit ([FEAT-ALDIA](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md)); publicar desde
-  el tablero; completar lo sin medir, que sigue en «Completar opiniones»; cambiar qué es «lo dan por bueno» fuera de la
-  versión; la pantalla de Exámenes.
+  el tablero; completar las opiniones de todos los jueces a la vez, que sigue en «Completar opiniones»; cambiar qué es
+  «lo dan por bueno» fuera de la versión; la pantalla de Exámenes.
 
 ## User Journeys
 
@@ -384,6 +419,7 @@ Las pruebas usan respuestas grabadas de content-audit. Ninguna consulta a un mod
 | R006 | Un cambio con una opinión de antes no entra en el grupo y sí se aprueba de a uno. «Por qué quedan afuera» nombra al juez y la versión |
 | R007 | La mezcla dice cuánto midió cada versión y la fecha de medición va aparte |
 | R008 | La quinta condición sale de la bandeja y sin bandeja dice «no se sabe». `--accept-previous` aparece sólo donde se aplica |
+| R009 | El botón aparece sólo donde hay algo sin medir y abre el diálogo común sin forzar, con ese juez, ese estado y la tanda; nada se consulta. Sin examen aprobado está apagado, con el motivo una vez y «Ver su examen». Publicada la tanda, o con un juez que no se sabe medir, no hay botón |
 
 ## References
 

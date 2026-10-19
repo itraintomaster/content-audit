@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>155 · El carril por juez, andando</title>
+<title>157 · Medir lo que falta, en la ficha</title>
 <!--
   TEMPLATE DE BRIEF · visual-brief
   1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
@@ -339,14 +339,6 @@
     .map .who{border-left:1px solid var(--line);border-top:0;border-radius:0 0 var(--radius) var(--radius)}
     .map.alta .cap{width:min(55%,220px);margin:0 auto}
   }
-
-  /* ============ CATÁLOGO · se borra entero al generar ============ */
-  .cat{margin-top:64px;padding-top:22px;border-top:3px solid var(--bad)}
-  .cat .adv{font-size:13px;color:var(--bad);font-weight:600;margin:0 0 20px}
-  .cat-g{display:grid;gap:16px}
-  .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
-  .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
-  .cat-i>.n b{color:var(--fg-2)}
 </style>
 </head>
 <body>
@@ -354,118 +346,95 @@
 
   <header>
     <div class="kicker">
-      <span class="num">155</span>
+      <span class="num">157</span>
       <span class="badge">Resumen</span>
-      <span class="meta">Tablero · Mapa de estados · 19/10/2026</span>
+      <span class="meta">Tablero · Mapa de estados · ficha de jueces · 19/10/2026</span>
     </div>
-    <h1>El carril por juez anda, pero todavía no está en tu tablero</h1>
-    <p class="sub">Lo que quedó hecho, cómo se ve con los datos de hoy y qué encontró la revisión.</p>
+    <h1>«Medir lo que falta» anda en la ficha, no en tu tablero</h1>
+    <p class="sub">Cómo se ve con los datos de hoy y una cosa que encontré mirándolo: los 88 de Pragmatismo.</p>
   </header>
 
-  <div class="lede"><p><strong>El carril por juez está hecho y en verde, pero no se ve en tu tablero: está sin commit en una copia aparte.</strong> La revisión encontró 2 errores chicos; recomiendo arreglarlos junto con 7 prolijidades.</p></div>
+  <div class="lede"><p><strong>En A4, 2 botones miden lo que está sin medir y 3 quedan apagados con su motivo.</strong> Todavía no está en tu tablero, y los 88 de Pragmatismo no se arreglan midiendo.</p></div>
 
   <section>
-    <h2>De 51 tarjetas sueltas a 8 filas, una por juez</h2>
-    <div class="kpis">
-      <div class="kpi dest"><div class="n">8<small>filas</small></div><div class="l">una por juez, en lugar de 51 tarjetas de corridas</div></div>
-      <div class="kpi"><div class="n">3<small>de 8</small></div><div class="l">jueces que hoy ofrecen algo en su celda</div></div>
-      <div class="kpi"><div class="n">23</div><div class="l">corridas que no encajan, contadas al pie</div></div>
-      <div class="kpi"><div class="n">4.251</div><div class="l">pruebas en verde: 2.089 del tablero y 2.162 de content-audit</div></div>
-    </div>
-    <p class="pie">Contado sobre el Mapa de hoy, con el tablero en modo lectura y los datos reales de content-audit.</p>
-  </section>
-
-  <section>
-    <h2>Cada celda, debajo de su dial, ofrece lo que trae</h2>
-    <div class="map" style="grid-template-columns:minmax(0,1fr) minmax(0,210px)">
+    <h2>Cada juez con algo sin medir trae su botón</h2>
+    <div class="map" style="grid-template-columns:minmax(0,1fr) minmax(0,220px)">
       <div class="ex">
-        <svg class="cap" viewBox="0 0 1440 1000" role="img" aria-label="El carril de mediciones por juez en el Mapa de hoy, con cuatro marcas">
-          <image href="155-el-carril-por-juez-andando/carril.jpg" width="1440" height="1000"/>
-          <rect class="aro" x="350" y="180" width="287" height="33" rx="10"/>
-          <rect class="aro" x="350" y="264" width="95" height="33" rx="10"/>
-          <rect class="aro" x="150" y="137" width="200" height="68" rx="8"/>
-          <rect class="aro" x="155" y="397" width="1190" height="420" rx="8"/>
-          <rect class="aro" x="155" y="817" width="1190" height="32" rx="8"/>
-          <g class="mk" transform="translate(668 197)"><circle r="26"/><text font-size="29">1</text></g>
-          <g class="mk" transform="translate(118 171)"><circle r="26"/><text font-size="29">2</text></g>
-          <g class="mk" transform="translate(1390 607)"><circle r="26"/><text font-size="29">3</text></g>
-          <g class="mk" transform="translate(1390 833)"><circle r="26"/><text font-size="29">4</text></g>
+        <svg class="cap" viewBox="-44 0 1000 718" role="img" aria-label="La tabla de jueces de A4 con los botones nuevos, marcados del 1 al 4">
+          <image href="157-medir-lo-que-falta/tabla.jpg" width="956" height="718"/>
+          <rect class="aro" x="425" y="590" width="120" height="28" rx="8"/>
+          <rect class="aro" x="733" y="650" width="120" height="28" rx="8"/>
+          <rect class="aro" x="18" y="195" width="402" height="39" rx="8"/>
+          <rect class="aro" x="18" y="300" width="402" height="39" rx="8"/>
+          <rect class="aro" x="425" y="217" width="120" height="28" rx="8"/>
+          <rect class="aro" x="733" y="226" width="120" height="28" rx="8"/>
+          <rect class="aro" x="733" y="330" width="120" height="28" rx="8"/>
+          <g class="mk" transform="translate(566 604)"><circle r="16"/><text font-size="18">1</text></g>
+          <g class="mk" transform="translate(874 664)"><circle r="16"/><text font-size="18">2</text></g>
+          <g class="mk" transform="translate(-22 215)"><circle r="16"/><text font-size="18">3</text></g>
+          <g class="mk" transform="translate(-22 320)"><circle r="16"/><text font-size="18">3</text></g>
+          <g class="mk" transform="translate(874 240)"><circle r="16"/><text font-size="18">4</text></g>
         </svg>
       </div>
       <div class="who">
-        <div><b>1</b><span><strong>Lo que ofrece la celda</strong><br><small>huecos gratis o la versión de hoy</small></span></div>
-        <div><b>2</b><span><strong>El nombre abre la fila</strong><br><small>un punto por corrida</small></span></div>
-        <div><b>3</b><span><strong>Los que no traen nada</strong><br><small>van después, más tenues</small></span></div>
-        <div><b>4</b><span><strong>El pie</strong><br><small>jueces sin sueltas y lo que no encaja</small></span></div>
+        <div><b>1</b><span><strong>Distractores, en la base</strong><br><small>244 sin medir: pide 243 consultas</small></span></div>
+        <div><b>2</b><span><strong>Pragmatismo, en Corrección 1</strong><br><small>88 sin medir: pide 0</small></span></div>
+        <div><b>3</b><span><strong>El motivo, una vez por fila</strong><br><small>con «Ver su examen»</small></span></div>
+        <div><b>4</b><span><strong>Apagados, los 3</strong><br><small>su versión de hoy no aprobó</small></span></div>
       </div>
     </div>
-    <p class="pie">Naturalidad ofrece la versión de hoy, sin aprobar: actualiza 293 y suma 6. Pragmatismo, 1.656 ejercicios gratis en la base.</p>
+    <p class="pie">La Miniteoría está sin aprobar pero no le falta nada: no lleva botón ni motivo. Con la tanda publicada tampoco aparece.</p>
   </section>
 
   <section>
-    <h2>Al abrir un juez, cada corrida dice qué trae</h2>
-    <div class="map" style="grid-template-columns:minmax(0,1fr) minmax(0,210px)">
-      <div class="ex">
-        <svg class="cap" viewBox="0 0 1440 1000" role="img" aria-label="La fila de Pragmatismo abierta, en modo oscuro, con tres marcas">
-          <image href="155-el-carril-por-juez-andando/fila-abierta-oscuro.jpg" width="1440" height="1000"/>
-          <rect class="aro" x="180" y="155" width="1146" height="74" rx="8"/>
-          <rect class="aro" x="180" y="285" width="1146" height="60" rx="8"/>
-          <rect class="aro" x="1079" y="355" width="236" height="33" rx="10"/>
-          <g class="mk" transform="translate(1390 192)"><circle r="26"/><text font-size="29">1</text></g>
-          <g class="mk" transform="translate(1390 315)"><circle r="26"/><text font-size="29">2</text></g>
-          <g class="mk" transform="translate(1390 372)"><circle r="26"/><text font-size="29">3</text></g>
-        </svg>
-      </div>
-      <div class="who">
-        <div><b>1</b><span><strong>La línea de tiempo</strong><br><small>los días sin corridas, achicados</small></span></div>
-        <div><b>2</b><span><strong>Las 11 iguales, en un renglón</strong><br><small>mismo juez y mismo resultado</small></span></div>
-        <div><b>3</b><span><strong>Qué trae a cada estado</strong><br><small>el botón abre su ficha</small></span></div>
-      </div>
-    </div>
-    <p class="pie">Foto en modo oscuro: el carril usa sólo los colores del tablero, así que cambia de tema solo.</p>
+    <h2>El botón abre el diálogo de siempre, que estima gratis</h2>
+    <figure class="captura" style="max-width:520px">
+      <img src="157-medir-lo-que-falta/dialogo-distractores.jpg" alt="Diálogo de Medir lo que falta de Calidad de distractores: pide 243 consultas, tope 243">
+      <figcaption>Distractores: 467 ya medidos se reusan y pide 243 nuevas. No confirmé nada.</figcaption>
+    </figure>
+    <p class="pie">Mide sin forzar: reusa todo lo medido, también lo viejo, y consulta sólo lo que falta. Queda como corrida suelta, para integrar desde el carril.</p>
   </section>
 
   <section>
-    <h2>La Miniteoría dejó de ofrecer: su juez cambió esta mañana</h2>
-    <div class="ad">
-      <div class="lado antes"><span class="rot">A las 08:57</span>
-        <ol><li>La corrida de las 00:54 medía con el juez de hoy.</li><li>La celda ofrecía «versión de hoy · actualiza 2.382».</li></ol>
-        <span class="res">se ofrecía en la celda</span></div>
-      <div class="lado despues"><span class="rot">Desde las 09:29</span>
-        <ol><li>El juez se editó entre las 09:24 y las 09:29.</li><li>La misma corrida pasó a «juez anterior 140».</li></ol>
-        <span class="res">ya no se ofrece: queda en la fila abierta</span></div>
+    <h2>Los 88 de Pragmatismo no se arreglan midiendo otra vez</h2>
+    <div class="ex">
+      <img class="hoy" src="157-medir-lo-que-falta/estimacion-pragmatismo.jpg" alt="Estimación de Pragmatismo: 88 pendientes, pide 0 consultas nuevas">
+      <div class="mark"><span class="x">✕</span><span>Del 14 al 18/10, 12 corridas los midieron gratis: siguen sin medir.</span></div>
+      <div class="mark"><span class="x">✕</span><span>Las corridas dicen que <em>reemplazarían</em> 88; la tabla los cuenta vacíos.</span></div>
     </div>
-    <p class="pie">Es lo esperado: una corrida con un juez viejo no reemplaza lo medido. Yo no toqué ese juez.</p>
+    <p class="pie">Viene de antes del botón, que sólo lo deja a la vista. Apretarlo daría la corrida número 13, igual a las otras. Propongo investigarlo aparte.</p>
   </section>
 
   <section>
-    <h2>La revisión: 2 errores chicos y 7 prolijidades</h2>
-    <div class="tw"><table>
-      <thead><tr><th>Qué encontró</th><th>Qué se nota</th><th>Recomiendo</th></tr></thead>
-      <tbody>
-        <tr><td>En la Miniteoría, «de dónde sale» compara ejercicios con temas</td><td>la celda puede esconder el «cierre»</td><td><span class="pill p-bad">arreglar</span></td></tr>
-        <tr><td>Esc con la ficha abierta cierra la fila de atrás</td><td>hace falta otro Esc y se pierde la fila</td><td><span class="pill p-bad">arreglar</span></td></tr>
-        <tr><td>7 prolijidades: reglas escritas dos o tres veces, restos del diseño viejo, estilos repetidos</td><td>nada; el próximo cambio toca un solo lugar</td><td><span class="pill p-warn">arreglar</span></td></tr>
-        <tr><td>4 de forma: partir funciones largas, renombrar</td><td>nada</td><td><span class="pill p-idle">dejar</span></td></tr>
-      </tbody></table></div>
-    <div class="call c-warn"><b>Sin probar:</b> el error del Esc sale de leer el código; no lo reproduje con un teclado en el navegador.</div>
+    <h2>Qué cambió y qué no</h2>
+    <div class="cambia">
+      <div class="si"><p class="ptl">Cambia</p><ul>
+        <li>Botón «Medir lo que falta» en cada celda con algo sin medir</li>
+        <li>Apagado si la versión de hoy no aprobó, con el motivo y «Ver su examen»</li>
+        <li>Una regla nueva en el requisito de jueces al día, con 4 pruebas</li>
+      </ul></div>
+      <div class="no"><p class="ptl">No cambia</p><ul>
+        <li>«Volver a medir» sigue rehaciendo lo de antes</li>
+        <li>«Completar opiniones» sigue igual</li>
+        <li>Nada se consultó: probé con el tablero en modo lectura</li>
+      </ul></div>
+    </div>
+    <div class="call c-warn"><b>Ojo al lanzar:</b> hoy el diálogo frena todo con «Hay una operación interrumpida o incierta…». Viene de antes y no lo toqué: hay que conciliarla primero.</div>
+    <div class="call c-warn"><b>No sé:</b> por qué la tabla dice 244 sin medir de Distractores y la estimación dice 243.</div>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Arreglo ahora los 2 errores y las 7 prolijidades?</span>
-        <div class="ops"><span class="op rec">Sí, todo · recomendado</span><span class="op">Sólo los 2 errores</span><span class="op">Dejarlo así</span></div>
-        <span class="why">Las prolijidades no cambian lo que se ve; dejan, por ejemplo, una sola regla de «gratis» en vez de tres.</span></div>
-      <div class="ask"><span class="q">2 · Después, ¿lo commiteo en sus dos ramas, sin push?</span>
-        <div class="ops"><span class="op rec">Sí, en las dos · recomendado</span><span class="op">Todavía no</span></div>
-        <span class="why">La copia del tablero vive en una carpeta temporal: si se reinicia la Mac, se pierde.</span></div>
+      <div class="ask"><span class="q">¿Lo commiteo y lo junto en ittm master y content-audit main, sin push?</span>
+        <div class="ops"><span class="op rec">Sí, en los dos · recomendado</span><span class="op">Todavía no</span></div>
+        <span class="why">Así lo ves en tu tablero al abrir Tablero.app. La copia vive en una carpeta temporal que se borra al reiniciar.</span></div>
     </div>
   </section>
 
   <footer>
-    <span>Datos: tablero en modo lectura sobre content-audit, 19/10 10:10. Tablero: rama claude/mapa-por-juez (worktree de ittm en el scratchpad de la sesión). content-audit: rama claude/map-design-proposal-e0fe00. Errores: celda() en mediciones-por-juez.js compara selected (ejercicios) con los temas medidos; main.js arma crearAlTeclear sin frenar con un dialog[open].</span>
-    <span>brief 155 · docs/briefs/155-el-carril-por-juez-andando.html</span>
+    <span>Datos: tablero en modo lectura (puerto 7852) sobre content-audit, 19/10 11:50; captura de A4 en claro y oscuro. Regla F-TALDIA-R009 en requirements/2026-10-18.02_jueces-al-dia-en-el-tablero. Tablero: rama claude/medir-lo-que-falta (worktree de ittm en el scratchpad): marca-del-juez.js (botonMedirLoQueFalta), mapa/vistas/versiones.js, lib/analisis-vigente.js, css/mapa.css; prueba mapa-medir-lo-que-falta.test.js. 2.096 pruebas en verde; las 127 zonas del golden que cambiaron difieren sólo en el botón y el motivo. Pragmatismo: fits de correction con compatible 88, replaces 88, selected 0 en las 11 corridas opinion-* de 0 gasto.</span>
+    <span>brief 157 · docs/briefs/157-medir-lo-que-falta.html</span>
   </footer>
 
 </div>
