@@ -3,23 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Qué viene de antes</title>
-<!--
-  TEMPLATE DE BRIEF · visual-brief
-  1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
-  2. Por cada sección: un título que dice la conclusión, UN dibujo copiado del
-     catálogo del final y un pie de dos renglones. Primero el dibujo; el texto lo rotula.
-     Si habla de una pantalla: primero DÓNDE (la captura con marcas, .map), después EL
-     PROBLEMA como un caso de uso (la foto de hoy + .mark), después CÓMO QUEDA (la maqueta
-     .mq con números y su leyenda). Si ya está hecho, los dos lados del .ad son capturas.
-     Las fotos, con capturar.mjs, en docs/briefs/NNN-slug/ (SKILL.md §4).
-  3. BORRAR el catálogo entero (la section de clase cat, al final) y las secciones que no se usan.
-  4. Verificar: node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
-     y mirarlo: node ~/.claude/skills/visual-brief/assets/diapos.mjs <el brief> <scratchpad>/d (+ --tema=dark, --celular)
-  Topes: lede ≤ 2 frases y 35 palabras · ≤ 6 secciones · pie ≤ 30 · párrafo ≤ 40 ·
-  prosa total ≤ 400 (sin tablas ni gráficos). Cada componente trae el suyo en el catálogo.
-  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
--->
+<title>Jueces al día, tres pantallas</title>
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -340,82 +324,102 @@
     .map.alta .cap{width:min(55%,220px);margin:0 auto}
   }
 
+  /* ============ de este brief ============ */
+  .ad.apilado{grid-template-columns:minmax(0,1fr);gap:28px}
+  .ad.apilado .despues::before{content:"↓";left:50%;top:-25px;transform:translateX(-50%)}
+  .ad .lado .hoy{width:100%}
+  .captura.natural img{width:auto;max-width:100%;margin:0 auto}
+  .captura + .captura{margin-top:12px}
 </style>
+
+</head>
 <body>
 <div class="wrap">
 
   <header>
     <div class="kicker">
-      <span class="num">146</span>
+      <span class="num">150</span>
       <span class="badge">Resumen</span>
-      <span class="meta">Jueces al día · segundo tramo · 18/10/2026</span>
+      <span class="meta">tablero · jueces al día · 18/10/2026</span>
     </div>
-    <h1>El cierre ya dice qué viene de una versión de antes</h1>
-    <p class="sub">Cada veredicto lleva su marca, cada versión se nombra por su fecha y el análisis cuenta por juez.</p>
+    <h1>Correcciones, Analizadores y Publicar ya marcan a los jueces de antes</h1>
+    <p class="sub">Hecho y probado con los datos de hoy, en la misma rama del tablero y sin commit.</p>
   </header>
 
-  <div class="lede"><p><strong>Lo de la Corrección 1 ya no pasaría callado: el cierre diría que 82 de 83 temas vienen de antes.</strong> Falta que el tablero lo muestre y poder volver a medir sólo eso.</p></div>
+  <div class="lede"><p><strong>Las tres pantallas ya dicen qué juez midió con otra versión, y cuánto.</strong> Publicar suma una quinta condición que por ahora nunca dice «se cumple»: eso lo decidí yo.</p></div>
 
   <section>
-    <h2>El cierre nombra lo de antes por fecha</h2>
-    <div class="ad">
-      <div class="lado antes"><span class="rot">Hasta hoy</span>
-        <ol><li>Miniteoría: 83 temas.</li><li>Reusadas 82, faltan 0.</li><li>Nada dice de qué versión.</li></ol>
-        <span class="res">Parece medido con la de hoy</span></div>
-      <div class="lado despues"><span class="rot">Con esto</span>
-        <ol><li>Miniteoría: 83 temas.</li><li>Reusa 82 temas de antes.</li><li>77 de la del 5/10, 5 de la del 13/10, 13:00.</li></ol>
-        <span class="res">Se ve qué falta volver a medir</span></div>
+    <h2>Hoy, tres jueces de nueve no están al día</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">3<small>de 9</small></div><div class="l">jueces con algo de antes: Miniteoría con error, y Naturalidad y Calidad didáctica, sin aprobar</div></div>
+      <div class="kpi"><div class="n">82<small>de 83</small></div><div class="l">temas de Miniteoría en la corrección, medidos con dos versiones anteriores</div></div>
+      <div class="kpi"><div class="n">3.022<small>pruebas</small></div><div class="l">en verde: 2.037 de la página y 985 del servidor</div></div>
     </div>
-    <p class="pie">Lo dicen <code>batch close</code> y <code>batch report</code>. El análisis actual da los mismos conteos en su JSON.</p>
+    <p class="pie">Las cuentas las hace content-audit; el tablero sólo las lee y las dibuja.</p>
   </section>
 
   <section>
-    <h2>Cuatro preguntas deciden si un veredicto está al día</h2>
-    <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">¿Juez aprobado hoy?</span><span class="d">Si no, nada está al día.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">¿Se sabe de dónde vino?</span><span class="d">Sin versión o motor: procedencia desconocida.</span></div>
-      <div class="st"><span class="i">3</span><span class="h">¿Mismo motor aprobado?</span><span class="eg">llama3 local</span><span class="d">Se mira antes que la versión.</span></div>
-      <div class="st end"><span class="i">4</span><span class="h">¿Misma versión?</span><span class="d">La de hoy o la anotada como igual: al día.</span></div>
-    </div>
-    <p class="pie">Siempre contra el juez de hoy, nunca entre los dos lados de una comparación. Marcar no consulta ni cambia qué se reusa.</p>
+    <h2>En Correcciones, un aviso por juez arriba de la lista</h2>
+    <figure class="captura"><img src="150-jueces-al-dia-en-tres-pantallas/correcciones.jpg" alt="Tres avisos ámbar: Miniteoría con error cambió el 13/10, 22:12, 82 de 83 temas de antes; Naturalidad y Calidad didáctica todavía no aprobaron su examen">
+      <figcaption>Corrección 1, hoy: arriba de la lista de cambios</figcaption></figure>
+    <p class="pie">En cada renglón, la opinión de antes va en ámbar con «Pedir de nuevo». No entra en el grupo de los que se aprueban juntos; de a uno, sí.</p>
   </section>
 
   <section>
-    <h2>Una versión se llama por el día que aprobó</h2>
-    <div class="tw"><table>
-      <thead><tr><th>Miniteoría</th><th>Aprobó por primera vez</th><th>Se llama</th></tr></thead>
-      <tbody>
-        <tr><td><small>738388a5</small></td><td>5/10, 23:14</td><td>la del 5/10</td></tr>
-        <tr><td><small>33e026fa</small></td><td>13/10, 13:00</td><td>la del 13/10, 13:00</td></tr>
-        <tr><td><small>1eee07a9</small> (la de hoy)</td><td>13/10, 22:12</td><td>la del 13/10, 22:12</td></tr>
-        <tr><td><small>c8ca16c9</small></td><td>nunca</td><td>sin aprobar (c8ca16c9)</td></tr>
-      </tbody></table></div>
-    <p class="pie">La hora aparece sólo si otra versión aprobó el mismo día; el año, si no es este. Volver a aprobar no la renombra. El código completo queda en el JSON.</p>
+    <h2>En Analizadores, cada juez dice qué versión midió cuánto</h2>
+    <figure class="captura natural"><img src="150-jueces-al-dia-en-tres-pantallas/analizadores-tabla.jpg" alt="La tabla: Miniteoría anterior 83 en la base, anterior 82 y al día 1 en la corrección; Naturalidad sin aprobar 2.333 y sin medir 69">
+      <figcaption>La tabla: la marca con su cuenta, en lugar del código y la fecha</figcaption></figure>
+    <figure class="captura natural"><img src="150-jueces-al-dia-en-tres-pantallas/analizadores-ficha.jpg" alt="La ficha de Miniteoría: la del 5/10, 77 temas; la del 13/10, 13:00, 5 temas; la del 13/10, 22:12, la de hoy, 1 tema; la base, los 83 con la del 5/10">
+      <figcaption>La ficha: una barra por versión, cuándo aprobó y cuánto midió</figcaption></figure>
+    <p class="pie">Lo de antes en ámbar, lo de hoy en verde. La fecha de medición queda aparte: ya no se lee como fecha de la versión.</p>
   </section>
 
   <section>
-    <h2>Qué cambia y qué no</h2>
+    <h2>En Publicar, los jueces son la quinta condición</h2>
+    <figure class="captura natural"><img src="150-jueces-al-dia-en-tres-pantallas/publicar.jpg" alt="La puerta de Publicar: Tres jueces no están al día, con un renglón por juez, cuánto quedó de antes en la corrección y en la base, y Volver a medir lo viejo">
+      <figcaption>La puerta de A1, hoy: debajo de la muestra ciega</figcaption></figure>
+    <p class="pie">«Volver a medir lo viejo» sólo abre la estimación gratis. Si la versión de hoy no aprobó su examen, está apagado y dice por qué.</p>
+    <div class="call c-warn"><b>Decidí yo:</b> con todo al día dice «no se sabe», nunca «se cumple». Publicar todavía no frena por esto; un «sí» prometería un control que no existe.</div>
+  </section>
+
+  <section>
+    <h2>Lo que falta necesita a content-audit</h2>
     <div class="cambia">
-      <div class="si"><div class="ptl">Cambia</div><ul><li>Cada veredicto del análisis lleva su marca, versión y nombre.</li><li>Por juez y estado: al día, de antes y sin medir, que suman el total.</li><li>El cierre lo dice en la línea de cada juez.</li></ul></div>
-      <div class="no"><div class="ptl">No cambia</div><ul><li>Qué veredicto se reusa.</li><li>Ninguna consulta nueva: leer cuesta 0.</li><li>Lo guardado no se reescribe.</li></ul></div>
+      <div class="si"><div class="ptl">Hecho</div><ul>
+        <li>Correcciones: el aviso, la marca en el renglón y el grupo sin lo de antes.</li>
+        <li>Analizadores: la marca en la tabla y las barras de la ficha.</li>
+        <li>Publicar: la quinta condición, un renglón por juez.</li>
+        <li>Todo «Volver a medir» estima gratis; no lanza nada.</li></ul></div>
+      <div class="no"><div class="ptl">Todavía no</div><ul>
+        <li>El diálogo propio, con casillas por estado y tope.</li>
+        <li>Qué cambió del juez entre una versión y otra.</li>
+        <li>El cruce del Mapa sigue contando lo de antes como de hoy.</li>
+        <li>Publicar: la comparación por juez y aceptar lo de antes a propósito.</li>
+        <li>Con qué versión de cada juez salió una tanda publicada.</li></ul></div>
     </div>
-    <div class="call c-warn"><b>Sin marca por ahora:</b> naturalidad y casi repetidos no están entre los jueces cuyo estado de hoy se lee gratis. Y la naturalidad aprobó sin motor anotado: saldría «procedencia desconocida».</div>
-    <div class="call c-warn"><b>No lo leí sobre la Corrección 1 real:</b> los 77 y 5 salen de la prueba armada con las fechas reales de los exámenes.</div>
   </section>
 
   <section>
-    <h2>Qué sigue</h2>
-    <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">Commitear este tramo</span><span class="d">Espera tu OK; la suite está en verde.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">Remedir lo de antes</span><span class="d">Sólo lo marcado, con tope y tu OK.</span></div>
-      <div class="st"><span class="i">3</span><span class="h">Publicar frena</span><span class="d">Salvo aceptar lo de antes a sabiendas.</span></div>
-      <div class="st end"><span class="i">4</span><span class="h">El tablero lo muestra</span><span class="d">Mapa y Correcciones, con el nombre de la versión.</span></div>
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask"><span class="q">1 · ¿Lo commiteo en la rama del tablero, sin push?</span>
+        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">Todavía no</span></div>
+        <span class="why">Las pruebas están en verde y lo miré andando con los datos de hoy.</span></div>
+      <div class="ask"><span class="q">2 · ¿Lo junto a master de ittm?</span>
+        <div class="ops"><span class="op rec">Después de que lo mires · recomendado</span><span class="op">Ya</span></div>
+        <span class="why">Tablero.app corre master. El de esta rama anda en el 7851.</span></div>
+      <div class="ask"><span class="q">3 · ¿La quinta condición puede decir «se cumple»?</span>
+        <div class="ops"><span class="op rec">Nunca, hasta que Publicar lo controle · recomendado</span><span class="op">Sí, si no hay nada de antes</span></div>
+        <span class="why">Si el tablero dice «sí» y la publicación no lo mira, el verde engaña.</span></div>
     </div>
+    <pre><code>http://127.0.0.1:7851/index.html
+http://127.0.0.1:7851/analizadores.html
+http://127.0.0.1:7851/publicar.html</code></pre>
   </section>
 
   <footer>
-    <span>F-ALDIA-R003 (JudgeFreshnessReference, JudgeVerdictMark), R004 (JudgeVersionNamer), R005 (JudgeFreshnessTally, CurrentAnalysisService.State.judges/verdictMarks, BatchJudgeAccount.freshness, BatchCmd) · catálogo vivo DefaultJudgeFreshnessCatalog en Main · 3.551 pruebas en verde (revision-domain, audit-cli y lo que usan), sin la guarda que ya fallaba · sigue R007, R008–R010, R006, FEAT-TALDIA · nada commiteado</span>
-    <span>brief 146 · docs/briefs/146-jueces-al-dia-marca-y-conteos.html</span>
+    <span>Datos: análisis vigente de content-audit (batch analysis, states[].judges[]), leído el 18/10 por el tablero de la rama claude/jueces-al-dia-mapa (ittm, sobre a6647b149, sin commit: 31 archivos cambiados y 5 nuevos). Hecho: F-TALDIA-R005, R006 (en Correcciones), R007 y R008 inv. 1–3 y 6. Decisión propia en R008: sin la bandeja (F-ALDIA-R008 inv. 5), nunca «sí». Falta: R003 (F-ALDIA-R006), R004 (F-ALDIA-R007), R006 en el Mapa, R008 inv. 4 (F-ALDIA-R010), 5 (F-ALDIA-R009) y 7. Pruebas: node --test 2.037, flutter test 985, dart analyze sin avisos.</span>
+    <span>brief 150 · docs/briefs/150-jueces-al-dia-en-tres-pantallas.html</span>
   </footer>
 
 </div>
