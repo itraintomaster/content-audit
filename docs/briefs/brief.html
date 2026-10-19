@@ -3,7 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jueces al día, tres pantallas</title>
+<title>155 · El carril por juez, andando</title>
+<!--
+  TEMPLATE DE BRIEF · visual-brief
+  1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
+  2. Por cada sección: un título que dice la conclusión, UN dibujo copiado del
+     catálogo del final y un pie de dos renglones. Primero el dibujo; el texto lo rotula.
+     Si habla de una pantalla: primero DÓNDE (la captura con marcas, .map), después EL
+     PROBLEMA como un caso de uso (la foto de hoy + .mark), después CÓMO QUEDA (la maqueta
+     .mq con números y su leyenda). Si ya está hecho, los dos lados del .ad son capturas.
+     Las fotos, con capturar.mjs, en docs/briefs/NNN-slug/ (SKILL.md §4).
+  3. BORRAR el catálogo entero (la section de clase cat, al final) y las secciones que no se usan.
+  4. Verificar: node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
+     y mirarlo: node ~/.claude/skills/visual-brief/assets/diapos.mjs <el brief> <scratchpad>/d (+ --tema=dark, --celular)
+  Topes: lede ≤ 2 frases y 35 palabras · ≤ 6 secciones · pie ≤ 30 · párrafo ≤ 40 ·
+  prosa total ≤ 400 (sin tablas ni gráficos). Cada componente trae el suyo en el catálogo.
+  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
+-->
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -324,102 +340,132 @@
     .map.alta .cap{width:min(55%,220px);margin:0 auto}
   }
 
-  /* ============ de este brief ============ */
-  .ad.apilado{grid-template-columns:minmax(0,1fr);gap:28px}
-  .ad.apilado .despues::before{content:"↓";left:50%;top:-25px;transform:translateX(-50%)}
-  .ad .lado .hoy{width:100%}
-  .captura.natural img{width:auto;max-width:100%;margin:0 auto}
-  .captura + .captura{margin-top:12px}
+  /* ============ CATÁLOGO · se borra entero al generar ============ */
+  .cat{margin-top:64px;padding-top:22px;border-top:3px solid var(--bad)}
+  .cat .adv{font-size:13px;color:var(--bad);font-weight:600;margin:0 0 20px}
+  .cat-g{display:grid;gap:16px}
+  .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
+  .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
+  .cat-i>.n b{color:var(--fg-2)}
 </style>
-
 </head>
 <body>
 <div class="wrap">
 
   <header>
     <div class="kicker">
-      <span class="num">150</span>
+      <span class="num">155</span>
       <span class="badge">Resumen</span>
-      <span class="meta">tablero · jueces al día · 18/10/2026</span>
+      <span class="meta">Tablero · Mapa de estados · 19/10/2026</span>
     </div>
-    <h1>Correcciones, Analizadores y Publicar ya marcan a los jueces de antes</h1>
-    <p class="sub">Hecho y probado con los datos de hoy, en la misma rama del tablero y sin commit.</p>
+    <h1>El carril por juez anda, pero todavía no está en tu tablero</h1>
+    <p class="sub">Lo que quedó hecho, cómo se ve con los datos de hoy y qué encontró la revisión.</p>
   </header>
 
-  <div class="lede"><p><strong>Las tres pantallas ya dicen qué juez midió con otra versión, y cuánto.</strong> Publicar suma una quinta condición que por ahora nunca dice «se cumple»: eso lo decidí yo.</p></div>
+  <div class="lede"><p><strong>El carril por juez está hecho y en verde, pero no se ve en tu tablero: está sin commit en una copia aparte.</strong> La revisión encontró 2 errores chicos; recomiendo arreglarlos junto con 7 prolijidades.</p></div>
 
   <section>
-    <h2>Hoy, tres jueces de nueve no están al día</h2>
+    <h2>De 51 tarjetas sueltas a 8 filas, una por juez</h2>
     <div class="kpis">
-      <div class="kpi dest"><div class="n">3<small>de 9</small></div><div class="l">jueces con algo de antes: Miniteoría con error, y Naturalidad y Calidad didáctica, sin aprobar</div></div>
-      <div class="kpi"><div class="n">82<small>de 83</small></div><div class="l">temas de Miniteoría en la corrección, medidos con dos versiones anteriores</div></div>
-      <div class="kpi"><div class="n">3.022<small>pruebas</small></div><div class="l">en verde: 2.037 de la página y 985 del servidor</div></div>
+      <div class="kpi dest"><div class="n">8<small>filas</small></div><div class="l">una por juez, en lugar de 51 tarjetas de corridas</div></div>
+      <div class="kpi"><div class="n">3<small>de 8</small></div><div class="l">jueces que hoy ofrecen algo en su celda</div></div>
+      <div class="kpi"><div class="n">23</div><div class="l">corridas que no encajan, contadas al pie</div></div>
+      <div class="kpi"><div class="n">4.251</div><div class="l">pruebas en verde: 2.089 del tablero y 2.162 de content-audit</div></div>
     </div>
-    <p class="pie">Las cuentas las hace content-audit; el tablero sólo las lee y las dibuja.</p>
+    <p class="pie">Contado sobre el Mapa de hoy, con el tablero en modo lectura y los datos reales de content-audit.</p>
   </section>
 
   <section>
-    <h2>En Correcciones, un aviso por juez arriba de la lista</h2>
-    <figure class="captura"><img src="150-jueces-al-dia-en-tres-pantallas/correcciones.jpg" alt="Tres avisos ámbar: Miniteoría con error cambió el 13/10, 22:12, 82 de 83 temas de antes; Naturalidad y Calidad didáctica todavía no aprobaron su examen">
-      <figcaption>Corrección 1, hoy: arriba de la lista de cambios</figcaption></figure>
-    <p class="pie">En cada renglón, la opinión de antes va en ámbar con «Pedir de nuevo». No entra en el grupo de los que se aprueban juntos; de a uno, sí.</p>
-  </section>
-
-  <section>
-    <h2>En Analizadores, cada juez dice qué versión midió cuánto</h2>
-    <figure class="captura natural"><img src="150-jueces-al-dia-en-tres-pantallas/analizadores-tabla.jpg" alt="La tabla: Miniteoría anterior 83 en la base, anterior 82 y al día 1 en la corrección; Naturalidad sin aprobar 2.333 y sin medir 69">
-      <figcaption>La tabla: la marca con su cuenta, en lugar del código y la fecha</figcaption></figure>
-    <figure class="captura natural"><img src="150-jueces-al-dia-en-tres-pantallas/analizadores-ficha.jpg" alt="La ficha de Miniteoría: la del 5/10, 77 temas; la del 13/10, 13:00, 5 temas; la del 13/10, 22:12, la de hoy, 1 tema; la base, los 83 con la del 5/10">
-      <figcaption>La ficha: una barra por versión, cuándo aprobó y cuánto midió</figcaption></figure>
-    <p class="pie">Lo de antes en ámbar, lo de hoy en verde. La fecha de medición queda aparte: ya no se lee como fecha de la versión.</p>
-  </section>
-
-  <section>
-    <h2>En Publicar, los jueces son la quinta condición</h2>
-    <figure class="captura natural"><img src="150-jueces-al-dia-en-tres-pantallas/publicar.jpg" alt="La puerta de Publicar: Tres jueces no están al día, con un renglón por juez, cuánto quedó de antes en la corrección y en la base, y Volver a medir lo viejo">
-      <figcaption>La puerta de A1, hoy: debajo de la muestra ciega</figcaption></figure>
-    <p class="pie">«Volver a medir lo viejo» sólo abre la estimación gratis. Si la versión de hoy no aprobó su examen, está apagado y dice por qué.</p>
-    <div class="call c-warn"><b>Decidí yo:</b> con todo al día dice «no se sabe», nunca «se cumple». Publicar todavía no frena por esto; un «sí» prometería un control que no existe.</div>
-  </section>
-
-  <section>
-    <h2>Lo que falta necesita a content-audit</h2>
-    <div class="cambia">
-      <div class="si"><div class="ptl">Hecho</div><ul>
-        <li>Correcciones: el aviso, la marca en el renglón y el grupo sin lo de antes.</li>
-        <li>Analizadores: la marca en la tabla y las barras de la ficha.</li>
-        <li>Publicar: la quinta condición, un renglón por juez.</li>
-        <li>Todo «Volver a medir» estima gratis; no lanza nada.</li></ul></div>
-      <div class="no"><div class="ptl">Todavía no</div><ul>
-        <li>El diálogo propio, con casillas por estado y tope.</li>
-        <li>Qué cambió del juez entre una versión y otra.</li>
-        <li>El cruce del Mapa sigue contando lo de antes como de hoy.</li>
-        <li>Publicar: la comparación por juez y aceptar lo de antes a propósito.</li>
-        <li>Con qué versión de cada juez salió una tanda publicada.</li></ul></div>
+    <h2>Cada celda, debajo de su dial, ofrece lo que trae</h2>
+    <div class="map" style="grid-template-columns:minmax(0,1fr) minmax(0,210px)">
+      <div class="ex">
+        <svg class="cap" viewBox="0 0 1440 1000" role="img" aria-label="El carril de mediciones por juez en el Mapa de hoy, con cuatro marcas">
+          <image href="155-el-carril-por-juez-andando/carril.jpg" width="1440" height="1000"/>
+          <rect class="aro" x="350" y="180" width="287" height="33" rx="10"/>
+          <rect class="aro" x="350" y="264" width="95" height="33" rx="10"/>
+          <rect class="aro" x="150" y="137" width="200" height="68" rx="8"/>
+          <rect class="aro" x="155" y="397" width="1190" height="420" rx="8"/>
+          <rect class="aro" x="155" y="817" width="1190" height="32" rx="8"/>
+          <g class="mk" transform="translate(668 197)"><circle r="26"/><text font-size="29">1</text></g>
+          <g class="mk" transform="translate(118 171)"><circle r="26"/><text font-size="29">2</text></g>
+          <g class="mk" transform="translate(1390 607)"><circle r="26"/><text font-size="29">3</text></g>
+          <g class="mk" transform="translate(1390 833)"><circle r="26"/><text font-size="29">4</text></g>
+        </svg>
+      </div>
+      <div class="who">
+        <div><b>1</b><span><strong>Lo que ofrece la celda</strong><br><small>huecos gratis o la versión de hoy</small></span></div>
+        <div><b>2</b><span><strong>El nombre abre la fila</strong><br><small>un punto por corrida</small></span></div>
+        <div><b>3</b><span><strong>Los que no traen nada</strong><br><small>van después, más tenues</small></span></div>
+        <div><b>4</b><span><strong>El pie</strong><br><small>jueces sin sueltas y lo que no encaja</small></span></div>
+      </div>
     </div>
+    <p class="pie">Naturalidad ofrece la versión de hoy, sin aprobar: actualiza 293 y suma 6. Pragmatismo, 1.656 ejercicios gratis en la base.</p>
+  </section>
+
+  <section>
+    <h2>Al abrir un juez, cada corrida dice qué trae</h2>
+    <div class="map" style="grid-template-columns:minmax(0,1fr) minmax(0,210px)">
+      <div class="ex">
+        <svg class="cap" viewBox="0 0 1440 1000" role="img" aria-label="La fila de Pragmatismo abierta, en modo oscuro, con tres marcas">
+          <image href="155-el-carril-por-juez-andando/fila-abierta-oscuro.jpg" width="1440" height="1000"/>
+          <rect class="aro" x="180" y="155" width="1146" height="74" rx="8"/>
+          <rect class="aro" x="180" y="285" width="1146" height="60" rx="8"/>
+          <rect class="aro" x="1079" y="355" width="236" height="33" rx="10"/>
+          <g class="mk" transform="translate(1390 192)"><circle r="26"/><text font-size="29">1</text></g>
+          <g class="mk" transform="translate(1390 315)"><circle r="26"/><text font-size="29">2</text></g>
+          <g class="mk" transform="translate(1390 372)"><circle r="26"/><text font-size="29">3</text></g>
+        </svg>
+      </div>
+      <div class="who">
+        <div><b>1</b><span><strong>La línea de tiempo</strong><br><small>los días sin corridas, achicados</small></span></div>
+        <div><b>2</b><span><strong>Las 11 iguales, en un renglón</strong><br><small>mismo juez y mismo resultado</small></span></div>
+        <div><b>3</b><span><strong>Qué trae a cada estado</strong><br><small>el botón abre su ficha</small></span></div>
+      </div>
+    </div>
+    <p class="pie">Foto en modo oscuro: el carril usa sólo los colores del tablero, así que cambia de tema solo.</p>
+  </section>
+
+  <section>
+    <h2>La Miniteoría dejó de ofrecer: su juez cambió esta mañana</h2>
+    <div class="ad">
+      <div class="lado antes"><span class="rot">A las 08:57</span>
+        <ol><li>La corrida de las 00:54 medía con el juez de hoy.</li><li>La celda ofrecía «versión de hoy · actualiza 2.382».</li></ol>
+        <span class="res">se ofrecía en la celda</span></div>
+      <div class="lado despues"><span class="rot">Desde las 09:29</span>
+        <ol><li>El juez se editó entre las 09:24 y las 09:29.</li><li>La misma corrida pasó a «juez anterior 140».</li></ol>
+        <span class="res">ya no se ofrece: queda en la fila abierta</span></div>
+    </div>
+    <p class="pie">Es lo esperado: una corrida con un juez viejo no reemplaza lo medido. Yo no toqué ese juez.</p>
+  </section>
+
+  <section>
+    <h2>La revisión: 2 errores chicos y 7 prolijidades</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Qué encontró</th><th>Qué se nota</th><th>Recomiendo</th></tr></thead>
+      <tbody>
+        <tr><td>En la Miniteoría, «de dónde sale» compara ejercicios con temas</td><td>la celda puede esconder el «cierre»</td><td><span class="pill p-bad">arreglar</span></td></tr>
+        <tr><td>Esc con la ficha abierta cierra la fila de atrás</td><td>hace falta otro Esc y se pierde la fila</td><td><span class="pill p-bad">arreglar</span></td></tr>
+        <tr><td>7 prolijidades: reglas escritas dos o tres veces, restos del diseño viejo, estilos repetidos</td><td>nada; el próximo cambio toca un solo lugar</td><td><span class="pill p-warn">arreglar</span></td></tr>
+        <tr><td>4 de forma: partir funciones largas, renombrar</td><td>nada</td><td><span class="pill p-idle">dejar</span></td></tr>
+      </tbody></table></div>
+    <div class="call c-warn"><b>Sin probar:</b> el error del Esc sale de leer el código; no lo reproduje con un teclado en el navegador.</div>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Lo commiteo en la rama del tablero, sin push?</span>
-        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">Todavía no</span></div>
-        <span class="why">Las pruebas están en verde y lo miré andando con los datos de hoy.</span></div>
-      <div class="ask"><span class="q">2 · ¿Lo junto a master de ittm?</span>
-        <div class="ops"><span class="op rec">Después de que lo mires · recomendado</span><span class="op">Ya</span></div>
-        <span class="why">Tablero.app corre master. El de esta rama anda en el 7851.</span></div>
-      <div class="ask"><span class="q">3 · ¿La quinta condición puede decir «se cumple»?</span>
-        <div class="ops"><span class="op rec">Nunca, hasta que Publicar lo controle · recomendado</span><span class="op">Sí, si no hay nada de antes</span></div>
-        <span class="why">Si el tablero dice «sí» y la publicación no lo mira, el verde engaña.</span></div>
+      <div class="ask"><span class="q">1 · ¿Arreglo ahora los 2 errores y las 7 prolijidades?</span>
+        <div class="ops"><span class="op rec">Sí, todo · recomendado</span><span class="op">Sólo los 2 errores</span><span class="op">Dejarlo así</span></div>
+        <span class="why">Las prolijidades no cambian lo que se ve; dejan, por ejemplo, una sola regla de «gratis» en vez de tres.</span></div>
+      <div class="ask"><span class="q">2 · Después, ¿lo commiteo en sus dos ramas, sin push?</span>
+        <div class="ops"><span class="op rec">Sí, en las dos · recomendado</span><span class="op">Todavía no</span></div>
+        <span class="why">La copia del tablero vive en una carpeta temporal: si se reinicia la Mac, se pierde.</span></div>
     </div>
-    <pre><code>http://127.0.0.1:7851/index.html
-http://127.0.0.1:7851/analizadores.html
-http://127.0.0.1:7851/publicar.html</code></pre>
   </section>
 
   <footer>
-    <span>Datos: análisis vigente de content-audit (batch analysis, states[].judges[]), leído el 18/10 por el tablero de la rama claude/jueces-al-dia-mapa (ittm, sobre a6647b149, sin commit: 31 archivos cambiados y 5 nuevos). Hecho: F-TALDIA-R005, R006 (en Correcciones), R007 y R008 inv. 1–3 y 6. Decisión propia en R008: sin la bandeja (F-ALDIA-R008 inv. 5), nunca «sí». Falta: R003 (F-ALDIA-R006), R004 (F-ALDIA-R007), R006 en el Mapa, R008 inv. 4 (F-ALDIA-R010), 5 (F-ALDIA-R009) y 7. Pruebas: node --test 2.037, flutter test 985, dart analyze sin avisos.</span>
-    <span>brief 150 · docs/briefs/150-jueces-al-dia-en-tres-pantallas.html</span>
+    <span>Datos: tablero en modo lectura sobre content-audit, 19/10 10:10. Tablero: rama claude/mapa-por-juez (worktree de ittm en el scratchpad de la sesión). content-audit: rama claude/map-design-proposal-e0fe00. Errores: celda() en mediciones-por-juez.js compara selected (ejercicios) con los temas medidos; main.js arma crearAlTeclear sin frenar con un dialog[open].</span>
+    <span>brief 155 · docs/briefs/155-el-carril-por-juez-andando.html</span>
   </footer>
 
 </div>
