@@ -34,6 +34,8 @@ public final class JudgeFreshnessReference {
 
     private final Set<EvaluationRuntimeIdentity> approvedRuntimes;
 
+    private final Set<EvaluationRuntimeIdentity> judgeApprovedRuntimes;
+
     private final JudgeVersionNamer namer;
 
     private final List<JudgeEnablement> enabledWith;
@@ -45,6 +47,18 @@ public final class JudgeFreshnessReference {
 
     public JudgeFreshnessReference(String judgeName, String currentVersion, Set<String> sameVersions,
             boolean approved, Set<EvaluationRuntimeIdentity> approvedRuntimes, JudgeVersionNamer namer,
+            List<JudgeEnablement> enabledWith) {
+        this(judgeName, currentVersion, sameVersions, approved, approvedRuntimes, Set.of(), namer, enabledWith);
+    }
+
+    /**
+     * {@code judgeApprovedRuntimes} are the runtimes some version of the judge approved with --
+     * today's, the one that gave a verdict or any other --, which decide whether a verdict of an
+     * earlier version is from before by its version or by its runtime (F-ALDIA-R003 inv. 7).
+     */
+    public JudgeFreshnessReference(String judgeName, String currentVersion, Set<String> sameVersions,
+            boolean approved, Set<EvaluationRuntimeIdentity> approvedRuntimes,
+            Set<EvaluationRuntimeIdentity> judgeApprovedRuntimes, JudgeVersionNamer namer,
             List<JudgeEnablement> enabledWith) {
         this.judgeName = judgeName;
         this.currentVersion = currentVersion;
@@ -58,6 +72,11 @@ public final class JudgeFreshnessReference {
         this.sameVersions = Set.copyOf(same);
         this.approved = approved && currentVersion != null;
         this.approvedRuntimes = approvedRuntimes != null ? Set.copyOf(approvedRuntimes) : Set.of();
+        Set<EvaluationRuntimeIdentity> everApproved = new LinkedHashSet<>(this.approvedRuntimes);
+        if (judgeApprovedRuntimes != null) {
+            everApproved.addAll(judgeApprovedRuntimes);
+        }
+        this.judgeApprovedRuntimes = Set.copyOf(everApproved);
         this.namer = namer;
         this.enabledWith = enabledWith != null ? List.copyOf(enabledWith) : List.of();
     }
@@ -120,13 +139,42 @@ public final class JudgeFreshnessReference {
         }
         boolean approved = consults || runtimes.stream().anyMatch(EvaluationRuntimeIdentity::isExplicit);
         return new JudgeFreshnessReference(standing.getJudgeName(), standing.getJudgeVersion(), same, approved,
-                runtimes, new JudgeVersionNamer(history, List.of(same), promotedAt, zone, clock),
-                standing.getEnabledWith());
+                runtimes, approvedByAnyVersion(history, promotions),
+                new JudgeVersionNamer(history, List.of(same), promotedAt, zone, clock), standing.getEnabledWith());
+    }
+
+    /**
+     * Inv. 7: the runtimes some version of the judge approved with -- the last exam of that version
+     * with that runtime approved, or José promoted it with it --, whichever version it was.
+     */
+    private static Set<EvaluationRuntimeIdentity> approvedByAnyVersion(List<JudgeExamRecord> history,
+            List<JudgePromotionRecord> promotions) {
+        Map<String, Map<EvaluationRuntimeIdentity, JudgeExamStatus>> lastByVersion = new LinkedHashMap<>();
+        for (JudgeExamRecord record : history != null ? history : List.<JudgeExamRecord>of()) {
+            if (record != null && record.getJudgeVersion() != null && record.getRuntimeIdentity().isExplicit()) {
+                lastByVersion.computeIfAbsent(record.getJudgeVersion(), version -> new LinkedHashMap<>())
+                        .put(record.getRuntimeIdentity(), record.getStatus());
+            }
+        }
+        Set<EvaluationRuntimeIdentity> runtimes = new LinkedHashSet<>();
+        lastByVersion.values().forEach(byRuntime -> byRuntime.forEach((runtime, status) -> {
+            if (status == JudgeExamStatus.APPROVED) {
+                runtimes.add(runtime);
+            }
+        }));
+        for (JudgePromotionRecord promotion : promotions != null ? promotions : List.<JudgePromotionRecord>of()) {
+            if (promotion != null && promotion.runtimeIdentity() != null) {
+                runtimes.add(promotion.runtimeIdentity());
+            }
+        }
+        return runtimes;
     }
 
     /**
      * The mark of a verdict given by {@code version} with {@code runtime}. Against today's version,
-     * never against the other end of a comparison (inv. 1); the runtime is looked at first.
+     * never against the other end of a comparison (inv. 1). A verdict of today's version is from
+     * before only by its runtime. One of an earlier version is from before by its version when some
+     * version of the judge approved with its runtime, and by its runtime only when none did (inv. 7).
      */
     public JudgeVerdictMark mark(String version, EvaluationRuntimeIdentity runtime) {
         if (!approved) {
@@ -135,13 +183,14 @@ public final class JudgeFreshnessReference {
         if (version == null || runtime == null || !runtime.isExplicit()) {
             return JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.UNKNOWN_PROVENANCE);
         }
-        if (!approvedRuntimes.contains(runtime)) {
-            return JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.OTHER_RUNTIME);
+        if (sameVersions.contains(version)) {
+            return approvedRuntimes.contains(runtime)
+                    ? JudgeVerdictMark.UP_TO_DATE
+                    : JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.OTHER_RUNTIME);
         }
-        if (!sameVersions.contains(version)) {
-            return JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.EARLIER_VERSION);
-        }
-        return JudgeVerdictMark.UP_TO_DATE;
+        return JudgeVerdictMark.fromBefore(judgeApprovedRuntimes.contains(runtime)
+                ? JudgeVerdictStaleCause.EARLIER_VERSION
+                : JudgeVerdictStaleCause.OTHER_RUNTIME);
     }
 
     /**
@@ -203,6 +252,11 @@ public final class JudgeFreshnessReference {
 
     public Set<EvaluationRuntimeIdentity> getApprovedRuntimes() {
         return approvedRuntimes;
+    }
+
+    /** The runtimes some version of the judge approved with, today's included (inv. 7). */
+    public Set<EvaluationRuntimeIdentity> getJudgeApprovedRuntimes() {
+        return judgeApprovedRuntimes;
     }
 
     public JudgeVersionNamer getNamer() {

@@ -25,9 +25,53 @@ class JudgeFreshnessReferenceTest {
     }
 
     @Test
-    void theRuntimeIsLookedAtBeforeTheVersion() {
+    void aMotorNoVersionOfTheJudgeApprovedWithIsAnotherMotorForTodaysAndForAnEarlierVersion() {
         assertEquals(JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.OTHER_RUNTIME), today().mark(V_5_10, LOCAL));
         assertEquals(JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.OTHER_RUNTIME), today().mark(V_TODAY, LOCAL));
+    }
+
+    /**
+     * Inv. 7, the Miniteoría in Correction 1 on 20/10: today's version approved only with Gemini, and
+     * 82 topics keep the verdicts the versions of 5/10 and 13/10 gave with ChatGPT, which they approved
+     * with. They are of an earlier version, never «another motor».
+     */
+    @Test
+    void anEarlierVersionWithAMotorTheJudgeApprovedWithIsAnEarlierVersionEvenIfTodaysApprovedOnlyWithAnother() {
+        var reference = todayWithGeminiOnly(history());
+        var earlier = JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.EARLIER_VERSION);
+        assertEquals(earlier, reference.mark(V_5_10, XHIGH));
+        assertEquals(earlier, reference.mark(V_13_10_MORNING, XHIGH));
+        assertEquals(earlier, reference.mark(V_TODAY, MEDIUM));
+        // V_5_10 never took its exam with medium, but another version approved with it.
+        assertEquals(earlier, reference.mark(V_5_10, MEDIUM));
+        assertTrue(reference.getJudgeApprovedRuntimes().containsAll(Set.of(XHIGH, MEDIUM, GEMINI)));
+        // Today's version with a motor it did not approve with is still another motor.
+        assertEquals(JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.OTHER_RUNTIME), reference.mark(V_GEMINI, MEDIUM));
+        assertEquals(JudgeVerdictMark.UP_TO_DATE, reference.mark(V_GEMINI, GEMINI));
+    }
+
+    @Test
+    void aMotorWhoseLastExamFailedInEveryVersionThatTookItIsAnotherMotorForAnEarlierVersion() {
+        var claude = EvaluationRuntimeIdentity.explicit("claude-cli", "claude-opus", "high");
+        var history = new java.util.ArrayList<>(history());
+        history.add(record(V_5_10, JudgeExamStatus.APPROVED, "2026-10-07T12:00:00Z", claude));
+        history.add(record(V_5_10, JudgeExamStatus.FAILED, "2026-10-08T12:00:00Z", claude));
+        assertEquals(JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.OTHER_RUNTIME),
+                todayWithGeminiOnly(history).mark(V_13_10_MORNING, claude));
+
+        history.add(record(V_13_10_MORNING, JudgeExamStatus.APPROVED, "2026-10-13T17:00:00Z", claude));
+        assertEquals(JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.EARLIER_VERSION),
+                todayWithGeminiOnly(history).mark(V_5_10, claude));
+    }
+
+    @Test
+    void aMotorJosePromotedAnEarlierVersionWithIsAnEarlierVersion() {
+        var promotion = new JudgePromotionRecord(JUDGE, V_13_10_MORNING, LOCAL, "José", "Acepto el piloto local",
+                "approval.json", "b".repeat(64), PROMOTED_AT);
+        var reference = JudgeFreshnessReference.of(geminiStanding(), geminiHistory(history()), List.of(promotion),
+                ZONE, CLOCK);
+        assertEquals(JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.EARLIER_VERSION), reference.mark(V_5_10, LOCAL));
+        assertEquals(JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.OTHER_RUNTIME), reference.mark(V_GEMINI, LOCAL));
     }
 
     @Test

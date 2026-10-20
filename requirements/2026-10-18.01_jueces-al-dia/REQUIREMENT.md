@@ -129,8 +129,10 @@ nueva sale sin examen.
 
 > Un veredicto está **al día** si lo dio la versión de hoy de su juez con un motor con el que esa versión aprobó su
 > examen. Si no, es **de antes**, con una de dos causas:
-> - **otro motor**, si su motor no es ninguno con el que la versión de hoy aprobó;
-> - **versión anterior**, si su motor es uno de esos y lo dio otra versión.
+> - **versión anterior**, si lo dio otra versión con un motor con el que aprobó alguna versión del juez: la de hoy, la
+>   que lo dio u otra;
+> - **otro motor**, si lo dio la versión de hoy con un motor con el que ella no aprobó, o si lo dio otra versión con un
+>   motor con el que no aprobó ninguna versión del juez.
 >
 > Una versión **aprobó con un motor** si su último examen con ese motor aprobó, o si José la promovió con ese motor y
 > ningún examen medido después con ese motor la reemplazó. Con un motor alcanza: la versión queda **habilitada** con
@@ -150,6 +152,10 @@ nueva sale sin examen.
 > 5. calcular la marca no consulta ni escribe nada;
 > 6. una abstención guardada nunca está sin medir: volver a medir sin forzar la reusa y da la misma. Vale igual en la
 >    tabla de jueces, en la cuenta del cierre, en la estimación de un diálogo de medir y en el resumen de cada corrida.
+> 7. lo que dio una versión anterior con un motor aprobado nunca se lee «otro motor», aunque la versión de hoy haya
+>    aprobado con otro: la diferencia que importa es la versión, y se nombra por ella
+>    ([F-ALDIA-R004](#F-ALDIA-R004)). Sigue siendo de antes, y en Correcciones sigue faltando medirlo
+>    ([F-TALDIA-R006](../2026-10-18.02_jueces-al-dia-en-el-tablero/REQUIREMENT.md#F-TALDIA-R006)).
 
 <details><summary>Detail</summary>
 
@@ -157,8 +163,10 @@ Que lo de antes se siga reusando es deliberado: volver a medir todo con cada ver
 [F-EVCOST-R006](#F-EVCOST-R006) lo descarta. Lo que cambia es que ya no se reusa en silencio. La marca va con el
 veredicto a donde vaya: el análisis, las opiniones de Correcciones, el cierre y publicar.
 
-La causa se elige mirando primero el motor, porque un motor distinto no se arregla con una versión. La base de la
-naturalidad la midió un modelo local, y eso se lee «otro motor» aunque su versión también sea otra.
+«Otro motor» señala un motor que el juez no tiene validado: no se arregla con una versión. La base de la naturalidad
+la midió un modelo local con el que ninguna versión aprobó, y eso se lee «otro motor» aunque su versión también sea
+otra. En cambio, un motor con el que el juez ya aprobó no es una novedad: si la versión que opinó es otra, lo que hay
+que saber es cuál, porque eso es lo que cambió (invariante 7, 20/10).
 
 **Criterio**: Corrección 1 de la tanda A1, al 18/10. La miniteoría de hoy es la versión aprobada el 13/10 a las 22:12:
 
@@ -170,9 +178,16 @@ naturalidad la midió un modelo local, y eso se lee «otro motor» aunque su ver
 La naturalidad tiene, en la base, 2.333 ejercicios de otro motor (llama3 local) y ninguno al día.
 
 **Criterio de los motores**, al 19/10: la miniteoría de hoy aprobó a las 11:30 con Gemini 3.8 Flash y nunca rindió
-con ChatGPT, que es el motor por omisión. Está habilitada con Gemini, no es «sin aprobar», y lo que midió con ChatGPT es
-de otro motor. Naturalidad idiomática y Calidad didáctica A1 no rindieron su examen con la versión de hoy: José las
-promovió el 14/10 con ChatGPT. Están habilitadas con ChatGPT, y lo que esa versión midió con ChatGPT está al día.
+con ChatGPT, que es el motor por omisión. Está habilitada con Gemini, no es «sin aprobar», y lo que ella midiera con
+ChatGPT sería de otro motor. Naturalidad idiomática y Calidad didáctica A1 no rindieron su examen con la versión de hoy:
+José las promovió el 14/10 con ChatGPT. Están habilitadas con ChatGPT, y lo que esa versión midió con ChatGPT está al día.
+
+**Criterio de la versión anterior con un motor aprobado** (invariante 7), Corrección 1 de la tanda A1 al 20/10: la
+miniteoría de hoy es la del 19/10, aprobada sólo con Gemini. Un tema lo midió ella con Gemini y está al día. Los otros
+82 los midieron con ChatGPT la del 5/10, la del 13/10, 13:00 y la del 13/10, 22:12, y las tres aprobaron con ChatGPT.
+Hasta el 19/10 se leían «82 de otro motor (gpt-6.1-sol en codex-cli)», como si la versión de hoy los hubiera medido con
+otro motor, y José los tomó por medidos. Ahora se leen «82 de versión anterior», cada uno con el nombre de su versión, y
+siguen faltando medir con la del 19/10.
 
 **Criterio de la abstención** (invariante 6), Corrección 1 de la tanda A1 al 19/10: el pragmatismo de hoy (la del
 14/10) dejó 2.402 veredictos con su motor aprobado. 88 son abstenciones: 81 «no aplica» (ejercicios de clasificar, de
@@ -568,7 +583,7 @@ Ninguna prueba consulta a un modelo ni toca producción.
 |---|---|
 | R001 | Cambiar un archivo de `eval/` deja la misma versión. Cambiar uno de la guía, del formato, de un script, de la definición o uno nuevo la cambia |
 | R002 | Con la equivalencia, el examen aprobado y los veredictos de la versión del día siguen valiendo. Un cambio más da una versión sin examen, y una equivalencia no se puede agregar después |
-| R003 | Con veredictos de la versión de hoy, de otra versión, de otro motor, sin procedencia y sin veredicto, cada uno sale con su marca. La misma versión vieja en las dos puntas da dos «de antes». Una abstención guardada de pragmatismo («falta contexto»), de naturalidad («no aplica») y de didáctica («revisar»), de la versión de hoy, sale al día y no sin medir; de una versión anterior, de antes. La cuenta del cierre, la estimación y el resumen de cada corrida la cuentan igual (`CurrentAnalysisServiceTest.aStoredAbstentionIsAVerdictWithItsMarkAndNeverNotMeasured`, `DefaultBatchJudgePassTest.shouldCountASavedAbstentionAsAVerdictOfItsVersionNeverAsNotMeasured`, `SelectiveCorrectionServiceTest.aSavedAbstentionCountsAsEvaluatedInTheEstimateAndInTheRunSummary`, `ContextOpinionServiceTest.aCompletionRunCountsASavedAbstentionAsEvaluated`) |
+| R003 | Con veredictos de la versión de hoy, de otra versión, de otro motor, sin procedencia y sin veredicto, cada uno sale con su marca. La misma versión vieja en las dos puntas da dos «de antes». Una abstención guardada de pragmatismo («falta contexto»), de naturalidad («no aplica») y de didáctica («revisar»), de la versión de hoy, sale al día y no sin medir; de una versión anterior, de antes. La cuenta del cierre, la estimación y el resumen de cada corrida la cuentan igual (`CurrentAnalysisServiceTest.aStoredAbstentionIsAVerdictWithItsMarkAndNeverNotMeasured`, `DefaultBatchJudgePassTest.shouldCountASavedAbstentionAsAVerdictOfItsVersionNeverAsNotMeasured`, `SelectiveCorrectionServiceTest.aSavedAbstentionCountsAsEvaluatedInTheEstimateAndInTheRunSummary`, `ContextOpinionServiceTest.aCompletionRunCountsASavedAbstentionAsEvaluated`). Lo que dio una versión anterior con un motor con el que aprobó alguna versión del juez es «versión anterior», aunque la de hoy aprobara sólo con otro. «Otro motor» queda para la versión de hoy con un motor que ella no aprobó, y para un motor que ninguna versión aprobó (fallado en su último examen o nunca rendido). Una promoción de José cuenta como aprobación (`JudgeFreshnessReferenceTest.anEarlierVersionWithAMotorTheJudgeApprovedWithIsAnEarlierVersionEvenIfTodaysApprovedOnlyWithAnother`, `.aMotorWhoseLastExamFailedInEveryVersionThatTookItIsAnotherMotorForAnEarlierVersion`, `.aMotorJosePromotedAnEarlierVersionWithIsAnEarlierVersion`, `.aMotorNoVersionOfTheJudgeApprovedWithIsAnotherMotorForTodaysAndForAnEarlierVersion`, `JudgeFreshnessTallyTest.anEarlierVersionWithAMotorTheJudgeApprovedWithIsReusedByVersionNotByMotor`) |
 | R004 | Dos aprobaciones el mismo día en hora local y distinto en UTC llevan la hora. Una re-aprobada se nombra por la primera, y ninguna se nombra con un número |
 | R005 | Las cuentas por juez y estado suman la unidad, y el informe del cierre dice cuánto reusó de antes. Las abstenciones se cuentan dentro de su marca, por motivo, y las tres cuentas siguen sumando la unidad (`JudgeFreshnessTallyTest.abstentionsAreCountedInsideTheirMarkAndTheThreeCountsStillAddUp`) |
 | R006 | Con la lista guardada sale lo que cambió, separado en lo que cuenta y lo que no. Sin lista ni foto, dice «no se sabe qué cambió» |

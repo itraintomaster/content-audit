@@ -1,13 +1,17 @@
 package com.learney.contentaudit.auditdomain.judging;
 
 /**
- * F-ALDIA-R003: why a verdict is from before. The runtime is looked at first, because a different
- * runtime is not fixed by a version.
+ * F-ALDIA-R003: why a verdict is from before. A verdict of today's version is from before only by
+ * its runtime. One of an earlier version is from before by its version whenever some version of the
+ * judge approved with its runtime; only a runtime no version approved with is another runtime (inv. 7).
  */
 public enum JudgeVerdictStaleCause {
-    /** Its runtime is none that today's version approved its exam with. */
+    /**
+     * Today's version gave it with a runtime it did not approve with, or an earlier version gave it
+     * with a runtime no version of the judge approved with.
+     */
     OTHER_RUNTIME,
-    /** Its runtime is one of those, and another version gave it. */
+    /** Another version gave it, with a runtime some version of the judge approved with. */
     EARLIER_VERSION,
     /** It carries no runtime: nothing says who gave it (F-JEXAM-R014). */
     UNKNOWN_PROVENANCE,

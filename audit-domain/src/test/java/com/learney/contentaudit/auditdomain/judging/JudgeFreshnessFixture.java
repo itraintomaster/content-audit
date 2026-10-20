@@ -4,6 +4,7 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -51,5 +52,24 @@ final class JudgeFreshnessFixture {
     static JudgeFreshnessReference today() {
         return JudgeFreshnessReference.of(standing(V_TODAY, JudgeExamStatus.APPROVED, Set.of(V_TODAY)),
                 history(), ZONE, CLOCK);
+    }
+
+    static JudgeExamStanding geminiStanding() {
+        var standing = new JudgeExamStanding(JUDGE, V_GEMINI, JudgeExamStatus.NOT_TAKEN, false,
+                "La versión vigente del juez no rindió el examen fijo.", MEDIUM, Set.of(V_GEMINI));
+        standing.setEnabledWith(List.of(new JudgeEnablement(GEMINI, JudgeExamStatus.APPROVED,
+                Instant.parse("2026-10-19T14:30:58Z"))));
+        return standing;
+    }
+
+    static List<JudgeExamRecord> geminiHistory(List<JudgeExamRecord> before) {
+        var history = new ArrayList<>(before);
+        history.add(record(V_GEMINI, JudgeExamStatus.APPROVED, "2026-10-19T14:30:58Z", GEMINI));
+        return history;
+    }
+
+    /** Today's Miniteoría on 20/10: the version of 19/10, approved only with Gemini. */
+    static JudgeFreshnessReference todayWithGeminiOnly(List<JudgeExamRecord> before) {
+        return JudgeFreshnessReference.of(geminiStanding(), geminiHistory(before), ZONE, CLOCK);
     }
 }

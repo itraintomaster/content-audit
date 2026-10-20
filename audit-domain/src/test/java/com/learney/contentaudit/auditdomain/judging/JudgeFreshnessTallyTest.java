@@ -34,6 +34,27 @@ class JudgeFreshnessTallyTest {
         assertEquals(77, first.count());
     }
 
+    /**
+     * F-ALDIA-R003 inv. 7, Correction 1 on 20/10: today's Miniteoría approved only with Gemini, and the
+     * 82 topics measured with ChatGPT by versions that approved with it are named by their version.
+     */
+    @Test
+    @Tag("F-ALDIA-R003")
+    void anEarlierVersionWithAMotorTheJudgeApprovedWithIsReusedByVersionNotByMotor() {
+        var tally = new JudgeFreshnessTally(todayWithGeminiOnly(history()), "miniteoría", AuditTarget.KNOWLEDGE);
+        assertTrue(tally.add(V_GEMINI, GEMINI, 1).isUpToDate());
+        tally.add(V_5_10, MEDIUM, 76);
+        tally.add(V_13_10_MORNING, MEDIUM, 5);
+        tally.add(V_TODAY, XHIGH, 1);
+        var count = tally.count();
+        assertEquals("miniteoría: reusa 82 temas de antes (76 de la del 5/10, 5 de la del 13/10, 13:00, "
+                + "1 de la del 13/10, 22:12)", count.summary());
+        assertEquals(1, count.upToDate());
+        assertEquals(82, count.fromBefore());
+        assertTrue(count.fromBeforeGroups().stream().allMatch(g -> g.cause() == JudgeVerdictStaleCause.EARLIER_VERSION));
+        assertEquals("la del 19/10", count.currentVersionName());
+    }
+
     @Test
     void otherRuntimeUnknownAndNotMeasuredAreCountedApartAndSumToTheUnit() {
         var tally = new JudgeFreshnessTally(today(), "miniteoría", AuditTarget.QUIZ);
@@ -119,12 +140,15 @@ class JudgeFreshnessTallyTest {
                 "miniteoría", AuditTarget.KNOWLEDGE);
         tally.add(V_GEMINI, GEMINI, 1);
         tally.add(V_5_10, XHIGH, 82);
+        tally.add(V_GEMINI, XHIGH, 2);
         var count = tally.count();
         assertTrue(count.approved());
         assertEquals(enabled, count.enabledWith());
         assertEquals(1, count.upToDate());
-        // The motor is looked at first: the 82 are from a motor today's version did not approve with.
-        assertEquals("miniteoría: reusa 82 temas de antes (82 de gpt-6.1-sol en codex-cli, xhigh)", count.summary());
+        // F-ALDIA-R003 inv. 7: the version of 5/10 approved with that motor, so the 82 are of an earlier
+        // version; today's version with a motor it did not approve with is another motor.
+        assertEquals("miniteoría: reusa 84 temas de antes (82 de la del 5/10, 2 de gpt-6.1-sol en codex-cli, xhigh)",
+                count.summary());
         assertEquals("la del 19/10", count.currentVersionName());
     }
 }

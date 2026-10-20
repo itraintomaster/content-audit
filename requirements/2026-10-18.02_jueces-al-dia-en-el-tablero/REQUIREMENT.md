@@ -72,7 +72,12 @@ muestra de 12 antes de aprobar.
 > 4. una versión de un juez nunca se muestra como «versión N»: eso sigue siendo del contenido;
 > 5. la fecha de medición, donde se muestre, va aparte y nunca como fecha de la versión;
 > 6. los analizadores que no son jueces no llevan marca;
-> 7. mostrarla no consulta.
+> 7. mostrarla no consulta;
+> 8. «otro motor» dice, al pasar por encima, que lo midió un motor con el que la versión de hoy no aprobó, sin afirmar
+>    que lo midió la versión de hoy. Lo que una versión anterior midió con un motor con el que el juez aprobó llega como
+>    versión anterior ([F-ALDIA-R003](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md#F-ALDIA-R003), inv. 7) y se lee
+>    «anterior», con el nombre de su versión: «opinó con la versión del 5/10». Una versión anterior que nunca aprobó se
+>    lee «opinó con la versión sin aprobar (c8ca16c9)».
 
 <details><summary>Detail</summary>
 
@@ -82,6 +87,13 @@ elige». Con qué motores aprobó cada versión también lo dice content-audit (
 
 **Criterio**: en la ficha de Corrección 1, la miniteoría dice «anterior 82 · al día 1» y la base, «anterior 83». La
 naturalidad de la base dice «otro motor». Al pasar por encima de `738388a5` se ve el código entero y «copiar».
+
+**Criterio del motor aprobado** (inv. 8), Corrección 1 al 20/10: la miniteoría de hoy aprobó sólo con Gemini y 82 temas
+los midieron con ChatGPT versiones que aprobaron con él. Hasta el 19/10 Correcciones decía «Miniteoría con error: 82 de
+83 temas tienen su opinión de otro motor», la pastilla «otro motor» y el motivo «Falta medir Miniteoría con error ·
+opinó con otro motor (gpt-6.1-sol en codex-cli, medium)». Ahora dice «Miniteoría con error cambió el 19/10, 11:30. 82 de
+83 temas tienen su opinión de la versión anterior», la pastilla «versión del 5/10» y el motivo «… · opinó con la versión
+del 5/10». Siguen en «Falta medir» ([F-TALDIA-R006](#F-TALDIA-R006)).
 
 </details>
 
@@ -444,7 +456,7 @@ Las pruebas usan respuestas grabadas de content-audit. Ninguna consulta a un mod
 
 | Regla | Qué se comprueba |
 |---|---|
-| R001 | Las tres marcas salen de lo que dice content-audit, con las mismas palabras en las cuatro pantallas. Dos aprobaciones el mismo día en la zona del navegador llevan la hora, y ninguna versión de juez se muestra como «versión N» |
+| R001 | Las tres marcas salen de lo que dice content-audit, con las mismas palabras en las cuatro pantallas. Dos aprobaciones el mismo día en la zona del navegador llevan la hora, y ninguna versión de juez se muestra como «versión N». «Otro motor» no dice que lo midió la versión de hoy, y una versión anterior sin aprobar se nombra «la versión sin aprobar (…)» (ittm `marca-del-juez.test.js` «F-TALDIA-R001 inv. 8», `correcciones-jueces-al-dia.test.js` «F-TALDIA-R001 inv. 8») |
 | R002 | La línea y el arco aparecen sólo con algo de antes. La ficha de la base dice «anterior», no «aprobado» |
 | R003 | Lo que no cuenta va en su propio renglón; sin lista, dice «no se sabe qué cambió» |
 | R004 | Las dos casillas vienen marcadas, el botón dice el número y nada se consulta sin confirmar. Sin examen aprobado, el botón está apagado y dice por qué. Con un juez aprobado sólo con Gemini, el diálogo abre con Gemini y ChatGPT se ve apagado; aprobado con los dos, abre con ChatGPT |
