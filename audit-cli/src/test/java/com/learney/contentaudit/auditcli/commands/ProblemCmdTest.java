@@ -5,6 +5,9 @@ import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 import com.learney.contentaudit.auditinfrastructure.*;
 import com.learney.contentaudit.auditinfrastructure.batchstore.FileSystemBatchStore;
+import com.learney.contentaudit.coursedomain.*;
+import com.learney.contentaudit.courseinfrastructure.CourseValidatorImpl;
+import com.learney.contentaudit.courseinfrastructure.FileSystemCourseRepository;
 import com.learney.contentaudit.revisiondomain.*;
 import com.learney.contentaudit.revisiondomain.batch.*;
 import com.learney.contentaudit.revisiondomain.problems.ContentProblem;
@@ -163,6 +166,120 @@ class ProblemCmdTest {
         assertTrue(request.contains("Sentinel no gobierna este repositorio"));
         work = Files.createDirectory(root.resolve("other-campaign"));
         assertEquals(0, run("show", p.id())); assertEquals(p, CommandJson.read(output.toString(), ContentProblem.class));
+    }
+
+    // ── F-NADIE-R005: a problem nobody objected to, also in an exercise without changes ──────────────
+
+    /** The course on disk with an exercise that no correction of the batch touches. */
+    void courseWith(String quizId) {
+        var quiz = new QuizTemplateEntity(); quiz.setId(quizId); quiz.setOidId(quizId); quiz.setKind("CLOZE");
+        quiz.setKnowledgeId("knowledge"); quiz.setTitle("Negativas con be"); quiz.setInstructions("Elige la forma negativa.");
+        quiz.setTranslation("No hace calor."); quiz.setMiniTheory("Para negar, agregamos not."); quiz.setSentences(List.of("It is not hot."));
+        quiz.setForm(new FormEntity("CLOZE", 1.0, "", "", List.of(new SentencePartEntity(SentencePartKind.TEXT, "It ", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("is not")), new SentencePartEntity(SentencePartKind.TEXT, " hot.", null)), null, null));
+        var knowledge = new KnowledgeEntity(); knowledge.setId("knowledge"); knowledge.setCode("knowledge"); knowledge.setKind(NodeKind.KNOWLEDGE);
+        knowledge.setLabel("Negativas con be"); knowledge.setOldId("old-knowledge"); knowledge.setParentId("topic"); knowledge.setIsRule(true);
+        knowledge.setInstructions("Elige la forma negativa."); knowledge.setOrder(1); knowledge.setSlug("negativas-con-be"); knowledge.setQuizTemplates(List.of(quiz));
+        var topic = new TopicEntity(); topic.setId("topic"); topic.setCode("topic"); topic.setKind(NodeKind.TOPIC); topic.setLabel("Be");
+        topic.setOldId("old-topic"); topic.setParentId("milestone"); topic.setRuleIds(List.of("knowledge")); topic.setOrder(1); topic.setSlug("be");
+        topic.setKnowledges(List.of(knowledge));
+        var milestone = new MilestoneEntity(); milestone.setId("milestone"); milestone.setCode("milestone"); milestone.setKind(NodeKind.MILESTONE);
+        milestone.setLabel("A1"); milestone.setOldId("old-milestone"); milestone.setParentId("root"); milestone.setChildren(List.of("topic"));
+        milestone.setOrder(1); milestone.setSlug("a1"); milestone.setTopics(List.of(topic));
+        var top = new RootNodeEntity(); top.setId("root"); top.setCode("root"); top.setKind(NodeKind.ROOT); top.setChildren(List.of("milestone")); top.setMilestones(List.of(milestone));
+        var entity = new CourseEntity(); entity.setId("000000000000000000000001"); entity.setTitle("english-course"); entity.setKnowledgeIds(List.of("knowledge"));
+        entity.setRoot(top); entity.setSlug("english-course");
+        new FileSystemCourseRepository(new CourseValidatorImpl()).save(entity, course);
+    }
+    /** What each judge said of [quiz] in Corrección 1, as the dashboard reads it: two missed it, two are only named. */
+    static String said(String quiz) {
+        return CommandJson.writeCompact(Map.of("state", "correction", "stateLabel", "Corrección 1", "quizzes", Map.of(quiz, Map.of(
+                "judges", List.of(
+                        Map.of("judge", "quiz-instruction", "name", "Consigna que no se cumple", "status", "UP_TO_DATE"),
+                        Map.of("judge", "mini-theory", "name", "Miniteoría con error", "status", "EARLIER", "detail", "versión del 5/10"),
+                        Map.of("judge", "pragmatism", "name", "Pragmatismo comunicativo", "status", "ABSTAINED", "detail", "no aplica"),
+                        Map.of("judge", "a1-didactic", "name", "Calidad didáctica A1", "status", "NOT_MEASURED")),
+                "analyzers", List.of(Map.of("analyzer", "sentence-length", "name", "Oraciones con el largo de su nivel"))))));
+    }
+    List<String> unchanged(String quiz, String... extra) {
+        var read = review(); var args = new ArrayList<>(List.of("annotate", "--batch", "batch", "--quiz", quiz,
+                "--content-version", "" + read.contentVersion(), "--correction-revision", "" + read.correctionRevision()));
+        args.addAll(List.of(extra)); return args;
+    }
+    ContentProblem problemOf(String json) {
+        return CommandJson.read(CommandJson.writeCompact(CommandJson.read(json, Map.class).get("problem")), ContentProblem.class);
+    }
+    @Test @Tag("F-NADIE-R005") void anExerciseWithoutChangesIsFrozenAsTheCourseHasItWithItsStateAndTheJudgesThatMissedIt() {
+        courseWith("quiet");
+        assertEquals(0, run(unchanged("quiet", "--title", "Negación sin contraste", "--criterion", "No contrasta", "--keep-correction",
+                "--verdicts", said("quiet")).toArray(String[]::new)), errors.toString());
+        assertEquals(false, CommandJson.read(output.toString(), Map.class).get("rejected"));
+        var c = problemOf(output.toString()).cases().get(0);
+        assertEquals("quiet", c.quizId()); assertEquals("batch", c.batchId());
+        assertEquals(List.of(), c.snapshot().get("items"));
+        assertEquals(c.snapshot().get("before"), c.snapshot().get("after"));
+        assertEquals("Para negar, agregamos not.", ((Map<?, ?>) ((Map<?, ?>) c.snapshot().get("after")).get("quiz")).get("miniTheory"));
+        var nobody = (Map<?, ?>) c.snapshot().get("nobodyObjects");
+        assertEquals("correction", nobody.get("state")); assertEquals("Corrección 1", nobody.get("stateLabel"));
+        // Those that said «sin error» missed it; the abstention and the one not measured are only named.
+        assertEquals(List.of("quiz-instruction", "mini-theory"), nobody.get("missedBy"));
+        var judges = (List<?>) nobody.get("judges");
+        assertEquals(List.of("UP_TO_DATE", "EARLIER", "ABSTAINED", "NOT_MEASURED"), judges.stream().map(j -> ((Map<?, ?>) j).get("status")).toList());
+        assertEquals("versión del 5/10", ((Map<?, ?>) judges.get(1)).get("detail")); assertEquals("no aplica", ((Map<?, ?>) judges.get(2)).get("detail"));
+        assertEquals(List.of(Map.of("analyzer", "sentence-length", "name", "Oraciones con el largo de su nivel")), nobody.get("analyzers"));
+        assertEquals(BatchReviewDecision.Status.PENDING, review().items().get(0).status(), "no decision changes");
+    }
+    @Test @Tag("F-NADIE-R005") void anExerciseWithoutChangesIsAnnotatedOnceAlsoWithThePublishedBatchAndUndoTakesItOut() {
+        courseWith("quiet");
+        var first = unchanged("quiet", "--title", "Negación sin contraste", "--criterion", "No contrasta", "--verdicts", said("quiet"));
+        var again = unchanged("quiet", "--verdicts", said("quiet"));
+        var store = new FileSystemBatchStore(work); var published = store.load("batch").orElseThrow();
+        published.setStatus(BatchStatus.PUBLISHED); store.save(published);
+        // Nothing to reject: no --keep-correction is needed.
+        assertEquals(0, run(first.toArray(String[]::new)), errors.toString());
+        var p = problemOf(output.toString());
+        again.addAll(List.of(p.id(), "--revision", "" + p.revision()));
+        assertEquals(0, run(again.toArray(String[]::new)), errors.toString());
+        assertEquals(List.of(), CommandJson.read(output.toString(), Map.class).get("newCaseIds"));
+        assertEquals(1, new FileSystemProblemStore(course).load(p.id()).orElseThrow().cases().size());
+        assertEquals(0, run("undo", p.id(), "--revision", "" + p.revision(), "--case-id", p.cases().get(0).id()), errors.toString());
+        assertTrue(new FileSystemProblemStore(course).load(p.id()).orElseThrow().cases().isEmpty());
+    }
+    @Test @Tag("F-NADIE-R005") void anExerciseWithoutCorrectionIsNotAnnotatedWithoutWhatEachJudgeSaid() {
+        courseWith("quiet");
+        String[] base = {"--title", "Negación sin contraste", "--criterion", "No contrasta"};
+        assertEquals(2, run(unchanged("quiet", base).toArray(String[]::new)));
+        assertTrue(errors.toString().contains("no tiene una corrección"), errors.toString());
+        var noneToday = new ArrayList<>(unchanged("quiet", base)); noneToday.addAll(List.of("--verdicts", said("quiet").replace("UP_TO_DATE", "EARLIER")));
+        assertEquals(2, run(noneToday.toArray(String[]::new))); assertTrue(errors.toString().contains("versión de hoy"), errors.toString());
+        var unknown = new ArrayList<>(unchanged("quiet", base)); unknown.addAll(List.of("--verdicts", said("quiet").replace("ABSTAINED", "MAYBE")));
+        assertEquals(2, run(unknown.toArray(String[]::new)));
+        var other = new ArrayList<>(unchanged("quiet", base)); other.addAll(List.of("--verdicts", said("other")));
+        assertEquals(2, run(other.toArray(String[]::new)));
+        assertTrue(new FileSystemProblemStore(course).list().isEmpty());
+    }
+    @Test @Tag("F-NADIE-R005") void aChangedExerciseKeepsItsCorrectionAndAlsoWhatEachJudgeSaidOfTheAfter() {
+        var c = annotate("--verdicts", said("quiz")).cases().get(0);
+        assertEquals(1, ((List<?>) c.snapshot().get("items")).size());
+        assertNotEquals(c.snapshot().get("before"), c.snapshot().get("after"));
+        assertEquals(List.of("quiz-instruction", "mini-theory"), ((Map<?, ?>) c.snapshot().get("nobodyObjects")).get("missedBy"));
+        assertEquals(BatchReviewDecision.Status.REJECTED, review().items().get(0).status());
+    }
+    @Test @Tag("F-NADIE-R005") void theRequestBringsTheGuidesOfTheJudgesThatMissedItAndNotOfTheOnesThatDidNotJudge() throws Exception {
+        for (var guide : Map.of("mini-theory-judge", "GUÍA MINITEORÍA", "quiz-instruction-validator", "GUÍA CONSIGNA",
+                "pragmatism-judge", "GUÍA PRAGMATISMO", "a1-didactic-judge", "GUÍA DIDÁCTICA").entrySet()) {
+            var file = root.resolve(".sentinel/agents/" + guide.getKey() + "/nodes/general.md");
+            Files.createDirectories(file.getParent()); Files.writeString(file, guide.getValue());
+        }
+        courseWith("quiet");
+        assertEquals(0, run(unchanged("quiet", "--title", "Negación sin contraste", "--criterion", "No contrasta",
+                "--verdicts", said("quiet")).toArray(String[]::new)), errors.toString());
+        var p = problemOf(output.toString()); assertTrue(p.parts().isEmpty());
+        assertEquals(0, run("request", p.id()), errors.toString());
+        String request = (String) CommandJson.read(output.toString(), Map.class).get("text");
+        for (String text : List.of("GUÍA MINITEORÍA", "GUÍA CONSIGNA", "Un caso con nobodyObjects", "missedBy", "Corrección 1", "Para negar, agregamos not."))
+            assertTrue(request.contains(text), text);
+        assertFalse(request.contains("GUÍA PRAGMATISMO")); assertFalse(request.contains("GUÍA DIDÁCTICA"));
     }
     @Test void searchGroupsMatchingTextWithoutModelsAndMalformedRegexReturnsAnError() {
         var read = review(); assertEquals(0, run("search", "--batch", read.batchId(), "--search", "AFTER"));

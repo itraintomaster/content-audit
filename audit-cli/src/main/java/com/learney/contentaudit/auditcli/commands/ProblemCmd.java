@@ -2,10 +2,15 @@ package com.learney.contentaudit.auditcli.commands;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditinfrastructure.*;
 import com.learney.contentaudit.auditinfrastructure.batchstore.FileSystemBatchStore;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.courseinfrastructure.CourseValidatorImpl;
+import com.learney.contentaudit.courseinfrastructure.FileSystemCourseRepository;
 import com.learney.contentaudit.revisiondomain.batch.*;
 import com.learney.contentaudit.revisiondomain.batchengine.DefaultBatchReviewServiceFactory;
+import com.learney.contentaudit.revisiondomain.engine.DefaultCourseElementLocator;
 import com.learney.contentaudit.revisiondomain.problems.*;
 import static com.learney.contentaudit.revisiondomain.problems.ContentProblem.*;
 import java.io.*;
@@ -46,6 +51,7 @@ final class ProblemCmd implements Callable<Integer> {
     @Option(names = "--expected") String expected;
     @Option(names = "--usage", defaultValue = "exam") String usage;
     @Option(names = "--keep-correction") boolean keepCorrection;
+    @Option(names = "--verdicts") String verdicts;
     @Option(names = "--case-id") List<String> caseIds;
     @Option(names = "--actor") String actor;
     @Option(names = "--state") String state;
@@ -114,28 +120,47 @@ final class ProblemCmd implements Callable<Integer> {
         if (quizzes == null || quizzes.isEmpty()) throw new IllegalArgumentException("Elegí al menos un --quiz.");
         use();
         if (batch == null) throw new IllegalArgumentException("Falta --batch.");
+        Map<String, Map<String, Object>> said = verdicts();
         long reviewCount = new FileSystemBatchStore(workdir).reviews(batch).size();
         var reviews = reviews(workdir);
         BatchReview read = checkedReview(reviews);
-        if (!keepCorrection && use() != Use.GOOD && read.report().getStatus() == BatchStatus.PUBLISHED)
-            throw new IllegalStateException("La tanda ya está publicada. Anotá con --keep-correction.");
         var selected = read.items().stream().filter(i -> quizzes.contains(i.step().getQuizId())).toList();
-        for (String quiz : quizzes) if (selected.stream().noneMatch(i -> i.step().getQuizId().equals(quiz))) {
+        // F-NADIE-R005: a quiz without a correction can only be annotated with what each judge said of it.
+        for (String quiz : quizzes) if (selected.stream().noneMatch(i -> i.step().getQuizId().equals(quiz)) && !said.containsKey(quiz)) {
             throw new IllegalArgumentException("El quiz no tiene una corrección en esta tanda: " + quiz);
         }
+        boolean rejects = !keepCorrection && use() != Use.GOOD && !selected.isEmpty();
+        if (rejects && read.report().getStatus() == BatchStatus.PUBLISHED)
+            throw new IllegalStateException("La tanda ya está publicada. Anotá con --keep-correction.");
         ContentProblem p = id == null ? service.create(title, criterion, failures, parts) : service.get(id);
         if (id != null && p.revision() != requireRevision()) throw new IllegalStateException("El problema cambió. Volvé a leer.");
         var additions = new ArrayList<Case>();
+        CourseEntity loaded = null;
         for (String quiz : new LinkedHashSet<>(quizzes)) {
             var items = selected.stream().filter(i -> i.step().getQuizId().equals(quiz)).toList();
             Map<String, Object> snapshot = new LinkedHashMap<>();
-            snapshot.put("items", items.stream().map(i -> readMap(CommandJson.writeCompact(i))).toList());
-            snapshot.put("before", readMap(CommandJson.writeCompact(items.get(0).before())));
-            snapshot.put("after", readMap(CommandJson.writeCompact(items.get(items.size() - 1).after())));
-            snapshot.put("rejectOnAnnotation", !keepCorrection && use() != Use.GOOD);
-            // Status/notes are not part of identity: clicking Anotar twice cannot duplicate the same content.
-            String identity = read.batchId() + "\n" + quiz + "\n" + CommandJson.writeCompact(
-                    items.stream().map(i -> new BatchReviewDecision.Selection(i.changeId(), i.step(), i.before(), i.after())).toList());
+            String identity;
+            if (items.isEmpty()) {
+                // Nothing changes it in this batch: it is frozen as the course has it, before and after alike.
+                if (loaded == null) loaded = new FileSystemCourseRepository(new CourseValidatorImpl()).load(course);
+                var element = new DefaultCourseElementLocator().snapshot(loaded, AuditTarget.QUIZ, quiz)
+                        .orElseThrow(() -> new IllegalArgumentException("El quiz no está en el curso: " + quiz));
+                var frozen = readMap(CommandJson.writeCompact(element));
+                snapshot.put("items", List.of());
+                snapshot.put("before", frozen);
+                snapshot.put("after", frozen);
+                snapshot.put("rejectOnAnnotation", false);
+                identity = read.batchId() + "\n" + quiz + "\n" + CommandJson.writeCompact(element);
+            } else {
+                snapshot.put("items", items.stream().map(i -> readMap(CommandJson.writeCompact(i))).toList());
+                snapshot.put("before", readMap(CommandJson.writeCompact(items.get(0).before())));
+                snapshot.put("after", readMap(CommandJson.writeCompact(items.get(items.size() - 1).after())));
+                snapshot.put("rejectOnAnnotation", rejects);
+                // Status/notes are not part of identity: clicking Anotar twice cannot duplicate the same content.
+                identity = read.batchId() + "\n" + quiz + "\n" + CommandJson.writeCompact(
+                        items.stream().map(i -> new BatchReviewDecision.Selection(i.changeId(), i.step(), i.before(), i.after())).toList());
+            }
+            if (said.containsKey(quiz)) snapshot.put("nobodyObjects", said.get(quiz));
             additions.add(new Case(fingerprint(identity), quiz, read.batchId(), workdir.toAbsolutePath().normalize().toString(),
                     read.contentVersion(), read.correctionRevision(), use(), comment, expected, snapshot, Instant.now()));
         }
@@ -143,7 +168,7 @@ final class ProblemCmd implements Callable<Integer> {
         additions.removeIf(c -> existing.contains(c.id()));
         if (additions.isEmpty()) return Map.of("problem", p, "newCaseIds", List.of());
         var saved = service.addCases(p.id(), p.revision(), additions);
-        if (!keepCorrection && use() != Use.GOOD) {
+        if (rejects) {
             try {
                 Set<String> addedQuizzes = new HashSet<>(); additions.forEach(c -> addedQuizzes.add(c.quizId()));
                 var rejected = selected.stream().filter(i -> addedQuizzes.contains(i.step().getQuizId())
@@ -158,7 +183,65 @@ final class ProblemCmd implements Callable<Integer> {
             }
         }
         return Map.of("problem", saved, "newCaseIds", additions.stream().map(Case::id).toList(),
-                "rejected", !keepCorrection && use() != Use.GOOD);
+                "rejected", rejects);
+    }
+
+    private static final List<String> JUDGE_STATUSES = List.of("UP_TO_DATE", "EARLIER", "ABSTAINED", "NOT_MEASURED");
+    private static final Set<String> SAID_NO_ERROR = Set.of("UP_TO_DATE", "EARLIER");
+
+    /**
+     * F-NADIE-R005: what each judge said of each annotated quiz in a state of the current analysis, as the
+     * dashboard read it when annotating. The judges that said «sin error», today or with an earlier version,
+     * are the ones that missed it; an abstention or a judge that has not judged it yet is only named.
+     */
+    private Map<String, Map<String, Object>> verdicts() {
+        if (verdicts == null || verdicts.isBlank()) return Map.of();
+        Map<String, Object> all = readMap(verdicts);
+        String state = text(all.get("state")), label = text(all.get("stateLabel"));
+        if (state == null || label == null || !(all.get("quizzes") instanceof Map<?, ?> byQuiz) || byQuiz.isEmpty())
+            throw new IllegalArgumentException("--verdicts necesita el estado, su nombre y lo que dijo cada juez de cada quiz.");
+        Map<String, Map<String, Object>> result = new LinkedHashMap<>();
+        for (var entry : byQuiz.entrySet()) {
+            String quiz = String.valueOf(entry.getKey());
+            if (!quizzes.contains(quiz)) throw new IllegalArgumentException("--verdicts nombra un quiz que no se anota: " + quiz);
+            if (!(entry.getValue() instanceof Map<?, ?> said) || !(said.get("judges") instanceof List<?> judges) || judges.isEmpty())
+                throw new IllegalArgumentException("Falta lo que dijo cada juez de " + quiz + ".");
+            var named = new ArrayList<Map<String, Object>>();
+            var missed = new ArrayList<String>();
+            for (Object value : judges) {
+                if (!(value instanceof Map<?, ?> judge) || text(judge.get("judge")) == null || !JUDGE_STATUSES.contains(judge.get("status")))
+                    throw new IllegalArgumentException("Cada juez necesita su nombre y su estado: " + String.join(", ", JUDGE_STATUSES) + ".");
+                Map<String, Object> clean = new LinkedHashMap<>();
+                clean.put("judge", text(judge.get("judge")));
+                if (text(judge.get("name")) != null) clean.put("name", text(judge.get("name")));
+                clean.put("status", judge.get("status"));
+                if (text(judge.get("detail")) != null) clean.put("detail", text(judge.get("detail")));
+                named.add(clean);
+                if (SAID_NO_ERROR.contains(judge.get("status"))) missed.add(text(judge.get("judge")));
+            }
+            if (named.stream().noneMatch(j -> "UP_TO_DATE".equals(j.get("status"))))
+                throw new IllegalArgumentException("Ningún juez opinó de " + quiz + " con su versión de hoy: no entra en «Nadie le ve problemas».");
+            var analyzers = new ArrayList<Map<String, Object>>();
+            if (said.get("analyzers") instanceof List<?> list) for (Object value : list) {
+                if (!(value instanceof Map<?, ?> analyzer) || text(analyzer.get("analyzer")) == null)
+                    throw new IllegalArgumentException("Cada analizador necesita su nombre.");
+                Map<String, Object> clean = new LinkedHashMap<>();
+                clean.put("analyzer", text(analyzer.get("analyzer")));
+                if (text(analyzer.get("name")) != null) clean.put("name", text(analyzer.get("name")));
+                analyzers.add(clean);
+            }
+            Map<String, Object> kept = new LinkedHashMap<>();
+            kept.put("state", state);
+            kept.put("stateLabel", label);
+            kept.put("missedBy", missed);
+            kept.put("judges", named);
+            kept.put("analyzers", analyzers);
+            result.put(quiz, kept);
+        }
+        return result;
+    }
+    private static String text(Object value) {
+        return value instanceof String s && !s.isBlank() ? s.trim() : null;
     }
 
     private ContentProblem undo(ProblemService service) {
@@ -256,6 +339,9 @@ final class ProblemCmd implements Callable<Integer> {
         String instructions = "Trabajá el problema " + p.id() + ": " + p.title() + ".\n"
                 + "Hay dos roles. Vos recibís TODOS los casos y podés elegir algunos para validar. Recomendá ajustar un juez existente, crear uno, una regla fija o la guía del corrector, explicando por qué.\n"
                 + "La descripción general se aplica a todos los quizzes de la lista. Inferí cómo se manifiesta el mismo patrón en cada quiz a partir de su contenido congelado; no hace falta que el operador repita la explicación para cada caso.\n"
+                + (p.cases().stream().anyMatch(c -> c.snapshot().containsKey("nobodyObjects"))
+                    ? "Un caso con nobodyObjects es un ejercicio al que ningún juez ni analizador le vio problemas en ese estado (stateLabel). missedBy son los jueces que dijeron «sin error»: son los que hay que recalibrar. Los que se abstuvieron o todavía no opinaron no se equivocaron. Si items está vacío, el ejercicio no tenía cambios: antes y después son el mismo.\n"
+                    : "")
                 + "El juez recibe solo una guía general y el quiz evaluado. No copies estos ejemplos ni respuestas esperadas a su contexto.\n"
                 + "Probá primero sin consultas. No ejecutes jueces, exámenes ni correcciones con modelos sin autorización explícita y un tope. codex-cli es el proveedor por omisión; el operador puede elegir otro. No hagas fallback silencioso. Registrá proveedor, modelo y versión efectivos.\n"
                 + "Actualizar el estado ES parte de tu trabajo. Necesitás acceso al proyecto para ejecutar cambios. Proyecto: " + project.toAbsolutePath() + ".\n"
@@ -286,6 +372,11 @@ final class ProblemCmd implements Callable<Integer> {
             }
             if (lower.contains("answer")) names.add("single-answer-judge");
         }
+        // F-NADIE-R005: the judges that said «sin error» of a case are the ones to recalibrate.
+        for (var c : p.cases()) if (c.snapshot().get("nobodyObjects") instanceof Map<?, ?> said
+                && said.get("missedBy") instanceof List<?> missed) {
+            for (Object judge : missed) names.addAll(guidesOf(String.valueOf(judge)));
+        }
         for (var c : p.cases()) for (var item : items(c)) {
             String rule = String.valueOf(item.ruleId());
             if (rule.contains("mini-theory")) names.add("mini-theory-judge");
@@ -310,6 +401,19 @@ final class ProblemCmd implements Callable<Integer> {
         }
         if (guides.isEmpty()) guides.append("No se identificó una guía guardada para estas partes. Confirmá cuál corresponde antes de modificar un juez.\n");
         return instructions + guides;
+    }
+
+    /** The saved guides of a judge of the analysis: its own folder, or the ones named differently. */
+    private static final Map<String, List<String>> JUDGE_GUIDES = Map.of(
+            "quiz-instruction", List.of("quiz-instruction-validator"),
+            "translation-sense", List.of("translation-sense-from-english", "translation-sense-from-translation"),
+            "naturalness", List.of("native-usage-judge"),
+            "near-duplicates", List.of("near-duplicates-pair-judge"),
+            "multiple-choice-quality", List.of("choice-quality-judge"),
+            "multiple-choice-validity", List.of("choice-alternative-judge"));
+    static List<String> guidesOf(String judge) {
+        if (!judge.matches("[a-z0-9-]+")) return List.of();
+        return JUDGE_GUIDES.getOrDefault(judge, List.of(judge + "-judge", judge));
     }
 
     private String requireId() { if (id == null) throw new IllegalArgumentException("Falta el id del problema."); return id; }
