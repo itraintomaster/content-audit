@@ -13,7 +13,9 @@ feature:
 **Qué**: En Correcciones, un filtro nuevo, «Nadie le ve problemas», junta los ejercicios de la corrección en los que
 ningún analizador y ningún juez que opinó encontró nada. Se recorren uno por uno, y en cada uno se ve qué dijo cada
 juez: «dijo: sin error», con qué versión, si se abstuvo o si todavía no opinó. Debajo del filtro, una fila por cada
-combinación de jueces que falta, para ver aparte los que vieron todos.
+combinación de jueces que falta, para ver aparte los que vieron todos. Si José ve un problema que ningún juez marcó,
+lo anota como Problema desde el mismo ejercicio, tenga o no cambios: el caso queda con el estado y con lo que dijo cada
+juez, y desde el Problema llega a la recalibración del juez.
 
 **Por qué**: José quiere validar lo que los jueces dan por bueno. Lo que está mal para los jueces se sigue mandando a
 corregir. Si algo está bien para los jueces y mal para él, hay que corregir al juez: lo revisa con este filtro y, si no
@@ -166,6 +168,57 @@ medir». Abajo: «Sin observaciones de los analizadores: …».
 
 </details>
 
+<a id="F-NADIE-R005"></a>
+### Rule[F-NADIE-R005] - Anotar un problema que ningún juez marcó, aunque el ejercicio no tenga cambios
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+> En un ejercicio que entra en «Nadie le ve problemas», José puede anotar un Problema aunque el ejercicio no tenga
+> cambios propuestos o no haya tenido ninguna tarea. El bloque de [F-NADIE-R004](#F-NADIE-R004) lleva «Anotar un
+> problema» (también con **P**), que abre el cajón de siempre: elegir un Problema o crear uno. El caso queda en ese
+> Problema con:
+> 1. el ejercicio y la tanda;
+> 2. el estado del que sale y su nombre: «Corrección 1»;
+> 3. el ejercicio congelado como está en ese estado. Sin cambios, el antes y el después son el mismo;
+> 4. lo que dijo cada juez que se aplica, como lo muestra el bloque: los que dijeron «sin error», al día o con una
+>    versión de antes, son **los que no lo vieron**; el que se abstuvo o todavía no opinó queda nombrado con su estado y
+>    su motivo, sin contarlo entre los que no lo vieron;
+> 5. los analizadores que lo evaluaron sin observaciones.
+>
+> Invariantes:
+> 1. sin cambios no hay corrección que rechazar: el cajón no ofrece «Rechazar la corrección al anotar», anotar no
+>    cambia ninguna decisión y se puede anotar también con la tanda publicada;
+> 2. en el cajón, antes de anotar, José ve lo que va a quedar anotado: el estado y lo que dijo cada juez;
+> 3. lo que dijo cada juez se toma del análisis vigente en el momento de anotar, no de lo que quedó en la pantalla.
+>    Si el ejercicio ya no entra en el filtro, no se anota nada y se pide volver a leer;
+> 4. un ejercicio que entra y tiene cambios se anota como siempre (el antes, el después y la corrección, que se puede
+>    rechazar), y el caso lleva además lo que dijo cada juez, que es del después;
+> 5. un ejercicio sin cambios que no entra en el filtro no se puede anotar: el caso no tendría ni corrección ni lo que
+>    dijeron los jueces;
+> 6. anotar otra vez el mismo ejercicio, con el mismo contenido, en el mismo Problema no lo repite; «Deshacer
+>    anotación» lo saca;
+> 7. en Problemas, el caso dice de qué estado sale y quiénes no lo vieron; el pedido para el agente del Problema trae
+>    las guías de esos jueces;
+> 8. anotar no consulta a ningún modelo.
+
+<details><summary>Detail</summary>
+
+Lo que un juez dijo es lo que hay que recalibrar: el Problema junta los casos que el juez debió marcar, el agente
+ajusta al juez y el examen fijo de ese juez sale de la entrega del Problema. Por eso el caso no se guarda aparte: va
+al mismo registro de Problemas que los casos con corrección, y el agente lo recibe con todo lo demás.
+
+Un juez que se abstuvo o que todavía no opinó no se equivocó: no hay nada que recalibrar en él por este ejercicio.
+Queda nombrado para que se sepa que no lo vio nadie más, no para corregirlo.
+
+La invariante 3 es la de «Otro contenido»: la pantalla puede haber quedado de antes de una medición nueva, y lo que se
+guarda tiene que ser lo que dice el análisis de hoy.
+
+**Criterio**: con la tanda A1, en «Negativas con be», un ejercicio sin tarea que entra: José toca «Anotar un
+problema», ve «Corrección 1 · no lo vieron: Consigna que no se cumple (al día), Miniteoría con error (versión del
+5/10) · todavía no opinó: Calidad didáctica A1», crea «Negación sin contraste» y anota. En Problemas, el caso dice lo
+mismo, con el ejercicio igual antes y después.
+
+</details>
+
 ## Journeys
 
 ```yaml
@@ -198,10 +251,22 @@ journeys:
           - when: "José está de acuerdo con los jueces"
             then: recorrer
           - when: "José ve un problema que ningún juez marcó"
+            then: anotar
+      - id: anotar
+        action: "José anota el problema en el ejercicio, tenga o no cambios"
+        gate: [F-NADIE-R005]
+        outcomes:
+          - when: "El ejercicio sigue entrando en el filtro"
             then: recalibrar
+          - when: "El ejercicio ya no entra en el filtro"
+            then: releer
+      - id: releer
+        action: "No se anota nada: el tablero pide volver a leer"
+        gate: [F-NADIE-R005]
+        result: failure
       - id: recalibrar
-        action: "José abre el examen del juez que debió marcarlo"
-        gate: [F-NADIE-R004]
+        action: "El caso queda en el Problema con el estado y los jueces que no lo vieron; José abre el examen del juez que debió marcarlo"
+        gate: [F-NADIE-R004, F-NADIE-R005]
         result: success
 ```
 
@@ -221,6 +286,7 @@ Las pruebas usan respuestas armadas a mano del análisis vigente. Ninguna consul
 | R002 | El botón cuenta ejercicios. Elegirlo saca el motivo; elegir un motivo lo saca. Con el filtro, la lista muestra los temas con ejercicios que entran también con «Por revisar», y la tira pasa sólo por ellos, incluido uno sin tarea. Sin el filtro, el tema sin tarea no aparece y «Revisar en grupo» vuelve |
 | R003 | «Opinaron todos los jueces» va primera; dos versiones de antes son dos filas; las filas suman el total; tocar una acota y tocarla otra vez suelta |
 | R004 | El bloque dice «dijo: sin error» con la marca de cada versión, «se abstuvo (motivo)», «todavía no opinó», los analizadores sin observaciones y «Ver su examen» por juez. Con cambios, dice que es del después. En un ejercicio sin cambio no aparecen los hallazgos del plan |
+| R005 | En un ejercicio sin cambios que entra, «Anotar un problema» abre el cajón sin «Rechazar la corrección» y con el estado y lo que dijo cada juez; anotar manda que viene del filtro y no pide rechazar. El tablero toma lo que dijo cada juez de su vista vigente y no anota si el ejercicio ya no entra. content-audit congela el ejercicio igual antes y después, con el estado, los que no lo vieron y los que no cuentan; no cambia ninguna decisión, también con la tanda publicada; no repite el caso; sin lo que dijeron los jueces no anota un ejercicio sin corrección; el pedido trae las guías de los jueces que no lo vieron. Con cambios, el caso es el de siempre más lo que dijo cada juez. En Problemas, el caso dice el estado y quiénes no lo vieron |
 
 ## References
 
