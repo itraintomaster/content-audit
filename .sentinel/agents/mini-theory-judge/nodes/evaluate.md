@@ -137,9 +137,8 @@ agregar subtemas ajenos para corregirla; una formulación atómica con la direcc
 adecuada puede ser suficiente. Mantené el tiempo, la polaridad y el orden de la
 construcción al razonar sobre la regla.
 
-Un contraejemplo debe refutar la afirmación que realmente se hizo, manteniendo
-sus condiciones. Si la tarjeta dice que un indicio no basta para acreditar un
-rasgo, no la refuta una oración que añade explícitamente ese rasgo por otra vía.
+Un contraejemplo debe refutar la afirmación que realmente se hizo, manteniendo sus condiciones.
+Si la tarjeta dice que un indicio no basta para acreditar un rasgo, no la refuta una oración que añade explícitamente ese rasgo por otra vía.
 Agregar información que cambia la decisión no demuestra una excepción a la
 misma regla local. Distinguí «este indicio no acredita el rasgo» de «este indicio
 prohíbe que el rasgo exista»: sólo la segunda es una prohibición universal.
@@ -190,13 +189,42 @@ ejemplo que aporta una distinción. Este paso detecta léxico incidental fijado
 como parte de una receta, no aplica un límite de palabras ni exige una única
 redacción. La concisión es una recomendación para corregir el defecto encontrado.
 
-### 8. Si nada anterior aplica → sano
+### 8. Metalenguaje teórico o jerga gramatical innecesaria → `THEORETICAL_JARGON`
+
+Si no aplica ningún defecto anterior, comprobá si la tarjeta recurre a terminología
+teórica, etiquetas lingüísticas formales o jerga gramatical abstracta que resulta
+antipedagógica o inaccesible para un alumno de inglés. La miniteoría es una ayuda
+breve para el usuario de la app, no una lección de lingüística teórica.
+
+Corresponde `THEORETICAL_JARGON` cuando la tarjeta se apoya en conceptos teóricos
+en vez de dar una explicación funcional, intuitiva y en lenguaje cotidiano.
+Ejemplos típicos de jerga a penalizar:
+- «adjetivo atributivo» o «adjetivo predicativo» (se debe explicar en lenguaje llano:
+  «la cualidad va antes de lo que describe» o «va después del verbo»);
+- «estilo indirecto» o «discurso referido» (se debe explicar funcionalmente:
+  «al contar lo que alguien dijo»);
+- «verbo de estado», «verbo estativo» o «verbo copulativo» (se debe explicar funcionalmente:
+  «para hablar de gustos o hábitos» o «verbos como be no expresan una acción en curso»);
+- «perífrasis aspectual», «inversión locativa» u otras etiquetas taxonómicas avanzadas.
+
+No penalices términos básicos y universales que el alumno necesariamente aprende y
+utiliza en el curso, como «sujeto», «verbo», «sustantivo», «pasado», «presente»,
+«pregunta», «negación», ni la mención directa del tiempo verbal practicado
+(«present simple», «past continuous») cuando sea la instrucción del quiz. El defecto
+radica en usar etiquetas académicas abstractas cuando existe una explicación
+comunicativa directa.
+
+Ante jerga teórica, la `explanation` identifica el término teórico y explica cómo
+formularlo de forma intuitiva. El `counterexample` propone la redacción en lenguaje
+llano ceñida al mismo quiz.
+
+### 9. Si nada anterior aplica → sano
 
 Devolvé `holds: true`.
 
 La precedencia terminal completa es:
 `FALSE_RULE` / `INSUFFICIENT_FOR_QUIZ` → `OTHER_SUBTOPIC_CONTENT` →
-`OVERSTATED_FOR_QUIZ` → `OVER_SPECIFIC_FOR_QUIZ` → sano. Dentro del primer nivel, usá `FALSE_RULE` cuando
+`OVERSTATED_FOR_QUIZ` → `OVER_SPECIFIC_FOR_QUIZ` → `THEORETICAL_JARGON` → sano. Dentro del primer nivel, usá `FALSE_RULE` cuando
 hay dirección o clasificación local falsa; usá `INSUFFICIENT_FOR_QUIZ` cuando
 falta la distinción necesaria.
 
@@ -277,6 +305,9 @@ terminal aplicable. La severidad está fijada y nunca puede ser `BLOCKING`:
 - `OVER_SPECIFIC_FOR_QUIZ` → `LOW`: la regla local es verdadera y suficiente,
   pero fija léxico incidental en una receta del ítem que se puede abstraer sin
   perder el contraste focal. No se usa sólo porque el texto sea largo.
+- `THEORETICAL_JARGON` → `LOW`: la regla local es verdadera, suficiente y específica,
+  pero recurre a metalenguaje gramatical abstracto o etiquetas lingüísticas teóricas
+  en vez de explicarse en lenguaje funcional y accesible para un estudiante.
 
 El `counterexample` muestra evidencia breve aplicada al propio quiz: una
 completación correcta, una formulación que desmienta la regla o la decisión no
@@ -296,6 +327,10 @@ explica por qué no determina la regla y qué papel gramatical se puede abstraer
 El `counterexample` propone un esquema breve aplicado al mismo quiz, conservando
 las decisiones focales y las variantes pertinentes. No inventes otro quiz ni
 copies respuestas esperadas de un examen; deducí el esquema del caso recibido.
+
+Ante jerga teórica, la `explanation` señala la etiqueta o concepto académico y
+propone una redacción simple y comunicativa. El `counterexample` muestra la
+redacción en lenguaje llano aplicada a ese mismo quiz.
 
 ## Formato de la entrada
 
@@ -328,7 +363,8 @@ fences ni prosa adicional:
 - Exactamente un elemento por quiz, en el mismo orden; ningún id omitido,
   inventado o repetido.
 - `problem`: `FALSE_RULE`, `INSUFFICIENT_FOR_QUIZ`,
-  `OVERSTATED_FOR_QUIZ`, `OTHER_SUBTOPIC_CONTENT`, `OVER_SPECIFIC_FOR_QUIZ` o `null`.
+  `OVERSTATED_FOR_QUIZ`, `OTHER_SUBTOPIC_CONTENT`, `OVER_SPECIFIC_FOR_QUIZ`,
+  `THEORETICAL_JARGON` o `null`.
 - `severity`: `HIGH`, `MEDIUM`, `LOW` o `null`, según la correspondencia fija.
 - Si `holds` es false, problema, severidad y contraejemplo no son null.
 - No incluyas claves adicionales ni uses conocimiento de un corpus de examen.

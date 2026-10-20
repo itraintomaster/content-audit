@@ -34,6 +34,8 @@
     "nunca puede ser `BLOCKING`",
     "mismo orden",
     "OVER_SPECIFIC_FOR_QUIZ",
+    "THEORETICAL_JARGON",
+    "Metalenguaje teórico o jerga gramatical innecesaria",
     "La longitud por sí sola no es un defecto",
     "léxico incidental fijado",
     "su categoría gramatical",
@@ -284,6 +286,65 @@
             "severity": "MEDIUM",
             "counterexample": "Regla de destino con la marca operativa, sin el nombre incidental.",
             "explanation": "El nombre sólo ejemplifica el destino y no determina la marca."
+          }
+        ]
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "LOW"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "theoretical-jargon-low-and-healthy-neighbor",
+      "inputs": "shared-text",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-source",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "La tarjeta explica la decisión de origen de este quiz sintético."
+          },
+          {
+            "quizId": "q-destination",
+            "holds": false,
+            "problem": "THEORETICAL_JARGON",
+            "severity": "LOW",
+            "counterexample": "Al contar lo que alguien dijo, va pasado.",
+            "explanation": "Usa terminología de estilo indirecto innecesariamente."
+          }
+        ]
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "theoretical-jargon-wrong-severity",
+      "inputs": "shared-text",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-source",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "La tarjeta explica la decisión de origen de este quiz sintético."
+          },
+          {
+            "quizId": "q-destination",
+            "holds": false,
+            "problem": "THEORETICAL_JARGON",
+            "severity": "HIGH",
+            "counterexample": "Al contar lo que alguien dijo, va pasado.",
+            "explanation": "Usa terminología de estilo indirecto innecesariamente."
           }
         ]
       },

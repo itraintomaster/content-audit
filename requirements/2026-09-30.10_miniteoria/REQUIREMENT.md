@@ -167,6 +167,23 @@ que permita modificar uno por arrastre. El tipo de tarea y la mesa son del paque
 Pedido del operador, 13/10/2026: mejorar también al juez para encontrar los casos
 de PRB-f35c962c; las respuestas anteriores gustaron aunque quedaron largas.
 
+<a id="F-MINIT-R009"></a>
+### Rule[F-MINIT-R009] - La miniteoría evita el metalenguaje teórico y la jerga gramatical abstracta
+**Severity**: major | **Validation**: VALIDATED
+
+> La miniteoría es una herramienta de aprendizaje breve para el alumno, no una clase de
+> lingüística. Si la tarjeta es verdadera y suficiente pero recurre a terminología teórica
+> o etiquetas gramaticales abstractas (como «adjetivo atributivo/predicativo», «estilo indirecto»,
+> «verbo de estado/estativo/copulativo» o «perífrasis aspectual») en lugar de una explicación
+> funcional e intuitiva en lenguaje corriente («la cualidad va antes de lo que describe»,
+> «al contar lo que alguien dijo», «para hablar de gustos o hábitos»), el juez la clasifica
+> como `THEORETICAL_JARGON`, gravedad baja, después de descartar sobreespecificación.
+> La evidencia señala el término abstracto y propone una formulación comunicativa en lenguaje
+> llano. El corrector también es instruido para evitar este defecto al generar nuevas propuestas.
+
+Pedido del operador, 19/10/2026: evitar exceso de conceptos teóricos; las miniteorías deben ser
+focalizadas y sencillamente explicadas para el alumno.
+
 ## Contexto
 
 | Ficha | `mini-theory` |

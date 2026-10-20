@@ -20,6 +20,7 @@ SEVERITY_FOR = {
     "OVERSTATED_FOR_QUIZ": "MEDIUM",
     "OTHER_SUBTOPIC_CONTENT": "LOW",
     "OVER_SPECIFIC_FOR_QUIZ": "LOW",
+    "THEORETICAL_JARGON": "LOW",
 }
 
 state = json.loads(sys.argv[1])

@@ -20,7 +20,9 @@ class MiniTheoryRewriterAdapterTest {
             calls.incrementAndGet();
             String guide = prompt.substring(0, prompt.indexOf("FEEDBACK HUMANO:"));
             assertTrue(guide.contains("Abstraé sólo el léxico incidental"));
-            assertTrue(guide.contains("Si especifica de más, no la reutilices literalmente"));
+            assertTrue(guide.contains("Si especifica de más o usa jerga teórica, no la reutilices literalmente"));
+            assertTrue(guide.contains("Evitá estrictamente el metalenguaje gramatical abstracto y la jerga teórica"));
+            assertTrue(guide.contains("lenguaje cotidiano, intuitivo y funcional"));
             assertTrue(guide.contains("léxica, semántica o una excepción"));
             assertTrue(guide.contains("variantes aceptadas"));
             assertTrue(guide.contains("No nombres el léxico incidental ni siquiera como ejemplo"));

@@ -94,7 +94,7 @@ public class MiniTheoryAnalyzerProviderTest {
             assertFalse(rule.getDescription().isBlank());
         }
         assertEquals(List.of("false-rule", "insufficient-for-quiz", "overstated-for-quiz", "other-subtopic-content",
-                        "over-specific-for-quiz"),
+                        "over-specific-for-quiz", "theoretical-jargon"),
                 rules);
         assertEquals("¿La tarjeta explica correctamente el caso concreto de este quiz, sin traer reglas de otros subtemas?",
                 card.getQuestion());

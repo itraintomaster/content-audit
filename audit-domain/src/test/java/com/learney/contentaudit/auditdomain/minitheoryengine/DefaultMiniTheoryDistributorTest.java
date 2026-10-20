@@ -64,6 +64,24 @@ public class DefaultMiniTheoryDistributorTest {
     }
 
     @Test
+    @Tag("F-MINIT-R009")
+    void theoreticalJargonFindingKeepsLowSeverityAndItsOwnEvidenceWithoutAffectingHealthySibling() {
+        var enough = assessment("q-affirmation", true, null, null, null, "Regla en lenguaje llano.");
+        var jargon = assessment("q-question", false, MiniTheoryProblem.THEORETICAL_JARGON,
+                FindingSeverity.LOW, "Al contar lo que alguien dijo, va pasado.", "Usa término de estilo indirecto.");
+        var outcomes = distributor(STUDENT_VIEW).distribute(
+                new MiniTheoryVerdict(List.of(enough, jargon), "Por quiz."), mixedTopic(), false);
+        assertTrue(outcomes.get(0).getFindings().isEmpty());
+        assertEquals(1.0, outcomes.get(0).getScore(), 1e-9);
+        var finding = outcomes.get(1).getFindings().get(0);
+        assertEquals("theoretical-jargon", finding.getRule());
+        assertEquals(FindingSeverity.LOW, finding.getSeverity());
+        assertEquals(FindingResolution.PANEL, finding.getResolution());
+        assertEquals(0.8, outcomes.get(1).getScore(), 1e-9);
+        assertTrue(finding.getEvidence().getObservation().contains("metalenguaje"));
+    }
+
+    @Test
     @DisplayName("should distribute opposite assessments of the same mini-theory text to their exact quizIds")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R001")
