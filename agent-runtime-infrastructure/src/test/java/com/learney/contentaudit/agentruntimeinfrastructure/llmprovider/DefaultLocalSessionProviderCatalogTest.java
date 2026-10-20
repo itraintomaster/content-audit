@@ -33,6 +33,26 @@ class DefaultLocalSessionProviderCatalogTest {
     }
 
     @Test
+    @DisplayName("keeps Gemini available when the operator explicitly selects gemini-cli")
+    void findsExplicitGeminiProfile() {
+        LocalSessionProviderProfile profile = catalog.find(" gemini-cli ").orElseThrow();
+
+        assertEquals("gemini-cli", profile.getProviderName());
+        assertEquals(List.of("gemini", "--version"), profile.getAuthStatusCommand());
+        assertEquals("gemini", profile.getLoginCommand());
+    }
+
+    @Test
+    @DisplayName("keeps Antigravity available when the operator explicitly selects agy")
+    void findsExplicitAgyProfile() {
+        LocalSessionProviderProfile profile = catalog.find(" agy ").orElseThrow();
+
+        assertEquals("agy", profile.getProviderName());
+        assertEquals(List.of("agy", "--version"), profile.getAuthStatusCommand());
+        assertEquals("agy", profile.getLoginCommand());
+    }
+
+    @Test
     @DisplayName("does not turn an unknown provider into the default profile")
     void returnsEmptyForUnknownProvider() {
         assertTrue(catalog.find("unknown-local-cli").isEmpty());

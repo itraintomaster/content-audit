@@ -76,6 +76,14 @@ public class DefaultJudgeProviderReadinessProbe implements JudgeProviderReadines
             literal("authentication failed"),
             literal("authentication_error"),
             literal("invalid api key"),
+            literal("api key not valid"),
+            literal("api_key_invalid"),
+            literal("please set an auth method"),
+            literal("fatal_authentication_error"),
+            literal("gemini_api_key"),
+            literal("ineligibletiererror"),
+            literal("no longer supported"),
+            literal("valid license"),
             statusCode("401"));
 
     /** Explicit usage quota or credit shortage, including a 429 whose body identifies it. */
@@ -89,7 +97,9 @@ public class DefaultJudgeProviderReadinessProbe implements JudgeProviderReadines
             literal("insufficient_credits"),
             literal("out of credits"),
             literal("credits exhausted"),
-            literal("credits_exhausted"));
+            literal("credits_exhausted"),
+            literal("prepayment credits"),
+            statusCode("402"));
 
     /** Request throttling alone says nothing about whether the account's usage quota is spent. */
     private static final List<Pattern> REQUEST_LIMIT_SIGNS = List.of(

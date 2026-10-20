@@ -16,6 +16,12 @@ public class DefaultLocalSessionProviderCatalog implements LocalSessionProviderC
     private static final LocalSessionProviderProfile CLAUDE = new LocalSessionProviderProfile(
             "claude-cli", List.of("claude", "auth", "status"), "claude auth login");
 
+    private static final LocalSessionProviderProfile GEMINI = new LocalSessionProviderProfile(
+            "gemini-cli", List.of("gemini", "--version"), "gemini");
+
+    private static final LocalSessionProviderProfile AGY = new LocalSessionProviderProfile(
+            "agy", List.of("agy", "--version"), "agy");
+
     @Override
     public LocalSessionProviderProfile defaultProfile() {
         return copyOf(CODEX);
@@ -31,6 +37,8 @@ public class DefaultLocalSessionProviderCatalog implements LocalSessionProviderC
             case "codex-cli", "codex", "chatgpt", "chat-gpt", "openai-chatgpt" ->
                     Optional.of(copyOf(CODEX));
             case "claude-cli", "claude-code" -> Optional.of(copyOf(CLAUDE));
+            case "gemini-cli", "gemini", "gemini-code" -> Optional.of(copyOf(GEMINI));
+            case "agy", "antigravity-cli", "antigravity" -> Optional.of(copyOf(AGY));
             default -> Optional.empty();
         };
     }

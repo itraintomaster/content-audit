@@ -36,6 +36,9 @@ public class DefaultJudgeProviderReadinessProbeTest {
     private static final LlmProviderResolved CLAUDE_CLI =
             new LlmProviderResolved("claude-cli", LlmProviderClass.LOCAL_SESSION);
 
+    private static final LlmProviderResolved GEMINI_CLI =
+            new LlmProviderResolved("gemini-cli", LlmProviderClass.LOCAL_SESSION);
+
     private static final LlmProviderResolved REMOTE_SERVICE =
             new LlmProviderResolved("openai", LlmProviderClass.REMOTE_SERVICE);
 
@@ -355,6 +358,25 @@ public class DefaultJudgeProviderReadinessProbeTest {
             assertExplained(probe.explain(REMOTE_SERVICE, unreachable),
                     JudgeUnavailabilityCause.SERVICE_UNREACHABLE, "servicio caído",
                     "revisá la conexión y volvé a correr cuando el servicio responda", unreachable);
+        }
+    }
+
+    @Test
+    @DisplayName("should explain a Gemini CLI authentication failure as SESSION_EXPIRED, naming the gemini login remedy")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R011")
+    void shouldExplainGeminiCliAuthFailureAsSessionExpired() {
+        DefaultJudgeProviderReadinessProbe probe = new DefaultJudgeProviderReadinessProbe(List.of());
+
+        for (String authFailure : List.of(
+                "When using Gemini API, you must specify the GEMINI_API_KEY environment variable.",
+                "Please set an Auth method in your settings.json",
+                "FATAL_AUTHENTICATION_ERROR",
+                "API key not valid. Please pass a valid API key.",
+                "API_KEY_INVALID")) {
+            assertExplained(probe.explain(GEMINI_CLI, authFailure),
+                    JudgeUnavailabilityCause.SESSION_EXPIRED, "sesión vencida",
+                    "renovala con gemini", authFailure);
         }
     }
 }
