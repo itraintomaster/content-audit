@@ -3,23 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>165 · La Miniteoría no opinó con otro motor</title>
-<!--
-  TEMPLATE DE BRIEF · visual-brief
-  1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
-  2. Por cada sección: un título que dice la conclusión, UN dibujo copiado del
-     catálogo del final y un pie de dos renglones. Primero el dibujo; el texto lo rotula.
-     Si habla de una pantalla: primero DÓNDE (la captura con marcas, .map), después EL
-     PROBLEMA como un caso de uso (la foto de hoy + .mark), después CÓMO QUEDA (la maqueta
-     .mq con números y su leyenda). Si ya está hecho, los dos lados del .ad son capturas.
-     Las fotos, con capturar.mjs, en docs/briefs/NNN-slug/ (SKILL.md §4).
-  3. BORRAR el catálogo entero (la section de clase cat, al final) y las secciones que no se usan.
-  4. Verificar: node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
-     y mirarlo: node ~/.claude/skills/visual-brief/assets/diapos.mjs <el brief> <scratchpad>/d (+ --tema=dark, --celular)
-  Topes: lede ≤ 2 frases y 35 palabras · ≤ 6 secciones · pie ≤ 30 · párrafo ≤ 40 ·
-  prosa total ≤ 400 (sin tablas ni gráficos). Cada componente trae el suyo en el catálogo.
-  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
--->
+<title>Nadie le ve problemas</title>
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -339,14 +323,6 @@
     .map .who{border-left:1px solid var(--line);border-top:0;border-radius:0 0 var(--radius) var(--radius)}
     .map.alta .cap{width:min(55%,220px);margin:0 auto}
   }
-
-  /* ============ CATÁLOGO · se borra entero al generar ============ */
-  .cat{margin-top:64px;padding-top:22px;border-top:3px solid var(--bad)}
-  .cat .adv{font-size:13px;color:var(--bad);font-weight:600;margin:0 0 20px}
-  .cat-g{display:grid;gap:16px}
-  .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
-  .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
-  .cat-i>.n b{color:var(--fg-2)}
 </style>
 </head>
 <body>
@@ -354,122 +330,110 @@
 
   <header>
     <div class="kicker">
-      <span class="num">165</span>
-      <span class="badge">Arreglo</span>
-      <span class="meta">Correcciones · tanda A1, Corrección 1 · 20/10/2026</span>
+      <span class="num">167</span>
+      <span class="badge">Resumen</span>
+      <span class="meta">Correcciones · tanda A1 · 20/10/2026</span>
     </div>
-    <h1>La Miniteoría no opinó con otro motor: opinaron versiones viejas</h1>
-    <p class="sub">Qué decía Correcciones, por qué estaba mal y cómo se lee ahora, sobre el mismo ejercicio.</p>
+    <h1>Ya podés recorrer los 1.111 ejercicios que los jueces dan por buenos</h1>
+    <p class="sub">Un filtro nuevo en Correcciones: qué entra, quién falta y qué dijo cada juez.</p>
   </header>
 
-  <div class="lede"><p><strong>Los ejercicios de «opinó con otro motor» los opinaron la Miniteoría del 5/10 y las del 13/10.</strong> Ahora lo dicen así y siguen en «Falta medir»: falta medirlos con la del 19/10.</p></div>
+  <div class="lede"><p><strong>En Correcciones hay un filtro nuevo, «Nadie le ve problemas»: 1.111 ejercicios de A1 sin ningún hallazgo.</strong> Si ves un error que ningún juez marcó, el que se recalibra es el juez.</p></div>
 
   <section>
-    <h2>El mismo ejercicio, antes y ahora: cuatro lugares cambian</h2>
-    <div class="ad">
-      <div class="lado antes"><span class="rot">Antes · 19/10</span>
-        <svg class="cap" viewBox="0 0 1041 805" role="img" aria-label="Correcciones el 19/10, con el aviso, el chip, el motivo y la pastilla marcados">
-          <image href="165-otro-motor-era-version-anterior/antes.png" width="1041" height="805"/>
-          <rect class="aro" x="284" y="57" width="755" height="33" rx="8"/>
-          <rect class="aro" x="8" y="172" width="114" height="26" rx="8"/>
-          <rect class="aro" x="4" y="331" width="246" height="53" rx="8"/>
-          <rect class="aro" x="596" y="637" width="90" height="24" rx="8"/>
-          <g class="mk" transform="translate(300 112)"><circle r="22"/><text font-size="25">1</text></g>
-          <g class="mk" transform="translate(146 185)"><circle r="22"/><text font-size="25">2</text></g>
-          <g class="mk" transform="translate(228 306)"><circle r="22"/><text font-size="25">3</text></g>
-          <g class="mk" transform="translate(712 680)"><circle r="22"/><text font-size="25">4</text></g>
-        </svg>
-      </div>
-      <div class="lado despues"><span class="rot">Ahora · 20/10</span>
-        <svg class="cap" viewBox="0 0 1280 900" role="img" aria-label="Correcciones el 20/10, con las mismas cuatro partes marcadas">
-          <image href="165-otro-motor-era-version-anterior/despues.jpg" width="1280" height="900"/>
-          <rect class="aro" x="352" y="70" width="904" height="45" rx="8"/>
-          <rect class="aro" x="70" y="199" width="128" height="30" rx="8"/>
-          <rect class="aro" x="64" y="397" width="259" height="55" rx="8"/>
-          <rect class="aro" x="704" y="716" width="120" height="29" rx="8"/>
-          <g class="mk" transform="translate(372 140)"><circle r="26"/><text font-size="29">1</text></g>
-          <g class="mk" transform="translate(228 214)"><circle r="26"/><text font-size="29">2</text></g>
-          <g class="mk" transform="translate(296 372)"><circle r="26"/><text font-size="29">3</text></g>
-          <g class="mk" transform="translate(852 731)"><circle r="26"/><text font-size="29">4</text></g>
-        </svg>
-      </div>
+    <h2>Entran 1.111; sólo 3 los vieron todos los jueces</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">1.111<small>de 2.402</small></div><div class="l">ejercicios de Corrección 1 sin hallazgos y con un juez al día</div></div>
+      <div class="kpi"><div class="n">3</div><div class="l">los vieron todos los jueces con su versión de hoy</div></div>
+      <div class="kpi"><div class="n">1.030</div><div class="l">les falta Calidad didáctica A1 y la Miniteoría es de antes</div></div>
+      <div class="kpi"><div class="n">0</div><div class="l">consultas: el filtro sólo cruza lo que ya está medido</div></div>
     </div>
-    <div class="tw" style="margin-top:14px"><table>
-      <thead><tr><th>#</th><th>Antes</th><th>Ahora</th></tr></thead>
-      <tbody>
-        <tr><td class="num">1</td><td>«82 de 83 temas tienen su opinión de otro motor»</td><td>«cambió el 19/10, 11:30. 82 de 83 temas tienen su opinión de la versión anterior» y «Volver a medir»</td></tr>
-        <tr><td class="num">2</td><td>Falta medir 955</td><td>Falta medir 949</td></tr>
-        <tr><td class="num">3</td><td>646 · «opinó con otro motor (gpt-6.1-sol en codex-cli, medium)»</td><td>618 · «opinó con la versión del 5/10» y 25 · «con la del 13/10, 13:00»</td></tr>
-        <tr><td class="num">4</td><td>pastilla «otro motor»</td><td>pastilla «versión del 5/10»</td></tr>
-      </tbody></table></div>
-    <p class="pie">Las cuentas se movieron por la medición de Naturalidad de anoche; este cambio sólo cambia las palabras, no qué ejercicio cae en cada motivo.</p>
+    <p class="pie">Un juez de antes, uno que se abstuvo o uno que no opinó nunca cuenta como «bien»: se nombra en su fila.</p>
   </section>
 
   <section>
-    <h2>Decía «otro motor» porque miraba el motor primero</h2>
+    <h2>El filtro está debajo de los chips de los jueces</h2>
+    <div class="map">
+      <div class="ex">
+        <svg class="cap" viewBox="0 0 1440 900" role="img" aria-label="Correcciones con el filtro puesto, en un ejercicio de Afirmativas regulares, con cuatro marcas">
+          <image href="167-nadie-le-ve-problemas/pantalla.jpg" width="1440" height="900"/>
+          <rect class="tapa" x="1088" y="44" width="352" height="856"/>
+          <rect class="aro" x="66" y="318" width="208" height="58" rx="10"/>
+          <rect class="aro" x="64" y="440" width="286" height="458" rx="10"/>
+          <rect class="aro" x="374" y="334" width="692" height="392" rx="12"/>
+          <g class="mk" transform="translate(302 338)"><circle r="22"/><text font-size="25">1</text></g>
+          <g class="mk" transform="translate(32 458)"><circle r="22"/><text font-size="25">2</text></g>
+          <g class="mk" transform="translate(1078 360)"><circle r="22"/><text font-size="25">3</text></g>
+          <g class="mk gris" transform="translate(326 219)"><circle r="18"/><text font-size="21">4</text></g>
+        </svg>
+      </div>
+      <div class="who">
+        <div><b>1</b><span><strong>El filtro</strong><br><small>cuenta ejercicios, no cambios</small></span></div>
+        <div><b>2</b><span><strong>Quién falta</strong><br><small>una fila por los jueces que no lo vieron hoy</small></span></div>
+        <div><b>3</b><span><strong>Lo que dijo cada juez</strong><br><small>con su marca y «Ver su examen»</small></span></div>
+        <div><b class="gris">4</b><span><strong>Lo dan por bueno</strong><br><small>sigue contando cambios, como antes</small></span></div>
+      </div>
+    </div>
+    <p class="pie">Un ejercicio de «Afirmativas regulares» que no tuvo tarea: esos también entran, con su contenido de hoy.</p>
+  </section>
+
+  <section>
+    <h2>Hoy no se ven; con el filtro, aparecen los 1.111</h2>
+    <div class="ad asim">
+      <div class="lado antes"><span class="rot">Hoy</span>
+        <img class="hoy" src="167-nadie-le-ve-problemas/hoy-segun.jpg" alt="El navegador de Correcciones sin el filtro: los chips de Según los jueces y Por qué quedan afuera">
+        <div class="mark"><span class="x">✕</span><span>«Lo dan por bueno» cuenta 3 cambios; los ejercicios sin cambios no se ven.</span></div>
+      </div>
+      <div class="lado despues"><span class="rot">Con el filtro</span>
+        <img class="hoy" src="167-nadie-le-ve-problemas/con-filtro.jpg" alt="El navegador con el filtro puesto: Nadie le ve problemas 1.111 y las filas de Quién falta">
+        <div class="mark ok"><span class="x">✓</span><span>1.111 ejercicios, separados por quién falta; 3 los vieron todos.</span></div>
+      </div>
+    </div>
+    <p class="pie">Las dos fotos son del 20/10, con los datos reales de A1.</p>
+  </section>
+
+  <section>
+    <h2>Sólo cuenta lo que dijo la versión de hoy</h2>
     <div class="tw"><table>
-      <thead><tr><th>Versión de la Miniteoría</th><th>Aprobó con</th><th style="text-align:right">Temas</th><th>Antes</th><th>Ahora</th></tr></thead>
+      <thead><tr><th>Qué pasó con el juez</th><th>Cómo se ve</th><th>¿Cuenta como bien?</th></tr></thead>
       <tbody>
-        <tr><td>la del 19/10 (la de hoy)</td><td>Gemini</td><td class="num">1</td><td><span class="pill p-ok">al día</span></td><td><span class="pill p-ok">al día</span></td></tr>
-        <tr><td>la del 13/10, 22:12</td><td>ChatGPT</td><td class="num">1</td><td><span class="pill p-bad">otro motor</span></td><td><span class="pill p-warn">versión anterior</span></td></tr>
-        <tr><td>la del 13/10, 13:00</td><td>ChatGPT</td><td class="num">5</td><td><span class="pill p-bad">otro motor</span></td><td><span class="pill p-warn">versión anterior</span></td></tr>
-        <tr><td>la del 5/10</td><td>ChatGPT</td><td class="num">76</td><td><span class="pill p-bad">otro motor</span></td><td><span class="pill p-warn">versión anterior</span></td></tr>
+        <tr><td>Opinó con su versión de hoy</td><td>dijo: sin error · al día</td><td><span class="pill p-ok">sí</span></td></tr>
+        <tr><td>Opinó con una versión de antes</td><td>dijo: sin error · versión del 5/10</td><td><span class="pill p-warn">no, se nombra</span></td></tr>
+        <tr><td>Se abstuvo</td><td>se abstuvo (no aplica)</td><td><span class="pill p-warn">no, se nombra</span></td></tr>
+        <tr><td>Lo alcanza y no opinó</td><td>todavía no opinó · sin medir</td><td><span class="pill p-warn">no, se nombra</span></td></tr>
+        <tr><td>No se aplica a ese ejercicio</td><td>no aparece</td><td><span class="pill p-idle">no se nombra</span></td></tr>
       </tbody></table></div>
-    <p class="pie">La de hoy aprobó sólo con Gemini. Como ChatGPT no estaba entre sus motores, todo lo viejo salía «otro motor» y tapaba que la guía había cambiado.</p>
+    <p class="pie">Además, ningún hallazgo de nadie y todos los analizadores que no son jueces lo evaluaron.</p>
   </section>
 
   <section>
-    <h2>La regla nueva: primero la versión, después el motor</h2>
-    <div class="diagram">
-      <svg viewBox="0 0 760 236" style="min-width:600px" role="img" aria-label="Cómo se elige la marca de una opinión">
-        <defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--fg-3)"/></marker></defs>
-        <rect x="4" y="88" width="190" height="60" rx="9" class="box"/><text x="18" y="114" class="lbl" style="font-weight:600">¿La dio la versión</text><text x="18" y="133" class="lbl" style="font-weight:600">de hoy?</text>
-        <path d="M194 104 L250 44" class="arrow" marker-end="url(#fl)"/><text x="206" y="62" class="lbl-s">sí</text>
-        <path d="M194 132 L250 192" class="arrow" marker-end="url(#fl)"/><text x="206" y="184" class="lbl-s">no</text>
-        <rect x="254" y="14" width="230" height="60" rx="9" class="box"/><text x="268" y="40" class="lbl">¿Con un motor que</text><text x="268" y="59" class="lbl">ella aprobó?</text>
-        <rect x="254" y="162" width="230" height="60" rx="9" class="box"/><text x="268" y="188" class="lbl">¿Con un motor que aprobó</text><text x="268" y="207" class="lbl">alguna versión del juez?</text>
-        <path d="M484 30 L540 20" class="arrow" marker-end="url(#fl)"/><text x="500" y="16" class="lbl-s">sí</text>
-        <path d="M484 58 L540 66" class="arrow" marker-end="url(#fl)"/><text x="500" y="76" class="lbl-s">no</text>
-        <path d="M484 176 L540 168" class="arrow" marker-end="url(#fl)"/><text x="500" y="162" class="lbl-s">sí</text>
-        <path d="M484 206 L540 214" class="arrow" marker-end="url(#fl)"/><text x="500" y="226" class="lbl-s">no</text>
-        <rect x="544" y="2" width="212" height="34" rx="8" class="box-ok"/><text x="558" y="24" class="lbl" style="font-weight:600">al día</text>
-        <rect x="544" y="50" width="212" height="34" rx="8" class="box-bad"/><text x="558" y="72" class="lbl" style="font-weight:600">otro motor</text>
-        <rect x="544" y="150" width="212" height="34" rx="8" class="box-a"/><text x="558" y="172" class="lbl" style="font-weight:600">versión anterior · la del 5/10</text>
-        <rect x="544" y="198" width="212" height="34" rx="8" class="box-bad"/><text x="558" y="220" class="lbl" style="font-weight:600">otro motor</text>
-      </svg>
-    </div>
-    <p class="pie">«Otro motor» queda para un motor que el juez no tiene validado, como un modelo local que nunca rindió. La Miniteoría vieja con ChatGPT cae en «versión anterior».</p>
-  </section>
-
-  <section>
-    <h2>Qué cambia y qué no</h2>
+    <h2>Lo de siempre queda igual</h2>
     <div class="cambia">
       <div class="si"><div class="ptl">Cambia</div><ul>
-        <li>El aviso dice que el juez cambió y cuándo.</li>
-        <li>El motivo y la pastilla nombran la versión que opinó.</li>
-        <li>«Otro motor», al pasar por encima, ya no dice «la versión de hoy».</li>
-      </ul></div>
+        <li>Un botón nuevo debajo de «Según los jueces».</li>
+        <li>Con el filtro, «Quién falta» toma el lugar de «Por qué quedan afuera».</li>
+        <li>Cada ejercicio dice qué opinó cada juez.</li></ul></div>
       <div class="no"><div class="ptl">No cambia</div><ul>
-        <li>Siguen en «Falta medir»: no los opinó la de hoy.</li>
-        <li>Al día sigue siendo la de hoy con un motor que aprobó.</li>
-        <li>No se consultó ni se midió nada.</li>
-      </ul></div>
+        <li>La lista de siempre y sus chips.</li>
+        <li>Las marcas de cada juez: las pone content-audit.</li>
+        <li>No consulta a ningún juez.</li></ul></div>
     </div>
   </section>
 
   <section>
-    <h2>Qué necesito de vos</h2>
-    <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Medimos lo que falta de la Miniteoría con la del 19/10?</span>
-        <div class="ops"><span class="op rec">Sí, con Gemini desde «Volver a medir» · recomendado</span><span class="op">Integrar la medición suelta del 19/10</span></div>
-        <span class="why">La suelta la hizo la del 13/10, 22:12 con ChatGPT: integrada, seguiría siendo versión anterior. El diálogo estima gratis antes de gastar.</span></div>
+    <h2>Qué sigue</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">Recorré los que vieron todos</span><span class="eg">3 ejercicios</span><span class="d">Es la versión estricta del filtro.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Seguí por la fila grande</span><span class="eg">1.030</span><span class="d">Falta Calidad didáctica A1; la Miniteoría es de antes.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">Si ves un error</span><span class="eg">Ver su examen</span><span class="d">Recalibrá a ese juez hasta que coincida con vos.</span></div>
+      <div class="st end"><span class="i">4</span><span class="h">Medir lo que falta</span><span class="d">Cuando midan con su versión de hoy, la primera fila crece sola.</span></div>
     </div>
-    <div class="call c-warn"><b>Ojo:</b> la guía de la del 19/10 está sin commitear en el checkout principal; si se pierde, cambia la versión de hoy otra vez.</div>
+    <div class="call c-warn"><b>Todavía no:</b> en un ejercicio sin cambios no se puede anotar «Problema»; hoy el cajón pide un cambio.</div>
   </section>
 
   <footer>
-    <span>Datos: lectura del análisis vigente de la tanda A1 antes y después (0 consultas) y capturas del 7800 del 19/10 y del 20/10, 08:45. Commits: content-audit 4bb5cf628 (F-ALDIA-R003 inv. 7) · ittm c727c2b4d (F-TALDIA-R001 inv. 8).</span>
-    <span>brief 165 · docs/briefs/165-otro-motor-era-version-anterior.html</span>
+    <span>Requisito F-NADIE (R001–R004), content-audit requirements/2026-10-20.01_nadie-le-ve-problemas · tablero: ittm master 036c57053 · datos: análisis vigente de A1, Corrección 1, 20/10</span>
+    <span>brief 167 · docs/briefs/167-nadie-le-ve-problemas.html</span>
   </footer>
 
 </div>
