@@ -3,23 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>161 · Habilitada con cualquier motor</title>
-<!--
-  TEMPLATE DE BRIEF · visual-brief
-  1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
-  2. Por cada sección: un título que dice la conclusión, UN dibujo copiado del
-     catálogo del final y un pie de dos renglones. Primero el dibujo; el texto lo rotula.
-     Si habla de una pantalla: primero DÓNDE (la captura con marcas, .map), después EL
-     PROBLEMA como un caso de uso (la foto de hoy + .mark), después CÓMO QUEDA (la maqueta
-     .mq con números y su leyenda). Si ya está hecho, los dos lados del .ad son capturas.
-     Las fotos, con capturar.mjs, en docs/briefs/NNN-slug/ (SKILL.md §4).
-  3. BORRAR el catálogo entero (la section de clase cat, al final) y las secciones que no se usan.
-  4. Verificar: node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
-     y mirarlo: node ~/.claude/skills/visual-brief/assets/diapos.mjs <el brief> <scratchpad>/d (+ --tema=dark, --celular)
-  Topes: lede ≤ 2 frases y 35 palabras · ≤ 6 secciones · pie ≤ 30 · párrafo ≤ 40 ·
-  prosa total ≤ 400 (sin tablas ni gráficos). Cada componente trae el suyo en el catálogo.
-  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
--->
+<title>Cancelar ya no traba</title>
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -346,118 +330,83 @@
 
   <header>
     <div class="kicker">
-      <span class="num">161</span>
-      <span class="badge">Resumen</span>
-      <span class="meta">Tablero · Exámenes, Mapa y diálogo de medir · motor de cada juez · 19/10/2026</span>
+      <span class="num">163</span>
+      <span class="badge">Hecho</span>
+      <span class="meta">tanda A1 · mediciones por juez · 19/10/2026</span>
     </div>
-    <h1>Habilitada con cualquier motor, o promovida</h1>
-    <p class="sub">Lo que pediste sobre el brief 160, junto con las promociones del 159 y encima de las abstenciones. Sin commitear y sin consultar a nadie.</p>
+    <h1>Cancelar una medición ya no traba la tanda</h1>
+    <p class="sub">Hecho como en el brief 162 y probado sobre una copia de la tanda real, en otro puerto.</p>
   </header>
 
-  <div class="lede"><p><strong>Hecho y probado en una copia del tablero: aprobada con cualquier motor, o promovida, la versión ya deja medir.</strong> Tu tablero del 7800 todavía no lo muestra: falta tu OK para commitear.</p></div>
+  <div class="lede"><p><strong>Sobre la copia, conciliar cerró la Naturalidad de las 21:55 con 301 de 1.919, igual que tu arreglo a mano, y liberó la tanda.</strong> Está sin commitear: necesito tu OK.</p></div>
 
   <section>
-    <h2>En Exámenes, la Miniteoría ya no pide rendir</h2>
-    <div class="ad">
-      <div class="lado antes"><span class="rot">Hoy</span>
-        <img class="hoy" src="161-habilitada-con-cualquier-motor/hoy-miniteoria.jpg" alt="Exámenes hoy: la Miniteoría dice que la versión actual necesita rendir y que la aprobación es de otra versión">
-        <div class="mark"><span class="x">✕</span><span>«Necesita rendir» y «otra versión», aunque aprobó hoy con Gemini.</span></div>
-      </div>
-      <div class="lado despues"><span class="rot">Ahora</span>
-        <img class="hoy" src="161-habilitada-con-cualquier-motor/con-miniteoria.jpg" alt="Exámenes ahora: la Miniteoría aprobada, habilitada con Gemini desde el 19/10">
-        <div class="mark ok"><span class="x">✓</span><span>Habilitada con Gemini; rendir con ChatGPT queda a mano, aparte.</span></div>
-      </div>
+    <h2>En la copia dio igual que tu arreglo a mano</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">301<small>de 1.919</small></div><div class="l">Naturalidad conciliada: lo mismo que contaste a mano</div></div>
+      <div class="kpi"><div class="n">17.433</div><div class="l">consultas de la tanda después: igual a la real al copiarla</div></div>
+      <div class="kpi"><div class="n">0</div><div class="l">consultas a modelos: la copia no tenía ninguno a mano</div></div>
     </div>
-    <p class="pie">El cierre del juez también lo dice: con ChatGPT su presupuesto es cero, con Gemini lo que mide cuenta.</p>
+    <p class="pie">La copia tenía la Naturalidad reabierta como quedó a las 21:55. Pedir conciliar otra vez no escribió nada.</p>
   </section>
 
   <section>
-    <h2>Las que promoviste dicen «Promovida» y cuentan como habilitadas</h2>
-    <div class="ad">
-      <div class="lado antes"><span class="rot">Hoy</span>
-        <img class="hoy" src="161-habilitada-con-cualquier-motor/hoy-promovidas.jpg" alt="Exámenes hoy: Naturalidad y Calidad didáctica con la pastilla PROMOTED, en inglés y gris">
-        <div class="mark"><span class="x">✕</span><span>«PROMOTED», en gris, y el Mapa las trataba como sin aprobar.</span></div>
-      </div>
-      <div class="lado despues"><span class="rot">Ahora</span>
-        <img class="hoy" src="161-habilitada-con-cualquier-motor/con-promovidas.jpg" alt="Exámenes ahora: Naturalidad y Calidad didáctica con la pastilla Promovida, en verde">
-        <div class="mark ok"><span class="x">✓</span><span>«Promovida», en verde como una aprobada.</span></div>
-      </div>
-    </div>
-    <p class="pie">Es lo de la pregunta 1 del brief 159: Naturalidad y Calidad didáctica, promovidas el 14/10.</p>
-  </section>
-
-  <section>
-    <h2>En el Mapa, Naturalidad ya deja medir</h2>
-    <figure class="captura">
-      <img src="161-habilitada-con-cualquier-motor/hoy-mapa.jpg" alt="La ficha de jueces hoy: Miniteoría sin aprobar 83 y Naturalidad sin aprobar 2.333 y 431">
-      <figcaption>Hoy, del brief 159: «sin aprobar» en las dos, sin decir por qué.</figcaption>
-    </figure>
-    <figure class="captura" style="margin-top:12px">
-      <img src="161-habilitada-con-cualquier-motor/con-mapa.jpg" alt="La ficha de jueces ahora: Miniteoría con otro motor 83 y habilitada con Gemini; Naturalidad al día 483 con Medir lo que falta">
-      <figcaption>Ahora: Naturalidad al día 483; la Miniteoría, habilitada con Gemini.</figcaption>
-    </figure>
-    <p class="pie">Lo que la Miniteoría midió con ChatGPT queda «otro motor», para volver a medir. El motor se nombra sólo si hace falta.</p>
-  </section>
-
-  <section>
-    <h2>El diálogo abre con Gemini y apaga los otros</h2>
+    <h2>El freno nombra la medición y ofrece cerrarla</h2>
     <div class="ad asim">
-      <div class="lado antes"><span class="rot">Hoy</span>
-        <ol>
-          <li>Abre siempre con ChatGPT</li>
-          <li>Freno: «no rindió el examen fijo»</li>
-          <li>Nada avisa que con Gemini deja</li>
-        </ol>
-        <p class="res">No deja lanzar</p>
+      <div class="lado antes"><span class="rot">Antes</span>
+        <div class="ex">
+          <div class="cons">Diálogo de lanzar, con cualquier juez</div>
+          <div class="ans">Hay una operación interrumpida o incierta. Conservá su reserva y conciliá los resultados antes de iniciar otra. <b>Ver su examen</b></div>
+        </div>
+        <div class="mark"><span class="x">✕</span><span>No decía cuál, no había cómo cerrarla y llevaba a otro juez.</span></div>
       </div>
       <div class="lado despues"><span class="rot">Ahora</span>
-        <img class="hoy" src="161-habilitada-con-cualquier-motor/con-dialogo.jpg" alt="El diálogo ahora: abre con Gemini 3.8 Flash por suscripción porque la versión de hoy aprobó con él">
-        <ol>
-          <li>Gemini, elegido y dicho por qué</li>
-          <li>ChatGPT y los Claude, apagados: «no aprobó con la versión de hoy»</li>
-          <li>Si aprobaron dos, ChatGPT primero</li>
-        </ol>
-        <p class="res">Abre con uno que puede medir</p>
+        <figure class="captura"><img src="163-cancelar-ya-no-traba-la-tanda/frenos.png" alt="Dos frenos en el diálogo de lanzar: Naturalidad del 19/10 a las 21:19 cortada con 301 veredictos guardados, y Miniteoría del 19/10 a las 22:29 cortada; cada uno con Conciliar y Ver la corrida">
+          <figcaption>Tablero de la copia, puerto 7845, antes de conciliar.</figcaption></figure>
       </div>
     </div>
-    <p class="pie">Si elegís otro perfil antes de que llegue la estimación, no te lo cambia. Mientras estima con Gemini, no muestra el freno de ChatGPT.</p>
+    <p class="pie">Si cancelás desde el tablero, ni lo ves: concilia solo cuando termina el proceso. El botón queda para lo que no pudo.</p>
+  </section>
+
+  <section>
+    <h2>Cada corte termina con la tanda libre o un botón</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Caso</th><th>Cómo queda</th><th>Probado</th></tr></thead>
+      <tbody>
+        <tr><td>Cancelar desde el tablero</td><td><span class="pill p-ok">solo</span> parcial con lo guardado; tanda libre</td><td>prueba</td></tr>
+        <tr><td>Forzar, o se cae el proceso</td><td><span class="pill p-ok">solo</span> igual, apenas termina</td><td>prueba</td></tr>
+        <tr><td>No pudo conciliar</td><td>el registro dice por qué; el freno ofrece «Conciliar»</td><td>prueba</td></tr>
+        <tr><td>Dos mediciones abiertas</td><td>la tanda se libera con la última</td><td>copia</td></tr>
+        <tr><td>Lanzada antes de este cambio</td><td><span class="pill p-warn">sin contar</span> cierra sin sumar gasto; lo guardado igual se reutiliza</td><td>copia</td></tr>
+        <tr><td>Sigue corriendo</td><td>no ofrece conciliar</td><td>prueba</td></tr>
+      </tbody></table></div>
+    <p class="pie">Pruebas nuevas: 14 en content-audit y 17 en el tablero, en verde. Lo demás, igual que antes.</p>
   </section>
 
   <section>
     <h2>Qué cambia y qué no</h2>
     <div class="cambia">
-      <div class="si"><p class="ptl">Cambia</p><ul>
-        <li>Habilitada si aprobó con cualquier motor, o la promoviste</li>
-        <li>Exámenes y el Mapa dicen con cuál</li>
-        <li>El diálogo abre con uno habilitado</li>
-      </ul></div>
-      <div class="no"><p class="ptl">No cambia</p><ul>
-        <li>Cerrar el lote mira sólo a ChatGPT: la Miniteoría lo sigue frenando</li>
-        <li>Nada cambia de motor sin que lo veas</li>
-        <li>Medir y rendir piden tope</li>
-      </ul></div>
+      <div class="si"><div class="ptl">Cambia</div><ul><li>content-audit cierra una medición cortada con lo que guardó.</li><li>Cada medición anota su proceso, sus jueces y su motor al empezar.</li><li>El tablero la concilia solo al ver terminar el proceso sin éxito.</li><li>El freno dice juez, hora y lo guardado, con «Conciliar» y «Ver la corrida».</li></ul></div>
+      <div class="no"><div class="ptl">No cambia</div><ul><li>Una corrección cortada sigue pidiendo revisión a mano.</li><li>«Completar opiniones» queda para después, como dijiste.</li><li>El freno de examen y su vínculo.</li></ul></div>
     </div>
-    <div class="call c-warn"><b>No anda todavía:</b> estimar con Gemini falla porque falta su proveedor, que suma otra sesión sin commitear. Probé con su parche y lo saqué.</div>
+    <div class="call c-warn"><b>Ojo hoy:</b> hay una Miniteoría «ambas» corriendo en la tanda real desde las 22:29, con el código de antes. Si se corta, se traba como siempre.</div>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">¿Commiteo?</span>
-        <div class="ops"><span class="op rec">Sí: primero las abstenciones, después esto · recomendado</span><span class="op">Todavía no</span></div>
-        <span class="why">Dos en content-audit y uno en una rama de ittm, sin push. Lo de ittm vive en una carpeta temporal: si reiniciás, se pierde.</span></div>
-      <div class="ask"><span class="q">¿Cerrar el lote también acepta un juez habilitado con otro motor?</span>
-        <div class="ops"><span class="op rec">No, por ahora · recomendado</span><span class="op">Sí</span></div>
-        <span class="why">Es otra regla: el cierre corre con ChatGPT y ahí la Miniteoría no aprobó.</span></div>
-      <div class="ask"><span class="q">Borrá una entrada que dejé en el stash</span>
-        <span class="why">Los permisos no me dejaron. Es una copia de un archivo ya restaurado:</span>
-        <pre>git stash drop "$(git stash list --format='%gd %gs' | awk '/tmp-frenos-check/{print $1}')"</pre></div>
+      <div class="ask"><span class="q">1 · ¿Commiteo las dos ramas?</span>
+        <div class="ops"><span class="op rec">Sí, commitear · recomendado</span><span class="op">Antes lo miro</span></div>
+        <span class="why">La del tablero vive en una carpeta temporal que se borra al reiniciar la máquina.</span></div>
+      <div class="ask"><span class="q">2 · ¿Arreglo aparte «Ver su examen», que siempre abre opción múltiple?</span>
+        <div class="ops"><span class="op rec">Sí, aparte · recomendado</span><span class="op">No hace falta</span></div>
+        <span class="why">Lo vi en la copia: midiendo Miniteoría, el vínculo abre el examen de otro juez.</span></div>
     </div>
   </section>
 
   <footer>
-    <span>Fotos: copia del tablero en el 7852, sólo para mirar, sobre la rama ittm claude/habilitada-con-cualquier-motor (worktree del scratchpad) y este worktree de content-audit; «hoy» de los briefs 159 y 160. content-audit: JudgeEnablement + standing.enabledWith (exámenes aprobados con cualquier runtime de la versión + JudgePromotionRegistry, hasta que un examen posterior con ese runtime lo reemplace), JudgeFreshnessReference/Count lo usan para approved, ExamCmd lo exporta; blocksClose sigue con el runtime por omisión. Requisitos: F-ALDIA-R003/R004/R005/R007, F-TALDIA-R010, F-JEXAM-R015. ittm: lanzar/selectores (motorParaAbrir, estimadaConOtroPerfil), vistas/perfil, examenes/vistas, lib/marca-del-juez, mapa/vistas/versiones, estimacion_para_lanzar.dart, vista_de_examenes.dart. Pruebas: JS 2132/2132, Dart 1017 en verde; en Maven sólo fallan las que ya fallaban (guardia del eval de near-duplicates y 3 de audit-cli). Las abstenciones (brief 158) están guardadas en scratchpad/abstenciones.patch. El perfil gemini-flash y el proveedor agy dependen de cambios sin commitear de otra sesión (model_settings.dart, perfiles_de_corrida.dart, DefaultLocalSessionProviderCatalog).</span>
-    <span>brief 161 · docs/briefs/161-habilitada-con-cualquier-motor.html</span>
+    <span>Fuentes: requisito FEAT-CORTE R001–R008 (requirements/2026-10-19.02_cortar-sin-trabar-la-tanda); content-audit rama claude/youthful-herschel-fc26b8 (DefaultSelectiveCorrectionService.reconcile, RunningProcesses, SelectiveCorrection.RunProcess/OpenRun; SelectiveCorrectionServiceTest +12, FileSystemBatchStoreTest +1, SelectiveCorrectionCmdTest +1); ittm rama claude/cortar-sin-trabar-la-tanda en scratchpad/ittm-corte (finishDetachedRun → _conciliarAlTerminar, AccionesSobreUnaCorrida.conciliar, lanzar/selectores.js, lanzar.css; cierre_de_una_medicion_cortada_test.dart 10, lanzar-medicion-cortada.test.js 7). Copia: scratchpad/copia, puerto 7845, CLI con stubs sin modelos; 1 prueba de Problemas falla sólo en paralelo y pasa sola 3 de 3.</span>
+    <span>brief 163 · docs/briefs/163-cancelar-ya-no-traba-la-tanda.html</span>
   </footer>
 
 </div>
