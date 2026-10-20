@@ -34,20 +34,40 @@ class JudgeFreshnessTallyTest {
         assertEquals(77, first.count());
     }
 
+    /**
+     * F-ALDIA-R003 inv. 7, Correction 1 on 20/10: today's Miniteoría approved only with Gemini, and the
+     * 82 topics measured with ChatGPT by earlier versions are named by their version, never by the motor.
+     */
     @Test
-    void otherRuntimeUnknownAndNotMeasuredAreCountedApartAndSumToTheUnit() {
+    @Tag("F-ALDIA-R003")
+    void theMiniTheoryOfThe20thIsReusedByVersionNeverByMotor() {
+        var tally = new JudgeFreshnessTally(todayWithGeminiOnly(history()), "miniteoría", AuditTarget.KNOWLEDGE);
+        assertTrue(tally.add(V_GEMINI, GEMINI, 1).isUpToDate());
+        tally.add(V_5_10, MEDIUM, 76);
+        tally.add(V_13_10_MORNING, MEDIUM, 5);
+        tally.add(V_TODAY, XHIGH, 1);
+        var count = tally.count();
+        assertEquals("miniteoría: reusa 82 temas de antes (76 de la del 5/10, 5 de la del 13/10, 13:00, "
+                + "1 de la del 13/10, 22:12)", count.summary());
+        assertEquals(1, count.upToDate());
+        assertEquals(82, count.fromBefore());
+        assertTrue(count.fromBeforeGroups().stream().allMatch(g -> g.cause() == JudgeVerdictStaleCause.EARLIER_VERSION));
+        assertEquals("la del 19/10", count.currentVersionName());
+    }
+
+    @Test
+    void unknownAndNotMeasuredAreCountedApartAndAnotherMotorOfTodaysVersionIsUpToDate() {
         var tally = new JudgeFreshnessTally(today(), "miniteoría", AuditTarget.QUIZ);
         tally.add(V_TODAY, XHIGH, 1_200);
-        tally.add(V_TODAY, LOCAL, 3);
+        assertTrue(tally.add(V_TODAY, LOCAL, 3).isUpToDate());
         tally.add(null, null, 2);
         tally.notMeasured(4);
         var count = tally.count();
         assertEquals(1_209, count.total());
+        assertEquals(1_203, count.upToDate());
         assertEquals(4, count.notMeasured());
-        assertEquals("reusa 5 ejercicios de antes (3 de llama3 local, 2 de procedencia desconocida)", count.detail());
-        var local = count.fromBeforeGroups().get(0);
-        assertEquals(LOCAL.toString(), local.runtime());
-        assertEquals("llama3 local", local.runtimeName());
+        assertEquals("reusa 2 ejercicios de antes (2 de procedencia desconocida)", count.detail());
+        assertEquals(JudgeVerdictStaleCause.UNKNOWN_PROVENANCE, count.fromBeforeGroups().get(0).cause());
     }
 
     @Test
@@ -119,12 +139,14 @@ class JudgeFreshnessTallyTest {
                 "miniteoría", AuditTarget.KNOWLEDGE);
         tally.add(V_GEMINI, GEMINI, 1);
         tally.add(V_5_10, XHIGH, 82);
+        tally.add(V_GEMINI, XHIGH, 2);
         var count = tally.count();
         assertTrue(count.approved());
         assertEquals(enabled, count.enabledWith());
-        assertEquals(1, count.upToDate());
-        // The motor is looked at first: the 82 are from a motor today's version did not approve with.
-        assertEquals("miniteoría: reusa 82 temas de antes (82 de gpt-6.1-sol en codex-cli, xhigh)", count.summary());
+        // F-ALDIA-R003 inv. 7: only the version decides. Today's version counts with Gemini and with
+        // ChatGPT; the 82 of the version of 5/10 are of an earlier version.
+        assertEquals(3, count.upToDate());
+        assertEquals("miniteoría: reusa 82 temas de antes (82 de la del 5/10)", count.summary());
         assertEquals("la del 19/10", count.currentVersionName());
     }
 }

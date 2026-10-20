@@ -3,7 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>El vínculo del examen</title>
+<title>165 · La Miniteoría no opinó con otro motor</title>
+<!--
+  TEMPLATE DE BRIEF · visual-brief
+  1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
+  2. Por cada sección: un título que dice la conclusión, UN dibujo copiado del
+     catálogo del final y un pie de dos renglones. Primero el dibujo; el texto lo rotula.
+     Si habla de una pantalla: primero DÓNDE (la captura con marcas, .map), después EL
+     PROBLEMA como un caso de uso (la foto de hoy + .mark), después CÓMO QUEDA (la maqueta
+     .mq con números y su leyenda). Si ya está hecho, los dos lados del .ad son capturas.
+     Las fotos, con capturar.mjs, en docs/briefs/NNN-slug/ (SKILL.md §4).
+  3. BORRAR el catálogo entero (la section de clase cat, al final) y las secciones que no se usan.
+  4. Verificar: node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
+     y mirarlo: node ~/.claude/skills/visual-brief/assets/diapos.mjs <el brief> <scratchpad>/d (+ --tema=dark, --celular)
+  Topes: lede ≤ 2 frases y 35 palabras · ≤ 6 secciones · pie ≤ 30 · párrafo ≤ 40 ·
+  prosa total ≤ 400 (sin tablas ni gráficos). Cada componente trae el suyo en el catálogo.
+  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
+-->
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -324,6 +340,13 @@
     .map.alta .cap{width:min(55%,220px);margin:0 auto}
   }
 
+  /* ============ CATÁLOGO · se borra entero al generar ============ */
+  .cat{margin-top:64px;padding-top:22px;border-top:3px solid var(--bad)}
+  .cat .adv{font-size:13px;color:var(--bad);font-weight:600;margin:0 0 20px}
+  .cat-g{display:grid;gap:16px}
+  .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
+  .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
+  .cat-i>.n b{color:var(--fg-2)}
 </style>
 </head>
 <body>
@@ -331,100 +354,122 @@
 
   <header>
     <div class="kicker">
-      <span class="num">164</span>
+      <span class="num">165</span>
       <span class="badge">Arreglo</span>
-      <span class="meta">Tablero · diálogo de lanzar · 19/10/2026</span>
+      <span class="meta">Correcciones · tanda A1, Corrección 1 · 20/10/2026</span>
     </div>
-    <h1>«Ver su examen» ya abre el examen del juez que medís</h1>
-    <p class="sub">El freno de examen del diálogo de lanzar llevaba siempre al examen de opción múltiple.</p>
+    <h1>La Miniteoría no opinó con otro motor: opinaron versiones viejas</h1>
+    <p class="sub">Qué decía Correcciones, por qué estaba mal y cómo se lee ahora, sobre el mismo ejercicio.</p>
   </header>
 
-  <div class="lede"><p><strong>Al medir Miniteoría con un motor sin examen, «Ver su examen» abría el de opción múltiple; ahora abre el de Miniteoría.</strong> Está en verde y sin commitear: falta tu OK.</p></div>
+  <div class="lede"><p><strong>Los ejercicios de «opinó con otro motor» los opinaron la Miniteoría del 5/10 y las del 13/10.</strong> Ahora lo dicen así y siguen en «Falta medir»: falta medirlos con la del 19/10.</p></div>
 
   <section>
-    <h2>Dónde: el freno al medir con un motor sin examen</h2>
-    <div class="map">
-      <div class="ex">
-        <svg class="cap" viewBox="0 0 672 800" role="img" aria-label="El diálogo para medir Miniteoría, frenado porque su versión de hoy no aprobó con ChatGPT">
-          <image href="164-vinculo-del-examen/dialogo.jpg" width="672" height="800"/>
-          <rect class="tapa" x="16" y="190" width="640" height="270"/>
-          <rect class="aro" x="34" y="624" width="604" height="54" rx="10"/>
-          <g class="mk" transform="translate(20 651)"><circle r="15"/><text font-size="16">1</text></g>
-          <g class="mk gris" transform="translate(20 67)"><circle r="15"/><text font-size="16">2</text></g>
-          <g class="mk gris" transform="translate(20 549)"><circle r="15"/><text font-size="16">3</text></g>
+    <h2>El mismo ejercicio, antes y ahora: cuatro lugares cambian</h2>
+    <div class="ad">
+      <div class="lado antes"><span class="rot">Antes · 19/10</span>
+        <svg class="cap" viewBox="0 0 1041 805" role="img" aria-label="Correcciones el 19/10, con el aviso, el chip, el motivo y la pastilla marcados">
+          <image href="165-otro-motor-era-version-anterior/antes.png" width="1041" height="805"/>
+          <rect class="aro" x="284" y="57" width="755" height="33" rx="8"/>
+          <rect class="aro" x="8" y="172" width="114" height="26" rx="8"/>
+          <rect class="aro" x="4" y="331" width="246" height="53" rx="8"/>
+          <rect class="aro" x="596" y="637" width="90" height="24" rx="8"/>
+          <g class="mk" transform="translate(300 112)"><circle r="22"/><text font-size="25">1</text></g>
+          <g class="mk" transform="translate(146 185)"><circle r="22"/><text font-size="25">2</text></g>
+          <g class="mk" transform="translate(228 306)"><circle r="22"/><text font-size="25">3</text></g>
+          <g class="mk" transform="translate(712 680)"><circle r="22"/><text font-size="25">4</text></g>
         </svg>
       </div>
-      <div class="who">
-        <div><b>1</b><span><strong>El freno y su «Ver su examen»</strong><br><small>lo único que cambia</small></span></div>
-        <div><b class="gris">2</b><span><strong>El juez que se mide</strong><br><small>Miniteoría, desde el Mapa</small></span></div>
-        <div><b class="gris">3</b><span><strong>El motor elegido</strong><br><small>ChatGPT: la versión de hoy no aprobó con él</small></span></div>
+      <div class="lado despues"><span class="rot">Ahora · 20/10</span>
+        <svg class="cap" viewBox="0 0 1280 900" role="img" aria-label="Correcciones el 20/10, con las mismas cuatro partes marcadas">
+          <image href="165-otro-motor-era-version-anterior/despues.jpg" width="1280" height="900"/>
+          <rect class="aro" x="352" y="70" width="904" height="45" rx="8"/>
+          <rect class="aro" x="70" y="199" width="128" height="30" rx="8"/>
+          <rect class="aro" x="64" y="397" width="259" height="55" rx="8"/>
+          <rect class="aro" x="704" y="716" width="120" height="29" rx="8"/>
+          <g class="mk" transform="translate(372 140)"><circle r="26"/><text font-size="29">1</text></g>
+          <g class="mk" transform="translate(228 214)"><circle r="26"/><text font-size="29">2</text></g>
+          <g class="mk" transform="translate(296 372)"><circle r="26"/><text font-size="29">3</text></g>
+          <g class="mk" transform="translate(852 731)"><circle r="26"/><text font-size="29">4</text></g>
+        </svg>
       </div>
     </div>
-    <p class="pie">Es el diálogo de verdad, dibujado por el código del tablero con su estilo, en el caso de la prueba nueva.</p>
-  </section>
-
-  <section>
-    <h2>El vínculo llevaba a otro juez; ahora al que frena</h2>
-    <div class="ad">
-      <div class="lado antes"><span class="rot">Hoy</span>
-        <ol><li>Medís Miniteoría con ChatGPT.</li><li>El freno dice que no aprobó con ese motor.</li><li>Tocás «Ver su examen».</li></ol>
-        <span class="res">Abre el examen de Calidad de distractores.</span></div>
-      <div class="lado despues"><span class="rot">Con el arreglo</span>
-        <ol><li>Medís Miniteoría con ChatGPT.</li><li>El freno dice que no aprobó con ese motor.</li><li>Tocás «Ver su examen».</li></ol>
-        <span class="res">Abre el examen de Miniteoría.</span></div>
-    </div>
-    <p class="pie">Ahí ves con qué motores aprobó Miniteoría y podés rendirla con otro.</p>
-  </section>
-
-  <section>
-    <h2>Qué examen abre, según lo que lances</h2>
-    <div class="tw"><table>
-      <thead><tr><th>Lo que lanzás</th><th>«Ver su examen» abre</th></tr></thead>
+    <div class="tw" style="margin-top:14px"><table>
+      <thead><tr><th>#</th><th>Antes</th><th>Ahora</th></tr></thead>
       <tbody>
-        <tr><td>Medir un juez (Miniteoría, Sentido de la traducción…)</td><td>El examen de ese juez</td></tr>
-        <tr><td>Analizar sólo distractores, sin nombrar juez</td><td>El de Calidad de distractores, que es el que mide</td></tr>
-        <tr><td>Otra corrida, si el servidor nombra al juez que frena</td><td>El examen de ese juez</td></tr>
-        <tr><td>Otra corrida, sin juez nombrado</td><td>Nada: no hay vínculo, el freno sigue frenando</td></tr>
-      </tbody>
-    </table></div>
-    <p class="pie">Mejor ningún vínculo que uno al examen de otro juez.</p>
+        <tr><td class="num">1</td><td>«82 de 83 temas tienen su opinión de otro motor»</td><td>«cambió el 19/10, 11:30. 82 de 83 temas tienen su opinión de la versión anterior» y «Volver a medir»</td></tr>
+        <tr><td class="num">2</td><td>Falta medir 955</td><td>Falta medir 949</td></tr>
+        <tr><td class="num">3</td><td>646 · «opinó con otro motor (gpt-6.1-sol en codex-cli, medium)»</td><td>618 · «opinó con la versión del 5/10» y 25 · «con la del 13/10, 13:00»</td></tr>
+        <tr><td class="num">4</td><td>pastilla «otro motor»</td><td>pastilla «versión del 5/10»</td></tr>
+      </tbody></table></div>
+    <p class="pie">Las cuentas se movieron por la medición de Naturalidad de anoche; este cambio sólo cambia las palabras, no qué ejercicio cae en cada motivo.</p>
   </section>
 
   <section>
-    <h2>Probado: la prueba nueva fallaba antes y pasa ahora</h2>
-    <div class="kpis">
-      <div class="kpi dest"><div class="n">3</div><div class="l">pruebas nuevas; 2 fallaban con el código de antes</div></div>
-      <div class="kpi"><div class="n">2.135<small>de 2.135</small></div><div class="l">pruebas del tablero en verde</div></div>
-      <div class="kpi"><div class="n">0</div><div class="l">cambios en la foto dorada de las pantallas</div></div>
+    <h2>Decía «otro motor» porque miraba el motor primero</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Versión de la Miniteoría</th><th>Aprobó con</th><th style="text-align:right">Temas</th><th>Antes</th><th>Ahora</th></tr></thead>
+      <tbody>
+        <tr><td>la del 19/10 (la de hoy)</td><td>Gemini</td><td class="num">1</td><td><span class="pill p-ok">al día</span></td><td><span class="pill p-ok">al día</span></td></tr>
+        <tr><td>la del 13/10, 22:12</td><td>ChatGPT</td><td class="num">1</td><td><span class="pill p-bad">otro motor</span></td><td><span class="pill p-warn">versión anterior</span></td></tr>
+        <tr><td>la del 13/10, 13:00</td><td>ChatGPT</td><td class="num">5</td><td><span class="pill p-bad">otro motor</span></td><td><span class="pill p-warn">versión anterior</span></td></tr>
+        <tr><td>la del 5/10</td><td>ChatGPT</td><td class="num">76</td><td><span class="pill p-bad">otro motor</span></td><td><span class="pill p-warn">versión anterior</span></td></tr>
+      </tbody></table></div>
+    <p class="pie">La de hoy aprobó sólo con Gemini. Como ChatGPT no estaba entre sus motores, todo lo viejo salía «otro motor» y tapaba que la guía había cambiado.</p>
+  </section>
+
+  <section>
+    <h2>La regla nueva: primero la versión, después el motor</h2>
+    <div class="diagram">
+      <svg viewBox="0 0 760 236" style="min-width:600px" role="img" aria-label="Cómo se elige la marca de una opinión">
+        <defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--fg-3)"/></marker></defs>
+        <rect x="4" y="88" width="190" height="60" rx="9" class="box"/><text x="18" y="114" class="lbl" style="font-weight:600">¿La dio la versión</text><text x="18" y="133" class="lbl" style="font-weight:600">de hoy?</text>
+        <path d="M194 104 L250 44" class="arrow" marker-end="url(#fl)"/><text x="206" y="62" class="lbl-s">sí</text>
+        <path d="M194 132 L250 192" class="arrow" marker-end="url(#fl)"/><text x="206" y="184" class="lbl-s">no</text>
+        <rect x="254" y="14" width="230" height="60" rx="9" class="box"/><text x="268" y="40" class="lbl">¿Con un motor que</text><text x="268" y="59" class="lbl">ella aprobó?</text>
+        <rect x="254" y="162" width="230" height="60" rx="9" class="box"/><text x="268" y="188" class="lbl">¿Con un motor que aprobó</text><text x="268" y="207" class="lbl">alguna versión del juez?</text>
+        <path d="M484 30 L540 20" class="arrow" marker-end="url(#fl)"/><text x="500" y="16" class="lbl-s">sí</text>
+        <path d="M484 58 L540 66" class="arrow" marker-end="url(#fl)"/><text x="500" y="76" class="lbl-s">no</text>
+        <path d="M484 176 L540 168" class="arrow" marker-end="url(#fl)"/><text x="500" y="162" class="lbl-s">sí</text>
+        <path d="M484 206 L540 214" class="arrow" marker-end="url(#fl)"/><text x="500" y="226" class="lbl-s">no</text>
+        <rect x="544" y="2" width="212" height="34" rx="8" class="box-ok"/><text x="558" y="24" class="lbl" style="font-weight:600">al día</text>
+        <rect x="544" y="50" width="212" height="34" rx="8" class="box-bad"/><text x="558" y="72" class="lbl" style="font-weight:600">otro motor</text>
+        <rect x="544" y="150" width="212" height="34" rx="8" class="box-a"/><text x="558" y="172" class="lbl" style="font-weight:600">versión anterior · la del 5/10</text>
+        <rect x="544" y="198" width="212" height="34" rx="8" class="box-bad"/><text x="558" y="220" class="lbl" style="font-weight:600">otro motor</text>
+      </svg>
     </div>
-    <p class="pie">No se lanzó ningún juez, examen ni consulta.</p>
+    <p class="pie">«Otro motor» queda para un motor que el juez no tiene validado, como un modelo local que nunca rindió. La Miniteoría vieja con ChatGPT cae en «versión anterior».</p>
   </section>
 
   <section>
-    <h2>Qué cambia y qué queda igual</h2>
+    <h2>Qué cambia y qué no</h2>
     <div class="cambia">
-      <div class="si"><div class="ptl">Cambia</div><ul><li>Adónde lleva «Ver su examen» del freno de examen.</li></ul></div>
-      <div class="no"><div class="ptl">No cambia</div><ul><li>El texto del freno, y que frena.</li><li>Los demás frenos y sus vínculos.</li><li>Lo que se manda al lanzar.</li></ul></div>
+      <div class="si"><div class="ptl">Cambia</div><ul>
+        <li>El aviso dice que el juez cambió y cuándo.</li>
+        <li>El motivo y la pastilla nombran la versión que opinó.</li>
+        <li>«Otro motor», al pasar por encima, ya no dice «la versión de hoy».</li>
+      </ul></div>
+      <div class="no"><div class="ptl">No cambia</div><ul>
+        <li>Siguen en «Falta medir»: no los opinó la de hoy.</li>
+        <li>Al día sigue siendo la de hoy con un motor que aprobó.</li>
+        <li>No se consultó ni se midió nada.</li>
+      </ul></div>
     </div>
-    <div class="call c-warn"><b>Al juntarlo con la cancelación sin trabar:</b> las dos ramas tocan los mismos dos renglones del armado de frenos. Se resuelve sumando los dos cambios.</div>
-    <div class="call c-info"><b>Visto y no tocado:</b> si el servidor no manda el motivo, el texto de respaldo dice «Distractores» aunque se mida otro juez.</div>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Lo commiteo en su rama?</span>
-        <div class="ops"><span class="op rec">Sí, commitear · recomendado</span><span class="op">Esperar</span></div>
-        <span class="why">La copia de trabajo vive en una carpeta temporal que se borra al reiniciar; dejé un parche de respaldo.</span></div>
-      <div class="ask"><span class="q">2 · ¿Arreglo también el texto que dice «Distractores»?</span>
-        <div class="ops"><span class="op rec">Sí, con el nombre del juez · recomendado</span><span class="op">No hace falta</span></div>
-        <span class="why">Sólo se ve cuando el servidor no da motivo; es el mismo error, en chico.</span></div>
+      <div class="ask"><span class="q">1 · ¿Medimos lo que falta de la Miniteoría con la del 19/10?</span>
+        <div class="ops"><span class="op rec">Sí, con Gemini desde «Volver a medir» · recomendado</span><span class="op">Integrar la medición suelta del 19/10</span></div>
+        <span class="why">La suelta la hizo la del 13/10, 22:12 con ChatGPT: integrada, seguiría siendo versión anterior. El diálogo estima gratis antes de gastar.</span></div>
     </div>
+    <div class="call c-warn"><b>Ojo:</b> la guía de la del 19/10 está sin commitear en el checkout principal; si se pierde, cambia la versión de hoy otra vez.</div>
   </section>
 
   <footer>
-    <span>ittm, rama claude/vinculo-del-examen desde master 547ff685d (worktree en el scratchpad de esta sesión). Cambio en html/js/lanzar/selectores.js (freno SELECTIVA_NO_DISPONIBLE: antes fijo a ?juez=multiple-choice-quality); prueba en html/test/lanzar-vinculo-del-examen.test.js. Parche de respaldo: side-session-notes/…/vinculo-del-examen.patch.</span>
-    <span>brief 164 · docs/briefs/164-vinculo-del-examen.html</span>
+    <span>Datos: lectura del análisis vigente de la tanda A1 antes y después (0 consultas) y capturas del 7800 del 19/10 y del 20/10, 08:45. Commits: content-audit 4bb5cf628 (F-ALDIA-R003 inv. 7) · ittm c727c2b4d (F-TALDIA-R001 inv. 8).</span>
+    <span>brief 165 · docs/briefs/165-otro-motor-era-version-anterior.html</span>
   </footer>
 
 </div>

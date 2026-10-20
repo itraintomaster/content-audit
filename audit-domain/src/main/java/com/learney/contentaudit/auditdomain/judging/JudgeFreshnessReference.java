@@ -126,7 +126,9 @@ public final class JudgeFreshnessReference {
 
     /**
      * The mark of a verdict given by {@code version} with {@code runtime}. Against today's version,
-     * never against the other end of a comparison (inv. 1); the runtime is looked at first.
+     * never against the other end of a comparison (inv. 1). Only the version decides: a verdict of
+     * today's approved version is up to date whichever motor gave it, and one of another version is
+     * of an earlier version (inv. 7). The runtime is still read, to know who gave it (inv. 3).
      */
     public JudgeVerdictMark mark(String version, EvaluationRuntimeIdentity runtime) {
         if (!approved) {
@@ -135,13 +137,9 @@ public final class JudgeFreshnessReference {
         if (version == null || runtime == null || !runtime.isExplicit()) {
             return JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.UNKNOWN_PROVENANCE);
         }
-        if (!approvedRuntimes.contains(runtime)) {
-            return JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.OTHER_RUNTIME);
-        }
-        if (!sameVersions.contains(version)) {
-            return JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.EARLIER_VERSION);
-        }
-        return JudgeVerdictMark.UP_TO_DATE;
+        return sameVersions.contains(version)
+                ? JudgeVerdictMark.UP_TO_DATE
+                : JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.EARLIER_VERSION);
     }
 
     /**

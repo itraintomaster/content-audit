@@ -24,10 +24,30 @@ class JudgeFreshnessReferenceTest {
         assertEquals(JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.EARLIER_VERSION), today().mark(V_5_10, XHIGH));
     }
 
+    /**
+     * Inv. 7: only the version decides. A motor no version of the judge approved with makes nothing
+     * from before: today's version with it is up to date, an earlier one is of an earlier version.
+     */
     @Test
-    void theRuntimeIsLookedAtBeforeTheVersion() {
-        assertEquals(JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.OTHER_RUNTIME), today().mark(V_5_10, LOCAL));
-        assertEquals(JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.OTHER_RUNTIME), today().mark(V_TODAY, LOCAL));
+    void theMotorNeverMakesAVerdictFromBefore() {
+        assertEquals(JudgeVerdictMark.UP_TO_DATE, today().mark(V_TODAY, LOCAL));
+        assertEquals(JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.EARLIER_VERSION), today().mark(V_5_10, LOCAL));
+    }
+
+    /**
+     * Inv. 7, the Miniteoría in Correction 1 on 20/10: today's version approved only with Gemini, and
+     * 82 topics keep the verdicts the versions of 5/10 and 13/10 gave with ChatGPT. They are of an
+     * earlier version; whatever today's version says, with Gemini or with ChatGPT, is up to date.
+     */
+    @Test
+    void theMiniTheoryOfThe20thIsFromBeforeByVersionAndTodaysCountsWithBothMotors() {
+        var reference = todayWithGeminiOnly(history());
+        var earlier = JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.EARLIER_VERSION);
+        assertEquals(earlier, reference.mark(V_5_10, MEDIUM));
+        assertEquals(earlier, reference.mark(V_13_10_MORNING, MEDIUM));
+        assertEquals(earlier, reference.mark(V_TODAY, XHIGH));
+        assertEquals(JudgeVerdictMark.UP_TO_DATE, reference.mark(V_GEMINI, GEMINI));
+        assertEquals(JudgeVerdictMark.UP_TO_DATE, reference.mark(V_GEMINI, MEDIUM));
     }
 
     @Test
@@ -61,12 +81,14 @@ class JudgeFreshnessReferenceTest {
     }
 
     @Test
-    void aRuntimeWhoseLastExamOfTheVersionFailedIsNotApproved() {
+    void aRuntimeWhoseLastExamOfTheVersionFailedIsNotApprovedButItsVerdictsOfTodaysVersionStillCount() {
         var history = new java.util.ArrayList<>(history());
         history.add(record(V_TODAY, JudgeExamStatus.FAILED, "2026-10-16T12:00:00Z", MEDIUM));
         var reference = JudgeFreshnessReference.of(standing(V_TODAY, JudgeExamStatus.APPROVED, Set.of(V_TODAY)),
                 history, ZONE, CLOCK);
-        assertEquals(JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.OTHER_RUNTIME), reference.mark(V_TODAY, MEDIUM));
+        assertFalse(reference.getApprovedRuntimes().contains(MEDIUM));
+        // Inv. 7: the version is today's and approved; the motor does not make it from before.
+        assertEquals(JudgeVerdictMark.UP_TO_DATE, reference.mark(V_TODAY, MEDIUM));
         assertEquals(JudgeVerdictMark.UP_TO_DATE, reference.mark(V_TODAY, XHIGH));
     }
 
@@ -79,7 +101,7 @@ class JudgeFreshnessReferenceTest {
         var reference = JudgeFreshnessReference.of(promoted, history(), ZONE, CLOCK);
         assertTrue(reference.isApproved());
         assertEquals(JudgeVerdictMark.UP_TO_DATE, reference.mark(V_UNAPPROVED, MEDIUM));
-        assertEquals(JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.OTHER_RUNTIME), reference.mark(V_UNAPPROVED, XHIGH));
+        assertEquals(JudgeVerdictMark.UP_TO_DATE, reference.mark(V_UNAPPROVED, XHIGH));
         assertEquals("la del 14/10", reference.currentVersionName());
         assertEquals(PROMOTED_AT, reference.currentApprovedAt().orElseThrow());
     }
@@ -109,7 +131,7 @@ class JudgeFreshnessReferenceTest {
         var reference = JudgeFreshnessReference.of(standing, history, ZONE, CLOCK);
         assertTrue(reference.isApproved(), "it is not «sin aprobar» because the default motor did not take it");
         assertEquals(JudgeVerdictMark.UP_TO_DATE, reference.mark(V_GEMINI, GEMINI));
-        assertEquals(JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.OTHER_RUNTIME), reference.mark(V_GEMINI, MEDIUM));
+        assertEquals(JudgeVerdictMark.UP_TO_DATE, reference.mark(V_GEMINI, MEDIUM));
         assertEquals(JudgeVerdictMark.fromBefore(JudgeVerdictStaleCause.EARLIER_VERSION), reference.mark(V_TODAY, GEMINI));
         assertEquals("la del 19/10", reference.currentVersionName());
         assertEquals(standing.getEnabledWith(), reference.getEnabledWith());

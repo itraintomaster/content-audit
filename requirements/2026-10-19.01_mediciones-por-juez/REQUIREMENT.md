@@ -84,8 +84,8 @@ miniteoría del 19/10 a las 00:54, en la corrección: 2.382 son juez de hoy, 16 
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
 > Un veredicto es del **juez de hoy**:
-> - si la versión de hoy aprobó su examen: cuando su marca es «al día» ([F-ALDIA-R003](#F-ALDIA-R003)), con versión y
->   motor;
+> - si la versión de hoy aprobó su examen: cuando su marca es «al día» ([F-ALDIA-R003](#F-ALDIA-R003)): la versión de hoy,
+>   con cualquier motor del que se sepa cuál;
 > - si no aprobó: cuando su versión es la de hoy o una registrada como la misma ([F-ALDIA-R002](#F-ALDIA-R002)). El motor
 >   no se mira.
 >
@@ -93,7 +93,8 @@ miniteoría del 19/10 a las 00:54, en la corrección: 2.382 son juez de hoy, 16 
 > 1. un juez sin versión de hoy no tiene veredictos de hoy;
 > 2. de cada corrida y estado se dice si todo lo que encaja es del juez de hoy, y si la versión de hoy aprobó. Sin versión
 >    de hoy no se dice ninguna de las dos; sin nada que encaje, no se dice la primera;
-> 3. la versión de la corrida se juzga con el motor con que midió.
+> 3. la versión de la corrida se juzga con el motor con que midió: sin motor conocido, la procedencia es desconocida y no es
+>    del juez de hoy aprobado. Con un motor conocido, cualquiera, cuenta sólo la versión (F-ALDIA-R003 inv. 7).
 
 <details><summary>Detail</summary>
 
@@ -341,7 +342,7 @@ modelo.
 | Regla | Qué se comprueba |
 |---|---|
 | R001 | Los seis grupos suman lo que encaja y «reemplaza» suma los cuatro últimos. Un ejercicio que trae el juez de hoy y cambia resultados cuenta como juez de hoy. Los huecos siguen en los errores ganados |
-| R002 | Aprobado, sólo lo «al día» es de hoy. Sin aprobar, cuenta la versión y no el motor. Sin versión de hoy, nada es de hoy y no se dice si aprobó |
+| R002 | Aprobado, sólo lo «al día» es de hoy: la versión de hoy con cualquier motor conocido. Sin aprobar, cuenta la versión y no el motor. Sin versión de hoy, nada es de hoy y no se dice si aprobó |
 | R003 | Cada celda va debajo de su dial y ofrece la corrida que más aporta, con un botón que dice qué trae |
 | R004 | Lo que sólo repite o trae una versión anterior no se ofrece y queda en la fila abierta con su motivo |
 | R005 | Con la versión de hoy sin aprobar, el botón dice «sin aprobar» y avisa que no sirve para publicar |

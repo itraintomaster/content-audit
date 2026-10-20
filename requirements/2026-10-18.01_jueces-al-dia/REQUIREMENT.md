@@ -10,7 +10,7 @@ feature:
 
 ## TL;DR
 
-**Qué**: Cada veredicto dice si lo dio la versión de hoy de su juez, una anterior u otro motor. La versión de un juez
+**Qué**: Cada veredicto dice si lo dio la versión de hoy de su juez o una anterior, con cualquier motor. La versión de un juez
 cambia sólo si cambia algo que corre al medir. Las versiones se nombran por la fecha en que aprobaron. Se puede volver
 a medir sólo lo de antes. Publicar frena mientras un juez no esté al día en lo que cambió y lo nombra; la versión
 anterior se acepta sólo pidiéndola por nombre, y queda anotada.
@@ -127,10 +127,9 @@ nueva sale sin examen.
 ### Rule[F-ALDIA-R003] - Cada veredicto dice si está al día
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-> Un veredicto está **al día** si lo dio la versión de hoy de su juez con un motor con el que esa versión aprobó su
-> examen. Si no, es **de antes**, con una de dos causas:
-> - **otro motor**, si su motor no es ninguno con el que la versión de hoy aprobó;
-> - **versión anterior**, si su motor es uno de esos y lo dio otra versión.
+> Un veredicto está **al día** si lo dio la versión de hoy de su juez y esa versión está aprobada, con cualquier motor.
+> Si lo dio otra versión, es **de antes** por **versión anterior**. El motor nunca hace que un veredicto sea de antes
+> (invariante 7).
 >
 > Una versión **aprobó con un motor** si su último examen con ese motor aprobó, o si José la promovió con ese motor y
 > ningún examen medido después con ese motor la reemplazó. Con un motor alcanza: la versión queda **habilitada** con
@@ -150,6 +149,11 @@ nueva sale sin examen.
 > 5. calcular la marca no consulta ni escribe nada;
 > 6. una abstención guardada nunca está sin medir: volver a medir sin forzar la reusa y da la misma. Vale igual en la
 >    tabla de jueces, en la cuenta del cierre, en la estimación de un diálogo de medir y en el resumen de cada corrida.
+> 7. sólo la versión decide si un veredicto está al día; el motor no. Lo que dio la versión de hoy cuenta igual con
+>    cualquier motor, y si dos motores opinaron con ella, valen los dos. Lo que dio una versión anterior es de antes, con
+>    cualquier motor, y se nombra por su versión ([F-ALDIA-R004](#F-ALDIA-R004)). No hay causa «otro motor»: ni en la
+>    marca, ni en la cuenta, ni en lo que se le muestra a José. Lo de antes sigue faltando medir en Correcciones
+>    ([F-TALDIA-R006](../2026-10-18.02_jueces-al-dia-en-el-tablero/REQUIREMENT.md#F-TALDIA-R006)).
 
 <details><summary>Detail</summary>
 
@@ -157,22 +161,31 @@ Que lo de antes se siga reusando es deliberado: volver a medir todo con cada ver
 [F-EVCOST-R006](#F-EVCOST-R006) lo descarta. Lo que cambia es que ya no se reusa en silencio. La marca va con el
 veredicto a donde vaya: el análisis, las opiniones de Correcciones, el cierre y publicar.
 
-La causa se elige mirando primero el motor, porque un motor distinto no se arregla con una versión. La base de la
-naturalidad la midió un modelo local, y eso se lee «otro motor» aunque su versión también sea otra.
+Hasta el 19/10 la causa se elegía mirando primero el motor. José lo sacó el 20/10 (invariante 7): «Hay que corregir el
+rótulo y tomarla como que no están medidos sólo porque el examen cambió. No importa que se mida con dos motores
+distintos, mientras estén al día con el examen». Lo que valida a un juez es el examen de su versión; el motor elige
+con qué se consulta ([F-JEXAM-R003](#F-JEXAM-R003)), pero no hace viejo lo que ya dijo.
 
 **Criterio**: Corrección 1 de la tanda A1, al 18/10. La miniteoría de hoy es la versión aprobada el 13/10 a las 22:12:
 
-| Estado | Al día | Versión anterior | Otro motor | Sin medir |
-|---|---:|---:|---:|---:|
-| La base (83 temas) | 0 | 83 (la del 5/10) | 0 | 0 |
-| Corrección 1 (83 temas) | 1 | 82 (77 de la del 5/10, 5 de la del 13/10, 13:00) | 0 | 0 |
+| Estado | Al día | Versión anterior | Sin medir |
+|---|---:|---:|---:|
+| La base (83 temas) | 0 | 83 (la del 5/10) | 0 |
+| Corrección 1 (83 temas) | 1 | 82 (77 de la del 5/10, 5 de la del 13/10, 13:00) | 0 |
 
-La naturalidad tiene, en la base, 2.333 ejercicios de otro motor (llama3 local) y ninguno al día.
+La naturalidad tiene, en la base, 2.333 ejercicios de procedencia desconocida y ninguno al día.
 
 **Criterio de los motores**, al 19/10: la miniteoría de hoy aprobó a las 11:30 con Gemini 3.8 Flash y nunca rindió
-con ChatGPT, que es el motor por omisión. Está habilitada con Gemini, no es «sin aprobar», y lo que midió con ChatGPT es
-de otro motor. Naturalidad idiomática y Calidad didáctica A1 no rindieron su examen con la versión de hoy: José las
-promovió el 14/10 con ChatGPT. Están habilitadas con ChatGPT, y lo que esa versión midió con ChatGPT está al día.
+con ChatGPT, que es el motor por omisión. Está habilitada con Gemini, no es «sin aprobar», y lo que ella mida con ChatGPT
+también está al día (invariante 7). Naturalidad idiomática y Calidad didáctica A1 no rindieron su examen con la versión de hoy:
+José las promovió el 14/10 con ChatGPT. Están habilitadas con ChatGPT, y lo que esa versión midió con ChatGPT está al día.
+
+**Criterio de sólo la versión** (invariante 7), Corrección 1 de la tanda A1 al 20/10: la miniteoría de hoy es la del
+19/10, aprobada sólo con Gemini. Un tema lo midió ella con Gemini y está al día. Los otros 82 los midieron con ChatGPT
+la del 5/10, la del 13/10, 13:00 y la del 13/10, 22:12. Hasta el 19/10 se leían «82 de otro motor (gpt-6.1-sol en
+codex-cli)», como si la versión de hoy los hubiera medido con otro motor, y José los tomó por medidos. Ahora se leen
+«82 de versión anterior», cada uno con el nombre de su versión, y siguen faltando medir con la del 19/10. Si la del
+19/10 los mide con ChatGPT, quedan al día igual que con Gemini.
 
 **Criterio de la abstención** (invariante 6), Corrección 1 de la tanda A1 al 19/10: el pragmatismo de hoy (la del
 14/10) dejó 2.402 veredictos con su motor aprobado. 88 son abstenciones: 81 «no aplica» (ejercicios de clasificar, de
@@ -193,8 +206,8 @@ entre el 14/10 y el 18/10 sin gastar nada ni cambiar nada (brief 158).
 >    «versión del 5/10»;
 > 2. una versión re-aprobada se nombra por su primera aprobación, no por la última;
 > 3. si la aprobación no es del año en curso, el nombre lleva el año [ASSUMPTION];
-> 4. el resto se nombra así: una versión que nunca aprobó, «sin aprobar» y su código corto; un veredicto de otro motor,
->    por su motor como lo dice su procedencia («llama3 local»); uno sin procedencia, «procedencia desconocida»;
+> 4. el resto se nombra así: una versión que nunca aprobó, «sin aprobar» y su código corto; uno sin procedencia,
+>    «procedencia desconocida». El motor no da nombre a lo de antes ([F-ALDIA-R003](#F-ALDIA-R003), inv. 7);
 > 5. el código entero sigue en la salida JSON y en el detalle, para buscarlo;
 > 6. una versión de un juez nunca se nombra con un número: «versión 5» es del contenido;
 > 7. una versión que José promovió se nombra por lo primero que pasó: su primera aprobación o su promoción. La
@@ -361,7 +374,7 @@ Volvé a medir lo de antes, o pedí la versión anterior por nombre: --accept-pr
 
 > `tray publish --accept-previous <juez>[,<juez>…]` acepta, para cada juez nombrado, los cambios que tienen la misma
 > versión de antes en las dos puntas. Invariantes:
-> 1. no acepta un cambio con una versión distinta en cada lado, uno de otro motor en una sola punta ni uno sin medir:
+> 1. no acepta un cambio con una versión distinta en cada lado ni uno sin medir:
 >    esos siguen frenando, y la negativa lo dice;
 > 2. no acepta un juez sin aprobar: manda [F-CJUEZ-R004](#F-CJUEZ-R004);
 > 3. un nombre que no es de un juez de la tanda se rechaza sin publicar. Un juez que ya está al día no se anota, y la
@@ -396,8 +409,8 @@ rechaza: no es el nombre de un juez de la tanda.
 > cada juez, cuántos y por qué, en vez de «por algún analizador». Invariantes:
 > 1. el tipo del veredicto, la cuenta de cambios y los pisos sin decidir no cambian ([F-FILAS-R007](#F-FILAS-R007));
 > 2. cada juez va una vez, en el orden del catálogo, con su nombre visible y uno de estos motivos: «sin medir en la
->    base», «sin medir en la corrección», «una versión distinta en cada lado» u «otro motor en la base» (o «en la
->    corrección»);
+>    base», «sin medir en la corrección», «una versión distinta en cada lado» o «procedencia desconocida en la base» (o
+>    «en la corrección»). Desde el 20/10 no hay motivo de motor ([F-ALDIA-R003](#F-ALDIA-R003), inv. 7);
 > 3. el JSON del veredicto trae lo mismo por juez: su clave, su nombre visible, cuántos cambios y el motivo;
 > 4. la negativa de publicar copia ese detalle.
 
@@ -439,7 +452,7 @@ OK de José, con el número delante.
 ## Alcance
 
 - **Adentro**: qué entra en la versión de un juez de carpeta, y la equivalencia de una vez; la marca al día, versión
-  anterior, otro motor y sin medir en cada veredicto, en el análisis y en el cierre; el nombre de cada versión por su
+  anterior y sin medir en cada veredicto, en el análisis y en el cierre; el nombre de cada versión por su
   fecha de aprobación; qué archivos cambiaron entre dos versiones; volver a medir sólo lo de antes; que publicar frene y
   nombre al juez; aceptar la versión anterior por nombre y anotarlo; nombrar al juez en «no se puede decidir».
 - **Afuera**: lo que muestra el tablero
@@ -568,7 +581,7 @@ Ninguna prueba consulta a un modelo ni toca producción.
 |---|---|
 | R001 | Cambiar un archivo de `eval/` deja la misma versión. Cambiar uno de la guía, del formato, de un script, de la definición o uno nuevo la cambia |
 | R002 | Con la equivalencia, el examen aprobado y los veredictos de la versión del día siguen valiendo. Un cambio más da una versión sin examen, y una equivalencia no se puede agregar después |
-| R003 | Con veredictos de la versión de hoy, de otra versión, de otro motor, sin procedencia y sin veredicto, cada uno sale con su marca. La misma versión vieja en las dos puntas da dos «de antes». Una abstención guardada de pragmatismo («falta contexto»), de naturalidad («no aplica») y de didáctica («revisar»), de la versión de hoy, sale al día y no sin medir; de una versión anterior, de antes. La cuenta del cierre, la estimación y el resumen de cada corrida la cuentan igual (`CurrentAnalysisServiceTest.aStoredAbstentionIsAVerdictWithItsMarkAndNeverNotMeasured`, `DefaultBatchJudgePassTest.shouldCountASavedAbstentionAsAVerdictOfItsVersionNeverAsNotMeasured`, `SelectiveCorrectionServiceTest.aSavedAbstentionCountsAsEvaluatedInTheEstimateAndInTheRunSummary`, `ContextOpinionServiceTest.aCompletionRunCountsASavedAbstentionAsEvaluated`) |
+| R003 | Con veredictos de la versión de hoy, de otra versión, sin procedencia y sin veredicto, cada uno sale con su marca. La misma versión vieja en las dos puntas da dos «de antes». Una abstención guardada de pragmatismo («falta contexto»), de naturalidad («no aplica») y de didáctica («revisar»), de la versión de hoy, sale al día y no sin medir; de una versión anterior, de antes. La cuenta del cierre, la estimación y el resumen de cada corrida la cuentan igual (`CurrentAnalysisServiceTest.aStoredAbstentionIsAVerdictWithItsMarkAndNeverNotMeasured`, `DefaultBatchJudgePassTest.shouldCountASavedAbstentionAsAVerdictOfItsVersionNeverAsNotMeasured`, `SelectiveCorrectionServiceTest.aSavedAbstentionCountsAsEvaluatedInTheEstimateAndInTheRunSummary`, `ContextOpinionServiceTest.aCompletionRunCountsASavedAbstentionAsEvaluated`). Sólo la versión decide: la de hoy está al día con cualquier motor, también uno cuyo examen reprobó o uno que nunca rindió, y una anterior es «versión anterior» con cualquier motor; no queda causa de motor (`JudgeFreshnessReferenceTest.theMotorNeverMakesAVerdictFromBefore`, `.theMiniTheoryOfThe20thIsFromBeforeByVersionAndTodaysCountsWithBothMotors`, `.aRuntimeWhoseLastExamOfTheVersionFailedIsNotApprovedButItsVerdictsOfTodaysVersionStillCount`, `JudgeFreshnessTallyTest.theMiniTheoryOfThe20thIsReusedByVersionNeverByMotor`, `.unknownAndNotMeasuredAreCountedApartAndAnotherMotorOfTodaysVersionIsUpToDate`) |
 | R004 | Dos aprobaciones el mismo día en hora local y distinto en UTC llevan la hora. Una re-aprobada se nombra por la primera, y ninguna se nombra con un número |
 | R005 | Las cuentas por juez y estado suman la unidad, y el informe del cierre dice cuánto reusó de antes. Las abstenciones se cuentan dentro de su marca, por motivo, y las tres cuentas siguen sumando la unidad (`JudgeFreshnessTallyTest.abstentionsAreCountedInsideTheirMarkAndTheThreeCountsStillAddUp`) |
 | R006 | Con la lista guardada sale lo que cambió, separado en lo que cuenta y lo que no. Sin lista ni foto, dice «no se sabe qué cambió» |
