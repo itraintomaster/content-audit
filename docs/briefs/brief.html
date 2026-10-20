@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cancelar ya no traba</title>
+<title>El vínculo del examen</title>
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -323,6 +323,7 @@
     .map .who{border-left:1px solid var(--line);border-top:0;border-radius:0 0 var(--radius) var(--radius)}
     .map.alta .cap{width:min(55%,220px);margin:0 auto}
   }
+
 </style>
 </head>
 <body>
@@ -330,83 +331,100 @@
 
   <header>
     <div class="kicker">
-      <span class="num">163</span>
-      <span class="badge">Hecho</span>
-      <span class="meta">tanda A1 · mediciones por juez · 19/10/2026</span>
+      <span class="num">164</span>
+      <span class="badge">Arreglo</span>
+      <span class="meta">Tablero · diálogo de lanzar · 19/10/2026</span>
     </div>
-    <h1>Cancelar una medición ya no traba la tanda</h1>
-    <p class="sub">Hecho como en el brief 162 y probado sobre una copia de la tanda real, en otro puerto.</p>
+    <h1>«Ver su examen» ya abre el examen del juez que medís</h1>
+    <p class="sub">El freno de examen del diálogo de lanzar llevaba siempre al examen de opción múltiple.</p>
   </header>
 
-  <div class="lede"><p><strong>Sobre la copia, conciliar cerró la Naturalidad de las 21:55 con 301 de 1.919, igual que tu arreglo a mano, y liberó la tanda.</strong> Está sin commitear: necesito tu OK.</p></div>
+  <div class="lede"><p><strong>Al medir Miniteoría con un motor sin examen, «Ver su examen» abría el de opción múltiple; ahora abre el de Miniteoría.</strong> Está en verde y sin commitear: falta tu OK.</p></div>
 
   <section>
-    <h2>En la copia dio igual que tu arreglo a mano</h2>
-    <div class="kpis">
-      <div class="kpi dest"><div class="n">301<small>de 1.919</small></div><div class="l">Naturalidad conciliada: lo mismo que contaste a mano</div></div>
-      <div class="kpi"><div class="n">17.433</div><div class="l">consultas de la tanda después: igual a la real al copiarla</div></div>
-      <div class="kpi"><div class="n">0</div><div class="l">consultas a modelos: la copia no tenía ninguno a mano</div></div>
+    <h2>Dónde: el freno al medir con un motor sin examen</h2>
+    <div class="map">
+      <div class="ex">
+        <svg class="cap" viewBox="0 0 672 800" role="img" aria-label="El diálogo para medir Miniteoría, frenado porque su versión de hoy no aprobó con ChatGPT">
+          <image href="164-vinculo-del-examen/dialogo.jpg" width="672" height="800"/>
+          <rect class="tapa" x="16" y="190" width="640" height="270"/>
+          <rect class="aro" x="34" y="624" width="604" height="54" rx="10"/>
+          <g class="mk" transform="translate(20 651)"><circle r="15"/><text font-size="16">1</text></g>
+          <g class="mk gris" transform="translate(20 67)"><circle r="15"/><text font-size="16">2</text></g>
+          <g class="mk gris" transform="translate(20 549)"><circle r="15"/><text font-size="16">3</text></g>
+        </svg>
+      </div>
+      <div class="who">
+        <div><b>1</b><span><strong>El freno y su «Ver su examen»</strong><br><small>lo único que cambia</small></span></div>
+        <div><b class="gris">2</b><span><strong>El juez que se mide</strong><br><small>Miniteoría, desde el Mapa</small></span></div>
+        <div><b class="gris">3</b><span><strong>El motor elegido</strong><br><small>ChatGPT: la versión de hoy no aprobó con él</small></span></div>
+      </div>
     </div>
-    <p class="pie">La copia tenía la Naturalidad reabierta como quedó a las 21:55. Pedir conciliar otra vez no escribió nada.</p>
+    <p class="pie">Es el diálogo de verdad, dibujado por el código del tablero con su estilo, en el caso de la prueba nueva.</p>
   </section>
 
   <section>
-    <h2>El freno nombra la medición y ofrece cerrarla</h2>
-    <div class="ad asim">
-      <div class="lado antes"><span class="rot">Antes</span>
-        <div class="ex">
-          <div class="cons">Diálogo de lanzar, con cualquier juez</div>
-          <div class="ans">Hay una operación interrumpida o incierta. Conservá su reserva y conciliá los resultados antes de iniciar otra. <b>Ver su examen</b></div>
-        </div>
-        <div class="mark"><span class="x">✕</span><span>No decía cuál, no había cómo cerrarla y llevaba a otro juez.</span></div>
-      </div>
-      <div class="lado despues"><span class="rot">Ahora</span>
-        <figure class="captura"><img src="163-cancelar-ya-no-traba-la-tanda/frenos.png" alt="Dos frenos en el diálogo de lanzar: Naturalidad del 19/10 a las 21:19 cortada con 301 veredictos guardados, y Miniteoría del 19/10 a las 22:29 cortada; cada uno con Conciliar y Ver la corrida">
-          <figcaption>Tablero de la copia, puerto 7845, antes de conciliar.</figcaption></figure>
-      </div>
+    <h2>El vínculo llevaba a otro juez; ahora al que frena</h2>
+    <div class="ad">
+      <div class="lado antes"><span class="rot">Hoy</span>
+        <ol><li>Medís Miniteoría con ChatGPT.</li><li>El freno dice que no aprobó con ese motor.</li><li>Tocás «Ver su examen».</li></ol>
+        <span class="res">Abre el examen de Calidad de distractores.</span></div>
+      <div class="lado despues"><span class="rot">Con el arreglo</span>
+        <ol><li>Medís Miniteoría con ChatGPT.</li><li>El freno dice que no aprobó con ese motor.</li><li>Tocás «Ver su examen».</li></ol>
+        <span class="res">Abre el examen de Miniteoría.</span></div>
     </div>
-    <p class="pie">Si cancelás desde el tablero, ni lo ves: concilia solo cuando termina el proceso. El botón queda para lo que no pudo.</p>
+    <p class="pie">Ahí ves con qué motores aprobó Miniteoría y podés rendirla con otro.</p>
   </section>
 
   <section>
-    <h2>Cada corte termina con la tanda libre o un botón</h2>
+    <h2>Qué examen abre, según lo que lances</h2>
     <div class="tw"><table>
-      <thead><tr><th>Caso</th><th>Cómo queda</th><th>Probado</th></tr></thead>
+      <thead><tr><th>Lo que lanzás</th><th>«Ver su examen» abre</th></tr></thead>
       <tbody>
-        <tr><td>Cancelar desde el tablero</td><td><span class="pill p-ok">solo</span> parcial con lo guardado; tanda libre</td><td>prueba</td></tr>
-        <tr><td>Forzar, o se cae el proceso</td><td><span class="pill p-ok">solo</span> igual, apenas termina</td><td>prueba</td></tr>
-        <tr><td>No pudo conciliar</td><td>el registro dice por qué; el freno ofrece «Conciliar»</td><td>prueba</td></tr>
-        <tr><td>Dos mediciones abiertas</td><td>la tanda se libera con la última</td><td>copia</td></tr>
-        <tr><td>Lanzada antes de este cambio</td><td><span class="pill p-warn">sin contar</span> cierra sin sumar gasto; lo guardado igual se reutiliza</td><td>copia</td></tr>
-        <tr><td>Sigue corriendo</td><td>no ofrece conciliar</td><td>prueba</td></tr>
-      </tbody></table></div>
-    <p class="pie">Pruebas nuevas: 14 en content-audit y 17 en el tablero, en verde. Lo demás, igual que antes.</p>
+        <tr><td>Medir un juez (Miniteoría, Sentido de la traducción…)</td><td>El examen de ese juez</td></tr>
+        <tr><td>Analizar sólo distractores, sin nombrar juez</td><td>El de Calidad de distractores, que es el que mide</td></tr>
+        <tr><td>Otra corrida, si el servidor nombra al juez que frena</td><td>El examen de ese juez</td></tr>
+        <tr><td>Otra corrida, sin juez nombrado</td><td>Nada: no hay vínculo, el freno sigue frenando</td></tr>
+      </tbody>
+    </table></div>
+    <p class="pie">Mejor ningún vínculo que uno al examen de otro juez.</p>
   </section>
 
   <section>
-    <h2>Qué cambia y qué no</h2>
-    <div class="cambia">
-      <div class="si"><div class="ptl">Cambia</div><ul><li>content-audit cierra una medición cortada con lo que guardó.</li><li>Cada medición anota su proceso, sus jueces y su motor al empezar.</li><li>El tablero la concilia solo al ver terminar el proceso sin éxito.</li><li>El freno dice juez, hora y lo guardado, con «Conciliar» y «Ver la corrida».</li></ul></div>
-      <div class="no"><div class="ptl">No cambia</div><ul><li>Una corrección cortada sigue pidiendo revisión a mano.</li><li>«Completar opiniones» queda para después, como dijiste.</li><li>El freno de examen y su vínculo.</li></ul></div>
+    <h2>Probado: la prueba nueva fallaba antes y pasa ahora</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">3</div><div class="l">pruebas nuevas; 2 fallaban con el código de antes</div></div>
+      <div class="kpi"><div class="n">2.135<small>de 2.135</small></div><div class="l">pruebas del tablero en verde</div></div>
+      <div class="kpi"><div class="n">0</div><div class="l">cambios en la foto dorada de las pantallas</div></div>
     </div>
-    <div class="call c-warn"><b>Ojo hoy:</b> hay una Miniteoría «ambas» corriendo en la tanda real desde las 22:29, con el código de antes. Si se corta, se traba como siempre.</div>
+    <p class="pie">No se lanzó ningún juez, examen ni consulta.</p>
+  </section>
+
+  <section>
+    <h2>Qué cambia y qué queda igual</h2>
+    <div class="cambia">
+      <div class="si"><div class="ptl">Cambia</div><ul><li>Adónde lleva «Ver su examen» del freno de examen.</li></ul></div>
+      <div class="no"><div class="ptl">No cambia</div><ul><li>El texto del freno, y que frena.</li><li>Los demás frenos y sus vínculos.</li><li>Lo que se manda al lanzar.</li></ul></div>
+    </div>
+    <div class="call c-warn"><b>Al juntarlo con la cancelación sin trabar:</b> las dos ramas tocan los mismos dos renglones del armado de frenos. Se resuelve sumando los dos cambios.</div>
+    <div class="call c-info"><b>Visto y no tocado:</b> si el servidor no manda el motivo, el texto de respaldo dice «Distractores» aunque se mida otro juez.</div>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Commiteo las dos ramas?</span>
-        <div class="ops"><span class="op rec">Sí, commitear · recomendado</span><span class="op">Antes lo miro</span></div>
-        <span class="why">La del tablero vive en una carpeta temporal que se borra al reiniciar la máquina.</span></div>
-      <div class="ask"><span class="q">2 · ¿Arreglo aparte «Ver su examen», que siempre abre opción múltiple?</span>
-        <div class="ops"><span class="op rec">Sí, aparte · recomendado</span><span class="op">No hace falta</span></div>
-        <span class="why">Lo vi en la copia: midiendo Miniteoría, el vínculo abre el examen de otro juez.</span></div>
+      <div class="ask"><span class="q">1 · ¿Lo commiteo en su rama?</span>
+        <div class="ops"><span class="op rec">Sí, commitear · recomendado</span><span class="op">Esperar</span></div>
+        <span class="why">La copia de trabajo vive en una carpeta temporal que se borra al reiniciar; dejé un parche de respaldo.</span></div>
+      <div class="ask"><span class="q">2 · ¿Arreglo también el texto que dice «Distractores»?</span>
+        <div class="ops"><span class="op rec">Sí, con el nombre del juez · recomendado</span><span class="op">No hace falta</span></div>
+        <span class="why">Sólo se ve cuando el servidor no da motivo; es el mismo error, en chico.</span></div>
     </div>
   </section>
 
   <footer>
-    <span>Fuentes: requisito FEAT-CORTE R001–R008 (requirements/2026-10-19.02_cortar-sin-trabar-la-tanda); content-audit rama claude/youthful-herschel-fc26b8 (DefaultSelectiveCorrectionService.reconcile, RunningProcesses, SelectiveCorrection.RunProcess/OpenRun; SelectiveCorrectionServiceTest +12, FileSystemBatchStoreTest +1, SelectiveCorrectionCmdTest +1); ittm rama claude/cortar-sin-trabar-la-tanda en scratchpad/ittm-corte (finishDetachedRun → _conciliarAlTerminar, AccionesSobreUnaCorrida.conciliar, lanzar/selectores.js, lanzar.css; cierre_de_una_medicion_cortada_test.dart 10, lanzar-medicion-cortada.test.js 7). Copia: scratchpad/copia, puerto 7845, CLI con stubs sin modelos; 1 prueba de Problemas falla sólo en paralelo y pasa sola 3 de 3.</span>
-    <span>brief 163 · docs/briefs/163-cancelar-ya-no-traba-la-tanda.html</span>
+    <span>ittm, rama claude/vinculo-del-examen desde master 547ff685d (worktree en el scratchpad de esta sesión). Cambio en html/js/lanzar/selectores.js (freno SELECTIVA_NO_DISPONIBLE: antes fijo a ?juez=multiple-choice-quality); prueba en html/test/lanzar-vinculo-del-examen.test.js. Parche de respaldo: side-session-notes/…/vinculo-del-examen.patch.</span>
+    <span>brief 164 · docs/briefs/164-vinculo-del-examen.html</span>
   </footer>
 
 </div>
