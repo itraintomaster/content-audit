@@ -17,7 +17,9 @@ class JudgeOfTodayTest {
         var reference = today();
         assertTrue(reference.isOfToday(V_TODAY, XHIGH));
         assertFalse(reference.isOfToday(V_5_10, XHIGH));
-        assertFalse(reference.isOfToday(V_TODAY, LOCAL));
+        // F-ALDIA-R003 inv. 7: with a known motor only the version decides, whichever motor it is.
+        assertTrue(reference.isOfToday(V_TODAY, LOCAL));
+        assertFalse(reference.isOfToday(V_5_10, LOCAL));
         assertFalse(reference.isOfToday(V_TODAY, null));
         assertFalse(reference.isOfToday(V_TODAY, EvaluationRuntimeIdentity.legacyUnknown()));
     }

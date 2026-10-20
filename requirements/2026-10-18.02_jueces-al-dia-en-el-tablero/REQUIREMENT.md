@@ -11,7 +11,7 @@ feature:
 ## TL;DR
 
 **Qué**: El tablero muestra, con una sola marca, si cada veredicto es de la versión de hoy de su juez: «al día»,
-«anterior» u «otro motor», o «sin medir». La muestra en el Mapa, en Correcciones, en Analizadores y en Publicar. Cada
+«anterior» o «sin medir». La muestra en el Mapa, en Correcciones, en Analizadores y en Publicar. Cada
 versión se nombra por su fecha de aprobación. Desde cualquiera de esas pantallas se abre un diálogo que vuelve a medir
 sólo lo de antes, con estimación gratis y tope. La ficha del Mapa también manda a medir lo que está sin medir de un
 juez. Para aprobar en grupo, lo de antes cuenta como que falta medir.
@@ -59,7 +59,7 @@ muestra de 12 antes de aprobar.
 > Todo veredicto, opinión o cuenta de un juez que el tablero muestra lleva una de tres marcas, con las mismas palabras y
 > colores en el Mapa, Correcciones, Analizadores y Publicar:
 > - **al día**, en verde: lo midió la versión de hoy;
-> - **anterior**, en ámbar: lo midió otra versión. Si la causa es el motor, la marca dice **otro motor**;
+> - **anterior**, en ámbar: lo midió otra versión, o no se sabe quién. El motor no cambia la marca;
 > - **sin medir**, gris y punteada: todavía no lo midió nadie.
 >
 > Invariantes:
@@ -73,11 +73,11 @@ muestra de 12 antes de aprobar.
 > 5. la fecha de medición, donde se muestre, va aparte y nunca como fecha de la versión;
 > 6. los analizadores que no son jueces no llevan marca;
 > 7. mostrarla no consulta;
-> 8. «otro motor» dice, al pasar por encima, que lo midió un motor con el que la versión de hoy no aprobó, sin afirmar
->    que lo midió la versión de hoy. Lo que una versión anterior midió con un motor con el que el juez aprobó llega como
->    versión anterior ([F-ALDIA-R003](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md#F-ALDIA-R003), inv. 7) y se lee
->    «anterior», con el nombre de su versión: «opinó con la versión del 5/10». Una versión anterior que nunca aprobó se
->    lee «opinó con la versión sin aprobar (c8ca16c9)».
+> 8. no hay marca «otro motor»: ni el aviso arriba de la lista, ni la pastilla del renglón, ni el motivo de «Por qué
+>    quedan afuera» distinguen por motor ([F-ALDIA-R003](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md#F-ALDIA-R003),
+>    inv. 7). Lo que dio una versión anterior se lee «anterior», con el nombre de su versión: «opinó con la versión del
+>    5/10». Una versión anterior que nunca aprobó se lee «opinó con la versión sin aprobar (c8ca16c9)». Si content-audit
+>    manda todavía la causa de motor, de un análisis leído antes, se lee como «anterior».
 
 <details><summary>Detail</summary>
 
@@ -86,14 +86,14 @@ misma razón que el análisis vigente: «El servidor decide cobertura, errores, 
 elige». Con qué motores aprobó cada versión también lo dice content-audit ([F-ALDIA-R003](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md#F-ALDIA-R003)).
 
 **Criterio**: en la ficha de Corrección 1, la miniteoría dice «anterior 82 · al día 1» y la base, «anterior 83». La
-naturalidad de la base dice «otro motor». Al pasar por encima de `738388a5` se ve el código entero y «copiar».
+naturalidad de la base dice «anterior». Al pasar por encima de `738388a5` se ve el código entero y «copiar».
 
-**Criterio del motor aprobado** (inv. 8), Corrección 1 al 20/10: la miniteoría de hoy aprobó sólo con Gemini y 82 temas
-los midieron con ChatGPT versiones que aprobaron con él. Hasta el 19/10 Correcciones decía «Miniteoría con error: 82 de
-83 temas tienen su opinión de otro motor», la pastilla «otro motor» y el motivo «Falta medir Miniteoría con error ·
-opinó con otro motor (gpt-6.1-sol en codex-cli, medium)». Ahora dice «Miniteoría con error cambió el 19/10, 11:30. 82 de
-83 temas tienen su opinión de la versión anterior», la pastilla «versión del 5/10» y el motivo «… · opinó con la versión
-del 5/10». Siguen en «Falta medir» ([F-TALDIA-R006](#F-TALDIA-R006)).
+**Criterio sin motor** (inv. 8), Corrección 1 al 20/10: la miniteoría de hoy aprobó sólo con Gemini y 82 temas los
+midieron con ChatGPT las del 5/10 y del 13/10. Hasta el 19/10 Correcciones decía «Miniteoría con error: 82 de 83 temas
+tienen su opinión de otro motor», la pastilla «otro motor» y el motivo «Falta medir Miniteoría con error · opinó con
+otro motor (gpt-6.1-sol en codex-cli, medium)». Ahora dice «Miniteoría con error cambió el 19/10, 11:30. 82 de 83 temas
+tienen su opinión de la versión anterior», la pastilla «versión del 5/10» y el motivo «… · opinó con la versión del
+5/10». Siguen en «Falta medir» ([F-TALDIA-R006](#F-TALDIA-R006)).
 
 </details>
 
@@ -221,7 +221,8 @@ en ámbar, «dijo: sin error» y «Pedir de nuevo».
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
 > Para el grupo «Los jueces lo dan por bueno» y para el cruce del Mapa, una opinión de antes cuenta como «falta medir».
-> Esto vale tanto para la versión anterior como para otro motor. Invariantes:
+> Esto vale para cualquier opinión de una versión anterior, con cualquier motor; una de la versión de hoy cuenta con
+> cualquier motor ([F-ALDIA-R003](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md#F-ALDIA-R003), inv. 7). Invariantes:
 > 1. un cambio con una opinión de antes no entra en el grupo, aunque esa opinión diga que está resuelto;
 > 2. «Por qué quedan afuera» lo dice con el juez y la versión: «Falta medir la miniteoría · opinó con la versión del
 >    5/10»;
@@ -294,7 +295,7 @@ versión de los jueces. Con la misma versión vieja en las dos puntas, las cuatr
 cubre, y separa lo que no se puede comparar de lo que se compara con un juez viejo.
 
 **Criterio**, con Corrección 1 al 18/10: la condición dice «Dos jueces no están al día». Debajo van dos renglones:
-«otro motor · Naturalidad idiomática · la base es de llama3 local · 21 cambios» y «anterior · Miniteoría con error ·
+«anterior · Naturalidad idiomática · la base es de procedencia desconocida · 21 cambios» y «anterior · Miniteoría con error ·
 la del 5/10 en los dos lados · 14 cambios; una versión distinta en cada lado · 7 cambios». El comando sugiere
 `--accept-previous mini-theory` y aclara que la naturalidad y los 7 cambios seguirían frenando.
 
@@ -309,8 +310,9 @@ la del 5/10 en los dos lados · 14 cambios; una versión distinta en cada lado �
 > 1. si la versión de hoy del juez aprobó con algún motor, o José la promovió
 >    ([F-ALDIA-R003](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md#F-ALDIA-R003)), el botón abre el diálogo común de
 >    lanzar con ese juez y ese estado, y con un motor con el que aprobó ([F-TALDIA-R004](#F-TALDIA-R004), inv. 3). El
->    diálogo estima gratis, propone un tope y no consulta nada hasta que José confirma. La fila dice con qué motor quedó
->    habilitada: «habilitada con Gemini 3.8 Flash»;
+>    diálogo estima gratis, propone un tope y no consulta nada hasta que José confirma. Si quedó habilitada con más de un
+>    motor, la fila los dice: «habilitada con ChatGPT y Gemini 3.8 Flash». Con uno solo no lo repite: con qué motor se
+>    midió no cambia ninguna marca ([F-ALDIA-R003](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md#F-ALDIA-R003), inv. 7);
 > 2. mide sin forzar: reusa todo lo que ya está medido, también lo de antes, y consulta sólo lo sin medir;
 > 3. si la versión de hoy no aprobó con ningún motor, el botón está apagado. La fila dice una sola vez por qué: «La
 >    versión de hoy no aprobó su examen: sin eso no consulta sobre el curso.», con un «Ver su examen» que lleva a
@@ -331,7 +333,7 @@ el curso. No es que «no sirve para publicar»: no mide.
 
 **Criterio**, con los datos del 19/10: Pragmatismo comunicativo dice «sin medir 88» y «Medir lo que falta» en
 Corrección 1. Calidad de distractores dice «sin medir 244» y el botón en la base. La miniteoría aprobó sólo con Gemini:
-su fila dice «habilitada con Gemini 3.8 Flash» y el botón abre el diálogo con Gemini. Naturalidad idiomática y Calidad
+el botón abre el diálogo con Gemini, que dice el motor; la fila no lo repite. Naturalidad idiomática y Calidad
 didáctica A1 están promovidas con ChatGPT: su botón se prende como el de cualquier juez aprobado.
 
 </details>
@@ -456,7 +458,7 @@ Las pruebas usan respuestas grabadas de content-audit. Ninguna consulta a un mod
 
 | Regla | Qué se comprueba |
 |---|---|
-| R001 | Las tres marcas salen de lo que dice content-audit, con las mismas palabras en las cuatro pantallas. Dos aprobaciones el mismo día en la zona del navegador llevan la hora, y ninguna versión de juez se muestra como «versión N». «Otro motor» no dice que lo midió la versión de hoy, y una versión anterior sin aprobar se nombra «la versión sin aprobar (…)» (ittm `marca-del-juez.test.js` «F-TALDIA-R001 inv. 8», `correcciones-jueces-al-dia.test.js` «F-TALDIA-R001 inv. 8») |
+| R001 | Las tres marcas salen de lo que dice content-audit, con las mismas palabras en las cuatro pantallas. Dos aprobaciones el mismo día en la zona del navegador llevan la hora, y ninguna versión de juez se muestra como «versión N». No hay marca «otro motor»: la causa de motor se lee «anterior», y una versión anterior sin aprobar se nombra «la versión sin aprobar (…)» (ittm `marca-del-juez.test.js` «F-TALDIA-R001 inv. 8», `correcciones-jueces-al-dia.test.js` «F-TALDIA-R001 inv. 8») |
 | R002 | La línea y el arco aparecen sólo con algo de antes. La ficha de la base dice «anterior», no «aprobado» |
 | R003 | Lo que no cuenta va en su propio renglón; sin lista, dice «no se sabe qué cambió» |
 | R004 | Las dos casillas vienen marcadas, el botón dice el número y nada se consulta sin confirmar. Sin examen aprobado, el botón está apagado y dice por qué. Con un juez aprobado sólo con Gemini, el diálogo abre con Gemini y ChatGPT se ve apagado; aprobado con los dos, abre con ChatGPT |
