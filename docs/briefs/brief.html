@@ -343,7 +343,7 @@
     <p class="sub">Una sola pregunta por pestaña, el aviso de tablero reiniciado en todas y Problemas que se cierra sin que nadie mire.</p>
   </header>
 
-  <div class="lede"><p><strong>La etapa 1 está hecha, probada y subida en sus dos ramas, sin juntar:</strong> la medición que arrancó a las 9 sigue corriendo. Falta tu sí para juntarlas cuando termine.</p></div>
+  <div class="lede"><p><strong>La etapa 1 está hecha, probada y juntada:</strong> ittm y content-audit al día, y el 7800 ya corre el servidor nuevo. Queda una pregunta para la etapa 2.</p></div>
 
   <section>
     <h2>Había cinco copias de lo que corre; ahora hay una</h2>
@@ -433,19 +433,14 @@
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Junto las dos ramas y reinicio el 7800 cuando termine la medición?</span>
-        <div class="ops"><span class="op rec">Sí, apenas termine · recomendado</span><span class="op">Lo hago yo</span></div>
-        <span class="why">Van juntas: las páginas nuevas necesitan el servidor nuevo, y el 7800 las lee del disco. Juntar ahora le rompería el tablero a la medición.</span></div>
-      <div class="ask"><span class="q">2 · ¿El aviso de la etapa 2 va por un canal compartido entre pestañas?</span>
+      <div class="ask"><span class="q">1 · ¿El aviso de la etapa 2 va por un canal compartido entre pestañas?</span>
         <div class="ops"><span class="op rec">Uno compartido · recomendado</span><span class="op">Uno por pestaña</span></div>
         <span class="why">El navegador da 6 conexiones por servidor: con 9 pestañas ya encoló una pregunta 8 s. Un canal fijo por pestaña las agotaría.</span></div>
     </div>
-    <pre><code>git -C ~/projects/learney/ittm merge --ff-only origin/claude/estado-etapa-1
-git -C ~/projects/learney/content-audit merge --ff-only origin/claude/estado-etapa-1</code></pre>
   </section>
 
   <footer>
-    <span>Requisito FEAT-CORRE (requirements/2026-10-20.02_lo-que-corre). Ramas refs/heads/claude/estado-etapa-1: ittm 71c9f6ec1 (7 commits sobre master 2a922eb35, sin conflictos) y content-audit 49a6a08de + este brief. Fotos de la franja: servidor de prueba del tablero; la copia: campaña a1-v11 clonada, sin modelos.</span>
+    <span>Requisito FEAT-CORRE (requirements/2026-10-20.02_lo-que-corre). Juntado el 20/10 al terminar la medición 21410: ittm master 71c9f6ec1 y content-audit main (rama claude/estado-etapa-1, fast-forward); el 7800 lo reinició Tablero.app con 71c9f6ec1. Fotos de la franja: servidor de prueba del tablero; la copia: campaña a1-v11 clonada, sin modelos.</span>
     <span>brief 170 · docs/briefs/170-lo-que-corre.html</span>
   </footer>
 
