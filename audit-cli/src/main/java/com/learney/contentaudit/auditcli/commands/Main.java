@@ -1474,6 +1474,8 @@ class Main {
             config.setProductionDocumentProjector(courseRepository);
             // F-ALDIA-R003 and R005: each verdict of an analysis and of a closing is marked against today's judge.
             config.setJudgeFreshnessCatalog(judgeFreshnessCatalog);
+            // F-CORTE-R001 and R006: a cut measurement is counted with the verdicts its judge left saved.
+            config.setEvaluationTimeline(evaluationLedger);
             config.setCurrentAnalysisService(new com.learney.contentaudit.revisiondomain.batchengine.DefaultCurrentAnalysisServiceFactory().create(
                     config, new com.learney.contentaudit.auditdomain.analysis.DefaultAnalysisComposer(analyzerCatalog,
                     scoreAggregator, new DefaultContextNumbersCalculator(),

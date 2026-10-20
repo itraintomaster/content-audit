@@ -37,6 +37,7 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
 
     @Override public State execute(Request r) {
         Objects.requireNonNull(r, "Falta el pedido.");
+        if ("reconcile".equals(r.action())) return reconcile(r);
         return "both".equals(r.state()) ? both(r) : executeSingle(r, null, null);
     }
 
@@ -109,11 +110,15 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         }
         List<String> ids = selected.stream().map(RefinementTask::getId).toList();
         List<String> quizzes = selected.stream().map(RefinementTask::getNodeId).distinct().toList();
+        boolean measurement = !"correct".equals(r.action());
+        // F-CORTE-R005: before the first query, what reconciling a cut needs: the process, the judge's evaluators and
+        // motor, what was already measured and what the measurement sets out to reach.
         Run run = new Run(r.operationId(), recordedAction(r), judge, r.sourceRunId(), BatchBook.correctionRevision(batch),
                 batch.getContentVersion(), estimate.fingerprint(), estimate.judgeVersion(), estimate.runtime(),
-                null, null, ids, quizzes, r.queryCap(), r.queryCap(), 0, 0, 0, 0, "RUNNING", r.reviewer(),
+                null, null, ids, quizzes, r.queryCap(), r.queryCap(), 0, measurement ? estimate.reached() : 0,
+                measurement ? estimate.evaluated() : 0, measurement ? estimate.missing() : 0, "RUNNING", r.reviewer(),
                 Instant.now(), null, null, r.includeApproved(), batch.getContentVersion(), estimate.fingerprint(),
-                "correct".equals(r.action()) ? correctorRuntime : null);
+                measurement ? null : correctorRuntime, process(trial, judge));
         if (!base && config.getCurrentAnalysisService() != null) config.getCurrentAnalysisService().seed(batch, start);
         put(batch, run);
         batch.setStatus(BatchStatus.RUNNING);
@@ -186,7 +191,7 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
                 run.fingerprint(), run.judgeVersion(), run.runtime(), run.auditId(), run.planId(), run.taskIds(), run.quizIds(),
                 run.queryCap(), run.reserved(), run.spent(), run.reached(), run.evaluated(), run.missing(), run.status(),
                 run.reviewer(), run.createdAt(), run.finishedAt(), run.detail(), run.includeApproved(), batch.getContentVersion(),
-                fingerprint.apply(level(ledger.composedCourse(batch, start), batch.getLevel())), run.correctorRuntime());
+                fingerprint.apply(level(ledger.composedCourse(batch, start), batch.getLevel())), run.correctorRuntime(), run.process());
         put(batch, run);
         batch.setStatus(BatchStatus.CLOSED);
         config.getBatchStore().save(batch);
@@ -215,12 +220,11 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
                 }
             });
         }
-        boolean uncertain = BatchBook.list(b.getSelectiveRuns()).stream()
-                .anyMatch(r -> List.of("RUNNING", "NEEDS_REVIEW").contains(r.status())
-                        && !(Objects.equals(coordinatedBy, r.id()) && "reanalyze-both".equals(r.action()) && "RUNNING".equals(r.status())));
+        List<OpenRun> open = openRuns(b, coordinatedBy);
+        boolean uncertain = !open.isEmpty();
         boolean enabled = b.getStatus() == BatchStatus.CLOSED && !uncertain && allowed(c);
         int abstained = abstained(report, c, judge);
-        String reason = enabled ? null : uncertain ? "Hay una operación interrumpida o incierta. Conservá su reserva y conciliá los resultados antes de iniciar otra."
+        String reason = enabled ? null : uncertain ? held(open.get(0))
                 : b.getStatus() != BatchStatus.CLOSED ? "Hay otra operación activa o la tanda no está cerrada."
                 : c != null && c.getUnavailableReason() != null ? c.getUnavailableReason()
                 : c != null && c.getStanding() != null ? c.getStanding().getReason() : "El juez debe aprobar su examen vigente.";
@@ -234,7 +238,201 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
                         .mapToInt(e -> e.getCoverage().getReused()).sum() : 0,
                 tasks, BatchBook.copy(b.getSelectiveRuns()), config.getAnalyzerCatalog() == null ? judge
                         : config.getAnalyzerCatalog().find(judge).map(com.learney.contentaudit.auditdomain.AnalyzerDescriptor::getDisplayName).orElse(judge),
-                List.of(), c != null && c.getStanding() != null ? c.getStanding().getEnabledWith() : List.of());
+                List.of(), c != null && c.getStanding() != null ? c.getStanding().getEnabledWith() : List.of(), open);
+    }
+
+    // ── F-CORTE: a cut measurement is reconciled with what it left saved ─────────────────────────────────────
+
+    private static final Set<String> OPEN = Set.of("RUNNING", "NEEDS_REVIEW");
+    private static final String BOTH = "reanalyze-both";
+
+    /**
+     * F-CORTE-R001 to R004: closes a cut measurement with the verdicts its judge saved in its window, without consulting
+     * or reading the course, and frees the batch when it was the last open one. A run already closed answers as it is.
+     */
+    private State reconcile(Request r) {
+        if (blank(r.operationId())) fail("Falta la medición a conciliar.");
+        CorrectionBatch batch = batch(r.batchId());
+        Run main = mainOf(batch, find(batch, r.operationId()));
+        if ("correct".equals(main.action()))
+            fail("Una corrección cortada no se concilia: puede haber cambiado ejercicios. Revisala a mano.");
+        List<Run> family = family(batch, main);
+        if (family.stream().noneMatch(x -> OPEN.contains(x.status()))) return reconciledState(batch, main);
+        RunningProcesses processes = config.getRunningProcesses();
+        for (Run x : family) if (OPEN.contains(x.status()) && x.process() != null
+                && processes.running(x.process().pid(), x.process().startedAt()))
+            fail("La medición sigue corriendo (proceso " + x.process().pid() + "): esperá a que termine o cancelala.");
+        if (!r.force() && family.stream().anyMatch(x -> OPEN.contains(x.status()) && x.process() == null))
+            fail("La medición no anotó su proceso: confirmá que terminó para conciliarla.");
+        return config.getBatchStore().withAnalysisLock(batch.getId(), () -> {
+            CorrectionBatch current = batch(r.batchId());
+            Run head = find(current, main.id());
+            Instant now = Instant.now();
+            int added = 0;
+            for (Run x : family(current, head)) {
+                if (x == head && BOTH.equals(head.action()) || !OPEN.contains(x.status())) continue;
+                Run closed = reconciled(x, now);
+                added += Math.max(0, closed.spent() - x.spent());
+                put(current, closed);
+            }
+            if (BOTH.equals(head.action()) && OPEN.contains(head.status())) put(current, reconciledBoth(current, head, now));
+            current.setQueriesSpent(current.getQueriesSpent() + added);
+            boolean opinion = BatchBook.list(current.getOpinionRuns()).stream().anyMatch(x -> "RUNNING".equals(x.status()));
+            if (current.getStatus() == BatchStatus.RUNNING && openRuns(current, null).isEmpty()) {
+                if (!opinion) current.setStatus(BatchStatus.CLOSED);
+                else put(current, withDetail(find(current, head.id()),
+                        " La tanda sigue tomada por una opinión en curso: no se la liberó."));
+            }
+            config.getBatchStore().save(current);
+            return reconciledState(current, find(current, head.id()));
+        });
+    }
+
+    /** One open run closed with the verdicts saved by its judge's evaluators, with its motor, in its window. */
+    private Run reconciled(Run x, Instant now) {
+        Map<String, Integer> saved = savedByEvaluator(x, x.finishedAt() != null ? x.finishedAt() : now);
+        String cause = blank(x.detail()) ? "" : " Motivo del corte: " + x.detail();
+        if (saved == null)
+            return closed(x, "PARTIAL", x.spent(), x.reached(), x.evaluated(), x.missing(), now,
+                    "Conciliada: se cortó antes de cerrar y no anotó sus evaluadores, así que el gasto no se pudo contar."
+                            + cause);
+        int spent = saved.values().stream().mapToInt(Integer::intValue).sum();
+        // With two evaluators an exercise is measured only when both saved it.
+        int exercises = saved.values().stream().mapToInt(Integer::intValue).min().orElse(0);
+        int evaluated = Math.min(x.reached(), x.evaluated() + exercises), missing = x.reached() - evaluated;
+        return closed(x, missing == 0 ? "DONE" : "PARTIAL", spent, x.reached(), evaluated, missing, now,
+                "Conciliada: se cortó antes de cerrar. Guardó " + spent + " veredictos (" + exercises
+                        + " ejercicios) que se reutilizan; la consulta que estaba en vuelo al cortar, a lo sumo una por"
+                        + " evaluador, no se cuenta." + cause);
+    }
+
+    /** F-CORTE-R003: the main run of «ambas» spends and measures what its parts did; done only if both parts are. */
+    private Run reconciledBoth(CorrectionBatch b, Run head, Instant now) {
+        List<Run> parts = family(b, head).stream().filter(x -> x != head && !x.id().equals(head.id())).toList();
+        Run correction = parts.stream().filter(x -> x.id().equals(head.id() + "-correction")).findFirst().orElse(null);
+        Run base = parts.stream().filter(x -> x.id().equals(head.id() + "-base")).findFirst().orElse(null);
+        int spent = parts.stream().mapToInt(Run::spent).sum();
+        int evaluated = Math.min(head.reached(), parts.stream().mapToInt(Run::evaluated).sum());
+        boolean done = correction != null && base != null && "DONE".equals(correction.status()) && "DONE".equals(base.status());
+        String cause = blank(head.detail()) ? "" : " Motivo del corte: " + head.detail();
+        return closed(head, done ? "DONE" : "PARTIAL", spent, head.reached(), evaluated, head.reached() - evaluated, now,
+                "Conciliada: se cortó antes de cerrar. La corrección: " + part(correction) + "; la base: " + part(base)
+                        + ". Gastó " + spent + " consultas guardadas, que se reutilizan." + cause);
+    }
+
+    private static String part(Run x) {
+        return x == null ? "sin empezar" : x.evaluated() + " de " + x.reached() + ", " + x.spent() + " consultas";
+    }
+
+    /**
+     * Saved verdicts per evaluator of the run's judge, with its motor, between its start and {@code end}; null when the
+     * run did not record its evaluators (a run older than F-CORTE-R005) or there is no ledger to read.
+     */
+    private Map<String, Integer> savedByEvaluator(Run x, Instant end) {
+        var timeline = config.getEvaluationTimeline();
+        if (timeline == null || x.process() == null || x.process().runtime() == null || x.process().evaluators().isEmpty()
+                || x.createdAt() == null) return null;
+        var result = new LinkedHashMap<String, Integer>();
+        for (String evaluator : x.process().evaluators()) {
+            int count = 0;
+            for (Instant at : timeline.recordedTimes(evaluator, x.process().runtime()))
+                if (at != null && !at.isBefore(x.createdAt()) && !at.isAfter(end)) count++;
+            result.put(evaluator, count);
+        }
+        return result;
+    }
+
+    /** F-CORTE-R006: the open measurements that hold every launch; the parts of an open «ambas» go inside it. */
+    private List<OpenRun> openRuns(CorrectionBatch b, String coordinatedBy) {
+        var result = new ArrayList<OpenRun>();
+        RunningProcesses processes = null;
+        Instant now = Instant.now();
+        for (Run x : BatchBook.list(b.getSelectiveRuns())) {
+            if (!OPEN.contains(x.status())) continue;
+            // The coordinator of «ambas» is open while its parts run under it.
+            if (Objects.equals(coordinatedBy, x.id()) && BOTH.equals(x.action()) && "RUNNING".equals(x.status())) continue;
+            Run main = mainOf(b, x);
+            if (main != x && OPEN.contains(main.status())) continue;
+            if (processes == null) processes = config.getRunningProcesses();
+            Integer saved = 0;
+            for (Run part : family(b, x)) {
+                if (part == x && BOTH.equals(x.action())) continue;
+                Integer partSaved = part.spent();
+                if (OPEN.contains(part.status())) {
+                    Map<String, Integer> counted = savedByEvaluator(part, part.finishedAt() != null ? part.finishedAt() : now);
+                    partSaved = counted == null ? null : counted.values().stream().mapToInt(Integer::intValue).sum();
+                }
+                if (saved != null) saved = partSaved == null ? null : Integer.valueOf(saved + partSaved);
+            }
+            boolean running = x.process() != null && processes.running(x.process().pid(), x.process().startedAt());
+            result.add(new OpenRun(x.id(), x.action(), x.analyzer(), displayName(x.analyzer()), x.status(), x.createdAt(),
+                    x.queryCap(), saved, running));
+        }
+        return result;
+    }
+
+    /** The reason of the brake names the judge of the measurement that holds it, not the one estimated. */
+    private static String held(OpenRun open) {
+        return open.running()
+                ? "Una medición de " + open.displayName() + " sigue corriendo: esperá a que termine para lanzar otra."
+                : "Una medición de " + open.displayName() + " quedó cortada sin cerrar: conciliala con lo que guardó"
+                        + " antes de lanzar otra.";
+    }
+
+    private String displayName(String analyzer) {
+        return config.getAnalyzerCatalog() == null ? analyzer
+                : config.getAnalyzerCatalog().find(analyzer).map(AnalyzerDescriptor::getDisplayName).orElse(analyzer);
+    }
+
+    private RunProcess process(AuditReport report, String judge) {
+        JudgeCoverageDiagnosis c = coverage(report, judge);
+        RunningProcesses processes = config.getRunningProcesses();
+        List<String> evaluators = c == null ? List.of() : BatchBook.list(c.getEvaluators()).stream()
+                .map(com.learney.contentaudit.auditdomain.judging.EvaluatorCoverage::getEvaluatorId).filter(Objects::nonNull).toList();
+        return new RunProcess(processes.currentPid(), processes.currentStartedAt(), evaluators,
+                c != null && c.getStanding() != null ? c.getStanding().getRuntimeIdentity() : null);
+    }
+
+    private static Run find(CorrectionBatch b, String id) {
+        return BatchBook.list(b.getSelectiveRuns()).stream().filter(x -> x.id().equals(id)).findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("No existe esa medición en la tanda: " + id));
+    }
+
+    /** A part of «ambas» answers for its main run; any other run is its own main run. */
+    private static Run mainOf(CorrectionBatch b, Run x) {
+        if (x.sourceRunId() == null) return x;
+        return BatchBook.list(b.getSelectiveRuns()).stream()
+                .filter(m -> m.id().equals(x.sourceRunId()) && BOTH.equals(m.action())).findFirst().orElse(x);
+    }
+
+    private static List<Run> family(CorrectionBatch b, Run main) {
+        if (!BOTH.equals(main.action())) return List.of(main);
+        var result = new ArrayList<Run>(List.of(main));
+        for (Run x : BatchBook.list(b.getSelectiveRuns())) if (main.id().equals(x.sourceRunId())) result.add(x);
+        return result;
+    }
+
+    private static Run closed(Run r, String status, int spent, int reached, int evaluated, int missing, Instant at,
+            String detail) {
+        return new Run(r.id(), r.action(), r.analyzer(), r.sourceRunId(), r.correctionRevision(), r.contentVersion(),
+                r.fingerprint(), r.judgeVersion(), r.runtime(), r.auditId(), r.planId(), r.taskIds(), r.quizIds(),
+                r.queryCap(), r.reserved(), spent, reached, evaluated, missing, status, r.reviewer(), r.createdAt(), at,
+                detail, r.includeApproved(), r.resultContentVersion(), r.resultFingerprint(), r.correctorRuntime(), r.process());
+    }
+
+    private static Run withDetail(Run r, String more) {
+        return closed(r, r.status(), r.spent(), r.reached(), r.evaluated(), r.missing(), r.finishedAt(),
+                Objects.toString(r.detail(), "") + more);
+    }
+
+    private State reconciledState(CorrectionBatch b, Run run) {
+        List<OpenRun> open = openRuns(b, null);
+        boolean free = b.getStatus() == BatchStatus.CLOSED && open.isEmpty();
+        return new State(b.getId(), BatchBook.correctionRevision(b), b.getContentVersion(), run.analyzer(), run.fingerprint(),
+                run.judgeVersion(), run.runtime(), free, free ? run.detail() : open.isEmpty()
+                        ? "Hay otra operación activa o la tanda no está cerrada." : held(open.get(0)),
+                run.reached(), run.evaluated(), run.missing(), 0, 0, List.of(), BatchBook.copy(b.getSelectiveRuns()),
+                displayName(run.analyzer()), List.of(), List.of(), open);
     }
 
     private Set<String> approved(CorrectionBatch b) {
@@ -332,7 +530,8 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
             fail("La tanda debe estar cerrada; hace falta autor y un tope explícito.");
         Run reservation = new Run(r.operationId(), "reanalyze-both", r.analyzer(), null, BatchBook.correctionRevision(batch), batch.getContentVersion(),
                 joint, estimate.judgeVersion(), estimate.runtime(), null, null, List.of(), List.of(), r.queryCap(), r.queryCap(), 0,
-                reached, 0, reached, "RUNNING", r.reviewer(), Instant.now(), null, null, false, batch.getContentVersion(), joint, null);
+                reached, 0, reached, "RUNNING", r.reviewer(), Instant.now(), null, null, false, batch.getContentVersion(), joint, null,
+                process(trialCorrection, r.analyzer()));
         final CorrectionBatch before = batch;
         return config.getBatchStore().withAnalysisLock(batch.getId(), () -> {
             put(before, reservation);
@@ -356,7 +555,7 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
                 completed = new Run(completed.id(),completed.action(),completed.analyzer(),null,completed.correctionRevision(),completed.contentVersion(),
                         completed.fingerprint(),completed.judgeVersion(),completed.runtime(),null,null,List.of(),List.of(),completed.queryCap(),completed.reserved(),queries,
                         reached,evaluated,reached-evaluated,status,completed.reviewer(),completed.createdAt(),completed.finishedAt(),completed.detail(),false,
-                        completed.resultContentVersion(),completed.resultFingerprint(),null);
+                        completed.resultContentVersion(),completed.resultFingerprint(),null,completed.process());
             } catch (RuntimeException failure) {
                 CorrectionBatch current = batch(r.batchId());
                 int known = BatchBook.list(current.getSelectiveRuns()).stream().filter(x -> r.operationId().equals(x.sourceRunId())).mapToInt(Run::spent).sum();
@@ -404,7 +603,7 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
                 c != null ? c.getReached() : 0, c != null ? c.getEvaluated() + abstained : 0, missing,
                 c != null && missing == 0 && c.getUnavailableReason() == null ? "DONE" : "PARTIAL",
                 r.reviewer(), r.createdAt(), Instant.now(), c != null ? c.getUnavailableReason() : "Sin cobertura comprobable.",
-                r.includeApproved(), r.resultContentVersion(), r.resultFingerprint(), r.correctorRuntime());
+                r.includeApproved(), r.resultContentVersion(), r.resultFingerprint(), r.correctorRuntime(), r.process());
         return evaluated;
     }
     /** F-ALDIA-R003 inv. 6: a saved abstention is measured, although the coverage of a judge of exercises leaves it pending. */
@@ -416,7 +615,8 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         return new Run(r.id(), r.action(), r.analyzer(), r.sourceRunId(), r.correctionRevision(), r.contentVersion(),
                 r.fingerprint(), r.judgeVersion(), r.runtime(), r.auditId(), r.planId(), r.taskIds(), r.quizIds(),
                 r.queryCap(), r.reserved(), spent, r.reached(), r.evaluated(), r.missing(), status, r.reviewer(),
-                r.createdAt(), Instant.now(), detail, r.includeApproved(), r.resultContentVersion(), r.resultFingerprint(), r.correctorRuntime());
+                r.createdAt(), Instant.now(), detail, r.includeApproved(), r.resultContentVersion(), r.resultFingerprint(), r.correctorRuntime(),
+                r.process());
     }
     private static void put(CorrectionBatch b, Run run) {
         var runs = BatchBook.copy(b.getSelectiveRuns()); runs.removeIf(r -> r.id().equals(run.id())); runs.add(run);

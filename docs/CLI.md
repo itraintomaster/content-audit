@@ -432,6 +432,23 @@ Publicar recalcula la comparación y la compuerta desde la selección vigente, r
 
 Para reanalizar ambos estados, `state: "both", force: true` devuelve una estimación con `scopes`: consultas de la corrección y consultas adicionales de la base. Las entradas idénticas se miden una vez. Un único `queryCap` limita el gasto completo; en la base sólo se reutilizan resultados recién medidos con la versión exigida. Se guardan dos mediciones sueltas, vinculadas a una ejecución y con integración manual independiente. Una reserva incierta nunca se retoma automáticamente.
 
+#### Conciliar una medición cortada
+
+Una medición que se corta (cancelada, forzada o caída) deja su corrida y la tanda abiertas, y eso frena cualquier lanzamiento. Se cierra con lo que dejó guardado, sin consultar ni leer el curso:
+
+```bash
+content-audit batch selective --request-json '{"action":"reconcile","batchId":"tanda-A1","operationId":"ui-2026-10-20T00-19-29.907241Z-batch-selective","reviewer":"operador","force":true}' -f json
+```
+
+- El gasto son los veredictos que los evaluadores del juez guardaron, con su motor, entre que empezó y que terminó (o ahora). La consulta en vuelo al cortar no se cuenta.
+- Lo medido suma esos ejercicios a lo que estaba medido al empezar. Queda `PARTIAL` (o `DONE` si no falta nada), con un `detail` que empieza con «Conciliada».
+- Si el proceso anotado sigue vivo, se niega. Una corrida que no anotó su proceso (anterior a FEAT-CORTE) necesita `force: true`, que confirma que terminó. Una corrección (`correct`) no se concilia.
+- En «ambas», pedir una parte concilia la medición entera: cada parte con lo suyo y la principal suma.
+- Al conciliar la última abierta, la tanda vuelve a `CLOSED`, salvo que la tenga tomada una opinión en curso.
+- Volver a pedirla con la corrida ya cerrada responde sin escribir.
+
+Cada medición anota al empezar `process` (PID, inicio del proceso, evaluadores y motor) y lo medido al empezar en `reached`, `evaluated` y `missing`. La respuesta de cualquier estimación trae `openRuns`: por cada medición abierta, `id`, `action`, `analyzer`, `displayName`, `status`, `createdAt`, `queryCap`, `saved` (veredictos guardados; `null` si no anotó sus evaluadores) y `running`.
+
 La ficha de integración incluye errores compatibles con la base, errores actuales y resultantes por juez y las versiones anteriores. Esos datos permiten mostrar el desglose y el antes/después sin atribuir los errores de ejercicios cambiados a la corrección cuando la base sigue sin medir.
 
 Cada encaje de `looseRuns[].fits[]` parte lo que encaja (`compatible`) en seis cuentas que no se pisan y suman exactamente `compatible`: `selected` (ya cuenta), `gaps` (llena un hueco: ahí no contaba ninguna medición) y las cuatro formas de `replaces`. `toToday` trae el juez de hoy donde lo que cuenta no lo es; `toOtherVersion` trae una versión que no es la de hoy, o el juez no tiene versión de hoy; `changesResults` es la misma versión con otras marcas; `repeats` es la misma versión con las mismas marcas. El juez de hoy es la referencia de los jueces al día: si su versión aprobó, cuenta sólo un veredicto «al día»; si no aprobó, cuenta la versión de hoy (o una registrada como la misma) aunque no esté aprobada. `todayApproved` dice si la versión de hoy aprobó su examen y `runToday` si todos los veredictos que encajan son del juez de hoy; los dos son `null` si el juez no tiene versión de hoy, y `runToday` también si nada encaja. `lostErrors` y `newErrors` siguen abarcando todo lo que encaja, huecos incluidos.

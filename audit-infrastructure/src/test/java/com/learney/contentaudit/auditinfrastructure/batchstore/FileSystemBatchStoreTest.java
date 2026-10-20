@@ -80,6 +80,33 @@ public class FileSystemBatchStoreTest {
         assertEquals(1, first.reviews("batch").size());
         assertEquals(BatchReviewDecision.Status.APPROVED, first.reviews("batch").get(0).status());
     }
+    @Test @Tag("FEAT-CORTE") @Tag("F-CORTE-R005")
+    void aBatchSavedBeforeRunsRecordedTheirProcessIsStillRead() throws IOException {
+        var store = new FileSystemBatchStore(workdir);
+        var batch = batch("corte", Instant.now());
+        var runtime = com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "medium");
+        var process = new com.learney.contentaudit.revisiondomain.batch.SelectiveCorrection.RunProcess(4242,
+                Instant.parse("2026-10-20T00:19:20.123456Z"), List.of("native-usage-judge"), runtime);
+        var run = new com.learney.contentaudit.revisiondomain.batch.SelectiveCorrection.Run("medicion", "analyze", "naturalness",
+                null, 1, 5, "fp", "v1", runtime.toString(), null, null, List.of(), List.of(), 1919, 1919, 0, 2402, 483, 1919,
+                "RUNNING", "operador-ui", Instant.parse("2026-10-20T00:19:29Z"), null, null, false, 5, "fp", null, process);
+        batch.setSelectiveRuns(List.of(run));
+        store.save(batch);
+        assertEquals(List.of(run), new FileSystemBatchStore(workdir).load("corte").orElseThrow().getSelectiveRuns());
+
+        Path file;
+        try (Stream<Path> files = Files.walk(workdir)) {
+            file = files.filter(f -> f.getFileName().toString().equals("corte.json")).findFirst().orElseThrow();
+        }
+        var mapper = new ObjectMapper();
+        var tree = (com.fasterxml.jackson.databind.node.ObjectNode) mapper.readTree(file.toFile());
+        ((com.fasterxml.jackson.databind.node.ObjectNode) tree.get("selectiveRuns").get(0)).remove("process");
+        mapper.writeValue(file.toFile(), tree);
+        var old = new FileSystemBatchStore(workdir).load("corte").orElseThrow().getSelectiveRuns().get(0);
+        assertNull(old.process());
+        assertEquals("RUNNING", old.status()); assertEquals(483, old.evaluated());
+    }
+
     @Test
     void contextualOpinionsSurviveReloadIncludingTheRequestBudgetAndEvidence() {
         var store = new FileSystemBatchStore(workdir);

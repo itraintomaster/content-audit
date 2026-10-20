@@ -44,6 +44,18 @@ public class BatchServiceConfig {
 
     public com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCatalog getJudgeFreshnessCatalog() { return judgeFreshnessCatalog; }
     public void setJudgeFreshnessCatalog(com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCatalog catalog) { judgeFreshnessCatalog = catalog; }
+
+    /** F-CORTE-R001 and R006: when each verdict was saved, to count what a cut measurement left; null counts nothing. */
+    private com.learney.contentaudit.evaluationledgerdomain.EvaluationTimeline evaluationTimeline;
+
+    public com.learney.contentaudit.evaluationledgerdomain.EvaluationTimeline getEvaluationTimeline() { return evaluationTimeline; }
+    public void setEvaluationTimeline(com.learney.contentaudit.evaluationledgerdomain.EvaluationTimeline timeline) { evaluationTimeline = timeline; }
+
+    /** F-CORTE-R002 and R005: the processes of this machine; null means the ones the operating system reports. */
+    private RunningProcesses runningProcesses;
+
+    public RunningProcesses getRunningProcesses() { return runningProcesses != null ? runningProcesses : RunningProcesses.ofThisMachine(); }
+    public void setRunningProcesses(RunningProcesses processes) { runningProcesses = processes; }
     private BatchStore batchStore;
 
     private BatchReviewCache reviewCache;

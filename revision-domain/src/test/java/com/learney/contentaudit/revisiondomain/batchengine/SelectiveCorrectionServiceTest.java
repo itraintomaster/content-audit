@@ -611,4 +611,271 @@ class SelectiveCorrectionServiceTest {
         verifyNoInteractions(factory, panel); verify(store, never()).saveIfVersion(any(), anyInt(), any());
         verify(store, never()).save(any());
     }
+
+    // ── FEAT-CORTE: cortar una medición sin trabar la tanda ──────────────────────────────────────────────
+
+    static final EvaluationRuntimeIdentity CHATGPT = EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "medium");
+    static final EvaluationRuntimeIdentity OTHER_MOTOR = EvaluationRuntimeIdentity.explicit("claude-cli", "opus", "high");
+    static final java.time.Instant STARTED = java.time.Instant.parse("2026-10-20T00:19:29Z");
+    static final java.time.Instant PROCESS_START = java.time.Instant.parse("2026-10-20T00:19:20Z");
+
+    /** The verdicts saved per evaluator and motor, in memory. */
+    final Map<String, List<java.time.Instant>> saved = new HashMap<>();
+    /** The processes this machine still runs, in memory. */
+    final Set<Long> alive = new HashSet<>();
+
+    void save(String evaluator, EvaluationRuntimeIdentity motor, java.time.Instant... at) {
+        saved.computeIfAbsent(evaluator + "|" + motor, k -> new ArrayList<>()).addAll(List.of(at));
+    }
+    static java.time.Instant minute(int m) { return STARTED.plusSeconds(60L * m); }
+
+    void cutWorld() {
+        config.setEvaluationTimeline(new EvaluationTimeline() {
+            @Override public List<java.time.Instant> recordedTimes(String evaluatorId) { throw new AssertionError("motor-blind count"); }
+            @Override public List<java.time.Instant> recordedTimes(String evaluatorId, EvaluationRuntimeIdentity runtime) {
+                return saved.getOrDefault(evaluatorId + "|" + runtime, List.of());
+            }
+        });
+        config.setRunningProcesses(new RunningProcesses() {
+            @Override public long currentPid() { return 4242; }
+            @Override public java.time.Instant currentStartedAt() { return PROCESS_START; }
+            @Override public boolean running(long pid, java.time.Instant startedAt) { return alive.contains(pid); }
+        });
+        doAnswer(i -> ((java.util.function.Supplier<?>) i.getArgument(1)).get()).when(store).withAnalysisLock(anyString(), any());
+    }
+    static RunProcess process(String... evaluators) {
+        return new RunProcess(4242, PROCESS_START, List.of(evaluators), CHATGPT);
+    }
+    static Run open(String id, String action, String analyzer, String source, int cap, int reached, int evaluated,
+            String status, RunProcess process) {
+        return new Run(id, action, analyzer, source, 1, 5, "context", "v1", CHATGPT.toString(), null, null, List.of(), List.of(),
+                cap, cap, 0, reached, evaluated, reached - evaluated, status, "operador-ui", STARTED, null, null, false, 5,
+                "context", null, process);
+    }
+    void cut(Run... runs) {
+        batch.setSelectiveRuns(new ArrayList<>(List.of(runs)));
+        batch.setStatus(BatchStatus.RUNNING);
+    }
+    Request reconcile(String id, boolean ended) {
+        return new Request("reconcile", "batch", null, id, null, null, null, null, null, List.of(), false, "tablero", null, ended);
+    }
+    Run run(String id) { return batch.getSelectiveRuns().stream().filter(x -> x.id().equals(id)).findFirst().orElseThrow(); }
+
+    @Test @Tag("FEAT-CORTE") @Tag("F-CORTE-R001") @Tag("F-CORTE-R004")
+    void aCutMeasurementClosesWithTheVerdictsSavedInItsWindowAndMotor() {
+        cutWorld();
+        cut(open("naturalidad", "analyze", "naturalness", null, 1919, 2402, 483, "RUNNING", process("native-usage-judge")));
+        save("native-usage-judge", CHATGPT, minute(1), minute(10), minute(36));
+        save("native-usage-judge", CHATGPT, STARTED.minusSeconds(60));          // before it started: another run
+        save("native-usage-judge", OTHER_MOTOR, minute(5));                     // another motor
+        var state = service.execute(reconcile("naturalidad", false));
+        Run closed = run("naturalidad");
+        assertEquals("PARTIAL", closed.status());
+        assertEquals(3, closed.spent());
+        assertEquals(486, closed.evaluated()); assertEquals(2402, closed.reached()); assertEquals(1916, closed.missing());
+        assertEquals(1919, closed.reserved());
+        assertNotNull(closed.finishedAt());
+        assertTrue(closed.detail().startsWith("Conciliada"), closed.detail());
+        assertTrue(closed.detail().contains("3 veredictos"), closed.detail());
+        assertTrue(closed.detail().contains("a lo sumo una por evaluador"), closed.detail());
+        assertEquals(13, batch.getQueriesSpent());
+        assertEquals(BatchStatus.CLOSED, batch.getStatus());
+        assertTrue(state.openRuns().isEmpty());
+        verifyNoInteractions(engine, repository, factory, panel);
+    }
+
+    @Test @Tag("FEAT-CORTE") @Tag("F-CORTE-R001")
+    void aMeasurementThatFailedKeepsItsCauseAndCountsUpToItsEnd() {
+        cutWorld();
+        var failed = open("fallida", "analyze", "naturalness", null, 100, 50, 10, "NEEDS_REVIEW", process("native-usage-judge"));
+        failed = new Run(failed.id(), failed.action(), failed.analyzer(), null, 1, 5, "context", "v1", failed.runtime(), null, null,
+                List.of(), List.of(), 100, 100, 0, 50, 10, 40, "NEEDS_REVIEW", "operador-ui", STARTED, minute(20),
+                "No se pudo leer el informe. La reserva se conserva; no relanzar esta identidad ni asumir saldo.", false, 5,
+                "context", null, failed.process());
+        batch.setSelectiveRuns(new ArrayList<>(List.of(failed)));
+        save("native-usage-judge", CHATGPT, minute(2), minute(19), minute(25));   // the last one is after it ended
+        service.execute(reconcile("fallida", false));
+        assertEquals(2, run("fallida").spent());
+        assertTrue(run("fallida").detail().contains("Motivo del corte: No se pudo leer el informe"), run("fallida").detail());
+        assertEquals(BatchStatus.CLOSED, batch.getStatus());
+    }
+
+    @Test @Tag("FEAT-CORTE") @Tag("F-CORTE-R001")
+    void withTwoEvaluatorsAnExerciseCountsMeasuredOnlyWhenBothSavedIt() {
+        cutWorld();
+        cut(open("traduccion", "analyze", "translation-sense", null, 40, 30, 0, "RUNNING",
+                process("translation-sense-from-english", "translation-sense-from-translation")));
+        save("translation-sense-from-english", CHATGPT, minute(1), minute(2), minute(3), minute(4), minute(5));
+        save("translation-sense-from-translation", CHATGPT, minute(1), minute(2), minute(3), minute(4));
+        service.execute(reconcile("traduccion", false));
+        assertEquals(9, run("traduccion").spent());
+        assertEquals(4, run("traduccion").evaluated()); assertEquals(26, run("traduccion").missing());
+    }
+
+    @Test @Tag("FEAT-CORTE") @Tag("F-CORTE-R001")
+    void reconcilingAClosedMeasurementAgainAnswersWithoutWriting() {
+        cutWorld();
+        cut(open("naturalidad", "analyze", "naturalness", null, 1919, 2402, 483, "RUNNING", process("native-usage-judge")));
+        save("native-usage-judge", CHATGPT, minute(1));
+        service.execute(reconcile("naturalidad", false));
+        Run first = run("naturalidad"); int spent = batch.getQueriesSpent();
+        clearInvocations(store);
+        save("native-usage-judge", CHATGPT, minute(2));
+        var again = service.execute(reconcile("naturalidad", false));
+        assertEquals(first, run("naturalidad")); assertEquals(spent, batch.getQueriesSpent());
+        assertTrue(again.allowed());
+        verify(store, never()).save(any()); verify(store, never()).saveIfVersion(any(), anyInt(), any());
+    }
+
+    @Test @Tag("FEAT-CORTE") @Tag("F-CORTE-R002")
+    void aMeasurementWhoseProcessStillRunsIsNeverReconciled() {
+        cutWorld();
+        cut(open("naturalidad", "analyze", "naturalness", null, 1919, 2402, 483, "RUNNING", process("native-usage-judge")));
+        alive.add(4242L);
+        var refused = assertThrows(IllegalArgumentException.class, () -> service.execute(reconcile("naturalidad", true)));
+        assertTrue(refused.getMessage().contains("sigue corriendo"), refused.getMessage());
+        assertEquals("RUNNING", run("naturalidad").status()); assertEquals(BatchStatus.RUNNING, batch.getStatus());
+        verify(store, never()).save(any());
+    }
+
+    @Test @Tag("FEAT-CORTE") @Tag("F-CORTE-R002")
+    void aRunWithoutItsProcessNeedsConfirmationThatItEnded() {
+        cutWorld();
+        cut(open("vieja", "analyze", "naturalness", null, 100, 0, 0, "RUNNING", null));
+        var refused = assertThrows(IllegalArgumentException.class, () -> service.execute(reconcile("vieja", false)));
+        assertTrue(refused.getMessage().contains("confirmá que terminó"), refused.getMessage());
+        assertEquals("RUNNING", run("vieja").status());
+        service.execute(reconcile("vieja", true));
+        assertEquals("PARTIAL", run("vieja").status());
+        assertTrue(run("vieja").detail().contains("no se pudo contar"), run("vieja").detail());
+        assertEquals(10, batch.getQueriesSpent());
+        assertEquals(BatchStatus.CLOSED, batch.getStatus());
+    }
+
+    @Test @Tag("FEAT-CORTE") @Tag("F-CORTE-R002")
+    void aCutCorrectionIsNeverReconciled() {
+        cutWorld();
+        cut(open("corregir", "correct", "multiple-choice-quality", "analysis", 8, 0, 0, "NEEDS_REVIEW", process("multiple-choice-quality")));
+        var refused = assertThrows(IllegalArgumentException.class, () -> service.execute(reconcile("corregir", true)));
+        assertTrue(refused.getMessage().contains("corrección cortada"), refused.getMessage());
+        assertEquals("NEEDS_REVIEW", run("corregir").status());
+        verify(store, never()).save(any());
+    }
+
+    @Test @Tag("FEAT-CORTE") @Tag("F-CORTE-R003")
+    void aCutBothMeasurementAddsUpItsPartsAndTheOneNeverStartedCountsAsMissing() {
+        cutWorld();
+        Run main = open("miniteoria", "reanalyze-both", "mini-theory", null, 160, 160, 0, "RUNNING", process("mini-theory-judge"));
+        Run correction = open("miniteoria-correction", "reanalyze", "mini-theory", "miniteoria", 160, 83, 0, "DONE", process("mini-theory-judge"));
+        correction = new Run(correction.id(), "reanalyze", "mini-theory", "miniteoria", 1, 5, "context", "v1", correction.runtime(),
+                "audit-c", "plan-c", List.of(), List.of(), 160, 160, 83, 83, 83, 0, "DONE", "operador-ui", STARTED, minute(70),
+                null, false, 5, "context", null, correction.process());
+        cut(main, correction);
+        service.execute(reconcile("miniteoria-correction", false));     // asking for a part reconciles the whole
+        Run closed = run("miniteoria");
+        assertEquals("PARTIAL", closed.status()); assertEquals(83, closed.spent());
+        assertEquals(83, closed.evaluated()); assertEquals(77, closed.missing());
+        assertTrue(closed.detail().contains("la base: sin empezar"), closed.detail());
+        assertEquals(correction, run("miniteoria-correction"));
+        assertEquals(10, batch.getQueriesSpent(), "a part that finished already added its spend");
+        assertEquals(BatchStatus.CLOSED, batch.getStatus());
+
+        // Cut inside the correction: the part is counted from the ledger and the main run adds it up.
+        Run main2 = open("ambas", "reanalyze-both", "mini-theory", null, 160, 160, 0, "RUNNING", process("mini-theory-judge"));
+        Run part = open("ambas-correction", "reanalyze", "mini-theory", "ambas", 160, 83, 0, "RUNNING", process("mini-theory-judge"));
+        cut(main2, part);
+        save("mini-theory-judge", CHATGPT, minute(1), minute(2), minute(3));
+        service.execute(reconcile("ambas", false));
+        assertEquals(3, run("ambas-correction").spent()); assertEquals("PARTIAL", run("ambas-correction").status());
+        assertEquals(3, run("ambas").spent()); assertEquals(3, run("ambas").evaluated()); assertEquals("PARTIAL", run("ambas").status());
+        assertEquals(13, batch.getQueriesSpent());
+        assertFalse(batch.getSelectiveRuns().stream().anyMatch(x -> x.id().equals("ambas-base")));
+    }
+
+    @Test @Tag("FEAT-CORTE") @Tag("F-CORTE-R004") @Tag("F-CORTE-R005")
+    void reconcilingTheLastOpenMeasurementFreesTheBatch() {
+        cutWorld();
+        class Cut extends Error { Cut() { super("SIGTERM"); } }
+        when(engine.runAudit(any(), any(AnalyzerRunSelection.class))).thenAnswer(i -> {
+            var s = i.getArgument(1, AnalyzerRunSelection.class);
+            if (s.getPolicies().get(s.getAnalyzers().get(0)).getMaxNewEvaluations() > 0) throw new Cut();
+            for (var c : List.of(quality, unique, single, instruction, translation))
+                if (s.getAnalyzers().contains(c.getJudgeName()))
+                    c.setEvaluators(List.of(new EvaluatorCoverage(c.getJudgeName(), new EvaluationCoverage(), "v1")));
+            return report;
+        });
+        assertThrows(Cut.class, () -> service.execute(req("analyze", "cortada", List.of(), 2, false)));
+        assertEquals(BatchStatus.RUNNING, batch.getStatus());
+        assertFalse(service.execute(req("estimate", null, List.of(), null, false)).allowed());
+        save("multiple-choice-quality", CHATGPT, java.time.Instant.now());
+        service.execute(reconcile("cortada", false));
+        assertEquals(BatchStatus.CLOSED, batch.getStatus());
+        assertEquals(1, run("cortada").spent());
+        var estimate = service.execute(req("estimate", null, List.of(), null, false));
+        assertTrue(estimate.allowed(), estimate.reason()); assertTrue(estimate.openRuns().isEmpty());
+
+        // With another measurement still open, the batch stays held.
+        cut(open("una", "analyze", "naturalness", null, 10, 10, 0, "RUNNING", process("native-usage-judge")),
+                open("otra", "analyze", "pragmatism", null, 10, 10, 0, "RUNNING", process("pragmatism-judge")));
+        service.execute(reconcile("una", false));
+        assertEquals(BatchStatus.RUNNING, batch.getStatus());
+        service.execute(reconcile("otra", false));
+        assertEquals(BatchStatus.CLOSED, batch.getStatus());
+    }
+
+    @Test @Tag("FEAT-CORTE") @Tag("F-CORTE-R004")
+    void aBatchHeldByARunningOpinionIsNotFreed() {
+        cutWorld();
+        cut(open("naturalidad", "analyze", "naturalness", null, 10, 10, 0, "RUNNING", process("native-usage-judge")));
+        batch.setOpinionRuns(List.of(new ContextOpinion.Run("opinion", null, 1, 5, "fp", 10, 0, "RUNNING", STARTED, null,
+                List.of(), List.of(), List.of(), null)));
+        service.execute(reconcile("naturalidad", false));
+        assertEquals("PARTIAL", run("naturalidad").status());
+        assertEquals(BatchStatus.RUNNING, batch.getStatus());
+        assertTrue(run("naturalidad").detail().contains("opinión en curso"), run("naturalidad").detail());
+    }
+
+    @Test @Tag("FEAT-CORTE") @Tag("F-CORTE-R005")
+    void aMeasurementRecordsItsProcessEvaluatorsAndStartBeforeTheFirstQuery() {
+        cutWorld();
+        var recorded = new java.util.concurrent.atomic.AtomicReference<Run>();
+        when(engine.runAudit(any(), any(AnalyzerRunSelection.class))).thenAnswer(i -> {
+            var s = i.getArgument(1, AnalyzerRunSelection.class);
+            if (s.getPolicies().get(s.getAnalyzers().get(0)).getMaxNewEvaluations() > 0)
+                recorded.set(batch.getSelectiveRuns().stream().filter(x -> x.id().equals("medicion")).findFirst().orElseThrow());
+            var ec = new EvaluationCoverage();
+            for (var c : List.of(quality, unique, single, instruction, translation))
+                if (s.getAnalyzers().contains(c.getJudgeName())) c.setEvaluators(List.of(new EvaluatorCoverage(c.getJudgeName(), ec, "v1")));
+            return report;
+        });
+        service.execute(req("analyze", "medicion", List.of(), 2, false));
+        Run atStart = recorded.get();
+        assertEquals("RUNNING", atStart.status());
+        assertEquals(new RunProcess(4242, PROCESS_START, List.of("multiple-choice-quality"), CHATGPT), atStart.process());
+        assertEquals(2, atStart.reached()); assertEquals(1, atStart.evaluated()); assertEquals(1, atStart.missing());
+        assertEquals(atStart.process(), run("medicion").process(), "the closed run keeps what it recorded");
+        verify(store).saveIfVersion(argThat(b -> b.getSelectiveRuns().stream().anyMatch(x -> x.id().equals("medicion") && x.process() != null)),
+                eq(5), eq(BatchStatus.CLOSED));
+    }
+
+    @Test @Tag("FEAT-CORTE") @Tag("F-CORTE-R006")
+    void theEstimateNamesTheOpenMeasurementThatHoldsLaunches() {
+        cutWorld();
+        cut(open("naturalidad", "analyze", "naturalness", null, 1919, 2402, 483, "RUNNING", process("native-usage-judge")),
+                open("vieja", "analyze", "pragmatism", null, 50, 0, 0, "NEEDS_REVIEW", null));
+        save("native-usage-judge", CHATGPT, minute(1), minute(2));
+        var estimate = service.execute(req("estimate", null, List.of(), null, false));
+        assertFalse(estimate.allowed());
+        assertEquals(2, estimate.openRuns().size());
+        OpenRun naturalness = estimate.openRuns().get(0);
+        assertEquals(new OpenRun("naturalidad", "analyze", "naturalness", "naturalness", "RUNNING", STARTED, 1919, 2, false), naturalness);
+        assertNull(estimate.openRuns().get(1).saved(), "without its evaluators, what it saved is not said");
+        assertTrue(estimate.reason().contains("naturalness"), estimate.reason());
+        assertFalse(estimate.reason().contains("multiple-choice-quality"), estimate.reason());
+        alive.add(4242L);
+        var running = service.execute(req("estimate", null, List.of(), null, false));
+        assertTrue(running.openRuns().get(0).running());
+        assertTrue(running.reason().contains("sigue corriendo"), running.reason());
+        verify(store, never()).save(any());
+    }
 }
