@@ -3,23 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>161 · Habilitada con cualquier motor</title>
-<!--
-  TEMPLATE DE BRIEF · visual-brief
-  1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
-  2. Por cada sección: un título que dice la conclusión, UN dibujo copiado del
-     catálogo del final y un pie de dos renglones. Primero el dibujo; el texto lo rotula.
-     Si habla de una pantalla: primero DÓNDE (la captura con marcas, .map), después EL
-     PROBLEMA como un caso de uso (la foto de hoy + .mark), después CÓMO QUEDA (la maqueta
-     .mq con números y su leyenda). Si ya está hecho, los dos lados del .ad son capturas.
-     Las fotos, con capturar.mjs, en docs/briefs/NNN-slug/ (SKILL.md §4).
-  3. BORRAR el catálogo entero (la section de clase cat, al final) y las secciones que no se usan.
-  4. Verificar: node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
-     y mirarlo: node ~/.claude/skills/visual-brief/assets/diapos.mjs <el brief> <scratchpad>/d (+ --tema=dark, --celular)
-  Topes: lede ≤ 2 frases y 35 palabras · ≤ 6 secciones · pie ≤ 30 · párrafo ≤ 40 ·
-  prosa total ≤ 400 (sin tablas ni gráficos). Cada componente trae el suyo en el catálogo.
-  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
--->
+<title>El vínculo del examen</title>
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -339,6 +323,7 @@
     .map .who{border-left:1px solid var(--line);border-top:0;border-radius:0 0 var(--radius) var(--radius)}
     .map.alta .cap{width:min(55%,220px);margin:0 auto}
   }
+
 </style>
 </head>
 <body>
@@ -346,118 +331,100 @@
 
   <header>
     <div class="kicker">
-      <span class="num">161</span>
-      <span class="badge">Resumen</span>
-      <span class="meta">Tablero · Exámenes, Mapa y diálogo de medir · motor de cada juez · 19/10/2026</span>
+      <span class="num">164</span>
+      <span class="badge">Arreglo</span>
+      <span class="meta">Tablero · diálogo de lanzar · 19/10/2026</span>
     </div>
-    <h1>Habilitada con cualquier motor, o promovida</h1>
-    <p class="sub">Lo que pediste sobre el brief 160, junto con las promociones del 159 y encima de las abstenciones. Sin commitear y sin consultar a nadie.</p>
+    <h1>«Ver su examen» ya abre el examen del juez que medís</h1>
+    <p class="sub">El freno de examen del diálogo de lanzar llevaba siempre al examen de opción múltiple.</p>
   </header>
 
-  <div class="lede"><p><strong>Hecho y probado en una copia del tablero: aprobada con cualquier motor, o promovida, la versión ya deja medir.</strong> Tu tablero del 7800 todavía no lo muestra: falta tu OK para commitear.</p></div>
+  <div class="lede"><p><strong>Al medir Miniteoría con un motor sin examen, «Ver su examen» abría el de opción múltiple; ahora abre el de Miniteoría.</strong> Está en verde y sin commitear: falta tu OK.</p></div>
 
   <section>
-    <h2>En Exámenes, la Miniteoría ya no pide rendir</h2>
+    <h2>Dónde: el freno al medir con un motor sin examen</h2>
+    <div class="map">
+      <div class="ex">
+        <svg class="cap" viewBox="0 0 672 800" role="img" aria-label="El diálogo para medir Miniteoría, frenado porque su versión de hoy no aprobó con ChatGPT">
+          <image href="164-vinculo-del-examen/dialogo.jpg" width="672" height="800"/>
+          <rect class="tapa" x="16" y="190" width="640" height="270"/>
+          <rect class="aro" x="34" y="624" width="604" height="54" rx="10"/>
+          <g class="mk" transform="translate(20 651)"><circle r="15"/><text font-size="16">1</text></g>
+          <g class="mk gris" transform="translate(20 67)"><circle r="15"/><text font-size="16">2</text></g>
+          <g class="mk gris" transform="translate(20 549)"><circle r="15"/><text font-size="16">3</text></g>
+        </svg>
+      </div>
+      <div class="who">
+        <div><b>1</b><span><strong>El freno y su «Ver su examen»</strong><br><small>lo único que cambia</small></span></div>
+        <div><b class="gris">2</b><span><strong>El juez que se mide</strong><br><small>Miniteoría, desde el Mapa</small></span></div>
+        <div><b class="gris">3</b><span><strong>El motor elegido</strong><br><small>ChatGPT: la versión de hoy no aprobó con él</small></span></div>
+      </div>
+    </div>
+    <p class="pie">Es el diálogo de verdad, dibujado por el código del tablero con su estilo, en el caso de la prueba nueva.</p>
+  </section>
+
+  <section>
+    <h2>El vínculo llevaba a otro juez; ahora al que frena</h2>
     <div class="ad">
       <div class="lado antes"><span class="rot">Hoy</span>
-        <img class="hoy" src="161-habilitada-con-cualquier-motor/hoy-miniteoria.jpg" alt="Exámenes hoy: la Miniteoría dice que la versión actual necesita rendir y que la aprobación es de otra versión">
-        <div class="mark"><span class="x">✕</span><span>«Necesita rendir» y «otra versión», aunque aprobó hoy con Gemini.</span></div>
-      </div>
-      <div class="lado despues"><span class="rot">Ahora</span>
-        <img class="hoy" src="161-habilitada-con-cualquier-motor/con-miniteoria.jpg" alt="Exámenes ahora: la Miniteoría aprobada, habilitada con Gemini desde el 19/10">
-        <div class="mark ok"><span class="x">✓</span><span>Habilitada con Gemini; rendir con ChatGPT queda a mano, aparte.</span></div>
-      </div>
+        <ol><li>Medís Miniteoría con ChatGPT.</li><li>El freno dice que no aprobó con ese motor.</li><li>Tocás «Ver su examen».</li></ol>
+        <span class="res">Abre el examen de Calidad de distractores.</span></div>
+      <div class="lado despues"><span class="rot">Con el arreglo</span>
+        <ol><li>Medís Miniteoría con ChatGPT.</li><li>El freno dice que no aprobó con ese motor.</li><li>Tocás «Ver su examen».</li></ol>
+        <span class="res">Abre el examen de Miniteoría.</span></div>
     </div>
-    <p class="pie">El cierre del juez también lo dice: con ChatGPT su presupuesto es cero, con Gemini lo que mide cuenta.</p>
+    <p class="pie">Ahí ves con qué motores aprobó Miniteoría y podés rendirla con otro.</p>
   </section>
 
   <section>
-    <h2>Las que promoviste dicen «Promovida» y cuentan como habilitadas</h2>
-    <div class="ad">
-      <div class="lado antes"><span class="rot">Hoy</span>
-        <img class="hoy" src="161-habilitada-con-cualquier-motor/hoy-promovidas.jpg" alt="Exámenes hoy: Naturalidad y Calidad didáctica con la pastilla PROMOTED, en inglés y gris">
-        <div class="mark"><span class="x">✕</span><span>«PROMOTED», en gris, y el Mapa las trataba como sin aprobar.</span></div>
-      </div>
-      <div class="lado despues"><span class="rot">Ahora</span>
-        <img class="hoy" src="161-habilitada-con-cualquier-motor/con-promovidas.jpg" alt="Exámenes ahora: Naturalidad y Calidad didáctica con la pastilla Promovida, en verde">
-        <div class="mark ok"><span class="x">✓</span><span>«Promovida», en verde como una aprobada.</span></div>
-      </div>
+    <h2>Qué examen abre, según lo que lances</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Lo que lanzás</th><th>«Ver su examen» abre</th></tr></thead>
+      <tbody>
+        <tr><td>Medir un juez (Miniteoría, Sentido de la traducción…)</td><td>El examen de ese juez</td></tr>
+        <tr><td>Analizar sólo distractores, sin nombrar juez</td><td>El de Calidad de distractores, que es el que mide</td></tr>
+        <tr><td>Otra corrida, si el servidor nombra al juez que frena</td><td>El examen de ese juez</td></tr>
+        <tr><td>Otra corrida, sin juez nombrado</td><td>Nada: no hay vínculo, el freno sigue frenando</td></tr>
+      </tbody>
+    </table></div>
+    <p class="pie">Mejor ningún vínculo que uno al examen de otro juez.</p>
+  </section>
+
+  <section>
+    <h2>Probado: la prueba nueva fallaba antes y pasa ahora</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">3</div><div class="l">pruebas nuevas; 2 fallaban con el código de antes</div></div>
+      <div class="kpi"><div class="n">2.135<small>de 2.135</small></div><div class="l">pruebas del tablero en verde</div></div>
+      <div class="kpi"><div class="n">0</div><div class="l">cambios en la foto dorada de las pantallas</div></div>
     </div>
-    <p class="pie">Es lo de la pregunta 1 del brief 159: Naturalidad y Calidad didáctica, promovidas el 14/10.</p>
+    <p class="pie">No se lanzó ningún juez, examen ni consulta.</p>
   </section>
 
   <section>
-    <h2>En el Mapa, Naturalidad ya deja medir</h2>
-    <figure class="captura">
-      <img src="161-habilitada-con-cualquier-motor/hoy-mapa.jpg" alt="La ficha de jueces hoy: Miniteoría sin aprobar 83 y Naturalidad sin aprobar 2.333 y 431">
-      <figcaption>Hoy, del brief 159: «sin aprobar» en las dos, sin decir por qué.</figcaption>
-    </figure>
-    <figure class="captura" style="margin-top:12px">
-      <img src="161-habilitada-con-cualquier-motor/con-mapa.jpg" alt="La ficha de jueces ahora: Miniteoría con otro motor 83 y habilitada con Gemini; Naturalidad al día 483 con Medir lo que falta">
-      <figcaption>Ahora: Naturalidad al día 483; la Miniteoría, habilitada con Gemini.</figcaption>
-    </figure>
-    <p class="pie">Lo que la Miniteoría midió con ChatGPT queda «otro motor», para volver a medir. El motor se nombra sólo si hace falta.</p>
-  </section>
-
-  <section>
-    <h2>El diálogo abre con Gemini y apaga los otros</h2>
-    <div class="ad asim">
-      <div class="lado antes"><span class="rot">Hoy</span>
-        <ol>
-          <li>Abre siempre con ChatGPT</li>
-          <li>Freno: «no rindió el examen fijo»</li>
-          <li>Nada avisa que con Gemini deja</li>
-        </ol>
-        <p class="res">No deja lanzar</p>
-      </div>
-      <div class="lado despues"><span class="rot">Ahora</span>
-        <img class="hoy" src="161-habilitada-con-cualquier-motor/con-dialogo.jpg" alt="El diálogo ahora: abre con Gemini 3.8 Flash por suscripción porque la versión de hoy aprobó con él">
-        <ol>
-          <li>Gemini, elegido y dicho por qué</li>
-          <li>ChatGPT y los Claude, apagados: «no aprobó con la versión de hoy»</li>
-          <li>Si aprobaron dos, ChatGPT primero</li>
-        </ol>
-        <p class="res">Abre con uno que puede medir</p>
-      </div>
-    </div>
-    <p class="pie">Si elegís otro perfil antes de que llegue la estimación, no te lo cambia. Mientras estima con Gemini, no muestra el freno de ChatGPT.</p>
-  </section>
-
-  <section>
-    <h2>Qué cambia y qué no</h2>
+    <h2>Qué cambia y qué queda igual</h2>
     <div class="cambia">
-      <div class="si"><p class="ptl">Cambia</p><ul>
-        <li>Habilitada si aprobó con cualquier motor, o la promoviste</li>
-        <li>Exámenes y el Mapa dicen con cuál</li>
-        <li>El diálogo abre con uno habilitado</li>
-      </ul></div>
-      <div class="no"><p class="ptl">No cambia</p><ul>
-        <li>Cerrar el lote mira sólo a ChatGPT: la Miniteoría lo sigue frenando</li>
-        <li>Nada cambia de motor sin que lo veas</li>
-        <li>Medir y rendir piden tope</li>
-      </ul></div>
+      <div class="si"><div class="ptl">Cambia</div><ul><li>Adónde lleva «Ver su examen» del freno de examen.</li></ul></div>
+      <div class="no"><div class="ptl">No cambia</div><ul><li>El texto del freno, y que frena.</li><li>Los demás frenos y sus vínculos.</li><li>Lo que se manda al lanzar.</li></ul></div>
     </div>
-    <div class="call c-warn"><b>No anda todavía:</b> estimar con Gemini falla porque falta su proveedor, que suma otra sesión sin commitear. Probé con su parche y lo saqué.</div>
+    <div class="call c-warn"><b>Al juntarlo con la cancelación sin trabar:</b> las dos ramas tocan los mismos dos renglones del armado de frenos. Se resuelve sumando los dos cambios.</div>
+    <div class="call c-info"><b>Visto y no tocado:</b> si el servidor no manda el motivo, el texto de respaldo dice «Distractores» aunque se mida otro juez.</div>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">¿Commiteo?</span>
-        <div class="ops"><span class="op rec">Sí: primero las abstenciones, después esto · recomendado</span><span class="op">Todavía no</span></div>
-        <span class="why">Dos en content-audit y uno en una rama de ittm, sin push. Lo de ittm vive en una carpeta temporal: si reiniciás, se pierde.</span></div>
-      <div class="ask"><span class="q">¿Cerrar el lote también acepta un juez habilitado con otro motor?</span>
-        <div class="ops"><span class="op rec">No, por ahora · recomendado</span><span class="op">Sí</span></div>
-        <span class="why">Es otra regla: el cierre corre con ChatGPT y ahí la Miniteoría no aprobó.</span></div>
-      <div class="ask"><span class="q">Borrá una entrada que dejé en el stash</span>
-        <span class="why">Los permisos no me dejaron. Es una copia de un archivo ya restaurado:</span>
-        <pre>git stash drop "$(git stash list --format='%gd %gs' | awk '/tmp-frenos-check/{print $1}')"</pre></div>
+      <div class="ask"><span class="q">1 · ¿Lo commiteo en su rama?</span>
+        <div class="ops"><span class="op rec">Sí, commitear · recomendado</span><span class="op">Esperar</span></div>
+        <span class="why">La copia de trabajo vive en una carpeta temporal que se borra al reiniciar; dejé un parche de respaldo.</span></div>
+      <div class="ask"><span class="q">2 · ¿Arreglo también el texto que dice «Distractores»?</span>
+        <div class="ops"><span class="op rec">Sí, con el nombre del juez · recomendado</span><span class="op">No hace falta</span></div>
+        <span class="why">Sólo se ve cuando el servidor no da motivo; es el mismo error, en chico.</span></div>
     </div>
   </section>
 
   <footer>
-    <span>Fotos: copia del tablero en el 7852, sólo para mirar, sobre la rama ittm claude/habilitada-con-cualquier-motor (worktree del scratchpad) y este worktree de content-audit; «hoy» de los briefs 159 y 160. content-audit: JudgeEnablement + standing.enabledWith (exámenes aprobados con cualquier runtime de la versión + JudgePromotionRegistry, hasta que un examen posterior con ese runtime lo reemplace), JudgeFreshnessReference/Count lo usan para approved, ExamCmd lo exporta; blocksClose sigue con el runtime por omisión. Requisitos: F-ALDIA-R003/R004/R005/R007, F-TALDIA-R010, F-JEXAM-R015. ittm: lanzar/selectores (motorParaAbrir, estimadaConOtroPerfil), vistas/perfil, examenes/vistas, lib/marca-del-juez, mapa/vistas/versiones, estimacion_para_lanzar.dart, vista_de_examenes.dart. Pruebas: JS 2132/2132, Dart 1017 en verde; en Maven sólo fallan las que ya fallaban (guardia del eval de near-duplicates y 3 de audit-cli). Las abstenciones (brief 158) están guardadas en scratchpad/abstenciones.patch. El perfil gemini-flash y el proveedor agy dependen de cambios sin commitear de otra sesión (model_settings.dart, perfiles_de_corrida.dart, DefaultLocalSessionProviderCatalog).</span>
-    <span>brief 161 · docs/briefs/161-habilitada-con-cualquier-motor.html</span>
+    <span>ittm, rama claude/vinculo-del-examen desde master 547ff685d (worktree en el scratchpad de esta sesión). Cambio en html/js/lanzar/selectores.js (freno SELECTIVA_NO_DISPONIBLE: antes fijo a ?juez=multiple-choice-quality); prueba en html/test/lanzar-vinculo-del-examen.test.js. Parche de respaldo: side-session-notes/…/vinculo-del-examen.patch.</span>
+    <span>brief 164 · docs/briefs/164-vinculo-del-examen.html</span>
   </footer>
 
 </div>
