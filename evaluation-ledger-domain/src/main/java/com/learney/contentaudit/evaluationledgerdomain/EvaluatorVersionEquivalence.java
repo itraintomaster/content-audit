@@ -1,5 +1,6 @@
 package com.learney.contentaudit.evaluationledgerdomain;
 
+import java.beans.ConstructorProperties;
 import java.time.Instant;
 import java.util.Objects;
 
@@ -20,6 +21,7 @@ public final class EvaluatorVersionEquivalence {
 
     private final String reason;
 
+    @ConstructorProperties({"evaluatorId", "earlierVersion", "currentVersion", "recordedAt", "reason"})
     public EvaluatorVersionEquivalence(String evaluatorId, String earlierVersion, String currentVersion,
             Instant recordedAt, String reason) {
         this.evaluatorId = evaluatorId;
