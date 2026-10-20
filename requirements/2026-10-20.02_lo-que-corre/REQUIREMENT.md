@@ -104,7 +104,7 @@ cambiar de pantalla, como antes.
 >    vencida, sea cual sea el pedido que se enteró.
 > 2. Con la sesión vencida, las diez pantallas muestran arriba un cartel que lo dice, con un botón «Recargar» que
 >    recarga la página. El cartel no se cierra ni se va solo.
-> 3. Con la sesión vencida, la pestaña deja de preguntar lo que corre.
+> 3. Con la sesión vencida, la pestaña deja de preguntar lo que corre, tampoco al volver a la pestaña o a la conexión.
 > 4. Sólo eso vence la sesión: un rechazo por estar en sólo lectura o por venir de otro sitio no.
 
 <a id="F-CORRE-R006"></a>
@@ -192,7 +192,7 @@ consulta a un modelo.
 | R002 | Tres partes que preguntan a la vez hacen un pedido; dejar de mirar una no corta a las otras. Ninguna pantalla nombra la ruta de lo que corre ni vuelve a tener un sondeo propio |
 | R003 | Con un reloj de mentira: 3 s mientras corre, una vez más a los 3 s al terminar, después 30 s. Un lanzamiento a medias cuenta como corriendo. Oculta no pregunta; al volver a la pestaña pregunta enseguida |
 | R004 | Preguntar ya pregunta enseguida y, si había una pregunta en viaje, otra vez al volver. Confirmar en el diálogo, cancelar y reconocer en Ejecuciones preguntan ya |
-| R005 | El 403 de la sesión trae su razón; el de otro origen no. Si la puerta o cualquier otro pedido lo oye, la sesión vence y deja de preguntar. El cartel aparece en todas las pantallas, no se va y «Recargar» recarga. Un 403 de sólo lectura no vence la sesión |
+| R005 | El 403 de la sesión trae su razón; el de otro origen no. Si la puerta o cualquier otro pedido lo oye, la sesión vence y deja de preguntar, tampoco al volver a la pestaña o a la conexión. El cartel aparece en todas las pantallas, no se va y «Recargar» recarga. Un 403 de sólo lectura no vence la sesión |
 | R006 | Un pedido que no llega deja la pestaña sin conexión: el aviso dice el texto, sin botón, y se sigue viendo lo último. Al volver la conexión, o al contestar otro pedido, pregunta enseguida y el aviso se va |
 | R007 | Con el tablero andando y ninguna pantalla abierta, el trabajo de un paso pasa a «hecho» en el disco en 2 s como mucho después de que termina su corrida. Leer Problemas no lo cierra. Un tablero que arranca cierra lo que terminó mientras estaba apagado |
 
