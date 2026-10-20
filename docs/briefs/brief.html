@@ -3,23 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Anotar lo que ningún juez vio</title>
-<!--
-  TEMPLATE DE BRIEF · visual-brief
-  1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
-  2. Por cada sección: un título que dice la conclusión, UN dibujo copiado del
-     catálogo del final y un pie de dos renglones. Primero el dibujo; el texto lo rotula.
-     Si habla de una pantalla: primero DÓNDE (la captura con marcas, .map), después EL
-     PROBLEMA como un caso de uso (la foto de hoy + .mark), después CÓMO QUEDA (la maqueta
-     .mq con números y su leyenda). Si ya está hecho, los dos lados del .ad son capturas.
-     Las fotos, con capturar.mjs, en docs/briefs/NNN-slug/ (SKILL.md §4).
-  3. BORRAR el catálogo entero (la section de clase cat, al final) y las secciones que no se usan.
-  4. Verificar: node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
-     y mirarlo: node ~/.claude/skills/visual-brief/assets/diapos.mjs <el brief> <scratchpad>/d (+ --tema=dark, --celular)
-  Topes: lede ≤ 2 frases y 35 palabras · ≤ 6 secciones · pie ≤ 30 · párrafo ≤ 40 ·
-  prosa total ≤ 400 (sin tablas ni gráficos). Cada componente trae el suyo en el catálogo.
-  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
--->
+<title>170 · Las diez pantallas dicen lo mismo de lo que corre</title>
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -340,6 +324,10 @@
     .map.alta .cap{width:min(55%,220px);margin:0 auto}
   }
 
+  /* las tres franjas, una debajo de otra */
+  .franjas{display:grid;gap:10px}
+  .franjas .captura{padding:8px}
+  .heat .ok{background:var(--ok-soft);color:var(--ok);font-weight:650}
 </style>
 </head>
 <body>
@@ -347,99 +335,118 @@
 
   <header>
     <div class="kicker">
-      <span class="num">169</span>
+      <span class="num">170</span>
       <span class="badge">Resumen</span>
-      <span class="meta">Correcciones y Problemas · tanda A1, Corrección 1 · 20/10/2026</span>
+      <span class="meta">Tablero · etapa 1 de «Un solo estado» · 20/10/2026</span>
     </div>
-    <h1>Ya se anota lo que ningún juez vio, aunque no tenga cambios</h1>
-    <p class="sub">Desde «Nadie le ve problemas», el caso queda en el Problema con el estado y quiénes no lo vieron.</p>
+    <h1>Las diez pantallas ya dicen lo mismo de lo que corre</h1>
+    <p class="sub">Una sola pregunta por pestaña, el aviso de tablero reiniciado en todas y Problemas que se cierra sin que nadie mire.</p>
   </header>
 
-  <div class="lede"><p><strong>Un ejercicio sin cambios ya se anota como Problema, y el caso dice qué jueces dijeron «sin error».</strong> Falta verlo en el 7800: aparece al reabrir Tablero.app cuando termine la medición de Calidad didáctica A1.</p></div>
+  <div class="lede"><p><strong>La etapa 1 está hecha, probada y subida en sus dos ramas, sin juntar:</strong> la medición que arrancó a las 9 sigue corriendo. Falta tu sí para juntarlas cuando termine.</p></div>
 
   <section>
-    <h2>Está en el bloque de cada ejercicio del filtro</h2>
-    <div class="map">
-      <div class="ex">
-        <svg class="cap" viewBox="0 0 1440 900" role="img" aria-label="Correcciones con el filtro puesto, un ejercicio sin tarea y el botón nuevo">
-          <image href="169-anotar-lo-que-nadie-vio/pantalla.jpg" width="1440" height="900"/>
-          <rect class="tapa" x="1089" y="60" width="351" height="840"/>
-          <rect class="tapa" x="352" y="488" width="737" height="412"/>
-          <rect class="aro" x="390" y="418" width="200" height="48" rx="10"/>
-          <g class="mk gris" transform="translate(292 306)"><circle r="24"/><text font-size="27">1</text></g>
-          <g class="mk gris" transform="translate(1040 262)"><circle r="24"/><text font-size="27">2</text></g>
-          <g class="mk" transform="translate(624 442)"><circle r="24"/><text font-size="27">3</text></g>
-        </svg>
-      </div>
-      <div class="who">
-        <div><b class="gris">1</b><span><strong>Nadie le ve problemas</strong><br><small>el filtro, como estaba</small></span></div>
-        <div><b class="gris">2</b><span><strong>Lo que dijo cada juez</strong><br><small>como estaba</small></span></div>
-        <div><b>3</b><span><strong>Anotar un problema</strong><br><small>nuevo; también con P</small></span></div>
-      </div>
+    <h2>Había cinco copias de lo que corre; ahora hay una</h2>
+    <div class="ad">
+      <div class="lado antes"><span class="rot">Antes</span>
+        <ol>
+          <li>Cada pantalla preguntaba por su cuenta, con tres relojes.</li>
+          <li>Ejecuciones y el diálogo de lanzar guardaban su propia copia.</li>
+          <li>Una foto de 30 s en el navegador tapaba el parpadeo.</li>
+          <li>El trabajo de un Problema se cerraba cuando alguien lo leía.</li>
+        </ol>
+        <span class="res">Dos pestañas podían decir distinto; Problemas llegó 20 s tarde</span></div>
+      <div class="lado despues"><span class="rot">Con la etapa 1</span>
+        <ol>
+          <li>Una pregunta por pestaña; todas las partes leen esa respuesta.</li>
+          <li>Cada 3 s si algo corre, cada 30 si no; oculta, no pregunta.</li>
+          <li>Sin conexión o tablero reiniciado: lo dicen las diez.</li>
+          <li>El tablero cierra el trabajo apenas termina su corrida.</li>
+        </ol>
+        <span class="res">Una respuesta; diez pantallas que coinciden</span></div>
     </div>
-    <p class="pie">Un ejercicio que no tuvo tarea, en «Negativas con be». Con cambios, el botón «Problema» de abajo hace lo mismo.</p>
+    <p class="pie">«Lo que corre»: las corridas en curso, las huérfanas, las recientes y si se puede lanzar otra.</p>
   </section>
 
   <section>
-    <h2>Antes, P no hacía nada; ahora abre el cajón</h2>
-    <div class="ad asim">
-      <div class="lado antes"><span class="rot">Hoy en el 7800</span>
-        <img class="hoy" src="169-anotar-lo-que-nadie-vio/hoy-bloque.jpg" alt="El bloque de lo que dijo cada juez, sin botón para anotar">
-        <div class="mark"><span class="x">✕</span><span>Ves un error que nadie marcó y el cajón pide una corrección.</span></div>
-      </div>
-      <div class="lado despues"><span class="rot">Con esto</span>
-        <img class="hoy" src="169-anotar-lo-que-nadie-vio/cajon.jpg" alt="El cajón Anotar un problema, con el estado y los jueces que no lo vieron">
-        <div class="mark ok"><span class="x">✓</span><span>Sin «Rechazar la corrección»: no hay nada que rechazar.</span></div>
-        <div class="mark ok"><span class="x">✓</span><span>Antes de anotar, ves el estado y quiénes no lo vieron.</span></div>
-      </div>
+    <h2>La franja de arriba dice tres cosas, en todas</h2>
+    <div class="franjas">
+      <figure class="captura"><img src="170-lo-que-corre/franja-corriendo.jpg" alt="Franja: Corriendo, continuar Corrección, 147 de hasta 300 consultas, faltan entre 4 y 5 minutos">
+        <figcaption>Algo corre: qué es, cuánto lleva y cuánto falta.</figcaption></figure>
+      <figure class="captura"><img src="170-lo-que-corre/franja-sin-conexion.jpg" alt="Franja: Sin conexión con el tablero, se reintenta solo">
+        <figcaption>Nuevo · se cortó: reintenta solo y deja lo último que supo.</figcaption></figure>
+      <figure class="captura"><img src="170-lo-que-corre/franja-reiniciado.jpg" alt="Franja: Se reinició el tablero, recargá esta página para seguir, con el botón Recargar">
+        <figcaption>Se reinició el tablero: pide recargar, con su botón.</figcaption></figure>
     </div>
-    <p class="pie">El que se abstuvo o todavía no opinó aparece aparte, en «No cuentan»: no se equivocó.</p>
+    <p class="pie">El aviso de reinicio ahora lo dispara cualquier pedido de la página, y la pestaña deja de preguntar.</p>
   </section>
 
   <section>
-    <h2>Lo que dijo cada juez lo pone el tablero</h2>
-    <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">Tocás Anotar</span><span class="eg">nombre y descripción</span><span class="d">La pantalla sólo avisa que viene del filtro.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">El tablero relee</span><span class="eg">el análisis de hoy</span><span class="d">Si ya no entra, no anota y pide releer.</span></div>
-      <div class="st"><span class="i">3</span><span class="h">content-audit lo congela</span><span class="eg">antes = después</span><span class="d">No rechaza nada, ni con la tanda publicada.</span></div>
-      <div class="st end"><span class="i">4</span><span class="h">El Problema lo lleva</span><span class="eg">al agente</span><span class="d">Con las guías de los jueces que no lo vieron.</span></div>
+    <h2>En la copia, las diez coincidieron al mirarlas</h2>
+    <div class="heat" style="--cols:3">
+      <span class="h"></span><span class="h">Corriendo</span><span class="h">Terminó</span><span class="h">Reiniciado</span>
+      <span class="rl">Vueltas</span><span class="ok">✓ lanzó</span><span class="ok">✓</span><span class="ok">✓</span>
+      <span class="rl">Correcciones</span><span class="ok">✓</span><span class="ok">✓</span><span class="ok">✓</span>
+      <span class="rl">Ejecuciones</span><span class="ok">✓</span><span class="ok">✓</span><span class="ok">✓ su aviso</span>
+      <span class="rl">Mapa</span><span class="ok">✓</span><span class="ok">✓</span><span class="ok">✓ recargó</span>
+      <span class="rl">Problemas</span><span class="ok">✓</span><span class="h2">12 s</span><span class="ok">✓</span>
+      <span class="rl">Exámenes</span><span class="ok">✓</span><span class="ok">✓</span><span class="ok">✓</span>
+      <span class="rl">Publicar</span><span class="ok">✓</span><span class="ok">✓</span><span class="ok">✓</span>
+      <span class="rl">Comparar</span><span class="ok">✓</span><span class="ok">✓</span><span class="ok">✓</span>
+      <span class="rl">Estadísticas</span><span class="ok">✓</span><span class="h0">—</span><span class="h0">—</span>
+      <span class="rl">Analizadores</span><span class="ok">✓</span><span class="ok">✓</span><span class="ok">✓</span>
     </div>
-    <p class="pie">En Problemas, cada caso así dice de qué estado sale y quiénes no lo vieron; de ahí sale el examen del juez.</p>
+    <p class="pie">✓: lo dijo en menos de un segundo al mirar la pestaña. Problemas tardó porque el navegador encoló su pregunta detrás de lecturas lentas de otras pestañas.</p>
+    <div class="call c-warn"><b>Ojo:</b> en la copia, lanzar sólo dormía 60 s: ningún modelo podía consultarse. El cierre solo de un Problema no se vio allí; lo cubren tres pruebas.</div>
   </section>
 
   <section>
-    <h2>Todo en verde, sin consultar a ningún modelo</h2>
-    <div class="kpis">
-      <div class="kpi"><div class="n">2.160<small>de 2.160</small></div><div class="l">pruebas del navegador; 4 nuevas de esta regla</div></div>
-      <div class="kpi"><div class="n">14<small>de 14</small></div><div class="l">pruebas del registro de Problemas; 5 nuevas</div></div>
-      <div class="kpi"><div class="n">1.501<small>de 1.503</small></div><div class="l">pruebas de Flutter; las 2 restantes, por tiempo, pasan solas</div></div>
-      <div class="kpi"><div class="n">3.734<small>de 3.739</small></div><div class="l">pruebas de content-audit; las 4 que fallan ya fallaban en main</div></div>
+    <h2>Cada regla tiene sus pruebas, y todas pasan</h2>
+    <div class="hb">
+      <div class="r"><span class="t">Todas dicen lo mismo</span><span class="tr"><span class="f g" style="width:100%"></span></span><span class="n">7</span></div>
+      <div class="r"><span class="t">Una pregunta por pestaña<small>2 son guardianes del código</small></span><span class="tr"><span class="f g" style="width:57%"></span></span><span class="n">4</span></div>
+      <div class="r"><span class="t">Cada 3 s o cada 30 s</span><span class="tr"><span class="f g" style="width:43%"></span></span><span class="n">3</span></div>
+      <div class="r"><span class="t">Preguntar ya al lanzar o cancelar</span><span class="tr"><span class="f g" style="width:71%"></span></span><span class="n">5</span></div>
+      <div class="r"><span class="t">Tablero reiniciado: el aviso</span><span class="tr"><span class="f g" style="width:100%"></span></span><span class="n">7</span></div>
+      <div class="r"><span class="t">Sin conexión</span><span class="tr"><span class="f g" style="width:57%"></span></span><span class="n">4</span></div>
+      <div class="r"><span class="t">Problemas se cierra solo<small>en 2 s, sin pantalla abierta</small></span><span class="tr"><span class="f g" style="width:43%"></span></span><span class="n">3</span></div>
     </div>
+    <p class="pie">En total, navegador 2.170 de 2.170 (antes 2.160) y servidor 1.047 de 1.047: las 2 fallas viejas también pasan.</p>
+    <div class="call c-warn"><b>Ojo:</b> con la máquina saturada por otros procesos, tres corridas perdieron de 1 a 3 pruebas de tiempo, distintas cada vez; repetidas, pasaron.</div>
   </section>
 
   <section>
-    <h2>Qué cambia y qué no</h2>
-    <div class="cambia">
-      <div class="si"><div class="ptl">Cambia</div><ul><li>Un ejercicio sin cambios del filtro se anota con P o el botón.</li><li>El caso guarda el estado, cada juez y su motivo.</li><li>El pedido al agente suma las guías de los que no lo vieron.</li></ul></div>
-      <div class="no"><div class="ptl">No cambia</div><ul><li>Con cambios se anota como siempre, y suma lo que dijeron.</li><li>Fuera del filtro, uno sin cambios no se anota.</li><li>Ninguna decisión de la tanda.</li></ul></div>
-    </div>
+    <h2>Seis cosas quedaron distintas de la propuesta</h2>
+    <div class="tw"><table>
+      <thead><tr><th>La propuesta decía</th><th>Quedó</th><th>Por qué</th></tr></thead>
+      <tbody>
+        <tr><td>Unir el estado con el dibujo en unas 40 líneas</td><td>Unas 160: también pone la franja, la insignia y el aviso, y oye la pestaña y la conexión</td><td><span class="pill p-info">más trabajo</span></td></tr>
+        <tr><td>Un rechazo del servidor vence la sesión</td><td>Sólo el que dice «sesión vencida»; el de sólo lectura, no</td><td><span class="pill p-ok">conservador</span></td></tr>
+        <tr><td>La franja en las diez</td><td>Ejecuciones sigue sin franja: su aviso propio dice lo mismo, con «Recargar»</td><td><span class="pill p-ok">conservador</span></td></tr>
+        <tr><td>La respuesta, con 4 datos</td><td>Con 9: suma hora, campaña, huérfanas, motivo y última terminada, que la franja ya mostraba</td><td><span class="pill p-info">lo pedía la franja</span></td></tr>
+        <tr><td>Leer Problemas no escribe</td><td>Ya no cierra nada; todavía completa al leer el diagnóstico y la re-medición</td><td><span class="pill p-warn">pendiente</span></td></tr>
+        <tr><td>Redux Toolkit 2.11</td><td>2.13.0, con immer 11.1.18 y reselect 5.1.1, las versiones que fijaste</td><td><span class="pill p-idle">versión</span></td></tr>
+      </tbody></table></div>
+    <p class="pie">Además: los avisos cerrados siguen guardados en la pestaña, y al terminar algo se relee una vez más a los 3 s.</p>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · ¿El juez que se abstuvo cuenta entre los que no lo vieron?</span>
-        <div class="ops"><span class="op rec">No, va aparte · recomendado</span><span class="op">Sí, también</span></div>
-        <span class="why">Abstenerse no es equivocarse: en «no aplica» no hay nada que recalibrar en ese juez.</span></div>
-      <div class="ask"><span class="q">2 · ¿Anotar también un ejercicio sin cambios fuera del filtro?</span>
-        <div class="ops"><span class="op rec">No, sólo desde el filtro · recomendado</span><span class="op">Sí, con lo que haya</span></div>
-        <span class="why">Fuera del filtro, el caso no tendría corrección ni lo que dijeron los jueces.</span></div>
+      <div class="ask"><span class="q">1 · ¿Junto las dos ramas y reinicio el 7800 cuando termine la medición?</span>
+        <div class="ops"><span class="op rec">Sí, apenas termine · recomendado</span><span class="op">Lo hago yo</span></div>
+        <span class="why">Van juntas: las páginas nuevas necesitan el servidor nuevo, y el 7800 las lee del disco. Juntar ahora le rompería el tablero a la medición.</span></div>
+      <div class="ask"><span class="q">2 · ¿El aviso de la etapa 2 va por un canal compartido entre pestañas?</span>
+        <div class="ops"><span class="op rec">Uno compartido · recomendado</span><span class="op">Uno por pestaña</span></div>
+        <span class="why">El navegador da 6 conexiones por servidor: con 9 pestañas ya encoló una pregunta 8 s. Un canal fijo por pestaña las agotaría.</span></div>
     </div>
+    <pre><code>git -C ~/projects/learney/ittm merge --ff-only origin/claude/estado-etapa-1
+git -C ~/projects/learney/content-audit merge --ff-only origin/claude/estado-etapa-1</code></pre>
   </section>
 
   <footer>
-    <span>Capturas: el tablero dibujado con su código y su CSS sobre la tanda de prueba, no la real. Requisito F-NADIE-R005 · content-audit 00fd47c40 · ittm de8210a8a.</span>
-    <span>brief 169 · docs/briefs/169-anotar-lo-que-nadie-vio.html</span>
+    <span>Requisito FEAT-CORRE (requirements/2026-10-20.02_lo-que-corre). Ramas refs/heads/claude/estado-etapa-1: ittm 71c9f6ec1 (7 commits sobre master 2a922eb35, sin conflictos) y content-audit 49a6a08de + este brief. Fotos de la franja: servidor de prueba del tablero; la copia: campaña a1-v11 clonada, sin modelos.</span>
+    <span>brief 170 · docs/briefs/170-lo-que-corre.html</span>
   </footer>
 
 </div>
