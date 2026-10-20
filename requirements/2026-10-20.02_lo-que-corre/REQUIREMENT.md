@@ -87,6 +87,15 @@ cambiar de pantalla, como antes.
 > 2. Si no corre nada, cada 30 s. Cuando algo deja de correr, puede preguntar una vez más a los 3 s antes de pasar a 30.
 > 3. Con la pestaña oculta no pregunta; al volver a la pestaña pregunta enseguida.
 
+<details><summary>Detail</summary>
+
+Desde la etapa 2 ([FEAT-AVISO](../2026-10-20.03_el-servidor-avisa/REQUIREMENT.md)), este ritmo vale cuando la pestaña
+no tiene el canal de avisos (todavía no abrió, se cortó, o el tablero no lo conoce). Con el canal abierto, lo que corre
+se relee con cada aviso de «corridas» y se controla una vez por minuto
+([F-AVISO-R005](../2026-10-20.03_el-servidor-avisa/REQUIREMENT.md#F-AVISO-R005)).
+
+</details>
+
 <a id="F-CORRE-R004"></a>
 ### Rule[F-CORRE-R004] - Después de lanzar, cancelar o reconocer, se pregunta enseguida
 **Severity**: major | **Validation**: AUTO_VALIDATED
