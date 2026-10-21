@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>172 · Desarrollar sin cortar la medición</title>
+<style>
+  :root{
+    --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
+    --fg:#1c1a17; --fg-2:#57524b; --fg-3:#8b847a;
+    --accent:#b4531f; --accent-soft:#fdf1e7;
+    --ok:#2f6b46; --ok-soft:#e9f4ed;
+    --warn:#8a6314; --warn-soft:#fbf2dd;
+    --bad:#a3342c; --bad-soft:#fbecea;
+    --info:#2a5b8f; --info-soft:#e9f1f9;
+    --radius:10px; --shadow:0 1px 2px rgba(28,26,23,.05), 0 8px 24px -16px rgba(28,26,23,.25);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#131211; --bg-elev:#1b1a18; --line:#302d29; --line-soft:#252320;
+      --fg:#efece7; --fg-2:#a8a29a; --fg-3:#7b756c;
+      --accent:#e08b4f; --accent-soft:#2a1f16;
+      --ok:#7fc79c; --ok-soft:#16241c;
+      --warn:#e0b657; --warn-soft:#272013;
+      --bad:#e58b82; --bad-soft:#2a1917;
+      --info:#8ab6e5; --info-soft:#141f2b;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.6 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+    font-feature-settings:"kern","liga","cv05"; padding:40px 24px 80px}
+  .wrap{max-width:940px;margin:0 auto}
+  code,kbd,pre,.mono{font-family:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace}
+  a{color:var(--accent)}
+  code,a{overflow-wrap:anywhere}
+  header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
+  .kicker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .kicker .num{font:700 12px ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.04em;color:var(--fg-3);
+    background:var(--line-soft);padding:3px 8px;border-radius:6px;font-variant-numeric:tabular-nums}
+  .badge{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;background:var(--accent-soft);color:var(--accent);
+    border:1px solid color-mix(in srgb,var(--accent) 22%,transparent)}
+  .meta{font-size:12.5px;color:var(--fg-3)}
+  h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2;margin:0;letter-spacing:-.02em;font-weight:650}
+  .sub{margin:10px 0 0;color:var(--fg-2);font-size:16px;max-width:62ch}
+  .lede{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:var(--radius);padding:16px 18px;margin:0 0 34px;box-shadow:var(--shadow)}
+  .lede p{margin:0;font-size:17.5px;line-height:1.5;max-width:68ch}
+  .lede strong{font-weight:650}
+  section{margin:0 0 38px}
+  h2{font-size:19px;line-height:1.3;font-weight:650;letter-spacing:-.01em;margin:0 0 14px;max-width:60ch}
+  p{margin:0 0 12px}
+  .pie{font-size:13.5px;line-height:1.5;color:var(--fg-2);margin:10px 0 0;max-width:78ch}
+  .flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:16px}
+  .flow .st{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:12px 13px;display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow);min-width:0}
+  .flow .st:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:8px;height:8px;z-index:1;
+    border-top:2px solid var(--fg-3);border-right:2px solid var(--fg-3);transform:translateY(-50%) rotate(45deg)}
+  .flow .i{font:700 12px/24px ui-monospace,monospace;width:24px;height:24px;border-radius:7px;text-align:center;
+    background:var(--accent-soft);color:var(--accent)}
+  .flow .h{font-weight:650;font-size:14px;line-height:1.25}
+  .flow .d{font-size:12.5px;line-height:1.4;color:var(--fg-2)}
+  .flow .st.end{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+  .asks{display:grid;gap:10px}
+  .ask{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);
+    padding:12px 15px;display:grid;gap:8px;box-shadow:var(--shadow)}
+  .ask .q{font-size:15px;font-weight:650;line-height:1.35}
+  .ask .ops{display:flex;gap:6px;flex-wrap:wrap}
+  .ask .op{font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--bg)}
+  .ask .op.rec{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .ask .why{font-size:13px;color:var(--fg-2);line-height:1.45}
+  .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}
+  .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
+  .p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)}
+  .p-bad{background:var(--bad-soft);color:var(--bad)}
+  .tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}
+  th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);
+    font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  td:last-child{color:var(--fg-2);font-size:13.5px}
+  tr:last-child td{border-bottom:0}
+  .diagram{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
+    overflow-x:auto;box-shadow:var(--shadow)}
+  .diagram svg{display:block;max-width:100%;height:auto;margin:0 auto}
+  svg .box{fill:var(--bg);stroke:var(--line)}
+  svg .box-a{fill:var(--accent-soft);stroke:var(--accent)}
+  svg .box-ok{fill:var(--ok-soft);stroke:var(--ok)}
+  svg .box-bad{fill:var(--bad-soft);stroke:var(--bad)}
+  svg .lbl{fill:var(--fg);font:13px ui-sans-serif,system-ui,sans-serif}
+  svg .lbl-s{fill:var(--fg-3);font:11px ui-sans-serif,system-ui,sans-serif}
+  svg .lbl-b{fill:var(--bad);font:600 11px ui-sans-serif,system-ui,sans-serif}
+  svg .rt{fill:var(--fg-3);font:700 10.5px ui-sans-serif,system-ui,sans-serif;letter-spacing:.09em}
+  svg .arrow{stroke:var(--fg-3);fill:none;stroke-width:1.2}
+  svg .sep{stroke:var(--line);stroke-width:1.5;stroke-dasharray:5 5}
+  .call{border-radius:var(--radius);padding:10px 13px;font-size:13.5px;border:1px solid;margin:12px 0 0}
+  .c-warn{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 28%,transparent)}
+  .call b:first-child{margin-right:4px}
+  footer{border-top:1px solid var(--line);margin-top:36px;padding-top:14px;font-size:12.5px;color:var(--fg-3);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  @media (max-width:640px){
+    body{padding:24px 16px 60px}
+    h2{font-size:17px}
+    .flow{grid-auto-flow:row}
+    .flow .st:not(:last-child)::after{right:auto;left:22px;top:auto;bottom:-11px;transform:rotate(135deg)}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">
+      <span class="num">172</span>
+      <span class="badge">Diagnóstico</span>
+      <span class="meta">tablero · estado centralizado · 20/10/2026</span>
+    </div>
+    <h1>En worktrees, y la medición ni se entera</h1>
+    <p class="sub">De qué depende la medición de distractores que está corriendo, qué la corta y cómo se trabaja cada etapa sin tocarla.</p>
+  </header>
+
+  <div class="lede"><p><strong>Sí, en worktrees: lo único que la corta es recompilar content-audit en el checkout principal, y el estado del tablero vive en ittm.</strong> Falta decidir si se junta a master mientras corre.</p></div>
+
+  <section>
+    <h2>La medición usa tres cosas del checkout principal</h2>
+    <div class="diagram">
+      <svg viewBox="0 0 780 236" style="min-width:600px" role="img" aria-label="La medición usa las clases de content-audit, la campaña a1-v11 y el 7800, todo en los checkouts principales; los worktrees y la copia en otro puerto quedan aparte">
+        <defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--fg-3)"/></marker></defs>
+        <text x="10" y="14" class="rt">CHECKOUTS PRINCIPALES</text>
+        <rect x="10" y="26" width="250" height="66" rx="9" class="box-bad"/>
+        <text x="24" y="48" class="lbl" style="font-weight:600">content-audit · sus clases</text>
+        <text x="24" y="65" class="lbl-s">la medición corre con ellas</text>
+        <text x="24" y="81" class="lbl-b">recompilarlas la corta</text>
+        <rect x="10" y="104" width="250" height="52" rx="9" class="box"/>
+        <text x="24" y="126" class="lbl" style="font-weight:600">La campaña a1-v11</text>
+        <text x="24" y="143" class="lbl-s">ahí escribe cada veredicto</text>
+        <rect x="10" y="168" width="250" height="52" rx="9" class="box"/>
+        <text x="24" y="190" class="lbl" style="font-weight:600">El 7800 (ittm)</text>
+        <text x="24" y="207" class="lbl-s">la muestra; ella corre suelta</text>
+        <rect x="300" y="84" width="180" height="88" rx="9" class="box-a"/>
+        <text x="314" y="108" class="lbl" style="font-weight:600">La medición</text>
+        <text x="314" y="126" class="lbl-s">distractores · tanda A1</text>
+        <text x="314" y="142" class="lbl-s">desde las 8:55</text>
+        <text x="314" y="158" class="lbl-s">tope: 2.377 consultas</text>
+        <path d="M300,100 L282,100 L282,59 L262,59" class="arrow" marker-end="url(#fl)"/>
+        <path d="M300,130 L262,130" class="arrow" marker-end="url(#fl)"/>
+        <path d="M300,160 L282,160 L282,194 L262,194" class="arrow" marker-end="url(#fl)"/>
+        <line x1="508" y1="6" x2="508" y2="230" class="sep"/>
+        <text x="530" y="14" class="rt">DONDE SE PROGRAMA</text>
+        <rect x="530" y="34" width="240" height="66" rx="9" class="box-ok"/>
+        <text x="544" y="56" class="lbl" style="font-weight:600">Un worktree de ittm</text>
+        <text x="544" y="73" class="lbl-s">una rama por etapa</text>
+        <text x="544" y="89" class="lbl-s">sus clases y su carpeta son otras</text>
+        <path d="M650,100 L650,122" class="arrow" marker-end="url(#fl)"/>
+        <rect x="530" y="124" width="240" height="66" rx="9" class="box-ok"/>
+        <text x="544" y="146" class="lbl" style="font-weight:600">La copia, en otro puerto</text>
+        <text x="544" y="163" class="lbl-s">un clon de a1-v11</text>
+        <text x="544" y="179" class="lbl-s">CLI sin modelos: no gasta</text>
+        <text x="650" y="214" class="lbl-s" text-anchor="middle">no comparten nada con la medición</text>
+      </svg>
+    </div>
+    <p class="pie">La medición no corre desde un archivo empaquetado: lee las clases compiladas de la carpeta del checkout principal. Si alguien compila ahí, le cambian por debajo.</p>
+  </section>
+
+  <section>
+    <h2>Qué la corta y qué no</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Qué</th><th>La medición</th><th>Por qué</th></tr></thead>
+      <tbody>
+        <tr><td>Compilar content-audit en el checkout principal</td><td><span class="pill p-bad">la corta</span></td><td>Reescribe las clases que está usando.</td></tr>
+        <tr><td>Programar, compilar y probar en un worktree</td><td><span class="pill p-ok">sigue</span></td><td>Otra carpeta, otras clases.</td></tr>
+        <tr><td>Abrir Tablero.app</td><td><span class="pill p-ok">sigue</span></td><td>No recompila si ve una corrida; si master cambió, reinicia el 7800.</td></tr>
+        <tr><td>Reiniciar el 7800</td><td><span class="pill p-ok">sigue</span></td><td>Corre suelta del servidor; las pestañas abiertas piden recargar.</td></tr>
+        <tr><td>Juntar a master de ittm</td><td><span class="pill p-warn">sigue, pero…</span></td><td>El 7800 viejo sirve las páginas nuevas al recargar, y no se entienden.</td></tr>
+        <tr><td>Otro tablero sobre la campaña real</td><td><span class="pill p-warn">no lo haría</span></td><td>Dos servidores cerrarían las mismas corridas. Se prueba sobre la copia.</td></tr>
+      </tbody></table></div>
+    <div class="call c-warn"><b>Ojo:</b> hay cambios sin commitear de otra sesión en content-audit principal (el juez de Miniteoría). Si compila ahí, la corta, aunque no sea este desarrollo.</div>
+  </section>
+
+  <section>
+    <h2>Cada etapa, del worktree a master</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">Worktree de ittm</span><span class="d">Una rama por etapa; los checkouts principales no se tocan.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Pruebas automáticas</span><span class="d">Las de la página y las del servidor usan sus propios datos.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">La copia en otro puerto</span><span class="d">Clon de la campaña y CLI sin modelos: se mira sin gastar.</span></div>
+      <div class="st end"><span class="i">4</span><span class="h">Subir y juntar</span><span class="d">La rama se sube enseguida; master, cuando termina la medición.</span></div>
+    </div>
+    <p class="pie">El estado centralizado no necesita compilar content-audit: las etapas tocan las páginas y el servidor del tablero, que viven en ittm.</p>
+  </section>
+
+  <section>
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask"><span class="q">1 · ¿Juntamos a master mientras corre la medición?</span>
+        <div class="ops"><span class="op rec">Subir la rama, juntar al terminar · recomendado</span><span class="op">Juntar ya y reiniciar el 7800</span></div>
+        <span class="why">Reiniciar no la corta, pero la etapa 1 cambia la franja «en curso», que es justo la que la muestra.</span></div>
+    </div>
+    <div class="call c-warn"><b>Estimación:</b> lleva 358 veredictos en 51 minutos. Si gasta el tope entero, termina cerca de las 14:30. Supongo una consulta por veredicto.</div>
+  </section>
+
+  <footer>
+    <span>Fuentes: proceso 21410 (classpath = <code>*/target/classes</code> del checkout principal; su envoltorio 21409 cuelga del sistema e ignora HUP) · <code>activity/launches/ui-2026-10-20T11-55-23…-batch-selective.json</code> · <code>servidor_del_tablero.dart:352</code> (las páginas se leen del disco en cada pedido) · <code>escritorio/Tablero</code> (pgrep antes de compilar) · <code>evaluations/a1-didactic-judge.jsonl</code></span>
+    <span>brief 172 · docs/briefs/172-desarrollar-sin-cortar.html</span>
+  </footer>
+
+</div>
+</body>
+</html>
