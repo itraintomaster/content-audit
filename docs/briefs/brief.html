@@ -1,4 +1,11 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vos lo aprobás · Correcciones</title><style>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La tanda, hecha</title>
+
+<style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
     --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
@@ -182,6 +189,84 @@
   .captura.cel img{max-width:300px;margin:0 auto}
   .captura figcaption{font-size:12.5px;color:var(--fg-3);margin-top:8px}
 
+  /* ============ dónde estamos: la captura real, con lo que cambia rodeado y numerado ============
+     El viewBox del svg.cap es el tamaño de la foto: las marcas van en sus píxeles (capturar.mjs --medir). */
+  .map{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);box-shadow:var(--shadow);border-radius:var(--radius)}
+  .map.alta{grid-template-columns:minmax(0,200px) minmax(0,1fr)}       /* una página más alta que la pantalla */
+  .map .ex{border-radius:var(--radius) 0 0 var(--radius);padding:10px;align-content:center;box-shadow:none}
+  .map .who{display:grid;gap:9px;align-content:center;padding:14px 16px;background:var(--bg);border:1px solid var(--line);
+    border-left:0;border-radius:0 var(--radius) var(--radius) 0}
+  .map .who div{display:flex;gap:9px;align-items:center;font-size:13.5px;line-height:1.35}
+  .map .who b{font:800 11.5px/22px ui-monospace,monospace;width:22px;height:22px;border-radius:6px;text-align:center;
+    background:var(--accent);color:var(--bg-elev);flex:none}
+  .map .who b.gris{background:var(--line);color:var(--fg-3)}       /* lo que se ve pero no cambia */
+  .map .who small{color:var(--fg-3);font-size:12px}
+  .map .who .ptl{margin:0}
+  .cap{display:block;width:100%;height:auto}
+  .cap .mk circle{fill:var(--accent);stroke:var(--bg-elev);stroke-width:4}
+  .cap .mk text{fill:var(--bg-elev);font-weight:800;font-family:ui-monospace,monospace;text-anchor:middle;dominant-baseline:central}
+  .cap .mk.gris circle{fill:var(--fg-3)}
+  .cap .aro{fill:none;stroke:var(--accent);stroke-width:4}         /* rodea lo que cambia */
+  .cap .tapa{fill:var(--bg-elev);opacity:.74}                       /* atenúa lo que no */
+  .cap .raya{stroke:var(--fg-3);stroke-width:2;stroke-dasharray:9 9}  /* dónde termina cada pantalla */
+
+  /* ============ hoy → con X: la foto de hoy con el problema; la maqueta de cómo queda, con su leyenda ============ */
+  .ad.asim{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+  .hoy{display:block;max-width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft);align-self:flex-start}
+  .franja{display:flex;gap:12px;align-items:flex-end}               /* una página alta, al lado de su marca */
+  .franja .cap{width:34%;flex:none} .franja .mark{flex:1}
+  .nb{display:inline-flex;align-items:center;justify-content:center;flex:none;width:1.75em;height:1.75em;border-radius:99px;
+    background:var(--accent);color:var(--bg-elev);font:800 .74em/1 ui-monospace,monospace}
+  ol.leg{list-style:none;margin:0;padding:0;display:grid;gap:5px;font-size:13.5px;line-height:1.45;color:var(--fg-2)}
+  .leg li{display:flex;gap:8px;align-items:baseline} .leg .nb{font-size:11px}
+  /* la maqueta: .mq es su propio contenedor y la letra (en .mi) escala con su ancho, así que una
+     maqueta más ancha NO entra más. Si no entra: menos filas, o .mq.denso. El kit entero, con cada
+     pieza a la vista, está en el catálogo de presentacion.html. */
+  .mq{container-type:inline-size;background:var(--bg-elev);border:1px solid var(--line);border-radius:10px;overflow:hidden;
+    box-shadow:var(--shadow)}
+  .mi{font-size:max(10.5px,2.75cqi);line-height:1.35;padding:3cqi 3.2cqi;display:flex;flex-direction:column;gap:2.2cqi;color:var(--fg)}
+  .mq.denso .mi{font-size:max(10px,2.45cqi);gap:1.7cqi;padding:2.6cqi 2.8cqi}
+  .mi .fila{display:flex;gap:.55em;align-items:center;min-width:0} .mi .fila.env{flex-wrap:wrap;row-gap:.4em}
+  .mi .crece{flex:1;min-width:0}
+  .mi .vt{display:flex;flex-direction:column;gap:.25em;min-width:0}
+  .mi .in{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:.5em;padding:.45em .7em;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mi .sel{background:var(--bg);border:1px solid var(--line);border-radius:.5em;padding:.45em .6em;white-space:nowrap;flex:none}
+  .mi .bt{background:var(--accent);color:var(--bg-elev);border-radius:.5em;padding:.45em .85em;font-weight:700;white-space:nowrap;flex:none}
+  .mi .bt.gh{background:var(--bg-elev);color:var(--fg);border:1px solid var(--line);font-weight:600}
+  .mi .chp{display:inline-flex;align-items:center;gap:.35em;border:1px solid var(--line);background:var(--bg);border-radius:99px;
+    padding:.18em .7em;font-size:.86em;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  .mi .chp.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .mi .chp.no{color:var(--fg-3);text-decoration:line-through}
+  .mi .chp.ok{border-color:var(--ok);background:var(--ok-soft);color:var(--ok);font-weight:650}
+  .mi .chp.fal{border-color:var(--warn);background:var(--warn-soft);color:var(--warn);font-weight:650}
+  .mi .rt{font-size:.72em;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--fg-3)}
+  .mi .tt{font-weight:700;font-size:1.1em;letter-spacing:-.01em} .mi .ts{font-weight:700;font-size:1.15em;letter-spacing:-.01em}
+  .mi .s{font-size:.84em;color:var(--fg-3)} .mi .neg{font-weight:700}
+  .mi .bien{color:var(--ok);font-weight:800} .mi .mal{color:var(--bad);font-weight:800}
+  .mi .corta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .mi .th{width:5.2em;aspect-ratio:16/9;border-radius:.35em;object-fit:cover;flex:none;display:block}
+  .mi .th.ch{width:3.6em} .mi .th.gr{width:60%}
+  .mi .hr{height:1px;background:var(--line-soft)} .mi .apagado{opacity:.4}
+  .mi .expl{background:var(--bg);border:1px solid var(--line-soft);border-radius:.5em;padding:.5em .7em;font-size:.86em;color:var(--fg-2)}
+  .mi .aviso{display:flex;gap:.5em;align-items:center;border-radius:.5em;padding:.45em .7em;font-weight:650;
+    background:var(--bad-soft);color:var(--bad)}
+  .mi .aviso.ok{background:var(--ok-soft);color:var(--ok)}
+  .mi .campo{border:1.5px solid var(--accent);border-radius:.6em;padding:.6em .8em;background:var(--bg-elev);display:flex;flex-direction:column;gap:.3em}
+  .mi .hueco{border:1px dashed var(--warn);border-radius:.4em;height:1.7em;background:var(--warn-soft)}
+  .mi .av{width:2.1em;height:2.1em;border-radius:99px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;
+    font-size:.8em;background:var(--accent-soft);color:var(--accent);flex:none}
+  .mi .fase{display:grid;grid-template-columns:1.5em 1fr auto;gap:.25em .55em;align-items:center}
+  .mi .fase .ic{font-weight:800;text-align:center}
+  .mi .fase.hecha .ic{color:var(--ok)} .mi .fase.va .ic{color:var(--accent)} .mi .fase.falta{color:var(--fg-3)}
+  .mi .riel{grid-column:2/4;height:.42em;border-radius:99px;background:var(--line-soft);overflow:hidden}
+  .mi .riel i{display:block;height:100%;width:var(--hecho,40%);background:var(--accent);border-radius:99px}
+  .mi .dos{display:grid;grid-template-columns:1.15fr 1fr;border:1px solid var(--line-soft);border-radius:.6em;overflow:hidden}
+  .mi .dos>div{padding:.75em;display:flex;flex-direction:column;gap:.55em;min-width:0}
+  .mi .lat{background:var(--bg);border-left:1px solid var(--line)}
+  .mi .item{display:flex;gap:.5em;align-items:center;padding:.3em;border-radius:.4em;min-width:0}
+  .mi .item.on{background:var(--accent-soft);box-shadow:inset 0 0 0 1.5px var(--accent)}
+
   /* ============ pills de estado ============ */
   .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}
   .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
@@ -234,27 +319,146 @@
     .hb .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) auto;gap:8px}
     .heat{grid-template-columns:minmax(80px,1.3fr) repeat(var(--cols,4),minmax(0,1fr));font-size:11.5px}
     .kpi .n{font-size:28px}
+    .map,.map.alta,.ad.asim{grid-template-columns:minmax(0,1fr)}
+    .map .ex{border-radius:var(--radius) var(--radius) 0 0}
+    .map .who{border-left:1px solid var(--line);border-top:0;border-radius:0 0 var(--radius) var(--radius)}
+    .map.alta .cap{width:min(55%,220px);margin:0 auto}
   }
 
-  /* ============ CATÁLOGO · se borra entero al generar ============ */
-  .cat{margin-top:64px;padding-top:22px;border-top:3px solid var(--bad)}
-  .cat .adv{font-size:13px;color:var(--bad);font-weight:600;margin:0 0 20px}
-  .cat-g{display:grid;gap:16px}
-  .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
-  .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
-  .cat-i>.n b{color:var(--fg-2)}
-</style></head><body><div class="wrap">
-<header><div class="kicker"><span class="num">177</span><span class="badge">Cambio implementado</span><span class="meta">Correcciones · 21 octubre 2026</span></div>
-<h1>«Vos lo aprobás» también tiene su lista</h1><p class="sub">Tu decisión y la de los jueces se distinguen en todo momento.</p></header>
-<div class="lede"><p>«Vos lo aprobás» reúne los ejercicios con tu aprobación guardada que todavía no tienen la aprobación vigente de todos los jueces.</p></div>
-<section><h2>Cada acuerdo tiene su lugar</h2><div class="tw"><table><thead><tr><th>Los jueces</th><th>Vos</th><th>Lista</th></tr></thead><tbody>
-<tr><td>Todos aprueban al día</td><td>Falta tu aprobación</td><td>Todos los jueces lo aprueban</td></tr>
-<tr><td>No todos aprueban al día</td><td>Aprobaste</td><td><b>Vos lo aprobás</b></td></tr>
-<tr><td>Todos aprueban al día</td><td>Aprobaste</td><td>Preparados para entregar</td></tr>
-<tr><td>Faltan opiniones; sin hallazgos</td><td>Falta tu aprobación</td><td>Faltan opiniones</td></tr>
-</tbody></table></div><p class="pie">La nueva lista incluye desacuerdos, abstenciones, opiniones anteriores y jueces pendientes. Las aprobaciones parciales o sin guardar no cuentan.</p></section>
-<section><h2>Tu aprobación queda visible, aunque falten jueces</h2><div class="captura"><img src="177-vos-lo-aprobas/pantalla.png" alt="Tablero con Vos lo aprobás seleccionado y un juez que se abstuvo" style="width:100%;border-radius:var(--radius)"></div><p class="pie">Pantalla del tablero con datos de prueba. También podés aprobar o reabrir ejercicios sin cambios propuestos.</p></section>
-<section><h2>El guardado y las transiciones están probados</h2><div class="kpis"><div class="kpi"><div class="n">100<small>de 100</small></div><div class="l">pruebas de filtros, estado e interfaz</div></div><div class="kpi"><div class="n">67<small>de 67</small></div><div class="l">pruebas del servidor y del guardado</div></div><div class="kpi"><div class="n">2.260<small>de 2.265</small></div><div class="l">pruebas generales; cinco fallos previos</div></div></div><p class="pie">Navegador: aprobar, recargar, fallar al guardar, reabrir, deshacer y recibir unanimidad. Dos detalles de navegación detectados y corregidos.</p></section>
-<section><h2>Podés seguir revisando</h2><div class="flow"><div class="st"><span class="i">1</span><span class="h">Recargá Correcciones</span><span class="d">Elegí «Vos lo aprobás» para ver tus aprobaciones guardadas.</span></div><div class="st"><span class="i">2</span><span class="h">Llegan las opiniones</span><span class="d">Con unanimidad vigente, pasa automáticamente a preparados.</span></div><div class="st end"><span class="i">3</span><span class="h">Podés reabrir</span><span class="d">Retirás tu aprobación y vuelve a revisión.</span></div></div><p class="pie">La clasificación no ejecuta jueces ni publica contenido. Las interacciones se verificaron con datos aislados.</p></section>
-<footer><span>F-NADIE · ittm 4452b2bdf + cambios locales · content-audit 6161bd27d. Suite general: mismos cinco fallos previos de actividad, comprobados contra la base en el brief 176. Revisión independiente sin hallazgos pendientes.</span><span>brief 177 · 177-vos-lo-aprobas.html</span></footer>
-</div></body></html>
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">
+      <span class="num">180</span>
+      <span class="badge">Resumen</span>
+      <span class="meta">Etapa 4 del estado único del tablero · 21/10/2026</span>
+    </div>
+    <h1>La tanda: una lectura, de cada pestaña, con el mismo número</h1>
+    <p class="sub">Qué quedó de la etapa 4, cómo se probó y qué cambia en la propuesta.</p>
+  </header>
+
+  <div class="lede"><p><strong>La tanda es de cada pestaña y va en el link; las diez pantallas la leen una vez y la nombran igual.</strong> Ya está en ittm master y en el 7800; nada por decidir.</p></div>
+
+  <div class="kpis">
+    <div class="kpi dest"><div class="n">1</div><div class="l">lectura de la tanda por pestaña, contra 11 lugares en 8 pantallas</div></div>
+    <div class="kpi"><div class="n">4<small>de 4</small></div><div class="l">pruebas de la propuesta, pasadas a mano en una copia con dos tandas</div></div>
+    <div class="kpi"><div class="n">224</div><div class="l">pruebas nombran su regla; en verde las 2.389 del navegador y las 1.282 del servidor</div></div>
+    <div class="kpi"><div class="n">5</div><div class="l">fallas que encontraron la revisión y la copia, arregladas antes de juntar</div></div>
+  </div>
+
+  <section>
+    <h2>Mirando una tanda vieja, todo lo dice y nada gasta</h2>
+    <div class="map">
+      <div class="ex">
+        <svg class="cap" viewBox="0 0 1280 800" role="img" aria-label="Correcciones mirando la corrección 1, publicada, con cinco marcas">
+          <image href="180-la-tanda-hecha/correcciones-vieja.jpg" width="1280" height="800"/>
+          <rect class="aro" x="4" y="2" width="1272" height="28" rx="8"/>
+          <rect class="aro" x="5" y="85" width="50" height="54" rx="9"/>
+          <rect class="aro" x="305" y="42" width="328" height="40" rx="10"/>
+          <rect class="aro" x="1046" y="42" width="146" height="40" rx="10"/>
+          <g class="mk" transform="translate(640 16)"><circle r="22"/><text font-size="24">1</text></g>
+          <g class="mk" transform="translate(30 166)"><circle r="22"/><text font-size="24">2</text></g>
+          <g class="mk" transform="translate(652 62)"><circle r="22"/><text font-size="24">3</text></g>
+          <g class="mk" transform="translate(1118 104)"><circle r="22"/><text font-size="24">4</text></g>
+          <g class="mk gris" transform="translate(1180 125)"><circle r="22"/><text font-size="24">5</text></g>
+        </svg>
+      </div>
+      <div class="who">
+        <div><b>1</b><span><strong>La franja</strong><br><small>«Mirás una tanda vieja», con «Volver»</small></span></div>
+        <div><b>2</b><span><strong>La marca de la barra</strong><br><small>nivel y corrección, en color de aviso</small></span></div>
+        <div><b>3</b><span><strong>El encabezado</strong><br><small>el mismo en todas; el menú elige otra</small></span></div>
+        <div><b>4</b><span><strong>Completar opiniones</strong><br><small>apagado, como lanzar, medir y estimar</small></span></div>
+        <div><b class="gris">5</b><span><strong>Decidir</strong><br><small>frena sólo con la publicada, como antes</small></span></div>
+      </div>
+    </div>
+    <p class="pie">Correcciones en la copia, abierta con un link a la corrección 1. Recargar la mantiene; las otras pestañas siguen en la abierta.</p>
+  </section>
+
+  <section>
+    <h2>La misma tanda ya no tiene dos números</h2>
+    <div class="ad">
+      <div class="lado antes"><span class="rot">Hoy</span>
+        <img class="hoy" src="180-la-tanda-hecha/hoy-vueltas.jpg" alt="Vueltas: Tanda A1, vuelta 2, cerrada">
+        <img class="hoy" src="180-la-tanda-hecha/hoy-mapa.jpg" alt="Mapa de estados: Corrección 1, cerrada">
+        <div class="mark"><span class="x">✕</span><span>La misma tanda: Vueltas decía «vuelta 2» y el Mapa «Corrección 1».</span></div>
+      </div>
+      <div class="lado despues"><span class="rot">Con la etapa</span>
+        <img class="hoy" src="180-la-tanda-hecha/con-vueltas.jpg" alt="Vueltas: Tanda A1, Corrección 1, versión 8, cerrada">
+        <img class="hoy" src="180-la-tanda-hecha/con-mapa.jpg" alt="Mapa de estados: Tanda A1, Corrección 1, versión 8, cerrada">
+        <div class="mark ok"><span class="x">✓</span><span>Las dos dicen «Corrección 1 · versión 8», como todas.</span></div>
+      </div>
+    </div>
+    <p class="pie">Hoy, del brief 179; con la etapa, de la copia. La versión es la que sube con cada vuelta.</p>
+  </section>
+
+  <section>
+    <h2>Las cuatro pruebas de la propuesta pasaron</h2>
+    <div class="tw"><table>
+      <thead><tr><th>La prueba</th><th>En la copia</th><th>Automática</th></tr></thead>
+      <tbody>
+        <tr><td>Dos pestañas, una en una tanda vieja; se publica en la otra</td><td>la vieja siguió en la corrección 1; las otras cuatro pasaron a «publicada»</td><td><span class="pill p-ok">pasa</span></td></tr>
+        <tr><td>Se cierra la tanda desde la terminal</td><td>las cuatro pestañas dijeron «cerrada» antes de 10 s</td><td><span class="pill p-ok">diez pantallas</span></td></tr>
+        <tr><td>Una pantalla guarda una tanda propia</td><td>—</td><td><span class="pill p-ok">una guardia lo frena</span></td></tr>
+        <tr><td>Un link con una tanda vieja; recargar</td><td>abrió ésa, con la franja; recargar la mantuvo</td><td><span class="pill p-ok">pasa</span></td></tr>
+      </tbody></table></div>
+    <div class="call c-warn"><b>Lo que no sé:</b> la tanda vieja de la copia era un clon de la real, y una vez el CLI le dio las cifras de la real.</div>
+    <p class="pie">Cerrar y publicar se simularon editando la tanda de la copia: publicar de verdad escribe en producción.</p>
+  </section>
+
+  <section>
+    <h2>Qué cambia y qué no</h2>
+    <div class="cambia">
+      <div class="si"><div class="ptl">Cambia</div><ul>
+        <li>La tanda se elige en cada pestaña y viaja en el link.</li>
+        <li>Todas la nombran igual: corrección, versión y estado.</li>
+        <li>Con una vieja, lanzar, medir y estimar se apagan y dicen por qué.</li>
+        <li>Comparar y Analizadores leen la tanda del tablero, no del CLI.</li>
+        <li>El orden del curso se relee al publicar, sin reiniciar.</li>
+      </ul></div>
+      <div class="no"><div class="ptl">No cambia</div><ul>
+        <li>Decidir frena sólo con la tanda publicada.</li>
+        <li>Cada decisión lleva su número de corrección.</li>
+        <li>El tablero no escribe tandas: las escribe content-audit.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Para la propuesta: seis cosas quedaron distinto</h2>
+    <div class="tw"><table>
+      <thead><tr><th>La propuesta decía</th><th>Quedó</th></tr></thead>
+      <tbody>
+        <tr><td>Lo leído guarda número y versión</td><td>Correcciones guarda también la corrección: el servidor la pide en cada decisión</td></tr>
+        <tr><td>Vueltas cuenta vueltas</td><td>la curva se agrupa por versión; «Estimar» se apaga con cualquier freno</td></tr>
+        <tr><td>Cada botón se apaga</td><td>además, el diálogo de lanzar no abre un pedido de otra tanda ni de una publicada</td></tr>
+        <tr><td>Once lugares, Estadísticas incluida</td><td>Estadísticas no leía la tanda, sólo análisis: no hubo nada que pasar</td></tr>
+        <tr><td>La bandeja es de la abierta</td><td>es de la tanda por omisión: sin abierta, la última publicada</td></tr>
+        <tr><td>El menú elige corrección del nivel</td><td>también lista otros niveles; en pantallas angostas la versión se esconde</td></tr>
+      </tbody></table></div>
+  </section>
+
+  <section>
+    <h2>Qué queda pendiente</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Pendiente</th><th>Cuándo se nota</th></tr></thead>
+      <tbody>
+        <tr><td>En Correcciones, a 1280 px, la búsqueda queda fuera de la barra</td><td>ya pasaba antes; la etapa lo dejó igual</td></tr>
+        <tr><td>El freno del diálogo de lanzar no avisa</td><td>si un botón nuevo se olvida de apagarse, el clic no hace nada</td></tr>
+        <tr><td>El servidor apila lecturas enteras de una tanda que cambia</td><td>con Comparar abierta mientras content-audit escribe</td></tr>
+        <tr><td>Lo leído por tanda no tiene tope en el servidor</td><td>hoy hay una tanda; con muchas miradas, memoria</td></tr>
+        <tr><td>«Abrir en otra pestaña» desde el botón derecho pierde la tanda</td><td>el clic común y el del medio sí la llevan</td></tr>
+        <tr><td>Un arreglo provisorio en un botón de Analizadores</td><td>se limpia cuando entre la etapa 5 (jueces)</td></tr>
+      </tbody></table></div>
+  </section>
+
+  <footer>
+    <span>ittm master 432c3e4b3 (servidor 6febbc5ac, navegador ea97529ef, revisión 432c3e4b3), 7800 reiniciado · requisito F-LATAN en requirements/2026-10-21.02_la-tanda · copia en 127.0.0.1:7845, sin modelos</span>
+    <span>brief 180 · docs/briefs/180-la-tanda-hecha.html</span>
+  </footer>
+
+</div>
+</body>
+</html>
