@@ -432,7 +432,7 @@
 <div class="r"><span class="t">«Ya está rindiendo» sólo si vive</span><span class="tr"><span class="f g" style="width:19%"></span></span><span class="n">6</span></div>
 <div class="r"><span class="t">Lo que ya no corre, «cortado»</span><span class="tr"><span class="f g" style="width:91%"></span></span><span class="n">29</span></div>
 </div>
-<p class="pie">Cada barra cuenta las pruebas cuyo título nombra la regla. En total, navegador 2.230 de 2.230 (27 más) y servidor 1.301 de 1.301 (159 más). Ninguna consulta a un modelo.</p>
+<p class="pie">Cada barra cuenta las pruebas cuyo título nombra la regla. En total, navegador 2.237 de 2.237 y servidor 1.309 de 1.309, con master adentro. Sin consultar modelos.</p>
 </section>
 
 <section>
@@ -443,7 +443,7 @@
 <tr><td>Exámenes guardaba su vista con la corrida como estaba al leerla</td><td>La recalcula en cada lectura: ya no dice «Rindiendo» después de terminar</td><td><span class="pill p-ok">arreglado</span></td></tr>
 <tr><td>Un registro de exámenes que no se deja leer daba un error sin explicación</td><td>Dice qué pasó y «Probá de nuevo»</td><td><span class="pill p-ok">arreglado</span></td></tr>
 <tr><td>Una corrida numerada «__proto__» se perdía en la tabla</td><td>Se guarda como cualquier otra</td><td><span class="pill p-ok">arreglado</span></td></tr>
-<tr><td>Juntar a ittm master</td><td>Frenado: hay una medición viva desde las 8:26. La rama está subida</td><td><span class="pill p-warn">pendiente</span></td></tr>
+<tr><td>Juntar a ittm master</td><td>Frenado: hay una medición viva desde las 8:26. La rama está subida y ya trae master: entra con fast-forward</td><td><span class="pill p-warn">pendiente</span></td></tr>
 <tr><td>Probar dice «Probando» arriba cuando su paso ya dice «terminó»</td><td>Hasta 10 s, hasta que el reloj trae el resultado; se va en la etapa 8</td><td><span class="pill p-idle">leve</span></td></tr>
 <tr><td>Una corrida «en espera» cuyo proceso murió nunca pasa a huérfana</td><td>Y si el registro la cierra sin hora de fin, su trabajo podría quedar abierto</td><td><span class="pill p-warn">a revisar</span></td></tr>
 <tr><td>La tabla de corridas de una pestaña no tiene tope</td><td>Crece con cada corrida que se mira mientras la pestaña sigue abierta</td><td><span class="pill p-idle">leve</span></td></tr>
@@ -463,7 +463,7 @@
 </section>
 
 <footer>
-<span>Requisito FEAT-CORRI (requirements/2026-10-21.01_las-corridas). Rama ittm claude/estado-etapa-3, subida: 12 commits sobre master 180272637, punta 8ad236d1d; 100 archivos, +6.325 −1.514. Sin juntar por la medición ui-2026-10-21T11-26-59Z-batch-selective. Copia: campaña a1-v11 clonada, CLI con stubs, tablero en 127.0.0.1:7845; corridas simuladas con un proceso falso, sin modelos. Lo que se llevó la copia: Lectura de examen_fijo.dart congelada (conLasCorridasAlDia), FileSystemException → 502 en registros_de_examen.dart, __proto__ con defineProperty. Otras notas menores de la revisión: avisarLoQueCierraElVigilante no sube «tanda»; dos funciones situacionDeLaCorrida; el cableado de releerAlTerminar en main.js sin prueba propia; refetchOnFocus con la sesión vencida da 403.</span>
+<span>Requisito FEAT-CORRI (requirements/2026-10-21.01_las-corridas). Rama ittm claude/estado-etapa-3, subida: 12 commits sobre master 180272637 (punta 8ad236d1d; 100 archivos, +6.325 −1.514) y el merge de origin/master d49202ec7 (fb26ff3e0; un choque en ejecuciones/main.js). Sin juntar por la medición ui-2026-10-21T11-26-59Z-batch-selective. Copia: campaña a1-v11 clonada, CLI con stubs, tablero en 127.0.0.1:7845; corridas simuladas con un proceso falso, sin modelos. Lo que se llevó la copia: Lectura de examen_fijo.dart congelada (conLasCorridasAlDia), FileSystemException → 502 en registros_de_examen.dart, __proto__ con defineProperty. Otras notas menores de la revisión: avisarLoQueCierraElVigilante no sube «tanda»; dos funciones situacionDeLaCorrida; el cableado de releerAlTerminar en main.js sin prueba propia; refetchOnFocus con la sesión vencida da 403.</span>
 <span>brief 175 · docs/briefs/175-las-corridas.html</span>
 </footer>
 
