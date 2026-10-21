@@ -302,6 +302,41 @@ sin contar, 279 con error).», en un aviso, con el botón destacado.
 
 </details>
 
+<a id="F-MEDJ-R011"></a>
+### Rule[F-MEDJ-R011] - Con la tanda ocupada, la confirmación dice qué medición la ocupa y espera
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> Integrar, reemplazar o quitar una integración escribe la selección del análisis vigente. content-audit no lo hace
+> mientras la tanda está ocupada, es decir, mientras otra medición escribe en ella. La confirmación lo dice antes de que
+> José toque el botón: «La tanda está ocupada: la medición de Miniteoría con error (gpt-6.1-sol) está escribiendo en
+> ella y va en 119 de hasta 160 evaluaciones nuevas. Se va a poder reemplazar cuando termine; el botón se prende solo.»
+>
+> Invariantes:
+> 1. la ocupa una corrida de esa misma tanda que sigue en curso: corriendo, sin señal, estancada o cancelándose. Lo que
+>    corre en otra tanda, lo que terminó y lo huérfano no la ocupan. Se sabe por lo que corre
+>    ([F-CORRE-R001](../2026-10-20.02_lo-que-corre/REQUIREMENT.md#F-CORRE-R001)), sin otra pregunta al servidor;
+> 2. el aviso nombra la medición por su juez y su motor, o por su título si no es de un juez, y dice cuánto lleva con
+>    las mismas cifras de la franja. Lleva a esa corrida en Ejecuciones. Va arriba, antes de las cifras y del botón;
+> 3. mientras está ocupada, el botón queda apagado. Cuando lo que corre dice que terminó, se prende solo y el aviso dice
+>    «La medición de … terminó: ya se puede reemplazar.». Mientras no se sabe qué corre, no se apaga nada;
+> 4. si content-audit igual lo rechaza, el tablero lo dice con esas palabras y la razón `TANDA_OCUPADA`, nunca con el
+>    error del CLI. Si no se ve nada corriendo, dice que pudo quedar una medición a medias y que el diálogo de lanzar
+>    la nombra y ofrece conciliarla ([F-CORTE-R008](../2026-10-19.02_cortar-sin-trabar-la-tanda/REQUIREMENT.md#F-CORTE-R008));
+> 5. rechazar no cambia la selección ni la lectura guardada, no consulta ni reintenta solo.
+
+<details><summary>Detail</summary>
+
+El 20/10 a las 19:10 José quiso integrar Calidad didáctica A1 en Corrección 1. Corría la medición de Miniteoría con
+ChatGPT `ui-2026-10-20T20-29-46.880Z-batch-selective`, que iba en 119 de 160. Al tocar «Reemplazar», el diálogo
+mostró «content-audit batch analysis --request-json {…} -f json» falló (código 2, 21 s): Error: La tanda debe estar
+cerrada. El rechazo era correcto: lo que fallaba era decirlo como un error técnico, sin decir qué esperar.
+
+**Criterio**: con la Miniteoría corriendo en la tanda A1, la confirmación de reemplazar Calidad didáctica A1 en
+Corrección 1 dice la frase de arriba y su botón está apagado. Cuando la Miniteoría termina, el botón se prende sin
+recargar.
+
+</details>
+
 ## Contexto
 
 | Pieza | Hoy | Con esto |
@@ -313,13 +348,16 @@ sin contar, 279 con error).», en un aviso, con el botón destacado.
 | Lo que no encaja | 23 tarjetas sin flecha | «23 corridas no encajan · Ver en Ejecuciones» |
 | Leyenda | «encaja en» | sin ese trazo |
 | Detalle de una medición en Ejecuciones (20/10) | «Integra la selección actual.» con un solo estado integrado | «Integrada en La base · falta integrarla en Corrección 1 (…)», en un aviso |
+| Reemplazar con otra medición corriendo (20/10) | «…falló (código 2, 21 s): Error: La tanda debe estar cerrada.» al tocar el botón | «La tanda está ocupada: la medición de Miniteoría con error (…) va en 119 de hasta 160…», con el botón apagado hasta que termina |
 
 ## Alcance
 
 - **Adentro**: la partición y el juez de hoy en content-audit; el carril por juez en «Hoy»; la fila abierta; el estado
   elegido en la ficha; sacar las tarjetas y flechas del dibujo; desde el 20/10, que el detalle de una medición en
-  Ejecuciones diga en qué estado falta integrarla ([F-MEDJ-R010](#F-MEDJ-R010)).
-- **Afuera**: cómo se integra (la ficha y sus confirmaciones no cambian); medir de nuevo, que sigue en el diálogo de
+  Ejecuciones diga en qué estado falta integrarla ([F-MEDJ-R010](#F-MEDJ-R010)); desde el 20/10 también, que la
+  confirmación de integrar, reemplazar o quitar diga si otra medición ocupa la tanda y espere
+  ([F-MEDJ-R011](#F-MEDJ-R011)).
+- **Afuera**: cómo se integra (la ficha y lo que confirma no cambian); medir de nuevo, que sigue en el diálogo de
   [F-TALDIA-R004](../2026-10-18.02_jueces-al-dia-en-el-tablero/REQUIREMENT.md#F-TALDIA-R004); el resto de Ejecuciones;
   Analizadores y Estadísticas, que siguen abriendo la ficha como hoy.
 
@@ -391,6 +429,7 @@ modelo.
 | R008 | El carril aparece sólo en «Hoy». El dibujo no tiene tarjetas ni flechas |
 | R009 | Sin la partición no se ofrece nada. Mostrar el carril no consulta |
 | R010 | Con las cifras del 20/10, el detalle dice «Integrada en La base · falta integrarla en Corrección 1 (2.377 sin contar, 279 con error).» en un aviso y destaca el botón. Integrada en los dos estados no avisa y el botón queda en segundo plano. A medias, sin integrar en ninguno, sólo repite y no encaja se nombran. Sin la partición, falta lo que no está seleccionado. Con dos mediciones, sólo se destaca la que falta. El detalle trae el nombre de cada estado |
+| R011 | Con la Miniteoría del 20/10 corriendo en la tanda (119 de hasta 160), la confirmación de reemplazar dice la frase de la regla arriba del botón, el botón está apagado y tocarlo no escribe nada; el avance sigue a lo que corre; al terminar, el aviso dice que ya se puede y el botón se prende solo. No la ocupan otra tanda, una terminada, una huérfana ni lo que todavía no se sabe; estancada sigue ocupándola. Sin juez se nombra por el título y nada del servidor entra como HTML. El CLI que rechaza con «La tanda debe estar cerrada» llega como 409 `TANDA_OCUPADA` con la tanda y la frase de esperar, sin el comando ni el código; integrar y quitar dicen lo suyo; otra falla sigue igual; la lectura guardada no cambia. La pantalla muestra ese rechazo en el aviso, pregunta enseguida qué corre y, al saberlo, nombra la medición. En `/api/actividad`, la medición trae su juez, sacado del título; sin «analizar» no se inventa |
 
 ## References
 
@@ -398,6 +437,10 @@ modelo.
   ([F-ALDIA-R003](#F-ALDIA-R003)).
 - **FEAT-TALDIA**: el diálogo de volver a medir ([F-TALDIA-R004](#F-TALDIA-R004)) y la condición de publicar
   ([F-TALDIA-R008](#F-TALDIA-R008)).
+- **FEAT-CORRE**: lo que corre, la única respuesta que leen las diez pantallas
+  ([F-CORRE-R001](../2026-10-20.02_lo-que-corre/REQUIREMENT.md#F-CORRE-R001)); de ahí sale quién ocupa la tanda.
+- **FEAT-CORTE**: conciliar una medición que quedó a medias
+  ([F-CORTE-R008](../2026-10-19.02_cortar-sin-trabar-la-tanda/REQUIREMENT.md#F-CORTE-R008)).
 - **docs/CLI.md**, «Análisis vigente e integración de corridas»: la ficha de integración y los campos de la partición.
 - **La propuesta**: [Mediciones por juez](../../docs/propuestas/mapa-mediciones-por-juez.html), v2 del 19/10; y el
   [brief 154](../../docs/briefs/154-dos-formas-de-dibujar-el-carril.html).
