@@ -1,10 +1,4 @@
-<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Las corridas, una vez</title>
-<style>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vos lo aprobás · Correcciones</title><style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
     --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
@@ -188,84 +182,6 @@
   .captura.cel img{max-width:300px;margin:0 auto}
   .captura figcaption{font-size:12.5px;color:var(--fg-3);margin-top:8px}
 
-  /* ============ dónde estamos: la captura real, con lo que cambia rodeado y numerado ============
-     El viewBox del svg.cap es el tamaño de la foto: las marcas van en sus píxeles (capturar.mjs --medir). */
-  .map{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);box-shadow:var(--shadow);border-radius:var(--radius)}
-  .map.alta{grid-template-columns:minmax(0,200px) minmax(0,1fr)}       /* una página más alta que la pantalla */
-  .map .ex{border-radius:var(--radius) 0 0 var(--radius);padding:10px;align-content:center;box-shadow:none}
-  .map .who{display:grid;gap:9px;align-content:center;padding:14px 16px;background:var(--bg);border:1px solid var(--line);
-    border-left:0;border-radius:0 var(--radius) var(--radius) 0}
-  .map .who div{display:flex;gap:9px;align-items:center;font-size:13.5px;line-height:1.35}
-  .map .who b{font:800 11.5px/22px ui-monospace,monospace;width:22px;height:22px;border-radius:6px;text-align:center;
-    background:var(--accent);color:var(--bg-elev);flex:none}
-  .map .who b.gris{background:var(--line);color:var(--fg-3)}       /* lo que se ve pero no cambia */
-  .map .who small{color:var(--fg-3);font-size:12px}
-  .map .who .ptl{margin:0}
-  .cap{display:block;width:100%;height:auto}
-  .cap .mk circle{fill:var(--accent);stroke:var(--bg-elev);stroke-width:4}
-  .cap .mk text{fill:var(--bg-elev);font-weight:800;font-family:ui-monospace,monospace;text-anchor:middle;dominant-baseline:central}
-  .cap .mk.gris circle{fill:var(--fg-3)}
-  .cap .aro{fill:none;stroke:var(--accent);stroke-width:4}         /* rodea lo que cambia */
-  .cap .tapa{fill:var(--bg-elev);opacity:.74}                       /* atenúa lo que no */
-  .cap .raya{stroke:var(--fg-3);stroke-width:2;stroke-dasharray:9 9}  /* dónde termina cada pantalla */
-
-  /* ============ hoy → con X: la foto de hoy con el problema; la maqueta de cómo queda, con su leyenda ============ */
-  .ad.asim{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
-  .hoy{display:block;max-width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft);align-self:flex-start}
-  .franja{display:flex;gap:12px;align-items:flex-end}               /* una página alta, al lado de su marca */
-  .franja .cap{width:34%;flex:none} .franja .mark{flex:1}
-  .nb{display:inline-flex;align-items:center;justify-content:center;flex:none;width:1.75em;height:1.75em;border-radius:99px;
-    background:var(--accent);color:var(--bg-elev);font:800 .74em/1 ui-monospace,monospace}
-  ol.leg{list-style:none;margin:0;padding:0;display:grid;gap:5px;font-size:13.5px;line-height:1.45;color:var(--fg-2)}
-  .leg li{display:flex;gap:8px;align-items:baseline} .leg .nb{font-size:11px}
-  /* la maqueta: .mq es su propio contenedor y la letra (en .mi) escala con su ancho, así que una
-     maqueta más ancha NO entra más. Si no entra: menos filas, o .mq.denso. El kit entero, con cada
-     pieza a la vista, está en el catálogo de presentacion.html. */
-  .mq{container-type:inline-size;background:var(--bg-elev);border:1px solid var(--line);border-radius:10px;overflow:hidden;
-    box-shadow:var(--shadow)}
-  .mi{font-size:max(10.5px,2.75cqi);line-height:1.35;padding:3cqi 3.2cqi;display:flex;flex-direction:column;gap:2.2cqi;color:var(--fg)}
-  .mq.denso .mi{font-size:max(10px,2.45cqi);gap:1.7cqi;padding:2.6cqi 2.8cqi}
-  .mi .fila{display:flex;gap:.55em;align-items:center;min-width:0} .mi .fila.env{flex-wrap:wrap;row-gap:.4em}
-  .mi .crece{flex:1;min-width:0}
-  .mi .vt{display:flex;flex-direction:column;gap:.25em;min-width:0}
-  .mi .in{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:.5em;padding:.45em .7em;
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .mi .sel{background:var(--bg);border:1px solid var(--line);border-radius:.5em;padding:.45em .6em;white-space:nowrap;flex:none}
-  .mi .bt{background:var(--accent);color:var(--bg-elev);border-radius:.5em;padding:.45em .85em;font-weight:700;white-space:nowrap;flex:none}
-  .mi .bt.gh{background:var(--bg-elev);color:var(--fg);border:1px solid var(--line);font-weight:600}
-  .mi .chp{display:inline-flex;align-items:center;gap:.35em;border:1px solid var(--line);background:var(--bg);border-radius:99px;
-    padding:.18em .7em;font-size:.86em;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
-  .mi .chp.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
-  .mi .chp.no{color:var(--fg-3);text-decoration:line-through}
-  .mi .chp.ok{border-color:var(--ok);background:var(--ok-soft);color:var(--ok);font-weight:650}
-  .mi .chp.fal{border-color:var(--warn);background:var(--warn-soft);color:var(--warn);font-weight:650}
-  .mi .rt{font-size:.72em;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--fg-3)}
-  .mi .tt{font-weight:700;font-size:1.1em;letter-spacing:-.01em} .mi .ts{font-weight:700;font-size:1.15em;letter-spacing:-.01em}
-  .mi .s{font-size:.84em;color:var(--fg-3)} .mi .neg{font-weight:700}
-  .mi .bien{color:var(--ok);font-weight:800} .mi .mal{color:var(--bad);font-weight:800}
-  .mi .corta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
-  .mi .th{width:5.2em;aspect-ratio:16/9;border-radius:.35em;object-fit:cover;flex:none;display:block}
-  .mi .th.ch{width:3.6em} .mi .th.gr{width:60%}
-  .mi .hr{height:1px;background:var(--line-soft)} .mi .apagado{opacity:.4}
-  .mi .expl{background:var(--bg);border:1px solid var(--line-soft);border-radius:.5em;padding:.5em .7em;font-size:.86em;color:var(--fg-2)}
-  .mi .aviso{display:flex;gap:.5em;align-items:center;border-radius:.5em;padding:.45em .7em;font-weight:650;
-    background:var(--bad-soft);color:var(--bad)}
-  .mi .aviso.ok{background:var(--ok-soft);color:var(--ok)}
-  .mi .campo{border:1.5px solid var(--accent);border-radius:.6em;padding:.6em .8em;background:var(--bg-elev);display:flex;flex-direction:column;gap:.3em}
-  .mi .hueco{border:1px dashed var(--warn);border-radius:.4em;height:1.7em;background:var(--warn-soft)}
-  .mi .av{width:2.1em;height:2.1em;border-radius:99px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;
-    font-size:.8em;background:var(--accent-soft);color:var(--accent);flex:none}
-  .mi .fase{display:grid;grid-template-columns:1.5em 1fr auto;gap:.25em .55em;align-items:center}
-  .mi .fase .ic{font-weight:800;text-align:center}
-  .mi .fase.hecha .ic{color:var(--ok)} .mi .fase.va .ic{color:var(--accent)} .mi .fase.falta{color:var(--fg-3)}
-  .mi .riel{grid-column:2/4;height:.42em;border-radius:99px;background:var(--line-soft);overflow:hidden}
-  .mi .riel i{display:block;height:100%;width:var(--hecho,40%);background:var(--accent);border-radius:99px}
-  .mi .dos{display:grid;grid-template-columns:1.15fr 1fr;border:1px solid var(--line-soft);border-radius:.6em;overflow:hidden}
-  .mi .dos>div{padding:.75em;display:flex;flex-direction:column;gap:.55em;min-width:0}
-  .mi .lat{background:var(--bg);border-left:1px solid var(--line)}
-  .mi .item{display:flex;gap:.5em;align-items:center;padding:.3em;border-radius:.4em;min-width:0}
-  .mi .item.on{background:var(--accent-soft);box-shadow:inset 0 0 0 1.5px var(--accent)}
-
   /* ============ pills de estado ============ */
   .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}
   .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
@@ -318,155 +234,27 @@
     .hb .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) auto;gap:8px}
     .heat{grid-template-columns:minmax(80px,1.3fr) repeat(var(--cols,4),minmax(0,1fr));font-size:11.5px}
     .kpi .n{font-size:28px}
-    .map,.map.alta,.ad.asim{grid-template-columns:minmax(0,1fr)}
-    .map .ex{border-radius:var(--radius) var(--radius) 0 0}
-    .map .who{border-left:1px solid var(--line);border-top:0;border-radius:0 0 var(--radius) var(--radius)}
-    .map.alta .cap{width:min(55%,220px);margin:0 auto}
   }
 
-  .capturas{display:grid;gap:10px;align-items:start}
-  @media (min-width:700px){.capturas{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
-  .capturas + ol.leg{margin-top:12px}
-  .lado .captura{padding:6px;box-shadow:none}
-</style>
-</head>
-<body>
-<div class="wrap">
-
-<header>
-<div class="kicker">
-<span class="num">175</span>
-<span class="badge">Resumen</span>
-<span class="meta">Tablero · etapa 3 de «Un solo estado» · 21/10/2026</span>
-</div>
-<h1>Las corridas: una sola copia y un solo «corriendo»</h1>
-<p class="sub">Cada corrida se guarda una vez por número, y sólo el registro de actividad dice si corre.</p>
-</header>
-
-<div class="lede"><p><strong>La etapa 3 está hecha, probada y subida:</strong> cada corrida se guarda una vez y Exámenes, Problemas y Ejecuciones dicen lo mismo. No la junté a ittm master: hay una medición viva.</p></div>
-
-<section>
-<h2>Una corrida, una copia; un solo «corriendo»</h2>
-<div class="kpis">
-<div class="kpi dest"><div class="n">5 → 1</div><div class="l">copias de una misma corrida en cada pestaña</div></div>
-<div class="kpi dest"><div class="n">7 → 1</div><div class="l">lugares del servidor que decidían si algo corre</div></div>
-<div class="kpi"><div class="n">282 → 51</div><div class="l">líneas que guarda Ejecuciones por su cuenta: sólo lo de la pantalla</div></div>
-<div class="kpi"><div class="n">145</div><div class="l">pruebas que nombran una de las 11 reglas; todas pasan</div></div>
-</div>
-<p class="pie">Antes, la misma corrida vivía en cinco lugares de la pestaña y cada uno se ponía al día a su ritmo. Ahora todas leen una tabla, por número.</p>
-</section>
-
-<section>
-<h2>En la copia, cinco lugares dicen lo mismo</h2>
-<div class="capturas">
-<figure class="captura">
-<svg class="cap" viewBox="0 0 1280 800" role="img" aria-label="Exámenes con la franja de arriba y el recuadro del juez, los dos con 7 de hasta 30 consultas">
-<image href="175-las-corridas/examenes-viva.jpg" width="1280" height="800"/>
-<rect class="aro" x="6" y="2" width="452" height="27" rx="6"/>
-<rect class="aro" x="116" y="690" width="600" height="44" rx="8"/>
-<g class="mk" transform="translate(500 15)"><circle r="24"/><text font-size="27">1</text></g>
-<g class="mk" transform="translate(760 712)"><circle r="24"/><text font-size="27">2</text></g>
-</svg>
-<figcaption>Exámenes, con la rendición de Miniteoría en curso.</figcaption></figure>
-<figure class="captura">
-<svg class="cap" viewBox="0 0 1280 800" role="img" aria-label="Ejecuciones con la tarjeta de lo que corre, el renglón del historial y el detalle, los tres con 7 de hasta 30 consultas">
-<image href="175-las-corridas/ejecuciones-viva.jpg" width="1280" height="800"/>
-<rect class="aro" x="80" y="72" width="388" height="264" rx="12"/>
-<rect class="aro" x="72" y="500" width="376" height="88" rx="10"/>
-<rect class="aro" x="478" y="610" width="786" height="70" rx="8"/>
-<g class="mk" transform="translate(510 100)"><circle r="24"/><text font-size="27">3</text></g>
-<g class="mk" transform="translate(456 470)"><circle r="24"/><text font-size="27">4</text></g>
-<g class="mk" transform="translate(690 668)"><circle r="24"/><text font-size="27">5</text></g>
-</svg>
-<figcaption>Ejecuciones, en el mismo momento.</figcaption></figure>
-</div>
-<ol class="leg">
-<li><span class="nb">1</span><span>La franja de arriba, en cualquier pantalla: «7 de hasta 30 consultas».</span></li>
-<li><span class="nb">2</span><span>Exámenes, en el juez que rinde: «Lleva 7 de hasta 30».</span></li>
-<li><span class="nb">3</span><span>Ejecuciones, lo que corre ahora, con Cancelar.</span></li>
-<li><span class="nb">4</span><span>Ejecuciones, su renglón del historial.</span></li>
-<li><span class="nb">5</span><span>Ejecuciones, el detalle: lo que gastó.</span></li>
-</ol>
-<p class="pie">Una rendición simulada en la copia de la campaña, sin modelos. Cancelarla: «Ya no corre» a los 243 ms; terminar sola: Exámenes y la franja cambiaron juntos.</p>
-</section>
-
-<section>
-<h2>Reconocer una huérfana ya deja volver a rendir</h2>
-<div class="ad">
-<div class="lado antes"><span class="rot">Con la etapa 2</span>
-<ol>
-<li>La corrida del examen queda huérfana: su proceso murió.</li>
-<li>La reconocés en Ejecuciones, que pasa a decir «falló».</li>
-<li>El trabajo del examen espera un archivo que nunca llega.</li>
-<li>Exámenes contesta «Este examen ya está rindiendo».</li>
-</ol>
-<span class="res">Trabado para siempre</span></div>
-<div class="lado despues"><span class="rot">Con la etapa 3</span>
-<figure class="captura">
-<svg class="cap" viewBox="104 592 808 202" role="img" aria-label="Recuadro de Exámenes: la rendición quedó huérfana, reconocela en Ejecuciones">
-<image href="175-las-corridas/examenes-huerfana.jpg" width="1280" height="800"/>
-</svg>
-<figcaption>Huérfana: Exámenes manda a reconocerla en Ejecuciones.</figcaption></figure>
-<figure class="captura">
-<svg class="cap" viewBox="104 592 808 202" role="img" aria-label="Recuadro de Exámenes: la última rendición no terminó, la cancelaste desde el tablero, con el botón Rendir de nuevo">
-<image href="175-las-corridas/examenes-reconocida.jpg" width="1280" height="800"/>
-</svg>
-<figcaption>Reconocida: el motivo y «Rendir de nuevo».</figcaption></figure>
-<span class="res">Se puede volver a rendir</span></div>
-</div>
-<p class="pie">El servidor le pregunta al registro de actividad si la corrida terminó y cierra el trabajo con ese motivo. Antes esperaba un archivo de salida; lo reproduce una prueba.</p>
-</section>
-
-<section>
-<h2>Cada regla tiene sus pruebas, y todas pasan</h2>
-<div class="hb">
-<div class="r"><span class="t">Una corrida dice lo mismo en todas</span><span class="tr"><span class="f g" style="width:22%"></span></span><span class="n">7</span></div>
-<div class="r"><span class="t">Ninguna pantalla guarda corridas</span><span class="tr"><span class="f g" style="width:34%"></span></span><span class="n">11</span></div>
-<div class="r"><span class="t">Lo que mirás va en la dirección</span><span class="tr"><span class="f g" style="width:16%"></span></span><span class="n">5</span></div>
-<div class="r"><span class="t">Se pone al día sola<small>sin releer lo que nadie mira</small></span><span class="tr"><span class="f g" style="width:38%"></span></span><span class="n">12</span></div>
-<div class="r"><span class="t">Cancelar, reconocer y conciliar son pedidos</span><span class="tr"><span class="f g" style="width:31%"></span></span><span class="n">10</span></div>
-<div class="r"><span class="t">Vueltas lee el mismo historial</span><span class="tr"><span class="f g" style="width:6%"></span></span><span class="n">2</span></div>
-<div class="r"><span class="t">Problemas y Exámenes muestran la corrida</span><span class="tr"><span class="f g" style="width:50%"></span></span><span class="n">16</span></div>
-<div class="r"><span class="t">Los exámenes registrados no son corridas</span><span class="tr"><span class="f g" style="width:47%"></span></span><span class="n">15</span></div>
-<div class="r"><span class="t">El registro cierra el trabajo</span><span class="tr"><span class="f g" style="width:100%"></span></span><span class="n">32</span></div>
-<div class="r"><span class="t">«Ya está rindiendo» sólo si vive</span><span class="tr"><span class="f g" style="width:19%"></span></span><span class="n">6</span></div>
-<div class="r"><span class="t">Lo que ya no corre, «cortado»</span><span class="tr"><span class="f g" style="width:91%"></span></span><span class="n">29</span></div>
-</div>
-<p class="pie">Cada barra cuenta las pruebas cuyo título nombra la regla. En total, navegador 2.237 de 2.237 y servidor 1.309 de 1.309, con master adentro. Sin consultar modelos.</p>
-</section>
-
-<section>
-<h2>Aparecieron tres errores, ya arreglados; quedan cinco cosas abiertas</h2>
-<div class="tw"><table>
-<thead><tr><th>Qué</th><th>Quedó</th><th>Estado</th></tr></thead>
-<tbody>
-<tr><td>Exámenes guardaba su vista con la corrida como estaba al leerla</td><td>La recalcula en cada lectura: ya no dice «Rindiendo» después de terminar</td><td><span class="pill p-ok">arreglado</span></td></tr>
-<tr><td>Un registro de exámenes que no se deja leer daba un error sin explicación</td><td>Dice qué pasó y «Probá de nuevo»</td><td><span class="pill p-ok">arreglado</span></td></tr>
-<tr><td>Una corrida numerada «__proto__» se perdía en la tabla</td><td>Se guarda como cualquier otra</td><td><span class="pill p-ok">arreglado</span></td></tr>
-<tr><td>Juntar a ittm master</td><td>Frenado: hay una medición viva desde las 8:26. La rama está subida y ya trae master: entra con fast-forward</td><td><span class="pill p-warn">pendiente</span></td></tr>
-<tr><td>Probar dice «Probando» arriba cuando su paso ya dice «terminó»</td><td>Hasta 10 s, hasta que el reloj trae el resultado; se va en la etapa 8</td><td><span class="pill p-idle">leve</span></td></tr>
-<tr><td>Una corrida «en espera» cuyo proceso murió nunca pasa a huérfana</td><td>Y si el registro la cierra sin hora de fin, su trabajo podría quedar abierto</td><td><span class="pill p-warn">a revisar</span></td></tr>
-<tr><td>La tabla de corridas de una pestaña no tiene tope</td><td>Crece con cada corrida que se mira mientras la pestaña sigue abierta</td><td><span class="pill p-idle">leve</span></td></tr>
-<tr><td>Cada pantalla relee su corrida al terminar</td><td>Sigue el reloj de 10 s de Problemas y Exámenes, como decidiste</td><td><span class="pill p-idle">etapas 5 y 8</span></td></tr>
-</tbody></table></div>
-<p class="pie">Los errores salieron de la copia y de las pruebas nuevas. Tres de las abiertas, de la revisión del código; ninguna traba ni hace gastar.</p>
-</section>
-
-<section>
-<h2>Qué sigue</h2>
-<div class="flow">
-<div class="st"><span class="i">1</span><span class="h">Juntar a master</span><span class="d">Al terminar la medición: fast-forward a master y reiniciar el 7800.</span></div>
-<div class="st"><span class="i">2</span><span class="h">Etapas 4 y 5</span><span class="d">Siguen libres. La 5 se lleva el reloj de Exámenes.</span></div>
-<div class="st end"><span class="i">3</span><span class="h">Etapa 8, Problemas</span><span class="d">Ya puede empezar. Se lleva el reloj de Problemas.</span></div>
-</div>
-<div class="call c-warn"><b>Ojo:</b> hasta juntarla, el 7800 sigue con la etapa 2. Lo de este brief está en la rama, todavía no en tu tablero.</div>
-</section>
-
-<footer>
-<span>Requisito FEAT-CORRI (requirements/2026-10-21.01_las-corridas). Rama ittm claude/estado-etapa-3, subida: 12 commits sobre master 180272637 (punta 8ad236d1d; 100 archivos, +6.325 −1.514) y el merge de origin/master d49202ec7 (fb26ff3e0; un choque en ejecuciones/main.js). Sin juntar por la medición ui-2026-10-21T11-26-59Z-batch-selective. Copia: campaña a1-v11 clonada, CLI con stubs, tablero en 127.0.0.1:7845; corridas simuladas con un proceso falso, sin modelos. Lo que se llevó la copia: Lectura de examen_fijo.dart congelada (conLasCorridasAlDia), FileSystemException → 502 en registros_de_examen.dart, __proto__ con defineProperty. Otras notas menores de la revisión: avisarLoQueCierraElVigilante no sube «tanda»; dos funciones situacionDeLaCorrida; el cableado de releerAlTerminar en main.js sin prueba propia; refetchOnFocus con la sesión vencida da 403.</span>
-<span>brief 175 · docs/briefs/175-las-corridas.html</span>
-</footer>
-
-</div>
-</body>
-</html>
+  /* ============ CATÁLOGO · se borra entero al generar ============ */
+  .cat{margin-top:64px;padding-top:22px;border-top:3px solid var(--bad)}
+  .cat .adv{font-size:13px;color:var(--bad);font-weight:600;margin:0 0 20px}
+  .cat-g{display:grid;gap:16px}
+  .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
+  .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
+  .cat-i>.n b{color:var(--fg-2)}
+</style></head><body><div class="wrap">
+<header><div class="kicker"><span class="num">177</span><span class="badge">Cambio implementado</span><span class="meta">Correcciones · 21 octubre 2026</span></div>
+<h1>«Vos lo aprobás» también tiene su lista</h1><p class="sub">Tu decisión y la de los jueces se distinguen en todo momento.</p></header>
+<div class="lede"><p>«Vos lo aprobás» reúne los ejercicios con tu aprobación guardada que todavía no tienen la aprobación vigente de todos los jueces.</p></div>
+<section><h2>Cada acuerdo tiene su lugar</h2><div class="tw"><table><thead><tr><th>Los jueces</th><th>Vos</th><th>Lista</th></tr></thead><tbody>
+<tr><td>Todos aprueban al día</td><td>Falta tu aprobación</td><td>Todos los jueces lo aprueban</td></tr>
+<tr><td>No todos aprueban al día</td><td>Aprobaste</td><td><b>Vos lo aprobás</b></td></tr>
+<tr><td>Todos aprueban al día</td><td>Aprobaste</td><td>Preparados para entregar</td></tr>
+<tr><td>Faltan opiniones; sin hallazgos</td><td>Falta tu aprobación</td><td>Faltan opiniones</td></tr>
+</tbody></table></div><p class="pie">La nueva lista incluye desacuerdos, abstenciones, opiniones anteriores y jueces pendientes. Las aprobaciones parciales o sin guardar no cuentan.</p></section>
+<section><h2>Tu aprobación queda visible, aunque falten jueces</h2><div class="captura"><img src="177-vos-lo-aprobas/pantalla.png" alt="Tablero con Vos lo aprobás seleccionado y un juez que se abstuvo" style="width:100%;border-radius:var(--radius)"></div><p class="pie">Pantalla del tablero con datos de prueba. También podés aprobar o reabrir ejercicios sin cambios propuestos.</p></section>
+<section><h2>El guardado y las transiciones están probados</h2><div class="kpis"><div class="kpi"><div class="n">100<small>de 100</small></div><div class="l">pruebas de filtros, estado e interfaz</div></div><div class="kpi"><div class="n">67<small>de 67</small></div><div class="l">pruebas del servidor y del guardado</div></div><div class="kpi"><div class="n">2.260<small>de 2.265</small></div><div class="l">pruebas generales; cinco fallos previos</div></div></div><p class="pie">Navegador: aprobar, recargar, fallar al guardar, reabrir, deshacer y recibir unanimidad. Dos detalles de navegación detectados y corregidos.</p></section>
+<section><h2>Podés seguir revisando</h2><div class="flow"><div class="st"><span class="i">1</span><span class="h">Recargá Correcciones</span><span class="d">Elegí «Vos lo aprobás» para ver tus aprobaciones guardadas.</span></div><div class="st"><span class="i">2</span><span class="h">Llegan las opiniones</span><span class="d">Con unanimidad vigente, pasa automáticamente a preparados.</span></div><div class="st end"><span class="i">3</span><span class="h">Podés reabrir</span><span class="d">Retirás tu aprobación y vuelve a revisión.</span></div></div><p class="pie">La clasificación no ejecuta jueces ni publica contenido. Las interacciones se verificaron con datos aislados.</p></section>
+<footer><span>F-NADIE · ittm 4452b2bdf + cambios locales · content-audit 6161bd27d. Suite general: mismos cinco fallos previos de actividad, comprobados contra la base en el brief 176. Revisión independiente sin hallazgos pendientes.</span><span>brief 177 · 177-vos-lo-aprobas.html</span></footer>
+</div></body></html>
