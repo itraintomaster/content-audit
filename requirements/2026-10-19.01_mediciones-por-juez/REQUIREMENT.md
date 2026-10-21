@@ -84,8 +84,8 @@ miniteoría del 19/10 a las 00:54, en la corrección: 2.382 son juez de hoy, 16 
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
 > Un veredicto es del **juez de hoy**:
-> - si la versión de hoy aprobó su examen: cuando su marca es «al día» ([F-ALDIA-R003](#F-ALDIA-R003)), con versión y
->   motor;
+> - si la versión de hoy aprobó su examen: cuando su marca es «al día» ([F-ALDIA-R003](#F-ALDIA-R003)): la versión de hoy,
+>   con cualquier motor del que se sepa cuál;
 > - si no aprobó: cuando su versión es la de hoy o una registrada como la misma ([F-ALDIA-R002](#F-ALDIA-R002)). El motor
 >   no se mira.
 >
@@ -93,7 +93,8 @@ miniteoría del 19/10 a las 00:54, en la corrección: 2.382 son juez de hoy, 16 
 > 1. un juez sin versión de hoy no tiene veredictos de hoy;
 > 2. de cada corrida y estado se dice si todo lo que encaja es del juez de hoy, y si la versión de hoy aprobó. Sin versión
 >    de hoy no se dice ninguna de las dos; sin nada que encaje, no se dice la primera;
-> 3. la versión de la corrida se juzga con el motor con que midió.
+> 3. la versión de la corrida se juzga con el motor con que midió: sin motor conocido, la procedencia es desconocida y no es
+>    del juez de hoy aprobado. Con un motor conocido, cualquiera, cuenta sólo la versión (F-ALDIA-R003 inv. 7).
 
 <details><summary>Detail</summary>
 
@@ -263,6 +264,44 @@ igual.
 
 </details>
 
+<a id="F-MEDJ-R010"></a>
+### Rule[F-MEDJ-R010] - El detalle de una medición en Ejecuciones dice en qué estado falta integrarla
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+> En Ejecuciones, el detalle de una medición guardada dice, estado por estado, en qué quedó:
+> - **integrada**: lo que aporta ya cuenta;
+> - **a medias**: cuenta una parte y falta otra;
+> - **sin integrar**: no cuenta nada de lo que aporta;
+> - **no trae nada nuevo**: lo que encaja sólo repite lo medido o trae otra versión ([F-MEDJ-R004](#F-MEDJ-R004));
+> - **no encaja**.
+>
+> Invariantes:
+> 1. lo que falta integrar en un estado es lo que aporta y todavía no cuenta: los huecos, lo que pasa a la versión de
+>    hoy y lo que cambia de resultado ([F-MEDJ-R001](#F-MEDJ-R001)). Sin la partición, falta todo lo que encaja y no
+>    cuenta;
+> 2. el titular nombra cada estado como el análisis vigente, la base primero, y dice cuánto falta: «Integrada en La base
+>    · falta integrarla en Corrección 1 (2.377 sin contar, 279 con error)». «Con error» son los ejercicios donde la
+>    medición marca un error que hoy no cuenta;
+> 3. que un estado esté integrado nunca alcanza para decir que la medición cuenta;
+> 4. si falta algo en algún estado, el titular va en un aviso y el botón «Ver integración y diferencias» queda
+>    destacado. Si no falta nada, el botón queda en segundo plano;
+> 5. si la misma ejecución guardó varias mediciones, cada una dice lo suyo y sólo se destaca el botón de la que falta;
+> 6. mostrarlo no consulta ni integra, y las cifras son las de content-audit ([F-MEDJ-R009](#F-MEDJ-R009)).
+
+<details><summary>Detail</summary>
+
+El 20/10 José integró la medición de Calidad didáctica A1 sólo en La base. El titular decía «Integra la selección
+actual.» apenas un estado tenía algo elegido, y José creyó que estaba integrada. Lo que no se integra no cuenta en el
+análisis vigente: el filtro «Nadie le ve problemas» de Correcciones, que mira la corrección
+([F-NADIE-R001](../2026-10-20.01_nadie-le-ve-problemas/REQUIREMENT.md#F-NADIE-R001)), siguió en 1.111.
+
+**Criterio**: la medición de Calidad didáctica A1 del 20/10 a las 15:11, `ui-2026-10-20T18-11-44.081499Z-batch-selective`.
+En La base cuentan los 1.617 ejercicios que encajan. En Corrección 1 cuentan 0 de 2.402: 2.377 son huecos, 25 repiten
+y 279 tienen un error que hoy no cuenta. El detalle dice «Integrada en La base · falta integrarla en Corrección 1 (2.377
+sin contar, 279 con error).», en un aviso, con el botón destacado.
+
+</details>
+
 ## Contexto
 
 | Pieza | Hoy | Con esto |
@@ -273,14 +312,16 @@ igual.
 | Las 11 repetidas | «11 reemplazarían 88» | «×11 · repite lo medido», en la fila abierta |
 | Lo que no encaja | 23 tarjetas sin flecha | «23 corridas no encajan · Ver en Ejecuciones» |
 | Leyenda | «encaja en» | sin ese trazo |
+| Detalle de una medición en Ejecuciones (20/10) | «Integra la selección actual.» con un solo estado integrado | «Integrada en La base · falta integrarla en Corrección 1 (…)», en un aviso |
 
 ## Alcance
 
 - **Adentro**: la partición y el juez de hoy en content-audit; el carril por juez en «Hoy»; la fila abierta; el estado
-  elegido en la ficha; sacar las tarjetas y flechas del dibujo.
+  elegido en la ficha; sacar las tarjetas y flechas del dibujo; desde el 20/10, que el detalle de una medición en
+  Ejecuciones diga en qué estado falta integrarla ([F-MEDJ-R010](#F-MEDJ-R010)).
 - **Afuera**: cómo se integra (la ficha y sus confirmaciones no cambian); medir de nuevo, que sigue en el diálogo de
-  [F-TALDIA-R004](../2026-10-18.02_jueces-al-dia-en-el-tablero/REQUIREMENT.md#F-TALDIA-R004); Ejecuciones; Analizadores
-  y Estadísticas, que siguen abriendo la ficha como hoy.
+  [F-TALDIA-R004](../2026-10-18.02_jueces-al-dia-en-el-tablero/REQUIREMENT.md#F-TALDIA-R004); el resto de Ejecuciones;
+  Analizadores y Estadísticas, que siguen abriendo la ficha como hoy.
 
 ## User Journeys
 
@@ -341,7 +382,7 @@ modelo.
 | Regla | Qué se comprueba |
 |---|---|
 | R001 | Los seis grupos suman lo que encaja y «reemplaza» suma los cuatro últimos. Un ejercicio que trae el juez de hoy y cambia resultados cuenta como juez de hoy. Los huecos siguen en los errores ganados |
-| R002 | Aprobado, sólo lo «al día» es de hoy. Sin aprobar, cuenta la versión y no el motor. Sin versión de hoy, nada es de hoy y no se dice si aprobó |
+| R002 | Aprobado, sólo lo «al día» es de hoy: la versión de hoy con cualquier motor conocido. Sin aprobar, cuenta la versión y no el motor. Sin versión de hoy, nada es de hoy y no se dice si aprobó |
 | R003 | Cada celda va debajo de su dial y ofrece la corrida que más aporta, con un botón que dice qué trae |
 | R004 | Lo que sólo repite o trae una versión anterior no se ofrece y queda en la fila abierta con su motivo |
 | R005 | Con la versión de hoy sin aprobar, el botón dice «sin aprobar» y avisa que no sirve para publicar |
@@ -349,6 +390,7 @@ modelo.
 | R007 | La fila abierta agrupa las repetidas, marca las históricas y abre la ficha con el estado primero |
 | R008 | El carril aparece sólo en «Hoy». El dibujo no tiene tarjetas ni flechas |
 | R009 | Sin la partición no se ofrece nada. Mostrar el carril no consulta |
+| R010 | Con las cifras del 20/10, el detalle dice «Integrada en La base · falta integrarla en Corrección 1 (2.377 sin contar, 279 con error).» en un aviso y destaca el botón. Integrada en los dos estados no avisa y el botón queda en segundo plano. A medias, sin integrar en ninguno, sólo repite y no encaja se nombran. Sin la partición, falta lo que no está seleccionado. Con dos mediciones, sólo se destaca la que falta. El detalle trae el nombre de cada estado |
 
 ## References
 

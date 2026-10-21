@@ -166,6 +166,34 @@ consultas; la base no llegó a empezar. Conciliada: la principal gasta 83, mide 
 > 3. «Conciliar» confirma que el proceso terminó sólo si el tablero no lo ve vivo;
 > 4. al terminar de conciliar se vuelve a estimar; si falla, el freno dice por qué.
 
+<a id="F-CORTE-R009"></a>
+### Rule[F-CORTE-R009] - La medición que paró sola dice que quedó a medias y por qué
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> Una medición que terminó sin medir todo lo que se proponía nunca dice «Terminó bien». En Ejecuciones, tanto en el
+> historial como en su detalle, dice «Quedó a medias», cuánto midió de cuánto, cuánto quedó sin medir y por qué paró.
+> Invariantes:
+> 1. el motivo es el que anotó la medición o, en «ambas», cada parte que quedó a medias, sin repetirlo. Si nadie anotó
+>    uno y gastó todo su tope, el motivo es el tope; si no, no se dice ninguno y nunca se inventa;
+> 2. su resumen nombra al juez que midió; nunca dice «Distractores» por otro juez;
+> 3. una medición registrada antes de este cambio que quedó a medias también dice «Quedó a medias», con sus cifras y
+>    sin motivo;
+> 4. la que midió todo sigue diciendo «Terminó bien», con el nombre de su juez; lo medido por una que quedó a medias se
+>    sigue integrando desde Correcciones.
+
+<details><summary>Detail</summary>
+
+**Criterio**, con la tanda A1 el 19/10 a las 22:29: la Miniteoría «ambas» con Gemini se cortó en 5 de 160. Sus dos
+partes anotaron «el servicio no respondió a tiempo: volvé a correr más tarde o con menos consultas a la vez» (1 de 83
+temas en la corrección, 4 de 83 en la base) y Ejecuciones decía «Terminó bien». Con esta regla dice «Quedó a medias:
+midió 5 de 160 y quedaron 155 sin medir.» José creyó haber medido todo y el Mapa seguía con 82 de 83 temas de la
+versión anterior.
+
+También quedan a medias, sin motivo anotado, mediciones con un faltante (Calidad didáctica A1, 2.401 de 2.402) o con
+las abstenciones que se contaban como sin medir antes del 19/10 (Pragmatismo, 2.314 de 2.402).
+
+</details>
+
 ## Contexto
 
 | Pieza | Hoy | Con esto |
@@ -179,7 +207,8 @@ consultas; la base no llegó a empezar. Conciliada: la principal gasta 83, mide 
 ## Alcance
 
 - **Adentro**: conciliar mediciones (analizar, reanalizar, la base y «ambas») en content-audit; anotar lo necesario al
-  empezar; nombrar las mediciones abiertas en la estimación; la conciliación automática del tablero; el freno nuevo.
+  empezar; nombrar las mediciones abiertas en la estimación; la conciliación automática del tablero; el freno nuevo;
+  que Ejecuciones diga cuándo una medición quedó a medias y por qué (agregado el 20/10).
 - **Afuera**: una corrección cortada (sigue pidiendo revisión); «Completar opiniones», que también deja la tanda en
   curso si se corta (José decidió hacerlo después, aparte); cortar con cuidado esperando la consulta en vuelo.
 
@@ -247,6 +276,7 @@ grabadas. Ninguna consulta a un modelo.
 | R006 | La estimación nombra la medición que frena, con lo guardado y si sigue corriendo | `.theEstimateNamesTheOpenMeasurementThatHoldsLaunches`, `SelectiveCorrectionCmdTest.reconcileRoutesTheConfirmationAndTheAnswerNamesTheOpenMeasurements` |
 | R007 | El tablero concilia al ver terminar sin éxito (cancelada o caída), no al terminar bien; si no pudo, el registro lo dice y no relanza nada | ittm `test/tablero_html/ejecuciones/cierre_de_una_medicion_cortada_test.dart` (grupo F-CORTE-R007) |
 | R008 | El freno nombra juez, hora, lo guardado, «Conciliar» y «Ver la corrida»; vivo, no ofrece conciliar; nunca lleva a un examen; «Conciliar» confirma que terminó sólo si no la ve viva y vuelve a estimar | ittm `html/test/lanzar-medicion-cortada.test.js`, `test/tablero_html/ejecuciones/cierre_de_una_medicion_cortada_test.dart` (grupos F-CORTE-R008) |
+| R009 | La que quedó a medias dice «Quedó a medias», sus cifras y el motivo de sus partes una sola vez; sin motivo anotado no lo inventa, con el tope gastado lo dice; nombra al juez; una vieja también queda a medias; la que midió todo terminó bien; lo medido se integra desde Correcciones | ittm `test/tablero_html/ejecuciones/distractores_test.dart` y `vista_de_ejecuciones_test.dart` (pruebas F-CORTE-R009), `html/test/ejecuciones-vistas.test.js` (F-CORTE-R009) |
 
 ## References
 

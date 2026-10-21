@@ -36,11 +36,11 @@ class JudgeFreshnessTallyTest {
 
     /**
      * F-ALDIA-R003 inv. 7, Correction 1 on 20/10: today's Miniteoría approved only with Gemini, and the
-     * 82 topics measured with ChatGPT by versions that approved with it are named by their version.
+     * 82 topics measured with ChatGPT by earlier versions are named by their version, never by the motor.
      */
     @Test
     @Tag("F-ALDIA-R003")
-    void anEarlierVersionWithAMotorTheJudgeApprovedWithIsReusedByVersionNotByMotor() {
+    void theMiniTheoryOfThe20thIsReusedByVersionNeverByMotor() {
         var tally = new JudgeFreshnessTally(todayWithGeminiOnly(history()), "miniteoría", AuditTarget.KNOWLEDGE);
         assertTrue(tally.add(V_GEMINI, GEMINI, 1).isUpToDate());
         tally.add(V_5_10, MEDIUM, 76);
@@ -56,19 +56,18 @@ class JudgeFreshnessTallyTest {
     }
 
     @Test
-    void otherRuntimeUnknownAndNotMeasuredAreCountedApartAndSumToTheUnit() {
+    void unknownAndNotMeasuredAreCountedApartAndAnotherMotorOfTodaysVersionIsUpToDate() {
         var tally = new JudgeFreshnessTally(today(), "miniteoría", AuditTarget.QUIZ);
         tally.add(V_TODAY, XHIGH, 1_200);
-        tally.add(V_TODAY, LOCAL, 3);
+        assertTrue(tally.add(V_TODAY, LOCAL, 3).isUpToDate());
         tally.add(null, null, 2);
         tally.notMeasured(4);
         var count = tally.count();
         assertEquals(1_209, count.total());
+        assertEquals(1_203, count.upToDate());
         assertEquals(4, count.notMeasured());
-        assertEquals("reusa 5 ejercicios de antes (3 de llama3 local, 2 de procedencia desconocida)", count.detail());
-        var local = count.fromBeforeGroups().get(0);
-        assertEquals(LOCAL.toString(), local.runtime());
-        assertEquals("llama3 local", local.runtimeName());
+        assertEquals("reusa 2 ejercicios de antes (2 de procedencia desconocida)", count.detail());
+        assertEquals(JudgeVerdictStaleCause.UNKNOWN_PROVENANCE, count.fromBeforeGroups().get(0).cause());
     }
 
     @Test
@@ -144,11 +143,10 @@ class JudgeFreshnessTallyTest {
         var count = tally.count();
         assertTrue(count.approved());
         assertEquals(enabled, count.enabledWith());
-        assertEquals(1, count.upToDate());
-        // F-ALDIA-R003 inv. 7: the version of 5/10 approved with that motor, so the 82 are of an earlier
-        // version; today's version with a motor it did not approve with is another motor.
-        assertEquals("miniteoría: reusa 84 temas de antes (82 de la del 5/10, 2 de gpt-6.1-sol en codex-cli, xhigh)",
-                count.summary());
+        // F-ALDIA-R003 inv. 7: only the version decides. Today's version counts with Gemini and with
+        // ChatGPT; the 82 of the version of 5/10 are of an earlier version.
+        assertEquals(3, count.upToDate());
+        assertEquals("miniteoría: reusa 82 temas de antes (82 de la del 5/10)", count.summary());
         assertEquals("la del 19/10", count.currentVersionName());
     }
 }

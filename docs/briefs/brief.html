@@ -3,23 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>165 · La Miniteoría no opinó con otro motor</title>
-<!--
-  TEMPLATE DE BRIEF · visual-brief
-  1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
-  2. Por cada sección: un título que dice la conclusión, UN dibujo copiado del
-     catálogo del final y un pie de dos renglones. Primero el dibujo; el texto lo rotula.
-     Si habla de una pantalla: primero DÓNDE (la captura con marcas, .map), después EL
-     PROBLEMA como un caso de uso (la foto de hoy + .mark), después CÓMO QUEDA (la maqueta
-     .mq con números y su leyenda). Si ya está hecho, los dos lados del .ad son capturas.
-     Las fotos, con capturar.mjs, en docs/briefs/NNN-slug/ (SKILL.md §4).
-  3. BORRAR el catálogo entero (la section de clase cat, al final) y las secciones que no se usan.
-  4. Verificar: node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
-     y mirarlo: node ~/.claude/skills/visual-brief/assets/diapos.mjs <el brief> <scratchpad>/d (+ --tema=dark, --celular)
-  Topes: lede ≤ 2 frases y 35 palabras · ≤ 6 secciones · pie ≤ 30 · párrafo ≤ 40 ·
-  prosa total ≤ 400 (sin tablas ni gráficos). Cada componente trae el suyo en el catálogo.
-  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
--->
+<title>El servidor avisa</title>
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -347,130 +331,135 @@
   .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
   .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
   .cat-i>.n b{color:var(--fg-2)}
+  .capturas{display:grid;gap:10px;margin-top:14px;align-items:start}
+  @media (min-width:700px){.capturas{grid-template-columns:minmax(0,1fr) minmax(0,.62fr)}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <header>
-    <div class="kicker">
-      <span class="num">165</span>
-      <span class="badge">Arreglo</span>
-      <span class="meta">Correcciones · tanda A1, Corrección 1 · 20/10/2026</span>
-    </div>
-    <h1>La Miniteoría no opinó con otro motor: opinaron versiones viejas</h1>
-    <p class="sub">Qué decía Correcciones, por qué estaba mal y cómo se lee ahora, sobre el mismo ejercicio.</p>
-  </header>
+<header>
+<div class="kicker">
+<span class="num">171</span>
+<span class="badge">Resumen</span>
+<span class="meta">Tablero · etapa 2 de «Un solo estado» · 20/10/2026</span>
+</div>
+<h1>El tablero avisa: las diez pantallas se enteran en un segundo</h1>
+<p class="sub">Un solo canal de avisos para todas las pestañas; lo que corre ya no se pregunta cada 3 s.</p>
+</header>
 
-  <div class="lede"><p><strong>Los ejercicios de «opinó con otro motor» los opinaron la Miniteoría del 5/10 y las del 13/10.</strong> Ahora lo dicen así y siguen en «Falta medir»: falta medirlos con la del 19/10.</p></div>
+<div class="lede"><p><strong>La etapa 2 está hecha, probada y juntada:</strong> ittm y content-audit al día, y el 7800 ya avisa. Queda una cola de conexiones al terminar una corrida, que resuelve la etapa 9.</p></div>
 
-  <section>
-    <h2>El mismo ejercicio, antes y ahora: cuatro lugares cambian</h2>
-    <div class="ad">
-      <div class="lado antes"><span class="rot">Antes · 19/10</span>
-        <svg class="cap" viewBox="0 0 1041 805" role="img" aria-label="Correcciones el 19/10, con el aviso, el chip, el motivo y la pastilla marcados">
-          <image href="165-otro-motor-era-version-anterior/antes.png" width="1041" height="805"/>
-          <rect class="aro" x="284" y="57" width="755" height="33" rx="8"/>
-          <rect class="aro" x="8" y="172" width="114" height="26" rx="8"/>
-          <rect class="aro" x="4" y="331" width="246" height="53" rx="8"/>
-          <rect class="aro" x="596" y="637" width="90" height="24" rx="8"/>
-          <g class="mk" transform="translate(300 112)"><circle r="22"/><text font-size="25">1</text></g>
-          <g class="mk" transform="translate(146 185)"><circle r="22"/><text font-size="25">2</text></g>
-          <g class="mk" transform="translate(228 306)"><circle r="22"/><text font-size="25">3</text></g>
-          <g class="mk" transform="translate(712 680)"><circle r="22"/><text font-size="25">4</text></g>
-        </svg>
-      </div>
-      <div class="lado despues"><span class="rot">Ahora · 20/10</span>
-        <svg class="cap" viewBox="0 0 1280 900" role="img" aria-label="Correcciones el 20/10, con las mismas cuatro partes marcadas">
-          <image href="165-otro-motor-era-version-anterior/despues.jpg" width="1280" height="900"/>
-          <rect class="aro" x="352" y="70" width="904" height="45" rx="8"/>
-          <rect class="aro" x="70" y="199" width="128" height="30" rx="8"/>
-          <rect class="aro" x="64" y="397" width="259" height="55" rx="8"/>
-          <rect class="aro" x="704" y="716" width="120" height="29" rx="8"/>
-          <g class="mk" transform="translate(372 140)"><circle r="26"/><text font-size="29">1</text></g>
-          <g class="mk" transform="translate(228 214)"><circle r="26"/><text font-size="29">2</text></g>
-          <g class="mk" transform="translate(296 372)"><circle r="26"/><text font-size="29">3</text></g>
-          <g class="mk" transform="translate(852 731)"><circle r="26"/><text font-size="29">4</text></g>
-        </svg>
-      </div>
-    </div>
-    <div class="tw" style="margin-top:14px"><table>
-      <thead><tr><th>#</th><th>Antes</th><th>Ahora</th></tr></thead>
-      <tbody>
-        <tr><td class="num">1</td><td>«82 de 83 temas tienen su opinión de otro motor»</td><td>«cambió el 19/10, 11:30. 82 de 83 temas tienen su opinión de la versión anterior» y «Volver a medir»</td></tr>
-        <tr><td class="num">2</td><td>Falta medir 955</td><td>Falta medir 949</td></tr>
-        <tr><td class="num">3</td><td>646 · «opinó con otro motor (gpt-6.1-sol en codex-cli, medium)»</td><td>618 · «opinó con la versión del 5/10» y 25 · «con la del 13/10, 13:00»</td></tr>
-        <tr><td class="num">4</td><td>pastilla «otro motor»</td><td>pastilla «versión del 5/10»</td></tr>
-      </tbody></table></div>
-    <p class="pie">Las cuentas se movieron por la medición de Naturalidad de anoche; este cambio sólo cambia las palabras, no qué ejercicio cae en cada motivo.</p>
-  </section>
+<section>
+<h2>Antes preguntaba cada pestaña; ahora avisa el servidor</h2>
+<div class="ad">
+<div class="lado antes"><span class="rot">Con la etapa 1</span>
+<ol>
+<li>Cada pestaña preguntaba cada 3 s si algo corría, y cada 30 s si no.</li>
+<li>Lo hecho desde la terminal llegaba cuando le tocaba preguntar.</li>
+<li>Ejecuciones refrescaba su lista con esa misma pregunta.</li>
+</ol>
+<span class="res">Hasta 30 s de atraso; diez pestañas, diez relojes</span></div>
+<div class="lado despues"><span class="rot">Con la etapa 2</span>
+<ol>
+<li>El servidor numera seis temas y avisa cuál cambió.</li>
+<li>Una sola pestaña escucha y les pasa el aviso a las demás.</li>
+<li>Cada una relee sólo ese tema, si alguien la mira.</li>
+<li>Por las dudas, un control por minuto.</li>
+</ol>
+<span class="res">Menos de un segundo; una conexión para todas</span></div>
+</div>
+<p class="pie">Los temas: corridas, tanda, jueces, análisis, problemas y publicar. Hoy sólo «corridas» relee algo; los demás se enganchan cuando su pantalla pase al estado único.</p>
+</section>
 
-  <section>
-    <h2>Decía «otro motor» porque miraba el motor primero</h2>
-    <div class="tw"><table>
-      <thead><tr><th>Versión de la Miniteoría</th><th>Aprobó con</th><th style="text-align:right">Temas</th><th>Antes</th><th>Ahora</th></tr></thead>
-      <tbody>
-        <tr><td>la del 19/10 (la de hoy)</td><td>Gemini</td><td class="num">1</td><td><span class="pill p-ok">al día</span></td><td><span class="pill p-ok">al día</span></td></tr>
-        <tr><td>la del 13/10, 22:12</td><td>ChatGPT</td><td class="num">1</td><td><span class="pill p-bad">otro motor</span></td><td><span class="pill p-warn">versión anterior</span></td></tr>
-        <tr><td>la del 13/10, 13:00</td><td>ChatGPT</td><td class="num">5</td><td><span class="pill p-bad">otro motor</span></td><td><span class="pill p-warn">versión anterior</span></td></tr>
-        <tr><td>la del 5/10</td><td>ChatGPT</td><td class="num">76</td><td><span class="pill p-bad">otro motor</span></td><td><span class="pill p-warn">versión anterior</span></td></tr>
-      </tbody></table></div>
-    <p class="pie">La de hoy aprobó sólo con Gemini. Como ChatGPT no estaba entre sus motores, todo lo viejo salía «otro motor» y tapaba que la guía había cambiado.</p>
-  </section>
+<section>
+<h2>El aviso pasa por una pestaña y llega a todas</h2>
+<div class="diagram">
+<svg viewBox="0 0 880 210" style="min-width:640px" role="img" aria-label="La terminal o el tablero escriben, el servidor sube el número del tema, una pestaña recibe el aviso y lo reparte, cada pestaña relee su tema">
+<defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--fg-3)"/></marker></defs>
+<rect x="4" y="75" width="160" height="60" rx="9" class="box"/><text x="18" y="101" class="lbl" style="font-weight:600">Algo se escribe</text><text x="18" y="120" class="lbl-s">la terminal o el tablero</text>
+<path d="M164 105 L206 105" class="arrow" marker-end="url(#fl)"/>
+<rect x="210" y="75" width="180" height="60" rx="9" class="box-a"/><text x="224" y="101" class="lbl" style="font-weight:600">El servidor</text><text x="224" y="120" class="lbl-s">sube el número del tema</text>
+<path d="M390 105 L420 105 L420 45 L446 45" class="arrow" marker-end="url(#fl)"/>
+<text x="398" y="36" class="lbl-s">aviso</text>
+<rect x="450" y="15" width="190" height="60" rx="9" class="box-a"/><text x="464" y="41" class="lbl" style="font-weight:600">Una pestaña</text><text x="464" y="60" class="lbl-s">tiene el canal (el candado)</text>
+<path d="M545 75 L545 131" class="arrow" marker-end="url(#fl)"/>
+<text x="553" y="108" class="lbl-s">lo reparte</text>
+<rect x="450" y="135" width="190" height="60" rx="9" class="box"/><text x="464" y="161" class="lbl" style="font-weight:600">Las otras nueve</text><text x="464" y="180" class="lbl-s">esperan el candado</text>
+<path d="M640 45 L690 45 L690 105 L712 105" class="arrow" marker-end="url(#fl)"/>
+<path d="M640 165 L690 165 L690 105" class="arrow"/>
+<rect x="716" y="75" width="160" height="60" rx="9" class="box-ok"/><text x="730" y="101" class="lbl" style="font-weight:600">Relee su tema</text><text x="730" y="120" class="lbl-s">una vez, si está a la vista</text>
+</svg>
+</div>
+<p class="pie">Si se cierra la pestaña del canal, otra lo toma y todas releen. Si se corta, todas dicen «Sin conexión» y una reintenta a 1, 2, 5 y 10 s.</p>
+</section>
 
-  <section>
-    <h2>La regla nueva: primero la versión, después el motor</h2>
-    <div class="diagram">
-      <svg viewBox="0 0 760 236" style="min-width:600px" role="img" aria-label="Cómo se elige la marca de una opinión">
-        <defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--fg-3)"/></marker></defs>
-        <rect x="4" y="88" width="190" height="60" rx="9" class="box"/><text x="18" y="114" class="lbl" style="font-weight:600">¿La dio la versión</text><text x="18" y="133" class="lbl" style="font-weight:600">de hoy?</text>
-        <path d="M194 104 L250 44" class="arrow" marker-end="url(#fl)"/><text x="206" y="62" class="lbl-s">sí</text>
-        <path d="M194 132 L250 192" class="arrow" marker-end="url(#fl)"/><text x="206" y="184" class="lbl-s">no</text>
-        <rect x="254" y="14" width="230" height="60" rx="9" class="box"/><text x="268" y="40" class="lbl">¿Con un motor que</text><text x="268" y="59" class="lbl">ella aprobó?</text>
-        <rect x="254" y="162" width="230" height="60" rx="9" class="box"/><text x="268" y="188" class="lbl">¿Con un motor que aprobó</text><text x="268" y="207" class="lbl">alguna versión del juez?</text>
-        <path d="M484 30 L540 20" class="arrow" marker-end="url(#fl)"/><text x="500" y="16" class="lbl-s">sí</text>
-        <path d="M484 58 L540 66" class="arrow" marker-end="url(#fl)"/><text x="500" y="76" class="lbl-s">no</text>
-        <path d="M484 176 L540 168" class="arrow" marker-end="url(#fl)"/><text x="500" y="162" class="lbl-s">sí</text>
-        <path d="M484 206 L540 214" class="arrow" marker-end="url(#fl)"/><text x="500" y="226" class="lbl-s">no</text>
-        <rect x="544" y="2" width="212" height="34" rx="8" class="box-ok"/><text x="558" y="24" class="lbl" style="font-weight:600">al día</text>
-        <rect x="544" y="50" width="212" height="34" rx="8" class="box-bad"/><text x="558" y="72" class="lbl" style="font-weight:600">otro motor</text>
-        <rect x="544" y="150" width="212" height="34" rx="8" class="box-a"/><text x="558" y="172" class="lbl" style="font-weight:600">versión anterior · la del 5/10</text>
-        <rect x="544" y="198" width="212" height="34" rx="8" class="box-bad"/><text x="558" y="220" class="lbl" style="font-weight:600">otro motor</text>
-      </svg>
-    </div>
-    <p class="pie">«Otro motor» queda para un motor que el juez no tiene validado, como un modelo local que nunca rindió. La Miniteoría vieja con ChatGPT cae en «versión anterior».</p>
-  </section>
+<section>
+<h2>En la copia, las diez dijeron «Terminó» antes del segundo</h2>
+<div class="hb">
+<div class="r"><span class="t">Ejecuciones</span><span class="tr"><span class="f g" style="width:0.2%"></span><span class="meta" style="left:100%"></span></span><span class="n">2 ms</span></div>
+<div class="r"><span class="t">Problemas</span><span class="tr"><span class="f g" style="width:1.1%"></span><span class="meta" style="left:100%"></span></span><span class="n">11 ms</span></div>
+<div class="r"><span class="t">Exámenes</span><span class="tr"><span class="f g" style="width:1.3%"></span><span class="meta" style="left:100%"></span></span><span class="n">13 ms</span></div>
+<div class="r"><span class="t">Publicar</span><span class="tr"><span class="f g" style="width:1.8%"></span><span class="meta" style="left:100%"></span></span><span class="n">18 ms</span></div>
+<div class="r"><span class="t">Estadísticas</span><span class="tr"><span class="f g" style="width:2.6%"></span><span class="meta" style="left:100%"></span></span><span class="n">26 ms</span></div>
+<div class="r"><span class="t">Analizadores</span><span class="tr"><span class="f g" style="width:2.9%"></span><span class="meta" style="left:100%"></span></span><span class="n">29 ms</span></div>
+<div class="r"><span class="t">Mapa</span><span class="tr"><span class="f g" style="width:3.3%"></span><span class="meta" style="left:100%"></span></span><span class="n">33 ms</span></div>
+<div class="r"><span class="t">Comparar</span><span class="tr"><span class="f g" style="width:4.9%"></span><span class="meta" style="left:100%"></span></span><span class="n">49 ms</span></div>
+<div class="r"><span class="t">Vueltas</span><span class="tr"><span class="f g" style="width:5.9%"></span><span class="meta" style="left:100%"></span></span><span class="n">59 ms</span></div>
+<div class="r"><span class="t">Correcciones</span><span class="tr"><span class="f w" style="width:82.2%"></span><span class="meta" style="left:100%"></span></span><span class="n">822 ms</span></div>
+</div>
+<p class="pie">Desde que terminó el comando en la terminal; la raya es el segundo. Una sola conexión de avisos para las diez. Al arrancar: 210 a 270 ms (Correcciones, 901).</p>
+<div class="capturas">
+<figure class="captura"><img src="171-el-servidor-avisa/mapa-termino.jpg" alt="Franja verde arriba del Mapa: Terminó, Registrada desde la terminal">
+<figcaption>El Mapa, sin tocar nada, después de terminar la corrida desde la terminal.</figcaption></figure>
+<figure class="captura"><img src="171-el-servidor-avisa/ejecuciones-terminal.jpg" alt="Ejecuciones con la tarjeta Registrada desde la terminal, corriendo, 4 de 10 consultas">
+<figcaption>Ejecuciones con la corrida registrada desde la terminal, corriendo.</figcaption></figure>
+</div>
+</section>
 
-  <section>
-    <h2>Qué cambia y qué no</h2>
-    <div class="cambia">
-      <div class="si"><div class="ptl">Cambia</div><ul>
-        <li>El aviso dice que el juez cambió y cuándo.</li>
-        <li>El motivo y la pastilla nombran la versión que opinó.</li>
-        <li>«Otro motor», al pasar por encima, ya no dice «la versión de hoy».</li>
-      </ul></div>
-      <div class="no"><div class="ptl">No cambia</div><ul>
-        <li>Siguen en «Falta medir»: no los opinó la de hoy.</li>
-        <li>Al día sigue siendo la de hoy con un motor que aprobó.</li>
-        <li>No se consultó ni se midió nada.</li>
-      </ul></div>
-    </div>
-  </section>
+<section>
+<h2>Cada regla tiene sus pruebas, y todas pasan</h2>
+<div class="hb">
+<div class="r"><span class="t">Numerar y avisar<small>la terminal llega en menos de 1 s</small></span><span class="tr"><span class="f g" style="width:100%"></span></span><span class="n">25</span></div>
+<div class="r"><span class="t">Releer sólo su tema<small>dos avisos: queda lo último</small></span><span class="tr"><span class="f g" style="width:24%"></span></span><span class="n">6</span></div>
+<div class="r"><span class="t">Un solo canal<small>tres pestañas, una conexión; el relevo</small></span><span class="tr"><span class="f g" style="width:24%"></span></span><span class="n">6</span></div>
+<div class="r"><span class="t">Se corta y vuelve</span><span class="tr"><span class="f g" style="width:28%"></span></span><span class="n">7</span></div>
+<div class="r"><span class="t">Control de 60 s y Ejecuciones</span><span class="tr"><span class="f g" style="width:8%"></span></span><span class="n">2</span></div>
+<div class="r"><span class="t">Un tablero viejo sigue igual</span><span class="tr"><span class="f g" style="width:12%"></span></span><span class="n">3</span></div>
+<div class="r"><span class="t">La misma sesión</span><span class="tr"><span class="f g" style="width:16%"></span></span><span class="n">4</span></div>
+</div>
+<p class="pie">En total, navegador 2.203 de 2.203 y servidor 1.223 de 1.223, con el guardián de nombres. Ninguna consulta a un modelo.</p>
+</section>
 
-  <section>
-    <h2>Qué necesito de vos</h2>
-    <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Medimos lo que falta de la Miniteoría con la del 19/10?</span>
-        <div class="ops"><span class="op rec">Sí, con Gemini desde «Volver a medir» · recomendado</span><span class="op">Integrar la medición suelta del 19/10</span></div>
-        <span class="why">La suelta la hizo la del 13/10, 22:12 con ChatGPT: integrada, seguiría siendo versión anterior. El diálogo estima gratis antes de gastar.</span></div>
-    </div>
-    <div class="call c-warn"><b>Ojo:</b> la guía de la del 19/10 está sin commitear en el checkout principal; si se pierde, cambia la versión de hoy otra vez.</div>
-  </section>
+<section>
+<h2>Seis cosas quedaron distintas de lo pedido</h2>
+<div class="tw"><table>
+<thead><tr><th>Se pedía</th><th>Quedó</th><th>Por qué</th></tr></thead>
+<tbody>
+<tr><td>Sin colas de conexiones</td><td>El aviso y la primera lectura, sin cola. Después, las relecturas pesadas que cada pantalla ya hacía al terminar una corrida ocupan las 5 conexiones libres: un segundo aviso esperó 6,3 s</td><td><span class="pill p-warn">pendiente</span></td></tr>
+<tr><td>Avisar cada escritura</td><td>El log de una corrida avisa como mucho cada 3 s; su registro, enseguida</td><td><span class="pill p-ok">conservador</span></td></tr>
+<tr><td>Canal con EventSource</td><td>Se lee con fetch: EventSource no manda la sesión</td><td><span class="pill p-ok">misma seguridad</span></td></tr>
+<tr><td>Un solo canal entre pestañas</td><td>Sigue una difusión vieja, la del análisis vigente: pasa al aviso de «análisis» en la etapa 6</td><td><span class="pill p-warn">pendiente</span></td></tr>
+<tr><td>El vigía mira las carpetas</td><td>Una que todavía no existe se espera desde la de arriba; si tampoco existe ésa, no se mira</td><td><span class="pill p-ok">conservador</span></td></tr>
+<tr><td>Partir de master 71c9f6ec1</td><td>De a9abbb8e9: master ya tenía lo de cortar una medición</td><td><span class="pill p-idle">versión</span></td></tr>
+</tbody></table></div>
+<p class="pie">Una pestaña oculta no relee hasta que vuelve a verse, como pedía la propuesta.</p>
+</section>
 
-  <footer>
-    <span>Datos: lectura del análisis vigente de la tanda A1 antes y después (0 consultas) y capturas del 7800 del 19/10 y del 20/10, 08:45. Commits: content-audit 4bb5cf628 (F-ALDIA-R003 inv. 7) · ittm c727c2b4d (F-TALDIA-R001 inv. 8).</span>
-    <span>brief 165 · docs/briefs/165-otro-motor-era-version-anterior.html</span>
-  </footer>
+<section>
+<h2>Qué sigue</h2>
+<div class="flow">
+<div class="st"><span class="i">9</span><span class="h">Etapa 9, sin «releer»</span><span class="d">Saca las relecturas pesadas al terminar una corrida: se va la cola.</span></div>
+<div class="st"><span class="i">3</span><span class="h">Etapas 3, 4 y 5</span><span class="d">Ya pueden empezar: sólo piden la etapa 1.</span></div>
+<div class="st end"><span class="i">8</span><span class="h">Etapa 8, Problemas</span><span class="d">Antes de escuchar «problemas», leer Problemas no tiene que escribir.</span></div>
+</div>
+<div class="call c-warn"><b>Ojo:</b> si leer Problemas sigue escribiendo, cada lectura se avisaría a sí misma, en un bucle.</div>
+</section>
+
+<footer>
+<span>Requisito FEAT-AVISO (requirements/2026-10-20.03_el-servidor-avisa; nota en F-CORRE-R003). Juntado el 20/10 a las 20:10, sin medición viva: ittm master 180272637 (rama claude/el-servidor-avisa, fast-forward desde a9abbb8e9) y content-audit main 811973388 más este brief; el 7800 lo reinició Tablero.app a las 20:11 con esos dos. La copia: campaña a1-v11 clonada, sin modelos; tiempos medidos con Chrome sin ventana, el comando de la terminal es el registrador de actividad.</span>
+<span>brief 171 · docs/briefs/171-el-servidor-avisa.html</span>
+</footer>
 
 </div>
 </body>

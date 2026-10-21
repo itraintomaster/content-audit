@@ -15,5 +15,7 @@ public enum MiniTheoryProblem {
 
     OTHER_SUBTOPIC_CONTENT,
 
-    OVER_SPECIFIC_FOR_QUIZ
+    OVER_SPECIFIC_FOR_QUIZ,
+
+    THEORETICAL_JARGON
 }

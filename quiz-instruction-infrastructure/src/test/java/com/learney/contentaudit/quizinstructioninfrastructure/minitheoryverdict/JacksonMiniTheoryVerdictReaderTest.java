@@ -31,6 +31,18 @@ public class JacksonMiniTheoryVerdictReaderTest {
         assertUnreadable(verdictWith(assessment.replace("\"LOW\"", "\"MEDIUM\"")));
     }
 
+    @Test
+    @Tag("F-MINIT-R009")
+    void readsTheoreticalJargonCategoryAtLowSeverityAndRejectsInflatedSeverity() {
+        String assessment = "\"quizId\":\"q-local\",\"holds\":false,\"problem\":\"THEORETICAL_JARGON\","
+                + "\"severity\":\"LOW\",\"counterexample\":\"Al contar lo que alguien dijo, va pasado.\","
+                + "\"explanation\":\"Usa estilo indirecto innecesariamente.\"";
+        var verdict = new JacksonMiniTheoryVerdictReader().read(verdictWith(assessment));
+        assertEquals(MiniTheoryProblem.THEORETICAL_JARGON, verdict.getAssessments().get(0).getProblem());
+        assertEquals(FindingSeverity.LOW, verdict.getAssessments().get(0).getSeverity());
+        assertUnreadable(verdictWith(assessment.replace("\"LOW\"", "\"HIGH\"")));
+    }
+
     private static final String VERDICT_BY_QUIZ = """
             {
               "assessments": [

@@ -1,0 +1,925 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Una sola verdad para el tablero · Presentación 166</title>
+<!--
+  PRESENTACIÓN · visual-brief, modo presentación
+  Cuándo: alguien tiene que entender y APROBAR un plan o un diseño, con el qué y el cómo.
+  Dónde:  docs/briefs/NNN-slug.html — es un brief en diapositivas: mismo número, no se edita.
+
+  Cómo se usa
+  1. Copiar este archivo y reemplazar SÓLO lo que está entre los comentarios «CONTENIDO».
+     El CSS y el JS no se tocan. El número de página y el del documento los pone el JS.
+  2. Las diapositivas de abajo son los tipos, en orden, con un ejemplo que se reemplaza entero:
+     portada · dónde estamos · por cada cosa que cambia: hoy → con X; y si hace falta, qué
+     encuentra / cómo lo hace / cómo se prueba · lo que no toca · lo que necesita de vos · en
+     una frase. Cada una dice qué componentes lleva.
+  3. Si habla de una pantalla, en ese orden y sin saltear (SKILL.md §4):
+     · DÓNDE: la captura real, con lo que cambia rodeado y numerado (svg.cap + .who).
+     · EL PROBLEMA, como un caso de uso: la foto de hoy de esa parte, con su .mark abajo.
+     · CÓMO QUEDA: dibujado en HTML (.mq), con números y su leyenda (ol.leg), al lado de la foto.
+     Las fotos: capturar.mjs, a docs/briefs/NNN-slug/. Nunca la maqueta sola, sin el «hoy».
+  4. BORRAR el catálogo del final (la section de clase cat).
+  5. node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
+     y después MIRAR cada diapositiva: node …/diapos.mjs docs/briefs/NNN-slug.html <scratchpad>/d
+     (y con --tema=dark y --celular), abriendo los JPG con Read.
+
+  Topes por diapositiva: título = la conclusión (≤ 12 palabras) · ≤ 40 palabras sueltas
+  (título, bajada, notas y conclusión) · UN dibujo que carga el mensaje. Cada componente
+  trae su tope en el catálogo. Lenguaje llano: los nombres técnicos, sólo en el .foot.
+  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
+-->
+<style>
+  /* ════ tokens: los mismos nombres que el brief; claro y, abajo, oscuro ════ */
+  :root{
+    --bg:#f4f2ee; --bg-elev:#ffffff; --line:#e4dfd6; --line-soft:#efebe4;
+    --fg:#1c1a17; --fg-2:#56514a; --fg-3:#8b847a;
+    --accent:#b4531f; --accent-soft:#fcefe4;
+    --ok:#2f6b46; --ok-soft:#e7f3eb; --warn:#8a6314; --warn-soft:#fbf1d9;
+    --bad:#a3342c; --bad-soft:#fbe9e6; --info:#2a5b8f; --info-soft:#e7f0f9;
+    --shadow:0 1px 2px rgba(28,26,23,.06), 0 18px 40px -24px rgba(28,26,23,.35);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f0e0d; --bg-elev:#1a1917; --line:#2f2c28; --line-soft:#24221f;
+      --fg:#efece7; --fg-2:#aaa49b; --fg-3:#7d776e;
+      --accent:#e38c50; --accent-soft:#2b1f15;
+      --ok:#80c89d; --ok-soft:#15231b; --warn:#e2b85a; --warn-soft:#261f12;
+      --bad:#e88d84; --bad-soft:#2a1816; --info:#8cb8e6; --info-soft:#131e2a;
+      --shadow:0 1px 2px rgba(0,0,0,.5), 0 18px 40px -24px rgba(0,0,0,.8);
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font:16px/1.45 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+    padding:28px 20px 90px}
+  code{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.92em}
+  code,a{overflow-wrap:anywhere}
+  .deck{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+
+  /* ── la diapositiva: 16:9, el texto escala con su ancho ── */
+  .sl{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);
+    aspect-ratio:16/9;container-type:inline-size;overflow:hidden;scroll-margin-top:24px}
+  .sl-in{position:absolute;inset:0;padding:4.2cqi 5cqi 5.4cqi;display:flex;flex-direction:column;gap:2.2cqi}
+  .kick{display:flex;align-items:center;gap:1.2cqi;font-size:1.25cqi;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--fg-3);font-weight:700}
+  .kick .tagq{color:var(--accent)}
+  .kick .an{margin-left:auto;letter-spacing:.04em;text-transform:none;font-weight:600;color:var(--fg-2)}
+  .kick .num{font:700 1.1cqi/1 ui-monospace,monospace;letter-spacing:.04em;color:var(--fg-3);background:var(--line-soft);
+    padding:.45cqi .8cqi;border-radius:.5cqi}
+  h1,h2{margin:0;letter-spacing:-.02em;line-height:1.08}
+  .sl h1{font-size:5cqi;font-weight:700}
+  .sl h1.frase{font-size:4.2cqi;max-width:24ch;line-height:1.12}
+  .sl h2{font-size:3.3cqi;font-weight:680}
+  .sub{font-size:1.9cqi;color:var(--fg-2);margin:0;max-width:62ch;line-height:1.35}
+  /* las filas del cuerpo no crecen con el contenido: lo que no entra se nota (y el verificador lo marca) */
+  .body{flex:1;min-height:0;display:grid;gap:3cqi;grid-template-rows:minmax(0,1fr)}
+  .body.arriba{grid-template-rows:auto minmax(0,1fr)}     /* la primera fila a su medida; la segunda llena */
+  .body.abajo{grid-template-rows:minmax(0,1fr) auto}      /* la última fila a su medida, abajo */
+  .c2,.c32,.c23{display:grid;gap:3cqi;min-height:0;min-width:0}
+  .c2{grid-template-columns:1fr 1fr} .c32{grid-template-columns:1.25fr 1fr} .c23{grid-template-columns:1fr 1.25fr}
+  .pila{display:flex;flex-direction:column;gap:1.4cqi;min-width:0}
+  .foot{position:absolute;left:5cqi;right:5cqi;bottom:1.6cqi;display:flex;justify-content:space-between;gap:2cqi;
+    font-size:1.05cqi;color:var(--fg-3)}
+  .foot span{min-width:0;overflow-wrap:anywhere} .foot .pg{white-space:nowrap}
+  .note{font-size:1.45cqi;color:var(--fg-2);line-height:1.4;margin:0}
+  .take{font-size:1.7cqi;line-height:1.35;margin:0;padding:1.2cqi 1.6cqi;border-left:.45cqi solid var(--accent);
+    background:var(--accent-soft);border-radius:0 1cqi 1cqi 0}
+  .take b{color:var(--accent)}
+  .panel{background:var(--bg);border:1px solid var(--line-soft);border-radius:1.4cqi;padding:1.8cqi 2cqi;min-width:0;
+    display:flex;flex-direction:column;gap:1.2cqi}
+  .ptl{font-size:1.15cqi;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);font-weight:700}
+
+  /* ── portada ── */
+  .cover .sl-in{justify-content:center;gap:2.6cqi;padding-left:7cqi;padding-right:7cqi}
+  .cover .big-l{position:absolute;right:5cqi;top:4cqi;font:800 19cqi/1 ui-sans-serif,system-ui;color:var(--accent-soft);letter-spacing:-.04em}
+  .chips{display:flex;flex-wrap:wrap;gap:1cqi}
+  .chip{font-size:1.5cqi;padding:.55cqi 1.3cqi;border-radius:99px;border:1px solid var(--line);background:var(--bg);white-space:nowrap}
+  .chip i{font-style:normal;color:var(--fg-3);margin-left:.6cqi;font-size:1.25cqi}
+  .kpis{display:flex;gap:3cqi;flex-wrap:wrap}
+  .kpi .n{font-size:5.4cqi;font-weight:750;letter-spacing:-.03em;line-height:1}
+  .kpi .n small{font-size:.42em;font-weight:600;color:var(--fg-3);margin-left:.3em;letter-spacing:0}
+  .kpi .l{font-size:1.45cqi;color:var(--fg-2);max-width:26ch;margin-top:.6cqi}
+  .panel .kpis{gap:1.6cqi 2.4cqi} .panel .kpi .n{font-size:3.4cqi} .panel .kpi .l{font-size:1.3cqi;max-width:22ch}
+
+  /* ── el ejemplo real, como lo ve el que lo usa, con sus marcas ── */
+  .ex{background:var(--bg-elev);border:1px solid var(--line);border-radius:1.4cqi;padding:1.6cqi 1.9cqi;display:grid;gap:1cqi;box-shadow:var(--shadow)}
+  .ex .cons{font-size:1.3cqi;color:var(--fg-3)}
+  .ex .en{font:italic 2.5cqi/1.25 ui-serif,Georgia,serif}
+  .ex .gap{display:inline-block;min-width:6cqi;border-bottom:.25cqi solid var(--fg-3);margin:0 .4cqi}
+  .ex .tr{font-size:1.45cqi;color:var(--fg-2)}
+  .ex .ans{font-size:1.4cqi;color:var(--fg-2)} .ex .ans b{color:var(--fg)}
+  .mark{display:flex;gap:1cqi;align-items:flex-start;font-size:1.45cqi;background:var(--bad-soft);border-radius:1cqi;padding:1cqi 1.2cqi}
+  .mark .x{color:var(--bad);font-weight:800}
+  .mark.ok{background:var(--ok-soft)} .mark.ok .x{color:var(--ok)}
+  .sev{font-size:1.15cqi;font-weight:700;padding:.3cqi .9cqi;border-radius:99px;white-space:nowrap}
+  .sev.b{background:var(--bad);color:var(--bg-elev)} .sev.a{background:var(--bad-soft);color:var(--bad)}
+  .sev.m{background:var(--warn-soft);color:var(--warn)} .sev.l{background:var(--line-soft);color:var(--fg-2)}
+
+  /* ── gráfico: columnas por grupo (una barra, o dos para comparar) ── */
+  .cols{display:grid;grid-template-columns:repeat(var(--cols,4),1fr);gap:1.6cqi;align-items:end;height:100%;min-height:0;padding-top:2cqi}
+  .col{display:flex;flex-direction:column;align-items:center;gap:.7cqi;height:100%;min-height:0;justify-content:flex-end}
+  .col .v{font-size:1.6cqi;font-weight:700;text-align:center}
+  .col .v small{display:block;font-size:1.1cqi;color:var(--fg-3);font-weight:500}
+  .col .pista{flex:1;min-height:0;width:100%;display:flex;gap:5%;align-items:flex-end;justify-content:center}
+  .col .pista .bar{flex:0 0 62%} .col .pista .bar:not(:only-child){flex-basis:40%}
+  .col .bar{border-radius:.8cqi .8cqi .2cqi .2cqi;background:var(--accent);min-height:.4cqi}
+  .col>.bar{width:70%}
+  .col .bar.soft{background:color-mix(in srgb,var(--accent) 45%,var(--bg-elev))}
+  .col .bar.g{background:var(--ok)} .col .bar.b{background:var(--bad)}
+  .col .k{font-size:1.4cqi;font-weight:700;color:var(--fg-2)}
+  /* ── gráfico: barras horizontales, con la raya de la meta ── */
+  .hb{display:grid;gap:1.1cqi}
+  .hb .r{display:grid;grid-template-columns:36% 1fr auto;gap:1.2cqi;align-items:center;font-size:1.4cqi}
+  .hb.ancho .r{grid-template-columns:46% 1fr auto}
+  .hb .t{color:var(--fg-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .hb .t small{display:block;color:var(--fg-3);font-size:1.1cqi;white-space:normal}
+  .hb .tr{height:1.5cqi;border-radius:99px;background:var(--line-soft);overflow:hidden;position:relative}
+  .hb .f{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent)}
+  .hb .f.g{background:var(--ok)} .hb .f.b{background:var(--bad)} .hb .f.w{background:var(--warn)}
+  .hb .f.s{background:color-mix(in srgb,var(--fg-3) 55%,transparent)}
+  .hb .meta{position:absolute;top:-.4cqi;bottom:-.4cqi;width:.25cqi;background:var(--fg)}
+  .hb .n{font-weight:700;font-variant-numeric:tabular-nums}
+  .leyenda{display:flex;flex-wrap:wrap;gap:.6cqi 1.8cqi;font-size:1.2cqi;color:var(--fg-2)}
+  .sw{display:inline-block;width:.8em;height:.8em;border-radius:.2em;margin-right:.45em;vertical-align:-.05em;background:var(--accent)}
+  .sw.suave{background:color-mix(in srgb,var(--accent) 45%,var(--bg-elev))}
+  .sw.s{background:color-mix(in srgb,var(--fg-3) 55%,transparent)}
+  .sw.g{background:var(--ok)} .sw.b{background:var(--bad)} .sw.w{background:var(--warn)}
+  .sw.m{width:.2em;height:1.1em;border-radius:0;background:var(--fg);vertical-align:-.2em}
+
+  /* ── el flujo, paso a paso ── */
+  .flow{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:1.2cqi;align-items:stretch}
+  .st{position:relative;background:var(--bg);border:1px solid var(--line-soft);border-radius:1.2cqi;padding:1.4cqi 1.3cqi;
+    display:flex;flex-direction:column;gap:.7cqi}
+  .st:not(:last-child)::after{content:"";position:absolute;right:-1.05cqi;top:50%;width:.9cqi;height:.9cqi;
+    border-top:.25cqi solid var(--fg-3);border-right:.25cqi solid var(--fg-3);transform:translate(0,-50%) rotate(45deg);z-index:1}
+  .st .i{font:800 1.3cqi/2.6cqi ui-monospace,monospace;width:2.6cqi;height:2.6cqi;border-radius:.8cqi;text-align:center;
+    background:var(--accent-soft);color:var(--accent)}
+  .st .h{font-size:1.55cqi;font-weight:700;line-height:1.2}
+  .st .d{font-size:1.25cqi;color:var(--fg-2);line-height:1.35}
+  .st.end{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));background:var(--accent-soft)}
+  .st .eg{font:italic 1.3cqi/1.3 ui-serif,Georgia,serif;color:var(--fg)}
+
+  /* ── decisiones: elijo / descarto ── */
+  .dec{display:grid;gap:.9cqi}
+  .dec .r{display:grid;grid-template-columns:22% 1fr;gap:1.2cqi;align-items:baseline;font-size:1.35cqi;
+    padding-bottom:.8cqi;border-bottom:1px solid var(--line-soft)}
+  .dec .r:last-child{border-bottom:0}
+  .dec .q{font-weight:700}
+  .dec .y{color:var(--fg)} .dec .y::before{content:"✓ ";color:var(--ok);font-weight:800}
+  .dec .no{display:block;color:var(--fg-3);font-size:1.2cqi;margin-top:.2cqi}
+  .dec .no::before{content:"✕ ";color:var(--bad)}
+
+  /* ── la pantalla, dibujada ── */
+  .ui{background:var(--bg-elev);border:1px solid var(--line);border-radius:1.2cqi;overflow:hidden;box-shadow:var(--shadow)}
+  .ui .bar{display:flex;gap:.6cqi;align-items:center;padding:.9cqi 1.2cqi;border-bottom:1px solid var(--line-soft);font-size:1.15cqi;color:var(--fg-3)}
+  .ui .bar i{width:.9cqi;height:.9cqi;border-radius:99px;background:var(--line)}
+  .ui .bar span{margin-left:.8cqi}
+  .ui .row{display:grid;grid-template-columns:auto 1fr auto;gap:1cqi;align-items:center;padding:1cqi 1.3cqi;border-bottom:1px solid var(--line-soft);font-size:1.3cqi}
+  .ui .row:last-child{border-bottom:0}
+  .ui .row .x{color:var(--bad);font-weight:800} .ui .row .okm{color:var(--ok);font-weight:800}
+  .ui .row .pend{color:var(--warn);font-weight:800}
+  .ui .row .s{color:var(--fg-3);font-size:1.15cqi}
+  /* ── mapa de calor: --cols = columnas de datos; .h0 a .h3 de menos a más ── */
+  .heat{display:grid;grid-template-columns:1.6fr repeat(var(--cols,4),1fr);gap:.5cqi;font-size:1.2cqi}
+  .heat span{padding:.7cqi .4cqi;border-radius:.6cqi;text-align:center;font-family:ui-monospace,monospace}
+  .heat .h{color:var(--fg-3);font-family:inherit}
+  .heat .rl{text-align:left;font-family:inherit;color:var(--fg-2)}
+  .h0{background:var(--line-soft);color:var(--fg-3)}
+  .h1{background:color-mix(in srgb,var(--warn) 16%,var(--bg-elev))} .h2{background:color-mix(in srgb,var(--warn) 32%,var(--bg-elev))}
+  .h3{background:color-mix(in srgb,var(--bad) 30%,var(--bg-elev))}
+
+  /* ── el mapa: el objeto real, sus partes numeradas y quién mira cada una ── */
+  .map{display:grid;grid-template-columns:1.2fr .9fr;gap:0;align-items:stretch}
+  .map .ex{border-radius:1.4cqi 0 0 1.4cqi}
+  .map .who{display:grid;gap:.8cqi;align-content:center;border:1px solid var(--line);border-left:0;border-radius:0 1.4cqi 1.4cqi 0;
+    padding:1.6cqi 1.8cqi;background:var(--bg)}
+  .map .who div{display:flex;gap:1cqi;align-items:center;font-size:1.45cqi}
+  .map .who b{font:800 1.2cqi/2.3cqi ui-monospace,monospace;width:2.3cqi;height:2.3cqi;border-radius:.7cqi;text-align:center;
+    background:var(--accent);color:var(--bg-elev);flex:none}
+  .map .who small{color:var(--fg-3);font-size:1.2cqi}
+  .map .ex .part{display:flex;gap:1cqi;align-items:baseline}
+  .map .ex .part b{font:800 1.1cqi/2cqi ui-monospace,monospace;width:2cqi;height:2cqi;border-radius:.6cqi;text-align:center;
+    background:var(--accent-soft);color:var(--accent);flex:none}
+
+  /* ── antes y después, sobre el mismo caso ── */
+  .ad{display:grid;grid-template-columns:1fr 1fr;gap:3.4cqi}
+  .ad .lado{position:relative;background:var(--bg);border:1px solid var(--line-soft);border-radius:1.2cqi;padding:1.5cqi 1.8cqi;
+    display:flex;flex-direction:column;gap:1cqi;min-width:0}
+  .ad .antes{border-top:.35cqi solid var(--bad)} .ad .despues{border-top:.35cqi solid var(--ok)}
+  .ad .rot{font-size:1.15cqi;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+  .ad .antes .rot{color:var(--bad)} .ad .despues .rot{color:var(--ok)}
+  .ad .despues::before{content:"→";position:absolute;left:-2.7cqi;top:50%;transform:translateY(-50%);font-size:2cqi;color:var(--fg-3)}
+  .ad ol{margin:0;padding-left:2.2cqi;font-size:1.4cqi;line-height:1.4;color:var(--fg-2);display:grid;gap:.4cqi}
+  .ad .res{font-weight:700;font-size:1.6cqi;border-top:1px dashed var(--line);padding-top:.8cqi;margin-top:auto}
+  .ad .antes .res{color:var(--bad)} .ad .despues .res{color:var(--ok)}
+
+  /* ── captura real: la imagen llena su caja sin deformarse ── */
+  .captura{margin:0;background:var(--bg-elev);border:1px solid var(--line);border-radius:1.2cqi;padding:1cqi;box-shadow:var(--shadow);
+    min-width:0;min-height:0;display:flex;flex-direction:column;gap:.8cqi}
+  .captura img{display:block;width:100%;flex:1;min-height:0;object-fit:contain;object-position:top;border-radius:.6cqi}
+  .captura figcaption{font-size:1.2cqi;color:var(--fg-3)}
+  .pila>.captura{flex:0 1 auto}
+
+  /* ── caminos: la recomendada, marcada ── */
+  .opts{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:1.6cqi}
+  .opt{background:var(--bg);border:1px solid var(--line-soft);border-radius:1.2cqi;padding:1.5cqi 1.7cqi;display:flex;flex-direction:column;gap:.9cqi;min-width:0}
+  .opt.rec{border:.2cqi solid var(--accent);background:var(--accent-soft)}
+  .opt .oh{display:flex;align-items:center;gap:.9cqi;font-size:1.6cqi}
+  .opt .ol{font:800 1.3cqi/2.6cqi ui-monospace,monospace;width:2.6cqi;height:2.6cqi;border-radius:.8cqi;text-align:center;background:var(--line-soft);flex:none}
+  .opt.rec .ol{background:var(--accent);color:var(--bg-elev)}
+  .opt ul{list-style:none;margin:0;padding:0;display:grid;gap:.4cqi;font-size:1.35cqi}
+  .opt li::before{font-weight:800;margin-right:.5em}
+  .opt li.si::before{content:"✓";color:var(--ok)} .opt li.no::before{content:"✕";color:var(--bad)}
+  .opt p{font-size:1.35cqi;color:var(--fg-2);margin:0}
+
+  /* ── lo que necesita de vos: preguntas con la recomendación ── */
+  .asks{display:grid;gap:1.4cqi}
+  .ask{background:var(--bg);border:1px solid var(--line-soft);border-left:.5cqi solid var(--accent);border-radius:1.2cqi;padding:1.4cqi 1.8cqi;display:grid;gap:.8cqi}
+  .ask .q{font-size:1.8cqi;font-weight:700;line-height:1.25}
+  .ask .ops{display:flex;gap:1cqi;flex-wrap:wrap}
+  .ask .op{font-size:1.3cqi;padding:.5cqi 1.1cqi;border-radius:99px;border:1px solid var(--line);background:var(--bg-elev)}
+  .ask .op.rec{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:700}
+  .ask .why{font-size:1.3cqi;color:var(--fg-2)}
+
+  /* ── lo que no toca ── */
+  .keep{display:grid;grid-template-columns:1fr 1fr;gap:1.2cqi}
+  .keep div{background:var(--bg);border:1px solid var(--line-soft);border-radius:1.1cqi;padding:1.2cqi 1.4cqi;font-size:1.35cqi;color:var(--fg-2)}
+  .keep b{display:block;color:var(--fg);font-size:1.45cqi;margin-bottom:.3cqi}
+
+  /* ── dónde estamos: la captura real, con lo que cambia rodeado y numerado ──
+     El viewBox del svg.cap es el tamaño de la foto: las marcas van en sus píxeles (capturar.mjs --medir). */
+  .body>.ad,.body>.map{min-height:0}
+  .map{grid-template-rows:minmax(0,1fr);height:100%}
+  .map .ex:has(>.cap){padding:1cqi;grid-template-rows:minmax(0,1fr);min-height:0}
+  .map.alta{grid-template-columns:19cqi 1fr}                 /* una página más alta que la pantalla */
+  .map .who .ptl{display:block}
+  .map .who b.gris{background:var(--line);color:var(--fg-3)}  /* lo que se ve pero no cambia */
+  .cap{display:block;width:100%;height:100%;min-height:0}
+  .cap .mk circle{fill:var(--accent);stroke:var(--bg-elev);stroke-width:4}
+  .cap .mk text{fill:var(--bg-elev);font-weight:800;font-family:ui-monospace,monospace;text-anchor:middle;dominant-baseline:central}
+  .cap .mk.gris circle{fill:var(--fg-3)}
+  .cap .aro{fill:none;stroke:var(--accent);stroke-width:4}   /* rodea lo que cambia */
+  .cap .tapa{fill:var(--bg-elev);opacity:.74}                 /* atenúa lo que no */
+  .cap .raya{stroke:var(--fg-3);stroke-width:2;stroke-dasharray:9 9}  /* dónde termina cada pantalla */
+  /* ── hoy → con X: la foto de hoy con el problema, la maqueta de cómo queda con su leyenda ── */
+  .ad .lado{min-height:0;overflow:hidden}
+  .ad.asim{grid-template-columns:.9fr 1.1fr}
+  .hoy{display:block;width:auto;max-width:100%;height:auto;flex:0 1 auto;min-height:0;object-fit:contain;object-position:left top;
+    border-radius:.6cqi;align-self:flex-start}
+  .franja{display:flex;gap:1.8cqi;align-items:flex-end;flex:1 1 0;min-height:0}   /* una página alta, al lado de su marca */
+  .franja .cap{height:100%;width:auto;flex:none} .franja .mark{flex:1}
+  .nb{display:inline-flex;align-items:center;justify-content:center;flex:none;width:1.75em;height:1.75em;border-radius:99px;
+    background:var(--accent);color:var(--bg-elev);font:800 .74em/1 ui-monospace,monospace}
+  ol.leg{list-style:none;margin:0;padding:0;display:grid;gap:.6cqi;font-size:1.35cqi;line-height:1.4;color:var(--fg-2)}
+  .leg li{display:flex;gap:1cqi;align-items:baseline} .leg .nb{font-size:1.05cqi}
+  .call{font-size:1.4cqi;line-height:1.4;border-radius:1cqi;padding:1.1cqi 1.5cqi;background:var(--warn-soft);color:var(--fg);
+    border-left:.45cqi solid var(--warn);align-self:start;margin:0}
+  .call b{color:var(--warn)}
+  .desliza{overflow-x:auto;min-width:0}   /* un SVG ancho: en el celular se desliza en vez de achicarse */
+
+  /* ── la maqueta: cómo queda, dibujada en HTML ──
+     .mq es su propio contenedor: la letra (en .mi) escala con el ancho del dibujo, así que un
+     dibujo más ancho NO entra más contenido. Si no entra: menos filas, o .mq.denso. */
+  .mq{container-type:inline-size;background:var(--bg-elev);border:1px solid var(--line);border-radius:1cqi;overflow:hidden;
+    flex:0 1 auto;min-height:0;box-shadow:var(--shadow)}
+  .mi{font-size:max(10.5px,2.75cqi);line-height:1.35;padding:3cqi 3.2cqi;display:flex;flex-direction:column;gap:2.2cqi;color:var(--fg)}
+  .mq.denso .mi{font-size:max(10px,2.45cqi);gap:1.7cqi;padding:2.6cqi 2.8cqi}
+  .mi .fila{display:flex;gap:.55em;align-items:center;min-width:0} .mi .fila.env{flex-wrap:wrap;row-gap:.4em}
+  .mi .crece{flex:1;min-width:0}
+  .mi .vt{display:flex;flex-direction:column;gap:.25em;min-width:0}
+  .mi .in{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:.5em;padding:.45em .7em;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mi .sel{background:var(--bg);border:1px solid var(--line);border-radius:.5em;padding:.45em .6em;white-space:nowrap;flex:none}
+  .mi .bt{background:var(--accent);color:var(--bg-elev);border-radius:.5em;padding:.45em .85em;font-weight:700;white-space:nowrap;flex:none}
+  .mi .bt.gh{background:var(--bg-elev);color:var(--fg);border:1px solid var(--line);font-weight:600}
+  .mi .chp{display:inline-flex;align-items:center;gap:.35em;border:1px solid var(--line);background:var(--bg);border-radius:99px;
+    padding:.18em .7em;font-size:.86em;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  .mi .chp.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .mi .chp.no{color:var(--fg-3);text-decoration:line-through}
+  .mi .chp.ok{border-color:var(--ok);background:var(--ok-soft);color:var(--ok);font-weight:650}
+  .mi .chp.fal{border-color:var(--warn);background:var(--warn-soft);color:var(--warn);font-weight:650}
+  .mi .rt{font-size:.72em;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--fg-3)}
+  .mi .tt{font-weight:700;font-size:1.1em;letter-spacing:-.01em} .mi .ts{font-weight:700;font-size:1.15em;letter-spacing:-.01em}
+  .mi .s{font-size:.84em;color:var(--fg-3)} .mi .neg{font-weight:700}
+  .mi .bien{color:var(--ok);font-weight:800} .mi .mal{color:var(--bad);font-weight:800}
+  .mi .corta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .mi .th{width:5.2em;aspect-ratio:16/9;border-radius:.35em;object-fit:cover;flex:none;display:block}
+  .mi .th.ch{width:3.6em} .mi .th.gr{width:60%}
+  .mi .hr{height:1px;background:var(--line-soft)} .mi .apagado{opacity:.4}
+  .mi .expl{background:var(--bg);border:1px solid var(--line-soft);border-radius:.5em;padding:.5em .7em;font-size:.86em;color:var(--fg-2)}
+  .mi .aviso{display:flex;gap:.5em;align-items:center;border-radius:.5em;padding:.45em .7em;font-weight:650;
+    background:var(--bad-soft);color:var(--bad)}
+  .mi .aviso.ok{background:var(--ok-soft);color:var(--ok)}
+  .mi .campo{border:1.5px solid var(--accent);border-radius:.6em;padding:.6em .8em;background:var(--bg-elev);display:flex;flex-direction:column;gap:.3em}
+  .mi .hueco{border:1px dashed var(--warn);border-radius:.4em;height:1.7em;background:var(--warn-soft)}
+  .mi .av{width:2.1em;height:2.1em;border-radius:99px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;
+    font-size:.8em;background:var(--accent-soft);color:var(--accent);flex:none}
+  .mi .fase{display:grid;grid-template-columns:1.5em 1fr auto;gap:.25em .55em;align-items:center}
+  .mi .fase .ic{font-weight:800;text-align:center}
+  .mi .fase.hecha .ic{color:var(--ok)} .mi .fase.va .ic{color:var(--accent)} .mi .fase.falta{color:var(--fg-3)}
+  .mi .riel{grid-column:2/4;height:.42em;border-radius:99px;background:var(--line-soft);overflow:hidden}
+  .mi .riel i{display:block;height:100%;width:var(--hecho,40%);background:var(--accent);border-radius:99px}
+  .mi .dos{display:grid;grid-template-columns:1.15fr 1fr;border:1px solid var(--line-soft);border-radius:.6em;overflow:hidden}
+  .mi .dos>div{padding:.75em;display:flex;flex-direction:column;gap:.55em;min-width:0}
+  .mi .lat{background:var(--bg);border-left:1px solid var(--line)}
+  .mi .item{display:flex;gap:.5em;align-items:center;padding:.3em;border-radius:.4em;min-width:0}
+  .mi .item.on{background:var(--accent-soft);box-shadow:inset 0 0 0 1.5px var(--accent)}
+
+  /* ── navegación ── */
+  .nav{position:fixed;right:18px;bottom:18px;display:flex;gap:8px;align-items:center;z-index:5}
+  .nav button{font:600 13px/1 ui-sans-serif,system-ui;border:1px solid var(--line);background:var(--bg-elev);color:var(--fg);
+    border-radius:10px;padding:9px 12px;cursor:pointer;box-shadow:var(--shadow)}
+  .nav .cnt{font:600 12.5px ui-monospace,monospace;color:var(--fg-2);background:var(--bg-elev);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+  .prog{position:fixed;left:0;top:0;height:3px;background:var(--accent);width:0;z-index:5;transition:width .2s}
+  .toc{position:fixed;right:18px;bottom:66px;width:min(360px,calc(100vw - 36px));max-height:60vh;overflow:auto;background:var(--bg-elev);
+    border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:8px;z-index:6}
+  .toc[hidden]{display:none}
+  .toc a{display:block;padding:7px 10px;border-radius:8px;color:var(--fg);text-decoration:none;font-size:13.5px}
+  .toc a:hover{background:var(--bg)}
+  .toc a small{color:var(--fg-3);margin-right:6px;font-family:ui-monospace,monospace}
+
+  /* ── CATÁLOGO · se borra entero al generar ── */
+  .cat{max-width:1120px;margin:64px auto 0;padding-top:22px;border-top:3px solid var(--bad)}
+  .cat>h2{font-size:22px;margin:0 0 4px}
+  .cat .adv{color:var(--bad);font-weight:600;font-size:13.5px;margin:0 0 18px}
+  .cat h3{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);margin:28px 0 10px}
+  .cat-tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--bg-elev)}
+  .cat-t{width:100%;min-width:640px;border-collapse:collapse;font-size:13.5px}
+  .cat-t th,.cat-t td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  .cat-t tr:last-child td{border-bottom:0}
+  .cat-t th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3)}
+  .cat-t code{font-size:12px;color:var(--fg-2)}
+  .demo{container-type:inline-size;background:var(--bg-elev);border:1px dashed var(--line);border-radius:14px;padding:22px 26px;
+    display:grid;gap:14px;margin-bottom:14px}
+  .demo>.n{font:600 12px/1.4 ui-monospace,monospace;color:var(--fg-3)}
+
+  /* ── en pantallas angostas, la diapositiva crece en alto y el texto no se achica ── */
+  @media (max-width:760px){
+    body{padding:16px 16px 90px}
+    .sl,.demo{aspect-ratio:auto;container-type:normal}
+    .sl-in{position:static;padding:22px 18px 40px;gap:14px}
+    .demo{padding:16px}
+    .kick{font-size:11px;gap:8px;flex-wrap:wrap} .kick .an{margin-left:0} .kick .num{font-size:11px;padding:3px 6px;border-radius:5px}
+    .sl h1{font-size:30px} .sl h1.frase{font-size:24px} .sl h2{font-size:22px} .sub{font-size:15px}
+    .c2,.c32,.c23,.map,.keep,.ad{grid-template-columns:minmax(0,1fr)}
+    .body,.c2,.c32,.c23,.pila{gap:14px}
+    .note,.take,.dec .r,.hb .r,.mark,.ex .tr,.ex .ans,.ask .why,.keep div,.st .d,.ui .row,.ad ol,.opt ul,.opt p{font-size:13.5px}
+    .ex .en{font-size:19px} .st .h,.ask .q,.opt .oh,.ad .res{font-size:15px} .chip{font-size:13px}
+    .kpi .n{font-size:32px} .kpi .l{font-size:13px}
+    .flow,.opts{grid-auto-flow:row} .st:not(:last-child)::after{display:none}
+    .cols{height:180px} .col .v{font-size:14px} .col .k{font-size:13px} .col .v small{font-size:11px}
+    .ptl,.foot,.heat,.sev,.st .i,.map .who b,.map .ex .part b,.ask .op,.ui .bar,.ui .row .s,.hb .tr,.col .bar,.leyenda,.ad .rot,.opt .ol,.map .who small,.hb .t small{font-size:12px}
+    .hb .tr{height:9px} .st .i,.opt .ol{width:22px;height:22px;line-height:22px} .map .who b,.map .ex .part b{width:20px;height:20px;line-height:20px}
+    .map .ex{border-radius:14px 14px 0 0} .map .who{border-left:1px solid var(--line);border-top:0;border-radius:0 0 14px 14px}
+    .cover .big-l{display:none}
+    .foot{position:static;padding:0 18px 16px;margin-top:-24px;font-size:11px}
+    .chip i,.ex .cons,.dec .no,.st .eg{font-size:11.5px}
+    .dec .q,.dec .y,.map .who div{font-size:13.5px} .keep b{font-size:14px}
+    .chips,.kpis,.flow,.asks,.keep,.dec,.hb,.opts,.leyenda{gap:10px}
+    .panel,.ex,.ask,.ad .lado,.opt{padding:12px 14px;gap:8px;border-radius:12px}
+    .mark,.take,.keep div,.st{padding:10px 12px}
+    .ui .row{padding:9px 12px} .ui .bar{padding:8px 12px} .heat span{padding:5px 3px}
+    .ex .gap{min-width:44px;border-bottom-width:2px} .col .bar{border-radius:6px 6px 2px 2px}
+    .take,.ask{border-left-width:3px} .ad .antes,.ad .despues{border-top-width:3px}
+    .ad .despues::before{content:"↓";left:50%;top:-24px;transform:translateX(-50%);font-size:18px}
+    .ad ol{padding-left:18px} .opt.rec{border-width:2px}
+    .hb .r{grid-template-columns:40% 1fr auto;gap:8px}
+    .captura{padding:8px;border-radius:12px;gap:6px} .captura figcaption{font-size:12px}
+    .ad.asim,.map.alta{grid-template-columns:minmax(0,1fr)}
+    .ad .lado{overflow:visible} .cap{height:auto}
+    .map.alta .ex{justify-items:center} .map.alta .cap{width:min(46%,200px)}
+    .franja{flex:none;align-items:flex-start} .franja .cap{width:34%;height:auto}
+    .ad ol.leg{font-size:13.5px;gap:6px;padding-left:0} .leg li{gap:8px} .leg .nb{font-size:11px}
+    .call{font-size:13.5px;padding:10px 12px;border-left-width:3px}
+    .desliza svg{min-width:640px}
+  }
+  svg .box{fill:var(--bg);stroke:var(--line)}
+  svg .box-a{fill:var(--accent-soft);stroke:var(--accent)}
+  svg .box-ok{fill:var(--ok-soft);stroke:var(--ok)}
+  svg .box-bad{fill:var(--bad-soft);stroke:var(--bad)}
+  svg .lbl{fill:var(--fg);font:13px ui-sans-serif,system-ui,sans-serif}
+  svg .lbl-s{fill:var(--fg-3);font:11px ui-sans-serif,system-ui,sans-serif}
+  svg .arrow{stroke:var(--fg-3);fill:none;stroke-width:1.2}
+  .desliza svg{display:block;max-height:100%}
+  .body.dos-uno{grid-template-columns:2.5fr 1fr}
+  .heat.prieto span{padding:.4cqi .4cqi}
+  @media (max-width:760px){ .body.dos-uno{grid-template-columns:minmax(0,1fr)} .heat.prieto{font-size:11px} .heat.prieto span{padding:4px 2px} }
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+
+<main class="deck" id="deck">
+
+<!-- ═══════════════ CONTENIDO: desde acá se reemplaza ═══════════════ -->
+
+  <section class="sl cover" data-t="Portada">
+    <div class="sl-in">
+      <div class="kick"><span class="num">166</span><span class="tagq">Presentación</span> · <span class="meta">tablero · estado compartido · 13/10/2026</span></div>
+      <h1>Una sola verdad para el tablero</h1>
+      <p class="sub">Por qué las pantallas se contradicen, y un plan en seis etapas, cada una con la prueba que demuestra que quedó arreglada.</p>
+      <div class="chips"><span class="chip">El testigo<i>0</i></span><span class="chip">Corridas<i>1</i></span><span class="chip">Opiniones<i>2</i></span><span class="chip">El servidor avisa<i>3</i></span><span class="chip">Pantallas al día<i>4</i></span><span class="chip">Guardia<i>5</i></span></div>
+      <div class="kpis">
+        <div class="kpi"><div class="n">0</div><div class="l">datos compartidos entre las 10 pantallas: cada una arma los suyos</div></div>
+        <div class="kpi"><div class="n">8</div><div class="l">lugares distintos dicen si algo está «en curso»</div></div>
+        <div class="kpi"><div class="n">1<small>de 10</small></div><div class="l">pantallas se pone al día sola al volver a la pestaña</div></div>
+      </div>
+    </div>
+    <div class="foot"><span>Lectura del código del tablero (ittm, master) y del disco de content-audit, 13/10</span><span class="pg"></span></div>
+  </section>
+
+  <section class="sl" data-t="Cómo funciona hoy">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Cómo funciona hoy</span> · del disco a las pantallas</div>
+      <h2>Cada pantalla tiene su copia y nadie le avisa que cambió</h2>
+      <div class="body abajo">
+        <div class="desliza">
+          <svg viewBox="0 0 1000 360" width="100%" role="img" aria-label="El disco, el servidor con sus memorias y cinco pantallas que preguntan cada una a su ritmo; no hay aviso de vuelta">
+            <defs><marker id="fl2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--fg-3)"/></marker></defs>
+            <rect class="box" x="20" y="120" width="170" height="90" rx="10"/>
+            <text class="lbl" x="105" y="158" text-anchor="middle">El disco y el CLI</text>
+            <text class="lbl-s" x="105" y="180" text-anchor="middle">lo único que escribe</text>
+            <path class="arrow" d="M190,165 L288,165" marker-end="url(#fl2)"/>
+            <text class="lbl-s" x="239" y="155" text-anchor="middle">lee</text>
+            <rect class="box-a" x="290" y="70" width="220" height="190" rx="10"/>
+            <text class="lbl" x="400" y="104" text-anchor="middle">El servidor</text>
+            <text class="lbl-s" x="400" y="134" text-anchor="middle">≈ 23 memorias</text>
+            <text class="lbl-s" x="400" y="156" text-anchor="middle">2 maneras de vencer</text>
+            <text class="lbl-s" x="400" y="178" text-anchor="middle">5 sólo vencen con «releer»</text>
+            <text class="lbl-s" x="400" y="200" text-anchor="middle">un solo turno para el CLI</text>
+            <rect class="box-bad" x="290" y="285" width="220" height="56" rx="10"/>
+            <text class="lbl" x="400" y="310" text-anchor="middle">Nadie avisa</text>
+            <text class="lbl-s" x="400" y="329" text-anchor="middle">cuando algo cambia</text>
+            <path class="arrow" d="M640,62 L585,62 L585,302 L640,302 M640,122 L585,122 M640,182 L585,182 M640,242 L585,242"/>
+            <path class="arrow" d="M585,165 L512,165" marker-end="url(#fl2)"/>
+            <text class="lbl-s" x="548" y="155" text-anchor="middle">pregunta</text>
+            <rect class="box" x="640" y="40" width="340" height="44" rx="8"/>
+            <text class="lbl" x="656" y="67">Correcciones</text><text class="lbl-s" x="964" y="67" text-anchor="end">cada 2 s y 5 s</text>
+            <rect class="box" x="640" y="100" width="340" height="44" rx="8"/>
+            <text class="lbl" x="656" y="127">Problemas</text><text class="lbl-s" x="964" y="127" text-anchor="end">cada 10 s</text>
+            <rect class="box" x="640" y="160" width="340" height="44" rx="8"/>
+            <text class="lbl" x="656" y="187">Exámenes</text><text class="lbl-s" x="964" y="187" text-anchor="end">cada 10 s</text>
+            <rect class="box" x="640" y="220" width="340" height="44" rx="8"/>
+            <text class="lbl" x="656" y="247">Publicar</text><text class="lbl-s" x="964" y="247" text-anchor="end">nunca</text>
+            <rect class="box" x="640" y="280" width="340" height="44" rx="8"/>
+            <text class="lbl" x="656" y="307">… y 6 más</text><text class="lbl-s" x="964" y="307" text-anchor="end">al terminar algo, o a mano</text>
+          </svg>
+        </div>
+        <p class="take">Adentro de cada pantalla, el store tipo Redux anda bien. <b>Lo que falta es conectarlo con lo que cambia afuera.</b></p>
+      </div>
+    </div>
+    <div class="foot"><span>Cada pantalla arma 3 stores propios (la pantalla, «en curso» y el de lanzar); no hay aviso del servidor, sólo preguntas periódicas</span><span class="pg"></span></div>
+  </section>
+
+  <section class="sl" data-t="Caso 1 · Completar opiniones">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Caso 1</span> · Correcciones <span class="an">Completar opiniones, hoy a las 13:05</span></div>
+      <h2>Completar contó consultas, y lo que faltaba era otra cosa</h2>
+      <div class="body c2">
+        <div class="pila">
+          <div class="ex">
+            <div class="cons">Lo que dijo Completar opiniones</div>
+            <div class="en">Faltan 5</div>
+            <div class="tr">La mini-teoría opina una vez por tema: 180 ejercicios en 5 temas son 5 consultas.</div>
+            <div class="mark ok"><span class="x">→</span><span>Corrió bien: 5 de 5 consultas, 180 opiniones, 13:13.</span></div>
+          </div>
+          <div class="ex">
+            <div class="cons">Lo que mostró Correcciones después</div>
+            <div class="en">Todavía no opinó · 31 veces</div>
+            <div class="mark"><span class="x">✕</span><span>31 renglones en 24 ejercicios, y ninguno era de mini-teoría.</span></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="ptl">Los 31 que quedaron · por qué</div>
+          <div class="hb ancho">
+            <div class="r"><span class="t">Coherencia de la pista<small>una corrida vacía tapa su opinión</small></span><span class="tr"><span class="f b" style="width:64.5%"></span></span><span class="n">20</span></div>
+            <div class="r"><span class="t">Casi repetidos<small>Completar no cubre ese juez</small></span><span class="tr"><span class="f w" style="width:35.5%"></span></span><span class="n">11</span></div>
+            <div class="r"><span class="t">Mini-teoría<small>lo que sí completó</small></span><span class="tr"><span class="f g" style="width:0.6%"></span></span><span class="n">0</span></div>
+          </div>
+          <p class="note">Dos maneras de contar «falta»: Completar cuenta consultas pagas; Correcciones, ejercicio por juez.</p>
+          <div class="call"><b>Sin verificar:</b> que los 20 tengan opinión debajo de la corrida vacía. Si no la tienen, Completar tampoco los cubre.</div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Corrida ui-2026-10-13T16-05-27Z en tanda-A1-20261007T084434Z · corrida vacía ui-2026-10-13T12-24-50Z (tope 0) · opinion_en_contexto.dart:109-152</span><span class="pg"></span></div>
+  </section>
+
+  <section class="sl" data-t="Caso 2 · En progreso">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Caso 2</span> · Problemas y Ejecuciones <span class="an">una corrida de un problema</span></div>
+      <h2>Problemas se enteró 20 segundos después que Ejecuciones</h2>
+      <div class="body arriba">
+        <div class="flow">
+          <div class="st"><span class="i">1</span><span class="h">Termina la corrida</span><span class="eg">21:54:58</span><span class="d">El CLI deja su salida en el disco.</span></div>
+          <div class="st"><span class="i">2</span><span class="h">La cierra el vigilante</span><span class="eg">21:54:59</span><span class="d">Cierra la corrida; el problema sigue abierto.</span></div>
+          <div class="st"><span class="i">3</span><span class="h">Ejecuciones: terminada</span><span class="eg">21:55:04</span><span class="d">Lee el registro de actividad, que ya está cerrado.</span></div>
+          <div class="st end"><span class="i">4</span><span class="h">Problemas: terminada</span><span class="eg">21:55:19</span><span class="d">Su pregunta esperó 10,7 s detrás de otra tarea del CLI.</span></div>
+        </div>
+        <div class="c2">
+          <div class="panel">
+            <div class="ptl">Por qué tarda</div>
+            <div class="mark"><span class="x">✕</span><span>Nadie cierra el problema hasta que la pantalla pregunta.</span></div>
+            <div class="mark"><span class="x">✕</span><span>Y esa pregunta hace fila con el CLI: hasta 29 s.</span></div>
+          </div>
+          <div class="panel">
+            <div class="ptl">Peor: la pestaña vieja</div>
+            <div class="mark"><span class="x">✕</span><span>Desde el reinicio de las 9:39, 770 rechazos sin aviso: queda congelada.</span></div>
+            <p class="note">Al reiniciar cambia la sesión, y la pantalla no lo dice.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Tablero.log, corrida problem-3e712a78 (otra, problem-2c0b7f9d, llegó 8 s tarde) · 403 en /api/problemas/lista · /pasos espera ejecutor.enTurno</span><span class="pg"></span></div>
+  </section>
+
+  <section class="sl" data-t="Cada pantalla, a su manera">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Diagnóstico</span> · las 10 pantallas <span class="an">cómo se entera cada una de un cambio</span></div>
+      <h2>Cada pantalla se entera de los cambios a su manera</h2>
+      <div class="body dos-uno">
+        <div class="heat prieto" style="--cols:5;align-content:start">
+          <span class="h"></span><span class="h">Al terminar algo</span><span class="h">Al volver a la pestaña</span><span class="h">Pregunta sola</span><span class="h">Aviso entre pestañas</span><span class="h">Botón releer</span>
+          <span class="rl">Correcciones</span><span class="h0">sí</span><span class="h2">no</span><span class="h1">2 s / 5 s</span><span class="h0">sí</span><span class="h0">sí</span>
+          <span class="rl">Mapa</span><span class="h0">sí</span><span class="h0">sí</span><span class="h2">no</span><span class="h0">sí</span><span class="h0">sí</span>
+          <span class="rl">Estadísticas</span><span class="h1">sin releer</span><span class="h2">no</span><span class="h2">no</span><span class="h0">sí</span><span class="h2">no</span>
+          <span class="rl">Analizadores</span><span class="h0">sí</span><span class="h2">no</span><span class="h2">no</span><span class="h0">sí</span><span class="h0">sí</span>
+          <span class="rl">Exámenes</span><span class="h2">no</span><span class="h2">no</span><span class="h1">10 s</span><span class="h2">no</span><span class="h0">sí</span>
+          <span class="rl">Vueltas</span><span class="h0">sí</span><span class="h2">no</span><span class="h2">no</span><span class="h2">no</span><span class="h0">sí</span>
+          <span class="rl">Comparar</span><span class="h0">sí</span><span class="h2">no</span><span class="h2">no</span><span class="h2">no</span><span class="h0">sí</span>
+          <span class="rl">Publicar</span><span class="h2">no</span><span class="h2">no</span><span class="h2">no</span><span class="h2">no</span><span class="h0">sí</span>
+          <span class="rl">Problemas</span><span class="h2">no</span><span class="h2">no</span><span class="h1">10 s</span><span class="h2">no</span><span class="h2">no</span>
+          <span class="rl">Ejecuciones</span><span class="h0">sí</span><span class="h1">a medias</span><span class="h0">sí</span><span class="h0">sí</span><span class="h0">sí</span>
+        </div>
+        <div class="pila" style="justify-content:center">
+          <div class="mark"><span class="x">✕</span><span>Sólo Mapa se pone al día al volver a la pestaña.</span></div>
+          <div class="mark"><span class="x">✕</span><span>Publicar no se entera de nada sin el botón.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>html/js/*/main.js: alTerminar, visibilitychange/pageshow, setInterval, BroadcastChannel('content-audit-analysis') y ?releer=1, pantalla por pantalla</span><span class="pg"></span></div>
+  </section>
+
+  <section class="sl" data-t="Caminos">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Caminos</span> · tres maneras de arreglarlo</div>
+      <h2>Recomiendo B: el servidor es la verdad y avisa cada cambio</h2>
+      <div class="body">
+        <div class="opts">
+          <div class="opt"><div class="oh"><span class="ol">A</span><b>Parche por parche</b></div>
+            <ul><li class="si">Rápido para los dos casos de hoy</li><li class="no">El próximo caso aparece igual</li><li class="no">Siguen las 8 fuentes de «en curso»</li></ul>
+            <p>Arregla síntomas: cada pantalla sigue enterándose a su manera.</p></div>
+          <div class="opt rec"><div class="oh"><span class="ol">B</span><b>El servidor avisa</b></div>
+            <ul><li class="si">Arregla la causa, no el síntoma</li><li class="si">Ve lo que cambia la terminal</li><li class="si">Se hace y se prueba por etapas</li><li class="no">Toca el servidor y las 10 pantallas</li></ul>
+            <p>Una verdad por tema en el servidor; las pantallas son copias que se ponen al día solas.</p></div>
+          <div class="opt"><div class="oh"><span class="ol">C</span><b>Una sola aplicación</b></div>
+            <ul><li class="si">Un único store en el navegador</li><li class="no">Reescribir las 10 pantallas</li><li class="no">No ve la terminal ni otra pestaña</li></ul>
+            <p>Junta las pantallas, pero la verdad sigue estando en el disco.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>C sería una SPA con un solo store.js: no resuelve cambios del CLI ni de otra pestaña sin el mismo canal de avisos de B</span><span class="pg"></span></div>
+  </section>
+
+  <section class="sl" data-t="Cómo queda">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Cómo queda</span> · camino B</div>
+      <h2>Un dueño por dato, una versión por tema, un canal de avisos</h2>
+      <div class="body c32">
+        <div class="desliza">
+          <svg viewBox="0 0 620 360" width="100%" role="img" aria-label="El disco alimenta al servidor, que numera siete temas y avisa a las pantallas; las pantallas piden lo nuevo">
+            <defs><marker id="fl7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--fg-3)"/></marker></defs>
+            <rect class="box" x="10" y="135" width="150" height="90" rx="10"/>
+            <text class="lbl" x="85" y="172" text-anchor="middle">El disco</text>
+            <text class="lbl-s" x="85" y="194" text-anchor="middle">lo escribe sólo el CLI</text>
+            <path class="arrow" d="M160,180 L228,180" marker-end="url(#fl7)"/>
+            <text class="lbl-s" x="194" y="170" text-anchor="middle">cambia</text>
+            <rect class="box-a" x="230" y="40" width="180" height="280" rx="10"/>
+            <text class="lbl" x="320" y="74" text-anchor="middle">El servidor</text>
+            <text class="lbl-s" x="320" y="96" text-anchor="middle">una versión por tema</text>
+            <text class="lbl-s" x="250" y="134">corridas</text><text class="lbl" x="390" y="134" text-anchor="end">v42</text>
+            <text class="lbl-s" x="250" y="162">tanda</text><text class="lbl" x="390" y="162" text-anchor="end">v17</text>
+            <text class="lbl-s" x="250" y="190">opiniones</text><text class="lbl" x="390" y="190" text-anchor="end">v9</text>
+            <text class="lbl-s" x="250" y="218">problemas</text><text class="lbl" x="390" y="218" text-anchor="end">v5</text>
+            <text class="lbl-s" x="250" y="246">análisis · exámenes</text>
+            <text class="lbl-s" x="250" y="268">publicar</text>
+            <text class="lbl-s" x="320" y="302" text-anchor="middle">7 temas</text>
+            <path class="arrow" d="M410,95 L478,95" marker-end="url(#fl7)"/><path class="arrow" d="M410,180 L478,180" marker-end="url(#fl7)"/><path class="arrow" d="M410,265 L478,265" marker-end="url(#fl7)"/>
+            <text class="lbl-s" x="444" y="85" text-anchor="middle">aviso</text>
+            <rect class="box-ok" x="480" y="65" width="130" height="60" rx="8"/>
+            <text class="lbl" x="545" y="92" text-anchor="middle">Correcciones</text><text class="lbl-s" x="545" y="111" text-anchor="middle">tanda · opiniones</text>
+            <rect class="box-ok" x="480" y="150" width="130" height="60" rx="8"/>
+            <text class="lbl" x="545" y="177" text-anchor="middle">Problemas</text><text class="lbl-s" x="545" y="196" text-anchor="middle">problemas · corridas</text>
+            <rect class="box-ok" x="480" y="235" width="130" height="60" rx="8"/>
+            <text class="lbl" x="545" y="262" text-anchor="middle">Ejecuciones</text><text class="lbl-s" x="545" y="281" text-anchor="middle">corridas</text>
+            <text class="lbl-s" x="545" y="330" text-anchor="middle">cada una pide lo nuevo</text>
+          </svg>
+        </div>
+        <div class="panel">
+          <div class="ptl">Tres reglas</div>
+          <div class="dec">
+            <div class="r"><span class="q">Un dueño</span><span class="y">cada dato lo decide un solo lugar<span class="no">hoy, 8 lugares dicen si algo corre</span></span></div>
+            <div class="r"><span class="q">Versión</span><span class="y">toda escritura sube la versión de su tema<span class="no">hoy, 23 memorias vencen cada una a su manera</span></span></div>
+            <div class="r"><span class="q">Aviso</span><span class="y">la pantalla relee cuando el servidor avisa<span class="no">hoy, cada pantalla pregunta a su ritmo, o nunca</span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Temas: corridas, tanda, análisis, opiniones, problemas, exámenes, publicar · canal /api/avisos (SSE) · store.js se conecta, no se reemplaza</span><span class="pg"></span></div>
+  </section>
+
+  <section class="sl" data-t="El plan">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">El plan</span> · seis etapas, una a la vez</div>
+      <h2>Seis etapas, cada una cierra con su prueba en verde</h2>
+      <div class="body abajo">
+        <div class="flow">
+          <div class="st"><span class="i">0</span><span class="h">El testigo</span><span class="eg">lista lo que no cuadra</span><span class="d">Un control que cruza las fuentes y muestra cada contradicción.</span></div>
+          <div class="st"><span class="i">1</span><span class="h">Corridas</span><span class="eg">terminada en ≤ 3 s</span><span class="d">Una sola fuente dice si algo corre, y se cierra sola.</span></div>
+          <div class="st"><span class="i">2</span><span class="h">Opiniones</span><span class="eg">31 sin explicar → 0</span><span class="d">Un solo conteo de faltantes, igual en todas las pantallas.</span></div>
+          <div class="st"><span class="i">3</span><span class="h">El servidor avisa</span><span class="eg">5 congeladas → 0</span><span class="d">Cada tema con su versión; un canal avisa cada cambio.</span></div>
+          <div class="st"><span class="i">4</span><span class="h">Pantallas al día</span><span class="eg">al volver: 1 → 10</span><span class="d">Releen al recibir aviso, al entrar y al volver.</span></div>
+          <div class="st end"><span class="i">5</span><span class="h">Guardia</span><span class="eg">relojes propios: 3 → 0</span><span class="d">Pruebas que impiden volver a desconectar una pantalla.</span></div>
+        </div>
+        <p class="take">Una etapa termina cuando su prueba pasa <b>y lo ves distinto en el tablero</b>; recién ahí sigue la otra.</p>
+      </div>
+    </div>
+    <div class="foot"><span>Las etapas 1 y 2 arreglan los dos casos; 3 a 5 hacen que no vuelvan</span><span class="pg"></span></div>
+  </section>
+
+  <section class="sl" data-t="Etapa 0 · El testigo">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Etapa 0 de 5</span> · El testigo <span class="an">primero, medir</span></div>
+      <h2>Antes de arreglar, un testigo que muestre lo que no cuadra</h2>
+      <div class="body c32">
+        <div class="ad">
+          <div class="lado antes"><span class="rot">Hoy</span>
+            <ol><li>Una contradicción aparece cuando vos la ves en pantalla.</li><li>Ninguna prueba reproduce los dos casos de hoy.</li></ol>
+            <div class="res">0 contradicciones a la vista</div>
+          </div>
+          <div class="lado despues"><span class="rot">Con la etapa</span>
+            <ol><li>Un control cruza las fuentes y lista cada contradicción con su porqué.</li><li>Una prueba en rojo por caso: pasa a verde cuando se arregla.</li><li>Se consulta desde el tablero o desde la terminal.</li></ol>
+            <div class="res">los 2 casos, en rojo y después en verde</div>
+          </div>
+        </div>
+        <div class="pila">
+          <div class="panel">
+            <div class="ptl">Cómo sabemos que anda</div>
+            <div class="ui">
+              <div class="row"><span class="okm">✓</span><span>Sobre el disco de hoy, encuentra los 31 sin opinión explicada.</span><span class="s">automática</span></div>
+              <div class="row"><span class="okm">✓</span><span>Corrida cerrada con su problema abierto: la marca.</span><span class="s">automática</span></div>
+              <div class="row"><span class="pend">◐</span><span>Lo corrés hoy y lista lo que viste vos.</span><span class="s">a mano</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Una ruta /api/coherencia del servidor y un comando para la terminal; pruebas rojas en Dart (tablero) y en Java (CLI)</span><span class="pg"></span></div>
+  </section>
+
+  <section class="sl" data-t="Etapa 1 · Corridas">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Etapa 1 de 5</span> · Corridas <span class="an">arregla el caso 2</span></div>
+      <h2>Una sola fuente dice si algo corre, y se cierra sola</h2>
+      <div class="body c32">
+        <div class="ad">
+          <div class="lado antes"><span class="rot">Hoy</span>
+            <ol><li>Ocho lugares dicen si algo corre, con palabras distintas para lo mismo.</li><li>El problema se cierra recién cuando una pantalla pregunta, haciendo fila con el CLI.</li><li>Una corrida huérfana deja su problema «en curso» para siempre.</li></ol>
+            <div class="res">Problemas se entera 20 s tarde</div>
+          </div>
+          <div class="lado despues"><span class="rot">Con la etapa</span>
+            <ol><li>Una sola fuente, el registro de actividad, con las mismas palabras en todos lados.</li><li>El vigilante cierra la corrida y su problema en el mismo paso.</li><li>Una huérfana termina como fallida, en todas las pantallas.</li></ol>
+            <div class="res">se entera en 3 s o menos</div>
+          </div>
+        </div>
+        <div class="pila">
+          <div class="panel">
+            <div class="ptl">Cómo sabemos que anda</div>
+            <div class="ui">
+              <div class="row"><span class="okm">✓</span><span>Termina sin pantallas abiertas: el problema queda terminado en 1 s.</span><span class="s">automática</span></div>
+              <div class="row"><span class="okm">✓</span><span>Corrida huérfana: fallida en Problemas y en Ejecuciones.</span><span class="s">automática</span></div>
+              <div class="row"><span class="okm">✓</span><span>CLI ocupado 15 s: la pantalla igual responde en menos de 1 s.</span><span class="s">automática</span></div>
+              <div class="row"><span class="pend">◐</span><span>Con el CLI de mentira: lanzar, cerrar Problemas, volver: terminada.</span><span class="s">a mano</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Fuentes F1–F8 → activity/runs · VigilanteDeCorridas._cerrarUna cierra problem-runs · markRunOrphaned → FAILED · /pasos fuera de ejecutor.enTurno · probar_solucion.dart:285 con guarda</span><span class="pg"></span></div>
+  </section>
+
+  <section class="sl" data-t="Etapa 2 · Opiniones">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Etapa 2 de 5</span> · Opiniones <span class="an">arregla el caso 1</span></div>
+      <h2>Un solo conteo de faltantes, igual en todas las pantallas</h2>
+      <div class="body c32">
+        <div class="ad">
+          <div class="lado antes"><span class="rot">Hoy</span>
+            <ol><li>Completar cuenta consultas pagas; Correcciones, ejercicio por juez.</li><li>Una corrida vacía tapa una opinión que sí existe.</li><li>Los jueces que Completar no cubre se ven como «falta».</li></ol>
+            <div class="res">31 sin opinión y sin explicación</div>
+          </div>
+          <div class="lado despues"><span class="rot">Con la etapa</span>
+            <ol><li>Cada par ejercicio-juez con un estado: falta, no aplica, no se completa acá.</li><li>Una corrida vacía nunca tapa un veredicto.</li><li>El diálogo dice pares, ejercicios y consultas, cada cosa por su nombre.</li></ol>
+            <div class="res">0 sin explicación</div>
+          </div>
+        </div>
+        <div class="pila">
+          <div class="panel">
+            <div class="ptl">Cómo sabemos que anda</div>
+            <div class="ui">
+              <div class="row"><span class="okm">✓</span><span>Juez por tema, 2 temas, 10 ejercicios: 10 pares y 2 consultas.</span><span class="s">automática</span></div>
+              <div class="row"><span class="okm">✓</span><span>Corrida vacía posterior: la opinión anterior se sigue viendo.</span><span class="s">automática</span></div>
+              <div class="row"><span class="okm">✓</span><span>Juez no cubierto: «no se completa desde acá», nunca «falta».</span><span class="s">automática</span></div>
+              <div class="row"><span class="pend">◐</span><span>Abrís la tanda A1: los 31 de hoy aparecen explicados, sin correr nada.</span><span class="s">a mano</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>DefaultContextOpinionService.pendingQueries contra opinion_de_los_jueces.dart:119-218 · DefaultAnalysisComposer:139-142 · corrida vacía en opinion_en_contexto.dart:109-152</span><span class="pg"></span></div>
+  </section>
+
+  <section class="sl" data-t="Etapa 3 · El servidor avisa">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Etapa 3 de 5</span> · El servidor avisa <span class="an">arregla las pantallas congeladas</span></div>
+      <h2>El servidor numera cada tema y avisa cuando cambia</h2>
+      <div class="body c32">
+        <div class="ad">
+          <div class="lado antes"><span class="rot">Hoy</span>
+            <ol><li>Unas 23 memorias; 5 pantallas ven datos congelados hasta «releer».</li><li>Releer puede devolver lo viejo si ya había otra lectura en camino.</li><li>Si algo cambia desde la terminal, no se entera nadie.</li></ol>
+            <div class="res">5 pantallas dependen de «releer»</div>
+          </div>
+          <div class="lado despues"><span class="rot">Con la etapa</span>
+            <ol><li>Siete temas, cada uno con su número de versión.</li><li>Toda escritura sube su versión: del tablero, del vigilante o del disco.</li><li>Un canal avisa «cambió corridas, versión 42» en menos de 1 s.</li></ol>
+            <div class="res">0 dependen de «releer»</div>
+          </div>
+        </div>
+        <div class="pila">
+          <div class="panel">
+            <div class="ptl">Cómo sabemos que anda</div>
+            <div class="ui">
+              <div class="row"><span class="okm">✓</span><span>Escribir a mitad de una lectura: la siguiente trae lo nuevo.</span><span class="s">automática</span></div>
+              <div class="row"><span class="okm">✓</span><span>Por cada pantalla congelada: tocar su archivo sube la versión.</span><span class="s">automática</span></div>
+              <div class="row"><span class="okm">✓</span><span>Cerrar una corrida: el aviso sale en menos de 1 s.</span><span class="s">automática</span></div>
+            </div>
+          </div>
+          <div class="call"><b>Sin confirmar:</b> lo de «releer devuelve lo viejo» está en el código, pero no sé si es lo que te pasó a vos.</div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Congeladas hasta ?releer=1: Analizadores, Comparar, Vueltas, Publicar, Estadísticas · lectura en vuelo compartida: revision_compartida.dart:96-100 · canal /api/avisos</span><span class="pg"></span></div>
+  </section>
+
+  <section class="sl" data-t="Etapa 4 · Pantallas al día">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Etapa 4 de 5</span> · Pantallas al día <span class="an">arregla la pestaña vieja</span></div>
+      <h2>Cada pantalla es una copia que se pone al día sola</h2>
+      <div class="body c32">
+        <div class="ad">
+          <div class="lado antes"><span class="rot">Hoy</span>
+            <ol><li>Cada pantalla pregunta a su ritmo: cada 2, 5 o 10 s, o nunca.</li><li>Si el tablero se reinicia, la pestaña vieja falla callada.</li><li>Sólo Mapa se pone al día al volver a la pestaña.</li></ol>
+            <div class="res">1 de 10 al día al volver</div>
+          </div>
+          <div class="lado despues"><span class="rot">Con la etapa</span>
+            <ol><li>Un módulo común escucha los avisos; cada pantalla dice qué temas le importan.</li><li>Relee al recibir aviso, al entrar y al volver; gana el último pedido.</li><li>Sin conexión o con sesión vencida, todas avisan que los datos pueden estar viejos.</li></ol>
+            <div class="res">10 de 10 al día al volver</div>
+          </div>
+        </div>
+        <div class="pila">
+          <div class="panel">
+            <div class="ptl">Cómo sabemos que anda</div>
+            <div class="ui">
+              <div class="row"><span class="okm">✓</span><span>Respuestas que llegan al revés: queda la más nueva.</span><span class="s">automática</span></div>
+              <div class="row"><span class="okm">✓</span><span>Sesión vencida: aparece el cartel, no un error mudo.</span><span class="s">automática</span></div>
+              <div class="row"><span class="pend">◐</span><span>Dos ventanas: aprobás en una y la otra cambia en 1 s.</span><span class="s">a mano</span></div>
+              <div class="row"><span class="pend">◐</span><span>Reiniciás el tablero: las 10 pantallas lo dicen.</span><span class="s">a mano</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Se van los sondeos de Correcciones (2 s, 5 s), Problemas y Exámenes (10 s), alTerminar y el BroadcastChannel; store.js queda</span><span class="pg"></span></div>
+  </section>
+
+  <section class="sl" data-t="Etapa 5 · Guardia">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Etapa 5 de 5</span> · Guardia <span class="an">que no vuelva a pasar</span></div>
+      <h2>Pruebas que impiden volver a desconectar una pantalla</h2>
+      <div class="body c32">
+        <div class="ad">
+          <div class="lado antes"><span class="rot">Hoy</span>
+            <ol><li>Nada impide que una pantalla nueva arme su propio reloj.</li><li>El estado «en curso» está copiado en varias pantallas.</li></ol>
+            <div class="res">3 pantallas con reloj propio</div>
+          </div>
+          <div class="lado despues"><span class="rot">Con la etapa</span>
+            <ol><li>Una prueba falla si una pantalla pide datos por fuera del módulo común.</li><li>Cada pantalla declara sus temas; cada escritura, el tema que cambia.</li><li>El testigo corre en las pruebas y tiene que dar cero.</li></ol>
+            <div class="res">0 con reloj propio</div>
+          </div>
+        </div>
+        <div class="pila">
+          <div class="panel">
+            <div class="ptl">Cómo sabemos que anda</div>
+            <div class="ui">
+              <div class="row"><span class="okm">✓</span><span>Una pantalla con reloj propio: la prueba de guardia falla.</span><span class="s">automática</span></div>
+              <div class="row"><span class="okm">✓</span><span>Una ruta que escribe sin declarar su tema: falla.</span><span class="s">automática</span></div>
+              <div class="row"><span class="okm">✓</span><span>Termina una corrida, decidís, se integra, se reinicia: 0 contradicciones.</span><span class="s">automática</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Relojes propios hoy: problemas/main.js:57, examenes/main.js:80, correcciones/main.js:148</span><span class="pg"></span></div>
+  </section>
+
+  <section class="sl" data-t="Lo que no toca">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Lo que no toca</span> · lo que ya funciona y se queda igual</div>
+      <h2>Cambia cómo se enteran las pantallas, no qué muestran</h2>
+      <div class="body abajo">
+        <div class="keep">
+          <div><b>El CLI y el disco</b>Siguen siendo lo único que escribe. No hay base de datos nueva.</div>
+          <div><b>Cómo se ven</b>Las pantallas muestran lo mismo; cambia cuándo se ponen al día.</div>
+          <div><b>El store de cada pantalla</b>El tipo Redux se queda: se conecta al servidor, no se reemplaza.</div>
+          <div><b>Lanzar, topes y costos</b>Igual que hoy. Ninguna etapa corre consultas pagas sin tu permiso.</div>
+        </div>
+        <p class="take">Si alguna etapa necesitara tocar una de estas, <b>te llega como pregunta</b>.</p>
+      </div>
+    </div>
+    <div class="foot"><span>store.js (createStore, combineReducers, thunk, createSelector) sigue igual en las 10 pantallas</span><span class="pg"></span></div>
+  </section>
+
+  <section class="sl" data-t="Lo que necesita de vos">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Lo que necesita de vos</span> · con la recomendación</div>
+      <h2>Tres decisiones antes de arrancar</h2>
+      <div class="body">
+        <div class="asks">
+          <div class="ask"><span class="q">¿Vamos por B, el servidor avisa, en vez de reescribir todo?</span>
+            <div class="ops"><span class="op rec">B · recomendado</span><span class="op">C · una sola aplicación</span></div>
+            <span class="why">C no ve lo que cambia la terminal ni otra pestaña; B sí, y se hace por etapas.</span></div>
+          <div class="ask"><span class="q">¿Qué hacemos con los jueces que Completar no cubre?</span>
+            <div class="ops"><span class="op rec">Marcarlos «no se completa acá» · recomendado</span><span class="op">Sumarlos a Completar</span></div>
+            <span class="why">Sumarlos es otra obra: casi repetidos compara de a pares. Marcarlos ya saca la confusión.</span></div>
+          <div class="ask"><span class="q">¿Esperamos a que se junte el trabajo abierto sobre opiniones?</span>
+            <div class="ops"><span class="op rec">Esperar para la etapa 2 · recomendado</span><span class="op">Empezar todo ya</span></div>
+            <span class="why">Las etapas 0 y 1 no tocan esos archivos: arranco por ahí sin pisar nada.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>El trabajo abierto: cambios sin commitear en ittm master sobre opinion_de_los_jueces.dart, opinion_en_contexto.dart y opinion-en-contexto.js</span><span class="pg"></span></div>
+  </section>
+
+  <section class="sl cover" data-t="En una frase">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">En una frase</span></div>
+      <h1 class="frase">Una sola verdad en el servidor, que avisa; las pantallas sólo copian.</h1>
+      <p class="sub">Con tus tres respuestas arranco por la etapa 0, el testigo, y te muestro sus pruebas en rojo.</p>
+    </div>
+    <div class="foot"><span>Una sola verdad para el tablero · brief 166</span><span class="pg"></span></div>
+  </section>
+
+<!-- ═══════════════ CONTENIDO: hasta acá ═══════════════ -->
+
+</main>
+
+
+<div class="toc" id="toc" hidden></div>
+<div class="nav">
+  <button type="button" id="bToc" aria-label="Índice">☰</button>
+  <button type="button" id="bPrev" aria-label="Anterior">↑</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button type="button" id="bNext" aria-label="Siguiente">↓</button>
+</div>
+
+<script>
+(function(){
+  /* navegación: flechas, avance de página, espacio, Inicio, Fin y Esc; ☰ abre el índice.
+     El número de página de cada .foot .pg y el del documento en el contador los pone esto. */
+  var sls=[].slice.call(document.querySelectorAll('#deck > .sl'));
+  var cur=0, cnt=document.getElementById('cnt'), prog=document.getElementById('prog'), toc=document.getElementById('toc');
+  var num=document.querySelector('.kick .num'); num=num?num.textContent.trim():'';
+  function pinta(){ cnt.textContent=(num?num+' · ':'')+(cur+1)+' / '+sls.length; prog.style.width=((cur+1)/sls.length*100)+'%'; }
+  function ir(i){ cur=Math.max(0,Math.min(sls.length-1,i)); sls[cur].scrollIntoView({behavior:'smooth',block:'start'}); pinta(); }
+  var obs=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting&&e.intersectionRatio>.55){ cur=sls.indexOf(e.target); pinta(); } }); },{threshold:[.55]});
+  sls.forEach(function(s,i){ obs.observe(s);
+    var pg=s.querySelector('.foot .pg'); if(pg) pg.textContent=(i+1)+' / '+sls.length;
+    var a=document.createElement('a'); a.href='#'; a.innerHTML='<small>'+(i+1)+'</small>'+(s.getAttribute('data-t')||('Diapositiva '+(i+1)));
+    a.addEventListener('click',function(ev){ev.preventDefault();toc.hidden=true;ir(i);}); toc.appendChild(a); });
+  document.getElementById('bPrev').onclick=function(){ir(cur-1)};
+  document.getElementById('bNext').onclick=function(){ir(cur+1)};
+  document.getElementById('bToc').onclick=function(){toc.hidden=!toc.hidden};
+  document.addEventListener('keydown',function(e){
+    if(e.target.closest&&e.target.closest('input,textarea'))return;
+    if(['ArrowDown','ArrowRight','PageDown',' '].indexOf(e.key)>=0){e.preventDefault();ir(cur+1);}
+    if(['ArrowUp','ArrowLeft','PageUp'].indexOf(e.key)>=0){e.preventDefault();ir(cur-1);}
+    if(e.key==='Home'){e.preventDefault();ir(0);} if(e.key==='End'){e.preventDefault();ir(sls.length-1);}
+    if(e.key==='Escape'){toc.hidden=true;}
+  });
+  pinta();
+})();
+</script>
+</body>
+</html>

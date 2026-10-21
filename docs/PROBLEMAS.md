@@ -11,6 +11,15 @@ antes, el después y la procedencia automáticamente. Por omisión se rechaza la
 la anotación se puede deshacer mientras la corrección y la decisión sigan siendo compatibles.
 Las decisiones pendientes en la cola deben guardarse o descartarse antes de anotar.
 
+Con «Nadie le ve problemas» ([F-NADIE-R005](../requirements/2026-10-20.01_nadie-le-ve-problemas/REQUIREMENT.md#F-NADIE-R005))
+también se anota un ejercicio sin cambios o sin tarea. El tablero toma de su vista de hoy lo que dijo cada juez y lo
+pasa con `problem annotate --verdicts <json>`; si el ejercicio ya no entra en el filtro, no anota. content-audit
+congela el ejercicio como está en el curso (antes y después iguales, `items` vacío, sin rechazar nada) y guarda en
+`snapshot.nobodyObjects` el estado (`state`, `stateLabel`), cada juez con su estado (`UP_TO_DATE`, `EARLIER`,
+`ABSTAINED`, `NOT_MEASURED`) y su motivo, `missedBy` (los que dijeron «sin error»: los que hay que recalibrar) y los
+analizadores sin observaciones. Un ejercicio con cambios que entra lleva lo mismo además de su corrección. El pedido al
+agente suma las guías de los jueces de `missedBy`. Sin `--verdicts`, un quiz sin corrección en la tanda no se anota.
+
 Cada curso tiene su registro en `<curso>/.content-audit/problems/`. No pertenece a la
 tanda: las campañas del mismo curso comparten los problemas. Los casos son snapshots
 congelados y sobreviven a cambios en la campaña. Un caso nuevo reabre el problema y

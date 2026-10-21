@@ -39,6 +39,7 @@ class DefaultMiniTheoryDistributor implements MiniTheoryDistributor {
     static final String RULE_OVERSTATED = "overstated-for-quiz";
     static final String RULE_OTHER_SUBTOPIC = "other-subtopic-content";
     static final String RULE_OVER_SPECIFIC = "over-specific-for-quiz";
+    static final String RULE_THEORETICAL_JARGON = "theoretical-jargon";
 
     private final MiniTheoryConfig config;
     private final QuizStudentViewRenderer studentViewRenderer;
@@ -121,7 +122,7 @@ class DefaultMiniTheoryDistributor implements MiniTheoryDistributor {
         return switch (problem) {
             case FALSE_RULE, INSUFFICIENT_FOR_QUIZ -> FindingSeverity.HIGH;
             case OVERSTATED_FOR_QUIZ -> FindingSeverity.MEDIUM;
-            case OTHER_SUBTOPIC_CONTENT, OVER_SPECIFIC_FOR_QUIZ -> FindingSeverity.LOW;
+            case OTHER_SUBTOPIC_CONTENT, OVER_SPECIFIC_FOR_QUIZ, THEORETICAL_JARGON -> FindingSeverity.LOW;
         };
     }
 
@@ -132,6 +133,7 @@ class DefaultMiniTheoryDistributor implements MiniTheoryDistributor {
             case OVERSTATED_FOR_QUIZ -> RULE_OVERSTATED;
             case OTHER_SUBTOPIC_CONTENT -> RULE_OTHER_SUBTOPIC;
             case OVER_SPECIFIC_FOR_QUIZ -> RULE_OVER_SPECIFIC;
+            case THEORETICAL_JARGON -> RULE_THEORETICAL_JARGON;
         };
     }
 
@@ -158,6 +160,7 @@ class DefaultMiniTheoryDistributor implements MiniTheoryDistributor {
             case OVERSTATED_FOR_QUIZ -> "La miniteoría exagera dentro del caso de este quiz";
             case OTHER_SUBTOPIC_CONTENT -> "La miniteoría agrega contenido de otro subtema";
             case OVER_SPECIFIC_FOR_QUIZ -> "La miniteoría especifica palabras que no determinan la regla";
+            case THEORETICAL_JARGON -> "La miniteoría usa metalenguaje o jerga teórica innecesaria";
         };
         return isBlank(assessment.getExplanation()) ? lead : lead + ": " + assessment.getExplanation().strip();
     }
@@ -169,6 +172,7 @@ class DefaultMiniTheoryDistributor implements MiniTheoryDistributor {
             case OVERSTATED_FOR_QUIZ -> "Lo que exagera en este quiz";
             case OTHER_SUBTOPIC_CONTENT -> "Contenido de otro subtema";
             case OVER_SPECIFIC_FOR_QUIZ -> "Detalle incidental que se puede abstraer";
+            case THEORETICAL_JARGON -> "Concepto teórico o jerga que se puede simplificar";
         };
     }
 

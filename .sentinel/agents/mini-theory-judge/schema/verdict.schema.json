@@ -19,7 +19,7 @@
           "holds": {"type": "boolean"},
           "problem": {
             "type": ["string", "null"],
-            "enum": ["FALSE_RULE", "INSUFFICIENT_FOR_QUIZ", "OVERSTATED_FOR_QUIZ", "OTHER_SUBTOPIC_CONTENT", "OVER_SPECIFIC_FOR_QUIZ", null]
+            "enum": ["FALSE_RULE", "INSUFFICIENT_FOR_QUIZ", "OVERSTATED_FOR_QUIZ", "OTHER_SUBTOPIC_CONTENT", "OVER_SPECIFIC_FOR_QUIZ", "THEORETICAL_JARGON", null]
           },
           "severity": {"type": ["string", "null"], "enum": ["HIGH", "MEDIUM", "LOW", null]},
           "counterexample": {"type": ["string", "null"], "minLength": 1, "maxLength": 300},
@@ -49,7 +49,7 @@
               "then": {"properties": {"severity": {"const": "MEDIUM"}}}
             },
             {
-              "if": {"properties": {"problem": {"enum": ["OTHER_SUBTOPIC_CONTENT", "OVER_SPECIFIC_FOR_QUIZ"]}}},
+              "if": {"properties": {"problem": {"enum": ["OTHER_SUBTOPIC_CONTENT", "OVER_SPECIFIC_FOR_QUIZ", "THEORETICAL_JARGON"]}}},
               "then": {"properties": {"severity": {"const": "LOW"}}}
             }
           ]
