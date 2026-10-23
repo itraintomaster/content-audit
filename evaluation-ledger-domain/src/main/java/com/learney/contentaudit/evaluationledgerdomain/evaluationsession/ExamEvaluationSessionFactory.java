@@ -6,7 +6,9 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluatorVersionEquivalence;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import javax.annotation.processing.Generated;
@@ -44,6 +46,16 @@ public class ExamEvaluationSessionFactory implements EvaluationSessionFactory {
         currentVersion.ifPresent(compatibleVersions::add);
         Set<String> runtimeCoupledLegacyAliases = new LinkedHashSet<>(compatibleVersions);
         currentVersion.ifPresent(runtimeCoupledLegacyAliases::remove);
+        // A process equivalence says nothing about the runtime of an old ledger line. It may
+        // reuse results through the exact runtime key, but never through a legacy unknown key.
+        List<EvaluatorVersionEquivalence> processEquivalences = evaluator.versionEquivalences();
+        if (processEquivalences != null) {
+            for (EvaluatorVersionEquivalence equivalence : processEquivalences) {
+                if (equivalence != null) {
+                    runtimeCoupledLegacyAliases.remove(equivalence.getEarlierVersion());
+                }
+            }
+        }
         return new DefaultEvaluationSession(new ExamScopedEvaluationLedger(
                 ledger, compatibleVersions, runtimeCoupledLegacyAliases),
                 fingerprinter, evaluator, budget);

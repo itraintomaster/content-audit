@@ -14,6 +14,7 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluatorVersionEquivalence;
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadiness;
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeUnavailabilityCause;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig;
@@ -22,6 +23,7 @@ import com.sentinel.agents.framework.state.RunState;
 import dev.langchain4j.model.chat.ChatModel;
 import java.nio.file.Files;
 import java.util.Map;
+import java.util.List;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import javax.annotation.processing.Generated;
@@ -106,7 +108,14 @@ public QuizInstructionAgentJudge(QuizInstructionJudgeConfig config, AgentGraphRu
         versionResolver.resolve(config, provider).ifPresent(versions::add);
         // Schema-only alias: the previous digest coupled this exact runtime to the process.
         versionResolver.legacyRuntimeCoupledVersion(config, provider).ifPresent(versions::add);
+        versionResolver.equivalenceOfCurrentVersion(config)
+                .ifPresent(equivalence -> versions.add(equivalence.getEarlierVersion()));
         return Set.copyOf(versions);
+    }
+
+    @Override
+    public List<EvaluatorVersionEquivalence> versionEquivalences() {
+        return versionResolver.equivalenceOfCurrentVersion(config).map(List::of).orElseGet(List::of);
     }
 
     @Override

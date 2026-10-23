@@ -2,7 +2,7 @@
 
 **This module is isolated.** Your scope is limited to this module and the contracts (models and interfaces) of its dependencies. Do not access information from other modules.
 
-Adaptadores de los jueces con modelo. Los jueces por sesión local usan codex-cli autenticado con ChatGPT, sin OpenAI API ni fallback a Claude. La versión de cada juez deriva de su definición, el modelo exacto y el proveedor efectivo, por lo que cambiar cualquiera obliga a rendir un examen nuevo. La verificación previa consulta codex login status sin emitir una inferencia.
+Adaptadores de los jueces con modelo. Los jueces por sesión local usan codex-cli autenticado con ChatGPT, sin OpenAI API ni fallback a Claude. La versión del proceso deriva de su definición, salvo las pruebas y lectores auxiliares de `eval/`. El proveedor, modelo y esfuerzo efectivos forman la identidad del motor; su aprobación exige coincidencia exacta. Cambios reales del proceso requieren otro examen, salvo la equivalencia explícita de un corte de versionado. La verificación previa consulta codex login status sin emitir una inferencia.
 
 ## Models
 

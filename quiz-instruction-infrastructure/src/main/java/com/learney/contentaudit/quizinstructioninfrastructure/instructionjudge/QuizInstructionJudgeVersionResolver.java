@@ -2,6 +2,7 @@ package com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge;
 
 import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolved;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluatorVersionEquivalence;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 
@@ -14,6 +15,10 @@ interface QuizInstructionJudgeVersionResolver {
 
     default Optional<String> legacyRuntimeCoupledVersion(QuizInstructionJudgeConfig config,
             LlmProviderResolved provider) {
+        return Optional.empty();
+    }
+
+    default Optional<EvaluatorVersionEquivalence> equivalenceOfCurrentVersion(QuizInstructionJudgeConfig config) {
         return Optional.empty();
     }
 }

@@ -216,7 +216,7 @@ public class DefaultCandidateScreenTest {
                 conversion(she, "isn't", "aren't", "don't"));
 
         assertEquals(List.of("la opción correcta «isn't» no es la primera respuesta aceptada de hoy, «'s not»: cambiaría lo que se"
-                + " escucha"), violations);
+                + " escucha", "cambia las oraciones guardadas; la conversión debe conservar todas sus variantes y su orden"), violations);
     }
 
 

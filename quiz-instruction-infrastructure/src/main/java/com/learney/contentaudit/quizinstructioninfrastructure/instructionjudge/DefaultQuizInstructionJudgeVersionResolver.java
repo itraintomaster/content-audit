@@ -6,6 +6,8 @@ import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocato
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionFound;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocation;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig;
+import com.learney.contentaudit.quizinstructioninfrastructure.agentjudge.AgentJudgeVersionEquivalenceFile;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluatorVersionEquivalence;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -26,6 +28,9 @@ import javax.annotation.processing.Generated;
 class DefaultQuizInstructionJudgeVersionResolver implements QuizInstructionJudgeVersionResolver {
 
 private final AgentDefinitionLocator agentDefinitionLocator;
+
+    private final AgentJudgeVersionEquivalenceFile equivalences =
+            new AgentJudgeVersionEquivalenceFile("quiz-instruction-version-equivalences.jsonl");
 
 public DefaultQuizInstructionJudgeVersionResolver(AgentDefinitionLocator agentDefinitionLocator) {
     this.agentDefinitionLocator = agentDefinitionLocator;
@@ -75,9 +80,24 @@ public DefaultQuizInstructionJudgeVersionResolver(AgentDefinitionLocator agentDe
         return (agentName != null && !agentName.isBlank()) ? agentName : DEFAULT_AGENT_NAME;
     }
 
+    @Override
+    public Optional<EvaluatorVersionEquivalence> equivalenceOfCurrentVersion(QuizInstructionJudgeConfig config) {
+        String agentName = resolveAgentName(config);
+        AgentDefinitionLocation location = agentDefinitionLocator.locate(agentName);
+        if (!(location instanceof AgentDefinitionFound found)) {
+            return Optional.empty();
+        }
+        String current = digest(agentName, found.getDirectory(), null, null, null, false);
+        return equivalences.read(found.getDirectory().getParent()).stream()
+                .filter(equivalence -> agentName.equals(equivalence.getEvaluatorId())
+                        && current.equals(equivalence.getCurrentVersion()))
+                .findFirst();
+    }
+
     /**
      * F-QINST-R010: the current derived version depends only on the agent definition (its way of
-     * asking, i.e. every file under the located agent directory). Provider, exact model and
+     * asking, i.e. every file under the located agent directory except auxiliary tests in eval/).
+     * Provider, exact model and
      * reasoning effort form the separate runtime identity. When requested for migration, the same
      * function can reproduce the former runtime-coupled digest; that value is only a schema alias
      * for the exact runtime and never general process compatibility.
@@ -108,7 +128,13 @@ public DefaultQuizInstructionJudgeVersionResolver(AgentDefinitionLocator agentDe
             }
 
             for (Path file : sortedFilesUnder(agentDir)) {
-                sha256.update(agentDir.relativize(file).toString().getBytes(StandardCharsets.UTF_8));
+                Path relative = agentDir.relativize(file);
+                // The historical schema still counts tests; current course judgments never read them.
+                if (!includeLegacyRuntime && relative.getNameCount() > 1
+                        && "eval".equals(relative.getName(0).toString())) {
+                    continue;
+                }
+                sha256.update(relative.toString().getBytes(StandardCharsets.UTF_8));
                 sha256.update(Files.readAllBytes(file));
             }
 

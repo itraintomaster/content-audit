@@ -199,6 +199,10 @@ class DefaultCandidateScreen implements CandidateScreen {
         if (!Objects.equals(original.getMiniTheory(), proposed.getMiniTheory())) {
             violations.add("cambia la miniteoría");
         }
+        // F-CONVERSION-R003: conversion must retain every stored variant, including its order.
+        if (!Objects.equals(original.getSentences(), proposed.getSentences())) {
+            violations.add("cambia las oraciones guardadas; la conversión debe conservar todas sus variantes y su orden");
+        }
         if (proposed.getInstructions() != null && ASKS_FOR_A_FORM.matcher(proposed.getInstructions()).find()) {
             violations.add("la consigna del ejercicio sigue pidiendo una forma");
         }

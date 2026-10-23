@@ -173,10 +173,10 @@ public class DefaultQuizInstructionJudgeVersionResolverTest {
     }
 
     @Test
-    @DisplayName("should keep counting the tests of the consigna judge in its version, since its own rule does not change")
+    @DisplayName("should keep the consigna process version when only tests or their auxiliary readers change")
     @Tag("FEAT-ALDIA")
     @Tag("F-ALDIA-R001")
-    public void shouldKeepCountingTheTestsOfTheConsignaJudgeInItsVersion(@TempDir Path agentDefinitionDir)
+    public void shouldIgnoreTestsAndTheirAuxiliaryReadersInTheConsignaProcessVersion(@TempDir Path agentDefinitionDir)
             throws IOException {
         Files.writeString(agentDefinitionDir.resolve("evaluate.md"), "Judge whether the quiz respects its instructions.");
         Files.createDirectories(agentDefinitionDir.resolve("eval"));
@@ -187,10 +187,20 @@ public class DefaultQuizInstructionJudgeVersionResolverTest {
         DefaultQuizInstructionJudgeVersionResolver resolver = new DefaultQuizInstructionJudgeVersionResolver(locator);
         QuizInstructionJudgeConfig config = config("gpt-4o-mini", "quiz-instruction-validator");
         String before = resolver.resolve(config, PROVIDER).orElseThrow();
+        String legacyBefore = resolver.legacyRuntimeCoupledVersion(config, PROVIDER).orElseThrow();
 
         Files.writeString(fixtures, "[{\"case\":1},{\"case\":2}]");
+        Files.writeString(agentDefinitionDir.resolve("eval/run_evals.py"), "read_form_items()\n");
+        Files.createDirectories(agentDefinitionDir.resolve("eval/helpers/__pycache__"));
+        Files.writeString(agentDefinitionDir.resolve("eval/helpers/reader.py"), "read_options()\n");
+        Files.writeString(agentDefinitionDir.resolve("eval/helpers/__pycache__/reader.pyc"), "cache");
 
-        assertNotEquals(before, resolver.resolve(config, PROVIDER).orElseThrow(),
-                "F-ALDIA-R001 inv. 4: the consigna judge's version still counts every file of its folder");
+        assertEquals(before, resolver.resolve(config, PROVIDER).orElseThrow(),
+                "test fixtures, auxiliary readers and generated caches never run when judging the course");
+        assertNotEquals(legacyBefore, resolver.legacyRuntimeCoupledVersion(config, PROVIDER).orElseThrow(),
+                "the historical runtime-coupled digest must retain its original counting algorithm");
+        Files.delete(fixtures);
+        assertEquals(before, resolver.resolve(config, PROVIDER).orElseThrow(),
+                "removing a test also leaves the judge unchanged");
     }
 }

@@ -62,7 +62,8 @@ proveedor, el modelo y el esfuerzo efectivos. Su **identidad** es su versión m�
 > 2. cambiar cualquier otra cosa de la carpeta cambia la versión, aunque sea un comentario. Esto incluye la guía, el
 >    formato o el control del veredicto, un script, la definición o un archivo nuevo fuera de `eval/`;
 > 3. la versión se calcula igual al rendir el examen, al medir, al reusar y al decir si un veredicto está al día;
-> 4. la versión del juez de consigna sigue saliendo de su definición, su modelo y su proveedor.
+> 4. el juez de consigna aplica la misma exclusión de `eval/`, incluidos sus lectores auxiliares. El proveedor,
+>    modelo y esfuerzo efectivos se conservan como identidad del motor y requieren su propia aprobación.
 
 <details><summary>Detail</summary>
 
@@ -102,7 +103,7 @@ de esa regla queda igual: cambiar la versión o el motor pide un examen propio a
 >    entran. Cualquier otro cambio hecho a la vez da una versión nueva, que rinde su examen;
 > 3. la equivalencia queda escrita con el juez, las dos versiones y la fecha, y se ve en el historial del examen
 >    ([F-JEXAM-R015](#F-JEXAM-R015));
-> 4. las equivalencias escritas no se cambian ni se borran, y no se agregan otras después de ese día;
+> 4. las equivalencias escritas no se cambian ni se borran, y no se agregan otras después del corte de cada juez;
 > 5. las versiones anteriores no cambian: una que difería de la de ese día sólo en sus pruebas sigue siendo anterior.
 
 <details><summary>Detail</summary>
@@ -115,6 +116,10 @@ la nueva, sólo para ese cambio.
 Corregir el texto de la definición también cambia la versión ([F-ALDIA-R001](#F-ALDIA-R001), inv. 2). Por eso la
 equivalencia cubre los dos cambios juntos y nada más. Se calcula sobre la carpeta de cada juez tal como está ese día,
 también si tiene cambios sin guardar en el repositorio.
+
+La corrección de Consigna del 22/10/2026 tiene su propio corte, separado del registro del 18/10. Conserva únicamente
+la versión aprobada `533462b9…` como equivalente del proceso `67dc36e1…`: se verificó que todos los archivos fuera de
+`eval/` son idénticos. No se amplía el corte anterior, no se reescriben aprobaciones y no se heredan motores distintos.
 
 **Criterio**: el día del cambio, la miniteoría tiene la versión aprobada el 13/10 a las 22:12. Después del cambio tiene
 otra versión, con el mismo examen aprobado. El tema que esa versión midió sigue al día, y la estimación de volver a
@@ -457,8 +462,7 @@ OK de José, con el número delante.
   nombre al juez; aceptar la versión anterior por nombre y anotarlo; nombrar al juez en «no se puede decidir».
 - **Afuera**: lo que muestra el tablero
   ([FEAT-TALDIA](../2026-10-18.02_jueces-al-dia-en-el-tablero/REQUIREMENT.md)); correr de verdad las mediciones;
-  cambiar un examen o su oro; cambiar cómo se reusa lo de antes fuera de publicar ([F-EVCOST-R006](#F-EVCOST-R006)); la
-  versión del juez de consigna.
+  cambiar un examen o su oro; cambiar cómo se reusa lo de antes fuera de publicar ([F-EVCOST-R006](#F-EVCOST-R006)).
 
 ## User Journeys
 

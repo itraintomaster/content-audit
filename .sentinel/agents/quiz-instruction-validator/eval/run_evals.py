@@ -967,6 +967,14 @@ def gate_live_output(output: str) -> dict[str, Any]:
         return validate_verdict(load_json(run_dir / "validated-verdict.json"), "")
 
 
+def choice_is_correct(item: dict[str, Any]) -> bool:
+    """Read both numeric incidences and the course's Mongo Extended JSON."""
+    incidence = item.get("incidence")
+    if isinstance(incidence, dict):
+        incidence = incidence.get("$numberDouble")
+    return float(incidence or 0) > 0
+
+
 def student_view_inputs(case: dict[str, Any]) -> dict[str, str]:
     """The seven inputs of the judge, built as DefaultQuizStudentViewRenderer and
     DefaultQuizInstructionSubjectBuilder build them from a quiz of the course."""
@@ -983,9 +991,14 @@ def student_view_inputs(case: dict[str, Any]) -> dict[str, str]:
             gaps.append(accepted)
         elif (part.get("text") or "").strip():
             tokens.append(part["text"].strip())
-    items = (form.get("multipleChoice") or {}).get("items") or []
+    items = []
+    if form.get("kind") == "MULTIPLE_CHOICE":
+        # The course form is authoritative, including an explicitly empty list.
+        # Nested multipleChoice belongs only to older internal snapshots.
+        items = (form.get("items") if "items" in form
+                 else (form.get("multipleChoice") or {}).get("items")) or []
     if items:
-        correct = [item.get("label") for item in items if (item.get("incidence") or 0) > 0][:1]
+        correct = [item.get("label") for item in items if choice_is_correct(item)][:1]
         gaps = [correct for _ in gaps]
     return {
         "cefrLevel": case["cefrLevel"],
@@ -996,7 +1009,7 @@ def student_view_inputs(case: dict[str, Any]) -> dict[str, str]:
         "acceptedAnswers": "\n".join(
             "Hueco %d: %s" % (index + 1, " | ".join(accepted)) for index, accepted in enumerate(gaps)),
         "options": "\n".join(
-            "- %s%s" % (item.get("label") or "", " (correcta)" if (item.get("incidence") or 0) > 0 else "")
+            "- %s%s" % (item.get("label") or "", " (correcta)" if choice_is_correct(item) else "")
             for item in items),
     }
 

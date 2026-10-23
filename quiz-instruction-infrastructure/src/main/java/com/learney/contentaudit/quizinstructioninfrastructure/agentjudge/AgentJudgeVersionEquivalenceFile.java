@@ -20,14 +20,24 @@ import java.util.List;
  * and refuses to touch it after, and reading honours only that first batch, so a line added later
  * by hand does not make another version the same (inv. 4).
  */
-class AgentJudgeVersionEquivalenceFile {
+public final class AgentJudgeVersionEquivalenceFile {
     static final String FILE_NAME = "version-equivalences.jsonl";
 
     private final ObjectMapper objectMapper = new ObjectMapper();
+    private final String fileName;
+
+    public AgentJudgeVersionEquivalenceFile() {
+        this(FILE_NAME);
+    }
+
+    /** Separate one-time cut-overs keep their own immutable first batch. */
+    public AgentJudgeVersionEquivalenceFile(String fileName) {
+        this.fileName = fileName;
+    }
 
     /** The equivalences of the cut-over, empty when it has not run in this agents folder. */
-    List<EvaluatorVersionEquivalence> read(Path agentsDir) {
-        Path file = agentsDir != null ? agentsDir.resolve(FILE_NAME) : null;
+    public List<EvaluatorVersionEquivalence> read(Path agentsDir) {
+        Path file = agentsDir != null ? agentsDir.resolve(fileName) : null;
         if (file == null || !Files.isRegularFile(file)) {
             return List.of();
         }
@@ -70,12 +80,12 @@ class AgentJudgeVersionEquivalenceFile {
             line.put("reason", equivalence.getReason());
             content.append(objectMapper.writeValueAsString(line)).append('\n');
         }
-        Files.writeString(agentsDir.resolve(FILE_NAME), content.toString(), StandardCharsets.UTF_8,
+        Files.writeString(agentsDir.resolve(fileName), content.toString(), StandardCharsets.UTF_8,
                 StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE);
     }
 
     boolean exists(Path agentsDir) {
-        return agentsDir != null && Files.exists(agentsDir.resolve(FILE_NAME));
+        return agentsDir != null && Files.exists(agentsDir.resolve(fileName));
     }
 
     private EvaluatorVersionEquivalence parse(String line) {
