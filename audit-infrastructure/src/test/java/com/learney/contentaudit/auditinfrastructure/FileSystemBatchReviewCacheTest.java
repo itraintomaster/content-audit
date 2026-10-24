@@ -11,6 +11,19 @@ import org.junit.jupiter.api.io.TempDir;
 class FileSystemBatchReviewCacheTest {
     @TempDir Path workdir;
 
+    @Test void legacyProjectionCannotHideNewSnapshotAndLineageFields() throws Exception {
+        var digest = java.security.MessageDigest.getInstance("SHA-256");
+        for (String field : List.of("batch-review-v1", "batches", "batch-reviews", "revisions", "plans")) {
+            digest.update(field.getBytes(java.nio.charset.StandardCharsets.UTF_8)); digest.update((byte) 0);
+        }
+        String legacy = java.util.HexFormat.of().formatHex(digest.digest());
+        source("batch-review-cache/batch-batch.json", JsonFiles.mapper().writeValueAsString(
+                java.util.Map.of("version", legacy, "review", review())));
+        var cache = new FileSystemBatchReviewCache(workdir);
+        assertNotEquals(legacy, cache.version().orElseThrow());
+        assertTrue(cache.load("batch", cache.version().orElseThrow()).isEmpty());
+    }
+
     @Test void projectionSurvivesAnotherProcessAndDoesNotChangeItsInputs() throws Exception {
         var cache = new FileSystemBatchReviewCache(workdir);
         source("batches/batch.json", "checkpoint");
@@ -25,7 +38,7 @@ class FileSystemBatchReviewCacheTest {
     @Test void everySourceFamilyInvalidatesTheProjectionIncludingReviewUndoAndHistory() throws Exception {
         var cache = new FileSystemBatchReviewCache(workdir);
         for (String path : List.of("batches/first.json", "batch-reviews/batch/decision.json",
-                "revisions/plan/proposal.json", "plans/plan.json", "batches/next.json")) {
+                "revisions/plan/proposal.json", "plans/plan.json", "batches/next.json", "analysis-selections/batch.json")) {
             String before = cache.version().orElseThrow();
             cache.save("batch", before, review());
             source(path, "new input");

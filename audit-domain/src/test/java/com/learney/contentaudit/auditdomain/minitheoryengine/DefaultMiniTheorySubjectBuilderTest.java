@@ -62,7 +62,7 @@ public class DefaultMiniTheorySubjectBuilderTest {
         assertEquals("A1", content.get("cefrLevel"));
         assertEquals("Afirmativas regulares", content.get("topic"));
         assertEquals("Escribe la forma correcta del verbo.", content.get("instructions"),
-                "the instructions of the topic, never the copy of the exercise");
+                "the shared instructions remain separate from the local instructions of each quiz");
         String quizzes = content.get("quizzes");
         assertEquals(3, occurrences(quizzes, "quizId:"), "one serialized entry per quiz");
         assertEquals(1, occurrences(quizzes, "67fab6d59930102295341ec3"));
@@ -70,6 +70,8 @@ public class DefaultMiniTheorySubjectBuilderTest {
         assertEquals(1, occurrences(quizzes, VERDURAS));
         assertEquals(3, occurrences(quizzes, VERDURAS_MINI_THEORY),
                 "equal text is repeated in each quiz entry, never deduplicated as a shared card");
+        assertEquals(3, occurrences(quizzes, "instructions: Escribe la forma afirmativa en presente simple."),
+                "each quiz keeps its local instructions even when they repeat");
         assertTrue(quizzes.contains("You ___ (see) cats."));
         assertTrue(quizzes.contains("It ___ (come) every year."));
         assertTrue(quizzes.contains("I ___ a lot of vegetables."));
@@ -77,14 +79,62 @@ public class DefaultMiniTheorySubjectBuilderTest {
         assertFalse(quizzes.contains("M1:") || quizzes.contains("E1:"),
                 "ordinals are presentation order, never assessment identity");
 
-        // Nothing it does not read: the translation, the audio, the copy of the instructions.
+        // Nothing it does not read: the translation or the audio.
         for (String value : content.values()) {
             assertFalse(value.contains("Ves gatos.") || value.contains("Me gustan mucho las verduras."),
                     "the translation is not read: " + value);
             assertFalse(value.contains("A1.01.06"), "the audio is not read: " + value);
-            assertFalse(value.contains("Escribe la forma afirmativa en presente simple."),
-                    "the instructions of the exercise's copy are not read: " + value);
         }
+    }
+
+    @Test
+    @Tag("F-MINIT-R001")
+    void keepsDifferentLocalInstructionsWithTheirQuizAndPreservesSharedInstructions() {
+        String shared = "Transforma el pedido con can o could.";
+        String normal = "Para un pedido normal, usa can.";
+        String polite = "Para un pedido cortés, usa could.";
+        String card = "$Can$ para el pedido normal; $could$ para el cortés.";
+        AuditableQuiz first = cloze("q-normal", "", "Can", "I have some water?", "", card, "");
+        AuditableQuiz second = cloze("q-polite", "", "Could", "I have some water?", "", card, "");
+        first.setInstructions(normal);
+        second.setInstructions(polite);
+
+        Map<String, String> content = builder().build(topic("A1", "k-requests", "Pedidos", shared,
+                List.of(first, second))).getContent();
+
+        assertEquals(shared, content.get("instructions"));
+        String[] entries = content.get("quizzes").split("\n\n");
+        assertEquals(2, entries.length);
+        assertTrue(entries[0].contains("quizId: q-normal\ninstructions: " + normal));
+        assertTrue(entries[1].contains("quizId: q-polite\ninstructions: " + polite));
+        assertFalse(entries[0].contains(polite), "the sister quiz's constraint must not become this quiz's rule");
+        assertFalse(entries[1].contains(normal), "each local constraint belongs to its persistent quiz id");
+        assertTrue(entries[0].contains("miniTheory: " + card));
+        assertTrue(entries[1].contains("miniTheory: " + card));
+        assertTrue(entries[0].contains("answers: Can"));
+        assertTrue(entries[1].contains("answers: Could"));
+    }
+
+    @Test
+    @Tag("F-MINIT-R001")
+    @Tag("F-MINIT-R005")
+    void changingOnlyOneQuizInstructionsChangesTheFingerprintAndKeepsItsNeighborContext() {
+        AuditableQuiz first = cloze("q-normal", "", "Can", "I have some water?", "", "Usa $can$.", "");
+        AuditableQuiz second = cloze("q-polite", "", "Could", "I have some water?", "", "Usa $could$.", "");
+        first.setInstructions("Haz un pedido normal.");
+        second.setInstructions("Haz un pedido cortés.");
+        AuditNode knowledge = topic("A1", "k-requests", "Pedidos", "Usa can o could.", List.of(first, second));
+        Map<String, String> before = builder().build(knowledge).getContent();
+
+        first.setInstructions("Haz un pedido cortés.");
+        Map<String, String> after = builder().build(knowledge).getContent();
+
+        var fingerprinter = new Sha256ContentFingerprinter();
+        assertNotEquals(fingerprinter.fingerprint(before), fingerprinter.fingerprint(after),
+                "a cached verdict cannot survive a changed quiz-specific constraint");
+        assertEquals(before.get("instructions"), after.get("instructions"), "the shared rule did not change");
+        assertEquals(before.get("quizzes").split("\n\n")[1], after.get("quizzes").split("\n\n")[1],
+                "the neighboring quiz remains available with its own unchanged context");
     }
 
     @Test

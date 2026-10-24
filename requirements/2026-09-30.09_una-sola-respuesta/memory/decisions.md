@@ -4,6 +4,10 @@ Decisions future sessions should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-24 — analyst — José confirma que «Polite request» selecciona could y el pedido normal can en la lección;
+  las alternativas cumplen el selector y la fórmula visibles. La respuesta guardada no prueba una restricción oculta.
+  why: la propuesta había borrado el selector para aceptar ambos modales; naturalidad general no equivale a cumplir la tarea.
+
 2026-09-30 — developer (C) — Clasificador: el `GapContext` de cada hueco es la parte TEXT inmediata antes y después, sin pistas (como el censo del corrector); con más de un hueco la marca es «Hueco N: …»; una marca repetida cuenta una vez; sin clase = DIFFERENT_VALID, sin gravedad = MEDIUM; la opción que ofrece la consigna lleva la gravedad del juez (sólo ordena igual); un hueco que el ejercicio no tiene cae en su único hueco o, con varios, se descarta si el corrector la acepta en alguno.
   why: la regla no depende de que el modelo la cumpla, y el colector para la corrida ante dos hallazgos con la misma regla y marca. «from Friday until Sunday» y «from Friday till Sunday» dan un hallazgo cada una aunque el corrector las iguale entre sí (lo pide la prueba de R003): sólo se descarta lo que el corrector acepta contra las aceptadas del hueco.
 

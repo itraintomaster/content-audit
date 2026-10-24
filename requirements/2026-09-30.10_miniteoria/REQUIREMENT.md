@@ -40,13 +40,15 @@ usando lo común de FEAT-JEXAM.
 
 > El juez produce un veredicto independiente para la miniteoría de cada quiz. Puede hacer una sola consulta que reúna los
 > quizzes de un tema, pero ese agrupamiento sólo ahorra costo: no vuelve temática ni global a la miniteoría. Para cada
-> quiz lee su propia miniteoría, su enunciado, su pista y sus respuestas aceptadas, o sus opciones con la correcta marcada,
+> quiz lee su propia miniteoría, su consigna efectiva, su enunciado, su pista y sus respuestas aceptadas, o sus opciones con la correcta marcada,
 > además del nivel, nombre y consigna del tema como contexto. No lee [traducciones](glossary:Traducción), audios ni la
 > teoría larga.
 
 Dos quizzes que muestran el mismo texto siguen siendo dos casos juzgados: cada aparición se interpreta según lo que pide
 y responde ese quiz. La consulta puede seguir siendo una por tema; la huella incluye todo el contenido enviado, por lo que
 cambiar una miniteoría o un quiz deja ese lote sin veredicto. Son 413 temas y 1.488 miniteorías en el curso.
+La consigna general del tema no sustituye a la consigna propia del quiz: ambas se consideran para entender el caso
+cuando el alumno las ve.
 
 <a id="F-MINIT-R002"></a>
 ### Rule[F-MINIT-R002] - Cada miniteoría explica sólo el caso concreto de su quiz
@@ -100,6 +102,8 @@ específica del caso». Esto reemplaza el agrupamiento anterior por texto compar
 > u 0,8 según el más grave [ASSUMPTION]; el del tema, el nivel y el curso sube por la agregación genérica.
 
 Usa las definiciones de [F-HALL-R002](#F-HALL-R002). El 077 puso en A1 y A2 43 altas, 41 medias y 28 bajas.
+Los defectos editoriales específicos de [F-MINIT-R008](#F-MINIT-R008), [F-MINIT-R009](#F-MINIT-R009) y
+[F-MINIT-R010](#F-MINIT-R010) tienen gravedad baja cuando no hay otro defecto de mayor gravedad.
 
 <a id="F-MINIT-R005"></a>
 ### Rule[F-MINIT-R005] - Reuso, tope, fallas y cobertura, contando temas
@@ -121,13 +125,17 @@ puntaje de vocabulario ([F-HALL-R009](#F-HALL-R009)). Tope por omisión: 0 temas
 ### Rule[F-MINIT-R006] - El examen de mini-theory compara casos por quiz
 **Severity**: critical | **Validation**: VALIDATED
 
-> Cada versión aprueba el examen fijo ([F-JEXAM-R001](#F-JEXAM-R001)) comparando el veredicto de cada quiz con un oro que
+> Cada versión aprueba el examen permanente ([F-JEXAM-R001](#F-JEXAM-R001)) comparando el veredicto de cada quiz con un oro que
 > identifica qué caso practica y qué miniteoría le corresponde. Un oro que sólo clasifique el tema completo no alcanza
 > cuando el tema mezcla afirmación, negación, pregunta u otros subtemas: antes de usarlo para aprobar o reprobar, esos
 > casos deben quedar separados por quiz.
 
 Las verduras aprueban acá: su problema es la pista y la traducción, no la regla. Para evitar premiar el sobreajuste, el
 examen conserva quizzes buenos de subtemas vecinos y casos malos que requieren distinguir el alcance local de la tarjeta.
+Los casos confirmados de problemas se incorporan al examen permanente con su referencia de origen y deben superarse
+en las ediciones siguientes, según [F-JEXAM-R016](#F-JEXAM-R016) a [F-JEXAM-R019](#F-JEXAM-R019). Esto incluye el rechazo
+de las miniteorías invertidas de `PRB-fbaeac6f`, aunque describan una correspondencia verdadera, como exige
+[F-MINIT-R010](#F-MINIT-R010).
 
 <a id="F-MINIT-R007"></a>
 ### Rule[F-MINIT-R007] - Se corrige la miniteoría del quiz, sin propagación por texto
@@ -184,13 +192,136 @@ de PRB-f35c962c; las respuestas anteriores gustaron aunque quedaron largas.
 Pedido del operador, 19/10/2026: evitar exceso de conceptos teóricos; las miniteorías deben ser
 focalizadas y sencillamente explicadas para el alumno.
 
+<a id="F-MINIT-R010"></a>
+### Rule[F-MINIT-R010] - La explicación de concordancia parte del sujeto y lleva a su forma verbal
+**Severity**: major | **Validation**: VALIDATED
+
+> Cuando la miniteoría explica qué forma verbal corresponde al sujeto dado en el quiz, parte de ese sujeto y lleva a
+> la forma que debe usar el alumno. El juez marca la explicación invertida —«am va con I», «is va con it»— incluso si
+> la correspondencia es verdadera o exclusiva: es un defecto de dirección didáctica, no necesariamente una falsedad
+> gramatical. Si éste es el defecto, la clasifica como `DIDACTIC_DIRECTION`, gravedad baja, tras descartar los defectos
+> de verdad y alcance del caso.
+
+<details><summary>Dirección y criterios de aceptación</summary>
+
+La tarjeta debe ayudar al alumno a pasar del dato que tiene —el sujeto del ejercicio— a la elección que debe hacer
+—la forma verbal—. Se aceptan formulaciones equivalentes, como «I lleva am», «Con I se usa am», «I va con am» o
+«En presente afirmativo, con it se usa is». No se exige una frase literal ni un verbo explicativo determinado.
+
+Este criterio editorial no se satisface sólo porque la tarjeta permita acertar entre las opciones. Por eso la
+correspondencia exclusiva entre I y am no justifica aprobar «am va con I». Tampoco se elimina el defecto porque una
+relación de compatibilidad, leída aisladamente, sea cierta.
+
+La dirección correcta no exime a la tarjeta de explicar el caso concreto según [F-MINIT-R002](#F-MINIT-R002): debe
+conservar el tiempo, la afirmación o negación y la función que practica ese quiz. Una tarjeta de afirmación no reemplaza
+la explicación de una pregunta ni la de una negación. Las explicaciones sanas de esos subcasos siguen siendo válidas;
+no se reescriben ni rechazan por no enseñar otros subcasos.
+
+La evidencia identifica la relación invertida y propone orientarla desde el sujeto hacia la forma que corresponde,
+sin acusarla de falsa por esa inversión. Si además hay una falsedad, una restricción engañosa u otro defecto, se
+conserva su motivo propio y la gravedad que corresponda según [F-MINIT-R004](#F-MINIT-R004).
+«is va con it» no dice por sí sola «is sólo va con it»: no se inventa una exclusividad para justificar otro defecto.
+Una restricción explícita o inequívoca, como «is sólo va con it», sí se juzga por su propio contenido.
+
+| Quiz | Miniteoría | Resultado esperado por este criterio |
+|---|---|---|
+| I ___ hot. · am / are / is | am va con I. | Rechazada por dirección invertida, aun siendo una correspondencia exclusiva. |
+| I ___ hot. · am / are / is | I lleva am. | Aprobada si cumple las demás reglas del caso. |
+| I ___ hot. · am / are / is | Con I se usa am. | Aprobada si cumple las demás reglas del caso; no se impone una frase única. |
+| It ___ under the chair. · am / are / is | is va con it. | Rechazada por dirección invertida. |
+| It ___ under the chair. · am / are / is | En presente afirmativo, it lleva is. | Aprobada si cumple las demás reglas del caso. |
+
+**Criterio de aceptación del examen**: los dos casos invertidos «am va con I» e «is va con it» quedan como rechazos
+obligatorios del examen permanente, con origen en `PRB-fbaeac6f` y la confirmación del operador. Los controles sanos
+conservan su procedencia real: un control propuesto por el asistente no se convierte por eso en «Está bien» confirmado
+por el operador ([F-JEXAM-R017](#F-JEXAM-R017)).
+
+Pedido explícito del operador, 21/10/2026: corregir también al juez para que detecte estas explicaciones invertidas,
+incluido el caso I/am, y conservar los casos en el examen para las versiones siguientes.
+
+</details>
+
+<a id="F-MINIT-R011"></a>
+### Rule[F-MINIT-R011] - Cada aparición de inglés clave se resalta dentro de la miniteoría
+**Severity**: minor | **Validation**: VALIDATED
+
+> La miniteoría encierra entre `$...$` cada aparición de las palabras o formas inglesas que cita para enseñar el caso:
+> pronombres, auxiliares, contracciones, expresiones, letras o terminaciones y transformaciones. La explicación en español
+> queda fuera de esas marcas. Si falta alguna, el juez señala `MISSING_ENGLISH_HIGHLIGHT`, gravedad baja (`LOW`), después
+> de descartar los demás defectos, incluido [F-MINIT-R009](#F-MINIT-R009), y antes de declarar sana la tarjeta.
+
+<details><summary>Resaltado, corrección y criterios de aceptación</summary>
+
+El resaltado se exige por aparición: haber marcado una palabra una vez no permite dejar sin marcar su repetición.
+Una transformación completa puede quedar dentro de una misma pareja de marcas, como `$watch → watches$`.
+Las negritas, cursivas, etiquetas HTML o comillas de código no reemplazan `$...$`.
+Una tarjeta íntegramente en español no falla por carecer de estas marcas; una tarjeta cuyo inglés ya está marcado
+tampoco recibe este hallazgo. En ambos casos siguen aplicándose las demás reglas del quiz.
+
+La evidencia identifica los fragmentos ingleses sin resaltar y muestra la misma redacción con las marcas que faltan,
+sin aprovechar este defecto para cambiar la explicación, el sentido ni el alcance del caso. Una falsedad o cualquier
+otro defecto prioritario conserva su clasificación y gravedad propias; agregar resaltado no vuelve cierta una regla falsa.
+Si la redacción completa corregida supera el límite de la evidencia, se muestra un fragmento literal corregido
+y se identifican las demás apariciones en el motivo; esto no autoriza recortar la tarjeta al corregirla.
+
+El corrector aplica este criterio tanto cuando corrige a partir de un hallazgo como cuando revisa una propuesta de
+miniteoría. Antes de reutilizar literalmente una tarjeta comprueba también su resaltado; si falta, lo completa aunque
+el contenido sea cierto. El juez vuelve a evaluar la tarjeta corregida para comprobar que resolvió el problema y que
+sigue cumpliendo las demás reglas, de acuerdo con [F-MINIT-R007](#F-MINIT-R007).
+
+| Quiz de origen | Texto original conservado | Corrección de resaltado esperada |
+|---|---|---|
+| He watches TV. | Con he, she, it, los verbos que terminan en ch agregan $-es$ en presente simple: watch → watches. | Con $he$, $she$, $it$, los verbos que terminan en $ch$ agregan $-es$ en presente simple: $watch → watches$. |
+| The student studies hard. | Con he, she, it, si el verbo termina en consonante + y, cambiamos la y por $-ies$ en presente simple: study → studies. | Con $he$, $she$, $it$, si el verbo termina en consonante + $y$, cambiamos la $y$ por $-ies$ en presente simple: $study → studies$. |
+
+**Criterio de aceptación del examen**: la propuesta en `analysis/problems/PRB-1fc8487f/highlight-exam` incorpora
+12 casos: siete con defecto de resaltado, cuatro controles sanos y uno con falsedad semántica que conserva su motivo
+prioritario. Los casos de origen de watches y studies mantienen exactamente el texto observado, incluido el resaltado
+parcial que ya tenían. Las variantes comprueban pronombres y auxiliares, contracciones, expresiones, letras y terminaciones,
+transformaciones, repeticiones y formatos que no sustituyen las marcas requeridas.
+
+Los controles propuestos son referencias editoriales del asistente, no aprobaciones humanas confirmadas
+([F-JEXAM-R017](#F-JEXAM-R017)). Este conjunto es una propuesta de examen: su documentación no acredita una ejecución
+real ni la aprobación del juez.
+
+**Fuente**: pedido explícito del operador del 21/10/2026 y problema `PRB-1fc8487f`: ampliar las pruebas para que primero
+el juez detecte el inglés clave sin resaltar y luego el corrector produzca el cambio correspondiente.
+
+</details>
+
+<a id="F-MINIT-R012"></a>
+### Rule[F-MINIT-R012] - La explicación conserva la decisión y la fórmula de la lección
+**Severity**: critical | **Validation**: VALIDATED
+
+> La miniteoría explica la decisión concreta que exige la consigna efectiva y la pista del quiz, incluida la fórmula
+> que practica. No reemplaza una elección didáctica entre formas por una explicación general que vuelva indistintas
+> las respuestas. La convención de la lección y la naturalidad del inglés se juzgan por separado.
+
+<details><summary>Alcance y criterios de aceptación</summary>
+
+En la lección de pedidos confirmada por José el 24/10/2026, el selector «Polite request» pide `could` y el pedido normal
+pide `can`, conforme a lo que se explica al alumno. Una tarjeta que sólo dice que ambos pueden usarse en pedidos
+corteses no explica la elección que corrige ese quiz. Debe conservar la distinción de la lección y la fórmula visible,
+sin convertirla en una afirmación de que `can` nunca puede ser cortés fuera del ejercicio.
+
+Si el alumno no recibe antes de contestar una fórmula o convención necesaria, la tarjeta posterior no repara esa falta
+de información. Tampoco se inventa una fórmula completa a partir de la respuesta guardada
+([F-UNICA-R008](#F-UNICA-R008)). Cada defecto se describe por su propio motivo: una explicación puede ser verdadera
+como observación general y, aun así, insuficiente para la decisión didáctica de este quiz
+([F-MINIT-R002](#F-MINIT-R002)).
+
+**Fuente**: aclaración explícita de José del 24/10/2026 sobre `can/could`, el selector «Polite request» y la práctica
+de una fórmula específica; la propuesta observada había eliminado el selector y ampliado las respuestas.
+
+</details>
+
 ## Contexto
 
 | Ficha | `mini-theory` |
 |---|---|
 | Pregunta | ¿La tarjeta explica correctamente el caso concreto de este quiz, sin traer reglas de otros subtemas? |
-| Lee | cada quiz con su miniteoría, enunciado, pista y respuestas u opciones; nivel, nombre y consigna del tema como contexto |
-| Reglas | es falsa para el caso · no alcanza para resolverlo · trae contenido de otro subtema |
+| Lee | cada quiz con su miniteoría, consigna efectiva, enunciado, pista y respuestas u opciones; nivel, nombre y consigna del tema como contexto |
+| Reglas | es falsa para el caso · no alcanza para resolverlo · trae contenido de otro subtema · invierte la explicación de sujeto a forma verbal |
 | Meta y familia | 0 quizzes con error · errores |
 | Evalúa y resuelve | puede consultar por tema, pero decide y corrige por quiz |
 | Costo | modelo pago: una consulta por tema |
@@ -224,8 +355,8 @@ journeys:
           - when: "No tiene veredicto y no queda tope"
             then: sin_evaluar
       - id: leer
-        action: "El veredicto dice, por cada quiz, si su miniteoría explica de forma cierta, suficiente y específica el caso que ese quiz practica"
-        gate: [F-MINIT-R002]
+        action: "El veredicto dice, por cada quiz, si su miniteoría explica de forma cierta, suficiente y específica el caso que ese quiz practica, con la dirección didáctica adecuada"
+        gate: [F-MINIT-R002, F-MINIT-R010]
         outcomes:
           - when: "Todas están bien"
             then: pasa
@@ -290,6 +421,10 @@ ejercicios»). Se pasa a B sólo si el examen muestra que en los temas grandes s
 - **FEAT-HALL** — Hallazgo, gravedad, conteos, identidad y tareas. Citado por R002 a R005 y R007. El hallazgo va en el
   ejercicio y no en el tema, así que la regla de F-HALL-R008 para hallazgos de tema no se aplica acá.
 - **FEAT-JEXAM** — Examen, conjunto de temas, candidato de la mesa, consultas a la vez, tope 0, formas y dudas comunes.
-  Citado por R002 y R005 a R007.
+  Citado por R002 y R005 a R007. Las reglas [F-JEXAM-R016](#F-JEXAM-R016) a [F-JEXAM-R019](#F-JEXAM-R019) conservan los
+  casos de problemas y su referencia de origen; [F-MINIT-R006](#F-MINIT-R006) y [F-MINIT-R010](#F-MINIT-R010) las aplican
+  a las explicaciones invertidas confirmadas.
 - **FEAT-EVCOST** — Huella, reuso y fallas. Citado por R005.
 - **FEAT-QINST** — La cascada de la consigna, fallas y lo no evaluado. Citado por R001 y R005.
+- **FEAT-UNICA** — Las alternativas respetan la fórmula y el selector visibles; citado por
+  [F-MINIT-R012](#F-MINIT-R012) mediante [F-UNICA-R008](#F-UNICA-R008).

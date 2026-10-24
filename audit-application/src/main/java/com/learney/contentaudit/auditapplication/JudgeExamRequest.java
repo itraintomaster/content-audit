@@ -27,6 +27,20 @@ public class JudgeExamRequest {
 
     private String reasoningEffort;
 
+    private String examFingerprint;
+    public String getExamFingerprint() { return examFingerprint; }
+    public void setExamFingerprint(String value) { examFingerprint = value; }
+
+    private String regressionSuiteFingerprint;
+    private java.util.List<String> regressionCaseIds = java.util.List.of();
+    public String getRegressionSuiteFingerprint() { return regressionSuiteFingerprint; }
+    public void setRegressionSuiteFingerprint(String value) { regressionSuiteFingerprint = value; }
+    public java.util.List<String> getRegressionCaseIds() { return regressionCaseIds == null ? java.util.List.of() : regressionCaseIds; }
+    public void setRegressionCaseIds(java.util.List<String> value) { regressionCaseIds = value == null ? java.util.List.of() : java.util.List.copyOf(value); }
+    private java.util.Map<String, String> regressionQuizIds = java.util.Map.of();
+    public java.util.Map<String, String> getRegressionQuizIds() { return regressionQuizIds == null ? java.util.Map.of() : regressionQuizIds; }
+    public void setRegressionQuizIds(java.util.Map<String, String> value) { regressionQuizIds = value == null ? java.util.Map.of() : java.util.Map.copyOf(value); }
+
     public JudgeExamRequest() {
     }
 
@@ -134,12 +148,16 @@ public class JudgeExamRequest {
                     && Objects.equals(this.maxConcurrentEvaluations, that.maxConcurrentEvaluations)
                     && Objects.equals(this.providerName, that.providerName)
                     && Objects.equals(this.modelName, that.modelName)
-                    && Objects.equals(this.reasoningEffort, that.reasoningEffort);
+                    && Objects.equals(this.reasoningEffort, that.reasoningEffort)
+                    && Objects.equals(this.examFingerprint, that.examFingerprint)
+                    && Objects.equals(this.regressionSuiteFingerprint, that.regressionSuiteFingerprint)
+                    && Objects.equals(this.getRegressionCaseIds(), that.getRegressionCaseIds())
+                    && Objects.equals(this.getRegressionQuizIds(), that.getRegressionQuizIds());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(judgeName, photoCourse, caseIds, maxNewEvaluations,
-                maxConcurrentEvaluations, providerName, modelName, reasoningEffort);
+                maxConcurrentEvaluations, providerName, modelName, reasoningEffort, examFingerprint, regressionSuiteFingerprint, getRegressionCaseIds(), getRegressionQuizIds());
     }
 }

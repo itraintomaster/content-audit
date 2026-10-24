@@ -62,6 +62,8 @@ class DataCoherenceAnalyzer implements ContentAnalyzer {
     static final String DESCRIPTION = "Compara las copias de cada ejercicio: las partes con su primera respuesta, las"
             + " oraciones guardadas y el texto con que se grabó su audio";
 
+    static final String CONTENT_DESCRIPTION = "Compara las respuestas y las oraciones guardadas durante la revisión del contenido";
+
     /** R001: the saved sentences are the exercise built with its first answer. */
     static final String RULE_SAVED_SENTENCE = "saved-sentence";
 
@@ -88,17 +90,28 @@ class DataCoherenceAnalyzer implements ContentAnalyzer {
 
     private final QuizStudentViewRenderer studentViewRenderer;
 
+    private final DataCoherenceStage stage;
+
     /** The exercises of the run by audio key, to find the shared ones with the whole course. */
     private final Map<String, List<AuditNode>> byAudioKey = new LinkedHashMap<>();
 
     public DataCoherenceAnalyzer(CorrectorMatcher correctorMatcher,
             AudioRecordingRegistry recordings, ProductionSentenceSource productionSentences,
             SpokenTextBuilder spokenTextBuilder, QuizStudentViewRenderer studentViewRenderer) {
+        this(correctorMatcher, recordings, productionSentences, spokenTextBuilder, studentViewRenderer,
+                DataCoherenceStage.CONTENT);
+    }
+
+    public DataCoherenceAnalyzer(CorrectorMatcher correctorMatcher,
+            AudioRecordingRegistry recordings, ProductionSentenceSource productionSentences,
+            SpokenTextBuilder spokenTextBuilder, QuizStudentViewRenderer studentViewRenderer,
+            DataCoherenceStage stage) {
         this.correctorMatcher = correctorMatcher;
         this.recordings = recordings;
         this.productionSentences = productionSentences;
         this.spokenTextBuilder = spokenTextBuilder;
         this.studentViewRenderer = studentViewRenderer;
+        this.stage = java.util.Objects.requireNonNull(stage);
     }
 
     @Override
@@ -112,8 +125,6 @@ class DataCoherenceAnalyzer implements ContentAnalyzer {
             return null;
         }
         SentenceMode mode = modeOf(node);
-        List<String> spoken = spokenTextBuilder.spokenTexts(quiz, mode);
-        String today = spoken.isEmpty() ? null : spoken.get(0);
         List<CopyMismatch> issues = new ArrayList<>();
 
         // R002.1: an accepted answer with «/».
@@ -147,6 +158,16 @@ class DataCoherenceAnalyzer implements ContentAnalyzer {
         }
 
         // R004 (no key, unknown recording), R002.2 and R003 over the recorded text.
+        if (stage == DataCoherenceStage.PREPUBLICATION) {
+            checkAudio(node, quiz, mode, issues);
+        }
+        write(node, issues);
+        return null;
+    }
+
+    private void checkAudio(AuditNode node, AuditableQuiz quiz, SentenceMode mode, List<CopyMismatch> issues) {
+        List<String> spoken = spokenTextBuilder.spokenTexts(quiz, mode);
+        String today = spoken.isEmpty() ? null : spoken.get(0);
         String key = quiz.getAnswerAudioKey() != null ? quiz.getAnswerAudioKey().strip() : "";
         if (key.isEmpty()) {
             issues.add(new CopyMismatch(RULE_AUDIO_KNOWN, CopyMismatchKind.NO_AUDIO_KEY, ExerciseCopy.AUDIO, today,
@@ -166,8 +187,6 @@ class DataCoherenceAnalyzer implements ContentAnalyzer {
                         today, recorded));
             }
         }
-        write(node, issues);
-        return null;
     }
 
     @Override
@@ -183,6 +202,7 @@ class DataCoherenceAnalyzer implements ContentAnalyzer {
     /** R004: a key two exercises share, seen once the whole course went by. */
     @Override
     public Void onCourseComplete(AuditNode rootNode) {
+        if (stage == DataCoherenceStage.CONTENT) return null;
         for (Map.Entry<String, List<AuditNode>> entry : byAudioKey.entrySet()) {
             List<AuditNode> sharing = entry.getValue();
             if (sharing.size() < 2) {
@@ -213,7 +233,9 @@ class DataCoherenceAnalyzer implements ContentAnalyzer {
             node.setDiagnoses(new DefaultQuizDiagnoses());
         }
         ((DefaultQuizDiagnoses) node.getDiagnoses()).setDataCoherenceDiagnosis(new DataCoherenceDiagnosis(
-                List.copyOf(issues), recordings != null ? recordings.version() : null, score));
+                List.copyOf(issues), stage == DataCoherenceStage.PREPUBLICATION && recordings != null
+                        ? recordings.version() : null, score));
+        node.getMetadata().put("dataCoherenceStage", stage.name());
     }
 
     private static Optional<DataCoherenceDiagnosis> diagnosisOf(AuditNode node) {
@@ -299,7 +321,7 @@ class DataCoherenceAnalyzer implements ContentAnalyzer {
 
     @Override
     public String getDescription() {
-        return DESCRIPTION;
+        return stage == DataCoherenceStage.CONTENT ? CONTENT_DESCRIPTION : DESCRIPTION;
     }
 
     @Override

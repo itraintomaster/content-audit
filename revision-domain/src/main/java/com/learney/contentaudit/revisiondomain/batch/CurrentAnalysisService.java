@@ -11,6 +11,10 @@ import java.util.Map;
 /** Authoritative current analysis and explicit, reversible selection of recorded runs. */
 public interface CurrentAnalysisService {
     View execute(Request request);
+    /** Same selected states, without previews for every unselected historical run. */
+    default View comparisonView(CorrectionBatch batch) {
+        return execute(new Request("read",batch.getId(),null,null,null,null,null,null,null,null));
+    }
     AuditReport report(CorrectionBatch batch, String state, CourseEntity course);
     java.util.Set<String> supportedAnalyzers();
     void seed(CorrectionBatch batch, CourseEntity course);

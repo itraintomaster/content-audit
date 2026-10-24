@@ -35,6 +35,14 @@ import javax.annotation.processing.Generated;
 )
 public class BatchServiceConfig {
     private CurrentAnalysisService currentAnalysisService;
+    private AuditEngine auditPrepublicationEngine;
+    /** Local audio text registry inspection only; never a model or generation engine. */
+    public AuditEngine getAuditPrepublicationEngine() { return auditPrepublicationEngine; }
+    public void setAuditPrepublicationEngine(AuditEngine engine) { auditPrepublicationEngine = engine; }
+    private com.learney.contentaudit.auditdomain.analysis.AnalysisComposer analysisComposer;
+    public com.learney.contentaudit.auditdomain.analysis.AnalysisComposer getAnalysisComposer() { return analysisComposer; }
+    public void setAnalysisComposer(com.learney.contentaudit.auditdomain.analysis.AnalysisComposer composer) { analysisComposer = composer; }
+
 
     public CurrentAnalysisService getCurrentAnalysisService() { return currentAnalysisService; }
     public void setCurrentAnalysisService(CurrentAnalysisService service) { currentAnalysisService = service; }

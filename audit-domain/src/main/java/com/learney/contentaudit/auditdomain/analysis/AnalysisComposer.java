@@ -8,5 +8,9 @@ import java.util.List;
 public interface AnalysisComposer {
     java.util.Set<String> supportedAnalyzers();
     AuditReport compose(AuditReport primary, List<AnalysisSupplement> supplements);
+    /** Keeps missing saved opinions only where the evaluator's complete input is unchanged. */
+    AuditReport preserveCompatibleOpinions(AuditReport current, AuditReport previous, String previousAuditId);
+    /** Projects historical reports for correction without changing their recorded measurements. */
+    default AuditReport contentOnly(AuditReport report) { return report; }
     String fingerprint(String analyzer, AuditNode node);
 }

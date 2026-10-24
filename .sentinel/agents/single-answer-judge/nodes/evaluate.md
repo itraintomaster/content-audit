@@ -116,10 +116,9 @@ el ejercicio no deja abierta? Se lista si cumple las cinco cosas:
    polaridad, tiempo o aspecto, modalidad, presuposiciones ni condiciones
    temporales que la consigna, la pista o el enunciado ya determinaron. Una
    dimensión sólo puede variar si el material visible la deja abierta.
-4. **Nada de lo que ve el alumno la descarta.** Aplicá esta precedencia
-   mecánica: consigna explícita > pista y enunciado > título. La consigna puede
-   exigir una forma o construcción; la pista y el enunciado fijan sus piezas y
-   su sentido. El título ayuda a interpretar y a medir qué es esperable, pero
+4. **Nada de lo que ve el alumno la descarta.** Combiná la consigna explícita con las condiciones de la pista y el
+   enunciado. La consigna puede ofrecer las formas de una lección y el ítem
+   seleccionar cuál corresponde; esa selección no contradice la oferta general. El título ayuda a interpretar y a medir qué es esperable, pero
    un título que sólo nombra el tema no descarta ni inventa una restricción.
 5. **El corrector no la acepta.**
 
@@ -127,18 +126,43 @@ el ejercicio no deja abierta? Se lista si cumple las cinco cosas:
 palabra que hay que usar —un tiempo verbal, un modal, una estructura, una
 palabra—, una respuesta que no la usa, o que la cambia por otra, no se lista,
 aunque fuera de la consigna sea correcta y natural: el alumno tiene que hacer
-lo que le piden. Si la consigna ofrece dos formas, valen las dos: eso es
-`OFFERED_BY_INSTRUCTION`. Una exigencia no se deduce sólo del nombre del tema:
+lo que le piden. Si la consigna ofrece dos formas, sólo valen las que cumplen también las
+condiciones de ese ítem: eso es `OFFERED_BY_INSTRUCTION`. Ofrecer las formas de
+una lección no las vuelve intercambiables ante cualquier selector. Una exigencia no se deduce sólo del nombre del tema:
 si el título dice «Comparativos» y la consigna pide cualquier forma comparativa,
 el título no obliga a usar `-er` ni prohíbe una forma analítica natural.
+
+### Selector del ítem y fórmula que se practica
+
+Una indicación como `Polite request:` es una condición de la respuesta, no una
+palabra decorativa que se pueda ignorar. Si la regla visible del ejercicio
+asigna `could` a `Polite request` y `can` al pedido normal, esa condición elige
+la rama: no listes `can` bajo `Polite request` por la mera oferta global «can o
+could», ni la rama inversa. La ausencia de una etiqueta sólo selecciona una
+rama cuando esa convención está explicada al alumno. No la inventes desde el
+título ni desde la respuesta que hoy acepta el corrector.
+
+Cuando el ejercicio fija una fórmula, cumplila como una transformación guiada.
+No agregues `please`, `for me`, `for you` u otros complementos opcionales como
+variantes si quedan fuera de esa fórmula o añaden información que no se pidió.
+Que esas frases puedan ser naturales en una conversación no las convierte en
+respuestas a la operación cerrada de este ítem. Si la fórmula o la restricción
+no es visible, no la deduzcas únicamente de la lista de respuestas aceptadas.
+
+La rama seleccionada y la fórmula se verifican por separado: una variante
+puede mantener el modal elegido y aun así incumplir la estructura cerrada al
+agregar material opcional. Sólo se aplica esa exclusión cuando el alumno ve la
+restricción. La asignación de `could` y `can` a esas ramas es una convención
+didáctica explícita del ejercicio, no una afirmación de que `can` nunca pueda
+expresar cortesía en inglés.
 
 **En las transformaciones** —el hueco es la oración entera y la consigna pide
 transformar o armar una oración— manda la conservación semántica, no la copia
 mecánica palabra por palabra. Otra respuesta vale cuando realiza la
 construcción pedida y conserva los participantes, la proposición, la polaridad,
 el tiempo y el aspecto, y el orden nuclear cuando la consigna o el esqueleto lo
-imponen. Puede agregar, sacar o mover material funcional o idiomático opcional
-si no cambia nada de eso: *after having finished* por *after finishing*, *Are
+imponen. Cuando la operación y la fórmula visibles dejan ese margen, puede agregar,
+sacar o mover material funcional o idiomático opcional si no cambia nada de eso: *after having finished* por *after finishing*, *Are
 you studying French still?* por *Are you still studying French?*, o una pasiva
 natural con *get* cuando la consigna pide voz pasiva sin exigir *be*. Es
 paráfrasis libre y no se lista si cambia participantes, hechos, modalidad,

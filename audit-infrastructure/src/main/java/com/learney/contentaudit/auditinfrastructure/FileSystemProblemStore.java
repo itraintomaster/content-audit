@@ -18,6 +18,7 @@ public final class FileSystemProblemStore implements ProblemStore {
         try { directory = (Files.exists(course) ? course.toRealPath() : course.toAbsolutePath().normalize()).resolve(".content-audit/problems"); }
         catch (IOException e) { throw new UncheckedIOException(e); }
     }
+    Path directory() { return directory; }
     private Path file(String id) {
         if (id == null || !id.matches("PRB-[A-Za-z0-9-]+")) throw new IllegalArgumentException("Id de problema inválido.");
         return directory.resolve(id + ".json");
@@ -39,6 +40,7 @@ public final class FileSystemProblemStore implements ProblemStore {
                     : current.isEmpty() || current.get().revision() != expectedRevision) {
                 throw new IllegalStateException("El problema cambió. Volvé a leer la ficha.");
             }
+            new FileSystemJudgeRegressionCatalog(directory.getParent().getParent()).confirm(value);
             JsonFiles.writeAtomically(mapper, target, value);
             return null;
         });

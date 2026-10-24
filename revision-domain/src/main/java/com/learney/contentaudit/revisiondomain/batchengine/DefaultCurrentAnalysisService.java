@@ -73,6 +73,9 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                 && config.getBatchStore().list().isEmpty())
             return new View(null, 0, 0, List.of(), List.of(), List.of(), composer.supportedAnalyzers().stream().sorted().toList());
         CorrectionBatch batch = batch(request.batchId());
+        if ("base".equals(request.state()) && !List.of("read", "preview").contains(action)
+                && !baseOwner(batch).getId().equals(batch.getId()))
+            throw new IllegalArgumentException("La base es compartida: elegí la base original para integrar o retirar análisis.");
         List<AnalysisSelection> history = config.getBatchStore().analysisSelections(batch.getId());
         boolean writes = !List.of("read", "preview").contains(action);
         if (writes) {
@@ -90,7 +93,9 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         }
         View view = view(batch, history);
         if (!writes) return view;
-        if (batch.getStatus() != BatchStatus.CLOSED) throw new IllegalArgumentException("La tanda debe estar cerrada.");
+        if (batch.getStatus() != BatchStatus.CLOSED && !(batch.getStatus() == BatchStatus.OPEN
+                && config.getBatchStore().hasSuccessor(batch.getId())))
+            throw new IllegalArgumentException("La tanda debe estar cerrada.");
         if (request.reviewer() == null || request.reviewer().isBlank()) throw new IllegalArgumentException("Falta quién confirma.");
         if (request.expectedRevision() == null || request.expectedRevision() != history.size()
                 || request.contentVersion() == null || request.contentVersion() != batch.getContentVersion())
@@ -124,20 +129,37 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         return view(batch, config.getBatchStore().analysisSelections(batch.getId()));
     }
 
+    @Override public View comparisonView(CorrectionBatch batch) {
+        return view(batch,config.getBatchStore().analysisSelections(batch.getId()),false);
+    }
     private View view(CorrectionBatch batch, List<AnalysisSelection> history) {
-        CourseEntity start = config.getCourseRepository().load(config.getCoursePath());
+        return view(batch,history,true);
+    }
+    private View view(CorrectionBatch batch, List<AnalysisSelection> history, boolean includeLoose) {
+        CourseEntity start = BatchCourses.start(batch, config.getCourseRepository().load(config.getCoursePath()), config.getBatchStore());
         CourseEntity current = cut(ledger.composedCourse(batch, start), batch.getLevel());
         CourseEntity baseCourse = cut(start, batch.getLevel());
         var raw = new LinkedHashMap<String, AuditReport>();
         raw.put("base", primary(batch, "base", baseCourse));
         raw.put("correction", primary(batch, "correction", current));
         Map<String, AuditReport> sources = new HashMap<>();
-        for (var run : BatchBook.list(batch.getSelectiveRuns())) if (run.auditId() != null)
-            config.getAuditReportStore().load(run.auditId()).ifPresent(r -> sources.put(run.id(), r));
+        Set<String> requiredSources = new HashSet<>();
+        if (!includeLoose) {
+            for (var selection : history) if (!"remove".equals(selection.action())) requiredSources.add(selection.runId());
+            for (AuditReport report : raw.values()) for (AuditNode node : DefaultAnalysisComposer.index(report.getRoot()).values())
+                if (node.getMetadata() != null && node.getMetadata().get(DefaultAnalysisComposer.PROVENANCE) instanceof Map<?,?> origins)
+                    for (Object origin : origins.values()) if (origin instanceof Map<?,?> map && map.get("runId") instanceof String id)
+                        requiredSources.add(id);
+        }
+        for (var run : BatchBook.list(batch.getSelectiveRuns()))
+            if (run.auditId() != null && (includeLoose || requiredSources.contains(run.id())))
+                config.getAuditReportStore().load(run.auditId()).ifPresent(r -> sources.put(run.id(), composer.contentOnly(r)));
         var sourceIndexes = new HashMap<String, Map<String, AuditNode>>();
         sources.forEach((id, report) -> sourceIndexes.put(id, DefaultAnalysisComposer.index(report.getRoot())));
         var reports = new LinkedHashMap<String, AuditReport>();
         raw.forEach((state, report) -> reports.put(state, compose(batch, state, report, history, sources)));
+        CorrectionBatch baseOwner = baseOwner(batch);
+        if (!baseOwner.getId().equals(batch.getId())) reports.put("base", report(baseOwner, "base", baseCourse));
         var review = reviews.read(batch.getId());
         var items = review.items();
         var tasks = new ArrayList<>(BatchBook.list(review.tasks()));
@@ -190,7 +212,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                     inapplicable(batch, index), judges, verdictMarks));
         }
         var loose = new ArrayList<LooseRun>();
-        for (var run : BatchBook.list(batch.getSelectiveRuns())) {
+        if (includeLoose) for (var run : BatchBook.list(batch.getSelectiveRuns())) {
             if ("reanalyze-both".equals(run.action())) continue; // Coordination record; its two measurements have their own sources.
             AuditReport source = sources.get(run.id());
             if (source == null || !List.of("DONE", "PARTIAL").contains(run.status()) || !composer.supportedAnalyzers().contains(run.analyzer())) continue;
@@ -208,23 +230,41 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                     run.spent(), evaluated, errors, fits, config.getAnalyzerCatalog() == null ? run.analyzer()
                             : config.getAnalyzerCatalog().find(run.analyzer()).map(AnalyzerDescriptor::getDisplayName).orElse(run.analyzer()), activityId(batch,run)));
         }
-        return new View(batch.getId(), batch.getContentVersion(), history.size(), states, loose, List.copyOf(history), composer.supportedAnalyzers().stream().sorted().toList());
+        return new View(batch.getId(), batch.getContentVersion(), history.size(), states, loose, includeLoose ? List.copyOf(history) : List.of(), composer.supportedAnalyzers().stream().sorted().toList());
     }
 
     @Override public AuditReport report(CorrectionBatch batch, String state, CourseEntity course) {
+        CorrectionBatch owner = "base".equals(state) ? baseOwner(batch) : batch;
+        if (!owner.getId().equals(batch.getId())) return report(owner, state, course);
         var sources = new HashMap<String, AuditReport>();
-        for (var run : BatchBook.list(batch.getSelectiveRuns())) if (run.auditId() != null)
-            config.getAuditReportStore().load(run.auditId()).ifPresent(r -> sources.put(run.id(), r));
-        return compose(batch, state, primary(batch, state, course),
-                config.getBatchStore().analysisSelections(batch.getId()), sources);
+        var history = config.getBatchStore().analysisSelections(batch.getId());
+        Set<String> removed = new HashSet<>();
+        for (var selection : history) if ("remove".equals(selection.action())) removed.add(selection.removesOperationId());
+        Set<String> required = new HashSet<>();
+        for (var selection : history) if (state.equals(selection.state()) && !"remove".equals(selection.action())
+                && !removed.contains(selection.operationId())) required.add(selection.runId());
+        for (var run : BatchBook.list(batch.getSelectiveRuns())) if (run.auditId() != null && required.contains(run.id()))
+            config.getAuditReportStore().load(run.auditId()).ifPresent(r -> sources.put(run.id(), composer.contentOnly(r)));
+        return compose(batch, state, primary(batch, state, course),history,sources);
+    }
+
+    private CorrectionBatch baseOwner(CorrectionBatch batch) {
+        CorrectionBatch owner = batch;
+        Set<String> seen = new HashSet<>();
+        while (owner.getEvolution() != null) {
+            if (!seen.add(owner.getId())) throw new IllegalStateException("El linaje de las correcciones contiene un ciclo.");
+            owner = config.getBatchStore().load(owner.getEvolution().parentBatchId()).orElseThrow(
+                    () -> new IllegalStateException("Falta la corrección de la que parte esta versión."));
+        }
+        return owner;
     }
 
     @Override public ComparisonReports comparisonReports(CorrectionBatch batch, CourseEntity start, CourseEntity composed) {
         AuditReport baseline = report(batch, "base", start);
         AuditReport projected = report(batch, "correction", composed);
         AuditReport approved = Objects.equals(batch.getStartAuditId(), batch.getBaselineAuditId()) ? baseline
-                : composer.compose(config.getAuditReportStore().load(batch.getStartAuditId())
-                        .orElseThrow(() -> new IllegalStateException("Falta el análisis de inicio de la tanda.")), List.of());
+                : composer.compose(scopedSeed(config.getAuditReportStore().load(batch.getStartAuditId())
+                        .orElseThrow(() -> new IllegalStateException("Falta el análisis de inicio de la tanda.")),start), List.of());
         var a = DefaultAnalysisComposer.index(baseline.getRoot());
         var startIndex = DefaultAnalysisComposer.index(approved.getRoot());
         var b = DefaultAnalysisComposer.index(projected.getRoot());
@@ -372,15 +412,65 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
     }
 
     private AuditReport primary(CorrectionBatch batch, String state, CourseEntity course) {
-        if (!"base".equals(state) && batch.getAnalysisSeedAuditId() != null && batch.getAnalysisSeedContentVersion() == batch.getContentVersion())
-            return config.getAuditReportStore().load(batch.getAnalysisSeedAuditId()).orElseThrow(() -> new IllegalStateException("Falta la medición congelada antes de reanalizar."));
-        if ("base".equals(state)) return config.getAuditReportStore().load(batch.getBaselineAuditId())
-                .orElseThrow(() -> new IllegalStateException("Falta el informe de la base."));
+        if (!"base".equals(state) && batch.getAnalysisSeedAuditId() != null && batch.getAnalysisSeedContentVersion() == batch.getContentVersion()) {
+            AuditReport seed = config.getAuditReportStore().load(batch.getAnalysisSeedAuditId()).orElseThrow(
+                    () -> new IllegalStateException("Falta la medición congelada antes de reanalizar."));
+            // Older selective operations froze only one level. A closing/publication requests the complete course:
+            // remeasure its other nodes for free and merge only compatible saved opinions instead of returning A1
+            // as if it were the global analysis.
+            if (covers(seed, course)) return scopedSeed(seed, course);
+        }
+        if ("base".equals(state)) return scopedSeed(config.getAuditReportStore().load(batch.getBaselineAuditId())
+                .orElseThrow(() -> new IllegalStateException("Falta el informe de la base.")),course);
         // Existing analyzers retain their ordinary zero-budget behavior. A loose judge is never selected by recency.
         var names = BatchBook.list(batch.getAnalyzers()).stream().filter(n -> !QUALITY.equals(n)).toList();
         var policies = new LinkedHashMap<String, EvaluationRunPolicy>();
         for (String name : names) policies.put(name, new EvaluationRunPolicy(0, false, null, null, EvaluationRunPurpose.READING, 1));
-        return config.getAuditEngine().runAudit(config.getCourseMapper().map(course), new AnalyzerRunSelection(names, policies));
+        AuditReport current = config.getAuditEngine().runAudit(config.getCourseMapper().map(course),
+                new AnalyzerRunSelection(names, policies));
+        if (batch.getAnalysisSeedAuditId() == null) return composer.contentOnly(current);
+        // A new batch version changes the snapshot, not every evaluator's input. Keep saved
+        // opinions with identical inputs; explicit selections are still applied afterwards.
+        AuditReport previous = config.getAuditReportStore().load(batch.getAnalysisSeedAuditId())
+                .orElseThrow(() -> new IllegalStateException("Falta el análisis guardado de la tanda."));
+        return composer.contentOnly(composer.preserveCompatibleOpinions(current, previous, batch.getAnalysisSeedAuditId()));
+    }
+
+    private static boolean covers(AuditReport report, CourseEntity course) {
+        if (course == null || course.getRoot() == null) return true;
+        var indexed = DefaultAnalysisComposer.index(report.getRoot());
+        for (var milestone : BatchBook.list(course.getRoot().getMilestones()))
+            for (var topic : BatchBook.list(milestone.getTopics()))
+                for (var knowledge : BatchBook.list(topic.getKnowledges()))
+                    for (var quiz : BatchBook.list(knowledge.getQuizTemplates()))
+                        if (!indexed.containsKey(quiz.getId())) return false;
+        return true;
+    }
+
+    private AuditReport scopedSeed(AuditReport seed, CourseEntity course) {
+        seed = composer.contentOnly(seed);
+        if (course == null || course.getRoot() == null) return seed;
+        Set<String> ids = new HashSet<>();
+        for (var milestone : BatchBook.list(course.getRoot().getMilestones())) {
+            ids.add(milestone.getId());
+            for (var topic : BatchBook.list(milestone.getTopics())) {
+                ids.add(topic.getId());
+                for (var knowledge : BatchBook.list(topic.getKnowledges())) {
+                    ids.add(knowledge.getId());
+                    for (var quiz : BatchBook.list(knowledge.getQuizTemplates())) ids.add(quiz.getId());
+                }
+            }
+        }
+        if (DefaultAnalysisComposer.index(seed.getRoot()).values().stream()
+                .allMatch(n -> n.getTarget() == AuditTarget.COURSE || ids.contains(n.getEntity().getId()))) return seed;
+        AuditReport cropped = composer.compose(seed,List.of());
+        prune(cropped.getRoot(),ids);
+        return composer.compose(cropped,List.of());
+    }
+    private static void prune(AuditNode node, Set<String> ids) {
+        node.setChildren(BatchBook.list(node.getChildren()).stream()
+                .filter(child -> ids.contains(child.getEntity().getId())).toList());
+        for (AuditNode child : node.getChildren()) prune(child,ids);
     }
 
     private AuditReport compose(CorrectionBatch batch, String state, AuditReport primary,
@@ -399,7 +489,12 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         for (var node : DefaultAnalysisComposer.index(annotated.getRoot()).values()) {
             if (node.getTarget() != AuditTarget.QUIZ) continue;
             var origins = new LinkedHashMap<String, Object>();
+            Object existing = node.getMetadata().get(DefaultAnalysisComposer.PROVENANCE);
             for (String analyzer : composer.supportedAnalyzers()) if (DefaultAnalysisComposer.hasStoredOpinion(node, analyzer)) {
+                if (existing instanceof Map<?, ?> recorded && recorded.get(analyzer) instanceof Map<?, ?> origin) {
+                    origins.put(analyzer, origin);
+                    continue;
+                }
                 var origin = new LinkedHashMap<String, Object>();
                 origin.put("auditId", "base".equals(state) ? batch.getBaselineAuditId() : batch.getAnalysisSeedAuditId());
                 origin.put("judgeVersion", DefaultAnalysisComposer.version(node, analyzer, primary));
@@ -408,7 +503,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
             }
             if (!origins.isEmpty()) node.getMetadata().put(DefaultAnalysisComposer.PROVENANCE, origins);
         }
-        return composer.compose(annotated, supplements);
+        return composer.contentOnly(composer.compose(annotated, supplements));
     }
 
     private Fit fit(String state, SelectiveCorrection.Run run, AuditReport source, AuditReport current, List<BatchReview.Item> items, List<com.learney.contentaudit.refinerdomain.RefinementTask> tasks) {

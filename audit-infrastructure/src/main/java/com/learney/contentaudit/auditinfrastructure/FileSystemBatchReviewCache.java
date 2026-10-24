@@ -16,8 +16,8 @@ import java.util.Optional;
 
 /** Disposable, campaign-local projection; never rewrites a batch, artifact, plan or review event. */
 public final class FileSystemBatchReviewCache implements BatchReviewCache {
-    private static final String SCHEMA = "batch-review-v1";
-    private static final List<String> INPUTS = List.of("batches", "batch-reviews", "revisions", "plans");
+    private static final String SCHEMA = "batch-review-v3-content-without-audio";
+    private static final List<String> INPUTS = List.of("batches", "batch-reviews", "revisions", "plans", "analysis-selections");
     private final Path auditDir;
     private final ObjectMapper mapper = JsonFiles.mapper();
 

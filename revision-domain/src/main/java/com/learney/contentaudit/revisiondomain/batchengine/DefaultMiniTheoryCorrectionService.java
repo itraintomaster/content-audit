@@ -46,7 +46,7 @@ final class DefaultMiniTheoryCorrectionService implements MiniTheoryCorrectionSe
 
     private State work(Request r) {
         CorrectionBatch batch = batch(r.batchId());
-        CourseEntity start = courses.load(coursePath);
+        CourseEntity start = BatchCourses.start(batch, courses.load(coursePath), batches);
         CourseEntity composed = ledger.composedCourse(batch, start);
         KnowledgeEntity topic = BatchBook.place(composed, r.knowledgeId()).orElseThrow(
                 () -> new IllegalArgumentException("No existe ese ejercicio en el curso.")).knowledge();
@@ -80,6 +80,7 @@ final class DefaultMiniTheoryCorrectionService implements MiniTheoryCorrectionSe
             return state(batch, topic, approved, candidates, workspace, null);
         }
         if (!"estimate".equals(r.action())) writable(batch, r);
+        if ("commit".equals(r.action())) batches.requireEditableContent(batch);
         List<QuizTemplateEntity> selected = selected(topic, r.quizIds());
         if (!List.of("estimate", "analyze").contains(r.action()) && !r.includeApproved()
                 && selected.stream().anyMatch(q -> approved.contains(q.getId()))) {
@@ -105,7 +106,14 @@ final class DefaultMiniTheoryCorrectionService implements MiniTheoryCorrectionSe
         } else if ("rewrite".equals(r.action())) {
             workspace = rewrite(r, batch, topic, selected, candidates, workspace);
         } else if ("commit".equals(r.action())) {
-            workspace = commit(r, batch, start, topic, workspace);
+            final Workspace pending = workspace;
+            final String pendingBatchId = batch.getId();
+            final KnowledgeEntity pendingTopic = topic;
+            workspace = batches.withAnalysisLock(pendingBatchId, () -> {
+                CorrectionBatch latest = batch(pendingBatchId);
+                batches.requireEditableContent(latest); writable(latest, r);
+                return commit(r, latest, start, pendingTopic, pending);
+            });
             batch = batch(batch.getId());
             topic = BatchBook.place(ledger.composedCourse(batch, start), r.knowledgeId()).orElseThrow().knowledge();
             return work(new Request("read", null, r.batchId(), r.knowledgeId(), null, null, null,

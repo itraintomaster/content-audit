@@ -12,7 +12,9 @@ import com.learney.contentaudit.auditdomain.localtools.LocalToolGateDecision;
 import com.learney.contentaudit.auditdomain.localtools.LocalToolStatus;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
+import java.util.LinkedHashSet;
 import java.util.Optional;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 /**
@@ -84,6 +86,12 @@ public class DefaultLocalToolGate implements LocalToolGate {
     @Override
     public LocalToolGateDecision decide(String analyzerName, LocalTool tool, String methodId,
             EvaluationRunPolicy policy, EvaluationRuntimeIdentity runtimeIdentity) {
+        return decide(analyzerName, tool, methodId, policy, runtimeIdentity, Set.of());
+    }
+
+    @Override
+    public LocalToolGateDecision decide(String analyzerName, LocalTool tool, String methodId,
+            EvaluationRunPolicy policy, EvaluationRuntimeIdentity runtimeIdentity, Set<String> compatibleMethodIds) {
         LocalToolStatus status = statusOf(tool);
         boolean examRun = policy != null && policy.getPurpose() == EvaluationRunPurpose.EXAM;
         EvaluationRunPolicy localPolicy = localPolicyOf(policy);
@@ -92,7 +100,8 @@ public class DefaultLocalToolGate implements LocalToolGate {
                     localPolicy);
         }
         String examinedVersion = examinedVersion(status, methodId);
-        JudgeExamStanding standing = judgeRuntime.standing(analyzerName, examinedVersion, runtimeIdentity);
+        JudgeExamStanding standing = judgeRuntime.standing(analyzerName, examinedVersion, runtimeIdentity,
+                compatibleVersions(status, methodId, runtimeIdentity, compatibleMethodIds));
         JudgeExamStatus examState = standing != null ? standing.getStatus() : JudgeExamStatus.NOT_TAKEN;
         boolean approved = standing != null && standing.isConsultsOnCourse();
         boolean publishes = examRun || approved;
@@ -113,12 +122,19 @@ public class DefaultLocalToolGate implements LocalToolGate {
     @Override
     public LocalToolCard card(String analyzerName, LocalTool tool, String methodId,
             EvaluationRuntimeIdentity runtimeIdentity) {
+        return card(analyzerName, tool, methodId, runtimeIdentity, Set.of());
+    }
+
+    @Override
+    public LocalToolCard card(String analyzerName, LocalTool tool, String methodId,
+            EvaluationRuntimeIdentity runtimeIdentity, Set<String> compatibleMethodIds) {
         LocalToolStatus status = statusOf(tool);
         if (!status.isAvailable() || status.getVersion() == null || status.getVersion().isBlank()) {
             return new LocalToolCard(status, null, null, null, false);
         }
         String examinedVersion = examinedVersion(status, methodId);
-        JudgeExamStanding standing = judgeRuntime.standing(analyzerName, examinedVersion, runtimeIdentity);
+        JudgeExamStanding standing = judgeRuntime.standing(analyzerName, examinedVersion, runtimeIdentity,
+                compatibleVersions(status, methodId, runtimeIdentity, compatibleMethodIds));
         return new LocalToolCard(status, examinedVersion, standing != null ? standing.getStatus() : null,
                 summaryOf(standing), false);
     }
@@ -147,6 +163,18 @@ public class DefaultLocalToolGate implements LocalToolGate {
     // -------------------------------------------------------------------------
     // Helpers
     // -------------------------------------------------------------------------
+
+    private static Set<String> compatibleVersions(LocalToolStatus status, String methodId,
+            EvaluationRuntimeIdentity runtimeIdentity, Set<String> compatibleMethodIds) {
+        var versions = new LinkedHashSet<String>();
+        versions.add(examinedVersion(status, methodId));
+        // A process alias cannot establish who took an exam whose runtime is unknown.
+        if (runtimeIdentity != null && runtimeIdentity.isExplicit() && compatibleMethodIds != null) {
+            for (String alias : compatibleMethodIds) if (alias != null && !alias.isBlank())
+                versions.add(examinedVersion(status, alias));
+        }
+        return Set.copyOf(versions);
+    }
 
     /**
      * The examined version always names its tool: an Ollama model already does

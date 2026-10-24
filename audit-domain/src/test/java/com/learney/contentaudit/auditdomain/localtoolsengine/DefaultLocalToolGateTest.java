@@ -110,6 +110,66 @@ public class DefaultLocalToolGateTest {
     }
 
     @Test
+    void usesOnlyTheDeclaredJudgeAliasWithTheSameToolMethodThresholdAndRuntime() {
+        var runtime = EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "medium");
+        var nomic = new LocalToolStatus("nomic-embed-text en Ollama", "nomic-embed-text@0a109f422b47",
+                true, null, null);
+        String earlier = "clustering-1 · candidatos-0,80 · juez-04c290f901e3";
+        String current = "clustering-1 · candidatos-0,80 · juez-729229ed1d8d";
+        var approved = exam("near-duplicates", nomic.getVersion() + " · " + earlier, JudgeExamStatus.APPROVED);
+        approved.setRuntimeIdentity(runtime);
+        exams.record(approved);
+        Set<String> aliases = Set.of(current, earlier);
+
+        var decision = gate.decide("near-duplicates", tool(nomic), current, null, runtime, aliases);
+        var card = gate.card("near-duplicates", tool(nomic), current, runtime, aliases);
+        assertTrue(decision.isPublishes());
+        assertEquals(nomic.getVersion() + " · " + current, decision.getExaminedVersion());
+        assertEquals(JudgeExamStatus.APPROVED, card.getExamState());
+
+        for (var other : List.of(
+                EvaluationRuntimeIdentity.explicit("other-provider", "gpt-6.1-sol", "medium"),
+                EvaluationRuntimeIdentity.explicit("codex-cli", "other-model", "medium"),
+                EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "high"),
+                EvaluationRuntimeIdentity.legacyUnknown())) {
+            assertFalse(gate.decide("near-duplicates", tool(nomic), current, null, other, aliases).isPublishes(),
+                    "the process alias must not lend the exam to " + other);
+            assertEquals(JudgeExamStatus.NOT_TAKEN,
+                    gate.card("near-duplicates", tool(nomic), current, other, aliases).getExamState());
+        }
+        var otherVectors = new LocalToolStatus(nomic.getTool(), "nomic-embed-text@another-model",
+                true, null, null);
+        assertFalse(gate.decide("near-duplicates", tool(otherVectors), current, null, runtime, aliases).isPublishes(),
+                "all method aliases must use the current vector model's version");
+        for (String[] methods : List.of(
+                new String[] {current.replace("clustering-1", "clustering-2"), earlier.replace("clustering-1", "clustering-2")},
+                new String[] {current.replace("0,80", "0,90"), earlier.replace("0,80", "0,90")})) {
+            assertFalse(gate.decide("near-duplicates", tool(nomic), methods[0], null, runtime,
+                    Set.of(methods)).isPublishes(), "a different method or threshold needs its own exam");
+        }
+        assertFalse(gate.decide("near-duplicates", tool(nomic), current, null, runtime, Set.of(current)).isPublishes(),
+                "without the declared equivalence a different judge process needs its own exam");
+    }
+
+    @Test
+    void aLaterFailedExamOfTheCurrentRouteSupersedesAnApprovedAlias() {
+        var runtime = EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "medium");
+        String earlier = "native-yes-no-old", current = "native-yes-no-current";
+        var approved = exam("near-duplicates", LLAMA3.getVersion() + " · " + earlier, JudgeExamStatus.APPROVED);
+        approved.setRuntimeIdentity(runtime);
+        exams.record(approved);
+        var failed = exam("near-duplicates", LLAMA3.getVersion() + " · " + current, JudgeExamStatus.FAILED);
+        failed.setRuntimeIdentity(runtime);
+        exams.record(failed);
+
+        var decision = gate.decide("near-duplicates", tool(LLAMA3), current, null, runtime, Set.of(earlier, current));
+        assertFalse(decision.isPublishes());
+        assertEquals(JudgeExamStatus.FAILED, decision.getExamState());
+        assertEquals(JudgeExamStatus.FAILED,
+                gate.card("near-duplicates", tool(LLAMA3), current, runtime, Set.of(earlier, current)).getExamState());
+    }
+
+    @Test
     @DisplayName("should not publish with a local tool whose examined version never took the exam, giving the judges' reason «sin examen», as LanguageTool 6.8 with the filter of grammar before its exam is recorded")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R006")

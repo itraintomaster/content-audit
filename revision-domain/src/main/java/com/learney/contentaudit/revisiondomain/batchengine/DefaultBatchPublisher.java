@@ -175,6 +175,11 @@ class DefaultBatchPublisher implements BatchPublisher {
         if (manifestBuilder == null) {
             throw new BatchNotPublishableException(batch.getId(), "falta con qué armar la lista de publicación");
         }
+        batchStore.requireEditableContent(batch);
+        if ((batch.getEvolution() != null || batch.getBaseCourseSnapshot() != null)
+                && !Objects.equals(startCourse, courseRepository.load(coursePath)))
+            throw new BatchNotPublishableException(batch.getId(),
+                    "el curso publicado cambió desde la base de esta corrección: revisá la evolución antes de integrar");
         BatchPublishRequest asked = request != null ? request : new BatchPublishRequest(null, null, List.of());
         // F-PUBPROD-R005: the gate of «no empeorar» of the last closing must pass; the verdict is checked below.
         List<BatchClosing> closings = BatchBook.list(batch.getClosings());
@@ -194,6 +199,8 @@ class DefaultBatchPublisher implements BatchPublisher {
         // they were, and the analysis and the plan of the published course it saved are discarded.
         Undo undo = new Undo(batch, startCourse);
         try {
+            if (batch.getBaseCourseSnapshot() == null && batch.getEvolution() == null)
+                batch.setBaseCourseSnapshot(startCourse);
             Prepared prepared = prepare(batch, asked, startCourse, last, publishedAt);
             String digest = saveManifest(batch, prepared.manifest(), undo);
             undo.courseWritten = true;
@@ -341,7 +348,7 @@ class DefaultBatchPublisher implements BatchPublisher {
             var tasks = refinementPlanStore.load(batch.getPlanId()).map(BatchBook::tasksById).orElse(Map.of());
             var currentGate = new com.learney.contentaudit.revisiondomain.nonregressionengine.DefaultGateFactory().batchGate()
                     .evaluate(comparison, DefaultBatchCloser.changedOutside(batch, startCourse,
-                            changeLedger.composedCourse(batch, startCourse), tasks), DefaultBatchCloser.exceptions(batch));
+                            changeLedger.composedCourse(batch, startCourse), tasks, batchStore), DefaultBatchCloser.exceptions(batch));
             if (!currentGate.isPasses()) throw new BatchNotPublishableException(batch.getId(),
                     "la compuerta sobre el análisis vigente no pasa: " + String.join("; ", BatchBook.list(currentGate.getReasons())));
         } else if (dropped || changedSince(batch, last)) {
@@ -446,6 +453,7 @@ class DefaultBatchPublisher implements BatchPublisher {
      */
     private final class Undo {
         private final CorrectionBatch batch;
+        private final CourseEntity baseCourseSnapshot;
 
         private final CourseEntity startCourse;
 
@@ -489,6 +497,7 @@ class DefaultBatchPublisher implements BatchPublisher {
 
         Undo(CorrectionBatch batch, CourseEntity startCourse) {
             this.batch = batch;
+            this.baseCourseSnapshot = batch.getBaseCourseSnapshot();
             this.startCourse = startCourse;
             for (BatchChange change : BatchBook.list(batch.getChanges())) {
                 if (change != null) {
@@ -595,6 +604,7 @@ class DefaultBatchPublisher implements BatchPublisher {
             batch.setQuizProposals(quizProposals);
             batch.setOutcomes(outcomes);
             batch.setPublication(publication);
+            batch.setBaseCourseSnapshot(baseCourseSnapshot);
             batch.setStatus(status);
             if (halfDone.isEmpty()) {
                 return failure;

@@ -40,6 +40,8 @@ class DefaultMiniTheoryDistributor implements MiniTheoryDistributor {
     static final String RULE_OTHER_SUBTOPIC = "other-subtopic-content";
     static final String RULE_OVER_SPECIFIC = "over-specific-for-quiz";
     static final String RULE_THEORETICAL_JARGON = "theoretical-jargon";
+    static final String RULE_DIDACTIC_DIRECTION = "didactic-direction";
+    static final String RULE_MISSING_ENGLISH_HIGHLIGHT = "missing-english-highlight";
 
     private final MiniTheoryConfig config;
     private final QuizStudentViewRenderer studentViewRenderer;
@@ -122,7 +124,8 @@ class DefaultMiniTheoryDistributor implements MiniTheoryDistributor {
         return switch (problem) {
             case FALSE_RULE, INSUFFICIENT_FOR_QUIZ -> FindingSeverity.HIGH;
             case OVERSTATED_FOR_QUIZ -> FindingSeverity.MEDIUM;
-            case OTHER_SUBTOPIC_CONTENT, OVER_SPECIFIC_FOR_QUIZ, THEORETICAL_JARGON -> FindingSeverity.LOW;
+            case OTHER_SUBTOPIC_CONTENT, OVER_SPECIFIC_FOR_QUIZ, THEORETICAL_JARGON,
+                    DIDACTIC_DIRECTION, MISSING_ENGLISH_HIGHLIGHT -> FindingSeverity.LOW;
         };
     }
 
@@ -134,6 +137,8 @@ class DefaultMiniTheoryDistributor implements MiniTheoryDistributor {
             case OTHER_SUBTOPIC_CONTENT -> RULE_OTHER_SUBTOPIC;
             case OVER_SPECIFIC_FOR_QUIZ -> RULE_OVER_SPECIFIC;
             case THEORETICAL_JARGON -> RULE_THEORETICAL_JARGON;
+            case DIDACTIC_DIRECTION -> RULE_DIDACTIC_DIRECTION;
+            case MISSING_ENGLISH_HIGHLIGHT -> RULE_MISSING_ENGLISH_HIGHLIGHT;
         };
     }
 
@@ -143,7 +148,12 @@ class DefaultMiniTheoryDistributor implements MiniTheoryDistributor {
         List<EvidencePart> examined = new ArrayList<>();
         examined.add(new EvidencePart("Miniteoría", text));
         if (!isBlank(assessment.getCounterexample())) {
-            examined.add(new EvidencePart("Contraejemplo", assessment.getCounterexample()));
+            String repairLabel = switch (problem) {
+                case DIDACTIC_DIRECTION -> "Redacción orientada al sujeto";
+                case MISSING_ENGLISH_HIGHLIGHT -> "Redacción con inglés resaltado";
+                default -> "Contraejemplo";
+            };
+            examined.add(new EvidencePart(repairLabel, assessment.getCounterexample()));
         }
         if (!isBlank(assessment.getExplanation())) {
             examined.add(new EvidencePart(explanationLabel(problem), assessment.getExplanation()));
@@ -161,6 +171,8 @@ class DefaultMiniTheoryDistributor implements MiniTheoryDistributor {
             case OTHER_SUBTOPIC_CONTENT -> "La miniteoría agrega contenido de otro subtema";
             case OVER_SPECIFIC_FOR_QUIZ -> "La miniteoría especifica palabras que no determinan la regla";
             case THEORETICAL_JARGON -> "La miniteoría usa metalenguaje o jerga teórica innecesaria";
+            case DIDACTIC_DIRECTION -> "La miniteoría debe explicar qué forma verbal lleva el sujeto";
+            case MISSING_ENGLISH_HIGHLIGHT -> "La miniteoría no resalta las palabras clave en inglés";
         };
         return isBlank(assessment.getExplanation()) ? lead : lead + ": " + assessment.getExplanation().strip();
     }
@@ -173,6 +185,8 @@ class DefaultMiniTheoryDistributor implements MiniTheoryDistributor {
             case OTHER_SUBTOPIC_CONTENT -> "Contenido de otro subtema";
             case OVER_SPECIFIC_FOR_QUIZ -> "Detalle incidental que se puede abstraer";
             case THEORETICAL_JARGON -> "Concepto teórico o jerga que se puede simplificar";
+            case DIDACTIC_DIRECTION -> "Dirección de la explicación";
+            case MISSING_ENGLISH_HIGHLIGHT -> "Palabras en inglés sin resaltar";
         };
     }
 

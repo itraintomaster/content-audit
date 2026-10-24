@@ -60,7 +60,7 @@ final class DefaultContextOpinionService implements ContextOpinionService {
         if (batch.getStatus() != BatchStatus.CLOSED && batch.getStatus() != BatchStatus.OPEN)
             throw new IllegalArgumentException("La tanda está publicada o tiene otra operación pendiente.");
         BatchReview review = reviews.read(batch.getId());
-        var start = config.getCourseRepository().load(config.getCoursePath());
+        var start = BatchCourses.start(batch, config.getCourseRepository().load(config.getCoursePath()), config.getBatchStore());
         if (request.scope() != null && !"correction".equals(request.scope()))
             throw new IllegalArgumentException("Elegí el alcance correction o ejercicios seleccionados.");
         boolean correction = "correction".equals(request.scope());
@@ -168,7 +168,7 @@ final class DefaultContextOpinionService implements ContextOpinionService {
                 throw new IllegalArgumentException("El ejercicio medido no coincide con la propuesta vigente: " + opinion.quizId());
             if (!snapshots.contains(proposal)) snapshots.add(proposal);
         }
-        CourseEntity start = config.getCourseRepository().load(config.getCoursePath());
+        CourseEntity start = BatchCourses.start(batch, config.getCourseRepository().load(config.getCoursePath()), config.getBatchStore());
         CourseEntity composed = ledger.composedCourse(batch, start);
         String stamp = hash(fingerprint.apply(composed) + request.sourceRef() + selected + opinions.stream()
                 .map(o -> List.of(o.quizId(), o.analyzer(), o.evaluatorId(), o.judgeVersion(), o.runtime().toString(),

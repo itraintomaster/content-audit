@@ -38,6 +38,10 @@ public class PanelRequest {
 
     private boolean twoFixes;
 
+    private DidacticReference didacticReference;
+    public DidacticReference getDidacticReference() { return didacticReference; }
+    public void setDidacticReference(DidacticReference reference) { didacticReference = reference; }
+
     public PanelRequest() {
     }
 
@@ -170,11 +174,12 @@ public class PanelRequest {
                     && Objects.equals(this.conversion, that.conversion)
                     && Objects.equals(this.attempt, that.attempt)
                     && Objects.equals(this.previousRejections, that.previousRejections)
-                    && Objects.equals(this.twoFixes, that.twoFixes);
+                    && Objects.equals(this.twoFixes, that.twoFixes)
+                    && Objects.equals(this.didacticReference, that.didacticReference);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(batchId, level, knowledgeId, quizId, topicView, topicQuizIds, briefs, wordLights, conversion, attempt, previousRejections, twoFixes);
+        return Objects.hash(batchId, level, knowledgeId, quizId, topicView, topicQuizIds, briefs, wordLights, conversion, attempt, previousRejections, twoFixes, didacticReference);
     }
 }

@@ -286,7 +286,7 @@ public class DefaultBatchCloserTest {
 
         BatchTaskOutcome waiting = BatchBook.outcome(batch, "t-audio").orElseThrow();
         assertEquals(BatchTaskOutcomeKind.PENDING_RERECORDING, waiting.getKind(), "not resolved: its audio is not recorded yet");
-        assertEquals("su hallazgo sigue hasta que se grabe el audio pedido", waiting.getDetail());
+        assertEquals("Audio pendiente para prepublicación; no participa en la corrección del contenido.", waiting.getDetail());
         assertEquals(change.getChangeId(), waiting.getChangeId());
         assertEquals(BatchTaskOutcomeKind.PENDING, BatchBook.kind(batch, "t-traduccion"), "still marked, not of the audio");
     }

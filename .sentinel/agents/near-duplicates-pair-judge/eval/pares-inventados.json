@@ -1100,15 +1100,15 @@
    "category": "regresión V9: la frase completada cambia de función",
    "title": "Cuantificadores: con o sin $of$",
    "first": "He drank ___ it. (a little · a little of)\nRespuesta seleccionada: a little of\nResuelto: He drank a little of it.",
-   "second": "___ the juice fell. (a little · a little of)\nRespuesta seleccionada: a little of\nResuelto: A little of the juice fell."
+   "second": "___ the broth spilled. (a little · a little of)\nRespuesta seleccionada: a little of\nResuelto: A little of the broth spilled."
   },
   {
    "caseId": "v10s-permiso-can-vs-could",
    "expected": true,
    "category": "regresión V10: misma función de permiso, modal superficial",
    "title": "Can y could: pedidos y respuestas cortas",
-   "first": "A: Can I wait here? B: Yes, ___.\nRespuesta seleccionada: you can\nResuelto: A: Can I wait here? B: Yes, you can.",
-   "second": "A: Could I wait here? B: Yes, ___.\nRespuesta seleccionada: you can\nResuelto: A: Could I wait here? B: Yes, you can."
+   "first": "A: Can I park beside the greenhouse? B: Yes, ___.\nRespuesta seleccionada: you can\nResuelto: A: Can I park beside the greenhouse? B: Yes, you can.",
+   "second": "A: Could I park beside the greenhouse? B: Yes, ___.\nRespuesta seleccionada: you can\nResuelto: A: Could I park beside the greenhouse? B: Yes, you can."
   },
   {
    "caseId": "v10n-peticion-vs-permiso-afirmativo",
@@ -1147,7 +1147,7 @@
    "expected": false,
    "category": "regresión V11: confirmación futura frente a aceptación de petición",
    "title": "Respuestas cortas con $will$",
-   "first": "A: Will they order dinner here? B: Yes, they ___.\nRespuesta seleccionada: will\nResuelto: A: Will they order dinner here? B: Yes, they will.",
+   "first": "A: Will they decorate the observatory tomorrow? B: Yes, they ___.\nRespuesta seleccionada: will\nResuelto: A: Will they decorate the observatory tomorrow? B: Yes, they will.",
    "second": "A: Will you carry my bag? B: Yes, I ___.\nRespuesta seleccionada: will\nResuelto: A: Will you carry my bag? B: Yes, I will."
   },
   {
@@ -1155,7 +1155,7 @@
    "expected": true,
    "category": "regresión V11: misma función informativa futura",
    "title": "Respuestas cortas con $will$",
-   "first": "A: Will they order dinner here? B: Yes, they ___.\nRespuesta seleccionada: will\nResuelto: A: Will they order dinner here? B: Yes, they will.",
+   "first": "A: Will they decorate the observatory tomorrow? B: Yes, they ___.\nRespuesta seleccionada: will\nResuelto: A: Will they decorate the observatory tomorrow? B: Yes, they will.",
    "second": "A: Will the guests arrive tonight? B: Yes, they ___.\nRespuesta seleccionada: will\nResuelto: A: Will the guests arrive tonight? B: Yes, they will."
   }
  ]

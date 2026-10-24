@@ -22,8 +22,10 @@ import com.learney.contentaudit.auditdomain.localtools.LocalToolGateDecision;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 /**
@@ -114,7 +116,8 @@ public class NearDuplicatesAnalyzerProvider implements AnalyzerProvider {
                 AnalysisCost.PAID_MODEL,
                 NearDuplicatesAnalyzer.DISPLAY_NAME,
                 List.of(localToolGate.card(NearDuplicatesAnalyzer.ANALYZER_NAME, embeddingModel,
-                                config.vectorRouteMethodId(judgeVersion), judgeRuntimeIdentity()),
+                                config.vectorRouteMethodId(judgeVersion), judgeRuntimeIdentity(),
+                                compatibleVectorMethods(judgeVersion)),
                         localToolGate.alternativeCard(NearDuplicatesAnalyzer.ANALYZER_NAME,
                                 judgeWithoutOllama(judgeVersion))),
                 "Ejercicios que piden la misma respuesta y casi lo mismo que otro anterior del mismo tema: otro "
@@ -125,7 +128,8 @@ public class NearDuplicatesAnalyzerProvider implements AnalyzerProvider {
     public ContentAnalyzer create(EvaluationRunPolicy policy) {
         String judgeVersion = judgeVersion();
         LocalToolGateDecision decision = localToolGate.decide(NearDuplicatesAnalyzer.ANALYZER_NAME, embeddingModel,
-                config.vectorRouteMethodId(judgeVersion), policy, judgeRuntimeIdentity());
+                config.vectorRouteMethodId(judgeVersion), policy, judgeRuntimeIdentity(),
+                compatibleVectorMethods(judgeVersion));
         JudgeSessions opened;
         if (decision.getStatus() != null && decision.getStatus().isAvailable()) {
             opened = openWithOllama(policy, decision, judgeVersion);
@@ -151,12 +155,13 @@ public class NearDuplicatesAnalyzerProvider implements AnalyzerProvider {
         String stepVersion = judgeVersion != null ? decision.getExaminedVersion() : null;
         String vectorsVersion = localToolGate.card(NearDuplicatesAnalyzer.ANALYZER_NAME, embeddingModel,
                 config.methodId()).getExaminedVersion();
+        var pairJudge = new PairStepEvaluator(alternativeJudge, stepVersion);
         JudgeSessions vectors = judgeRuntime.open(NearDuplicatesAnalyzer.ANALYZER_NAME,
                 List.of(new PairStepEvaluator(new SentenceEmbeddingEvaluator(embeddingModel, config, vectorsVersion),
-                        stepVersion)),
+                        stepVersion, pairJudge.compatibleEvaluatorVersions())),
                 withoutLimit(policy), judgeRuntimeIdentity());
         JudgeSessions judge = judgeRuntime.open(NearDuplicatesAnalyzer.ANALYZER_NAME,
-                List.of(new PairStepEvaluator(alternativeJudge, stepVersion)), policy);
+                List.of(pairJudge), policy);
         return new JudgeSessions(NearDuplicatesAnalyzer.ANALYZER_NAME, judge.getJudgeVersion(),
                 joined(vectors.getEvaluatorIds(), judge.getEvaluatorIds()),
                 joined(vectors.getSessions(), judge.getSessions()), judge.getStanding(), judge.getEffectivePolicy(),
@@ -173,14 +178,30 @@ public class NearDuplicatesAnalyzerProvider implements AnalyzerProvider {
         if (policy == null) {
             return new EvaluationRunPolicy(Integer.MAX_VALUE, false, null, null, EvaluationRunPurpose.COURSE, 1);
         }
-        return new EvaluationRunPolicy(Integer.MAX_VALUE, policy.isReevaluate(), policy.getReevaluationScope(),
+        EvaluationRunPolicy vectors = new EvaluationRunPolicy(Integer.MAX_VALUE, policy.isReevaluate(), policy.getReevaluationScope(),
                 policy.getReevaluationSubjectIds(), policy.getPurpose(), policy.getMaxConcurrentEvaluations());
+        vectors.setNewEvaluationSubjectIds(policy.getNewEvaluationSubjectIds());
+        return vectors;
     }
 
     /** The pair judge as it runs without Ollama: under the version of that route (R007), if it states its own. */
     private Evaluator judgeWithoutOllama(String judgeVersion) {
         return new PairStepEvaluator(alternativeJudge,
                 judgeVersion != null ? config.wordRouteVersion(judgeVersion) : null);
+    }
+
+    private Set<String> compatibleVectorMethods(String judgeVersion) {
+        if (judgeVersion == null) return Set.of();
+        var methods = new LinkedHashSet<String>();
+        methods.add(config.vectorRouteMethodId(judgeVersion));
+        try {
+            Set<String> aliases = alternativeJudge.compatibleEvaluatorVersions();
+            if (aliases != null) for (String alias : aliases) if (alias != null && !alias.isBlank())
+                methods.add(config.vectorRouteMethodId(alias));
+        } catch (RuntimeException ignored) {
+            // Without declared aliases only this exact process version can use an exam.
+        }
+        return Set.copyOf(methods);
     }
 
     /**

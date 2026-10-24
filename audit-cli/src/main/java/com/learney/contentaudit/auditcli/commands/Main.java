@@ -309,6 +309,8 @@ import com.learney.contentaudit.auditdomain.BaselineStore;
 import com.learney.contentaudit.auditdomain.answercompleteness.AnswerCompletenessCorrection;
 import com.learney.contentaudit.auditdomain.correctionengine.DefaultAnalyzerCorrectionCatalog;
 import com.learney.contentaudit.auditdomain.correctionengine.LemmaAbsenceCorrection;
+import com.learney.contentaudit.auditdomain.correctionengine.SentenceLengthCorrection;
+import com.learney.contentaudit.auditdomain.correctionengine.ContextOnlyCorrection;
 import com.learney.contentaudit.auditdomain.correctionengine.QuizInstructionCorrection;
 import com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceCorrection;
 import com.learney.contentaudit.auditdomain.exactduplicates.ExactDuplicatesCorrection;
@@ -414,6 +416,11 @@ class Main {
         // ----------------------------------------------------------------
         // A saved review needs no NLP process, model discovery or judge bootstrap.
         Path problemProject = Path.of(System.getProperty("contentaudit.project.dir", System.getProperty("user.dir")));
+        Integer permanentExamExit = PermanentExamCmd.execute(remainingArgs, problemProject, System.out, System.err);
+        if (permanentExamExit != null) {
+            if (permanentExamExit != 0) System.exit(permanentExamExit);
+            return;
+        }
         Integer problemExit = ProblemCmd.execute(remainingArgs, baseDir, problemProject, System.out, System.err);
         if (problemExit != null) {
             if (problemExit != 0) System.exit(problemExit);
@@ -550,11 +557,22 @@ class Main {
         EvaluationSessionFactory examSessionFactory =
                 new ExamEvaluationSessionFactory(evaluationLedger, evaluationContentFingerprinter);
         JudgeExamRegistry judgeExamRegistry = new FileSystemJudgeExamRegistry(baseDir);
+        String regressionCoursePath = CoursePathResolver.resolve(null);
+        Path regressionCourse;
+        try {
+            regressionCourse = PermanentExamCmd.referenceCourse(remainingArgs,
+                    regressionCoursePath == null ? problemProject.resolve("db/english-course") : Path.of(regressionCoursePath));
+        } catch (IllegalArgumentException error) {
+            System.err.println("Error: " + error.getMessage());
+            System.exit(2); return;
+        }
+        com.learney.contentaudit.auditdomain.JudgeRegressionCatalog regressionCatalog =
+                new com.learney.contentaudit.auditinfrastructure.FileSystemJudgeRegressionCatalog(regressionCourse);
         com.learney.contentaudit.auditdomain.JudgePromotionRegistry judgePromotionRegistry =
                 new com.learney.contentaudit.auditinfrastructure.FileSystemJudgePromotionRegistry(baseDir);
         JudgeRuntimeConfig judgeRuntimeConfig = new DefaultJudgeRuntimeConfig();
         JudgeRuntime judgeRuntime = new DefaultJudgeRuntime(evaluationSessionFactory, examSessionFactory,
-                judgeExamRegistry, evaluationLedger, judgeRuntimeConfig, judgePromotionRegistry);
+                judgeExamRegistry, evaluationLedger, judgeRuntimeConfig, judgePromotionRegistry, regressionCatalog);
         JudgeExamVerdictExporter judgeExamVerdictExporter = new DefaultJudgeExamVerdictExporter();
 
         QuizInstructionVerdictReader quizInstructionVerdictReader = new JacksonQuizInstructionVerdictReader();
@@ -764,7 +782,7 @@ class Main {
 
         // Hook C-12: the exam of the judges, over the same runner as analyze (F-JEXAM-R001).
         JudgeExamService judgeExamService = new DefaultJudgeExamService(auditRunner, analyzerCatalog,
-                judgeExamVerdictExporter, judgeExamRegistry, judgeRuntime);
+                judgeExamVerdictExporter, judgeExamRegistry, judgeRuntime, regressionCatalog);
 
         // ----------------------------------------------------------------
         // Step 5: CLI formatting
@@ -874,6 +892,9 @@ class Main {
         List<AnalyzerCorrection> analyzerCorrections = new ArrayList<>(List.of(
                 new QuizInstructionCorrection(),
                 new LemmaAbsenceCorrection(),
+                new SentenceLengthCorrection(),
+                new ContextOnlyCorrection("naturalness"),
+                new ContextOnlyCorrection("a1-didactic"),
                 new HintCoherenceCorrection(),               // A (E-03)
                 new AnswerCompletenessCorrection(),          // A (E-03)
                 new MultipleChoiceValidityCorrection(),      // A (E-03)
@@ -1418,7 +1439,7 @@ class Main {
                 new ExamCmd(judgeExamService, examProvenance, () -> analyzerCatalog.list().stream()
                         .map(AnalyzerDescriptor::getName).toList(), currentJudgeStandings, versionCutover)));   // C · FEAT-JEXAM
         cmd.addSubcommand("promote-judge", new picocli.CommandLine(
-                new PromoteJudgeCmd(judgePromotionRegistry, currentJudgeStandings)));
+                new PromoteJudgeCmd(judgePromotionRegistry, currentJudgeStandings, judgeExamRegistry, regressionCatalog)));
 
         // FEAT-RONDA2 (hooks F-06 and E-09): the commands of packages F and E, each registered by
         // its package with its picocli wrapper: set-baseline, save-projection, compare, get-goals
@@ -1472,6 +1493,13 @@ class Main {
             // F-PUBPROD-R002: la lista de publicación lleva cada campo como lo guarda producción, con la misma forma
             // con la que el curso se escribe en disco.
             config.setProductionDocumentProjector(courseRepository);
+            // Audio belongs to the preparation for publication. Ordinary analysis uses
+            // the content-only provider; this separate engine never opens a model.
+            config.setAuditPrepublicationEngine(new IAuditEngine(scoreAggregator,
+                    new DefaultAnalyzerCatalog(List.of(new DataCoherenceAnalyzerProvider(
+                            correctorMatcher, recordings, productionSentences, studentViewRenderer,
+                            com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceStage.PREPUBLICATION))),
+                    new DefaultFindingCollector(), new DefaultContextNumbersCalculator()));
             // F-ALDIA-R003 and R005: each verdict of an analysis and of a closing is marked against today's judge.
             config.setJudgeFreshnessCatalog(judgeFreshnessCatalog);
             // F-CORTE-R001 and R006: a cut measurement is counted with the verdicts its judge left saved.
@@ -1513,7 +1541,21 @@ class Main {
                     batchConfig.get(), new com.learney.contentaudit.auditinfrastructure.minitheory.FileSystemMiniTheoryWorkspaceStore(baseDir)::fingerprint,
                     runtime);
         })));
+        batchCommand.addSubcommand("recorrect", new QuizCorrectionCmd(memoized(() -> {
+            var effective = new DefaultLagenConfigResolver(llmProviderResolver).resolve(System.getenv());
+            String runtime = effective.getProviderName() + " / " + effective.getModelId() + " / "
+                    + System.getenv().getOrDefault("CONTENT_AUDIT_REASONING_EFFORT", "medium");
+            return new com.learney.contentaudit.revisiondomain.batchengine.DefaultQuizCorrectionServiceFactory().create(
+                    batchConfig.get(), new com.learney.contentaudit.auditinfrastructure.minitheory.FileSystemMiniTheoryWorkspaceStore(baseDir)::fingerprint,
+                    runtime);
+        })));
+        batchCommand.addSubcommand("evolution", new CorrectionEvolutionCmd(memoized(() ->
+                new com.learney.contentaudit.revisiondomain.batchengine.DefaultCorrectionEvolutionServiceFactory().create(
+                        batchConfig.get(), new com.learney.contentaudit.auditinfrastructure.minitheory.FileSystemMiniTheoryWorkspaceStore(baseDir)::fingerprint))));
         batchCommand.addSubcommand("analysis", new CurrentAnalysisCmd(() -> batchConfig.get().getCurrentAnalysisService()));
+        batchCommand.addSubcommand("audio", new AudioPrepublicationCmd(memoized(() ->
+                new com.learney.contentaudit.revisiondomain.batchengine.DefaultAudioPrepublicationServiceFactory()
+                        .create(batchConfig.get()))));
         batchCommand.addSubcommand("conversion", new MultipleChoiceConversionCmd(() -> SavedMultipleChoiceConversionCmd.create(baseDir)));
         batchCommand.addSubcommand("opinion", new ContextOpinionCmd(memoized(() ->
                 new com.learney.contentaudit.revisiondomain.batchengine.DefaultContextOpinionServiceFactory().create(

@@ -12,6 +12,6 @@ public final class DefaultMultipleChoiceConversionServiceFactory {
     public MultipleChoiceConversionService create(BatchStore batches, RefinementPlanStore plans,
             RevisionArtifactStore artifacts, CourseRepository courses, Path path) {
         return new DefaultMultipleChoiceConversionService(batches, plans, courses, path,
-                new DefaultBatchChangeLedger(artifacts, new DefaultCourseElementLocator()));
+                new DefaultBatchChangeLedger(artifacts, new DefaultCourseElementLocator()).withBatches(batches));
     }
 }

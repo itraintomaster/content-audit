@@ -2,6 +2,7 @@ package com.learney.contentaudit.auditdomain.minitheoryengine;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -81,6 +82,47 @@ import java.util.HashSet;
 )
 public class MiniTheoryAnalyzerTest {
     @Test
+    @Tag("F-MINIT-R001")
+    @Tag("F-MINIT-R005")
+    void sendsLocalCanCouldInstructionsToTheJudgeAndInvalidatesCacheWhenOnlyThoseInstructionsChange() {
+        String normalRule = "Para el pedido normal usa can; para el cortés usa could.";
+        String politeRule = "Haz un pedido cortés con could.";
+        String card = "$Can$ para el pedido normal; $could$ para el cortés.";
+        AuditableQuiz normal = cloze("q-normal", "", "Can", "I have some water?",
+                "Can I have some water?", card);
+        AuditableQuiz polite = cloze("q-polite", "", "Could", "I have some water?",
+                "Could I have some water?", card);
+        normal.setInstructions(normalRule);
+        polite.setInstructions(politeRule);
+        Topic topic = new Topic("A1", "k-local-requests", "Pedidos", List.of(normal, polite));
+        World world = World.approved().holds(topic);
+
+        // Recorded evaluator: tests the actual judge input and cache boundary, not model accuracy.
+        world.run(course(topic), budget(1));
+        EvaluationSubject received = world.judge.subjectOf(topic.id);
+        assertEquals("Completa con la forma correcta.", received.getContent().get("instructions"));
+        String[] quizzes = received.getContent().get("quizzes").split("\n\n");
+        assertEquals(2, quizzes.length);
+        assertTrue(quizzes[0].contains("quizId: q-normal\ninstructions: " + normalRule));
+        assertTrue(quizzes[1].contains("quizId: q-polite\ninstructions: " + politeRule));
+
+        AuditNode unchanged = world.run(course(topic), budget(0));
+        assertEquals(1, world.judge.calls(), "unchanged local instructions still reuse the saved verdict");
+        assertTrue(diagnosisOf(exerciseOf(unchanged, topic.id, normal.getId())).isReusedFromPreviousRun());
+
+        normal.setInstructions("En este ejercicio acepta can y could por igual.");
+        AuditNode withoutBudget = world.run(course(topic), budget(0));
+        for (AuditNode exercise : exercisesOf(withoutBudget, topic.id)) assertUnevaluated(exercise);
+        assertEquals(1, world.judge.calls(), "a changed rule must not trigger a consultation without budget");
+
+        AuditNode reevaluated = world.run(course(topic), budget(1));
+        assertEquals(2, world.judge.calls(), "the changed local rule needs its own verdict");
+        assertFalse(diagnosisOf(exerciseOf(reevaluated, topic.id, normal.getId())).isReusedFromPreviousRun());
+        assertNotEquals(world.ledger.all().get(0).getKey().getContentFingerprint(),
+                world.ledger.all().get(1).getKey().getContentFingerprint());
+    }
+
+    @Test
     @Tag("F-MINIT-R002")
     @Tag("F-MINIT-R007")
     @Tag("F-MESA-R012")
@@ -140,6 +182,28 @@ public class MiniTheoryAnalyzerTest {
         assertEquals("q-ger-1", diagnosisOf(q1).getQuizId());
         assertEquals("q-ger-2", diagnosisOf(q2).getQuizId());
         assertEquals("q-ger-3", diagnosisOf(q3).getQuizId());
+    }
+
+    @Test
+    void consultationScopeKeepsTheSelectedQuizWholeTopicContextAndDoesNotSpendOnOtherTopics() {
+        World world = World.approved();
+        Topic selectedTopic = gerundio();
+        Topic otherTopic = articulos();
+        world.holds(selectedTopic).holds(otherTopic);
+        var policy = budget(10);
+        policy.setNewEvaluationSubjectIds(Set.of("q-ger-2"));
+
+        AuditNode first = world.run(course(otherTopic, selectedTopic), policy);
+        assertEquals(List.of(selectedTopic.id), world.judge.consulted());
+        assertEquals(5, occurrences(world.judge.subjectOf(selectedTopic.id).getContent().get("quizzes"), "quizId:"),
+                "The selected quiz is judged with all five exercises of its topic");
+        for (AuditNode exercise : exercisesOf(first, otherTopic.id)) assertUnevaluated(exercise);
+        for (AuditNode exercise : exercisesOf(first, selectedTopic.id)) assertEquals(1.0, exercise.getScores().get("mini-theory"));
+
+        AuditNode second = world.run(course(articulos(), gerundio()), policy);
+        assertEquals(1, world.judge.calls(), "An unchanged complete topic reuses across measurement sessions");
+        assertEquals(0, coverageOf(second).getEvaluators().get(0).getCoverage().getEvaluatedInRun());
+        for (AuditNode exercise : exercisesOf(second, selectedTopic.id)) assertTrue(diagnosisOf(exercise).isReusedFromPreviousRun());
     }
 
     @Test

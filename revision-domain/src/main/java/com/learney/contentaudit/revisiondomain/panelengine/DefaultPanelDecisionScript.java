@@ -74,6 +74,10 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
             }
             boolean conversion = kind == PanelCandidateKind.MULTIPLE_CHOICE_CONVERSION;
             List<String> resolved = resolved(briefs, candidate.getMeasurement());
+            for (ErrorTaskBrief brief : briefs)
+                if (brief instanceof com.learney.contentaudit.revisiondomain.panel.DidacticRepairBrief
+                        && candidate.getRestoredContractTaskIds().contains(brief.getTask().getId()))
+                    resolved.add(brief.getTask().getId());
             if (!conversion && resolved.isEmpty()) {
                 reasons.add(label + ": no resuelve ninguna tarea del ejercicio");
                 continue;

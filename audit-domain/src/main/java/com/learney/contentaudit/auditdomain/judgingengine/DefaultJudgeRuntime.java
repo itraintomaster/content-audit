@@ -7,6 +7,7 @@ import com.learney.contentaudit.auditdomain.EmptyReevaluationSetException;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.auditdomain.EvaluationRunPurpose;
 import com.learney.contentaudit.auditdomain.JudgeExamRegistry;
+import com.learney.contentaudit.auditdomain.JudgeRegressionCatalog;
 import com.learney.contentaudit.auditdomain.JudgePromotionRegistry;
 import com.learney.contentaudit.auditdomain.JudgeRuntimeConfig;
 import com.learney.contentaudit.auditdomain.judging.EvaluatorCoverage;
@@ -100,6 +101,8 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
 
     private final JudgePromotionRegistry promotions;
 
+    private final JudgeRegressionCatalog regressions;
+
     public DefaultJudgeRuntime(EvaluationSessionFactory courseSessions,
             EvaluationSessionFactory examSessions, JudgeExamRegistry examRegistry,
             EvaluationTimeline timeline, JudgeRuntimeConfig config) {
@@ -109,12 +112,20 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
     public DefaultJudgeRuntime(EvaluationSessionFactory courseSessions,
             EvaluationSessionFactory examSessions, JudgeExamRegistry examRegistry,
             EvaluationTimeline timeline, JudgeRuntimeConfig config, JudgePromotionRegistry promotions) {
+        this(courseSessions, examSessions, examRegistry, timeline, config, promotions, JudgeRegressionCatalog.empty());
+    }
+
+    public DefaultJudgeRuntime(EvaluationSessionFactory courseSessions,
+            EvaluationSessionFactory examSessions, JudgeExamRegistry examRegistry,
+            EvaluationTimeline timeline, JudgeRuntimeConfig config, JudgePromotionRegistry promotions,
+            JudgeRegressionCatalog regressions) {
         this.courseSessions = courseSessions;
         this.examSessions = examSessions;
         this.examRegistry = examRegistry;
         this.timeline = timeline;
         this.config = config;
         this.promotions = promotions;
+        this.regressions = regressions == null ? JudgeRegressionCatalog.empty() : regressions;
     }
 
     @Override
@@ -179,6 +190,7 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
                 policy != null ? policy.getReevaluationScope() : null,
                 policy != null ? policy.getReevaluationSubjectIds() : null,
                 purpose, maxConcurrent);
+        effectivePolicy.setNewEvaluationSubjectIds(policy != null ? policy.getNewEvaluationSubjectIds() : null);
         return new JudgeSessions(judgeName, judgeVersion, evaluatorIds, sessions, standing, effectivePolicy,
                 runtimeIdentity, compatibleJudgeVersions);
     }
@@ -188,6 +200,7 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
         List<AuditNode> planned = new ArrayList<>();
         List<EvaluationRequestMode> modes = new ArrayList<>();
         Set<String> declared = policy != null ? policy.getReevaluationSubjectIds() : null;
+        Set<String> allowed = policy != null ? policy.getNewEvaluationSubjectIds() : null;
         EvaluationRunPurpose purpose = purposeOf(policy);
         Set<String> matched = new HashSet<>();
 
@@ -196,18 +209,21 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
                 continue;
             }
             Set<String> hits = declared != null ? declaredIdsOf(unit, declared) : Set.of();
+            boolean canConsult = allowed == null || !declaredIdsOf(unit, allowed).isEmpty();
             matched.addAll(hits);
             if (purpose == EvaluationRunPurpose.EXAM) {
                 // F-JEXAM-R001: an exam asks only the units of its file; any other unit of the
                 // photo is neither asked nor counted.
                 if (!hits.isEmpty()) {
                     planned.add(unit);
-                    modes.add(EvaluationRequestMode.REUSE_OR_EVALUATE);
+                    modes.add(canConsult ? EvaluationRequestMode.REUSE_OR_EVALUATE : EvaluationRequestMode.REUSE_ONLY);
                 }
                 continue;
             }
             planned.add(unit);
-            if (purpose == EvaluationRunPurpose.READING) {
+            if (!canConsult || purpose == EvaluationRunPurpose.READING) {
+                // Keep the full context and recorded results, but never spend outside the
+                // explicit consultation scope, even for forced re-evaluation.
                 modes.add(EvaluationRequestMode.REUSE_ONLY);
                 continue;
             }
@@ -335,12 +351,38 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
         Optional<JudgeExamRecord> latest = effectiveRuntime.isExplicit()
                 ? examRegistry.latestCompatible(judgeName, acceptedVersions, effectiveRuntime)
                 : latestLegacyExam(judgeName, acceptedVersions);
+        var suite = regressions.suite(judgeName);
+        var measuredForSuite = latest == null ? null : latest.orElse(null);
+        if (!suite.coveredBy(measuredForSuite)) {
+            return new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.NOT_TAKEN, false,
+                    "examen ampliado: faltan los casos permanentes de problemas confirmados (" + suite.cases().size()
+                            + ", " + regressionSources(suite, suite.caseIds())
+                            + "); esta versión debe volver a rendirlos", effectiveRuntime, acceptedVersions);
+        }
+        Optional<JudgePromotionRecord> promoted = promotions != null && effectiveRuntime.isExplicit()
+                ? promotions.latest(judgeName, judgeVersion, effectiveRuntime) : Optional.empty();
+        var decision = promoted == null ? null : promoted.orElse(null);
+        boolean exactPromotion = decision != null && judgeName.equals(decision.judgeName())
+                && judgeVersion.equals(decision.judgeVersion())
+                && effectiveRuntime.equals(decision.runtimeIdentity());
+        if (exactPromotion && decision.coversExamException(measuredForSuite, suite)) {
+            return new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.PROMOTED, true,
+                    "Aprobado con excepción por " + decision.reviewer() + ": " + decision.reason()
+                            + (decision.reason().endsWith(".") ? " " : ". ")
+                            + "Se conservan el resultado y las discrepancias del examen. Evidencia: "
+                            + decision.evidenceFile(), effectiveRuntime, acceptedVersions);
+        }
+        if (measuredForSuite != null
+                && (measuredForSuite.getStatus() == JudgeExamStatus.APPROVED
+                        || measuredForSuite.getStatus() == JudgeExamStatus.FAILED)
+                && !measuredForSuite.getRegressionMismatchedCaseIds().isEmpty()) {
+            return new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.FAILED, false,
+                    "reprobada: no pasó los casos permanentes "
+                            + regressionSources(suite, measuredForSuite.getRegressionMismatchedCaseIds()), effectiveRuntime, acceptedVersions);
+        }
         // Operator acceptance is exact-version and exact-runtime, never inherited through
         // schema aliases. A later measured exam supersedes it; a rehearsal does not revoke it.
-        if (promotions != null && effectiveRuntime.isExplicit()) {
-            var promoted = promotions.latest(judgeName,judgeVersion,effectiveRuntime);
-            if (promoted != null && promoted.isPresent()) {
-                var decision=promoted.get();
+        if (exactPromotion && decision.examException() == null && suite.cases().isEmpty()) {
                 var measured=latest==null ? null : latest.orElse(null);
                 boolean laterMeasurement=measured!=null
                         && (measured.getStatus()==JudgeExamStatus.APPROVED || measured.getStatus()==JudgeExamStatus.FAILED)
@@ -349,7 +391,6 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
                     return new JudgeExamStanding(judgeName,judgeVersion,JudgeExamStatus.PROMOTED,true,
                             "Promovido por "+decision.reviewer()+" tras revisión del operador: "+decision.reason()
                                     +(decision.reason().endsWith(".") ? " " : ". ")+"Evidencia: "+decision.evidenceFile(),effectiveRuntime,acceptedVersions);
-            }
         }
         if (latest == null || latest.isEmpty() || latest.get().getStatus() == null) {
             return new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.NOT_TAKEN, false,
@@ -366,10 +407,24 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
                         effectiveRuntime, acceptedVersions);
             }
             case TAKEN -> new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.TAKEN, false,
-                    REASON_TAKEN, effectiveRuntime, acceptedVersions);
+                    record.getRegressionMismatchedCaseIds().isEmpty() ? REASON_TAKEN
+                            : "rendida, pendiente de decisión: hay discrepancias en los casos permanentes "
+                                    + regressionSources(suite, record.getRegressionMismatchedCaseIds()),
+                    effectiveRuntime, acceptedVersions);
             default -> new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.NOT_TAKEN, false,
                     REASON_NOT_TAKEN, effectiveRuntime, acceptedVersions);
         };
+    }
+
+    private static String regressionSources(com.learney.contentaudit.auditdomain.judging.JudgeRegressionSuite suite,
+            java.util.Collection<String> ids) {
+        var counts = new java.util.LinkedHashMap<String, Integer>();
+        for (var c : suite.cases()) if (ids.contains(c.id())) {
+            counts.merge(c.problemId() + " «" + c.problemTitle() + "»", 1, Integer::sum);
+        }
+        return counts.entrySet().stream().map(e -> e.getKey() + " (" + e.getValue()
+                + (e.getValue() == 1 ? " caso)" : " casos)"))
+                .collect(java.util.stream.Collectors.joining("; "));
     }
 
     /**

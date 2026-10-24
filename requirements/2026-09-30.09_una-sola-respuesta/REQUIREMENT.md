@@ -38,8 +38,8 @@ otra respuesta y usa lo común de FEAT-JEXAM.
 ### Rule[F-UNICA-R001] - Lee lo que el alumno ve antes de contestar
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-> Por cada ejercicio CLOZE, el juez lee el nombre del tema, la consigna que ve el alumno, el enunciado con su pista y las
-> respuestas aceptadas. No lee la [traducción](glossary:Traducción), la miniteoría ni el audio, que la app muestra recién
+> Por cada ejercicio CLOZE, el juez lee el nombre del tema, la consigna efectiva del quiz que ve el alumno, el enunciado
+> con su pista y las respuestas aceptadas. No lee la [traducción](glossary:Traducción), la miniteoría ni el audio, que la app muestra recién
 > al corregir. La huella es exactamente eso. Alcanza los 8.477 CLOZE; los 2.810 de opción múltiple son de FEAT-MCVALE.
 
 Por nivel: A1 1.692, A2 1.551, B1 3.554, B2 1.680. El nombre del tema no está en la ficha de la propuesta, pero la app lo
@@ -51,7 +51,7 @@ muestra arriba del ejercicio [ASSUMPTION]. La opción múltiple queda afuera por
 **Severity**: critical | **Validation**: VALIDATED
 
 > El veredicto lista toda respuesta no aceptada que un alumno podría escribir con lo que ve y que es correcta en ese
-> contexto, salvo las que el corrector acepta —forma contraída o larga, grafía británica o americana de la lista cerrada,
+> contexto y cumple las restricciones visibles del ejercicio ([F-UNICA-R008](#F-UNICA-R008)), salvo las que el corrector acepta —forma contraída o larga, grafía británica o americana de la lista cerrada,
 > until o till, y lo que el corrector ya pasa por alto—, y clasifica cada una como:
 > 1. **una opción que ofrece la consigna**: la consigna o la pista la nombran —«to / until / till»— y el corrector no la
 >    acepta;
@@ -132,10 +132,46 @@ imposibles por pista faltante o alternativa cortada deberían salir marcados: se
 
 > La opción que ofrece la consigna se arregla con la regla de respuestas completas, agregándola con «|». La distinta va a
 > la mesa, y cada candidato —que la agrega como aceptada, pone una pista o cambia la oración para que quede una sola— lo
-> juzga este juez ([F-JEXAM-R005](#F-JEXAM-R005)): pasa si su lista queda vacía o sólo con opciones que ofrece la consigna.
+> juzga este juez ([F-JEXAM-R005](#F-JEXAM-R005)): pasa si su lista queda vacía o sólo con opciones que ofrece la consigna,
+> conservando el objetivo y las restricciones didácticas del ejercicio ([F-MESA-R016](#F-MESA-R016)).
 
 Ejemplo de la propuesta: «Does he need water? He ___ .» se arregla con «Yes, he ___». Cómo propone y decide la mesa es del
 paquete E.
+
+<a id="F-UNICA-R008"></a>
+### Rule[F-UNICA-R008] - La alternativa cumple el selector y la fórmula que ve el alumno
+**Severity**: critical | **Validation**: VALIDATED
+
+> Una transformación que practica una fórmula concreta se juzga según esa fórmula y el selector visible del ítem,
+> además de su corrección en inglés. La consigna general «can o could» no ofrece ambas formas en cada ítem si la pista
+> selecciona una. No se cuentan como respuestas faltantes las paráfrasis que incumplen esa tarea.
+
+<details><summary>Selección de can/could y criterios de aceptación</summary>
+
+En la lección confirmada por José el 24/10/2026, «Polite request» selecciona `could` y el pedido normal selecciona
+`can`. La ausencia de la etiqueta puede seleccionar `can` sólo cuando esa convención esté explicada al alumno antes
+de contestar. Si falta esa explicación, se señala la ambigüedad; no se presume una restricción oculta.
+
+La fórmula completa debe estar establecida en la consigna efectiva del quiz o en su enunciado, incluidas las pistas o
+los modelos incorporados a esos textos que recibe el juez y ve el alumno antes de contestar. No se presupone una
+consigna general adicional ni un modelo externo no recibido. La respuesta aceptada permite conocer qué espera el corrector, pero no basta por sí sola para
+inventar una fórmula, un verbo obligatorio o una prohibición de `please` que el alumno no pudo conocer.
+La miniteoría posterior tampoco puede usarse como pista previa ([F-UNICA-R001](#F-UNICA-R001)).
+
+| Situación visible para el alumno | Resultado esperado |
+|---|---|
+| Consigna general «can o could» e ítem «Polite request» bajo la convención de la lección | Una variante con `can` no se reclama como respuesta faltante: incumple el selector de ese ítem. |
+| Pedido normal, o ausencia de etiqueta cuando la convención visible asigna ese caso a `can` | Una variante con `could` no se reclama como respuesta faltante por ser natural en una conversación. |
+| La tarea fija una fórmula de transformación | Sólo se consideran alternativas que respetan esa fórmula; no se convierte el ejercicio en paráfrasis libre. |
+| Sólo la respuesta guardada sugiere una fórmula que no se explica al alumno | No se inventa la restricción; se informa qué indicación visible falta. |
+
+La convención didáctica no afirma que `can` nunca sea cortés en el uso real. El motivo distingue «no cumple la fórmula
+o el selector de este ejercicio» de «es incorrecto o antinatural en inglés».
+
+**Fuente**: observación y aclaración explícita de José, 24/10/2026, sobre la comparación del ejercicio
+«Polite request: I want you to get me some tea.»: la corrección quitó el selector y aceptó variantes con ambos modales.
+
+</details>
 
 ## Contexto
 
@@ -246,3 +282,5 @@ siguen siendo «distinta y válida».
 - **FEAT-QINST** — Resolubilidad que el juez de consigna ya mira; fallas y lo no evaluado. Citado por R005.
 - **FEAT-QICOR** — «Resoluble y del mismo tipo» en modo comparativo. Citado en el recorrido.
 - **FEAT-TRSEN, FEAT-MCVALE** — La duda del catálogo y la opción múltiple.
+- **FEAT-MESA** — Conserva el objetivo, la fórmula y los selectores visibles al corregir; citado por
+  [F-UNICA-R007](#F-UNICA-R007) mediante [F-MESA-R016](#F-MESA-R016).

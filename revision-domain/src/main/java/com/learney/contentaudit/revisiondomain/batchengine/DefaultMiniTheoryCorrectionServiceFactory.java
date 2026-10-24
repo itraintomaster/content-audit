@@ -17,7 +17,7 @@ public final class DefaultMiniTheoryCorrectionServiceFactory {
             MiniTheoryWorkspaceStore workspaces, CourseMapper mapper, AuditEngine engine,
             Supplier<MiniTheoryRewriter> rewriter) {
         return new DefaultMiniTheoryCorrectionService(batches, reviews,
-                new DefaultBatchChangeLedger(artifacts, new DefaultCourseElementLocator()),
+                new DefaultBatchChangeLedger(artifacts, new DefaultCourseElementLocator()).withBatches(batches),
                 courses, coursePath, workspaces, mapper, engine, rewriter);
     }
 }

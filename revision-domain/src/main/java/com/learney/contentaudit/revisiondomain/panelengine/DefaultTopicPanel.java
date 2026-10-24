@@ -15,6 +15,7 @@ import com.learney.contentaudit.revisiondomain.nonregression.ChangeGate;
 import com.learney.contentaudit.revisiondomain.nonregression.ChangeGateVerdict;
 import com.learney.contentaudit.revisiondomain.nonregression.ChangeProbe;
 import com.learney.contentaudit.revisiondomain.nonregression.UnitMeasurement;
+import com.learney.contentaudit.revisiondomain.nonregression.UnevaluatedMark;
 import com.learney.contentaudit.revisiondomain.panel.CandidateRejection;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
@@ -253,10 +254,16 @@ class DefaultTopicPanel implements TopicPanel {
             return new Unit(current, true, false);
         }
         Set<String> present = identities(before.getFindings());
+        Set<UnevaluatedMark> pending = new HashSet<>(before.getUnevaluated() != null
+                ? before.getUnevaluated() : List.of());
         List<ErrorTaskBrief> holding = new ArrayList<>();
         List<ErrorTaskBrief> gone = new ArrayList<>();
         for (ErrorTaskBrief brief : tasks) {
-            (holds(brief, present) ? holding : gone).add(brief);
+            boolean needed = brief instanceof com.learney.contentaudit.revisiondomain.panel.DidacticRepairBrief repair
+                    ? !DidacticContracts.violations(repair.getReference(), TopicState.quiz(current, quizId).orElse(null),
+                            current.getInstructions(), work.getSentenceMode()).isEmpty()
+                    : holds(brief, present, pending);
+            (needed ? holding : gone).add(brief);
         }
         if (!gone.isEmpty()) {
             emit.accept(decision(knowledgeId, unitQuizIds, gone, PanelOutcomeKind.NO_LONGER_HOLDS, 0, List.of(), 0));
@@ -292,6 +299,7 @@ class DefaultTopicPanel implements TopicPanel {
                     topicView(current), new ArrayList<>(holding), lights, work.getConversion(), attempt + 1,
                     new ArrayList<>(rejections), twoFixes(holding));
             request.setTopicQuizIds(topicQuizIds(current));
+            request.setDidacticReference(work.getDidacticReferences().get(quizId));
             PanelProposal proposal;
             try {
                 proposal = proposer.propose(request);
@@ -390,7 +398,14 @@ class DefaultTopicPanel implements TopicPanel {
         boolean topicLevel = quizId == null || candidate.getTopicInstructions() != null;
         ChangeGateVerdict verdict = changeGate.check(new ChangeProbe(quizIdsOf(quizId, candidate, tasks), topicLevel,
                 before, after, new ArrayList<>()));
-        return new ScoredCandidate(candidate, after, verdict, new ArrayList<>());
+        ScoredCandidate scored = new ScoredCandidate(candidate, after, verdict, new ArrayList<>());
+        scored.setRestoredContractTaskIds(tasks.stream()
+                .filter(t -> t instanceof com.learney.contentaudit.revisiondomain.panel.DidacticRepairBrief)
+                .map(t -> (com.learney.contentaudit.revisiondomain.panel.DidacticRepairBrief) t)
+                .filter(t -> DidacticContracts.violations(t.getReference(), TopicState.quiz(changed, quizId).orElse(null),
+                        changed.getInstructions(), now.getSentenceMode()).isEmpty())
+                .map(t -> t.getTask().getId()).toList());
+        return scored;
     }
 
     // -------------------------------------------------------------------------
@@ -482,21 +497,31 @@ class DefaultTopicPanel implements TopicPanel {
     }
 
     private static TopicWork with(TopicWork work, KnowledgeEntity topic) {
-        return new TopicWork(work.getBatchId(), work.getLevel(), work.getMilestoneId(), work.getTopicId(), topic,
+        TopicWork current = new TopicWork(work.getBatchId(), work.getLevel(), work.getMilestoneId(), work.getTopicId(), topic,
                 work.getSentenceMode(), work.getBriefs(), work.getWordLights(), work.getConversion(),
                 work.getAttemptsUsed(), work.getCarriedRejections());
+        current.setNewEvaluationSubjectIds(work.getNewEvaluationSubjectIds());
+        current.setDidacticReferences(work.getDidacticReferences());
+        return current;
     }
 
-    private static boolean holds(ErrorTaskBrief brief, Set<String> present) {
-        if (brief.getFinding() != null && present.contains(DefaultPanelDecisionScript.identity(brief.getFinding()))) {
+    private static boolean holds(ErrorTaskBrief brief, Set<String> present, Set<UnevaluatedMark> pending) {
+        if (brief.getFinding() != null && (present.contains(DefaultPanelDecisionScript.identity(brief.getFinding()))
+                || pending(brief.getFinding(), pending))) {
             return true;
         }
         for (Finding covered : brief.getCoveredFindings() != null ? brief.getCoveredFindings() : List.<Finding>of()) {
-            if (present.contains(DefaultPanelDecisionScript.identity(covered))) {
+            if (present.contains(DefaultPanelDecisionScript.identity(covered)) || pending(covered, pending)) {
                 return true;
             }
         }
         return false;
+    }
+
+    /** Absence of a finding is not evidence that it disappeared when its judge has not evaluated this node. */
+    private static boolean pending(Finding finding, Set<UnevaluatedMark> pending) {
+        return finding != null && finding.getNode() != null
+                && pending.contains(new UnevaluatedMark(finding.getNode().getNodeId(), finding.getAnalyzer()));
     }
 
     private static Set<String> identities(List<Finding> findings) {

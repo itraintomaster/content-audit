@@ -36,7 +36,7 @@ class ProblemCmdTest {
     @Test void inspectionShowsCurrentContentAndRefusesFilesOutsideTheProject() throws Exception {
         var p = annotate();
         Path guide = Files.writeString(root.resolve("guide.md"), "Regla actual\n");
-        var delivery = Map.of("changes", List.of(
+        var delivery = Map.of("judgeName", "mini-theory", "changes", List.of(
                 Map.of("path", guide.toString(), "version", "sha256:old", "summary", "Guía", "scope", "judge"),
                 Map.of("path", root.resolve("../outside.md").toString(), "version", "old", "summary", "Fuera", "scope", "judge")),
                 "results", List.of(Map.of("caseId", p.cases().get(0).id(), "fixed", false, "version", "v1", "modelConsulted", false)));
@@ -62,7 +62,7 @@ class ProblemCmdTest {
         Files.writeString(gate, source);
         String version = "sha256:" + java.util.HexFormat.of().formatHex(
                 java.security.MessageDigest.getInstance("SHA-256").digest(Files.readAllBytes(gate)));
-        var delivery = Map.of("changes", List.of(Map.of("path", gate.toString(), "version", version,
+        var delivery = Map.of("judgeName", "mini-theory", "changes", List.of(Map.of("path", gate.toString(), "version", version,
                         "summary", "Validación del juez", "scope", "judge")),
                 "results", List.of(Map.of("caseId", p.cases().get(0).id(), "fixed", true,
                         "version", "v1", "modelConsulted", false)));

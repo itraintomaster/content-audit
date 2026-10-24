@@ -8,6 +8,8 @@ import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
 import com.learney.contentaudit.revisiondomain.batch.BatchReviewDecision;
 import com.learney.contentaudit.revisiondomain.batch.BatchStore;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import java.util.Map;
+import java.util.Objects;
 import com.learney.contentaudit.revisiondomain.publication.PublicationManifest;
 import java.io.IOException;
 import java.security.MessageDigest;
@@ -71,19 +73,126 @@ public class FileSystemBatchStore implements BatchStore {
         }
         Path file = dir().resolve(identifier(batch.getId()) + SUFFIX);
         byte[] bytes = json(batch, file);
-        locked(batch.getId(), () -> writeAtomically(file, bytes));
+        locked(batch.getId(), () -> locked("correction-evolution", () -> {
+            guardFrozenContent(batch);
+            writeAtomically(file, bytes);
+        }));
     }
 
     @Override public synchronized void saveIfVersion(CorrectionBatch batch, int version, BatchStatus status) {
         Path file = dir().resolve(identifier(batch.getId()) + SUFFIX);
         byte[] bytes = json(batch, file);
-        locked(batch.getId(), () -> {
+        locked(batch.getId(), () -> locked("correction-evolution", () -> {
             CorrectionBatch current = load(batch.getId()).orElseThrow();
             if (current.getContentVersion() != version || current.getStatus() != status) {
                 throw new IllegalStateException("La corrección cambió mientras se guardaba; volvé a leer.");
             }
+            guardFrozenContent(batch);
             writeAtomically(file, bytes);
-        });
+        }));
+    }
+
+    /**
+     * The child is the commit record. Its atomic appearance freezes the predecessor;
+     * there is no separate parent rewrite that can be lost halfway through a commit.
+     */
+    @Override public synchronized void commitSuccessor(String parentId, int expectedVersion,
+            String expectedFingerprint, int expectedAnalysisRevision, CorrectionBatch child) {
+        if (child == null || child.getEvolution() == null) throw new IllegalArgumentException("Falta el origen de la corrección.");
+        var source = child.getEvolution();
+        if (!Objects.equals(parentId, source.parentBatchId()) || Objects.equals(parentId, child.getId())
+                || source.baseCourse() == null || source.sourceCourse() == null)
+            throw new IllegalArgumentException("La siguiente corrección necesita su origen y la Base completos.");
+        Path file = dir().resolve(identifier(child.getId()) + SUFFIX);
+        byte[] bytes = json(child, file); // Serialization failures leave both versions untouched.
+        locked(parentId, () -> locked("correction-evolution", () -> {
+            CorrectionBatch parent = load(parentId).orElseThrow();
+            if (Files.exists(file) || hasSuccessor(parentId)
+                    || parent.getContentVersion() != expectedVersion
+                    || source.parentContentVersion() != expectedVersion
+                    || source.parentAnalysisRevision() != expectedAnalysisRevision
+                    || analysisSelections(parentId).size() != expectedAnalysisRevision
+                    || !Objects.equals(expectedFingerprint, source.parentFingerprint())
+                    || parent.getStatus() == BatchStatus.RUNNING || parent.getStatus() == BatchStatus.PUBLISHED
+                    || child.getCorrectionRevision() != Math.max(1, parent.getCorrectionRevision()) + 1
+                    || child.getLevel() != parent.getLevel()
+                    || !Objects.equals(child.getBaselineAuditId(), parent.getBaselineAuditId()))
+                throw new IllegalStateException("La corrección o su análisis cambió: volvé a preparar la siguiente versión.");
+            if (parent.getSelectiveRuns() != null && parent.getSelectiveRuns().stream()
+                    .anyMatch(run -> "RUNNING".equals(run.status()) || "NEEDS_REVIEW".equals(run.status())))
+                throw new IllegalStateException("Hay una ejecución pendiente en la corrección de origen.");
+            if (parent.getOpinionRuns() != null && parent.getOpinionRuns().stream()
+                    .anyMatch(run -> "RUNNING".equals(run.status()) || "NEEDS_REVIEW".equals(run.status())))
+                throw new IllegalStateException("Hay una opinión pendiente en la corrección de origen.");
+            writeAtomically(file, bytes);
+        }));
+    }
+
+    /** A cache of immutable lineage metadata, invalidated whenever a batch file appears or disappears. */
+    private List<Path> lineageFiles = List.of();
+    private Map<String, String> lineageParents = Map.of();
+    @Override public synchronized boolean hasSuccessor(String batchId) {
+        try {
+            List<Path> files;
+            if (!Files.isDirectory(dir())) return false;
+            try (Stream<Path> stream = Files.list(dir())) {
+                files = stream.filter(f -> f.getFileName().toString().endsWith(SUFFIX)).sorted().toList();
+            }
+            if (!files.equals(lineageFiles)) {
+                var parents = new java.util.HashMap<String, String>();
+                for (Path file : files) {
+                    String parent = readParent(file);
+                    if (parent != null) parents.put(file.getFileName().toString(), parent);
+                }
+                lineageParents = Map.copyOf(parents); lineageFiles = files;
+            }
+            return lineageParents.containsValue(batchId);
+        } catch (IOException e) { throw new java.io.UncheckedIOException(e); }
+    }
+
+    // Read only the lineage header; do not inflate whole course snapshots on every save.
+    private String readParent(Path file) throws IOException {
+        try (var parser = mapper.getFactory().createParser(file.toFile())) {
+            if (parser.nextToken() != com.fasterxml.jackson.core.JsonToken.START_OBJECT)
+                throw new IOException("La corrección no contiene un objeto JSON: " + file);
+            com.fasterxml.jackson.core.JsonToken token;
+            while ((token = parser.nextToken()) != com.fasterxml.jackson.core.JsonToken.END_OBJECT) {
+                if (token == null) throw new IOException("Corrección incompleta: " + file);
+                String field = parser.currentName();
+                if (parser.nextToken() == null) throw new IOException("Corrección incompleta: " + file);
+                if ("evolution".equals(field) && parser.currentToken() == com.fasterxml.jackson.core.JsonToken.START_OBJECT) {
+                    while ((token = parser.nextToken()) != com.fasterxml.jackson.core.JsonToken.END_OBJECT) {
+                        if (token == null) throw new IOException("Origen incompleto: " + file);
+                        String key = parser.currentName();
+                        if (parser.nextToken() == null) throw new IOException("Origen incompleto: " + file);
+                        if ("parentBatchId".equals(key)) return parser.getValueAsString();
+                        parser.skipChildren();
+                    }
+                    return null;
+                }
+                parser.skipChildren();
+            }
+            return null;
+        }
+    }
+
+    private void guardFrozenContent(CorrectionBatch candidate) {
+        var saved = load(candidate.getId());
+        if (saved.isEmpty()) return;
+        var current = saved.get();
+        if (!mapper.valueToTree(current.getEvolution()).equals(mapper.valueToTree(candidate.getEvolution())))
+            throw new IllegalStateException("El origen de una corrección guardada no se puede reescribir.");
+        var before = mapper.valueToTree(current);
+        var after = mapper.valueToTree(candidate);
+        var snapshot = before.get("baseCourseSnapshot");
+        if (snapshot != null && !snapshot.isNull() && !Objects.equals(snapshot, after.get("baseCourseSnapshot")))
+            throw new IllegalStateException("La Base guardada de una corrección no se puede reescribir.");
+        if (!hasSuccessor(candidate.getId())) return;
+        for (String field : List.of("contentVersion", "correctionRevision", "level", "baselineAuditId", "startAuditId",
+                "planId", "changes", "quizProposals", "adjustments", "conversionOrders", "taskIds", "analyzers", "evolution", "baseCourseSnapshot")) {
+            if (!Objects.equals(before.get(field), after.get(field)))
+                throw new IllegalStateException("Esta corrección tiene una siguiente versión: su contenido está conservado. Podés reanalizarla.");
+        }
     }
 
     private void locked(String id, Runnable action) {
@@ -158,7 +267,11 @@ public class FileSystemBatchStore implements BatchStore {
 
     @Override
     public synchronized Optional<CorrectionBatch> open() {
-        return list().stream().filter(b -> b.getStatus() != BatchStatus.PUBLISHED).reduce((first, second) -> second);
+        List<CorrectionBatch> batches = list();
+        var predecessors = batches.stream().filter(b -> b.getEvolution() != null)
+                .map(b -> b.getEvolution().parentBatchId()).collect(java.util.stream.Collectors.toSet());
+        return batches.stream().filter(b -> b.getStatus() != BatchStatus.PUBLISHED && !predecessors.contains(b.getId()))
+                .reduce((first, second) -> second);
     }
 
     @Override
@@ -236,7 +349,9 @@ public class FileSystemBatchStore implements BatchStore {
                 return;
             }
             CorrectionBatch batch = load(selection.batchId()).orElseThrow();
-            if (batch.getStatus() != BatchStatus.CLOSED || batch.getContentVersion() != selection.contentVersion()
+            if ((batch.getStatus() != BatchStatus.CLOSED
+                    && !(batch.getStatus() == BatchStatus.OPEN && hasSuccessor(batch.getId())))
+                    || batch.getContentVersion() != selection.contentVersion()
                     || history.size() != selection.expectedRevision())
                 throw new IllegalStateException("El análisis o el contenido cambió: volvé a leer antes de confirmar.");
             history.add(selection);
@@ -252,8 +367,9 @@ public class FileSystemBatchStore implements BatchStore {
     @Override
     public List<BatchReviewDecision> reviews(String batchId) {
         Path dir = reviewDir(batchId);
-        if (!Files.isDirectory(dir)) return List.of();
         List<BatchReviewDecision> decisions = new ArrayList<>();
+        load(batchId).map(CorrectionBatch::getEvolution).ifPresent(lineage -> decisions.addAll(lineage.inheritedReviews()));
+        if (!Files.isDirectory(dir)) return decisions;
         try (Stream<Path> files = Files.list(dir)) {
             for (Path file : files.filter(f -> f.getFileName().toString().endsWith(SUFFIX)).sorted().toList()) {
                 decisions.add(mapper.readValue(file.toFile(), BatchReviewDecision.class));

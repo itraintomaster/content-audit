@@ -10,7 +10,7 @@ public final class DefaultSelectiveCorrectionServiceFactory {
     public SelectiveCorrectionService create(BatchServiceConfig config, Function<CourseEntity, String> fingerprint,
             String correctorRuntime) {
         var locator = config.getElementLocator() != null ? config.getElementLocator() : new DefaultCourseElementLocator();
-        var ledger = new DefaultBatchChangeLedger(config.getArtifactStore(), locator);
+        var ledger = new DefaultBatchChangeLedger(config.getArtifactStore(), locator).withBatches(config.getBatchStore());
         var panels = new DefaultPanelStage(config.getPanelRunner(), config.getBriefer(), config.getCorrectionCatalog(),
                 config.getWordLightsQuery(), ledger, config.getBatchStore(), config.getAuditEngine(), config.getCourseMapper())
                 .withPlans(config.getRefinementPlanStore());

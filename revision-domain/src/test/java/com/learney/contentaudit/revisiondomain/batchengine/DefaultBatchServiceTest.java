@@ -102,6 +102,9 @@ public class DefaultBatchServiceTest {
         }
         assertEquals(MesaFixture.ANALYZERS, batch.getAnalyzers(), "the analyzers of the analysis it starts from");
         assertTrue(service.batches.saved.containsKey(batch.getId()), "saved");
+        assertEquals(service.courses.course, batch.getBaseCourseSnapshot(), "opening freezes the complete original course");
+        var exposedBase = batch.getBaseCourseSnapshot(); exposedBase.setTitle("mutated by reader");
+        assertFalse(exposedBase.equals(batch.getBaseCourseSnapshot()), "the base checkpoint is an independent copy");
     }
 
     @Test

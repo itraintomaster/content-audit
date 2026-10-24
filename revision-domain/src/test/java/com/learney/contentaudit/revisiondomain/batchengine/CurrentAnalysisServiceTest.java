@@ -20,6 +20,8 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity
 import java.time.Instant;
 import java.util.*;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -100,6 +102,64 @@ class CurrentAnalysisServiceTest {
                 .digest().getRoot().getNumbers().getErrors();
         return errors == null ? 0 : errors.getWithAnyError();
     }
+    @Test void comparisonViewKeepsExactlyTheSelectedStatesWithoutCalculatingLooseRunPreviews() {
+        var full = read();
+        var summary = service.comparisonView(batch);
+        assertFalse(full.looseRuns().isEmpty()); assertTrue(summary.looseRuns().isEmpty());
+        assertEquals(full.states(),summary.states()); assertEquals(full.revision(),summary.revision());
+        assertTrue(summary.history().isEmpty());
+        run("unused",false,"v1");
+        service.execute(select("integrate","r1","selected-summary",null));
+        assertEquals(read().states(),service.comparisonView(batch).states());
+        service.execute(select("remove","r1","removed-summary","selected-summary"));
+        assertEquals(read().states(),service.comparisonView(batch).states());
+        clearInvocations(audits);
+        service.comparisonView(batch);
+        verify(audits,never()).load("unused");
+        verify(repository,never()).save(any(),any()); verify(store,never()).save(any());
+    }
+    @Test void aCompleteSeedIsCutForTheUiAndAPartialLegacySeedIsExpandedForPublicationWithZeroQueries() {
+        var cut = DefaultCurrentAnalysisService.cut(course,CefrLevel.A1);
+        batch.setAnalysisSeedAuditId("seed-scope"); batch.setAnalysisSeedContentVersion(6);
+        saved.put("seed-scope",TandaFixture.report(course,List.of(),Map.of(),List.of()));
+        var ui = service.report(batch,"correction",cut);
+        assertEquals(1,ui.getRoot().getChildren().size());
+        assertEquals(2,saved.get("seed-scope").getRoot().getChildren().size(),"a UI read never mutates the complete checkpoint");
+        saved.put("seed-scope",TandaFixture.report(cut,List.of(),Map.of(),List.of()));
+        var mapped = new java.util.concurrent.atomic.AtomicReference<CourseEntity>();
+        when(config.getCourseMapper().map(any())).thenAnswer(i -> { mapped.set(i.getArgument(0)); return new AuditableCourse(List.of()); });
+        when(engine.runAudit(any(),any())).thenAnswer(i -> TandaFixture.report(mapped.get(),List.of(),Map.of(),List.of()));
+        var publication = service.report(batch,"correction",course);
+        assertEquals(2,publication.getRoot().getChildren().size());
+        verify(engine,atLeastOnce()).runAudit(any(),argThat(s -> s.getPolicies().values().stream().allMatch(p -> p.getMaxNewEvaluations()==0)));
+    }
+    @Test void baseAnalysisIsSharedAcrossSuccessorsAndItsLaterSelectionsAreVisibleEverywhere() {
+        var child = TandaFixture.batch("child"); child.setCorrectionRevision(2); child.setContentVersion(1);
+        child.setEvolution(new CorrectionEvolution.Lineage("batch",6,0,"next","content",course,course,List.of()));
+        when(store.load("child")).thenReturn(Optional.of(child)); when(store.list()).thenReturn(List.of(batch,child));
+        when(reviews.read("child")).thenReturn(new BatchReview("child",2,1,null,List.of(),List.of(),List.of(),List.of(),List.of()));
+        service.execute(new CurrentAnalysisService.Request("integrate","batch","base","r1","base-selection",null,0,6,"content","human"));
+        var childView = service.execute(new CurrentAnalysisService.Request("read","child",null,null,null,null,null,null,null,null));
+        var base = childView.states().stream().filter(s -> "base".equals(s.id())).findFirst().orElseThrow();
+        assertEquals(1,base.digest().getRoot().getNumbers().getErrors().getWithAnyError());
+        service.execute(new CurrentAnalysisService.Request("remove","batch","base","r1","base-remove","base-selection",1,6,"content","human"));
+        childView = service.execute(new CurrentAnalysisService.Request("read","child",null,null,null,null,null,null,null,null));
+        base = childView.states().stream().filter(s -> "base".equals(s.id())).findFirst().orElseThrow();
+        var remaining = base.digest().getRoot().getNumbers().getErrors();
+        assertEquals(0,remaining == null ? 0 : remaining.getWithAnyError());
+        assertThrows(IllegalArgumentException.class,() -> service.execute(new CurrentAnalysisService.Request(
+                "integrate","child","base","r1","wrong-base",null,0,1,"content","human")));
+    }
+    @Test void frozenOpenPredecessorCanIntegrateAndRemoveAnalysisWithoutChangingItsContent() {
+        batch.setStatus(BatchStatus.OPEN);
+        when(store.hasSuccessor("batch")).thenReturn(true);
+        var before = CorrectionEvolution.copyCourse(course);
+        assertEquals(1, errors(service.execute(select("integrate", "r1", "historical-analysis", null))));
+        assertEquals(0, errors(service.execute(select("remove", "r1", "historical-remove", "historical-analysis"))));
+        assertEquals(6, batch.getContentVersion()); assertEquals(before, course);
+        verify(repository, never()).save(any(), any()); verify(store, never()).save(any());
+    }
+
     @Test void looseRunDoesNotCountUntilExplicitlyIntegratedAndRemovalRestoresEverything() {
         assertEquals(0, errors(read()));
         assertEquals("v1", read().looseRuns().get(0).judgeVersion());
@@ -125,6 +185,222 @@ class CurrentAnalysisServiceTest {
         assertFalse(service.reanalysisScope(NAME, base, fresh, "v1").sharedQuizIds().contains(TandaFixture.CHILD));
         ((AuditableQuiz)DefaultAnalysisComposer.index(fresh.getRoot()).get(TandaFixture.CHILD).getEntity()).setInstructions("Otra consigna");
         assertTrue(service.reanalysisScope(NAME, base, fresh, "v2").baseOnlyQuizIds().contains(TandaFixture.CHILD));
+    }
+
+    @Test void oneQuizConversionKeepsCompatibleSeedOpinionsWithoutRewritingTheSeedOrSelections() {
+        String pairJudge = "near-duplicates", quizJudge = "quiz-instruction", siblingId = "unchanged-sibling";
+        var descriptors = new ArrayList<AnalyzerDescriptor>();
+        for (String name : List.of(pairJudge, quizJudge)) {
+            var descriptor = new AnalyzerDescriptor(); descriptor.setName(name); descriptor.setDisplayName(name);
+            descriptor.setCost(AnalysisCost.PAID_MODEL); descriptor.setTarget(AuditTarget.QUIZ);
+            descriptor.setFamily(com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.ERRORS);
+            descriptor.setEvaluatedTargets(List.of(AuditTarget.QUIZ));
+            descriptors.add(descriptor);
+        }
+        when(catalog.list()).thenReturn(descriptors);
+        batch.setAnalyzers(List.of(pairJudge, quizJudge));
+        batch.setSelectiveRuns(List.of());
+        batch.setContentVersion(8);
+
+        var changedQuiz = TandaFixture.exercise(course, TandaFixture.RESIDE);
+        var sibling = QuizTemplateEntities.copyOf(changedQuiz); sibling.setId(siblingId); sibling.setOidId(siblingId);
+        var changedTopic = course.getRoot().getMilestones().get(0).getTopics().get(0).getKnowledges().stream()
+                .filter(k -> TandaFixture.RESIDE_TOPIC.equals(k.getId())).findFirst().orElseThrow();
+        changedTopic.getQuizTemplates().add(sibling);
+        List<String> quizIds = List.of(TandaFixture.RESIDE, siblingId, TandaFixture.CHILD);
+        var seed = TandaFixture.report(course, List.of(), Map.of(), List.of(pairJudge, quizJudge));
+        var seedNodes = DefaultAnalysisComposer.index(seed.getRoot());
+        String measuredAt = "2026-10-18T12:00:00Z";
+        var originalOrigins = new LinkedHashMap<String, Map<String, Object>>();
+        for (String id : quizIds) {
+            var node = seedNodes.get(id);
+            var origins = new LinkedHashMap<String, Object>();
+            for (String judge : List.of(pairJudge, quizJudge)) {
+                node.getScores().put(judge, 1.0);
+                RecordedVerdictVersions.stamp(node, judge, "saved-v1");
+                var origin = Map.<String, Object>of("auditId", "original-measurement", "judgeVersion", "saved-v1",
+                        "runtime", "codex-cli / synthetic / medium", "measuredAt", measuredAt,
+                        "integrated", false, "fingerprint", composer.fingerprint(judge, node));
+                origins.put(judge, origin);
+            }
+            node.getMetadata().put(DefaultAnalysisComposer.PROVENANCE, origins);
+            originalOrigins.put(id, Map.copyOf(origins));
+        }
+        saved.put("seed-v8", seed);
+        batch.setAnalysisSeedAuditId("seed-v8"); batch.setAnalysisSeedContentVersion(8);
+
+        // Only this quiz changes form; its stored sentence and the other quizzes remain identical.
+        changedQuiz.setKind("MULTIPLE_CHOICE");
+        changedQuiz.setInstructions("Elige la preposición correcta.");
+        changedQuiz.setForm(new FormEntity("MULTIPLE_CHOICE", 1, "", "", List.of(
+                new SentencePartEntity(SentencePartKind.TEXT, "We reside", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", null),
+                new SentencePartEntity(SentencePartKind.TEXT, "London with our granddad.", null)),
+                new MultipleChoiceEntity("SINGLE", List.of(new MultipleChoiceItemEntity("in", 1, "in"),
+                        new MultipleChoiceItemEntity("at", 0, "at"))), null));
+        batch.setContentVersion(9);
+        var current = TandaFixture.report(course, List.of(), Map.of(
+                TandaFixture.RESIDE, List.of(pairJudge, quizJudge), siblingId, List.of(pairJudge, quizJudge),
+                TandaFixture.CHILD, List.of(pairJudge, quizJudge)), List.of(pairJudge, quizJudge));
+        var currentNodes = DefaultAnalysisComposer.index(current.getRoot());
+        assertNotEquals(composer.fingerprint(pairJudge, seedNodes.get(siblingId)),
+                composer.fingerprint(pairJudge, currentNodes.get(siblingId)), "pairs depend on the whole topic");
+        assertEquals(composer.fingerprint(quizJudge, seedNodes.get(siblingId)),
+                composer.fingerprint(quizJudge, currentNodes.get(siblingId)), "a quiz judge reads only its unchanged quiz");
+        assertEquals(composer.fingerprint(pairJudge, seedNodes.get(TandaFixture.CHILD)),
+                composer.fingerprint(pairJudge, currentNodes.get(TandaFixture.CHILD)), "the other topic has not changed");
+        when(engine.runAudit(any(), any())).thenReturn(current);
+        when(reviews.read("batch")).thenReturn(new BatchReview("batch", 1, 9, null,
+                List.of(), List.of(), List.of(), List.of(), List.of()));
+
+        var report = service.report(batch, "correction", course);
+        var result = DefaultAnalysisComposer.index(report.getRoot());
+        for (String judge : List.of(pairJudge, quizJudge)) {
+            assertTrue(DefaultAnalysisComposer.evaluated(result.get(TandaFixture.CHILD), judge),
+                    "the other topic must retain its " + judge + " opinion after one conversion");
+            assertFalse(DefaultAnalysisComposer.evaluated(result.get(TandaFixture.RESIDE), judge),
+                    "the converted quiz must not borrow an opinion about the old input");
+            assertTrue(result.get(TandaFixture.RESIDE).getUnevaluatedBy().contains(judge));
+        }
+        assertTrue(DefaultAnalysisComposer.evaluated(result.get(siblingId), quizJudge));
+        assertFalse(DefaultAnalysisComposer.evaluated(result.get(siblingId), pairJudge),
+                "an unchanged sibling still needs a new pair opinion when its topic changes");
+        assertTrue(result.get(siblingId).getUnevaluatedBy().contains(pairJudge));
+        for (String id : List.of(TandaFixture.CHILD, siblingId)) {
+            var origins = (Map<?, ?>) result.get(id).getMetadata().get(DefaultAnalysisComposer.PROVENANCE);
+            var judges = id.equals(siblingId) ? List.of(quizJudge) : List.of(pairJudge, quizJudge);
+            for (String judge : judges) {
+                assertEquals(originalOrigins.get(id).get(judge), origins.get(judge),
+                        "preserved opinions retain the original measurement's provenance");
+            }
+        }
+        for (String id : quizIds) {
+            assertEquals(originalOrigins.get(id), seedNodes.get(id).getMetadata().get(DefaultAnalysisComposer.PROVENANCE));
+            for (String judge : List.of(pairJudge, quizJudge)) assertTrue(DefaultAnalysisComposer.evaluated(seedNodes.get(id), judge));
+        }
+        assertNull(((AuditableQuiz) seedNodes.get(TandaFixture.RESIDE).getEntity()).getMultipleChoice());
+        assertEquals(8, batch.getAnalysisSeedContentVersion());
+        assertEquals("seed-v8", batch.getAnalysisSeedAuditId());
+        assertTrue(history.isEmpty());
+        verify(audits, never()).save(any()); verify(store, never()).saveAnalysisSelection(any());
+        verify(store, never()).save(any()); verify(repository, never()).save(any(), any());
+        verify(engine, atLeastOnce()).runAudit(any(), argThat(selection ->
+                selection.getPolicies().values().stream().allMatch(policy -> policy.getMaxNewEvaluations() == 0
+                        && policy.getPurpose() == EvaluationRunPurpose.READING)));
+    }
+
+    @Test void versionBumpNeverOverwritesAnOpinionAlreadyPresentInTheCurrentReading() {
+        var seed = report(true, false, "seed-v1");
+        saved.put("seed-v8", seed);
+        batch.setAnalysisSeedAuditId("seed-v8"); batch.setAnalysisSeedContentVersion(8); batch.setContentVersion(9);
+        var current = report(true, true, "current-v2");
+        when(engine.runAudit(any(), any())).thenReturn(current);
+
+        var result = service.report(batch, "correction", course);
+        var node = DefaultAnalysisComposer.index(result.getRoot()).get(TandaFixture.CHILD);
+        assertEquals(.3, node.getScores().get(NAME));
+        assertEquals("current-v2", DefaultAnalysisComposer.version(node, NAME, result));
+        assertTrue(node.getFindings().stream().anyMatch(f -> NAME.equals(f.getAnalyzer())));
+        var original = DefaultAnalysisComposer.index(seed.getRoot()).get(TandaFixture.CHILD);
+        assertEquals(1., original.getScores().get(NAME));
+        assertTrue(original.getFindings().isEmpty());
+        verify(audits, never()).save(any()); verify(store, never()).saveAnalysisSelection(any());
+        verify(store, never()).save(any()); verify(repository, never()).save(any(), any());
+    }
+
+    @Test void versionBumpPreservesAStoredAbstentionAndItsPendingMarkWithoutApprovingTheQuiz() {
+        var seed = abstained("v2");
+        saved.put("seed-v8", seed);
+        batch.setAnalysisSeedAuditId("seed-v8"); batch.setAnalysisSeedContentVersion(8); batch.setContentVersion(9);
+        var judges = List.of("pragmatism", "naturalness", "a1-didactic");
+        config.setJudgeFreshnessCatalog(name -> judges.contains(name) ? Optional.of(todaysJudge(name)) : Optional.empty());
+        var current = report(false, false, "v2");
+        DefaultAnalysisComposer.index(current.getRoot()).get(TandaFixture.CHILD).getUnevaluatedBy().addAll(judges);
+        when(engine.runAudit(any(), any())).thenReturn(current);
+
+        var report = service.report(batch, "correction", course);
+        var node = DefaultAnalysisComposer.index(report.getRoot()).get(TandaFixture.CHILD);
+        assertTrue(DefaultAnalysisComposer.hasStoredOpinion(node, "pragmatism"));
+        assertFalse(DefaultAnalysisComposer.evaluated(node, "pragmatism"));
+        assertTrue(node.getUnevaluatedBy().contains("pragmatism"));
+        assertFalse(node.getScores().containsKey("pragmatism"));
+        assertEquals(((QuizDiagnoses) DefaultAnalysisComposer.index(seed.getRoot()).get(TandaFixture.CHILD)
+                        .getDiagnoses()).getPragmatismDiagnosis().orElseThrow(),
+                ((QuizDiagnoses) node.getDiagnoses()).getPragmatismDiagnosis().orElseThrow());
+        var correction = read().states().stream().filter(s -> "correction".equals(s.id())).findFirst().orElseThrow();
+        var mark = correction.verdictMarks().get(TandaFixture.CHILD).get("pragmatism");
+        assertEquals(com.learney.contentaudit.auditdomain.judging.JudgeAbstention.NEEDS_CONTEXT, mark.get("abstention"));
+        assertEquals("v2", mark.get("judgeVersion"));
+        assertEquals(1, correction.judges().stream().filter(j -> "pragmatism".equals(j.judgeName()))
+                .findFirst().orElseThrow().abstained());
+        verify(audits, never()).save(any()); verify(store, never()).saveAnalysisSelection(any());
+        verify(store, never()).save(any()); verify(repository, never()).save(any(), any());
+        verify(engine, atLeastOnce()).runAudit(any(), argThat(selection -> selection.getPolicies().values().stream()
+                .allMatch(policy -> policy.getMaxNewEvaluations() == 0 && policy.getPurpose() == EvaluationRunPurpose.READING)));
+    }
+
+    @ParameterizedTest @ValueSource(ints = {1, 0, -1})
+    void legacySeedRetainsOnlyMeasuredCoverageProvenanceAndNeverInfersItFromStanding(int measuredVerdicts) {
+        boolean measuredVersions = measuredVerdicts > 0;
+        String judge = "near-duplicates";
+        var descriptor = new AnalyzerDescriptor(); descriptor.setName(judge); descriptor.setDisplayName(judge);
+        descriptor.setCost(AnalysisCost.PAID_MODEL); descriptor.setTarget(AuditTarget.QUIZ);
+        descriptor.setFamily(com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.ERRORS);
+        descriptor.setEvaluatedTargets(List.of(AuditTarget.QUIZ));
+        when(catalog.list()).thenReturn(List.of(descriptor));
+        batch.setAnalyzers(List.of(judge));
+        var legacyRuntime = EvaluationRuntimeIdentity.explicit("codex-cli", "previous-model", "medium");
+        var seed = report(false, false, "unused");
+        var source = DefaultAnalysisComposer.index(seed.getRoot()).get(TandaFixture.CHILD);
+        source.getScores().put(judge, 1.0);
+        var oldCoverage = new JudgeCoverageDiagnosis(); oldCoverage.setJudgeName(judge);
+        oldCoverage.setUnit(AuditTarget.KNOWLEDGE);
+        oldCoverage.setStanding(new JudgeExamStanding(judge, "legacy-v1", JudgeExamStatus.APPROVED,
+                true, null, legacyRuntime, Set.of("legacy-v1")));
+        // -1 represents absent historical versions; zero represents a version listed without any measured verdict.
+        if (measuredVerdicts >= 0) oldCoverage.setVersions(List.of(
+                new com.learney.contentaudit.auditdomain.judging.JudgeVersionStanding("legacy-v1", measuredVerdicts,
+                        JudgeExamStatus.APPROVED, legacyRuntime)));
+        cover(seed, oldCoverage);
+        assertFalse(source.getMetadata().containsKey(DefaultAnalysisComposer.PROVENANCE));
+        saved.put("seed-v8", seed);
+        batch.setAnalysisSeedAuditId("seed-v8"); batch.setAnalysisSeedContentVersion(8); batch.setContentVersion(9);
+
+        var current = report(false, false, "unused");
+        DefaultAnalysisComposer.index(current.getRoot()).get(TandaFixture.CHILD).getUnevaluatedBy().add(judge);
+        var currentCoverage = new JudgeCoverageDiagnosis(); currentCoverage.setJudgeName(judge);
+        currentCoverage.setUnit(AuditTarget.KNOWLEDGE);
+        currentCoverage.setStanding(new JudgeExamStanding(judge, "current-v2", JudgeExamStatus.NOT_TAKEN,
+                false, "sin examen", EvaluationRuntimeIdentity.explicit("codex-cli", "new-model", "high"), Set.of("current-v2")));
+        // A different quiz has a measured current opinion; its provenance must not leak into the restored child.
+        var otherCurrent = DefaultAnalysisComposer.index(current.getRoot()).get(TandaFixture.RESIDE);
+        otherCurrent.getScores().put(judge, 1.0); RecordedVerdictVersions.stamp(otherCurrent, judge, "current-v2");
+        currentCoverage.setVersions(List.of(new com.learney.contentaudit.auditdomain.judging.JudgeVersionStanding(
+                "current-v2", 1, JudgeExamStatus.NOT_TAKEN,
+                EvaluationRuntimeIdentity.explicit("codex-cli", "new-model", "high"))));
+        cover(current, currentCoverage);
+        when(engine.runAudit(any(), any())).thenReturn(current);
+
+        var result = service.report(batch, "correction", course);
+        var node = DefaultAnalysisComposer.index(result.getRoot()).get(TandaFixture.CHILD);
+        assertTrue(DefaultAnalysisComposer.evaluated(node, judge));
+        assertEquals(1.0, node.getScores().get(judge));
+        assertEquals(measuredVersions ? "legacy-v1" : null, DefaultAnalysisComposer.version(node, judge, result),
+                "a retained verdict must not acquire the current reader's version");
+        var origins = (Map<?, ?>) node.getMetadata().get(DefaultAnalysisComposer.PROVENANCE);
+        var origin = (Map<?, ?>) origins.get(judge);
+        assertEquals("seed-v8", origin.get("auditId"), "the seed is the only known historical source");
+        assertEquals(measuredVersions ? "legacy-v1" : null, origin.get("judgeVersion"));
+        assertEquals(measuredVersions ? legacyRuntime.toString() : null, origin.get("runtime"),
+                "the standing is permission to run, not evidence of which runtime produced an old verdict");
+        assertNull(origin.get("measuredAt"), "an unknown measurement date must not become today's date");
+        assertEquals(false, origin.get("integrated"));
+        assertFalse(source.getMetadata().containsKey(DefaultAnalysisComposer.PROVENANCE));
+        assertEquals(1.0, source.getScores().get(judge));
+        assertEquals("legacy-v1", oldCoverage.getStanding().getJudgeVersion());
+        assertEquals(legacyRuntime, oldCoverage.getStanding().getRuntimeIdentity());
+        verify(audits, never()).save(any()); verify(store, never()).saveAnalysisSelection(any());
+        verify(store, never()).save(any()); verify(repository, never()).save(any(), any());
     }
 
     @Test void integratesDidacticReviewWithoutTreatingItAsApproval() {
@@ -630,4 +906,25 @@ class CurrentAnalysisServiceTest {
         var d = (DefaultCourseDiagnoses) report.getRoot().getDiagnoses();
         var list = new ArrayList<>(BatchBook.list(d.getJudgeCoverages())); list.add(coverage); d.setJudgeCoverages(list);
     }
+    @Test void historicalSeedAndIntegratedReportsProjectAudioOutOfCurrentSeverityWithoutChangingSavedEvidence() {
+        var audio = new Finding("data-coherence","audio-matches",new FindingNodeRef(AuditTarget.QUIZ,TandaFixture.CHILD,"quiz"),
+                FindingSeverity.MEDIUM,new FindingEvidence(List.of(),"old audio",List.of()),FindingResolution.RULE,null,null);
+        var content = new Finding("data-coherence","saved-sentence",new FindingNodeRef(AuditTarget.QUIZ,TandaFixture.CHILD,"quiz"),
+                FindingSeverity.MEDIUM,new FindingEvidence(List.of(),"saved text",List.of()),FindingResolution.RULE,null,null);
+        var savedSeed = TandaFixture.report(course,List.of(audio,content),Map.of(),List.of("data-coherence"));
+        var node = DefaultAnalysisComposer.index(savedSeed.getRoot()).get(TandaFixture.CHILD);
+        node.setDiagnoses(new DefaultQuizDiagnoses()); node.getScores().put("data-coherence",0.0);
+        saved.put("audio-seed",savedSeed); batch.setAnalysisSeedAuditId("audio-seed"); batch.setAnalysisSeedContentVersion(6);
+        saved.put(batch.getBaselineAuditId(),savedSeed);
+        for (String state : List.of("base","correction")) {
+            var report = service.report(batch,state,course);
+            var current = DefaultAnalysisComposer.index(report.getRoot()).get(TandaFixture.CHILD);
+            assertEquals(List.of(content),current.getFindings());
+            assertEquals(0.0,current.getScores().get("data-coherence"));
+            assertEquals("CONTENT_WITHOUT_AUDIO_V1",report.getRoot().getMetadata().get("analysisProjection"));
+        }
+        assertEquals(List.of(audio,content),node.getFindings());
+        assertNull(savedSeed.getRoot().getMetadata().get("analysisProjection"));
+    }
+
 }

@@ -85,10 +85,12 @@ public class DefaultBatchTaskSelectorTest {
                 FindingResolution.PANEL, "reside", "«reside» no es de A1");
         Finding ownLemma = MesaFixture.finding("lemma-absence", "misplaced-word", MesaFixture.VEGETABLES,
                 FindingSeverity.MEDIUM, FindingResolution.PANEL, "vegetable", "«vegetable» no es de A1");
-        AuditReport start = TandaFixture.report(course, List.of(offLevel, lemma, ownLemma), Map.of(), MesaFixture.ANALYZERS);
+        Finding anotherOwnLemma = MesaFixture.finding("lemma-absence", "misplaced-word", MesaFixture.VEGETABLES,
+                FindingSeverity.MEDIUM, FindingResolution.PANEL, "another-word", "otra palabra del mismo analizador");
+        AuditReport start = TandaFixture.report(course, List.of(offLevel, lemma, ownLemma, anotherOwnLemma), Map.of(), MesaFixture.ANALYZERS);
         List<RefinementTask> tasks = new ArrayList<>(List.of(
                 TandaFixture.covering("t-reside", lemma, List.of(offLevel), TandaFixture.RESIDE_TOPIC),
-                TandaFixture.task("t-vegetable", ownLemma, MesaFixture.AFIRMATIVAS, CefrLevel.A1)));
+                TandaFixture.covering("t-vegetable", ownLemma, List.of(anotherOwnLemma), MesaFixture.AFIRMATIVAS)));
         for (int i = 1; i <= 3; i++) {
             tasks.add(TandaFixture.lengthTask("t-largo-" + i, MesaFixture.VEGETABLES));
         }
@@ -98,6 +100,33 @@ public class DefaultBatchTaskSelectorTest {
 
         assertEquals(List.of("t-reside"), batch.getTaskIds());
         assertTrue(batch.getNotTakenTaskIds().isEmpty(), "a vocabulary task of its own is not a batch's: nothing to declare");
+    }
+
+    @Test
+    void sameAnalyzerSecondariesAndRankOnlyContextDoNotEnlistVocabularyTasksInANormalBatch() {
+        Finding first = MesaFixture.finding("lemma-absence", "misplaced-word", TandaFixture.RESIDE,
+                FindingSeverity.MEDIUM, FindingResolution.PANEL, "reside", "palabra de otro nivel");
+        Finding second = MesaFixture.finding("lemma-absence", "misplaced-word", TandaFixture.RESIDE,
+                FindingSeverity.MEDIUM, FindingResolution.PANEL, "granddad", "segunda palabra de otro nivel");
+        Finding offLevel = MesaFixture.finding("off-level-words", "far-above-level", TandaFixture.RESIDE,
+                FindingSeverity.HIGH, FindingResolution.PANEL, "reside", "error compartido");
+        Finding rank = MesaFixture.finding("naturalness", "observation", TandaFixture.RESIDE,
+                FindingSeverity.MEDIUM, FindingResolution.RANK_ONLY, "note", "sólo contexto");
+        Finding length = MesaFixture.finding("sentence-length", "longer-than-goal", TandaFixture.RESIDE,
+                FindingSeverity.MEDIUM, FindingResolution.PANEL, "length", "oración larga");
+        var lexical = TandaFixture.covering("lexical-only", first, List.of(second), TandaFixture.RESIDE_TOPIC);
+        var context = TandaFixture.covering("rank-only", first, List.of(second, rank), TandaFixture.RESIDE_TOPIC);
+        var lengthTask = TandaFixture.covering("length-only", length, List.of(length), TandaFixture.RESIDE_TOPIC);
+        lengthTask.setDiagnosisKind(com.learney.contentaudit.refinerdomain.DiagnosisKind.SENTENCE_LENGTH);
+        AuditReport start = TandaFixture.report(TandaFixture.course(), List.of(first, second, offLevel, rank, length),
+                Map.of(), MesaFixture.ANALYZERS);
+        for (List<Finding> findings : List.of(List.of(second, offLevel), List.of(offLevel, second))) {
+            var shared = TandaFixture.covering("shared-error", first, findings, TandaFixture.RESIDE_TOPIC);
+            CorrectionBatch batch = selector(new TandaFixture.Artifacts()).select(
+                    TandaFixture.plan(lexical, context, lengthTask, shared), start, CefrLevel.A1, List.of(), List.of());
+            assertEquals(List.of("shared-error"), batch.getTaskIds());
+            assertTrue(batch.getNotTakenTaskIds().isEmpty());
+        }
     }
 
     @Test
@@ -197,13 +226,12 @@ public class DefaultBatchTaskSelectorTest {
     }
 
     @Test
-    @DisplayName("should declare nothing pending for a published rerecording whose audio data-coherence no longer marks, because the registry already has it with that text")
+    @DisplayName("should preserve pending audio requests when content analysis intentionally excludes audio")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R012")
-    public void shouldDeclareNothingPendingForAPublishedRerecordingWhoseAudioDatacoherenceNoLongerMarksBecauseTheRegistryAlreadyHasItWithThatText(
+    public void shouldPreservePendingRerecordingWhenTheContentStageHasNoAudioFindings(
             ) {
-        // R012: the recording of «I learned myself to drive a car.» is in the registry and data-coherence no longer marks
-        // the audio: the request is done, and nothing is carried as pending.
+        // CONTENT intentionally has no audio findings; their absence does not prove a pending recording was produced.
         CourseEntity course = withLearned();
         AuditReport start = TandaFixture.report(course, List.of(MesaFixture.missingHint()), Map.of(), MesaFixture.ANALYZERS);
         AudioRerecordRequest recorded = new AudioRerecordRequest(LEARNED, MesaFixture.audioKey(LEARNED),
@@ -213,7 +241,7 @@ public class DefaultBatchTaskSelectorTest {
                 TandaFixture.task("t-pista", MesaFixture.missingHint(), MesaFixture.AFIRMATIVAS, CefrLevel.A1)),
                 start, CefrLevel.A1, List.of(), List.of(recorded));
 
-        assertTrue(batch.getPendingRerecords().isEmpty(), "the registry already has it: " + batch.getPendingRerecords());
+        assertEquals(List.of(recorded), batch.getPendingRerecords(), "Audio must be explicitly inspected in prepublication.");
         assertEquals(List.of("t-pista"), batch.getTaskIds());
         assertTrue(batch.getNotTakenTaskIds().isEmpty());
     }

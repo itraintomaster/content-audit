@@ -16,13 +16,14 @@ import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
 import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 
 /**
- * F-DATOS-R005: data-coherence in the catalog, an errors analyzer that evaluates exercises,
- * resolves by rule or at the panel and costs instant. No plan binding -- recording again and
- * rebuilding are package E's -- and no configuration.
+ * Textual coherence during correction, with audio checks explicitly enabled for prepublication.
+ * Its stage is part of the measurement configuration, so the two scopes cannot compare as equal.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -37,13 +38,22 @@ public class DataCoherenceAnalyzerProvider implements AnalyzerProvider {
 
     private final QuizStudentViewRenderer studentViewRenderer;
 
+    private final DataCoherenceStage stage;
+
     public DataCoherenceAnalyzerProvider(CorrectorMatcher correctorMatcher,
             AudioRecordingRegistry recordings, ProductionSentenceSource productionSentences,
             QuizStudentViewRenderer studentViewRenderer) {
+        this(correctorMatcher, recordings, productionSentences, studentViewRenderer, DataCoherenceStage.CONTENT);
+    }
+
+    public DataCoherenceAnalyzerProvider(CorrectorMatcher correctorMatcher,
+            AudioRecordingRegistry recordings, ProductionSentenceSource productionSentences,
+            QuizStudentViewRenderer studentViewRenderer, DataCoherenceStage stage) {
         this.correctorMatcher = correctorMatcher;
         this.recordings = recordings;
         this.productionSentences = productionSentences;
         this.studentViewRenderer = studentViewRenderer;
+        this.stage = Objects.requireNonNull(stage);
     }
 
     @Override
@@ -53,6 +63,19 @@ public class DataCoherenceAnalyzerProvider implements AnalyzerProvider {
 
     @Override
     public AnalyzerDescriptor describe() {
+        if (stage == DataCoherenceStage.CONTENT) return new AnalyzerDescriptor(
+                DataCoherenceAnalyzer.ANALYZER_NAME,
+                DataCoherenceAnalyzer.CONTENT_DESCRIPTION,
+                AuditTarget.QUIZ, "¿Todas las copias del ejercicio dicen lo mismo?",
+                "Las partes con su primera respuesta y las oraciones guardadas del árbol y de producción",
+                List.of(new AnalyzerRuleCard(DataCoherenceAnalyzer.RULE_SAVED_SENTENCE,
+                                "F-DATOS-R001: las oraciones guardadas coinciden con el ejercicio armado", AnalysisCost.INSTANT),
+                        new AnalyzerRuleCard(DataCoherenceAnalyzer.RULE_NO_SLASH,
+                                "F-DATOS-R002: las respuestas aceptadas no llevan «/»", AnalysisCost.INSTANT)),
+                "0 ejercicios con error de coherencia textual", AnalyzerFamily.ERRORS,
+                List.of(AuditTarget.QUIZ), List.of(FindingResolution.RULE, FindingResolution.PANEL),
+                AnalysisCost.INSTANT, "Respuesta u oración que no coincide", List.of(),
+                "Revisión de contenido: compara las respuestas y las oraciones guardadas. El audio se revisa en prepublicación.");
         return new AnalyzerDescriptor(
                 DataCoherenceAnalyzer.ANALYZER_NAME,
                 DataCoherenceAnalyzer.DESCRIPTION,
@@ -84,7 +107,7 @@ public class DataCoherenceAnalyzerProvider implements AnalyzerProvider {
     @Override
     public ContentAnalyzer create(EvaluationRunPolicy policy) {
         return new DataCoherenceAnalyzer(correctorMatcher, recordings, productionSentences,
-                new DefaultSpokenTextBuilder(), studentViewRenderer);
+                new DefaultSpokenTextBuilder(), studentViewRenderer, stage);
     }
 
     /**
@@ -97,6 +120,8 @@ public class DataCoherenceAnalyzerProvider implements AnalyzerProvider {
 
     @Override
     public Optional<SelfDescribingConfig> config() {
-        return Optional.empty();
+        return Optional.of(() -> Map.of("stage", stage.name(), "scopeVersion", 1,
+                "rules", describe().getRules().stream().map(AnalyzerRuleCard::getId).toList(),
+                "audioEvaluated", stage == DataCoherenceStage.PREPUBLICATION));
     }
 }

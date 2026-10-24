@@ -6,6 +6,10 @@
   "dependencies": ["cefrLevel", "topic", "instructions", "quizzes"],
   "topKeys": ["assessments"],
   "promptMustMention": [
+    "MISSING_ENGLISH_HIGHLIGHT",
+    "Si completa supera 300 caracteres",
+    "Revisá cada aparición",
+    "No exijas marcas si la tarjeta está enteramente en español",
     "una decisión independiente por quiz",
     "identidad del assessment es el `quizId`",
     "decisión pedagógica focal",
@@ -35,6 +39,9 @@
     "mismo orden",
     "OVER_SPECIFIC_FOR_QUIZ",
     "THEORETICAL_JARGON",
+    "DIDACTIC_DIRECTION",
+    "compatibilidad inversa sea verdadera o biunívoca",
+    "no un contraejemplo lógico",
     "Metalenguaje teórico o jerga gramatical innecesaria",
     "La longitud por sí sola no es un defecto",
     "léxico incidental fijado",
@@ -49,6 +56,18 @@
   ],
   "why": "Regresión offline con microcasos inventados para las fronteras abstractas del juez: identidad por quizId, suficiencia focal, forma frente a función, universales, atomización, respuestas operativas, taxonomía y prioridad; además cubre el contrato del gate, la cobertura exacta y las severidades fijas.",
   "inputs": {
+    "long-english-highlight": {
+      "cefrLevel": "A1",
+      "topic": "Contrato de evidencia acotada",
+      "instructions": "Elegí la forma presente de be.",
+      "quizzes": "quizId: q-long-highlight\nminiTheory: En presente afirmativo, con I se usa am. Esta oración española ocupa espacio en una prueba de transporte, no mide la calidad pedagógica. Esta oración española ocupa espacio en una prueba de transporte, no mide la calidad pedagógica. Esta oración española ocupa espacio en una prueba de transporte, no mide la calidad pedagógica. Esta oración española ocupa espacio en una prueba de transporte, no mide la calidad pedagógica. \nprompt: I ___ ready.\nanswers: am"
+    },
+    "english-highlight": {
+      "cefrLevel": "A1",
+      "topic": "Concordancia en presente",
+      "instructions": "Elegí la forma de be.",
+      "quizzes": "quizId: q-highlight-missing\nminiTheory: En presente afirmativo, con I se usa am.\nprompt: I ___ ready.\nanswers: am\n\nquizId: q-highlight-control\nminiTheory: En presente afirmativo, con $I$ se usa $am$.\nprompt: I ___ ready.\nanswers: am"
+    },
     "shared-text": {
       "cefrLevel": "A1",
       "topic": "Sistema artificial Atlas",
@@ -85,8 +104,156 @@
       "instructions": "Completá según el contraste focal de cada quiz.",
       "quizzes": "quizId: q-sibling-universal\nminiTheory: Para una acción en curso ahora, usá be + -ing. Las preguntas habituales nunca usan be.\nprompt: The cobalt fox ___ running now.\nanswers: is\n\nquizId: q-local-universal\nminiTheory: Can siempre expresa capacidad.\nprompt: The cobalt fox ___ solve the maze.\nanswers: can"
     }
+    ,
+  "subject-first-direction": {
+    "cefrLevel": "A1",
+    "topic": "Concordancia en escenas inventadas de cobre",
+    "instructions": "Elegí la forma o palabra para el caso indicado.",
+    "quizzes": "quizId: q-am-inverse\nminiTheory: $am$ va con $I$.\nprompt: I ___ near the copper tower.\nanswers: am\n\nquizId: q-it-inverse\nminiTheory: $is$ va con $it$.\nprompt: It ___ near the copper tower.\nanswers: is\n\nquizId: q-i-forward\nminiTheory: $I$ lleva $am$.\nprompt: I ___ near the copper tower.\nanswers: am\n\nquizId: q-it-forward\nminiTheory: Con $it$ se usa $is$.\nprompt: It ___ near the copper tower.\nanswers: is\n\nquizId: q-i-causal\nminiTheory: Se usa $am$ porque el sujeto es $I$.\nprompt: I ___ near the copper tower.\nanswers: am\n\nquizId: q-it-exclusive\nminiTheory: $is$ sólo va con $it$.\nprompt: It ___ near the copper tower.\nanswers: is\n\nquizId: q-i-past\nminiTheory: $I$ lleva $was$ en el pasado afirmativo.\nprompt: I ___ near the copper tower yesterday.\nanswers: was\n\nquizId: q-i-negative\nminiTheory: En presente negativo, $I$ lleva $am not$.\nprompt: I ___ ready.\nanswers: am not\n\nquizId: q-lexical\nminiTheory: $Bark$ nombra el sonido de un perro.\nprompt: Choose the sound of a dog: ___.\nanswers: bark"
+  }
   },
   "cases": [
+    {
+      "caseId": "long-card-with-bounded-highlight-repair-evidence",
+      "inputs": "long-english-highlight",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-long-highlight",
+            "holds": false,
+            "problem": "MISSING_ENGLISH_HIGHLIGHT",
+            "severity": "LOW",
+            "counterexample": "En presente afirmativo, con $I$ se usa $am$.",
+            "explanation": "I y am requieren resaltado. Se muestra el fragmento corregido; la tarjeta completa conserva el resto del texto."
+          }
+        ]
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "missing-english-highlight-low-and-healthy-control",
+      "inputs": "english-highlight",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-highlight-missing",
+            "holds": false,
+            "problem": "MISSING_ENGLISH_HIGHLIGHT",
+            "severity": "LOW",
+            "counterexample": "En presente afirmativo, con $I$ se usa $am$.",
+            "explanation": "I y am aparecen sin las marcas nativas de resaltado."
+          },
+          {
+            "quizId": "q-highlight-control",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Las palabras inglesas citadas ya están resaltadas."
+          }
+        ]
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "missing-english-highlight-rejects-high",
+      "inputs": "english-highlight",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-highlight-missing",
+            "holds": false,
+            "problem": "MISSING_ENGLISH_HIGHLIGHT",
+            "severity": "HIGH",
+            "counterexample": "En presente afirmativo, con $I$ se usa $am$.",
+            "explanation": "I y am aparecen sin las marcas nativas de resaltado."
+          },
+          {
+            "quizId": "q-highlight-control",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Las palabras inglesas citadas ya están resaltadas."
+          }
+        ]
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "LOW"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "missing-english-highlight-rejects-medium",
+      "inputs": "english-highlight",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-highlight-missing",
+            "holds": false,
+            "problem": "MISSING_ENGLISH_HIGHLIGHT",
+            "severity": "MEDIUM",
+            "counterexample": "En presente afirmativo, con $I$ se usa $am$.",
+            "explanation": "I y am aparecen sin las marcas nativas de resaltado."
+          },
+          {
+            "quizId": "q-highlight-control",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Las palabras inglesas citadas ya están resaltadas."
+          }
+        ]
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "LOW"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "missing-english-highlight-rejects-blocking",
+      "inputs": "english-highlight",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-highlight-missing",
+            "holds": false,
+            "problem": "MISSING_ENGLISH_HIGHLIGHT",
+            "severity": "BLOCKING",
+            "counterexample": "En presente afirmativo, con $I$ se usa $am$.",
+            "explanation": "I y am aparecen sin las marcas nativas de resaltado."
+          },
+          {
+            "quizId": "q-highlight-control",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Las palabras inglesas citadas ya están resaltadas."
+          }
+        ]
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "LOW"
+        ],
+        "schemaRejects": true
+      }
+    },
     {
       "caseId": "shared-text-opposite-verdicts",
       "inputs": "shared-text",
@@ -345,6 +512,177 @@
             "severity": "HIGH",
             "counterexample": "Al contar lo que alguien dijo, va pasado.",
             "explanation": "Usa terminología de estilo indirecto innecesariamente."
+          }
+        ]
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "LOW"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "didactic-direction-versus-falsity-with-subject-first-controls",
+      "inputs": "subject-first-direction",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-am-inverse",
+            "holds": false,
+            "problem": "DIDACTIC_DIRECTION",
+            "severity": "LOW",
+            "counterexample": "Con $I$ se usa $am$ en el presente afirmativo.",
+            "explanation": "La asociación es verdadera y biunívoca; el defecto editorial es partir de la forma en lugar del sujeto."
+          },
+          {
+            "quizId": "q-it-inverse",
+            "holds": false,
+            "problem": "DIDACTIC_DIRECTION",
+            "severity": "LOW",
+            "counterexample": "It lleva is en el presente afirmativo.",
+            "explanation": "La asociación es compatible, pero no enseña sujeto hacia forma. No afirma sólo ni requiere inventarle una falsedad."
+          },
+          {
+            "quizId": "q-i-forward",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "La explicación parte del sujeto para seleccionar su forma."
+          },
+          {
+            "quizId": "q-it-forward",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Es una redacción válida sujeto hacia forma; no se exige una frase literal única."
+          },
+          {
+            "quizId": "q-i-causal",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Aunque menciona primero la forma, explica que el sujeto determina la elección."
+          },
+          {
+            "quizId": "q-it-exclusive",
+            "holds": false,
+            "problem": "OVERSTATED_FOR_QUIZ",
+            "severity": "MEDIUM",
+            "counterexample": "He is near the copper tower refuta sólo it; la tarjeta local puede decir it lleva is.",
+            "explanation": "La exclusión explícita sí exagera alcance; ese defecto tiene prioridad sobre dirección y su corrección recupera sujeto hacia forma."
+          },
+          {
+            "quizId": "q-i-past",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Conserva el tiempo practicado y parte del sujeto."
+          },
+          {
+            "quizId": "q-i-negative",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Conserva la negación del quiz; la dirección no exige cambiar su polaridad."
+          },
+          {
+            "quizId": "q-lexical",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Es una decisión de significado léxico; el criterio de dirección de concordancia no se aplica."
+          }
+        ]
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "didactic-direction-rejects-inflated-severity",
+      "inputs": "subject-first-direction",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-am-inverse",
+            "holds": false,
+            "problem": "DIDACTIC_DIRECTION",
+            "severity": "HIGH",
+            "counterexample": "Con $I$ se usa $am$ en el presente afirmativo.",
+            "explanation": "La asociación es verdadera y biunívoca; el defecto editorial es partir de la forma en lugar del sujeto."
+          },
+          {
+            "quizId": "q-it-inverse",
+            "holds": false,
+            "problem": "DIDACTIC_DIRECTION",
+            "severity": "LOW",
+            "counterexample": "It lleva is en el presente afirmativo.",
+            "explanation": "La asociación es compatible, pero no enseña sujeto hacia forma. No afirma sólo ni requiere inventarle una falsedad."
+          },
+          {
+            "quizId": "q-i-forward",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "La explicación parte del sujeto para seleccionar su forma."
+          },
+          {
+            "quizId": "q-it-forward",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Es una redacción válida sujeto hacia forma; no se exige una frase literal única."
+          },
+          {
+            "quizId": "q-i-causal",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Aunque menciona primero la forma, explica que el sujeto determina la elección."
+          },
+          {
+            "quizId": "q-it-exclusive",
+            "holds": false,
+            "problem": "OVERSTATED_FOR_QUIZ",
+            "severity": "MEDIUM",
+            "counterexample": "He is near the copper tower refuta sólo it; la tarjeta local puede decir it lleva is.",
+            "explanation": "La exclusión explícita sí exagera alcance; ese defecto tiene prioridad sobre dirección y su corrección recupera sujeto hacia forma."
+          },
+          {
+            "quizId": "q-i-past",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Conserva el tiempo practicado y parte del sujeto."
+          },
+          {
+            "quizId": "q-i-negative",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Conserva la negación del quiz; la dirección no exige cambiar su polaridad."
+          },
+          {
+            "quizId": "q-lexical",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Es una decisión de significado léxico; el criterio de dirección de concordancia no se aplica."
           }
         ]
       },

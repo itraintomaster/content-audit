@@ -86,8 +86,27 @@ public class DefaultPanelStageTest {
                         List.of("multiple-choice-quality", "multiple-choice-validity"));
         assertEquals(1, s.panels.works.size()); var work = s.panels.works.get(0);
         assertEquals(List.of("t-nino"), work.getBriefs().stream().map(x -> x.getTask().getId()).toList());
+        assertEquals(java.util.Set.of(TandaFixture.CHILD), work.getNewEvaluationSubjectIds());
         assertNull(work.getConversion());
         assertEquals(List.of("multiple-choice-quality", "multiple-choice-validity"), s.panels.settings.get(0).getAnalyzers());
+    }
+
+    @Test void selectiveConsultationScopeDoesNotTrimTopicContextOrChangeLegacyRuns() {
+        Stage s = new Stage(); var b = s.batch("t-respuesta", "t-traduccion");
+        s.panels.spendOnePerDecision = false;
+        var stage = new DefaultPanelStage(s.panels, TandaFixture.briefer(), MesaFixture.corrections(), null, s.ledger(), s.store)
+                .withPlans(s.plans);
+        stage.runSelected(b, s.start, s.course, new Turns(2), java.util.Set.of("t-respuesta"), List.of("single-answer"));
+        TopicWork selected = s.panels.works.get(0);
+        assertEquals(java.util.Set.of(MesaFixture.VEGETABLES), selected.getNewEvaluationSubjectIds());
+        assertTrue(selected.getKnowledge().getQuizTemplates().stream().anyMatch(q -> MesaFixture.COME.equals(q.getId())));
+        assertTrue(selected.getKnowledge().getQuizTemplates().size() > 1);
+
+        Stage legacy = new Stage(); legacy.panels.spendOnePerDecision = false;
+        new DefaultPanelStage(legacy.panels, TandaFixture.briefer(), MesaFixture.corrections(), null,
+                legacy.ledger(), legacy.store).withPlans(legacy.plans)
+                .run(legacy.batch("t-respuesta"), legacy.start, legacy.course, new Turns(2));
+        assertNull(legacy.panels.works.get(0).getNewEvaluationSubjectIds());
     }
     @Test void selectiveStageRejectsForeignDecisionsBeforeRecordingAnything() {
         Stage s = new Stage(); var b = s.batch("t-nino", "t-pista");

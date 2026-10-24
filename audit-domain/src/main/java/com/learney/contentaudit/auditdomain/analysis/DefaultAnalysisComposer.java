@@ -4,6 +4,8 @@ import com.learney.contentaudit.auditdomain.*;
 import com.learney.contentaudit.auditdomain.choicequality.ChoiceQualityAnalyzerProvider;
 import com.learney.contentaudit.auditdomain.choicequality.ChoiceQualitySubjectBuilder;
 import com.learney.contentaudit.auditdomain.judging.*;
+import com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceDiagnosis;
+import com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceStage;
 import com.learney.contentaudit.evaluationledgerdomain.ContentFingerprinter;
 import java.util.*;
 
@@ -41,6 +43,43 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
     }
     @Override public Set<String> supportedAnalyzers() { return inputs.keySet(); }
 
+    @Override public AuditReport contentOnly(AuditReport report) {
+        Objects.requireNonNull(report, "Falta el análisis a proyectar");
+        AuditNode root = copy(report.getRoot(), null);
+        Set<String> ran = new LinkedHashSet<>();
+        for (AuditNode node : index(root).values()) {
+            boolean removedAudio = node.getFindings().removeIf(DataCoherenceStage::isAudioFinding);
+            if (node.getDiagnoses() instanceof DefaultQuizDiagnoses diagnoses) {
+                diagnoses.getDataCoherenceDiagnosis().ifPresent(saved -> {
+                    if (saved.getIssues() == null) return;
+                    var textual = safe(saved.getIssues()).stream()
+                            .filter(issue -> issue != null && !DataCoherenceStage.isAudioIssue(issue)).toList();
+                    double score = textual.isEmpty() && node.getFindings().stream()
+                            .noneMatch(f -> "data-coherence".equals(f.getAnalyzer())) ? 1.0 : 0.0;
+                    diagnoses.setDataCoherenceDiagnosis(new DataCoherenceDiagnosis(textual, null, score));
+                    // Do not promote a historical unevaluated or partial measurement to an approval.
+                    if (node.getScores().containsKey("data-coherence"))
+                        node.getScores().put("data-coherence", score);
+                });
+                if (removedAudio && node.getScores().containsKey("data-coherence")
+                        && diagnoses.getDataCoherenceDiagnosis().isEmpty()) {
+                    node.getScores().put("data-coherence", node.getFindings().stream()
+                            .anyMatch(f -> "data-coherence".equals(f.getAnalyzer())) ? 0.0 : 1.0);
+                }
+            }
+            if (node.getTarget() != AuditTarget.QUIZ) node.getScores().remove("data-coherence");
+            node.getMetadata().put("dataCoherenceStage", DataCoherenceStage.CONTENT.name());
+            ran.addAll(node.getScores().keySet().stream().filter(name -> !name.contains("/")).toList());
+            ran.addAll(node.getUnevaluatedBy());
+            ran.addAll(node.getPartiallyEvaluatedBy());
+        }
+        // This labels a view, not a new evaluation. Original versions, measures and provenance survive.
+        root.getMetadata().put("analysisProjection", "CONTENT_WITHOUT_AUDIO_V1");
+        aggregator.aggregate(root);
+        numbers.compute(root, catalog.list().stream().filter(card -> ran.contains(card.getName())).toList());
+        return new AuditReport(root);
+    }
+
     @Override public String fingerprint(String analyzer, AuditNode node) {
         if (!inputs.containsKey(analyzer))
             throw new IllegalArgumentException("Este analizador todavía no declara su huella de integración: " + analyzer);
@@ -48,12 +87,41 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
     }
 
     @Override public AuditReport compose(AuditReport primary, List<AnalysisSupplement> supplements) {
+        return compose(primary, supplements, false);
+    }
+
+    @Override public AuditReport preserveCompatibleOpinions(AuditReport current, AuditReport previous,
+            String previousAuditId) {
+        Objects.requireNonNull(current, "Falta el análisis del contenido actual");
+        Objects.requireNonNull(previous, "Falta el análisis guardado");
+        var currentNodes = index(current.getRoot());
+        var previousNodes = index(previous.getRoot());
+        var saved = new ArrayList<AnalysisSupplement>();
+        for (String analyzer : supportedAnalyzers()) {
+            var missing = new LinkedHashSet<String>();
+            for (var entry : previousNodes.entrySet()) {
+                AuditNode from = entry.getValue(), to = currentNodes.get(entry.getKey());
+                if (to != null && eligible(from, analyzer) && eligible(to, analyzer)
+                        && hasStoredOpinion(from, analyzer) && !hasStoredOpinion(to, analyzer)) {
+                    missing.add(entry.getKey());
+                }
+            }
+            if (!missing.isEmpty()) saved.add(new AnalysisSupplement(null, previousAuditId, analyzer, null, null, missing, previous));
+        }
+        // This is the same measurement, not a new integration or a new timestamp. The ordinary
+        // fingerprint check below includes all topic inputs for topic-scoped judges.
+        return compose(current, saved, true);
+    }
+
+    private AuditReport compose(AuditReport primary, List<AnalysisSupplement> supplements,
+            boolean preserveProvenance) {
         Objects.requireNonNull(primary, "Falta el análisis de partida");
         AuditNode root = copy(primary.getRoot(), null);
         Map<String, AuditNode> target = index(root);
         // A structured naturalness supplement must not count the historical constant
         // ranking score as approval by the new criterion on untouched exercises.
-        boolean replacesNaturalness = safe(supplements).stream().anyMatch(s -> "naturalness".equals(s.analyzer()));
+        boolean replacesNaturalness = !preserveProvenance
+                && safe(supplements).stream().anyMatch(s -> "naturalness".equals(s.analyzer()));
         if (replacesNaturalness) for (AuditNode n : target.values()) {
             if (n.getTarget() == AuditTarget.QUIZ && n.getScores().containsKey("naturalness")
                     && !com.learney.contentaudit.auditdomain.englishquality.EnglishQualitySubjectBuilder.CONTRACT
@@ -121,6 +189,24 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
                 var origins = new LinkedHashMap<String, Object>();
                 Object previous = to.getMetadata().get(PROVENANCE);
                 if (previous instanceof Map<?, ?> map) map.forEach((k, v) -> origins.put(k.toString(), v));
+                if (preserveProvenance) {
+                    Object sourceOrigins = from.getMetadata().get(PROVENANCE);
+                    Object sourceOrigin = sourceOrigins instanceof Map<?, ?> map ? map.get(name) : null;
+                    if (sourceOrigin != null) origins.put(name, sourceOrigin);
+                    else {
+                        // Older reports stamp versions on coverage instead of per-quiz provenance.
+                        // Retain that historical identity; never substitute today's judge or time.
+                        var historical = new LinkedHashMap<String, Object>();
+                        historical.put("auditId", supplement.auditId());
+                        historical.put("judgeVersion", version(from, name, supplement.report()));
+                        historical.put("runtime", historicalRuntime(supplement.report(), name));
+                        historical.put("integrated", false);
+                        historical.put("fingerprint", fingerprint(name, from));
+                        origins.put(name, historical);
+                    }
+                    to.getMetadata().put(PROVENANCE, origins);
+                    continue;
+                }
                 var origin = new LinkedHashMap<String, Object>();
                 origin.put("runId", supplement.runId()); origin.put("auditId", supplement.auditId());
                 origin.put("runtime", supplement.runtime()); origin.put("measuredAt", supplement.measuredAt());
@@ -177,6 +263,18 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
         aggregator.aggregate(root);
         numbers.compute(root, catalog.list().stream().filter(c -> ran.contains(c.getName())).toList());
         return new AuditReport(root);
+    }
+
+    private static Object historicalRuntime(AuditReport report, String analyzer) {
+        if (report.getRoot().getDiagnoses() instanceof CourseDiagnoses diagnoses) {
+            var recorded = safe(diagnoses.getJudgeCoverages()).stream()
+                    .filter(coverage -> analyzer.equals(coverage.getJudgeName()))
+                    .flatMap(coverage -> safe(coverage.getVersions()).stream())
+                    .filter(version -> version.getVerdictCount() > 0)
+                    .map(JudgeVersionStanding::getRuntimeIdentity).distinct().toList();
+            if (recorded.size() == 1) return recorded.get(0).toString();
+        }
+        return null;
     }
 
     private static boolean structuredVerdict(AuditNode node, String name) {
@@ -257,15 +355,19 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
     public static String version(AuditNode node, String analyzer, AuditReport source) {
         Object origins = node.getMetadata() == null ? null : node.getMetadata().get(PROVENANCE);
         Object origin = origins instanceof Map<?,?> map ? map.get(analyzer) : null;
-        if (origin instanceof Map<?,?> map && map.get("judgeVersion") instanceof String version) return version;
+        if (origin instanceof Map<?,?> map && map.containsKey("judgeVersion"))
+            return map.get("judgeVersion") instanceof String version ? version : null;
         if (ChoiceQualityAnalyzerProvider.NAME.equals(analyzer)) return version(node);
         if ("pragmatism".equals(analyzer) && node.getDiagnoses() instanceof QuizDiagnoses d)
             return d.getPragmatismDiagnosis().map(x -> x.evaluatorVersion()).orElse(null);
+        Object recordedVersion = node.getMetadata() == null ? null : node.getMetadata().get(analyzer + "Version");
+        if (recordedVersion instanceof String version) return version;
         Object versions = node.getMetadata() == null ? null : node.getMetadata().get("verdictVersions");
         if (versions instanceof Map<?,?> map && map.get(analyzer) instanceof String version) return version;
         if (source.getRoot().getDiagnoses() instanceof CourseDiagnoses d) {
             var versionsInRun = safe(d.getJudgeCoverages()).stream().filter(c -> analyzer.equals(c.getJudgeName()))
-                    .flatMap(c -> safe(c.getVersions()).stream()).map(JudgeVersionStanding::getJudgeVersion).filter(Objects::nonNull).distinct().toList();
+                    .flatMap(c -> safe(c.getVersions()).stream()).filter(v -> v.getVerdictCount() > 0)
+                    .map(JudgeVersionStanding::getJudgeVersion).filter(Objects::nonNull).distinct().toList();
             if (versionsInRun.size() == 1) return versionsInRun.get(0);
         }
         return null;

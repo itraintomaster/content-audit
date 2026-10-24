@@ -52,7 +52,8 @@ final class DefaultBatchReview implements BatchReviewService {
         var version = cache == null ? java.util.Optional.<String>empty() : cache.version();
         if (version.isPresent()) {
             var cached = cache.load(batchId, version.get());
-            if (cached.isPresent() && cached.get().items().stream().allMatch(item -> item.taskIds() != null)
+            if (cached.isPresent() && cached.get().comparisonBaselines() != null
+                    && cached.get().items().stream().allMatch(item -> item.taskIds() != null)
                     && version.equals(cache.version())) return cached.get();
         }
         CorrectionBatch batch = batchId == null ? batches.open().or(batches::latestPublished)
@@ -99,10 +100,17 @@ final class DefaultBatchReview implements BatchReviewService {
         List<RevisionProposal> proposals = proposals(batch);
         var taskIds = new HashSet<>(BatchBook.list(batch.getTaskIds()));
         var tasks = plans.load(batch.getPlanId()).map(plan -> BatchBook.list(plan.getTasks()).stream()
-                .filter(task -> taskIds.contains(task.getId())).toList()).orElse(List.of());
+                .filter(task -> taskIds.contains(task.getId()) && !ContentCorrectionTasks.audioOnly(task))
+                .map(ContentCorrectionTasks::content).toList()).orElse(List.of());
+        var base = BatchCourses.start(batch, null, batches);
+        var course = base == null ? null : new DefaultBatchChangeLedger(artifacts,
+                new com.learney.contentaudit.revisiondomain.engine.DefaultCourseElementLocator()).withBatches(batches)
+                .composedCourse(batch, base);
         return new BatchReview(batch.getId(), BatchBook.correctionRevision(batch), batch.getContentVersion(),
                 reports.build(batch), tasks, proposals, items(batch, proposals), BatchBook.copy(batch.getClosings()), history(batch),
-                BatchBook.copy(batch.getSelectiveRuns()), BatchBook.copy(batch.getOpinionRuns()));
+                BatchBook.copy(batch.getSelectiveRuns()), BatchBook.copy(batch.getOpinionRuns()),
+                BatchBook.copy(batch.getComparisonBaselines()), batches.hasSuccessor(batch.getId()),
+                batch.getEvolution() == null ? null : batch.getEvolution().parentBatchId(), course, base);
     }
 
     private List<BatchReview.Version> history(CorrectionBatch selected) {
@@ -118,7 +126,9 @@ final class DefaultBatchReview implements BatchReviewService {
                 .sorted(Comparator.comparing(CorrectionBatch::getOpenedAt, Comparator.nullsFirst(Comparator.naturalOrder())))
                 .map(batch -> new BatchReview.Version(batch.getId(), BatchBook.correctionRevision(batch),
                         batch.getContentVersion(), batch.getStatus(), batch.getOpenedAt(),
-                        BatchBook.list(batch.getClosings()).size(), batch.getBaselineAuditId(), batch.getStartAuditId()))
+                        BatchBook.list(batch.getClosings()).size(), batch.getBaselineAuditId(), batch.getStartAuditId(),
+                        batch.getEvolution() == null ? null : batch.getEvolution().parentBatchId(),
+                        batches.hasSuccessor(batch.getId()), batches.analysisSelections(batch.getId()).size()))
                 .toList();
     }
 

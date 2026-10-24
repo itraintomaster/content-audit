@@ -1,0 +1,4536 @@
+{
+  "cases" : [ {
+    "id" : "REG-c6ac3310746ef6f7eeb72e6d",
+    "judgeName" : "mini-theory",
+    "problemId" : "PRB-fbaeac6f",
+    "problemTitle" : "Mini-teoría no muy precisa",
+    "problemCaseId" : "CAS-992054108b88f4d8ff239939",
+    "quizId" : "67fab6d59930102295341e5f",
+    "expectedDetected" : true,
+    "expectedReason" : "$she$ va con $is$",
+    "expectedSource" : "Criterio y clasificación guardados en el problema PRB-fbaeac6f; referencia de comparación",
+    "snapshot" : {
+      "items" : [ {
+        "changeId" : "mesa-67fab6d59930102295341e5f",
+        "step" : {
+          "quizId" : "67fab6d59930102295341e5f",
+          "parts" : [ "MINI_THEORY" ],
+          "after" : {
+            "nodeTarget" : "QUIZ",
+            "nodeId" : "67fab6d59930102295341e5f",
+            "quiz" : {
+              "id" : "67fab6d59930102295341e5f",
+              "oidId" : "67fab6d59930102295341e5f",
+              "kind" : "MULTIPLE_CHOICE",
+              "knowledgeId" : "6814dafa7d73e7209a13d384",
+              "title" : "Afirmativas con $be$",
+              "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
+              "translation" : "Ella es inglesa.",
+              "theoryId" : "a1.01.Present_Simple_Forms_Be",
+              "topicName" : "Present Simple",
+              "form" : {
+                "kind" : "MULTIPLE_CHOICE",
+                "incidence" : 1.0,
+                "label" : "",
+                "name" : "",
+                "sentenceParts" : [ {
+                  "kind" : "TEXT",
+                  "text" : "She "
+                }, {
+                  "kind" : "CLOZE",
+                  "text" : ""
+                }, {
+                  "kind" : "TEXT",
+                  "text" : " English."
+                } ],
+                "multipleChoice" : {
+                  "selection" : "SINGLE",
+                  "items" : [ {
+                    "id" : "am",
+                    "incidence" : 0.0,
+                    "label" : "am"
+                  }, {
+                    "id" : "are",
+                    "incidence" : 0.0,
+                    "label" : "are"
+                  }, {
+                    "id" : "is",
+                    "incidence" : 1.0,
+                    "label" : "is"
+                  } ]
+                }
+              },
+              "difficulty" : 0.0,
+              "retries" : 0.0,
+              "noScoreRetries" : 0.0,
+              "code" : "",
+              "audioUrl" : "",
+              "imageUrl" : "",
+              "answerAudioUrl" : "A1.01.01.01",
+              "answerImageUrl" : "",
+              "miniTheory" : "$is$ va con she.",
+              "successMessage" : "",
+              "sentences" : [ "She is English." ],
+              "unmodeledFields" : {
+                "formCloze" : {
+                  "kind" : "CLOZE",
+                  "incidence" : {
+                    "$numberDouble" : "1.0"
+                  },
+                  "label" : "",
+                  "name" : "",
+                  "sentenceParts" : [ {
+                    "options" : null,
+                    "kind" : "TEXT",
+                    "text" : "She"
+                  }, {
+                    "kind" : "CLOZE",
+                    "text" : "",
+                    "options" : [ "is" ]
+                  }, {
+                    "kind" : "TEXT",
+                    "text" : "English.",
+                    "options" : null
+                  } ]
+                },
+                "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+                "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
+              }
+            }
+          }
+        },
+        "before" : {
+          "nodeTarget" : "QUIZ",
+          "nodeId" : "67fab6d59930102295341e5f",
+          "quiz" : {
+            "id" : "67fab6d59930102295341e5f",
+            "oidId" : "67fab6d59930102295341e5f",
+            "kind" : "MULTIPLE_CHOICE",
+            "knowledgeId" : "6814dafa7d73e7209a13d384",
+            "title" : "Afirmativas con $be$",
+            "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
+            "translation" : "Ella es inglesa.",
+            "theoryId" : "a1.01.Present_Simple_Forms_Be",
+            "topicName" : "Present Simple",
+            "form" : {
+              "kind" : "MULTIPLE_CHOICE",
+              "incidence" : 1.0,
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : "She"
+              }, {
+                "kind" : "CLOZE",
+                "text" : ""
+              }, {
+                "kind" : "TEXT",
+                "text" : "English."
+              } ],
+              "multipleChoice" : {
+                "selection" : "SINGLE",
+                "items" : [ {
+                  "id" : "am",
+                  "incidence" : 0.0,
+                  "label" : "am"
+                }, {
+                  "id" : "are",
+                  "incidence" : 0.0,
+                  "label" : "are"
+                }, {
+                  "id" : "is",
+                  "incidence" : 1.0,
+                  "label" : "is"
+                } ]
+              }
+            },
+            "difficulty" : 0.0,
+            "retries" : 0.0,
+            "noScoreRetries" : 0.0,
+            "code" : "",
+            "audioUrl" : "",
+            "imageUrl" : "",
+            "answerAudioUrl" : "A1.01.01.01",
+            "answerImageUrl" : "",
+            "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+            "successMessage" : "",
+            "sentences" : [ "She is English." ],
+            "unmodeledFields" : {
+              "formCloze" : {
+                "kind" : "CLOZE",
+                "incidence" : {
+                  "$numberDouble" : "1.0"
+                },
+                "label" : "",
+                "name" : "",
+                "sentenceParts" : [ {
+                  "options" : null,
+                  "kind" : "TEXT",
+                  "text" : "She"
+                }, {
+                  "kind" : "CLOZE",
+                  "text" : "",
+                  "options" : [ "is" ]
+                }, {
+                  "kind" : "TEXT",
+                  "text" : "English.",
+                  "options" : null
+                } ]
+              },
+              "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+              "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
+            }
+          }
+        },
+        "after" : {
+          "nodeTarget" : "QUIZ",
+          "nodeId" : "67fab6d59930102295341e5f",
+          "quiz" : {
+            "id" : "67fab6d59930102295341e5f",
+            "oidId" : "67fab6d59930102295341e5f",
+            "kind" : "MULTIPLE_CHOICE",
+            "knowledgeId" : "6814dafa7d73e7209a13d384",
+            "title" : "Afirmativas con $be$",
+            "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
+            "translation" : "Ella es inglesa.",
+            "theoryId" : "a1.01.Present_Simple_Forms_Be",
+            "topicName" : "Present Simple",
+            "form" : {
+              "kind" : "MULTIPLE_CHOICE",
+              "incidence" : 1.0,
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : "She"
+              }, {
+                "kind" : "CLOZE",
+                "text" : ""
+              }, {
+                "kind" : "TEXT",
+                "text" : "English."
+              } ],
+              "multipleChoice" : {
+                "selection" : "SINGLE",
+                "items" : [ {
+                  "id" : "am",
+                  "incidence" : 0.0,
+                  "label" : "am"
+                }, {
+                  "id" : "are",
+                  "incidence" : 0.0,
+                  "label" : "are"
+                }, {
+                  "id" : "is",
+                  "incidence" : 1.0,
+                  "label" : "is"
+                } ]
+              }
+            },
+            "difficulty" : 0.0,
+            "retries" : 0.0,
+            "noScoreRetries" : 0.0,
+            "code" : "",
+            "audioUrl" : "",
+            "imageUrl" : "",
+            "answerAudioUrl" : "A1.01.01.01",
+            "answerImageUrl" : "",
+            "miniTheory" : "$is$ va con she.",
+            "successMessage" : "",
+            "sentences" : [ "She is English." ],
+            "unmodeledFields" : {
+              "formCloze" : {
+                "kind" : "CLOZE",
+                "incidence" : {
+                  "$numberDouble" : "1.0"
+                },
+                "label" : "",
+                "name" : "",
+                "sentenceParts" : [ {
+                  "options" : null,
+                  "kind" : "TEXT",
+                  "text" : "She"
+                }, {
+                  "kind" : "CLOZE",
+                  "text" : "",
+                  "options" : [ "is" ]
+                }, {
+                  "kind" : "TEXT",
+                  "text" : "English.",
+                  "options" : null
+                } ]
+              },
+              "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+              "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
+            }
+          }
+        },
+        "origin" : "PANEL",
+        "status" : "PENDING",
+        "reviewer" : "Operador UI",
+        "decidedAt" : "2026-10-11T17:58:18.276432Z",
+        "taskIds" : [ "task-2530" ],
+        "rationale" : "Limité la miniteoría a is con she, la concordancia que practica este ejercicio."
+      } ],
+      "before" : {
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "67fab6d59930102295341e5f",
+        "quiz" : {
+          "id" : "67fab6d59930102295341e5f",
+          "oidId" : "67fab6d59930102295341e5f",
+          "kind" : "MULTIPLE_CHOICE",
+          "knowledgeId" : "6814dafa7d73e7209a13d384",
+          "title" : "Afirmativas con $be$",
+          "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
+          "translation" : "Ella es inglesa.",
+          "theoryId" : "a1.01.Present_Simple_Forms_Be",
+          "topicName" : "Present Simple",
+          "form" : {
+            "kind" : "MULTIPLE_CHOICE",
+            "incidence" : 1.0,
+            "label" : "",
+            "name" : "",
+            "sentenceParts" : [ {
+              "kind" : "TEXT",
+              "text" : "She"
+            }, {
+              "kind" : "CLOZE",
+              "text" : ""
+            }, {
+              "kind" : "TEXT",
+              "text" : "English."
+            } ],
+            "multipleChoice" : {
+              "selection" : "SINGLE",
+              "items" : [ {
+                "id" : "am",
+                "incidence" : 0.0,
+                "label" : "am"
+              }, {
+                "id" : "are",
+                "incidence" : 0.0,
+                "label" : "are"
+              }, {
+                "id" : "is",
+                "incidence" : 1.0,
+                "label" : "is"
+              } ]
+            }
+          },
+          "difficulty" : 0.0,
+          "retries" : 0.0,
+          "noScoreRetries" : 0.0,
+          "code" : "",
+          "audioUrl" : "",
+          "imageUrl" : "",
+          "answerAudioUrl" : "A1.01.01.01",
+          "answerImageUrl" : "",
+          "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+          "successMessage" : "",
+          "sentences" : [ "She is English." ],
+          "unmodeledFields" : {
+            "formCloze" : {
+              "kind" : "CLOZE",
+              "incidence" : {
+                "$numberDouble" : "1.0"
+              },
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "options" : null,
+                "kind" : "TEXT",
+                "text" : "She"
+              }, {
+                "kind" : "CLOZE",
+                "text" : "",
+                "options" : [ "is" ]
+              }, {
+                "kind" : "TEXT",
+                "text" : "English.",
+                "options" : null
+              } ]
+            },
+            "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+            "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
+          }
+        }
+      },
+      "after" : {
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "67fab6d59930102295341e5f",
+        "quiz" : {
+          "id" : "67fab6d59930102295341e5f",
+          "oidId" : "67fab6d59930102295341e5f",
+          "kind" : "MULTIPLE_CHOICE",
+          "knowledgeId" : "6814dafa7d73e7209a13d384",
+          "title" : "Afirmativas con $be$",
+          "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
+          "translation" : "Ella es inglesa.",
+          "theoryId" : "a1.01.Present_Simple_Forms_Be",
+          "topicName" : "Present Simple",
+          "form" : {
+            "kind" : "MULTIPLE_CHOICE",
+            "incidence" : 1.0,
+            "label" : "",
+            "name" : "",
+            "sentenceParts" : [ {
+              "kind" : "TEXT",
+              "text" : "She"
+            }, {
+              "kind" : "CLOZE",
+              "text" : ""
+            }, {
+              "kind" : "TEXT",
+              "text" : "English."
+            } ],
+            "multipleChoice" : {
+              "selection" : "SINGLE",
+              "items" : [ {
+                "id" : "am",
+                "incidence" : 0.0,
+                "label" : "am"
+              }, {
+                "id" : "are",
+                "incidence" : 0.0,
+                "label" : "are"
+              }, {
+                "id" : "is",
+                "incidence" : 1.0,
+                "label" : "is"
+              } ]
+            }
+          },
+          "difficulty" : 0.0,
+          "retries" : 0.0,
+          "noScoreRetries" : 0.0,
+          "code" : "",
+          "audioUrl" : "",
+          "imageUrl" : "",
+          "answerAudioUrl" : "A1.01.01.01",
+          "answerImageUrl" : "",
+          "miniTheory" : "$is$ va con she.",
+          "successMessage" : "",
+          "sentences" : [ "She is English." ],
+          "unmodeledFields" : {
+            "formCloze" : {
+              "kind" : "CLOZE",
+              "incidence" : {
+                "$numberDouble" : "1.0"
+              },
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "options" : null,
+                "kind" : "TEXT",
+                "text" : "She"
+              }, {
+                "kind" : "CLOZE",
+                "text" : "",
+                "options" : [ "is" ]
+              }, {
+                "kind" : "TEXT",
+                "text" : "English.",
+                "options" : null
+              } ]
+            },
+            "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+            "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
+          }
+        }
+      },
+      "rejectOnAnnotation" : true,
+      "examContext" : {
+        "title" : "Afirmativas con $be$",
+        "topicName" : "Present Simple",
+        "knowledgeInstructions" : "Escribe la forma de 'be', sin usar contracciones ('short forms').",
+        "level" : "A1",
+        "sentenceMode" : "FILL",
+        "isRule" : true
+      }
+    },
+    "confirmedAt" : "2026-10-20T20:27:45.888875Z"
+  }, {
+    "id" : "REG-db4dd77f543f5863fc4bb7ae",
+    "judgeName" : "mini-theory",
+    "problemId" : "PRB-fbaeac6f",
+    "problemTitle" : "Mini-teoría no muy precisa",
+    "problemCaseId" : "CAS-5d7a2f745b9c00cb87788dfd",
+    "quizId" : "67fab6d59930102295341e60",
+    "expectedDetected" : true,
+    "expectedReason" : "La mini teoría dice \"is va con she\", cuando en verdad \"she va con is\". Porque en el caso de \"is\", va con \"he, she, it\". Lo prefiero al revés \"she va con is\" porque de esa manera queda más atómica la mini-teoría",
+    "expectedSource" : "Criterio y clasificación guardados en el problema PRB-fbaeac6f; referencia de comparación",
+    "snapshot" : {
+      "items" : [ {
+        "changeId" : "mesa-67fab6d59930102295341e60",
+        "step" : {
+          "quizId" : "67fab6d59930102295341e60",
+          "parts" : [ "MINI_THEORY" ],
+          "after" : {
+            "nodeTarget" : "QUIZ",
+            "nodeId" : "67fab6d59930102295341e60",
+            "quiz" : {
+              "id" : "67fab6d59930102295341e60",
+              "oidId" : "67fab6d59930102295341e60",
+              "kind" : "MULTIPLE_CHOICE",
+              "knowledgeId" : "6814dafa7d73e7209a13d384",
+              "title" : "Afirmativas con $be$",
+              "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
+              "translation" : "Ellos son muy bajos.",
+              "theoryId" : "a1.01.Present_Simple_Forms_Be",
+              "topicName" : "Present Simple",
+              "form" : {
+                "kind" : "MULTIPLE_CHOICE",
+                "incidence" : 1.0,
+                "label" : "",
+                "name" : "",
+                "sentenceParts" : [ {
+                  "kind" : "TEXT",
+                  "text" : "They "
+                }, {
+                  "kind" : "CLOZE",
+                  "text" : ""
+                }, {
+                  "kind" : "TEXT",
+                  "text" : " very short."
+                } ],
+                "multipleChoice" : {
+                  "selection" : "SINGLE",
+                  "items" : [ {
+                    "id" : "am",
+                    "incidence" : 0.0,
+                    "label" : "am"
+                  }, {
+                    "id" : "are",
+                    "incidence" : 1.0,
+                    "label" : "are"
+                  }, {
+                    "id" : "is",
+                    "incidence" : 0.0,
+                    "label" : "is"
+                  } ]
+                }
+              },
+              "difficulty" : 0.0,
+              "retries" : 0.0,
+              "noScoreRetries" : 0.0,
+              "code" : "",
+              "audioUrl" : "",
+              "imageUrl" : "",
+              "answerAudioUrl" : "A1.01.01.02",
+              "answerImageUrl" : "",
+              "miniTheory" : "$are$ va con they.",
+              "successMessage" : "",
+              "sentences" : [ "They are very short." ],
+              "unmodeledFields" : {
+                "formCloze" : {
+                  "sentenceParts" : [ {
+                    "kind" : "TEXT",
+                    "text" : "They",
+                    "options" : null
+                  }, {
+                    "kind" : "CLOZE",
+                    "text" : "",
+                    "options" : [ "are" ]
+                  }, {
+                    "kind" : "TEXT",
+                    "text" : "very short.",
+                    "options" : null
+                  } ],
+                  "kind" : "CLOZE",
+                  "incidence" : {
+                    "$numberDouble" : "1.0"
+                  },
+                  "label" : "",
+                  "name" : ""
+                },
+                "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+                "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
+              }
+            }
+          }
+        },
+        "before" : {
+          "nodeTarget" : "QUIZ",
+          "nodeId" : "67fab6d59930102295341e60",
+          "quiz" : {
+            "id" : "67fab6d59930102295341e60",
+            "oidId" : "67fab6d59930102295341e60",
+            "kind" : "MULTIPLE_CHOICE",
+            "knowledgeId" : "6814dafa7d73e7209a13d384",
+            "title" : "Afirmativas con $be$",
+            "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
+            "translation" : "Ellos son muy bajos.",
+            "theoryId" : "a1.01.Present_Simple_Forms_Be",
+            "topicName" : "Present Simple",
+            "form" : {
+              "kind" : "MULTIPLE_CHOICE",
+              "incidence" : 1.0,
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : "They"
+              }, {
+                "kind" : "CLOZE",
+                "text" : ""
+              }, {
+                "kind" : "TEXT",
+                "text" : "very short."
+              } ],
+              "multipleChoice" : {
+                "selection" : "SINGLE",
+                "items" : [ {
+                  "id" : "am",
+                  "incidence" : 0.0,
+                  "label" : "am"
+                }, {
+                  "id" : "are",
+                  "incidence" : 1.0,
+                  "label" : "are"
+                }, {
+                  "id" : "is",
+                  "incidence" : 0.0,
+                  "label" : "is"
+                } ]
+              }
+            },
+            "difficulty" : 0.0,
+            "retries" : 0.0,
+            "noScoreRetries" : 0.0,
+            "code" : "",
+            "audioUrl" : "",
+            "imageUrl" : "",
+            "answerAudioUrl" : "A1.01.01.02",
+            "answerImageUrl" : "",
+            "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+            "successMessage" : "",
+            "sentences" : [ "They are very short." ],
+            "unmodeledFields" : {
+              "formCloze" : {
+                "sentenceParts" : [ {
+                  "kind" : "TEXT",
+                  "text" : "They",
+                  "options" : null
+                }, {
+                  "kind" : "CLOZE",
+                  "text" : "",
+                  "options" : [ "are" ]
+                }, {
+                  "kind" : "TEXT",
+                  "text" : "very short.",
+                  "options" : null
+                } ],
+                "kind" : "CLOZE",
+                "incidence" : {
+                  "$numberDouble" : "1.0"
+                },
+                "label" : "",
+                "name" : ""
+              },
+              "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+              "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
+            }
+          }
+        },
+        "after" : {
+          "nodeTarget" : "QUIZ",
+          "nodeId" : "67fab6d59930102295341e60",
+          "quiz" : {
+            "id" : "67fab6d59930102295341e60",
+            "oidId" : "67fab6d59930102295341e60",
+            "kind" : "MULTIPLE_CHOICE",
+            "knowledgeId" : "6814dafa7d73e7209a13d384",
+            "title" : "Afirmativas con $be$",
+            "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
+            "translation" : "Ellos son muy bajos.",
+            "theoryId" : "a1.01.Present_Simple_Forms_Be",
+            "topicName" : "Present Simple",
+            "form" : {
+              "kind" : "MULTIPLE_CHOICE",
+              "incidence" : 1.0,
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : "They"
+              }, {
+                "kind" : "CLOZE",
+                "text" : ""
+              }, {
+                "kind" : "TEXT",
+                "text" : "very short."
+              } ],
+              "multipleChoice" : {
+                "selection" : "SINGLE",
+                "items" : [ {
+                  "id" : "am",
+                  "incidence" : 0.0,
+                  "label" : "am"
+                }, {
+                  "id" : "are",
+                  "incidence" : 1.0,
+                  "label" : "are"
+                }, {
+                  "id" : "is",
+                  "incidence" : 0.0,
+                  "label" : "is"
+                } ]
+              }
+            },
+            "difficulty" : 0.0,
+            "retries" : 0.0,
+            "noScoreRetries" : 0.0,
+            "code" : "",
+            "audioUrl" : "",
+            "imageUrl" : "",
+            "answerAudioUrl" : "A1.01.01.02",
+            "answerImageUrl" : "",
+            "miniTheory" : "$are$ va con they.",
+            "successMessage" : "",
+            "sentences" : [ "They are very short." ],
+            "unmodeledFields" : {
+              "formCloze" : {
+                "sentenceParts" : [ {
+                  "kind" : "TEXT",
+                  "text" : "They",
+                  "options" : null
+                }, {
+                  "kind" : "CLOZE",
+                  "text" : "",
+                  "options" : [ "are" ]
+                }, {
+                  "kind" : "TEXT",
+                  "text" : "very short.",
+                  "options" : null
+                } ],
+                "kind" : "CLOZE",
+                "incidence" : {
+                  "$numberDouble" : "1.0"
+                },
+                "label" : "",
+                "name" : ""
+              },
+              "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+              "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
+            }
+          }
+        },
+        "origin" : "PANEL",
+        "status" : "PENDING",
+        "reviewer" : "Operador UI",
+        "decidedAt" : "2026-10-11T17:58:22.874023Z",
+        "taskIds" : [ "task-2531" ],
+        "rationale" : "Se limita la miniteoría a la concordancia de are con they para resolver el contenido de otros subtemas."
+      } ],
+      "before" : {
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "67fab6d59930102295341e60",
+        "quiz" : {
+          "id" : "67fab6d59930102295341e60",
+          "oidId" : "67fab6d59930102295341e60",
+          "kind" : "MULTIPLE_CHOICE",
+          "knowledgeId" : "6814dafa7d73e7209a13d384",
+          "title" : "Afirmativas con $be$",
+          "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
+          "translation" : "Ellos son muy bajos.",
+          "theoryId" : "a1.01.Present_Simple_Forms_Be",
+          "topicName" : "Present Simple",
+          "form" : {
+            "kind" : "MULTIPLE_CHOICE",
+            "incidence" : 1.0,
+            "label" : "",
+            "name" : "",
+            "sentenceParts" : [ {
+              "kind" : "TEXT",
+              "text" : "They"
+            }, {
+              "kind" : "CLOZE",
+              "text" : ""
+            }, {
+              "kind" : "TEXT",
+              "text" : "very short."
+            } ],
+            "multipleChoice" : {
+              "selection" : "SINGLE",
+              "items" : [ {
+                "id" : "am",
+                "incidence" : 0.0,
+                "label" : "am"
+              }, {
+                "id" : "are",
+                "incidence" : 1.0,
+                "label" : "are"
+              }, {
+                "id" : "is",
+                "incidence" : 0.0,
+                "label" : "is"
+              } ]
+            }
+          },
+          "difficulty" : 0.0,
+          "retries" : 0.0,
+          "noScoreRetries" : 0.0,
+          "code" : "",
+          "audioUrl" : "",
+          "imageUrl" : "",
+          "answerAudioUrl" : "A1.01.01.02",
+          "answerImageUrl" : "",
+          "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+          "successMessage" : "",
+          "sentences" : [ "They are very short." ],
+          "unmodeledFields" : {
+            "formCloze" : {
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : "They",
+                "options" : null
+              }, {
+                "kind" : "CLOZE",
+                "text" : "",
+                "options" : [ "are" ]
+              }, {
+                "kind" : "TEXT",
+                "text" : "very short.",
+                "options" : null
+              } ],
+              "kind" : "CLOZE",
+              "incidence" : {
+                "$numberDouble" : "1.0"
+              },
+              "label" : "",
+              "name" : ""
+            },
+            "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+            "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
+          }
+        }
+      },
+      "after" : {
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "67fab6d59930102295341e60",
+        "quiz" : {
+          "id" : "67fab6d59930102295341e60",
+          "oidId" : "67fab6d59930102295341e60",
+          "kind" : "MULTIPLE_CHOICE",
+          "knowledgeId" : "6814dafa7d73e7209a13d384",
+          "title" : "Afirmativas con $be$",
+          "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
+          "translation" : "Ellos son muy bajos.",
+          "theoryId" : "a1.01.Present_Simple_Forms_Be",
+          "topicName" : "Present Simple",
+          "form" : {
+            "kind" : "MULTIPLE_CHOICE",
+            "incidence" : 1.0,
+            "label" : "",
+            "name" : "",
+            "sentenceParts" : [ {
+              "kind" : "TEXT",
+              "text" : "They"
+            }, {
+              "kind" : "CLOZE",
+              "text" : ""
+            }, {
+              "kind" : "TEXT",
+              "text" : "very short."
+            } ],
+            "multipleChoice" : {
+              "selection" : "SINGLE",
+              "items" : [ {
+                "id" : "am",
+                "incidence" : 0.0,
+                "label" : "am"
+              }, {
+                "id" : "are",
+                "incidence" : 1.0,
+                "label" : "are"
+              }, {
+                "id" : "is",
+                "incidence" : 0.0,
+                "label" : "is"
+              } ]
+            }
+          },
+          "difficulty" : 0.0,
+          "retries" : 0.0,
+          "noScoreRetries" : 0.0,
+          "code" : "",
+          "audioUrl" : "",
+          "imageUrl" : "",
+          "answerAudioUrl" : "A1.01.01.02",
+          "answerImageUrl" : "",
+          "miniTheory" : "$are$ va con they.",
+          "successMessage" : "",
+          "sentences" : [ "They are very short." ],
+          "unmodeledFields" : {
+            "formCloze" : {
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : "They",
+                "options" : null
+              }, {
+                "kind" : "CLOZE",
+                "text" : "",
+                "options" : [ "are" ]
+              }, {
+                "kind" : "TEXT",
+                "text" : "very short.",
+                "options" : null
+              } ],
+              "kind" : "CLOZE",
+              "incidence" : {
+                "$numberDouble" : "1.0"
+              },
+              "label" : "",
+              "name" : ""
+            },
+            "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+            "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
+          }
+        }
+      },
+      "rejectOnAnnotation" : true,
+      "examContext" : {
+        "title" : "Afirmativas con $be$",
+        "topicName" : "Present Simple",
+        "knowledgeInstructions" : "Escribe la forma de 'be', sin usar contracciones ('short forms').",
+        "level" : "A1",
+        "sentenceMode" : "FILL",
+        "isRule" : true
+      }
+    },
+    "confirmedAt" : "2026-10-20T20:27:45.888875Z"
+  }, {
+    "id" : "REG-13134cfcc25cf38f6ffa04ac",
+    "judgeName" : "mini-theory",
+    "problemId" : "PRB-f35c962c",
+    "problemTitle" : "Especifica de más",
+    "problemCaseId" : "CAS-79191b3f951efcb7001e80cd",
+    "quizId" : "67fab6d599301022953425bf",
+    "expectedDetected" : true,
+    "expectedReason" : "Para preguntar con he y know en presente simple, usá Does + he + know + el resto de la oración + ?. Después de Does, el verbo va en forma base, sin -s.\n\nLa mini teoría habla del uso de 'he' y 'know' como algo específico, cuando en verdad el uso de Does he [verb] es con cualquier verbo. Esto puede estar pasando en otros casos. \n\nDoes he [verb] [resto de la oración]? Se podría escribir de manera más concisa esta mini-teoría\n",
+    "expectedSource" : "Criterio y clasificación guardados en el problema PRB-f35c962c; referencia de comparación",
+    "snapshot" : {
+      "items" : [ {
+        "changeId" : "regla-answer-completeness-67fab6d599301022953425bf",
+        "step" : {
+          "quizId" : "67fab6d599301022953425bf",
+          "parts" : [ "INSTRUCTIONS" ],
+          "after" : {
+            "nodeTarget" : "QUIZ",
+            "nodeId" : "67fab6d599301022953425bf",
+            "quiz" : {
+              "id" : "67fab6d599301022953425bf",
+              "oidId" : "67fab6d599301022953425bf",
+              "kind" : "CLOZE",
+              "knowledgeId" : "6814dafa7d73e7209a13d394",
+              "title" : "Todas las formas",
+              "instructions" : "Escribe las oraciones en presente simple.",
+              "translation" : "¿Conoce él al chico?",
+              "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+              "topicName" : "Present Simple",
+              "form" : {
+                "kind" : "CLOZE",
+                "incidence" : 1.0,
+                "label" : "",
+                "name" : "",
+                "sentenceParts" : [ {
+                  "kind" : "CLOZE",
+                  "text" : "",
+                  "options" : [ "Does he know" ]
+                }, {
+                  "kind" : "TEXT",
+                  "text" : "(he / know) the guy?"
+                } ]
+              },
+              "difficulty" : 0.0,
+              "retries" : 0.0,
+              "noScoreRetries" : 0.0,
+              "code" : "",
+              "audioUrl" : "",
+              "imageUrl" : "",
+              "answerAudioUrl" : "A2.01.02.01",
+              "answerImageUrl" : "",
+              "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+              "successMessage" : "",
+              "sentences" : [ "Does he know the guy?" ],
+              "unmodeledFields" : {
+                "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+              }
+            }
+          }
+        },
+        "before" : {
+          "nodeTarget" : "QUIZ",
+          "nodeId" : "67fab6d599301022953425bf",
+          "quiz" : {
+            "id" : "67fab6d599301022953425bf",
+            "oidId" : "67fab6d599301022953425bf",
+            "kind" : "CLOZE",
+            "knowledgeId" : "6814dafa7d73e7209a13d394",
+            "title" : "Todas las formas",
+            "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+            "translation" : "¿Conoce él al chico?",
+            "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+            "topicName" : "Present Simple",
+            "form" : {
+              "kind" : "CLOZE",
+              "incidence" : 1.0,
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "CLOZE",
+                "text" : "",
+                "options" : [ "Does he know" ]
+              }, {
+                "kind" : "TEXT",
+                "text" : "(he / know) the guy?"
+              } ]
+            },
+            "difficulty" : 0.0,
+            "retries" : 0.0,
+            "noScoreRetries" : 0.0,
+            "code" : "",
+            "audioUrl" : "",
+            "imageUrl" : "",
+            "answerAudioUrl" : "A2.01.02.01",
+            "answerImageUrl" : "",
+            "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+            "successMessage" : "",
+            "sentences" : [ "Does he know the guy?" ],
+            "unmodeledFields" : {
+              "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+            }
+          }
+        },
+        "after" : {
+          "nodeTarget" : "QUIZ",
+          "nodeId" : "67fab6d599301022953425bf",
+          "quiz" : {
+            "id" : "67fab6d599301022953425bf",
+            "oidId" : "67fab6d599301022953425bf",
+            "kind" : "CLOZE",
+            "knowledgeId" : "6814dafa7d73e7209a13d394",
+            "title" : "Todas las formas",
+            "instructions" : "Escribe las oraciones en presente simple.",
+            "translation" : "¿Conoce él al chico?",
+            "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+            "topicName" : "Present Simple",
+            "form" : {
+              "kind" : "CLOZE",
+              "incidence" : 1.0,
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "CLOZE",
+                "text" : "",
+                "options" : [ "Does he know" ]
+              }, {
+                "kind" : "TEXT",
+                "text" : "(he / know) the guy?"
+              } ]
+            },
+            "difficulty" : 0.0,
+            "retries" : 0.0,
+            "noScoreRetries" : 0.0,
+            "code" : "",
+            "audioUrl" : "",
+            "imageUrl" : "",
+            "answerAudioUrl" : "A2.01.02.01",
+            "answerImageUrl" : "",
+            "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+            "successMessage" : "",
+            "sentences" : [ "Does he know the guy?" ],
+            "unmodeledFields" : {
+              "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+            }
+          }
+        },
+        "origin" : "RULE",
+        "ruleId" : "answer-completeness",
+        "status" : "PENDING",
+        "taskIds" : [ "task-344" ],
+        "requiredJudges" : [ ]
+      }, {
+        "changeId" : "mesa-67fab6d599301022953425bf",
+        "step" : {
+          "quizId" : "67fab6d599301022953425bf",
+          "parts" : [ "MINI_THEORY" ],
+          "after" : {
+            "nodeTarget" : "QUIZ",
+            "nodeId" : "67fab6d599301022953425bf",
+            "quiz" : {
+              "id" : "67fab6d599301022953425bf",
+              "oidId" : "67fab6d599301022953425bf",
+              "kind" : "CLOZE",
+              "knowledgeId" : "6814dafa7d73e7209a13d394",
+              "title" : "Todas las formas",
+              "instructions" : "Escribe las oraciones en presente simple.",
+              "translation" : "¿Conoce él al chico?",
+              "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+              "topicName" : "Present Simple",
+              "form" : {
+                "kind" : "CLOZE",
+                "incidence" : 1.0,
+                "label" : "",
+                "name" : "",
+                "sentenceParts" : [ {
+                  "kind" : "CLOZE",
+                  "text" : "",
+                  "options" : [ "Does he know" ]
+                }, {
+                  "kind" : "TEXT",
+                  "text" : " (he / know) the guy?"
+                } ]
+              },
+              "difficulty" : 0.0,
+              "retries" : 0.0,
+              "noScoreRetries" : 0.0,
+              "code" : "",
+              "audioUrl" : "",
+              "imageUrl" : "",
+              "answerAudioUrl" : "A2.01.02.01",
+              "answerImageUrl" : "",
+              "miniTheory" : "Para preguntar con $he$ y $know$ en presente simple, usá $Does$ + $he$ + $know$ + el resto de la oración + $?$. Después de $Does$, el verbo va en forma base, sin $-s$.",
+              "successMessage" : "",
+              "sentences" : [ "Does he know the guy?" ],
+              "unmodeledFields" : {
+                "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+              }
+            }
+          }
+        },
+        "before" : {
+          "nodeTarget" : "QUIZ",
+          "nodeId" : "67fab6d599301022953425bf",
+          "quiz" : {
+            "id" : "67fab6d599301022953425bf",
+            "oidId" : "67fab6d599301022953425bf",
+            "kind" : "CLOZE",
+            "knowledgeId" : "6814dafa7d73e7209a13d394",
+            "title" : "Todas las formas",
+            "instructions" : "Escribe las oraciones en presente simple.",
+            "translation" : "¿Conoce él al chico?",
+            "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+            "topicName" : "Present Simple",
+            "form" : {
+              "kind" : "CLOZE",
+              "incidence" : 1.0,
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "CLOZE",
+                "text" : "",
+                "options" : [ "Does he know" ]
+              }, {
+                "kind" : "TEXT",
+                "text" : "(he / know) the guy?"
+              } ]
+            },
+            "difficulty" : 0.0,
+            "retries" : 0.0,
+            "noScoreRetries" : 0.0,
+            "code" : "",
+            "audioUrl" : "",
+            "imageUrl" : "",
+            "answerAudioUrl" : "A2.01.02.01",
+            "answerImageUrl" : "",
+            "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+            "successMessage" : "",
+            "sentences" : [ "Does he know the guy?" ],
+            "unmodeledFields" : {
+              "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+            }
+          }
+        },
+        "after" : {
+          "nodeTarget" : "QUIZ",
+          "nodeId" : "67fab6d599301022953425bf",
+          "quiz" : {
+            "id" : "67fab6d599301022953425bf",
+            "oidId" : "67fab6d599301022953425bf",
+            "kind" : "CLOZE",
+            "knowledgeId" : "6814dafa7d73e7209a13d394",
+            "title" : "Todas las formas",
+            "instructions" : "Escribe las oraciones en presente simple.",
+            "translation" : "¿Conoce él al chico?",
+            "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+            "topicName" : "Present Simple",
+            "form" : {
+              "kind" : "CLOZE",
+              "incidence" : 1.0,
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "CLOZE",
+                "text" : "",
+                "options" : [ "Does he know" ]
+              }, {
+                "kind" : "TEXT",
+                "text" : "(he / know) the guy?"
+              } ]
+            },
+            "difficulty" : 0.0,
+            "retries" : 0.0,
+            "noScoreRetries" : 0.0,
+            "code" : "",
+            "audioUrl" : "",
+            "imageUrl" : "",
+            "answerAudioUrl" : "A2.01.02.01",
+            "answerImageUrl" : "",
+            "miniTheory" : "Para preguntar con $he$ y $know$ en presente simple, usá $Does$ + $he$ + $know$ + el resto de la oración + $?$. Después de $Does$, el verbo va en forma base, sin $-s$.",
+            "successMessage" : "",
+            "sentences" : [ "Does he know the guy?" ],
+            "unmodeledFields" : {
+              "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+            }
+          }
+        },
+        "origin" : "PANEL",
+        "status" : "PENDING",
+        "taskIds" : [ "task-2725" ],
+        "rationale" : "Reemplacé la miniteoría por una explicación centrada en la pregunta con Does y verbo base, sin contenido sobre afirmaciones ni negaciones.",
+        "requiredJudges" : [ ]
+      } ],
+      "before" : {
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "67fab6d599301022953425bf",
+        "quiz" : {
+          "id" : "67fab6d599301022953425bf",
+          "oidId" : "67fab6d599301022953425bf",
+          "kind" : "CLOZE",
+          "knowledgeId" : "6814dafa7d73e7209a13d394",
+          "title" : "Todas las formas",
+          "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+          "translation" : "¿Conoce él al chico?",
+          "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+          "topicName" : "Present Simple",
+          "form" : {
+            "kind" : "CLOZE",
+            "incidence" : 1.0,
+            "label" : "",
+            "name" : "",
+            "sentenceParts" : [ {
+              "kind" : "CLOZE",
+              "text" : "",
+              "options" : [ "Does he know" ]
+            }, {
+              "kind" : "TEXT",
+              "text" : "(he / know) the guy?"
+            } ]
+          },
+          "difficulty" : 0.0,
+          "retries" : 0.0,
+          "noScoreRetries" : 0.0,
+          "code" : "",
+          "audioUrl" : "",
+          "imageUrl" : "",
+          "answerAudioUrl" : "A2.01.02.01",
+          "answerImageUrl" : "",
+          "miniTheory" : "Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.",
+          "successMessage" : "",
+          "sentences" : [ "Does he know the guy?" ],
+          "unmodeledFields" : {
+            "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+          }
+        }
+      },
+      "after" : {
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "67fab6d599301022953425bf",
+        "quiz" : {
+          "id" : "67fab6d599301022953425bf",
+          "oidId" : "67fab6d599301022953425bf",
+          "kind" : "CLOZE",
+          "knowledgeId" : "6814dafa7d73e7209a13d394",
+          "title" : "Todas las formas",
+          "instructions" : "Escribe las oraciones en presente simple.",
+          "translation" : "¿Conoce él al chico?",
+          "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+          "topicName" : "Present Simple",
+          "form" : {
+            "kind" : "CLOZE",
+            "incidence" : 1.0,
+            "label" : "",
+            "name" : "",
+            "sentenceParts" : [ {
+              "kind" : "CLOZE",
+              "text" : "",
+              "options" : [ "Does he know" ]
+            }, {
+              "kind" : "TEXT",
+              "text" : "(he / know) the guy?"
+            } ]
+          },
+          "difficulty" : 0.0,
+          "retries" : 0.0,
+          "noScoreRetries" : 0.0,
+          "code" : "",
+          "audioUrl" : "",
+          "imageUrl" : "",
+          "answerAudioUrl" : "A2.01.02.01",
+          "answerImageUrl" : "",
+          "miniTheory" : "Para preguntar con $he$ y $know$ en presente simple, usá $Does$ + $he$ + $know$ + el resto de la oración + $?$. Después de $Does$, el verbo va en forma base, sin $-s$.",
+          "successMessage" : "",
+          "sentences" : [ "Does he know the guy?" ],
+          "unmodeledFields" : {
+            "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+          }
+        }
+      },
+      "rejectOnAnnotation" : true,
+      "examContext" : {
+        "title" : "Todas las formas",
+        "topicName" : "Present Simple",
+        "knowledgeInstructions" : "Escribe oraciones usando 'short forms' si es posible.",
+        "level" : "A1",
+        "sentenceMode" : "FILL",
+        "isRule" : true
+      }
+    },
+    "confirmedAt" : "2026-10-14T15:44:24.435112Z"
+  }, {
+    "id" : "REG-dff7baf1f10735ac858710ef",
+    "judgeName" : "mini-theory",
+    "problemId" : "PRB-f35c962c",
+    "problemTitle" : "Especifica de más",
+    "problemCaseId" : "CAS-2a6cbd8992f0b98aa7cb4403",
+    "quizId" : "67fab6d599301022953425f5",
+    "expectedDetected" : true,
+    "expectedReason" : "Para preguntar con he y know en presente simple, usá Does + he + know + el resto de la oración + ?. Después de Does, el verbo va en forma base, sin -s.\n\nLa mini teoría habla del uso de 'he' y 'know' como algo específico, cuando en verdad el uso de Does he [verb] es con cualquier verbo. Esto puede estar pasando en otros casos. \n\nDoes he [verb] [resto de la oración]? Se podría escribir de manera más concisa esta mini-teoría\n",
+    "expectedSource" : "Criterio y clasificación guardados en el problema PRB-f35c962c; referencia de comparación",
+    "snapshot" : {
+      "items" : [ {
+        "changeId" : "mesa-67fab6d599301022953425f5",
+        "step" : {
+          "quizId" : "67fab6d599301022953425f5",
+          "parts" : [ "ANSWERS", "MINI_THEORY", "INSTRUCTIONS" ],
+          "after" : {
+            "nodeTarget" : "QUIZ",
+            "nodeId" : "67fab6d599301022953425f5",
+            "quiz" : {
+              "id" : "67fab6d599301022953425f5",
+              "oidId" : "67fab6d599301022953425f5",
+              "kind" : "CLOZE",
+              "knowledgeId" : "6814dafa7d73e7209a13d394",
+              "title" : "Todas las formas",
+              "instructions" : "Escribe las oraciones en presente simple.",
+              "translation" : "El coche no está en el garaje.",
+              "theoryId" : "a1.01.Present_Simple_Forms_Be",
+              "topicName" : "Present Simple",
+              "form" : {
+                "kind" : "CLOZE",
+                "incidence" : 1.0,
+                "label" : "",
+                "name" : "",
+                "sentenceParts" : [ {
+                  "kind" : "TEXT",
+                  "text" : "The car "
+                }, {
+                  "kind" : "CLOZE",
+                  "text" : "",
+                  "options" : [ "isn't", "is not", "'s not", "ain't" ]
+                }, {
+                  "kind" : "TEXT",
+                  "text" : " (not / be) in the garage."
+                } ]
+              },
+              "difficulty" : 0.0,
+              "retries" : 0.0,
+              "noScoreRetries" : 0.0,
+              "code" : "",
+              "audioUrl" : "",
+              "imageUrl" : "",
+              "answerAudioUrl" : "A2.01.04.10",
+              "answerImageUrl" : "",
+              "miniTheory" : "Para negar con $be$ en presente simple, con el sujeto singular $the car$ usá $is not$. También podés escribir $isn't$ o contraer $is$ como $'s$ y dejar $not$ separado. La forma $ain't$ también expresa esta negación en variedades coloquiales del inglés y se acepta aquí.",
+              "successMessage" : "",
+              "sentences" : [ "The car isn't in the garage." ],
+              "unmodeledFields" : {
+                "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+              }
+            }
+          }
+        },
+        "before" : {
+          "nodeTarget" : "QUIZ",
+          "nodeId" : "67fab6d599301022953425f5",
+          "quiz" : {
+            "id" : "67fab6d599301022953425f5",
+            "oidId" : "67fab6d599301022953425f5",
+            "kind" : "CLOZE",
+            "knowledgeId" : "6814dafa7d73e7209a13d394",
+            "title" : "Todas las formas",
+            "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+            "translation" : "El coche no está en el garaje.",
+            "theoryId" : "a1.01.Present_Simple_Forms_Be",
+            "topicName" : "Present Simple",
+            "form" : {
+              "kind" : "CLOZE",
+              "incidence" : 1.0,
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : "The car"
+              }, {
+                "kind" : "CLOZE",
+                "text" : "",
+                "options" : [ "isn't" ]
+              }, {
+                "kind" : "TEXT",
+                "text" : "(not / be) in the garage."
+              } ]
+            },
+            "difficulty" : 0.0,
+            "retries" : 0.0,
+            "noScoreRetries" : 0.0,
+            "code" : "",
+            "audioUrl" : "",
+            "imageUrl" : "",
+            "answerAudioUrl" : "A2.01.04.10",
+            "answerImageUrl" : "",
+            "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+            "successMessage" : "",
+            "sentences" : [ "The car isn't in the garage." ],
+            "unmodeledFields" : {
+              "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+            }
+          }
+        },
+        "after" : {
+          "nodeTarget" : "QUIZ",
+          "nodeId" : "67fab6d599301022953425f5",
+          "quiz" : {
+            "id" : "67fab6d599301022953425f5",
+            "oidId" : "67fab6d599301022953425f5",
+            "kind" : "CLOZE",
+            "knowledgeId" : "6814dafa7d73e7209a13d394",
+            "title" : "Todas las formas",
+            "instructions" : "Escribe las oraciones en presente simple.",
+            "translation" : "El coche no está en el garaje.",
+            "theoryId" : "a1.01.Present_Simple_Forms_Be",
+            "topicName" : "Present Simple",
+            "form" : {
+              "kind" : "CLOZE",
+              "incidence" : 1.0,
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : "The car "
+              }, {
+                "kind" : "CLOZE",
+                "text" : "",
+                "options" : [ "isn't", "is not", "'s not", "ain't" ]
+              }, {
+                "kind" : "TEXT",
+                "text" : " (not / be) in the garage."
+              } ]
+            },
+            "difficulty" : 0.0,
+            "retries" : 0.0,
+            "noScoreRetries" : 0.0,
+            "code" : "",
+            "audioUrl" : "",
+            "imageUrl" : "",
+            "answerAudioUrl" : "A2.01.04.10",
+            "answerImageUrl" : "",
+            "miniTheory" : "Para negar con $be$ en presente simple, con el sujeto singular $the car$ usá $is not$. También podés escribir $isn't$ o contraer $is$ como $'s$ y dejar $not$ separado. La forma $ain't$ también expresa esta negación en variedades coloquiales del inglés y se acepta aquí.",
+            "successMessage" : "",
+            "sentences" : [ "The car isn't in the garage." ],
+            "unmodeledFields" : {
+              "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+            }
+          }
+        },
+        "origin" : "PANEL",
+        "status" : "PENDING",
+        "taskIds" : [ "task-377" ],
+        "rationale" : "Eliminé el pedido de contracciones, acepté las formas negativas equivalentes incluida ain't y expliqué la negación con el sujeto singular.",
+        "requiredJudges" : [ ]
+      } ],
+      "before" : {
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "67fab6d599301022953425f5",
+        "quiz" : {
+          "id" : "67fab6d599301022953425f5",
+          "oidId" : "67fab6d599301022953425f5",
+          "kind" : "CLOZE",
+          "knowledgeId" : "6814dafa7d73e7209a13d394",
+          "title" : "Todas las formas",
+          "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+          "translation" : "El coche no está en el garaje.",
+          "theoryId" : "a1.01.Present_Simple_Forms_Be",
+          "topicName" : "Present Simple",
+          "form" : {
+            "kind" : "CLOZE",
+            "incidence" : 1.0,
+            "label" : "",
+            "name" : "",
+            "sentenceParts" : [ {
+              "kind" : "TEXT",
+              "text" : "The car"
+            }, {
+              "kind" : "CLOZE",
+              "text" : "",
+              "options" : [ "isn't" ]
+            }, {
+              "kind" : "TEXT",
+              "text" : "(not / be) in the garage."
+            } ]
+          },
+          "difficulty" : 0.0,
+          "retries" : 0.0,
+          "noScoreRetries" : 0.0,
+          "code" : "",
+          "audioUrl" : "",
+          "imageUrl" : "",
+          "answerAudioUrl" : "A2.01.04.10",
+          "answerImageUrl" : "",
+          "miniTheory" : "Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+          "successMessage" : "",
+          "sentences" : [ "The car isn't in the garage." ],
+          "unmodeledFields" : {
+            "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+          }
+        }
+      },
+      "after" : {
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "67fab6d599301022953425f5",
+        "quiz" : {
+          "id" : "67fab6d599301022953425f5",
+          "oidId" : "67fab6d599301022953425f5",
+          "kind" : "CLOZE",
+          "knowledgeId" : "6814dafa7d73e7209a13d394",
+          "title" : "Todas las formas",
+          "instructions" : "Escribe las oraciones en presente simple.",
+          "translation" : "El coche no está en el garaje.",
+          "theoryId" : "a1.01.Present_Simple_Forms_Be",
+          "topicName" : "Present Simple",
+          "form" : {
+            "kind" : "CLOZE",
+            "incidence" : 1.0,
+            "label" : "",
+            "name" : "",
+            "sentenceParts" : [ {
+              "kind" : "TEXT",
+              "text" : "The car "
+            }, {
+              "kind" : "CLOZE",
+              "text" : "",
+              "options" : [ "isn't", "is not", "'s not", "ain't" ]
+            }, {
+              "kind" : "TEXT",
+              "text" : " (not / be) in the garage."
+            } ]
+          },
+          "difficulty" : 0.0,
+          "retries" : 0.0,
+          "noScoreRetries" : 0.0,
+          "code" : "",
+          "audioUrl" : "",
+          "imageUrl" : "",
+          "answerAudioUrl" : "A2.01.04.10",
+          "answerImageUrl" : "",
+          "miniTheory" : "Para negar con $be$ en presente simple, con el sujeto singular $the car$ usá $is not$. También podés escribir $isn't$ o contraer $is$ como $'s$ y dejar $not$ separado. La forma $ain't$ también expresa esta negación en variedades coloquiales del inglés y se acepta aquí.",
+          "successMessage" : "",
+          "sentences" : [ "The car isn't in the garage." ],
+          "unmodeledFields" : {
+            "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+          }
+        }
+      },
+      "rejectOnAnnotation" : true,
+      "examContext" : {
+        "title" : "Todas las formas",
+        "topicName" : "Present Simple",
+        "knowledgeInstructions" : "Escribe oraciones usando 'short forms' si es posible.",
+        "level" : "A1",
+        "sentenceMode" : "FILL",
+        "isRule" : true
+      }
+    },
+    "confirmedAt" : "2026-10-14T15:44:24.435112Z"
+  }, {
+    "id" : "REG-665eb5086c4870604311272b",
+    "judgeName" : "mini-theory",
+    "problemId" : "PRB-f35c962c",
+    "problemTitle" : "Especifica de más",
+    "problemCaseId" : "CAS-04914a12a463f58b428acace",
+    "quizId" : "67fab6d59930102295342601",
+    "expectedDetected" : true,
+    "expectedReason" : "Para preguntar con he y know en presente simple, usá Does + he + know + el resto de la oración + ?. Después de Does, el verbo va en forma base, sin -s.\n\nLa mini teoría habla del uso de 'he' y 'know' como algo específico, cuando en verdad el uso de Does he [verb] es con cualquier verbo. Esto puede estar pasando en otros casos. \n\nDoes he [verb] [resto de la oración]? Se podría escribir de manera más concisa esta mini-teoría\n",
+    "expectedSource" : "Criterio y clasificación guardados en el problema PRB-f35c962c; referencia de comparación",
+    "snapshot" : {
+      "items" : [ {
+        "changeId" : "mesa-67fab6d59930102295342601",
+        "step" : {
+          "quizId" : "67fab6d59930102295342601",
+          "parts" : [ "MINI_THEORY", "INSTRUCTIONS" ],
+          "after" : {
+            "nodeTarget" : "QUIZ",
+            "nodeId" : "67fab6d59930102295342601",
+            "quiz" : {
+              "id" : "67fab6d59930102295342601",
+              "oidId" : "67fab6d59930102295342601",
+              "kind" : "CLOZE",
+              "knowledgeId" : "6814dafa7d73e7209a13d394",
+              "title" : "Todas las formas",
+              "instructions" : "Escribe las oraciones en presente simple.",
+              "translation" : "¿A qué hora quiere llegar?",
+              "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+              "topicName" : "Present Simple",
+              "form" : {
+                "kind" : "CLOZE",
+                "incidence" : 1.0,
+                "label" : "",
+                "name" : "",
+                "sentenceParts" : [ {
+                  "kind" : "TEXT",
+                  "text" : "What time "
+                }, {
+                  "kind" : "CLOZE",
+                  "text" : "",
+                  "options" : [ "does he want" ]
+                }, {
+                  "kind" : "TEXT",
+                  "text" : " (he / want) to arrive?"
+                } ]
+              },
+              "difficulty" : 0.0,
+              "retries" : 0.0,
+              "noScoreRetries" : 0.0,
+              "code" : "",
+              "audioUrl" : "",
+              "imageUrl" : "",
+              "answerAudioUrl" : "A2.01.05.02",
+              "answerImageUrl" : "",
+              "miniTheory" : "Para preguntar con $he$ y $want$ en presente simple, usá $What time$ + $does$ + $he$ + $want$ + el resto de la oración + $?$. Con $he$, elegí $does$; después, $want$ va en forma base, sin $-s$.",
+              "successMessage" : "",
+              "sentences" : [ "What time does he want to arrive?" ],
+              "unmodeledFields" : {
+                "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+              }
+            }
+          }
+        },
+        "before" : {
+          "nodeTarget" : "QUIZ",
+          "nodeId" : "67fab6d59930102295342601",
+          "quiz" : {
+            "id" : "67fab6d59930102295342601",
+            "oidId" : "67fab6d59930102295342601",
+            "kind" : "CLOZE",
+            "knowledgeId" : "6814dafa7d73e7209a13d394",
+            "title" : "Todas las formas",
+            "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+            "translation" : "¿A qué hora quiere llegar?",
+            "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+            "topicName" : "Present Simple",
+            "form" : {
+              "kind" : "CLOZE",
+              "incidence" : 1.0,
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : "What time"
+              }, {
+                "kind" : "CLOZE",
+                "text" : "",
+                "options" : [ "does he want" ]
+              }, {
+                "kind" : "TEXT",
+                "text" : "(he / want) to arrive?"
+              } ]
+            },
+            "difficulty" : 0.0,
+            "retries" : 0.0,
+            "noScoreRetries" : 0.0,
+            "code" : "",
+            "audioUrl" : "",
+            "imageUrl" : "",
+            "answerAudioUrl" : "A2.01.05.02",
+            "answerImageUrl" : "",
+            "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+            "successMessage" : "",
+            "sentences" : [ "What time does he want to arrive?" ],
+            "unmodeledFields" : {
+              "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+            }
+          }
+        },
+        "after" : {
+          "nodeTarget" : "QUIZ",
+          "nodeId" : "67fab6d59930102295342601",
+          "quiz" : {
+            "id" : "67fab6d59930102295342601",
+            "oidId" : "67fab6d59930102295342601",
+            "kind" : "CLOZE",
+            "knowledgeId" : "6814dafa7d73e7209a13d394",
+            "title" : "Todas las formas",
+            "instructions" : "Escribe las oraciones en presente simple.",
+            "translation" : "¿A qué hora quiere llegar?",
+            "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+            "topicName" : "Present Simple",
+            "form" : {
+              "kind" : "CLOZE",
+              "incidence" : 1.0,
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : "What time"
+              }, {
+                "kind" : "CLOZE",
+                "text" : "",
+                "options" : [ "does he want" ]
+              }, {
+                "kind" : "TEXT",
+                "text" : "(he / want) to arrive?"
+              } ]
+            },
+            "difficulty" : 0.0,
+            "retries" : 0.0,
+            "noScoreRetries" : 0.0,
+            "code" : "",
+            "audioUrl" : "",
+            "imageUrl" : "",
+            "answerAudioUrl" : "A2.01.05.02",
+            "answerImageUrl" : "",
+            "miniTheory" : "Para preguntar con $he$ y $want$ en presente simple, usá $What time$ + $does$ + $he$ + $want$ + el resto de la oración + $?$. Con $he$, elegí $does$; después, $want$ va en forma base, sin $-s$.",
+            "successMessage" : "",
+            "sentences" : [ "What time does he want to arrive?" ],
+            "unmodeledFields" : {
+              "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+            }
+          }
+        },
+        "origin" : "PANEL",
+        "status" : "PENDING",
+        "taskIds" : [ "task-390" ],
+        "rationale" : "Quité el pedido de formas contraídas y expliqué la elección de does y el orden de la pregunta para resolver el rechazo anterior.",
+        "requiredJudges" : [ ]
+      } ],
+      "before" : {
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "67fab6d59930102295342601",
+        "quiz" : {
+          "id" : "67fab6d59930102295342601",
+          "oidId" : "67fab6d59930102295342601",
+          "kind" : "CLOZE",
+          "knowledgeId" : "6814dafa7d73e7209a13d394",
+          "title" : "Todas las formas",
+          "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+          "translation" : "¿A qué hora quiere llegar?",
+          "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+          "topicName" : "Present Simple",
+          "form" : {
+            "kind" : "CLOZE",
+            "incidence" : 1.0,
+            "label" : "",
+            "name" : "",
+            "sentenceParts" : [ {
+              "kind" : "TEXT",
+              "text" : "What time"
+            }, {
+              "kind" : "CLOZE",
+              "text" : "",
+              "options" : [ "does he want" ]
+            }, {
+              "kind" : "TEXT",
+              "text" : "(he / want) to arrive?"
+            } ]
+          },
+          "difficulty" : 0.0,
+          "retries" : 0.0,
+          "noScoreRetries" : 0.0,
+          "code" : "",
+          "audioUrl" : "",
+          "imageUrl" : "",
+          "answerAudioUrl" : "A2.01.05.02",
+          "answerImageUrl" : "",
+          "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+          "successMessage" : "",
+          "sentences" : [ "What time does he want to arrive?" ],
+          "unmodeledFields" : {
+            "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+          }
+        }
+      },
+      "after" : {
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "67fab6d59930102295342601",
+        "quiz" : {
+          "id" : "67fab6d59930102295342601",
+          "oidId" : "67fab6d59930102295342601",
+          "kind" : "CLOZE",
+          "knowledgeId" : "6814dafa7d73e7209a13d394",
+          "title" : "Todas las formas",
+          "instructions" : "Escribe las oraciones en presente simple.",
+          "translation" : "¿A qué hora quiere llegar?",
+          "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+          "topicName" : "Present Simple",
+          "form" : {
+            "kind" : "CLOZE",
+            "incidence" : 1.0,
+            "label" : "",
+            "name" : "",
+            "sentenceParts" : [ {
+              "kind" : "TEXT",
+              "text" : "What time"
+            }, {
+              "kind" : "CLOZE",
+              "text" : "",
+              "options" : [ "does he want" ]
+            }, {
+              "kind" : "TEXT",
+              "text" : "(he / want) to arrive?"
+            } ]
+          },
+          "difficulty" : 0.0,
+          "retries" : 0.0,
+          "noScoreRetries" : 0.0,
+          "code" : "",
+          "audioUrl" : "",
+          "imageUrl" : "",
+          "answerAudioUrl" : "A2.01.05.02",
+          "answerImageUrl" : "",
+          "miniTheory" : "Para preguntar con $he$ y $want$ en presente simple, usá $What time$ + $does$ + $he$ + $want$ + el resto de la oración + $?$. Con $he$, elegí $does$; después, $want$ va en forma base, sin $-s$.",
+          "successMessage" : "",
+          "sentences" : [ "What time does he want to arrive?" ],
+          "unmodeledFields" : {
+            "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+          }
+        }
+      },
+      "rejectOnAnnotation" : true,
+      "examContext" : {
+        "title" : "Todas las formas",
+        "topicName" : "Present Simple",
+        "knowledgeInstructions" : "Escribe oraciones usando 'short forms' si es posible.",
+        "level" : "A1",
+        "sentenceMode" : "FILL",
+        "isRule" : true
+      }
+    },
+    "confirmedAt" : "2026-10-14T15:44:24.435112Z"
+  }, {
+    "id" : "REG-d641988956b1bcd216706634",
+    "judgeName" : "mini-theory",
+    "problemId" : "PRB-f35c962c",
+    "problemTitle" : "Especifica de más",
+    "problemCaseId" : "CAS-aa98add8dd8df8d266284c7e",
+    "quizId" : "67fab6d5993010229534260e",
+    "expectedDetected" : true,
+    "expectedReason" : "Para preguntar con he y know en presente simple, usá Does + he + know + el resto de la oración + ?. Después de Does, el verbo va en forma base, sin -s.\n\nLa mini teoría habla del uso de 'he' y 'know' como algo específico, cuando en verdad el uso de Does he [verb] es con cualquier verbo. Esto puede estar pasando en otros casos. \n\nDoes he [verb] [resto de la oración]? Se podría escribir de manera más concisa esta mini-teoría\n",
+    "expectedSource" : "Criterio y clasificación guardados en el problema PRB-f35c962c; referencia de comparación",
+    "snapshot" : {
+      "items" : [ {
+        "changeId" : "mesa-67fab6d5993010229534260e",
+        "step" : {
+          "quizId" : "67fab6d5993010229534260e",
+          "parts" : [ "MINI_THEORY", "INSTRUCTIONS" ],
+          "after" : {
+            "nodeTarget" : "QUIZ",
+            "nodeId" : "67fab6d5993010229534260e",
+            "quiz" : {
+              "id" : "67fab6d5993010229534260e",
+              "oidId" : "67fab6d5993010229534260e",
+              "kind" : "CLOZE",
+              "knowledgeId" : "6814dafa7d73e7209a13d394",
+              "title" : "Todas las formas",
+              "instructions" : "Escribe las oraciones en presente simple.",
+              "translation" : "¿Cuándo llegan ellos?",
+              "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+              "topicName" : "Present Simple",
+              "form" : {
+                "kind" : "CLOZE",
+                "incidence" : 1.0,
+                "label" : "",
+                "name" : "",
+                "sentenceParts" : [ {
+                  "kind" : "TEXT",
+                  "text" : "When "
+                }, {
+                  "kind" : "CLOZE",
+                  "text" : "",
+                  "options" : [ "do they arrive" ]
+                }, {
+                  "kind" : "TEXT",
+                  "text" : " (they / arrive)?"
+                } ]
+              },
+              "difficulty" : 0.0,
+              "retries" : 0.0,
+              "noScoreRetries" : 0.0,
+              "code" : "",
+              "audioUrl" : "",
+              "imageUrl" : "",
+              "answerAudioUrl" : "A2.01.05.15",
+              "answerImageUrl" : "",
+              "miniTheory" : "Para preguntar cuándo llegan en presente simple, usá $When$ + $do$ + $they$ + $arrive$ + $?$: $When do they arrive?$. Con $they$, elegí $do$ y mantené $arrive$ en forma base.",
+              "successMessage" : "",
+              "sentences" : [ "When do they arrive?" ],
+              "unmodeledFields" : {
+                "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+              }
+            }
+          }
+        },
+        "before" : {
+          "nodeTarget" : "QUIZ",
+          "nodeId" : "67fab6d5993010229534260e",
+          "quiz" : {
+            "id" : "67fab6d5993010229534260e",
+            "oidId" : "67fab6d5993010229534260e",
+            "kind" : "CLOZE",
+            "knowledgeId" : "6814dafa7d73e7209a13d394",
+            "title" : "Todas las formas",
+            "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+            "translation" : "¿Cuándo llegan ellos?",
+            "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+            "topicName" : "Present Simple",
+            "form" : {
+              "kind" : "CLOZE",
+              "incidence" : 1.0,
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : "When"
+              }, {
+                "kind" : "CLOZE",
+                "text" : "",
+                "options" : [ "do they arrive" ]
+              }, {
+                "kind" : "TEXT",
+                "text" : "(they / arrive)?"
+              } ]
+            },
+            "difficulty" : 0.0,
+            "retries" : 0.0,
+            "noScoreRetries" : 0.0,
+            "code" : "",
+            "audioUrl" : "",
+            "imageUrl" : "",
+            "answerAudioUrl" : "A2.01.05.15",
+            "answerImageUrl" : "",
+            "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+            "successMessage" : "",
+            "sentences" : [ "When do they arrive?" ],
+            "unmodeledFields" : {
+              "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+            }
+          }
+        },
+        "after" : {
+          "nodeTarget" : "QUIZ",
+          "nodeId" : "67fab6d5993010229534260e",
+          "quiz" : {
+            "id" : "67fab6d5993010229534260e",
+            "oidId" : "67fab6d5993010229534260e",
+            "kind" : "CLOZE",
+            "knowledgeId" : "6814dafa7d73e7209a13d394",
+            "title" : "Todas las formas",
+            "instructions" : "Escribe las oraciones en presente simple.",
+            "translation" : "¿Cuándo llegan ellos?",
+            "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+            "topicName" : "Present Simple",
+            "form" : {
+              "kind" : "CLOZE",
+              "incidence" : 1.0,
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : "When"
+              }, {
+                "kind" : "CLOZE",
+                "text" : "",
+                "options" : [ "do they arrive" ]
+              }, {
+                "kind" : "TEXT",
+                "text" : "(they / arrive)?"
+              } ]
+            },
+            "difficulty" : 0.0,
+            "retries" : 0.0,
+            "noScoreRetries" : 0.0,
+            "code" : "",
+            "audioUrl" : "",
+            "imageUrl" : "",
+            "answerAudioUrl" : "A2.01.05.15",
+            "answerImageUrl" : "",
+            "miniTheory" : "Para preguntar cuándo llegan en presente simple, usá $When$ + $do$ + $they$ + $arrive$ + $?$: $When do they arrive?$. Con $they$, elegí $do$ y mantené $arrive$ en forma base.",
+            "successMessage" : "",
+            "sentences" : [ "When do they arrive?" ],
+            "unmodeledFields" : {
+              "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+            }
+          }
+        },
+        "origin" : "PANEL",
+        "status" : "PENDING",
+        "taskIds" : [ "task-405", "task-2772" ],
+        "rationale" : "Eliminé el pedido de formas contraídas y expliqué la elección de do y el orden de la pregunta con they, sin contenido sobre be.",
+        "requiredJudges" : [ ]
+      } ],
+      "before" : {
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "67fab6d5993010229534260e",
+        "quiz" : {
+          "id" : "67fab6d5993010229534260e",
+          "oidId" : "67fab6d5993010229534260e",
+          "kind" : "CLOZE",
+          "knowledgeId" : "6814dafa7d73e7209a13d394",
+          "title" : "Todas las formas",
+          "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+          "translation" : "¿Cuándo llegan ellos?",
+          "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+          "topicName" : "Present Simple",
+          "form" : {
+            "kind" : "CLOZE",
+            "incidence" : 1.0,
+            "label" : "",
+            "name" : "",
+            "sentenceParts" : [ {
+              "kind" : "TEXT",
+              "text" : "When"
+            }, {
+              "kind" : "CLOZE",
+              "text" : "",
+              "options" : [ "do they arrive" ]
+            }, {
+              "kind" : "TEXT",
+              "text" : "(they / arrive)?"
+            } ]
+          },
+          "difficulty" : 0.0,
+          "retries" : 0.0,
+          "noScoreRetries" : 0.0,
+          "code" : "",
+          "audioUrl" : "",
+          "imageUrl" : "",
+          "answerAudioUrl" : "A2.01.05.15",
+          "answerImageUrl" : "",
+          "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+          "successMessage" : "",
+          "sentences" : [ "When do they arrive?" ],
+          "unmodeledFields" : {
+            "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+          }
+        }
+      },
+      "after" : {
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "67fab6d5993010229534260e",
+        "quiz" : {
+          "id" : "67fab6d5993010229534260e",
+          "oidId" : "67fab6d5993010229534260e",
+          "kind" : "CLOZE",
+          "knowledgeId" : "6814dafa7d73e7209a13d394",
+          "title" : "Todas las formas",
+          "instructions" : "Escribe las oraciones en presente simple.",
+          "translation" : "¿Cuándo llegan ellos?",
+          "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+          "topicName" : "Present Simple",
+          "form" : {
+            "kind" : "CLOZE",
+            "incidence" : 1.0,
+            "label" : "",
+            "name" : "",
+            "sentenceParts" : [ {
+              "kind" : "TEXT",
+              "text" : "When"
+            }, {
+              "kind" : "CLOZE",
+              "text" : "",
+              "options" : [ "do they arrive" ]
+            }, {
+              "kind" : "TEXT",
+              "text" : "(they / arrive)?"
+            } ]
+          },
+          "difficulty" : 0.0,
+          "retries" : 0.0,
+          "noScoreRetries" : 0.0,
+          "code" : "",
+          "audioUrl" : "",
+          "imageUrl" : "",
+          "answerAudioUrl" : "A2.01.05.15",
+          "answerImageUrl" : "",
+          "miniTheory" : "Para preguntar cuándo llegan en presente simple, usá $When$ + $do$ + $they$ + $arrive$ + $?$: $When do they arrive?$. Con $they$, elegí $do$ y mantené $arrive$ en forma base.",
+          "successMessage" : "",
+          "sentences" : [ "When do they arrive?" ],
+          "unmodeledFields" : {
+            "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+          }
+        }
+      },
+      "rejectOnAnnotation" : true,
+      "examContext" : {
+        "title" : "Todas las formas",
+        "topicName" : "Present Simple",
+        "knowledgeInstructions" : "Escribe oraciones usando 'short forms' si es posible.",
+        "level" : "A1",
+        "sentenceMode" : "FILL",
+        "isRule" : true
+      }
+    },
+    "confirmedAt" : "2026-10-14T15:44:24.435112Z"
+  }, {
+    "id" : "REG-78bec83e011caf4ff5dedcc7",
+    "judgeName" : "mini-theory",
+    "problemId" : "PRB-f35c962c",
+    "problemTitle" : "Especifica de más",
+    "problemCaseId" : "CAS-e93495bbaae3ccbf9f851179",
+    "quizId" : "67fab6d5993010229534260f",
+    "expectedDetected" : true,
+    "expectedReason" : "Para preguntar con he y know en presente simple, usá Does + he + know + el resto de la oración + ?. Después de Does, el verbo va en forma base, sin -s.\n\nLa mini teoría habla del uso de 'he' y 'know' como algo específico, cuando en verdad el uso de Does he [verb] es con cualquier verbo. Esto puede estar pasando en otros casos. \n\nDoes he [verb] [resto de la oración]? Se podría escribir de manera más concisa esta mini-teoría\n",
+    "expectedSource" : "Criterio y clasificación guardados en el problema PRB-f35c962c; referencia de comparación",
+    "snapshot" : {
+      "items" : [ {
+        "changeId" : "mesa-67fab6d5993010229534260f",
+        "step" : {
+          "quizId" : "67fab6d5993010229534260f",
+          "parts" : [ "STATEMENT", "ANSWERS", "MINI_THEORY", "INSTRUCTIONS" ],
+          "after" : {
+            "nodeTarget" : "QUIZ",
+            "nodeId" : "67fab6d5993010229534260f",
+            "quiz" : {
+              "id" : "67fab6d5993010229534260f",
+              "oidId" : "67fab6d5993010229534260f",
+              "kind" : "CLOZE",
+              "knowledgeId" : "6814dafa7d73e7209a13d394",
+              "title" : "Todas las formas",
+              "instructions" : "Escribe las oraciones en presente simple.",
+              "translation" : "¿Necesitas ayuda?",
+              "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+              "topicName" : "Present Simple",
+              "form" : {
+                "kind" : "CLOZE",
+                "incidence" : 1.0,
+                "label" : "",
+                "name" : "",
+                "sentenceParts" : [ {
+                  "kind" : "CLOZE",
+                  "text" : "",
+                  "options" : [ "Do you need", "You need" ]
+                }, {
+                  "kind" : "TEXT",
+                  "text" : " (you / need) help?"
+                } ]
+              },
+              "difficulty" : 0.0,
+              "retries" : 0.0,
+              "noScoreRetries" : 0.0,
+              "code" : "",
+              "audioUrl" : "",
+              "imageUrl" : "",
+              "answerAudioUrl" : "A2.01.05.16",
+              "answerImageUrl" : "",
+              "miniTheory" : "Para preguntar con $you$ y $need$ en presente simple, usá $Do$ + $you$ + $need$ + el resto de la oración + $?$: $Do you need help?$. En inglés coloquial también podés preguntar con el orden sujeto + verbo y entonación de pregunta: $You need help?$. Se aceptan ambas respuestas.",
+              "successMessage" : "",
+              "sentences" : [ "Do you need help?" ],
+              "unmodeledFields" : {
+                "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+              }
+            }
+          }
+        },
+        "before" : {
+          "nodeTarget" : "QUIZ",
+          "nodeId" : "67fab6d5993010229534260f",
+          "quiz" : {
+            "id" : "67fab6d5993010229534260f",
+            "oidId" : "67fab6d5993010229534260f",
+            "kind" : "CLOZE",
+            "knowledgeId" : "6814dafa7d73e7209a13d394",
+            "title" : "Todas las formas",
+            "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+            "translation" : "¿Necesitas ayuda?",
+            "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+            "topicName" : "Present Simple",
+            "form" : {
+              "kind" : "CLOZE",
+              "incidence" : 1.0,
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : ""
+              }, {
+                "kind" : "CLOZE",
+                "text" : "",
+                "options" : [ "Do you need" ]
+              }, {
+                "kind" : "TEXT",
+                "text" : "(you / need) help?"
+              } ]
+            },
+            "difficulty" : 0.0,
+            "retries" : 0.0,
+            "noScoreRetries" : 0.0,
+            "code" : "",
+            "audioUrl" : "",
+            "imageUrl" : "",
+            "answerAudioUrl" : "A2.01.05.16",
+            "answerImageUrl" : "",
+            "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+            "successMessage" : "",
+            "sentences" : [ "Do you need help?" ],
+            "unmodeledFields" : {
+              "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+            }
+          }
+        },
+        "after" : {
+          "nodeTarget" : "QUIZ",
+          "nodeId" : "67fab6d5993010229534260f",
+          "quiz" : {
+            "id" : "67fab6d5993010229534260f",
+            "oidId" : "67fab6d5993010229534260f",
+            "kind" : "CLOZE",
+            "knowledgeId" : "6814dafa7d73e7209a13d394",
+            "title" : "Todas las formas",
+            "instructions" : "Escribe las oraciones en presente simple.",
+            "translation" : "¿Necesitas ayuda?",
+            "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+            "topicName" : "Present Simple",
+            "form" : {
+              "kind" : "CLOZE",
+              "incidence" : 1.0,
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "CLOZE",
+                "text" : "",
+                "options" : [ "Do you need", "You need" ]
+              }, {
+                "kind" : "TEXT",
+                "text" : " (you / need) help?"
+              } ]
+            },
+            "difficulty" : 0.0,
+            "retries" : 0.0,
+            "noScoreRetries" : 0.0,
+            "code" : "",
+            "audioUrl" : "",
+            "imageUrl" : "",
+            "answerAudioUrl" : "A2.01.05.16",
+            "answerImageUrl" : "",
+            "miniTheory" : "Para preguntar con $you$ y $need$ en presente simple, usá $Do$ + $you$ + $need$ + el resto de la oración + $?$: $Do you need help?$. En inglés coloquial también podés preguntar con el orden sujeto + verbo y entonación de pregunta: $You need help?$. Se aceptan ambas respuestas.",
+            "successMessage" : "",
+            "sentences" : [ "Do you need help?" ],
+            "unmodeledFields" : {
+              "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+            }
+          }
+        },
+        "origin" : "PANEL",
+        "status" : "PENDING",
+        "taskIds" : [ "task-406", "task-2066" ],
+        "rationale" : "Quité el pedido de formas contraídas, agregué la respuesta válida $You need$ y expliqué cómo construir las dos preguntas aceptadas.",
+        "requiredJudges" : [ ]
+      } ],
+      "before" : {
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "67fab6d5993010229534260f",
+        "quiz" : {
+          "id" : "67fab6d5993010229534260f",
+          "oidId" : "67fab6d5993010229534260f",
+          "kind" : "CLOZE",
+          "knowledgeId" : "6814dafa7d73e7209a13d394",
+          "title" : "Todas las formas",
+          "instructions" : "Usa $short forms$ si es posible. Escribe las oraciones en presente simple.",
+          "translation" : "¿Necesitas ayuda?",
+          "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+          "topicName" : "Present Simple",
+          "form" : {
+            "kind" : "CLOZE",
+            "incidence" : 1.0,
+            "label" : "",
+            "name" : "",
+            "sentenceParts" : [ {
+              "kind" : "TEXT",
+              "text" : ""
+            }, {
+              "kind" : "CLOZE",
+              "text" : "",
+              "options" : [ "Do you need" ]
+            }, {
+              "kind" : "TEXT",
+              "text" : "(you / need) help?"
+            } ]
+          },
+          "difficulty" : 0.0,
+          "retries" : 0.0,
+          "noScoreRetries" : 0.0,
+          "code" : "",
+          "audioUrl" : "",
+          "imageUrl" : "",
+          "answerAudioUrl" : "A2.01.05.16",
+          "answerImageUrl" : "",
+          "miniTheory" : "Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+          "successMessage" : "",
+          "sentences" : [ "Do you need help?" ],
+          "unmodeledFields" : {
+            "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+          }
+        }
+      },
+      "after" : {
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "67fab6d5993010229534260f",
+        "quiz" : {
+          "id" : "67fab6d5993010229534260f",
+          "oidId" : "67fab6d5993010229534260f",
+          "kind" : "CLOZE",
+          "knowledgeId" : "6814dafa7d73e7209a13d394",
+          "title" : "Todas las formas",
+          "instructions" : "Escribe las oraciones en presente simple.",
+          "translation" : "¿Necesitas ayuda?",
+          "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+          "topicName" : "Present Simple",
+          "form" : {
+            "kind" : "CLOZE",
+            "incidence" : 1.0,
+            "label" : "",
+            "name" : "",
+            "sentenceParts" : [ {
+              "kind" : "CLOZE",
+              "text" : "",
+              "options" : [ "Do you need", "You need" ]
+            }, {
+              "kind" : "TEXT",
+              "text" : " (you / need) help?"
+            } ]
+          },
+          "difficulty" : 0.0,
+          "retries" : 0.0,
+          "noScoreRetries" : 0.0,
+          "code" : "",
+          "audioUrl" : "",
+          "imageUrl" : "",
+          "answerAudioUrl" : "A2.01.05.16",
+          "answerImageUrl" : "",
+          "miniTheory" : "Para preguntar con $you$ y $need$ en presente simple, usá $Do$ + $you$ + $need$ + el resto de la oración + $?$: $Do you need help?$. En inglés coloquial también podés preguntar con el orden sujeto + verbo y entonación de pregunta: $You need help?$. Se aceptan ambas respuestas.",
+          "successMessage" : "",
+          "sentences" : [ "Do you need help?" ],
+          "unmodeledFields" : {
+            "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+          }
+        }
+      },
+      "rejectOnAnnotation" : true,
+      "examContext" : {
+        "title" : "Todas las formas",
+        "topicName" : "Present Simple",
+        "knowledgeInstructions" : "Escribe oraciones usando 'short forms' si es posible.",
+        "level" : "A1",
+        "sentenceMode" : "FILL",
+        "isRule" : true
+      }
+    },
+    "confirmedAt" : "2026-10-14T15:44:24.435112Z"
+  }, {
+    "id" : "REG-c2c1c1a75b42c3386e19abb4",
+    "judgeName" : "mini-theory",
+    "problemId" : "PRB-f35c962c",
+    "problemTitle" : "Especifica de más",
+    "problemCaseId" : "CAS-2af8cc37338aa0c3a714fa0d",
+    "quizId" : "67fab6d599301022953425bf",
+    "expectedDetected" : false,
+    "expectedReason" : "El juez debe aprobar la estructura reutilizable aunque incluya una razón de concordancia.",
+    "expectedSource" : "Criterio y clasificación guardados en el problema PRB-f35c962c; referencia de comparación",
+    "snapshot" : {
+      "after" : {
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "67fab6d599301022953425bf",
+        "quiz" : {
+          "id" : "67fab6d599301022953425bf",
+          "oidId" : "67fab6d599301022953425bf",
+          "kind" : "CLOZE",
+          "knowledgeId" : "6814dafa7d73e7209a13d394",
+          "title" : "Todas las formas",
+          "instructions" : "Escribe las oraciones en presente simple.",
+          "translation" : "¿Conoce él al chico?",
+          "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+          "topicName" : "Present Simple",
+          "form" : {
+            "kind" : "CLOZE",
+            "incidence" : 1.0,
+            "label" : "",
+            "name" : "",
+            "sentenceParts" : [ {
+              "kind" : "CLOZE",
+              "text" : "",
+              "options" : [ "Does he know" ]
+            }, {
+              "kind" : "TEXT",
+              "text" : "(he / know) the guy?"
+            } ]
+          },
+          "difficulty" : 0.0,
+          "retries" : 0.0,
+          "noScoreRetries" : 0.0,
+          "code" : "",
+          "audioUrl" : "",
+          "imageUrl" : "",
+          "answerAudioUrl" : "A2.01.02.01",
+          "answerImageUrl" : "",
+          "miniTheory" : "Con $he$, las preguntas en presente simple se forman con $Does$ + $he$ + verbo base + resto de la oración + $?$. El verbo no lleva $-s$ porque $does$ ya marca la tercera persona singular.",
+          "successMessage" : "",
+          "sentences" : [ "Does he know the guy?" ],
+          "unmodeledFields" : {
+            "instructionsAntesDeShortForms" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible."
+          }
+        }
+      },
+      "evaluation" : {
+        "observado" : {
+          "resultado" : "PASSES",
+          "gravedad" : null,
+          "reglas" : [ ],
+          "detalle" : "Explica la pregunta con he: Does + he + verbo base. El pronombre determina el auxiliar y la aclaración sobre -s justifica know."
+        },
+        "assessment" : {
+          "quizId" : "67fab6d599301022953425bf",
+          "holds" : true,
+          "problem" : null,
+          "severity" : null,
+          "counterexample" : null,
+          "explanation" : "Explica la pregunta con he: Does + he + verbo base. El pronombre determina el auxiliar y la aclaración sobre -s justifica know."
+        },
+        "version" : "f9edaec06fca3c9be9697343eebe1f8a3699c2f891e957adb2bce8a88a1fda7a",
+        "provider" : "codex-cli",
+        "model" : "gpt-6.1-sol",
+        "runtimeVersion" : "codex-cli 0.162.0-alpha.17.2",
+        "evidencePath" : "/Users/josecullen/projects/learney/content-audit/analysis/problems/PRB-f35c962c/judge-validation/26-canonical.json"
+      },
+      "examContext" : {
+        "title" : "Todas las formas",
+        "topicName" : "Present Simple",
+        "knowledgeInstructions" : "Escribe oraciones usando 'short forms' si es posible.",
+        "level" : "A1",
+        "sentenceMode" : "FILL",
+        "isRule" : true
+      }
+    },
+    "confirmedAt" : "2026-10-14T15:44:24.435112Z"
+  }, {
+    "id" : "REG-647669e7026d144c41040d79",
+    "judgeName" : "mini-theory",
+    "problemId" : "PRB-fbaeac6f",
+    "problemTitle" : "Mini-teoría no muy precisa",
+    "problemCaseId" : "CAS-e98f5709495574d4883bf952",
+    "quizId" : "67fab6d59930102295341e64",
+    "expectedDetected" : true,
+    "expectedReason" : "Por pedido explícito del usuario del 21/10/2026, rechazar la dirección didáctica invertida y pedir «I lleva am» o una variante sujeto→forma en presente afirmativo. La relación am/I no es gramaticalmente falsa; el defecto es editorial. Referencia del usuario, no una medición de precisión.",
+    "expectedSource" : "Criterio y clasificación guardados en el problema PRB-fbaeac6f; referencia de comparación",
+    "snapshot" : {
+      "items" : [ {
+        "changeId" : "mesa-67fab6d59930102295341e64",
+        "step" : {
+          "quizId" : "67fab6d59930102295341e64",
+          "parts" : [ "MINI_THEORY" ],
+          "after" : {
+            "nodeTarget" : "QUIZ",
+            "nodeId" : "67fab6d59930102295341e64",
+            "quiz" : {
+              "id" : "67fab6d59930102295341e64",
+              "oidId" : "67fab6d59930102295341e64",
+              "kind" : "MULTIPLE_CHOICE",
+              "knowledgeId" : "6814dafa7d73e7209a13d384",
+              "title" : "Afirmativas con $be$",
+              "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
+              "translation" : "Tengo calor.",
+              "theoryId" : "a1.01.Present_Simple_Forms_Be",
+              "topicName" : "Present Simple",
+              "form" : {
+                "kind" : "MULTIPLE_CHOICE",
+                "incidence" : 1.0,
+                "label" : "",
+                "name" : "",
+                "sentenceParts" : [ {
+                  "kind" : "TEXT",
+                  "text" : "I "
+                }, {
+                  "kind" : "CLOZE",
+                  "text" : ""
+                }, {
+                  "kind" : "TEXT",
+                  "text" : " hot."
+                } ],
+                "multipleChoice" : {
+                  "selection" : "SINGLE",
+                  "items" : [ {
+                    "id" : "am",
+                    "incidence" : 1.0,
+                    "label" : "am"
+                  }, {
+                    "id" : "are",
+                    "incidence" : 0.0,
+                    "label" : "are"
+                  }, {
+                    "id" : "is",
+                    "incidence" : 0.0,
+                    "label" : "is"
+                  } ]
+                }
+              },
+              "difficulty" : 0.0,
+              "retries" : 0.0,
+              "noScoreRetries" : 0.0,
+              "code" : "",
+              "audioUrl" : "",
+              "imageUrl" : "",
+              "answerAudioUrl" : "A1.01.01.06",
+              "answerImageUrl" : "",
+              "miniTheory" : "$am$ va con I.",
+              "successMessage" : "",
+              "sentences" : [ "I am hot." ],
+              "unmodeledFields" : {
+                "formCloze" : {
+                  "kind" : "CLOZE",
+                  "incidence" : {
+                    "$numberDouble" : "1.0"
+                  },
+                  "label" : "",
+                  "name" : "",
+                  "sentenceParts" : [ {
+                    "kind" : "TEXT",
+                    "text" : "I",
+                    "options" : null
+                  }, {
+                    "kind" : "CLOZE",
+                    "text" : "",
+                    "options" : [ "am" ]
+                  }, {
+                    "options" : null,
+                    "kind" : "TEXT",
+                    "text" : "hot."
+                  } ]
+                },
+                "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+                "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
+              }
+            }
+          }
+        },
+        "before" : {
+          "nodeTarget" : "QUIZ",
+          "nodeId" : "67fab6d59930102295341e64",
+          "quiz" : {
+            "id" : "67fab6d59930102295341e64",
+            "oidId" : "67fab6d59930102295341e64",
+            "kind" : "MULTIPLE_CHOICE",
+            "knowledgeId" : "6814dafa7d73e7209a13d384",
+            "title" : "Afirmativas con $be$",
+            "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
+            "translation" : "Tengo calor.",
+            "theoryId" : "a1.01.Present_Simple_Forms_Be",
+            "topicName" : "Present Simple",
+            "form" : {
+              "kind" : "MULTIPLE_CHOICE",
+              "incidence" : 1.0,
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : "I"
+              }, {
+                "kind" : "CLOZE",
+                "text" : ""
+              }, {
+                "kind" : "TEXT",
+                "text" : "hot."
+              } ],
+              "multipleChoice" : {
+                "selection" : "SINGLE",
+                "items" : [ {
+                  "id" : "am",
+                  "incidence" : 1.0,
+                  "label" : "am"
+                }, {
+                  "id" : "are",
+                  "incidence" : 0.0,
+                  "label" : "are"
+                }, {
+                  "id" : "is",
+                  "incidence" : 0.0,
+                  "label" : "is"
+                } ]
+              }
+            },
+            "difficulty" : 0.0,
+            "retries" : 0.0,
+            "noScoreRetries" : 0.0,
+            "code" : "",
+            "audioUrl" : "",
+            "imageUrl" : "",
+            "answerAudioUrl" : "A1.01.01.06",
+            "answerImageUrl" : "",
+            "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+            "successMessage" : "",
+            "sentences" : [ "I am hot." ],
+            "unmodeledFields" : {
+              "formCloze" : {
+                "kind" : "CLOZE",
+                "incidence" : {
+                  "$numberDouble" : "1.0"
+                },
+                "label" : "",
+                "name" : "",
+                "sentenceParts" : [ {
+                  "kind" : "TEXT",
+                  "text" : "I",
+                  "options" : null
+                }, {
+                  "kind" : "CLOZE",
+                  "text" : "",
+                  "options" : [ "am" ]
+                }, {
+                  "options" : null,
+                  "kind" : "TEXT",
+                  "text" : "hot."
+                } ]
+              },
+              "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+              "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
+            }
+          }
+        },
+        "after" : {
+          "nodeTarget" : "QUIZ",
+          "nodeId" : "67fab6d59930102295341e64",
+          "quiz" : {
+            "id" : "67fab6d59930102295341e64",
+            "oidId" : "67fab6d59930102295341e64",
+            "kind" : "MULTIPLE_CHOICE",
+            "knowledgeId" : "6814dafa7d73e7209a13d384",
+            "title" : "Afirmativas con $be$",
+            "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
+            "translation" : "Tengo calor.",
+            "theoryId" : "a1.01.Present_Simple_Forms_Be",
+            "topicName" : "Present Simple",
+            "form" : {
+              "kind" : "MULTIPLE_CHOICE",
+              "incidence" : 1.0,
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : "I"
+              }, {
+                "kind" : "CLOZE",
+                "text" : ""
+              }, {
+                "kind" : "TEXT",
+                "text" : "hot."
+              } ],
+              "multipleChoice" : {
+                "selection" : "SINGLE",
+                "items" : [ {
+                  "id" : "am",
+                  "incidence" : 1.0,
+                  "label" : "am"
+                }, {
+                  "id" : "are",
+                  "incidence" : 0.0,
+                  "label" : "are"
+                }, {
+                  "id" : "is",
+                  "incidence" : 0.0,
+                  "label" : "is"
+                } ]
+              }
+            },
+            "difficulty" : 0.0,
+            "retries" : 0.0,
+            "noScoreRetries" : 0.0,
+            "code" : "",
+            "audioUrl" : "",
+            "imageUrl" : "",
+            "answerAudioUrl" : "A1.01.01.06",
+            "answerImageUrl" : "",
+            "miniTheory" : "$am$ va con I.",
+            "successMessage" : "",
+            "sentences" : [ "I am hot." ],
+            "unmodeledFields" : {
+              "formCloze" : {
+                "kind" : "CLOZE",
+                "incidence" : {
+                  "$numberDouble" : "1.0"
+                },
+                "label" : "",
+                "name" : "",
+                "sentenceParts" : [ {
+                  "kind" : "TEXT",
+                  "text" : "I",
+                  "options" : null
+                }, {
+                  "kind" : "CLOZE",
+                  "text" : "",
+                  "options" : [ "am" ]
+                }, {
+                  "options" : null,
+                  "kind" : "TEXT",
+                  "text" : "hot."
+                } ]
+              },
+              "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+              "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
+            }
+          }
+        },
+        "origin" : "PANEL",
+        "status" : "PENDING",
+        "reviewer" : "Operador UI",
+        "decidedAt" : "2026-10-11T17:58:34.583189Z",
+        "taskIds" : [ "task-2535" ],
+        "rationale" : "Se limita la miniteoría a $am$ con I para eliminar contenido sobre sujetos no practicados en el ejercicio.",
+        "requiredJudges" : [ ]
+      } ],
+      "before" : {
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "67fab6d59930102295341e64",
+        "quiz" : {
+          "id" : "67fab6d59930102295341e64",
+          "oidId" : "67fab6d59930102295341e64",
+          "kind" : "MULTIPLE_CHOICE",
+          "knowledgeId" : "6814dafa7d73e7209a13d384",
+          "title" : "Afirmativas con $be$",
+          "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
+          "translation" : "Tengo calor.",
+          "theoryId" : "a1.01.Present_Simple_Forms_Be",
+          "topicName" : "Present Simple",
+          "form" : {
+            "kind" : "MULTIPLE_CHOICE",
+            "incidence" : 1.0,
+            "label" : "",
+            "name" : "",
+            "sentenceParts" : [ {
+              "kind" : "TEXT",
+              "text" : "I"
+            }, {
+              "kind" : "CLOZE",
+              "text" : ""
+            }, {
+              "kind" : "TEXT",
+              "text" : "hot."
+            } ],
+            "multipleChoice" : {
+              "selection" : "SINGLE",
+              "items" : [ {
+                "id" : "am",
+                "incidence" : 1.0,
+                "label" : "am"
+              }, {
+                "id" : "are",
+                "incidence" : 0.0,
+                "label" : "are"
+              }, {
+                "id" : "is",
+                "incidence" : 0.0,
+                "label" : "is"
+              } ]
+            }
+          },
+          "difficulty" : 0.0,
+          "retries" : 0.0,
+          "noScoreRetries" : 0.0,
+          "code" : "",
+          "audioUrl" : "",
+          "imageUrl" : "",
+          "answerAudioUrl" : "A1.01.01.06",
+          "answerImageUrl" : "",
+          "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+          "successMessage" : "",
+          "sentences" : [ "I am hot." ],
+          "unmodeledFields" : {
+            "formCloze" : {
+              "kind" : "CLOZE",
+              "incidence" : {
+                "$numberDouble" : "1.0"
+              },
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : "I",
+                "options" : null
+              }, {
+                "kind" : "CLOZE",
+                "text" : "",
+                "options" : [ "am" ]
+              }, {
+                "options" : null,
+                "kind" : "TEXT",
+                "text" : "hot."
+              } ]
+            },
+            "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+            "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
+          }
+        }
+      },
+      "after" : {
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "67fab6d59930102295341e64",
+        "quiz" : {
+          "id" : "67fab6d59930102295341e64",
+          "oidId" : "67fab6d59930102295341e64",
+          "kind" : "MULTIPLE_CHOICE",
+          "knowledgeId" : "6814dafa7d73e7209a13d384",
+          "title" : "Afirmativas con $be$",
+          "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
+          "translation" : "Tengo calor.",
+          "theoryId" : "a1.01.Present_Simple_Forms_Be",
+          "topicName" : "Present Simple",
+          "form" : {
+            "kind" : "MULTIPLE_CHOICE",
+            "incidence" : 1.0,
+            "label" : "",
+            "name" : "",
+            "sentenceParts" : [ {
+              "kind" : "TEXT",
+              "text" : "I"
+            }, {
+              "kind" : "CLOZE",
+              "text" : ""
+            }, {
+              "kind" : "TEXT",
+              "text" : "hot."
+            } ],
+            "multipleChoice" : {
+              "selection" : "SINGLE",
+              "items" : [ {
+                "id" : "am",
+                "incidence" : 1.0,
+                "label" : "am"
+              }, {
+                "id" : "are",
+                "incidence" : 0.0,
+                "label" : "are"
+              }, {
+                "id" : "is",
+                "incidence" : 0.0,
+                "label" : "is"
+              } ]
+            }
+          },
+          "difficulty" : 0.0,
+          "retries" : 0.0,
+          "noScoreRetries" : 0.0,
+          "code" : "",
+          "audioUrl" : "",
+          "imageUrl" : "",
+          "answerAudioUrl" : "A1.01.01.06",
+          "answerImageUrl" : "",
+          "miniTheory" : "$am$ va con I.",
+          "successMessage" : "",
+          "sentences" : [ "I am hot." ],
+          "unmodeledFields" : {
+            "formCloze" : {
+              "kind" : "CLOZE",
+              "incidence" : {
+                "$numberDouble" : "1.0"
+              },
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : "I",
+                "options" : null
+              }, {
+                "kind" : "CLOZE",
+                "text" : "",
+                "options" : [ "am" ]
+              }, {
+                "options" : null,
+                "kind" : "TEXT",
+                "text" : "hot."
+              } ]
+            },
+            "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+            "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
+          }
+        }
+      },
+      "rejectOnAnnotation" : false,
+      "examContext" : {
+        "title" : "Afirmativas con $be$",
+        "topicName" : "Present Simple",
+        "knowledgeInstructions" : "Escribe la forma de 'be', sin usar contracciones ('short forms').",
+        "level" : "A1",
+        "isRule" : true,
+        "sentenceMode" : "FILL"
+      }
+    },
+    "confirmedAt" : "2026-10-21T04:14:23.439484Z"
+  }, {
+    "id" : "REG-6acd04127cd99912023dace5",
+    "judgeName" : "mini-theory",
+    "problemId" : "PRB-fbaeac6f",
+    "problemTitle" : "Mini-teoría no muy precisa",
+    "problemCaseId" : "CAS-b3bfcf8120fc128a991b7613",
+    "quizId" : "67fab6d59930102295341e62",
+    "expectedDetected" : true,
+    "expectedReason" : "Por pedido explícito del usuario del 21/10/2026, rechazar la dirección didáctica invertida y pedir «it lleva is» o una variante sujeto→forma en presente afirmativo. No exigir enumerar he/she ni otros subtemas. Referencia del usuario, no una medición de precisión.",
+    "expectedSource" : "Criterio y clasificación guardados en el problema PRB-fbaeac6f; referencia de comparación",
+    "snapshot" : {
+      "items" : [ {
+        "changeId" : "mesa-67fab6d59930102295341e62",
+        "step" : {
+          "quizId" : "67fab6d59930102295341e62",
+          "parts" : [ "MINI_THEORY" ],
+          "after" : {
+            "nodeTarget" : "QUIZ",
+            "nodeId" : "67fab6d59930102295341e62",
+            "quiz" : {
+              "id" : "67fab6d59930102295341e62",
+              "oidId" : "67fab6d59930102295341e62",
+              "kind" : "MULTIPLE_CHOICE",
+              "knowledgeId" : "6814dafa7d73e7209a13d384",
+              "title" : "Afirmativas con $be$",
+              "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
+              "translation" : "Está debajo de la silla.",
+              "theoryId" : "a1.01.Present_Simple_Forms_Be",
+              "topicName" : "Present Simple",
+              "form" : {
+                "kind" : "MULTIPLE_CHOICE",
+                "incidence" : 1.0,
+                "label" : "",
+                "name" : "",
+                "sentenceParts" : [ {
+                  "kind" : "TEXT",
+                  "text" : "It "
+                }, {
+                  "kind" : "CLOZE",
+                  "text" : ""
+                }, {
+                  "kind" : "TEXT",
+                  "text" : " under the chair."
+                } ],
+                "multipleChoice" : {
+                  "selection" : "SINGLE",
+                  "items" : [ {
+                    "id" : "am",
+                    "incidence" : 0.0,
+                    "label" : "am"
+                  }, {
+                    "id" : "are",
+                    "incidence" : 0.0,
+                    "label" : "are"
+                  }, {
+                    "id" : "is",
+                    "incidence" : 1.0,
+                    "label" : "is"
+                  } ]
+                }
+              },
+              "difficulty" : 0.0,
+              "retries" : 0.0,
+              "noScoreRetries" : 0.0,
+              "code" : "",
+              "audioUrl" : "",
+              "imageUrl" : "",
+              "answerAudioUrl" : "A1.01.01.04",
+              "answerImageUrl" : "",
+              "miniTheory" : "$is$ va con it.",
+              "successMessage" : "",
+              "sentences" : [ "It is under the chair." ],
+              "unmodeledFields" : {
+                "formCloze" : {
+                  "kind" : "CLOZE",
+                  "incidence" : {
+                    "$numberDouble" : "1.0"
+                  },
+                  "label" : "",
+                  "name" : "",
+                  "sentenceParts" : [ {
+                    "kind" : "TEXT",
+                    "text" : "It",
+                    "options" : null
+                  }, {
+                    "kind" : "CLOZE",
+                    "text" : "",
+                    "options" : [ "is" ]
+                  }, {
+                    "kind" : "TEXT",
+                    "text" : "under the chair.",
+                    "options" : null
+                  } ]
+                },
+                "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+                "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
+              }
+            }
+          }
+        },
+        "before" : {
+          "nodeTarget" : "QUIZ",
+          "nodeId" : "67fab6d59930102295341e62",
+          "quiz" : {
+            "id" : "67fab6d59930102295341e62",
+            "oidId" : "67fab6d59930102295341e62",
+            "kind" : "MULTIPLE_CHOICE",
+            "knowledgeId" : "6814dafa7d73e7209a13d384",
+            "title" : "Afirmativas con $be$",
+            "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
+            "translation" : "Está debajo de la silla.",
+            "theoryId" : "a1.01.Present_Simple_Forms_Be",
+            "topicName" : "Present Simple",
+            "form" : {
+              "kind" : "MULTIPLE_CHOICE",
+              "incidence" : 1.0,
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : "It"
+              }, {
+                "kind" : "CLOZE",
+                "text" : ""
+              }, {
+                "kind" : "TEXT",
+                "text" : "under the chair."
+              } ],
+              "multipleChoice" : {
+                "selection" : "SINGLE",
+                "items" : [ {
+                  "id" : "am",
+                  "incidence" : 0.0,
+                  "label" : "am"
+                }, {
+                  "id" : "are",
+                  "incidence" : 0.0,
+                  "label" : "are"
+                }, {
+                  "id" : "is",
+                  "incidence" : 1.0,
+                  "label" : "is"
+                } ]
+              }
+            },
+            "difficulty" : 0.0,
+            "retries" : 0.0,
+            "noScoreRetries" : 0.0,
+            "code" : "",
+            "audioUrl" : "",
+            "imageUrl" : "",
+            "answerAudioUrl" : "A1.01.01.04",
+            "answerImageUrl" : "",
+            "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+            "successMessage" : "",
+            "sentences" : [ "It is under the chair." ],
+            "unmodeledFields" : {
+              "formCloze" : {
+                "kind" : "CLOZE",
+                "incidence" : {
+                  "$numberDouble" : "1.0"
+                },
+                "label" : "",
+                "name" : "",
+                "sentenceParts" : [ {
+                  "kind" : "TEXT",
+                  "text" : "It",
+                  "options" : null
+                }, {
+                  "kind" : "CLOZE",
+                  "text" : "",
+                  "options" : [ "is" ]
+                }, {
+                  "kind" : "TEXT",
+                  "text" : "under the chair.",
+                  "options" : null
+                } ]
+              },
+              "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+              "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
+            }
+          }
+        },
+        "after" : {
+          "nodeTarget" : "QUIZ",
+          "nodeId" : "67fab6d59930102295341e62",
+          "quiz" : {
+            "id" : "67fab6d59930102295341e62",
+            "oidId" : "67fab6d59930102295341e62",
+            "kind" : "MULTIPLE_CHOICE",
+            "knowledgeId" : "6814dafa7d73e7209a13d384",
+            "title" : "Afirmativas con $be$",
+            "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
+            "translation" : "Está debajo de la silla.",
+            "theoryId" : "a1.01.Present_Simple_Forms_Be",
+            "topicName" : "Present Simple",
+            "form" : {
+              "kind" : "MULTIPLE_CHOICE",
+              "incidence" : 1.0,
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : "It"
+              }, {
+                "kind" : "CLOZE",
+                "text" : ""
+              }, {
+                "kind" : "TEXT",
+                "text" : "under the chair."
+              } ],
+              "multipleChoice" : {
+                "selection" : "SINGLE",
+                "items" : [ {
+                  "id" : "am",
+                  "incidence" : 0.0,
+                  "label" : "am"
+                }, {
+                  "id" : "are",
+                  "incidence" : 0.0,
+                  "label" : "are"
+                }, {
+                  "id" : "is",
+                  "incidence" : 1.0,
+                  "label" : "is"
+                } ]
+              }
+            },
+            "difficulty" : 0.0,
+            "retries" : 0.0,
+            "noScoreRetries" : 0.0,
+            "code" : "",
+            "audioUrl" : "",
+            "imageUrl" : "",
+            "answerAudioUrl" : "A1.01.01.04",
+            "answerImageUrl" : "",
+            "miniTheory" : "$is$ va con it.",
+            "successMessage" : "",
+            "sentences" : [ "It is under the chair." ],
+            "unmodeledFields" : {
+              "formCloze" : {
+                "kind" : "CLOZE",
+                "incidence" : {
+                  "$numberDouble" : "1.0"
+                },
+                "label" : "",
+                "name" : "",
+                "sentenceParts" : [ {
+                  "kind" : "TEXT",
+                  "text" : "It",
+                  "options" : null
+                }, {
+                  "kind" : "CLOZE",
+                  "text" : "",
+                  "options" : [ "is" ]
+                }, {
+                  "kind" : "TEXT",
+                  "text" : "under the chair.",
+                  "options" : null
+                } ]
+              },
+              "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+              "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
+            }
+          }
+        },
+        "origin" : "PANEL",
+        "status" : "PENDING",
+        "reviewer" : "Operador UI",
+        "decidedAt" : "2026-10-11T17:58:29.839527Z",
+        "taskIds" : [ "task-2533" ],
+        "rationale" : "Limité la miniteoría a is con it para eliminar las reglas de otros sujetos.",
+        "requiredJudges" : [ ]
+      } ],
+      "before" : {
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "67fab6d59930102295341e62",
+        "quiz" : {
+          "id" : "67fab6d59930102295341e62",
+          "oidId" : "67fab6d59930102295341e62",
+          "kind" : "MULTIPLE_CHOICE",
+          "knowledgeId" : "6814dafa7d73e7209a13d384",
+          "title" : "Afirmativas con $be$",
+          "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
+          "translation" : "Está debajo de la silla.",
+          "theoryId" : "a1.01.Present_Simple_Forms_Be",
+          "topicName" : "Present Simple",
+          "form" : {
+            "kind" : "MULTIPLE_CHOICE",
+            "incidence" : 1.0,
+            "label" : "",
+            "name" : "",
+            "sentenceParts" : [ {
+              "kind" : "TEXT",
+              "text" : "It"
+            }, {
+              "kind" : "CLOZE",
+              "text" : ""
+            }, {
+              "kind" : "TEXT",
+              "text" : "under the chair."
+            } ],
+            "multipleChoice" : {
+              "selection" : "SINGLE",
+              "items" : [ {
+                "id" : "am",
+                "incidence" : 0.0,
+                "label" : "am"
+              }, {
+                "id" : "are",
+                "incidence" : 0.0,
+                "label" : "are"
+              }, {
+                "id" : "is",
+                "incidence" : 1.0,
+                "label" : "is"
+              } ]
+            }
+          },
+          "difficulty" : 0.0,
+          "retries" : 0.0,
+          "noScoreRetries" : 0.0,
+          "code" : "",
+          "audioUrl" : "",
+          "imageUrl" : "",
+          "answerAudioUrl" : "A1.01.01.04",
+          "answerImageUrl" : "",
+          "miniTheory" : "$am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+          "successMessage" : "",
+          "sentences" : [ "It is under the chair." ],
+          "unmodeledFields" : {
+            "formCloze" : {
+              "kind" : "CLOZE",
+              "incidence" : {
+                "$numberDouble" : "1.0"
+              },
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : "It",
+                "options" : null
+              }, {
+                "kind" : "CLOZE",
+                "text" : "",
+                "options" : [ "is" ]
+              }, {
+                "kind" : "TEXT",
+                "text" : "under the chair.",
+                "options" : null
+              } ]
+            },
+            "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+            "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
+          }
+        }
+      },
+      "after" : {
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "67fab6d59930102295341e62",
+        "quiz" : {
+          "id" : "67fab6d59930102295341e62",
+          "oidId" : "67fab6d59930102295341e62",
+          "kind" : "MULTIPLE_CHOICE",
+          "knowledgeId" : "6814dafa7d73e7209a13d384",
+          "title" : "Afirmativas con $be$",
+          "instructions" : "Elige la forma afirmativa del verbo 'be' en presente simple.",
+          "translation" : "Está debajo de la silla.",
+          "theoryId" : "a1.01.Present_Simple_Forms_Be",
+          "topicName" : "Present Simple",
+          "form" : {
+            "kind" : "MULTIPLE_CHOICE",
+            "incidence" : 1.0,
+            "label" : "",
+            "name" : "",
+            "sentenceParts" : [ {
+              "kind" : "TEXT",
+              "text" : "It"
+            }, {
+              "kind" : "CLOZE",
+              "text" : ""
+            }, {
+              "kind" : "TEXT",
+              "text" : "under the chair."
+            } ],
+            "multipleChoice" : {
+              "selection" : "SINGLE",
+              "items" : [ {
+                "id" : "am",
+                "incidence" : 0.0,
+                "label" : "am"
+              }, {
+                "id" : "are",
+                "incidence" : 0.0,
+                "label" : "are"
+              }, {
+                "id" : "is",
+                "incidence" : 1.0,
+                "label" : "is"
+              } ]
+            }
+          },
+          "difficulty" : 0.0,
+          "retries" : 0.0,
+          "noScoreRetries" : 0.0,
+          "code" : "",
+          "audioUrl" : "",
+          "imageUrl" : "",
+          "answerAudioUrl" : "A1.01.01.04",
+          "answerImageUrl" : "",
+          "miniTheory" : "$is$ va con it.",
+          "successMessage" : "",
+          "sentences" : [ "It is under the chair." ],
+          "unmodeledFields" : {
+            "formCloze" : {
+              "kind" : "CLOZE",
+              "incidence" : {
+                "$numberDouble" : "1.0"
+              },
+              "label" : "",
+              "name" : "",
+              "sentenceParts" : [ {
+                "kind" : "TEXT",
+                "text" : "It",
+                "options" : null
+              }, {
+                "kind" : "CLOZE",
+                "text" : "",
+                "options" : [ "is" ]
+              }, {
+                "kind" : "TEXT",
+                "text" : "under the chair.",
+                "options" : null
+              } ]
+            },
+            "instructionsAnteriores" : "Elegí la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
+            "instructionsAntesDeRevisar" : "Elige la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms)."
+          }
+        }
+      },
+      "rejectOnAnnotation" : false,
+      "examContext" : {
+        "title" : "Afirmativas con $be$",
+        "topicName" : "Present Simple",
+        "knowledgeInstructions" : "Escribe la forma de 'be', sin usar contracciones ('short forms').",
+        "level" : "A1",
+        "isRule" : true,
+        "sentenceMode" : "FILL"
+      }
+    },
+    "confirmedAt" : "2026-10-21T04:14:23.439484Z"
+  } ,
+{
+  "id": "REG-7c5a5bcde1d746697cd3b450",
+  "judgeName": "mini-theory",
+  "problemId": "PRB-1fc8487f",
+  "problemTitle": "Mini teoría no resalta palabras claves en inglés",
+  "problemCaseId": "CAS-db44aea787a0df28cf44cde7",
+  "quizId": "67fab6d59930102295341f27",
+  "expectedDetected": true,
+  "expectedReason": "El caso anotado conserva pronombres, letras focales y la transformación ortográfica sin las marcas nativas, aunque resalta el sufijo.",
+  "expectedSource": "Caso anotado por el operador en PRB-1fc8487f; clasificación específica y gravedad propuestas por el asistente. Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.",
+  "snapshot": {
+    "after": {
+      "nodeTarget": "QUIZ",
+      "nodeId": "67fab6d59930102295341f27",
+      "quiz": {
+        "id": "67fab6d59930102295341f27",
+        "kind": "CLOZE",
+        "knowledgeId": {
+          "$oid": "e177d524454a793ad3dd67e7"
+        },
+        "title": "Cambios al final",
+        "instructions": "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
+        "translation": "Él mira la televisión.",
+        "theoryId": "a1.01.Present_Simple_Spelling_Changes",
+        "topicName": "Present Simple",
+        "form": {
+          "kind": "CLOZE",
+          "incidence": 1.0,
+          "label": "",
+          "name": "",
+          "sentenceParts": [
+            {
+              "kind": "TEXT",
+              "text": "He"
+            },
+            {
+              "kind": "CLOZE",
+              "text": "",
+              "options": [
+                "watches"
+              ]
+            },
+            {
+              "kind": "TEXT",
+              "text": "(watch) TV."
+            }
+          ]
+        },
+        "difficulty": 0.0,
+        "retries": 0.0,
+        "noScoreRetries": 0.0,
+        "code": "",
+        "audioUrl": "",
+        "imageUrl": "",
+        "answerAudioUrl": "A1.01.11.01",
+        "answerImageUrl": "",
+        "miniTheory": "Con he, she, it, los verbos que terminan en ch agregan $-es$ en presente simple: watch → watches.",
+        "successMessage": "",
+        "_id": {
+          "$oid": "67fab6d59930102295341f27"
+        },
+        "sentences": [
+          "He watches TV."
+        ]
+      }
+    },
+    "examContext": {
+      "title": "Cambios al final",
+      "topicName": "Present Simple",
+      "knowledgeInstructions": "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
+      "level": "A1",
+      "sentenceMode": "FILL",
+      "isRule": true
+    },
+    "examExpectation": {
+      "resultado": "FAILS",
+      "gravedad": "LOW",
+      "reglas": [
+        "missing-english-highlight"
+      ],
+      "expectedProblem": "MISSING_ENGLISH_HIGHLIGHT",
+      "categoria": "MISSING_ENGLISH_HIGHLIGHT",
+      "referenceStatus": "EDITORIAL"
+    },
+    "examReference": {
+      "sourceExamId": "mini-theory-highlight-v2-20261021",
+      "sourceCaseKey": "watch-observed",
+      "sourceCaseId": "CAS-db44aea787a0df28cf44cde7",
+      "sourceQuizId": "67fab6d59930102295341f27",
+      "sourceGoldPath": "/Users/josecullen/projects/learney/content-audit/analysis/problems/PRB-1fc8487f/highlight-exam/revision-02/gold.json",
+      "sourceGoldSha256": "7d42368bee399478be8610014b6539af2a4b4422052d8d865ef44d2a988a2d3e",
+      "controlStatus": "operator-reported-example",
+      "pairId": "watch",
+      "referenceStatus": "EDITORIAL",
+      "humanCertified": false,
+      "catalogIncludedAt": "2026-10-22T18:45:12.497401Z",
+      "confirmedAtMeaning": "Fecha de incorporación al catálogo; no certificación humana ni aprobación del juez."
+    }
+  },
+  "confirmedAt": "2026-10-22T18:45:12.497401Z"
+},
+{
+  "id": "REG-44a04a855394654cb3b00388",
+  "judgeName": "mini-theory",
+  "problemId": "PRB-1fc8487f",
+  "problemTitle": "Mini teoría no resalta palabras claves en inglés",
+  "problemCaseId": "EDITORIAL-44a04a855394654cb3b00388",
+  "quizId": "b9c16b5ef634d3a37dfead50",
+  "expectedDetected": false,
+  "expectedReason": "Conserva literalmente el contenido del caso anotado y sólo añade $...$ a las unidades inglesas. La ortografía watch/study es el foco, no léxico incidental; la regla de tercera persona también cubre The student.",
+  "expectedSource": "Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.",
+  "snapshot": {
+    "after": {
+      "nodeTarget": "QUIZ",
+      "nodeId": "b9c16b5ef634d3a37dfead50",
+      "quiz": {
+        "id": "b9c16b5ef634d3a37dfead50",
+        "kind": "CLOZE",
+        "knowledgeId": {
+          "$oid": "3f2538fef1ca004ec3a3ad00"
+        },
+        "title": "Cambios al final",
+        "instructions": "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
+        "translation": "Él mira la televisión.",
+        "theoryId": "a1.01.Present_Simple_Spelling_Changes",
+        "topicName": "Present Simple",
+        "form": {
+          "kind": "CLOZE",
+          "incidence": 1.0,
+          "label": "",
+          "name": "",
+          "sentenceParts": [
+            {
+              "kind": "TEXT",
+              "text": "He"
+            },
+            {
+              "kind": "CLOZE",
+              "text": "",
+              "options": [
+                "watches"
+              ]
+            },
+            {
+              "kind": "TEXT",
+              "text": "(watch) TV."
+            }
+          ]
+        },
+        "difficulty": 0.0,
+        "retries": 0.0,
+        "noScoreRetries": 0.0,
+        "code": "",
+        "audioUrl": "",
+        "imageUrl": "",
+        "answerAudioUrl": "A1.01.11.01",
+        "answerImageUrl": "",
+        "miniTheory": "Con $he$, $she$, $it$, los verbos que terminan en $ch$ agregan $-es$ en presente simple: $watch → watches$.",
+        "successMessage": "",
+        "_id": {
+          "$oid": "b9c16b5ef634d3a37dfead50"
+        },
+        "sentences": [
+          "He watches TV."
+        ]
+      }
+    },
+    "examContext": {
+      "title": "Cambios al final",
+      "topicName": "Present Simple",
+      "knowledgeInstructions": "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
+      "level": "A1",
+      "sentenceMode": "FILL",
+      "isRule": true
+    },
+    "examExpectation": {
+      "resultado": "PASSES",
+      "gravedad": null,
+      "reglas": [],
+      "expectedProblem": null,
+      "categoria": "SANO",
+      "referenceStatus": "EDITORIAL"
+    },
+    "examReference": {
+      "sourceExamId": "mini-theory-highlight-v2-20261021",
+      "sourceCaseKey": "watch-native-control",
+      "sourceCaseId": "CAS-db44aea787a0df28cf44cde7",
+      "sourceQuizId": "67fab6d59930102295341f27",
+      "sourceGoldPath": "/Users/josecullen/projects/learney/content-audit/analysis/problems/PRB-1fc8487f/highlight-exam/revision-02/gold.json",
+      "sourceGoldSha256": "7d42368bee399478be8610014b6539af2a4b4422052d8d865ef44d2a988a2d3e",
+      "controlStatus": "proposed-healthy-control",
+      "pairId": "watch",
+      "referenceStatus": "EDITORIAL",
+      "humanCertified": false,
+      "catalogIncludedAt": "2026-10-22T18:45:12.497401Z",
+      "confirmedAtMeaning": "Fecha de incorporación al catálogo; no certificación humana ni aprobación del juez."
+    }
+  },
+  "confirmedAt": "2026-10-22T18:45:12.497401Z"
+},
+{
+  "id": "REG-94d38be74a7bc1da5f2a785e",
+  "judgeName": "mini-theory",
+  "problemId": "PRB-1fc8487f",
+  "problemTitle": "Mini teoría no resalta palabras claves en inglés",
+  "problemCaseId": "CAS-7159104cf9147777fb3869b2",
+  "quizId": "67fab6d59930102295341f28",
+  "expectedDetected": true,
+  "expectedReason": "El caso anotado conserva pronombres, letras focales y la transformación ortográfica sin las marcas nativas, aunque resalta el sufijo.",
+  "expectedSource": "Caso anotado por el operador en PRB-1fc8487f; clasificación específica y gravedad propuestas por el asistente. Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.",
+  "snapshot": {
+    "after": {
+      "nodeTarget": "QUIZ",
+      "nodeId": "67fab6d59930102295341f28",
+      "quiz": {
+        "id": "67fab6d59930102295341f28",
+        "kind": "CLOZE",
+        "knowledgeId": {
+          "$oid": "65ff7dca14b51b28273df3e0"
+        },
+        "title": "Cambios al final",
+        "instructions": "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
+        "translation": "El estudiante estudia mucho.",
+        "theoryId": "a1.01.Present_Simple_Spelling_Changes",
+        "topicName": "Present Simple",
+        "form": {
+          "kind": "CLOZE",
+          "incidence": 1.0,
+          "label": "",
+          "name": "",
+          "sentenceParts": [
+            {
+              "kind": "TEXT",
+              "text": "The student"
+            },
+            {
+              "kind": "CLOZE",
+              "text": "",
+              "options": [
+                "studies"
+              ]
+            },
+            {
+              "kind": "TEXT",
+              "text": "(study) hard."
+            }
+          ]
+        },
+        "difficulty": 0.0,
+        "retries": 0.0,
+        "noScoreRetries": 0.0,
+        "code": "",
+        "audioUrl": "",
+        "imageUrl": "",
+        "answerAudioUrl": "A1.01.11.02",
+        "answerImageUrl": "",
+        "miniTheory": "Con he, she, it, si el verbo termina en consonante + y, cambiamos la y por $-ies$ en presente simple: study → studies.",
+        "successMessage": "",
+        "_id": {
+          "$oid": "67fab6d59930102295341f28"
+        },
+        "sentences": [
+          "The student studies hard."
+        ]
+      }
+    },
+    "examContext": {
+      "title": "Cambios al final",
+      "topicName": "Present Simple",
+      "knowledgeInstructions": "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
+      "level": "A1",
+      "sentenceMode": "FILL",
+      "isRule": true
+    },
+    "examExpectation": {
+      "resultado": "FAILS",
+      "gravedad": "LOW",
+      "reglas": [
+        "missing-english-highlight"
+      ],
+      "expectedProblem": "MISSING_ENGLISH_HIGHLIGHT",
+      "categoria": "MISSING_ENGLISH_HIGHLIGHT",
+      "referenceStatus": "EDITORIAL"
+    },
+    "examReference": {
+      "sourceExamId": "mini-theory-highlight-v2-20261021",
+      "sourceCaseKey": "study-observed",
+      "sourceCaseId": "CAS-7159104cf9147777fb3869b2",
+      "sourceQuizId": "67fab6d59930102295341f28",
+      "sourceGoldPath": "/Users/josecullen/projects/learney/content-audit/analysis/problems/PRB-1fc8487f/highlight-exam/revision-02/gold.json",
+      "sourceGoldSha256": "7d42368bee399478be8610014b6539af2a4b4422052d8d865ef44d2a988a2d3e",
+      "controlStatus": "operator-reported-example",
+      "pairId": "study",
+      "referenceStatus": "EDITORIAL",
+      "humanCertified": false,
+      "catalogIncludedAt": "2026-10-22T18:45:12.497401Z",
+      "confirmedAtMeaning": "Fecha de incorporación al catálogo; no certificación humana ni aprobación del juez."
+    }
+  },
+  "confirmedAt": "2026-10-22T18:45:12.497401Z"
+},
+{
+  "id": "REG-ba4f6e2fc87aa40661a32e29",
+  "judgeName": "mini-theory",
+  "problemId": "PRB-1fc8487f",
+  "problemTitle": "Mini teoría no resalta palabras claves en inglés",
+  "problemCaseId": "EDITORIAL-ba4f6e2fc87aa40661a32e29",
+  "quizId": "7564209ab8d5db8eb992c425",
+  "expectedDetected": false,
+  "expectedReason": "Conserva literalmente el contenido del caso anotado y sólo añade $...$ a las unidades inglesas. La ortografía watch/study es el foco, no léxico incidental; la regla de tercera persona también cubre The student.",
+  "expectedSource": "Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.",
+  "snapshot": {
+    "after": {
+      "nodeTarget": "QUIZ",
+      "nodeId": "7564209ab8d5db8eb992c425",
+      "quiz": {
+        "id": "7564209ab8d5db8eb992c425",
+        "kind": "CLOZE",
+        "knowledgeId": {
+          "$oid": "7a9dd1884d333b4c30e7e15f"
+        },
+        "title": "Cambios al final",
+        "instructions": "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
+        "translation": "El estudiante estudia mucho.",
+        "theoryId": "a1.01.Present_Simple_Spelling_Changes",
+        "topicName": "Present Simple",
+        "form": {
+          "kind": "CLOZE",
+          "incidence": 1.0,
+          "label": "",
+          "name": "",
+          "sentenceParts": [
+            {
+              "kind": "TEXT",
+              "text": "The student"
+            },
+            {
+              "kind": "CLOZE",
+              "text": "",
+              "options": [
+                "studies"
+              ]
+            },
+            {
+              "kind": "TEXT",
+              "text": "(study) hard."
+            }
+          ]
+        },
+        "difficulty": 0.0,
+        "retries": 0.0,
+        "noScoreRetries": 0.0,
+        "code": "",
+        "audioUrl": "",
+        "imageUrl": "",
+        "answerAudioUrl": "A1.01.11.02",
+        "answerImageUrl": "",
+        "miniTheory": "Con $he$, $she$, $it$, si el verbo termina en consonante + $y$, cambiamos la $y$ por $-ies$ en presente simple: $study → studies$.",
+        "successMessage": "",
+        "_id": {
+          "$oid": "7564209ab8d5db8eb992c425"
+        },
+        "sentences": [
+          "The student studies hard."
+        ]
+      }
+    },
+    "examContext": {
+      "title": "Cambios al final",
+      "topicName": "Present Simple",
+      "knowledgeInstructions": "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
+      "level": "A1",
+      "sentenceMode": "FILL",
+      "isRule": true
+    },
+    "examExpectation": {
+      "resultado": "PASSES",
+      "gravedad": null,
+      "reglas": [],
+      "expectedProblem": null,
+      "categoria": "SANO",
+      "referenceStatus": "EDITORIAL"
+    },
+    "examReference": {
+      "sourceExamId": "mini-theory-highlight-v2-20261021",
+      "sourceCaseKey": "study-native-control",
+      "sourceCaseId": "CAS-7159104cf9147777fb3869b2",
+      "sourceQuizId": "67fab6d59930102295341f28",
+      "sourceGoldPath": "/Users/josecullen/projects/learney/content-audit/analysis/problems/PRB-1fc8487f/highlight-exam/revision-02/gold.json",
+      "sourceGoldSha256": "7d42368bee399478be8610014b6539af2a4b4422052d8d865ef44d2a988a2d3e",
+      "controlStatus": "proposed-healthy-control",
+      "pairId": "study",
+      "referenceStatus": "EDITORIAL",
+      "humanCertified": false,
+      "catalogIncludedAt": "2026-10-22T18:45:12.497401Z",
+      "confirmedAtMeaning": "Fecha de incorporación al catálogo; no certificación humana ni aprobación del juez."
+    }
+  },
+  "confirmedAt": "2026-10-22T18:45:12.497401Z"
+},
+{
+  "id": "REG-1530b05c12b73c6be7e71ae2",
+  "judgeName": "mini-theory",
+  "problemId": "PRB-1fc8487f",
+  "problemTitle": "Mini teoría no resalta palabras claves en inglés",
+  "problemCaseId": "EDITORIAL-1530b05c12b73c6be7e71ae2",
+  "quizId": "8e33c6b00a9d1c558a680c98",
+  "expectedDetected": true,
+  "expectedReason": "No hay ninguna marca nativa en she ni is; ambas formas inglesas son relevantes para la explicación.",
+  "expectedSource": "Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.",
+  "snapshot": {
+    "after": {
+      "nodeTarget": "QUIZ",
+      "nodeId": "8e33c6b00a9d1c558a680c98",
+      "quiz": {
+        "kind": "CLOZE",
+        "title": "Forma en contexto",
+        "topicName": "Forma en contexto",
+        "instructions": "Completá la forma que corresponde.",
+        "miniTheory": "Con she se usa is en presente afirmativo.",
+        "translation": "",
+        "form": {
+          "kind": "CLOZE",
+          "incidence": 1.0,
+          "label": "",
+          "name": "",
+          "sentenceParts": [
+            {
+              "kind": "TEXT",
+              "text": "She "
+            },
+            {
+              "kind": "CLOZE",
+              "text": "",
+              "options": [
+                "is"
+              ]
+            },
+            {
+              "kind": "TEXT",
+              "text": " ready."
+            }
+          ]
+        },
+        "id": "8e33c6b00a9d1c558a680c98",
+        "_id": {
+          "$oid": "8e33c6b00a9d1c558a680c98"
+        },
+        "knowledgeId": {
+          "$oid": "de1df72c1f1f9b6a811192d4"
+        },
+        "difficulty": 0.0,
+        "retries": 0.0,
+        "noScoreRetries": 0.0,
+        "code": "",
+        "audioUrl": "",
+        "imageUrl": "",
+        "answerAudioUrl": "",
+        "answerImageUrl": "",
+        "successMessage": "",
+        "sentences": [
+          "She is ready."
+        ]
+      }
+    },
+    "examContext": {
+      "title": "Forma en contexto",
+      "topicName": "Forma en contexto",
+      "knowledgeInstructions": "Completá la forma que corresponde.",
+      "level": "A1",
+      "sentenceMode": "FILL",
+      "isRule": true
+    },
+    "examExpectation": {
+      "resultado": "FAILS",
+      "gravedad": "LOW",
+      "reglas": [
+        "missing-english-highlight"
+      ],
+      "expectedProblem": "MISSING_ENGLISH_HIGHLIGHT",
+      "categoria": "MISSING_ENGLISH_HIGHLIGHT",
+      "referenceStatus": "EDITORIAL"
+    },
+    "examReference": {
+      "sourceExamId": "mini-theory-highlight-v2-20261021",
+      "sourceCaseKey": "fully-unmarked",
+      "sourceCaseId": null,
+      "sourceQuizId": null,
+      "sourceGoldPath": "/Users/josecullen/projects/learney/content-audit/analysis/problems/PRB-1fc8487f/highlight-exam/revision-02/gold.json",
+      "sourceGoldSha256": "7d42368bee399478be8610014b6539af2a4b4422052d8d865ef44d2a988a2d3e",
+      "controlStatus": "proposed-regression",
+      "pairId": null,
+      "referenceStatus": "EDITORIAL",
+      "humanCertified": false,
+      "catalogIncludedAt": "2026-10-22T18:45:12.497401Z",
+      "confirmedAtMeaning": "Fecha de incorporación al catálogo; no certificación humana ni aprobación del juez."
+    }
+  },
+  "confirmedAt": "2026-10-22T18:45:12.497401Z"
+},
+{
+  "id": "REG-414367f5e41db8f21a8e9f69",
+  "judgeName": "mini-theory",
+  "problemId": "PRB-1fc8487f",
+  "problemTitle": "Mini teoría no resalta palabras claves en inglés",
+  "problemCaseId": "EDITORIAL-414367f5e41db8f21a8e9f69",
+  "quizId": "4b63e403ecca85b29679270e",
+  "expectedDetected": true,
+  "expectedReason": "La última aparición de am sigue sin resaltarse: que la primera esté marcada no alcanza.",
+  "expectedSource": "Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.",
+  "snapshot": {
+    "after": {
+      "nodeTarget": "QUIZ",
+      "nodeId": "4b63e403ecca85b29679270e",
+      "quiz": {
+        "kind": "CLOZE",
+        "title": "Forma en contexto",
+        "topicName": "Forma en contexto",
+        "instructions": "Completá la forma que corresponde.",
+        "miniTheory": "Con $I$, usá $am$ en presente afirmativo: $I$ lleva am.",
+        "translation": "",
+        "form": {
+          "kind": "CLOZE",
+          "incidence": 1.0,
+          "label": "",
+          "name": "",
+          "sentenceParts": [
+            {
+              "kind": "TEXT",
+              "text": "I "
+            },
+            {
+              "kind": "CLOZE",
+              "text": "",
+              "options": [
+                "am"
+              ]
+            },
+            {
+              "kind": "TEXT",
+              "text": " ready."
+            }
+          ]
+        },
+        "id": "4b63e403ecca85b29679270e",
+        "_id": {
+          "$oid": "4b63e403ecca85b29679270e"
+        },
+        "knowledgeId": {
+          "$oid": "c1464ad301157681f63c2340"
+        },
+        "difficulty": 0.0,
+        "retries": 0.0,
+        "noScoreRetries": 0.0,
+        "code": "",
+        "audioUrl": "",
+        "imageUrl": "",
+        "answerAudioUrl": "",
+        "answerImageUrl": "",
+        "successMessage": "",
+        "sentences": [
+          "I am ready."
+        ]
+      }
+    },
+    "examContext": {
+      "title": "Forma en contexto",
+      "topicName": "Forma en contexto",
+      "knowledgeInstructions": "Completá la forma que corresponde.",
+      "level": "A1",
+      "sentenceMode": "FILL",
+      "isRule": true
+    },
+    "examExpectation": {
+      "resultado": "FAILS",
+      "gravedad": "LOW",
+      "reglas": [
+        "missing-english-highlight"
+      ],
+      "expectedProblem": "MISSING_ENGLISH_HIGHLIGHT",
+      "categoria": "MISSING_ENGLISH_HIGHLIGHT",
+      "referenceStatus": "EDITORIAL"
+    },
+    "examReference": {
+      "sourceExamId": "mini-theory-highlight-v2-20261021",
+      "sourceCaseKey": "repeated-unmarked",
+      "sourceCaseId": null,
+      "sourceQuizId": null,
+      "sourceGoldPath": "/Users/josecullen/projects/learney/content-audit/analysis/problems/PRB-1fc8487f/highlight-exam/revision-02/gold.json",
+      "sourceGoldSha256": "7d42368bee399478be8610014b6539af2a4b4422052d8d865ef44d2a988a2d3e",
+      "controlStatus": "proposed-regression",
+      "pairId": null,
+      "referenceStatus": "EDITORIAL",
+      "humanCertified": false,
+      "catalogIncludedAt": "2026-10-22T18:45:12.497401Z",
+      "confirmedAtMeaning": "Fecha de incorporación al catálogo; no certificación humana ni aprobación del juez."
+    }
+  },
+  "confirmedAt": "2026-10-22T18:45:12.497401Z"
+},
+{
+  "id": "REG-144c7f975f42f78caf52951a",
+  "judgeName": "mini-theory",
+  "problemId": "PRB-1fc8487f",
+  "problemTitle": "Mini teoría no resalta palabras claves en inglés",
+  "problemCaseId": "EDITORIAL-144c7f975f42f78caf52951a",
+  "quizId": "605d7e42b5571680dd658502",
+  "expectedDetected": true,
+  "expectedReason": "La contracción completa can't es una unidad inglesa y debe estar entre las marcas nativas.",
+  "expectedSource": "Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.",
+  "snapshot": {
+    "after": {
+      "nodeTarget": "QUIZ",
+      "nodeId": "605d7e42b5571680dd658502",
+      "quiz": {
+        "kind": "CLOZE",
+        "title": "Negación corta",
+        "topicName": "Negación corta",
+        "instructions": "Completá con la forma negativa corta de can.",
+        "miniTheory": "La forma negativa corta de $can$ es can't.",
+        "translation": "",
+        "form": {
+          "kind": "CLOZE",
+          "incidence": 1.0,
+          "label": "",
+          "name": "",
+          "sentenceParts": [
+            {
+              "kind": "TEXT",
+              "text": "She "
+            },
+            {
+              "kind": "CLOZE",
+              "text": "",
+              "options": [
+                "can't"
+              ]
+            },
+            {
+              "kind": "TEXT",
+              "text": " swim."
+            }
+          ]
+        },
+        "id": "605d7e42b5571680dd658502",
+        "_id": {
+          "$oid": "605d7e42b5571680dd658502"
+        },
+        "knowledgeId": {
+          "$oid": "26e137dc7fc579b8b31f978d"
+        },
+        "difficulty": 0.0,
+        "retries": 0.0,
+        "noScoreRetries": 0.0,
+        "code": "",
+        "audioUrl": "",
+        "imageUrl": "",
+        "answerAudioUrl": "",
+        "answerImageUrl": "",
+        "successMessage": "",
+        "sentences": [
+          "She can't swim."
+        ]
+      }
+    },
+    "examContext": {
+      "title": "Negación corta",
+      "topicName": "Negación corta",
+      "knowledgeInstructions": "Completá con la forma negativa corta de can.",
+      "level": "A1",
+      "sentenceMode": "FILL",
+      "isRule": true
+    },
+    "examExpectation": {
+      "resultado": "FAILS",
+      "gravedad": "LOW",
+      "reglas": [
+        "missing-english-highlight"
+      ],
+      "expectedProblem": "MISSING_ENGLISH_HIGHLIGHT",
+      "categoria": "MISSING_ENGLISH_HIGHLIGHT",
+      "referenceStatus": "EDITORIAL"
+    },
+    "examReference": {
+      "sourceExamId": "mini-theory-highlight-v2-20261021",
+      "sourceCaseKey": "unmarked-contraction",
+      "sourceCaseId": null,
+      "sourceQuizId": null,
+      "sourceGoldPath": "/Users/josecullen/projects/learney/content-audit/analysis/problems/PRB-1fc8487f/highlight-exam/revision-02/gold.json",
+      "sourceGoldSha256": "7d42368bee399478be8610014b6539af2a4b4422052d8d865ef44d2a988a2d3e",
+      "controlStatus": "proposed-regression",
+      "pairId": null,
+      "referenceStatus": "EDITORIAL",
+      "humanCertified": false,
+      "catalogIncludedAt": "2026-10-22T18:45:12.497401Z",
+      "confirmedAtMeaning": "Fecha de incorporación al catálogo; no certificación humana ni aprobación del juez."
+    }
+  },
+  "confirmedAt": "2026-10-22T18:45:12.497401Z"
+},
+{
+  "id": "REG-9ac770cf2e90eda41eda60df",
+  "judgeName": "mini-theory",
+  "problemId": "PRB-1fc8487f",
+  "problemTitle": "Mini teoría no resalta palabras claves en inglés",
+  "problemCaseId": "EDITORIAL-9ac770cf2e90eda41eda60df",
+  "quizId": "339cacc42109b72134ade6f2",
+  "expectedDetected": true,
+  "expectedReason": "La expresión going to queda sin marca aunque be ya esté resaltado. Las etiquetas explicativas en español no necesitan marcas.",
+  "expectedSource": "Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.",
+  "snapshot": {
+    "after": {
+      "nodeTarget": "QUIZ",
+      "nodeId": "339cacc42109b72134ade6f2",
+      "quiz": {
+        "kind": "MULTIPLE_CHOICE",
+        "title": "Planes futuros",
+        "topicName": "Planes futuros",
+        "instructions": "Elegí la construcción para el plan futuro.",
+        "miniTheory": "Para un plan futuro ya decidido, usá $be$ + going to + verbo base.",
+        "translation": "",
+        "form": {
+          "kind": "MULTIPLE_CHOICE",
+          "incidence": 1.0,
+          "label": "",
+          "name": "",
+          "sentenceParts": [
+            {
+              "kind": "TEXT",
+              "text": "I"
+            },
+            {
+              "kind": "CLOZE",
+              "text": ""
+            },
+            {
+              "kind": "TEXT",
+              "text": "visit my aunt tomorrow; the visit is already planned."
+            }
+          ],
+          "selection": "SINGLE",
+          "items": [
+            {
+              "id": "a",
+              "incidence": 1.0,
+              "label": "am going to"
+            },
+            {
+              "id": "b",
+              "incidence": 0.0,
+              "label": "visited"
+            }
+          ]
+        },
+        "id": "339cacc42109b72134ade6f2",
+        "_id": {
+          "$oid": "339cacc42109b72134ade6f2"
+        },
+        "knowledgeId": {
+          "$oid": "ed9a9a410b93fe54aa2396b9"
+        },
+        "difficulty": 0.0,
+        "retries": 0.0,
+        "noScoreRetries": 0.0,
+        "code": "",
+        "audioUrl": "",
+        "imageUrl": "",
+        "answerAudioUrl": "",
+        "answerImageUrl": "",
+        "successMessage": "",
+        "sentences": [
+          "I ___ visit my aunt tomorrow; the visit is already planned."
+        ]
+      }
+    },
+    "examContext": {
+      "title": "Planes futuros",
+      "topicName": "Planes futuros",
+      "knowledgeInstructions": "Elegí la construcción para el plan futuro.",
+      "level": "A2",
+      "sentenceMode": "FILL",
+      "isRule": true
+    },
+    "examExpectation": {
+      "resultado": "FAILS",
+      "gravedad": "LOW",
+      "reglas": [
+        "missing-english-highlight"
+      ],
+      "expectedProblem": "MISSING_ENGLISH_HIGHLIGHT",
+      "categoria": "MISSING_ENGLISH_HIGHLIGHT",
+      "referenceStatus": "EDITORIAL"
+    },
+    "examReference": {
+      "sourceExamId": "mini-theory-highlight-v2-20261021",
+      "sourceCaseKey": "unmarked-multiword",
+      "sourceCaseId": null,
+      "sourceQuizId": null,
+      "sourceGoldPath": "/Users/josecullen/projects/learney/content-audit/analysis/problems/PRB-1fc8487f/highlight-exam/revision-02/gold.json",
+      "sourceGoldSha256": "7d42368bee399478be8610014b6539af2a4b4422052d8d865ef44d2a988a2d3e",
+      "controlStatus": "proposed-regression",
+      "pairId": null,
+      "referenceStatus": "EDITORIAL",
+      "humanCertified": false,
+      "catalogIncludedAt": "2026-10-22T18:45:12.497401Z",
+      "confirmedAtMeaning": "Fecha de incorporación al catálogo; no certificación humana ni aprobación del juez."
+    }
+  },
+  "confirmedAt": "2026-10-22T18:45:12.497401Z"
+},
+{
+  "id": "REG-2703822ac7601a746258c0d6",
+  "judgeName": "mini-theory",
+  "problemId": "PRB-1fc8487f",
+  "problemTitle": "Mini teoría no resalta palabras claves en inglés",
+  "problemCaseId": "EDITORIAL-2703822ac7601a746258c0d6",
+  "quizId": "f368bcd3ff566117114c56d8",
+  "expectedDetected": false,
+  "expectedReason": "Las formas inglesas y -ing ya tienen marcas nativas. Sujeto, verbo en y los conectores son español: no hace falta resaltar todo el esquema.",
+  "expectedSource": "Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.",
+  "snapshot": {
+    "after": {
+      "nodeTarget": "QUIZ",
+      "nodeId": "f368bcd3ff566117114c56d8",
+      "quiz": {
+        "kind": "MULTIPLE_CHOICE",
+        "title": "Preguntas en curso",
+        "topicName": "Preguntas en curso",
+        "instructions": "Elegí la pregunta sobre una acción en curso ahora.",
+        "miniTheory": "Para preguntar por una acción en curso, usá $am/is/are$ + sujeto + verbo en $-ing$.",
+        "translation": "",
+        "form": {
+          "kind": "MULTIPLE_CHOICE",
+          "incidence": 1.0,
+          "label": "",
+          "name": "",
+          "sentenceParts": [
+            {
+              "kind": "TEXT",
+              "text": "Elegí la pregunta sobre una acción en curso ahora."
+            }
+          ],
+          "selection": "SINGLE",
+          "items": [
+            {
+              "id": "a",
+              "incidence": 1.0,
+              "label": "Is she working?"
+            },
+            {
+              "id": "b",
+              "incidence": 0.0,
+              "label": "Does she work?"
+            }
+          ]
+        },
+        "id": "f368bcd3ff566117114c56d8",
+        "_id": {
+          "$oid": "f368bcd3ff566117114c56d8"
+        },
+        "knowledgeId": {
+          "$oid": "83a3f0b609b449f90a8dc9f1"
+        },
+        "difficulty": 0.0,
+        "retries": 0.0,
+        "noScoreRetries": 0.0,
+        "code": "",
+        "audioUrl": "",
+        "imageUrl": "",
+        "answerAudioUrl": "",
+        "answerImageUrl": "",
+        "successMessage": "",
+        "sentences": [
+          "Elegí la pregunta sobre una acción en curso ahora."
+        ]
+      }
+    },
+    "examContext": {
+      "title": "Preguntas en curso",
+      "topicName": "Preguntas en curso",
+      "knowledgeInstructions": "Elegí la pregunta sobre una acción en curso ahora.",
+      "level": "A1",
+      "sentenceMode": "FILL",
+      "isRule": true
+    },
+    "examExpectation": {
+      "resultado": "PASSES",
+      "gravedad": null,
+      "reglas": [],
+      "expectedProblem": null,
+      "categoria": "SANO",
+      "referenceStatus": "EDITORIAL"
+    },
+    "examReference": {
+      "sourceExamId": "mini-theory-highlight-v2-20261021",
+      "sourceCaseKey": "mixed-schema-control",
+      "sourceCaseId": null,
+      "sourceQuizId": null,
+      "sourceGoldPath": "/Users/josecullen/projects/learney/content-audit/analysis/problems/PRB-1fc8487f/highlight-exam/revision-02/gold.json",
+      "sourceGoldSha256": "7d42368bee399478be8610014b6539af2a4b4422052d8d865ef44d2a988a2d3e",
+      "controlStatus": "proposed-healthy-control",
+      "pairId": null,
+      "referenceStatus": "EDITORIAL",
+      "humanCertified": false,
+      "catalogIncludedAt": "2026-10-22T18:45:12.497401Z",
+      "confirmedAtMeaning": "Fecha de incorporación al catálogo; no certificación humana ni aprobación del juez."
+    }
+  },
+  "confirmedAt": "2026-10-22T18:45:12.497401Z"
+},
+{
+  "id": "REG-5d8093686858f1765994309f",
+  "judgeName": "mini-theory",
+  "problemId": "PRB-1fc8487f",
+  "problemTitle": "Mini teoría no resalta palabras claves en inglés",
+  "problemCaseId": "EDITORIAL-5d8093686858f1765994309f",
+  "quizId": "21e6bab00bddb2b08cd4168a",
+  "expectedDetected": false,
+  "expectedReason": "La miniteoría sólo tiene español y explica la decisión entre tiempos nombrados en las opciones. No exige insertar inglés ni marcas artificialmente.",
+  "expectedSource": "Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.",
+  "snapshot": {
+    "after": {
+      "nodeTarget": "QUIZ",
+      "nodeId": "21e6bab00bddb2b08cd4168a",
+      "quiz": {
+        "kind": "MULTIPLE_CHOICE",
+        "title": "Acciones habituales",
+        "topicName": "Acciones habituales",
+        "instructions": "Elegí el tiempo verbal que expresa la costumbre.",
+        "miniTheory": "Una acción habitual se expresa en presente simple.",
+        "translation": "",
+        "form": {
+          "kind": "MULTIPLE_CHOICE",
+          "incidence": 1.0,
+          "label": "",
+          "name": "",
+          "sentenceParts": [
+            {
+              "kind": "TEXT",
+              "text": "She walks to school every day."
+            }
+          ],
+          "selection": "SINGLE",
+          "items": [
+            {
+              "id": "a",
+              "incidence": 1.0,
+              "label": "presente simple"
+            },
+            {
+              "id": "b",
+              "incidence": 0.0,
+              "label": "presente continuo"
+            }
+          ]
+        },
+        "id": "21e6bab00bddb2b08cd4168a",
+        "_id": {
+          "$oid": "21e6bab00bddb2b08cd4168a"
+        },
+        "knowledgeId": {
+          "$oid": "00c3bbee35e14a30d1954e04"
+        },
+        "difficulty": 0.0,
+        "retries": 0.0,
+        "noScoreRetries": 0.0,
+        "code": "",
+        "audioUrl": "",
+        "imageUrl": "",
+        "answerAudioUrl": "",
+        "answerImageUrl": "",
+        "successMessage": "",
+        "sentences": [
+          "She walks to school every day."
+        ]
+      }
+    },
+    "examContext": {
+      "title": "Acciones habituales",
+      "topicName": "Acciones habituales",
+      "knowledgeInstructions": "Elegí el tiempo verbal que expresa la costumbre.",
+      "level": "A1",
+      "sentenceMode": "FILL",
+      "isRule": true
+    },
+    "examExpectation": {
+      "resultado": "PASSES",
+      "gravedad": null,
+      "reglas": [],
+      "expectedProblem": null,
+      "categoria": "SANO",
+      "referenceStatus": "EDITORIAL"
+    },
+    "examReference": {
+      "sourceExamId": "mini-theory-highlight-v2-20261021",
+      "sourceCaseKey": "spanish-only-control",
+      "sourceCaseId": null,
+      "sourceQuizId": null,
+      "sourceGoldPath": "/Users/josecullen/projects/learney/content-audit/analysis/problems/PRB-1fc8487f/highlight-exam/revision-02/gold.json",
+      "sourceGoldSha256": "7d42368bee399478be8610014b6539af2a4b4422052d8d865ef44d2a988a2d3e",
+      "controlStatus": "proposed-healthy-control",
+      "pairId": null,
+      "referenceStatus": "EDITORIAL",
+      "humanCertified": false,
+      "catalogIncludedAt": "2026-10-22T18:45:12.497401Z",
+      "confirmedAtMeaning": "Fecha de incorporación al catálogo; no certificación humana ni aprobación del juez."
+    }
+  },
+  "confirmedAt": "2026-10-22T18:45:12.497401Z"
+},
+{
+  "id": "REG-14884f3eff06662ee3dfa96c",
+  "judgeName": "mini-theory",
+  "problemId": "PRB-1fc8487f",
+  "problemTitle": "Mini teoría no resalta palabras claves en inglés",
+  "problemCaseId": "EDITORIAL-14884f3eff06662ee3dfa96c",
+  "quizId": "e4110f62bfbc519ac4269ca6",
+  "expectedDetected": true,
+  "expectedReason": "Markdown y HTML no son las marcas nativas $...$: she e is siguen sin el resaltado que usa el curso.",
+  "expectedSource": "Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.",
+  "snapshot": {
+    "after": {
+      "nodeTarget": "QUIZ",
+      "nodeId": "e4110f62bfbc519ac4269ca6",
+      "quiz": {
+        "kind": "CLOZE",
+        "title": "Forma en contexto",
+        "topicName": "Forma en contexto",
+        "instructions": "Completá la forma que corresponde.",
+        "miniTheory": "Con **she**, la afirmación usa <strong>is</strong>.",
+        "translation": "",
+        "form": {
+          "kind": "CLOZE",
+          "incidence": 1.0,
+          "label": "",
+          "name": "",
+          "sentenceParts": [
+            {
+              "kind": "TEXT",
+              "text": "She "
+            },
+            {
+              "kind": "CLOZE",
+              "text": "",
+              "options": [
+                "is"
+              ]
+            },
+            {
+              "kind": "TEXT",
+              "text": " ready."
+            }
+          ]
+        },
+        "id": "e4110f62bfbc519ac4269ca6",
+        "_id": {
+          "$oid": "e4110f62bfbc519ac4269ca6"
+        },
+        "knowledgeId": {
+          "$oid": "4ab7d53398b638c39265187e"
+        },
+        "difficulty": 0.0,
+        "retries": 0.0,
+        "noScoreRetries": 0.0,
+        "code": "",
+        "audioUrl": "",
+        "imageUrl": "",
+        "answerAudioUrl": "",
+        "answerImageUrl": "",
+        "successMessage": "",
+        "sentences": [
+          "She is ready."
+        ]
+      }
+    },
+    "examContext": {
+      "title": "Forma en contexto",
+      "topicName": "Forma en contexto",
+      "knowledgeInstructions": "Completá la forma que corresponde.",
+      "level": "A1",
+      "sentenceMode": "FILL",
+      "isRule": true
+    },
+    "examExpectation": {
+      "resultado": "FAILS",
+      "gravedad": "LOW",
+      "reglas": [
+        "missing-english-highlight"
+      ],
+      "expectedProblem": "MISSING_ENGLISH_HIGHLIGHT",
+      "categoria": "MISSING_ENGLISH_HIGHLIGHT",
+      "referenceStatus": "EDITORIAL"
+    },
+    "examReference": {
+      "sourceExamId": "mini-theory-highlight-v2-20261021",
+      "sourceCaseKey": "foreign-markup",
+      "sourceCaseId": null,
+      "sourceQuizId": null,
+      "sourceGoldPath": "/Users/josecullen/projects/learney/content-audit/analysis/problems/PRB-1fc8487f/highlight-exam/revision-02/gold.json",
+      "sourceGoldSha256": "7d42368bee399478be8610014b6539af2a4b4422052d8d865ef44d2a988a2d3e",
+      "controlStatus": "proposed-regression",
+      "pairId": null,
+      "referenceStatus": "EDITORIAL",
+      "humanCertified": false,
+      "catalogIncludedAt": "2026-10-22T18:45:12.497401Z",
+      "confirmedAtMeaning": "Fecha de incorporación al catálogo; no certificación humana ni aprobación del juez."
+    }
+  },
+  "confirmedAt": "2026-10-22T18:45:12.497401Z"
+},
+{
+  "id": "REG-710aa5be9682cdbe32c503a5",
+  "judgeName": "mini-theory",
+  "problemId": "PRB-1fc8487f",
+  "problemTitle": "Mini teoría no resalta palabras claves en inglés",
+  "problemCaseId": "EDITORIAL-710aa5be9682cdbe32c503a5",
+  "quizId": "0560fb02f7f59247f19c2141",
+  "expectedDetected": true,
+  "expectedReason": "La regla prescribe are para she y dirige a una respuesta incorrecta. FALSE_RULE tiene prioridad sobre la falta adicional de marcas.",
+  "expectedSource": "Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.",
+  "snapshot": {
+    "after": {
+      "nodeTarget": "QUIZ",
+      "nodeId": "0560fb02f7f59247f19c2141",
+      "quiz": {
+        "kind": "CLOZE",
+        "title": "Forma en contexto",
+        "topicName": "Forma en contexto",
+        "instructions": "Completá la forma que corresponde.",
+        "miniTheory": "Con $she$, usá are en presente afirmativo.",
+        "translation": "",
+        "form": {
+          "kind": "CLOZE",
+          "incidence": 1.0,
+          "label": "",
+          "name": "",
+          "sentenceParts": [
+            {
+              "kind": "TEXT",
+              "text": "She "
+            },
+            {
+              "kind": "CLOZE",
+              "text": "",
+              "options": [
+                "is"
+              ]
+            },
+            {
+              "kind": "TEXT",
+              "text": " ready."
+            }
+          ]
+        },
+        "id": "0560fb02f7f59247f19c2141",
+        "_id": {
+          "$oid": "0560fb02f7f59247f19c2141"
+        },
+        "knowledgeId": {
+          "$oid": "8ececbbd34ed7dff3d51ceb7"
+        },
+        "difficulty": 0.0,
+        "retries": 0.0,
+        "noScoreRetries": 0.0,
+        "code": "",
+        "audioUrl": "",
+        "imageUrl": "",
+        "answerAudioUrl": "",
+        "answerImageUrl": "",
+        "successMessage": "",
+        "sentences": [
+          "She is ready."
+        ]
+      }
+    },
+    "examContext": {
+      "title": "Forma en contexto",
+      "topicName": "Forma en contexto",
+      "knowledgeInstructions": "Completá la forma que corresponde.",
+      "level": "A1",
+      "sentenceMode": "FILL",
+      "isRule": true
+    },
+    "examExpectation": {
+      "resultado": "FAILS",
+      "gravedad": "HIGH",
+      "reglas": [
+        "false-rule"
+      ],
+      "expectedProblem": "FALSE_RULE",
+      "categoria": "FALSE_RULE",
+      "referenceStatus": "EDITORIAL"
+    },
+    "examReference": {
+      "sourceExamId": "mini-theory-highlight-v2-20261021",
+      "sourceCaseKey": "semantic-precedence",
+      "sourceCaseId": null,
+      "sourceQuizId": null,
+      "sourceGoldPath": "/Users/josecullen/projects/learney/content-audit/analysis/problems/PRB-1fc8487f/highlight-exam/revision-02/gold.json",
+      "sourceGoldSha256": "7d42368bee399478be8610014b6539af2a4b4422052d8d865ef44d2a988a2d3e",
+      "controlStatus": "proposed-regression",
+      "pairId": null,
+      "referenceStatus": "EDITORIAL",
+      "humanCertified": false,
+      "catalogIncludedAt": "2026-10-22T18:45:12.497401Z",
+      "confirmedAtMeaning": "Fecha de incorporación al catálogo; no certificación humana ni aprobación del juez."
+    }
+  },
+  "confirmedAt": "2026-10-22T18:45:12.497401Z"
+}]
+}

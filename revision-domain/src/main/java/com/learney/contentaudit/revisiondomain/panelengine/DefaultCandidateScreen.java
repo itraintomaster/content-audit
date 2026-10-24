@@ -58,7 +58,10 @@ class DefaultCandidateScreen implements CandidateScreen {
         }
         KnowledgeEntity topic = work.getKnowledge();
         if (candidate.getKind() == PanelCandidateKind.MINI_THEORY) {
-            return miniTheory(work, quizId, candidate);
+            violations.addAll(miniTheory(work, quizId, candidate));
+            TopicState.quiz(topic, quizId).ifPresent(q -> violations.addAll(DidacticContracts.violations(
+                    work.getDidacticReferences().get(quizId), q, topic.getInstructions(), work.getSentenceMode())));
+            return violations;
         }
         Optional<QuizTemplateEntity> found = TopicState.quiz(topic, quizId);
         if (found.isEmpty()) {
@@ -76,8 +79,13 @@ class DefaultCandidateScreen implements CandidateScreen {
         }
         // What the candidate says over the exercise as it was: the rest of the exercise is kept.
         QuizTemplateEntity proposed = TopicState.merged(original, candidate.getQuiz());
+        if (!work.getDidacticReferences().containsKey(quizId))
+            violations.addAll(RequestFormPreservation.verify(original, proposed, topic.getInstructions(), work.getSentenceMode()));
+        violations.addAll(DidacticContracts.violations(work.getDidacticReferences().get(quizId), proposed,
+                topic.getInstructions(), work.getSentenceMode()));
         if (isConversion(work, original, candidate)) {
-            return conversion(work, original, candidate, proposed);
+            violations.addAll(conversion(work, original, candidate, proposed));
+            return violations;
         }
         Set<ExercisePart> changed = TopicState.changedParts(original, proposed);
         if (changed.isEmpty() && candidate.getTopicInstructions() == null) {

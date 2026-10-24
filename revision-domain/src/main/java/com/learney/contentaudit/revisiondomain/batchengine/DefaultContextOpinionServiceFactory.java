@@ -12,7 +12,7 @@ public final class DefaultContextOpinionServiceFactory {
     public ContextOpinionService create(BatchServiceConfig config, Function<CourseEntity, String> fingerprint,
             PreliminaryOpinionSource preliminarySource) {
         var locator = config.getElementLocator() != null ? config.getElementLocator() : new DefaultCourseElementLocator();
-        var ledger = new DefaultBatchChangeLedger(config.getArtifactStore(), locator);
+        var ledger = new DefaultBatchChangeLedger(config.getArtifactStore(), locator).withBatches(config.getBatchStore());
         var reviews = new DefaultBatchReviewServiceFactory().create(config.getBatchStore(), config.getArtifactStore(),
                 config.getRefinementPlanStore(), config.getReviewCache());
         return new DefaultContextOpinionService(config, ledger, reviews, fingerprint, preliminarySource);

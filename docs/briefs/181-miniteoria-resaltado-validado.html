@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Validación focal de resaltado en miniteorías: casos, correcciones reales y evidencia conservada.">
+<title>El juez detecta el inglés sin marcas y el corrector lo resalta</title><style>
+  /* ============ tokens: claro y, abajo, oscuro ============ */
+  :root{
+    --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
+    --fg:#1c1a17; --fg-2:#57524b; --fg-3:#8b847a;
+    --accent:#b4531f; --accent-soft:#fdf1e7;
+    --ok:#2f6b46; --ok-soft:#e9f4ed;
+    --warn:#8a6314; --warn-soft:#fbf2dd;
+    --bad:#a3342c; --bad-soft:#fbecea;
+    --info:#2a5b8f; --info-soft:#e9f1f9;
+    --radius:10px; --shadow:0 1px 2px rgba(28,26,23,.05), 0 8px 24px -16px rgba(28,26,23,.25);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#131211; --bg-elev:#1b1a18; --line:#302d29; --line-soft:#252320;
+      --fg:#efece7; --fg-2:#a8a29a; --fg-3:#7b756c;
+      --accent:#e08b4f; --accent-soft:#2a1f16;
+      --ok:#7fc79c; --ok-soft:#16241c;
+      --warn:#e0b657; --warn-soft:#272013;
+      --bad:#e58b82; --bad-soft:#2a1917;
+      --info:#8ab6e5; --info-soft:#141f2b;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.6 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+    font-feature-settings:"kern","liga","cv05";
+    padding:40px 24px 80px;
+  }
+  .wrap{max-width:940px;margin:0 auto}
+  code,kbd,pre,.mono{font-family:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace}
+  a{color:var(--accent)}
+  code,a{overflow-wrap:anywhere}   /* una ruta o un link largo desborda el celular: 15 de 76 briefs viejos */
+
+  /* ============ encabezado ============ */
+  header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
+  .kicker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .kicker .num{font:700 12px ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.04em;color:var(--fg-3);
+    background:var(--line-soft);padding:3px 8px;border-radius:6px;font-variant-numeric:tabular-nums}
+  .badge{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;background:var(--accent-soft);color:var(--accent);
+    border:1px solid color-mix(in srgb,var(--accent) 22%,transparent)}
+  .meta{font-size:12.5px;color:var(--fg-3)}
+  h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2;margin:0;letter-spacing:-.02em;font-weight:650}
+  .sub{margin:10px 0 0;color:var(--fg-2);font-size:16px;max-width:62ch}
+
+  /* ============ el lede: la conclusión, dos renglones ============ */
+  .lede{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:var(--radius);padding:16px 18px;margin:0 0 34px;box-shadow:var(--shadow)}
+  .lede p{margin:0;font-size:17.5px;line-height:1.5;max-width:68ch}
+  .lede strong{font-weight:650}
+
+  /* ============ sección: título = conclusión · un dibujo · un pie ============ */
+  section{margin:0 0 38px}
+  h2{font-size:19px;line-height:1.3;font-weight:650;letter-spacing:-.01em;margin:0 0 14px;max-width:60ch}
+  p{margin:0 0 12px}
+  .pie{font-size:13.5px;line-height:1.5;color:var(--fg-2);margin:10px 0 0;max-width:78ch}
+  .grid{display:grid;gap:12px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;
+    box-shadow:var(--shadow);min-width:0}
+  .ptl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-3);font-weight:700;margin:0 0 10px}
+
+  /* ============ KPIs: el número grande, su comparación abajo ============ */
+  .kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+  .kpi{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:32px;font-weight:700;letter-spacing:-.025em;line-height:1.05;font-variant-numeric:tabular-nums}
+  .kpi .n small{font-size:.48em;font-weight:600;color:var(--fg-3);margin-left:.3em;letter-spacing:0}
+  .kpi .l{font-size:13px;color:var(--fg-2);line-height:1.4;margin-top:6px}
+  .kpi.dest .n{color:var(--accent)}
+
+  /* ============ barras horizontales con etiqueta ============ */
+  .hb{display:grid;gap:10px}
+  .hb .r{display:grid;grid-template-columns:minmax(110px,38%) minmax(0,1fr) auto;gap:12px;align-items:center;font-size:13.5px}
+  .hb .t{color:var(--fg-2);line-height:1.3;min-width:0}
+  .hb .t small{display:block;color:var(--fg-3);font-size:12px}
+  .hb .tr{position:relative;height:10px;border-radius:99px;background:var(--line-soft)}
+  .hb .f{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent)}
+  .hb .f.g{background:var(--ok)} .hb .f.b{background:var(--bad)} .hb .f.w{background:var(--warn)}
+  .hb .f.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .hb .meta{position:absolute;top:-4px;bottom:-4px;width:2px;border-radius:1px;background:var(--fg)}
+  .hb .n{font-weight:650;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--fg-2);margin-top:12px}
+  .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--accent)}
+  .sw.g{background:var(--ok)} .sw.b{background:var(--bad)} .sw.w{background:var(--warn)}
+  .sw.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .sw.m{width:2px;height:13px;border-radius:0;background:var(--fg);vertical-align:-2px}
+
+  /* ============ flujo en pasos ============ */
+  .flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:16px}
+  .flow .st{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:12px 13px;display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow);min-width:0}
+  .flow .st:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:8px;height:8px;z-index:1;
+    border-top:2px solid var(--fg-3);border-right:2px solid var(--fg-3);transform:translateY(-50%) rotate(45deg)}
+  .flow .i{font:700 12px/24px ui-monospace,monospace;width:24px;height:24px;border-radius:7px;text-align:center;
+    background:var(--accent-soft);color:var(--accent)}
+  .flow .h{font-weight:650;font-size:14px;line-height:1.25}
+  .flow .eg{font:italic 14px/1.3 ui-serif,Georgia,serif;color:var(--fg)}
+  .flow .d{font-size:12.5px;line-height:1.4;color:var(--fg-2)}
+  .flow .st.end{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+
+  /* ============ antes y después ============ */
+  .ad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}
+  .ad .lado{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:13px 15px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow);min-width:0}
+  .ad .antes{border-top:3px solid var(--bad)} .ad .despues{border-top:3px solid var(--ok)}
+  .ad .rot{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+  .ad .antes .rot{color:var(--bad)} .ad .despues .rot{color:var(--ok)}
+  .ad .despues::before{content:"→";position:absolute;left:-24px;top:50%;transform:translateY(-50%);
+    font-size:19px;color:var(--fg-3)}
+  .ad ol{margin:0;padding-left:20px;font-size:13.5px;line-height:1.45;color:var(--fg-2);display:grid;gap:3px}
+  .ad .res{font-weight:650;font-size:14.5px;border-top:1px dashed var(--line);padding-top:7px;margin-top:auto}
+  .ad .antes .res{color:var(--bad)} .ad .despues .res{color:var(--ok)}
+
+  /* ============ mapa de calor ============ */
+  .heat{display:grid;grid-template-columns:minmax(110px,1.6fr) repeat(var(--cols,4),minmax(0,1fr));gap:4px;font-size:12.5px}
+  .heat span{padding:7px 4px;border-radius:6px;text-align:center;font-variant-numeric:tabular-nums;background:var(--line-soft)}
+  .heat .h{background:none;color:var(--fg-3);font-size:11.5px;font-weight:600}
+  .heat .rl{background:none;text-align:left;color:var(--fg-2)}
+  .heat .h0{color:var(--fg-3)}
+  .heat .h1{background:color-mix(in srgb,var(--warn) 16%,var(--bg-elev))}
+  .heat .h2{background:color-mix(in srgb,var(--warn) 34%,var(--bg-elev))}
+  .heat .h3{background:color-mix(in srgb,var(--bad) 32%,var(--bg-elev))}
+
+  /* ============ tarjetas de decisión: la recomendada, marcada ============ */
+  .opts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+  .opt{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
+    box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;min-width:0}
+  .opt.rec{border:1.5px solid var(--accent);box-shadow:0 0 0 3px var(--accent-soft),var(--shadow)}
+  .opt .oh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14.5px}
+  .opt .ol{font:700 13px/26px ui-monospace,monospace;width:26px;height:26px;border-radius:7px;text-align:center;
+    background:var(--line-soft);flex:none}
+  .opt.rec .ol{background:var(--accent);color:var(--bg-elev)}
+  .opt p{font-size:13px;color:var(--fg-2);margin:0}
+  .opt ul{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-size:13px}
+  .opt li::before{font-weight:800;margin-right:6px}
+  .opt li.si::before{content:"✓";color:var(--ok)} .opt li.no::before{content:"✕";color:var(--bad)}
+
+  /* ============ ejemplo real ============ */
+  .ex{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
+    display:grid;gap:7px;box-shadow:var(--shadow);min-width:0}
+  .ex .cons{font-size:12px;color:var(--fg-3)}
+  .ex .en{font:italic 18px/1.35 ui-serif,Georgia,serif}
+  .ex .gap{display:inline-block;min-width:48px;border-bottom:2px solid var(--fg-3);margin:0 4px}
+  .ex .ans{font-size:13.5px;color:var(--fg-2)} .ex .ans b{color:var(--fg)}
+  .ex .ft{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--fg-3);
+    border-top:1px dashed var(--line);padding-top:7px}
+  .mark{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;line-height:1.45;background:var(--bad-soft);
+    border-radius:8px;padding:8px 10px}
+  .mark .x{color:var(--bad);font-weight:800}
+  .mark.ok{background:var(--ok-soft)} .mark.ok .x{color:var(--ok)}
+  .sev{font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;white-space:nowrap}
+  .sev.b{background:var(--bad);color:var(--bg-elev)} .sev.a{background:var(--bad-soft);color:var(--bad)}
+  .sev.m{background:var(--warn-soft);color:var(--warn)} .sev.l{background:var(--line-soft);color:var(--fg-2)}
+
+  /* ============ preguntas, con la recomendación ============ */
+  .asks{display:grid;gap:10px}
+  .ask{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);
+    padding:12px 15px;display:grid;gap:8px;box-shadow:var(--shadow)}
+  .ask .q{font-size:15px;font-weight:650;line-height:1.35}
+  .ask .ops{display:flex;gap:6px;flex-wrap:wrap}
+  .ask .op{font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--bg)}
+  .ask .op.rec{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .ask .why{font-size:13px;color:var(--fg-2);line-height:1.45}
+
+  /* ============ qué cambia y qué no ============ */
+  .cambia{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .cambia>div{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 15px;box-shadow:var(--shadow)}
+  .cambia ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13.5px;line-height:1.45}
+  .cambia li{position:relative;padding-left:22px}
+  .cambia li::before{position:absolute;left:0;top:0;font-weight:800}
+  .cambia .si li::before{content:"✓";color:var(--ok)}
+  .cambia .no li::before{content:"=";color:var(--fg-3)}
+
+  /* ============ captura real, con su pie ============ */
+  .captura{margin:0;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:10px;
+    box-shadow:var(--shadow);min-width:0}
+  .captura img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft)}
+  .captura.cel img{max-width:300px;margin:0 auto}
+  .captura figcaption{font-size:12.5px;color:var(--fg-3);margin-top:8px}
+
+  /* ============ pills de estado ============ */
+  .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}
+  .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
+  .p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)}
+  .p-bad{background:var(--bad-soft);color:var(--bad)} .p-info{background:var(--info-soft);color:var(--info)}
+  .p-idle{background:var(--line-soft);color:var(--fg-3)}
+
+  /* ============ tabla chica (≤ 6 filas; si es más, es un gráfico) ============ */
+  .tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}
+  th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);
+    font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:ui-monospace,monospace;font-size:13px}
+
+  /* ============ diagrama SVG a mano ============ */
+  .diagram{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
+    overflow-x:auto;box-shadow:var(--shadow)}
+  .diagram svg{display:block;max-width:100%;height:auto;margin:0 auto}
+  svg .box{fill:var(--bg);stroke:var(--line)}
+  svg .box-a{fill:var(--accent-soft);stroke:var(--accent)}
+  svg .box-ok{fill:var(--ok-soft);stroke:var(--ok)}
+  svg .box-bad{fill:var(--bad-soft);stroke:var(--bad)}
+  svg .lbl{fill:var(--fg);font:13px ui-sans-serif,system-ui,sans-serif}
+  svg .lbl-s{fill:var(--fg-3);font:11px ui-sans-serif,system-ui,sans-serif}
+  svg .arrow{stroke:var(--fg-3);fill:none;stroke-width:1.2}
+
+  /* ============ comandos · aviso de lo que no sé ============ */
+  pre{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;
+    overflow-x:auto;font-size:13px;line-height:1.55;margin:0}
+  pre code{color:var(--fg)}
+  .call{border-radius:var(--radius);padding:10px 13px;font-size:13.5px;border:1px solid;margin:12px 0 0}
+  .c-warn{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 28%,transparent)}
+  .c-bad{background:var(--bad-soft);border-color:color-mix(in srgb,var(--bad) 28%,transparent)}
+  .c-info{background:var(--info-soft);border-color:color-mix(in srgb,var(--info) 28%,transparent)}
+  .call b:first-child{margin-right:4px}
+
+  footer{border-top:1px solid var(--line);margin-top:36px;padding-top:14px;font-size:12.5px;color:var(--fg-3);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  /* ============ celular ============ */
+  @media (max-width:640px){
+    body{padding:24px 16px 60px}
+    h2{font-size:17px}
+    .flow{grid-auto-flow:row}
+    .flow .st:not(:last-child)::after{right:auto;left:22px;top:auto;bottom:-11px;transform:rotate(135deg)}
+    .ad{grid-template-columns:minmax(0,1fr);gap:28px}
+    .ad .despues::before{content:"↓";left:50%;top:-25px;transform:translateX(-50%)}
+    .hb .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) auto;gap:8px}
+    .heat{grid-template-columns:minmax(80px,1.3fr) repeat(var(--cols,4),minmax(0,1fr));font-size:11.5px}
+    .kpi .n{font-size:28px}
+  }
+
+
+body{overflow-x:hidden}.wrap,section,header,footer{min-width:0}h3{font-size:16px;line-height:1.35;margin:0 0 12px}
+.legend{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin-bottom:12px}
+.legend-title{font-size:12px;text-transform:uppercase;letter-spacing:.07em;font-weight:700;color:var(--fg-2)}
+.legend-definitions{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;font-size:12.5px;margin-top:10px;line-height:1.45}
+.legend-reading{font-size:13px;margin-top:12px;color:var(--fg-2)}.legend-reading p{margin:0 0 4px}
+.no-mismatches{background:var(--ok-soft);border:1px solid var(--ok);border-radius:var(--radius);padding:16px;margin:12px 0 18px}
+.no-mismatches strong{color:var(--ok)}.no-mismatches p{margin:0;font-size:14px}.incident{border-left:3px solid var(--info);margin-bottom:24px}
+.incident .reason{font-size:13px}.incident-title{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
+.evidence-line{font-size:12.5px;color:var(--fg-2);margin:10px 0 0}.case-list{display:grid;gap:8px}.case{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev);min-width:0}
+summary{cursor:pointer;list-style:none}summary::-webkit-details-marker{display:none}
+.case>summary{display:flex;align-items:center;gap:10px;padding:13px 15px;flex-wrap:wrap;font-size:14px}
+.case>summary::after{content:'+';color:var(--fg-3);font-weight:700;margin-left:auto}.case[open]>summary::after{content:'−'}
+.case>summary:hover,.native-details>summary:hover{background:var(--line-soft)}
+summary:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:5px}
+.case-number{font:600 12px ui-monospace,monospace;color:var(--fg-3)}.case-title{font-weight:600;flex:1;min-width:190px}
+.comparison{display:inline-flex;gap:7px;align-items:center;flex-wrap:wrap}.comparison-arrow{color:var(--fg-3);font-size:17px}
+.case-body{padding:0 12px 12px}.case-table{min-width:0;width:100%;font-size:13px;table-layout:fixed}
+.case-table th{width:128px;white-space:normal;vertical-align:top;font-size:10.5px;line-height:1.5;padding:11px 12px}
+.case-table td{padding:11px 12px;overflow-wrap:anywhere;line-height:1.5}.case-table small{color:var(--fg-3)}
+.case-table .native{font-size:12px;background:var(--line-soft);padding:5px 7px;display:block;white-space:pre-wrap;border-radius:5px}
+.reason{margin-top:7px;color:var(--fg-2)}.sentence{font-family:ui-serif,Georgia,serif;font-style:italic;font-size:17px;line-height:1.4}
+.english{font-weight:750;color:var(--accent);background:var(--accent-soft);padding:0 2px;border-radius:3px}
+.correction{margin:20px 0 28px}.theory{font-size:15px;line-height:1.75}.repair-checks{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.native-details{margin-top:10px}.native-details>summary{font-size:12.5px;color:var(--accent);padding:8px 0}.native-details>summary::before{content:'+ ';font-weight:700}.native-details[open]>summary::before{content:'− '}
+.details-lead{font-size:13px;color:var(--fg-2);margin-bottom:10px}.metric-split{margin-top:14px}.scope-note{font-size:13px;color:var(--fg-2)}
+.sources{width:100%;margin-top:10px}.sources summary{font-weight:600;color:var(--fg-2)}.sources dl{display:grid;grid-template-columns:145px minmax(0,1fr);gap:8px 14px;font-size:12px;margin:12px 0}.sources dt{font-weight:650}.sources dd{margin:0;overflow-wrap:anywhere}
+@media(max-width:640px){.legend-definitions{grid-template-columns:1fr}.case>summary{gap:7px;padding:12px}.case-title{min-width:170px}.case .comparison{width:100%;margin-left:26px}.case>summary::after{position:absolute;right:28px}.case{position:relative}.case-table th{width:92px;padding:9px 8px;font-size:9px}.case-table td{padding:9px 8px;font-size:12px}.case-body{padding:0 7px 7px}.sources dl{grid-template-columns:1fr;gap:3px}.sources dd{margin-bottom:8px}.g2{grid-template-columns:1fr}.incident .comparison{display:flex}.repair-checks .pill{font-size:11px}}
+@media print{body{padding:16px;background:var(--bg-elev)}.case,.correction,.incident{break-inside:avoid}.case-body{display:block!important}footer{font-size:10px}}
+</style></head>
+<body><div class="wrap">
+<header><div class="kicker"><span class="num">181</span><span class="badge">Validación focal completada</span><span class="meta">Miniteoría · 22 octubre 2026</span></div>
+<h1>El juez detecta la falta; el corrector la repara</h1><p class="sub">Resultados guardados el 21 de octubre · entrega del 22 de octubre de 2026.</p></header>
+<div class="lede"><p><strong>No quedan discrepancias con la referencia editorial.</strong> El juez detectó el inglés sin marcas y el corrector reparó ambos ejemplos conservando su redacción.</p></div>
+<section id="discrepancias"><h2>No quedan discrepancias; la incidencia inicial está resuelta</h2>
+<div class="legend" aria-label="Leyenda de resultados"><span class="legend-title">Cómo leer los estados</span>
+<div class="legend-definitions"><div><span class="pill p-ok">Aprobado</span> La miniteoría cumple el criterio.</div><div><span class="pill p-bad">Rechazado</span> Hay un defecto que corregir.</div>
+<div><span class="pill p-warn">Pendiente humano</span> Espera una decisión humana.</div><div><span class="pill p-idle">Sin evaluar</span> No hay un juicio consolidado.</div></div>
+<div class="legend-reading"><p><b>Esperado</b>: referencia editorial del asistente. <b>Obtenido</b>: resultado guardado del juez.</p>
+<p><b>Esperado → obtenido</b> compara ambos; no indica una publicación ni aprobación humana.</p></div></div>
+<div class="no-mismatches" id="mismatch-list"><p><strong>No hay discrepancias actuales.</strong> Se conserva debajo la incidencia de la primera exportación.</p></div>
+<article class="card incident" id="initial-incident"><div class="incident-title"><b>Caso 08 · incidencia inicial resuelta</b><span class="pill p-info">Misma respuesta recuperada</span></div>
+<div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">I ___ visit my aunt tomorrow; the visit is already planned.</span><br><small>ID <code>339cacc42109b72134ade6f2</code></small></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span> · gravedad baja<div class="reason">La expresión going to queda sin marca aunque be ya esté resaltado. Las etiquetas explicativas en español no necesitan marcas.</div></td></tr>
+<tr><th scope="row">Salida inicial</th><td><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-idle">Sin evaluar</span></span><div class="reason">El registro decía «el juez no lo evaluó en esta corrida». La respuesta existía, pero no se incorporó: el hueco del ejercicio de prueba era texto literal.</div></td></tr>
+<tr><th scope="row">Salida recuperada</th><td><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span><div class="reason">La regla explica correctamente la elección para una visita ya planeada, pero el fragmento inglés «going to» carece del resaltado nativo <code>$...$</code>.</div></td></tr>
+<tr><th scope="row">Resolución</th><td>Se representó correctamente el hueco y se volvió a procesar la misma respuesta guardada. El contenido enviado al juez y la referencia esperada permanecieron iguales; no hubo consultas nuevas.</td></tr>
+</tbody></table></div><p class="evidence-line"><a href="../../analysis/problems/PRB-1fc8487f/highlight-exam/live-validation/measurement-01.json">Conservar salida inicial</a> · <a href="../../analysis/problems/PRB-1fc8487f/highlight-exam/live-validation/replay-02-provenance.json">Procedencia de la recuperación sin consultas</a></p></article>
+<div class="details-lead"><b>Casos del examen.</b> Abrí cada fila para ver frase, miniteoría y motivos. La flecha compara <b>esperado → obtenido</b>.</div>
+<div class="legend-reading"><p>Aprobado: cumple · Rechazado: tiene un defecto · Pendiente humano: espera decisión · Sin evaluar: sin juicio consolidado.</p></div>
+<div class="case-list" id="all-cases"><details class="case" id="case-01" data-quiz-id="67fab6d59930102295341f27">
+<summary><span class="case-number">01</span><span class="case-title">watches: caso observado</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">He watches TV.</span><br><small>ID <code>67fab6d59930102295341f27</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Con he, she, it, los verbos que terminan en ch agregan $-es$ en presente simple: watch → watches.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span> · gravedad baja<div class="reason">El caso anotado conserva pronombres, letras focales y la transformación ortográfica sin las marcas nativas, aunque resalta el sufijo.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span> · gravedad baja<div class="reason">La regla explica correctamente la elección de <strong class="english">watches</strong>, pero los pronombres, la terminación <strong class="english">ch</strong> y la transformación <strong class="english">watch → watches</strong> carecen de resaltado nativo.</div></td></tr>
+<tr><th scope="row">Sugerencia del juez</th><td><code class="native">Con $he, she, it$, los verbos que terminan en $ch$ agregan $-es$ en presente simple: $watch → watches$.</code></td></tr>
+<tr><th scope="row">Fuente esperada</th><td>Ejemplo señalado por el operador; clasificación y gravedad propuestas por el asistente. No certificación humana.</td></tr>
+</tbody></table></div></div></details>
+<details class="case" id="case-02" data-quiz-id="b9c16b5ef634d3a37dfead50">
+<summary><span class="case-number">02</span><span class="case-title">watches: marcas completas</span><span class="comparison"><span class="pill p-ok">Aprobado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-ok">Aprobado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">He watches TV.</span><br><small>ID <code>b9c16b5ef634d3a37dfead50</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Con $he$, $she$, $it$, los verbos que terminan en $ch$ agregan $-es$ en presente simple: $watch → watches$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Conserva literalmente el contenido del caso anotado y sólo añade $...$ a las unidades inglesas. La ortografía watch/study es el foco, no léxico incidental; la regla de tercera persona también cubre The student.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Explica que con <strong class="english">he</strong> los verbos terminados en <strong class="english">ch</strong> agregan <strong class="english">-es</strong>, lo que justifica <strong class="english">watches</strong>. La explicación parte del sujeto y resalta correctamente las formas inglesas.</div></td></tr>
+<tr><th scope="row">Fuente esperada</th><td>Referencia editorial del asistente; no certificación humana.</td></tr>
+</tbody></table></div></div></details>
+<details class="case" id="case-03" data-quiz-id="67fab6d59930102295341f28">
+<summary><span class="case-number">03</span><span class="case-title">studies: caso observado</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">The student studies hard.</span><br><small>ID <code>67fab6d59930102295341f28</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Con he, she, it, si el verbo termina en consonante + y, cambiamos la y por $-ies$ en presente simple: study → studies.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span> · gravedad baja<div class="reason">El caso anotado conserva pronombres, letras focales y la transformación ortográfica sin las marcas nativas, aunque resalta el sufijo.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span> · gravedad baja<div class="reason">La regla explica correctamente el cambio ortográfico de este quiz, pero faltan las marcas en los pronombres «he, she, it», las dos apariciones de la letra «y» y la transformación «study → studies».</div></td></tr>
+<tr><th scope="row">Sugerencia del juez</th><td><code class="native">Con $he, she, it$, si el verbo termina en consonante + $y$, cambiamos la $y$ por $-ies$ en presente simple: $study → studies$.</code></td></tr>
+<tr><th scope="row">Fuente esperada</th><td>Ejemplo señalado por el operador; clasificación y gravedad propuestas por el asistente. No certificación humana.</td></tr>
+</tbody></table></div></div></details>
+<details class="case" id="case-04" data-quiz-id="7564209ab8d5db8eb992c425">
+<summary><span class="case-number">04</span><span class="case-title">studies: marcas completas</span><span class="comparison"><span class="pill p-ok">Aprobado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-ok">Aprobado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">The student studies hard.</span><br><small>ID <code>7564209ab8d5db8eb992c425</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Con $he$, $she$, $it$, si el verbo termina en consonante + $y$, cambiamos la $y$ por $-ies$ en presente simple: $study → studies$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Conserva literalmente el contenido del caso anotado y sólo añade $...$ a las unidades inglesas. La ortografía watch/study es el foco, no léxico incidental; la regla de tercera persona también cubre The student.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Explica correctamente el cambio de consonante + <strong class="english">y</strong> a <strong class="english">-ies</strong> que corresponde a <strong class="english">study</strong> con el sujeto singular <strong class="english">The student</strong>, equivalente a <strong class="english">he</strong> o <strong class="english">she</strong>. El ejemplo muestra la transformación ortográfica focal y el inglés está correctamente resaltado.</div></td></tr>
+<tr><th scope="row">Fuente esperada</th><td>Referencia editorial del asistente; no certificación humana.</td></tr>
+</tbody></table></div></div></details>
+<details class="case" id="case-05" data-quiz-id="8e33c6b00a9d1c558a680c98">
+<summary><span class="case-number">05</span><span class="case-title">she / is: sin marcas</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">She is ready.</span><br><small>ID <code>8e33c6b00a9d1c558a680c98</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Con she se usa is en presente afirmativo.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span> · gravedad baja<div class="reason">No hay ninguna marca nativa en she ni is; ambas formas inglesas son relevantes para la explicación.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span> · gravedad baja<div class="reason">La regla explica correctamente la concordancia desde el sujeto, pero las formas inglesas «she» e «is» carecen del resaltado nativo <code>$...$</code>.</div></td></tr>
+<tr><th scope="row">Sugerencia del juez</th><td><code class="native">Con $she$ se usa $is$ en presente afirmativo.</code></td></tr>
+<tr><th scope="row">Fuente esperada</th><td>Referencia editorial del asistente; no certificación humana.</td></tr>
+</tbody></table></div></div></details>
+<details class="case" id="case-06" data-quiz-id="4b63e403ecca85b29679270e">
+<summary><span class="case-number">06</span><span class="case-title">am: repetición sin marcar</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">I am ready.</span><br><small>ID <code>4b63e403ecca85b29679270e</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Con $I$, usá $am$ en presente afirmativo: $I$ lleva am.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span> · gravedad baja<div class="reason">La última aparición de am sigue sin resaltarse: que la primera esté marcada no alcanza.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span> · gravedad baja<div class="reason">La regla explica correctamente que con el sujeto <strong class="english">I</strong> corresponde <strong class="english">am</strong>, pero la última aparición de «am» carece de resaltado nativo.</div></td></tr>
+<tr><th scope="row">Sugerencia del juez</th><td><code class="native">Con $I$, usá $am$ en presente afirmativo: $I$ lleva $am$.</code></td></tr>
+<tr><th scope="row">Fuente esperada</th><td>Referencia editorial del asistente; no certificación humana.</td></tr>
+</tbody></table></div></div></details>
+<details class="case" id="case-07" data-quiz-id="605d7e42b5571680dd658502">
+<summary><span class="case-number">07</span><span class="case-title">can’t: contracción</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">She can&#x27;t swim.</span><br><small>ID <code>605d7e42b5571680dd658502</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">La forma negativa corta de $can$ es can&#x27;t.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span> · gravedad baja<div class="reason">La contracción completa can&#x27;t es una unidad inglesa y debe estar entre las marcas nativas.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span> · gravedad baja<div class="reason">La tarjeta explica correctamente la forma negativa corta, pero cita can&#x27;t sin el resaltado nativo <code>$...$</code>.</div></td></tr>
+<tr><th scope="row">Sugerencia del juez</th><td><code class="native">La forma negativa corta de $can$ es $can&#x27;t$.</code></td></tr>
+<tr><th scope="row">Fuente esperada</th><td>Referencia editorial del asistente; no certificación humana.</td></tr>
+</tbody></table></div></div></details>
+<details class="case" id="case-08" data-quiz-id="339cacc42109b72134ade6f2">
+<summary><span class="case-number">08</span><span class="case-title">going to: expresión completa</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">I ___ visit my aunt tomorrow; the visit is already planned.</span><br><small>ID <code>339cacc42109b72134ade6f2</code> · A2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Para un plan futuro ya decidido, usá $be$ + going to + verbo base.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span> · gravedad baja<div class="reason">La expresión going to queda sin marca aunque be ya esté resaltado. Las etiquetas explicativas en español no necesitan marcas.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span> · gravedad baja<div class="reason">La regla explica correctamente la elección para una visita ya planeada, pero el fragmento inglés «going to» carece del resaltado nativo <code>$...$</code>.</div></td></tr>
+<tr><th scope="row">Sugerencia del juez</th><td><code class="native">Para un plan futuro ya decidido, usá $be$ + $going to$ + verbo base.</code></td></tr>
+<tr><th scope="row">Fuente esperada</th><td>Referencia editorial del asistente; no certificación humana.</td></tr>
+</tbody></table></div></div></details>
+<details class="case" id="case-09" data-quiz-id="f368bcd3ff566117114c56d8">
+<summary><span class="case-number">09</span><span class="case-title">Esquema con etiquetas españolas</span><span class="comparison"><span class="pill p-ok">Aprobado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-ok">Aprobado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">Elegí la pregunta sobre una acción en curso ahora.</span><br><small>ID <code>f368bcd3ff566117114c56d8</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Para preguntar por una acción en curso, usá $am/is/are$ + sujeto + verbo en $-ing$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Las formas inglesas y -ing ya tienen marcas nativas. Sujeto, verbo en y los conectores son español: no hace falta resaltar todo el esquema.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-ok">Aprobado</span><div class="reason">La tarjeta explica cómo preguntar por una acción en curso y permite elegir <strong class="english">Is she working?</strong> frente a <strong class="english">Does she work?</strong>. Las formas inglesas citadas tienen el resaltado requerido.</div></td></tr>
+<tr><th scope="row">Fuente esperada</th><td>Referencia editorial del asistente; no certificación humana.</td></tr>
+</tbody></table></div></div></details>
+<details class="case" id="case-10" data-quiz-id="21e6bab00bddb2b08cd4168a">
+<summary><span class="case-number">10</span><span class="case-title">Explicación sólo en español</span><span class="comparison"><span class="pill p-ok">Aprobado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-ok">Aprobado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">She walks to school every day.</span><br><small>ID <code>21e6bab00bddb2b08cd4168a</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Una acción habitual se expresa en presente simple.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-ok">Aprobado</span><div class="reason">La miniteoría sólo tiene español y explica la decisión entre tiempos nombrados en las opciones. No exige insertar inglés ni marcas artificialmente.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-ok">Aprobado</span><div class="reason">La tarjeta explica que una costumbre, como caminar a la escuela todos los días, se expresa en presente simple y permite distinguirlo del presente continuo.</div></td></tr>
+<tr><th scope="row">Fuente esperada</th><td>Referencia editorial del asistente; no certificación humana.</td></tr>
+</tbody></table></div></div></details>
+<details class="case" id="case-11" data-quiz-id="e4110f62bfbc519ac4269ca6">
+<summary><span class="case-number">11</span><span class="case-title">Negrita y HTML</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">She is ready.</span><br><small>ID <code>e4110f62bfbc519ac4269ca6</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Con **she**, la afirmación usa &lt;strong&gt;is&lt;/strong&gt;.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span> · gravedad baja<div class="reason">Markdown y HTML no son las marcas nativas $...$: she e is siguen sin el resaltado que usa el curso.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span> · gravedad baja<div class="reason">La regla explica correctamente la elección, pero «she» e «is» carecen del resaltado nativo <code>$...$</code>; la negrita y el HTML no lo reemplazan.</div></td></tr>
+<tr><th scope="row">Sugerencia del juez</th><td><code class="native">Con $she$, la afirmación usa $is$.</code></td></tr>
+<tr><th scope="row">Fuente esperada</th><td>Referencia editorial del asistente; no certificación humana.</td></tr>
+</tbody></table></div></div></details>
+<details class="case" id="case-12" data-quiz-id="0560fb02f7f59247f19c2141">
+<summary><span class="case-number">12</span><span class="case-title">La regla falsa tiene prioridad</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">She is ready.</span><br><small>ID <code>0560fb02f7f59247f19c2141</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Con $she$, usá are en presente afirmativo.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span> · gravedad alta<div class="reason">La regla prescribe are para she y dirige a una respuesta incorrecta. La regla falsa tiene prioridad sobre la falta adicional de marcas.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span> · gravedad alta<div class="reason">La tarjeta indica usar <strong class="english">are</strong> con <strong class="english">she</strong>, pero en este presente afirmativo corresponde <strong class="english">is</strong>.</div></td></tr>
+<tr><th scope="row">Fuente esperada</th><td>Referencia editorial del asistente; no certificación humana.</td></tr>
+</tbody></table></div></div></details></div>
+<p class="pie">Lo esperado es una referencia editorial basada en el criterio del operador; estas coincidencias no certifican precisión ni aprobación humana.</p></section>
+<section id="correcciones"><h2>El corrector agregó marcas y conservó la redacción</h2><article class="correction" id="correction-1"><h3>He watches TV.</h3>
+<div class="ad"><div class="lado antes"><span class="rot">Antes</span><div class="theory">Con he, she, it, los verbos que terminan en ch agregan <strong class="english">-es</strong> en presente simple: watch → watches.</div></div>
+<div class="lado despues"><span class="rot">Propuesta del corrector</span><div class="theory">Con <strong class="english">he, she, it</strong>, los verbos que terminan en <strong class="english">ch</strong> agregan <strong class="english">-es</strong> en presente simple: <strong class="english">watch → watches</strong>.</div></div></div>
+<div class="repair-checks"><span class="pill p-ok">Mismas palabras</span><span class="pill p-ok">Marcas completas</span><span class="pill p-info">Sin segundo juicio</span></div>
+<details class="native-details"><summary>Ver texto nativo guardado</summary><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Antes</th><td><code class="native">Con he, she, it, los verbos que terminan en ch agregan $-es$ en presente simple: watch → watches.</code></td></tr><tr><th scope="row">Después</th><td><code class="native">Con $he, she, it$, los verbos que terminan en $ch$ agregan $-es$ en presente simple: $watch → watches$.</code></td></tr>
+<tr><th scope="row">Ejercicio</th><td><code>67fab6d59930102295341f27</code></td></tr>
+</tbody></table></div></details></article>
+<article class="correction" id="correction-2"><h3>The student studies hard.</h3>
+<div class="ad"><div class="lado antes"><span class="rot">Antes</span><div class="theory">Con he, she, it, si el verbo termina en consonante + y, cambiamos la y por <strong class="english">-ies</strong> en presente simple: study → studies.</div></div>
+<div class="lado despues"><span class="rot">Propuesta del corrector</span><div class="theory">Con <strong class="english">he, she, it</strong>, si el verbo termina en consonante + <strong class="english">y</strong>, cambiamos la <strong class="english">y</strong> por <strong class="english">-ies</strong> en presente simple: <strong class="english">study → studies</strong>.</div></div></div>
+<div class="repair-checks"><span class="pill p-ok">Mismas palabras</span><span class="pill p-ok">Marcas completas</span><span class="pill p-info">Sin segundo juicio</span></div>
+<details class="native-details"><summary>Ver texto nativo guardado</summary><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Antes</th><td><code class="native">Con he, she, it, si el verbo termina en consonante + y, cambiamos la y por $-ies$ en presente simple: study → studies.</code></td></tr><tr><th scope="row">Después</th><td><code class="native">Con $he, she, it$, si el verbo termina en consonante + $y$, cambiamos la $y$ por $-ies$ en presente simple: $study → studies$.</code></td></tr>
+<tr><th scope="row">Ejercicio</th><td><code>67fab6d59930102295341f28</code></td></tr>
+</tbody></table></div></details></article>
+<p class="pie">Las propuestas reales resaltan cada forma inglesa. Se comprobaron localmente; no se enviaron de nuevo al juez ni se publicaron.</p></section>
+<section id="medicion"><h2>El examen focal coincide dentro del presupuesto autorizado</h2>
+<div class="kpis"><div class="kpi dest"><div class="n">12<small>/ 12</small></div><div class="l">Resultados coinciden con la referencia editorial.</div></div>
+<div class="kpi"><div class="n">2<small>/ 2</small></div><div class="l">Correcciones reales con marcas y redacción conservada.</div></div>
+<div class="kpi"><div class="n">14<small>/ 38</small></div><div class="l">Consultas usadas del máximo autorizado.</div></div></div>
+<div class="card metric-split"><div class="hb">
+<div class="r"><span class="t">Faltas de resaltado</span><div class="tr"><span class="f g" style="width:100%"></span></div><span class="n">7 de 7</span></div>
+<div class="r"><span class="t">Controles sanos</span><div class="tr"><span class="f g" style="width:100%"></span></div><span class="n">4 de 4</span></div>
+<div class="r"><span class="t">Regla falsa prioritaria</span><div class="tr"><span class="f g" style="width:100%"></span></div><span class="n">1 de 1</span></div>
+<div class="r"><span class="t">Presupuesto utilizado<small>12 juicios + 2 correcciones</small></span><div class="tr"><span class="f" style="width:36.8421%"></span></div><span class="n">14 de 38</span></div>
+</div></div><p class="pie">La recuperación reutilizó respuestas guardadas: cero consultas nuevas. No hubo cambio de proveedor.</p></section>
+<section id="alcance"><h2>La mejora queda comprobada en este examen focal</h2>
+<div class="grid g2"><div class="card"><div class="ptl">Pruebas locales previas</div><div class="hb">
+<div class="r"><span class="t">Java</span><div class="tr"><span class="f g" style="width:100%"></span></div><span class="n">45 de 45</span></div>
+<div class="r"><span class="t">Formato de respuesta</span><div class="tr"><span class="f g" style="width:100%"></span></div><span class="n">24 de 24</span></div></div></div>
+<div class="card"><div class="ptl">Alcance conservado</div><span class="pill p-info">Examen focal</span><div class="reason">No habilita automáticamente al juez. El examen permanente completo sigue siendo necesario para esa decisión.</div></div></div>
+<div class="call c-warn">La prueba general mantiene un fallo previo del control que protege el examen de duplicados. No se presenta como aprobada.</div>
+<div class="flow" style="margin-top:16px"><div class="st"><span class="i">1</span><span class="h">Usar la mejora validada</span><span class="d">Detección y propuestas de resaltado listas.</span></div>
+<div class="st"><span class="i">2</span><span class="h">Conservar la evidencia</span><span class="d">Primera salida y recuperación quedan separadas.</span></div>
+<div class="st end"><span class="i">3</span><span class="h">Decidir una validación más amplia</span><span class="d">Con alcance y presupuesto propios.</span></div></div>
+<p class="pie">Esta entrega cierra la comprobación autorizada. No se promovió al juez ni se publicaron cambios en el curso.</p></section>
+<footer><span>Brief 181 · <a href="../index.html">Índice</a> · <a href="178-miniteoria-ingles-resaltado.html">Preparación: brief 178</a></span><span>PRB-1fc8487f · 22 octubre 2026</span>
+<details class="sources"><summary>Fuentes y procedencia técnica</summary><dl>
+<dt>Medición final</dt><dd><a href="../../analysis/problems/PRB-1fc8487f/highlight-exam/live-validation/measurement-02.json">measurement-02.json</a> · <a href="../../analysis/problems/PRB-1fc8487f/highlight-exam/revision-02/gold.json">Referencia editorial congelada</a></dd>
+<dt>Recuperación</dt><dd><a href="../../analysis/problems/PRB-1fc8487f/highlight-exam/live-validation/replay-02-provenance.json">replay-02-provenance.json</a> · presupuesto 0 · mismas respuestas guardadas · <a href="../../analysis/problems/PRB-1fc8487f/highlight-exam/revision-02/revision-validation.json">Estructura, contenido y hashes originales preservados</a></dd>
+<dt>Salida inicial</dt><dd><a href="../../analysis/problems/PRB-1fc8487f/highlight-exam/live-validation/measurement-01.json">measurement-01.json</a> conserva NOT_JUDGED en el caso 08.</dd>
+<dt>Proveedor / modelo</dt><dd>codex-cli · gpt-6.1-sol · esfuerzo medium · backend openai · CLI v0.163.0-alpha.10.2</dd>
+<dt>Versión del juez</dt><dd><code>cf3d5aa5b7f2840b58213896853af4c134e6d3b1b5c32f9e01cd6d2a96fcf5c7</code></dd>
+<dt>Corrector</dt><dd>mini-feedback-v5 · <a href="../../analysis/problems/PRB-1fc8487f/highlight-exam/live-validation/correction-01/validation.json">watches</a> · <a href="../../analysis/problems/PRB-1fc8487f/highlight-exam/live-validation/correction-02/validation.json">studies</a> · sin segundo juicio.</dd>
+<dt>Pruebas previas</dt><dd><a href="../../analysis/problems/PRB-1fc8487f/highlight-exam/evidence.md">45 pruebas Java y 24 verificaciones de formato</a>. Fallo general previo: AgentDefinitionsExamGuardIntegrationTest.shouldKeepTheExamOutOfEveryAgentDefinition, fixture near-duplicates-pair-judge.</dd>
+<dt>Presentación</dt><dd>Comprobación estática del HTML. No se verificó en navegador debido al bloqueo previo de acceso local.</dd>
+</dl></details></footer></div></body></html>

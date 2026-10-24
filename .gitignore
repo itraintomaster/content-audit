@@ -21,6 +21,13 @@ target/
 # Audit data (local persistence)
 .content-audit/
 
+# Confirmed exam references travel with the course; campaign runs remain local.
+!db/english-course/.content-audit/
+db/english-course/.content-audit/*
+!db/english-course/.content-audit/judge-regressions/
+db/english-course/.content-audit/judge-regressions/*
+!db/english-course/.content-audit/judge-regressions/catalog.json
+
 # Sentinel runtime (ephemeral — not versioned), incl. nested requirement overlays
 **/.sentinel/runs/
 **/.sentinel/agent-runs/

@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-24 — analyst — R016 nueva y R006/J001 enlazadas: la aceptación preserva objetivo, fórmula y selectores,
+  además de resolver y no empeorar. Fuente: corrección humana de la propuesta can/could del 24/10.
+  Next: alinear propuestas y evaluación con la preservación; sin cambios al curso ni consultas reales por esta tarea.
+
 2026-10-05 — analyst — F-MESA-R001/R012 y DOUBT-MINITEORIA-ALCANCE alineadas: candidato y reescritura de miniteoria por
   quiz, sin agrupamiento ni propagacion por texto.
   Next: alinear mesa, preservacion y pruebas antes de corregir miniteorias.

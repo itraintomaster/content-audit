@@ -410,7 +410,8 @@ public class FCjuezJ001JourneyTest {
          */
         private CorrectionBatch batchAfterItsRules(CourseEntity course) {
             CorrectionBatch batch = TandaFixture.batch("tanda-a1", "t-respuesta", "t-come");
-            batch.setStatus(BatchStatus.RUNNING);
+            // Rules have finished; no worker owns this batch while the journey requests its closing.
+            batch.setStatus(BatchStatus.OPEN);
             batch.setAnalyzers(new ArrayList<>(CjuezJourneyBench.JUDGES));
             BatchChange vegetables = TandaFixture.change("mesa-" + MesaFixture.VEGETABLES, BatchChangeOrigin.PANEL, null,
                     List.of("t-respuesta"), TandaFixture.step(withParts(TandaFixture.exercise(course, MesaFixture.VEGETABLES),

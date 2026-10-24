@@ -23,7 +23,7 @@ import javax.annotation.processing.Generated;
 
 /**
  * FEAT-MINIT: the mini-theory judge in the catalog. Its card evaluates the exercise -- it asks
- * once per topic, but the score and the findings live where the error counts -- with four rules
+ * once per topic, but the score and the findings live where the error counts -- with quiz-local rules
  * of a paid model that go to the panel; its scores below 1 become {@code MINI_THEORY} tasks on the
  * exercise, and the panel resolves only that exact quiz (F-MINIT-R007). Every run opens its judge
  * through the common runtime under its own name, so the
@@ -91,15 +91,23 @@ public class MiniTheoryAnalyzerProvider implements AnalyzerProvider {
                                 AnalysisCost.PAID_MODEL),
                         new AnalyzerRuleCard(DefaultMiniTheoryDistributor.RULE_THEORETICAL_JARGON,
                                 "La miniteoría usa metalenguaje teórico o jerga gramatical abstracta en lugar de lenguaje llano",
+                                AnalysisCost.PAID_MODEL),
+                        new AnalyzerRuleCard(DefaultMiniTheoryDistributor.RULE_DIDACTIC_DIRECTION,
+                                "La concordancia debe explicarse desde el sujeto hacia su forma verbal",
+                                AnalysisCost.PAID_MODEL),
+                        new AnalyzerRuleCard(DefaultMiniTheoryDistributor.RULE_MISSING_ENGLISH_HIGHLIGHT,
+                                "Las palabras clave en inglés de la miniteoría deben resaltarse con marcas $...$",
                                 AnalysisCost.PAID_MODEL)),
-                "0 quizzes con error: cada tarjeta es verdadera, suficiente y específica para su propio caso",
+                "0 quizzes con error: cada tarjeta es verdadera, suficiente y específica para su propio caso, "
+                        + "con las palabras clave en inglés resaltadas",
                 AnalyzerFamily.ERRORS,
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL),
                 AnalysisCost.PAID_MODEL,
                 "Miniteoría con error", List.of(),
                 "Quizzes cuya tarjeta es falsa, insuficiente o exagerada para su caso, o agrega contenido de otro "
-                        + "subtema.");
+                        + "subtema, explican la concordancia desde la forma verbal hacia el sujeto o dejan palabras "
+                        + "clave en inglés sin resaltar.");
     }
 
     /**

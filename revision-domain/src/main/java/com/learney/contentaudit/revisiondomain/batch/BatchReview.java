@@ -10,7 +10,28 @@ import java.util.List;
 /** Saved data for review: no analyzer, judge or comparison is executed by this query. */
 public record BatchReview(String batchId, int correctionRevision, int contentVersion, BatchReport report,
         List<RefinementTask> tasks, List<RevisionProposal> proposals, List<Item> items, List<BatchClosing> analyses,
-        List<Version> history, List<SelectiveCorrection.Run> selectiveRuns, List<ContextOpinion.Run> opinionRuns) {
+        List<Version> history, List<SelectiveCorrection.Run> selectiveRuns, List<ContextOpinion.Run> opinionRuns,
+        List<QuizCorrection.ComparisonBaseline> comparisonBaselines, boolean contentFrozen, String parentBatchId,
+        com.learney.contentaudit.coursedomain.CourseEntity course,
+        com.learney.contentaudit.coursedomain.CourseEntity baseCourse) {
+    public BatchReview(String batchId, int correctionRevision, int contentVersion, BatchReport report,
+            List<RefinementTask> tasks, List<RevisionProposal> proposals, List<Item> items,
+            List<BatchClosing> analyses, List<Version> history, List<SelectiveCorrection.Run> selectiveRuns,
+            List<ContextOpinion.Run> opinionRuns, List<QuizCorrection.ComparisonBaseline> comparisonBaselines) {
+        this(batchId, correctionRevision, contentVersion, report, tasks, proposals, items, analyses, history,
+                selectiveRuns, opinionRuns, comparisonBaselines, false, null, null, null);
+    }
+    public BatchReview { course = CorrectionEvolution.copyCourse(course); baseCourse = CorrectionEvolution.copyCourse(baseCourse); }
+    @Override public com.learney.contentaudit.coursedomain.CourseEntity course() { return CorrectionEvolution.copyCourse(course); }
+    @Override public com.learney.contentaudit.coursedomain.CourseEntity baseCourse() { return CorrectionEvolution.copyCourse(baseCourse); }
+
+    public BatchReview(String batchId, int correctionRevision, int contentVersion, BatchReport report,
+            List<RefinementTask> tasks, List<RevisionProposal> proposals, List<Item> items,
+            List<BatchClosing> analyses, List<Version> history, List<SelectiveCorrection.Run> selectiveRuns,
+            List<ContextOpinion.Run> opinionRuns) {
+        this(batchId, correctionRevision, contentVersion, report, tasks, proposals, items, analyses, history,
+                selectiveRuns, opinionRuns, List.of());
+    }
     public BatchReview(String batchId, int correctionRevision, int contentVersion, BatchReport report,
             List<RefinementTask> tasks, List<RevisionProposal> proposals, List<Item> items,
             List<BatchClosing> analyses, List<Version> history) {
@@ -22,7 +43,14 @@ public record BatchReview(String batchId, int correctionRevision, int contentVer
         this(batchId, correctionRevision, contentVersion, report, tasks, proposals, items, analyses, history, selectiveRuns, List.of());
     }
     public record Version(String batchId, int correctionRevision, int contentVersion, BatchStatus status,
-            Instant openedAt, int analyses, String baselineAuditId, String startAuditId) {}
+            Instant openedAt, int analyses, String baselineAuditId, String startAuditId,
+            String parentBatchId, boolean frozen, int analysisRevision) {
+        public Version(String batchId, int correctionRevision, int contentVersion, BatchStatus status,
+                Instant openedAt, int analyses, String baselineAuditId, String startAuditId) {
+            this(batchId, correctionRevision, contentVersion, status, openedAt, analyses, baselineAuditId,
+                    startAuditId, null, false, 0);
+        }
+    }
 
     public record Item(String changeId, BatchChangeStep step, CourseElementSnapshot before, CourseElementSnapshot after,
             String origin, String ruleId,

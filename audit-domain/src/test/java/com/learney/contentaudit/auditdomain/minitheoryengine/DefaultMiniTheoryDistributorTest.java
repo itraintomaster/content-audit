@@ -46,6 +46,46 @@ public class DefaultMiniTheoryDistributorTest {
     private static final String SHARED = "Con do o does se forman todas las oraciones del presente simple.";
 
     @Test
+    @Tag("F-MINIT-R011")
+    void missingHighlightPreservesTheExactRepairAsLowSeverityEvidenceAndLeavesTheMarkedSiblingHealthy() {
+        String original = "Con I se usa am en presente afirmativo.";
+        String highlighted = "Con $I$ se usa $am$ en presente afirmativo.";
+        String reason = "Las palabras I y am están en inglés y necesitan marcas $...$.";
+        var topic = topic("A1", "k-highlight", "Concordancia", List.of(
+                cloze("q-missing", "I", "am", "at home.", original),
+                cloze("q-marked", "I", "am", "at home.", highlighted)));
+        var verdict = new MiniTheoryVerdict(List.of(
+                assessment("q-missing", false, MiniTheoryProblem.MISSING_ENGLISH_HIGHLIGHT,
+                        FindingSeverity.LOW, highlighted, reason),
+                assessment("q-marked", true, null, null, null,
+                        "La regla explica el quiz y resalta las palabras en inglés.")), "Veredicto simulado.");
+
+        var outcomes = distributor(STUDENT_VIEW).distribute(verdict, topic, false);
+
+        assertFinding(outcomes.get(0), "missing-english-highlight", FindingSeverity.LOW, 0.8);
+        var finding = outcomes.get(0).getFindings().get(0);
+        assertEquals(FindingResolution.PANEL, finding.getResolution());
+        assertEquals(original, finding.getMarker());
+        assertEquals("La miniteoría no resalta las palabras clave en inglés: " + reason,
+                finding.getEvidence().getObservation());
+        var evidence = finding.getEvidence().getExamined();
+        assertEquals(original, evidence.stream().filter(e -> e.getLabel().equals("Miniteoría"))
+                .findFirst().orElseThrow().getText());
+        assertEquals(highlighted, evidence.stream()
+                .filter(e -> e.getLabel().equals("Redacción con inglés resaltado"))
+                .findFirst().orElseThrow().getText());
+        assertEquals(reason, evidence.stream()
+                .filter(e -> e.getLabel().equals("Palabras en inglés sin resaltar"))
+                .findFirst().orElseThrow().getText());
+        assertFalse(evidence.stream().anyMatch(e -> e.getLabel().equals("Contraejemplo")),
+                "la evidencia repara el formato, no refuta una regla verdadera");
+        assertEquals(List.of(), finding.getEvidence().getRelatedNodes());
+        assertEquals("q-missing", outcomes.get(0).getDiagnosis().getAssessment().getQuizId());
+        assertTrue(outcomes.get(1).getFindings().isEmpty());
+        assertEquals(1.0, outcomes.get(1).getScore(), 1e-9);
+    }
+
+    @Test
     @Tag("F-MINIT-R008")
     void overSpecificFindingKeepsLowSeverityAndItsOwnEvidenceWithoutAffectingHealthySibling() {
         var enough = assessment("q-affirmation", true, null, null, null, "Regla suficiente.");
@@ -79,6 +119,40 @@ public class DefaultMiniTheoryDistributorTest {
         assertEquals(FindingResolution.PANEL, finding.getResolution());
         assertEquals(0.8, outcomes.get(1).getScore(), 1e-9);
         assertTrue(finding.getEvidence().getObservation().contains("metalenguaje"));
+    }
+
+    @Test
+    @Tag("F-MINIT-R010")
+    void inverseAgreementFindingsPreserveBothLocalRewritesWithoutRejectingSubjectFirstControls() {
+        var topic = topic("A1", "k-direction", "Concordancia", List.of(
+                cloze("q-am", "I", "am", "near the copper tower.", "$am$ va con $I$."),
+                cloze("q-it", "It", "is", "near the copper tower.", "$is$ va con $it$."),
+                cloze("q-i-control", "I", "am", "near the copper tower.", "Con $I$ se usa $am$."),
+                cloze("q-it-control", "It", "is", "near the copper tower.", "$it$ lleva $is$.")));
+        var verdict = new MiniTheoryVerdict(List.of(
+                assessment("q-am", false, MiniTheoryProblem.DIDACTIC_DIRECTION, FindingSeverity.LOW,
+                        "Con I se usa am en el presente afirmativo.", "La relación es compatible, pero parte de la forma y debe partir del sujeto."),
+                assessment("q-it", false, MiniTheoryProblem.DIDACTIC_DIRECTION, FindingSeverity.LOW,
+                        "It lleva is en el presente afirmativo.", "La explicación debe partir de it para elegir is."),
+                assessment("q-i-control", true, null, null, null, "Parte del sujeto."),
+                assessment("q-it-control", true, null, null, null, "Parte del sujeto.")), "Veredicto simulado; no consulta un modelo.");
+        var outcomes = distributor(STUDENT_VIEW).distribute(verdict, topic, false);
+        for (int i = 0; i < 2; i++) {
+            var finding = outcomes.get(i).getFindings().get(0);
+            assertEquals("didactic-direction", finding.getRule());
+            assertEquals(FindingSeverity.LOW, finding.getSeverity());
+            assertEquals(FindingResolution.PANEL, finding.getResolution());
+            assertEquals(0.8, outcomes.get(i).getScore(), 1e-9);
+            assertTrue(finding.getEvidence().getObservation().contains("forma verbal lleva el sujeto"));
+            assertFalse(finding.getEvidence().getObservation().contains("afirma algo falso"));
+            assertTrue(finding.getEvidence().getExamined().stream().anyMatch(e -> e.getLabel().equals("Redacción orientada al sujeto")));
+        }
+        for (int i = 2; i < 4; i++) {
+            assertTrue(outcomes.get(i).getFindings().isEmpty());
+            assertEquals(1.0, outcomes.get(i).getScore(), 1e-9);
+        }
+        assertTrue(outcomes.get(0).getFindings().get(0).getMarker().contains("$am$ va con $I$"));
+        assertTrue(outcomes.get(1).getFindings().get(0).getMarker().contains("$is$ va con $it$"));
     }
 
     @Test

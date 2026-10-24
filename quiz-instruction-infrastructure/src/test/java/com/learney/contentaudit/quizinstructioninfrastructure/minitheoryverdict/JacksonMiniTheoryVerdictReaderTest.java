@@ -20,6 +20,25 @@ import org.junit.jupiter.api.Test;
 public class JacksonMiniTheoryVerdictReaderTest {
 
     @Test
+    @Tag("F-MINIT-R011")
+    void readsMissingEnglishHighlightAtLowSeverityAndPreservesItsExactFormattingRepair() {
+        String assessment = "\"quizId\":\"q-highlight\",\"holds\":false,\"problem\":\"MISSING_ENGLISH_HIGHLIGHT\","
+                + "\"severity\":\"LOW\",\"counterexample\":\"Con $I$ se usa $am$.\","
+                + "\"explanation\":\"I y am son palabras en inglés sin marcas de resaltado.\"";
+
+        var verdict = new JacksonMiniTheoryVerdictReader().read(verdictWith(assessment));
+
+        assertEquals("MISSING_ENGLISH_HIGHLIGHT", verdict.getAssessments().get(0).getProblem().name());
+        assertEquals(FindingSeverity.LOW, verdict.getAssessments().get(0).getSeverity());
+        assertEquals("Con $I$ se usa $am$.", verdict.getAssessments().get(0).getCounterexample());
+        for (String invalidSeverity : List.of("MEDIUM", "HIGH", "BLOCKING")) {
+            assertUnreadable(verdictWith(assessment.replace("\"LOW\"", "\"" + invalidSeverity + "\"")));
+        }
+        assertUnreadable(verdictWith(assessment.replace("\"severity\":\"LOW\"", "\"severity\":null")));
+        assertUnreadable(verdictWith(assessment.replace("\"holds\":false", "\"holds\":true")));
+    }
+
+    @Test
     @Tag("F-MINIT-R008")
     void readsOverSpecificCategoryAtLowSeverityAndRejectsInflatedSeverity() {
         String assessment = "\"quizId\":\"q-local\",\"holds\":false,\"problem\":\"OVER_SPECIFIC_FOR_QUIZ\","
@@ -41,6 +60,27 @@ public class JacksonMiniTheoryVerdictReaderTest {
         assertEquals(MiniTheoryProblem.THEORETICAL_JARGON, verdict.getAssessments().get(0).getProblem());
         assertEquals(FindingSeverity.LOW, verdict.getAssessments().get(0).getSeverity());
         assertUnreadable(verdictWith(assessment.replace("\"LOW\"", "\"HIGH\"")));
+    }
+
+    @Test
+    @Tag("F-MINIT-R010")
+    void readsSubjectFirstDirectionDefectsWithoutCallingThemFalseRulesAndKeepsDirectedControlsHealthy() {
+        String assessment = "\"quizId\":\"q-am\",\"holds\":false,\"problem\":\"DIDACTIC_DIRECTION\","
+                + "\"severity\":\"LOW\",\"counterexample\":\"Con I se usa am en presente afirmativo.\","
+                + "\"explanation\":\"La asociación am con I es compatible; la explicación debe partir del sujeto.\"";
+        var verdict = new JacksonMiniTheoryVerdictReader().read(verdictWith(assessment));
+        assertEquals("DIDACTIC_DIRECTION", verdict.getAssessments().get(0).getProblem().name());
+        assertEquals(FindingSeverity.LOW, verdict.getAssessments().get(0).getSeverity());
+        var it = new JacksonMiniTheoryVerdictReader().read(verdictWith(assessment.replace("q-am", "q-is")
+                .replace("Con I se usa am", "It lleva is").replace("am con I", "is con it")));
+        assertEquals("DIDACTIC_DIRECTION", it.getAssessments().get(0).getProblem().name());
+        assertUnreadable(verdictWith(assessment.replace("\"LOW\"", "\"HIGH\"")));
+        for (String id : List.of("q-i-directed", "q-it-directed")) {
+            var healthy = new JacksonMiniTheoryVerdictReader().read(verdictWith("\"quizId\":\"" + id
+                    + "\",\"holds\":true,\"problem\":null,\"severity\":null,\"counterexample\":null,"
+                    + "\"explanation\":\"La explicación parte del sujeto y da su forma verbal.\""));
+            assertEquals(true, healthy.getAssessments().get(0).isHolds());
+        }
     }
 
     private static final String VERDICT_BY_QUIZ = """

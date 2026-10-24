@@ -47,3 +47,4 @@ dependencies:
   - wordLights          # JSON: el semáforo de palabras del tema
   - conversion          # JSON: el encargo de José (pasar a opción múltiple), o vacío
   - previousRejections  # JSON: los motivos de los rechazos anteriores de sus propios candidatos
+  - didacticReference    # JSON: contrato didáctico histórico explícito, vacío si no se pidió

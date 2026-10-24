@@ -21,6 +21,8 @@ import javax.annotation.processing.Generated;
  * entry per persistent quiz id. Batching is by topic only to save queries;
  * identity and judgment are always by quiz. Equal mini-theory text is repeated
  * in each entry and a blank card is still represented when its topic is judged.
+ * Each quiz carries its local instructions alongside the shared knowledge instructions,
+ * so changing a local constraint also changes the evaluation fingerprint.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -109,6 +111,7 @@ public class DefaultMiniTheorySubjectBuilder implements MiniTheorySubjectBuilder
             AuditableQuiz quiz = (AuditableQuiz) exercise.getEntity();
             QuizStudentView view = studentViewRenderer.render(quiz);
             entries.add("quizId: " + orEmpty(quiz.getId())
+                    + "\ninstructions: " + orEmpty(quiz.getInstructions())
                     + "\nminiTheory: " + orEmpty(quiz.getMiniTheory())
                     + "\nprompt: " + orEmpty(view != null ? view.getStatement() : null)
                     + "\nanswers: " + answers(quiz, view));

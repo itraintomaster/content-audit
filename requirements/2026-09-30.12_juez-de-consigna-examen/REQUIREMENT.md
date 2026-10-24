@@ -2,38 +2,16 @@
 feature:
   id: FEAT-JEXAM
   code: F-JEXAM
-  name: El examen fijo de los jueces y el juez de consigna, sin tocar su huella
+  name: El examen permanente de los jueces crece con cada problema confirmado
   priority: critical
 ---
 
-# El examen fijo de los jueces y el juez de consigna, sin tocar su huella
+# El examen permanente de los jueces crece con cada problema confirmado
 
 ## TL;DR
 
-**Qué**: Todo juez con modelo rinde un examen fijo por versión y runtime efectivo antes de juzgar el curso; cobertura y
-examen se muestran separados, sin mezclar ni pisar los resultados de Claude, Codex u otros runtimes.
-
-**Por qué**: El juez de consigna se afinó para marcar menos y nunca se midió lo que deja pasar: da por buenos 178 de los
-187 imposibles. Con cuatro jueces nuevos, pagar sin medir se multiplica por cinco.
-
-## Recorrido de uso (estado actual)
-
-Cómo el operador intenta hoy saber si un juez sirve y cuánto cuesta usarlo:
-
-1. Corre el juez de consigna → `AnalyzeCommand.analyze(coursePath, AnalyzeOptions)` con `instructionBudget`. ✓ Disponible.
-2. Lee su cobertura y sus veredictos por versión → informe de `analyze` ([F-QINST-R005](#F-QINST-R005)). ✓ Disponible.
-3. Juzga un conjunto → `AnalyzeOptions.reevaluateInstructionQuizIds` ([F-QINST-R018](#F-QINST-R018)). ✓ Sólo el de consigna.
-4. Averigua si la versión juzga bien → ⚠️ no hay examen: los 238 ejercicios del examen fijo viven fuera de content-audit.
-5. Sabe cuánto cuesta lo pendiente → ⚠️ ni `analyze` ni `StatsAnalyzerCommand.showStats` dicen consultas ni horas.
-6. Ve el veredicto entero → ⚠️ el diagnóstico guarda lo que pasó ([F-QINST-R003](#F-QINST-R003)); el hallazgo sólo las
-   violaciones ([F-HALL-R003](#F-HALL-R003)).
-
-**Punto de fricción**: pasos 4 a 6, y el 3 para los jueces nuevos.
-
-**Cambio mínimo necesario**: un pedido para rendir el examen, con resultado guardado por versión; el costo de lo
-pendiente en la cobertura; conjunto, candidato y consultas a la vez para todo juez; ninguna consulta sin pedido y un
-aviso claro si la sesión del proveedor venció; y el veredicto entero del de consigna. Lo que lee el juez de consigna no
-cambia.
+**Qué**: Cada juez rinde un examen permanente que conserva la base histórica y suma los casos de cada problema confirmado, con su referencia visible.
+**Por qué**: Las próximas versiones deben demostrar que siguen resolviendo los problemas conocidos; un promedio o una aprobación anterior no pueden esconder una regresión.
 
 ## Reglas de Negocio
 
@@ -46,19 +24,21 @@ consigna.
 **Severity**: critical | **Validation**: VALIDATED
 
 > Pedirle a un juez que rinda el examen juzga, con su versión vigente, los ejercicios del archivo del examen —que trae
-> sólo los ejercicios, nunca lo esperado—, tal como están en la foto del 29/9 y leídos igual que en el curso, y deja un
-> veredicto por ejercicio para que se mida afuera. Invariantes:
+> sólo los ejercicios, nunca lo esperado—, leídos igual que en el curso, y deja un veredicto por ejercicio para que se
+> mida afuera. La foto del 29/9 se conserva como base histórica y cada problema confirmado amplía el examen permanente
+> según [F-JEXAM-R016](#F-JEXAM-R016). Invariantes:
 > 1. el resultado medido afuera queda guardado para la identidad examinada —versión del proceso más proveedor, modelo y
 >    esfuerzo efectivos—: cuántos reprobó y aprobó por grupo, cuáles no dieron lo esperado y si alcanzó su meta; sólo se
 >    acepta para esa identidad si fue la que rindió;
 > 2. junto a los números del juez, el informe declara por separado la cobertura del análisis y el resultado del examen de
->    cada runtime y versión que aporta veredictos: aprobada, reprobada o sin examen.
+>    cada runtime y versión que aporta veredictos: aprobada, reprobada, sin examen o examen ampliado pendiente.
 
-Son 238: **a**, las verduras (`67fab6d59930102295341ecd`); **b**, 188 imposibles del 077 (187 CLOZE, uno de opción
+La base histórica tiene 238: **a**, las verduras (`67fab6d59930102295341ecd`); **b**, 188 imposibles del 077 (187 CLOZE, uno de opción
 múltiple); **c**, 50 buenos (38 CLOZE, 12 de opción múltiple). Lo que le toca a cada juez: [F-JEXAM-R009](#F-JEXAM-R009),
 [F-TRSEN-R006](#F-TRSEN-R006), [F-UNICA-R006](#F-UNICA-R006), [F-MINIT-R006](#F-MINIT-R006), [F-MCVALE-R006](#F-MCVALE-R006).
 El oro y los grupos los tiene quien mide, no content-audit: el archivo de entrada no dice qué se espera de cada ejercicio,
-así el juez no puede aprenderlo y el examen no cambia aunque cambie el curso.
+así el juez no puede aprenderlo. Ni la base histórica ni los casos ya incorporados cambian porque se edite el curso.
+«Fijo» significa que cada edición del examen conserva sus casos; no significa que su catálogo no pueda crecer.
 
 <a id="F-JEXAM-R002"></a>
 ### Rule[F-JEXAM-R002] - El examen no toca el curso y no paga dos veces lo mismo
@@ -75,12 +55,19 @@ ahí, una identidad reprobada quedaría vigente en 238 ejercicios. El libro del 
 otro runtime conservan libros de examen comparables sin prestarse veredictos.
 
 <a id="F-JEXAM-R003"></a>
-### Rule[F-JEXAM-R003] - Un runtime y versión sin examen aprobado no consultan sobre el curso
+### Rule[F-JEXAM-R003] - Una identidad sin aprobación vigente ni excepción autorizada no consulta sobre el curso
 **Severity**: critical | **Validation**: VALIDATED
 
 > Mientras la identidad vigente de un juez —versión del proceso, proveedor, modelo y esfuerzo efectivos— no aprobó su
-> examen, ninguna corrida sobre el curso le hace consultas, con cualquier tope: reusa sólo lo registrado para ese runtime,
+> edición vigente del examen permanente ni tiene una excepción humana vigente según [F-JEXAM-R020](#F-JEXAM-R020),
+> ninguna corrida sobre el curso le hace consultas, con cualquier tope: reusa sólo lo registrado para esa identidad,
 > deja sin evaluar lo que falta y dice por qué (sin examen o reprobada).
+
+Una aprobación o promoción de una edición anterior no aprueba los casos agregados después: queda como antecedente y
+se muestra «examen ampliado pendiente» hasta cumplir [F-JEXAM-R018](#F-JEXAM-R018).
+
+La habilitación por excepción se identifica como decisión humana y conserva el resultado medido del examen. No
+equivale a que el examen haya aprobado ni autoriza consultas sin el presupuesto de [F-JEXAM-R010](#F-JEXAM-R010).
 
 Es el «rinde un examen fijo antes de usarse» de la propuesta. Mantiene [F-QINST-R004](#F-QINST-R004) y
 [F-QINST-R007](#F-QINST-R007). Vale también para el de consigna (José, 30/9: «sin aprobar, no paga»,
@@ -280,7 +267,195 @@ habilitada: con cuál aprobó o con cuál la promovió José, y desde cuándo
 ([F-ALDIA-R003](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md#F-ALDIA-R003)). Leer el historial no consulta a ningún
 juez ni escribe nada.
 
+<a id="F-JEXAM-R016"></a>
+### Rule[F-JEXAM-R016] - Entregar un problema confirmado incorpora sus casos al examen permanente
+**Severity**: critical | **Validation**: VALIDATED
+
+> Al entregar al agente un problema con casos elegidos por el operador como «Examen» o «Está bien», ContentAudit los
+> incorpora al examen permanente del juez expresamente identificado como responsable. No espera a que el problema esté resuelto; las siguientes
+> versiones del juez deben volver a superarlos.
+
+<details><summary>Detail</summary>
+
+La confirmación es la elección humana del uso del caso y la entrega del problema para trabajar sobre él. «Examen»
+conserva la discrepancia que motivó el problema; «Está bien» conserva un caso que el operador considera correcto y que
+la solución debe respetar. Los casos elegidos sólo como «Ejemplo» no se incorporan automáticamente.
+
+La relación con el juez debe ser explícita: la entrega lo nombra como juez que se modifica, o el caso conserva un
+hallazgo o una discrepancia atribuida a ese juez. No se elige el juez por el campo editado del ejercicio ni se deduce
+un rechazo esperado a partir de ese cambio. Los problemas del corrector de respuestas o de reglas automáticas
+conservan su propia evidencia; no amplían el examen de ningún juez sin una relación confirmada. Si la entrega declara
+que cambia un juez pero no permite identificar cuál, se informa el faltante de trazabilidad y no se omite en silencio.
+
+Cada incorporación guarda el ejercicio tal como se mostró al confirmar el caso, el juez al que exige una respuesta,
+el resultado esperado y su motivo, y el origen definido en [F-JEXAM-R019](#F-JEXAM-R019). El examen reúne la base
+histórica y todos los casos incorporados hasta esa edición, no sólo los del problema que se está probando ahora.
+
+Repetir la entrega, renovar el pedido o volver a abrir el problema no duplica el mismo caso. Resolver, archivar o
+retirar el problema de la lista de trabajo no saca sus casos del examen. Editar después el curso o la ficha no cambia
+el contenido ya incorporado; una rectificación explícita del caso o de su referencia esperada deja una nueva edición y
+conserva el antecedente.
+
+Si el caso carece del ejercicio congelado, de un resultado esperado o de su procedencia, la entrega dice qué falta y
+no lo cuenta como incorporado ni permite dar por completo el examen de ese problema. Nunca omite silenciosamente el
+caso. Incorporar, listar y estimar el costo no ejecuta jueces: se mantiene [F-JEXAM-R010](#F-JEXAM-R010).
+
+**Criterio de aceptación**: al entregar `PRB-fbaeac6f`, «Mini-teoría no muy precisa», sus dos casos originales
+—«is va con she» y «are va con they»— quedan en el examen permanente de Miniteoría con el resultado de rechazo
+indicado por el operador. Entregarlo de nuevo conserva dos casos, y cerrar el problema los conserva para el siguiente
+examen del juez.
+
+**Criterio de aceptación adicional**: `PRB-7ccbcade`, sobre el separador de respuestas, conserva la evidencia del
+corrector aunque el ejercicio ya aparezca corregido en la entrega. Editar las respuestas no lo convierte en un caso
+del juez Una sola respuesta ni inventa un rechazo esperado. Sólo una relación explícita con un juez permite agregarlo
+a su examen.
+
+</details>
+
+<a id="F-JEXAM-R017"></a>
+### Rule[F-JEXAM-R017] - Lo esperado conserva su autor y se mantiene separado de lo que ve el juez
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+> Cada caso conserva por separado el contenido que juzga el juez y la referencia de comparación: resultado esperado,
+> motivo y quién lo definió. Lo esperado nunca se deduce de la respuesta del juez ni se presenta como confirmado por
+> una persona si provino de una revisión editorial del asistente.
+
+<details><summary>Detail</summary>
+
+El juez sólo recibe el ejercicio congelado y el contexto que recibiría al juzgar ese mismo ejercicio en el curso. No
+recibe el resultado esperado, su motivo, el reclamo del problema ni la condición de caso con error o sano. La medición
+compara después su respuesta con la referencia conservada.
+
+La marca humana «Está bien» confirma el control sano; el asistente no puede atribuir esa confirmación al operador ni
+crearla como consecuencia de que el juez haya aprobado. Los contrastes o controles propuestos por el asistente pueden
+seguir siendo material de revisión, con su procedencia explícita; no reemplazan los casos confirmados ni adquieren
+esa condición automáticamente.
+
+Las referencias históricas conservan su fuente y fecha cuando se conocen. Una referencia editorial se nombra como
+tal y no se describe como verdad humana certificada ni como medición de precisión. Sin referencia esperada se indica
+primero esa ausencia y el caso no cuenta como aprobado por coincidencia.
+
+**Criterio de aceptación**: un resultado que diga «aprobado» no convierte por sí solo a un contraste sugerido por el
+asistente en un caso «Está bien». Los dos reclamos del operador de `PRB-fbaeac6f` conservan su origen humano y los
+controles editoriales históricos conservan su origen editorial.
+
+</details>
+
+<a id="F-JEXAM-R018"></a>
+### Rule[F-JEXAM-R018] - La aprobación automática exige superar todos los casos de problemas de la edición vigente
+**Severity**: critical | **Validation**: VALIDATED
+
+> El resultado automático aprueba una edición del examen sólo si alcanza la meta de la base histórica y todos los
+> casos permanentes de problemas dan lo esperado. Un caso fallido, pendiente o todavía no evaluado impide esa aprobación,
+> aunque el promedio general alcance la meta.
+
+<details><summary>Detail</summary>
+
+Cada edición del examen tiene una identidad que refleja sus casos congelados y sus referencias esperadas. Cambiar
+ese conjunto o rectificar lo esperado crea otra edición. Cada resultado y cada habilitación declaran qué edición
+cubren, además de la identidad del juez de [F-JEXAM-R014](#F-JEXAM-R014).
+
+Agregar casos no cambia por sí solo la versión del juez ni borra un resultado anterior: la aprobación histórica
+sigue visible, pero no cubre la edición ampliada. Las promociones manuales anteriores tampoco la cubren. Una versión
+nueva o una versión ya aprobada debe acreditar todos los casos aplicables de la edición vigente antes de habilitar
+consultas nuevas según [F-JEXAM-R003](#F-JEXAM-R003), salvo la excepción humana acotada de
+[F-JEXAM-R020](#F-JEXAM-R020). Esa excepción no modifica el resultado automático ni convierte un desacuerdo en acierto.
+
+Esta condición precisa la aprobación y la promoción de [F-ALDIA-R003](#F-ALDIA-R003): ambas deben declarar la edición
+que cubren, y ninguna edición anterior habilita por herencia los casos nuevos.
+
+Los resultados ya registrados pueden reutilizarse con las condiciones de [F-JEXAM-R002](#F-JEXAM-R002); no se inventan
+respuestas ni se paga de nuevo por el mismo contenido con la misma identidad. Un caso agregado sin respuesta queda
+«todavía no evaluado», y una abstención o respuesta que pide revisión queda «pendiente»: ninguno equivale a éxito.
+
+**Criterio de aceptación**: si la meta histórica permite un error y el único error corresponde a
+`PRB-fbaeac6f`, el examen reprueba. Si una versión tenía aprobado el examen anterior y luego se agregan esos dos casos,
+se muestra «examen ampliado pendiente»; no figura habilitada por aquella aprobación hasta acreditar ambos y la meta
+histórica en la edición vigente.
+
+</details>
+
+<a id="F-JEXAM-R019"></a>
+### Rule[F-JEXAM-R019] - Cada caso y resultado identifican el problema al que pertenecen
+**Severity**: major | **Validation**: VALIDATED
+
+> Las listas de casos y los resultados del examen muestran, junto a cada caso incorporado, el identificador y título
+> del problema, la referencia del caso original y un acceso al problema. Un aviso de examen reprobado permite saber
+> cuáles de esos problemas siguen fallando.
+
+<details><summary>Detail</summary>
+
+Cada fila identifica el ejercicio y su frase, el resultado esperado y el obtenido con sus motivos, y la fuente de
+lo esperado. La referencia del problema permanece aunque después se resuelva o archive. Los casos de la base
+histórica dicen «Base histórica»; no se les inventa un problema de origen.
+
+Se muestran primero las discrepancias. Encima de la misma lista hay una leyenda que explica en lenguaje simple
+«esperado» (referencia conservada), «obtenido» (respuesta del juez) y la flecha (comparación entre ambos), y distingue
+aprobado, rechazado, pendiente y todavía no evaluado. «Pendiente» significa que el juez pidió revisión o no pudo
+decidir; «todavía no evaluado» significa que no hay respuesta para ese caso. Si no hay discrepancias, se informa
+explícitamente. Si falta una referencia esperada, se informa antes de cualquier resumen de aciertos.
+
+El resumen identifica qué edición se rindió y separa el resultado histórico del de los casos de problemas. Un mensaje
+como «No aprobó Miniteoría» ofrece el detalle «Mini-teoría no muy precisa · PRB-fbaeac6f · caso …», de modo que el
+operador pueda reconocer el reclamo y abrir su evidencia sin buscar por la frase.
+
+**Criterio de aceptación**: al listar o medir un caso original de `PRB-fbaeac6f`, aparecen su identificador, el título
+«Mini-teoría no muy precisa» y la referencia del caso. Si ese caso no da lo esperado, el resumen de examen reprobado
+permite llegar a la misma fila y al problema.
+
+</details>
+
+<a id="F-JEXAM-R020"></a>
+### Rule[F-JEXAM-R020] - Una excepción humana habilita sólo la medición y los casos autorizados
+**Severity**: critical | **Validation**: VALIDATED
+
+> El operador puede habilitar expresamente una identidad del juez aceptando las discrepancias concretas de su último
+> examen completo y medido. ContentAudit conserva esa decisión por separado, con su responsable, fecha, motivo y
+> evidencia, sin cambiar el puntaje, el resultado automático ni las discrepancias visibles.
+
+<details><summary>Detail</summary>
+
+La decisión identifica exactamente el juez, su versión, proveedor, modelo y esfuerzo; la edición completa del examen;
+el conjunto vigente de casos permanentes; la fecha exacta del resultado medido; y todos los casos discrepantes que se
+aceptan, tanto por su identificador en la corrida como por su identificador permanente cuando corresponda. Una
+autorización general o sin ese alcance no habilita un examen que contiene casos permanentes.
+
+Sólo se admite sobre la última medición finalizada, con todos los casos vigentes cubiertos y ninguno sin juzgar. La
+decisión se registra después de esa medición. Los casos autorizados deben coincidir exactamente con las discrepancias
+medidas: no se permite omitir otra discrepancia ni agregar casos ajenos para ampliar el permiso. Si falta algún dato o
+no coincide, la excepción no habilita al juez y se informa el motivo.
+
+La autorización deja de habilitar si cambia la identidad del juez, la edición del examen, el conjunto de casos
+permanentes o si se registra una nueva medición, incluso con los mismos números y discrepancias. No se traslada a
+otras versiones ni se hereda mediante equivalencias entre ellas. Se conserva como antecedente junto con la medición
+original, sin borrar ni sustituir registros anteriores.
+
+La presentación distingue «habilitado por excepción humana» del resultado automático «reprobado». Mantiene primero
+las discrepancias, con lo esperado, lo obtenido, sus motivos y la fuente de lo esperado según
+[F-JEXAM-R017](#F-JEXAM-R017) y [F-JEXAM-R019](#F-JEXAM-R019). Aceptar una discrepancia no rectifica la referencia
+editorial ni la convierte en una referencia certificada por una persona.
+
+**Criterio de aceptación**: la autorización de José del 22/10 para «He ___ (watch) TV.» habilita únicamente la identidad
+y la medición autorizadas del juez de Miniteoría. Conserva **61/62**, el examen reprobado y la discrepancia del caso
+`ef093ffbc403cbcce27225f5`, permanente `REG-44a04a855394654cb3b00388`, asociado a `PRB-1fc8487f`. Lo esperado sigue
+siendo «está bien» según la referencia editorial; lo obtenido sigue siendo «tiene un problema» por la generalización
+de la regla de los verbos terminados en «ch». Una nueva medición, un caso permanente agregado o una discrepancia
+adicional requieren una nueva decisión; no quedan cubiertos por esta excepción.
+
+</details>
+
 ## Contexto
+
+El examen nació para medir lo que cada juez deja pasar y lo que marca de más. Su base fija permitía comparar versiones,
+pero los casos reunidos para corregir problemas se probaron aparte y no quedaron como exigencia de las siguientes
+versiones. El 20/10 José pidió corregir ese flujo: cada problema confirmado debe enriquecer el examen permanente y su
+referencia debe verse tanto al listar los casos como al leer los resultados. La base histórica sigue siendo estable;
+la exigencia crece en ediciones sucesivas, según [F-JEXAM-R016](#F-JEXAM-R016) a
+[F-JEXAM-R019](#F-JEXAM-R019).
+
+El 22/10 José autorizó habilitar el juez de Miniteoría con una excepción documentada para «watch», conservando 61/62 y
+la discrepancia visible. [F-JEXAM-R020](#F-JEXAM-R020) permite esa decisión acotada sin alterar el criterio automático
+de aprobación ni extenderla a otros casos o mediciones.
 
 Juzgar el curso entero con los cinco son unas 41.700 consultas: 220 horas de a una al ritmo medido. Después de una tanda
 se paga sólo lo que cambió: cuatro consultas por ejercicio tocado y una por tema.
@@ -298,9 +473,11 @@ se paga sólo lo que cambió: cuatro consultas por ejercicio tocado y una por te
 - **Adentro**: examen por versión y runtime efectivo; costo y cobertura pendientes por runtime; presentación separada de
   cobertura y examen; comparación lado a lado sin mezclar Claude, Codex, otros runtimes ni legacy; conjunto, candidato,
   consultas a la vez, tope 0 por omisión, sesión vencida y formas que el corrector acepta para todo juez; procedencia para
-  todo proceso con modelo; veredicto entero y examen del juez de consigna.
-- **Afuera**: qué pregunta cada juez nuevo; armar el examen, su oro y medir sobre `examinar/` (0.4); mesa y tandas (E);
-  otras pantallas de operación (G); cambiar lo que lee el juez de consigna o su guía; igualar la consigna del tema con la del alumno (un
+  todo proceso con modelo; veredicto entero y examen del juez de consigna; incorporación permanente de casos confirmados,
+  su referencia de comparación y su problema de origen visible en listas y resultados; ediciones acumulativas del examen;
+  habilitación humana por una excepción explícita y acotada, conservando intacta la medición.
+- **Afuera**: qué pregunta cada juez nuevo; redefinir la referencia histórica o certificar los controles editoriales como
+  decisiones humanas; mesa y tandas (E); otras pantallas de operación (G); cambiar lo que lee el juez de consigna o su guía; igualar la consigna del tema con la del alumno (un
   arreglo de datos, [DOUBT-CONSIGNA-QUE-VE-EL-ALUMNO](#DOUBT-CONSIGNA-QUE-VE-EL-ALUMNO)); la tabla de equivalencias del
   corrector (paquete A).
 
@@ -325,17 +502,85 @@ journeys:
       - id: corrida
         action: "El operador corre analyze sobre el curso pidiendo ese juez con un tope"
         outcomes:
-          - when: "La versión aprobó su examen"
+          - when: "La identidad aprobó la edición vigente del examen o tiene una excepción humana vigente para su última medición"
             then: consulta
-          - when: "La versión no rindió o reprobó"
+          - when: "La identidad no aprobó la edición vigente del examen y no tiene una excepción humana vigente para su última medición"
             then: solo_reusa
       - id: consulta
         action: "La corrida reusa sólo veredictos del runtime elegido, consulta hasta el tope y muestra por separado su cobertura, su examen, cuánto falta y cuánto cuesta"
-        gate: [F-JEXAM-R001, F-JEXAM-R004, F-JEXAM-R006, F-JEXAM-R014]
+        gate: [F-JEXAM-R001, F-JEXAM-R004, F-JEXAM-R006, F-JEXAM-R014, F-JEXAM-R020]
         result: success
       - id: solo_reusa
         action: "La corrida no consulta, reusa sólo lo compatible con el runtime elegido y declara por separado que su identidad no está habilitada y qué cobertura le falta"
         gate: [F-JEXAM-R003, F-JEXAM-R004, F-JEXAM-R014]
+        result: failure
+```
+
+### Journey[F-JEXAM-J002] - Un problema confirmado enriquece los próximos exámenes
+**Validation**: AUTO_VALIDATED
+
+```yaml
+journeys:
+  - id: F-JEXAM-J002
+    name: Un problema confirmado enriquece los próximos exámenes
+    flow:
+      - id: entregar
+        action: "El operador entrega al agente un problema con casos elegidos como Examen, Está bien o Ejemplo"
+        gate: [F-JEXAM-R016, F-JEXAM-R017]
+        outcomes:
+          - when: "Los casos elegidos para el examen tienen contenido congelado y referencia de comparación"
+            then: incorporados
+          - when: "A un caso elegido para el examen le falta contenido congelado o referencia de comparación"
+            then: incompleto
+      - id: incompleto
+        action: "ContentAudit muestra qué falta y no cuenta el caso como incorporado ni el examen como completo"
+        gate: [F-JEXAM-R016, F-JEXAM-R017]
+        result: failure
+      - id: incorporados
+        action: "La lista del examen conserva una sola copia de cada caso elegido para examen, con su problema de origen; los elegidos sólo como Ejemplo no se promueven"
+        gate: [F-JEXAM-R016, F-JEXAM-R019]
+        then: rendir_ampliado
+      - id: rendir_ampliado
+        action: "El operador pide con presupuesto que una versión del juez rinda el examen permanente ampliado"
+        gate: [F-JEXAM-R010, F-JEXAM-R018]
+        outcomes:
+          - when: "Todos los casos de problemas coinciden con lo esperado y la base histórica alcanza su meta"
+            then: aprueba_ampliado
+          - when: "Al menos un caso de problema falla, queda pendiente o no fue evaluado, o la base histórica no alcanza su meta"
+            then: sin_aprobacion
+      - id: aprueba_ampliado
+        action: "El resultado aprueba esa edición, muestra las referencias de origen e informa que no hay discrepancias"
+        gate: [F-JEXAM-R018, F-JEXAM-R019]
+        result: success
+      - id: sin_aprobacion
+        action: "El examen queda reprobado y muestra primero las discrepancias con la referencia del problema y del caso, o identifica qué quedó pendiente"
+        gate: [F-JEXAM-R018, F-JEXAM-R019]
+        result: failure
+```
+
+### Journey[F-JEXAM-J003] - Habilitar al juez con una excepción humana acotada
+**Validation**: VALIDATED
+
+```yaml
+journeys:
+  - id: F-JEXAM-J003
+    name: Habilitar al juez con una excepción humana acotada
+    flow:
+      - id: autorizar
+        action: "El operador pide registrar una excepción con su motivo, evidencia y el alcance exacto de la medición y los casos aceptados"
+        gate: [F-JEXAM-R020]
+        outcomes:
+          - when: "La autorización corresponde exactamente a la última medición finalizada, cubre todos los casos vigentes y acepta todas sus discrepancias sin casos adicionales"
+            then: habilitado
+          - when: "La autorización está incompleta, no corresponde a la última medición, falta juzgar algún caso vigente o los casos aceptados no coinciden exactamente con las discrepancias"
+            then: rechazada
+      - id: habilitado
+        action: "ContentAudit muestra la habilitación por excepción humana y su responsable, motivo y evidencia; conserva el resultado automático, el puntaje y las discrepancias con sus referencias"
+        gate: [F-JEXAM-R017, F-JEXAM-R019, F-JEXAM-R020]
+        result: success
+      - id: rechazada
+        action: "ContentAudit informa por qué la excepción no es válida y conserva el estado previo de habilitación y los resultados del examen"
+        gate: [F-JEXAM-R020]
         result: failure
 ```
 
@@ -457,3 +702,9 @@ que José usa a pedido, con pocas consultas, antes de que exista su reemplazo.
   candidatos.
 - **FEAT-TRSEN, FEAT-UNICA, FEAT-MINIT, FEAT-MCVALE** — Los jueces nuevos, que usan A y B. Citados por R001 y R012.
 - **FEAT-LAGEN** — La procedencia de las propuestas generadas por modelo. Citada por R014.
+- **FEAT-NADIE** — Permite anotar desde Correcciones un caso que ningún juez detectó; su entrega al agente se incorpora
+  al examen permanente según [F-JEXAM-R016](#F-JEXAM-R016), conservando el ejercicio congelado y el origen de
+  [F-NADIE-R005](#F-NADIE-R005).
+- **FEAT-ALDIA** — La habilitación por examen o promoción de [F-ALDIA-R003](#F-ALDIA-R003) se refiere a una edición
+  concreta del examen; [F-JEXAM-R018](#F-JEXAM-R018) impide heredarla cuando se agregan casos y
+  [F-JEXAM-R020](#F-JEXAM-R020) limita las excepciones humanas a la medición y las discrepancias expresamente autorizadas.

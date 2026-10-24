@@ -87,6 +87,33 @@ class DefaultBatchReviewTest {
         verify(artifacts).load("plan", "proposal");
     }
 
+    @Test void projectsFrozenRecorrectionReferencesAndKeepsOldBatchCompatible() {
+        assertEquals(List.of(), review.read("batch").comparisonBaselines());
+        var baseline = new QuizCorrection.ComparisonBaseline("recorrect-one", 5, "quiz",
+                snapshot("current translation", "current theory"), snapshot("original translation", "original theory"));
+        batch.setComparisonBaselines(List.of(baseline));
+        var result = review.read("batch");
+        assertEquals(List.of(baseline), result.comparisonBaselines());
+        assertEquals("current translation", result.comparisonBaselines().get(0).before().getQuiz().getTranslation());
+        verify(store, never()).save(any());
+    }
+
+    @Test void legacyCachedProjectionWithoutComparisonSchemaIsRebuilt() {
+        var prior = review.read("batch");
+        var legacy = new BatchReview(prior.batchId(), prior.correctionRevision(), prior.contentVersion(), prior.report(),
+                prior.tasks(), prior.proposals(), prior.items(), prior.analyses(), prior.history(),
+                prior.selectiveRuns(), prior.opinionRuns(), null);
+        var baseline = new QuizCorrection.ComparisonBaseline("recorrect-one", 5, "quiz",
+                snapshot("current", "current"), snapshot("original", "original"));
+        batch.setComparisonBaselines(List.of(baseline));
+        var cache = mock(BatchReviewCache.class);
+        when(cache.version()).thenReturn(Optional.of("v1"));
+        when(cache.load("batch", "v1")).thenReturn(Optional.of(legacy));
+        var result = cachedReview(cache).read("batch");
+        assertNotSame(legacy, result); assertEquals(List.of(baseline), result.comparisonBaselines());
+        verify(cache).save("batch", "v1", result);
+    }
+
     @Test void concurrentCheckpointDoesNotMakeOldCachedOrRebuiltReviewCurrent() {
         var old = review.read("batch");
         var cache = mock(BatchReviewCache.class);

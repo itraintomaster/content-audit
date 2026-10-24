@@ -35,6 +35,7 @@ class MultipleChoiceConversionServiceTest {
         var root = new RootNodeEntity(); root.setMilestones(List.of(place.milestone())); course.setRoot(root);
         batch.setId("batch"); batch.setPlanId("plan"); batch.setStatus(BatchStatus.OPEN); batch.setLevel(CefrLevel.A1); batch.setContentVersion(3);
         when(batches.load("batch")).thenReturn(Optional.of(batch)); when(batches.list()).thenReturn(List.of(batch));
+        doAnswer(i -> ((java.util.function.Supplier<?>) i.getArgument(1)).get()).when(batches).withAnalysisLock(anyString(), any());
         when(courses.load(path)).thenReturn(course); when(ledger.composedCourse(batch, course)).thenReturn(course);
         when(plans.load("plan")).thenReturn(Optional.empty());
     }

@@ -19,6 +19,9 @@ public class ErrorTaskBrief {
 
     private List<Finding> coveredFindings;
 
+    /** Current problems supplied for context only; they neither widen editScope nor change task acceptance. */
+    private List<Finding> contextFindings = List.of();
+
     private List<ExercisePart> editScope;
 
     private boolean scopeDeclared;
@@ -66,6 +69,12 @@ public class ErrorTaskBrief {
         this.coveredFindings = coveredFindings;
     }
 
+    public List<Finding> getContextFindings() { return contextFindings; }
+
+    public void setContextFindings(List<Finding> findings) {
+        contextFindings = findings == null ? List.of() : List.copyOf(findings);
+    }
+
     public List<ExercisePart> getEditScope() {
         return this.editScope;
     }
@@ -106,6 +115,7 @@ public class ErrorTaskBrief {
         return Objects.equals(this.task, that.task)
                     && Objects.equals(this.finding, that.finding)
                     && Objects.equals(this.coveredFindings, that.coveredFindings)
+                    && Objects.equals(this.contextFindings, that.contextFindings)
                     && Objects.equals(this.editScope, that.editScope)
                     && Objects.equals(this.scopeDeclared, that.scopeDeclared)
                     && Objects.equals(this.quizView, that.quizView)
@@ -114,6 +124,6 @@ public class ErrorTaskBrief {
 
     @Override
     public int hashCode() {
-        return Objects.hash(task, finding, coveredFindings, editScope, scopeDeclared, quizView, reachedQuizViews);
+        return Objects.hash(task, finding, coveredFindings, contextFindings, editScope, scopeDeclared, quizView, reachedQuizViews);
     }
 }

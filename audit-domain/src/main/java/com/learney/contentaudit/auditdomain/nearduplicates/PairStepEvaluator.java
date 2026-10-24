@@ -34,9 +34,17 @@ class PairStepEvaluator implements Evaluator {
 
     private final String examinedVersion;
 
+    private final Set<String> equivalentRouteVersions;
+
     public PairStepEvaluator(Evaluator evaluator, String examinedVersion) {
+        this(evaluator, examinedVersion, Set.of());
+    }
+
+    /** The vector step shares the exact route aliases declared by its paired judge. */
+    PairStepEvaluator(Evaluator evaluator, String examinedVersion, Set<String> equivalentRouteVersions) {
         this.evaluator = evaluator;
         this.examinedVersion = examinedVersion;
+        this.equivalentRouteVersions = Set.copyOf(equivalentRouteVersions);
     }
 
     /** The one of the wrapped evaluator, as it is. */
@@ -92,6 +100,7 @@ class PairStepEvaluator implements Evaluator {
         }
         LinkedHashSet<String> compatible = new LinkedHashSet<>();
         compatible.add(current.get());
+        compatible.addAll(equivalentRouteVersions);
         try {
             Optional<String> wrappedCurrent = evaluator.evaluatorVersion();
             Set<String> wrappedCompatible = evaluator.compatibleEvaluatorVersions();

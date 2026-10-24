@@ -33,9 +33,8 @@ import javax.annotation.processing.Generated;
  * F-TANDA-R001, R002 and R012: what a batch of a level takes. Every pending error task of the level resolved by rule or
  * by the panel, and every {@code LEMMA_ABSENCE} task that covers an error finding of it; never a vocabulary task of its
  * own, as the 3,051 of length. It leaves out, declared, a task with a pending proposal made outside the batch, and the
- * task of the audio of an exercise whose re-recording a published batch left pending -- the audio follows the exercise,
- * so no batch fixes the exercise to say what an old audio says. A pending re-recording whose audio no analyzer marks any
- * more is not carried: the registry already has it. It also gathers the ties of the judges for the tray, counts per
+ * legacy audio tasks. Audio follows the final exercise and is inspected separately in prepublication. Pending
+ * re-recordings survive a content-only analysis: the absence of audio findings is not evidence of generation. It also gathers the ties of the judges for the tray, counts per
  * analyzer the exercises of the level left unevaluated, and turns José's orders into conversions of their topics.
  */
 @Generated(
@@ -69,35 +68,41 @@ class DefaultBatchTaskSelector implements BatchTaskSelector {
         batch.setPlanId(plan != null ? plan.getId() : null);
         List<AuditNode> levelNodes = levelNodes(start, level);
 
-        // R012: the re-recordings still pending -- their audio is still marked -- and the exercises they hold.
+        // CONTENT does not evaluate audio; retain explicit requests until prepublication can inspect them.
         List<AudioRerecordRequest> stillPending = new ArrayList<>();
-        Set<String> waitingAudio = new HashSet<>();
         for (AudioRerecordRequest request : BatchBook.list(pendingRerecords)) {
             Optional<AuditNode> node = BatchBook.node(start, request.getQuizId());
-            boolean marked = node.isPresent() && BatchBook.list(node.get().getFindings()).stream()
-                    .anyMatch(this::concernsAudio);
+            boolean marked = node.isPresent();
             if (marked) {
                 stillPending.add(request);
-                waitingAudio.add(request.getQuizId());
             }
         }
 
         List<String> taken = new ArrayList<>();
         List<String> notTaken = new ArrayList<>();
-        for (RefinementTask task : plan != null ? BatchBook.list(plan.getTasks()) : List.<RefinementTask>of()) {
+        for (RefinementTask saved : plan != null ? BatchBook.list(plan.getTasks()) : List.<RefinementTask>of()) {
+            if (ContentCorrectionTasks.audioOnly(saved)) { notTaken.add(saved.getId()); continue; }
+            RefinementTask task = ContentCorrectionTasks.content(saved);
             if (task == null || task.getStatus() != RefinementTaskStatus.PENDING || task.getOrigin() == null
                     || task.getOrigin().getFinding() == null || task.getOrigin().getCefrLevel() != level) {
                 continue;
             }
             Finding finding = task.getOrigin().getFinding();
-            boolean covering = !BatchBook.list(task.getOrigin().getCoveredFindings()).isEmpty();
+            // Secondary findings of the same vocabulary analyzer explain its one task;
+            // only an actionable error from another analyzer makes it an error-covering task.
+            boolean covering = BatchBook.list(task.getOrigin().getCoveredFindings()).stream()
+                    .anyMatch(covered -> covered != null && covered.getAnalyzer() != null
+                            && !covered.getAnalyzer().isBlank()
+                            && !covered.getAnalyzer().equals(finding.getAnalyzer())
+                            && (covered.getResolution() == FindingResolution.RULE
+                                    || covered.getResolution() == FindingResolution.PANEL));
             boolean byRuleOrPanel = finding.getResolution() == FindingResolution.RULE
                     || finding.getResolution() == FindingResolution.PANEL;
             boolean vocabulary = task.getDiagnosisKind() != null && VOCABULARY_KINDS.contains(task.getDiagnosisKind());
             if (vocabulary ? !covering : !byRuleOrPanel) {
                 continue; // a vocabulary task of its own never enters; an error task, by rule or at the panel
             }
-            if (concernsAudio(finding) && BatchBook.quizzesOf(task).stream().anyMatch(waitingAudio::contains)) {
+            if (concernsAudio(finding)) {
                 notTaken.add(task.getId()); // its audio waits to be recorded with what the exercise says
                 continue;
             }

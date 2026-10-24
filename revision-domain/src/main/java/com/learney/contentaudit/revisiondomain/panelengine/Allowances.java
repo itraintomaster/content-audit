@@ -3,6 +3,7 @@ package com.learney.contentaudit.revisiondomain.panelengine;
 import com.learney.contentaudit.revisiondomain.panel.QueryAllowance;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.function.LongSupplier;
 
 /**
  * How a panel or a meter takes its turn on the shared allowance (F-MESA-R010): it waits while the queries in flight are
@@ -11,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  */
 final class Allowances {
 
-    /** How long a panel waits for a turn before taking the allowance as stuck. */
+    /** How long a waiting panel tolerates no shared consultation progress before treating the allowance as stuck. */
     static final long WAIT_LIMIT_NANOS = TimeUnit.MINUTES.toNanos(10);
 
     private Allowances() {
@@ -27,10 +28,22 @@ final class Allowances {
     }
 
     private static boolean reserve(QueryAllowance allowance, int queries, boolean sequential) {
+        return reserve(allowance, queries, sequential, System::nanoTime, () -> Thread.sleep(2));
+    }
+
+    @FunctionalInterface
+    interface Waiter {
+        void pause() throws InterruptedException;
+    }
+
+    /** Package-local clock and pause seam keeps the ten-minute watchdog testable without waiting. */
+    static boolean reserve(QueryAllowance allowance, int queries, boolean sequential, LongSupplier nanoTime,
+            Waiter waiter) {
         if (allowance == null) {
             return true;
         }
-        long deadline = System.nanoTime() + WAIT_LIMIT_NANOS;
+        long lastProgressAt = nanoTime.getAsLong();
+        int lastSpent = sharedSpent(allowance);
         while (true) {
             if (allowance.tripped().isPresent()) {
                 return false;
@@ -41,19 +54,33 @@ final class Allowances {
             if (allowance.tripped().isPresent()) {
                 return false;
             }
-            if (System.nanoTime() > deadline) {
-                allowance.trip("no se liberó el cupo de consultas en " + TimeUnit.NANOSECONDS.toMinutes(WAIT_LIMIT_NANOS)
+            long now = nanoTime.getAsLong();
+            int spent = sharedSpent(allowance);
+            if (spent > lastSpent) {
+                lastSpent = spent;
+                lastProgressAt = now;
+            }
+            if (now - lastProgressAt > WAIT_LIMIT_NANOS) {
+                allowance.trip("no se registró progreso de consultas en " + TimeUnit.NANOSECONDS.toMinutes(WAIT_LIMIT_NANOS)
                         + " minutos");
                 return false;
             }
             try {
-                Thread.sleep(2);
+                waiter.pause();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 allowance.trip("se interrumpió la espera de consultas");
                 return false;
             }
         }
+    }
+
+    /** A waiting panel's own spend is unchanged while other panels complete their queries. */
+    private static int sharedSpent(QueryAllowance allowance) {
+        while (allowance instanceof Counting counting && counting.shared != null) {
+            allowance = counting.shared;
+        }
+        return allowance.spent();
     }
 
     static boolean tripped(QueryAllowance allowance) {

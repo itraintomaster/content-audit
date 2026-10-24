@@ -71,7 +71,7 @@ public class MiniTheoryAnalyzerProviderTest {
     }
 
     @Test
-    @DisplayName("should publish the five quiz-scoped mini-theory problem rules")
+    @DisplayName("should publish every quiz-scoped mini-theory problem rule")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R002")
     public void shouldPublishACardWithFamilyErrorsPaidModelCostTheQuizAsEvaluatedLevelAndTheRulesFalseruleOverstatedruleContradictingexerciseAndUncoveredexercise(
@@ -94,8 +94,10 @@ public class MiniTheoryAnalyzerProviderTest {
             assertFalse(rule.getDescription().isBlank());
         }
         assertEquals(List.of("false-rule", "insufficient-for-quiz", "overstated-for-quiz", "other-subtopic-content",
-                        "over-specific-for-quiz", "theoretical-jargon"),
+                        "over-specific-for-quiz", "theoretical-jargon", "didactic-direction", "missing-english-highlight"),
                 rules);
+        assertTrue(card.getRules().stream().filter(rule -> rule.getId().equals("missing-english-highlight"))
+                .findFirst().orElseThrow().getDescription().contains("$...$"));
         assertEquals("¿La tarjeta explica correctamente el caso concreto de este quiz, sin traer reglas de otros subtemas?",
                 card.getQuestion());
         assertFalse(card.getReads().isBlank());

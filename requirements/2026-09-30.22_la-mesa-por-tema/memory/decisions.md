@@ -5,6 +5,10 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-24 — analyst — Un hallazgo no autoriza redefinir el objetivo: se conservan fórmula y selectores visibles,
+  salvo encargo explícito. Quitar «Polite request» y aceptar can/could no repara la tarea original confirmada por José.
+  why: disminuir señalamientos no acredita mejora si se borra la distinción que debía practicar el alumno.
+
 2026-10-05 — analyst — DOUBT-MINITEORIA-ALCANCE cambia a B: la mesa reescribe la miniteoria de un quiz y no propaga el
   texto a otros quizzes. Deja de ser excepcion de preservacion multinodo.
   why: decision posterior y explicita de Jose; reemplaza la opcion A del 30/9.

@@ -155,6 +155,10 @@ public class FileSystemJudgeExamRegistry implements JudgeExamRegistry {
                 mismatched.add(id);
             }
         }
+        node.put("examFingerprint", record.getExamFingerprint());
+        node.put("regressionSuiteFingerprint", record.getRegressionSuiteFingerprint());
+        node.set("regressionCaseIds", MAPPER.valueToTree(record.getRegressionCaseIds()));
+        node.set("regressionMismatchedCaseIds", MAPPER.valueToTree(record.getRegressionMismatchedCaseIds()));
         node.put("goalMet", record.isGoalMet());
         node.put("photo", record.getPhoto());
         node.put("measuredBy", record.getMeasuredBy());
@@ -187,12 +191,21 @@ public class FileSystemJudgeExamRegistry implements JudgeExamRegistry {
             }
             String status = text(node, "status");
             String recordedAt = text(node, "recordedAt");
-            return new JudgeExamRecord(text(node, "judgeName"), text(node, "judgeVersion"),
+            JudgeExamRecord record = new JudgeExamRecord(text(node, "judgeName"), text(node, "judgeVersion"),
                     status != null ? JudgeExamStatus.valueOf(status) : null,
                     node.path("casesJudged").asInt(), node.path("casesNotJudged").asInt(), groups, mismatched,
                     node.path("goalMet").asBoolean(false), text(node, "photo"), text(node, "measuredBy"),
                     text(node, "providerName"), text(node, "modelName"), text(node, "reasoningEffort"),
                     recordedAt != null ? Instant.parse(recordedAt) : null);
+            record.setExamFingerprint(text(node, "examFingerprint"));
+            record.setRegressionSuiteFingerprint(text(node, "regressionSuiteFingerprint"));
+            var regressionIds = new ArrayList<String>();
+            for (var id : node.path("regressionCaseIds")) regressionIds.add(id.asText());
+            record.setRegressionCaseIds(regressionIds);
+            var regressionMismatches = new ArrayList<String>();
+            for (var id : node.path("regressionMismatchedCaseIds")) regressionMismatches.add(id.asText());
+            record.setRegressionMismatchedCaseIds(regressionMismatches);
+            return record;
         } catch (IOException | RuntimeException e) {
             return null;
         }

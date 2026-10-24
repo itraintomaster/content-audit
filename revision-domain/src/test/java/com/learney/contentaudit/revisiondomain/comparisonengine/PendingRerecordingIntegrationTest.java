@@ -27,6 +27,7 @@ import com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatch
 import com.learney.contentaudit.auditdomain.correctormatch.FormEquivalenceTable;
 import com.learney.contentaudit.auditdomain.datacoherence.AudioRecording;
 import com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceStage;
 import com.learney.contentaudit.auditdomain.finding.Finding;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
@@ -72,6 +73,8 @@ import org.junit.jupiter.api.Test;
  * sentence until the course goes to production --: the comparison of the batch says so and does not count them, while
  * what the change really breaks still counts.
  *
+ * <p>This explicitly uses prepublication scope to keep testing compatibility with saved audio findings. Ordinary
+ * correction analysis uses CONTENT and never produces those audio findings.
  * <p>Everything is measured by the real engine with the real data-coherence, over the twenty exercises of «Afirmativas
  * regulares», each recorded and kept in production with what it says at the batch start.
  */
@@ -273,7 +276,8 @@ public class PendingRerecordingIntegrationTest {
             List<AnalyzerProvider> providers = List.of(new DataCoherenceAnalyzerProvider(
                     new DefaultCorrectorMatcher(new FormEquivalenceTable("prueba", List.of(), List.of(), false,
                             List.of())),
-                    recordings, kept, new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create())));
+                    recordings, kept, new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()),
+                    DataCoherenceStage.PREPUBLICATION));
             AuditEngine real = new IAuditEngine(new IScoreAggregator(), new DefaultAnalyzerCatalog(providers),
                     new DefaultFindingCollector(), new DefaultContextNumbersCalculator());
             this.catalog = new DefaultAnalyzerCatalog(providers);

@@ -17,6 +17,13 @@ public class EvaluationRunPolicy {
 
     private Set<String> reevaluationSubjectIds;
 
+    /**
+     * Optional upper bound on new consultations, independent of forced re-evaluation.
+     * Null keeps the ordinary reach; an empty set permits reuse only. A knowledge-level
+     * evaluator may consult its whole context when one of its quizzes is in this set.
+     */
+    private Set<String> newEvaluationSubjectIds;
+
     private EvaluationRunPurpose purpose;
 
     private Integer maxConcurrentEvaluations;
@@ -67,6 +74,14 @@ public class EvaluationRunPolicy {
         this.reevaluationSubjectIds = reevaluationSubjectIds;
     }
 
+    public Set<String> getNewEvaluationSubjectIds() {
+        return this.newEvaluationSubjectIds;
+    }
+
+    public void setNewEvaluationSubjectIds(Set<String> newEvaluationSubjectIds) {
+        this.newEvaluationSubjectIds = newEvaluationSubjectIds;
+    }
+
     public EvaluationRunPurpose getPurpose() {
         return this.purpose;
     }
@@ -92,12 +107,14 @@ public class EvaluationRunPolicy {
                     && Objects.equals(this.reevaluate, that.reevaluate)
                     && Objects.equals(this.reevaluationScope, that.reevaluationScope)
                     && Objects.equals(this.reevaluationSubjectIds, that.reevaluationSubjectIds)
+                    && Objects.equals(this.newEvaluationSubjectIds, that.newEvaluationSubjectIds)
                     && Objects.equals(this.purpose, that.purpose)
                     && Objects.equals(this.maxConcurrentEvaluations, that.maxConcurrentEvaluations);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(maxNewEvaluations, reevaluate, reevaluationScope, reevaluationSubjectIds, purpose, maxConcurrentEvaluations);
+        return Objects.hash(maxNewEvaluations, reevaluate, reevaluationScope, reevaluationSubjectIds,
+                newEvaluationSubjectIds, purpose, maxConcurrentEvaluations);
     }
 }

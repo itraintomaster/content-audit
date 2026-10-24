@@ -10,7 +10,8 @@ feature:
 
 ## TL;DR
 
-**Qué**: La corrección va por tandas de un nivel: cada tanda parte del último estado publicado, aplica primero las reglas
+**Qué**: La corrección va por tandas de un nivel: la primera parte del último estado publicado y las siguientes pueden
+partir de la corrección anterior sin publicarla. Cada una aplica primero las reglas
 y después las mesas de sus temas, recalcula el curso entero al cerrar, pasa la compuerta de «no empeorar» y se publica
 con un solo OK de José.
 
@@ -40,7 +41,7 @@ el plan, las propuestas pendientes, la proyección única y las metas del paquet
 ## Reglas de Negocio
 
 <a id="F-TANDA-R001"></a>
-### Rule[F-TANDA-R001] - Una tanda es un nivel y parte del último estado publicado
+### Rule[F-TANDA-R001] - Una tanda es un nivel y conserva su punto de partida
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
 > Una tanda se abre para un [nivel CEFR](glossary:Nivel CEFR) sobre el último análisis publicado —la línea base fijada, para la primera; el
@@ -55,6 +56,10 @@ el plan, las propuestas pendientes, la proyección única y las metas del paquet
 > línea base queda fija mientras las tandas avanzan: cada tanda la hereda de la anterior, y sólo cambia su punto de
 > partida, que es el análisis que dejó la última publicada.
 
+Una corrección encadenada de la misma Base puede partir de la anterior sin publicarla, según F-TANDA-R007. En ese caso
+su punto de partida es el contenido y el análisis vigentes conservados de esa corrección; la línea base original no se
+mueve.
+
 Las 3.051 tareas de largo y el resto del vocabulario quedan fuera a propósito: José decidió el 11/8 que el largo no
 rechaza una corrección, el 077 no corrigió largos, y triplicarían el trabajo de la mesa. Siguen con `revise` como hoy. La
 línea base fija es la que mide el vocabulario acumulado ([F-NOEMP-R006](#F-NOEMP-R006)); el punto de partida, los
@@ -64,7 +69,8 @@ hallazgos y los conteos de la tanda ([F-NOEMP-R005](#F-NOEMP-R005)).
 ### Rule[F-TANDA-R002] - Una sola tanda abierta, y cada tarea en una sola tanda
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-> En el curso hay a lo sumo una tanda abierta. Una tarea de la tanda abierta no la toman `revise` ni
+> En el curso hay a lo sumo una tanda activa para cambiar contenido. Las antecesoras de una corrección encadenada
+> conservan su contenido aunque todavía no estén publicadas; pueden reanalizarse. Una tarea de la tanda activa no la toman `revise` ni
 > `revise-instructions`: el pedido se rechaza nombrando la tanda. Una tarea con una propuesta pendiente de fuera de la
 > tanda no entra a la tanda, y la tanda la declara.
 
@@ -164,10 +170,28 @@ José rechazó sale de la tanda, y un rechazo sobre un contenido que cambió des
 vuelva a mirar ([F-PUBPROD-R003](#F-PUBPROD-R003)).
 
 Correcciones y Comparación leen los resultados guardados por el backend, sin ejecutar auditorías al abrirse.
-El historial permite consultar las correcciones del mismo nivel y Base, y sus mediciones previas; elegir una
-versión histórica no cambia la ejecución actual. Una nueva tanda, posterior a la integración de la anterior,
-recibe el número siguiente. Los resultados históricos sin un snapshot de contenido no se reconstruyen con propuestas
-mutables de hoy.
+El historial permite consultar Base, Corrección 1, Corrección 2, Corrección 3 y las siguientes del mismo nivel, junto
+con sus análisis. Crear la siguiente corrección es una acción explícita y no exige publicar la anterior: conserva una
+copia de Base y del contenido exacto de origen, crea su propio plan a partir del análisis vigente y recibe el número
+siguiente. La anterior conserva su contenido y admite nuevos análisis, con sus selecciones independientes; esas
+mediciones posteriores no cambian el origen ya guardado de la siguiente corrección. No se crea otra corrección mientras
+haya operaciones pendientes o por conciliar. Un reintento del mismo pedido no duplica la nueva corrección.
+
+Base es una referencia común de la cadena: reanalizarla o cambiar sus mediciones seleccionadas se refleja igual al
+consultarla desde cualquier corrección. Cada corrección mantiene aparte sus propios análisis. Las raíces nuevas y las
+publicaciones directas conservan también su copia completa de origen. Un archivo publicado antiguo que no contiene esa
+copia declara el histórico no disponible, sin reconstruirlo con el curso de hoy.
+
+Las decisiones humanas se conservan sólo para pasos cuyo contenido exacto antes y después sigue siendo el mismo. Un
+contenido nuevo o modificado requiere revisión. Los cambios aceptados se acumulan para poder publicarlos juntos al
+final, sin perder los de las correcciones anteriores, y la publicación conserva sus compuertas. Crear o analizar una
+corrección no publica ni cambia el curso.
+
+Todas las pantallas comparten la selección de versión. Estadísticas, mapa, revisión y comparación leen el contenido y
+los análisis de esa selección; se pueden comparar dos correcciones cualesquiera o una corrección con Base, mostrando
+los cambios y distinguiendo lo medido de lo pendiente. Se conserva también la comparación entre pasadas dentro de una
+misma corrección. Los resultados históricos sin un snapshot de contenido no se reconstruyen con propuestas mutables de
+hoy ni se presentan como si hubieran sido medidos sobre la versión actual.
 
 Mantiene [F-EVCOST-R004](#F-EVCOST-R004) (cada resultado queda disponible apenas se obtiene) y
 [F-REVBYP-R014](#F-REVBYP-R014) (el artefacto se guarda antes de aplicar).

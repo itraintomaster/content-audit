@@ -337,7 +337,7 @@ public class DataCoherenceAnalyzerTest {
     /** The analyzer over one exercise of a topic with the given mode, the course closed after it. */
     static AuditNode analyze(Copies copies, SentenceMode mode, AuditableQuiz quiz) {
         DataCoherenceAnalyzer analyzer = new DataCoherenceAnalyzer(productionCorrector(), copies, copies,
-                new DefaultSpokenTextBuilder(), renderer());
+                new DefaultSpokenTextBuilder(), renderer(), DataCoherenceStage.PREPUBLICATION);
         AuditNode root = new AuditNode(null, AuditTarget.COURSE, null, new ArrayList<>(), new LinkedHashMap<>(),
                 new LinkedHashMap<>(), new DefaultCourseDiagnoses());
         AuditableKnowledge entity = new AuditableKnowledge(List.of(quiz), "Tema", null, true, "k", "Tema", "k", mode,
@@ -357,7 +357,7 @@ public class DataCoherenceAnalyzerTest {
     /** analyze with only data-coherence, through the engine. */
     static AuditNode engine(Copies copies, List<AuditableQuiz> quizzes) {
         DataCoherenceAnalyzerProvider provider = new DataCoherenceAnalyzerProvider(productionCorrector(), copies, copies,
-                renderer());
+                renderer(), DataCoherenceStage.PREPUBLICATION);
         IAuditEngine engine = new IAuditEngine(new IScoreAggregator(), new DefaultAnalyzerCatalog(List.of(provider)),
                 new DefaultFindingCollector(), new DefaultContextNumbersCalculator());
         AuditableKnowledge knowledge = new AuditableKnowledge(quizzes, "Práctica mixta", null, true,

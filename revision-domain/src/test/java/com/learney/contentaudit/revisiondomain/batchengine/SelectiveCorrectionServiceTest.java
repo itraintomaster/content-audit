@@ -62,6 +62,7 @@ class SelectiveCorrectionServiceTest {
         batch.setStatus(BatchStatus.CLOSED); batch.setContentVersion(5); batch.setCorrectionRevision(1); batch.setQueriesSpent(10);
         batch.setClosings(List.of(closing));
         when(store.load("batch")).thenReturn(Optional.of(batch));
+        doAnswer(i -> ((java.util.function.Supplier<?>) i.getArgument(1)).get()).when(store).withAnalysisLock(anyString(), any());
         when(reviews.read("batch")).thenAnswer(i -> new BatchReview("batch", 1, batch.getContentVersion(), null,
                 List.of(), List.of(), List.of(), List.of(), List.of()));
         when(repository.load(TandaFixture.COURSE_PATH)).thenReturn(course);
@@ -877,5 +878,33 @@ class SelectiveCorrectionServiceTest {
         assertTrue(running.openRuns().get(0).running());
         assertTrue(running.reason().contains("sigue corriendo"), running.reason());
         verify(store, never()).save(any());
+    }
+
+    @Test void interruptedQuizRecorrectionCanCloseOnlyAfterItsProcessEndsWithoutFabricatingMeasurementsOrRefunds() {
+        cutWorld();
+        cut(open("new-version", "recorrect", "all-current-judges", null, 10, 2, 0, "RUNNING",
+                new RunProcess(4242, PROCESS_START, List.of(), null, BatchStatus.CLOSED)));
+        alive.add(4242L);
+        assertThrows(IllegalArgumentException.class, () -> service.execute(reconcile("new-version", true)));
+        alive.clear();
+        State result = service.execute(reconcile("new-version", false));
+        var run = run("new-version");
+        assertEquals("PARTIAL", run.status()); assertEquals(10, run.reserved()); assertEquals(0, run.spent());
+        assertEquals(0, run.evaluated()); assertEquals(10, batch.getQueriesSpent());
+        assertTrue(run.detail().contains("no representa saldo recuperado"));
+        assertEquals(BatchStatus.CLOSED, batch.getStatus()); assertTrue(result.openRuns().isEmpty());
+        verifyNoInteractions(engine, repository, factory, panel);
+    }
+
+    @Test void reconcilingKilledQuizRecorrectionRestoresOpenStateAndLegacyRecoveryIsConservativelyOpen() {
+        cutWorld();
+        for (RunProcess process : List.of(new RunProcess(4242, PROCESS_START, List.of(), null, BatchStatus.OPEN), process())) {
+            cut(open("new-version", "recorrect", "all-current-judges", null, 10, 2, 0, "RUNNING", process));
+            service.execute(reconcile("new-version", false));
+            assertEquals(BatchStatus.OPEN, batch.getStatus());
+            assertEquals("PARTIAL", run("new-version").status());
+            assertEquals(10, run("new-version").reserved());
+        }
+        verifyNoInteractions(engine, repository, factory, panel);
     }
 }

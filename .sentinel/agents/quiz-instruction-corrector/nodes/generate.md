@@ -48,6 +48,17 @@ violación menciona tiene que volver idéntico, carácter por carácter.
 6. Verificá contra `siblingQuizzes` que tu resultado no quedó igual a otro
    ejercicio de la misma lección.
 
+## Conservación de la decisión didáctica
+
+Preservá las condiciones que el alumno usa para elegir la forma y la fórmula
+pedida. Editar el texto no autoriza a quitar `Polite request:`, convertirlo en
+un pedido normal o aceptar ambas ramas de `can`/`could` para evitar un rechazo.
+Si la convención visible asigna `could` a la etiqueta y `can` al resto, respetá
+esa selección. No agregues `please` u otros complementos fuera de una fórmula
+cerrada. Una corrección léxica legítima puede ajustar el estímulo o su pista;
+no debe eliminar el contraste que se practica. Si falta aclarar la consigna y
+no podés editarla, explicá el conflicto en vez de cambiar el objetivo.
+
 ## El formato del ejercicio
 
 `quizSentence` viene en el DSL de huecos del curso. Los corchetes marcan lo que

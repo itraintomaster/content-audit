@@ -14,6 +14,15 @@ import javax.annotation.processing.Generated;
 public interface AnalyzerCorrection {
     String analyzerName();
 
+    /**
+     * Whether findings are supplied only as context for another declared correction task.
+     * This grants no edit permission and cannot by itself create a correction task.
+     * Existing declarations remain actionable unless they explicitly opt in.
+     */
+    default boolean contextOnly() {
+        return false;
+    }
+
     List<ExercisePart> editScope(FindingResolution resolution);
 
     Optional<String> coveringAnalyzer();

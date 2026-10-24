@@ -416,6 +416,128 @@ public class DefaultJudgeExamServiceTest {
                 status == JudgeExamStatus.APPROVED, "2026-09-29", "orquestador", Instant.parse(at));
     }
 
+    private static com.learney.contentaudit.auditdomain.judging.JudgeRegressionSuite regressionSuite(boolean expectedDetected) {
+        return new com.learney.contentaudit.auditdomain.judging.JudgeRegressionSuite("suite-1", List.of(
+                new com.learney.contentaudit.auditdomain.judging.JudgeRegressionCase("REG-1", QUIZ_INSTRUCTION,
+                        "PRB-example", "Consigna", "case-1", OK_1, expectedDetected, "Criterio editorial",
+                        "Operador del problema", Map.of("after", Map.of("quiz", Map.of("id", OK_1))), Instant.EPOCH)));
+    }
+
+    private static JudgeExamRequest regressionRequest(Set<String> ids) {
+        var request = new JudgeExamRequest(QUIZ_INSTRUCTION, PHOTO, ids, 10, 4);
+        request.setExamFingerprint("prepared-1");
+        request.setRegressionSuiteFingerprint("suite-1");
+        request.setRegressionQuizIds(Map.of("REG-1", OK_1));
+        request.setRegressionCaseIds(List.of("REG-1"));
+        return request;
+    }
+
+    @Test void aHistoricalExamCannotBeTakenWithoutTheNewPermanentCases() {
+        Bench bench = new Bench(workdir);
+        var service = new DefaultJudgeExamService(bench.runner(), bench.catalog,
+                new DefaultJudgeExamVerdictExporter(), bench.registry, bench.runtime, judge -> regressionSuite(true));
+        assertThrows(IllegalArgumentException.class, () -> service.take(new JudgeExamRequest(
+                QUIZ_INSTRUCTION, PHOTO, Set.of(BREACH_1), 0, 4)));
+        var missing = regressionRequest(Set.of(BREACH_1));
+        assertThrows(IllegalArgumentException.class, () -> service.take(missing));
+        assertTrue(bench.judge.asked.isEmpty());
+    }
+
+    @Test void oneFailedRegressionOverridesAnOverallPassingScoreAndCannotBeErasedByTheMeasuredFile() {
+        Bench bench = new Bench(workdir);
+        var service = new DefaultJudgeExamService(bench.runner(), bench.catalog,
+                new DefaultJudgeExamVerdictExporter(), bench.registry, bench.runtime, judge -> regressionSuite(true));
+        var taken = service.take(regressionRequest(Set.of(OK_1, BREACH_1)));
+        assertTrue(taken.isRecordedAsTaken());
+        assertEquals(List.of("REG-1"), taken.getRegressionMismatchedCaseIds());
+        var measured = new JudgeExamRecord(QUIZ_INSTRUCTION, "v-consigna", JudgeExamStatus.APPROVED,
+                2, 0, List.of(new JudgeExamGroupResult("score", 2, 1, 1)), List.of(OK_1), true, "ignored", "editor", Instant.now());
+        measured.setExamFingerprint("prepared-1");
+        measured.setPhoto(PHOTO.toString());
+        measured.setRegressionSuiteFingerprint("suite-1");
+        service.record(measured);
+        var recorded = bench.registry.latest(QUIZ_INSTRUCTION, "v-consigna").orElseThrow();
+        assertEquals(JudgeExamStatus.FAILED, recorded.getStatus());
+        assertFalse(recorded.isGoalMet());
+        assertEquals(List.of("REG-1"), recorded.getRegressionMismatchedCaseIds());
+        assertEquals(List.of(OK_1), recorded.getMismatchedCaseIds(),
+                "The exercise must appear once, while its permanent source has a separate reference.");
+    }
+
+    @Test void anApprovalCannotBeRecordedFromAnOldSuiteEvenWhenTheJudgeVersionDidNotChange() {
+        Bench bench = new Bench(workdir);
+        var suite = new java.util.concurrent.atomic.AtomicReference<>(regressionSuite(false));
+        var service = new DefaultJudgeExamService(bench.runner(), bench.catalog,
+                new DefaultJudgeExamVerdictExporter(), bench.registry, bench.runtime, judge -> suite.get());
+        service.take(regressionRequest(Set.of(OK_1)));
+        var measured = new JudgeExamRecord(QUIZ_INSTRUCTION, "v-consigna", JudgeExamStatus.APPROVED,
+                1, 0, List.of(), List.of(), true, "ignored", "editor", Instant.now());
+        measured.setExamFingerprint("prepared-1");
+        measured.setPhoto(PHOTO.toString());
+        measured.setRegressionSuiteFingerprint("suite-1");
+        suite.set(new com.learney.contentaudit.auditdomain.judging.JudgeRegressionSuite("suite-2", suite.get().cases()));
+        assertThrows(IllegalArgumentException.class, () -> service.record(measured));
+        assertEquals(JudgeExamStatus.TAKEN, bench.registry.latest(QUIZ_INSTRUCTION, "v-consigna").orElseThrow().getStatus());
+    }
+
+    @Test void eightTakenCasesCannotCertifyAMeasurementOfFortyEightCases() {
+        Bench bench = new Bench(workdir);
+        var service = new DefaultJudgeExamService(bench.runner(), bench.catalog, new DefaultJudgeExamVerdictExporter(),
+                bench.registry, bench.runtime, judge -> regressionSuite(false));
+        var taken = new JudgeExamRecord(QUIZ_INSTRUCTION, "v-consigna", JudgeExamStatus.TAKEN,
+                8, 0, List.of(), List.of(), false, PHOTO.toString(), null, Instant.now());
+        taken.setExamFingerprint("prepared-1"); taken.setRegressionSuiteFingerprint("suite-1");
+        taken.setRegressionCaseIds(List.of("REG-1")); bench.registry.record(taken);
+        var measured = new JudgeExamRecord(QUIZ_INSTRUCTION, "v-consigna", JudgeExamStatus.APPROVED,
+                48, 0, List.of(), List.of(), true, PHOTO.toString(), "editor", Instant.now());
+        measured.setExamFingerprint("prepared-1"); measured.setRegressionSuiteFingerprint("suite-1");
+        assertThrows(JudgeExamNotTakenException.class, () -> service.record(measured));
+        assertEquals(1, bench.registry.history(QUIZ_INSTRUCTION).size());
+    }
+
+    @Test void separatePreparationsOfTheSameVersionAndRuntimeEachNeedTheirOwnTakenEvidence() {
+        Bench bench = new Bench(workdir);
+        var service = new DefaultJudgeExamService(bench.runner(), bench.catalog, new DefaultJudgeExamVerdictExporter(),
+                bench.registry, bench.runtime, judge -> regressionSuite(false));
+        var first = regressionRequest(Set.of(OK_1)); first.setExamFingerprint("prepared-first");
+        var second = regressionRequest(Set.of(OK_1)); second.setExamFingerprint("prepared-second");
+        service.take(first); service.take(second);
+        assertEquals(2, bench.registry.history(QUIZ_INSTRUCTION).size());
+        var measured = new JudgeExamRecord(QUIZ_INSTRUCTION, "v-consigna", JudgeExamStatus.APPROVED,
+                1, 0, List.of(), List.of(), true, PHOTO.toString(), "editor", Instant.now());
+        measured.setExamFingerprint("prepared-first"); measured.setRegressionSuiteFingerprint("suite-1");
+        service.record(measured);
+        var recorded = bench.registry.latest(QUIZ_INSTRUCTION, "v-consigna").orElseThrow();
+        assertEquals(JudgeExamStatus.APPROVED, recorded.getStatus());
+        assertEquals("prepared-first", recorded.getExamFingerprint());
+        assertEquals("prepared-second", bench.registry.history(QUIZ_INSTRUCTION).get(1).getExamFingerprint());
+    }
+
+    @Test void aMeasurementCannotSubstituteAnotherPreparedPhoto() {
+        Bench bench = new Bench(workdir);
+        var service = new DefaultJudgeExamService(bench.runner(), bench.catalog, new DefaultJudgeExamVerdictExporter(),
+                bench.registry, bench.runtime, judge -> regressionSuite(false));
+        service.take(regressionRequest(Set.of(OK_1)));
+        var measured = new JudgeExamRecord(QUIZ_INSTRUCTION, "v-consigna", JudgeExamStatus.APPROVED,
+                1, 0, List.of(), List.of(), true, "another-photo", "editor", Instant.now());
+        measured.setExamFingerprint("prepared-1"); measured.setRegressionSuiteFingerprint("suite-1");
+        assertThrows(JudgeExamNotTakenException.class, () -> service.record(measured));
+    }
+
+    @Test void preparedRegressionUsesTheOrdinaryExamPathWithOnlyExerciseIdsAndNoExpectedLabels() {
+        Bench bench = new Bench(workdir); AuditRunner runner = spy(bench.runner());
+        var service = new DefaultJudgeExamService(runner, bench.catalog, new DefaultJudgeExamVerdictExporter(),
+                bench.registry, bench.runtime, judge -> regressionSuite(false));
+        var taken = service.take(regressionRequest(Set.of(OK_1)));
+        assertTrue(taken.isRecordedAsTaken()); assertTrue(taken.getRegressionMismatchedCaseIds().isEmpty());
+        var request = ArgumentCaptor.forClass(AuditRunRequest.class);
+        verify(runner).runAudit(org.mockito.ArgumentMatchers.eq(PHOTO), request.capture());
+        assertEquals(Set.of(OK_1), request.getValue().getAnalyzerPolicies().get(QUIZ_INSTRUCTION).getReevaluationSubjectIds());
+        assertEquals(List.of(OK_1), bench.judge.askedSorted());
+        assertFalse(bench.judge.contents.toString().contains("Criterio editorial"));
+        assertFalse(bench.judge.contents.toString().contains("PRB-example"));
+    }
+
     private static final class Bench {
         static final String EVALUATOR = "quiz-instruction-validator";
         static final String COMPLIANT = "{\"compliant\":true}";

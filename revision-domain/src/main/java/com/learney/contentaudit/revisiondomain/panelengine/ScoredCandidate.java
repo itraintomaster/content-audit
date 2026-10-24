@@ -20,6 +20,10 @@ class ScoredCandidate {
 
     private List<String> screenViolations;
 
+    private List<String> restoredContractTaskIds = List.of();
+    public List<String> getRestoredContractTaskIds() { return restoredContractTaskIds; }
+    public void setRestoredContractTaskIds(List<String> ids) { restoredContractTaskIds = List.copyOf(ids); }
+
     public ScoredCandidate() {
     }
 
@@ -71,11 +75,12 @@ class ScoredCandidate {
         return Objects.equals(this.candidate, that.candidate)
                     && Objects.equals(this.measurement, that.measurement)
                     && Objects.equals(this.gate, that.gate)
-                    && Objects.equals(this.screenViolations, that.screenViolations);
+                    && Objects.equals(this.screenViolations, that.screenViolations)
+                    && Objects.equals(this.restoredContractTaskIds, that.restoredContractTaskIds);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(candidate, measurement, gate, screenViolations);
+        return Objects.hash(candidate, measurement, gate, screenViolations, restoredContractTaskIds);
     }
 }

@@ -40,7 +40,7 @@ import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
 /**
- * FEAT-JEXAM (hook C-18): the fixed exam of the judges, three files and nothing else. {@code exam
+ * FEAT-JEXAM: the versioned exam combines a frozen historical baseline and permanent regressions. {@code exam
  * run} reads the exam file -- {@code [{"ejercicio": "<id>"}, …]}, only exercises, never what is
  * expected --, has the judge take it over the photo and writes one JSON line per exercise;
  * {@code exam record} reads what was measured outside by whoever holds the gold standard and
@@ -54,7 +54,9 @@ import picocli.CommandLine.Parameters;
 )
 @Command(
         name = "exam",
-        description = "The fixed exam of a judge with a model (F-JEXAM).%n%n"
+        description = "The permanent, versioned exam of a judge (F-JEXAM).%n%n"
+                + "  exam regressions [<judge>] --course <live-course> -f json%n"
+                + "  exam prepare <judge> --course <live-course> --photo <historical-photo> --cases <file> --gold <file> --out <directory>%n"
                 + "  exam run <judge> --cases <file> --course <photo> [--budget N] [--concurrency N] --out <verdicts>%n"
                 + "  exam record <measured-result>%n"
                 + "  exam status <judge>%n"
@@ -208,18 +210,22 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
         }
 
         JudgeExamTaken taken;
+        Map<String, JsonNode> caseMetadata;
         ExamProvenance provenance = provenanceByJudge.getOrDefault(judgeName, ExamProvenance.NONE);
         try {
-            taken = examService.take(new JudgeExamRequest(judgeName, Path.of(photoCourse), caseIds,
+            caseMetadata = readCaseMetadata(Path.of(casesFile));
+            JudgeExamRequest request = new JudgeExamRequest(judgeName, Path.of(photoCourse), caseIds,
                     budget != null ? budget : 0, concurrency, provenance.providerName(),
-                    provenance.modelName(), provenance.reasoningEffort()));
-        } catch (IllegalArgumentException e) {
+                    provenance.modelName(), provenance.reasoningEffort());
+            bindRegressions(request, caseMetadata);
+            taken = examService.take(request);
+        } catch (IOException | IllegalArgumentException e) {
             System.err.println("Error: " + e.getMessage());
             return 1;
         }
 
         try {
-            writeVerdicts(output, taken.getVerdicts(), taken.getRuntimeIdentity());
+            writeVerdicts(output, taken.getVerdicts(), taken.getRuntimeIdentity(), caseMetadata);
             if (metricsOut != null) {
                 int queries = taken.getCoverage() == null || taken.getCoverage().getEvaluators() == null ? 0 : taken.getCoverage().getEvaluators().stream()
                         .filter(e -> e != null && e.getCoverage() != null)
@@ -228,6 +234,10 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
                 metrics.put("queriesUsed", queries);
                 metrics.put("judgeVersion", taken.getJudgeVersion());
                 metrics.put("runtime", taken.getRuntimeIdentity());
+                metrics.put("examFingerprint", taken.getExamFingerprint());
+                metrics.put("regressionSuiteFingerprint", taken.getRegressionSuiteFingerprint());
+                metrics.put("regressionCaseIds", taken.getRegressionCaseIds());
+                metrics.put("regressionMismatchedCaseIds", taken.getRegressionMismatchedCaseIds());
                 Files.writeString(metricsOut, CommandJson.writeCompact(metrics), java.nio.file.StandardOpenOption.CREATE_NEW);
             }
         } catch (IOException e) {
@@ -500,6 +510,10 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
             line.put("goalMet", record.isGoalMet());
             line.put("photo", record.getPhoto());
             line.put("measuredBy", record.getMeasuredBy());
+            line.put("examFingerprint", record.getExamFingerprint());
+            line.put("regressionSuiteFingerprint", record.getRegressionSuiteFingerprint());
+            line.set("regressionCaseIds", MAPPER.valueToTree(record.getRegressionCaseIds()));
+            line.set("regressionMismatchedCaseIds", MAPPER.valueToTree(record.getRegressionMismatchedCaseIds()));
         }
         return version;
     }
@@ -525,9 +539,40 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
         return ids;
     }
 
-    /** One JSON line per exercise, including the effective provenance (F-JEXAM-R014). */
+    private static Map<String, JsonNode> readCaseMetadata(Path file) throws IOException {
+        Map<String, JsonNode> metadata = new LinkedHashMap<>();
+        for (JsonNode entry : MAPPER.readTree(file.toFile())) {
+            if (entry.isObject()) metadata.put(entry.path("ejercicio").asText(), entry);
+        }
+        return metadata;
+    }
+
+    private static void bindRegressions(JudgeExamRequest request, Map<String, JsonNode> metadata) {
+        Map<String, String> quizIds = new LinkedHashMap<>();
+        String fingerprint = null;
+        Set<String> examFingerprints = new LinkedHashSet<>();
+        for (Map.Entry<String, JsonNode> entry : metadata.entrySet()) {
+            String examFingerprint = text(entry.getValue(), "examFingerprint");
+            if (examFingerprint != null) examFingerprints.add(examFingerprint);
+            String id = text(entry.getValue(), "regressionCaseId");
+            if (id == null) continue;
+            String next = text(entry.getValue(), "regressionSuiteFingerprint");
+            if (next == null || fingerprint != null && !fingerprint.equals(next))
+                throw new IllegalArgumentException("Los casos permanentes deben pertenecer a una misma edición del examen.");
+            fingerprint = next;
+            if (quizIds.putIfAbsent(id, entry.getKey()) != null)
+                throw new IllegalArgumentException("Caso permanente repetido: " + id);
+        }
+        request.setRegressionSuiteFingerprint(fingerprint);
+        if (examFingerprints.size() > 1) throw new IllegalArgumentException("El pedido mezcla ediciones de examen distintas.");
+        request.setExamFingerprint(examFingerprints.isEmpty() ? null : examFingerprints.iterator().next());
+        request.setRegressionCaseIds(new ArrayList<>(quizIds.keySet()));
+        request.setRegressionQuizIds(quizIds);
+    }
+
+    /** One JSON line per exercise; source references stay outside judge input. */
     private static void writeVerdicts(Path file, List<JudgeExamVerdict> verdicts,
-            EvaluationRuntimeIdentity runtimeIdentity) throws IOException {
+            EvaluationRuntimeIdentity runtimeIdentity, Map<String, JsonNode> metadata) throws IOException {
         EvaluationRuntimeIdentity runtime = runtimeIdentity != null
                 ? runtimeIdentity
                 : EvaluationRuntimeIdentity.legacyUnknown();
@@ -547,6 +592,13 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
                 verdict.getRules().forEach(rules::add);
             }
             line.put("detalle", verdict.getDetail());
+            JsonNode source = metadata.get(verdict.getCaseId());
+            if (source != null && source.hasNonNull("regressionCaseId")) {
+                for (String key : List.of("regressionCaseId", "regressionSuiteFingerprint", "examFingerprint", "problemId",
+                        "problemTitle", "problemCaseId", "sourceQuizId")) {
+                    if (source.has(key)) line.set(key, source.get(key));
+                }
+            }
             lines.append(MAPPER.writeValueAsString(line)).append('\n');
         }
         if (file.getParent() != null) {
@@ -592,6 +644,11 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
         JudgeExamRecord measured = new JudgeExamRecord(judge.trim(), version.trim(), status, cases, 0,
                 groups, mismatched, root.path("alcanzoLaMeta").asBoolean(false), text(root, "foto"),
                 text(root, "medidoPor"), null);
+        measured.setRegressionSuiteFingerprint(text(root, "regressionSuiteFingerprint"));
+        measured.setExamFingerprint(text(root, "examFingerprint"));
+        List<String> regressionIds = new ArrayList<>();
+        root.path("regressionCaseIds").forEach(id -> regressionIds.add(id.asText()));
+        measured.setRegressionCaseIds(regressionIds);
         String provider = firstText(root, "proveedor", "providerName");
         String model = firstText(root, "modelo", "modelName");
         String effort = firstText(root, "esfuerzo", "reasoningEffort");

@@ -7,6 +7,7 @@ import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 import com.learney.contentaudit.auditdomain.finding.Finding;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 
@@ -254,6 +255,7 @@ public DefaultRefinerEngine(AnalyzerCatalog analyzerCatalog, AnalyzerCorrectionC
             }
             ScoredTask task = new ScoredTask(score, target, nodeId, nodeLabel, kind);
             task.analyzer = analyzerName;
+            attachVocabularyFindings(task, findings, milestone, knowledge);
             nodeTasks.add(task);
         }
         // R002: the findings of the analyzers of errors in the order of their identity, which does not depend on the
@@ -290,13 +292,8 @@ public DefaultRefinerEngine(AnalyzerCatalog analyzerCatalog, AnalyzerCorrectionC
                         coveringKind) + ")");
                 continue;
             }
-            if (cover.ownFinding == null && cover.coveredFindings.isEmpty()) {
-                cover.ownFinding = firstCountingFindingOf(cover.analyzer, findings);
-                cover.level = levelOf(milestone);
-                cover.knowledgeId = knowledge != null ? resolveId(knowledge) : null;
-                cover.knowledgeLabel = knowledge != null ? resolveLabel(knowledge) : null;
-                cover.reachedQuizIds.add(nodeId);
-                cover.hasOrigin = true;
+            if (!cover.hasOrigin) {
+                initializeOrigin(cover, milestone, knowledge);
             }
             cover.coveredFindings.add(finding);
         }
@@ -396,20 +393,43 @@ public DefaultRefinerEngine(AnalyzerCatalog analyzerCatalog, AnalyzerCorrectionC
         return "no tiene tarea de " + coveringAnalyzer;
     }
 
-    private static Finding firstCountingFindingOf(String analyzerName, List<Finding> findings) {
-        if (analyzerName == null) {
-            return null;
+    /** Enrich an existing vocabulary task without changing the score-driven plan (F-TAREA-R007). */
+    private void attachVocabularyFindings(ScoredTask task, List<Finding> findings, AuditNode milestone,
+            AuditNode knowledge) {
+        if (!analyzerCatalog.find(task.analyzer).map(card -> card.getFamily() == AnalyzerFamily.VOCABULARY)
+                .orElse(false)) {
+            return;
         }
-        Finding first = null;
+        Optional<AnalyzerCorrection> correction = correctionOf(task.analyzer);
+        if (correction.isEmpty()) {
+            return;
+        }
+        List<Finding> own = new ArrayList<>();
         for (Finding finding : findings) {
-            if (finding != null && analyzerName.equals(finding.getAnalyzer())
-                    && finding.getResolution() != FindingResolution.RANK_ONLY) {
-                if (first == null || identityKey(finding).compareTo(identityKey(first)) < 0) {
-                    first = finding;
+            if (finding != null && task.analyzer.equals(finding.getAnalyzer()) && finding.getNode() != null
+                    && finding.getNode().getTarget() == task.nodeTarget
+                    && task.nodeId.equals(finding.getNode().getNodeId())
+                    && finding.getResolution() != null && finding.getResolution() != FindingResolution.RANK_ONLY) {
+                List<ExercisePart> declared = correction.get().editScope(finding.getResolution());
+                if (declared != null && !declared.isEmpty()) {
+                    own.add(finding);
                 }
             }
         }
-        return first;
+        own.sort(Comparator.comparing(DefaultRefinerEngine::identityKey));
+        if (!own.isEmpty()) {
+            initializeOrigin(task, milestone, knowledge);
+            task.ownFinding = own.get(0);
+            task.coveredFindings.addAll(own.subList(1, own.size()));
+        }
+    }
+
+    private void initializeOrigin(ScoredTask task, AuditNode milestone, AuditNode knowledge) {
+        task.level = levelOf(milestone);
+        task.knowledgeId = knowledge != null ? resolveId(knowledge) : null;
+        task.knowledgeLabel = knowledge != null ? resolveLabel(knowledge) : null;
+        task.reachedQuizIds.add(task.nodeId);
+        task.hasOrigin = true;
     }
 
     private boolean isErrorsAnalyzer(String analyzerName) {

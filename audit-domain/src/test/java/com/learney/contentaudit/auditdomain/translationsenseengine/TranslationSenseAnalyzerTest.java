@@ -647,6 +647,32 @@ public class TranslationSenseAnalyzerTest {
     }
 
     @Test
+    void consultationScopeSpendsOnlyTheSelectedQuizzesMissingEvaluatorAndReusesThePairNextTime() {
+        Lab lab = new Lab(subject -> emits(PASS), subject -> emits(PASS));
+        Course first = new Course();
+        AuditNode before = first.add(numbered(1));
+        AuditNode selected = first.add(numbered(2));
+        AuditNode after = first.add(numbered(3));
+        lab.seed(lab.fromEnglish, selected, PASS);
+        var policy = budget(1);
+        policy.setNewEvaluationSubjectIds(Set.of("q02"));
+        var analyzer = lab.run(policy, first);
+        assertEquals(List.of(), lab.fromEnglish.calls);
+        assertEquals(List.of("q02"), lab.fromTranslation.calls);
+        assertUnevaluated(before, analyzer, "Unselected cold neighbor keeps its missing validation");
+        assertUnevaluated(after, analyzer, "Unselected cold neighbor keeps its missing validation");
+        assertTrue(evaluated(selected));
+
+        Course second = new Course();
+        second.add(numbered(1));
+        AuditNode unchanged = second.add(numbered(2));
+        second.add(numbered(3));
+        lab.run(policy, second);
+        assertEquals(1, lab.consultations(), "Both selected verdicts now reuse; neighbors never consume the budget");
+        assertTrue(diagnosisOf(unchanged).orElseThrow().isReusedFromPreviousRun());
+    }
+
+    @Test
     @DisplayName("should consult only the missing judge for a quiz that already has the other judge's verdict, counting that single consultation against the budget")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R005")

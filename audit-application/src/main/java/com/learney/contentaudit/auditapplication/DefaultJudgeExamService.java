@@ -7,6 +7,8 @@ import com.learney.contentaudit.auditdomain.CourseDiagnoses;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.auditdomain.EvaluationRunPurpose;
 import com.learney.contentaudit.auditdomain.JudgeExamRegistry;
+import com.learney.contentaudit.auditdomain.JudgeRegressionCatalog;
+import com.learney.contentaudit.auditdomain.judging.JudgeRegressionSuite;
 import com.learney.contentaudit.auditdomain.catalog.UnknownAnalyzerException;
 import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamOutcome;
@@ -52,14 +54,23 @@ public class DefaultJudgeExamService implements JudgeExamService {
 
     private final JudgeRuntime runtime;
 
+    private final JudgeRegressionCatalog regressions;
+
     public DefaultJudgeExamService(AuditRunner auditRunner, AnalyzerCatalog analyzerCatalog,
             JudgeExamVerdictExporter exporter, JudgeExamRegistry examRegistry,
             JudgeRuntime runtime) {
+        this(auditRunner, analyzerCatalog, exporter, examRegistry, runtime, JudgeRegressionCatalog.empty());
+    }
+
+    public DefaultJudgeExamService(AuditRunner auditRunner, AnalyzerCatalog analyzerCatalog,
+            JudgeExamVerdictExporter exporter, JudgeExamRegistry examRegistry, JudgeRuntime runtime,
+            JudgeRegressionCatalog regressions) {
         this.auditRunner = auditRunner;
         this.analyzerCatalog = analyzerCatalog;
         this.exporter = exporter;
         this.examRegistry = examRegistry;
         this.runtime = runtime;
+        this.regressions = regressions == null ? JudgeRegressionCatalog.empty() : regressions;
     }
 
     @Override
@@ -70,6 +81,18 @@ public class DefaultJudgeExamService implements JudgeExamService {
         Set<String> caseIds = request.getCaseIds() != null
                 ? new LinkedHashSet<>(request.getCaseIds())
                 : new LinkedHashSet<>();
+
+        JudgeRegressionSuite suite = regressions.suite(judgeName);
+        if (!suite.cases().isEmpty() && (!java.util.Objects.equals(suite.fingerprint(), request.getRegressionSuiteFingerprint())
+                || !request.getRegressionQuizIds().keySet().containsAll(suite.caseIds())
+                || !caseIds.containsAll(request.getRegressionQuizIds().values()))) {
+            throw new IllegalArgumentException("El examen de " + judgeName
+                    + " debe incluir todos los casos permanentes vigentes; volvé a preparar el examen ampliado.");
+        }
+
+        if (!suite.cases().isEmpty() && (request.getExamFingerprint() == null || request.getExamFingerprint().isBlank())) {
+            throw new IllegalArgumentException("El examen ampliado necesita la identidad de su preparación. Volvé a preparar el examen.");
+        }
 
         // Budget 0 is a rehearsal (F-JEXAM-R010): it reuses what that version judged and says how
         // much is missing, without paying.
@@ -103,10 +126,24 @@ public class DefaultJudgeExamService implements JudgeExamService {
         Optional<JudgeExamRecord> compatible = tookItAll
                 ? examRegistry.latestCompatible(judgeName, compatibleVersions, runtimeIdentity)
                 : Optional.empty();
-        boolean alreadyMeasuredByAlias = compatible.isPresent()
+        boolean alreadyMeasuredByAlias = compatible.isPresent() && suite.coveredBy(compatible.get())
+                && samePreparation(compatible.get(), request, judged)
                 && (compatible.get().getStatus() == JudgeExamStatus.APPROVED
                     || compatible.get().getStatus() == JudgeExamStatus.FAILED);
-        if (tookItAll && exact.isEmpty() && !alreadyMeasuredByAlias) {
+        var regressionMismatches = new ArrayList<String>();
+        var judgedRegressionIds = new ArrayList<String>();
+        for (var c : suite.cases()) {
+            String executionId = request.getRegressionQuizIds().get(c.id());
+            var verdict = verdicts.stream().filter(v -> java.util.Objects.equals(executionId, v.getCaseId())).findFirst().orElse(null);
+            if (verdict == null || verdict.getOutcome() == null || verdict.getOutcome() == JudgeExamOutcome.NOT_JUDGED) continue;
+            judgedRegressionIds.add(c.id());
+            boolean detected = verdict.getOutcome() == JudgeExamOutcome.FAILS || verdict.getOutcome() == JudgeExamOutcome.MARKED;
+            if (detected != c.expectedDetected()) regressionMismatches.add(c.id());
+        }
+        tookItAll &= judgedRegressionIds.containsAll(suite.caseIds());
+        boolean exactCurrent = exact.isPresent() && suite.coveredBy(exact.get())
+                && samePreparation(exact.get(), request, judged);
+        if (tookItAll && !exactCurrent && !alreadyMeasuredByAlias) {
             // The condition for accepting a measured result: nobody can approve a version that did
             // not judge every exercise of the file. A TAKEN alias is copied forward append-only so
             // the current process-version can be measured; an already measured alias keeps its
@@ -115,10 +152,19 @@ public class DefaultJudgeExamService implements JudgeExamService {
                     List.of(), List.of(), false, photoOf(request), null,
                     Instant.now());
             taken.setRuntimeIdentity(runtimeIdentity);
+            taken.setExamFingerprint(request.getExamFingerprint());
+            taken.setRegressionSuiteFingerprint(suite.fingerprint());
+            taken.setRegressionCaseIds(judgedRegressionIds);
+            taken.setRegressionMismatchedCaseIds(regressionMismatches);
             examRegistry.record(taken);
         }
-        return new JudgeExamTaken(judgeName, judgeVersion, verdicts, coverage, tookItAll,
+        JudgeExamTaken result = new JudgeExamTaken(judgeName, judgeVersion, verdicts, coverage, tookItAll,
                 runtimeIdentity);
+        result.setExamFingerprint(request.getExamFingerprint());
+        result.setRegressionSuiteFingerprint(suite.fingerprint());
+        result.setRegressionCaseIds(judgedRegressionIds);
+        result.setRegressionMismatchedCaseIds(regressionMismatches);
+        return result;
     }
 
     /**
@@ -136,9 +182,18 @@ public class DefaultJudgeExamService implements JudgeExamService {
         }
         String judgeName = measured.getJudgeName();
         String judgeVersion = measured.getJudgeVersion();
+        JudgeRegressionSuite suite = regressions.suite(judgeName);
+        if (!suite.cases().isEmpty() && !java.util.Objects.equals(suite.fingerprint(), measured.getRegressionSuiteFingerprint())) {
+            throw new IllegalArgumentException("La medición no corresponde al examen permanente vigente de " + judgeName
+                    + ". Volvé a preparar y rendir el examen ampliado.");
+        }
+        if (!suite.cases().isEmpty() && (measured.getExamFingerprint() == null || measured.getExamFingerprint().isBlank())) {
+            throw new IllegalArgumentException("La medición necesita la identidad del examen ampliado que se rindió.");
+        }
         List<JudgeExamRecord> takenCandidates = new ArrayList<>();
         for (JudgeExamRecord earlier : examRegistry.history(judgeName)) {
-            if (judgeVersion.equals(earlier.getJudgeVersion()) && earlier.getStatus() == JudgeExamStatus.TAKEN) {
+            if (judgeVersion.equals(earlier.getJudgeVersion()) && earlier.getStatus() == JudgeExamStatus.TAKEN
+                    && suite.coveredBy(earlier) && sameMeasurement(earlier, measured, !suite.cases().isEmpty())) {
                 takenCandidates.add(earlier);
             }
         }
@@ -155,6 +210,17 @@ public class DefaultJudgeExamService implements JudgeExamService {
                 measured.isGoalMet(), taken.getPhoto(), measured.getMeasuredBy(),
                 measured.getRecordedAt() != null ? measured.getRecordedAt() : Instant.now());
         recorded.setRuntimeIdentity(taken.getRuntimeIdentity());
+        recorded.setExamFingerprint(taken.getExamFingerprint());
+        recorded.setRegressionSuiteFingerprint(taken.getRegressionSuiteFingerprint());
+        recorded.setRegressionCaseIds(taken.getRegressionCaseIds());
+        recorded.setRegressionMismatchedCaseIds(taken.getRegressionMismatchedCaseIds());
+        if (!taken.getRegressionMismatchedCaseIds().isEmpty()) {
+            recorded.setStatus(JudgeExamStatus.FAILED);
+            recorded.setGoalMet(false);
+            // Execution quiz ids and permanent reference ids are different namespaces. The
+            // trusted regression failures already have their own field; mixing them here would
+            // show the same failed exercise twice and disagree with the measured case count.
+        }
         examRegistry.record(recorded);
         return runtime.standing(judgeName, judgeVersion, taken.getRuntimeIdentity());
     }
@@ -195,6 +261,22 @@ public class DefaultJudgeExamService implements JudgeExamService {
             }
         }
         return null;
+    }
+
+    private static boolean samePreparation(JudgeExamRecord earlier, JudgeExamRequest request, int judged) {
+        return java.util.Objects.equals(earlier.getExamFingerprint(), request.getExamFingerprint())
+                && java.util.Objects.equals(earlier.getPhoto(), photoOf(request))
+                && earlier.getCasesJudged() == judged && earlier.getCasesNotJudged() == 0;
+    }
+
+    private static boolean sameMeasurement(JudgeExamRecord taken, JudgeExamRecord measured, boolean permanentSuite) {
+        // Count and manifest matching happen before runtime selection: two preparations of the
+        // same version and motor must never consume one another's TAKEN evidence.
+        boolean bound = permanentSuite || taken.getExamFingerprint() != null || measured.getExamFingerprint() != null;
+        return taken.getCasesJudged() == measured.getCasesJudged()
+                && taken.getCasesNotJudged() == measured.getCasesNotJudged()
+                && java.util.Objects.equals(taken.getExamFingerprint(), measured.getExamFingerprint())
+                && (!bound || measured.getPhoto() == null || java.util.Objects.equals(taken.getPhoto(), measured.getPhoto()));
     }
 
     private static String photoOf(JudgeExamRequest request) {

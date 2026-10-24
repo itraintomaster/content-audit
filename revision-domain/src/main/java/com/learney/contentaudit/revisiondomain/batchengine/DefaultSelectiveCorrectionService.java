@@ -69,7 +69,8 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
                 return state(batch, recorded, null, judge); // Finished or uncertain operations are never paid twice.
             }
         }
-        CourseEntity start = config.getCourseRepository().load(config.getCoursePath());
+        if ("correct".equals(r.action())) config.getBatchStore().requireEditableContent(batch);
+        CourseEntity start = BatchCourses.start(batch, config.getCourseRepository().load(config.getCoursePath()), config.getBatchStore());
         boolean base = "base".equals(r.state()) || r.action().endsWith("-base");
         if (r.state() != null && !List.of("base", "correction").contains(r.state())) fail("Elegí la base o la corrección.");
         if (base && "correct".equals(r.action())) fail("Las correcciones se aplican sólo a la corrección vigente.");
@@ -77,7 +78,7 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         AuditReport trial = audit(cut, judge, 0, r.force() || r.action().startsWith("reanalyze"), forceOnly);
         State estimate = state(batch, trial, cut, judge, coordinatedBy);
         if (List.of("read", "estimate").contains(r.action())) return estimate;
-        if (batch.getStatus() != BatchStatus.CLOSED) fail("La tanda debe estar cerrada y sin otra operación activa.");
+        if (!idleForAnalysis(batch)) fail("La tanda debe estar cerrada y sin otra operación activa.");
         if (r.contentVersion() == null || r.contentVersion() != batch.getContentVersion()
                 || !Objects.equals(r.fingerprint(), estimate.fingerprint())
                 || !Objects.equals(r.judgeVersion(), estimate.judgeVersion()))
@@ -121,10 +122,16 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
                 measurement ? null : correctorRuntime, process(trial, judge));
         if (!base && config.getCurrentAnalysisService() != null) config.getCurrentAnalysisService().seed(batch, start);
         put(batch, run);
+        BatchStatus idleStatus = batch.getStatus();
         batch.setStatus(BatchStatus.RUNNING);
         // The entire allowance is durable before the first call. An uncertain run needs a new human decision,
         // not an automatic replay that would recover this reservation as spendable balance.
-        config.getBatchStore().saveIfVersion(batch, r.contentVersion(), BatchStatus.CLOSED);
+        final CorrectionBatch reservedBatch = batch;
+        config.getBatchStore().withAnalysisLock(batch.getId(), () -> {
+            if ("correct".equals(r.action())) config.getBatchStore().requireEditableContent(reservedBatch);
+            config.getBatchStore().saveIfVersion(reservedBatch, r.contentVersion(), idleStatus);
+            return null;
+        });
         QueryAllowance allowance = null;
         int initialSpent = batch.getQueriesSpent();
         try {
@@ -222,10 +229,10 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         }
         List<OpenRun> open = openRuns(b, coordinatedBy);
         boolean uncertain = !open.isEmpty();
-        boolean enabled = b.getStatus() == BatchStatus.CLOSED && !uncertain && allowed(c);
+        boolean enabled = idleForAnalysis(b) && !uncertain && allowed(c);
         int abstained = abstained(report, c, judge);
         String reason = enabled ? null : uncertain ? held(open.get(0))
-                : b.getStatus() != BatchStatus.CLOSED ? "Hay otra operación activa o la tanda no está cerrada."
+                : !idleForAnalysis(b) ? "Hay otra operación activa o la tanda no está cerrada."
                 : c != null && c.getUnavailableReason() != null ? c.getUnavailableReason()
                 : c != null && c.getStanding() != null ? c.getStanding().getReason() : "El juez debe aprobar su examen vigente.";
         return new State(b.getId(), BatchBook.correctionRevision(b), b.getContentVersion(), judge,
@@ -242,6 +249,11 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
     }
 
     // ── F-CORTE: a cut measurement is reconciled with what it left saved ─────────────────────────────────────
+
+    private boolean idleForAnalysis(CorrectionBatch batch) {
+        return batch.getStatus() == BatchStatus.CLOSED || (batch.getStatus() == BatchStatus.OPEN
+                && config.getBatchStore().hasSuccessor(batch.getId()));
+    }
 
     private static final Set<String> OPEN = Set.of("RUNNING", "NEEDS_REVIEW");
     private static final String BOTH = "reanalyze-both";
@@ -271,7 +283,10 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
             int added = 0;
             for (Run x : family(current, head)) {
                 if (x == head && BOTH.equals(head.action()) || !OPEN.contains(x.status())) continue;
-                Run closed = reconciled(x, now);
+                Run closed = "recorrect".equals(x.action()) ? closed(x, "PARTIAL", x.spent(), x.reached(), x.evaluated(), x.missing(), now,
+                        "Corrección interrumpida cerrada para revisión. Los cambios y el gasto registrado se conservan; "
+                                + "la reserva de " + x.reserved() + " consultas no representa saldo recuperado. Revisá los quizzes antes de otro intento.")
+                        : reconciled(x, now);
                 added += Math.max(0, closed.spent() - x.spent());
                 put(current, closed);
             }
@@ -279,7 +294,11 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
             current.setQueriesSpent(current.getQueriesSpent() + added);
             boolean opinion = BatchBook.list(current.getOpinionRuns()).stream().anyMatch(x -> "RUNNING".equals(x.status()));
             if (current.getStatus() == BatchStatus.RUNNING && openRuns(current, null).isEmpty()) {
-                if (!opinion) current.setStatus(BatchStatus.CLOSED);
+                if (!opinion) current.setStatus("recorrect".equals(head.action())
+                        ? head.process() != null && head.process().idleStatus() != null
+                                && Set.of(BatchStatus.OPEN, BatchStatus.CLOSED).contains(head.process().idleStatus())
+                                ? head.process().idleStatus() : BatchStatus.OPEN
+                        : BatchStatus.CLOSED);
                 else put(current, withDetail(find(current, head.id()),
                         " La tanda sigue tomada por una opinión en curso: no se la liberó."));
             }
@@ -427,7 +446,7 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
 
     private State reconciledState(CorrectionBatch b, Run run) {
         List<OpenRun> open = openRuns(b, null);
-        boolean free = b.getStatus() == BatchStatus.CLOSED && open.isEmpty();
+        boolean free = idleForAnalysis(b) && open.isEmpty();
         return new State(b.getId(), BatchBook.correctionRevision(b), b.getContentVersion(), run.analyzer(), run.fingerprint(),
                 run.judgeVersion(), run.runtime(), free, free ? run.detail() : open.isEmpty()
                         ? "Hay otra operación activa o la tanda no está cerrada." : held(open.get(0)),
@@ -503,7 +522,7 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
                 return bothState(batch, old, List.of()); // Never automatically resume an uncertain two-state reservation.
             }
         }
-        CourseEntity start = config.getCourseRepository().load(config.getCoursePath());
+        CourseEntity start = BatchCourses.start(batch, config.getCourseRepository().load(config.getCoursePath()), config.getBatchStore());
         CourseEntity base = level(start, batch.getLevel()), corrected = level(ledger.composedCourse(batch, start), batch.getLevel());
         AuditReport trialCorrection = audit(corrected, r.analyzer(), 0, true), trialBase = audit(base, r.analyzer(), 0, true);
         State correction = state(batch, trialCorrection, corrected, r.analyzer()), original = state(batch, trialBase, base, r.analyzer());
@@ -526,7 +545,7 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         if (r.contentVersion() == null || r.contentVersion() != batch.getContentVersion() || !Objects.equals(joint, r.fingerprint())
                 || !Objects.equals(estimate.judgeVersion(), r.judgeVersion())) fail("El contenido o el juez cambió: volvé a estimar.");
         if (!estimate.allowed()) fail(estimate.reason());
-        if (batch.getStatus() != BatchStatus.CLOSED || r.queryCap() == null || r.queryCap() < 0 || blank(r.reviewer()))
+        if (!idleForAnalysis(batch) || r.queryCap() == null || r.queryCap() < 0 || blank(r.reviewer()))
             fail("La tanda debe estar cerrada; hace falta autor y un tope explícito.");
         Run reservation = new Run(r.operationId(), "reanalyze-both", r.analyzer(), null, BatchBook.correctionRevision(batch), batch.getContentVersion(),
                 joint, estimate.judgeVersion(), estimate.runtime(), null, null, List.of(), List.of(), r.queryCap(), r.queryCap(), 0,
@@ -535,7 +554,7 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         final CorrectionBatch before = batch;
         return config.getBatchStore().withAnalysisLock(batch.getId(), () -> {
             put(before, reservation);
-            config.getBatchStore().saveIfVersion(before, r.contentVersion(), BatchStatus.CLOSED);
+            config.getBatchStore().saveIfVersion(before, r.contentVersion(), before.getStatus());
             Run completed = reservation;
             try {
                 executeSingle(child(r, r.operationId()+"-correction", "correction", correction.fingerprint(), r.queryCap()), null, r.operationId());

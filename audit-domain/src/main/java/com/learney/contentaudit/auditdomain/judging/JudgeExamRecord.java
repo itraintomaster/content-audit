@@ -42,6 +42,21 @@ public class JudgeExamRecord {
 
     private Instant recordedAt;
 
+    private String examFingerprint;
+    public String getExamFingerprint() { return examFingerprint; }
+    public void setExamFingerprint(String value) { examFingerprint = value; }
+
+    private String regressionSuiteFingerprint;
+    private List<String> regressionCaseIds = List.of();
+    private List<String> regressionMismatchedCaseIds = List.of();
+
+    public String getRegressionSuiteFingerprint() { return regressionSuiteFingerprint; }
+    public void setRegressionSuiteFingerprint(String value) { regressionSuiteFingerprint = value; }
+    public List<String> getRegressionCaseIds() { return regressionCaseIds == null ? List.of() : regressionCaseIds; }
+    public void setRegressionCaseIds(List<String> value) { regressionCaseIds = value == null ? List.of() : List.copyOf(value); }
+    public List<String> getRegressionMismatchedCaseIds() { return regressionMismatchedCaseIds == null ? List.of() : regressionMismatchedCaseIds; }
+    public void setRegressionMismatchedCaseIds(List<String> value) { regressionMismatchedCaseIds = value == null ? List.of() : List.copyOf(value); }
+
     public JudgeExamRecord() {
     }
 
@@ -232,13 +247,17 @@ public class JudgeExamRecord {
                     && Objects.equals(this.providerName, that.providerName)
                     && Objects.equals(this.modelName, that.modelName)
                     && Objects.equals(this.reasoningEffort, that.reasoningEffort)
-                    && Objects.equals(this.recordedAt, that.recordedAt);
+                    && Objects.equals(this.recordedAt, that.recordedAt)
+                    && Objects.equals(this.examFingerprint, that.examFingerprint)
+                    && Objects.equals(this.regressionSuiteFingerprint, that.regressionSuiteFingerprint)
+                    && Objects.equals(this.getRegressionCaseIds(), that.getRegressionCaseIds())
+                    && Objects.equals(this.getRegressionMismatchedCaseIds(), that.getRegressionMismatchedCaseIds());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(judgeName, judgeVersion, status, casesJudged, casesNotJudged, groups,
                 mismatchedCaseIds, goalMet, photo, measuredBy, providerName, modelName,
-                reasoningEffort, recordedAt);
+                reasoningEffort, recordedAt, examFingerprint, regressionSuiteFingerprint, getRegressionCaseIds(), getRegressionMismatchedCaseIds());
     }
 }

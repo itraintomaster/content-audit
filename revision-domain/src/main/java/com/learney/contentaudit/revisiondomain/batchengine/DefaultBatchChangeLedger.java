@@ -41,6 +41,11 @@ class DefaultBatchChangeLedger implements BatchChangeLedger {
 
     private final CourseElementLocator elementLocator;
 
+    private com.learney.contentaudit.revisiondomain.batch.BatchStore batches;
+    DefaultBatchChangeLedger withBatches(com.learney.contentaudit.revisiondomain.batch.BatchStore batches) {
+        this.batches = batches; return this;
+    }
+
     static final String REVISER_KIND = "tanda";
 
     /** Cómo empieza el motivo de un cambio que salió encadenado con otro: «sale con <cambio>: …». */
@@ -64,6 +69,7 @@ class DefaultBatchChangeLedger implements BatchChangeLedger {
     @Override
     public CorrectionBatch record(CorrectionBatch batch, BatchChange change,
             CourseEntity startCourse) {
+        startCourse = BatchCourses.start(batch, startCourse, batches);
         if (change.getCreatedAt() == null) {
             change.setCreatedAt(Instant.now());
         }
@@ -80,8 +86,22 @@ class DefaultBatchChangeLedger implements BatchChangeLedger {
     }
 
     @Override
+    public CorrectionBatch inherit(CorrectionBatch batch, List<BatchChange> changes, CourseEntity startCourse) {
+        // The caller already deep-copied this private checkpoint. Resolve its base once, install all changes and only
+        // then rebuild each final proposal. Replaying record() would copy the whole course and rewrite a proposal for
+        // every historical step, although none of these intermediate proposals can ever be observed.
+        CourseEntity base = BatchCourses.start(batch, startCourse, batches);
+        batch.setChanges(new ArrayList<>(changes));
+        Set<String> nodes = new LinkedHashSet<>();
+        for (BatchChange change : changes) if (change != null && change.getDroppedReason() == null) nodes.addAll(nodesOf(change));
+        for (String nodeId : nodes) recompose(batch, nodeId, base);
+        return batch;
+    }
+
+    @Override
     public CorrectionBatch drop(CorrectionBatch batch, String changeId, String reason,
             CourseEntity startCourse) {
+        startCourse = BatchCourses.start(batch, startCourse, batches);
         List<BatchChange> changes = BatchBook.list(batch.getChanges());
         int at = -1;
         for (int i = 0; i < changes.size(); i++) {
@@ -126,6 +146,7 @@ class DefaultBatchChangeLedger implements BatchChangeLedger {
 
     @Override
     public CourseEntity composedCourse(CorrectionBatch batch, CourseEntity startCourse) {
+        startCourse = BatchCourses.start(batch, startCourse, batches);
         CourseEntity course = startCourse;
         Set<String> nodes = new LinkedHashSet<>();
         for (BatchChange change : BatchBook.list(batch.getChanges())) {

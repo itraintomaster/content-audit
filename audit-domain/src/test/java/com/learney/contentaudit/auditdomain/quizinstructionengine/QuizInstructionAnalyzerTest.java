@@ -84,6 +84,52 @@ import com.learney.contentaudit.auditdomain.judging.JudgeQuizTally;
 )
 public class QuizInstructionAnalyzerTest {
 
+    @Test
+    void consultationScopeOnlySpendsOnTheSelectedQuizAndKeepsNeighborsPendingAcrossFreshSessions() {
+        JexamLedger ledger = new JexamLedger();
+        CountingJudge judge = new CountingJudge("v-scoped", COMPLIANT);
+        var policy = budget(10, 1);
+        policy.setNewEvaluationSubjectIds(Set.of("q2"));
+        JexamCourse first = JexamCourse.withQuizzes(3);
+        first.run(consignaAnalyzer(ledger, judge, approvedExams("v-scoped"), policy));
+        assertEquals(List.of("q2"), judge.asked());
+        assertEquals(3, first.judgeCoverage().getReached());
+        assertEquals(1, first.judgeCoverage().getEvaluated());
+        assertEquals(2, first.judgeCoverage().getNotEvaluated());
+        assertFalse(first.quizzes().get(0).getScores().containsKey("quiz-instruction"));
+        assertEquals(1.0, first.quizzes().get(1).getScores().get("quiz-instruction"));
+
+        JexamCourse second = JexamCourse.withQuizzes(3);
+        second.run(consignaAnalyzer(ledger, judge, approvedExams("v-scoped"), policy));
+        assertEquals(List.of("q2"), judge.asked(), "The selected current fingerprint reuses rather than asking again");
+        assertEquals(0, second.judgeCoverage().getEvaluators().get(0).getCoverage().getEvaluatedInRun());
+        assertEquals(1, second.judgeCoverage().getEvaluators().get(0).getCoverage().getReused());
+        assertEquals(2, second.judgeCoverage().getNotEvaluated());
+    }
+
+    @Test
+    void consultationScopeBoundsForcedConsignaQueriesAndEmptyScopeStillReusesRecordedVerdicts() {
+        JexamLedger ledger = new JexamLedger();
+        CountingJudge judge = new CountingJudge("v-scoped", COMPLIANT);
+        JexamCourse seed = JexamCourse.withQuizzes(3);
+        seed.run(consignaAnalyzer(ledger, judge, approvedExams("v-scoped"), budget(10, 1)));
+        assertEquals(3, judge.asked().size());
+
+        var forced = reevaluatePolicy(10, null);
+        forced.setNewEvaluationSubjectIds(Set.of("q2"));
+        JexamCourse selected = JexamCourse.withQuizzes(3);
+        selected.run(consignaAnalyzer(ledger, judge, approvedExams("v-scoped"), forced));
+        assertEquals(4, judge.asked().size());
+        assertEquals(List.of("q1", "q2", "q2", "q3"), judge.asked());
+
+        forced.setNewEvaluationSubjectIds(Set.of());
+        JexamCourse none = JexamCourse.withQuizzes(3);
+        none.run(consignaAnalyzer(ledger, judge, approvedExams("v-scoped"), forced));
+        assertEquals(4, judge.asked().size());
+        assertEquals(3, none.judgeCoverage().getEvaluated());
+        assertEquals(3, none.judgeCoverage().getEvaluators().get(0).getCoverage().getReused());
+    }
+
     // ------------------------------------------------------------------
     // Helpers
     // ------------------------------------------------------------------

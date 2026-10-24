@@ -43,7 +43,11 @@ public final class SelectiveCorrection {
      * F-CORTE-R005: what a measurement leaves recorded before its first query, so that a cut can be reconciled
      * later: the process that runs it, the evaluators of its judge and the motor they consult with.
      */
-    public record RunProcess(long pid, Instant startedAt, List<String> evaluators, EvaluationRuntimeIdentity runtime) {
+    public record RunProcess(long pid, Instant startedAt, List<String> evaluators, EvaluationRuntimeIdentity runtime,
+            BatchStatus idleStatus) {
+        public RunProcess(long pid, Instant startedAt, List<String> evaluators, EvaluationRuntimeIdentity runtime) {
+            this(pid, startedAt, evaluators, runtime, null);
+        }
         public RunProcess {
             evaluators = evaluators != null ? List.copyOf(evaluators) : List.of();
         }

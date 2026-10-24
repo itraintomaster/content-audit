@@ -1351,7 +1351,8 @@ public class DefaultRefinerEngineTest {
                 .map(t -> t.getNodeTarget() + " " + t.getNodeId() + " " + t.getDiagnosisKind()).toList(),
                 "R004: only the LEMMA_ABSENCE task of the exercise, none of off-level-words");
         RefinementTask cover = plan.getTasks().get(0);
-        Assertions.assertEquals(List.of("off-level-words|F-NIVFR-R002|" + QUILT + "|quilt|NOUN",
+        Assertions.assertEquals(List.of("lemma-absence|misplaced-word|" + QUILT + "|spread",
+                "off-level-words|F-NIVFR-R002|" + QUILT + "|quilt|NOUN",
                 "off-level-words|F-NIVFR-R002|" + QUILT + "|spread|VERB"),
                 cover.getOrigin().getCoveredFindings().stream().map(f -> f.getIdentity().getKey()).toList(),
                 "covered by that task: its origin names them");
@@ -1368,7 +1369,7 @@ public class DefaultRefinerEngineTest {
     @Tag("F-TAREA-R004")
     public void shouldListTheCoveredOfflevelwordsFindingsInTheOriginOfTheLEMMAABSENCETaskOfSheSpreadTheWarmBlueQuiltOnTheBedSoTheTaskCountsAsResolvedOnlyWhenBothAnalyzersStopMarkingSpreadAndQuilt() {
         // R004: the task is resolved only when both analyzers stop marking the words. Its origin carries its own finding of
-        // lemma-absence (the first by identity, quilt) and, covered, the findings of off-level-words for spread and quilt:
+        // lemma-absence (the first by identity, quilt) and covers its second word plus both off-level-words findings:
         // the batch compares all of them with the next analysis (F-TANDA-R006 inv. 2).
         DefaultRefinerEngine engine = tareaEngine();
         RefinementPlan plan = engine.plan(new AuditReport(course(level("A2", topic("t-a2", "Adjectives", quiltTopic(true))))), "a");
@@ -1377,9 +1378,12 @@ public class DefaultRefinerEngineTest {
         Assertions.assertEquals("lemma-absence|misplaced-word|" + QUILT + "|quilt", origin.getFinding().getIdentity().getKey(),
                 "its own finding is of lemma-absence");
         Assertions.assertEquals(Set.of("spread", "quilt"), origin.getCoveredFindings().stream()
+                .filter(f -> f.getAnalyzer().equals("off-level-words"))
                 .map(f -> f.getIdentity().getMarker().substring(0, f.getIdentity().getMarker().indexOf('|')))
                 .collect(java.util.stream.Collectors.toSet()), "and it carries what off-level-words marks: spread and quilt");
-        Assertions.assertTrue(origin.getCoveredFindings().stream().allMatch(f -> f.getAnalyzer().equals("off-level-words")));
+        Assertions.assertEquals(3, origin.getCoveredFindings().size());
+        Assertions.assertEquals("lemma-absence|misplaced-word|" + QUILT + "|spread",
+                origin.getCoveredFindings().get(0).getIdentity().getKey(), "the second lexical finding is covered too");
         Assertions.assertEquals(CefrLevel.A2, origin.getCefrLevel());
         Assertions.assertEquals(List.of(QUILT), origin.getReachedQuizIds());
     }
@@ -1449,7 +1453,61 @@ public class DefaultRefinerEngineTest {
         Assertions.assertEquals(List.of("QUIZ " + QUILT + " LEMMA_ABSENCE"), plan.getTasks().stream()
                 .map(t -> t.getNodeTarget() + " " + t.getNodeId() + " " + t.getDiagnosisKind()).toList(),
                 "R007: one task per exercise, though it marks spread and quilt");
-        Assertions.assertNull(plan.getTasks().get(0).getOrigin(), "a vocabulary task with nothing to cover has no origin");
+        TaskOrigin origin = plan.getTasks().get(0).getOrigin();
+        Assertions.assertNotNull(origin, "the existing vocabulary task carries its current findings");
+        Assertions.assertEquals("quilt", origin.getFinding().getIdentity().getMarker());
+        Assertions.assertEquals(List.of("spread"), origin.getCoveredFindings().stream()
+                .map(f -> f.getIdentity().getMarker()).toList());
+    }
+
+    @Test
+    @Tag("F-TAREA-R007")
+    void vocabularyProvenanceRequiresCurrentNodeAnalyzerAndDeclaredResolution() {
+        Finding valid = finding("lemma-absence", "misplaced-word", QUILT, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, AnalysisCost.INSTANT, "quilt", "quilt es B2");
+        Finding rankOnly = finding("lemma-absence", "rank", QUILT, FindingSeverity.LOW,
+                FindingResolution.RANK_ONLY, AnalysisCost.INSTANT, "rank", "context only");
+        Finding noResolution = finding("lemma-absence", "missing-resolution", QUILT, FindingSeverity.MEDIUM,
+                null, AnalysisCost.INSTANT, "missing", "unknown resolution");
+        Finding undeclaredRule = finding("lemma-absence", "rule", QUILT, FindingSeverity.MEDIUM,
+                FindingResolution.RULE, AnalysisCost.INSTANT, "rule", "no lexical rule scope");
+        Finding otherNode = finding("lemma-absence", "misplaced-word", "other-quiz", FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, AnalysisCost.INSTANT, "other", "different exercise");
+        Finding otherTarget = finding("lemma-absence", "misplaced-word", QUILT, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, AnalysisCost.INSTANT, "target", "different target");
+        otherTarget.getNode().setTarget(AuditTarget.KNOWLEDGE);
+        Finding otherAnalyzer = finding("sentence-length", "short", QUILT, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, AnalysisCost.INSTANT, "length", "different analyzer");
+        AuditReport report = new AuditReport(quiz(QUILT, "quilt", scores("lemma-absence", 0.7),
+                rankOnly, noResolution, undeclaredRule, otherNode, otherTarget, otherAnalyzer, valid));
+
+        TaskOrigin origin = tareaEngine().plan(report, "a").getTasks().get(0).getOrigin();
+
+        Assertions.assertNotNull(origin);
+        Assertions.assertSame(valid, origin.getFinding());
+        Assertions.assertTrue(origin.getCoveredFindings().isEmpty(), "only authoritative actionable findings");
+        Assertions.assertNull(sut.plan(report, "a").getTasks().get(0).getOrigin(),
+                "without correction declarations the old score task gains no edit provenance");
+    }
+
+    @Test
+    @Tag("F-TAREA-R007")
+    void vocabularyFindingsDoNotCreateTasksForPerfectMissingOrUnsupportedScores() {
+        Finding valid = finding("lemma-absence", "misplaced-word", QUILT, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, AnalysisCost.INSTANT, "quilt", "quilt es B2");
+        DefaultRefinerEngine engine = tareaEngine();
+        for (Map<String, Double> score : List.of(scores("lemma-absence", 1.0), scores(), scores("lemma-count", 0.1))) {
+            Assertions.assertTrue(engine.plan(new AuditReport(quiz(QUILT, "quilt", score, valid)), "a")
+                    .getTasks().isEmpty(), "findings enrich existing tasks; they never bypass score/binding gates");
+        }
+        AuditReport lowWithoutFindings = new AuditReport(quiz(QUILT, "quilt", scores("lemma-absence", 0.7)));
+        RefinementTask task = engine.plan(lowWithoutFindings, "a").getTasks().get(0);
+        Assertions.assertEquals(DiagnosisKind.LEMMA_ABSENCE, task.getDiagnosisKind());
+        Assertions.assertNull(task.getOrigin(), "legacy score-only tasks remain available without invented findings");
+        Finding ranks = finding("lemma-absence", "rank", QUILT, FindingSeverity.LOW,
+                FindingResolution.RANK_ONLY, AnalysisCost.INSTANT, "rank", "context only");
+        Assertions.assertNull(engine.plan(new AuditReport(quiz(QUILT, "quilt", scores("lemma-absence", 0.7), ranks)), "a")
+                .getTasks().get(0).getOrigin(), "rank-only observations never grant editing scope");
     }
 
     @Test
@@ -1494,12 +1552,12 @@ public class DefaultRefinerEngineTest {
     }
 
     @Test
-    @DisplayName("should leave the origin empty in every vocabulary task except a LEMMA_ABSENCE task that covers an error finding")
+    @DisplayName("should keep legacy score-only vocabulary origins empty except a task that covers an error finding")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R007")
     public void shouldLeaveTheOriginEmptyInEveryVocabularyTaskExceptALEMMAABSENCETaskThatCoversAnErrorFinding() {
-        // R002 and R007: the origin is null in the vocabulary tasks, as today; only the LEMMA_ABSENCE task that covers a
-        // finding of errors carries one, with the covered findings.
+        // R002 and R007: this old report has scores but no vocabulary findings to attach. Only the LEMMA_ABSENCE
+        // task that covers a declared error finding gains an origin; the score-only tasks keep their legacy metadata.
         AuditNode tree = baseTree();
         List<AuditNode> quizzes = new ArrayList<>();
         collectQuizzes(tree, quizzes);

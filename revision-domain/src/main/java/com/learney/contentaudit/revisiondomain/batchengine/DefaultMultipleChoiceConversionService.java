@@ -27,8 +27,13 @@ final class DefaultMultipleChoiceConversionService implements MultipleChoiceConv
     @Override public State execute(Request request) {
         if (request == null || !List.of("read", "suggest", "restore").contains(Objects.toString(request.action(), "")))
             throw new IllegalArgumentException("Pedí read, suggest o restore.");
+        if (!"read".equals(request.action()))
+            return batches.withAnalysisLock(request.batchId(), () -> work(request));
+        return work(request);
+    }
+    private State work(Request request) {
         CorrectionBatch batch = batches.load(request.batchId()).orElseThrow(() -> new IllegalArgumentException("No existe la tanda."));
-        CourseEntity start = courses.load(coursePath);
+        CourseEntity start = BatchCourses.start(batch, courses.load(coursePath), batches);
         CourseEntity current = ledger.composedCourse(batch, start);
         if (request.action().equals("read")) return state(batch, current, request.quizId());
         if (batch.getStatus() != BatchStatus.OPEN && batch.getStatus() != BatchStatus.CLOSED)
@@ -64,6 +69,7 @@ final class DefaultMultipleChoiceConversionService implements MultipleChoiceConv
             if (!candidate.eligible()) throw new IllegalArgumentException(candidate.reason());
             after = candidate.after(); source = candidate.source();
         }
+        batches.requireEditableContent(batch);
         BatchStatus previous = batch.getStatus();
         int version = batch.getContentVersion();
         batch.setStatus(BatchStatus.RUNNING);

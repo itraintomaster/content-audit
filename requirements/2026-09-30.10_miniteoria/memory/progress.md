@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-24 — analyst — F-MINIT-R001 explicita la consigna efectiva del quiz; R012 nueva preserva la decisión y la
+  fórmula de la lección, separándolas de la naturalidad general. Se conservan las reglas editoriales previas.
+  Next: alinear el contexto del juez y la corrección; esta actualización no acredita una ejecución ni un examen nuevo.
+
 2026-10-05 — analyst — FEAT-MINIT actualizado por la aclaración de José: veredicto, hallazgo, examen y corrección por
   quiz y por su subcaso; la consulta por tema queda sólo como agrupamiento de costo.
   Next: alinear el prompt y los casos del examen con F-MINIT-R001/R002/R003/R006/R007 antes de volver a rendir.

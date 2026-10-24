@@ -239,7 +239,8 @@ public final class MeterBench {
 
         @Override
         public ContentAnalyzer create(EvaluationRunPolicy policy) {
-            return new Run(policy != null ? policy.getMaxNewEvaluations() : 0);
+            return new Run(policy != null ? policy.getMaxNewEvaluations() : 0,
+                    policy != null ? policy.getNewEvaluationSubjectIds() : null);
         }
 
         @Override
@@ -255,6 +256,8 @@ public final class MeterBench {
         private final class Run implements ContentAnalyzer {
             private int budget;
 
+            private final Set<String> newEvaluationSubjectIds;
+
             private int reached;
 
             private int evaluated;
@@ -263,8 +266,9 @@ public final class MeterBench {
 
             private final Map<AuditNode, List<Boolean>> verdicts = new IdentityHashMap<>();
 
-            Run(int budget) {
+            Run(int budget, Set<String> newEvaluationSubjectIds) {
                 this.budget = budget;
+                this.newEvaluationSubjectIds = newEvaluationSubjectIds;
             }
 
             @Override
@@ -281,7 +285,8 @@ public final class MeterBench {
                     Boolean verdict = book.get(key);
                     if (verdict != null) {
                         tally[1]++;
-                    } else if (budget > 0 && !notApproved.contains(name)) {
+                    } else if (budget > 0 && !notApproved.contains(name)
+                            && (newEvaluationSubjectIds == null || newEvaluationSubjectIds.contains(quiz.getId()))) {
                         budget--;
                         verdict = faulty.apply(evaluator, read);
                         book.put(key, verdict);

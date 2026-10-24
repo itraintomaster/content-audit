@@ -3,6 +3,7 @@ package com.learney.contentaudit.auditdomain.localtools;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -22,12 +23,27 @@ public interface LocalToolGate {
         return decide(analyzerName, tool, methodId, policy);
     }
 
+    /**
+     * Method aliases declared by the hybrid judge, without the local tool's version prefix.
+     * The gate attaches that same current tool version to every alias and keeps the exact runtime.
+     */
+    default LocalToolGateDecision decide(String analyzerName, LocalTool tool, String methodId,
+            EvaluationRunPolicy policy, EvaluationRuntimeIdentity runtimeIdentity, Set<String> compatibleMethodIds) {
+        return decide(analyzerName, tool, methodId, policy, runtimeIdentity);
+    }
+
     LocalToolCard card(String analyzerName, LocalTool tool, String methodId);
 
     /** Same card, scoped to the runtime that owns the examined hybrid step. */
     default LocalToolCard card(String analyzerName, LocalTool tool, String methodId,
             EvaluationRuntimeIdentity runtimeIdentity) {
         return card(analyzerName, tool, methodId);
+    }
+
+    /** Same aliases and runtime as the decision that controls publication. */
+    default LocalToolCard card(String analyzerName, LocalTool tool, String methodId,
+            EvaluationRuntimeIdentity runtimeIdentity, Set<String> compatibleMethodIds) {
+        return card(analyzerName, tool, methodId, runtimeIdentity);
     }
 
     LocalToolCard alternativeCard(String analyzerName, Evaluator alternative);

@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-24 — analyst — F-UNICA-R001/R002/R007 ajustadas y R008 nueva: consigna propia, selector y fórmula visibles,
+  sin paráfrasis libre ni restricciones inventadas. Fuente: aclaración humana sobre can/could del 24/10.
+  Next: alinear la evaluación y la corrección con estos criterios, sin ejecutar consultas reales en esta revisión documental.
+
 2026-10-01 — developer (C) — Definición del juez sin casos del examen (guardián en verde); ejemplos de
   defecto inventados cuando el pozo no tenía uno real. Versión nueva d6ff57d6…, sin examen rendido.
 

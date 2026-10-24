@@ -31,7 +31,7 @@ public class DefaultBatchServiceFactory implements BatchServiceFactory {
         CorrectionScope scope = config.getCorrectionScope() != null ? config.getCorrectionScope()
                 : new DefaultCorrectionScope();
         DefaultGateFactory gates = new DefaultGateFactory();
-        BatchChangeLedger ledger = new DefaultBatchChangeLedger(config.getArtifactStore(), locator);
+        BatchChangeLedger ledger = new DefaultBatchChangeLedger(config.getArtifactStore(), locator).withBatches(config.getBatchStore());
         BatchTaskSelector selector = new DefaultBatchTaskSelector(config.getArtifactStore(), config.getCorrectionCatalog());
         DefaultMultipleChoiceConversionService conversions = new DefaultMultipleChoiceConversionService(
                 config.getBatchStore(), config.getRefinementPlanStore(), config.getCourseRepository(), config.getCoursePath(), ledger);
@@ -50,7 +50,8 @@ public class DefaultBatchServiceFactory implements BatchServiceFactory {
                 config.getAnalyzerCatalog(), config.getJudgeFreshnessCatalog());
         BatchCloser closer = new DefaultBatchCloser(config.getBatchComparator(), gates.batchGate(),
                 config.getBlindSampleService(), ledger, config.getBatchStore(), config.getCoursePath(), judgePass)
-                .withPlans(config.getRefinementPlanStore(), config.getCorrectionCatalog());
+                .withPlans(config.getRefinementPlanStore(), config.getCorrectionCatalog())
+                .withCurrentAnalysis(config.getCurrentAnalysisService());
         DefaultBatchReview review = new DefaultBatchReview(config.getBatchStore(), config.getArtifactStore(),
                 config.getRefinementPlanStore(), new DefaultBatchReportBuilder(), config.getReviewCache());
         // F-PUBPROD-R001 y R003: publicar lee la misma revisión que muestra la bandeja y deja la lista con la misma
@@ -69,6 +70,6 @@ public class DefaultBatchServiceFactory implements BatchServiceFactory {
                 config.getCourseRepository(), config.getPanelRunnerFactory(), config.getBriefer(), selector,
                 new DefaultBatchCostEstimator(), rules, panels, ledger, closer, publisher, new DefaultBatchReportBuilder(),
                 config.getCoursePath(), config.getGoalBook(), judgePass, review)
-                        .withPanel(config.getPanelRunner());
+                        .withPanel(config.getPanelRunner()).withContentProjection(config.getAnalysisComposer());
     }
 }

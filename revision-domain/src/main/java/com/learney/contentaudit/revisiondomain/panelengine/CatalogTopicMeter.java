@@ -114,20 +114,22 @@ class CatalogTopicMeter implements TopicMeter {
         KnowledgeEntity topic = knowledgeState != null ? knowledgeState : work.getKnowledge();
         AuditableCourse course = courseMapper.map(cut(work, topic));
         List<String> selection = analyzers != null && !analyzers.isEmpty() ? new ArrayList<>(analyzers) : null;
+        Set<String> consultableNodes = consultableNodes(work, topic);
 
         // Budget 0 for every judge: what is recorded counts and costs nothing.
-        AuditReport report = run(course, selection, Map.of());
+        AuditReport report = run(course, selection, Map.of(), work.getNewEvaluationSubjectIds());
         for (JudgeCoverageDiagnosis judge : coverages(report).values()) {
             if (judge.getStanding() != null && !judge.getStanding().isConsultsOnCourse()) {
                 continue; // F-JEXAM-R003: a version without its exam approved does not consult
             }
             int pending = pending(judge);
-            while (pending > 0) {
+            while (pending > 0 && hasConsultablePending(report, judge.getJudgeName(), consultableNodes)) {
                 int reserved = pendingEvaluators(judge);
                 if (!Allowances.reserveSequential(allowance, reserved)) {
                     return measurement(work, topic, report);
                 }
-                AuditReport consulted = run(course, selection, Map.of(judge.getJudgeName(), reserved));
+                AuditReport consulted = run(course, selection, Map.of(judge.getJudgeName(), reserved),
+                        work.getNewEvaluationSubjectIds());
                 JudgeCoverageDiagnosis after = coverages(consulted).get(judge.getJudgeName());
                 int spent = after != null ? spent(after) : 0;
                 if (allowance != null) {
@@ -176,7 +178,8 @@ class CatalogTopicMeter implements TopicMeter {
     }
 
     /** One run of the engine: every analyzer of the selection with the given budget of new queries, 0 by default. */
-    private AuditReport run(AuditableCourse course, List<String> selection, Map<String, Integer> budgets) {
+    private AuditReport run(AuditableCourse course, List<String> selection, Map<String, Integer> budgets,
+            Set<String> newEvaluationSubjectIds) {
         Map<String, EvaluationRunPolicy> policies = new LinkedHashMap<>();
         for (String name : selection != null ? selection : List.copyOf(budgets.keySet())) {
             policies.put(name, new EvaluationRunPolicy(budgets.getOrDefault(name, 0), false, null, null, null, 1));
@@ -184,6 +187,7 @@ class CatalogTopicMeter implements TopicMeter {
         for (Map.Entry<String, Integer> budget : budgets.entrySet()) {
             policies.put(budget.getKey(), new EvaluationRunPolicy(budget.getValue(), false, null, null, null, 1));
         }
+        policies.values().forEach(policy -> policy.setNewEvaluationSubjectIds(newEvaluationSubjectIds));
         return auditEngine.runAudit(course, new AnalyzerRunSelection(selection, policies));
     }
 
@@ -206,6 +210,34 @@ class CatalogTopicMeter implements TopicMeter {
             return judge.getCost().getPendingConsultations();
         }
         return judge.getNotEvaluated();
+    }
+
+    /** Keep the complete topic as context, while only selected quizzes and their topic may start new evaluations. */
+    private static Set<String> consultableNodes(TopicWork work, KnowledgeEntity topic) {
+        if (work.getNewEvaluationSubjectIds() == null) return null;
+        Set<String> result = new HashSet<>(work.getNewEvaluationSubjectIds());
+        if (topic.getQuizTemplates() != null && topic.getQuizTemplates().stream()
+                .anyMatch(quiz -> quiz != null && result.contains(quiz.getId()))) result.add(topic.getId());
+        return result;
+    }
+
+    /** Pending neighbors remain visible, but never reserve budget or trip a zero cap by themselves. */
+    private static boolean hasConsultablePending(AuditReport report, String analyzer, Set<String> nodes) {
+        if (nodes == null) return true;
+        if (nodes.isEmpty() || report == null || report.getRoot() == null) return false;
+        // Pair findings may be attached to the other quiz. Their runtime decides scope from both ends.
+        if ("near-duplicates".equals(analyzer)) return true;
+        List<AuditNode> pending = new ArrayList<>(List.of(report.getRoot()));
+        while (!pending.isEmpty()) {
+            AuditNode node = pending.remove(pending.size() - 1);
+            if (node.getEntity() != null && nodes.contains(node.getEntity().getId())
+                    && (node.getUnevaluatedBy() != null && node.getUnevaluatedBy().contains(analyzer)
+                    || node.getPartiallyEvaluatedBy() != null && node.getPartiallyEvaluatedBy().contains(analyzer))) {
+                return true;
+            }
+            if (node.getChildren() != null) pending.addAll(node.getChildren());
+        }
+        return false;
     }
 
     /** A paired judge may need both verdicts atomically; a cached evaluator needs no new reservation. */

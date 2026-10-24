@@ -28,7 +28,9 @@ un tema para ahorrar una consulta.
 ## Principio central: una decisión independiente por quiz
 
 Evaluá cada quiz por separado. Contrastá su `miniTheory` solamente con lo que ese
-quiz pide y corrige: su `prompt` y sus respuestas u opciones correctas.
+quiz pide y corrige: su consigna propia `instructions`, su `prompt` y sus
+respuestas u opciones correctas. La consigna global del tema permanece como
+contexto; una consigna local puede precisar la operación de ese quiz.
 El nivel, el tema y sus instrucciones aportan contexto, pero no convierten la
 tarjeta en una explicación global del tema.
 
@@ -65,6 +67,23 @@ rutinaria salvo que el propio quiz contraste justamente esas formas. Por ejemplo
 no exijas que una tarjeta sobre una acción en curso explique además la inversión
 si el alumno no decide el orden. En cambio, si las rutas del quiz son `do` frente
 a `does`, la concordancia del auxiliar sí es focal.
+
+#### Convención de un ejercicio y afirmación sobre todo el idioma
+
+Incluí en el contraste focal el selector y la fórmula de la consigna local.
+Una regla visible puede asignar `could` a `Polite request:` y `can` a la rama
+normal. Una tarjeta que explica cómo elegir en ese ejercicio debe conservar
+esa distinción. No la repruebes por el solo hecho de que en una conversación
+real también pueda ser cortés un pedido con `can`: la convención local no
+implica «can nunca expresa cortesía».
+
+Sí comprobá que la tarjeta delimite ese alcance y no enseñe una prohibición
+universal falsa. Si necesita precisarlo, la corrección es «En este ejercicio,
+usa Could para Polite request y Can para el pedido normal», con la fórmula
+visible que corresponda; no borrar la etiqueta ni convertir las dos ramas en
+intercambiables. Una explicación que dice que cualquier variante sirve, sin
+permitir decidir la rama que pide el quiz, no sustituye esa distinción focal.
+No inventes un selector que la consigna y el enunciado no proporcionan.
 
 ### 2. Proyectá la tarjeta a átomos
 
@@ -122,20 +141,14 @@ asociación parcial se presenta sin delimitar como una regla de correspondencia 
 enseña una restricción que esa palabra o construcción no tiene. No hace falta que
 aparezcan «siempre», «sólo» o «únicamente» para que esa formulación sea engañosa.
 
-En una regla de concordancia, distinguí la dirección de la explicación: el sujeto
-del caso determina qué forma verbal corresponde bajo el tiempo y la construcción
-practicados. La relación inversa no queda completa por nombrar ese único sujeto
-si la misma forma admite otros sujetos comunes. Una regla formulada desde la forma
-hacia un único sujeto, sin delimitarla al ejemplo, exagera su correspondencia y
-reprueba aunque permita elegir la respuesta marcada en este quiz.
-
-Una aplicación explícita al ejemplo, una regla que parte del sujeto hacia su forma
-o una descripción verdadera de la compatibilidad sin restringirla no fallan por
-este motivo. No penalices por el orden superficial de las palabras: comprobá la
-relación y el alcance que se enseñan. Tampoco exijas enumerar todos los sujetos ni
-agregar subtemas ajenos para corregirla; una formulación atómica con la dirección
-adecuada puede ser suficiente. Mantené el tiempo, la polaridad y el orden de la
-construcción al razonar sobre la regla.
+En una regla de concordancia, distinguí la dirección de la explicación y el
+alcance que se afirma. Una asociación desnuda entre una forma y un sujeto no
+significa por sí sola «esa forma sólo admite ese sujeto»: no inventes una
+restricción exclusiva para poder refutarla. Si la tarjeta sí afirma esa exclusión
+explícita o inequívocamente y un sujeto común la refuta, corresponde el defecto
+de alcance de este paso. Si sólo invierte la dirección didáctica, seguí al paso 7.
+Una aplicación al ejemplo o una descripción verdadera de compatibilidad no
+exagera su alcance por el mero orden de sus palabras.
 
 Un contraejemplo debe refutar la afirmación que realmente se hizo, manteniendo sus condiciones.
 Si la tarjeta dice que un indicio no basta para acreditar un rasgo, no la refuta una oración que añade explícitamente ese rasgo por otra vía.
@@ -143,7 +156,31 @@ Agregar información que cambia la decisión no demuestra una excepción a la
 misma regla local. Distinguí «este indicio no acredita el rasgo» de «este indicio
 prohíbe que el rasgo exista»: sólo la segunda es una prohibición universal.
 
-### 7. Regla correcta convertida en receta lexical → `OVER_SPECIFIC_FOR_QUIZ`
+### 7. Concordancia explicada desde la forma hacia el sujeto → `DIDACTIC_DIRECTION`
+
+Si no aplica ningún defecto anterior y la decisión focal es la concordancia,
+la explicación debe partir del sujeto o de la categoría que determina la forma
+verbal, bajo el tiempo y la construcción practicados. Cuando la tarjeta presenta
+la forma verbal como punto de partida y le asigna el sujeto, devolvé
+`DIDACTIC_DIRECTION` con severidad `LOW`.
+
+Es un criterio editorial sobre cómo explicar la elección, incluso cuando la
+compatibilidad inversa sea verdadera o biunívoca. No exige inventar otro sujeto
+para esa forma, una falsedad gramatical ni una excepción que no existe. La
+explicación identifica la dirección invertida; el `counterexample` propone una
+redacción local sujeto → forma, no un contraejemplo lógico.
+
+Evaluá la relación enseñada, no una posición literal de las palabras: una
+explicación causal que identifica al sujeto como razón de la forma es válida
+aunque mencione primero el verbo. Son válidas las formulaciones equivalentes
+«el sujeto lleva la forma», «con el sujeto se usa la forma» o un esquema
+sujeto → forma. No impongas una frase única ni exijas enumerar otros sujetos.
+Conservá tiempo, polaridad y orden de la construcción; no conviertas una regla
+del presente afirmativo en una afirmación que también valga para negaciones,
+preguntas o pasado. Este paso no regula asociaciones léxicas o de significado
+cuando la concordancia no es el contraste focal.
+
+### 8. Regla correcta convertida en receta lexical → `OVER_SPECIFIC_FOR_QUIZ`
 
 Si no aplica ningún defecto anterior, comprobá si la tarjeta enseña una estructura
 mediante palabras incidentales de la respuesta. Especifica de más cuando formula
@@ -189,7 +226,7 @@ ejemplo que aporta una distinción. Este paso detecta léxico incidental fijado
 como parte de una receta, no aplica un límite de palabras ni exige una única
 redacción. La concisión es una recomendación para corregir el defecto encontrado.
 
-### 8. Metalenguaje teórico o jerga gramatical innecesaria → `THEORETICAL_JARGON`
+### 9. Metalenguaje teórico o jerga gramatical innecesaria → `THEORETICAL_JARGON`
 
 Si no aplica ningún defecto anterior, comprobá si la tarjeta recurre a terminología
 teórica, etiquetas lingüísticas formales o jerga gramatical abstracta que resulta
@@ -218,13 +255,42 @@ Ante jerga teórica, la `explanation` identifica el término teórico y explica 
 formularlo de forma intuitiva. El `counterexample` propone la redacción en lenguaje
 llano ceñida al mismo quiz.
 
-### 9. Si nada anterior aplica → sano
+### 10. Inglés citado sin resaltado nativo → `MISSING_ENGLISH_HIGHLIGHT`
+
+Si no aplica ningún defecto anterior, comprobá que las palabras, formas y fragmentos
+en inglés que la tarjeta cita para enseñar la decisión estén delimitados con `$...$`.
+Incluye pronombres, auxiliares, contracciones, expresiones de varias palabras,
+letras o terminaciones que se enseñan como formas del inglés y transformaciones
+ortográficas. Pueden marcarse fragmentos completos, como `$verbo → forma$`, cuando
+ambos lados son formas inglesas concretas; las etiquetas españolas «verbo base»,
+«sujeto» o «complemento» quedan fuera. No exijas marcas si la tarjeta está enteramente en español
+y explica suficientemente el caso sin citar formas inglesas.
+
+Revisá cada aparición: tener una terminación ya marcada no cubre los pronombres,
+otras terminaciones ni el ejemplo sin marcar. Una cita entre comillas, en negrita
+Markdown, en backticks o en HTML no reemplaza el resaltado nativo `$...$`.
+Las marcas deben estar cerradas y distinguir el inglés de la explicación española:
+encerrar toda la tarjeta no resuelve la falta de resaltado selectivo. No agregues
+marcas anidadas a fragmentos que ya están correctamente delimitados. No penalices
+una variante equivalente que marca juntas varias formas inglesas o una transformación.
+
+Devolvé `MISSING_ENGLISH_HIGHLIGHT`, severidad `LOW`, cuando falta ese resaltado.
+La `explanation` identifica los fragmentos concretos sin marcar o mal delimitados.
+El `counterexample` propone la misma explicación con las marcas corregidas, sin
+cambiar su regla, ejemplos ni alcance. Si completa supera 300 caracteres, mostrá
+un fragmento literal con sus marcas corregidas dentro de ese límite; la
+`explanation` identifica también las demás apariciones por corregir. El límite
+de la evidencia no autoriza recortar la tarjeta real. Es una reparación de presentación, no un
+contraejemplo gramatical. Si existe un defecto anterior, conservá su categoría y
+gravedad; cualquier redacción correctiva que propongas debe respetar también las marcas.
+
+### 11. Si nada anterior aplica → sano
 
 Devolvé `holds: true`.
 
 La precedencia terminal completa es:
 `FALSE_RULE` / `INSUFFICIENT_FOR_QUIZ` → `OTHER_SUBTOPIC_CONTENT` →
-`OVERSTATED_FOR_QUIZ` → `OVER_SPECIFIC_FOR_QUIZ` → `THEORETICAL_JARGON` → sano. Dentro del primer nivel, usá `FALSE_RULE` cuando
+`OVERSTATED_FOR_QUIZ` → `DIDACTIC_DIRECTION` → `OVER_SPECIFIC_FOR_QUIZ` → `THEORETICAL_JARGON` → `MISSING_ENGLISH_HIGHLIGHT` → sano. Dentro del primer nivel, usá `FALSE_RULE` cuando
 hay dirección o clasificación local falsa; usá `INSUFFICIENT_FOR_QUIZ` cuando
 falta la distinción necesaria.
 
@@ -274,7 +340,9 @@ hermano: el paso 5 ya cerró el caso como `OTHER_SUBTOPIC_CONTENT`.
 ## Resultado sano
 
 Usá `holds: true` cuando la miniteoría sea verdadera, suficiente y específica
-para su quiz. Entonces `problem`, `severity` y `counterexample` son `null`.
+para su quiz, resalta con `$...$` el inglés que cita y, si explica concordancia,
+enseña la relación sujeto → forma.
+Entonces `problem`, `severity` y `counterexample` son `null`.
 
 No inventes un defecto por omitir formas o usos que no aparecen en ese quiz, por
 no explicar otros quizzes del tema, por simplificar algo que no cambia la
@@ -302,12 +370,19 @@ terminal aplicable. La severidad está fijada y nunca puede ser `BLOCKING`:
 - `OTHER_SUBTOPIC_CONTENT` → `LOW`: explica correctamente el caso, pero además
   agrega cualquier contenido que pertenece sólo a otro subtema. Si ese contenido
   reemplaza la explicación necesaria, usá `INSUFFICIENT_FOR_QUIZ`.
+- `DIDACTIC_DIRECTION` → `LOW`: sin falsedad, insuficiencia ni alcance engañoso,
+  presenta la forma verbal como punto de partida para asignarle un sujeto,
+  cuando la explicación debe partir del sujeto para elegir su forma. Puede ser
+  compatible e incluso biunívoca; su defecto es la dirección didáctica.
 - `OVER_SPECIFIC_FOR_QUIZ` → `LOW`: la regla local es verdadera y suficiente,
   pero fija léxico incidental en una receta del ítem que se puede abstraer sin
   perder el contraste focal. No se usa sólo porque el texto sea largo.
 - `THEORETICAL_JARGON` → `LOW`: la regla local es verdadera, suficiente y específica,
   pero recurre a metalenguaje gramatical abstracto o etiquetas lingüísticas teóricas
   en vez de explicarse en lenguaje funcional y accesible para un estudiante.
+- `MISSING_ENGLISH_HIGHLIGHT` → `LOW`: sin defectos anteriores, las palabras o
+  formas inglesas citadas carecen total o parcialmente de resaltado nativo `$...$`.
+  La evidencia identifica los fragmentos y propone una reparación sólo de formato.
 
 El `counterexample` muestra evidencia breve aplicada al propio quiz: una
 completación correcta, una formulación que desmienta la regla o la decisión no
@@ -321,6 +396,16 @@ de la tarjeta, qué restricción puede aprender el alumno y cómo recuperar una 
 local precisa sin ampliar a otros subtemas. El `counterexample` muestra un uso común
 que refuta esa restricción. Esa evidencia debe permitir al corrector entender el
 defecto; no uses respuestas esperadas ni ejemplos de un corpus de examen.
+
+Al proponer una corrección de concordancia, cualquiera sea el problema elegido,
+orientá la redacción sujeto → forma y mantené las condiciones del quiz. Una
+restricción exclusiva engañosa se refuta con un uso común, pero la propuesta
+local de corrección también debe recuperar esa dirección.
+
+Ante `DIDACTIC_DIRECTION`, la `explanation` distingue la compatibilidad verdadera
+del criterio editorial de dirección. El `counterexample` propone una redacción
+breve que parte del sujeto y conserva tiempo y polaridad. No inventes una
+incompatibilidad ni un contraejemplo gramatical para justificar este defecto.
 
 Ante sobreespecificación, la `explanation` identifica el fragmento incidental,
 explica por qué no determina la regla y qué papel gramatical se puede abstraer.
@@ -364,7 +449,7 @@ fences ni prosa adicional:
   inventado o repetido.
 - `problem`: `FALSE_RULE`, `INSUFFICIENT_FOR_QUIZ`,
   `OVERSTATED_FOR_QUIZ`, `OTHER_SUBTOPIC_CONTENT`, `OVER_SPECIFIC_FOR_QUIZ`,
-  `THEORETICAL_JARGON` o `null`.
+  `THEORETICAL_JARGON`, `DIDACTIC_DIRECTION`, `MISSING_ENGLISH_HIGHLIGHT` o `null`.
 - `severity`: `HIGH`, `MEDIUM`, `LOW` o `null`, según la correspondencia fija.
 - Si `holds` es false, problema, severidad y contraejemplo no son null.
 - No incluyas claves adicionales ni uses conocimiento de un corpus de examen.

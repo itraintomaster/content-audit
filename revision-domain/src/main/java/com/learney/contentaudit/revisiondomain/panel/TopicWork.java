@@ -8,6 +8,7 @@ import com.learney.contentaudit.refinerdomain.topicwords.TopicWordLights;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -36,6 +37,15 @@ public class TopicWork {
     private Map<String, Integer> attemptsUsed;
 
     private List<CandidateRejection> carriedRejections;
+
+    /** Null keeps legacy consultation scope; an empty set allows only recorded evaluations. */
+    private Set<String> newEvaluationSubjectIds;
+
+    private Map<String, DidacticReference> didacticReferences = Map.of();
+    public Map<String, DidacticReference> getDidacticReferences() { return didacticReferences; }
+    public void setDidacticReferences(Map<String, DidacticReference> references) {
+        didacticReferences = references == null ? Map.of() : Map.copyOf(references);
+    }
 
     public TopicWork() {
     }
@@ -145,6 +155,14 @@ public class TopicWork {
         this.carriedRejections = carriedRejections;
     }
 
+    public Set<String> getNewEvaluationSubjectIds() {
+        return newEvaluationSubjectIds;
+    }
+
+    public void setNewEvaluationSubjectIds(Set<String> newEvaluationSubjectIds) {
+        this.newEvaluationSubjectIds = newEvaluationSubjectIds == null ? null : Set.copyOf(newEvaluationSubjectIds);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -160,11 +178,13 @@ public class TopicWork {
                     && Objects.equals(this.wordLights, that.wordLights)
                     && Objects.equals(this.conversion, that.conversion)
                     && Objects.equals(this.attemptsUsed, that.attemptsUsed)
-                    && Objects.equals(this.carriedRejections, that.carriedRejections);
+                    && Objects.equals(this.carriedRejections, that.carriedRejections)
+                    && Objects.equals(this.newEvaluationSubjectIds, that.newEvaluationSubjectIds)
+                    && Objects.equals(this.didacticReferences, that.didacticReferences);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(batchId, level, milestoneId, topicId, knowledge, sentenceMode, briefs, wordLights, conversion, attemptsUsed, carriedRejections);
+        return Objects.hash(batchId, level, milestoneId, topicId, knowledge, sentenceMode, briefs, wordLights, conversion, attemptsUsed, carriedRejections, newEvaluationSubjectIds, didacticReferences);
     }
 }

@@ -4,6 +4,10 @@ Decisions future sessions should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-24 — analyst — El juez considera la consigna efectiva propia del quiz además de la general; la miniteoría
+  explica la elección y la fórmula del caso. Una verdad general sobre cortesía no reemplaza la convención didáctica.
+  why: José confirmó que la propuesta can/could había perdido el selector «Polite request» y el objetivo de la actividad.
+
 2026-10-05 — analyst — La miniteoría se juzga, identifica y corrige por quiz concreto, no por tema ni por texto
   compartido. Un lote puede seguir reuniendo el tema para ahorrar consultas, pero cada tarjeta sólo explica el subcaso
   del quiz (pregunta, negación, afirmación o vocabulario correspondiente) y no se propaga a otros quizzes.

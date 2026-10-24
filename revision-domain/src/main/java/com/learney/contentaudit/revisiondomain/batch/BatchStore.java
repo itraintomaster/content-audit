@@ -18,6 +18,29 @@ public interface BatchStore {
     default void saveAnalysisSelection(AnalysisSelection selection) {
         throw new UnsupportedOperationException("El store no guarda selecciones de análisis.");
     }
+    /** A successor freezes its predecessor's content while analyses remain appendable. */
+    default boolean hasSuccessor(String batchId) {
+        return list().stream().anyMatch(b -> b.getEvolution() != null
+                && batchId.equals(b.getEvolution().parentBatchId()));
+    }
+    default void requireEditableContent(CorrectionBatch batch) {
+        if (hasSuccessor(batch.getId())) throw new IllegalStateException(
+                "Esta corrección tiene una siguiente versión: su contenido está conservado. Elegí la última para corregir; podés reanalizar ésta.");
+    }
+    /** Implementations make the seals check and the single child write atomic under the parent lock. */
+    default void commitSuccessor(String parentId, int expectedVersion, String expectedFingerprint,
+            int expectedAnalysisRevision, CorrectionBatch child) {
+        withAnalysisLock(parentId, () -> {
+            CorrectionBatch parent = load(parentId).orElseThrow();
+            if (parent.getContentVersion() != expectedVersion
+                    || analysisSelections(parentId).size() != expectedAnalysisRevision
+                    || child.getEvolution() == null
+                    || !java.util.Objects.equals(expectedFingerprint, child.getEvolution().parentFingerprint())
+                    || hasSuccessor(parentId)) throw new IllegalStateException(
+                            "La corrección o su análisis cambió: volvé a preparar la siguiente versión.");
+            save(child); return null;
+        });
+    }
     void save(CorrectionBatch batch);
 
     /** Optimistic commit for a directed edit; filesystem adapters make the check and write atomic. */

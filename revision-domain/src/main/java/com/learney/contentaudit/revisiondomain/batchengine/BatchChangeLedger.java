@@ -12,6 +12,12 @@ import javax.annotation.processing.Generated;
 interface BatchChangeLedger {
     CorrectionBatch record(CorrectionBatch batch, BatchChange change, CourseEntity startCourse);
 
+    /** Installs a private predecessor ledger and rebuilds each final proposal once. */
+    default CorrectionBatch inherit(CorrectionBatch batch, java.util.List<BatchChange> changes, CourseEntity startCourse) {
+        for (BatchChange change : changes) record(batch, change, startCourse);
+        return batch;
+    }
+
     CorrectionBatch drop(CorrectionBatch batch, String changeId, String reason,
             CourseEntity startCourse);
 

@@ -1,8 +1,10 @@
 package com.learney.contentaudit.auditinfrastructure;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.learney.contentaudit.auditdomain.JudgePromotionRegistry;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamException;
 import com.learney.contentaudit.auditdomain.judging.JudgePromotionRecord;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import java.io.IOException;
@@ -30,6 +32,17 @@ public final class FileSystemJudgePromotionRegistry implements JudgePromotionReg
         n.put("providerName",record.runtimeIdentity().getProviderName());n.put("modelName",record.runtimeIdentity().getModelName());
         n.put("reasoningEffort",record.runtimeIdentity().getReasoningEffort());n.put("reviewer",record.reviewer());n.put("reason",record.reason());
         n.put("evidenceFile",record.evidenceFile());n.put("evidenceSha256",record.evidenceSha256());n.put("promotedAt",record.promotedAt().toString());
+        if (record.examException()!=null) {
+            JudgeExamException exception=record.examException();
+            ObjectNode scope=n.putObject("examException");
+            scope.put("examFingerprint",exception.examFingerprint());
+            scope.put("regressionSuiteFingerprint",exception.regressionSuiteFingerprint());
+            scope.put("examRecordedAt",exception.examRecordedAt().toString());
+            var regressionIds=scope.putArray("acceptedRegressionCaseIds");
+            exception.acceptedRegressionCaseIds().forEach(regressionIds::add);
+            var mismatchedIds=scope.putArray("acceptedMismatchedCaseIds");
+            exception.acceptedMismatchedCaseIds().forEach(mismatchedIds::add);
+        }
         Path f=file(record.judgeName());
         try {
             Files.createDirectories(f.getParent());
@@ -57,11 +70,38 @@ public final class FileSystemJudgePromotionRegistry implements JudgePromotionReg
                     var n=json.readTree(line);
                     var record=new JudgePromotionRecord(n.path("judgeName").asText(),n.path("judgeVersion").asText(),
                             EvaluationRuntimeIdentity.explicit(n.path("providerName").asText(),n.path("modelName").asText(),n.path("reasoningEffort").asText()),
-                            n.path("reviewer").asText(),n.path("reason").asText(),n.path("evidenceFile").asText(),n.path("evidenceSha256").asText(),Instant.parse(n.path("promotedAt").asText()));
+                            n.path("reviewer").asText(),n.path("reason").asText(),n.path("evidenceFile").asText(),n.path("evidenceSha256").asText(),Instant.parse(n.path("promotedAt").asText()),
+                            n.has("examException") ? readException(n.get("examException")) : null);
                     if(judge.equals(record.judgeName())) records.add(record);
                 } catch(IOException | RuntimeException incomplete) { /* Cut or invalid records cannot grant approval. */ }
             }
         } catch(IOException e) { throw new UncheckedIOException("No se pudo leer la promoción",e); }
         return List.copyOf(records);
+    }
+
+    private JudgeExamException readException(JsonNode scope) {
+        if (scope==null || !scope.isObject()) throw new IllegalArgumentException("Excepción de examen inválida");
+        return new JudgeExamException(requiredText(scope,"examFingerprint"),
+                requiredText(scope,"regressionSuiteFingerprint"),
+                Instant.parse(requiredText(scope,"examRecordedAt")),
+                requiredTextList(scope,"acceptedRegressionCaseIds"),
+                requiredTextList(scope,"acceptedMismatchedCaseIds"));
+    }
+
+    private String requiredText(JsonNode node,String name) {
+        JsonNode value=node.get(name);
+        if (value==null || !value.isTextual()) throw new IllegalArgumentException("Excepción de examen incompleta: "+name);
+        return value.textValue();
+    }
+
+    private List<String> requiredTextList(JsonNode node,String name) {
+        JsonNode values=node.get(name);
+        if (values==null || !values.isArray()) throw new IllegalArgumentException("Excepción de examen incompleta: "+name);
+        List<String> result=new ArrayList<>();
+        for (JsonNode value:values) {
+            if (!value.isTextual()) throw new IllegalArgumentException("Caso de excepción inválido: "+name);
+            result.add(value.textValue());
+        }
+        return result;
     }
 }

@@ -10,8 +10,9 @@ import java.util.function.Function;
 public final class DefaultCurrentAnalysisServiceFactory {
     public CurrentAnalysisService create(BatchServiceConfig config, AnalysisComposer composer,
             Function<CourseEntity, String> fingerprint, QuizStudentViewRenderer renderer) {
+        config.setAnalysisComposer(composer);
         var locator = config.getElementLocator() == null ? new DefaultCourseElementLocator() : config.getElementLocator();
-        return new DefaultCurrentAnalysisService(config, new DefaultBatchChangeLedger(config.getArtifactStore(), locator),
+        return new DefaultCurrentAnalysisService(config, new DefaultBatchChangeLedger(config.getArtifactStore(), locator).withBatches(config.getBatchStore()),
                 composer, fingerprint, renderer, new DefaultBatchReviewServiceFactory().create(config.getBatchStore(),
                 config.getArtifactStore(), config.getRefinementPlanStore(), config.getReviewCache()));
     }

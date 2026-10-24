@@ -192,33 +192,17 @@ public class DefaultRuleStageTest {
     }
 
     @Test
-    @DisplayName("should keep as a change of the batch, marked with its rule, a rule fix that only asks to rerecord, passing it through the change gate with its request and listing it to rerecord")
+    @DisplayName("Audio-only legacy tasks do not enter correction rules or change the exercise")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
-    public void shouldKeepAsAChangeOfTheBatchMarkedWithItsRuleARuleFixThatOnlyAsksToRerecordPassingItThroughTheChangeGateWithItsRequestAndListingItToRerecord(
-            ) {
-        // R004 and F-NOEMP-R004: the audio of «I learned ___ (me / myself) to drive a car.» reads the «/». The exercise is
-        // right; its rule only asks to record it again with what it says. That is a change of its rule too: it passes the gate
-        // with its request, which is listed to record, and its task waits for the recording.
+    public void audioOnlyLegacyTasksAreReservedForPrepublication() {
         CourseEntity course = TandaFixture.withLearned(TandaFixture.course());
         Finding audio = TandaFixture.audioOfLearned();
         Rules rules = new Rules(course, List.of(audio),
                 TandaFixture.task("t-audio", audio, TandaFixture.REFLEXIVE, CefrLevel.A1));
-
         CorrectionBatch batch = rules.apply("t-audio");
-
-        assertEquals(1, batch.getChanges().size());
-        BatchChange change = batch.getChanges().get(0);
-        assertEquals("data-coherence", change.getRuleId(), "marked with its rule");
-        assertTrue(change.getSteps().get(0).getParts().isEmpty(), "the exercise does not change");
-        assertTrue(change.getGateVerdict().isPasses(), change.getGateVerdict().getReasons().toString());
-        assertEquals(List.of(new AudioRerecordRequest(TandaFixture.LEARNED, MesaFixture.audioKey(TandaFixture.LEARNED),
-                List.of("I learned myself to drive a car."))), change.getGateVerdict().getRerecords(), "listed to record");
-        BatchTaskOutcome outcome = BatchBook.outcome(batch, "t-audio").orElseThrow();
-        assertEquals(BatchTaskOutcomeKind.PENDING_RERECORDING, outcome.getKind());
-        assertEquals(change.getChangeId(), outcome.getChangeId());
-        assertEquals("regrabar " + MesaFixture.audioKey(TandaFixture.LEARNED) + " con «I learned myself to drive a car.»",
-                outcome.getDetail());
+        assertTrue(batch.getChanges().isEmpty());
+        assertEquals(BatchTaskOutcomeKind.PENDING, BatchBook.kind(batch,"t-audio"));
     }
 
 

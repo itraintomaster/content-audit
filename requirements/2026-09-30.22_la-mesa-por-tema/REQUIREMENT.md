@@ -119,9 +119,10 @@ consultas, las que estimó el paquete C.
 
 > La decisión no la toma un modelo: sale sólo de las mediciones y los veredictos. Un candidato se acepta si:
 > 1. resuelve al menos una tarea del ejercicio: el analizador que la marcó ya no la marca;
-> 2. no empeora nada del ejercicio ([F-NOEMP-R001](#F-NOEMP-R001) a [F-NOEMP-R004](#F-NOEMP-R004)).
+> 2. no empeora nada del ejercicio ([F-NOEMP-R001](#F-NOEMP-R001) a [F-NOEMP-R004](#F-NOEMP-R004));
+> 3. conserva el objetivo, la fórmula y los selectores didácticos del ejercicio ([F-MESA-R016](#F-MESA-R016)).
 >
-> Con 1 y 2, el candidato tiene menos errores que el original por gravedad. Si se aceptan varios, gana el que deja menos
+> Con 1, 2 y 3, el candidato tiene menos errores que el original por gravedad. Si se aceptan varios, gana el que deja menos
 > hallazgos, por gravedad; a igualdad, el que no cambia lo que se escucha; después, el que queda en el rango de largo; y
 > si siguen empatados, el primero. Las mismas mediciones dan siempre la misma decisión, con sus motivos.
 
@@ -251,6 +252,36 @@ excepción más a lo que un cambio conserva ([F-RPRES-R001](#F-RPRES-R001)), aco
 opciones es el mínimo que contrasta contracciones; hoy las opciones múltiples de A1 tienen de 2 a 6
 ([DOUBT-OPCIONES-CONTRACCIONES](#DOUBT-OPCIONES-CONTRACCIONES)).
 
+<a id="F-MESA-R016"></a>
+### Rule[F-MESA-R016] - Resolver hallazgos no autoriza redefinir lo que practica el ejercicio
+**Severity**: critical | **Validation**: VALIDATED
+
+> El corrector conserva el objetivo de aprendizaje, la fórmula de transformación y las pistas que seleccionan la
+> respuesta dentro de ese objetivo. Un hallazgo no autoriza eliminarlos, convertir la tarea en paráfrasis libre ni
+> ampliar las respuestas para que desaparezca el error a costa de cambiar lo que aprende el alumno.
+
+<details><summary>Preservación y criterios de aceptación</summary>
+
+Se puede aclarar una restricción visible o reparar una pista defectuosa cuando la tarea lo permite, conservando la
+decisión que debía practicar el alumno. Un cambio de objetivo requiere un encargo explícito del operador; no se
+deduce del número de hallazgos ni de la preferencia de quien propone.
+
+En el caso confirmado por José el 24/10/2026, «Polite request» selecciona `could`, y el pedido normal selecciona `can`
+según la convención visible de la lección ([F-UNICA-R008](#F-UNICA-R008)). Quitar «Polite request» y aceptar ambos
+modales no resuelve el ejercicio original: borra la distinción que enseñaba. Tampoco se agregan sin más variantes con
+`please`, sinónimos u otras construcciones si incumplen una fórmula que la tarea hace visible. Si esa fórmula no es
+visible, se informa la falta de indicación y se propone aclararla, sin inventar su contenido sólo desde la respuesta
+guardada.
+
+La miniteoría nueva conserva esa misma decisión ([F-MINIT-R012](#F-MINIT-R012)); una observación verdadera sobre
+cortesía en el inglés general no justifica borrar la convención de la actividad. La propuesta y sus motivos deben
+permitir distinguir una reparación del contenido de un cambio de objetivo pedido por el operador.
+
+**Fuente**: observación y aclaración explícita de José del 24/10/2026 sobre la propuesta de
+«Polite request: I want you to get me some tea.» y la fórmula específica de la lección `can/could`.
+
+</details>
+
 ## Contexto
 
 **Por qué una mesa por tema.** El 077 revisó los 11.287 ejercicios con revisores por lote y verificadores que intentaron
@@ -311,9 +342,9 @@ journeys:
         then: juzgar
       - id: juzgar
         action: "Los jueces que leen lo que cambió juzgan cada candidato como queda, y el script decide"
-        gate: [F-MESA-R005, F-MESA-R006, F-MESA-R013]
+        gate: [F-MESA-R005, F-MESA-R006, F-MESA-R013, F-MESA-R016]
         outcomes:
-          - when: "Un candidato resuelve al menos una tarea y no empeora nada"
+          - when: "Un candidato resuelve al menos una tarea, no empeora nada y conserva el objetivo y las restricciones didácticas"
             then: aceptado
           - when: "Los dos jueces de traducción y sentido no coinciden"
             then: desempate
@@ -412,7 +443,8 @@ Continuous* es real («isn't» y «'s not» valen las dos). Hasta que José cont
 - **FEAT-QICOR, FEAT-LASAG, FEAT-KTLR** — La corrección de hoy, su revalidación, su lazo de intentos y sus criterios, que
   siguen valiendo fuera de las tandas: R002, R006, R007, R014.
 - **FEAT-JEXAM, FEAT-TRSEN, FEAT-UNICA, FEAT-MCVALE, FEAT-MINIT** (ronda 1, paquete C) — Qué lee cada juez, cómo juzga un
-  candidato y cuántas consultas van a la vez: R005, R008, R010, R011, R012, R013.
+  candidato y cuántas consultas van a la vez: R005, R008, R010, R011, R012, R013. [F-MESA-R016](#F-MESA-R016) conserva
+  el selector y la fórmula de [F-UNICA-R008](#F-UNICA-R008) y la explicación específica de [F-MINIT-R012](#F-MINIT-R012).
 - **FEAT-OMVAL, FEAT-OPMUL** — Una sola correcta, y la opción múltiple que hoy no se corrige: R011.
 - **FEAT-SEMAF, FEAT-CLEX** — El semáforo del tema y la consulta léxica: R003, R004.
 - **FEAT-REVBYP, FEAT-REVAPR, FEAT-RPRES, FEAT-CDIFF, FEAT-EVCOST** — Propuestas pendientes, preservación y reuso de

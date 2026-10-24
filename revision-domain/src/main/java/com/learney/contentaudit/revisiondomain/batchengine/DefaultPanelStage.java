@@ -38,6 +38,9 @@ import com.learney.contentaudit.revisiondomain.panel.PanelRunSettings;
 import com.learney.contentaudit.revisiondomain.panel.PanelRunner;
 import com.learney.contentaudit.revisiondomain.panel.QueryAllowance;
 import com.learney.contentaudit.revisiondomain.panel.TopicWork;
+import com.learney.contentaudit.revisiondomain.panel.DidacticReference;
+import com.learney.contentaudit.revisiondomain.panel.DidacticRepairBrief;
+import com.learney.contentaudit.revisiondomain.panelengine.DidacticContracts;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -120,6 +123,8 @@ class DefaultPanelStage implements PanelStage {
         for (String taskId : BatchBook.list(batch.getTaskIds())) {
             if (selectedTaskIds != null && !selectedTaskIds.contains(taskId)) continue;
             RefinementTask task = tasks.get(taskId);
+            if (ContentCorrectionTasks.audioOnly(task)) continue;
+            task = ContentCorrectionTasks.content(task);
             BatchTaskOutcomeKind kind = BatchBook.kind(batch, taskId);
             if (task == null || kind != BatchTaskOutcomeKind.PENDING && kind != BatchTaskOutcomeKind.NOT_ATTEMPTED) {
                 continue;
@@ -193,11 +198,29 @@ class DefaultPanelStage implements PanelStage {
     private TopicWork work(CorrectionBatch batch, AuditReport start, BatchBook.Place place, List<RefinementTask> tasks,
             boolean selective) {
         KnowledgeEntity knowledge = place.knowledge();
+        Map<String, DidacticReference> references = new LinkedHashMap<>();
+        Map<String, DidacticReference> repairTasks = new LinkedHashMap<>();
+        if (selective) for (var run : BatchBook.list(batch.getSelectiveRuns())) {
+            if (!"recorrect".equals(run.action()) || run.sourceRunId() == null
+                    || tasks.stream().noneMatch(t -> BatchBook.list(run.taskIds()).contains(t.getId()))) continue;
+            Map<String, DidacticReference> resolved = new LinkedHashMap<>();
+            for (var baseline : BatchBook.list(batch.getComparisonBaselines()))
+                if (run.id().equals(baseline.operationId()) && baseline.didacticReference() != null)
+                    resolved.put(baseline.quizId(), baseline.didacticReference());
+            if (!resolved.keySet().containsAll(run.quizIds()))
+                throw new IllegalStateException("Falta la referencia didáctica congelada de esta operación.");
+            references.putAll(resolved);
+            resolved.forEach((id, ref) -> repairTasks.put(DidacticContracts.taskId(run.id(), id), ref));
+        }
         List<ErrorTaskBrief> briefs = new ArrayList<>();
         Map<String, Integer> attemptsUsed = new LinkedHashMap<>();
         List<CandidateRejection> carried = new ArrayList<>();
         for (RefinementTask task : tasks) {
-            Optional<ErrorTaskBrief> brief = briefer != null ? briefer.brief(start, task) : Optional.empty();
+            Optional<ErrorTaskBrief> brief = repairTasks.containsKey(task.getId())
+                    ? Optional.of(new DidacticRepairBrief(task, repairTasks.get(task.getId())))
+                    : briefer != null ? briefer.brief(start, task) : Optional.empty();
+            if (repairTasks.containsKey(task.getId())) brief.ifPresent(b ->
+                    b.setContextFindings(DefaultQuizCorrectionService.contextFindings(start, task)));
             brief.ifPresent(briefs::add);
             Optional<BatchTaskOutcome> outcome = BatchBook.outcome(batch, task.getId());
             if (outcome.isPresent() && outcome.get().getAttempts() > 0) {
@@ -246,8 +269,15 @@ class DefaultPanelStage implements PanelStage {
                 conversion = order;
             }
         }
-        return new TopicWork(batch.getId(), batch.getLevel(), place.milestone().getId(), place.topic().getId(), knowledge,
+        TopicWork work = new TopicWork(batch.getId(), batch.getLevel(), place.milestone().getId(), place.topic().getId(), knowledge,
                 knowledge.getSentenceMode(), briefs, lights, conversion, attemptsUsed, carried);
+        work.setDidacticReferences(references);
+        if (selective) {
+            Set<String> selectedQuizzes = new LinkedHashSet<>();
+            for (RefinementTask task : tasks) selectedQuizzes.addAll(BatchBook.quizzesOf(task));
+            work.setNewEvaluationSubjectIds(selectedQuizzes);
+        }
+        return work;
     }
 
     /** One decision of the panel into the batch: its outcomes and, when accepted, its change in the ledger. */

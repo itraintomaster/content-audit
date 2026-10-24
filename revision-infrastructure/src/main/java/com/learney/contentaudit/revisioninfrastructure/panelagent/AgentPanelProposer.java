@@ -114,7 +114,28 @@ class AgentPanelProposer implements PanelProposer {
         inputs.put("wordLights", json(wordLights(request.getWordLights())));
         inputs.put("conversion", json(conversion(request.getConversion())));
         inputs.put("previousRejections", json(rejections(request.getPreviousRejections())));
+        inputs.put("didacticReference", json(didacticReference(request)));
         return inputs;
+    }
+
+    private static ObjectNode didacticReference(PanelRequest request) {
+        ObjectNode node = JSON.createObjectNode();
+        var ref = request.getDidacticReference();
+        if (ref == null) return node;
+        node.put("sourceOperationId", ref.sourceOperationId());
+        node.put("sourceContentVersion", ref.sourceContentVersion());
+        node.put("quizId", ref.quizId());
+        node.put("origin", "EXPLICIT_HISTORICAL_TEACHING_CONTRACT");
+        node.put("restoreRequestFormula", ref.restoreRequestFormula());
+        node.put("operatorInstruction", ref.operatorInstruction());
+        node.set("provenance", JSON.valueToTree(ref.provenance()));
+        var quiz = ref.sourceQuiz();
+        if (quiz != null) {
+            node.put("instructions", quiz.getInstructions()); node.put("title", quiz.getTitle());
+            node.put("miniTheory", quiz.getMiniTheory());
+            node.set("sentenceParts", JSON.valueToTree(quiz.getForm() == null ? List.of() : quiz.getForm().getSentenceParts()));
+        }
+        return node;
     }
 
     private static ArrayNode topicView(List<QuizStudentView> views, List<String> quizIds) {
@@ -148,20 +169,21 @@ class AgentPanelProposer implements PanelProposer {
             node.put("target", brief.getTask() != null && brief.getTask().getNodeTarget() != null
                     ? brief.getTask().getNodeTarget().name() : null);
             node.put("nodeId", brief.getTask() != null ? brief.getTask().getNodeId() : null);
+            if (brief instanceof com.learney.contentaudit.revisiondomain.panel.DidacticRepairBrief repair) {
+                node.put("origin", "EXPLICIT_DIDACTIC_REPAIR");
+                node.put("observation", "Restaurar el selector y la forma pedidos por la referencia didáctica de v"
+                        + repair.getReference().sourceContentVersion() + ". Es un encargo explícito, no un hallazgo de juez.");
+            }
             Finding finding = brief.getFinding();
-            if (finding != null) {
-                node.put("analyzer", finding.getAnalyzer());
-                node.put("rule", finding.getRule());
-                node.put("severity", finding.getSeverity() != null ? finding.getSeverity().name() : null);
-                node.put("identity", finding.getIdentity() != null ? finding.getIdentity().getKey() : null);
-                if (finding.getEvidence() != null) {
-                    node.put("observation", finding.getEvidence().getObservation());
-                    ArrayNode evidence = node.putArray("evidence");
-                    for (EvidencePart part : finding.getEvidence().getExamined() != null
-                            ? finding.getEvidence().getExamined() : List.<EvidencePart>of()) {
-                        evidence.addObject().put("label", part.getLabel()).put("text", part.getText());
-                    }
-                }
+            finding(node, finding);
+            ArrayNode covered = node.putArray("coveredFindings");
+            for (Finding related : brief.getCoveredFindings() != null
+                    ? brief.getCoveredFindings() : List.<Finding>of()) {
+                if (related != null) finding(covered.addObject(), related);
+            }
+            ArrayNode context = node.putArray("contextFindings");
+            for (Finding related : brief.getContextFindings()) {
+                if (related != null) finding(context.addObject(), related);
             }
             ArrayNode scope = node.putArray("mayTouch");
             for (ExercisePart part : brief.getEditScope() != null ? brief.getEditScope() : List.<ExercisePart>of()) {
@@ -169,6 +191,22 @@ class AgentPanelProposer implements PanelProposer {
             }
         }
         return array;
+    }
+
+    private static void finding(ObjectNode node, Finding finding) {
+        if (finding == null) return;
+        node.put("analyzer", finding.getAnalyzer());
+        node.put("rule", finding.getRule());
+        node.put("severity", finding.getSeverity() != null ? finding.getSeverity().name() : null);
+        node.put("identity", finding.getIdentity() != null ? finding.getIdentity().getKey() : null);
+        if (finding.getEvidence() != null) {
+            node.put("observation", finding.getEvidence().getObservation());
+            ArrayNode evidence = node.putArray("evidence");
+            for (EvidencePart part : finding.getEvidence().getExamined() != null
+                    ? finding.getEvidence().getExamined() : List.<EvidencePart>of()) {
+                evidence.addObject().put("label", part.getLabel()).put("text", part.getText());
+            }
+        }
     }
 
     private static ObjectNode wordLights(TopicWordLights lights) {

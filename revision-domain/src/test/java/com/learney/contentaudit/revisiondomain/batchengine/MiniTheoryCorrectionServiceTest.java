@@ -37,6 +37,7 @@ class MiniTheoryCorrectionServiceTest {
         topic.getQuizTemplates().forEach(q -> q.setMiniTheory("Regla existente"));
         batch.setStatus(BatchStatus.CLOSED); batch.setContentVersion(5); batch.setCorrectionRevision(1);
         when(batches.load("batch")).thenReturn(Optional.of(batch));
+        doAnswer(i -> ((java.util.function.Supplier<?>) i.getArgument(1)).get()).when(batches).withAnalysisLock(anyString(), any());
         when(reviews.read("batch")).thenAnswer(i -> new BatchReview("batch", 1, batch.getContentVersion(), null,
                 List.of(), List.of(), List.of(), List.of(), List.of()));
         when(repository.load(TandaFixture.COURSE_PATH)).thenReturn(course);

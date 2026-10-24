@@ -56,6 +56,8 @@ class MultipleChoiceProductionContractTest {
         var batches = mock(BatchStore.class);
         when(batches.load("batch")).thenReturn(Optional.of(batch));
         when(batches.list()).thenReturn(List.of(batch));
+        when(batches.withAnalysisLock(anyString(), any())).thenAnswer(inv ->
+                ((java.util.function.Supplier<?>) inv.getArgument(1)).get());
         var artifacts = mock(RevisionArtifactStore.class);
         var service = new DefaultMultipleChoiceConversionServiceFactory().create(batches,
                 mock(RefinementPlanStore.class), artifacts, repository, work);
@@ -85,6 +87,8 @@ class MultipleChoiceProductionContractTest {
         var batches = mock(BatchStore.class);
         when(batches.load("batch")).thenReturn(Optional.of(batch));
         when(batches.list()).thenReturn(List.of(batch));
+        when(batches.withAnalysisLock(anyString(), any())).thenAnswer(inv ->
+                ((java.util.function.Supplier<?>) inv.getArgument(1)).get());
         var plans = mock(RefinementPlanStore.class);
         when(plans.load("plan")).thenReturn(Optional.empty());
         var artifacts = mock(RevisionArtifactStore.class);

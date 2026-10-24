@@ -94,6 +94,8 @@ class DefaultRuleStage implements RuleStage {
         Map<String, List<RefinementTask>> byExercise = new LinkedHashMap<>();
         for (String taskId : BatchBook.list(batch.getTaskIds())) {
             RefinementTask task = tasks.get(taskId);
+            if (ContentCorrectionTasks.audioOnly(task)) continue;
+            task = ContentCorrectionTasks.content(task);
             Optional<Finding> finding = BatchBook.findingOf(task);
             if (task == null || finding.isEmpty() || task.getNodeTarget() != AuditTarget.QUIZ
                     || finding.get().getResolution() != FindingResolution.RULE

@@ -1,0 +1,1061 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Examen completo de miniteoría: discrepancias primero, referencias diferenciadas y aprobación pendiente.">
+<title>182 · Una discrepancia requiere revisión antes de aprobar</title><style>
+  /* ============ tokens: claro y, abajo, oscuro ============ */
+  :root{
+    --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
+    --fg:#1c1a17; --fg-2:#57524b; --fg-3:#8b847a;
+    --accent:#b4531f; --accent-soft:#fdf1e7;
+    --ok:#2f6b46; --ok-soft:#e9f4ed;
+    --warn:#8a6314; --warn-soft:#fbf2dd;
+    --bad:#a3342c; --bad-soft:#fbecea;
+    --info:#2a5b8f; --info-soft:#e9f1f9;
+    --radius:10px; --shadow:0 1px 2px rgba(28,26,23,.05), 0 8px 24px -16px rgba(28,26,23,.25);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#131211; --bg-elev:#1b1a18; --line:#302d29; --line-soft:#252320;
+      --fg:#efece7; --fg-2:#a8a29a; --fg-3:#7b756c;
+      --accent:#e08b4f; --accent-soft:#2a1f16;
+      --ok:#7fc79c; --ok-soft:#16241c;
+      --warn:#e0b657; --warn-soft:#272013;
+      --bad:#e58b82; --bad-soft:#2a1917;
+      --info:#8ab6e5; --info-soft:#141f2b;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.6 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+    font-feature-settings:"kern","liga","cv05";
+    padding:40px 24px 80px;
+  }
+  .wrap{max-width:940px;margin:0 auto}
+  code,kbd,pre,.mono{font-family:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace}
+  a{color:var(--accent)}
+  code,a{overflow-wrap:anywhere}   /* una ruta o un link largo desborda el celular: 15 de 76 briefs viejos */
+
+  /* ============ encabezado ============ */
+  header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
+  .kicker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .kicker .num{font:700 12px ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.04em;color:var(--fg-3);
+    background:var(--line-soft);padding:3px 8px;border-radius:6px;font-variant-numeric:tabular-nums}
+  .badge{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;background:var(--accent-soft);color:var(--accent);
+    border:1px solid color-mix(in srgb,var(--accent) 22%,transparent)}
+  .meta{font-size:12.5px;color:var(--fg-3)}
+  h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2;margin:0;letter-spacing:-.02em;font-weight:650}
+  .sub{margin:10px 0 0;color:var(--fg-2);font-size:16px;max-width:62ch}
+
+  /* ============ el lede: la conclusión, dos renglones ============ */
+  .lede{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:var(--radius);padding:16px 18px;margin:0 0 34px;box-shadow:var(--shadow)}
+  .lede p{margin:0;font-size:17.5px;line-height:1.5;max-width:68ch}
+  .lede strong{font-weight:650}
+
+  /* ============ sección: título = conclusión · un dibujo · un pie ============ */
+  section{margin:0 0 38px}
+  h2{font-size:19px;line-height:1.3;font-weight:650;letter-spacing:-.01em;margin:0 0 14px;max-width:60ch}
+  p{margin:0 0 12px}
+  .pie{font-size:13.5px;line-height:1.5;color:var(--fg-2);margin:10px 0 0;max-width:78ch}
+  .grid{display:grid;gap:12px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;
+    box-shadow:var(--shadow);min-width:0}
+  .ptl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-3);font-weight:700;margin:0 0 10px}
+
+  /* ============ KPIs: el número grande, su comparación abajo ============ */
+  .kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+  .kpi{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:32px;font-weight:700;letter-spacing:-.025em;line-height:1.05;font-variant-numeric:tabular-nums}
+  .kpi .n small{font-size:.48em;font-weight:600;color:var(--fg-3);margin-left:.3em;letter-spacing:0}
+  .kpi .l{font-size:13px;color:var(--fg-2);line-height:1.4;margin-top:6px}
+  .kpi.dest .n{color:var(--accent)}
+
+  /* ============ barras horizontales con etiqueta ============ */
+  .hb{display:grid;gap:10px}
+  .hb .r{display:grid;grid-template-columns:minmax(110px,38%) minmax(0,1fr) auto;gap:12px;align-items:center;font-size:13.5px}
+  .hb .t{color:var(--fg-2);line-height:1.3;min-width:0}
+  .hb .t small{display:block;color:var(--fg-3);font-size:12px}
+  .hb .tr{position:relative;height:10px;border-radius:99px;background:var(--line-soft)}
+  .hb .f{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent)}
+  .hb .f.g{background:var(--ok)} .hb .f.b{background:var(--bad)} .hb .f.w{background:var(--warn)}
+  .hb .f.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .hb .meta{position:absolute;top:-4px;bottom:-4px;width:2px;border-radius:1px;background:var(--fg)}
+  .hb .n{font-weight:650;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--fg-2);margin-top:12px}
+  .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--accent)}
+  .sw.g{background:var(--ok)} .sw.b{background:var(--bad)} .sw.w{background:var(--warn)}
+  .sw.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .sw.m{width:2px;height:13px;border-radius:0;background:var(--fg);vertical-align:-2px}
+
+  /* ============ flujo en pasos ============ */
+  .flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:16px}
+  .flow .st{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:12px 13px;display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow);min-width:0}
+  .flow .st:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:8px;height:8px;z-index:1;
+    border-top:2px solid var(--fg-3);border-right:2px solid var(--fg-3);transform:translateY(-50%) rotate(45deg)}
+  .flow .i{font:700 12px/24px ui-monospace,monospace;width:24px;height:24px;border-radius:7px;text-align:center;
+    background:var(--accent-soft);color:var(--accent)}
+  .flow .h{font-weight:650;font-size:14px;line-height:1.25}
+  .flow .eg{font:italic 14px/1.3 ui-serif,Georgia,serif;color:var(--fg)}
+  .flow .d{font-size:12.5px;line-height:1.4;color:var(--fg-2)}
+  .flow .st.end{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+
+  /* ============ antes y después ============ */
+  .ad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}
+  .ad .lado{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:13px 15px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow);min-width:0}
+  .ad .antes{border-top:3px solid var(--bad)} .ad .despues{border-top:3px solid var(--ok)}
+  .ad .rot{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+  .ad .antes .rot{color:var(--bad)} .ad .despues .rot{color:var(--ok)}
+  .ad .despues::before{content:"→";position:absolute;left:-24px;top:50%;transform:translateY(-50%);
+    font-size:19px;color:var(--fg-3)}
+  .ad ol{margin:0;padding-left:20px;font-size:13.5px;line-height:1.45;color:var(--fg-2);display:grid;gap:3px}
+  .ad .res{font-weight:650;font-size:14.5px;border-top:1px dashed var(--line);padding-top:7px;margin-top:auto}
+  .ad .antes .res{color:var(--bad)} .ad .despues .res{color:var(--ok)}
+
+  /* ============ mapa de calor ============ */
+  .heat{display:grid;grid-template-columns:minmax(110px,1.6fr) repeat(var(--cols,4),minmax(0,1fr));gap:4px;font-size:12.5px}
+  .heat span{padding:7px 4px;border-radius:6px;text-align:center;font-variant-numeric:tabular-nums;background:var(--line-soft)}
+  .heat .h{background:none;color:var(--fg-3);font-size:11.5px;font-weight:600}
+  .heat .rl{background:none;text-align:left;color:var(--fg-2)}
+  .heat .h0{color:var(--fg-3)}
+  .heat .h1{background:color-mix(in srgb,var(--warn) 16%,var(--bg-elev))}
+  .heat .h2{background:color-mix(in srgb,var(--warn) 34%,var(--bg-elev))}
+  .heat .h3{background:color-mix(in srgb,var(--bad) 32%,var(--bg-elev))}
+
+  /* ============ tarjetas de decisión: la recomendada, marcada ============ */
+  .opts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+  .opt{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
+    box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;min-width:0}
+  .opt.rec{border:1.5px solid var(--accent);box-shadow:0 0 0 3px var(--accent-soft),var(--shadow)}
+  .opt .oh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14.5px}
+  .opt .ol{font:700 13px/26px ui-monospace,monospace;width:26px;height:26px;border-radius:7px;text-align:center;
+    background:var(--line-soft);flex:none}
+  .opt.rec .ol{background:var(--accent);color:var(--bg-elev)}
+  .opt p{font-size:13px;color:var(--fg-2);margin:0}
+  .opt ul{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-size:13px}
+  .opt li::before{font-weight:800;margin-right:6px}
+  .opt li.si::before{content:"✓";color:var(--ok)} .opt li.no::before{content:"✕";color:var(--bad)}
+
+  /* ============ ejemplo real ============ */
+  .ex{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
+    display:grid;gap:7px;box-shadow:var(--shadow);min-width:0}
+  .ex .cons{font-size:12px;color:var(--fg-3)}
+  .ex .en{font:italic 18px/1.35 ui-serif,Georgia,serif}
+  .ex .gap{display:inline-block;min-width:48px;border-bottom:2px solid var(--fg-3);margin:0 4px}
+  .ex .ans{font-size:13.5px;color:var(--fg-2)} .ex .ans b{color:var(--fg)}
+  .ex .ft{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--fg-3);
+    border-top:1px dashed var(--line);padding-top:7px}
+  .mark{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;line-height:1.45;background:var(--bad-soft);
+    border-radius:8px;padding:8px 10px}
+  .mark .x{color:var(--bad);font-weight:800}
+  .mark.ok{background:var(--ok-soft)} .mark.ok .x{color:var(--ok)}
+  .sev{font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;white-space:nowrap}
+  .sev.b{background:var(--bad);color:var(--bg-elev)} .sev.a{background:var(--bad-soft);color:var(--bad)}
+  .sev.m{background:var(--warn-soft);color:var(--warn)} .sev.l{background:var(--line-soft);color:var(--fg-2)}
+
+  /* ============ preguntas, con la recomendación ============ */
+  .asks{display:grid;gap:10px}
+  .ask{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);
+    padding:12px 15px;display:grid;gap:8px;box-shadow:var(--shadow)}
+  .ask .q{font-size:15px;font-weight:650;line-height:1.35}
+  .ask .ops{display:flex;gap:6px;flex-wrap:wrap}
+  .ask .op{font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--bg)}
+  .ask .op.rec{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .ask .why{font-size:13px;color:var(--fg-2);line-height:1.45}
+
+  /* ============ qué cambia y qué no ============ */
+  .cambia{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .cambia>div{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 15px;box-shadow:var(--shadow)}
+  .cambia ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13.5px;line-height:1.45}
+  .cambia li{position:relative;padding-left:22px}
+  .cambia li::before{position:absolute;left:0;top:0;font-weight:800}
+  .cambia .si li::before{content:"✓";color:var(--ok)}
+  .cambia .no li::before{content:"=";color:var(--fg-3)}
+
+  /* ============ captura real, con su pie ============ */
+  .captura{margin:0;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:10px;
+    box-shadow:var(--shadow);min-width:0}
+  .captura img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft)}
+  .captura.cel img{max-width:300px;margin:0 auto}
+  .captura figcaption{font-size:12.5px;color:var(--fg-3);margin-top:8px}
+
+  /* ============ pills de estado ============ */
+  .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}
+  .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
+  .p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)}
+  .p-bad{background:var(--bad-soft);color:var(--bad)} .p-info{background:var(--info-soft);color:var(--info)}
+  .p-idle{background:var(--line-soft);color:var(--fg-3)}
+
+  /* ============ tabla chica (≤ 6 filas; si es más, es un gráfico) ============ */
+  .tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}
+  th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);
+    font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:ui-monospace,monospace;font-size:13px}
+
+  /* ============ diagrama SVG a mano ============ */
+  .diagram{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
+    overflow-x:auto;box-shadow:var(--shadow)}
+  .diagram svg{display:block;max-width:100%;height:auto;margin:0 auto}
+  svg .box{fill:var(--bg);stroke:var(--line)}
+  svg .box-a{fill:var(--accent-soft);stroke:var(--accent)}
+  svg .box-ok{fill:var(--ok-soft);stroke:var(--ok)}
+  svg .box-bad{fill:var(--bad-soft);stroke:var(--bad)}
+  svg .lbl{fill:var(--fg);font:13px ui-sans-serif,system-ui,sans-serif}
+  svg .lbl-s{fill:var(--fg-3);font:11px ui-sans-serif,system-ui,sans-serif}
+  svg .arrow{stroke:var(--fg-3);fill:none;stroke-width:1.2}
+
+  /* ============ comandos · aviso de lo que no sé ============ */
+  pre{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;
+    overflow-x:auto;font-size:13px;line-height:1.55;margin:0}
+  pre code{color:var(--fg)}
+  .call{border-radius:var(--radius);padding:10px 13px;font-size:13.5px;border:1px solid;margin:12px 0 0}
+  .c-warn{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 28%,transparent)}
+  .c-bad{background:var(--bad-soft);border-color:color-mix(in srgb,var(--bad) 28%,transparent)}
+  .c-info{background:var(--info-soft);border-color:color-mix(in srgb,var(--info) 28%,transparent)}
+  .call b:first-child{margin-right:4px}
+
+  footer{border-top:1px solid var(--line);margin-top:36px;padding-top:14px;font-size:12.5px;color:var(--fg-3);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  /* ============ celular ============ */
+  @media (max-width:640px){
+    body{padding:24px 16px 60px}
+    h2{font-size:17px}
+    .flow{grid-auto-flow:row}
+    .flow .st:not(:last-child)::after{right:auto;left:22px;top:auto;bottom:-11px;transform:rotate(135deg)}
+    .ad{grid-template-columns:minmax(0,1fr);gap:28px}
+    .ad .despues::before{content:"↓";left:50%;top:-25px;transform:translateX(-50%)}
+    .hb .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) auto;gap:8px}
+    .heat{grid-template-columns:minmax(80px,1.3fr) repeat(var(--cols,4),minmax(0,1fr));font-size:11.5px}
+    .kpi .n{font-size:28px}
+  }
+
+
+body{overflow-x:hidden}.wrap,section,header,footer{min-width:0}h3{font-size:16px;line-height:1.35;margin:0 0 12px}
+.legend{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin-bottom:12px}
+.legend-title{font-size:12px;text-transform:uppercase;letter-spacing:.07em;font-weight:700;color:var(--fg-2)}
+.legend-definitions{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;font-size:12.5px;margin-top:10px;line-height:1.45}
+.legend-reading{font-size:13px;margin-top:12px;color:var(--fg-2)}.legend-reading p{margin:0 0 4px}
+.no-mismatches{background:var(--ok-soft);border:1px solid var(--ok);border-radius:var(--radius);padding:16px;margin:12px 0 18px}
+.no-mismatches strong{color:var(--ok)}.no-mismatches p{margin:0;font-size:14px}.incident{border-left:3px solid var(--info);margin-bottom:24px}
+.incident .reason{font-size:13px}.incident-title{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
+.evidence-line{font-size:12.5px;color:var(--fg-2);margin:10px 0 0}.case-list{display:grid;gap:8px}.case{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev);min-width:0}
+summary{cursor:pointer;list-style:none}summary::-webkit-details-marker{display:none}
+.case>summary{display:flex;align-items:center;gap:10px;padding:13px 15px;flex-wrap:wrap;font-size:14px}
+.case>summary::after{content:'+';color:var(--fg-3);font-weight:700;margin-left:auto}.case[open]>summary::after{content:'−'}
+.case>summary:hover,.native-details>summary:hover{background:var(--line-soft)}
+summary:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:5px}
+.case-number{font:600 12px ui-monospace,monospace;color:var(--fg-3)}.case-title{font-weight:600;flex:1;min-width:190px}
+.comparison{display:inline-flex;gap:7px;align-items:center;flex-wrap:wrap}.comparison-arrow{color:var(--fg-3);font-size:17px}
+.case-body{padding:0 12px 12px}.case-table{min-width:0;width:100%;font-size:13px;table-layout:fixed}
+.case-table th{width:128px;white-space:normal;vertical-align:top;font-size:10.5px;line-height:1.5;padding:11px 12px}
+.case-table td{padding:11px 12px;overflow-wrap:anywhere;line-height:1.5}.case-table small{color:var(--fg-3)}
+.case-table .native{font-size:12px;background:var(--line-soft);padding:5px 7px;display:block;white-space:pre-wrap;border-radius:5px}
+.reason{margin-top:7px;color:var(--fg-2)}.sentence{font-family:ui-serif,Georgia,serif;font-style:italic;font-size:17px;line-height:1.4}
+.english{font-weight:750;color:var(--accent);background:var(--accent-soft);padding:0 2px;border-radius:3px}
+.correction{margin:20px 0 28px}.theory{font-size:15px;line-height:1.75}.repair-checks{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.native-details{margin-top:10px}.native-details>summary{font-size:12.5px;color:var(--accent);padding:8px 0}.native-details>summary::before{content:'+ ';font-weight:700}.native-details[open]>summary::before{content:'− '}
+.details-lead{font-size:13px;color:var(--fg-2);margin-bottom:10px}.metric-split{margin-top:14px}.scope-note{font-size:13px;color:var(--fg-2)}
+.sources{width:100%;margin-top:10px}.sources summary{font-weight:600;color:var(--fg-2)}.sources dl{display:grid;grid-template-columns:145px minmax(0,1fr);gap:8px 14px;font-size:12px;margin:12px 0}.sources dt{font-weight:650}.sources dd{margin:0;overflow-wrap:anywhere}
+@media(max-width:640px){.legend-definitions{grid-template-columns:1fr}.case>summary{gap:7px;padding:12px}.case-title{min-width:170px}.case .comparison{width:100%;margin-left:26px}.case>summary::after{position:absolute;right:28px}.case{position:relative}.case-table th{width:92px;padding:9px 8px;font-size:9px}.case-table td{padding:9px 8px;font-size:12px}.case-body{padding:0 7px 7px}.sources dl{grid-template-columns:1fr;gap:3px}.sources dd{margin-bottom:8px}.g2{grid-template-columns:1fr}.incident .comparison{display:flex}.repair-checks .pill{font-size:11px}}
+@media print{body{padding:16px;background:var(--bg-elev)}.case,.correction,.incident{break-inside:avoid}.case-body{display:block!important}footer{font-size:10px}}
+
+.is-difference{border-color:var(--warn)}.difference-note{background:var(--warn-soft);color:var(--warn);border-radius:6px;padding:9px 12px;margin:0 0 10px;font-size:13px}
+.all-cases>summary{padding:14px 16px;background:var(--line-soft);border-radius:var(--radius);font-weight:650;margin-bottom:12px}.all-cases>summary::before{content:'+ ';color:var(--accent)}.all-cases[open]>summary::before{content:'− '}
+.block-table td,.block-table th{white-space:normal}.block-table{min-width:550px}.gate-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}.gate-line{padding:9px 11px;border:1px solid var(--line);border-radius:7px;display:flex;align-items:center;justify-content:space-between;gap:10px}.gate-pass{color:var(--ok)}.gate-fail{color:var(--bad)}.compact-source{font-size:12px;line-height:1.5}.compact-source dd{overflow-wrap:anywhere}.case-title{overflow-wrap:anywhere}.case-list{margin-top:12px}.status-banner{margin:10px 0 16px}.source-grid{display:grid;grid-template-columns:1fr;gap:8px}.source-item{padding:10px 12px;border-left:3px solid var(--info);font-size:13px}.source-item p{margin:5px 0 0}.case-table .native{line-height:1.7}.case-table th{width:140px}.foot-evidence{font-size:12px;line-height:1.5;overflow-wrap:anywhere}
+.pair-review{margin-top:20px}.pair-table th{width:82px;font-size:9px;padding:7px}.pair-table td{padding:7px;font-size:12px}.pair-review .card{padding:12px}
+@media(max-width:640px){.gate-list{grid-template-columns:1fr}.case-table th{width:88px}.case-title{min-width:150px}.block-table{min-width:510px}.flow{grid-auto-flow:row;grid-template-columns:1fr}.flow .st::after{display:none}}
+</style></head>
+<body><main class="wrap">
+<header><div class="kicker"><span class="num">182</span><span class="badge">Pendiente de revisión</span><span class="meta">Miniteoría · 22 octubre 2026</span></div>
+<h1>Una discrepancia requiere revisión antes de aprobar</h1><p class="sub">Examen permanente: base histórica y casos añadidos, con sus referencias conservadas.</p></header>
+<div class="lede"><p>El examen completo dejó una discrepancia. Se muestra primero con ambos motivos; el juez queda pendiente de revisión.</p></div>
+<section id="discrepancias"><h2>La discrepancia aparece primero, con ambos motivos</h2>
+<div class="legend" aria-label="Leyenda de resultados">
+<span class="legend-title">Cómo leer los estados</span>
+<div class="legend-definitions"><div><span class="pill p-ok">Aprobado</span> La miniteoría no presenta un defecto según el juez.</div>
+<div><span class="pill p-bad">Rechazado</span> El juez detecta un defecto en la miniteoría.</div>
+<div><span class="pill p-idle">Sin evaluar</span> Falta una evaluación completa; cuenta como discrepancia.</div>
+<div><span class="pill p-warn">Pendiente de revisión</span> El operador todavía debe revisar; el juez no está aprobado ni rechazado.</div></div>
+<div class="legend-reading"><p><b>Esperado</b>: referencia guardada antes del examen. <b>Obtenido</b>: respuesta del juez.</p>
+<p><b>Esperado → obtenido</b> compara ambos. La fuente y los motivos aparecen en cada caso.</p></div></div><div class="case-list" id="mismatch-list"><details class="case is-difference" id="difference-01" data-case-id="ef093ffbc403cbcce27225f5" open>
+<summary><span class="case-number">01</span><span class="case-title">He ___ (watch) TV.</span><span class="comparison"><span class="pill p-ok">Aprobado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">He ___ (watch) TV.</span><br><small>ID original <code>b9c16b5ef634d3a37dfead50</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Con $he$, $she$, $it$, los verbos que terminan en $ch$ agregan $-es$ en presente simple: $watch → watches$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">Conserva literalmente el contenido del caso anotado y sólo añade $...$ a las unidades inglesas. La ortografía watch/study es el foco, no léxico incidental; la regla de tercera persona también cubre The student.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Regla demasiado absoluta · media</div><div class="reason">Explica correctamente la elección de $watches$, pero presenta la terminación escrita $ch$ como condición suficiente para agregar $-es$. Esa correspondencia necesita delimitarse por su pronunciación: verbos como $stomach$ agregan sólo $-s$.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Nuevas pruebas de resaltado</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">$stomach → stomachs$, no $stomaches$. Con $he$, los verbos cuyo final $ch$ suena como en $watch$ agregan $-es$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185219-f9cc9898/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details></div>
+<div class="pair-review" id="watch-pair"><h3>La decisión cambia dentro del par al añadir marcas</h3>
+<div class="grid g2"><div class="card"><div class="ptl">Original: pide añadir las marcas</div><div class="tw"><table class="case-table pair-table"><tbody>
+<tr><th>Miniteoría</th><td><code class="native">Con he, she, it, los verbos que terminan en ch agregan $-es$ en presente simple: watch → watches.</code></td></tr>
+<tr><th>Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Inglés sin resaltado · baja</div></td></tr>
+<tr><th>Motivo del juez</th><td>La regla explica correctamente la forma requerida, pero falta resaltar los pronombres he, she, it, la terminación ch y la transformación watch → watches con $...$.</td></tr>
+<tr><th>Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185244-8d80e6f4/validated-verdict.json">Ver respuesta guardada</a></td></tr>
+</tbody></table></div></div><div class="card"><div class="ptl">Control: ya tiene esas marcas</div><div class="tw"><table class="case-table pair-table"><tbody>
+<tr><th>Miniteoría</th><td><code class="native">Con $he$, $she$, $it$, los verbos que terminan en $ch$ agregan $-es$ en presente simple: $watch → watches$.</code></td></tr>
+<tr><th>Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Regla demasiado absoluta · media</div></td></tr>
+<tr><th>Motivo del juez</th><td>Explica correctamente la elección de $watches$, pero presenta la terminación escrita $ch$ como condición suficiente para agregar $-es$. Esa correspondencia necesita delimitarse por su pronunciación: verbos como $stomach$ agregan sólo $-s$.</td></tr>
+<tr><th>Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185219-f9cc9898/validated-verdict.json">Ver respuesta guardada</a></td></tr>
+</tbody></table></div></div></div>
+<p class="pie">La redacción sugerida para el original coincide con el control rechazado. Hay que precisar este criterio del juez; la referencia editorial también permanece abierta a revisión.</p></div>
+<p class="pie">La comparación evalúa miniteorías. No mide naturalidad ni certifica precisión humana; la fuente esperada se identifica en cada ejercicio.</p></section>
+<section id="criterios"><h2>La base histórica y los casos nuevos se exigen separados</h2>
+<div class="kpis"><div class="kpi"><div class="n">62<small>/ 62</small></div><div class="l">Ejercicios con evaluación completa.</div></div>
+<div class="kpi"><div class="n">21<small>/ 22</small></div><div class="l">Referencias permanentes cumplidas; todas son obligatorias.</div></div>
+<div class="kpi"><div class="n">42<small>/ 126</small></div><div class="l">Llamadas reales dentro del tope de esta ejecución.</div></div></div>
+<div class="tw metric-split"><table class="block-table"><thead><tr><th>Parte del examen</th><th>Coincidencias</th><th>Qué se compara</th><th>Condición</th></tr></thead><tbody><tr><td>Base histórica</td><td>40 de 40</td><td>Resultado, gravedad y regla</td><td>Conserva todos sus umbrales</td></tr><tr><td>Referencias permanentes anteriores</td><td>10 de 10</td><td>Sólo aprobado/rechazado</td><td>Todos obligatorios</td></tr><tr><td>Nuevas pruebas de resaltado</td><td>11 de 12</td><td>Resultado, gravedad y regla</td><td>Todos obligatorios</td></tr></tbody></table></div>
+<div class="call c-warn status-banner">No cumple todos los criterios congelados. Revisá las diferencias antes de considerar una aprobación.</div>
+<details class="native-details"><summary>Ver las condiciones históricas, conservadas sin cambios</summary><div class="gate-list"><div class="gate-line"><span>Cobertura completa</span><b class="gate-pass">Cumple</b></div><div class="gate-line"><span>Al menos 90 % de coincidencias exactas</span><b class="gate-pass">Cumple</b></div><div class="gate-line"><span>Al menos 80 % en cada categoría</span><b class="gate-pass">Cumple</b></div><div class="gate-line"><span>Al menos 90 % de los casos críticos</span><b class="gate-pass">Cumple</b></div><div class="gate-line"><span>Al menos ocho controles sanos correctos</span><b class="gate-pass">Cumple</b></div><div class="gate-line"><span>Al menos 90 % de pares completos</span><b class="gate-pass">Cumple</b></div><div class="gate-line"><span>Como máximo un error crítico sin detectar</span><b class="gate-pass">Cumple</b></div><div class="gate-line"><span>Como máximo un control sano rechazado</span><b class="gate-pass">Cumple</b></div><div class="gate-line"><span>Ningún caso sin evaluar</span><b class="gate-pass">Cumple</b></div><div class="gate-line"><span>Procedencia completa y uniforme</span><b class="gate-pass">Cumple</b></div><div class="gate-line"><span>Versión admitida por la referencia</span><b class="gate-pass">Cumple</b></div></div>
+<div class="tw"><table class="case-table"><tbody><tr><th>Base histórica</th><td>Cumple</td></tr><tr><th>Casos permanentes</th><td>No cumple</td></tr><tr><th>Condiciones históricas incumplidas</th><td>Ninguno</td></tr></tbody></table></div></details>
+<p class="pie">Los doce nuevos casos no compensan errores históricos. Las diez referencias anteriores sólo comparan aprobado/rechazado; las nuevas también exigen problema y gravedad.</p></section>
+<section id="referencias"><h2>Cada caso conserva la fuente de lo esperado</h2>
+<div class="source-grid"><div class="source-item"><b>40 históricos</b><p>La referencia declara una revisión canónica v4. Se conserva esa procedencia declarada, sin agregar una certificación humana independiente.</p></div>
+<div class="source-item"><b>10 permanentes anteriores</b><p>Conservan el criterio y la clasificación guardados en sus problemas de origen.</p></div>
+<div class="source-item"><b>12 nuevos</b><p>Referencias editoriales del asistente basadas en el criterio del operador. Los controles no se convirtieron en aprobaciones humanas.</p></div></div>
+<details class="all-cases" id="all-cases" style="margin-top:16px"><summary>Ver los 62 ejercicios y sus motivos</summary>
+<div class="legend" aria-label="Leyenda de resultados">
+<span class="legend-title">Cómo leer los estados</span>
+<div class="legend-definitions"><div><span class="pill p-ok">Aprobado</span> La miniteoría no presenta un defecto según el juez.</div>
+<div><span class="pill p-bad">Rechazado</span> El juez detecta un defecto en la miniteoría.</div>
+<div><span class="pill p-idle">Sin evaluar</span> Falta una evaluación completa; cuenta como discrepancia.</div>
+<div><span class="pill p-warn">Pendiente de revisión</span> El operador todavía debe revisar; el juez no está aprobado ni rechazado.</div></div>
+<div class="legend-reading"><p><b>Esperado</b>: referencia guardada antes del examen. <b>Obtenido</b>: respuesta del juez.</p>
+<p><b>Esperado → obtenido</b> compara ambos. La fuente y los motivos aparecen en cada caso.</p></div></div><div class="case-list"><details class="case is-difference" id="case-01" data-case-id="ef093ffbc403cbcce27225f5" >
+<summary><span class="case-number">01</span><span class="case-title">He ___ (watch) TV.</span><span class="comparison"><span class="pill p-ok">Aprobado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">He ___ (watch) TV.</span><br><small>ID original <code>b9c16b5ef634d3a37dfead50</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Con $he$, $she$, $it$, los verbos que terminan en $ch$ agregan $-es$ en presente simple: $watch → watches$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">Conserva literalmente el contenido del caso anotado y sólo añade $...$ a las unidades inglesas. La ortografía watch/study es el foco, no léxico incidental; la regla de tercera persona también cubre The student.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Regla demasiado absoluta · media</div><div class="reason">Explica correctamente la elección de $watches$, pero presenta la terminación escrita $ch$ como condición suficiente para agregar $-es$. Esa correspondencia necesita delimitarse por su pronunciación: verbos como $stomach$ agregan sólo $-s$.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Nuevas pruebas de resaltado</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">$stomach → stomachs$, no $stomaches$. Con $he$, los verbos cuyo final $ch$ suena como en $watch$ agregan $-es$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185219-f9cc9898/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-02" data-case-id="0e3c93e59ea9d201fb3d7223" >
+<summary><span class="case-number">02</span><span class="case-title">She ___ English.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">She ___ English.</span><br><small>ID original <code>67fab6d59930102295341e5f</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">$is$ va con she.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">La referencia anterior exige sólo este resultado; no fija regla ni gravedad.</div><div class="reason">$she$ va con $is$</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Asociación enseñada en sentido engañoso · baja</div><div class="reason">La compatibilidad es verdadera, pero la explicación parte de la forma verbal para asignarle el sujeto. Debe partir del sujeto para elegir la forma de $be$.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Criterio y clasificación guardados en el problema PRB-fbaeac6f; referencia de comparación</td></tr>
+<tr><th scope="row">Comparación</th><td>Sólo aprobado/rechazado · Referencias permanentes anteriores</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Con $she$ se usa $is$ en presente afirmativo.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185300-5daebb70/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-03" data-case-id="1fff34728e552abb8902349b" >
+<summary><span class="case-number">03</span><span class="case-title">I ___ hot.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">I ___ hot.</span><br><small>ID original <code>67fab6d59930102295341e64</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">$am$ va con I.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">La referencia anterior exige sólo este resultado; no fija regla ni gravedad.</div><div class="reason">Por pedido explícito del usuario del 21/10/2026, rechazar la dirección didáctica invertida y pedir «I lleva am» o una variante sujeto→forma en presente afirmativo. La relación am/I no es gramaticalmente falsa; el defecto es editorial. Referencia del usuario, no una medición de precisión.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Asociación enseñada en sentido engañoso · baja</div><div class="reason">La compatibilidad es verdadera, pero la tarjeta parte de la forma verbal para asignarle un sujeto. Para explicar esta elección, debe partir del sujeto y señalar la forma que le corresponde.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Criterio y clasificación guardados en el problema PRB-fbaeac6f; referencia de comparación</td></tr>
+<tr><th scope="row">Comparación</th><td>Sólo aprobado/rechazado · Referencias permanentes anteriores</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">En presente afirmativo, con $I$ se usa $am$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185226-ad46d639/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-04" data-case-id="3ddfad2b84a135aec04b078c" >
+<summary><span class="case-number">04</span><span class="case-title">Elegí la pregunta sobre una acción en curso ahora.</span><span class="comparison"><span class="pill p-ok">Aprobado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-ok">Aprobado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">Elegí la pregunta sobre una acción en curso ahora.</span><br><small>ID original <code>f368bcd3ff566117114c56d8</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Para preguntar por una acción en curso, usá $am/is/are$ + sujeto + verbo en $-ing$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">Las formas inglesas y -ing ya tienen marcas nativas. Sujeto, verbo en y los conectores son español: no hace falta resaltar todo el esquema.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">La tarjeta explica cómo preguntar por una acción en curso y permite elegir $Is she working?$ frente a $Does she work?$. El inglés citado está correctamente resaltado.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Nuevas pruebas de resaltado</td></tr>
+<tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185211-555babb6/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-05" data-case-id="41b543e306621dc91b9b08f5" >
+<summary><span class="case-number">05</span><span class="case-title">They ___ very short.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">They ___ very short.</span><br><small>ID original <code>67fab6d59930102295341e60</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">$are$ va con they.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">La referencia anterior exige sólo este resultado; no fija regla ni gravedad.</div><div class="reason">La mini teoría dice &quot;is va con she&quot;, cuando en verdad &quot;she va con is&quot;. Porque en el caso de &quot;is&quot;, va con &quot;he, she, it&quot;. Lo prefiero al revés &quot;she va con is&quot; porque de esa manera queda más atómica la mini-teoría</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Asociación enseñada en sentido engañoso · baja</div><div class="reason">La compatibilidad es correcta, pero la explicación parte de $are$ para asignarle un sujeto. Debe partir de $they$ para explicar la elección de $are$.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Criterio y clasificación guardados en el problema PRB-fbaeac6f; referencia de comparación</td></tr>
+<tr><th scope="row">Comparación</th><td>Sólo aprobado/rechazado · Referencias permanentes anteriores</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">En presente afirmativo, con $they$ se usa $are$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185304-135c6c83/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-06" data-case-id="4f321d11526592987cf484fd" >
+<summary><span class="case-number">06</span><span class="case-title">He ___ (watch) TV.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">He ___ (watch) TV.</span><br><small>ID original <code>67fab6d59930102295341f27</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Con he, she, it, los verbos que terminan en ch agregan $-es$ en presente simple: watch → watches.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Inglés sin resaltado · baja</div><div class="reason">El caso anotado conserva pronombres, letras focales y la transformación ortográfica sin las marcas nativas, aunque resalta el sufijo.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Inglés sin resaltado · baja</div><div class="reason">La regla explica correctamente la forma requerida, pero falta resaltar los pronombres he, she, it, la terminación ch y la transformación watch → watches con $...$.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Caso anotado por el operador en PRB-1fc8487f; clasificación específica y gravedad propuestas por el asistente. Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Nuevas pruebas de resaltado</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Con $he$, $she$, $it$, los verbos que terminan en $ch$ agregan $-es$ en presente simple: $watch → watches$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185244-8d80e6f4/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-07" data-case-id="53ce23c1749651afc6e6f9a5" >
+<summary><span class="case-number">07</span><span class="case-title">What time ___ (he / want) to arrive?</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">What time ___ (he / want) to arrive?</span><br><small>ID original <code>67fab6d59930102295342601</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Para preguntar con $he$ y $want$ en presente simple, usá $What time$ + $does$ + $he$ + $want$ + el resto de la oración + $?$. Con $he$, elegí $does$; después, $want$ va en forma base, sin $-s$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">La referencia anterior exige sólo este resultado; no fija regla ni gravedad.</div><div class="reason">Para preguntar con he y know en presente simple, usá Does + he + know + el resto de la oración + ?. Después de Does, el verbo va en forma base, sin -s.
+
+La mini teoría habla del uso de &#x27;he&#x27; y &#x27;know&#x27; como algo específico, cuando en verdad el uso de Does he [verb] es con cualquier verbo. Esto puede estar pasando en otros casos.
+
+Does he [verb] [resto de la oración]? Se podría escribir de manera más concisa esta mini-teoría
+</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Palabras incidentales en la regla · baja</div><div class="reason">La explicación es correcta, pero fija $want$ en la plantilla aunque ese verbo no determina la estructura. Puede reemplazarse por «verbo base», conservando $What time$ y $he$, que muestran la apertura y la elección del auxiliar.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Criterio y clasificación guardados en el problema PRB-f35c962c; referencia de comparación</td></tr>
+<tr><th scope="row">Comparación</th><td>Sólo aprobado/rechazado · Referencias permanentes anteriores</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">En preguntas en presente simple con $he$: $What time$ + $does$ + $he$ + verbo base + complemento + $?$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185227-086b345b/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-08" data-case-id="589f6d1ab320ab49dfcbe4de" >
+<summary><span class="case-number">08</span><span class="case-title">It ___ under the chair.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">It ___ under the chair.</span><br><small>ID original <code>67fab6d59930102295341e62</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">$is$ va con it.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">La referencia anterior exige sólo este resultado; no fija regla ni gravedad.</div><div class="reason">Por pedido explícito del usuario del 21/10/2026, rechazar la dirección didáctica invertida y pedir «it lleva is» o una variante sujeto→forma en presente afirmativo. No exigir enumerar he/she ni otros subtemas. Referencia del usuario, no una medición de precisión.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Asociación enseñada en sentido engañoso · baja</div><div class="reason">La compatibilidad entre $is$ e $it$ es verdadera, pero la explicación parte de la forma verbal para asignarle un sujeto. Debe partir del sujeto para explicar qué forma elegir.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Criterio y clasificación guardados en el problema PRB-fbaeac6f; referencia de comparación</td></tr>
+<tr><th scope="row">Comparación</th><td>Sólo aprobado/rechazado · Referencias permanentes anteriores</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">En presente afirmativo, con el sujeto $it$ se usa $is$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185233-bef34d40/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-09" data-case-id="619c3502f58dbef57d7d7a73" >
+<summary><span class="case-number">09</span><span class="case-title">She ___ ready.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">She ___ ready.</span><br><small>ID original <code>e4110f62bfbc519ac4269ca6</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Con **she**, la afirmación usa &lt;strong&gt;is&lt;/strong&gt;.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Inglés sin resaltado · baja</div><div class="reason">Markdown y HTML no son las marcas nativas $...$: she e is siguen sin el resaltado que usa el curso.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Inglés sin resaltado · baja</div><div class="reason">La regla explica la concordancia desde el sujeto, pero «she» e «is» carecen del resaltado nativo $...$; Markdown y HTML no lo reemplazan.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Nuevas pruebas de resaltado</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Con $she$, la afirmación usa $is$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185203-06949526/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-10" data-case-id="62bb98b257b18a0c5fabf692" >
+<summary><span class="case-number">10</span><span class="case-title">___ (he / know) the guy?</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">___ (he / know) the guy?</span><br><small>ID original <code>67fab6d599301022953425bf</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Para preguntar con $he$ y $know$ en presente simple, usá $Does$ + $he$ + $know$ + el resto de la oración + $?$. Después de $Does$, el verbo va en forma base, sin $-s$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">La referencia anterior exige sólo este resultado; no fija regla ni gravedad.</div><div class="reason">Para preguntar con he y know en presente simple, usá Does + he + know + el resto de la oración + ?. Después de Does, el verbo va en forma base, sin -s.
+
+La mini teoría habla del uso de &#x27;he&#x27; y &#x27;know&#x27; como algo específico, cuando en verdad el uso de Does he [verb] es con cualquier verbo. Esto puede estar pasando en otros casos.
+
+Does he [verb] [resto de la oración]? Se podría escribir de manera más concisa esta mini-teoría
+</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Palabras incidentales en la regla · baja</div><div class="reason">La regla es correcta, pero fija el verbo incidental $know$ en la plantilla. Puede reemplazarse por «verbo base» sin perder la explicación de cómo construir esta pregunta.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Criterio y clasificación guardados en el problema PRB-f35c962c; referencia de comparación</td></tr>
+<tr><th scope="row">Comparación</th><td>Sólo aprobado/rechazado · Referencias permanentes anteriores</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Para preguntar con $he$ en presente simple, usá $Does$ + $he$ + verbo base + complemento + $?$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185153-e23c9419/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-11" data-case-id="64d33dbf35c603f95eac6a86" >
+<summary><span class="case-number">11</span><span class="case-title">She ___ ready.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">She ___ ready.</span><br><small>ID original <code>8e33c6b00a9d1c558a680c98</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Con she se usa is en presente afirmativo.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Inglés sin resaltado · baja</div><div class="reason">No hay ninguna marca nativa en she ni is; ambas formas inglesas son relevantes para la explicación.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Inglés sin resaltado · baja</div><div class="reason">La regla explica correctamente la elección desde el sujeto, pero las formas inglesas «she» e «is» carecen del resaltado nativo $...$.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Nuevas pruebas de resaltado</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Con $she$ se usa $is$ en presente afirmativo.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185209-e711f83a/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-12" data-case-id="67fab6d59930102295342068" >
+<summary><span class="case-number">12</span><span class="case-title">Is he watching TV? (present continuous)</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">Is he watching TV? (present continuous)</span><br><small>ID original <code>67fab6d59930102295342068</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">¿Pasa siempre o está pasando? Siempre → simple. Ahora → be + $-ing$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">Ahora → be + -ing alcanza para la decisión focal y no es obligatorio explicar la inversión auxiliar-sujeto; la rama siempre → simple pertenece al subtema hermano y hace prevalecer OTHER_SUBTOPIC_CONTENT.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">La rama sobre una acción en curso explica el continuo del quiz. La rama sobre hábitos en presente simple pertenece a otro contraste.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Para una acción que está pasando, usá $be$ + verbo con $-ing$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185153-9f69fb22/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-13" data-case-id="67fab6d59930102295342069" >
+<summary><span class="case-number">13</span><span class="case-title">She lives there. (present simple)</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">She lives there. (present simple)</span><br><small>ID original <code>67fab6d59930102295342069</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">¿Pasa siempre o está pasando? Siempre → simple. Ahora → be + $-ing$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">Siempre → simple alcanza para la decisión de una residencia estable y la -s es mecánica; la rama ahora → continuo agrega el subtema hermano, por lo que no corresponde insuficiencia.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">La referencia a una situación habitual explica la elección del presente simple. La explicación del continuo agrega contenido ajeno a este quiz.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Para indicar dónde vive alguien de manera habitual, usá presente simple.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185153-9f69fb22/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-14" data-case-id="67fab6d5993010229534207b" >
+<summary><span class="case-number">14</span><span class="case-title">We aren&#x27;t watching. (present continuous)</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">We aren&#x27;t watching. (present continuous)</span><br><small>ID original <code>67fab6d5993010229534207b</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Buscá la pista: $every day$ pide simple, $now$ pide continuo.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Explicación insuficiente · alta</div><div class="reason">La tarjeta sólo ofrece las pistas every day y now, ninguna presente en el caso; por eso no permite justificar la elección focal del continuo, más allá de la mecánica de la negativa.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Explicación insuficiente · alta</div><div class="reason">La tarjeta exige buscar las pistas $every day$ o $now$, pero ninguna aparece en el enunciado. Por eso no explica la elección corregida.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Para negar una acción en curso, usá $am$, $is$ o $are$ + $not$ + verbo con $-ing$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185153-9f69fb22/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-15" data-case-id="67fab6d5993010229534207c" >
+<summary><span class="case-number">15</span><span class="case-title">You enjoy coffee. (present simple)</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">You enjoy coffee. (present simple)</span><br><small>ID original <code>67fab6d5993010229534207c</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">$Be$, $want$, $enjoy$ y otros verbos de estado no llevan continuo: siempre simple.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Regla falsa · alta</div><div class="reason">La tarjeta clasifica al verbo focal enjoy como estativo y por eso lo declara siempre simple; esa clasificación del caso focal es falsa, aunque la respuesta habitual concreta esté en simple.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Regla falsa · alta</div><div class="reason">Clasificar $enjoy$ como un verbo que no admite continuo es falso. La respuesta aceptada expresa un gusto general, pero eso no demuestra la clasificación que enseña la tarjeta.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">En este quiz, $enjoy$ expresa un gusto general y por eso se usa presente simple.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185153-9f69fb22/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-16" data-case-id="67fab6d59930102295342084" >
+<summary><span class="case-number">16</span><span class="case-title">Where is he staying? (present continuous)</span><span class="comparison"><span class="pill p-ok">Aprobado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-ok">Aprobado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">Where is he staying? (present continuous)</span><br><small>ID original <code>67fab6d59930102295342084</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Si es una situación $temporal$ (parás un tiempo, no vivís ahí), va en continuo.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">La temporalidad de stay es la decisión focal que selecciona el continuo en este quiz; no hace falta detallar la inversión de la pregunta.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">La tarjeta explica el continuo mediante una estancia temporal, una interpretación coherente con la respuesta aceptada.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185153-9f69fb22/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-17" data-case-id="67fab6d5993010229534208f" >
+<summary><span class="case-number">17</span><span class="case-title">Where is he? (present simple)</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">Where is he? (present simple)</span><br><small>ID original <code>67fab6d5993010229534208f</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Si es una costumbre o un hecho, va simple. Si está en curso, va be + $-ing$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">La rama hecho → simple alcanza para la ubicación expresada con be y el orden interrogativo es mecánico; la rama be + -ing agrega la forma hermana del contraste, por lo que prevalece contenido de otro subtema.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">La rama sobre hechos explica el presente simple de esta pregunta. La rama sobre acciones en curso pertenece a otro subtema.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Para preguntar por una ubicación como un hecho, usá el presente simple de $be$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185153-9f69fb22/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-18" data-case-id="67fab6d599301022953420ab" >
+<summary><span class="case-number">18</span><span class="case-title">How is she? (present simple)</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">How is she? (present simple)</span><br><small>ID original <code>67fab6d599301022953420ab</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">be es un verbo de estado: siempre va en $simple$, aunque sea sobre ahora.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Regla demasiado absoluta · media</div><div class="reason">La elección simple para el estado focal es correcta, pero siempre sobre el mismo verbo be excluye usos conductuales comunes como She&#x27;s being rude.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Regla demasiado absoluta · media</div><div class="reason">«Siempre va en simple» enseña que $be$ nunca admite continuo, una restricción falsa. La regla local debe limitarse a preguntar cómo está alguien, incluso ahora.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">$She is being kind$ muestra un uso común de $be$ en continuo. En este quiz, para preguntar cómo está ella, corresponde el presente simple.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185153-9f69fb22/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-19" data-case-id="67fab6d599301022953425bf" >
+<summary><span class="case-number">19</span><span class="case-title">Does he know the guy?</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">Does he know the guy?</span><br><small>ID original <code>67fab6d599301022953425bf</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Con he, she, it el verbo lleva $-s$. Para negar y preguntar, $do$ / $does$ y verbo base.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Explicación insuficiente · alta</div><div class="reason">El hueco focal exige construir Does he know. La tarjeta indica do / does + verbo base, pero no vincula he con does ni explicita el orden interrogativo; por eso no permite elegir la respuesta completa entre las rutas que ella misma abre. La afirmativa y la negación son material hermano, pero no prevalecen porque la explicación local es insuficiente.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Explicación insuficiente · alta</div><div class="reason">La tarjeta menciona $do$ y $does$, pero no explica que con $he$ corresponde elegir $does$. La regla de $-s$ para la afirmación no resuelve esa elección en la pregunta.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Para preguntar en presente simple con $he$, se usa $does$ + $he$ + verbo base: $Does he know the guy?$</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185140-aeab336f/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-20" data-case-id="67fab6d59930102295342720" >
+<summary><span class="case-number">20</span><span class="case-title">She won&#x27;t cook the vegetables.</span><span class="comparison"><span class="pill p-ok">Aprobado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-ok">Aprobado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">She won&#x27;t cook the vegetables.</span><br><small>ID original <code>67fab6d59930102295342720</code> · A2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Negarte a algo también es $will$: $won&#x27;t$ + verbo base.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">La tarjeta identifica la función de rechazo y da won&#x27;t + verbo base, exactamente la decisión focal del quiz.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">La tarjeta explica la negativa a cocinar mediante $won&#x27;t$ seguido del verbo base, coherente con la respuesta aceptada.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185311-4406f840/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-21" data-case-id="67fab6d59930102295342725" >
+<summary><span class="case-number">21</span><span class="case-title">Offer: I&#x27;ll wash the dishes for you.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">Offer: I&#x27;ll wash the dishes for you.</span><br><small>ID original <code>67fab6d59930102295342725</code> · A2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Predicción con evidencia → $going to$. Oferta, pedido o promesa → $will$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">Oferta → will basta para el caso; predicciones, pedidos y promesas son funciones de quizzes hermanos.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">Explica correctamente el uso de $will$ para la oferta, pero agrega predicciones, pedidos y promesas que este quiz no practica.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Para ofrecer hacer algo, usá $will$ + verbo base.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185311-4406f840/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-22" data-case-id="67fab6d5993010229534272a" >
+<summary><span class="case-number">22</span><span class="case-title">I think the business is going to be strange.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">I think the business is going to be strange.</span><br><small>ID original <code>67fab6d5993010229534272a</code> · A2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Predicción con evidencia → $going to$. Oferta, pedido o promesa → $will$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Explicación insuficiente · alta</div><div class="reason">La tarjeta reserva going to para evidencia visible, que el caso no aporta, y no cubre la predicción de opinión con I think; deja abierta la decisión que debe producir la respuesta aceptada.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Explicación insuficiente · alta</div><div class="reason">La tarjeta condiciona la elección de $going to$ a una evidencia que el enunciado no aporta. La respuesta aceptada no demuestra que exista ese indicio, por lo que la distinción focal queda sin explicar.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">$I think$ introduce una opinión, pero no aporta la evidencia observable que la tarjeta exige para elegir $is going to be$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185311-4406f840/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-23" data-case-id="67fab6d59930102295342864" >
+<summary><span class="case-number">23</span><span class="case-title">They have played badminton this morning.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">They have played badminton this morning.</span><br><small>ID original <code>67fab6d59930102295342864</code> · A2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">$go$ → $gone$, $break$ → $broken$. Los regulares siguen con $-ed$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">La regla regular -ed resuelve played; go y break son formas irregulares de casos hermanos.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">La regla de los regulares explica el participio requerido, pero las transformaciones de $go$ y $break$ pertenecen a otros verbos que este quiz no practica.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">$play$ es regular: su participio se forma con $-ed$: $played$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185311-78f7b5c6/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-24" data-case-id="67fab6d59930102295342868" >
+<summary><span class="case-number">24</span><span class="case-title">Has Mary seen (see) a bird?</span><span class="comparison"><span class="pill p-ok">Aprobado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-ok">Aprobado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">Has Mary seen (see) a bird?</span><br><small>ID original <code>67fab6d59930102295342868</code> · A2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">$see$ → $seen$, no $saw$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">La tarjeta da la forma participial focal seen y descarta saw; no necesita reconstruir la mecánica completa de la pregunta.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">La tarjeta distingue correctamente el participio $seen$ de $saw$, que es la decisión focal del quiz, y resalta las formas inglesas.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185311-78f7b5c6/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-25" data-case-id="67fab6d599301022953428ac" >
+<summary><span class="case-number">25</span><span class="case-title">Have we had enough water?</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">Have we had enough water?</span><br><small>ID original <code>67fab6d599301022953428ac</code> · A2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">$have$ → $had$, $shut$ → $shut$, $run$ → $run$, $find$ → $found$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">Have → had explica la forma focal; shut, run y find agregan verbos de otros quizzes.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">La transformación de $have$ explica el participio requerido, pero las de $shut$, $run$ y $find$ corresponden a otros verbos que este quiz no practica.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">El participio de $have$ es $had$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185311-78f7b5c6/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-26" data-case-id="67fab6d59930102295342a88" >
+<summary><span class="case-number">26</span><span class="case-title">Have you ever visited the Czech Republic?</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">Have you ever visited the Czech Republic?</span><br><small>ID original <code>67fab6d59930102295342a88</code> · A2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Regla falsa · alta</div><div class="reason">La tarjeta dirige a omitir el artículo en el caso focal, pero la respuesta aceptada exige the Czech Republic; falla la decisión concreta.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Regla falsa · alta</div><div class="reason">La restricción «Sólo llevan $the$ los plurales o uniones» excluye incorrectamente el nombre singular $Czech Republic$ y conduce a omitir el artículo que este quiz requiere.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">$the Czech Republic$ lleva artículo: los nombres de países que incluyen $Republic$ usan $the$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185322-df9136b3/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-27" data-case-id="67fab6d59930102295342a89" >
+<summary><span class="case-number">27</span><span class="case-title">I journeyed to Norway for the first time last year.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">I journeyed to Norway for the first time last year.</span><br><small>ID original <code>67fab6d59930102295342a89</code> · A2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">La regla general países sin artículo basta para Norway; la excepción y ejemplo the UK pertenecen a casos hermanos. Aunque sólo también exagera, la política ordena que el material hermano prevalezca como OTHER_SUBTOPIC_CONTENT.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">La indicación de omitir el artículo explica la respuesta con $Norway$. La regla sobre plurales o uniones y el ejemplo $the UK$ pertenecen a otros casos que este quiz no practica.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">El nombre $Norway$ se usa sin artículo.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185322-df9136b3/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-28" data-case-id="67fab6d59930102295342d04" >
+<summary><span class="case-number">28</span><span class="case-title">It relies on the weather app.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">It relies on the weather app.</span><br><small>ID original <code>67fab6d59930102295342d04</code> · A2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">$rely on$, $depend on$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">Rely on decide la preposición focal; depend on agrega otro verbo de un caso hermano.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">$rely on$ explica la preposición correcta, pero $depend on$ agrega una combinación con otro verbo que este quiz no practica.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">$rely on$: se usa $on$ después de $rely$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185323-3b967a21/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-29" data-case-id="67fab6d59930102295342d06" >
+<summary><span class="case-number">29</span><span class="case-title">She paid for the drink.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">She paid for the drink.</span><br><small>ID original <code>67fab6d59930102295342d06</code> · A2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">$pay for$, $wait for$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">Pay for decide la preposición focal; wait for agrega otro verbo del conocimiento.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">$pay for$ explica la preposición correcta, pero $wait for$ agrega una combinación con otro verbo que este quiz no practica.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">$pay for$: se usa $for$ para indicar aquello que se paga.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185323-3b967a21/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-30" data-case-id="67fab6d59930102295342ef8" >
+<summary><span class="case-number">30</span><span class="case-title">He studied hard.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">He studied hard.</span><br><small>ID original <code>67fab6d59930102295342ef8</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">$hard$ y $early$ tampoco cambian.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">Hard sin cambio resuelve el caso focal; early agrega otro adverbio que este quiz no practica.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">La tarjeta explica correctamente que $hard$ no cambia, pero agrega información sobre $early$, que este quiz no practica.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">$hard$ no cambia al usarse como adverbio: $He studied hard.$</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185153-1b26f7a4/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-31" data-case-id="67fab6d599301022953434c0" >
+<summary><span class="case-number">31</span><span class="case-title">He drank juice. (The listener doesn&#x27;t know which juice.)</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">He drank juice. (The listener doesn&#x27;t know which juice.)</span><br><small>ID original <code>67fab6d599301022953434c0</code> · A2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Si después viene $that$ o $who$, va $the$. Si es uno cualquiera, $a$ o nada.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Explicación insuficiente · alta</div><div class="reason">Para un referente no identificado la tarjeta deja abiertas a y ausencia de artículo; omite la incontabilidad focal de juice que decide la respuesta aceptada.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Explicación insuficiente · alta</div><div class="reason">«Si es uno cualquiera, $a$ o nada» no permite elegir entre las opciones $a$ y ausencia de artículo. Falta explicar que aquí $juice$ es incontable y no está identificado para el oyente.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">$Juice$ es incontable: al hablar de una cantidad no identificada, se usa sin artículo: $He drank juice$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185323-6a5dc530/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-32" data-case-id="67fab6d59930102295343558" >
+<summary><span class="case-number">32</span><span class="case-title">The Matterhorn is a famous mountain in Switzerland.</span><span class="comparison"><span class="pill p-ok">Aprobado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-ok">Aprobado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">The Matterhorn is a famous mountain in Switzerland.</span><br><small>ID original <code>67fab6d59930102295343558</code> · B1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Hay montes que sí llevan $the$ por tradición, como $the Matterhorn$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">La excepción léxica exacta the Matterhorn explica el artículo aceptado sin agregar una lista de nombres hermanos.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">Explica que el nombre $the Matterhorn$ lleva artículo por tradición, que es la decisión de este quiz.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185331-5799e415/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-33" data-case-id="67fab6d5993010229534356a" >
+<summary><span class="case-number">33</span><span class="case-title">Don&#x27;t share that information on the web!</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">Don&#x27;t share that information on the web!</span><br><small>ID original <code>67fab6d5993010229534356a</code> · B1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Son excepciones fijas: $the internet$ y $the past$ siempre llevan $the$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Explicación insuficiente · alta</div><div class="reason">Internet y past no explican la locución focal on the web; ninguna regla local permite elegir el artículo aceptado.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Explicación insuficiente · alta</div><div class="reason">La tarjeta explica las expresiones $the internet$ y $the past$, pero no explica por qué corresponde $the$ con $web$, que es la decisión de este quiz.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Para referirse a la Web se usa $the web$: $on the web$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185332-8b984c90/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-34" data-case-id="67fab6d59930102295343659" >
+<summary><span class="case-number">34</span><span class="case-title">Someone had built it. → It had been built.</span><span class="comparison"><span class="pill p-ok">Aprobado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-ok">Aprobado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">Someone had built it. → It had been built.</span><br><small>ID original <code>67fab6d59930102295343659</code> · B1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Past perfect pasivo: $had been$ + participio, igual para todos los sujetos.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">La respuesta aceptada usa had been built y la tarjeta explica exactamente had been + participio; el oro trata esa respuesta almacenada como corrección operativa.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">La estructura $had been$ + participio explica la pasiva aceptada: $had been built$. La forma es igual para todos los sujetos.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185339-2e08c61a/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-35" data-case-id="67fab6d5993010229534365c" >
+<summary><span class="case-number">35</span><span class="case-title">The bus driver dropped them off. → They had been dropped off.</span><span class="comparison"><span class="pill p-ok">Aprobado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-ok">Aprobado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">The bus driver dropped them off. → They had been dropped off.</span><br><small>ID original <code>67fab6d5993010229534365c</code> · B1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Past perfect pasivo: $had been$ + participio, igual para todos los sujetos.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">Aunque la activa parezca simple past, la respuesta almacenada define operativamente la corrección como They had been dropped off; la tarjeta la explica exactamente y el juez no debe impugnarla.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">La tarjeta explica la construcción pasiva de la respuesta aceptada, $had been dropped off$, y su compatibilidad con el sujeto plural.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185339-2e08c61a/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-36" data-case-id="67fab6d5993010229534365f" >
+<summary><span class="case-number">36</span><span class="case-title">The rain canceled the game. → The game had been canceled.</span><span class="comparison"><span class="pill p-ok">Aprobado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-ok">Aprobado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">The rain canceled the game. → The game had been canceled.</span><br><small>ID original <code>67fab6d5993010229534365f</code> · B1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Past perfect pasivo: $had been$ + participio, igual para todos los sujetos.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">La respuesta almacenada define operativamente la corrección como The game had been canceled; la tarjeta coincide con ella y no se usa mini-theory para corregir el dato aceptado.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">La regla explica $had been canceled$, la construcción pasiva exigida por la respuesta aceptada, y es válida para su sujeto.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185339-2e08c61a/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-37" data-case-id="67fab6d59930102295343e02" >
+<summary><span class="case-number">37</span><span class="case-title">I apologise for laughing.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">I apologise for laughing.</span><br><small>ID original <code>67fab6d59930102295343e02</code> · B2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">$Apologise$, $demand$ y $forbid$ funcionan igual: presente simple, nunca continuo.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Explicación insuficiente · alta</div><div class="reason">La pregunta exige elegir qué verbo realiza la disculpa. La tarjeta agrupa apologise, demand y forbid por tiempo verbal, pero no explica por qué for laughing selecciona apologise; deja abiertas varias opciones del propio quiz. El material hermano no prevalece porque la explicación local no alcanza.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Explicación insuficiente · alta</div><div class="reason">La tarjeta habla del tiempo verbal, pero no explica que $apologise$ expresa una disculpa. Ese significado permite elegirlo frente a las otras opciones; compartir una forma verbal no distingue la respuesta correcta.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">$Apologise for$ expresa pedir disculpas por algo; aquí, por haberse reído.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185340-8bec9c8b/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-38" data-case-id="67fab6d59930102295343e20" >
+<summary><span class="case-number">38</span><span class="case-title">She will have completed the report by Wednesday.</span><span class="comparison"><span class="pill p-ok">Aprobado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-ok">Aprobado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">She will have completed the report by Wednesday.</span><br><small>ID original <code>67fab6d59930102295343e20</code> · B2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">$will have$ + participio para lo que va a estar terminado antes de un momento.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">La tarjeta da la forma y la función del future perfect que justifican la respuesta aceptada con by Wednesday.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">Explica la estructura afirmativa del futuro perfecto y su uso para una acción que estará terminada antes del miércoles.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185350-2ced44d1/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-39" data-case-id="67fab6d59930102295343f23" >
+<summary><span class="case-number">39</span><span class="case-title">He will see her when he has gone to the cinema.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">He will see her when he has gone to the cinema.</span><br><small>ID original <code>67fab6d59930102295343f23</code> · B2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Después de $when$, $after$ y $once$ va present perfect, nunca $will$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">La rama con when y present perfect produce la respuesta aceptada; after y once agregan construcciones hermanas. Ese material adicional prevalece aunque la obligatoriedad implícita del present perfect sea exagerada.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">La tarjeta permite elegir present perfect en la cláusula con $when$, pero agrega reglas sobre $after$ y $once$, que este quiz no practica.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">En este caso, después de $when$ se usa present perfect: $has gone$; la acción futura principal lleva $will see$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185352-50527966/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-40" data-case-id="67fab6d59930102295343f3d" >
+<summary><span class="case-number">40</span><span class="case-title">I painted the wall and I like the color.</span><span class="comparison"><span class="pill p-ok">Aprobado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-ok">Aprobado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">I painted the wall and I like the color.</span><br><small>ID original <code>67fab6d59930102295343f3d</code> · B2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Un gusto o una opinión no cuenta como resultado: sin eso, queda $painted$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">Según la corrección operativa almacenada, la opinión posterior no activa el present perfect; la tarjeta explica la elección focal painted.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">La tarjeta explica que expresar un gusto por el color no acredita un resultado actual y orienta correctamente a $painted$ en este quiz.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185353-cee5b6ec/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-41" data-case-id="67fab6d5993010229534424b" >
+<summary><span class="case-number">41</span><span class="case-title">I like to go to the museum.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">I like to go to the museum.</span><br><small>ID original <code>67fab6d5993010229534424b</code> · B1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Museo, guitarra, taxi, radio: estos sustantivos de todos los días siempre llevan $the$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">Museum con the produce la respuesta aceptada; guitarra, taxi y radio son sustantivos hermanos. Ese contenido adicional prevalece sobre la afirmación exagerada siempre.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">La indicación sobre museo permite elegir el artículo aceptado, pero las afirmaciones sobre guitarra, taxi y radio pertenecen a otros casos.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">$I like to go to the museum.$</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185331-5799e415/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-42" data-case-id="67fab6d5993010229534424d" >
+<summary><span class="case-number">42</span><span class="case-title">He found the information on the web.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">He found the information on the web.</span><br><small>ID original <code>67fab6d5993010229534424d</code> · B1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Museo, guitarra, taxi, radio: estos sustantivos de todos los días siempre llevan $the$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Explicación insuficiente · alta</div><div class="reason">La lista no incluye web ni una regla de la que se derive on the web; la decisión focal queda sin explicación.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Explicación insuficiente · alta</div><div class="reason">La tarjeta habla de otros sustantivos y no explica por qué corresponde el artículo en $on the web$.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">En la expresión $on the web$ se usa $the$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185331-5799e415/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-43" data-case-id="67fab6d5993010229534424e" >
+<summary><span class="case-number">43</span><span class="case-title">He took the taxi to the airport.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">He took the taxi to the airport.</span><br><small>ID original <code>67fab6d5993010229534424e</code> · B1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Museo, guitarra, taxi, radio: estos sustantivos de todos los días siempre llevan $the$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">Taxi con the produce la respuesta aceptada; museo, guitarra y radio son sustantivos hermanos. Ese contenido adicional prevalece sobre la afirmación exagerada siempre.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">La indicación sobre taxi permite elegir el artículo aceptado, pero las afirmaciones sobre museo, guitarra y radio pertenecen a otros casos.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">$He took the taxi to the airport.$</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185331-5799e415/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-44" data-case-id="67fab6d59930102295344255" >
+<summary><span class="case-number">44</span><span class="case-title">Let&#x27;s go on a hike in the mountains.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">Let&#x27;s go on a hike in the mountains.</span><br><small>ID original <code>67fab6d59930102295344255</code> · B1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Museo, guitarra, taxi, radio: estos sustantivos de todos los días siempre llevan $the$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Explicación insuficiente · alta</div><div class="reason">La lista no contiene mountains ni ofrece una regla aplicable a esa construcción; no permite elegir el artículo del caso focal.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Explicación insuficiente · alta</div><div class="reason">La tarjeta no trata la expresión $in the mountains$ ni explica la elección del artículo en este quiz.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Para hablar de la montaña como entorno se usa $in the mountains$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185331-5799e415/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-45" data-case-id="67fab6d599301022953443ea" >
+<summary><span class="case-number">45</span><span class="case-title">It isn&#x27;t going to rain. → Julie said that it wasn&#x27;t going to rain.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">It isn&#x27;t going to rain. → Julie said that it wasn&#x27;t going to rain.</span><br><small>ID original <code>67fab6d599301022953443ea</code> · B2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">El present continuous pasa a $past continuous$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Regla falsa · alta</div><div class="reason">La tarjeta clasifica la construcción focal be going to como present continuous; aunque el cambio superficial is→was se parezca, enseña la construcción equivocada para este quiz.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Regla falsa · alta</div><div class="reason">El quiz transforma una predicción con $be going to$, no una acción en presente continuo. La tarjeta clasifica incorrectamente la construcción focal.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">La construcción de futuro $isn&#x27;t going to$ pasa a $wasn&#x27;t going to$ al contar lo que Julie dijo.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185357-657b5b39/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-46" data-case-id="67fab6d599301022953443f5" >
+<summary><span class="case-number">46</span><span class="case-title">Sarah is going to sing. → Julie said that Sarah was going to sing.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">Sarah is going to sing. → Julie said that Sarah was going to sing.</span><br><small>ID original <code>67fab6d599301022953443f5</code> · B2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">El present continuous pasa a $past continuous$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Regla falsa · alta</div><div class="reason">La tarjeta clasifica la perífrasis futura focal be going to como present continuous; esa identificación incorrecta del caso activa false-rule.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Regla falsa · alta</div><div class="reason">El quiz transforma un plan con $be going to$, no una acción en presente continuo. La tarjeta clasifica incorrectamente la construcción focal.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">La construcción de futuro $is going to$ pasa a $was going to$ al contar lo que Julie dijo.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185357-657b5b39/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-47" data-case-id="67fab6d599301022953444a2" >
+<summary><span class="case-number">47</span><span class="case-title">I&#x27;ll pay (he agreed) → He agreed to pay.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">I&#x27;ll pay (he agreed) → He agreed to pay.</span><br><small>ID original <code>67fab6d599301022953444a2</code> · B2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">$agree$ y $warn$ también piden $to$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">Agree to explica la transformación focal; warn pertenece a otro marco verbal y a otros quizzes, por lo que no debe enseñarse aquí.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">La indicación sobre $agree$ explica la construcción necesaria, pero la referencia a $warn$ pertenece a otro verbo que este quiz no practica.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Con $agree$, se usa $to$ seguido del verbo base para expresar lo que alguien aceptó hacer.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185403-37ed8412/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-48" data-case-id="67fab6d59930102295344898" >
+<summary><span class="case-number">48</span><span class="case-title">The students are awake.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">The students are awake.</span><br><small>ID original <code>67fab6d59930102295344898</code> · B2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">$asleep$, $alone$, $awake$, $afraid$ y $alright$ van sólo después del verbo.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">Awake después de are explica el caso focal; asleep, alone, afraid y alright son adjetivos de casos hermanos. Ese contenido adicional prevalece sobre la exageración de sólo.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">La indicación sobre $awake$ explica su elección después de $are$, pero las afirmaciones sobre $asleep$, $alone$, $afraid$ y $alright$ pertenecen a palabras que este quiz no practica.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Para este caso basta: «$awake$ describe cómo están los estudiantes y se usa después de $are$».</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185406-207b0840/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-49" data-case-id="67fab6d599301022953448ad" >
+<summary><span class="case-number">49</span><span class="case-title">He wants to live somewhere German-speaking someday.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">He wants to live somewhere German-speaking someday.</span><br><small>ID original <code>67fab6d599301022953448ad</code> · B2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">El compuesto lleva guion sólo delante del sustantivo: $a German-speaking country$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Regla falsa · alta</div><div class="reason">Sólo delante del sustantivo dirige a quitar el guion en posición pospositiva, mientras la respuesta aceptada conserva German-speaking; la decisión focal es incorrecta.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Regla falsa · alta</div><div class="reason">La tarjeta permite el guion sólo delante de un sustantivo, pero aquí la respuesta aceptada lleva guion después de $somewhere$. Su restricción contradice la corrección de este quiz.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">He wants to live somewhere $German-speaking$ someday.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185408-e8395fa5/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-50" data-case-id="67fab6d599301022953448af" >
+<summary><span class="case-number">50</span><span class="case-title">Switzerland is a German-speaking country.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">Switzerland is a German-speaking country.</span><br><small>ID original <code>67fab6d599301022953448af</code> · B2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">El compuesto lleva guion sólo delante del sustantivo: $a German-speaking country$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Regla demasiado absoluta · media</div><div class="reason">El ejemplo local German-speaking country es correcto, pero sólo delante del sustantivo absolutiza la misma construcción: el compuesto también puede conservar el guion en posición pospositiva.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Regla demasiado absoluta · media</div><div class="reason">Explica el guion delante de $country$, pero «sólo delante del sustantivo» enseña una exclusividad falsa: $German-speaking$ también conserva el guion después del verbo. Basta indicar que en este quiz el compuesto lleva guion al describir al sustantivo que sigue.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Our guide is $German-speaking$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185408-e8395fa5/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-51" data-case-id="67fab6d599301022953448df" >
+<summary><span class="case-number">51</span><span class="case-title">They are close friends.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">They are close friends.</span><br><small>ID original <code>67fab6d599301022953448df</code> · B2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">$classic$, $previous$, $close$ y $prospective$ van sólo delante del sustantivo.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">Close delante de friends explica la transformación focal; classic, previous y prospective son adjetivos de casos hermanos. La presencia de ese material prevalece sobre la exageración de sólo.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Contenido de otro subtema · baja</div><div class="reason">La colocación de $close$ delante del sustantivo explica la transformación pedida. Las afirmaciones sobre $classic$, $previous$ y $prospective$ pertenecen a otras palabras que este quiz no practica.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia histórica congelada; el archivo declara reviewKind=&#x27;blind-human-canonical-focused-v4&#x27;. Se reproduce esa procedencia declarada, sin añadir una certificación humana independiente.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Base histórica</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Para describir una amistad cercana, colocá $close$ delante del sustantivo: $close friends$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185411-5216a86b/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-52" data-case-id="82d99c2effe958d974a597ca" >
+<summary><span class="case-number">52</span><span class="case-title">The car ___ (not / be) in the garage.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">The car ___ (not / be) in the garage.</span><br><small>ID original <code>67fab6d599301022953425f5</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Para negar con $be$ en presente simple, con el sujeto singular $the car$ usá $is not$. También podés escribir $isn&#x27;t$ o contraer $is$ como $&#x27;s$ y dejar $not$ separado. La forma $ain&#x27;t$ también expresa esta negación en variedades coloquiales del inglés y se acepta aquí.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">La referencia anterior exige sólo este resultado; no fija regla ni gravedad.</div><div class="reason">Para preguntar con he y know en presente simple, usá Does + he + know + el resto de la oración + ?. Después de Does, el verbo va en forma base, sin -s.
+
+La mini teoría habla del uso de &#x27;he&#x27; y &#x27;know&#x27; como algo específico, cuando en verdad el uso de Does he [verb] es con cualquier verbo. Esto puede estar pasando en otros casos.
+
+Does he [verb] [resto de la oración]? Se podría escribir de manera más concisa esta mini-teoría
+</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Palabras incidentales en la regla · baja</div><div class="reason">La explicación es correcta, pero fija el sujeto incidental $the car$. Lo que determina la forma es su categoría de tercera persona singular; se puede explicar esa categoría conservando todas las variantes aceptadas.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Criterio y clasificación guardados en el problema PRB-f35c962c; referencia de comparación</td></tr>
+<tr><th scope="row">Comparación</th><td>Sólo aprobado/rechazado · Referencias permanentes anteriores</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Para negar con $be$ en presente y un sujeto en tercera persona singular, usá $is not$ o $isn&#x27;t$, o contraé $is$ como $&#x27;s$ y dejá $not$ separado. Aquí también se acepta $ain&#x27;t$, una variante coloquial.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185309-1f085326/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-53" data-case-id="8851328080750f733eb2bee8" >
+<summary><span class="case-number">53</span><span class="case-title">The student ___ (study) hard.</span><span class="comparison"><span class="pill p-ok">Aprobado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-ok">Aprobado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">The student ___ (study) hard.</span><br><small>ID original <code>7564209ab8d5db8eb992c425</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Con $he$, $she$, $it$, si el verbo termina en consonante + $y$, cambiamos la $y$ por $-ies$ en presente simple: $study → studies$.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">Conserva literalmente el contenido del caso anotado y sólo añade $...$ a las unidades inglesas. La ortografía watch/study es el foco, no léxico incidental; la regla de tercera persona también cubre The student.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">La tarjeta explica correctamente el cambio de consonante + $y$ a $-ies$ que corresponde a $study$ con el sujeto singular $The student$. El ejemplo ilustra la transformación ortográfica focal y el inglés está resaltado.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Nuevas pruebas de resaltado</td></tr>
+<tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185253-81aac694/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-54" data-case-id="b2c75ff8fbb7e8e6703b3e7c" >
+<summary><span class="case-number">54</span><span class="case-title">She ___ ready.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">She ___ ready.</span><br><small>ID original <code>0560fb02f7f59247f19c2141</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Con $she$, usá are en presente afirmativo.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Regla falsa · alta</div><div class="reason">La regla prescribe are para she y dirige a una respuesta incorrecta. FALSE_RULE tiene prioridad sobre la falta adicional de marcas.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Regla falsa · alta</div><div class="reason">La tarjeta indica usar $are$ con $she$, pero en este presente afirmativo corresponde $is$. La regla prescribe una respuesta incorrecta.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Nuevas pruebas de resaltado</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Con $she$, usá $is$ en presente afirmativo: $She is ready.$</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185237-45e599ae/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-55" data-case-id="b434cabe22b55bd61d2f127b" >
+<summary><span class="case-number">55</span><span class="case-title">___ (you / need) help?</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">___ (you / need) help?</span><br><small>ID original <code>67fab6d5993010229534260f</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Para preguntar con $you$ y $need$ en presente simple, usá $Do$ + $you$ + $need$ + el resto de la oración + $?$: $Do you need help?$. En inglés coloquial también podés preguntar con el orden sujeto + verbo y entonación de pregunta: $You need help?$. Se aceptan ambas respuestas.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">La referencia anterior exige sólo este resultado; no fija regla ni gravedad.</div><div class="reason">Para preguntar con he y know en presente simple, usá Does + he + know + el resto de la oración + ?. Después de Does, el verbo va en forma base, sin -s.
+
+La mini teoría habla del uso de &#x27;he&#x27; y &#x27;know&#x27; como algo específico, cuando en verdad el uso de Does he [verb] es con cualquier verbo. Esto puede estar pasando en otros casos.
+
+Does he [verb] [resto de la oración]? Se podría escribir de manera más concisa esta mini-teoría
+</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Palabras incidentales en la regla · baja</div><div class="reason">Explica correctamente las dos construcciones aceptadas, pero fija $need$ en la fórmula y repite $help$ en los ejemplos sin aportar una distinción. Ese léxico incidental puede abstraerse como verbo base y complemento conservando ambas formas de preguntar.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Criterio y clasificación guardados en el problema PRB-f35c962c; referencia de comparación</td></tr>
+<tr><th scope="row">Comparación</th><td>Sólo aprobado/rechazado · Referencias permanentes anteriores</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Para preguntar en presente simple con $you$: $Do$ + $you$ + verbo base + complemento + $?$. En una pregunta coloquial con entonación interrogativa: $you$ + verbo base + complemento + $?$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185243-37cf27b1/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-56" data-case-id="c42cf172818c2efe84c83b14" >
+<summary><span class="case-number">56</span><span class="case-title">She walks to school every day.</span><span class="comparison"><span class="pill p-ok">Aprobado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-ok">Aprobado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">She walks to school every day.</span><br><small>ID original <code>21e6bab00bddb2b08cd4168a</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Una acción habitual se expresa en presente simple.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">La miniteoría sólo tiene español y explica la decisión entre tiempos nombrados en las opciones. No exige insertar inglés ni marcas artificialmente.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">La tarjeta explica que el presente simple expresa la costumbre indicada por «every day» y permite distinguirlo del presente continuo.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Nuevas pruebas de resaltado</td></tr>
+<tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185219-e46d764b/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-57" data-case-id="c4be2edd9285baa156cd9b3a" >
+<summary><span class="case-number">57</span><span class="case-title">The student ___ (study) hard.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">The student ___ (study) hard.</span><br><small>ID original <code>67fab6d59930102295341f28</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Con he, she, it, si el verbo termina en consonante + y, cambiamos la y por $-ies$ en presente simple: study → studies.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Inglés sin resaltado · baja</div><div class="reason">El caso anotado conserva pronombres, letras focales y la transformación ortográfica sin las marcas nativas, aunque resalta el sufijo.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Inglés sin resaltado · baja</div><div class="reason">La regla explica correctamente el cambio ortográfico de este quiz, pero faltan las marcas en «he, she, it», las dos apariciones de «y» como letra y «study → studies».</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Caso anotado por el operador en PRB-1fc8487f; clasificación específica y gravedad propuestas por el asistente. Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Nuevas pruebas de resaltado</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Con $he, she, it$, si el verbo termina en consonante + $y$, cambiamos la $y$ por $-ies$ en presente simple: $study → studies$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185246-ca0dba89/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-58" data-case-id="cc5b54378615688adb935018" >
+<summary><span class="case-number">58</span><span class="case-title">___ (he / know) the guy?</span><span class="comparison"><span class="pill p-ok">Aprobado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-ok">Aprobado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">___ (he / know) the guy?</span><br><small>ID original <code>67fab6d599301022953425bf</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Con $he$, las preguntas en presente simple se forman con $Does$ + $he$ + verbo base + resto de la oración + $?$. El verbo no lleva $-s$ porque $does$ ya marca la tercera persona singular.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-ok">Aprobado</span><div class="reason">La referencia anterior exige sólo este resultado; no fija regla ni gravedad.</div><div class="reason">El juez debe aprobar la estructura reutilizable aunque incluya una razón de concordancia.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-ok">Aprobado</span><div class="reason">Ningún defecto · sin gravedad</div><div class="reason">Explica correctamente que, con $he$, la pregunta en presente simple lleva $does$ seguido del sujeto y el verbo base, lo que permite formar $Does he know$. El inglés citado está resaltado.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Criterio y clasificación guardados en el problema PRB-f35c962c; referencia de comparación</td></tr>
+<tr><th scope="row">Comparación</th><td>Sólo aprobado/rechazado · Referencias permanentes anteriores</td></tr>
+<tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185256-7b7b95ca/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-59" data-case-id="ddcd755f6d75bbf02df1932c" >
+<summary><span class="case-number">59</span><span class="case-title">She ___ swim.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">She ___ swim.</span><br><small>ID original <code>605d7e42b5571680dd658502</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">La forma negativa corta de $can$ es can&#x27;t.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Inglés sin resaltado · baja</div><div class="reason">La contracción completa can&#x27;t es una unidad inglesa y debe estar entre las marcas nativas.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Inglés sin resaltado · baja</div><div class="reason">La regla explica correctamente la respuesta, pero falta resaltar $can&#x27;t$ con las marcas nativas.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Nuevas pruebas de resaltado</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">La forma negativa corta de $can$ es $can&#x27;t$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185201-a125ce60/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-60" data-case-id="eb94289a823d3db7448592f9" >
+<summary><span class="case-number">60</span><span class="case-title">I ___ ready.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">I ___ ready.</span><br><small>ID original <code>4b63e403ecca85b29679270e</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Con $I$, usá $am$ en presente afirmativo: $I$ lleva am.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Inglés sin resaltado · baja</div><div class="reason">La última aparición de am sigue sin resaltarse: que la primera esté marcada no alcanza.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Inglés sin resaltado · baja</div><div class="reason">La regla explica correctamente la elección desde el sujeto, pero la última aparición de «am» carece del resaltado $...$.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Nuevas pruebas de resaltado</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Con $I$, usá $am$ en presente afirmativo: $I$ lleva $am$.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185218-1ff1db01/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-61" data-case-id="ef332129d954b7d6502c6112" >
+<summary><span class="case-number">61</span><span class="case-title">I ___ visit my aunt tomorrow; the visit is already planned.</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">I ___ visit my aunt tomorrow; the visit is already planned.</span><br><small>ID original <code>339cacc42109b72134ade6f2</code> · A2</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Para un plan futuro ya decidido, usá $be$ + going to + verbo base.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Inglés sin resaltado · baja</div><div class="reason">La expresión going to queda sin marca aunque be ya esté resaltado. Las etiquetas explicativas en español no necesitan marcas.</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Inglés sin resaltado · baja</div><div class="reason">La regla explica correctamente la elección para una visita ya planeada, pero «going to» carece del resaltado nativo $...$.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Referencia editorial del asistente basada en el criterio del operador; no aprobación humana ni medición de precisión.</td></tr>
+<tr><th scope="row">Comparación</th><td>Resultado, gravedad y problema detectado · Nuevas pruebas de resaltado</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Para un plan futuro ya decidido, usá $be$ + $going to$ + verbo base.</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185331-99707af6/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details>
+<details class="case " id="case-62" data-case-id="f581dd58fd30e104ef46f337" >
+<summary><span class="case-number">62</span><span class="case-title">When ___ (they / arrive)?</span><span class="comparison"><span class="pill p-bad">Rechazado</span> <span class="comparison-arrow" aria-label="comparado con">→</span> <span class="pill p-bad">Rechazado</span></span></summary>
+<div class="case-body"><div class="tw"><table class="case-table"><tbody>
+<tr><th scope="row">Ejercicio</th><td><span class="sentence">When ___ (they / arrive)?</span><br><small>ID original <code>67fab6d5993010229534260e</code> · A1</small></td></tr>
+<tr><th scope="row">Miniteoría</th><td><code class="native">Para preguntar cuándo llegan en presente simple, usá $When$ + $do$ + $they$ + $arrive$ + $?$: $When do they arrive?$. Con $they$, elegí $do$ y mantené $arrive$ en forma base.</code></td></tr>
+<tr><th scope="row">Esperado</th><td><span class="pill p-bad">Rechazado</span><div class="reason">La referencia anterior exige sólo este resultado; no fija regla ni gravedad.</div><div class="reason">Para preguntar con he y know en presente simple, usá Does + he + know + el resto de la oración + ?. Después de Does, el verbo va en forma base, sin -s.
+
+La mini teoría habla del uso de &#x27;he&#x27; y &#x27;know&#x27; como algo específico, cuando en verdad el uso de Does he [verb] es con cualquier verbo. Esto puede estar pasando en otros casos.
+
+Does he [verb] [resto de la oración]? Se podría escribir de manera más concisa esta mini-teoría
+</div></td></tr>
+<tr><th scope="row">Obtenido</th><td><span class="pill p-bad">Rechazado</span><div class="reason">Palabras incidentales en la regla · baja</div><div class="reason">La tarjeta explica correctamente la pregunta, pero fija el verbo incidental $arrive$ en la fórmula y copia la oración completa. Puede reemplazarlo por «verbo base» sin perder la elección de $do$ ni el orden de la pregunta.</div></td></tr>
+<tr><th scope="row">Fuente de lo esperado</th><td>Criterio y clasificación guardados en el problema PRB-f35c962c; referencia de comparación</td></tr>
+<tr><th scope="row">Comparación</th><td>Sólo aprobado/rechazado · Referencias permanentes anteriores</td></tr>
+<tr><th scope="row">Evidencia o sugerencia del juez</th><td><code class="native">Para preguntar en presente simple con $they$: $When$ + $do$ + $they$ + verbo base + $?$</code></td></tr><tr><th scope="row">Respuesta original</th><td><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/validated-runs/20261022T185301-df28b041/validated-verdict.json">Abrir evidencia guardada</a></td></tr>
+</tbody></table></div></div></details></div></details>
+<p class="pie">Una coincidencia describe esta comparación concreta. Los motivos, frases, miniteorías y estados quedan disponibles sin consultar otra vez al modelo.</p></section>
+<section id="siguiente"><h2>El juez queda pendiente de tu revisión</h2>
+<div class="flow"><div class="st"><span class="i">1</span><span class="h">Revisar las discrepancias</span><span class="d">Comparar los motivos guardados de ambos lados.</span></div>
+<div class="st"><span class="i">2</span><span class="h">Precisar el criterio del juez</span><span class="d">Resolver el cambio de diagnóstico dentro del par.</span></div>
+<div class="st end"><span class="i">3</span><span class="h">Decidir la aprobación</span><span class="d">La decisión del operador todavía está pendiente.</span></div></div>
+<div class="call c-info" style="margin-top:16px"><span class="pill p-warn">Pendiente de revisión</span> Este informe no registró aprobación ni rechazo del juez.</div>
+<p class="pie">Pasaron trece pruebas de preparación y doce del medidor. Esta ejecución no aplicó correcciones al curso ni volvió a ejecutar el corrector.</p></section>
+<footer><span>Brief 182 · 22 octubre 2026 · <a href="../index.html">Índice</a></span>
+<details class="sources"><summary>Procedencia, consumo y evidencia</summary><dl class="compact-source">
+<dt>Proveedor y modelo</dt><dd>codex-cli / gpt-6.1-sol · esfuerzo medium</dd><dt>Versión del ejecutor</dt><dd>v0.163.0-alpha.11.1</dd>
+<dt>Comparación con la prueba focal</dt><dd>Se mantuvieron proveedor, modelo, esfuerzo y versión del juez. Cambiaron el ejecutor (v0.163.0-alpha.10.2 → v0.163.0-alpha.11.1) y los identificadores de ejecución; no se atribuye la variación exclusivamente al azar.</dd>
+<dt>Consultas agrupadas</dt><dd>42 consultas lógicas · 42 llamadas reales · tope 126</dd>
+<dt>Versión del juez</dt><dd><code>cf3d5aa5b7f2840b58213896853af4c134e6d3b1b5c32f9e01cd6d2a96fcf5c7</code></dd><dt>Edición del examen</dt><dd><code>sha256:eb040061a189eebcd9c5114609204edea7432092f52aa858a0194521b2d112f3</code></dd>
+<dt>Referencia histórica</dt><dd><code>blind-human-canonical-focused-v4</code>: procedencia declarada por el archivo.</dd>
+<dt>Resultados medidos</dt><dd><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/measurement.json">Medición completa y discrepancias</a></dd><dt>Consumo efectivo</dt><dd><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/execution-01/usage.json">Conteo de llamadas</a></dd>
+<dt>Expectativas congeladas</dt><dd><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/prepared/gold.json">Referencia completa del examen</a> · <a href="../../analysis/problems/PRB-fbaeac6f/judge-v1/historical-exam/oro.json">Referencia histórica intacta</a></dd>
+<dt>Incorporación</dt><dd><a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/integration/catalog-integration.json">Doce referencias incorporadas</a> · <a href="../../analysis/judge-exams/2026-10-22-mini-theory-permanent/integration/validation.json">Validación de integridad</a></dd>
+<dt>QA visual</dt><dd>Comprobación estática de estructura, contenido y enlaces. La inspección en navegador no se ejecutó por la restricción de acceso local registrada previamente.</dd>
+</dl></details></footer></main></body></html>

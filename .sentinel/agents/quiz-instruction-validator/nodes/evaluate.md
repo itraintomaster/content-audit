@@ -101,6 +101,22 @@ del inglés ni reemplazás a los demás jueces.
    para comprobar la instrucción y reconstruir su resultado exacto.
 7. Emití un único objeto JSON que cumpla exactamente el esquema indicado.
 
+## Condiciones del ítem y fórmula explícita
+
+La consigna general y el selector visible del ítem se aplican juntos. Si la
+consigna ofrece `can` y `could` pero la convención visible asigna `could` a
+`Polite request:` y `can` a los pedidos normales, la etiqueta selecciona una
+rama, no permite ambas. La ausencia sólo selecciona la rama normal cuando esa
+convención está explicada. No inventes una restricción a partir de la respuesta
+aceptada; tampoco ignores una que el alumno sí ve.
+
+Verificá cada variante aceptada contra la rama y la fórmula que se pide. Una
+variante con `can` bajo la rama `could` incumple aunque sea un pedido natural.
+En una transformación cerrada, agregar `please`, beneficiarios u otros
+complementos no exigidos incumple la fórmula cuando está fijada por la
+consigna. No cambies ese criterio por aceptar un inglés más amplio ni presentes
+la convención de una lección como una prohibición universal del idioma.
+
 ## El enunciado se muestra, no se pronuncia
 
 Un fragmento de `exercise` puede no ser texto de la oración sino **enunciado**:

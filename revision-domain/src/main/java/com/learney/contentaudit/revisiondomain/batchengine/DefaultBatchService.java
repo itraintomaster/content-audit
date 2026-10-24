@@ -87,6 +87,11 @@ import javax.annotation.processing.Generated;
 )
 class DefaultBatchService implements BatchService {
     private final BatchStore batchStore;
+    private java.util.function.UnaryOperator<AuditReport> contentProjection = java.util.function.UnaryOperator.identity();
+    DefaultBatchService withContentProjection(com.learney.contentaudit.auditdomain.analysis.AnalysisComposer composer) {
+        if (composer != null) contentProjection = composer::contentOnly;
+        return this;
+    }
 
     private final RefinementPlanStore refinementPlanStore;
 
@@ -165,6 +170,7 @@ class DefaultBatchService implements BatchService {
         batch.setAnalyzers(analyzersOf(start));
         batch.setSettings(new BatchSettings(atOnce(request.getTopicsAtOnce()), atOnce(request.getQueriesAtOnce()),
                 DEFAULT_MAX_ATTEMPTS));
+        batch.setBaseCourseSnapshot(courseRepository.load(coursePath));
         batch.setOpenedAt(now);
         batch.setQueriesSpent(0);
         // A continuation keeps its ordinal. Only opening a genuinely new batch
@@ -207,7 +213,8 @@ class DefaultBatchService implements BatchService {
         List<ErrorTaskBrief> briefs = new ArrayList<>();
         for (String taskId : BatchBook.list(batch.getTaskIds())) {
             RefinementTask task = tasks.get(taskId);
-            if (task != null && briefer != null) {
+            if (task != null && !ContentCorrectionTasks.audioOnly(task) && briefer != null) {
+                task = ContentCorrectionTasks.content(task);
                 briefer.brief(start, task).ifPresent(briefs::add);
             }
         }
@@ -222,7 +229,7 @@ class DefaultBatchService implements BatchService {
      * of the estimate of the panel: 19 seconds a query, with the queries at once of the batch.
      */
     private BatchEstimate withJudges(BatchEstimate estimate, CorrectionBatch batch) {
-        CourseEntity course = courseRepository.load(coursePath);
+        CourseEntity course = BatchCourses.start(batch, courseRepository.load(coursePath), batchStore);
         List<BatchJudgeAccount> judges = BatchBook.copy(judgePass.estimate(batch, course,
                 changeLedger.composedCourse(batch, course)));
         int queries = 0;
@@ -244,8 +251,9 @@ class DefaultBatchService implements BatchService {
     @Override
     public BatchReport run(BatchRunRequest request) {
         CorrectionBatch batch = requireOpen();
+        batchStore.requireEditableContent(batch);
         AuditReport start = start(batch);
-        CourseEntity course = courseRepository.load(coursePath);
+        CourseEntity course = BatchCourses.start(batch, courseRepository.load(coursePath), batchStore);
         // Continuing the original plan is still the same correction, even after a partial analysis.
         // Content versions identify the measured snapshot without inventing a new correction cycle.
         batch.setCorrectionRevision(BatchBook.correctionRevision(batch));
@@ -285,21 +293,49 @@ class DefaultBatchService implements BatchService {
 
     @Override
     public BatchClosing close(BatchCloseRequest request) {
-        CorrectionBatch batch = requireOpen();
+        CorrectionBatch selected = requireOpen();
         BatchCloseRequest asked = request != null ? request : new BatchCloseRequest(new LinkedHashMap<>(), null);
-        validate(batch, asked);
-        CourseEntity course = courseRepository.load(coursePath);
-        batch = closer.close(batch, course, asked);
-        List<BatchClosing> closings = BatchBook.list(batch.getClosings());
-        if (reviews != null && !closings.isEmpty()) reviews.snapshot(batch, closings.get(closings.size() - 1));
-        batchStore.save(batch);
-        return closings.isEmpty() ? null : closings.get(closings.size() - 1);
+        validate(selected, asked);
+        BatchStatus idleStatus = selected.getStatus();
+        CorrectionBatch batch = batchStore.withAnalysisLock(selected.getId(), () -> {
+            CorrectionBatch current = batchStore.load(selected.getId()).orElseThrow();
+            batchStore.requireEditableContent(current);
+            if (current.getContentVersion() != selected.getContentVersion() || current.getStatus() != idleStatus
+                    || current.getStatus() == BatchStatus.RUNNING)
+                throw new IllegalStateException("La corrección cambió o tiene otra operación activa: volvé a leer.");
+            current.setStatus(BatchStatus.RUNNING);
+            batchStore.save(current);
+            return current;
+        });
+        try {
+            CourseEntity course = BatchCourses.start(batch, courseRepository.load(coursePath), batchStore);
+            batch = closer.close(batch, course, asked);
+            List<BatchClosing> closings = BatchBook.list(batch.getClosings());
+            if (reviews != null && !closings.isEmpty()) reviews.snapshot(batch, closings.get(closings.size() - 1));
+            batchStore.save(batch);
+            return closings.isEmpty() ? null : closings.get(closings.size() - 1);
+        } catch (RuntimeException failure) {
+            batchStore.withAnalysisLock(selected.getId(), () -> {
+                CorrectionBatch current = batchStore.load(selected.getId()).orElseThrow();
+                if (current.getStatus() == BatchStatus.RUNNING) {
+                    current.setStatus(idleStatus);
+                    batchStore.save(current);
+                }
+                return null;
+            });
+            throw failure;
+        }
     }
 
     @Override
     public CorrectionBatch adjust(BatchAdjustment adjustment) {
-        CorrectionBatch batch = requireOpen();
-        CourseEntity course = courseRepository.load(coursePath);
+        CorrectionBatch selected = requireOpen();
+        return batchStore.withAnalysisLock(selected.getId(), () -> adjustLocked(adjustment, selected.getId()));
+    }
+    private CorrectionBatch adjustLocked(BatchAdjustment adjustment, String batchId) {
+        CorrectionBatch batch = batchStore.load(batchId).orElseThrow();
+        batchStore.requireEditableContent(batch);
+        CourseEntity course = BatchCourses.start(batch, courseRepository.load(coursePath), batchStore);
         List<BatchChangeStep> beforeSteps = activeSteps(batch);
         if (adjustment.getDecidedAt() == null) {
             adjustment.setDecidedAt(Instant.now());
@@ -389,7 +425,8 @@ class DefaultBatchService implements BatchService {
     @Override
     public BatchPublication publish(BatchPublishRequest request) {
         CorrectionBatch batch = requireOpen();
-        CourseEntity course = courseRepository.load(coursePath);
+        batchStore.requireEditableContent(batch);
+        CourseEntity course = BatchCourses.start(batch, courseRepository.load(coursePath), batchStore);
         // F-PUBPROD-R010: publishing saves the batch itself, as its last step, so a save that fails is undone with the
         // rest.
         batch = publisher.publish(batch, request, course);
@@ -505,7 +542,8 @@ class DefaultBatchService implements BatchService {
         List<ErrorTaskBrief> briefs = new ArrayList<>();
         for (String taskId : BatchBook.list(adjustment.getTaskIds())) {
             RefinementTask task = tasks.get(taskId);
-            if (task != null && briefer != null) {
+            if (task != null && !ContentCorrectionTasks.audioOnly(task) && briefer != null) {
+                task = ContentCorrectionTasks.content(task);
                 briefer.brief(start, task).ifPresent(briefs::add);
             }
         }
@@ -619,8 +657,8 @@ class DefaultBatchService implements BatchService {
     }
 
     private AuditReport start(CorrectionBatch batch) {
-        return auditReportStore.load(batch.getStartAuditId()).orElseThrow(() -> new IllegalStateException(
-                "No se encuentra el análisis " + batch.getStartAuditId() + " del que partió la tanda."));
+        return contentProjection.apply(auditReportStore.load(batch.getStartAuditId()).orElseThrow(() -> new IllegalStateException(
+                "No se encuentra el análisis " + batch.getStartAuditId() + " del que partió la tanda.")));
     }
 
     /** The plan of an analysis: the active pair's, or the latest plan made from it. */

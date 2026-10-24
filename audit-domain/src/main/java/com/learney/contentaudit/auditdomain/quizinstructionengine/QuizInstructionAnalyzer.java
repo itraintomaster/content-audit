@@ -150,7 +150,10 @@ public QuizInstructionAnalyzer(EvaluationSession session, QuizInstructionSubject
             matchedDeclaredSetIds.add(subject.getSubjectRef());
         }
         pendingNodes.add(node);
-        pendingRequests.add(new EvaluationRequest(subject, modeOf(decision)));
+        Set<String> allowed = policy.getNewEvaluationSubjectIds();
+        EvaluationRequestMode mode = allowed != null && (subject.getSubjectRef() == null || !allowed.contains(subject.getSubjectRef()))
+                ? EvaluationRequestMode.REUSE_ONLY : modeOf(decision);
+        pendingRequests.add(new EvaluationRequest(subject, mode));
         return null;
     }
 

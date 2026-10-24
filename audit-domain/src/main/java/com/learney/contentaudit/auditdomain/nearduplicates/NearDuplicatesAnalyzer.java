@@ -224,7 +224,8 @@ class NearDuplicatesAnalyzer implements ContentAnalyzer {
                 ? (policy.getReevaluationSubjectIds() != null ? policy.getReevaluationSubjectIds() : Set.of())
                 : null;
         JudgeRequestPlan plan = runtime != null ? runtime.plan(unitsOf(topics), policy) : null;
-        List<Reach> reaches = reachesOf(plan, examFile);
+        List<Reach> reaches = reachesOf(plan, examFile,
+                policy != null ? policy.getNewEvaluationSubjectIds() : null);
         List<EvaluationSession> sessions = opened != null && opened.getSessions() != null
                 ? opened.getSessions()
                 : List.of();
@@ -307,7 +308,7 @@ class NearDuplicatesAnalyzer implements ContentAnalyzer {
      * it. In an exam run (R007) only the exercises of the file and the pairs whose copy is one of
      * them count; a topic with none of them is neither asked nor counted.
      */
-    private List<Reach> reachesOf(JudgeRequestPlan plan, Set<String> examFile) {
+    private List<Reach> reachesOf(JudgeRequestPlan plan, Set<String> examFile, Set<String> newEvaluationIds) {
         Map<AuditNode, Topic> byNode = new IdentityHashMap<>();
         for (Topic topic : topics) {
             byNode.put(topic.node, topic);
@@ -323,7 +324,7 @@ class NearDuplicatesAnalyzer implements ContentAnalyzer {
             EvaluationRequestMode mode = t < modes.size() && modes.get(t) != null
                     ? modes.get(t)
                     : EvaluationRequestMode.REUSE_OR_EVALUATE;
-            Reach reach = new Reach(topic, mode, examFile);
+            Reach reach = new Reach(topic, mode, examFile, newEvaluationIds);
             if (!reach.counted.isEmpty()) {
                 reaches.add(reach);
             }
@@ -382,7 +383,8 @@ class NearDuplicatesAnalyzer implements ContentAnalyzer {
     /**
      * R009, first batch: the vector of each exercise of a pair the wildcard does not settle, by the
      * session of the vectors, all together. Whatever the plan says, always to reuse or compute: the
-     * modes of the plan are the judge's.
+     * modes of the plan are the judge's. A new-consultation restriction permits vectors for both
+     * endpoints of an eligible pair, including its neighbor as context. Other vectors only reuse.
      */
     private void askVectors(List<Reach> reaches, EvaluationSession vectorSession, int maxConcurrent,
             Answers answers) {
@@ -390,17 +392,23 @@ class NearDuplicatesAnalyzer implements ContentAnalyzer {
         List<Member> asked = new ArrayList<>();
         for (Reach reach : reaches) {
             Set<Member> needed = new HashSet<>();
+            Set<Member> mayCompute = new HashSet<>();
             for (Pair pair : reach.pairs) {
                 if (pair.wildcard == null) {
                     needed.add(pair.kept);
                     needed.add(pair.copy);
+                    if (reach.mayConsult(pair)) {
+                        mayCompute.add(pair.kept);
+                        mayCompute.add(pair.copy);
+                    }
                 }
             }
             for (Member member : reach.topic.members) {
                 if (needed.contains(member)) {
                     requests.add(new EvaluationRequest(new EvaluationSubject(member.quizId(),
                             Map.of(SentenceEmbeddingEvaluator.EXERCISE, member.finished)),
-                            EvaluationRequestMode.REUSE_OR_EVALUATE));
+                            mayCompute.contains(member) ? EvaluationRequestMode.REUSE_OR_EVALUATE
+                                    : EvaluationRequestMode.REUSE_ONLY));
                     asked.add(member);
                 }
             }
@@ -456,7 +464,7 @@ class NearDuplicatesAnalyzer implements ContentAnalyzer {
             for (Pair pair : reach.pairs) {
                 if (asksJudge(pair, local)) {
                     requests.add(new EvaluationRequest(question.subjectOf(pair.kept.quiz, pair.copy.quiz),
-                            reach.mode));
+                            reach.mayConsult(pair) ? reach.mode : EvaluationRequestMode.REUSE_ONLY));
                     asked.add(pair);
                 }
             }
@@ -842,13 +850,16 @@ class NearDuplicatesAnalyzer implements ContentAnalyzer {
 
         private final EvaluationRequestMode mode;
 
+        private final Set<String> newEvaluationIds;
+
         private final List<Member> counted = new ArrayList<>();
 
         private final List<Pair> pairs = new ArrayList<>();
 
-        Reach(Topic topic, EvaluationRequestMode mode, Set<String> examFile) {
+        Reach(Topic topic, EvaluationRequestMode mode, Set<String> examFile, Set<String> newEvaluationIds) {
             this.topic = topic;
             this.mode = mode;
+            this.newEvaluationIds = newEvaluationIds;
             for (Member member : topic.members) {
                 if (inFile(member, examFile)) {
                     counted.add(member);
@@ -859,6 +870,13 @@ class NearDuplicatesAnalyzer implements ContentAnalyzer {
                     pairs.add(pair);
                 }
             }
+        }
+
+        /** Either endpoint may have changed. A pair of other neighbors remains cache-only. */
+        boolean mayConsult(Pair pair) {
+            return newEvaluationIds == null
+                    || pair.kept.quizId() != null && newEvaluationIds.contains(pair.kept.quizId())
+                    || pair.copy.quizId() != null && newEvaluationIds.contains(pair.copy.quizId());
         }
 
         /** Without a file, everything counts. */
