@@ -134,7 +134,7 @@ public class MainTest {
                 "Palabras que vuelven a tiempo", "Vocabulario del nivel presente", "Palabra de otro nivel",
                 "Palabras vistas suficientes veces", "Consigna que no se cumple",
                 "Pista que falta, confunde o regala la respuesta", "Exige una forma o rechaza una respuesta válida",
-                "Opción múltiple mal armada", "Audio o respuesta que no coincide", "Ejercicio repetido igual",
+                "Opción múltiple mal armada", "Respuesta u oración que no coincide", "Ejercicio repetido igual",
                 "Traducción que no corresponde", "Más de una respuesta válida", "Miniteoría con error"),
                 spanish.subList(0, 17), "R004 inv. 2: the Spanish names of the table of F-FILAS-R001");
     }
@@ -230,7 +230,7 @@ public class MainTest {
                 "hint-coherence Pista que falta, confunde o regala la respuesta",
                 "answer-completeness Exige una forma o rechaza una respuesta válida",
                 "multiple-choice-validity Opción múltiple mal armada",
-                "data-coherence Audio o respuesta que no coincide", "exact-duplicates Ejercicio repetido igual",
+                "data-coherence Respuesta u oración que no coincide", "exact-duplicates Ejercicio repetido igual",
                 "translation-sense Traducción que no corresponde", "single-answer Más de una respuesta válida",
                 "mini-theory Miniteoría con error"),
                 firstSeventeen, "R001 inv. 2: the seventeen of round 1, each in its place");
@@ -266,7 +266,7 @@ public class MainTest {
         table.put("hint-coherence", "Pista que falta, confunde o regala la respuesta");
         table.put("answer-completeness", "Exige una forma o rechaza una respuesta válida");
         table.put("multiple-choice-validity", "Opción múltiple mal armada");
-        table.put("data-coherence", "Audio o respuesta que no coincide");
+        table.put("data-coherence", "Respuesta u oración que no coincide");
         table.put("exact-duplicates", "Ejercicio repetido igual");
         table.put("translation-sense", "Traducción que no corresponde");
         table.put("single-answer", "Más de una respuesta válida");
@@ -330,9 +330,8 @@ public class MainTest {
                 + "larga), o cuyo corrector rechaza otra forma igual de correcta de la respuesta.");
         table.put("multiple-choice-validity", "Opción múltiple con más de una opción correcta (o ninguna), con "
                 + "opciones repetidas o con una que se delata por la forma.");
-        table.put("data-coherence", "Ejercicios cuyas copias no dicen lo mismo: la oración guardada o el audio no "
-                + "coinciden con el enunciado y su respuesta, una respuesta o el audio llevan «/», o el audio falta "
-                + "o no se sabe qué dice.");
+        table.put("data-coherence", "Revisión de contenido: compara las respuestas y las oraciones guardadas. "
+                + "El audio se revisa en prepublicación.");
         table.put("exact-duplicates",
                 "Ejercicios que, terminados, dicen exactamente lo mismo que otro anterior del mismo tema.");
         table.put("translation-sense", "Ejercicios cuyo inglés y traducción no dicen lo mismo, que un nativo no "
@@ -340,7 +339,8 @@ public class MainTest {
         table.put("single-answer", "Ejercicios para escribir donde, con lo que ve el alumno, hay otra respuesta "
                 + "igual de buena que el corrector no acepta.");
         table.put("mini-theory", "Quizzes cuya tarjeta es falsa, insuficiente o exagerada para su caso, o agrega "
-                + "contenido de otro subtema.");
+                + "contenido de otro subtema, explican la concordancia desde la forma verbal hacia el sujeto o "
+                + "dejan palabras clave en inglés sin resaltar.");
         table.put("grammar", "Ejercicios cuya oración terminada, con la respuesta puesta, tiene un error de "
                 + "gramática, de ortografía o de puntuación final.");
         String structuredExplanation = "Resultado estructurado independiente. El puntaje refleja ausencia de defectos propios del juez, no exactitud ni confianza; pendientes y N/A se informan aparte. Derivaciones a otros jueces conservan su dueño y no bajan este puntaje. Los defectos didácticos afectan al ejemplo, no invalidan su inglés ni una respuesta aceptada. Hallazgos para revisión en panel, sin reescritura automática.";

@@ -145,7 +145,8 @@ public class FTareaJ001JourneyTest {
         assertEquals(List.of("QUIZ " + Tarea.QUILT + " LEMMA_ABSENCE"), saved.getTasks().stream()
                 .map(task -> task.getNodeTarget() + " " + task.getNodeId() + " " + task.getDiagnosisKind()).toList(),
                 "no task of off-level-words: the LEMMA_ABSENCE task of the exercise covers spread and quilt");
-        assertEquals(2, saved.getTasks().get(0).getOrigin().getCoveredFindings().size());
+        assertEquals(3, saved.getTasks().get(0).getOrigin().getCoveredFindings().size(),
+                "its second word and both off-level-words findings");
         assertTrue(plan.err().matches("(?s).*off-level-words\\s+2 = 0 \\+ 2 \\+ 0.*"), "declared covered: " + plan.err());
 
         // === Node: vocabulario_igual === Gate: F-TAREA-R007
@@ -157,9 +158,9 @@ public class FTareaJ001JourneyTest {
         assertEquals(0, listed.exit(), listed.err());
         JsonNode task = Tarea.json(listed.out()).get("tasks").get(0);
         assertEquals("LEMMA_ABSENCE", task.get("diagnosis").asText());
-        assertEquals(2, task.get("origin").get("coveredFindings").size(), "with what it covers");
+        assertEquals(3, task.get("origin").get("coveredFindings").size(), "with what it covers");
         Base299.Captured shown = Base299.run(t.getCmd(), "task", task.get("id").asText());
-        assertTrue(shown.out().contains("Covers:    2 finding(s)"), shown.out());
+        assertTrue(shown.out().contains("Covers:    3 finding(s)"), shown.out());
         assertTrue(shown.out().contains("She spread the warm blue quilt on the bed."), shown.out());
         // result: success
     }

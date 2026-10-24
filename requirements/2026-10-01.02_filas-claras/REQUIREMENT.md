@@ -82,7 +82,7 @@ Reemplaza los nombres de la tabla de [F-RONDA1-R004](#F-RONDA1-R004) y los tres 
 | `hint-coherence` | errores | Pista coherente | Pista que falta, confunde o regala la respuesta |
 | `answer-completeness` | errores | Respuestas completas | Exige una forma o rechaza una respuesta válida |
 | `multiple-choice-validity` | errores | Opción múltiple válida | Opción múltiple mal armada |
-| `data-coherence` | errores | Datos coherentes | Audio o respuesta que no coincide |
+| `data-coherence` | errores | Datos coherentes | Respuesta u oración que no coincide |
 | `exact-duplicates` | errores | Duplicados exactos | Ejercicio repetido igual |
 | `translation-sense` | errores | Traducción y sentido | Traducción que no corresponde |
 | `single-answer` | errores | Una sola respuesta | Más de una respuesta válida |
@@ -170,11 +170,11 @@ aunque queden ejercicios abiertos; si su meta se puede decidir lo dice su estado
 | `hint-coherence` | Ejercicios para escribir sin pista cuando la llevan tres cuartos o más de los de su tema, con una pista que no le dice al alumno qué escribir, o con una pista que es la respuesta misma. |
 | `answer-completeness` | Ejercicios cuya consigna o miniteoría pide una forma (la corta o la larga), o cuyo corrector rechaza otra forma igual de correcta de la respuesta. |
 | `multiple-choice-validity` | Opción múltiple con más de una opción correcta (o ninguna), con opciones repetidas o con una que se delata por la forma. |
-| `data-coherence` | Ejercicios cuyas copias no dicen lo mismo: la oración guardada o el audio no coinciden con el enunciado y su respuesta, una respuesta o el audio llevan «/», o el audio falta o no se sabe qué dice. |
+| `data-coherence` | Revisión de contenido: compara las respuestas y las oraciones guardadas. El audio se revisa en prepublicación. |
 | `exact-duplicates` | Ejercicios que, terminados, dicen exactamente lo mismo que otro anterior del mismo tema. |
 | `translation-sense` | Ejercicios cuyo inglés y traducción no dicen lo mismo, que un nativo no diría así, con palabras que no van juntas o con un registro que no es del nivel. |
 | `single-answer` | Ejercicios para escribir donde, con lo que ve el alumno, hay otra respuesta igual de buena que el corrector no acepta. |
-| `mini-theory` | Quizzes cuya tarjeta es falsa, insuficiente o exagerada para su caso, o agrega contenido de otro subtema. |
+| `mini-theory` | Quizzes cuya tarjeta es falsa, insuficiente o exagerada para su caso, o agrega contenido de otro subtema, explican la concordancia desde la forma verbal hacia el sujeto o dejan palabras clave en inglés sin resaltar. |
 | `grammar` | Ejercicios cuya oración terminada, con la respuesta puesta, tiene un error de gramática, de ortografía o de puntuación final. |
 | `naturalness` | Ejercicios cuya oración terminada un modelo duda que un nativo diría así. Sólo ordena qué revisar primero: no cuenta como error. |
 | `near-duplicates` | Ejercicios que piden la misma respuesta y casi lo mismo que otro anterior del mismo tema: otro pronombre, otro tiempo o la misma idea con otras palabras. |

@@ -102,9 +102,12 @@ class FileSystemJudgePromotionRegistryTest {
             ObjectNode badCase=((ObjectNode)valid.get("examException")).deepCopy();
             badCase.putArray(field).add(7);
             invalidScopes.add(badCase);
-            ObjectNode emptyCases=((ObjectNode)valid.get("examException")).deepCopy();
-            emptyCases.putArray(field);
-            invalidScopes.add(emptyCases);
+            // Sin regresiones aceptadas es válido (la suite permanente puede estar vacía); sin discrepancias, no.
+            if (field.equals("acceptedMismatchedCaseIds")) {
+                ObjectNode emptyCases=((ObjectNode)valid.get("examException")).deepCopy();
+                emptyCases.putArray(field);
+                invalidScopes.add(emptyCases);
+            }
             ObjectNode blankCase=((ObjectNode)valid.get("examException")).deepCopy();
             blankCase.putArray(field).add(" ");
             invalidScopes.add(blankCase);
