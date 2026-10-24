@@ -62,14 +62,16 @@ public class MainTest {
                         "single-answer-judge", "singleAnswerVerdict", "juez");
         java.lang.reflect.Method lazy = Main.class.getDeclaredMethod("lazyAgentJudge",
                 com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeFactory.class,
+                com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolver.class,
                 com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeConfig.class,
                 com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeSpec.class,
                 com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunner.class,
                 com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocator.class);
         lazy.setAccessible(true);
         com.learney.contentaudit.evaluationledgerdomain.Evaluator wrapped =
-                (com.learney.contentaudit.evaluationledgerdomain.Evaluator) lazy.invoke(null,
-                        factory, new com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeConfig(),
+                (com.learney.contentaudit.evaluationledgerdomain.Evaluator) lazy.invoke(null, factory,
+                        new com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.DefaultLlmProviderResolver(),
+                        new com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeConfig(),
                         spec, null, null);
 
         assertEquals("single-answer-judge", wrapped.evaluatorId());

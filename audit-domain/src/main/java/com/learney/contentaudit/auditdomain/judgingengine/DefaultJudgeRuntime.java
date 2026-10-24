@@ -37,6 +37,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -169,6 +170,15 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
                 compatibleJudgeVersions);
         standing.setVersionEquivalences(versionEquivalencesOf(judges));
         standing.setEnabledWith(enabledWith(judgeName, judgeVersion, compatibleJudgeVersions, standing));
+        if (examRuntimeIdentity == null && movesToAnEnabledRuntime(purpose, policy, judgeVersion, standing)) {
+            MovedJudge moved = moveToAnEnabledRuntime(judgeName, judges, judgeVersion, standing);
+            if (moved != null) {
+                judges = moved.evaluators();
+                runtimeIdentity = moved.standing().getRuntimeIdentity();
+                compatibleJudgeVersions = moved.compatibleJudgeVersions();
+                standing = moved.standing();
+            }
+        }
         int effective = Math.max(0, requested);
         if (purpose == EvaluationRunPurpose.READING) effective = 0;
         if (judgeVersion == null) {
@@ -191,8 +201,90 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
                 policy != null ? policy.getReevaluationSubjectIds() : null,
                 purpose, maxConcurrent);
         effectivePolicy.setNewEvaluationSubjectIds(policy != null ? policy.getNewEvaluationSubjectIds() : null);
+        effectivePolicy.setAnyEnabledRuntime(policy != null && policy.isAnyEnabledRuntime());
         return new JudgeSessions(judgeName, judgeVersion, evaluatorIds, sessions, standing, effectivePolicy,
                 runtimeIdentity, compatibleJudgeVersions);
+    }
+
+    /**
+     * F-CMOTOR-R001, R004: a judge whose version is not enabled with its own runtime moves to another
+     * one it is enabled with when the run reads for free, or when it is the closing that asks for it.
+     * The exam, a reanalysis and every other run that pays stay with the runtime the operator chose.
+     */
+    private static boolean movesToAnEnabledRuntime(EvaluationRunPurpose purpose, EvaluationRunPolicy policy,
+            String judgeVersion, JudgeExamStanding own) {
+        if (judgeVersion == null || own.isConsultsOnCourse()) {
+            return false;
+        }
+        return purpose == EvaluationRunPurpose.READING
+                || purpose == EvaluationRunPurpose.COURSE && policy != null && policy.isAnyEnabledRuntime();
+    }
+
+    /**
+     * F-CMOTOR-R001: the judge on the runtime it was enabled with most recently -- of those every one of
+     * its evaluators can be moved to without changing its version --, or null when there is none and it
+     * stays on its own (R002). The standing it gets is that runtime's, and remembers the own one.
+     */
+    private MovedJudge moveToAnEnabledRuntime(String judgeName, List<Evaluator> judges, String judgeVersion,
+            JudgeExamStanding own) {
+        List<JudgeEnablement> mostRecentFirst = new ArrayList<>(own.getEnabledWith());
+        mostRecentFirst.sort(Comparator.comparing(JudgeEnablement::since,
+                Comparator.nullsLast(Comparator.reverseOrder())));
+        for (JudgeEnablement enablement : mostRecentFirst) {
+            EvaluationRuntimeIdentity runtime = enablement.runtimeIdentity();
+            if (runtime == null || runtime.equals(own.getRuntimeIdentity())) {
+                continue;
+            }
+            List<Evaluator> moved = movedTo(judges, runtime);
+            // Inv. 2: the runtime never changes the version; a judge that would state another one stays.
+            if (moved == null || !judgeVersion.equals(versionOrNull(moved))
+                    || !runtime.equals(composeRuntimeIdentity(moved))) {
+                continue;
+            }
+            Set<String> compatible = composeCompatibleVersions(moved);
+            compatible.add(judgeVersion);
+            JudgeExamStanding standing = standing(judgeName, judgeVersion, runtime, compatible);
+            if (!standing.isConsultsOnCourse()) {
+                continue;
+            }
+            standing.setVersionEquivalences(versionEquivalencesOf(moved));
+            standing.setEnabledWith(own.getEnabledWith());
+            standing.setOwnRuntimeIdentity(own.getRuntimeIdentity());
+            return new MovedJudge(moved, standing, compatible);
+        }
+        return null;
+    }
+
+    /** Every evaluator of the judge on {@code runtime}, or null when one of them cannot be moved there. */
+    private static List<Evaluator> movedTo(List<Evaluator> judges, EvaluationRuntimeIdentity runtime) {
+        List<Evaluator> moved = new ArrayList<>();
+        for (Evaluator evaluator : judges) {
+            Optional<Evaluator> there;
+            try {
+                there = evaluator.withRuntime(runtime);
+            } catch (RuntimeException e) {
+                return null;
+            }
+            if (there == null || there.isEmpty()) {
+                return null;
+            }
+            moved.add(there.get());
+        }
+        return moved;
+    }
+
+    /** The version the moved judge states, or null when it cannot state one: it then stays on its own runtime. */
+    private static String versionOrNull(List<Evaluator> moved) {
+        try {
+            return composeVersion(moved);
+        } catch (RuntimeException e) {
+            return null;
+        }
+    }
+
+    /** A judge moved to another runtime it is enabled with: its evaluators there and that runtime's standing. */
+    private record MovedJudge(List<Evaluator> evaluators, JudgeExamStanding standing,
+            Set<String> compatibleJudgeVersions) {
     }
 
     @Override

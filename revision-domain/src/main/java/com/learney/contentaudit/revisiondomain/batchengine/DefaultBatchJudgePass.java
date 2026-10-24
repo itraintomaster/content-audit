@@ -25,6 +25,7 @@ import com.learney.contentaudit.auditdomain.judging.JudgeVersionStanding;
 import com.learney.contentaudit.auditdomain.localtools.LocalToolRunDiagnosis;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchJudgeAccount;
 import com.learney.contentaudit.revisiondomain.batch.BatchSettings;
@@ -374,12 +375,17 @@ class DefaultBatchJudgePass implements BatchJudgePass {
             return reports.get(part);
         }
 
-        /** One run of the engine: the judges given, each with its own budget -- 0 unless it is named in {@code budgets}. */
+        /**
+         * One run of the engine: the judges given, each with its own budget -- 0 unless it is named in {@code budgets}
+         * --, each on a runtime it is enabled with (F-CMOTOR-R001).
+         */
         AuditReport run(AuditableCourse course, List<String> judges, Map<String, Integer> budgets) {
             Map<String, EvaluationRunPolicy> policies = new LinkedHashMap<>();
             for (String judge : judges) {
-                policies.put(judge, new EvaluationRunPolicy(budgets.getOrDefault(judge, 0), false, null, null, null,
-                        atOnce));
+                EvaluationRunPolicy policy = new EvaluationRunPolicy(budgets.getOrDefault(judge, 0), false, null, null,
+                        null, atOnce);
+                policy.setAnyEnabledRuntime(true);
+                policies.put(judge, policy);
             }
             return auditEngine.runAudit(course, new AnalyzerRunSelection(new ArrayList<>(judges), policies));
         }
@@ -415,6 +421,11 @@ class DefaultBatchJudgePass implements BatchJudgePass {
         Integer budget;
 
         String unavailableReason;
+
+        /** F-CMOTOR-R003: the runtime it is consulted with, and whether it is not the profile's. */
+        EvaluationRuntimeIdentity runtime;
+
+        boolean otherRuntime;
 
         /** F-ALDIA-R005: the marks of what it reuses on both sides, when today's judge is known. */
         JudgeFreshnessTally freshness;
@@ -471,12 +482,18 @@ class DefaultBatchJudgePass implements BatchJudgePass {
             return line;
         }
 
-        /** The exam of its version: approved when it consults on the course, with the reason when it does not. */
+        /**
+         * The exam of its version: approved when it consults on the course, with the reason when it does not; and the
+         * runtime it is consulted with, which is another than the profile's when the run moved it (F-CMOTOR-R003).
+         */
         private void standing(JudgeExamStanding standing) {
             if (standing != null) {
                 approved = standing.isConsultsOnCourse();
                 examStatus = standing.getStatus();
                 reason = approved ? null : standing.getReason();
+                runtime = standing.getRuntimeIdentity().isExplicit() ? standing.getRuntimeIdentity() : null;
+                otherRuntime = standing.getOwnRuntimeIdentity() != null
+                        && !standing.getOwnRuntimeIdentity().equals(standing.getRuntimeIdentity());
             }
         }
 
@@ -543,6 +560,8 @@ class DefaultBatchJudgePass implements BatchJudgePass {
             BatchJudgeAccount account = new BatchJudgeAccount(name, displayName, unit, approved, examStatus, reason, units,
                     budget, spent, reused, missing.get(Side.BEFORE) + missing.get(Side.AFTER), 0, 0, unavailableReason, local);
             account.setFreshness(freshness != null ? freshness.count() : null);
+            account.setRuntime(local ? null : runtime);
+            account.setOtherRuntime(!local && otherRuntime);
             return account;
         }
     }

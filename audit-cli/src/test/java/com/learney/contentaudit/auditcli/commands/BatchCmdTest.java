@@ -594,6 +594,44 @@ public class BatchCmdTest {
     }
 
     @Test
+    @DisplayName("should say in the estimate and at closing the runtime of a judge that is not the profile's, and carry it in the JSON")
+    @Tag("FEAT-CMOTOR")
+    @Tag("F-CMOTOR-R003")
+    public void shouldSayTheRuntimeOfAJudgeThatIsNotTheProfilesInTheEstimateAtClosingAndInTheJson() throws Exception {
+        // F-CMOTOR-R003: mini-theory, enabled only with Gemini, goes with it in a closing of the ChatGPT profile; its line
+        // says so, translation-sense's does not, and the JSON of the estimate carries the runtime of each.
+        Service service = new Service();
+        List<BatchJudgeAccount> accounts = closingSample();
+        var gemini = com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity.explicit("agy",
+                "gemini-3.8-flash-high", "high");
+        accounts.get(1).setRuntime(gemini);
+        accounts.get(1).setOtherRuntime(true);
+        accounts.get(0).setRuntime(com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity.explicit(
+                "codex-cli", "gpt-6.1-sol", "medium"));
+        service.judgeAccounts = accounts;
+        service.changedQuizzes = 4;
+        service.estimateJudges = accounts;
+
+        Run close = run(service, "close");
+        Run estimate = run(service, "estimate");
+        Run json = run(service, "estimate", "-f", "json");
+
+        for (Run run : List.of(close, estimate)) {
+            assertEquals(0, run.exit(), run.err());
+            assertTrue(run.out().contains("Miniteoría (mini-theory): 2 temas;"), run.out());
+            assertTrue(run.out().contains(" — con agy/gemini-3.8-flash-high (high), no con el del perfil"), run.out());
+            assertFalse(run.out().contains("codex-cli/gpt-6.1-sol"), "the profile's runtime is not named: " + run.out());
+        }
+        JsonNode judges = new ObjectMapper().readTree(json.out()).get("judges");
+        assertEquals("agy", judges.get(1).get("runtime").get("providerName").asText());
+        assertEquals("gemini-3.8-flash-high", judges.get(1).get("runtime").get("modelName").asText());
+        assertEquals("high", judges.get(1).get("runtime").get("reasoningEffort").asText());
+        assertTrue(judges.get(1).get("otherRuntime").asBoolean());
+        assertEquals("codex-cli", judges.get(0).get("runtime").get("providerName").asText());
+        assertFalse(judges.get(0).get("otherRuntime").asBoolean());
+    }
+
+    @Test
     @DisplayName("should print with 'batch report' the same line per judge as the last closing")
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R005")

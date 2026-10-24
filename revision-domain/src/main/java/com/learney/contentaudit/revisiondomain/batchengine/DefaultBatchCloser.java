@@ -238,6 +238,9 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
                     judge.getUnavailableReason(), judge.isLocal());
             // F-ALDIA-R005: what of the reused was from before, as the pass read it before paying.
             account.setFreshness(judge.getFreshness());
+            // F-CMOTOR-R003: the runtime it was consulted with.
+            account.setRuntime(judge.getRuntime());
+            account.setOtherRuntime(judge.isOtherRuntime());
             accounts.add(account);
         }
         return accounts;

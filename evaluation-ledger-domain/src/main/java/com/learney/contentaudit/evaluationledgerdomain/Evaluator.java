@@ -39,4 +39,13 @@ public interface Evaluator {
     default List<EvaluatorVersionEquivalence> versionEquivalences() {
         return List.of();
     }
+
+    /**
+     * F-CMOTOR-R001: the same evaluator consulting with {@code runtime}, or empty when it cannot be
+     * moved there -- the default, and what a runtime it may not use without a key answers. Building it
+     * consults nothing.
+     */
+    default Optional<Evaluator> withRuntime(EvaluationRuntimeIdentity runtime) {
+        return Optional.empty();
+    }
 }

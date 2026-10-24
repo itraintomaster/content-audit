@@ -16,6 +16,7 @@ import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.CourseMapper;
 import com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import com.learney.contentaudit.auditdomain.IAuditEngine;
 import com.learney.contentaudit.auditdomain.IScoreAggregator;
 import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
@@ -152,6 +153,13 @@ final class JudgePassBench {
     private final Map<String, Exam> exams = new ConcurrentHashMap<>();
 
     private final Map<String, String> servicesDown = new ConcurrentHashMap<>();
+
+    /** F-CMOTOR-R001: the judges whose version is enabled only with another runtime than the profile's, and with which. */
+    private final Map<String, EvaluationRuntimeIdentity> otherRuntimes = new ConcurrentHashMap<>();
+
+    /** The runtime of the profile the bench runs with, as a standing that consults with it says it. */
+    public static final EvaluationRuntimeIdentity PROFILE = EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol",
+            "medium");
 
     /** By judge, the versions its coverage says its verdicts came from, on every cut (F-ALDIA-R005). */
     public final Map<String, List<com.learney.contentaudit.auditdomain.judging.JudgeVersionStanding>> versionsSeen =
@@ -328,6 +336,15 @@ final class JudgePassBench {
     /** The version of the judge has no approved exam: it reuses what the ledger has and consults nothing. */
     public void withoutApprovedExam(String judge, JudgeExamStatus status, String reason) {
         exams.put(judge, new Exam(status, reason));
+    }
+
+    /**
+     * F-CMOTOR-R001: the version of the judge is enabled only with {@code runtime}, not with the profile's: a run that asks
+     * for any enabled runtime -- the closing -- or reads for free consults it with that one, any other run consults nothing.
+     */
+    public void enabledOnlyWith(String judge, EvaluationRuntimeIdentity runtime) {
+        exams.put(judge, new Exam(JudgeExamStatus.NOT_TAKEN, "sin examen con el motor del perfil"));
+        otherRuntimes.put(judge, runtime);
     }
 
     /** The service behind the judge fails: its first query of a run comes back without a verdict, for this reason. */
@@ -969,6 +986,9 @@ final class JudgePassBench {
 
             private String unavailableReason;
 
+            /** F-CMOTOR-R001: the runtime it was moved to, enabled with it; null when it runs with the profile's. */
+            private final EvaluationRuntimeIdentity moved;
+
             /** By evaluator: queries paid, verdicts reused, still pending, failed. */
             private final Map<String, int[]> tallies = new LinkedHashMap<>();
 
@@ -978,6 +998,9 @@ final class JudgePassBench {
                         : (local && ollama ? Integer.MAX_VALUE : 0);
                 this.maxConcurrent = policy != null && policy.getMaxConcurrentEvaluations() != null
                         ? policy.getMaxConcurrentEvaluations() : 1;
+                this.moved = policy != null && (policy.isAnyEnabledRuntime()
+                        || policy.getPurpose() == com.learney.contentaudit.auditdomain.EvaluationRunPurpose.READING)
+                        ? otherRuntimes.get(name) : null;
                 for (String evaluator : evaluators) {
                     tallies.put(evaluator, new int[4]);
                 }
@@ -1046,7 +1069,7 @@ final class JudgePassBench {
                     String key = evaluator + " :: " + read;
                     if (book.containsKey(key)) {
                         tally[1]++;
-                    } else if (!down && budget > 0 && exam(name).approved()) {
+                    } else if (!down && budget > 0 && (exam(name).approved() || moved != null)) {
                         budget--;
                         if (servicesDown.containsKey(name)) {
                             down = true;
@@ -1078,9 +1101,16 @@ final class JudgePassBench {
                             new EvaluationCoverage(reached, t[0] + t[1], t[0], t[1], t[2], t[3]), "v3"));
                 }
                 Exam exam = exam(name);
+                JudgeExamStanding standing = new JudgeExamStanding(name, "v3", exam.status(), exam.approved(),
+                        exam.reason(), local ? EvaluationRuntimeIdentity.legacyUnknown() : PROFILE);
+                if (moved != null) {
+                    standing = new JudgeExamStanding(name, "v3", JudgeExamStatus.APPROVED, true, "aprobado con otro motor",
+                            moved);
+                    standing.setOwnRuntimeIdentity(PROFILE);
+                }
                 DefaultCourseDiagnoses diagnoses = (DefaultCourseDiagnoses) root.getDiagnoses();
                 diagnoses.addJudgeCoverage(new JudgeCoverageDiagnosis(name, unit, reached, evaluated, reached - evaluated,
-                        coverages, new JudgeExamStanding(name, "v3", exam.status(), exam.approved(), exam.reason()),
+                        coverages, standing,
                         new ArrayList<>(versionsSeen.getOrDefault(name, List.of())), unavailableReason,
                         new JudgeCostEstimate(reached - evaluated, missing, 0, false, 0, maxConcurrent, 0),
                         new ArrayList<>(),

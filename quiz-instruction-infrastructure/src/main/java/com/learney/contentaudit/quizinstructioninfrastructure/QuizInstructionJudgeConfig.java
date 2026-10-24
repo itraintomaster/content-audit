@@ -45,6 +45,15 @@ public class QuizInstructionJudgeConfig {
         this.reasoningEffort = reasoningEffort;
     }
 
+    /**
+     * F-CMOTOR-R001: the same judge's configuration on another runtime of a subscription -- its provider, model and
+     * effort --; the address and the key of this one are not carried over, and the rest is.
+     */
+    public QuizInstructionJudgeConfig onRuntime(String providerName, String modelName, String reasoningEffort) {
+        return new QuizInstructionJudgeConfig(null, null, modelName, temperature, timeoutSeconds, agentName,
+                providerName, reasoningEffort);
+    }
+
     public String getBaseUrl() {
         return this.baseUrl;
     }

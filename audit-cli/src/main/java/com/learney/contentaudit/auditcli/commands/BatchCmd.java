@@ -592,8 +592,8 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
     /**
      * The line of a judge: its visible name and its unique one, what it judges -- exercises, or topics --, what it spent,
      * reused and misses, the tope it had and its floors decided of all its floors -- the estimate, which has paid and decided
-     * nothing, leaves those out --, and, in this order, whether it is local and costs nothing, why it is without an approved
-     * exam, and why it stopped.
+     * nothing, leaves those out --, and, in this order, whether it is local and costs nothing, the runtime it goes with when
+     * it is not the profile's, why it is without an approved exam, and why it stopped.
      */
     private static String judgeLine(BatchJudgeAccount judge, boolean closed) {
         StringBuilder line = new StringBuilder("  ")
@@ -616,6 +616,12 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
         }
         if (judge.isLocal()) {
             line.append(" — local, sin costo");
+        }
+        if (judge.isOtherRuntime() && judge.getRuntime() != null) {
+            // F-CMOTOR-R003: never consulted with another runtime without saying so.
+            line.append(" — con ").append(judge.getRuntime().getProviderName()).append('/')
+                    .append(judge.getRuntime().getModelName()).append(" (")
+                    .append(judge.getRuntime().getReasoningEffort()).append("), no con el del perfil");
         }
         if (!judge.isApproved()) {
             line.append(" — sin aprobar").append(judge.getReason() != null ? ": " + judge.getReason() : "");

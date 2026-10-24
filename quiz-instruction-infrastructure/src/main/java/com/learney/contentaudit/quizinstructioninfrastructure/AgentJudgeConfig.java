@@ -41,6 +41,14 @@ public class AgentJudgeConfig {
         this.reasoningEffort = reasoningEffort;
     }
 
+    /**
+     * F-CMOTOR-R001: the same judge's configuration on another runtime of a subscription -- its provider, model and
+     * effort --; the address and the key of this one are not carried over, and the temperature and the timeout are.
+     */
+    public AgentJudgeConfig onRuntime(String providerName, String modelName, String reasoningEffort) {
+        return new AgentJudgeConfig(providerName, null, null, modelName, temperature, timeoutSeconds, reasoningEffort);
+    }
+
     public String getProviderName() {
         return this.providerName;
     }

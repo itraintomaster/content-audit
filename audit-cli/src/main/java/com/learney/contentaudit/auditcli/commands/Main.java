@@ -201,6 +201,7 @@ import com.learney.contentaudit.auditapplication.DefaultSingleAnswerConfig;
 import com.learney.contentaudit.auditapplication.DefaultTranslationSenseConfig;
 import com.learney.contentaudit.auditapplication.JudgeExamService;
 import com.learney.contentaudit.auditcli.bootstrap.DefaultAgentJudgeConfigResolver;
+import com.learney.contentaudit.auditcli.bootstrap.MovableJudge;
 import com.learney.contentaudit.auditcli.formatting.LemmaRecurrenceDetailedFormatter;
 import com.learney.contentaudit.auditdomain.AudioRecordingRegistry;
 import com.learney.contentaudit.auditdomain.CorrectorMatcher;
@@ -238,6 +239,8 @@ import com.learney.contentaudit.auditinfrastructure.exercisecopies.FileSystemAud
 import com.learney.contentaudit.auditinfrastructure.exercisecopies.FileSystemProductionSentenceSource;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.EvaluationRunPurpose;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamEvaluationSessionFactory;
 import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeConfig;
@@ -539,9 +542,13 @@ class Main {
 
         QuizInstructionJudgeFactory quizInstructionJudgeFactory =
                 new DefaultQuizInstructionJudgeFactory(llmProviderResolver, judgeProviderReadinessProbe);
-        Evaluator quizInstructionJudge = quizInstructionJudgeFactory.create(
-                quizInstructionJudgeConfig, quizInstructionAgentGraphRunner,
-                quizInstructionAgentDefinitionLocator);
+        // F-CMOTOR-R001: the closing may move it to another runtime of a subscription it is enabled with.
+        Evaluator quizInstructionJudge = MovableJudge.of(quizInstructionJudgeFactory.create(
+                        quizInstructionJudgeConfig, quizInstructionAgentGraphRunner,
+                        quizInstructionAgentDefinitionLocator), quizInstructionJudgeConfig,
+                config -> quizInstructionJudgeFactory.create(config, quizInstructionAgentGraphRunner,
+                        quizInstructionAgentDefinitionLocator),
+                QuizInstructionJudgeConfig::onRuntime, llmProviderResolver);
 
         ContentFingerprinter evaluationContentFingerprinter = new Sha256ContentFingerprinter();
         // The file ledger is also the timeline the judge runtime measures the rate with (C-12).
@@ -622,28 +629,28 @@ class Main {
                 new DefaultAgentJudgeConfigResolver(localSessionProviderCatalog).resolve(System.getenv());
         AgentJudgeFactory agentJudgeFactory =
                 new DefaultAgentJudgeFactory(llmProviderResolver, judgeProviderReadinessProbe);
-        Evaluator fromEnglishJudge = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+        Evaluator fromEnglishJudge = lazyAgentJudge(agentJudgeFactory, llmProviderResolver, agentJudgeConfig,
                 new AgentJudgeSpec("translation-sense-from-english", "translationSenseVerdict",
                         "juez de traducción y sentido, desde el inglés"),
                 quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
-        Evaluator fromTranslationJudge = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+        Evaluator fromTranslationJudge = lazyAgentJudge(agentJudgeFactory, llmProviderResolver, agentJudgeConfig,
                 new AgentJudgeSpec("translation-sense-from-translation", "translationSenseVerdict",
                         "juez de traducción y sentido, desde la traducción"),
                 quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
-        Evaluator singleAnswerJudge = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+        Evaluator singleAnswerJudge = lazyAgentJudge(agentJudgeFactory, llmProviderResolver, agentJudgeConfig,
                 new AgentJudgeSpec("single-answer-judge", "singleAnswerVerdict", "juez de una sola respuesta"),
                 quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
-        Evaluator miniTheoryJudge = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+        Evaluator miniTheoryJudge = lazyAgentJudge(agentJudgeFactory, llmProviderResolver, agentJudgeConfig,
                 new AgentJudgeSpec("mini-theory-judge", "miniTheoryVerdict", "juez de la miniteoría"),
                 quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
-        Evaluator choiceAlternativeJudge = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+        Evaluator choiceAlternativeJudge = lazyAgentJudge(agentJudgeFactory, llmProviderResolver, agentJudgeConfig,
                 new AgentJudgeSpec("choice-alternative-judge", "choiceAlternativeVerdict",
                         "juez de otra opción que también vale"),
                 quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
-        Evaluator choiceQualityJudge = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+        Evaluator choiceQualityJudge = lazyAgentJudge(agentJudgeFactory, llmProviderResolver, agentJudgeConfig,
                 new AgentJudgeSpec("choice-quality-judge", "choiceQualityVerdict", "juez de calidad de distractores"),
                 quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
-        Evaluator pragmatismJudge = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+        Evaluator pragmatismJudge = lazyAgentJudge(agentJudgeFactory, llmProviderResolver, agentJudgeConfig,
                 new AgentJudgeSpec("pragmatism-judge", "pragmatismVerdict", "juez de pragmatismo comunicativo"),
                 quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
 
@@ -687,13 +694,13 @@ class Main {
         OllamaModelFactory ollamaModelFactory = new DefaultOllamaModelFactory();
         LocalToolGate localToolGate = new DefaultLocalToolGate(judgeRuntime);
         FinishedSentenceReader finishedSentenceReader = new DefaultFinishedSentenceReader();
-        Evaluator nativeUsageJudge = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+        Evaluator nativeUsageJudge = lazyAgentJudge(agentJudgeFactory, llmProviderResolver, agentJudgeConfig,
                 new AgentJudgeSpec("native-usage-judge", "nativeUsageVerdict", "Naturalidad idiomática"),
                 quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
-        Evaluator a1DidacticJudge = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+        Evaluator a1DidacticJudge = lazyAgentJudge(agentJudgeFactory, llmProviderResolver, agentJudgeConfig,
                 new AgentJudgeSpec("a1-didactic-judge", "a1DidacticVerdict", "Calidad didáctica A1"),
                 quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
-        Evaluator nearDuplicatesAlternative = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+        Evaluator nearDuplicatesAlternative = lazyAgentJudge(agentJudgeFactory, llmProviderResolver, agentJudgeConfig,
                 new AgentJudgeSpec("near-duplicates-pair-judge", "sameExerciseVerdict",
                         "Duplicados parecidos (claude -p)"),
                 quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
@@ -1413,31 +1420,45 @@ class Main {
                         a1DidacticJudge.evaluatorId()), java.time.Clock.systemUTC());
         // F-JEXAM-R015: exam status -f json asks the catalog who to read, only when it is used. Opening the sessions
         // of today's judges consults nothing; F-ALDIA-R003 marks the verdicts of an analysis against the same standings.
+        Map<String, List<Evaluator>> activeJudges = Map.of(
+                "quiz-instruction", List.of(quizInstructionJudge),
+                "translation-sense", List.of(fromEnglishJudge, fromTranslationJudge),
+                "single-answer", List.of(singleAnswerJudge),
+                "mini-theory", List.of(miniTheoryJudge),
+                "multiple-choice-validity", List.of(choiceAlternativeJudge),
+                "multiple-choice-quality", List.of(choiceQualityJudge),
+                "pragmatism", List.of(pragmatismJudge),
+                "naturalness", List.of(nativeUsageJudge),
+                "a1-didactic", List.of(a1DidacticJudge));
         java.util.function.Supplier<Map<String, com.learney.contentaudit.auditdomain.judging.JudgeExamStanding>>
                 currentJudgeStandings = () -> {
-                    Map<String, List<Evaluator>> activeJudges = Map.of(
-                            "quiz-instruction", List.of(quizInstructionJudge),
-                            "translation-sense", List.of(fromEnglishJudge, fromTranslationJudge),
-                            "single-answer", List.of(singleAnswerJudge),
-                            "mini-theory", List.of(miniTheoryJudge),
-                            "multiple-choice-validity", List.of(choiceAlternativeJudge),
-                            "multiple-choice-quality", List.of(choiceQualityJudge),
-                            "pragmatism", List.of(pragmatismJudge),
-                            "naturalness", List.of(nativeUsageJudge),
-                            "a1-didactic", List.of(a1DidacticJudge));
                     Map<String, com.learney.contentaudit.auditdomain.judging.JudgeExamStanding> standings =
                             new java.util.LinkedHashMap<>();
                     activeJudges.forEach((name, evaluators) -> standings.put(name,
                             judgeRuntime.open(name, evaluators, null).getStanding()));
                     return standings;
                 };
+        // F-CMOTOR-R006: the runtime the closing would consult each judge with, read as the closing reads for free
+        // (R004): its own when it is enabled with it, or another one it is enabled with. It consults nothing.
+        java.util.function.Supplier<Map<String, EvaluationRuntimeIdentity>> closingJudgeRuntimes = () -> {
+            Map<String, EvaluationRuntimeIdentity> runtimes = new java.util.LinkedHashMap<>();
+            activeJudges.forEach((name, evaluators) -> {
+                var opened = judgeRuntime.open(name, evaluators,
+                        new EvaluationRunPolicy(0, false, null, null, EvaluationRunPurpose.READING, 1));
+                if (opened.getStanding().isConsultsOnCourse()) {
+                    runtimes.put(name, opened.getRuntimeIdentity());
+                }
+            });
+            return runtimes;
+        };
         com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCatalog judgeFreshnessCatalog =
                 new com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeFreshnessCatalog(currentJudgeStandings,
                         judgeExamRegistry, judgePromotionRegistry, java.time.ZoneId.systemDefault(),
                         java.time.Clock.systemDefaultZone());
         cmd.addSubcommand("exam", new picocli.CommandLine(
                 new ExamCmd(judgeExamService, examProvenance, () -> analyzerCatalog.list().stream()
-                        .map(AnalyzerDescriptor::getName).toList(), currentJudgeStandings, versionCutover)));   // C · FEAT-JEXAM
+                        .map(AnalyzerDescriptor::getName).toList(), currentJudgeStandings, versionCutover,
+                        closingJudgeRuntimes)));   // C · FEAT-JEXAM
         cmd.addSubcommand("promote-judge", new picocli.CommandLine(
                 new PromoteJudgeCmd(judgePromotionRegistry, currentJudgeStandings, judgeExamRegistry, regressionCatalog)));
 
@@ -1737,50 +1758,15 @@ class Main {
 
     /**
      * A judge of round 1, asked of its factory on first use (hook C-14): its id is the spec's, so
-     * reading it never builds the judge, and a run that does not ask the judge never builds it.
+     * reading it never builds the judge, and a run that does not ask the judge never builds it. The
+     * closing may move it to another runtime of a subscription it is enabled with (F-CMOTOR-R001).
      */
-    private static Evaluator lazyAgentJudge(AgentJudgeFactory factory, AgentJudgeConfig config,
-            AgentJudgeSpec spec, AgentGraphRunner agentGraphRunner, AgentDefinitionLocator agentDefinitionLocator) {
-        return new Evaluator() {
-            private Evaluator delegate;
-
-            private synchronized Evaluator delegate() {
-                if (delegate == null) {
-                    delegate = factory.create(spec, config, agentGraphRunner, agentDefinitionLocator);
-                }
-                return delegate;
-            }
-
-            @Override
-            public String evaluatorId() {
-                return spec.getEvaluatorId();
-            }
-
-            @Override
-            public EvaluationOutcome evaluate(EvaluationSubject subject) {
-                return delegate().evaluate(subject);
-            }
-
-            @Override
-            public Optional<String> evaluatorVersion() {
-                return delegate().evaluatorVersion();
-            }
-
-            @Override
-            public EvaluationRuntimeIdentity runtimeIdentity() {
-                return delegate().runtimeIdentity();
-            }
-
-            @Override
-            public Set<String> compatibleEvaluatorVersions() {
-                return delegate().compatibleEvaluatorVersions();
-            }
-
-            @Override
-            public List<com.learney.contentaudit.evaluationledgerdomain.EvaluatorVersionEquivalence> versionEquivalences() {
-                return delegate().versionEquivalences();
-            }
-        };
+    private static Evaluator lazyAgentJudge(AgentJudgeFactory factory, LlmProviderResolver providers,
+            AgentJudgeConfig config, AgentJudgeSpec spec, AgentGraphRunner agentGraphRunner,
+            AgentDefinitionLocator agentDefinitionLocator) {
+        return MovableJudge.lazy(spec.getEvaluatorId(), config,
+                each -> factory.create(spec, each, agentGraphRunner, agentDefinitionLocator),
+                AgentJudgeConfig::onRuntime, providers);
     }
 
     // ----------------------------------------------------------------

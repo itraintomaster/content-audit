@@ -120,6 +120,12 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
     /** F-ALDIA-R002: the one moment the tests leave the count of the judges' versions. */
     private final AgentJudgeVersionCutover versionCutover;
 
+    /**
+     * F-CMOTOR-R006: the runtime the closing would consult each judge with -- its own when it is enabled with it, or
+     * another one it is enabled with --; a judge without one is not in it.
+     */
+    private final Supplier<Map<String, EvaluationRuntimeIdentity>> closingRuntimes;
+
     @Option(names = "--apply", description = "cutover: write the equivalences once (without it, only shows them)")
     private boolean apply;
 
@@ -149,7 +155,16 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
             Supplier<List<String>> analyzerNames,
             Supplier<Map<String, JudgeExamStanding>> currentStandings,
             AgentJudgeVersionCutover versionCutover) {
+        this(examService, provenanceByJudge, analyzerNames, currentStandings, versionCutover, Map::of);
+    }
+
+    ExamCmd(JudgeExamService examService, Map<String, ExamProvenance> provenanceByJudge,
+            Supplier<List<String>> analyzerNames,
+            Supplier<Map<String, JudgeExamStanding>> currentStandings,
+            AgentJudgeVersionCutover versionCutover,
+            Supplier<Map<String, EvaluationRuntimeIdentity>> closingRuntimes) {
         this.versionCutover = versionCutover;
+        this.closingRuntimes = closingRuntimes != null ? closingRuntimes : Map::of;
         this.examService = examService;
         this.provenanceByJudge = provenanceByJudge != null
                 ? Map.copyOf(provenanceByJudge)
@@ -420,6 +435,7 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
         ObjectNode root = MAPPER.createObjectNode();
         ArrayNode judges = root.putArray("judges");
         Map<String, JudgeExamStanding> current = currentStandings.get();
+        Map<String, EvaluationRuntimeIdentity> closing = closingRuntimes.get();
         histories.forEach((name, history) -> {
             ObjectNode judge = judges.addObject();
             judge.put("judge", name);
@@ -456,6 +472,18 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
                     line.put("provenance", runtimeLabel(motor));
                     line.put("status", enablement.status() != null ? enablement.status().name() : null);
                     line.put("since", enablement.since() != null ? enablement.since().toString() : null);
+                }
+                // F-CMOTOR-R006: the runtime the closing would consult it with; null blocks the closing.
+                EvaluationRuntimeIdentity closesWith = closing.get(name);
+                if (closesWith != null && closesWith.isExplicit()) {
+                    ObjectNode motor = active.putObject("closesWith");
+                    motor.put("providerName", closesWith.getProviderName());
+                    motor.put("modelName", closesWith.getModelName());
+                    motor.put("reasoningEffort", closesWith.getReasoningEffort());
+                    motor.put("provenance", runtimeLabel(closesWith));
+                    motor.put("otherRuntime", !closesWith.equals(standing.getRuntimeIdentity()));
+                } else {
+                    active.putNull("closesWith");
                 }
             }
             ArrayNode versions = judge.putArray("versions");

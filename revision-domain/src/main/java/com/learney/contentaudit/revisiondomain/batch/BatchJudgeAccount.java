@@ -43,6 +43,12 @@ public class BatchJudgeAccount {
     /** F-ALDIA-R005: how much of what the judge reused is from before, and from which version or runtime. */
     private com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCount freshness;
 
+    /** F-CMOTOR-R003: the runtime the judge is consulted with; null for a local judge or one never read. */
+    private com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity runtime;
+
+    /** F-CMOTOR-R003: the runtime is not the profile's -- the judge is not enabled with it, and is with this one. */
+    private boolean otherRuntime;
+
     public BatchJudgeAccount() {
     }
 
@@ -189,6 +195,22 @@ public class BatchJudgeAccount {
 
     public com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCount getFreshness() {
         return freshness;
+    }
+
+    public com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity runtime) {
+        this.runtime = runtime;
+    }
+
+    public boolean isOtherRuntime() {
+        return otherRuntime;
+    }
+
+    public void setOtherRuntime(boolean otherRuntime) {
+        this.otherRuntime = otherRuntime;
     }
 
     public void setFreshness(com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCount freshness) {

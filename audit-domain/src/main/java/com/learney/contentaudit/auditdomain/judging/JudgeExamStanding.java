@@ -40,6 +40,13 @@ public class JudgeExamStanding {
      */
     private List<JudgeEnablement> enabledWith = List.of();
 
+    /**
+     * F-CMOTOR-R001, R003: the runtime the judge came with -- the profile's -- when the session moved
+     * it to another one it is enabled with; null when it consults with its own. It says the run
+     * changed runtime, so it does not take part in equality.
+     */
+    private EvaluationRuntimeIdentity ownRuntimeIdentity;
+
     public JudgeExamStanding() {
     }
 
@@ -142,6 +149,14 @@ public class JudgeExamStanding {
 
     public void setEnabledWith(List<JudgeEnablement> enabledWith) {
         this.enabledWith = enabledWith != null ? List.copyOf(enabledWith) : List.of();
+    }
+
+    public EvaluationRuntimeIdentity getOwnRuntimeIdentity() {
+        return ownRuntimeIdentity;
+    }
+
+    public void setOwnRuntimeIdentity(EvaluationRuntimeIdentity ownRuntimeIdentity) {
+        this.ownRuntimeIdentity = ownRuntimeIdentity;
     }
 
     @Override

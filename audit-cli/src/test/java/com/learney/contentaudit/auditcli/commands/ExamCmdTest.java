@@ -440,6 +440,43 @@ public class ExamCmdTest {
     }
 
     @Test
+    @DisplayName("should say in exam status -f json the runtime the closing would consult each judge with, and none for a judge without one")
+    @Tag("FEAT-CMOTOR")
+    @Tag("F-CMOTOR-R006")
+    public void shouldSayInExamStatusTheRuntimeTheClosingWouldConsultEachJudgeWith() throws IOException {
+        JudgeExamRegistry registry = new FileSystemJudgeExamRegistry(workdir);
+        registry.record(record("bbcf47a4", JudgeExamStatus.APPROVED, "2026-10-19T14:30:58Z"));
+        EvaluationRuntimeIdentity chatgpt = EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "medium");
+        EvaluationRuntimeIdentity gemini = EvaluationRuntimeIdentity.explicit("agy", "gemini-3.8-flash-high", "high");
+        var enabledWithGemini = new JudgeExamStanding("mini-theory", "bbcf47a4", JudgeExamStatus.NOT_TAKEN, false,
+                "La versión vigente del juez no rindió el examen fijo.", chatgpt);
+        enabledWithGemini.setEnabledWith(List.of(
+                new JudgeEnablement(gemini, JudgeExamStatus.APPROVED, Instant.parse("2026-10-19T14:30:58Z"))));
+        var failed = new JudgeExamStanding("single-answer", "bbcf47a4", JudgeExamStatus.FAILED, false, "reprobado",
+                chatgpt);
+
+        java.util.function.Function<String, Captured> status = judge -> run(new ExamCmd(realRecordingService(registry),
+                Map.of(), () -> List.of("single-answer", "mini-theory"),
+                () -> Map.of("single-answer", failed, "mini-theory", enabledWithGemini), null,
+                () -> Map.of("mini-theory", gemini)), "status", judge, "-f", "json");
+        Captured json = status.apply("mini-theory");
+
+        assertEquals(0, json.exit(), json.err());
+        JsonNode theory = new ObjectMapper().readTree(json.out()).path("judges").get(0).path("current");
+        assertEquals("NOT_TAKEN", theory.path("status").asText(), "the profile's runtime keeps its own standing");
+        assertEquals("agy", theory.path("closesWith").path("providerName").asText());
+        assertEquals("gemini-3.8-flash-high", theory.path("closesWith").path("modelName").asText());
+        assertEquals("high", theory.path("closesWith").path("reasoningEffort").asText());
+        assertTrue(theory.path("closesWith").path("otherRuntime").asBoolean());
+        Captured other = status.apply("single-answer");
+        assertEquals(0, other.exit(), other.err());
+        JsonNode single = new ObjectMapper().readTree(other.out()).path("judges").get(0).path("current");
+        assertTrue(single.has("closesWith") && single.path("closesWith").isNull(),
+                "a judge without a runtime blocks the closing: " + single);
+        assertEquals(1, registry.history("single-answer").size(), "reading writes nothing");
+    }
+
+    @Test
     @DisplayName("should show what the cut-over would write without writing, write it with --apply and refuse a second time")
     @Tag("FEAT-ALDIA")
     @Tag("F-ALDIA-R002")

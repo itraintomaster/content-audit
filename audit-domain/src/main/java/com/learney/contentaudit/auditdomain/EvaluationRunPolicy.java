@@ -28,6 +28,13 @@ public class EvaluationRunPolicy {
 
     private Integer maxConcurrentEvaluations;
 
+    /**
+     * F-CMOTOR-R001: a run that may consult a judge with another runtime the judge is enabled with,
+     * when it is not enabled with its own -- the closing of a batch. Off, a run consults only with
+     * the judge's own runtime.
+     */
+    private boolean anyEnabledRuntime;
+
     public EvaluationRunPolicy() {
     }
 
@@ -98,6 +105,14 @@ public class EvaluationRunPolicy {
         this.maxConcurrentEvaluations = maxConcurrentEvaluations;
     }
 
+    public boolean isAnyEnabledRuntime() {
+        return this.anyEnabledRuntime;
+    }
+
+    public void setAnyEnabledRuntime(boolean anyEnabledRuntime) {
+        this.anyEnabledRuntime = anyEnabledRuntime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -109,12 +124,13 @@ public class EvaluationRunPolicy {
                     && Objects.equals(this.reevaluationSubjectIds, that.reevaluationSubjectIds)
                     && Objects.equals(this.newEvaluationSubjectIds, that.newEvaluationSubjectIds)
                     && Objects.equals(this.purpose, that.purpose)
-                    && Objects.equals(this.maxConcurrentEvaluations, that.maxConcurrentEvaluations);
+                    && Objects.equals(this.maxConcurrentEvaluations, that.maxConcurrentEvaluations)
+                    && this.anyEnabledRuntime == that.anyEnabledRuntime;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(maxNewEvaluations, reevaluate, reevaluationScope, reevaluationSubjectIds,
-                newEvaluationSubjectIds, purpose, maxConcurrentEvaluations);
+                newEvaluationSubjectIds, purpose, maxConcurrentEvaluations, anyEnabledRuntime);
     }
 }
