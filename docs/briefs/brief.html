@@ -1,5 +1,10 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Comparación de los diez sin audio · 194</title><style>
-  /* ============ tokens: claro y, abajo, oscuro ============ */
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>200 · Tu trabajo en master y tres etapas más</title>
+<style>
   :root{
     --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
     --fg:#1c1a17; --fg-2:#57524b; --fg-3:#8b847a;
@@ -24,18 +29,13 @@
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
-  body{
-    margin:0; background:var(--bg); color:var(--fg);
+  body{margin:0; background:var(--bg); color:var(--fg);
     font:16px/1.6 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
-    font-feature-settings:"kern","liga","cv05";
-    padding:40px 24px 80px;
-  }
+    font-feature-settings:"kern","liga","cv05"; padding:40px 24px 80px}
   .wrap{max-width:940px;margin:0 auto}
   code,kbd,pre,.mono{font-family:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace}
   a{color:var(--accent)}
-  code,a{overflow-wrap:anywhere}   /* una ruta o un link largo desborda el celular: 15 de 76 briefs viejos */
-
-  /* ============ encabezado ============ */
+  code,a{overflow-wrap:anywhere}
   header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
   .kicker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
   .kicker .num{font:700 12px ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.04em;color:var(--fg-3);
@@ -46,50 +46,14 @@
   .meta{font-size:12.5px;color:var(--fg-3)}
   h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2;margin:0;letter-spacing:-.02em;font-weight:650}
   .sub{margin:10px 0 0;color:var(--fg-2);font-size:16px;max-width:62ch}
-
-  /* ============ el lede: la conclusión, dos renglones ============ */
   .lede{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);
     border-radius:var(--radius);padding:16px 18px;margin:0 0 34px;box-shadow:var(--shadow)}
   .lede p{margin:0;font-size:17.5px;line-height:1.5;max-width:68ch}
   .lede strong{font-weight:650}
-
-  /* ============ sección: título = conclusión · un dibujo · un pie ============ */
   section{margin:0 0 38px}
   h2{font-size:19px;line-height:1.3;font-weight:650;letter-spacing:-.01em;margin:0 0 14px;max-width:60ch}
   p{margin:0 0 12px}
   .pie{font-size:13.5px;line-height:1.5;color:var(--fg-2);margin:10px 0 0;max-width:78ch}
-  .grid{display:grid;gap:12px}
-  .g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-  .card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;
-    box-shadow:var(--shadow);min-width:0}
-  .ptl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-3);font-weight:700;margin:0 0 10px}
-
-  /* ============ KPIs: el número grande, su comparación abajo ============ */
-  .kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
-  .kpi{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
-  .kpi .n{font-size:32px;font-weight:700;letter-spacing:-.025em;line-height:1.05;font-variant-numeric:tabular-nums}
-  .kpi .n small{font-size:.48em;font-weight:600;color:var(--fg-3);margin-left:.3em;letter-spacing:0}
-  .kpi .l{font-size:13px;color:var(--fg-2);line-height:1.4;margin-top:6px}
-  .kpi.dest .n{color:var(--accent)}
-
-  /* ============ barras horizontales con etiqueta ============ */
-  .hb{display:grid;gap:10px}
-  .hb .r{display:grid;grid-template-columns:minmax(110px,38%) minmax(0,1fr) auto;gap:12px;align-items:center;font-size:13.5px}
-  .hb .t{color:var(--fg-2);line-height:1.3;min-width:0}
-  .hb .t small{display:block;color:var(--fg-3);font-size:12px}
-  .hb .tr{position:relative;height:10px;border-radius:99px;background:var(--line-soft)}
-  .hb .f{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent)}
-  .hb .f.g{background:var(--ok)} .hb .f.b{background:var(--bad)} .hb .f.w{background:var(--warn)}
-  .hb .f.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
-  .hb .meta{position:absolute;top:-4px;bottom:-4px;width:2px;border-radius:1px;background:var(--fg)}
-  .hb .n{font-weight:650;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
-  .leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--fg-2);margin-top:12px}
-  .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--accent)}
-  .sw.g{background:var(--ok)} .sw.b{background:var(--bad)} .sw.w{background:var(--warn)}
-  .sw.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
-  .sw.m{width:2px;height:13px;border-radius:0;background:var(--fg);vertical-align:-2px}
-
-  /* ============ flujo en pasos ============ */
   .flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:16px}
   .flow .st{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
     padding:12px 13px;display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow);min-width:0}
@@ -98,65 +62,8 @@
   .flow .i{font:700 12px/24px ui-monospace,monospace;width:24px;height:24px;border-radius:7px;text-align:center;
     background:var(--accent-soft);color:var(--accent)}
   .flow .h{font-weight:650;font-size:14px;line-height:1.25}
-  .flow .eg{font:italic 14px/1.3 ui-serif,Georgia,serif;color:var(--fg)}
   .flow .d{font-size:12.5px;line-height:1.4;color:var(--fg-2)}
   .flow .st.end{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
-
-  /* ============ antes y después ============ */
-  .ad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}
-  .ad .lado{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
-    padding:13px 15px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow);min-width:0}
-  .ad .antes{border-top:3px solid var(--bad)} .ad .despues{border-top:3px solid var(--ok)}
-  .ad .rot{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
-  .ad .antes .rot{color:var(--bad)} .ad .despues .rot{color:var(--ok)}
-  .ad .despues::before{content:"→";position:absolute;left:-24px;top:50%;transform:translateY(-50%);
-    font-size:19px;color:var(--fg-3)}
-  .ad ol{margin:0;padding-left:20px;font-size:13.5px;line-height:1.45;color:var(--fg-2);display:grid;gap:3px}
-  .ad .res{font-weight:650;font-size:14.5px;border-top:1px dashed var(--line);padding-top:7px;margin-top:auto}
-  .ad .antes .res{color:var(--bad)} .ad .despues .res{color:var(--ok)}
-
-  /* ============ mapa de calor ============ */
-  .heat{display:grid;grid-template-columns:minmax(110px,1.6fr) repeat(var(--cols,4),minmax(0,1fr));gap:4px;font-size:12.5px}
-  .heat span{padding:7px 4px;border-radius:6px;text-align:center;font-variant-numeric:tabular-nums;background:var(--line-soft)}
-  .heat .h{background:none;color:var(--fg-3);font-size:11.5px;font-weight:600}
-  .heat .rl{background:none;text-align:left;color:var(--fg-2)}
-  .heat .h0{color:var(--fg-3)}
-  .heat .h1{background:color-mix(in srgb,var(--warn) 16%,var(--bg-elev))}
-  .heat .h2{background:color-mix(in srgb,var(--warn) 34%,var(--bg-elev))}
-  .heat .h3{background:color-mix(in srgb,var(--bad) 32%,var(--bg-elev))}
-
-  /* ============ tarjetas de decisión: la recomendada, marcada ============ */
-  .opts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
-  .opt{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
-    box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;min-width:0}
-  .opt.rec{border:1.5px solid var(--accent);box-shadow:0 0 0 3px var(--accent-soft),var(--shadow)}
-  .opt .oh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14.5px}
-  .opt .ol{font:700 13px/26px ui-monospace,monospace;width:26px;height:26px;border-radius:7px;text-align:center;
-    background:var(--line-soft);flex:none}
-  .opt.rec .ol{background:var(--accent);color:var(--bg-elev)}
-  .opt p{font-size:13px;color:var(--fg-2);margin:0}
-  .opt ul{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-size:13px}
-  .opt li::before{font-weight:800;margin-right:6px}
-  .opt li.si::before{content:"✓";color:var(--ok)} .opt li.no::before{content:"✕";color:var(--bad)}
-
-  /* ============ ejemplo real ============ */
-  .ex{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
-    display:grid;gap:7px;box-shadow:var(--shadow);min-width:0}
-  .ex .cons{font-size:12px;color:var(--fg-3)}
-  .ex .en{font:italic 18px/1.35 ui-serif,Georgia,serif}
-  .ex .gap{display:inline-block;min-width:48px;border-bottom:2px solid var(--fg-3);margin:0 4px}
-  .ex .ans{font-size:13.5px;color:var(--fg-2)} .ex .ans b{color:var(--fg)}
-  .ex .ft{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--fg-3);
-    border-top:1px dashed var(--line);padding-top:7px}
-  .mark{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;line-height:1.45;background:var(--bad-soft);
-    border-radius:8px;padding:8px 10px}
-  .mark .x{color:var(--bad);font-weight:800}
-  .mark.ok{background:var(--ok-soft)} .mark.ok .x{color:var(--ok)}
-  .sev{font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;white-space:nowrap}
-  .sev.b{background:var(--bad);color:var(--bg-elev)} .sev.a{background:var(--bad-soft);color:var(--bad)}
-  .sev.m{background:var(--warn-soft);color:var(--warn)} .sev.l{background:var(--line-soft);color:var(--fg-2)}
-
-  /* ============ preguntas, con la recomendación ============ */
   .asks{display:grid;gap:10px}
   .ask{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);
     padding:12px 15px;display:grid;gap:8px;box-shadow:var(--shadow)}
@@ -165,40 +72,17 @@
   .ask .op{font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--bg)}
   .ask .op.rec{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
   .ask .why{font-size:13px;color:var(--fg-2);line-height:1.45}
-
-  /* ============ qué cambia y qué no ============ */
-  .cambia{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-  .cambia>div{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 15px;box-shadow:var(--shadow)}
-  .cambia ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13.5px;line-height:1.45}
-  .cambia li{position:relative;padding-left:22px}
-  .cambia li::before{position:absolute;left:0;top:0;font-weight:800}
-  .cambia .si li::before{content:"✓";color:var(--ok)}
-  .cambia .no li::before{content:"=";color:var(--fg-3)}
-
-  /* ============ captura real, con su pie ============ */
-  .captura{margin:0;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:10px;
-    box-shadow:var(--shadow);min-width:0}
-  .captura img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft)}
-  .captura.cel img{max-width:300px;margin:0 auto}
-  .captura figcaption{font-size:12.5px;color:var(--fg-3);margin-top:8px}
-
-  /* ============ pills de estado ============ */
   .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}
   .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
   .p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)}
-  .p-bad{background:var(--bad-soft);color:var(--bad)} .p-info{background:var(--info-soft);color:var(--info)}
-  .p-idle{background:var(--line-soft);color:var(--fg-3)}
-
-  /* ============ tabla chica (≤ 6 filas; si es más, es un gráfico) ============ */
+  .p-bad{background:var(--bad-soft);color:var(--bad)}
   .tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
   table{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}
   th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);
     font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
   td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  td:last-child{color:var(--fg-2);font-size:13.5px}
   tr:last-child td{border-bottom:0}
-  td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:ui-monospace,monospace;font-size:13px}
-
-  /* ============ diagrama SVG a mano ============ */
   .diagram{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
     overflow-x:auto;box-shadow:var(--shadow)}
   .diagram svg{display:block;max-width:100%;height:auto;margin:0 auto}
@@ -208,35 +92,94 @@
   svg .box-bad{fill:var(--bad-soft);stroke:var(--bad)}
   svg .lbl{fill:var(--fg);font:13px ui-sans-serif,system-ui,sans-serif}
   svg .lbl-s{fill:var(--fg-3);font:11px ui-sans-serif,system-ui,sans-serif}
+  svg .lbl-b{fill:var(--bad);font:600 11px ui-sans-serif,system-ui,sans-serif}
+  svg .rt{fill:var(--fg-3);font:700 10.5px ui-sans-serif,system-ui,sans-serif;letter-spacing:.09em}
   svg .arrow{stroke:var(--fg-3);fill:none;stroke-width:1.2}
-
-  /* ============ comandos · aviso de lo que no sé ============ */
-  pre{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;
-    overflow-x:auto;font-size:13px;line-height:1.55;margin:0}
-  pre code{color:var(--fg)}
+  svg .sep{stroke:var(--line);stroke-width:1.5;stroke-dasharray:5 5}
   .call{border-radius:var(--radius);padding:10px 13px;font-size:13.5px;border:1px solid;margin:12px 0 0}
   .c-warn{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 28%,transparent)}
-  .c-bad{background:var(--bad-soft);border-color:color-mix(in srgb,var(--bad) 28%,transparent)}
-  .c-info{background:var(--info-soft);border-color:color-mix(in srgb,var(--info) 28%,transparent)}
   .call b:first-child{margin-right:4px}
-
   footer{border-top:1px solid var(--line);margin-top:36px;padding-top:14px;font-size:12.5px;color:var(--fg-3);
     display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-
-  /* ============ celular ============ */
   @media (max-width:640px){
     body{padding:24px 16px 60px}
     h2{font-size:17px}
     .flow{grid-auto-flow:row}
     .flow .st:not(:last-child)::after{right:auto;left:22px;top:auto;bottom:-11px;transform:rotate(135deg)}
-    .ad{grid-template-columns:minmax(0,1fr);gap:28px}
-    .ad .despues::before{content:"↓";left:50%;top:-25px;transform:translateX(-50%)}
-    .hb .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) auto;gap:8px}
-    .heat{grid-template-columns:minmax(80px,1.3fr) repeat(var(--cols,4),minmax(0,1fr));font-size:11.5px}
-    .kpi .n{font-size:28px}
   }
+</style>
+</head>
+<body>
+<div class="wrap">
 
-  
-.filters{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0}.filters button{font:inherit;font-size:13px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg-elev);color:var(--fg);cursor:pointer}.filters button[aria-pressed=true]{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}.evolution{display:grid;gap:8px}.case{display:grid;grid-template-columns:minmax(160px,1.3fr) minmax(110px,.85fr) minmax(100px,.7fr) minmax(210px,1.8fr);gap:12px;align-items:center;border:1px solid var(--line);border-left:4px solid var(--fg-3);background:var(--bg-elev);padding:13px 14px;border-radius:8px;font-size:13px}.case.good{border-left-color:var(--ok)}.case.bad{border-left-color:var(--bad)}.case b,.case small{display:block}.case small{color:var(--fg-2);font-size:12px}.case[hidden]{display:none}.case-head{display:grid;grid-template-columns:1.3fr .85fr .7fr 1.8fr;gap:12px;padding:0 14px;font-size:11px;letter-spacing:.06em;color:var(--fg-3);text-transform:uppercase}.dot{width:8px;height:8px;display:inline-block;border-radius:50%;background:var(--warn);margin-right:3px}.dot.empty{background:var(--line)}.tag{display:inline-block;font-size:12px;border-radius:6px;padding:3px 8px;color:var(--fg-2);background:var(--line-soft);margin:2px}.tag.pending{background:var(--warn-soft);color:var(--warn)}.tag.bad{background:var(--bad-soft);color:var(--bad)}.tag.ok{background:var(--ok-soft);color:var(--ok)}.legend{font-size:13px;color:var(--fg-2);line-height:1.6}.detail-case{background:var(--bg-elev);border:1px solid var(--line);border-radius:10px;padding:20px;margin:24px 0;scroll-margin-top:24px}.statement{font:italic 18px/1.5 Georgia,serif;overflow-wrap:anywhere}.finding{margin-top:10px;padding:10px 12px;background:var(--warn-soft);border-left:3px solid var(--warn);font-size:13px}.finding strong{display:block}.fixed{margin-top:10px;padding:10px 12px;background:var(--ok-soft);font-size:13px}.detail-case .ad{margin:16px 0}.detail-case .tw{margin-top:16px}.detail-case .tw table{min-width:650px}.raw-text{font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere;margin:10px 0}.detail-case details{font-size:13px;margin:12px 0}.next{background:var(--accent-soft);padding:12px 14px;border-radius:8px;font-size:14px}.editorial{margin-top:12px;border:1px solid var(--line);padding:12px 14px;border-radius:8px;font-size:13px}.mini{font-size:12px;color:var(--fg-3)}.budget{height:10px;border-radius:20px;background:var(--line-soft);margin-top:12px}.budget span{display:block;height:100%;width:27.5%;background:var(--accent);border-radius:20px}footer{overflow-wrap:anywhere}.navlinks{display:flex;gap:8px;flex-wrap:wrap}.navlinks a{border:1px solid var(--line);border-radius:7px;padding:4px 8px;font-size:12px}
-@media(max-width:700px){body{padding:24px 14px 50px}.case{grid-template-columns:1.2fr 1fr}.case>div:last-child{grid-column:1/-1}.case-head{display:none}.detail-case{padding:14px}.ad{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}.statement{font-size:16px}}
-</style></head><body><main class="wrap"><header><div class="kicker"><span class="num">BRIEF 194</span><span class="badge">Diez quizzes · sin audio</span><span class="meta">24 octubre 2026 · C1 → C2</span></div><h1>La mejora sigue siendo parcial sin contar audio</h1><p class="sub">No hay resultado humano esperado certificado. Comparamos las observaciones guardadas de C1 y C2.</p></header><div class="lede"><p>Peter añade una incoherencia de texto y radio mejora dejando otra nueva. Respuesta única sigue pendiente; la aprobación completa aún no está demostrada.</p></div><section><h2>Peter empeora; radio mejora con una incoherencia nueva</h2><div class="grid g2"><div class="card ex"><p class="ptl">Peter · baja → media</p><div class="finding"><strong>La oración guardada conserva «breakfast»</strong>La propuesta dice «Peter always cooks.». Se resolvió el largo; falta sincronizar la copia de texto.</div></div><div class="card ex"><p class="ptl">Radio · media → media</p><div class="finding"><strong>De dos controles con fallas a uno</strong>Resuelve nivel y largo. Aparece una incoherencia en la oración guardada.</div></div></div><p class="pie">En esta medición, respuesta única quedó pendiente en los diez por falta de habilitación. El audio queda excluido en ambas versiones.</p></section><section><h2>Cuatro quedan sin marcas en quince controles comparables</h2><div class="kpis"><div class="kpi"><div class="n">2 → 4</div><div class="l">sin marcas: ayuda, word, juice y books</div></div><div class="kpi"><div class="n">0<small>de 10</small></div><div class="l">con aprobación completa demostrable; falta respuesta única</div></div><div class="kpi"><div class="n">12 → 7</div><div class="l">observaciones de contenido; audio excluido</div></div></div><p class="pie">Ayuda y word pasan a quedar sin marcas; juice y books ya estaban así. Se mantienen los mismos quince jueces y analizadores comparables.</p></section><section><h2>Qué falta corregir está visible en los diez</h2><div class="legend leyenda"><p>C1 es la versión anterior; C2, la nueva. La flecha muestra evolución. No hay un resultado humano esperado certificado.</p><p>Verde: mejora parcial; rojo: empeora; gris: igual. Sin marcas: sin fallas detectadas. Pendiente: falta un control; aprobado exige todos completos.</p></div><div class="filters" role="group" aria-label="Filtrar los diez quizzes"><button data-filter="all" aria-pressed="true">Todos · 10</button><button data-filter="unmarked" aria-pressed="false">Sin marcas · 4</button><button data-filter="LOWER" aria-pressed="false">Menor criticidad · 2</button><button data-filter="FEWER" aria-pressed="false">Menos controles · 3</button><button data-filter="WORSE" aria-pressed="false">Empeoró · 1</button><button data-filter="UNCHANGED" aria-pressed="false">Iguales · 4</button></div><div class="evolution bars"><div class="case-head"><span>Quiz</span><span>C1 → C2</span><span>Controles con fallas</span><span>Qué falta en C2</span></div><div class="case bad" data-category="WORSE" data-unmarked="false"><div><b><a href="194-comparacion-diez-sin-audio/detalle.html#q-2589">Peter · breakfast → cooks</a></b><small>Empeoró</small></div><div>Baja → Media<small>Criticidad máxima</small></div><div><svg role="img" aria-label="1 controles con fallas" width="42" height="10" viewBox="0 0 42 10"><rect x="0" y="1" rx="2" width="18" height="8" fill="var(--warn)"/></svg> → <svg role="img" aria-label="1 controles con fallas" width="42" height="10" viewBox="0 0 42 10"><rect x="0" y="1" rx="2" width="18" height="8" fill="var(--warn)"/></svg><small>1 → 1 controles</small></div><div>Sincronizar la oración guardada con «Peter always cooks.».</div></div><div class="case good" data-category="FEWER" data-unmarked="false"><div><b><a href="194-comparacion-diez-sin-audio/detalle.html#q-2dd6">Pedido · radio</a></b><small>Menos controles con fallas</small></div><div>Media → Media<small>Criticidad máxima</small></div><div><svg role="img" aria-label="2 controles con fallas" width="42" height="10" viewBox="0 0 42 10"><rect x="0" y="1" rx="2" width="36" height="8" fill="var(--warn)"/></svg> → <svg role="img" aria-label="1 controles con fallas" width="42" height="10" viewBox="0 0 42 10"><rect x="0" y="1" rx="2" width="18" height="8" fill="var(--warn)"/></svg><small>2 → 1 controles</small></div><div>Sincronizar la oración guardada con «Could you play the radio?».</div></div><div class="case " data-category="UNCHANGED" data-unmarked="false"><div><b><a href="194-comparacion-diez-sin-audio/detalle.html#q-2de8">Prohibición · cámara</a></b><small>Igual</small></div><div>Media → Media<small>Criticidad máxima</small></div><div><svg role="img" aria-label="2 controles con fallas" width="42" height="10" viewBox="0 0 42 10"><rect x="0" y="1" rx="2" width="36" height="8" fill="var(--warn)"/></svg> → <svg role="img" aria-label="2 controles con fallas" width="42" height="10" viewBox="0 0 42 10"><rect x="0" y="1" rx="2" width="36" height="8" fill="var(--warn)"/></svg><small>2 → 2 controles</small></div><div>Acortar la frase y sincronizar la oración guardada con la propuesta elegida.</div></div><div class="case " data-category="UNCHANGED" data-unmarked="false"><div><b><a href="194-comparacion-diez-sin-audio/detalle.html#q-22da">Let’s · huevos</a></b><small>Igual</small></div><div>Media → Media<small>Criticidad máxima</small></div><div><svg role="img" aria-label="1 controles con fallas" width="42" height="10" viewBox="0 0 42 10"><rect x="0" y="1" rx="2" width="18" height="8" fill="var(--warn)"/></svg> → <svg role="img" aria-label="1 controles con fallas" width="42" height="10" viewBox="0 0 42 10"><rect x="0" y="1" rx="2" width="18" height="8" fill="var(--warn)"/></svg><small>1 → 1 controles</small></div><div>Revisar el nivel curricular y la clasificación de «let», preservando el objetivo con «let’s».</div></div><div class="case good" data-category="FEWER" data-unmarked="false"><div><b><a href="194-comparacion-diez-sin-audio/detalle.html#q-2dda">Pedido · té</a></b><small>Menos controles con fallas</small></div><div>Media → Media<small>Criticidad máxima</small></div><div><svg role="img" aria-label="2 controles con fallas" width="42" height="10" viewBox="0 0 42 10"><rect x="0" y="1" rx="2" width="36" height="8" fill="var(--warn)"/></svg> → <svg role="img" aria-label="1 controles con fallas" width="42" height="10" viewBox="0 0 42 10"><rect x="0" y="1" rx="2" width="18" height="8" fill="var(--warn)"/></svg><small>2 → 1 controles</small></div><div>Sincronizar la oración guardada con «Could you get tea?».</div></div><div class="case good" data-category="FEWER" data-unmarked="false"><div><b><a href="194-comparacion-diez-sin-audio/detalle.html#q-2de0">Permiso · agua</a></b><small>Menos controles con fallas</small></div><div>Media → Media<small>Criticidad máxima</small></div><div><svg role="img" aria-label="2 controles con fallas" width="42" height="10" viewBox="0 0 42 10"><rect x="0" y="1" rx="2" width="36" height="8" fill="var(--warn)"/></svg> → <svg role="img" aria-label="1 controles con fallas" width="42" height="10" viewBox="0 0 42 10"><rect x="0" y="1" rx="2" width="18" height="8" fill="var(--warn)"/></svg><small>2 → 1 controles</small></div><div>Sincronizar la oración guardada con «Could I drink some water?».</div></div><div class="case " data-category="UNCHANGED" data-unmarked="true"><div><b><a href="194-comparacion-diez-sin-audio/detalle.html#q-2575">Frecuencia · juice</a></b><small>Igual</small></div><div>Sin marcas → Sin marcas<small>Criticidad máxima</small></div><div><svg role="img" aria-label="0 controles con fallas" width="42" height="10" viewBox="0 0 42 10"><rect x="0" y="1" rx="2" width="2" height="8" fill="var(--warn)"/></svg> → <svg role="img" aria-label="0 controles con fallas" width="42" height="10" viewBox="0 0 42 10"><rect x="0" y="1" rx="2" width="2" height="8" fill="var(--warn)"/></svg><small>0 → 0 controles</small></div><div>Completar respuesta única; los otros controles no dejaron marcas.</div></div><div class="case " data-category="UNCHANGED" data-unmarked="true"><div><b><a href="194-comparacion-diez-sin-audio/detalle.html#q-257d">Frecuencia · books</a></b><small>Igual</small></div><div>Sin marcas → Sin marcas<small>Criticidad máxima</small></div><div><svg role="img" aria-label="0 controles con fallas" width="42" height="10" viewBox="0 0 42 10"><rect x="0" y="1" rx="2" width="2" height="8" fill="var(--warn)"/></svg> → <svg role="img" aria-label="0 controles con fallas" width="42" height="10" viewBox="0 0 42 10"><rect x="0" y="1" rx="2" width="2" height="8" fill="var(--warn)"/></svg><small>0 → 0 controles</small></div><div>Completar respuesta única; los otros controles no dejaron marcas.</div></div><div class="case good" data-category="LOWER" data-unmarked="true"><div><b><a href="194-comparacion-diez-sin-audio/detalle.html#q-2dd7">Pedido · ayuda</a></b><small>Menor criticidad</small></div><div>Baja → Sin marcas<small>Criticidad máxima</small></div><div><svg role="img" aria-label="1 controles con fallas" width="42" height="10" viewBox="0 0 42 10"><rect x="0" y="1" rx="2" width="18" height="8" fill="var(--warn)"/></svg> → <svg role="img" aria-label="0 controles con fallas" width="42" height="10" viewBox="0 0 42 10"><rect x="0" y="1" rx="2" width="2" height="8" fill="var(--warn)"/></svg><small>1 → 0 controles</small></div><div>Completar respuesta única y revisar la consigna de transformación frente al nuevo hueco.</div></div><div class="case good" data-category="LOWER" data-unmarked="true"><div><b><a href="194-comparacion-diez-sin-audio/detalle.html#q-2de1">Pedido · money → word</a></b><small>Menor criticidad</small></div><div>Baja → Sin marcas<small>Criticidad máxima</small></div><div><svg role="img" aria-label="1 controles con fallas" width="42" height="10" viewBox="0 0 42 10"><rect x="0" y="1" rx="2" width="18" height="8" fill="var(--warn)"/></svg> → <svg role="img" aria-label="0 controles con fallas" width="42" height="10" viewBox="0 0 42 10"><rect x="0" y="1" rx="2" width="2" height="8" fill="var(--warn)"/></svg><small>1 → 0 controles</small></div><div>Completar respuesta única y revisar la consigna de transformación frente al nuevo hueco.</div></div></div><p class="pie" id="filter-count" aria-live="polite">Mostrando 10 de 10. Abrí un ejercicio para ver frases, motivos y controles.</p><div class="mini">Respuesta única sigue pendiente para todos. Las revisiones de consignas son observaciones editoriales del asistente, separadas de las siete marcas automáticas.</div></section><section><h2>Las siete marcas se concentran en tres asuntos</h2><div class="hb"><div class="r"><span class="t">Oración guardada<small>Peter, radio, té, agua, cámara</small></span><div class="tr"><span class="f w" style="width:71.4%"></span></div><span class="n">5 de 7</span></div><div class="r"><span class="t">Frase larga<small>Cámara: 18 tokens; meta 3–8</small></span><div class="tr"><span class="f w" style="width:14.3%"></span></div><span class="n">1 de 7</span></div><div class="r"><span class="t">Nivel de vocabulario<small>«let» figura como A2 dentro de A1</small></span><div class="tr"><span class="f w" style="width:14.3%"></span></div><span class="n">1 de 7</span></div></div><p class="pie">Además, revisar la consigna de transformación en radio, ayuda, agua y word. Es una referencia editorial del asistente; no un resultado humano esperado.</p></section><section><h2>Corregir esos puntos y completar el control pendiente</h2><div class="flow"><div class="st"><span class="i">1</span><span class="h">Coherencia textual</span><span class="d">Sincronizar cinco copias de texto con la propuesta elegida.</span></div><div class="st"><span class="i">2</span><span class="h">Largo y objetivo</span><span class="d">Revisar cámara, nivel de let y cuatro consignas.</span></div><div class="st end"><span class="i">3</span><span class="h">Completar respuesta única</span><span class="d">Después comprobar la aprobación completa en ambos lados.</span></div></div><div class="budget" aria-label="275 de 1000 consultas"><span></span></div><p class="pie">Reutiliza evaluaciones guardadas: cero consultas nuevas; piloto en 275 de 1.000. C1 y C2 conservan su contenido. <a href="194-comparacion-diez-sin-audio/detalle.html">Ver los diez en detalle</a>.</p></section><footer><span>Brief 194 · proyección de contenido sin audio · no se editaron los informes previos.</span><span><a href="194-comparacion-diez-sin-audio/evidencia.json">Datos de la comparación</a> · <a href="../index.html">Índice</a> · <a href="192-comparacion-medida-diez-quizzes.html">Medición anterior con audio</a></span></footer><script>document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{const f=button.dataset.filter;document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));let count=0;document.querySelectorAll('.case').forEach(row=>{row.hidden=!(f==='all'||row.dataset.category===f||(f==='unmarked'&&row.dataset.unmarked==='true'));if(!row.hidden)count++});document.getElementById('filter-count').textContent=`Mostrando ${count} de 10. Abrí un ejercicio para ver frases, motivos y controles.`}));</script></main></body></html>
+  <header>
+    <div class="kicker">
+      <span class="num">200</span>
+      <span class="badge">Resumen</span>
+      <span class="meta">tablero · estado centralizado · 24/10/2026</span>
+    </div>
+    <h1>Tu trabajo ya está en master, y siguen tres etapas</h1>
+    <p class="sub">Lo que hiciste con Codex del 20 al 24/10 entró a los dos repos; desde ahí arrancan las etapas 7, 8 y 9.</p>
+  </header>
+
+  <div class="lede"><p><strong>Integré a master lo tuyo, en ittm y en content-audit, con nueve ajustes chicos para que pase todo.</strong> Lancé en paralelo las etapas 7, 8 y 9; la 5 espera tus cuatro respuestas.</p></div>
+
+  <section>
+    <h2>Lo tuyo entró en verde a los dos repos</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Repo</th><th>Qué entró</th><th>Pruebas</th></tr></thead>
+      <tbody>
+        <tr><td>ittm · tablero</td><td>Volver a corregir, pasadas, evolución de problemas, comparación de versiones, audio antes de publicar, tu aprobación aparte de la de los jueces</td><td><span class="pill p-ok">4.093 en verde</span></td></tr>
+        <tr><td>content-audit</td><td>Los comandos nuevos, el examen permanente con su catálogo, los prompts de jueces, los requisitos y 16 briefs</td><td><span class="pill p-ok">4.026 de 4.029</span></td></tr>
+      </tbody></table></div>
+    <p class="pie">Las 3 que fallan ya fallaban en main antes de tu trabajo. Tus dos checkouts quedaron en master y main, sin perder nada.</p>
+  </section>
+
+  <section>
+    <h2>Lo que toqué de lo tuyo</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Qué</th><th>Por qué</th></tr></thead>
+      <tbody>
+        <tr><td>El link «Comparar los ejercicios de esta pasada» arma la tanda con la función de la etapa 4</td><td>Una guardia exige que la tanda del link la ponga un solo lugar.</td></tr>
+        <tr><td>El modo «pasadas» tiene su ayuda con «?»</td><td>Cada modo de Correcciones la necesita.</td></tr>
+        <tr><td>«Nueva versión de ejercicios», igual en servidor y página</td><td>El servidor decía «Volver a corregir».</td></tr>
+        <tr><td>Pruebas al día: el nombre nuevo de datos coherentes, la frase de la miniteoría, la excepción sin regresiones y la tarea que cubre 3</td><td>Tu código ya hacía eso; las pruebas describían lo anterior.</td></tr>
+        <tr><td>Tus briefs 173 y 174 pasaron a 197 y 198</td><td>main ya tenía un 173 y un 174.</td></tr>
+      </tbody></table></div>
+    <div class="call c-warn"><b>Quedó afuera:</b> las salidas de corridas en <code>analysis/</code> (gigas, nunca se versionaron). Siguen en tu disco.</div>
+  </section>
+
+  <section>
+    <h2>Dónde está cada etapa</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Etapa</th><th>Estado</th></tr></thead>
+      <tbody>
+        <tr><td>1 a 4 · lo que corre, el aviso, las corridas, la tanda</td><td><span class="pill p-ok">juntadas</span></td></tr>
+        <tr><td>5 · jueces</td><td><span class="pill p-warn">espera tus 4 respuestas</span></td></tr>
+        <tr><td>6 · análisis y opiniones</td><td><span class="pill p-warn">espera a la 5</span></td></tr>
+        <tr><td>7 · cambios y decisiones · 8 · problemas · 9 · resúmenes</td><td><span class="pill p-ok">tarjetas listas, en paralelo</span></td></tr>
+      </tbody></table></div>
+    <p class="pie">Cada una toca lo suyo: Comparar deja de depender de Correcciones en la 7 y deja el «releer» en la 9; la estimación de Problemas es de la 9.</p>
+  </section>
+
+  <section>
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask"><span class="q">1 · Las cuatro preguntas de la etapa 5, en su sesión</span>
+        <div class="ops"><span class="op rec">Las cuatro recomendadas · recomendado</span><span class="op">Otra respuesta</span></div>
+        <span class="why">Recomendadas: cerrar sólo con ChatGPT, el nombre lo da el análisis, sin marca hasta saber, alcanza el aviso.</span></div>
+      <div class="ask"><span class="q">2 · Abrir las tarjetas de las etapas 7, 8 y 9</span>
+        <div class="ops"><span class="op rec">Las tres ahora</span><span class="op">De a una</span></div>
+        <span class="why">Al empezar, cada una te va a hacer sus preguntas de alcance.</span></div>
+    </div>
+    <div class="call c-warn"><b>Ojo:</b> Codex sigue escribiendo en el checkout principal de content-audit (su brief 195, 14:40). Ese trabajo no lo toqué.</div>
+  </section>
+
+  <footer>
+    <span>Fuentes: ittm master b4482a029 (9d4e71956 tu trabajo tal cual, 99aa35c3c los ajustes) · content-audit main 07c7d10a7 (5153666e7 tal cual, 67bbdc4b2 pruebas, 07c7d10a7 renumeración) · npm test 2.542 · flutter test 1.551 · mvn test 4.029 (fallan StatsAnalyzerCmdTest, GetCmdTest y FTareaJ001 path 1, igual que en a42b02d44) · el worktree de TestFlight quedó con HEAD suelto para liberar master · brief 178 (diagnóstico de la etapa 5)</span>
+    <span>brief 200 · docs/briefs/200-tu-trabajo-en-master.html</span>
+  </footer>
+
+</div>
+</body>
+</html>

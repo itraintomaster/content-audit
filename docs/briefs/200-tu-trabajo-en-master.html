@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>200 · Tu trabajo en master y tres etapas más</title>
+<style>
+  :root{
+    --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
+    --fg:#1c1a17; --fg-2:#57524b; --fg-3:#8b847a;
+    --accent:#b4531f; --accent-soft:#fdf1e7;
+    --ok:#2f6b46; --ok-soft:#e9f4ed;
+    --warn:#8a6314; --warn-soft:#fbf2dd;
+    --bad:#a3342c; --bad-soft:#fbecea;
+    --info:#2a5b8f; --info-soft:#e9f1f9;
+    --radius:10px; --shadow:0 1px 2px rgba(28,26,23,.05), 0 8px 24px -16px rgba(28,26,23,.25);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#131211; --bg-elev:#1b1a18; --line:#302d29; --line-soft:#252320;
+      --fg:#efece7; --fg-2:#a8a29a; --fg-3:#7b756c;
+      --accent:#e08b4f; --accent-soft:#2a1f16;
+      --ok:#7fc79c; --ok-soft:#16241c;
+      --warn:#e0b657; --warn-soft:#272013;
+      --bad:#e58b82; --bad-soft:#2a1917;
+      --info:#8ab6e5; --info-soft:#141f2b;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.6 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+    font-feature-settings:"kern","liga","cv05"; padding:40px 24px 80px}
+  .wrap{max-width:940px;margin:0 auto}
+  code,kbd,pre,.mono{font-family:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace}
+  a{color:var(--accent)}
+  code,a{overflow-wrap:anywhere}
+  header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
+  .kicker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .kicker .num{font:700 12px ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.04em;color:var(--fg-3);
+    background:var(--line-soft);padding:3px 8px;border-radius:6px;font-variant-numeric:tabular-nums}
+  .badge{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;background:var(--accent-soft);color:var(--accent);
+    border:1px solid color-mix(in srgb,var(--accent) 22%,transparent)}
+  .meta{font-size:12.5px;color:var(--fg-3)}
+  h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2;margin:0;letter-spacing:-.02em;font-weight:650}
+  .sub{margin:10px 0 0;color:var(--fg-2);font-size:16px;max-width:62ch}
+  .lede{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:var(--radius);padding:16px 18px;margin:0 0 34px;box-shadow:var(--shadow)}
+  .lede p{margin:0;font-size:17.5px;line-height:1.5;max-width:68ch}
+  .lede strong{font-weight:650}
+  section{margin:0 0 38px}
+  h2{font-size:19px;line-height:1.3;font-weight:650;letter-spacing:-.01em;margin:0 0 14px;max-width:60ch}
+  p{margin:0 0 12px}
+  .pie{font-size:13.5px;line-height:1.5;color:var(--fg-2);margin:10px 0 0;max-width:78ch}
+  .flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:16px}
+  .flow .st{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:12px 13px;display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow);min-width:0}
+  .flow .st:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:8px;height:8px;z-index:1;
+    border-top:2px solid var(--fg-3);border-right:2px solid var(--fg-3);transform:translateY(-50%) rotate(45deg)}
+  .flow .i{font:700 12px/24px ui-monospace,monospace;width:24px;height:24px;border-radius:7px;text-align:center;
+    background:var(--accent-soft);color:var(--accent)}
+  .flow .h{font-weight:650;font-size:14px;line-height:1.25}
+  .flow .d{font-size:12.5px;line-height:1.4;color:var(--fg-2)}
+  .flow .st.end{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+  .asks{display:grid;gap:10px}
+  .ask{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);
+    padding:12px 15px;display:grid;gap:8px;box-shadow:var(--shadow)}
+  .ask .q{font-size:15px;font-weight:650;line-height:1.35}
+  .ask .ops{display:flex;gap:6px;flex-wrap:wrap}
+  .ask .op{font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--bg)}
+  .ask .op.rec{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .ask .why{font-size:13px;color:var(--fg-2);line-height:1.45}
+  .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}
+  .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
+  .p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)}
+  .p-bad{background:var(--bad-soft);color:var(--bad)}
+  .tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}
+  th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);
+    font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  td:last-child{color:var(--fg-2);font-size:13.5px}
+  tr:last-child td{border-bottom:0}
+  .diagram{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
+    overflow-x:auto;box-shadow:var(--shadow)}
+  .diagram svg{display:block;max-width:100%;height:auto;margin:0 auto}
+  svg .box{fill:var(--bg);stroke:var(--line)}
+  svg .box-a{fill:var(--accent-soft);stroke:var(--accent)}
+  svg .box-ok{fill:var(--ok-soft);stroke:var(--ok)}
+  svg .box-bad{fill:var(--bad-soft);stroke:var(--bad)}
+  svg .lbl{fill:var(--fg);font:13px ui-sans-serif,system-ui,sans-serif}
+  svg .lbl-s{fill:var(--fg-3);font:11px ui-sans-serif,system-ui,sans-serif}
+  svg .lbl-b{fill:var(--bad);font:600 11px ui-sans-serif,system-ui,sans-serif}
+  svg .rt{fill:var(--fg-3);font:700 10.5px ui-sans-serif,system-ui,sans-serif;letter-spacing:.09em}
+  svg .arrow{stroke:var(--fg-3);fill:none;stroke-width:1.2}
+  svg .sep{stroke:var(--line);stroke-width:1.5;stroke-dasharray:5 5}
+  .call{border-radius:var(--radius);padding:10px 13px;font-size:13.5px;border:1px solid;margin:12px 0 0}
+  .c-warn{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 28%,transparent)}
+  .call b:first-child{margin-right:4px}
+  footer{border-top:1px solid var(--line);margin-top:36px;padding-top:14px;font-size:12.5px;color:var(--fg-3);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  @media (max-width:640px){
+    body{padding:24px 16px 60px}
+    h2{font-size:17px}
+    .flow{grid-auto-flow:row}
+    .flow .st:not(:last-child)::after{right:auto;left:22px;top:auto;bottom:-11px;transform:rotate(135deg)}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">
+      <span class="num">200</span>
+      <span class="badge">Resumen</span>
+      <span class="meta">tablero · estado centralizado · 24/10/2026</span>
+    </div>
+    <h1>Tu trabajo ya está en master, y siguen tres etapas</h1>
+    <p class="sub">Lo que hiciste con Codex del 20 al 24/10 entró a los dos repos; desde ahí arrancan las etapas 7, 8 y 9.</p>
+  </header>
+
+  <div class="lede"><p><strong>Integré a master lo tuyo, en ittm y en content-audit, con nueve ajustes chicos para que pase todo.</strong> Lancé en paralelo las etapas 7, 8 y 9; la 5 espera tus cuatro respuestas.</p></div>
+
+  <section>
+    <h2>Lo tuyo entró en verde a los dos repos</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Repo</th><th>Qué entró</th><th>Pruebas</th></tr></thead>
+      <tbody>
+        <tr><td>ittm · tablero</td><td>Volver a corregir, pasadas, evolución de problemas, comparación de versiones, audio antes de publicar, tu aprobación aparte de la de los jueces</td><td><span class="pill p-ok">4.093 en verde</span></td></tr>
+        <tr><td>content-audit</td><td>Los comandos nuevos, el examen permanente con su catálogo, los prompts de jueces, los requisitos y 16 briefs</td><td><span class="pill p-ok">4.026 de 4.029</span></td></tr>
+      </tbody></table></div>
+    <p class="pie">Las 3 que fallan ya fallaban en main antes de tu trabajo. Tus dos checkouts quedaron en master y main, sin perder nada.</p>
+  </section>
+
+  <section>
+    <h2>Lo que toqué de lo tuyo</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Qué</th><th>Por qué</th></tr></thead>
+      <tbody>
+        <tr><td>El link «Comparar los ejercicios de esta pasada» arma la tanda con la función de la etapa 4</td><td>Una guardia exige que la tanda del link la ponga un solo lugar.</td></tr>
+        <tr><td>El modo «pasadas» tiene su ayuda con «?»</td><td>Cada modo de Correcciones la necesita.</td></tr>
+        <tr><td>«Nueva versión de ejercicios», igual en servidor y página</td><td>El servidor decía «Volver a corregir».</td></tr>
+        <tr><td>Pruebas al día: el nombre nuevo de datos coherentes, la frase de la miniteoría, la excepción sin regresiones y la tarea que cubre 3</td><td>Tu código ya hacía eso; las pruebas describían lo anterior.</td></tr>
+        <tr><td>Tus briefs 173 y 174 pasaron a 197 y 198</td><td>main ya tenía un 173 y un 174.</td></tr>
+      </tbody></table></div>
+    <div class="call c-warn"><b>Quedó afuera:</b> las salidas de corridas en <code>analysis/</code> (gigas, nunca se versionaron). Siguen en tu disco.</div>
+  </section>
+
+  <section>
+    <h2>Dónde está cada etapa</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Etapa</th><th>Estado</th></tr></thead>
+      <tbody>
+        <tr><td>1 a 4 · lo que corre, el aviso, las corridas, la tanda</td><td><span class="pill p-ok">juntadas</span></td></tr>
+        <tr><td>5 · jueces</td><td><span class="pill p-warn">espera tus 4 respuestas</span></td></tr>
+        <tr><td>6 · análisis y opiniones</td><td><span class="pill p-warn">espera a la 5</span></td></tr>
+        <tr><td>7 · cambios y decisiones · 8 · problemas · 9 · resúmenes</td><td><span class="pill p-ok">tarjetas listas, en paralelo</span></td></tr>
+      </tbody></table></div>
+    <p class="pie">Cada una toca lo suyo: Comparar deja de depender de Correcciones en la 7 y deja el «releer» en la 9; la estimación de Problemas es de la 9.</p>
+  </section>
+
+  <section>
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask"><span class="q">1 · Las cuatro preguntas de la etapa 5, en su sesión</span>
+        <div class="ops"><span class="op rec">Las cuatro recomendadas · recomendado</span><span class="op">Otra respuesta</span></div>
+        <span class="why">Recomendadas: cerrar sólo con ChatGPT, el nombre lo da el análisis, sin marca hasta saber, alcanza el aviso.</span></div>
+      <div class="ask"><span class="q">2 · Abrir las tarjetas de las etapas 7, 8 y 9</span>
+        <div class="ops"><span class="op rec">Las tres ahora</span><span class="op">De a una</span></div>
+        <span class="why">Al empezar, cada una te va a hacer sus preguntas de alcance.</span></div>
+    </div>
+    <div class="call c-warn"><b>Ojo:</b> Codex sigue escribiendo en el checkout principal de content-audit (su brief 195, 14:40). Ese trabajo no lo toqué.</div>
+  </section>
+
+  <footer>
+    <span>Fuentes: ittm master b4482a029 (9d4e71956 tu trabajo tal cual, 99aa35c3c los ajustes) · content-audit main 07c7d10a7 (5153666e7 tal cual, 67bbdc4b2 pruebas, 07c7d10a7 renumeración) · npm test 2.542 · flutter test 1.551 · mvn test 4.029 (fallan StatsAnalyzerCmdTest, GetCmdTest y FTareaJ001 path 1, igual que en a42b02d44) · el worktree de TestFlight quedó con HEAD suelto para liberar master · brief 178 (diagnóstico de la etapa 5)</span>
+    <span>brief 200 · docs/briefs/200-tu-trabajo-en-master.html</span>
+  </footer>
+
+</div>
+</body>
+</html>
