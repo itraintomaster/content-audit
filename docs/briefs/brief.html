@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>201 · El cierre con cualquier motor</title>
+<title>Los jueces, hecho</title>
+
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -331,83 +332,113 @@
 
   <header>
     <div class="kicker">
-      <span class="num">201</span>
+      <span class="num">202</span>
       <span class="badge">Resumen</span>
-      <span class="meta">content-audit · cierre de una tanda · 24/10/2026</span>
+      <span class="meta">Etapa 5 del estado único del tablero · 24/10/2026</span>
     </div>
-    <h1>El cierre consulta a cada juez con un motor habilitado</h1>
-    <p class="sub">Si la versión de un juez aprobó sólo con Gemini, el cierre la consulta con Gemini y lo dice.</p>
+    <h1>Los jueces: una sola cuenta, leída una vez por pestaña</h1>
+    <p class="sub">Qué quedó de la etapa 5, cómo se probó y qué cambia en la propuesta.</p>
   </header>
 
-  <div class="lede"><p><strong>El cierre de una tanda ya consulta a cada juez con un motor en el que está habilitado, y lo dice antes de pagar.</strong> Está subido; falta decidir cómo avanzar el checkout principal.</p></div>
+  <div class="lede"><p><strong>Cada juez se cuenta una vez y las siete pantallas leen esa cuenta: dicen lo mismo y se enteran solas.</strong> En la app casi no se ve; queda decidir si alcanzan 3 s.</p></div>
+
+  <div class="kpis">
+    <div class="kpi dest"><div class="n">4<small>→ 1</small></div><div class="l">cuentas de si un juez está habilitado hoy; la de Problemas queda hasta su etapa</div></div>
+    <div class="kpi"><div class="n">3<small>s</small></div><div class="l">de una promoción en la terminal a la marca del Mapa; la propuesta pide 1</div></div>
+    <div class="kpi"><div class="n">75</div><div class="l">pruebas nombran su regla; en verde 2.589 del navegador y 1.853 del servidor</div></div>
+    <div class="kpi"><div class="n">10</div><div class="l">fallas que encontraron tres revisiones y la copia, arregladas antes de juntar</div></div>
+  </div>
 
   <section>
-    <h2>Seis reglas, probadas sin una sola consulta paga</h2>
-    <div class="kpis">
-      <div class="kpi dest"><div class="n">6<small>reglas</small></div><div class="l">nuevas, cada una con una prueba que la nombra</div></div>
-      <div class="kpi"><div class="n">4.051<small>pruebas</small></div><div class="l">pasan todas menos 3, que ya fallaban en main</div></div>
-      <div class="kpi"><div class="n">0<small>consultas</small></div><div class="l">pagas para probarlo: todo con jueces falsos</div></div>
-      <div class="kpi"><div class="n">0<small>de 11</small></div><div class="l">jueces cambian hoy de motor: al 21/10 estaban todos habilitados con ChatGPT</div></div>
-    </div>
-    <p class="pie">Hoy no se nota. Se nota cuando una versión nueva de un juez apruebe el examen sólo con otro motor, como le pasó a Miniteoría el 19/10.</p>
-  </section>
-
-  <section>
-    <h2>Aprobado sólo con Gemini, un juez ya no frena</h2>
+    <h2>Antes cada pantalla contaba al juez; ahora cuenta el servidor</h2>
     <div class="ad">
-      <div class="lado antes"><span class="rot">Hasta hoy</span>
-        <ol><li>El cierre consulta a todos con ChatGPT, el motor del perfil.</li><li>Miniteoría no está habilitada con ChatGPT: 0 consultas.</li><li>Queda «sin aprobar».</li></ol>
-        <span class="res">La tanda no cierra</span></div>
-      <div class="lado despues"><span class="rot">Con el cambio</span>
-        <ol><li>El cierre ve que Miniteoría está habilitada con Gemini.</li><li>La consulta con Gemini: 20 consultas, antes y después.</li><li>Su cuenta dice «con Gemini, no con el del perfil».</li></ol>
-        <span class="res">La tanda cierra</span></div>
+      <div class="lado antes"><span class="rot">Antes</span>
+        <ol>
+          <li>Mapa, Correcciones, Publicar y Analizadores: lo que traía el análisis.</li>
+          <li>Exámenes: su propia vista, con el motor de siempre.</li>
+          <li>El diálogo de lanzar: lo que traía la estimación.</li>
+          <li>El carril de mediciones: un «aprobó» en cada corrida.</li>
+        </ol>
+        <div class="res">Un juez aprobado sólo con Gemini decía cuatro cosas</div>
+      </div>
+      <div class="lado despues"><span class="rot">Con la etapa</span>
+        <ol>
+          <li>Se promueve o se registra, en el tablero o en la terminal.</li>
+          <li>El servidor lo ve y avisa «jueces».</li>
+          <li>Cuenta cada juez una vez, para todas las pestañas.</li>
+          <li>Cada pestaña lee el catálogo una vez; sus pantallas lo miran.</li>
+        </ol>
+        <div class="res">Dice lo mismo en las siete y en el diálogo</div>
+      </div>
     </div>
-    <p class="pie">Es el caso de las pruebas: diez temas, Miniteoría y Sentido de la traducción, que sigue con ChatGPT.</p>
+    <p class="pie">El catálogo es el estado de todos los jueces leído junto: versión de hoy, motores, examen y si deja cerrar.</p>
   </section>
 
   <section>
-    <h2>Cómo elige el motor, como lo decidiste</h2>
-    <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">El del perfil</span><span class="eg">ChatGPT</span><span class="d">Si el juez está habilitado con él, va con ése.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">El habilitado más reciente</span><span class="eg">Gemini</span><span class="d">Sólo por suscripción, nunca un motor que pide clave.</span></div>
-      <div class="st"><span class="i">3</span><span class="h">Ninguno sirve</span><span class="d">Sigue «sin aprobar» y frena el cierre antes de gastar, como hoy.</span></div>
-      <div class="st end"><span class="i">4</span><span class="h">Lo dice</span><span class="d">En la estimación y en la cuenta de cada juez.</span></div>
-    </div>
-    <p class="pie">Los topes se reparten como hoy: un solo tope para los dos motores. Cambiar de motor nunca cambia la versión del juez.</p>
-  </section>
-
-  <section>
-    <h2>Sólo cambia el cierre y lo que lee lo mismo</h2>
-    <div class="cambia">
-      <div class="si"><div class="ptl">Cambia</div><ul><li>El cierre y su estimación.</li><li>Comparar, Publicar y Correcciones leen con el mismo motor, sin consultar.</li><li>El estado de los exámenes dice con qué motor cierra cada juez.</li></ul></div>
-      <div class="no"><div class="ptl">No cambia</div><ul><li>Los exámenes, Reanalizar, Medir lo que falta y las corridas sueltas.</li><li>Sólo la versión decide si una opinión está al día.</li><li>Los topes y el orden del catálogo.</li></ul></div>
-      <div class="no"><div class="ptl">Queda afuera</div><ul><li>Elegir el motor a mano.</li><li>Un tope por motor.</li><li>Reusar lo consultado con otro motor.</li><li>Casi repetidos, que corre en tu máquina.</li></ul></div>
-    </div>
-  </section>
-
-  <section>
-    <h2>El tablero tiene dos datos nuevos para mostrarlo</h2>
+    <h2>Las cuatro pruebas pasaron; la marca tarda 3 s</h2>
     <div class="tw"><table>
-      <thead><tr><th>Qué dice ahora</th><th>Dónde</th><th>Para qué en el tablero</th></tr></thead>
+      <thead><tr><th>La prueba</th><th>En la copia</th><th>Automática</th></tr></thead>
       <tbody>
-        <tr><td>Con qué motor va cada juez, y si no es el del perfil</td><td>la estimación y el cierre</td><td>avisarlo antes de pagar</td></tr>
-        <tr><td>Con qué motor cierra cada juez, o nada si lo frena</td><td>el estado de los exámenes</td><td>que «bloquea el cierre» salga de ahí y no de ChatGPT</td></tr>
+        <tr><td>Se promueve un juez y el Mapa cambia su marca en 1 s o menos</td><td>el Mapa cambió sin recargar a los 3 s</td><td><span class="pill p-warn">1 s con el CLI falso</span></td></tr>
+        <tr><td>Se promueve desde la terminal y el diálogo de lanzar lo ofrece</td><td>—</td><td><span class="pill p-ok">pasa, con el diálogo abierto</span></td></tr>
+        <tr><td>Una pantalla guarda su copia de un juez</td><td>—</td><td><span class="pill p-ok">una guardia lo frena</span></td></tr>
+        <tr><td>Un juez mirado en Exámenes y en el Mapa</td><td>—</td><td><span class="pill p-ok">pasa, con lo del servidor</span></td></tr>
       </tbody></table></div>
-    <p class="pie">No toqué el tablero. Le paso los dos datos a la sesión de la etapa 5 para que pase a «cualquier motor».</p>
+    <div class="call c-warn"><b>Lo que no sé:</b> si 3 s alcanzan. El aviso llega en menos de un segundo; 2,9 s son content-audit arrancando para contestar.</div>
+    <p class="pie">La promoción se simuló escribiendo su archivo en una copia de la campaña: sin modelos y sin rendir nada.</p>
+  </section>
+
+  <section>
+    <h2>Qué cambia y qué no</h2>
+    <div class="cambia">
+      <div class="si"><div class="ptl">Cambia</div><ul>
+        <li>Promover o registrar, también desde la terminal, llega solo a todas las pestañas.</li>
+        <li>Exámenes ya no relee cada 10 s: relee con el aviso y al volver.</li>
+        <li>«Deja cerrar» lo dice content-audit, que ahora consulta a cada juez con su motor.</li>
+        <li>Sin el dato, ningún juez está habilitado ni sin aprobar: lo que gasta, apagado.</li>
+      </ul></div>
+      <div class="no"><div class="ptl">No cambia</div><ul>
+        <li>Lo que dijo cada veredicto y «la del 19/10» los sigue dando el análisis.</li>
+        <li>Vueltas, Comparar y el último cierre dicen cómo estaba el juez en esa pasada.</li>
+        <li>Problemas y el examen fijo, hasta la etapa 8.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Para la propuesta: seis cosas quedaron distinto</h2>
+    <div class="tw"><table>
+      <thead><tr><th>La propuesta decía</th><th>Quedó</th></tr></thead>
+      <tbody>
+        <tr><td>Deja cerrar si está habilitada con el motor de siempre</td><td>lo dice content-audit: el cierre consulta a cada juez con su motor; con un content-audit viejo, el de siempre</td></tr>
+        <tr><td>Registrar cambia la marca en 1 s o menos</td><td>el aviso, en menos de 1 s; la marca, en unos 3 s con el CLI de verdad</td></tr>
+        <tr><td>Siete pantallas leen el catálogo</td><td>también el carril de mediciones del Mapa y la ficha de una corrida, que traían su propio «aprobó»</td></tr>
+        <tr><td>Analizadores muestra el examen del juez</td><td>«Examen al cerrar» es el de esa pasada; el de hoy sale del catálogo</td></tr>
+        <tr><td>Exámenes deja de contar</td><td>Problemas y el examen fijo siguen con la vista completa y su propia cuenta, hasta la etapa 8</td></tr>
+        <tr><td>El diálogo ofrece los motores habilitados</td><td>los ofrece, pero no dice con qué motor consultará el cierre a cada juez</td></tr>
+      </tbody></table></div>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Guardo el brief 195 de Codex y avanzo el checkout principal?</span>
-        <div class="ops"><span class="op rec">Sí, guardarlo tal cual · recomendado</span><span class="op">Esperar a que Codex lo guarde</span></div>
-        <span class="why">Su brief 195 sin guardar frena el avance. Mientras no avance, el tablero compila el cierre de antes.</span></div>
+      <div class="ask">
+        <div class="q">1 · La marca tarda unos 3 s con el CLI de verdad: ¿alcanza?</div>
+        <div class="ops"><span class="op rec">Alcanza · recomendado</span><span class="op">Bajarlo a 1 s</span></div>
+        <div class="why">Bajarlo pide leer el estado sin arrancar content-audit en cada aviso: es otra tarea, en los dos repos.</div>
+      </div>
+      <div class="ask">
+        <div class="q">2 · Un juez sólo con otro motor: Problemas dice «primero debe aprobar». ¿Cuándo se arregla?</div>
+        <div class="ops"><span class="op rec">En la etapa 8 · recomendado</span><span class="op">Ahora, aparte</span></div>
+        <div class="why">El resto dice «habilitada»: son dos cuentas que dan distinto y no elegí ninguna. Hoy no le pasa a ninguno de los once.</div>
+      </div>
     </div>
+    <p class="pie">Una prueba vieja del servidor sigue fallando en master, como antes de esta etapa: un archivo nombra «Consigna» y «Miniteoría».</p>
   </section>
 
   <footer>
-    <span>Requisito FEAT-CMOTOR (requirements/2026-10-24.01_cierre-con-cualquier-motor, R001–R006) · commit 3a140dfe0 · DefaultJudgeRuntime.open, MovableJudge · datos nuevos: batch estimate/close → runtime, otherRuntime por juez; exam status -f json → current.closesWith · las 3 fallas viejas: FTareaJ001 path 1, GetCmdTest, StatsAnalyzerCmdTest · «once jueces con ChatGPT»: brief 199 de la etapa 5</span>
-    <span>brief 201 · docs/briefs/201-cierre-con-cualquier-motor.html</span>
+    <span>ittm master f26ecbc7b (etapa 8059f02c9, revisión f26ecbc7b), 7800 reiniciado con content-audit 4251ef76e compilado · requisito F-JUECES en requirements/2026-10-24.02_los-jueces · «deja cerrar» sigue a closesWith de exam status (FEAT-CMOTOR) · la cuenta de Problemas: consultsOnCourse en pasos_de_problemas.dart y examen_fijo.dart · la falla vieja: guardian_test.dart con html/js/lib/evolucion.js · copia en 127.0.0.1:7845, sin modelos, ya borrada</span>
+    <span>brief 202 · docs/briefs/202-los-jueces-hecho.html</span>
   </footer>
 
 </div>
