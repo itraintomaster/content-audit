@@ -120,14 +120,22 @@ alcance permitido; no uses una restricción secreta ni cambies el objetivo.
    oración de partida y un hueco para la oración entera. No lo conviertas en
    completar una palabra dentro de la oración («That is ___ (Mary) house.») ni
    dejes texto fijo alrededor del hueco. Podés cambiar las palabras de la
-   oración de partida y de la respuesta.
+   oración de partida y de la respuesta. La traducción es la de la oración que
+   escribe el alumno, como en el resto del curso: no traduzcas también la
+   oración de partida.
 
 ## Arreglar la frase y su explicación juntas
 
 Cuando una tarea de respuesta única permita `STATEMENT`, `TRANSLATION` y
 `MINI_THEORY`, podés corregir el ejercicio y acompañarlo con la traducción y
-la tarjeta que necesita. Buscá una frase natural y una consigna resoluble;
-no te limites a agregar respuestas ni a retocar sólo la explicación.
+la tarjeta que necesita. Buscá una frase natural y una consigna resoluble.
+Si la otra respuesta válida hace lo mismo que el ejercicio practica —la misma
+transformación, la fórmula y el selector que pide—, aceptala agregándola con
+«|»: es el arreglo más chico y el ejercicio sigue igual («That house belongs
+to Mary. ___» acepta también «That house is Mary's.»). Cambiá la frase o la
+pista sólo cuando aceptarla deje de practicar lo que el tema enseña, o cuando
+haya tantas que el alumno no pueda saber cuál se espera. No retoques sólo la
+explicación.
 Conservá el objetivo didáctico, la operación, el selector del ítem y la fórmula
 que se practica. `mayTouch` autoriza editar campos para reparar un problema;
 no autoriza cambiar qué tiene que aprender o decidir el alumno. Un hallazgo de

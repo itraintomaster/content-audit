@@ -182,6 +182,11 @@ misma transformación, no la paráfrasis: reordenar, agregar palabras»), que si
 juez. El 24/10 la guía pasó a dejar «agregar, sacar o mover material» y el examen del juez dio 8 falsas alarmas en 31
 ejercicios sanos (tope 2): 6 eran paráfrasis de ese tipo, como adelantar la cláusula de «unless» o sacar un artículo.
 La versión del 25/10 vuelve al criterio y conserva lo nuevo del 24/10 (selector, fórmula, varios huecos, polaridad).
+Una primera vuelta dio 3 falsas alarmas: dos eran respuestas con otro registro o con otra forma que la que la consigna o su
+ejemplo resuelto piden, y la versión final agrega que la consigna también manda en eso. El examen de la versión final
+(c824cf0a) aprobó: encontró 26 de 27 ejercicios con otra respuesta válida (mínimo 19), dio 2 falsas alarmas en 31 sanos
+(máximo 2) y acertó los 5 casos didácticos. Pasa justo en el tope: entre dos corridas, un mismo caso sano
+(«Catherine is / kind person we know. ___») cambió de veredicto.
 
 **Fuente**: observación y aclaración explícita de José, 24/10/2026, sobre la comparación del ejercicio
 «Polite request: I want you to get me some tea.»: la corrección quitó el selector y aceptó variantes con ambos modales.

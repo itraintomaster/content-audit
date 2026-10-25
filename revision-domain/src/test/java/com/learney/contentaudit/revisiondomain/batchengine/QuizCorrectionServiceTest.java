@@ -16,6 +16,7 @@ import com.learney.contentaudit.revisiondomain.panel.*;
 import java.time.Instant;
 import java.util.*;
 import org.junit.jupiter.api.*;
+import org.mockito.ArgumentCaptor;
 
 class QuizCorrectionServiceTest {
     final CourseEntity course = TandaFixture.course();
@@ -438,6 +439,78 @@ class QuizCorrectionServiceTest {
         Finding naturalness = finding("naturalness", "odd-usage", quiz); naturalness.setResolution(FindingResolution.RANK_ONLY);
         node.getFindings().add(naturalness);
         assertNotEquals(first, service.execute(estimate(List.of(quiz), false)).fingerprint());
+    }
+
+    /** quiz-instruction opined with v1 and today it is v2, approved; translation-sense opined with today's version. */
+    private void instructionOpinedByAnEarlierVersion(boolean approved) {
+        var node = DefaultAnalysisComposer.index(report.getRoot()).get(quiz);
+        node.getScores().put("quiz-instruction", 0.0); node.getScores().put("translation-sense", 0.0);
+        var origins = new LinkedHashMap<String, Object>();
+        origins.put("quiz-instruction", Map.of("judgeVersion", "v1")); origins.put("translation-sense", Map.of("judgeVersion", "t2"));
+        node.getMetadata().put(DefaultAnalysisComposer.PROVENANCE, origins);
+        config.setJudgeFreshnessCatalog(name -> Optional.of(new com.learney.contentaudit.auditdomain.judging.JudgeFreshnessReference(
+                name, "quiz-instruction".equals(name) ? "v2" : "t2", Set.of(), approved, Set.of(), null)));
+        // The tasks follow the analysis they are planned from, as the refiner does.
+        when(refiner.plan(any(), anyString())).thenAnswer(i -> {
+            var present = DefaultAnalysisComposer.index(i.getArgument(0, AuditReport.class).getRoot()).values().stream()
+                    .flatMap(n -> n.getFindings().stream()).toList();
+            return TandaFixture.plan(sourceTasks.stream().filter(t -> present.contains(t.getOrigin().getFinding())).toArray(RefinementTask[]::new));
+        });
+    }
+
+    @Tag("F-MESA-R020")
+    @Test void anOpinionOfAnEarlierVersionIsMeasuredAgainWithTodaysBeforeItGivesWork() {
+        instructionOpinedByAnEarlierVersion(true);
+        AuditEngine engine = mock(AuditEngine.class); CourseMapper mapper = mock(CourseMapper.class);
+        var composer = mock(com.learney.contentaudit.auditdomain.analysis.AnalysisComposer.class);
+        config.setAuditEngine(engine); config.setCourseMapper(mapper); config.setAnalysisComposer(composer);
+        when(engine.runAudit(any(), any(com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection.class))).thenAnswer(i -> {
+            var policies = i.getArgument(1, com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection.class).getPolicies();
+            assertEquals(Set.of("quiz-instruction"), policies.keySet(), "only the outdated judge is asked again");
+            assertEquals(8, policies.get("quiz-instruction").getMaxNewEvaluations(), "within the cap of the run");
+            var fresh = TandaFixture.report(course, List.of(), Map.of(), List.of());
+            var coverage = new com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis();
+            coverage.setJudgeName("quiz-instruction"); coverage.setUnit(AuditTarget.QUIZ);
+            coverage.setEvaluators(List.of(new com.learney.contentaudit.auditdomain.judging.EvaluatorCoverage("quiz-instruction",
+                    new com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage(1, 1, 1, 0, 0, 0), "v2")));
+            ((DefaultCourseDiagnoses) fresh.getRoot().getDiagnoses()).setJudgeCoverages(List.of(coverage));
+            return fresh;
+        });
+        // Today's version no longer sees the instruction problem: the analysis keeps only the translation one.
+        when(composer.compose(any(), any())).thenAnswer(i -> {
+            List<com.learney.contentaudit.auditdomain.analysis.AnalysisSupplement> supplements = i.getArgument(1);
+            assertEquals(1, supplements.size());
+            assertEquals("quiz-instruction", supplements.get(0).analyzer());
+            assertEquals(Set.of(quiz), supplements.get(0).nodeIds());
+            return TandaFixture.report(course, List.of(translation), Map.of(), List.of());
+        });
+        State estimate = service.execute(estimate(List.of(quiz), false));
+        assertTrue(estimate.allowed(), estimate.reason());
+        assertEquals(2, estimate.minimumQueries(), "the exercise and the opinion measured again");
+        assertTrue(estimate.estimateNote().contains("vuelve a medir 1 opinión de una versión anterior de quiz-instruction"),
+                estimate.estimateNote());
+        verifyNoInteractions(engine);
+
+        State done = service.execute(correct(estimate, List.of(quiz), false));
+        verify(engine, times(1)).runAudit(any(), any(com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection.class));
+        verify(runner).allowance(eq(7), anyInt());
+        @SuppressWarnings("unchecked") ArgumentCaptor<Set<String>> tasks = ArgumentCaptor.forClass(Set.class);
+        verify(panels).runSelected(any(), any(), any(), any(), tasks.capture(), any());
+        assertEquals(1, tasks.getValue().size(), "only what today's version still sees gives work");
+        assertEquals(3, done.spent(), "1 measured again and 2 of the panel");
+        assertEquals(13, batch.getQueriesSpent());
+    }
+
+    @Tag("F-MESA-R020")
+    @Test void anOpinionOfAJudgeWhoseVersionOfTodayIsNotApprovedIsNotMeasuredAgain() {
+        instructionOpinedByAnEarlierVersion(false);
+        AuditEngine engine = mock(AuditEngine.class); config.setAuditEngine(engine);
+        State estimate = service.execute(estimate(List.of(quiz), false));
+        assertEquals(1, estimate.minimumQueries());
+        assertFalse(estimate.estimateNote().contains("vuelve a medir"));
+        service.execute(correct(estimate, List.of(quiz), false));
+        verifyNoInteractions(engine);
+        verify(runner).allowance(eq(8), anyInt());
     }
 
     @Test void factoryWithoutConfiguredLocatorCanReserveAndFinishAZeroBudgetRun() {

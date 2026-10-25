@@ -7,6 +7,7 @@ import com.learney.contentaudit.auditdomain.analysis.DefaultAnalysisComposer;
 import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 import com.learney.contentaudit.auditdomain.finding.*;
 import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.KnowledgeEntity;
 import com.learney.contentaudit.revisiondomain.CourseElementLocator;
 import com.learney.contentaudit.refinerdomain.*;
 import com.learney.contentaudit.revisiondomain.batch.*;
@@ -110,7 +111,21 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
         SelectiveCorrection.Run run = safe(batch.getSelectiveRuns()).stream().filter(r -> r.id().equals(request.operationId())).findFirst().orElseThrow();
         QueryAllowance allowance = null;
         int initialSpent = batch.getQueriesSpent();
+        int remeasured = 0;
         try {
+            // F-MESA-R020: what an earlier version of a judge said of a selected exercise is asked again of today's
+            // version before it gives work; the panel spends what is left of the cap.
+            if (!snapshot.outdated().isEmpty()) {
+                var measured = remeasure(snapshot, request.queryCap(), batch.getSettings());
+                remeasured = measured.spent();
+                batch.setQueriesSpent(batch.getQueriesSpent() + remeasured);
+                var fresh = inspect(batch, selected, request.includeApproved(), request.sourceOperationId(),
+                        request.restoreRequestFormula(), measured.report());
+                // The run keeps the identity it was asked with: a retry of the same request is still the same run.
+                snapshot = new Snapshot(fresh.start(), fresh.current(), fresh.report(), fresh.tasks(), fresh.quizzes(), fresh.validators(),
+                        snapshot.fingerprint(), fresh.allowed(), fresh.reason(), fresh.selected(), fresh.references(), fresh.repairs(),
+                        fresh.noWork(), snapshot.outdated());
+            }
             String auditId = config.getAuditReportStore().save(snapshot.report());
             List<RefinementTask> freshTasks = freshTasks(snapshot, selected, request.operationId());
             RefinementPlan plan = config.getRefinementPlanStore().load(batch.getPlanId()).orElseThrow();
@@ -124,21 +139,21 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
             put(batch, run); config.getBatchStore().save(batch);
             BatchSettings settings = batch.getSettings();
             if (taskIds.isEmpty()) {
-                run = finish(run, batch, snapshot.noWork().values().stream().anyMatch(v -> v.startsWith("NOT_ATTEMPTED")) ? "PARTIAL" : "DONE", 0, null);
+                run = finish(run, batch, snapshot.noWork().values().stream().anyMatch(v -> v.startsWith("NOT_ATTEMPTED")) ? "PARTIAL" : "DONE", remeasured, null);
                 put(batch, run); batch.setStatus(reservation.idleStatus()); config.getBatchStore().save(batch);
                 return result(batch, run);
             }
-            allowance = config.getPanelRunnerFactory().allowance(request.queryCap(),
+            allowance = config.getPanelRunnerFactory().allowance(Math.max(0, request.queryCap() - remeasured),
                     settings != null ? settings.getQueriesAtOnce() : 0);
             batch = panels.runSelected(batch, snapshot.report(), snapshot.start(), allowance,
                     new LinkedHashSet<>(taskIds), snapshot.validators());
             final CorrectionBatch completed = batch;
             boolean pending = snapshot.noWork().values().stream().anyMatch(v -> v.startsWith("NOT_ATTEMPTED")) || taskIds.stream().map(id -> BatchBook.kind(completed, id))
                     .anyMatch(k -> k == BatchTaskOutcomeKind.PENDING || k == BatchTaskOutcomeKind.NOT_ATTEMPTED);
-            run = finish(run, batch, allowance.tripped().isPresent() || pending ? "PARTIAL" : "DONE", allowance.spent(),
+            run = finish(run, batch, allowance.tripped().isPresent() || pending ? "PARTIAL" : "DONE", remeasured + allowance.spent(),
                     allowance.tripped().orElse(pending ? "Quedaron quizzes sin intentar dentro del tope." : null));
         } catch (RuntimeException failure) {
-            int spent = allowance == null ? 0 : allowance.spent();
+            int spent = remeasured + (allowance == null ? 0 : allowance.spent());
             batch.setQueriesSpent(initialSpent + spent);
             run = finish(run, batch, "NEEDS_REVIEW", spent, Objects.toString(failure.getMessage(), "La operación se interrumpió")
                     + ". La reserva se conserva; revisá los resultados antes de iniciar otra operación.");
@@ -148,6 +163,68 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
     }
 
     private record Reservation(CorrectionBatch batch, BatchStatus idleStatus, Snapshot snapshot) {}
+    private record Measured(AuditReport report, int spent) {}
+
+    /**
+     * F-MESA-R020: for each judge of exercises whose version of today approved its exam, the selected exercises it
+     * opined on with an earlier version. A judge of topics is left as it is: measuring it again needs the whole topic.
+     */
+    private Map<String, Set<String>> outdated(AuditReport report, List<String> selected, List<String> validators) {
+        var result = new TreeMap<String, Set<String>>();
+        if (config.getJudgeFreshnessCatalog() == null || report == null || report.getRoot() == null) return result;
+        var index = DefaultAnalysisComposer.index(report.getRoot());
+        for (String analyzer : validators) {
+            var today = config.getJudgeFreshnessCatalog().reference(analyzer).filter(r -> r.isApproved());
+            var coverage = report.getRoot().getDiagnoses() instanceof CourseDiagnoses d ? safe(d.getJudgeCoverages()).stream()
+                    .filter(c -> analyzer.equals(c.getJudgeName())).findFirst().orElse(null) : null;
+            if (today.isEmpty() || coverage != null && coverage.getUnit() == AuditTarget.KNOWLEDGE) continue;
+            for (String id : selected) {
+                AuditNode node = index.get(id);
+                if (node == null || !DefaultAnalysisComposer.hasStoredOpinion(node, analyzer)) continue;
+                String version = DefaultAnalysisComposer.version(node, analyzer, report);
+                if (version != null && !today.get().getSameVersions().contains(version))
+                    result.computeIfAbsent(analyzer, k -> new TreeSet<>()).add(id);
+            }
+        }
+        return result;
+    }
+
+    /** Today's version of each outdated judge measures again, within the cap, the exercises it had opined on. */
+    private Measured remeasure(Snapshot snapshot, int cap, BatchSettings settings) {
+        int spent = 0;
+        var supplements = new ArrayList<com.learney.contentaudit.auditdomain.analysis.AnalysisSupplement>();
+        for (var entry : snapshot.outdated().entrySet()) {
+            String analyzer = entry.getKey();
+            Set<String> ids = entry.getValue();
+            CourseEntity only = ChangedCourseCuts.cut(snapshot.current(), k -> {
+                var quizzes = safe(k.getQuizTemplates()).stream().filter(q -> ids.contains(q.getId())).toList();
+                return quizzes.isEmpty() ? null : new KnowledgeEntity(k.getId(), k.getCode(), k.getKind(), k.getLabel(), k.getOldId(),
+                        k.getParentId(), k.isIsRule(), k.getInstructions(), k.getOrder(), k.getSlug(), quizzes, k.getSentenceMode());
+            });
+            AuditReport after = config.getAuditEngine().runAudit(config.getCourseMapper().map(only),
+                    new com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection(List.of(analyzer), Map.of(analyzer,
+                            new EvaluationRunPolicy(Math.max(0, cap - spent), false, null, null, null,
+                                    settings != null && settings.getQueriesAtOnce() > 0 ? settings.getQueriesAtOnce() : 1))));
+            spent += spent(after, analyzer);
+            supplements.add(new com.learney.contentaudit.auditdomain.analysis.AnalysisSupplement(null, null, analyzer, runtime,
+                    Instant.now(), ids, after));
+        }
+        return new Measured(config.getAnalysisComposer().compose(snapshot.report(), supplements), spent);
+    }
+
+    private static int spent(AuditReport report, String analyzer) {
+        if (report == null || report.getRoot() == null || !(report.getRoot().getDiagnoses() instanceof CourseDiagnoses d)) return 0;
+        return safe(d.getJudgeCoverages()).stream().filter(c -> analyzer.equals(c.getJudgeName())).findFirst()
+                .map(c -> safe(c.getEvaluators()).stream().mapToInt(e -> e.getCoverage().getEvaluatedInRun() + e.getCoverage().getFailed()).sum())
+                .orElse(0);
+    }
+
+    private static String remeasureNote(Snapshot snapshot) {
+        int pairs = snapshot.outdated().values().stream().mapToInt(Set::size).sum();
+        return pairs == 0 ? "" : " Antes de corregir vuelve a medir " + (pairs == 1 ? "1 opinión" : pairs + " opiniones")
+                + " de una versión anterior de "
+                + String.join(", ", snapshot.outdated().keySet()) + ", con una consulta por opinión dentro del tope.";
+    }
 
     private State compare(CorrectionBatch batch, String operationId) {
         var matches = safe(batch.getSelectiveRuns()).stream()
@@ -171,13 +248,20 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
 
     private record Snapshot(CourseEntity start, CourseEntity current, AuditReport report, List<RefinementTask> tasks,
             List<Quiz> quizzes, List<String> validators, String fingerprint, boolean allowed, String reason, int selected,
-            Map<String, DidacticReference> references, Set<String> repairs, Map<String, String> noWork) {}
+            Map<String, DidacticReference> references, Set<String> repairs, Map<String, String> noWork,
+            Map<String, Set<String>> outdated) {}
 
     private Snapshot inspect(CorrectionBatch batch, List<String> selected, boolean includeApproved, String sourceOperationId, boolean restoreRequestFormula) {
+        return inspect(batch, selected, includeApproved, sourceOperationId, restoreRequestFormula, null);
+    }
+
+    /** {@code measured}, when given, is the current analysis with the outdated opinions measured again (F-MESA-R020). */
+    private Snapshot inspect(CorrectionBatch batch, List<String> selected, boolean includeApproved, String sourceOperationId,
+            boolean restoreRequestFormula, AuditReport measured) {
         if (config.getCurrentAnalysisService() == null) throw new IllegalStateException("Falta el análisis vigente integrado.");
         CourseEntity start = BatchCourses.start(batch, config.getCourseRepository().load(config.getCoursePath()), config.getBatchStore());
         CourseEntity current = DefaultCurrentAnalysisService.cut(ledger.composedCourse(batch, start), batch.getLevel());
-        AuditReport report = config.getCurrentAnalysisService().report(batch, "correction", current);
+        AuditReport report = measured != null ? measured : config.getCurrentAnalysisService().report(batch, "correction", current);
         RefinementPlan plan = config.getRefinerEngine().plan(report, "current-quiz-correction");
         List<RefinementTask> tasks = safe(plan.getTasks());
         Map<String, DidacticReference> references = DidacticReferences.resolve(batch, sourceOperationId, selected,
@@ -251,7 +335,8 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
             if (quiz.approved() && !includeApproved) { reason = "Hay quizzes aprobados: confirmá explícitamente su inclusión."; break; }
         }
         String stamp = stamp(batch, current, report, rows, selected, includeApproved, validators, references);
-        return new Snapshot(start, current, report, tasks, rows, validators, stamp, reason == null, reason, selected.size(), references, Set.copyOf(repairs), Map.copyOf(noWork));
+        return new Snapshot(start, current, report, tasks, rows, validators, stamp, reason == null, reason, selected.size(), references,
+                Set.copyOf(repairs), Map.copyOf(noWork), measured != null ? Map.of() : outdated(report, selected, validators));
     }
 
     private String stamp(CorrectionBatch batch, CourseEntity current, AuditReport report, List<Quiz> rows,
@@ -343,7 +428,8 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
 
     private State state(CorrectionBatch batch, Snapshot snapshot, SelectiveCorrection.Run run) {
         return new State(batch.getId(), BatchBook.correctionRevision(batch), batch.getContentVersion(), snapshot.fingerprint(),
-                snapshot.allowed(), snapshot.reason(), snapshot.quizzes(), snapshot.selected(), snapshot.selected(), NOTE + (snapshot.references().isEmpty() ? ""
+                snapshot.allowed(), snapshot.reason(), snapshot.quizzes(), snapshot.selected(),
+                snapshot.selected() + snapshot.outdated().values().stream().mapToInt(Set::size).sum(), NOTE + remeasureNote(snapshot) + (snapshot.references().isEmpty() ? ""
                         : " Referencia didáctica histórica explícita; la propuesta actual sigue siendo la base editable."),
                 snapshot.validators(), runtime, run == null ? null : run.id(), run == null ? null : run.status(),
                 run == null ? 0 : run.spent(), List.copyOf(safe(batch.getSelectiveRuns())));

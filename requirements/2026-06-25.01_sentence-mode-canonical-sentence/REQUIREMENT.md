@@ -172,6 +172,14 @@ mesa que guarda las mejoras (brief 219):
    ___ use a camera here.» la fuente y «You » son una sola parte de texto, asi que no es un andamio aparte. Lo
    que viene antes del ultimo fin de oracion de esa parte es fuente: se mide «You can't use a camera here.».
 
+Desde la noche del 25/10/2026, ademas, **la oracion que guarda una correccion es la respuesta sola**. Cuando una
+correccion rearma la oracion guardada de un ejercicio que da una oracion de partida y pide escribir la oracion entera
+transformada, guarda solo la respuesta, como la guardan 629 ejercicios del curso (49 tienen la fuente pegada: el mismo
+error, ya publicado). El juez de traduccion lee esa oracion: con la fuente pegada pedia traducir tambien la oracion de
+partida, y el corrector lo hacia («Pedido cortes: Quiero que me ayudes. ¿Podrias ayudarme?» en vez de «¿Podrias
+ayudarme?»). Lo encontro la muestra de 11 ejercicios del 25/10 en 5 de los 5 ejercicios que acepto. Un hueco dentro de
+la oracion sigue guardando la oracion entera completada.
+
 Una oracion guardada que ya es la respuesta sola se sigue midiendo como esta, aunque armada desde las partes
 saliera distinta («She visits her father (every week)» no tiene punto). Medido el 25/10 sobre el curso y la C2 de
 A1: desaparecen 17 de los 32 hallazgos de longitud de los ejercicios de transformar de A1 y siguen 15; en el curso

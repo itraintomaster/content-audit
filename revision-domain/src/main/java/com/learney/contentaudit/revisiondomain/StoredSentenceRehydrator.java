@@ -20,7 +20,8 @@ public final class StoredSentenceRehydrator {
 
     /**
      * The exercise assembled with the first accepted CLOZE answer, or with the correct multiple-choice option.
-     * Parenthesized hints are not part of the stored sentence.
+     * Parenthesized hints are not part of the stored sentence. When the exercise gives a sentence to transform and the
+     * student writes the whole sentence, the stored sentence is the answer alone, as the course keeps it (F-SMODE-R004).
      */
     public static List<String> rebuild(QuizTemplateEntity quiz) {
         if (quiz == null || quiz.getForm() == null || quiz.getForm().getSentenceParts() == null
@@ -28,9 +29,10 @@ public final class StoredSentenceRehydrator {
             return List.of();
         }
         String correctOption = correctOption(quiz);
+        boolean answerAlone = correctOption == null && SentenceToTransform.given(quiz);
         StringBuilder sentence = new StringBuilder();
         for (SentencePartEntity part : quiz.getForm().getSentenceParts()) {
-            if (part == null) {
+            if (part == null || answerAlone && part.getKind() != SentencePartKind.CLOZE) {
                 continue;
             }
             String fragment = null;

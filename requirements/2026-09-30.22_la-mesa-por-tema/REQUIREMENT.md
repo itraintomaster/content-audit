@@ -376,6 +376,26 @@ la dice [R018](#F-MESA-R018).
 **Fuente**: brief 222; José, el 25/10/2026: «hacé … la regla para que transformar siga siendo transformar … Los de
 transformar vuelven».
 
+<a id="F-MESA-R020"></a>
+### Rule[F-MESA-R020] - Lo que opinó una versión anterior de un juez se vuelve a preguntar antes de corregir
+**Severity**: major | **Validation**: VALIDATED
+
+> Cuando se vuelve a corregir un ejercicio y un juez de ejercicios lo opinó con una versión anterior a la de hoy, y la de
+> hoy aprobó su examen, la corrección primero le hace la misma pregunta a la versión de hoy y corrige sólo lo que esa
+> versión sigue viendo. Invariantes:
+> 1. es una consulta por ejercicio y juez, dentro del tope de la corrida; quien propone gasta lo que queda;
+> 2. la estimación las cuenta en el mínimo de consultas y dice cuántas son y de qué juez;
+> 3. una opinión de la versión de hoy no se vuelve a preguntar, ni la de un juez cuya versión de hoy no aprobó;
+> 4. un juez de temas (que lee el tema entero) no se vuelve a preguntar por ejercicio: queda como está.
+
+En la primera corrida de la muestra de 11 ejercicios (25/10/2026), 25 de las 34 tareas venían del juez de una sola
+respuesta en una versión que reprobó su examen, y casi todas eran paráfrasis que la versión aprobada ya no cuenta:
+«She is drinking coffee right now.», «Let's talk later on.», «In the museum, you can't take videos.». Quien propone gastó
+las 120 consultas persiguiéndolas: cambió ejercicios que estaban bien y dejó 6 de los 11 sin tocar.
+
+**Fuente**: brief 223; José, el 25/10/2026: «lo primero es llegar a que todos los jueces den bien, y que el corrector
+corrija bien».
+
 ## Contexto
 
 **Por qué una mesa por tema.** El 077 revisó los 11.287 ejercicios con revisores por lote y verificadores que intentaron
