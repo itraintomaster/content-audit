@@ -220,7 +220,94 @@ public class DefaultCandidateScreenTest {
     }
 
 
+    @Test
+    @DisplayName("should reject before measuring a candidate of «No cameras. You ___ use cameras.» that takes the period out and puts a line break in its place")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R018")
+    public void shouldRejectBeforeMeasuringACandidateThatTakesThePeriodOutAndPutsALineBreakInItsPlace() {
+        // F-MESA-R018 1 and 2: the real step of the camera in C2 (9 → 8 tokens), from its starting point of attempt 3.
+        QuizTemplateEntity start = quiz(CAMERA, "No se permiten cámaras. No se pueden usar cámaras.",
+                text("No cameras. You "), cloze("can't"), text(" use cameras."));
+        QuizTemplateEntity broken = withParts(start, text("No cameras\nYou "), cloze("can't"), text(" use cameras."));
+
+        List<String> violations = new DefaultCandidateScreen(corrections()).screen(lengthWork(start), CAMERA,
+                candidate(PanelCandidateKind.WHOLE_EXERCISE, broken));
+
+        assertEquals(List.of("mete un salto de línea en el enunciado",
+                "saca el punto entre «cameras» y «You» del enunciado"), violations);
+    }
+
+    @Test
+    @DisplayName("should reject before measuring a candidate that glues the sentence starting in «You» to a new one before it, without the period that separated them")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R018")
+    public void shouldRejectBeforeMeasuringACandidateThatGluesASentenceToTheOneBeforeItWithoutThePeriod() {
+        // F-MESA-R018 3: no line break this time, and other words before «You», but the two sentences are one now.
+        QuizTemplateEntity start = quiz(CAMERA, "No está bien usar una cámara acá. No podés usar una cámara acá.",
+                text("It's not okay to use a camera here. You "), cloze("can't"), text(" use a camera here."));
+        QuizTemplateEntity glued = withParts(start, text("No cameras You "), cloze("can't"), text(" use cameras."));
+
+        List<String> violations = new DefaultCandidateScreen(corrections()).screen(lengthWork(start), CAMERA,
+                candidate(PanelCandidateKind.WHOLE_EXERCISE, glued));
+
+        assertEquals(List.of("pega la oración que empieza en «You» a la anterior, sin el signo que las separaba"), violations);
+    }
+
+    @Test
+    @DisplayName("should reject before measuring a candidate that takes out the comma of «Yes, she ___.» or puts a line break in the translation")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R018")
+    public void shouldRejectBeforeMeasuringACandidateThatTakesOutACommaOrPutsALineBreakInTheTranslation() {
+        // F-MESA-R018 1 and 2: a comma is a token of the length too, and the translation is read by the student.
+        String quizId = "67fab6d59930102295341e90";
+        QuizTemplateEntity start = quiz(quizId, "¿Ella es doctora? Sí, lo es.",
+                text("Is she a doctor? Yes, she "), cloze("is"), text("."));
+        QuizTemplateEntity noComma = withParts(start, text("Is she a doctor? Yes she "), cloze("is"), text("."));
+        QuizTemplateEntity translationBroken = withTranslation(start, "¿Ella es doctora?\nSí, lo es.");
+        DefaultCandidateScreen screen = new DefaultCandidateScreen(corrections());
+
+        assertEquals(List.of("saca la coma entre «Yes» y «she» del enunciado"), screen.screen(lengthWork(start), quizId,
+                candidate(PanelCandidateKind.WHOLE_EXERCISE, noComma)));
+        assertEquals(List.of("mete un salto de línea en la traducción"), screen.screen(lengthWork(start), quizId,
+                candidate(PanelCandidateKind.WHOLE_EXERCISE, translationBroken)));
+    }
+
+    @Test
+    @DisplayName("should let through a candidate that takes out a whole sentence with its period, changes words keeping the marks, or keeps a line break the exercise already had")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R018")
+    public void shouldLetThroughACandidateThatTakesOutAWholeSentenceChangesWordsOrKeepsAnExistingLineBreak() {
+        // F-MESA-R018: shortening is allowed; what is not is winning a token by losing the mark between sentences.
+        QuizTemplateEntity start = quiz(CAMERA, "No está bien usar una cámara acá. No podés usar una cámara acá.",
+                text("It's not okay to use a camera here. You "), cloze("can't"), text(" use a camera here."));
+        QuizTemplateEntity oneSentence = withParts(start, text("You "), cloze("can't"), text(" use a camera here."));
+        QuizTemplateEntity otherWords = withParts(start, text("No cameras. You "), cloze("can't"), text(" use cameras."));
+        String dialog = "67fab6d59930102295341e91";
+        QuizTemplateEntity twoLines = quiz(dialog, "A: ¿Puedo sentarme acá? B: Sí, podés.",
+                text("A: Can I sit here?\nB: Yes, you "), cloze("can"), text("."));
+        QuizTemplateEntity otherAnswer = withParts(twoLines, text("A: Can I sit here?\nB: No, you "), cloze("can't"),
+                text("."));
+        DefaultCandidateScreen screen = new DefaultCandidateScreen(corrections());
+
+        assertEquals(List.of(), screen.screen(lengthWork(start), CAMERA, candidate(PanelCandidateKind.WHOLE_EXERCISE,
+                oneSentence)));
+        assertEquals(List.of(), screen.screen(lengthWork(start), CAMERA, candidate(PanelCandidateKind.WHOLE_EXERCISE,
+                otherWords)));
+        assertEquals(List.of(), screen.screen(lengthWork(twoLines), dialog, candidate(PanelCandidateKind.WHOLE_EXERCISE,
+                otherAnswer)));
+    }
+
     private static final String CHILD = "67fab6d59930102295341e87";
+    private static final String CAMERA = "67fab6d59930102295342de8";
+
+    /** The exercise alone in its topic, with a task of length at the panel that may change all of it. */
+    private static TopicWork lengthWork(QuizTemplateEntity quiz) {
+        KnowledgeEntity topic = topic("6814dafa7d73e7209a13d3f0", "Can: permiso", new ArrayList<>(List.of(quiz)));
+        Finding length = finding("sentence-length", "length-out-of-range", quiz.getId(), FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, null, "largo fuera del rango del nivel");
+        return work(topic, List.of(brief("t-largo", length,
+                List.of(com.learney.contentaudit.auditdomain.correction.ExercisePart.WHOLE_EXERCISE))));
+    }
 
     /** «___ a child? (He)» with its capitals fixed, and its task of multiple-choice-validity at the panel. */
     private static TopicWork childWork() {

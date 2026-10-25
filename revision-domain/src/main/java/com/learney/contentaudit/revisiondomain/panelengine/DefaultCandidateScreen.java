@@ -27,7 +27,8 @@ import javax.annotation.processing.Generated;
  * What is structural is looked at before measuring, because it costs no query: that the candidate changes only what its
  * tasks declare (F-TAREA-R006); that a multiple choice stays one, with exactly one correct option among the same number
  * (F-MESA-R011); that a new mini theory belongs to one explicit quiz (F-MESA-R012);
- * and that a conversion José ordered meets its three conditions (F-MESA-R015). Each violation is a line with its reason;
+ * that a conversion José ordered meets its three conditions (F-MESA-R015); and that it takes out no punctuation and
+ * breaks no line (F-MESA-R018). Each violation is a line with its reason;
  * none means the candidate goes on to be measured.
  */
 @Generated(
@@ -83,6 +84,8 @@ class DefaultCandidateScreen implements CandidateScreen {
             violations.addAll(RequestFormPreservation.verify(original, proposed, topic.getInstructions(), work.getSentenceMode()));
         violations.addAll(DidacticContracts.violations(work.getDidacticReferences().get(quizId), proposed,
                 topic.getInstructions(), work.getSentenceMode()));
+        // F-MESA-R018: a measure is not won by taking punctuation out or breaking the line.
+        violations.addAll(PunctuationPreservation.violations(original, proposed));
         if (isConversion(work, original, candidate)) {
             violations.addAll(conversion(work, original, candidate, proposed));
             return violations;

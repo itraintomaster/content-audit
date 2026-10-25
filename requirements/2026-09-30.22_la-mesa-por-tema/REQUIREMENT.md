@@ -327,6 +327,27 @@ En C3 y C4 el corrector volvió a probar acortar la cámara sin saber que en C2 
 recibía la devolución de la compuerta de la tanda. Seis alcanza para las dos pasadas anteriores con tres intentos cada
 una [ASSUMPTION].
 
+<a id="F-MESA-R018"></a>
+### Rule[F-MESA-R018] - Una medida no se gana sacando la puntuación ni partiendo la línea
+**Severity**: major | **Validation**: VALIDATED
+
+> Antes de medir un candidato, y sin gastar consultas, la mesa lo compara con su punto de partida y lo rechaza si:
+> 1. mete un salto de línea en lo que el alumno lee o escucha —el enunciado, las respuestas, las opciones, la
+>    traducción o las oraciones guardadas— donde no lo había;
+> 2. saca un signo de puntuación entre dos palabras que siguen juntas: «Yes, she is» → «Yes she is»;
+> 3. pega una oración a la anterior sin el signo que las separaba: «… a camera here. You ___ …» → «No cameras You ___ …».
+>
+> Puede sacar una oración entera, con su signo, o cambiar las palabras; un salto de línea que el ejercicio ya tenía se
+> puede quedar. Las pistas entre paréntesis no cuentan como oraciones del enunciado. El motivo del rechazo dice qué
+> signo se perdió y entre qué palabras, o en qué parte entró el salto de línea.
+
+En la primera corrida real de la mesa que guarda las mejoras (C2 del 25/10/2026), la cámara llegó a 8 tokens cambiando
+el punto de «No cameras. You ___ use cameras.» por un salto de línea: el alumno leía «No cameras You ___ use cameras.».
+Naturalidad lo anotó aparte de sus problemas y ninguna regla lo frenó. Probada sobre las 2.243 propuestas aceptadas de
+la C1, la regla no frena ninguna; en la C2 frena sólo esa.
+
+**Fuente**: brief 219; José aprobó la regla el 25/10/2026 («hacé la regla de puntuación y saltos de línea»).
+
 ## Contexto
 
 **Por qué una mesa por tema.** El 077 revisó los 11.287 ejercicios con revisores por lote y verificadores que intentaron

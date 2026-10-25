@@ -77,7 +77,9 @@ class RequestFormPreservationTest {
         QuizTemplateEntity original = original("Polite request:");
         QuizTemplateEntity repaired = withParts(original, text("Polite request: I want you to get me some tea"),
                 cloze("Could you get me some tea?"));
-        assertEquals(List.of(), screen(original, repaired));
+        // No request-form violation: the stimulus did not become part of the answer. Its lost period is the only
+        // reason left, since F-MESA-R018 does not let a candidate take it out.
+        assertEquals(List.of("saca el punto entre «tea» y «Could» del enunciado"), screen(original, repaired));
         QuizTemplateEntity wrongForm = withParts(original, text("Polite request: I want you to get me some tea"),
                 cloze("Can you get me some tea?"));
         assertFalse(screen(original, wrongForm).isEmpty());
