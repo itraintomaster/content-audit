@@ -169,7 +169,8 @@ aprobaciones de los ejercicios sin cambios. La **edición** de los cambios cambi
 - **Lo que opinan los jueces y lo que falta medir** son de la etapa 6 (las opiniones y el análisis): esta etapa no los
   toca. Las opiniones se leen aparte de los cambios
   ([F-OPINA-R007](../2026-10-24.03_analisis-y-opiniones/REQUIREMENT.md#F-OPINA-R007)).
-- Volver a corregir, elegir el análisis y anotar o deshacer un problema siguen avisando «tanda», como hasta ahora.
+- Volver a corregir y elegir el análisis siguen avisando «tanda», como hasta ahora. Anotar o deshacer un problema avisa
+  «decisiones» desde [F-PROBS-R009](../2026-10-24.08_los-problemas/REQUIREMENT.md#F-PROBS-R009).
 
 ## Journeys
 
