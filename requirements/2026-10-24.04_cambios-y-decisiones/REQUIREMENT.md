@@ -26,7 +26,10 @@ Fuente: la propuesta [«Un solo estado para el tablero»](../../docs/propuestas/
 - el alcance es «Cambios y decisiones»: lo que la propuesta pone en esta etapa, nada más;
 - si el servidor acepta una decisión pero content-audit no la puede guardar, queda en la cola como hoy («sin
   guardar», Reintentar, Descartar);
-- las decisiones tomadas desde la terminal o desde la app de Flutter también llegan solas.
+- las decisiones tomadas desde la terminal o desde la app de Flutter también llegan solas;
+- el segundo de [R004](#F-DECIDE-R004) se cuenta desde que content-audit guarda la decisión, no desde el clic: la
+  pestaña que decide la muestra al instante, y guardar tarda unos 6 s. Bajar esos 6 s va aparte (brief 208, decidido
+  después de hacerlo, el 25/10, en el brief 213).
 
 El tablero es `pipeline/vocabulary_dashboard` en ittm.
 
@@ -93,7 +96,7 @@ aprobaciones de los ejercicios sin cambios. La **edición** de los cambios cambi
 >    ni «cambios».
 > 2. Cada pestaña que mira esa tanda muestra la decisión en un segundo o menos desde que content-audit la guarda. Lo
 >    que tarda guardar no cuenta en ese segundo: la pestaña que decide ya la muestra al instante
->    ([R003](#F-DECIDE-R003)), y las otras no muestran lo que content-audit todavía puede rechazar (José, 24/10).
+>    ([R003](#F-DECIDE-R003)), y las otras no muestran lo que content-audit todavía puede rechazar.
 > 3. Ninguna pestaña vuelve a leer los cambios por una decisión.
 
 <a id="F-DECIDE-R005"></a>
