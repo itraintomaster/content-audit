@@ -170,6 +170,30 @@ public class DefaultBatchPublisherTest {
     }
 
     @Test
+    @DisplayName("should publish a change that only improved its exercise, writing it to the course and putting its task back to pending")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R007")
+    @Tag("F-TANDA-R009")
+    public void shouldPublishAChangeThatOnlyImprovedItsExerciseAndPutItsTaskBackToPending() {
+        // R007 inv. 4, what brief 214 had not tried: the vegetables change left «like» fitting, but less. It is published as
+        // any accepted change; its task, still found after publishing, goes back to pending for the next correction.
+        Publishing publishing = new Publishing();
+        CorrectionBatch batch = publishing.closedBatch();
+        BatchBook.setOutcome(batch, "t-respuesta", BatchTaskOutcomeKind.IMPROVED, "mesa-" + MesaFixture.VEGETABLES, 2,
+                "mejoró, sigue abierta: 1 marca bloqueante → 1 marca media");
+        publishing.remaining = List.of(MesaFixture.anotherAnswer());
+
+        batch = publishing.publisher().publish(batch, new BatchPublishRequest("José", null, List.of()), publishing.start);
+
+        assertEquals(List.of("I love vegetables."), TandaFixture.exercise(publishing.courses.written.get(0),
+                MesaFixture.VEGETABLES).getSentences(), "the improvement is written");
+        assertEquals(List.of(P_VEGETABLES), batch.getPublication().getAppliedProposalIds());
+        assertEquals(List.of("t-respuesta"), batch.getPublication().getReopenedTaskIds());
+        assertEquals(RefinementTaskStatus.PENDING, status(publishing.plans.load(TandaFixture.PLAN).orElseThrow(),
+                "t-respuesta"), "still open: the next correction starts from the improvement");
+    }
+
+    @Test
     @DisplayName("should analyze the written course with the same analyzers and get the same findings and numbers as the recalculation that passed the gate")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R009")
