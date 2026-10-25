@@ -145,6 +145,11 @@ paquete E.
 > Una transformación que practica una fórmula concreta se juzga según esa fórmula y el selector visible del ítem,
 > además de su corrección en inglés. La consigna general «can o could» no ofrece ambas formas en cada ítem si la pista
 > selecciona una. No se cuentan como respuestas faltantes las paráfrasis que incumplen esa tarea.
+>
+> En una transformación (el hueco es la oración entera) cuenta otra manera de hacer la misma transformación sobre la
+> misma oración: el resto queda igual y en el mismo orden, y cambia sólo la forma que pide la consigna, incluido el
+> lugar de la palabra que pide usar. Reordenar el resto de la oración, cambiar cuál es la principal o agregar, sacar o
+> cambiar otras palabras es paráfrasis libre y no se cuenta, salvo que la consigna permita reformular libremente.
 
 <details><summary>Selección de can/could y criterios de aceptación</summary>
 
@@ -163,10 +168,17 @@ La miniteoría posterior tampoco puede usarse como pista previa ([F-UNICA-R001](
 | Consigna general «can o could» e ítem «Polite request» bajo la convención de la lección | Una variante con `can` no se reclama como respuesta faltante: incumple el selector de ese ítem. |
 | Pedido normal, o ausencia de etiqueta cuando la convención visible asigna ese caso a `can` | Una variante con `could` no se reclama como respuesta faltante por ser natural en una conversación. |
 | La tarea fija una fórmula de transformación | Sólo se consideran alternativas que respetan esa fórmula; no se convierte el ejercicio en paráfrasis libre. |
+| «After he finished, he left.» → «After finishing, he left.» | Cuenta «After having finished, he left.»: otra manera de la misma transformación. No cuenta «He left after finishing.»: reordena el resto. |
 | Sólo la respuesta guardada sugiere una fórmula que no se explica al alumno | No se inventa la restricción; se informa qué indicación visible falta. |
 
 La convención didáctica no afirma que `can` nunca sea cortés en el uso real. El motivo distingue «no cumple la fórmula
 o el selector de este ejercicio» de «es incorrecto o antinatural en inglés».
+
+**La paráfrasis en las transformaciones (25/10/2026).** Es el criterio de José del 3/10 («cuenta otra manera de hacer la
+misma transformación, no la paráfrasis: reordenar, agregar palabras»), que sin esa regla explícita hacía oscilar al
+juez. El 24/10 la guía pasó a dejar «agregar, sacar o mover material» y el examen del juez dio 8 falsas alarmas en 31
+ejercicios sanos (tope 2): 6 eran paráfrasis de ese tipo, como adelantar la cláusula de «unless» o sacar un artículo.
+La versión del 25/10 vuelve al criterio y conserva lo nuevo del 24/10 (selector, fórmula, varios huecos, polaridad).
 
 **Fuente**: observación y aclaración explícita de José, 24/10/2026, sobre la comparación del ejercicio
 «Polite request: I want you to get me some tea.»: la corrección quitó el selector y aceptó variantes con ambos modales.

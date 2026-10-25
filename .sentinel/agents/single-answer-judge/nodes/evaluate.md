@@ -8,8 +8,9 @@ description: |
   acepta, cada una con su clase y su gravedad (F-UNICA-R002, R004). No lista
   lo raro o forzado ni una respuesta que inventa polaridad, aspecto,
   modalidad, presuposición o condición temporal que el material visible no
-  licencia. En las transformaciones preserva el sentido, no una copia
-  mecánica de las palabras. El gate siguiente valida la forma y reintenta este
+  licencia. En las transformaciones cuenta otra manera de hacer la misma
+  transformación, no la paráfrasis libre (reordenar el resto de la oración o
+  cambiar otras palabras). El gate siguiente valida la forma y reintenta este
   nodo si el JSON sale malformado o incoherente.
 budgets:
   max_tokens: 1500
@@ -157,18 +158,24 @@ didáctica explícita del ejercicio, no una afirmación de que `can` nunca pueda
 expresar cortesía en inglés.
 
 **En las transformaciones** —el hueco es la oración entera y la consigna pide
-transformar o armar una oración— manda la conservación semántica, no la copia
-mecánica palabra por palabra. Otra respuesta vale cuando realiza la
-construcción pedida y conserva los participantes, la proposición, la polaridad,
-el tiempo y el aspecto, y el orden nuclear cuando la consigna o el esqueleto lo
-imponen. Cuando la operación y la fórmula visibles dejan ese margen, puede agregar,
-sacar o mover material funcional o idiomático opcional si no cambia nada de eso: *after having finished* por *after finishing*, *Are
-you studying French still?* por *Are you still studying French?*, o una pasiva
-natural con *get* cuando la consigna pide voz pasiva sin exigir *be*. Es
-paráfrasis libre y no se lista si cambia participantes, hechos, modalidad,
-polaridad, tiempo/aspecto, presuposición o condición temporal, o si rompe un
-orden expresamente impuesto. Agregar palabras no basta por sí solo para
-descartar una respuesta.
+transformar o armar una oración— cuenta otra manera de hacer la misma
+transformación sobre la misma oración: el resto queda igual y en el mismo
+orden, y cambia sólo la forma que pide la consigna. La forma pedida incluye la
+construcción que la realiza y el lugar de lo que la consigna pide usar:
+*after having finished* en lugar de *after finishing*; *Are you studying
+French still?* en lugar de *Are you still studying French?* cuando la consigna
+pide *still* sin fijar su lugar; una pasiva con *get* cuando la consigna pide
+voz pasiva sin exigir *be*. Lo que toca el resto de la oración ya es una
+paráfrasis libre y no se lista: adelantar o mover una cláusula o un complemento
+que la transformación no toca (*If it rains, we will stay home.* por *We will
+stay home if it rains.*), cambiar cuál es la oración principal, o agregar,
+sacar o cambiar otras palabras (un artículo, un *do* enfático, *need to be
+cleaned* por *need cleaning*). Aunque la paráfrasis sea correcta y natural, el
+alumno no la escribe para hacer la transformación pedida. Tampoco vale una
+manera de transformar que cambie participantes, hechos, modalidad, polaridad,
+tiempo o aspecto, presuposición o condición temporal. Si la consigna permite
+reformular libremente («Puedes reformular el pedido»), la paráfrasis natural
+sí cuenta: lo que pide la consigna manda.
 
 Cada respuesta que listás lleva su clase (`kind`):
 
@@ -240,6 +247,11 @@ Se listan:
 
 No se listan (la lista va vacía):
 
+- «I brushed my teeth before I went to bed. ___», consigna «Transforma las
+  oraciones para que incluyan la forma 'verb-ing'.», `Hueco 1: I brushed my
+  teeth before going to bed.`. *Before going to bed, I brushed my teeth.* es
+  correcta, pero reordena la oración: ya no es otra manera de hacer la
+  transformación pedida, es una paráfrasis.
 - «She called her mum after she finished dinner. ___», consigna «Transforma
   usando 'verb-ing'.», `Hueco 1: She called her mum after finishing dinner.`.
   *She called her mum before finishing dinner* no se lista: cambia la condición
