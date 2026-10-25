@@ -13,7 +13,8 @@ feature:
 **Qué**: El tablero lleva la cuenta de qué cambió, por tema (corridas, tanda, jueces, análisis, problemas, publicar), y
 se lo avisa a las pestañas abiertas apenas pasa: cuando lo cambia el propio tablero y cuando lo cambia un comando desde la
 terminal. Las pestañas comparten un solo canal de avisos; con cada aviso, cada una relee sólo ese tema, una vez, y sólo si
-alguien la está mirando. Lo que corre deja de preguntarse cada 3 s: se relee con el aviso y se controla una vez por
+alguien la está mirando. Un mismo cambio se avisa una vez, aunque el disco lo cuente en varios pedazos y lo vean a la vez
+el tablero que lo escribió y el vigía. Lo que corre deja de preguntarse cada 3 s: se relee con el aviso y se controla una vez por
 minuto. Si el canal se corta, todas lo dicen y se recuperan solas; si el tablero no sabe avisar, todo sigue como antes.
 
 **Por qué**: Hasta ahora cada pestaña preguntaba a su ritmo (cada 3 s si algo corría, cada 30 s si no) y Ejecuciones,
@@ -145,6 +146,37 @@ estado único, en las etapas que siguen de la propuesta.
 > 2. Sólo se lee: no acepta escrituras.
 > 3. Un aviso dice el tema y su número, nunca rutas, nombres de archivos ni contenido.
 
+<a id="F-AVISO-R008"></a>
+### Rule[F-AVISO-R008] - Un mismo cambio se avisa una vez
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> 1. Un cambio, venga del tablero o de la terminal, sube su tema una vez, y cada pestaña lo relee una vez.
+> 2. Lo que se guarda escribiendo un archivo temporal y renombrándolo es un solo cambio: el temporal no sube nada, y lo
+>    que el disco cuenta junto de esa escritura sube una vez.
+> 3. Lo que guarda una escritura del tablero lo avisa esa escritura, al terminar bien: lo que se ve en el disco de sus
+>    temas mientras corre, o después, sale en ese aviso y no en otro. Si la escritura falla, no avisa nada, y lo que
+>    cambió mientras tanto sale solo.
+> 4. Lo que ya estaba en el disco cuando su tema subió por última vez no lo vuelve a subir: quien relee ese tema ya lo
+>    ve. Lo que cambia después sí, aunque llegue enseguida: no se pierde nada.
+> 5. Mientras corre una escritura del tablero, lo que cambia de sus temas espera, como mucho medio segundo. Si la
+>    escritura tarda más, sale solo y la escritura avisa igual al terminar. Lo que cambia de otros temas no espera.
+
+<details><summary>Detail</summary>
+
+Lo vio José el 24/10, al probar la etapa 8: anotó un problema con P y Problemas, abierto en otra pestaña, leyó la lista
+dos veces, con medio segundo de diferencia. Medido en una copia, eran tres lecturas por pestaña, por dos causas:
+
+- content-audit guarda cada archivo en un temporal que después renombra, y el disco cuenta esa escritura en cinco o seis
+  pedazos: el primero avisaba enseguida y los otros, medio segundo después;
+- lo que escribe el tablero lo ve también el vigía, después de que la escritura ya avisó: anotar avisaba otra vez al
+  contestar, 28 s después.
+
+Una escritura que sigue ocupada más de medio segundo después de guardar (anotar mientras volvía a leer la tanda entera)
+sigue dando dos relecturas: la del cambio en el disco y la de la escritura al terminar, que pudo cambiar algo más que lo
+que se ve en el disco.
+
+</details>
+
 ## Journeys
 
 ```yaml
@@ -167,8 +199,8 @@ journeys:
           - when: "El tablero ve el cambio en el disco"
             then: releer
       - id: releer
-        action: "Cada pestaña a la vista relee lo que corre y lo muestra en menos de un segundo"
-        gate: [F-AVISO-R002, F-AVISO-R005]
+        action: "Cada pestaña a la vista relee lo que corre, una vez, y lo muestra en menos de un segundo"
+        gate: [F-AVISO-R002, F-AVISO-R005, F-AVISO-R008]
         result: success
       - id: como-antes
         action: "Las pestañas preguntan lo que corre a su ritmo de siempre"
@@ -227,10 +259,15 @@ y canal de mentira de `html/test/avisos-de-prueba.js`) arman varias pestañas en
 | R005 | Con el canal abierto, el control es cada 60 s corra algo o no; sin canal, el ritmo de siempre; cada aviso de «corridas» le trae a Ejecuciones lo que corre | `estado-avisos.test.js` («F-AVISO-R005: …») |
 | R006 | Un tablero sin canal contesta 404 y las pestañas preguntan a su ritmo sin volver a pedirlo; sin candados o sin difusión en el navegador, tampoco se abre | `canal_de_avisos_test.dart` («F-AVISO-R006: …»), `estado-avisos.test.js` («F-AVISO-R006: …», «sin candados o sin difusión…») |
 | R007 | Sin el token, 403 con la razón de la sesión vencida y ningún aviso; con otro Host, 403; un POST es 405; después de escrituras de verdad, el hola trae sólo los números y cada aviso sólo su tema y su número, sin rutas ni nombres de archivos | `canal_de_avisos_test.dart` («F-AVISO-R007: …», «un aviso dice sólo el tema y su número…») |
+| R008 | Lo que ya estaba en el disco cuando el tema subió no vuelve a subir y lo de después sí; una escritura del tablero avisa una vez, al terminar, con lo que se vio en el disco mientras corría o después; lo de otro tema no espera; si falla, lo visto sale solo; si tarda más que la espera, lo visto sale solo y la escritura avisa igual; con dos escrituras a la vez, espera a la que termina bien; un temporal no sube nada; desde cuándo está un cambio en el disco; con carpetas de verdad, un temporal que se renombra avisa una vez y el siguiente otra; por el canal, crear un problema desde el tablero da un aviso, y desde la terminal, uno por cambio | `novedades_test.dart` («F-AVISO-R008: un mismo cambio sube una vez», «F-AVISO-R008: una escritura como la de content-audit…»), `tablero_con_el_cli_test.dart` («F-AVISO-R008: un mismo cambio llega una vez por el canal») |
 
 Además, en una copia de verificación de la campaña (sin modelos), con las diez pantallas abiertas: un comando en la
 terminal que registra una corrida y otro que la termina se ven en las diez sin tocar nada; se cierra la pestaña que
 tenía el canal y otra lo toma; se reinicia el tablero y todas dicen primero «Sin conexión» y después que la sesión venció.
+
+Para R008, en la copia, con Correcciones y Problemas abiertas y contando los pedidos de cada pestaña: crear un problema
+desde la terminal o desde el tablero da un aviso y una lectura de la lista por pestaña (antes, dos); anotar con P, que
+contestaba 30 s después de guardar, da dos (antes, tres).
 
 ## References
 
