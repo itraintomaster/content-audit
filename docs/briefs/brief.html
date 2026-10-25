@@ -3,226 +3,289 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>203 · Cómo viene el estado único</title>
+<title>Problemas, antes de construir · 204</title>
+<!--
+  PRESENTACIÓN · visual-brief, modo presentación
+  Cuándo: alguien tiene que entender y APROBAR un plan o un diseño, con el qué y el cómo.
+  Dónde:  docs/briefs/NNN-slug.html — es un brief en diapositivas: mismo número, no se edita.
+
+  Cómo se usa
+  1. Copiar este archivo y reemplazar SÓLO lo que está entre los comentarios «CONTENIDO».
+     El CSS y el JS no se tocan. El número de página y el del documento los pone el JS.
+  2. Las diapositivas de abajo son los tipos, en orden, con un ejemplo que se reemplaza entero:
+     portada · dónde estamos · por cada cosa que cambia: hoy → con X; y si hace falta, qué
+     encuentra / cómo lo hace / cómo se prueba · lo que no toca · lo que necesita de vos · en
+     una frase. Cada una dice qué componentes lleva.
+  3. Si habla de una pantalla, en ese orden y sin saltear (SKILL.md §4):
+     · DÓNDE: la captura real, con lo que cambia rodeado y numerado (svg.cap + .who).
+     · EL PROBLEMA, como un caso de uso: la foto de hoy de esa parte, con su .mark abajo.
+     · CÓMO QUEDA: dibujado en HTML (.mq), con números y su leyenda (ol.leg), al lado de la foto.
+     Las fotos: capturar.mjs, a docs/briefs/NNN-slug/. Nunca la maqueta sola, sin el «hoy».
+  4. BORRAR el catálogo del final (la section de clase cat).
+  5. node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
+     y después MIRAR cada diapositiva: node …/diapos.mjs docs/briefs/NNN-slug.html <scratchpad>/d
+     (y con --tema=dark y --celular), abriendo los JPG con Read.
+
+  Topes por diapositiva: título = la conclusión (≤ 12 palabras) · ≤ 40 palabras sueltas
+  (título, bajada, notas y conclusión) · UN dibujo que carga el mensaje. Cada componente
+  trae su tope en el catálogo. Lenguaje llano: los nombres técnicos, sólo en el .foot.
+  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
+-->
 <style>
-  /* ============ tokens: claro y, abajo, oscuro ============ */
+  /* ════ tokens: los mismos nombres que el brief; claro y, abajo, oscuro ════ */
   :root{
-    --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
-    --fg:#1c1a17; --fg-2:#57524b; --fg-3:#8b847a;
-    --accent:#b4531f; --accent-soft:#fdf1e7;
-    --ok:#2f6b46; --ok-soft:#e9f4ed;
-    --warn:#8a6314; --warn-soft:#fbf2dd;
-    --bad:#a3342c; --bad-soft:#fbecea;
-    --info:#2a5b8f; --info-soft:#e9f1f9;
-    --radius:10px; --shadow:0 1px 2px rgba(28,26,23,.05), 0 8px 24px -16px rgba(28,26,23,.25);
+    --bg:#f4f2ee; --bg-elev:#ffffff; --line:#e4dfd6; --line-soft:#efebe4;
+    --fg:#1c1a17; --fg-2:#56514a; --fg-3:#8b847a;
+    --accent:#b4531f; --accent-soft:#fcefe4;
+    --ok:#2f6b46; --ok-soft:#e7f3eb; --warn:#8a6314; --warn-soft:#fbf1d9;
+    --bad:#a3342c; --bad-soft:#fbe9e6; --info:#2a5b8f; --info-soft:#e7f0f9;
+    --shadow:0 1px 2px rgba(28,26,23,.06), 0 18px 40px -24px rgba(28,26,23,.35);
   }
   @media (prefers-color-scheme: dark){
     :root{
-      --bg:#131211; --bg-elev:#1b1a18; --line:#302d29; --line-soft:#252320;
-      --fg:#efece7; --fg-2:#a8a29a; --fg-3:#7b756c;
-      --accent:#e08b4f; --accent-soft:#2a1f16;
-      --ok:#7fc79c; --ok-soft:#16241c;
-      --warn:#e0b657; --warn-soft:#272013;
-      --bad:#e58b82; --bad-soft:#2a1917;
-      --info:#8ab6e5; --info-soft:#141f2b;
-      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+      --bg:#0f0e0d; --bg-elev:#1a1917; --line:#2f2c28; --line-soft:#24221f;
+      --fg:#efece7; --fg-2:#aaa49b; --fg-3:#7d776e;
+      --accent:#e38c50; --accent-soft:#2b1f15;
+      --ok:#80c89d; --ok-soft:#15231b; --warn:#e2b85a; --warn-soft:#261f12;
+      --bad:#e88d84; --bad-soft:#2a1816; --info:#8cb8e6; --info-soft:#131e2a;
+      --shadow:0 1px 2px rgba(0,0,0,.5), 0 18px 40px -24px rgba(0,0,0,.8);
     }
   }
   *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    margin:0; background:var(--bg); color:var(--fg);
-    font:16px/1.6 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
-    font-feature-settings:"kern","liga","cv05";
-    padding:40px 24px 80px;
-  }
-  .wrap{max-width:940px;margin:0 auto}
-  code,kbd,pre,.mono{font-family:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace}
-  a{color:var(--accent)}
-  code,a{overflow-wrap:anywhere}   /* una ruta o un link largo desborda el celular: 15 de 76 briefs viejos */
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font:16px/1.45 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+    padding:28px 20px 90px}
+  code{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.92em}
+  code,a{overflow-wrap:anywhere}
+  .deck{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
 
-  /* ============ encabezado ============ */
-  header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
-  .kicker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
-  .kicker .num{font:700 12px ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.04em;color:var(--fg-3);
-    background:var(--line-soft);padding:3px 8px;border-radius:6px;font-variant-numeric:tabular-nums}
-  .badge{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;
-    border-radius:100px;background:var(--accent-soft);color:var(--accent);
-    border:1px solid color-mix(in srgb,var(--accent) 22%,transparent)}
-  .meta{font-size:12.5px;color:var(--fg-3)}
-  h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2;margin:0;letter-spacing:-.02em;font-weight:650}
-  .sub{margin:10px 0 0;color:var(--fg-2);font-size:16px;max-width:62ch}
+  /* ── la diapositiva: 16:9, el texto escala con su ancho ── */
+  .sl{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);
+    aspect-ratio:16/9;container-type:inline-size;overflow:hidden;scroll-margin-top:24px}
+  .sl-in{position:absolute;inset:0;padding:4.2cqi 5cqi 5.4cqi;display:flex;flex-direction:column;gap:2.2cqi}
+  .kick{display:flex;align-items:center;gap:1.2cqi;font-size:1.25cqi;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--fg-3);font-weight:700}
+  .kick .tagq{color:var(--accent)}
+  .kick .an{margin-left:auto;letter-spacing:.04em;text-transform:none;font-weight:600;color:var(--fg-2)}
+  .kick .num{font:700 1.1cqi/1 ui-monospace,monospace;letter-spacing:.04em;color:var(--fg-3);background:var(--line-soft);
+    padding:.45cqi .8cqi;border-radius:.5cqi}
+  h1,h2{margin:0;letter-spacing:-.02em;line-height:1.08}
+  .sl h1{font-size:5cqi;font-weight:700}
+  .sl h1.frase{font-size:4.2cqi;max-width:24ch;line-height:1.12}
+  .sl h2{font-size:3.3cqi;font-weight:680}
+  .sub{font-size:1.9cqi;color:var(--fg-2);margin:0;max-width:62ch;line-height:1.35}
+  /* las filas del cuerpo no crecen con el contenido: lo que no entra se nota (y el verificador lo marca) */
+  .body{flex:1;min-height:0;display:grid;gap:3cqi;grid-template-rows:minmax(0,1fr)}
+  .body.arriba{grid-template-rows:auto minmax(0,1fr)}     /* la primera fila a su medida; la segunda llena */
+  .body.abajo{grid-template-rows:minmax(0,1fr) auto}      /* la última fila a su medida, abajo */
+  .c2,.c32,.c23{display:grid;gap:3cqi;min-height:0;min-width:0}
+  .c2{grid-template-columns:1fr 1fr} .c32{grid-template-columns:1.25fr 1fr} .c23{grid-template-columns:1fr 1.25fr}
+  .pila{display:flex;flex-direction:column;gap:1.4cqi;min-width:0}
+  .foot{position:absolute;left:5cqi;right:5cqi;bottom:1.6cqi;display:flex;justify-content:space-between;gap:2cqi;
+    font-size:1.05cqi;color:var(--fg-3)}
+  .foot span{min-width:0;overflow-wrap:anywhere} .foot .pg{white-space:nowrap}
+  .note{font-size:1.45cqi;color:var(--fg-2);line-height:1.4;margin:0}
+  .take{font-size:1.7cqi;line-height:1.35;margin:0;padding:1.2cqi 1.6cqi;border-left:.45cqi solid var(--accent);
+    background:var(--accent-soft);border-radius:0 1cqi 1cqi 0}
+  .take b{color:var(--accent)}
+  .panel{background:var(--bg);border:1px solid var(--line-soft);border-radius:1.4cqi;padding:1.8cqi 2cqi;min-width:0;
+    display:flex;flex-direction:column;gap:1.2cqi}
+  .ptl{font-size:1.15cqi;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);font-weight:700}
 
-  /* ============ el lede: la conclusión, dos renglones ============ */
-  .lede{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);
-    border-radius:var(--radius);padding:16px 18px;margin:0 0 34px;box-shadow:var(--shadow)}
-  .lede p{margin:0;font-size:17.5px;line-height:1.5;max-width:68ch}
-  .lede strong{font-weight:650}
+  /* ── portada ── */
+  .cover .sl-in{justify-content:center;gap:2.6cqi;padding-left:7cqi;padding-right:7cqi}
+  .cover .big-l{position:absolute;right:5cqi;top:4cqi;font:800 19cqi/1 ui-sans-serif,system-ui;color:var(--accent-soft);letter-spacing:-.04em}
+  .chips{display:flex;flex-wrap:wrap;gap:1cqi}
+  .chip{font-size:1.5cqi;padding:.55cqi 1.3cqi;border-radius:99px;border:1px solid var(--line);background:var(--bg);white-space:nowrap}
+  .chip i{font-style:normal;color:var(--fg-3);margin-left:.6cqi;font-size:1.25cqi}
+  .kpis{display:flex;gap:3cqi;flex-wrap:wrap}
+  .kpi .n{font-size:5.4cqi;font-weight:750;letter-spacing:-.03em;line-height:1}
+  .kpi .n small{font-size:.42em;font-weight:600;color:var(--fg-3);margin-left:.3em;letter-spacing:0}
+  .kpi .l{font-size:1.45cqi;color:var(--fg-2);max-width:26ch;margin-top:.6cqi}
+  .panel .kpis{gap:1.6cqi 2.4cqi} .panel .kpi .n{font-size:3.4cqi} .panel .kpi .l{font-size:1.3cqi;max-width:22ch}
 
-  /* ============ sección: título = conclusión · un dibujo · un pie ============ */
-  section{margin:0 0 38px}
-  h2{font-size:19px;line-height:1.3;font-weight:650;letter-spacing:-.01em;margin:0 0 14px;max-width:60ch}
-  p{margin:0 0 12px}
-  .pie{font-size:13.5px;line-height:1.5;color:var(--fg-2);margin:10px 0 0;max-width:78ch}
-  .grid{display:grid;gap:12px}
-  .g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-  .card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;
-    box-shadow:var(--shadow);min-width:0}
-  .ptl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-3);font-weight:700;margin:0 0 10px}
-
-  /* ============ KPIs: el número grande, su comparación abajo ============ */
-  .kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
-  .kpi{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
-  .kpi .n{font-size:32px;font-weight:700;letter-spacing:-.025em;line-height:1.05;font-variant-numeric:tabular-nums}
-  .kpi .n small{font-size:.48em;font-weight:600;color:var(--fg-3);margin-left:.3em;letter-spacing:0}
-  .kpi .l{font-size:13px;color:var(--fg-2);line-height:1.4;margin-top:6px}
-  .kpi.dest .n{color:var(--accent)}
-
-  /* ============ barras horizontales con etiqueta ============ */
-  .hb{display:grid;gap:10px}
-  .hb .r{display:grid;grid-template-columns:minmax(110px,38%) minmax(0,1fr) auto;gap:12px;align-items:center;font-size:13.5px}
-  .hb .t{color:var(--fg-2);line-height:1.3;min-width:0}
-  .hb .t small{display:block;color:var(--fg-3);font-size:12px}
-  .hb .tr{position:relative;height:10px;border-radius:99px;background:var(--line-soft)}
-  .hb .f{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent)}
-  .hb .f.g{background:var(--ok)} .hb .f.b{background:var(--bad)} .hb .f.w{background:var(--warn)}
-  .hb .f.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
-  .hb .meta{position:absolute;top:-4px;bottom:-4px;width:2px;border-radius:1px;background:var(--fg)}
-  .hb .n{font-weight:650;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
-  .leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--fg-2);margin-top:12px}
-  .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--accent)}
-  .sw.g{background:var(--ok)} .sw.b{background:var(--bad)} .sw.w{background:var(--warn)}
-  .sw.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
-  .sw.m{width:2px;height:13px;border-radius:0;background:var(--fg);vertical-align:-2px}
-
-  /* ============ flujo en pasos ============ */
-  .flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:16px}
-  .flow .st{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
-    padding:12px 13px;display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow);min-width:0}
-  .flow .st:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:8px;height:8px;z-index:1;
-    border-top:2px solid var(--fg-3);border-right:2px solid var(--fg-3);transform:translateY(-50%) rotate(45deg)}
-  .flow .i{font:700 12px/24px ui-monospace,monospace;width:24px;height:24px;border-radius:7px;text-align:center;
-    background:var(--accent-soft);color:var(--accent)}
-  .flow .h{font-weight:650;font-size:14px;line-height:1.25}
-  .flow .eg{font:italic 14px/1.3 ui-serif,Georgia,serif;color:var(--fg)}
-  .flow .d{font-size:12.5px;line-height:1.4;color:var(--fg-2)}
-  .flow .st.end{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
-
-  /* ============ antes y después ============ */
-  .ad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}
-  .ad .lado{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
-    padding:13px 15px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow);min-width:0}
-  .ad .antes{border-top:3px solid var(--bad)} .ad .despues{border-top:3px solid var(--ok)}
-  .ad .rot{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
-  .ad .antes .rot{color:var(--bad)} .ad .despues .rot{color:var(--ok)}
-  .ad .despues::before{content:"→";position:absolute;left:-24px;top:50%;transform:translateY(-50%);
-    font-size:19px;color:var(--fg-3)}
-  .ad ol{margin:0;padding-left:20px;font-size:13.5px;line-height:1.45;color:var(--fg-2);display:grid;gap:3px}
-  .ad .res{font-weight:650;font-size:14.5px;border-top:1px dashed var(--line);padding-top:7px;margin-top:auto}
-  .ad .antes .res{color:var(--bad)} .ad .despues .res{color:var(--ok)}
-
-  /* ============ mapa de calor ============ */
-  .heat{display:grid;grid-template-columns:minmax(110px,1.6fr) repeat(var(--cols,4),minmax(0,1fr));gap:4px;font-size:12.5px}
-  .heat span{padding:7px 4px;border-radius:6px;text-align:center;font-variant-numeric:tabular-nums;background:var(--line-soft)}
-  .heat .h{background:none;color:var(--fg-3);font-size:11.5px;font-weight:600}
-  .heat .rl{background:none;text-align:left;color:var(--fg-2)}
-  .heat .h0{color:var(--fg-3)}
-  .heat .h1{background:color-mix(in srgb,var(--warn) 16%,var(--bg-elev))}
-  .heat .h2{background:color-mix(in srgb,var(--warn) 34%,var(--bg-elev))}
-  .heat .h3{background:color-mix(in srgb,var(--bad) 32%,var(--bg-elev))}
-
-  /* ============ tarjetas de decisión: la recomendada, marcada ============ */
-  .opts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
-  .opt{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
-    box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;min-width:0}
-  .opt.rec{border:1.5px solid var(--accent);box-shadow:0 0 0 3px var(--accent-soft),var(--shadow)}
-  .opt .oh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14.5px}
-  .opt .ol{font:700 13px/26px ui-monospace,monospace;width:26px;height:26px;border-radius:7px;text-align:center;
-    background:var(--line-soft);flex:none}
-  .opt.rec .ol{background:var(--accent);color:var(--bg-elev)}
-  .opt p{font-size:13px;color:var(--fg-2);margin:0}
-  .opt ul{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-size:13px}
-  .opt li::before{font-weight:800;margin-right:6px}
-  .opt li.si::before{content:"✓";color:var(--ok)} .opt li.no::before{content:"✕";color:var(--bad)}
-
-  /* ============ ejemplo real ============ */
-  .ex{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
-    display:grid;gap:7px;box-shadow:var(--shadow);min-width:0}
-  .ex .cons{font-size:12px;color:var(--fg-3)}
-  .ex .en{font:italic 18px/1.35 ui-serif,Georgia,serif}
-  .ex .gap{display:inline-block;min-width:48px;border-bottom:2px solid var(--fg-3);margin:0 4px}
-  .ex .ans{font-size:13.5px;color:var(--fg-2)} .ex .ans b{color:var(--fg)}
-  .ex .ft{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--fg-3);
-    border-top:1px dashed var(--line);padding-top:7px}
-  .mark{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;line-height:1.45;background:var(--bad-soft);
-    border-radius:8px;padding:8px 10px}
+  /* ── el ejemplo real, como lo ve el que lo usa, con sus marcas ── */
+  .ex{background:var(--bg-elev);border:1px solid var(--line);border-radius:1.4cqi;padding:1.6cqi 1.9cqi;display:grid;gap:1cqi;box-shadow:var(--shadow)}
+  .ex .cons{font-size:1.3cqi;color:var(--fg-3)}
+  .ex .en{font:italic 2.5cqi/1.25 ui-serif,Georgia,serif}
+  .ex .gap{display:inline-block;min-width:6cqi;border-bottom:.25cqi solid var(--fg-3);margin:0 .4cqi}
+  .ex .tr{font-size:1.45cqi;color:var(--fg-2)}
+  .ex .ans{font-size:1.4cqi;color:var(--fg-2)} .ex .ans b{color:var(--fg)}
+  .mark{display:flex;gap:1cqi;align-items:flex-start;font-size:1.45cqi;background:var(--bad-soft);border-radius:1cqi;padding:1cqi 1.2cqi}
   .mark .x{color:var(--bad);font-weight:800}
   .mark.ok{background:var(--ok-soft)} .mark.ok .x{color:var(--ok)}
-  .sev{font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;white-space:nowrap}
+  .sev{font-size:1.15cqi;font-weight:700;padding:.3cqi .9cqi;border-radius:99px;white-space:nowrap}
   .sev.b{background:var(--bad);color:var(--bg-elev)} .sev.a{background:var(--bad-soft);color:var(--bad)}
   .sev.m{background:var(--warn-soft);color:var(--warn)} .sev.l{background:var(--line-soft);color:var(--fg-2)}
 
-  /* ============ preguntas, con la recomendación ============ */
-  .asks{display:grid;gap:10px}
-  .ask{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);
-    padding:12px 15px;display:grid;gap:8px;box-shadow:var(--shadow)}
-  .ask .q{font-size:15px;font-weight:650;line-height:1.35}
-  .ask .ops{display:flex;gap:6px;flex-wrap:wrap}
-  .ask .op{font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--bg)}
-  .ask .op.rec{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
-  .ask .why{font-size:13px;color:var(--fg-2);line-height:1.45}
+  /* ── gráfico: columnas por grupo (una barra, o dos para comparar) ── */
+  .cols{display:grid;grid-template-columns:repeat(var(--cols,4),1fr);gap:1.6cqi;align-items:end;height:100%;min-height:0;padding-top:2cqi}
+  .col{display:flex;flex-direction:column;align-items:center;gap:.7cqi;height:100%;min-height:0;justify-content:flex-end}
+  .col .v{font-size:1.6cqi;font-weight:700;text-align:center}
+  .col .v small{display:block;font-size:1.1cqi;color:var(--fg-3);font-weight:500}
+  .col .pista{flex:1;min-height:0;width:100%;display:flex;gap:5%;align-items:flex-end;justify-content:center}
+  .col .pista .bar{flex:0 0 62%} .col .pista .bar:not(:only-child){flex-basis:40%}
+  .col .bar{border-radius:.8cqi .8cqi .2cqi .2cqi;background:var(--accent);min-height:.4cqi}
+  .col>.bar{width:70%}
+  .col .bar.soft{background:color-mix(in srgb,var(--accent) 45%,var(--bg-elev))}
+  .col .bar.g{background:var(--ok)} .col .bar.b{background:var(--bad)}
+  .col .k{font-size:1.4cqi;font-weight:700;color:var(--fg-2)}
+  /* ── gráfico: barras horizontales, con la raya de la meta ── */
+  .hb{display:grid;gap:1.1cqi}
+  .hb .r{display:grid;grid-template-columns:36% 1fr auto;gap:1.2cqi;align-items:center;font-size:1.4cqi}
+  .hb.ancho .r{grid-template-columns:46% 1fr auto}
+  .hb .t{color:var(--fg-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .hb .t small{display:block;color:var(--fg-3);font-size:1.1cqi;white-space:normal}
+  .hb .tr{height:1.5cqi;border-radius:99px;background:var(--line-soft);overflow:hidden;position:relative}
+  .hb .f{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent)}
+  .hb .f.g{background:var(--ok)} .hb .f.b{background:var(--bad)} .hb .f.w{background:var(--warn)}
+  .hb .f.s{background:color-mix(in srgb,var(--fg-3) 55%,transparent)}
+  .hb .meta{position:absolute;top:-.4cqi;bottom:-.4cqi;width:.25cqi;background:var(--fg)}
+  .hb .n{font-weight:700;font-variant-numeric:tabular-nums}
+  .leyenda{display:flex;flex-wrap:wrap;gap:.6cqi 1.8cqi;font-size:1.2cqi;color:var(--fg-2)}
+  .sw{display:inline-block;width:.8em;height:.8em;border-radius:.2em;margin-right:.45em;vertical-align:-.05em;background:var(--accent)}
+  .sw.suave{background:color-mix(in srgb,var(--accent) 45%,var(--bg-elev))}
+  .sw.s{background:color-mix(in srgb,var(--fg-3) 55%,transparent)}
+  .sw.g{background:var(--ok)} .sw.b{background:var(--bad)} .sw.w{background:var(--warn)}
+  .sw.m{width:.2em;height:1.1em;border-radius:0;background:var(--fg);vertical-align:-.2em}
 
-  /* ============ qué cambia y qué no ============ */
-  .cambia{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-  .cambia>div{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 15px;box-shadow:var(--shadow)}
-  .cambia ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13.5px;line-height:1.45}
-  .cambia li{position:relative;padding-left:22px}
-  .cambia li::before{position:absolute;left:0;top:0;font-weight:800}
-  .cambia .si li::before{content:"✓";color:var(--ok)}
-  .cambia .no li::before{content:"=";color:var(--fg-3)}
+  /* ── el flujo, paso a paso ── */
+  .flow{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:1.2cqi;align-items:stretch}
+  .st{position:relative;background:var(--bg);border:1px solid var(--line-soft);border-radius:1.2cqi;padding:1.4cqi 1.3cqi;
+    display:flex;flex-direction:column;gap:.7cqi}
+  .st:not(:last-child)::after{content:"";position:absolute;right:-1.05cqi;top:50%;width:.9cqi;height:.9cqi;
+    border-top:.25cqi solid var(--fg-3);border-right:.25cqi solid var(--fg-3);transform:translate(0,-50%) rotate(45deg);z-index:1}
+  .st .i{font:800 1.3cqi/2.6cqi ui-monospace,monospace;width:2.6cqi;height:2.6cqi;border-radius:.8cqi;text-align:center;
+    background:var(--accent-soft);color:var(--accent)}
+  .st .h{font-size:1.55cqi;font-weight:700;line-height:1.2}
+  .st .d{font-size:1.25cqi;color:var(--fg-2);line-height:1.35}
+  .st.end{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));background:var(--accent-soft)}
+  .st .eg{font:italic 1.3cqi/1.3 ui-serif,Georgia,serif;color:var(--fg)}
 
-  /* ============ captura real, con su pie ============ */
-  .captura{margin:0;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:10px;
-    box-shadow:var(--shadow);min-width:0}
-  .captura img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft)}
-  .captura.cel img{max-width:300px;margin:0 auto}
-  .captura figcaption{font-size:12.5px;color:var(--fg-3);margin-top:8px}
+  /* ── decisiones: elijo / descarto ── */
+  .dec{display:grid;gap:.9cqi}
+  .dec .r{display:grid;grid-template-columns:22% 1fr;gap:1.2cqi;align-items:baseline;font-size:1.35cqi;
+    padding-bottom:.8cqi;border-bottom:1px solid var(--line-soft)}
+  .dec .r:last-child{border-bottom:0}
+  .dec .q{font-weight:700}
+  .dec .y{color:var(--fg)} .dec .y::before{content:"✓ ";color:var(--ok);font-weight:800}
+  .dec .no{display:block;color:var(--fg-3);font-size:1.2cqi;margin-top:.2cqi}
+  .dec .no::before{content:"✕ ";color:var(--bad)}
 
-  /* ============ dónde estamos: la captura real, con lo que cambia rodeado y numerado ============
-     El viewBox del svg.cap es el tamaño de la foto: las marcas van en sus píxeles (capturar.mjs --medir). */
-  .map{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);box-shadow:var(--shadow);border-radius:var(--radius)}
-  .map.alta{grid-template-columns:minmax(0,200px) minmax(0,1fr)}       /* una página más alta que la pantalla */
-  .map .ex{border-radius:var(--radius) 0 0 var(--radius);padding:10px;align-content:center;box-shadow:none}
-  .map .who{display:grid;gap:9px;align-content:center;padding:14px 16px;background:var(--bg);border:1px solid var(--line);
-    border-left:0;border-radius:0 var(--radius) var(--radius) 0}
-  .map .who div{display:flex;gap:9px;align-items:center;font-size:13.5px;line-height:1.35}
-  .map .who b{font:800 11.5px/22px ui-monospace,monospace;width:22px;height:22px;border-radius:6px;text-align:center;
+  /* ── la pantalla, dibujada ── */
+  .ui{background:var(--bg-elev);border:1px solid var(--line);border-radius:1.2cqi;overflow:hidden;box-shadow:var(--shadow)}
+  .ui .bar{display:flex;gap:.6cqi;align-items:center;padding:.9cqi 1.2cqi;border-bottom:1px solid var(--line-soft);font-size:1.15cqi;color:var(--fg-3)}
+  .ui .bar i{width:.9cqi;height:.9cqi;border-radius:99px;background:var(--line)}
+  .ui .bar span{margin-left:.8cqi}
+  .ui .row{display:grid;grid-template-columns:auto 1fr auto;gap:1cqi;align-items:center;padding:1cqi 1.3cqi;border-bottom:1px solid var(--line-soft);font-size:1.3cqi}
+  .ui .row:last-child{border-bottom:0}
+  .ui .row .x{color:var(--bad);font-weight:800} .ui .row .okm{color:var(--ok);font-weight:800}
+  .ui .row .pend{color:var(--warn);font-weight:800}
+  .ui .row .s{color:var(--fg-3);font-size:1.15cqi}
+  /* ── mapa de calor: --cols = columnas de datos; .h0 a .h3 de menos a más ── */
+  .heat{display:grid;grid-template-columns:1.6fr repeat(var(--cols,4),1fr);gap:.5cqi;font-size:1.2cqi}
+  .heat span{padding:.7cqi .4cqi;border-radius:.6cqi;text-align:center;font-family:ui-monospace,monospace}
+  .heat .h{color:var(--fg-3);font-family:inherit}
+  .heat .rl{text-align:left;font-family:inherit;color:var(--fg-2)}
+  .h0{background:var(--line-soft);color:var(--fg-3)}
+  .h1{background:color-mix(in srgb,var(--warn) 16%,var(--bg-elev))} .h2{background:color-mix(in srgb,var(--warn) 32%,var(--bg-elev))}
+  .h3{background:color-mix(in srgb,var(--bad) 30%,var(--bg-elev))}
+
+  /* ── el mapa: el objeto real, sus partes numeradas y quién mira cada una ── */
+  .map{display:grid;grid-template-columns:1.2fr .9fr;gap:0;align-items:stretch}
+  .map .ex{border-radius:1.4cqi 0 0 1.4cqi}
+  .map .who{display:grid;gap:.8cqi;align-content:center;border:1px solid var(--line);border-left:0;border-radius:0 1.4cqi 1.4cqi 0;
+    padding:1.6cqi 1.8cqi;background:var(--bg)}
+  .map .who div{display:flex;gap:1cqi;align-items:center;font-size:1.45cqi}
+  .map .who b{font:800 1.2cqi/2.3cqi ui-monospace,monospace;width:2.3cqi;height:2.3cqi;border-radius:.7cqi;text-align:center;
     background:var(--accent);color:var(--bg-elev);flex:none}
-  .map .who b.gris{background:var(--line);color:var(--fg-3)}       /* lo que se ve pero no cambia */
-  .map .who small{color:var(--fg-3);font-size:12px}
-  .map .who .ptl{margin:0}
-  .cap{display:block;width:100%;height:auto}
+  .map .who small{color:var(--fg-3);font-size:1.2cqi}
+  .map .ex .part{display:flex;gap:1cqi;align-items:baseline}
+  .map .ex .part b{font:800 1.1cqi/2cqi ui-monospace,monospace;width:2cqi;height:2cqi;border-radius:.6cqi;text-align:center;
+    background:var(--accent-soft);color:var(--accent);flex:none}
+
+  /* ── antes y después, sobre el mismo caso ── */
+  .ad{display:grid;grid-template-columns:1fr 1fr;gap:3.4cqi}
+  .ad .lado{position:relative;background:var(--bg);border:1px solid var(--line-soft);border-radius:1.2cqi;padding:1.5cqi 1.8cqi;
+    display:flex;flex-direction:column;gap:1cqi;min-width:0}
+  .ad .antes{border-top:.35cqi solid var(--bad)} .ad .despues{border-top:.35cqi solid var(--ok)}
+  .ad .rot{font-size:1.15cqi;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+  .ad .antes .rot{color:var(--bad)} .ad .despues .rot{color:var(--ok)}
+  .ad .despues::before{content:"→";position:absolute;left:-2.7cqi;top:50%;transform:translateY(-50%);font-size:2cqi;color:var(--fg-3)}
+  .ad ol{margin:0;padding-left:2.2cqi;font-size:1.4cqi;line-height:1.4;color:var(--fg-2);display:grid;gap:.4cqi}
+  .ad .res{font-weight:700;font-size:1.6cqi;border-top:1px dashed var(--line);padding-top:.8cqi;margin-top:auto}
+  .ad .antes .res{color:var(--bad)} .ad .despues .res{color:var(--ok)}
+
+  /* ── captura real: la imagen llena su caja sin deformarse ── */
+  .captura{margin:0;background:var(--bg-elev);border:1px solid var(--line);border-radius:1.2cqi;padding:1cqi;box-shadow:var(--shadow);
+    min-width:0;min-height:0;display:flex;flex-direction:column;gap:.8cqi}
+  .captura img{display:block;width:100%;flex:1;min-height:0;object-fit:contain;object-position:top;border-radius:.6cqi}
+  .captura figcaption{font-size:1.2cqi;color:var(--fg-3)}
+  .pila>.captura{flex:0 1 auto}
+
+  /* ── caminos: la recomendada, marcada ── */
+  .opts{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:1.6cqi}
+  .opt{background:var(--bg);border:1px solid var(--line-soft);border-radius:1.2cqi;padding:1.5cqi 1.7cqi;display:flex;flex-direction:column;gap:.9cqi;min-width:0}
+  .opt.rec{border:.2cqi solid var(--accent);background:var(--accent-soft)}
+  .opt .oh{display:flex;align-items:center;gap:.9cqi;font-size:1.6cqi}
+  .opt .ol{font:800 1.3cqi/2.6cqi ui-monospace,monospace;width:2.6cqi;height:2.6cqi;border-radius:.8cqi;text-align:center;background:var(--line-soft);flex:none}
+  .opt.rec .ol{background:var(--accent);color:var(--bg-elev)}
+  .opt ul{list-style:none;margin:0;padding:0;display:grid;gap:.4cqi;font-size:1.35cqi}
+  .opt li::before{font-weight:800;margin-right:.5em}
+  .opt li.si::before{content:"✓";color:var(--ok)} .opt li.no::before{content:"✕";color:var(--bad)}
+  .opt p{font-size:1.35cqi;color:var(--fg-2);margin:0}
+
+  /* ── lo que necesita de vos: preguntas con la recomendación ── */
+  .asks{display:grid;gap:1.4cqi}
+  .ask{background:var(--bg);border:1px solid var(--line-soft);border-left:.5cqi solid var(--accent);border-radius:1.2cqi;padding:1.4cqi 1.8cqi;display:grid;gap:.8cqi}
+  .ask .q{font-size:1.8cqi;font-weight:700;line-height:1.25}
+  .ask .ops{display:flex;gap:1cqi;flex-wrap:wrap}
+  .ask .op{font-size:1.3cqi;padding:.5cqi 1.1cqi;border-radius:99px;border:1px solid var(--line);background:var(--bg-elev)}
+  .ask .op.rec{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:700}
+  .ask .why{font-size:1.3cqi;color:var(--fg-2)}
+
+  /* ── lo que no toca ── */
+  .keep{display:grid;grid-template-columns:1fr 1fr;gap:1.2cqi}
+  .keep div{background:var(--bg);border:1px solid var(--line-soft);border-radius:1.1cqi;padding:1.2cqi 1.4cqi;font-size:1.35cqi;color:var(--fg-2)}
+  .keep b{display:block;color:var(--fg);font-size:1.45cqi;margin-bottom:.3cqi}
+
+  /* ── dónde estamos: la captura real, con lo que cambia rodeado y numerado ──
+     El viewBox del svg.cap es el tamaño de la foto: las marcas van en sus píxeles (capturar.mjs --medir). */
+  .body>.ad,.body>.map{min-height:0}
+  .map{grid-template-rows:minmax(0,1fr);height:100%}
+  .map .ex:has(>.cap){padding:1cqi;grid-template-rows:minmax(0,1fr);min-height:0}
+  .map.alta{grid-template-columns:19cqi 1fr}                 /* una página más alta que la pantalla */
+  .map .who .ptl{display:block}
+  .map .who b.gris{background:var(--line);color:var(--fg-3)}  /* lo que se ve pero no cambia */
+  .cap{display:block;width:100%;height:100%;min-height:0}
   .cap .mk circle{fill:var(--accent);stroke:var(--bg-elev);stroke-width:4}
   .cap .mk text{fill:var(--bg-elev);font-weight:800;font-family:ui-monospace,monospace;text-anchor:middle;dominant-baseline:central}
   .cap .mk.gris circle{fill:var(--fg-3)}
-  .cap .aro{fill:none;stroke:var(--accent);stroke-width:4}         /* rodea lo que cambia */
-  .cap .tapa{fill:var(--bg-elev);opacity:.74}                       /* atenúa lo que no */
+  .cap .aro{fill:none;stroke:var(--accent);stroke-width:4}   /* rodea lo que cambia */
+  .cap .tapa{fill:var(--bg-elev);opacity:.74}                 /* atenúa lo que no */
   .cap .raya{stroke:var(--fg-3);stroke-width:2;stroke-dasharray:9 9}  /* dónde termina cada pantalla */
-
-  /* ============ hoy → con X: la foto de hoy con el problema; la maqueta de cómo queda, con su leyenda ============ */
-  .ad.asim{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
-  .hoy{display:block;max-width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft);align-self:flex-start}
-  .franja{display:flex;gap:12px;align-items:flex-end}               /* una página alta, al lado de su marca */
-  .franja .cap{width:34%;flex:none} .franja .mark{flex:1}
+  /* ── hoy → con X: la foto de hoy con el problema, la maqueta de cómo queda con su leyenda ── */
+  .ad .lado{min-height:0;overflow:hidden}
+  .ad.asim{grid-template-columns:.9fr 1.1fr}
+  .hoy{display:block;width:auto;max-width:100%;height:auto;flex:0 1 auto;min-height:0;object-fit:contain;object-position:left top;
+    border-radius:.6cqi;align-self:flex-start}
+  .franja{display:flex;gap:1.8cqi;align-items:flex-end;flex:1 1 0;min-height:0}   /* una página alta, al lado de su marca */
+  .franja .cap{height:100%;width:auto;flex:none} .franja .mark{flex:1}
   .nb{display:inline-flex;align-items:center;justify-content:center;flex:none;width:1.75em;height:1.75em;border-radius:99px;
     background:var(--accent);color:var(--bg-elev);font:800 .74em/1 ui-monospace,monospace}
-  ol.leg{list-style:none;margin:0;padding:0;display:grid;gap:5px;font-size:13.5px;line-height:1.45;color:var(--fg-2)}
-  .leg li{display:flex;gap:8px;align-items:baseline} .leg .nb{font-size:11px}
-  /* la maqueta: .mq es su propio contenedor y la letra (en .mi) escala con su ancho, así que una
-     maqueta más ancha NO entra más. Si no entra: menos filas, o .mq.denso. El kit entero, con cada
-     pieza a la vista, está en el catálogo de presentacion.html. */
-  .mq{container-type:inline-size;background:var(--bg-elev);border:1px solid var(--line);border-radius:10px;overflow:hidden;
-    box-shadow:var(--shadow)}
+  ol.leg{list-style:none;margin:0;padding:0;display:grid;gap:.6cqi;font-size:1.35cqi;line-height:1.4;color:var(--fg-2)}
+  .leg li{display:flex;gap:1cqi;align-items:baseline} .leg .nb{font-size:1.05cqi}
+  .call{font-size:1.4cqi;line-height:1.4;border-radius:1cqi;padding:1.1cqi 1.5cqi;background:var(--warn-soft);color:var(--fg);
+    border-left:.45cqi solid var(--warn);align-self:start;margin:0}
+  .call b{color:var(--warn)}
+  .desliza{overflow-x:auto;min-width:0}   /* un SVG ancho: en el celular se desliza en vez de achicarse */
+
+  /* ── la maqueta: cómo queda, dibujada en HTML ──
+     .mq es su propio contenedor: la letra (en .mi) escala con el ancho del dibujo, así que un
+     dibujo más ancho NO entra más contenido. Si no entra: menos filas, o .mq.denso. */
+  .mq{container-type:inline-size;background:var(--bg-elev);border:1px solid var(--line);border-radius:1cqi;overflow:hidden;
+    flex:0 1 auto;min-height:0;box-shadow:var(--shadow)}
   .mi{font-size:max(10.5px,2.75cqi);line-height:1.35;padding:3cqi 3.2cqi;display:flex;flex-direction:column;gap:2.2cqi;color:var(--fg)}
   .mq.denso .mi{font-size:max(10px,2.45cqi);gap:1.7cqi;padding:2.6cqi 2.8cqi}
   .mi .fila{display:flex;gap:.55em;align-items:center;min-width:0} .mi .fila.env{flex-wrap:wrap;row-gap:.4em}
@@ -266,435 +329,327 @@
   .mi .item{display:flex;gap:.5em;align-items:center;padding:.3em;border-radius:.4em;min-width:0}
   .mi .item.on{background:var(--accent-soft);box-shadow:inset 0 0 0 1.5px var(--accent)}
 
-  /* ============ pills de estado ============ */
-  .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}
-  .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
-  .p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)}
-  .p-bad{background:var(--bad-soft);color:var(--bad)} .p-info{background:var(--info-soft);color:var(--info)}
-  .p-idle{background:var(--line-soft);color:var(--fg-3)}
+  /* ── navegación ── */
+  .nav{position:fixed;right:18px;bottom:18px;display:flex;gap:8px;align-items:center;z-index:5}
+  .nav button{font:600 13px/1 ui-sans-serif,system-ui;border:1px solid var(--line);background:var(--bg-elev);color:var(--fg);
+    border-radius:10px;padding:9px 12px;cursor:pointer;box-shadow:var(--shadow)}
+  .nav .cnt{font:600 12.5px ui-monospace,monospace;color:var(--fg-2);background:var(--bg-elev);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+  .prog{position:fixed;left:0;top:0;height:3px;background:var(--accent);width:0;z-index:5;transition:width .2s}
+  .toc{position:fixed;right:18px;bottom:66px;width:min(360px,calc(100vw - 36px));max-height:60vh;overflow:auto;background:var(--bg-elev);
+    border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:8px;z-index:6}
+  .toc[hidden]{display:none}
+  .toc a{display:block;padding:7px 10px;border-radius:8px;color:var(--fg);text-decoration:none;font-size:13.5px}
+  .toc a:hover{background:var(--bg)}
+  .toc a small{color:var(--fg-3);margin-right:6px;font-family:ui-monospace,monospace}
 
-  /* ============ tabla chica (≤ 6 filas; si es más, es un gráfico) ============ */
-  .tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
-  table{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}
-  th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);
-    font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
-  td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
-  tr:last-child td{border-bottom:0}
-  td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:ui-monospace,monospace;font-size:13px}
+  /* ── CATÁLOGO · se borra entero al generar ── */
+  .cat{max-width:1120px;margin:64px auto 0;padding-top:22px;border-top:3px solid var(--bad)}
+  .cat>h2{font-size:22px;margin:0 0 4px}
+  .cat .adv{color:var(--bad);font-weight:600;font-size:13.5px;margin:0 0 18px}
+  .cat h3{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);margin:28px 0 10px}
+  .cat-tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--bg-elev)}
+  .cat-t{width:100%;min-width:640px;border-collapse:collapse;font-size:13.5px}
+  .cat-t th,.cat-t td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  .cat-t tr:last-child td{border-bottom:0}
+  .cat-t th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3)}
+  .cat-t code{font-size:12px;color:var(--fg-2)}
+  .demo{container-type:inline-size;background:var(--bg-elev);border:1px dashed var(--line);border-radius:14px;padding:22px 26px;
+    display:grid;gap:14px;margin-bottom:14px}
+  .demo>.n{font:600 12px/1.4 ui-monospace,monospace;color:var(--fg-3)}
 
-  /* ============ diagrama SVG a mano ============ */
-  .diagram{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
-    overflow-x:auto;box-shadow:var(--shadow)}
-  .diagram svg{display:block;max-width:100%;height:auto;margin:0 auto}
-  svg .box{fill:var(--bg);stroke:var(--line)}
-  svg .box-a{fill:var(--accent-soft);stroke:var(--accent)}
-  svg .box-ok{fill:var(--ok-soft);stroke:var(--ok)}
-  svg .box-bad{fill:var(--bad-soft);stroke:var(--bad)}
-  svg .lbl{fill:var(--fg);font:13px ui-sans-serif,system-ui,sans-serif}
-  svg .lbl-s{fill:var(--fg-3);font:11px ui-sans-serif,system-ui,sans-serif}
-  svg .arrow{stroke:var(--fg-3);fill:none;stroke-width:1.2}
-
-  /* ============ comandos · aviso de lo que no sé ============ */
-  pre{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;
-    overflow-x:auto;font-size:13px;line-height:1.55;margin:0}
-  pre code{color:var(--fg)}
-  .call{border-radius:var(--radius);padding:10px 13px;font-size:13.5px;border:1px solid;margin:12px 0 0}
-  .c-warn{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 28%,transparent)}
-  .c-bad{background:var(--bad-soft);border-color:color-mix(in srgb,var(--bad) 28%,transparent)}
-  .c-info{background:var(--info-soft);border-color:color-mix(in srgb,var(--info) 28%,transparent)}
-  .call b:first-child{margin-right:4px}
-
-  footer{border-top:1px solid var(--line);margin-top:36px;padding-top:14px;font-size:12.5px;color:var(--fg-3);
-    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-
-  /* ============ celular ============ */
-  @media (max-width:640px){
-    body{padding:24px 16px 60px}
-    h2{font-size:17px}
-    .flow{grid-auto-flow:row}
-    .flow .st:not(:last-child)::after{right:auto;left:22px;top:auto;bottom:-11px;transform:rotate(135deg)}
-    .ad{grid-template-columns:minmax(0,1fr);gap:28px}
-    .ad .despues::before{content:"↓";left:50%;top:-25px;transform:translateX(-50%)}
-    .hb .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) auto;gap:8px}
-    .heat{grid-template-columns:minmax(80px,1.3fr) repeat(var(--cols,4),minmax(0,1fr));font-size:11.5px}
-    .kpi .n{font-size:28px}
-    .map,.map.alta,.ad.asim{grid-template-columns:minmax(0,1fr)}
-    .map .ex{border-radius:var(--radius) var(--radius) 0 0}
-    .map .who{border-left:1px solid var(--line);border-top:0;border-radius:0 0 var(--radius) var(--radius)}
-    .map.alta .cap{width:min(55%,220px);margin:0 auto}
+  /* ── en pantallas angostas, la diapositiva crece en alto y el texto no se achica ── */
+  @media (max-width:760px){
+    body{padding:16px 16px 90px}
+    .sl,.demo{aspect-ratio:auto;container-type:normal}
+    .sl-in{position:static;padding:22px 18px 40px;gap:14px}
+    .demo{padding:16px}
+    .kick{font-size:11px;gap:8px;flex-wrap:wrap} .kick .an{margin-left:0} .kick .num{font-size:11px;padding:3px 6px;border-radius:5px}
+    .sl h1{font-size:30px} .sl h1.frase{font-size:24px} .sl h2{font-size:22px} .sub{font-size:15px}
+    .c2,.c32,.c23,.map,.keep,.ad{grid-template-columns:minmax(0,1fr)}
+    .body,.c2,.c32,.c23,.pila{gap:14px}
+    .note,.take,.dec .r,.hb .r,.mark,.ex .tr,.ex .ans,.ask .why,.keep div,.st .d,.ui .row,.ad ol,.opt ul,.opt p{font-size:13.5px}
+    .ex .en{font-size:19px} .st .h,.ask .q,.opt .oh,.ad .res{font-size:15px} .chip{font-size:13px}
+    .kpi .n{font-size:32px} .kpi .l{font-size:13px}
+    .flow,.opts{grid-auto-flow:row} .st:not(:last-child)::after{display:none}
+    .cols{height:180px} .col .v{font-size:14px} .col .k{font-size:13px} .col .v small{font-size:11px}
+    .ptl,.foot,.heat,.sev,.st .i,.map .who b,.map .ex .part b,.ask .op,.ui .bar,.ui .row .s,.hb .tr,.col .bar,.leyenda,.ad .rot,.opt .ol,.map .who small,.hb .t small{font-size:12px}
+    .hb .tr{height:9px} .st .i,.opt .ol{width:22px;height:22px;line-height:22px} .map .who b,.map .ex .part b{width:20px;height:20px;line-height:20px}
+    .map .ex{border-radius:14px 14px 0 0} .map .who{border-left:1px solid var(--line);border-top:0;border-radius:0 0 14px 14px}
+    .cover .big-l{display:none}
+    .foot{position:static;padding:0 18px 16px;margin-top:-24px;font-size:11px}
+    .chip i,.ex .cons,.dec .no,.st .eg{font-size:11.5px}
+    .dec .q,.dec .y,.map .who div{font-size:13.5px} .keep b{font-size:14px}
+    .chips,.kpis,.flow,.asks,.keep,.dec,.hb,.opts,.leyenda{gap:10px}
+    .panel,.ex,.ask,.ad .lado,.opt{padding:12px 14px;gap:8px;border-radius:12px}
+    .mark,.take,.keep div,.st{padding:10px 12px}
+    .ui .row{padding:9px 12px} .ui .bar{padding:8px 12px} .heat span{padding:5px 3px}
+    .ex .gap{min-width:44px;border-bottom-width:2px} .col .bar{border-radius:6px 6px 2px 2px}
+    .take,.ask{border-left-width:3px} .ad .antes,.ad .despues{border-top-width:3px}
+    .ad .despues::before{content:"↓";left:50%;top:-24px;transform:translateX(-50%);font-size:18px}
+    .ad ol{padding-left:18px} .opt.rec{border-width:2px}
+    .hb .r{grid-template-columns:40% 1fr auto;gap:8px}
+    .captura{padding:8px;border-radius:12px;gap:6px} .captura figcaption{font-size:12px}
+    .ad.asim,.map.alta{grid-template-columns:minmax(0,1fr)}
+    .ad .lado{overflow:visible} .cap{height:auto}
+    .map.alta .ex{justify-items:center} .map.alta .cap{width:min(46%,200px)}
+    .franja{flex:none;align-items:flex-start} .franja .cap{width:34%;height:auto}
+    .ad ol.leg{font-size:13.5px;gap:6px;padding-left:0} .leg li{gap:8px} .leg .nb{font-size:11px}
+    .call{font-size:13.5px;padding:10px 12px;border-left-width:3px}
+    .desliza svg{min-width:640px}
   }
-
-  
-/* ═══════════ CHASIS · NIVEL 2 · VISTAS (de etapas.html) ═══════════ */
-.nav-p{position:sticky;top:0;z-index:40;background:var(--ed-bg);
-  border-bottom:1px solid var(--ed-line)}
-.nav-p .wrap{display:flex;gap:4px;padding-top:9px;padding-bottom:9px;align-items:center;
-  overflow-x:auto;scrollbar-width:none}
-.nav-p .wrap::-webkit-scrollbar{display:none}
-.nav-p button{appearance:none;background:none;border:0;font:inherit;cursor:pointer;
-  padding:9px 17px;border-radius:99px;color:var(--ed-fg-3);font-size:14.5px;font-weight:600;
-  display:flex;align-items:baseline;gap:8px;white-space:nowrap;
-  transition:color .12s,background .12s}
-/* ⚠ OBLIGATORIO: el display:flex le gana al [hidden] del navegador. */
-.nav-p button[hidden]{display:none}
-.nav-p button:hover{color:var(--ed-fg-2)}
-.nav-p button[aria-selected="true"]{background:var(--ed-accent);color:var(--ed-paper)}
-.nav-p button .s{font-size:11.5px;font-weight:500;opacity:.72}
-.vp[hidden]{display:none}
-
-/* ═══════════ DIAGRAMAS · SVG con los tokens del documento ═══════════
-   Los colores salen de variables locales (--d-*): en la parte editorial son las del papel,
-   dentro de .pantallas las de la app. Un color escrito a mano se rompe en el modo oscuro. */
-.lienzo{background:var(--ed-paper);border:1px solid var(--ed-line);border-radius:var(--r);padding:18px 18px 14px;
-  box-shadow:var(--sh);overflow-x:auto}
-.pantallas .lienzo{background:var(--app-sup);border-color:var(--app-line)}
-.lienzo .pie-d{font-size:12px;color:var(--ed-fg-3);margin:10px 2px 0;line-height:1.5}
-.pantallas .lienzo .pie-d{color:var(--app-fg-3)}
-.dg{display:block;width:100%;height:auto;min-width:560px;font-family:var(--sans);
-  --d-paper:var(--ed-paper);--d-bg:var(--ed-bg);--d-line:var(--ed-line);--d-fg:var(--ed-fg);
-  --d-fg2:var(--ed-fg-2);--d-fg3:var(--ed-fg-3);--d-ac:var(--ed-accent);--d-ac2:var(--ed-accent-soft)}
-.dg.chico{min-width:0}
-.pantallas .dg{--d-paper:var(--app-sup);--d-bg:var(--app-bg);--d-line:var(--app-line);--d-fg:var(--app-fg);
-  --d-fg2:var(--app-fg-2);--d-fg3:var(--app-fg-3)}
-.dg .b{fill:var(--d-paper);stroke:var(--d-line)}
-.dg .b2{fill:var(--d-bg);stroke:var(--d-line)}
-.dg .ba{fill:var(--d-ac2);stroke:var(--d-ac)}
-.dg .bo{fill:var(--app-accent-2);stroke:var(--app-accent)}
-.dg .bm{fill:var(--app-bad-2);stroke:var(--app-bad)}
-.dg .bi{fill:var(--app-info-2);stroke:var(--app-info)}
-.dg .bf{fill:none;stroke:var(--d-line);stroke-dasharray:4 4}
-.dg .t{fill:var(--d-fg);font-size:13px;font-weight:650}
-.dg .tn{fill:var(--d-fg);font-size:12.5px}
-.dg .ts{fill:var(--d-fg3);font-size:11px}
-.dg .ts2{fill:var(--d-fg2);font-size:11.5px}
-.dg .tm{fill:var(--d-fg2);font-size:10.5px;font-family:var(--mono)}
-.dg .ta{fill:var(--d-ac);font-size:11px;font-weight:700}
-.dg .to{fill:var(--app-accent);font-size:11px;font-weight:700}
-.dg .tb{fill:var(--app-bad);font-size:11px;font-weight:700}
-.dg .ti{fill:var(--app-info);font-size:11px;font-weight:700}
-.dg .tf{fill:var(--d-fg3);font-size:12.5px}
-.dg .l{stroke:var(--d-fg3);fill:none;stroke-width:1.3}
-.dg .la{stroke:var(--d-ac);fill:none;stroke-width:1.7}
-.dg .lo{stroke:var(--app-accent);fill:none;stroke-width:1.5}
-.dg .li{stroke:var(--app-info);fill:none;stroke-width:1.5}
-.dg .lx{stroke:var(--app-bad);fill:none;stroke-width:1.4}
-.dg .ld{stroke-dasharray:5 4}
-.dg .pf{fill:var(--d-fg3)} .dg .pfa{fill:var(--d-ac)} .dg .pfi{fill:var(--app-info)}
-.dg [data-f]{cursor:pointer}
-.dg [data-f] rect{transition:stroke-width .15s}
-.dg [data-f].asoma rect{stroke:var(--app-accent);stroke-dasharray:4 3}
-.dg [data-f].foco rect{stroke:var(--app-accent);stroke-width:2.6;stroke-dasharray:none}
-
-/* — la forma de una parte del estado, como un árbol — */
-.forma{margin:0;font:11.5px/1.6 var(--mono);color:var(--app-fg);background:var(--app-bg);border:1px solid var(--app-line);
-  border-radius:var(--r-s);padding:12px 14px;overflow-x:auto;white-space:pre}
-.forma b{color:var(--ed-accent);font-weight:700}
-.forma i{color:var(--app-fg-3);font-style:normal}
-/* — tabla chica dentro de un acercamiento — */
-.zt{width:100%;border-collapse:collapse;font-size:12.5px;line-height:1.45}
-.zt th{text-align:left;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--app-fg-3);
-  font-weight:700;padding:6px 8px;border-bottom:1px solid var(--app-line)}
-.zt td{padding:7px 8px;border-bottom:1px solid var(--app-line-soft);vertical-align:top;color:var(--app-fg-2)}
-.zt tr:last-child td{border-bottom:0}
-.zt td:first-child{color:var(--app-fg)}
-.zt .x{color:var(--app-bad);font-weight:700} .zt .ok{color:var(--app-accent);font-weight:700}
-.zt .tipo{font-size:10.5px;font-weight:700;letter-spacing:.04em;white-space:nowrap}
-.zw{overflow-x:auto}
-
-/* — un diagrama de segundo plano, plegado: dice qué muestra antes de abrirse — */
-.mas{border:1px solid var(--ed-line);border-radius:var(--r);background:var(--ed-paper);margin-top:14px}
-.mas>summary{list-style:none;cursor:pointer;padding:14px 18px;display:flex;gap:12px;align-items:baseline}
-.mas>summary::-webkit-details-marker{display:none}
-.mas>summary .k{font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;font-weight:700;color:var(--ed-accent);flex:none}
-.mas>summary .q{font-size:14.5px;color:var(--ed-fg)}
-.mas>summary .q small{display:block;color:var(--ed-fg-3);font-size:12.5px;margin-top:2px}
-.mas[open]>summary{border-bottom:1px solid var(--ed-line-soft)}
-.mas .mas-c{padding:16px 18px}
-.bisagra .mas{background:var(--app-sup);border-color:var(--app-line)}
-.bisagra .mas>summary .q{color:var(--app-fg)}
-.bisagra .tw{background:var(--app-sup);border-color:var(--app-line);margin-top:22px}
-.bisagra .tw td{border-color:var(--app-line-soft);color:var(--app-fg-2)}
-.bisagra .tw td:first-child{color:var(--app-fg);font-weight:600}
-.bisagra .tw th{color:var(--app-fg-3);border-color:var(--app-line)}
-.tw .num{font-family:var(--mono);font-weight:700;color:var(--ed-accent)}
-.tw .gris{color:var(--ed-fg-3)}
-.tw code{font-size:12.5px;color:var(--ed-fg-2)}
-.tw td.c{text-align:center}
-.tw .grupo td{background:var(--ed-bg);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
-  font-weight:700;color:var(--ed-fg-3);padding:8px 18px}
-.bloque{margin-top:26px}
-.bloque:first-child{margin-top:0}
-.bloque-h{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--ed-fg-3);margin:0 0 10px}
-.escena .lienzo{padding:12px}
-.escena .dg{min-width:0}
-@media (max-width:900px){ .dg,.escena .dg{min-width:520px} .dg.chico{min-width:0} }
-.zoom .qm{font-size:12.5px;color:var(--app-fg-2);margin:-2px 0 10px;line-height:1.5}
-.zoom .forma+.qm,.zoom .zw+.qm{margin:10px 0 0}
-
-/* ═══════════ GRAVEDAD · rojo crítico, naranja medio, amarillo leve, verde queda bien ═══════════
-   ⚠ los tokens oscuros están dos veces (el @media y [data-tema="oscuro"]): si se toca uno, el otro. */
-:root{--sev-r:#c0261c;--sev-r2:#f9d4d0;--sev-n:#cf6409;--sev-n2:#fde0bd;--sev-a:#9c7400;--sev-a2:#faefa6;
-  --sev-v:#2f7a4a;--sev-v2:#d6eedd}
-@media (prefers-color-scheme:dark){:root:not([data-tema="claro"]){--sev-r:#ff8a80;--sev-r2:#4a1b17;
-  --sev-n:#ffad5c;--sev-n2:#4a2c10;--sev-a:#f0d060;--sev-a2:#423810;--sev-v:#82d3a2;--sev-v2:#173322}}
-:root[data-tema="oscuro"]{--sev-r:#ff8a80;--sev-r2:#4a1b17;--sev-n:#ffad5c;--sev-n2:#4a2c10;
-  --sev-a:#f0d060;--sev-a2:#423810;--sev-v:#82d3a2;--sev-v2:#173322}
-
-/* en los dibujos */
-.dg .sr{fill:var(--sev-r2);stroke:var(--sev-r);stroke-width:1.3}
-.dg .sn{fill:var(--sev-n2);stroke:var(--sev-n);stroke-width:1.3}
-.dg .sa{fill:var(--sev-a2);stroke:var(--sev-a);stroke-width:1.3}
-.dg .sv{fill:var(--sev-v2);stroke:var(--sev-v);stroke-width:1.3}
-.dg .propio{fill:var(--d-bg);stroke:var(--d-line);stroke-dasharray:3 3}
-.dg .tr{fill:var(--sev-r)} .dg .tnr{fill:var(--sev-n)} .dg .tam{fill:var(--sev-a)} .dg .tv{fill:var(--sev-v)}
-.dg .lr{stroke:var(--sev-r);fill:none;stroke-width:1.4} .dg .lnr{stroke:var(--sev-n);fill:none;stroke-width:1.3}
-.dg .lam{stroke:var(--sev-a);fill:none;stroke-width:1.3} .dg .lv{stroke:var(--sev-v);fill:none;stroke-width:1.5}
-.dg .bd{fill:var(--d-paper);stroke:var(--d-fg3);stroke-width:1}
-.dg .bdt{fill:var(--d-fg2);font:700 9.5px var(--mono)}
-.dg .tc{fill:var(--d-fg);font-size:11px;font-weight:650}
-.dg .tcs{fill:var(--d-fg2);font-size:10px}
-.dg .tz{fill:var(--d-fg3);font-size:10px;font-weight:700;letter-spacing:.1em}
-.dg [data-ir]{cursor:pointer}
-.dg [data-ir]:hover rect{stroke-width:2.4}
-
-/* la leyenda y los rótulos de gravedad, en HTML */
-.sevs{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12.5px;color:var(--app-fg-2);margin:14px 0 0}
-.sevs span{display:inline-flex;align-items:center;gap:7px}
-.sevs i{width:12px;height:12px;border-radius:4px;border:1.5px solid;flex:none}
-.sevs .r i{background:var(--sev-r2);border-color:var(--sev-r)} .sevs .n i{background:var(--sev-n2);border-color:var(--sev-n)}
-.sevs .a i{background:var(--sev-a2);border-color:var(--sev-a)} .sevs .v i{background:var(--sev-v2);border-color:var(--sev-v)}
-.sevs b{color:var(--app-fg);font-weight:650}
-
-/* ═══════════ QUÉ GANAMOS · debajo de cada etapa ═══════════ */
-.gana{margin:40px 0 0;padding:28px 0 0;border-top:1px solid var(--app-line);scroll-margin-top:calc(var(--pegado,0px) + 12px)}
-.gana-cab{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:18px}
-.gana-k{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--app-fg-3);margin-bottom:6px}
-.gana-t{font-family:var(--serif);font-size:clamp(21px,2.3vw,26px);font-weight:600;line-height:1.25;margin:0;max-width:34ch}
-.cuenta{display:flex;gap:6px;flex-wrap:wrap}
-.cuenta span{font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;border:1px solid;white-space:nowrap}
-.cuenta .r{color:var(--sev-r);background:var(--sev-r2);border-color:var(--sev-r)}
-.cuenta .n{color:var(--sev-n);background:var(--sev-n2);border-color:var(--sev-n)}
-.cuenta .a{color:var(--sev-a);background:var(--sev-a2);border-color:var(--sev-a)}
-.cuenta .v{color:var(--sev-v);background:var(--sev-v2);border-color:var(--sev-v)}
-.pares{display:grid;gap:10px}
-.par{display:grid;grid-template-columns:minmax(0,1.15fr) 28px minmax(0,1fr);align-items:stretch}
-.par-hoy,.par-queda{border-radius:var(--r-s);padding:12px 14px;min-width:0;border:1px solid}
-.par-hoy{border-left-width:4px}
-.par.r .par-hoy{background:var(--sev-r2);border-color:var(--sev-r)}
-.par.n .par-hoy{background:var(--sev-n2);border-color:var(--sev-n)}
-.par.a .par-hoy{background:var(--sev-a2);border-color:var(--sev-a)}
-.par-queda{background:var(--sev-v2);border-color:color-mix(in srgb,var(--sev-v) 55%,transparent);border-left:4px solid var(--sev-v)}
-.par-fl{display:flex;align-items:center;justify-content:center;color:var(--app-fg-3);font-size:17px}
-.par .rot{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;margin-bottom:4px}
-.par.r .rot{color:var(--sev-r)} .par.n .rot{color:var(--sev-n)} .par.a .rot{color:var(--sev-a)}
-.par-queda .rot{color:var(--sev-v)}
-.par b{display:block;font-size:14.5px;line-height:1.35;color:var(--app-fg);font-weight:650}
-.par p{margin:4px 0 0;font-size:13.5px;line-height:1.5;color:var(--app-fg-2)}
-.calidad{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px}
-.cq{background:var(--app-sup);border:1px solid var(--app-line);border-radius:var(--r-s);padding:12px 14px;min-width:0}
-.cq .cqk{display:flex;align-items:center;gap:7px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-  font-weight:700;color:var(--sev-v);margin-bottom:6px}
-.cq p{margin:0;font-size:13.5px;line-height:1.5;color:var(--app-fg-2)}
-.cq p b{color:var(--app-fg)}
-@media (max-width:900px){.calidad{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){
-  .par{grid-template-columns:minmax(0,1fr)}
-  .par-fl{transform:rotate(90deg);height:22px}
-  .calidad{grid-template-columns:minmax(0,1fr)}
-}
-
-/* ═══════════ MOMENTO CERO · la maraña y cómo queda ═══════════ */
-.cero{padding-top:36px}
-.cero-cab{max-width:720px}
-.cero-cab .rol{font-size:11px;letter-spacing:.11em;text-transform:uppercase;font-weight:700;color:var(--app-accent);margin-bottom:10px}
-.cero-cab h3{font-family:var(--serif);font-size:clamp(23px,2.6vw,30px);font-weight:600;margin-bottom:12px}
-.cero-cab p{font-size:16px;color:var(--app-fg-2);line-height:1.65;margin:0}
-.cero .v0{position:absolute;opacity:0;pointer-events:none}
-.seg{display:inline-flex;gap:4px;padding:4px;border-radius:99px;background:var(--app-line-soft);margin:22px 0 12px}
-.seg label{cursor:pointer;padding:7px 16px;border-radius:99px;font-size:13.5px;font-weight:650;color:var(--app-fg-3);
-  display:inline-flex;align-items:baseline;gap:7px}
-.seg label small{font-weight:500;font-size:11.5px;opacity:.8}
-#v0-hoy:checked~.seg label[for="v0-hoy"]{background:var(--sev-r2);color:var(--sev-r);box-shadow:inset 0 0 0 1.5px var(--sev-r)}
-#v0-fin:checked~.seg label[for="v0-fin"]{background:var(--sev-v2);color:var(--sev-v);box-shadow:inset 0 0 0 1.5px var(--sev-v)}
-#v0-hoy:focus-visible~.seg label[for="v0-hoy"],#v0-fin:focus-visible~.seg label[for="v0-fin"]{outline:2px solid var(--app-accent);outline-offset:2px}
-#v0-hoy:checked~.lienzo .dg-fin,#v0-fin:checked~.lienzo .dg-hoy{display:none}
-#v0-hoy:checked~.lienzo .pie-fin,#v0-fin:checked~.lienzo .pie-hoy{display:none}
-.cero .lienzo .dg{min-width:860px}
-.por-etapa{margin-top:30px}
-.por-etapa h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--app-fg-3);margin:0 0 12px}
-.pe{display:grid;grid-template-columns:minmax(150px,210px) minmax(0,1fr) 92px;gap:12px;align-items:center;
-  padding:6px 8px;border-radius:var(--r-s);cursor:pointer;appearance:none;background:none;border:0;font:inherit;
-  color:inherit;width:100%;text-align:left}
-.pe:hover{background:var(--app-line-soft)}
-.pe .pn{font-size:13.5px;color:var(--app-fg)} .pe .pn i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--app-fg-3);margin-right:7px}
-.pe .pb{display:flex;gap:3px;height:16px}
-.pe .pb span{border-radius:4px;flex:none;width:24px;border:2px solid}
-.pe .pb .r{background:var(--sev-r2);border-color:var(--sev-r)} .pe .pb .n{background:var(--sev-n2);border-color:var(--sev-n)}
-.pe .pb .a{background:var(--sev-a2);border-color:var(--sev-a)}
-.pe .pt{font-size:12px;color:var(--app-fg-3);text-align:right;font-variant-numeric:tabular-nums}
-@media (max-width:640px){.pe{grid-template-columns:minmax(0,1fr) 70px}.pe .pb{grid-column:1/-1;order:3}.pe .pb span{width:18px}}
-@media print{.dg-hoy,.dg-fin,.pie-hoy,.pie-fin{display:block!important}.seg{display:none}}
-.dg .pfr{fill:var(--sev-r)} .dg .pfv{fill:var(--sev-v)}
-.dg .fondo{fill:var(--d-paper)}
-.cuenta em{font-style:normal;font-size:12px;color:var(--app-fg-3);align-self:center;margin-right:2px}
-/* las etapas ya hechas */
-.hecha{color:var(--sev-v);font-weight:700}
-.tab .ok{color:var(--sev-v);font-weight:800;margin-left:4px}
-.pe .pt .hecha{font-size:12px}
-.pe:has(.hecha) .pb{opacity:.45}
-
-  :root{
-    --ed-bg:var(--bg); --ed-paper:var(--bg-elev); --ed-fg:var(--fg); --ed-fg-2:var(--fg-2); --ed-fg-3:var(--fg-3);
-    --ed-line:var(--line); --ed-line-soft:var(--line-soft); --ed-accent:var(--accent); --ed-accent-soft:var(--accent-soft);
-    --app-bg:var(--bg-elev); --app-fg:var(--fg); --app-fg-2:var(--fg-2); --app-fg-3:var(--fg-3); --app-line:var(--line);
-    --app-line-soft:var(--line-soft); --app-accent:var(--accent); --app-accent-2:var(--accent-soft); --app-bad:var(--bad);
-    --app-bad-2:var(--bad-soft); --app-info:var(--info); --app-info-2:var(--info-soft); --app-sup:var(--bg);
-    --mono:ui-monospace,SFMono-Regular,Menlo,monospace; --sans:inherit; --serif:Georgia,serif; --r:10px; --r-s:6px;
-    --sh:var(--shadow); --pegado:0px;
-  }
-  /* el dibujo, en tres tiempos */
-  .tiempos input{position:absolute;opacity:0;pointer-events:none}
-  .tiempos .seg3{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;border-radius:99px;background:var(--line-soft);margin:4px 0 12px}
-  .tiempos .seg3 label{cursor:pointer;padding:7px 14px;border-radius:99px;font-size:13px;font-weight:650;color:var(--fg-3)}
-  .tiempos .seg3 label small{font-weight:500;font-size:11.5px;opacity:.85;margin-left:4px}
-  #r-cero:checked~.seg3 label[for="r-cero"]{background:var(--sev-r2);color:var(--sev-r);box-shadow:inset 0 0 0 1.5px var(--sev-r)}
-  #r-hoy:checked~.seg3 label[for="r-hoy"]{background:var(--warn-soft);color:var(--warn);box-shadow:inset 0 0 0 1.5px var(--warn)}
-  #r-fin:checked~.seg3 label[for="r-fin"]{background:var(--sev-v2);color:var(--sev-v);box-shadow:inset 0 0 0 1.5px var(--sev-v)}
-  #r-cero:focus-visible~.seg3 label[for="r-cero"],#r-hoy:focus-visible~.seg3 label[for="r-hoy"],
-  #r-fin:focus-visible~.seg3 label[for="r-fin"]{outline:2px solid var(--accent);outline-offset:2px}
-  .tiempos .lienzo3{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev);padding:8px}
-  .tiempos .lienzo3 svg{display:block;min-width:720px;width:100%;height:auto}
-  #r-cero:checked~.lienzo3 .dg-al-dia,#r-cero:checked~.lienzo3 .dg-fin,
-  #r-hoy:checked~.lienzo3 .dg-cero,#r-hoy:checked~.lienzo3 .dg-fin,
-  #r-fin:checked~.lienzo3 .dg-cero,#r-fin:checked~.lienzo3 .dg-al-dia{display:none}
-  .dg .parcial{stroke-dasharray:5 3;stroke-width:2}
-  .ley{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--fg-2);margin:10px 0 0}
-  .ley span{display:inline-flex;align-items:center;gap:6px}
-  .ley i{width:12px;height:12px;border-radius:4px;border:1.5px solid;flex:none}
-  .ley .h i{background:var(--sev-v2);border-color:var(--sev-v)} .ley .m i{background:var(--sev-n2);border-color:var(--sev-n);border-style:dashed}
-  .ley .r i{background:var(--sev-r2);border-color:var(--sev-r)} .ley .n i{background:var(--sev-n2);border-color:var(--sev-n)}
-  .ley .a i{background:var(--sev-a2);border-color:var(--sev-a)}
-  /* los 42, por etapa */
-  .probs{display:grid;gap:8px}
-  .pr{display:grid;grid-template-columns:150px minmax(0,1fr) 54px;gap:10px;align-items:start;padding:8px 10px;
-      background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius)}
-  .pe2{font-size:13px;font-weight:650;color:var(--fg)} .pe2 i{font-style:normal;color:var(--fg-3);margin-right:6px;font-variant-numeric:tabular-nums}
-  .pl{display:flex;flex-wrap:wrap;gap:5px;min-width:0}
-  .pc{font-size:12px;color:var(--fg-3);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-  .pp{font-size:11.5px;line-height:1.35;padding:2px 8px;border-radius:6px;border:1.5px solid;min-width:0}
-  .pp.hecho{background:var(--sev-v2);border-color:var(--sev-v);color:var(--sev-v)}
-  .pp.parcial{background:var(--sev-n2);border-color:var(--sev-n);border-style:dashed;color:var(--fg)}
-  .pp.pend.r{background:var(--sev-r2);border-color:var(--sev-r);color:var(--fg)}
-  .pp.pend.n{background:var(--sev-n2);border-color:var(--sev-n);color:var(--fg)}
-  .pp.pend.a{background:var(--sev-a2);border-color:var(--sev-a);color:var(--fg)}
-  @media (max-width:640px){.pr{grid-template-columns:1fr}.pc{text-align:left}}
-  @media print{.tiempos .lienzo3 svg{display:block!important}.tiempos .seg3{display:none}}
-
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="prog" id="prog"></div>
+<main class="deck" id="deck">
 
-  <header>
-    <div class="kicker">
-      <span class="num">203</span>
-      <span class="badge">Relevamiento</span>
-      <span class="meta">tablero · estado único · 24/10/2026</span>
+  <section class="sl cover" data-t="Portada">
+    <div class="sl-in">
+      <span class="big-l">8</span>
+      <div class="kick"><span class="num">204</span><span class="tagq">Presentación</span> · <span class="meta">tablero · etapa 8 del estado único · 24/10/2026</span></div>
+      <h1>Problemas: una lista, y leer no escribe</h1>
+      <p class="sub">Cómo pienso construir la etapa 8, con tus dos respuestas adentro. Falta tu visto bueno.</p>
+      <div class="chips"><span class="chip">Una sola lista<i>1</i></span><span class="chip">Leer no escribe<i>2</i></span><span class="chip">Probar avisa<i>3</i></span><span class="chip">El juez, del catálogo<i>4</i></span></div>
+      <div class="kpis">
+        <div class="kpi"><div class="n">2 → 1</div><div class="l">listas de problemas en cada pestaña</div></div>
+        <div class="kpi"><div class="n">10 s → 0</div><div class="l">el reloj de Problemas: relee con el aviso</div></div>
+        <div class="kpi"><div class="n">3 → 0</div><div class="l">cosas que se escriben al leer una ficha</div></div>
+      </div>
     </div>
-    <h1>Va por la mitad: más coherente, todavía no más liviano</h1>
-    <p class="sub">La propuesta del 20/10 contra lo que hay hoy, con las etapas 1 a 5 juntadas, y mi opinión.</p>
-  </header>
+    <div class="foot"><span>Mapa del código de ittm master 9f18d0c7c, leído el 24/10</span><span class="pg"></span></div>
+  </section>
 
-  <div class="lede"><p><strong>De los 42 problemas, 20 ya no están y 2 quedaron a medias; los 20 restantes son de las etapas 6 a 10.</strong> Las pantallas ya no se contradicen; lo pesado todavía no bajó.</p></div>
-
-  <section>
-    <h2>Lo que se resolvió es lo de las etapas hechas</h2>
-    <div class="kpis">
-      <div class="kpi dest"><div class="n">20<small>de 42</small></div><div class="l">problemas resueltos; 2 más a medias</div></div>
-      <div class="kpi"><div class="n">4<small>de 9</small></div><div class="l">críticos resueltos y uno a medias</div></div>
-      <div class="kpi"><div class="n">13 → 2</div><div class="l">stores en todo el navegador</div></div>
-      <div class="kpi"><div class="n">613</div><div class="l">pruebas nombran una de las 45 reglas nuevas</div></div>
+  <section class="sl" data-t="Dónde estamos">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Dónde estamos</span> · dos pantallas y el servidor</div>
+      <h2>Dos pantallas piden la misma lista, cada una por su lado</h2>
+      <div class="body">
+        <div class="desliza">
+          <svg viewBox="0 0 1000 330" style="width:100%;height:auto;display:block" role="img" aria-label="Problemas y el cajón de Correcciones piden la lista al servidor por separado; el servidor escribe al leer y Probar avanza sin avisar">
+            <defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--fg-3)"/></marker></defs>
+            <rect x="10" y="20" width="300" height="120" rx="14" style="fill:var(--bg-elev);stroke:var(--line);stroke-width:1.5"/>
+            <text x="30" y="56" style="fill:var(--fg);font-size:21px;font-weight:700">Problemas</text>
+            <text x="30" y="86" style="fill:var(--bad);font-size:16px">su copia de la lista</text>
+            <text x="30" y="112" style="fill:var(--bad);font-size:16px">pregunta cada 10 s</text>
+            <rect x="10" y="190" width="300" height="120" rx="14" style="fill:var(--bg-elev);stroke:var(--line);stroke-width:1.5"/>
+            <text x="30" y="226" style="fill:var(--fg);font-size:21px;font-weight:700">Cajón de Correcciones (P)</text>
+            <text x="30" y="256" style="fill:var(--bad);font-size:16px">otra copia de la lista</text>
+            <text x="30" y="282" style="fill:var(--bad);font-size:16px">la pide sólo al abrirse</text>
+            <path d="M310 80 H560" style="stroke:var(--fg-3);stroke-width:2;fill:none" marker-end="url(#fl)"/>
+            <path d="M310 250 H560" style="stroke:var(--fg-3);stroke-width:2;fill:none" marker-end="url(#fl)"/>
+            <text x="350" y="70" style="fill:var(--fg-3);font-size:15px">la lista, la ficha, sus pasos</text>
+            <text x="350" y="240" style="fill:var(--fg-3);font-size:15px">la lista</text>
+            <rect x="564" y="20" width="426" height="290" rx="14" style="fill:var(--bg);stroke:var(--line);stroke-width:1.5"/>
+            <text x="586" y="56" style="fill:var(--fg);font-size:21px;font-weight:700">El servidor</text>
+            <text x="586" y="100" style="fill:var(--bad);font-size:16px">✕ leer los pasos guarda trabajos viejos</text>
+            <text x="586" y="130" style="fill:var(--bad);font-size:16px">✕ leer prepara el examen fijo</text>
+            <text x="586" y="160" style="fill:var(--bad);font-size:16px">✕ abrir «Rendir» en Exámenes, también</text>
+            <text x="586" y="210" style="fill:var(--warn);font-size:16px">! Probar avanza cada 2 s y no avisa</text>
+            <text x="586" y="240" style="fill:var(--warn);font-size:16px">! cuenta al juez por su lado</text>
+            <text x="586" y="284" style="fill:var(--fg-3);font-size:14px">el aviso «problemas» existe y nadie lo oye</text>
+          </svg>
+        </div>
+      </div>
     </div>
-    <div class="probs chips"><div class="pr"><span class="pe2"><i>01</i>Lo que corre</span><span class="pl"><span class="pp hecho r" title="Su trabajo se cierra recién cuando alguien abre Problemas o Exámenes. Si nadie entra, no se cierra (el 13/10 tardó 20 s).">✓ Un problema terminado sigue «en progreso»</span><span class="pp hecho n" title="La franja, Ejecuciones, el diálogo de lanzar, Correcciones y una foto de 30 s en el navegador. Entre pestañas no coinciden.">✓ Cinco copias de «lo que corre»</span><span class="pp hecho n" title="El tablero cambia la sesión al reiniciar: las pestañas viejas reciben un 403 y sólo la franja lo dice.">✓ Al reiniciar, las pestañas fallan mudas</span><span class="pp hecho a" title="El de la pantalla, el de «en curso» y el del diálogo de lanzar, cada uno con su suscripción y su dibujo.">✓ Tres stores por pantalla</span><span class="pp hecho a" title="Unas 175 líneas de relojes, esperas tras un error y una foto guardada en el navegador.">✓ Un sondeo escrito a mano</span></span><span class="pc">5 de 5</span></div><div class="pr"><span class="pe2"><i>02</i>El servidor avisa</span><span class="pl"><span class="pp hecho r" title="Un examen, un cierre o una medición corridos en la terminal no avisan: la pantalla muestra lo viejo como si fuera actual.">✓ Lo de la terminal no llega</span><span class="pp hecho n" title="Diez pantallas, y cada pestaña abierta, preguntan lo que corre aunque no cambie nada.">✓ Cada pestaña pregunta cada 3 o 10 s</span><span class="pp hecho n" title="Ejecuciones se pone al día colgada del reloj de «en curso».">✓ El latido de Ejecuciones</span><span class="pp parcial a" title="En el servidor, unas memorias vencen por la huella y otras sólo con «releer».">◐ Dos maneras de vencer una memoria</span></span><span class="pc">3 de 4</span></div><div class="pr"><span class="pe2"><i>03</i>Las corridas</span><span class="pl"><span class="pp hecho r" title="Problemas, la solución, las opiniones, las mediciones y el examen guardan su copia. Si una queda «corriendo», frena la tanda (pasó el 19/10).">✓ Siete «corriendo» distintos</span><span class="pp hecho n" title="Problemas, Exámenes y Ejecuciones copian el estado al leerlo, cada una en su momento.">✓ La misma corrida, tres estados</span><span class="pp hecho a" title="567 líneas de store y pedidos: datos, vivo, detalle, logs y registro.">✓ El store de Ejecuciones, con su copia «vivo»</span><span class="pp hecho a" title="Los exámenes registrados entran a la lista como si fueran corridas.">✓ Exámenes mezclados como corridas</span><span class="pp hecho a" title="Vueltas pide las corridas por su cuenta.">✓ Vueltas lee su propia lista</span></span><span class="pc">5 de 5</span></div><div class="pr"><span class="pe2"><i>04</i>La tanda</span><span class="pl"><span class="pp hecho r" title="La tanda elegida en Correcciones es una para todo el servidor: otra pestaña, o Publicar, pasa a mirar ésa sin avisar.">✓ Mirar una tanda vieja cambia Publicar</span><span class="pp hecho n" title="Se leen en momentos distintos: el encabezado de dos pantallas puede no coincidir.">✓ Once copias de la tanda</span><span class="pp hecho n" title="Después de publicar sigue el viejo hasta reiniciar el tablero.">✓ El orden del curso no se relee nunca</span><span class="pp hecho a" title="Cada una tiene su lector y su memoria.">✓ Analizadores y Comparar leen la tanda aparte</span></span><span class="pc">4 de 4</span></div><div class="pr"><span class="pe2"><i>05</i>Jueces</span><span class="pl"><span class="pp parcial r" title="El mismo juez puede salir al día en una pantalla y sin aprobar en otra. Una regla nueva hay que cambiarla en cuatro lugares.">◐ «Al día», de cuatro maneras</span><span class="pp hecho n" title="Ninguna memoria vence al promover: las pantallas siguen diciendo «sin aprobar» hasta releer.">✓ Promover un juez no se ve</span><span class="pp hecho n" title="Aunque no cambie nada, mientras la pestaña esté abierta.">✓ Exámenes pregunta cada 10 s</span><span class="pp hecho a" title="En siete pantallas, y el catálogo guardado en cinco memorias del servidor.">✓ Siete copias de los jueces</span></span><span class="pc">3 de 4</span></div><div class="pr"><span class="pe2"><i>06</i>Análisis y opiniones</span><span class="pl"><span class="pp pend r" title="El botón contaba consultas; los renglones, ejercicios por juez (13/10).">«Faltan 5» no coincide con los renglones</span><span class="pp pend r" title="Muestra «todavía no opinó» de algo que ya opinó, y te ofrece pagarlo de nuevo (20 casos el 13/10).">Una corrida vacía tapa una opinión</span><span class="pp pend n" title="Decenas de MB mientras corre una opinión, ocupando el turno del CLI.">Correcciones relee la tanda cada 5 s</span><span class="pp pend a" title="Un canal entre pestañas mantiene parejas las seis pantallas que lo muestran.">El análisis, unido a mano</span></span><span class="pc">0 de 4</span></div><div class="pr"><span class="pe2"><i>07</i>Cambios y decisiones</span><span class="pl"><span class="pp pend n" title="Cada aprobación vuelve a leer decenas de MB.">Decidir relee la vista entera</span><span class="pp pend n" title="Sigue «sin revisar» hasta recargar; Publicar tampoco lo cuenta.">Aprobás en una pestaña y la otra no se entera</span><span class="pp pend n" title="La pantalla pregunta cómo va la cola mientras algo se guarda.">La cola de guardado, cada 2 s</span><span class="pp pend n" title="Cambian la tanda sin que ninguna otra pantalla se entere.">La miniteoría y la conversión no avisan</span><span class="pp pend a" title="Tocar Correcciones puede romper Comparar.">Comparar importa el estado de Correcciones</span><span class="pp pend a" title="Correcciones: 1.169 líneas de store y pedidos, en diez partes.">El store más grande del tablero</span></span><span class="pc">0 de 6</span></div><div class="pr"><span class="pe2"><i>08</i>Problemas</span><span class="pl"><span class="pp pend r" title="Leer los pasos, los jueces o preparar un examen escribe archivos: es el segundo que cierra corridas.">Leer escribe, y cierra corridas</span><span class="pp pend n" title="Problemas pregunta cada 10 s; el cajón de Correcciones, nunca.">Anotás con P y no aparece</span><span class="pp pend n" title="El servidor avanza cada 2 s y nadie se entera hasta preguntar.">Probar la solución avanza sin avisar</span><span class="pp pend a" title="Problemas y el cajón de Correcciones las piden por separado.">Dos listas de problemas</span></span><span class="pc">0 de 4</span></div><div class="pr"><span class="pe2"><i>09</i>Resúmenes</span><span class="pl"><span class="pp pend r" title="Lanzar, Vueltas, Exámenes y Problemas estiman distinto; Vueltas ni mira el motor elegido.">Cuatro cuentas de costo</span><span class="pp pend n" title="Analizadores, Comparar, la bandeja y la estimación de Vueltas muestran lo viejo hasta tocar el botón.">Memorias que sólo vencen con «releer»</span><span class="pp pend a" title="Vueltas y Publicar la piden por separado.">La bandeja, leída dos veces</span><span class="pp pend a" title="15 archivos del servidor aceptan ?releer=1, y cada pantalla tiene su botón.">«Releer» en todos lados</span></span><span class="pc">0 de 4</span></div><div class="pr"><span class="pe2"><i>10</i>Un documento</span><span class="pl"><span class="pp pend a" title="Cada pantalla arma su store, su canal y su sesión al abrirse.">Diez documentos, diez arranques</span><span class="pp pend a" title="Lo que ya se había pedido en otra pantalla se pierde.">Cambiar de pantalla pide todo de nuevo</span></span><span class="pc">0 de 2</span></div></div>
-    <div class="ley leyenda"><span class="h"><i></i>resuelto</span><span class="m"><i></i>a medias</span><span class="r"><i></i>pendiente crítico</span><span class="n"><i></i>pendiente medio</span><span class="a"><i></i>pendiente leve</span></div>
+    <div class="foot"><span>problemas/main.js (reloj de 10 s) · correcciones/problema.js (cajón) · pasos_de_problemas.dart · probar_solucion.dart · examenes/preparar</span><span class="pg"></span></div>
   </section>
 
-  <section>
-    <h2>La maraña: antes, hoy y al final</h2>
-    <div class="tiempos">
-      <input type="radio" name="t3" id="r-cero" aria-label="20/10, el momento cero">
-      <input type="radio" name="t3" id="r-hoy" checked aria-label="Hoy, 24/10">
-      <input type="radio" name="t3" id="r-fin" aria-label="Al final, después de la etapa 9">
-      <div class="seg3"><label for="r-cero">20/10<small>momento cero</small></label><label for="r-hoy">Hoy<small>24/10</small></label><label for="r-fin">Al final<small>etapa 9</small></label></div>
-      <div class="lienzo3"><svg class="dg dg-cero" viewBox="0 0 1000 716" role="img" aria-label="Hoy: cada pantalla guarda su propia copia de la tanda, los jueces y lo que corre, tiene su reloj y su cliente; el servidor tiene catorce problemas propios y la terminal escribe sin avisar"><defs><marker id="mh-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf"/></marker></defs><defs><marker id="mh-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pfa"/></marker></defs><defs><marker id="mh-i" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pfi"/></marker></defs><defs><marker id="mh-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pfr"/></marker></defs><text class="tz" x="10" y="14" text-anchor="start">LAS DIEZ PANTALLAS</text><rect class="b" x="10" y="24" width="92" height="30" rx="7"/><text class="tc" x="56" y="43" text-anchor="middle">Correcciones</text><rect class="b" x="108" y="24" width="92" height="30" rx="7"/><text class="tc" x="154" y="43" text-anchor="middle">Mapa</text><rect class="b" x="206" y="24" width="92" height="30" rx="7"/><text class="tc" x="252" y="43" text-anchor="middle">Estadísticas</text><rect class="b" x="304" y="24" width="92" height="30" rx="7"/><text class="tc" x="350" y="43" text-anchor="middle">Ejecuciones</text><rect class="b" x="402" y="24" width="92" height="30" rx="7"/><text class="tc" x="448" y="43" text-anchor="middle">Exámenes</text><rect class="b" x="500" y="24" width="92" height="30" rx="7"/><text class="tc" x="546" y="43" text-anchor="middle">Vueltas</text><rect class="b" x="598" y="24" width="92" height="30" rx="7"/><text class="tc" x="644" y="43" text-anchor="middle">Comparar</text><rect class="b" x="696" y="24" width="92" height="30" rx="7"/><text class="tc" x="742" y="43" text-anchor="middle">Publicar</text><rect class="b" x="794" y="24" width="92" height="30" rx="7"/><text class="tc" x="840" y="43" text-anchor="middle">Analizadores</text><rect class="b" x="892" y="24" width="92" height="30" rx="7"/><text class="tc" x="938" y="43" text-anchor="middle">Problemas</text><text class="tz" x="990" y="14" text-anchor="end">CADA UNA, CON SU PROPIA COPIA</text><g data-ir="g-4"><title>Etapa 4 · medio</title><rect class="sn" x="10" y="62" width="92" height="19" rx="5"/><text class="tcs" x="56" y="75" text-anchor="middle">su tanda</text></g><g data-ir="g-4"><title>Etapa 4 · medio</title><rect class="sn" x="108" y="62" width="92" height="19" rx="5"/><text class="tcs" x="154" y="75" text-anchor="middle">su tanda</text></g><g data-ir="g-4"><title>Etapa 4 · medio</title><rect class="sn" x="206" y="62" width="92" height="19" rx="5"/><text class="tcs" x="252" y="75" text-anchor="middle">su tanda</text></g><g data-ir="g-4"><title>Etapa 4 · medio</title><rect class="sn" x="304" y="62" width="92" height="19" rx="5"/><text class="tcs" x="350" y="75" text-anchor="middle">su tanda</text></g><g data-ir="g-4"><title>Etapa 4 · medio</title><rect class="sn" x="598" y="62" width="92" height="19" rx="5"/><text class="tcs" x="644" y="75" text-anchor="middle">su tanda</text></g><g data-ir="g-4"><title>Etapa 4 · medio</title><rect class="sn" x="696" y="62" width="92" height="19" rx="5"/><text class="tcs" x="742" y="75" text-anchor="middle">su tanda</text></g><g data-ir="g-4"><title>Etapa 4 · medio</title><rect class="sn" x="794" y="62" width="92" height="19" rx="5"/><text class="tcs" x="840" y="75" text-anchor="middle">su tanda</text></g><g data-ir="g-4"><title>Etapa 4 · medio</title><rect class="sn" x="500" y="62" width="92" height="19" rx="5"/><text class="tcs" x="546" y="75" text-anchor="middle">su tanda ×2</text></g><g data-ir="g-5"><title>Etapa 5 · leve</title><rect class="sa" x="10" y="86" width="92" height="19" rx="5"/><text class="tcs" x="56" y="99" text-anchor="middle">sus jueces</text></g><g data-ir="g-5"><title>Etapa 5 · leve</title><rect class="sa" x="108" y="86" width="92" height="19" rx="5"/><text class="tcs" x="154" y="99" text-anchor="middle">sus jueces</text></g><g data-ir="g-5"><title>Etapa 5 · leve</title><rect class="sa" x="206" y="86" width="92" height="19" rx="5"/><text class="tcs" x="252" y="99" text-anchor="middle">sus jueces</text></g><g data-ir="g-5"><title>Etapa 5 · leve</title><rect class="sa" x="402" y="86" width="92" height="19" rx="5"/><text class="tcs" x="448" y="99" text-anchor="middle">sus jueces</text></g><g data-ir="g-5"><title>Etapa 5 · leve</title><rect class="sa" x="696" y="86" width="92" height="19" rx="5"/><text class="tcs" x="742" y="99" text-anchor="middle">sus jueces</text></g><g data-ir="g-5"><title>Etapa 5 · leve</title><rect class="sa" x="794" y="86" width="92" height="19" rx="5"/><text class="tcs" x="840" y="99" text-anchor="middle">sus jueces</text></g><g data-ir="g-1"><title>Etapa 1 · medio</title><rect class="sn" x="10" y="110" width="92" height="19" rx="5"/><text class="tcs" x="56" y="123" text-anchor="middle">su «en curso»</text></g><g data-ir="g-1"><title>Etapa 1 · medio</title><rect class="sn" x="108" y="110" width="92" height="19" rx="5"/><text class="tcs" x="154" y="123" text-anchor="middle">su «en curso»</text></g><g data-ir="g-1"><title>Etapa 1 · medio</title><rect class="sn" x="206" y="110" width="92" height="19" rx="5"/><text class="tcs" x="252" y="123" text-anchor="middle">su «en curso»</text></g><g data-ir="g-1"><title>Etapa 1 · medio</title><rect class="sn" x="304" y="110" width="92" height="19" rx="5"/><text class="tcs" x="350" y="123" text-anchor="middle">su «en curso»</text></g><g data-ir="g-1"><title>Etapa 1 · medio</title><rect class="sn" x="402" y="110" width="92" height="19" rx="5"/><text class="tcs" x="448" y="123" text-anchor="middle">su «en curso»</text></g><g data-ir="g-1"><title>Etapa 1 · medio</title><rect class="sn" x="500" y="110" width="92" height="19" rx="5"/><text class="tcs" x="546" y="123" text-anchor="middle">su «en curso»</text></g><g data-ir="g-1"><title>Etapa 1 · medio</title><rect class="sn" x="598" y="110" width="92" height="19" rx="5"/><text class="tcs" x="644" y="123" text-anchor="middle">su «en curso»</text></g><g data-ir="g-1"><title>Etapa 1 · medio</title><rect class="sn" x="696" y="110" width="92" height="19" rx="5"/><text class="tcs" x="742" y="123" text-anchor="middle">su «en curso»</text></g><g data-ir="g-1"><title>Etapa 1 · medio</title><rect class="sn" x="794" y="110" width="92" height="19" rx="5"/><text class="tcs" x="840" y="123" text-anchor="middle">su «en curso»</text></g><g data-ir="g-1"><title>Etapa 1 · medio</title><rect class="sn" x="892" y="110" width="92" height="19" rx="5"/><text class="tcs" x="938" y="123" text-anchor="middle">su «en curso»</text></g><g data-ir="g-1"><title>Etapa 1 · leve</title><rect class="sa" x="10" y="134" width="92" height="19" rx="5"/><text class="tcs" x="56" y="147" text-anchor="middle">su lanzar</text></g><g data-ir="g-1"><title>Etapa 1 · leve</title><rect class="sa" x="108" y="134" width="92" height="19" rx="5"/><text class="tcs" x="154" y="147" text-anchor="middle">su lanzar</text></g><g data-ir="g-1"><title>Etapa 1 · leve</title><rect class="sa" x="304" y="134" width="92" height="19" rx="5"/><text class="tcs" x="350" y="147" text-anchor="middle">su lanzar</text></g><g data-ir="g-1"><title>Etapa 1 · leve</title><rect class="sa" x="500" y="134" width="92" height="19" rx="5"/><text class="tcs" x="546" y="147" text-anchor="middle">su lanzar</text></g><g data-ir="g-1"><title>Etapa 1 · leve</title><rect class="sa" x="598" y="134" width="92" height="19" rx="5"/><text class="tcs" x="644" y="147" text-anchor="middle">su lanzar</text></g><g data-ir="g-1"><title>Etapa 1 · leve</title><rect class="sa" x="696" y="134" width="92" height="19" rx="5"/><text class="tcs" x="742" y="147" text-anchor="middle">su lanzar</text></g><g data-ir="g-1"><title>Etapa 1 · leve</title><rect class="sa" x="794" y="134" width="92" height="19" rx="5"/><text class="tcs" x="840" y="147" text-anchor="middle">su lanzar</text></g><g data-ir="g-6"><title>Etapa 6 · medio</title><rect class="sn" x="10" y="158" width="92" height="19" rx="5"/><text class="tcs" x="56" y="171" text-anchor="middle">relee cada 5 s</text></g><g data-ir="g-5"><title>Etapa 5 · medio</title><rect class="sn" x="402" y="158" width="92" height="19" rx="5"/><text class="tcs" x="448" y="171" text-anchor="middle">reloj de 10 s</text></g><g data-ir="g-8"><title>Etapa 8 · medio</title><rect class="sn" x="892" y="158" width="92" height="19" rx="5"/><text class="tcs" x="938" y="171" text-anchor="middle">reloj de 10 s</text></g><g data-ir="g-7"><title>Etapa 7 · medio</title><rect class="sn" x="10" y="182" width="92" height="19" rx="5"/><text class="tcs" x="56" y="195" text-anchor="middle">cola cada 2 s</text></g><g data-ir="g-9"><title>Etapa 9 · crítico</title><rect class="sr" x="402" y="182" width="92" height="19" rx="5"/><text class="tcs" x="448" y="195" text-anchor="middle">su estimación</text></g><g data-ir="g-9"><title>Etapa 9 · crítico</title><rect class="sr" x="500" y="182" width="92" height="19" rx="5"/><text class="tcs" x="546" y="195" text-anchor="middle">su estimación</text></g><g data-ir="g-9"><title>Etapa 9 · crítico</title><rect class="sr" x="892" y="182" width="92" height="19" rx="5"/><text class="tcs" x="938" y="195" text-anchor="middle">su estimación</text></g><g data-ir="g-6"><title>Etapa 6 · leve</title><path class="lam ld" d="M56,214 L840,214"/><path class="lam" d="M56,205 L56,214"/><path class="lam" d="M154,205 L154,214"/><path class="lam" d="M252,205 L252,214"/><path class="lam" d="M350,205 L350,214"/><path class="lam" d="M742,205 L742,214"/><path class="lam" d="M840,205 L840,214"/><rect class="fondo" x="401" y="200" width="206" height="15" rx="3"/><text class="tam" style="font-size:10.5px;font-weight:700" x="406" y="211" text-anchor="start">canal entre pestañas · el análisis</text></g><path class="l" d="M56,220 L56,348"/><path class="l" d="M154,220 L154,348"/><path class="l" d="M252,220 L252,348"/><path class="l" d="M350,220 L350,348"/><path class="l" d="M448,220 L448,348"/><path class="l" d="M546,220 L546,348"/><path class="l" d="M644,220 L644,348"/><path class="l" d="M742,220 L742,348"/><path class="l" d="M840,220 L840,348"/><path class="l" d="M938,220 L938,348"/><g data-ir="g-7"><title>Etapa 7 · leve</title><path class="lam ld" d="M628,206 L628,236 L40,236 L40,226" marker-end="url(#mh-g)"/><rect class="fondo" x="113" y="239" width="252" height="15" rx="3"/><text class="tam" style="font-size:10.5px;font-weight:700" x="118" y="250" text-anchor="start">Comparar importa el estado de Correcciones</text></g><g data-ir="g-1"><title>Etapas 1 a 9 · leve</title><rect class="sa" x="330" y="262" width="400" height="26" rx="7"/><text class="tc" x="530" y="279" text-anchor="middle">25 lugares arman su propio cliente al servidor</text></g><g data-ir="g-4"><title>Etapa 4 · crítico</title><path class="lr" d="M24,206 L24,302 L100,302 L100,386" marker-end="url(#mh-r)"/><path class="lr ld" d="M200,386 L200,318 L710,318 L710,160" marker-end="url(#mh-r)"/><rect class="fondo" x="103" y="287" width="234" height="15" rx="3"/><text class="tr" style="font-size:10.5px;font-weight:700" x="108" y="298" text-anchor="start">elegir una tanda vieja en Correcciones…</text><rect class="fondo" x="548" y="323" width="160" height="15" rx="3"/><text class="tr" style="font-size:10.5px;font-weight:700" x="702" y="334" text-anchor="end">…cambia la que ve Publicar</text></g><rect class="b2" x="10" y="350" width="980" height="236" rx="11"/><text class="tz" x="22" y="368" text-anchor="start">EL SERVIDOR DEL TABLERO · 73 ARCHIVOS, UNAS 20 MEMORIAS</text><g data-ir="g-4"><title>Etapa 4 · crítico</title><rect class="sr" x="22" y="388" width="232" height="38" rx="7"/><text class="tc" x="32" y="411">La tanda elegida: una para todos</text><rect class="bd" x="231" y="399" width="18" height="15" rx="7.5"/><text class="bdt" x="240.0" y="410" text-anchor="middle">4</text></g><g data-ir="g-8"><title>Etapa 8 · crítico</title><rect class="sr" x="264" y="388" width="232" height="38" rx="7"/><text class="tc" x="274" y="411">Leer escribe, y cierra corridas</text><rect class="bd" x="473" y="399" width="18" height="15" rx="7.5"/><text class="bdt" x="482.0" y="410" text-anchor="middle">8</text></g><g data-ir="g-3"><title>Etapa 3 · crítico</title><rect class="sr" x="506" y="388" width="232" height="38" rx="7"/><text class="tc" x="516" y="411">Siete «corriendo» distintos</text><rect class="bd" x="715" y="399" width="18" height="15" rx="7.5"/><text class="bdt" x="724.0" y="410" text-anchor="middle">3</text></g><g data-ir="g-1"><title>Etapa 1 · crítico</title><rect class="sr" x="748" y="388" width="232" height="38" rx="7"/><text class="tc" x="758" y="411">Un problema se cierra al leerlo</text><rect class="bd" x="957" y="399" width="18" height="15" rx="7.5"/><text class="bdt" x="966.0" y="410" text-anchor="middle">1</text></g><g data-ir="g-5"><title>Etapa 5 · crítico</title><rect class="sr" x="22" y="436" width="232" height="38" rx="7"/><text class="tc" x="32" y="459">«Al día», de cuatro maneras</text><rect class="bd" x="231" y="447" width="18" height="15" rx="7.5"/><text class="bdt" x="240.0" y="458" text-anchor="middle">5</text></g><g data-ir="g-6"><title>Etapa 6 · crítico</title><rect class="sr" x="264" y="436" width="232" height="38" rx="7"/><text class="tc" x="274" y="459">Una corrida vacía tapa opiniones</text><rect class="bd" x="473" y="447" width="18" height="15" rx="7.5"/><text class="bdt" x="482.0" y="458" text-anchor="middle">6</text></g><g data-ir="g-6"><title>Etapa 6 · crítico</title><rect class="sr" x="506" y="436" width="232" height="38" rx="7"/><text class="tc" x="516" y="459">«Faltan», con dos criterios</text><rect class="bd" x="715" y="447" width="18" height="15" rx="7.5"/><text class="bdt" x="724.0" y="458" text-anchor="middle">6</text></g><g data-ir="g-9"><title>Etapa 9 · crítico</title><rect class="sr" x="748" y="436" width="232" height="38" rx="7"/><text class="tc" x="758" y="459">Cuatro cuentas de costo</text><rect class="bd" x="957" y="447" width="18" height="15" rx="7.5"/><text class="bdt" x="966.0" y="458" text-anchor="middle">9</text></g><g data-ir="g-4"><title>Etapa 4 · medio</title><rect class="sn" x="22" y="484" width="232" height="38" rx="7"/><text class="tc" x="32" y="507">El orden del curso no se relee</text><rect class="bd" x="231" y="495" width="18" height="15" rx="7.5"/><text class="bdt" x="240.0" y="506" text-anchor="middle">4</text></g><g data-ir="g-5"><title>Etapa 5 · medio</title><rect class="sn" x="264" y="484" width="232" height="38" rx="7"/><text class="tc" x="274" y="507">Promover un juez no vence nada</text><rect class="bd" x="473" y="495" width="18" height="15" rx="7.5"/><text class="bdt" x="482.0" y="506" text-anchor="middle">5</text></g><g data-ir="g-7"><title>Etapa 7 · medio</title><rect class="sn" x="506" y="484" width="232" height="38" rx="7"/><text class="tc" x="516" y="507">Decidir relee decenas de MB</text><rect class="bd" x="715" y="495" width="18" height="15" rx="7.5"/><text class="bdt" x="724.0" y="506" text-anchor="middle">7</text></g><g data-ir="g-8"><title>Etapa 8 · medio</title><rect class="sn" x="748" y="484" width="232" height="38" rx="7"/><text class="tc" x="758" y="507">Probar avanza sin avisar</text><rect class="bd" x="957" y="495" width="18" height="15" rx="7.5"/><text class="bdt" x="966.0" y="506" text-anchor="middle">8</text></g><g data-ir="g-9"><title>Etapa 9 · medio</title><rect class="sn" x="22" y="532" width="232" height="38" rx="7"/><text class="tc" x="32" y="555">Memorias que vencen con «releer»</text><rect class="bd" x="231" y="543" width="18" height="15" rx="7.5"/><text class="bdt" x="240.0" y="554" text-anchor="middle">9</text></g><g data-ir="g-1"><title>Etapa 1 · medio</title><rect class="sn" x="264" y="532" width="232" height="38" rx="7"/><text class="tc" x="274" y="555">Al reiniciar, 403 mudos</text><rect class="bd" x="473" y="543" width="18" height="15" rx="7.5"/><text class="bdt" x="482.0" y="554" text-anchor="middle">1</text></g><g data-ir="g-5"><title>Etapa 5 · leve</title><rect class="sa" x="506" y="532" width="232" height="38" rx="7"/><text class="tc" x="516" y="555">Los jueces, en cinco memorias</text><rect class="bd" x="715" y="543" width="18" height="15" rx="7.5"/><text class="bdt" x="724.0" y="554" text-anchor="middle">5</text></g><g data-ir="g-2"><title>Etapa 2 · leve</title><rect class="sa" x="748" y="532" width="232" height="38" rx="7"/><text class="tc" x="758" y="555">Dos maneras de vencer memorias</text><rect class="bd" x="957" y="543" width="18" height="15" rx="7.5"/><text class="bdt" x="966.0" y="554" text-anchor="middle">2</text></g><path class="l" d="M500,586 L500,616"/><rect class="b2" x="10" y="616" width="980" height="92" rx="11"/><text class="tz" x="22" y="634" text-anchor="start">EL DISCO, EL CLI Y LA TERMINAL</text><g data-ir="g-2"><title>Etapa 2 · crítico</title><rect class="sr" x="22" y="646" width="350" height="40" rx="7"/><text class="tc" x="32" y="664">La terminal escribe y nadie se entera</text><text class="tcs" x="32" y="677">un examen, un cierre o una medición desde la terminal</text><rect class="bd" x="349" y="658" width="18" height="15" rx="7.5"/><text class="bdt" x="358.0" y="669" text-anchor="middle">2</text></g><g data-ir="g-2"><title>Etapa 2 · medio</title><rect class="sn" x="384" y="646" width="350" height="40" rx="7"/><text class="tc" x="394" y="664">Cada pestaña pregunta cada 3 o 10 s</text><text class="tcs" x="394" y="677">aunque nada cambie: diez pantallas, cada pestaña</text><rect class="bd" x="711" y="658" width="18" height="15" rx="7.5"/><text class="bdt" x="720.0" y="669" text-anchor="middle">2</text></g><text class="tcs" x="980" y="672" text-anchor="end">las carpetas de la campaña</text></svg><svg class="dg dg-al-dia" viewBox="0 0 1000 716" role="img" aria-label="Al 24/10: lo de las etapas 1 a 5 ya no está; quedan el análisis, las decisiones, los problemas y los resúmenes"><defs><marker id="md-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf"/></marker></defs><defs><marker id="md-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pfa"/></marker></defs><defs><marker id="md-i" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pfi"/></marker></defs><defs><marker id="md-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pfr"/></marker></defs><text class="tz" x="10" y="14" text-anchor="start">LAS DIEZ PANTALLAS</text><rect class="b" x="10" y="24" width="92" height="30" rx="7"/><text class="tc" x="56" y="43" text-anchor="middle">Correcciones</text><rect class="b" x="108" y="24" width="92" height="30" rx="7"/><text class="tc" x="154" y="43" text-anchor="middle">Mapa</text><rect class="b" x="206" y="24" width="92" height="30" rx="7"/><text class="tc" x="252" y="43" text-anchor="middle">Estadísticas</text><rect class="b" x="304" y="24" width="92" height="30" rx="7"/><text class="tc" x="350" y="43" text-anchor="middle">Ejecuciones</text><rect class="b" x="402" y="24" width="92" height="30" rx="7"/><text class="tc" x="448" y="43" text-anchor="middle">Exámenes</text><rect class="b" x="500" y="24" width="92" height="30" rx="7"/><text class="tc" x="546" y="43" text-anchor="middle">Vueltas</text><rect class="b" x="598" y="24" width="92" height="30" rx="7"/><text class="tc" x="644" y="43" text-anchor="middle">Comparar</text><rect class="b" x="696" y="24" width="92" height="30" rx="7"/><text class="tc" x="742" y="43" text-anchor="middle">Publicar</text><rect class="b" x="794" y="24" width="92" height="30" rx="7"/><text class="tc" x="840" y="43" text-anchor="middle">Analizadores</text><rect class="b" x="892" y="24" width="92" height="30" rx="7"/><text class="tc" x="938" y="43" text-anchor="middle">Problemas</text><text class="tz" x="990" y="14" text-anchor="end">CADA UNA, CON SU PROPIA COPIA</text><g data-ir="g-4"><title>Etapa 4 · queda bien</title><rect class="sv" x="10" y="62" width="92" height="19" rx="5"/><text class="tcs" x="56" y="75" text-anchor="middle">✓ su tanda</text></g><g data-ir="g-4"><title>Etapa 4 · queda bien</title><rect class="sv" x="108" y="62" width="92" height="19" rx="5"/><text class="tcs" x="154" y="75" text-anchor="middle">✓ su tanda</text></g><g data-ir="g-4"><title>Etapa 4 · queda bien</title><rect class="sv" x="206" y="62" width="92" height="19" rx="5"/><text class="tcs" x="252" y="75" text-anchor="middle">✓ su tanda</text></g><g data-ir="g-4"><title>Etapa 4 · queda bien</title><rect class="sv" x="304" y="62" width="92" height="19" rx="5"/><text class="tcs" x="350" y="75" text-anchor="middle">✓ su tanda</text></g><g data-ir="g-4"><title>Etapa 4 · queda bien</title><rect class="sv" x="598" y="62" width="92" height="19" rx="5"/><text class="tcs" x="644" y="75" text-anchor="middle">✓ su tanda</text></g><g data-ir="g-4"><title>Etapa 4 · queda bien</title><rect class="sv" x="696" y="62" width="92" height="19" rx="5"/><text class="tcs" x="742" y="75" text-anchor="middle">✓ su tanda</text></g><g data-ir="g-4"><title>Etapa 4 · queda bien</title><rect class="sv" x="794" y="62" width="92" height="19" rx="5"/><text class="tcs" x="840" y="75" text-anchor="middle">✓ su tanda</text></g><g data-ir="g-4"><title>Etapa 4 · queda bien</title><rect class="sv" x="500" y="62" width="92" height="19" rx="5"/><text class="tcs" x="546" y="75" text-anchor="middle">✓ su tanda ×2</text></g><g data-ir="g-5"><title>Etapa 5 · queda bien</title><rect class="sv" x="10" y="86" width="92" height="19" rx="5"/><text class="tcs" x="56" y="99" text-anchor="middle">✓ sus jueces</text></g><g data-ir="g-5"><title>Etapa 5 · queda bien</title><rect class="sv" x="108" y="86" width="92" height="19" rx="5"/><text class="tcs" x="154" y="99" text-anchor="middle">✓ sus jueces</text></g><g data-ir="g-5"><title>Etapa 5 · queda bien</title><rect class="sv" x="206" y="86" width="92" height="19" rx="5"/><text class="tcs" x="252" y="99" text-anchor="middle">✓ sus jueces</text></g><g data-ir="g-5"><title>Etapa 5 · queda bien</title><rect class="sv" x="402" y="86" width="92" height="19" rx="5"/><text class="tcs" x="448" y="99" text-anchor="middle">✓ sus jueces</text></g><g data-ir="g-5"><title>Etapa 5 · queda bien</title><rect class="sv" x="696" y="86" width="92" height="19" rx="5"/><text class="tcs" x="742" y="99" text-anchor="middle">✓ sus jueces</text></g><g data-ir="g-5"><title>Etapa 5 · queda bien</title><rect class="sv" x="794" y="86" width="92" height="19" rx="5"/><text class="tcs" x="840" y="99" text-anchor="middle">✓ sus jueces</text></g><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="10" y="110" width="92" height="19" rx="5"/><text class="tcs" x="56" y="123" text-anchor="middle">✓ su «en curso»</text></g><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="108" y="110" width="92" height="19" rx="5"/><text class="tcs" x="154" y="123" text-anchor="middle">✓ su «en curso»</text></g><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="206" y="110" width="92" height="19" rx="5"/><text class="tcs" x="252" y="123" text-anchor="middle">✓ su «en curso»</text></g><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="304" y="110" width="92" height="19" rx="5"/><text class="tcs" x="350" y="123" text-anchor="middle">✓ su «en curso»</text></g><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="402" y="110" width="92" height="19" rx="5"/><text class="tcs" x="448" y="123" text-anchor="middle">✓ su «en curso»</text></g><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="500" y="110" width="92" height="19" rx="5"/><text class="tcs" x="546" y="123" text-anchor="middle">✓ su «en curso»</text></g><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="598" y="110" width="92" height="19" rx="5"/><text class="tcs" x="644" y="123" text-anchor="middle">✓ su «en curso»</text></g><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="696" y="110" width="92" height="19" rx="5"/><text class="tcs" x="742" y="123" text-anchor="middle">✓ su «en curso»</text></g><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="794" y="110" width="92" height="19" rx="5"/><text class="tcs" x="840" y="123" text-anchor="middle">✓ su «en curso»</text></g><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="892" y="110" width="92" height="19" rx="5"/><text class="tcs" x="938" y="123" text-anchor="middle">✓ su «en curso»</text></g><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="10" y="134" width="92" height="19" rx="5"/><text class="tcs" x="56" y="147" text-anchor="middle">✓ su lanzar</text></g><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="108" y="134" width="92" height="19" rx="5"/><text class="tcs" x="154" y="147" text-anchor="middle">✓ su lanzar</text></g><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="304" y="134" width="92" height="19" rx="5"/><text class="tcs" x="350" y="147" text-anchor="middle">✓ su lanzar</text></g><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="500" y="134" width="92" height="19" rx="5"/><text class="tcs" x="546" y="147" text-anchor="middle">✓ su lanzar</text></g><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="598" y="134" width="92" height="19" rx="5"/><text class="tcs" x="644" y="147" text-anchor="middle">✓ su lanzar</text></g><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="696" y="134" width="92" height="19" rx="5"/><text class="tcs" x="742" y="147" text-anchor="middle">✓ su lanzar</text></g><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="794" y="134" width="92" height="19" rx="5"/><text class="tcs" x="840" y="147" text-anchor="middle">✓ su lanzar</text></g><g data-ir="g-6"><title>Etapa 6 · medio</title><rect class="sn" x="10" y="158" width="92" height="19" rx="5"/><text class="tcs" x="56" y="171" text-anchor="middle">relee cada 5 s</text></g><g data-ir="g-5"><title>Etapa 5 · queda bien</title><rect class="sv" x="402" y="158" width="92" height="19" rx="5"/><text class="tcs" x="448" y="171" text-anchor="middle">✓ reloj de 10 s</text></g><g data-ir="g-8"><title>Etapa 8 · medio</title><rect class="sn" x="892" y="158" width="92" height="19" rx="5"/><text class="tcs" x="938" y="171" text-anchor="middle">reloj de 10 s</text></g><g data-ir="g-7"><title>Etapa 7 · medio</title><rect class="sn" x="10" y="182" width="92" height="19" rx="5"/><text class="tcs" x="56" y="195" text-anchor="middle">cola cada 2 s</text></g><g data-ir="g-9"><title>Etapa 9 · crítico</title><rect class="sr" x="402" y="182" width="92" height="19" rx="5"/><text class="tcs" x="448" y="195" text-anchor="middle">su estimación</text></g><g data-ir="g-9"><title>Etapa 9 · crítico</title><rect class="sr" x="500" y="182" width="92" height="19" rx="5"/><text class="tcs" x="546" y="195" text-anchor="middle">su estimación</text></g><g data-ir="g-9"><title>Etapa 9 · crítico</title><rect class="sr" x="892" y="182" width="92" height="19" rx="5"/><text class="tcs" x="938" y="195" text-anchor="middle">su estimación</text></g><g data-ir="g-6"><title>Etapa 6 · leve</title><path class="lam ld" d="M56,214 L840,214"/><path class="lam" d="M56,205 L56,214"/><path class="lam" d="M154,205 L154,214"/><path class="lam" d="M252,205 L252,214"/><path class="lam" d="M350,205 L350,214"/><path class="lam" d="M742,205 L742,214"/><path class="lam" d="M840,205 L840,214"/><rect class="fondo" x="401" y="200" width="206" height="15" rx="3"/><text class="tam" style="font-size:10.5px;font-weight:700" x="406" y="211" text-anchor="start">canal entre pestañas · el análisis</text></g><path class="l" d="M56,220 L56,348"/><path class="l" d="M154,220 L154,348"/><path class="l" d="M252,220 L252,348"/><path class="l" d="M350,220 L350,348"/><path class="l" d="M448,220 L448,348"/><path class="l" d="M546,220 L546,348"/><path class="l" d="M644,220 L644,348"/><path class="l" d="M742,220 L742,348"/><path class="l" d="M840,220 L840,348"/><path class="l" d="M938,220 L938,348"/><g data-ir="g-7"><title>Etapa 7 · leve</title><path class="lam ld" d="M628,206 L628,236 L40,236 L40,226" marker-end="url(#md-g)"/><rect class="fondo" x="113" y="239" width="252" height="15" rx="3"/><text class="tam" style="font-size:10.5px;font-weight:700" x="118" y="250" text-anchor="start">Comparar importa el estado de Correcciones</text></g><g data-ir="g-1"><title>Etapas 1 a 9 · leve</title><rect class="sa parcial" x="330" y="262" width="400" height="26" rx="7"/><text class="tc" x="530" y="279" text-anchor="middle">◐ 26 lugares siguen armando su propio cliente</text></g><g data-ir="g-4"><title>Etapa 4 · crítico</title><rect class="fondo" x="103" y="309" width="309" height="15" rx="3"/><text class="tv" style="font-size:10.5px;font-weight:700" x="108" y="320" text-anchor="start">✓ elegir una tanda vieja ya no cambia la de Publicar</text></g><rect class="b2" x="10" y="350" width="980" height="236" rx="11"/><text class="tz" x="22" y="368" text-anchor="start">EL SERVIDOR DEL TABLERO · 91 ARCHIVOS · AL 24/10</text><g data-ir="g-4"><title>Etapa 4 · queda bien</title><rect class="sv" x="22" y="388" width="232" height="38" rx="7"/><text class="tc" x="32" y="411">✓ La tanda elegida: una para todos</text><rect class="bd" x="231" y="399" width="18" height="15" rx="7.5"/><text class="bdt" x="240.0" y="410" text-anchor="middle">4</text></g><g data-ir="g-8"><title>Etapa 8 · crítico</title><rect class="sr" x="264" y="388" width="232" height="38" rx="7"/><text class="tc" x="274" y="411">Leer escribe, y cierra corridas</text><rect class="bd" x="473" y="399" width="18" height="15" rx="7.5"/><text class="bdt" x="482.0" y="410" text-anchor="middle">8</text></g><g data-ir="g-3"><title>Etapa 3 · queda bien</title><rect class="sv" x="506" y="388" width="232" height="38" rx="7"/><text class="tc" x="516" y="411">✓ Siete «corriendo» distintos</text><rect class="bd" x="715" y="399" width="18" height="15" rx="7.5"/><text class="bdt" x="724.0" y="410" text-anchor="middle">3</text></g><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="748" y="388" width="232" height="38" rx="7"/><text class="tc" x="758" y="411">✓ Un problema se cierra al leerlo</text><rect class="bd" x="957" y="399" width="18" height="15" rx="7.5"/><text class="bdt" x="966.0" y="410" text-anchor="middle">1</text></g><g data-ir="g-5"><title>Etapa 5 · crítico</title><rect class="sr parcial" x="22" y="436" width="232" height="38" rx="7"/><text class="tc" x="32" y="459">«Al día», de cuatro maneras</text><rect class="bd" x="231" y="447" width="18" height="15" rx="7.5"/><text class="bdt" x="240.0" y="458" text-anchor="middle">5</text></g><g data-ir="g-6"><title>Etapa 6 · crítico</title><rect class="sr" x="264" y="436" width="232" height="38" rx="7"/><text class="tc" x="274" y="459">Una corrida vacía tapa opiniones</text><rect class="bd" x="473" y="447" width="18" height="15" rx="7.5"/><text class="bdt" x="482.0" y="458" text-anchor="middle">6</text></g><g data-ir="g-6"><title>Etapa 6 · crítico</title><rect class="sr" x="506" y="436" width="232" height="38" rx="7"/><text class="tc" x="516" y="459">«Faltan», con dos criterios</text><rect class="bd" x="715" y="447" width="18" height="15" rx="7.5"/><text class="bdt" x="724.0" y="458" text-anchor="middle">6</text></g><g data-ir="g-9"><title>Etapa 9 · crítico</title><rect class="sr" x="748" y="436" width="232" height="38" rx="7"/><text class="tc" x="758" y="459">Cuatro cuentas de costo</text><rect class="bd" x="957" y="447" width="18" height="15" rx="7.5"/><text class="bdt" x="966.0" y="458" text-anchor="middle">9</text></g><g data-ir="g-4"><title>Etapa 4 · queda bien</title><rect class="sv" x="22" y="484" width="232" height="38" rx="7"/><text class="tc" x="32" y="507">✓ El orden del curso no se relee</text><rect class="bd" x="231" y="495" width="18" height="15" rx="7.5"/><text class="bdt" x="240.0" y="506" text-anchor="middle">4</text></g><g data-ir="g-5"><title>Etapa 5 · queda bien</title><rect class="sv" x="264" y="484" width="232" height="38" rx="7"/><text class="tc" x="274" y="507">✓ Promover un juez no vence nada</text><rect class="bd" x="473" y="495" width="18" height="15" rx="7.5"/><text class="bdt" x="482.0" y="506" text-anchor="middle">5</text></g><g data-ir="g-7"><title>Etapa 7 · medio</title><rect class="sn" x="506" y="484" width="232" height="38" rx="7"/><text class="tc" x="516" y="507">Decidir relee decenas de MB</text><rect class="bd" x="715" y="495" width="18" height="15" rx="7.5"/><text class="bdt" x="724.0" y="506" text-anchor="middle">7</text></g><g data-ir="g-8"><title>Etapa 8 · medio</title><rect class="sn" x="748" y="484" width="232" height="38" rx="7"/><text class="tc" x="758" y="507">Probar avanza sin avisar</text><rect class="bd" x="957" y="495" width="18" height="15" rx="7.5"/><text class="bdt" x="966.0" y="506" text-anchor="middle">8</text></g><g data-ir="g-9"><title>Etapa 9 · medio</title><rect class="sn" x="22" y="532" width="232" height="38" rx="7"/><text class="tc" x="32" y="555">Memorias que vencen con «releer»</text><rect class="bd" x="231" y="543" width="18" height="15" rx="7.5"/><text class="bdt" x="240.0" y="554" text-anchor="middle">9</text></g><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="264" y="532" width="232" height="38" rx="7"/><text class="tc" x="274" y="555">✓ Al reiniciar, 403 mudos</text><rect class="bd" x="473" y="543" width="18" height="15" rx="7.5"/><text class="bdt" x="482.0" y="554" text-anchor="middle">1</text></g><g data-ir="g-5"><title>Etapa 5 · queda bien</title><rect class="sv" x="506" y="532" width="232" height="38" rx="7"/><text class="tc" x="516" y="555">✓ Los jueces, en cinco memorias</text><rect class="bd" x="715" y="543" width="18" height="15" rx="7.5"/><text class="bdt" x="724.0" y="554" text-anchor="middle">5</text></g><g data-ir="g-2"><title>Etapa 2 · leve</title><rect class="sa parcial" x="748" y="532" width="232" height="38" rx="7"/><text class="tc" x="758" y="555">Dos maneras de vencer memorias</text><rect class="bd" x="957" y="543" width="18" height="15" rx="7.5"/><text class="bdt" x="966.0" y="554" text-anchor="middle">2</text></g><path class="l" d="M500,586 L500,616"/><rect class="b2" x="10" y="616" width="980" height="92" rx="11"/><text class="tz" x="22" y="634" text-anchor="start">EL DISCO, EL CLI Y LA TERMINAL</text><g data-ir="g-2"><title>Etapa 2 · queda bien</title><rect class="sv" x="22" y="646" width="350" height="40" rx="7"/><text class="tc" x="32" y="664">✓ La terminal escribe y nadie se entera</text><text class="tcs" x="32" y="677">un examen, un cierre o una medición desde la terminal</text><rect class="bd" x="349" y="658" width="18" height="15" rx="7.5"/><text class="bdt" x="358.0" y="669" text-anchor="middle">2</text></g><g data-ir="g-2"><title>Etapa 2 · queda bien</title><rect class="sv" x="384" y="646" width="350" height="40" rx="7"/><text class="tc" x="394" y="664">✓ Cada pestaña pregunta cada 3 o 10 s</text><text class="tcs" x="394" y="677">aunque nada cambie: diez pantallas, cada pestaña</text><rect class="bd" x="711" y="658" width="18" height="15" rx="7.5"/><text class="bdt" x="720.0" y="669" text-anchor="middle">2</text></g><text class="tcs" x="980" y="672" text-anchor="end">las carpetas de la campaña</text></svg><svg class="dg dg-fin" viewBox="0 0 1000 716" role="img" aria-label="Al final: las diez pantallas leen un solo store, que habla con el servidor por una sola puerta; el servidor tiene un servicio por tema y avisa cuando algo cambia, también lo de la terminal"><defs><marker id="mf-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf"/></marker></defs><defs><marker id="mf-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pfa"/></marker></defs><defs><marker id="mf-i" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pfi"/></marker></defs><defs><marker id="mf-v" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pfv"/></marker></defs><text class="tz" x="10" y="14" text-anchor="start">LAS DIEZ PANTALLAS</text><rect class="b" x="10" y="24" width="92" height="30" rx="7"/><text class="tc" x="56" y="43" text-anchor="middle">Correcciones</text><rect class="b" x="108" y="24" width="92" height="30" rx="7"/><text class="tc" x="154" y="43" text-anchor="middle">Mapa</text><rect class="b" x="206" y="24" width="92" height="30" rx="7"/><text class="tc" x="252" y="43" text-anchor="middle">Estadísticas</text><rect class="b" x="304" y="24" width="92" height="30" rx="7"/><text class="tc" x="350" y="43" text-anchor="middle">Ejecuciones</text><rect class="b" x="402" y="24" width="92" height="30" rx="7"/><text class="tc" x="448" y="43" text-anchor="middle">Exámenes</text><rect class="b" x="500" y="24" width="92" height="30" rx="7"/><text class="tc" x="546" y="43" text-anchor="middle">Vueltas</text><rect class="b" x="598" y="24" width="92" height="30" rx="7"/><text class="tc" x="644" y="43" text-anchor="middle">Comparar</text><rect class="b" x="696" y="24" width="92" height="30" rx="7"/><text class="tc" x="742" y="43" text-anchor="middle">Publicar</text><rect class="b" x="794" y="24" width="92" height="30" rx="7"/><text class="tc" x="840" y="43" text-anchor="middle">Analizadores</text><rect class="b" x="892" y="24" width="92" height="30" rx="7"/><text class="tc" x="938" y="43" text-anchor="middle">Problemas</text><text class="tz" x="990" y="14" text-anchor="end">CADA UNA, SÓLO LO SUYO</text><rect class="propio" x="10" y="62" width="92" height="19" rx="5"/><text class="tcs" x="56" y="75" text-anchor="middle">filtros, diálogos</text><path class="lv" d="M56,81 L56,116" marker-end="url(#mf-v)"/><rect class="propio" x="108" y="62" width="92" height="19" rx="5"/><text class="tcs" x="154" y="75" text-anchor="middle">filtros, diálogos</text><path class="lv" d="M154,81 L154,116" marker-end="url(#mf-v)"/><rect class="propio" x="206" y="62" width="92" height="19" rx="5"/><text class="tcs" x="252" y="75" text-anchor="middle">filtros, diálogos</text><path class="lv" d="M252,81 L252,116" marker-end="url(#mf-v)"/><rect class="propio" x="304" y="62" width="92" height="19" rx="5"/><text class="tcs" x="350" y="75" text-anchor="middle">filtros, diálogos</text><path class="lv" d="M350,81 L350,116" marker-end="url(#mf-v)"/><rect class="propio" x="402" y="62" width="92" height="19" rx="5"/><text class="tcs" x="448" y="75" text-anchor="middle">filtros, diálogos</text><path class="lv" d="M448,81 L448,116" marker-end="url(#mf-v)"/><rect class="propio" x="500" y="62" width="92" height="19" rx="5"/><text class="tcs" x="546" y="75" text-anchor="middle">filtros, diálogos</text><path class="lv" d="M546,81 L546,116" marker-end="url(#mf-v)"/><rect class="propio" x="598" y="62" width="92" height="19" rx="5"/><text class="tcs" x="644" y="75" text-anchor="middle">filtros, diálogos</text><path class="lv" d="M644,81 L644,116" marker-end="url(#mf-v)"/><rect class="propio" x="696" y="62" width="92" height="19" rx="5"/><text class="tcs" x="742" y="75" text-anchor="middle">filtros, diálogos</text><path class="lv" d="M742,81 L742,116" marker-end="url(#mf-v)"/><rect class="propio" x="794" y="62" width="92" height="19" rx="5"/><text class="tcs" x="840" y="75" text-anchor="middle">filtros, diálogos</text><path class="lv" d="M840,81 L840,116" marker-end="url(#mf-v)"/><rect class="propio" x="892" y="62" width="92" height="19" rx="5"/><text class="tcs" x="938" y="75" text-anchor="middle">filtros, diálogos</text><path class="lv" d="M938,81 L938,116" marker-end="url(#mf-v)"/><rect class="sv" x="10" y="118" width="980" height="166" rx="11" style="fill-opacity:.55"/><text class="tz" x="22" y="136" text-anchor="start">EL STORE DE LA PESTAÑA · UNO SOLO, LO LEEN LAS DIEZ</text><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="22" y="148" width="151" height="32" rx="7"/><text class="tc" x="32" y="168">actividad</text><rect class="bd" x="150" y="156" width="18" height="15" rx="7.5"/><text class="bdt" x="159.0" y="167" text-anchor="middle">1</text></g><g data-ir="g-3"><title>Etapa 3 · queda bien</title><rect class="sv" x="183" y="148" width="151" height="32" rx="7"/><text class="tc" x="193" y="168">corridas</text><rect class="bd" x="311" y="156" width="18" height="15" rx="7.5"/><text class="bdt" x="320.0" y="167" text-anchor="middle">3</text></g><g data-ir="g-4"><title>Etapa 4 · queda bien</title><rect class="sv" x="344" y="148" width="151" height="32" rx="7"/><text class="tc" x="354" y="168">tanda</text><rect class="bd" x="472" y="156" width="18" height="15" rx="7.5"/><text class="bdt" x="481.0" y="167" text-anchor="middle">4</text></g><g data-ir="g-5"><title>Etapa 5 · queda bien</title><rect class="sv" x="505" y="148" width="151" height="32" rx="7"/><text class="tc" x="515" y="168">jueces</text><rect class="bd" x="633" y="156" width="18" height="15" rx="7.5"/><text class="bdt" x="642.0" y="167" text-anchor="middle">5</text></g><g data-ir="g-6"><title>Etapa 6 · queda bien</title><rect class="sv" x="666" y="148" width="151" height="32" rx="7"/><text class="tc" x="676" y="168">análisis</text><rect class="bd" x="794" y="156" width="18" height="15" rx="7.5"/><text class="bdt" x="803.0" y="167" text-anchor="middle">6</text></g><g data-ir="g-6"><title>Etapa 6 · queda bien</title><rect class="sv" x="827" y="148" width="151" height="32" rx="7"/><text class="tc" x="837" y="168">opiniones</text><rect class="bd" x="955" y="156" width="18" height="15" rx="7.5"/><text class="bdt" x="964.0" y="167" text-anchor="middle">6</text></g><g data-ir="g-7"><title>Etapa 7 · queda bien</title><rect class="sv" x="22" y="190" width="151" height="32" rx="7"/><text class="tc" x="32" y="210">cambios</text><rect class="bd" x="150" y="198" width="18" height="15" rx="7.5"/><text class="bdt" x="159.0" y="209" text-anchor="middle">7</text></g><g data-ir="g-7"><title>Etapa 7 · queda bien</title><rect class="sv" x="183" y="190" width="151" height="32" rx="7"/><text class="tc" x="193" y="210">decisiones</text><rect class="bd" x="311" y="198" width="18" height="15" rx="7.5"/><text class="bdt" x="320.0" y="209" text-anchor="middle">7</text></g><g data-ir="g-8"><title>Etapa 8 · queda bien</title><rect class="sv" x="344" y="190" width="151" height="32" rx="7"/><text class="tc" x="354" y="210">problemas</text><rect class="bd" x="472" y="198" width="18" height="15" rx="7.5"/><text class="bdt" x="481.0" y="209" text-anchor="middle">8</text></g><g data-ir="g-9"><title>Etapa 9 · queda bien</title><rect class="sv" x="505" y="190" width="151" height="32" rx="7"/><text class="tc" x="515" y="210">resúmenes</text><rect class="bd" x="633" y="198" width="18" height="15" rx="7.5"/><text class="bdt" x="642.0" y="209" text-anchor="middle">9</text></g><g data-ir="g-9"><title>Etapa 9 · queda bien</title><rect class="sv" x="666" y="190" width="151" height="32" rx="7"/><text class="tc" x="676" y="210">estimación</text><rect class="bd" x="794" y="198" width="18" height="15" rx="7.5"/><text class="bdt" x="803.0" y="209" text-anchor="middle">9</text></g><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="827" y="190" width="151" height="32" rx="7"/><text class="tc" x="837" y="210">sesión</text><rect class="bd" x="955" y="198" width="18" height="15" rx="7.5"/><text class="bdt" x="964.0" y="209" text-anchor="middle">1</text></g><g data-ir="g-4"><title>Etapa 4 · queda bien</title><rect class="sv" x="22" y="238" width="944" height="34" rx="7"/><text class="tc" x="32" y="259">Lo que estás mirando: la tanda, la corrida, el juez · también en la URL</text><rect class="bd" x="943" y="247" width="18" height="15" rx="7.5"/><text class="bdt" x="952.0" y="258" text-anchor="middle">4</text></g><path class="lv" d="M450,284 L450,302"/><g data-ir="g-1"><title>Etapa 1 · queda bien</title><rect class="sv" x="10" y="302" width="890" height="34" rx="7"/><text class="tc" x="20" y="323">La puerta: el único módulo que habla con el servidor · dos pedidos iguales son uno</text><rect class="bd" x="877" y="311" width="18" height="15" rx="7.5"/><text class="bdt" x="886.0" y="322" text-anchor="middle">1</text></g><path class="lv" d="M450,336 L450,368" marker-end="url(#mf-v)"/><text class="tv" style="font-size:10.5px;font-weight:700" x="458" y="356">un solo camino</text><path class="lv ld" d="M945,398 L945,288" marker-end="url(#mf-v)"/><text class="tv" style="font-size:10.5px;font-weight:700" x="938" y="330" text-anchor="end">avisos</text><rect class="b2" x="10" y="370" width="980" height="216" rx="11"/><text class="tz" x="22" y="388" text-anchor="start">EL SERVIDOR · UN SERVICIO POR TEMA, CADA TEMA CON SU VERSIÓN</text><g data-ir="g-2"><title>Etapa 2 · queda bien</title><rect class="sv" x="22" y="400" width="232" height="46" rx="7"/><text class="tc" x="32" y="421">Novedades</text><text class="tcs" x="32" y="434">una versión por tema, y el canal</text><rect class="bd" x="231" y="415" width="18" height="15" rx="7.5"/><text class="bdt" x="240.0" y="426" text-anchor="middle">2</text></g><g data-ir="g-1"><title>Etapa 1 y 3 · queda bien</title><rect class="sv" x="264" y="400" width="232" height="46" rx="7"/><text class="tc" x="274" y="421">Actividad</text><text class="tcs" x="274" y="434">el vigilante cierra todo</text><rect class="bd" x="461" y="415" width="30" height="15" rx="7.5"/><text class="bdt" x="476.0" y="426" text-anchor="middle">1·3</text></g><g data-ir="g-4"><title>Etapa 4 · queda bien</title><rect class="sv" x="506" y="400" width="232" height="46" rx="7"/><text class="tc" x="516" y="421">Tandas</text><text class="tcs" x="516" y="434">un lector, por número</text><rect class="bd" x="715" y="415" width="18" height="15" rx="7.5"/><text class="bdt" x="724.0" y="426" text-anchor="middle">4</text></g><g data-ir="g-5"><title>Etapa 5 · queda bien</title><rect class="sv" x="748" y="400" width="232" height="46" rx="7"/><text class="tc" x="758" y="421">Jueces</text><text class="tcs" x="758" y="434">un catálogo, «al día» una vez</text><rect class="bd" x="957" y="415" width="18" height="15" rx="7.5"/><text class="bdt" x="966.0" y="426" text-anchor="middle">5</text></g><g data-ir="g-6"><title>Etapa 6 · queda bien</title><rect class="sv" x="22" y="458" width="232" height="46" rx="7"/><text class="tc" x="32" y="479">Análisis</text><text class="tcs" x="32" y="492">una cuenta de lo que falta</text><rect class="bd" x="231" y="473" width="18" height="15" rx="7.5"/><text class="bdt" x="240.0" y="484" text-anchor="middle">6</text></g><g data-ir="g-7"><title>Etapa 7 · queda bien</title><rect class="sv" x="264" y="458" width="232" height="46" rx="7"/><text class="tc" x="274" y="479">Cambios y decisiones</text><text class="tcs" x="274" y="492">decidir cambia una y avisa</text><rect class="bd" x="473" y="473" width="18" height="15" rx="7.5"/><text class="bdt" x="482.0" y="484" text-anchor="middle">7</text></g><g data-ir="g-8"><title>Etapa 8 · queda bien</title><rect class="sv" x="506" y="458" width="232" height="46" rx="7"/><text class="tc" x="516" y="479">Problemas</text><text class="tcs" x="516" y="492">leer nunca escribe</text><rect class="bd" x="715" y="473" width="18" height="15" rx="7.5"/><text class="bdt" x="724.0" y="484" text-anchor="middle">8</text></g><g data-ir="g-9"><title>Etapa 9 · queda bien</title><rect class="sv" x="748" y="458" width="232" height="46" rx="7"/><text class="tc" x="758" y="479">Resúmenes</text><text class="tcs" x="758" y="492">una estimación para todos</text><rect class="bd" x="957" y="473" width="18" height="15" rx="7.5"/><text class="bdt" x="966.0" y="484" text-anchor="middle">9</text></g><text class="tv" style="font-size:11px;font-weight:650" x="500" y="540" text-anchor="middle">las memorias vencen cuando sube la versión de su tema · ninguna pantalla necesita «releer»</text><text class="tcs" x="500" y="562" text-anchor="middle">la sesión vencida se avisa en todas las pantallas, con un botón para recargar</text><path class="lv" d="M500,586 L500,616"/><rect class="b2" x="10" y="616" width="980" height="92" rx="11"/><text class="tz" x="22" y="634" text-anchor="start">EL DISCO, EL CLI Y LA TERMINAL</text><g data-ir="g-2"><title>Etapa 2 · queda bien</title><rect class="sv" x="22" y="646" width="350" height="40" rx="7"/><text class="tc" x="32" y="664">El vigía de carpetas</text><text class="tcs" x="32" y="677">lo que se hace en la terminal también avisa</text><rect class="bd" x="349" y="658" width="18" height="15" rx="7.5"/><text class="bdt" x="358.0" y="669" text-anchor="middle">2</text></g><g data-ir="g-2"><title>Etapa 2 · queda bien</title><rect class="sv" x="384" y="646" width="350" height="40" rx="7"/><text class="tc" x="394" y="664">Un aviso por cambio, no un reloj</text><text class="tcs" x="394" y="677">un control cada 60 s, por si se cortó el canal</text><rect class="bd" x="711" y="658" width="18" height="15" rx="7.5"/><text class="bdt" x="720.0" y="669" text-anchor="middle">2</text></g><text class="tcs" x="980" y="672" text-anchor="end">las carpetas de la campaña</text></svg></div>
+  <section class="sl" data-t="Una sola lista">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Una sola lista</span> · pieza 1 de 4 <span class="an">hoy → con la etapa</span></div>
+      <h2>Anotás con P y aparece en Problemas sin recargar</h2>
+      <div class="body">
+        <div class="ad">
+          <div class="lado antes"><span class="rot">Hoy</span>
+            <div class="mark"><span class="x">✕</span><span>Anotás en Correcciones; Problemas lo trae a los 10 s.</span></div>
+            <div class="mark"><span class="x">✕</span><span>Otra pestaña de Correcciones no se entera nunca.</span></div>
+          </div>
+          <div class="lado despues"><span class="rot">Con la etapa</span>
+            <div class="mark ok"><span class="x">→</span><span>Una lista por pestaña; las dos pantallas la leen.</span></div>
+            <div class="mark ok"><span class="x">→</span><span>Tu pestaña lo ve enseguida; las otras, con el aviso.</span></div>
+            <div class="mark ok"><span class="x">→</span><span>Sin reloj: relee con el aviso y al volver.</span></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <p class="pie">Lo verde ya no está: cada pantalla dejó su copia de la tanda, los jueces y «en curso». Siguen los relojes, las estimaciones y los clientes propios.</p>
+    <div class="foot"><span>js/estado/problemas.js nuevo (única que nombra /api/problemas) · etiqueta «problemas» en avisos.js · sin canal, cada 10 s como hoy</span><span class="pg"></span></div>
   </section>
 
-  <section>
-    <h2>Cuatro etapas cumplieron lo prometido; la 5, a medias</h2>
-    <div class="tw"><table>
-      <thead><tr><th>Etapa</th><th>Prometía</th><th>Quedó</th><th></th></tr></thead>
-      <tbody>
-        <tr><td>1 · Lo que corre</td><td>Un store por pantalla; se va el sondeo propio</td><td>Stores 13 → 2; «en curso» 540 → 221 líneas</td><td><span class="pill p-ok">cumplió</span></td></tr>
-        <tr><td>2 · El servidor avisa</td><td>Lo de la terminal llega en ≤ 1 s</td><td>Diez pantallas dicen «Terminó» en 2 a 822 ms; al terminar, una cola de relecturas de hasta 6 s</td><td><span class="pill p-ok">cumplió</span></td></tr>
-        <tr><td>3 · Las corridas</td><td>Ejecuciones suelta sus 567 líneas</td><td>567 → 269; un solo «corriendo»</td><td><span class="pill p-ok">cumplió</span></td></tr>
-        <tr><td>4 · La tanda</td><td>11 lecturas → 1; la tanda en el link</td><td>Una consulta, una guardia y 4 de 4 pruebas a mano</td><td><span class="pill p-ok">cumplió</span></td></tr>
-        <tr><td>5 · Jueces</td><td>Un catálogo; la marca en ≤ 1 s</td><td>Un catálogo, y el cierre usa el motor de cada juez; pero la marca tarda 3 s y Problemas cuenta aparte</td><td><span class="pill p-warn">a medias</span></td></tr>
-      </tbody></table></div>
-  </section>
-
-  <section>
-    <h2>El código creció: la capa común entró, lo viejo sigue</h2>
-    <div class="tw"><table>
-      <thead><tr><th>Medida</th><th>20/10</th><th>Hoy</th></tr></thead>
-      <tbody>
-        <tr><td>Líneas del navegador</td><td>32.545</td><td>37.441 <span class="pill p-warn">+4.896</span></td></tr>
-        <tr><td>Líneas del servidor</td><td>19.392</td><td>25.578 <span class="pill p-warn">+6.186</span></td></tr>
-        <tr><td>Relojes que preguntan solos</td><td>3</td><td>2</td></tr>
-        <tr><td>Clientes propios fuera del estado común</td><td>27</td><td>26</td></tr>
-        <tr><td>Pedidos con «releer»: navegador · servidor</td><td>23 · 8</td><td>21 · 10</td></tr>
-      </tbody></table></div>
-    <p class="pie">Del crecimiento, 2.163 líneas son el estado común; el resto, tus funciones nuevas. Las pantallas sueltan su código recién en las etapas 6 a 9.</p>
-  </section>
-
-  <section>
-    <h2>Mi opinión: buenas bases, poca mejora que se sienta</h2>
-    <div class="cambia">
-      <div class="si"><div class="ptl">Mejoró de verdad</div><ul>
-        <li>Lo que corre, la tanda y los jueces dicen lo mismo en cada pantalla.</li>
-        <li>Un trabajo terminado ya no queda «en progreso» hasta que alguien mire.</li>
-        <li>Lo que pasa en la terminal llega solo, en menos de un segundo.</li>
-        <li>Hay guardias: volver a copiar la tanda o un juez rompe una prueba.</li></ul></div>
-      <div class="no"><div class="ptl">Todavía no</div><ul>
-        <li>«Faltan 5» y la corrida vacía que tapa opiniones: etapa 6.</li>
-        <li>Lo lento: decidir relee decenas de MB y Correcciones relee cada 5 s.</li>
-        <li>Leer Problemas todavía escribe archivos.</li>
-        <li>Lo nuevo entra por afuera: evolución y estadísticas sumaron «releer».</li></ul></div>
+  <section class="sl" data-t="La ficha y sus pasos">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">La ficha</span> · pieza 1 de 4 <span class="an">cómo se lee</span></div>
+      <h2>Un paso guarda su corrida; si corre, lo dice Ejecuciones</h2>
+      <div class="body arriba">
+        <div class="flow">
+          <div class="st"><span class="i">1</span><span class="h">Elegís un problema</span><span class="d">Se piden ficha, inspección, pasos y prueba, una vez.</span></div>
+          <div class="st"><span class="i">2</span><span class="h">Un paso, su corrida</span><span class="d">Guarda el número, no si corre.</span></div>
+          <div class="st"><span class="i">3</span><span class="h">¿Corre?</span><span class="d">Lo dice la tabla de corridas, como en Ejecuciones.</span></div>
+          <div class="st end"><span class="i">4</span><span class="h">Termina</span><span class="d">El paso y Ejecuciones dicen lo mismo a la vez.</span></div>
+        </div>
+      </div>
     </div>
-    <div class="call c-warn"><b>Veredicto:</b> el diseño funciona y no rompió nada, pero el tablero es más confiable, no más rápido. Lo que se nota llega con la 6, la 7 y la 8.</div>
+    <div class="foot"><span>Consultas de la puerta: problemas, inspeccion(id), pasos(id), solucion(id) · situacionDeLaCorrida (F-CORRI) · releerAlTerminar sigue</span><span class="pg"></span></div>
   </section>
 
-  <section>
-    <h2>Qué necesito de vos</h2>
-    <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Qué etapas abrimos ahora?</span>
-        <div class="ops"><span class="op rec">La 6 y la 8 · recomendado</span><span class="op">Las cuatro</span></div>
-        <span class="why">Sacan tres de los cuatro críticos que quedan y casi no se pisan; la 7 y la 9 chocan con la 6.</span></div>
-      <div class="ask"><span class="q">2 · ¿Ponemos un tope a clientes propios y «releer»?</span>
-        <div class="ops"><span class="op rec">Sí, un tope que sólo baja · recomendado</span><span class="op">No</span></div>
-        <span class="why">Sin él, cada función nueva vuelve a armar la maraña: pasó con evolución y estadísticas.</span></div>
-      <div class="ask"><span class="q">3 · ¿Alcanza con que la marca de un juez tarde 3 s?</span>
-        <div class="ops"><span class="op rec">Alcanza · recomendado</span><span class="op">Exigir 1 s</span></div>
-        <span class="why">2,9 s es lo que tarda en arrancar el comando del examen; bajarlo pide tocar content-audit.</span></div>
+  <section class="sl" data-t="Leer no escribe">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Leer no escribe</span> · pieza 2 de 4 <span class="an">hoy → con la etapa</span></div>
+      <h2>Mirar una ficha no cambia ningún archivo</h2>
+      <div class="body">
+        <div class="ad">
+          <div class="lado antes"><span class="rot">Al leer, hoy</span>
+            <div class="mark"><span class="x">✕</span><span>Rehace y guarda la medición de un trabajo viejo.</span></div>
+            <div class="mark"><span class="x">✕</span><span>Guarda por qué falló (un 429, la cuota).</span></div>
+            <div class="mark"><span class="x">✕</span><span>Prepara el examen fijo: hasta un minuto.</span></div>
+          </div>
+          <div class="lado despues"><span class="rot">Con la etapa</span>
+            <div class="mark ok"><span class="x">→</span><span>La lectura la rehace en memoria; la guarda el vigilante.</span></div>
+            <div class="mark ok"><span class="x">→</span><span>Igual: lo guarda el vigilante, una vez.</span></div>
+            <div class="mark ok"><span class="x">→</span><span>Se prepara al tocar Probar, un paso o Rendir.</span></div>
+          </div>
+        </div>
+      </div>
     </div>
+    <div class="foot"><span>_completar sin _save en la lectura; el re-escaneo del vigilante lo asienta · examenPermanente sólo lee preparation.json al leer · GET /api/examenes/preparar pasa a POST</span><span class="pg"></span></div>
   </section>
 
-  <footer>
-    <span>Fuentes: la propuesta v2 (42 problemas, «Qué ganamos» de cada etapa) · briefs 170, 171, 175, 180, 201 y 202 · memorias de cada etapa · medición repetible sobre ittm 2a922eb35 (20/10, 10:08) y 9f18d0c7c (24/10): archivos y líneas de <code>html/js</code> sin <code>vendor</code> y de <code>lib/tablero_html</code>, <code>createStore</code>/<code>configureStore</code>, <code>setInterval</code>, <code>crearCliente</code>/<code>crearApi</code> fuera de <code>js/estado</code>, pedidos con <code>releer=1</code>, pruebas que nombran F-CORRE, F-AVISO, F-CORRI, F-LATAN y F-JUECES. A medias: «dos maneras de vencer una memoria» (sigue hasta la etapa 9) y «al día de cuatro maneras» (Problemas y el examen fijo).</span>
-    <span>brief 203 · docs/briefs/203-como-viene-el-estado-unico.html</span>
-  </footer>
+  <section class="sl" data-t="Probar avisa">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Probar avisa</span> · pieza 3 de 4 <span class="an">cómo lo hace</span></div>
+      <h2>Probar avisa cuando algo cambió, no cada 2 s</h2>
+      <div class="body arriba">
+        <div class="flow">
+          <div class="st"><span class="i">1</span><span class="h">Avanza cada 2 s</span><span class="d">Como hoy, en el servidor.</span></div>
+          <div class="st"><span class="i">2</span><span class="h">¿Cambió algo?</span><span class="d">Un tema, una etapa, frenar, terminar.</span></div>
+          <div class="st"><span class="i">3</span><span class="h">Guarda y avisa</span><span class="d">Si no cambió, ni guarda ni avisa.</span></div>
+          <div class="st end"><span class="i">4</span><span class="h">La ficha relee</span><span class="d">Ves el avance sin preguntar.</span></div>
+        </div>
+        <div class="call c-warn">Hoy reescribe cada 2 s aunque nada cambie: con el aviso, la ficha releería cada 2 s.</div>
+      </div>
+    </div>
+    <div class="foot"><span>ProbarSolucion._save compara con lo guardado · novedades.subir(Tema.problemas) desde el servidor, no sólo por el vigía</span><span class="pg"></span></div>
+  </section>
 
+  <section class="sl" data-t="El juez del catálogo">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">El juez, del catálogo</span> · pieza 4 de 4 <span class="an">tu respuesta 1</span></div>
+      <h2>Habilitado sólo con Gemini ya no es «primero debe aprobar»</h2>
+      <div class="body">
+        <div class="ad">
+          <div class="lado antes"><span class="rot">Hoy</span>
+            <div class="mark"><span class="x">✕</span><span>Problemas cuenta al juez aparte y frena.</span></div>
+            <div class="mark"><span class="x">✕</span><span>Exámenes y el Mapa dicen «habilitada».</span></div>
+          </div>
+          <div class="lado despues"><span class="rot">Con la etapa</span>
+            <div class="mark ok"><span class="x">→</span><span>Lee el estado del catálogo, como las siete.</span></div>
+            <div class="mark ok"><span class="x">→</span><span>Consulta con el motor del cierre; lo muestra antes de gastar.</span></div>
+            <div class="mark ok"><span class="x">→</span><span>Rendir el examen fijo, con el de siempre.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>estadoDeUnJuez del CatalogoDeJueces: habilitada, conElDeSiempre, closesWith (FEAT-CMOTOR) · hoy no le pasa a ninguno de los 11</span><span class="pg"></span></div>
+  </section>
+
+  <section class="sl" data-t="Cómo se prueba">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Cómo se prueba</span> · las tres de la propuesta, y guardias</div>
+      <h2>Las tres pruebas de la propuesta, más dos guardias</h2>
+      <div class="body">
+        <div class="panel">
+          <div class="dec">
+            <div class="r"><span class="q">Anotás un problema</span><span class="y">las dos pantallas lo tienen<span class="no">automática, dos pestañas de mentira</span></span></div>
+            <div class="r"><span class="q">Se lee una ficha</span><span class="y">no cambia ningún archivo<span class="no">automática, con carpetas de verdad</span></span></div>
+            <div class="r"><span class="q">Termina un paso</span><span class="y">el paso y Ejecuciones, iguales<span class="no">en una copia, sin modelos</span></span></div>
+            <div class="r"><span class="q">Guardias</span><span class="y">ninguna pantalla guarda un problema<span class="no">y una sola puerta nombra la ruta</span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>html/test (node --test) y test/tablero_html (flutter test) · copia de la campaña en 127.0.0.1:7845 con stubs de los motores</span><span class="pg"></span></div>
+  </section>
+
+  <section class="sl" data-t="Lo que no toca">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Lo que no toca</span> · lo que es de otras etapas o ya anda</div>
+      <h2>Cambia de dónde se lee, no qué se muestra</h2>
+      <div class="body abajo">
+        <div class="keep">
+          <div><b>Lo que dicen los pasos</b>Los mismos estados, textos y botones.</div>
+          <div><b>El costo de Probar</b>Entra al store; cómo se calcula es de la etapa 9.</div>
+          <div><b>El resto de Correcciones</b>Es de la 7; las opiniones, de la 6.</div>
+          <div><b>content-audit</b>No se toca: sus lecturas ya no escriben en la práctica.</div>
+        </div>
+        <p class="take">Si alguna tuviera que cambiar, <b>te llega como pregunta</b>.</p>
+      </div>
+    </div>
+    <div class="foot"><span>exam regressions toma el candado del curso y escribe el catálogo sólo si le falta un problema: lo verifico en la copia</span><span class="pg"></span></div>
+  </section>
+
+  <section class="sl" data-t="Lo que necesita de vos">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">Lo que necesita de vos</span> · con la recomendación</div>
+      <h2>Tu visto bueno para construirlo</h2>
+      <div class="body">
+        <div class="asks">
+          <div class="ask"><span class="q">¿Construyo este diseño?</span>
+            <div class="ops"><span class="op rec">Sí, construilo · recomendado</span><span class="op">Cambiá algo</span></div>
+            <span class="why">Junta las cuatro piezas en una rama; se junta a master en verde.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>Rama ittm claude/estado-etapa-8 · requisito nuevo F-PROBS en content-audit</span><span class="pg"></span></div>
+  </section>
+
+  <section class="sl cover" data-t="En una frase">
+    <div class="sl-in">
+      <div class="kick"><span class="tagq">En una frase</span></div>
+      <h1 class="frase">Una lista para las dos pantallas, una ficha que se lee sin escribir y una prueba que avisa sola.</h1>
+      <p class="sub">Con tu visto bueno, la construyo y te traigo el brief de lo hecho.</p>
+    </div>
+    <div class="foot"><span>Problemas · etapa 8</span><span class="pg"></span></div>
+  </section>
+
+<!-- ═══════════════ CONTENIDO: hasta acá ═══════════════ -->
+
+</main>
+
+
+
+<div class="toc" id="toc" hidden></div>
+<div class="nav">
+  <button type="button" id="bToc" aria-label="Índice">☰</button>
+  <button type="button" id="bPrev" aria-label="Anterior">↑</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button type="button" id="bNext" aria-label="Siguiente">↓</button>
 </div>
+
+<script>
+(function(){
+  /* navegación: flechas, avance de página, espacio, Inicio, Fin y Esc; ☰ abre el índice.
+     El número de página de cada .foot .pg y el del documento en el contador los pone esto. */
+  var sls=[].slice.call(document.querySelectorAll('#deck > .sl'));
+  var cur=0, cnt=document.getElementById('cnt'), prog=document.getElementById('prog'), toc=document.getElementById('toc');
+  var num=document.querySelector('.kick .num'); num=num?num.textContent.trim():'';
+  function pinta(){ cnt.textContent=(num?num+' · ':'')+(cur+1)+' / '+sls.length; prog.style.width=((cur+1)/sls.length*100)+'%'; }
+  function ir(i){ cur=Math.max(0,Math.min(sls.length-1,i)); sls[cur].scrollIntoView({behavior:'smooth',block:'start'}); pinta(); }
+  var obs=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting&&e.intersectionRatio>.55){ cur=sls.indexOf(e.target); pinta(); } }); },{threshold:[.55]});
+  sls.forEach(function(s,i){ obs.observe(s);
+    var pg=s.querySelector('.foot .pg'); if(pg) pg.textContent=(i+1)+' / '+sls.length;
+    var a=document.createElement('a'); a.href='#'; a.innerHTML='<small>'+(i+1)+'</small>'+(s.getAttribute('data-t')||('Diapositiva '+(i+1)));
+    a.addEventListener('click',function(ev){ev.preventDefault();toc.hidden=true;ir(i);}); toc.appendChild(a); });
+  document.getElementById('bPrev').onclick=function(){ir(cur-1)};
+  document.getElementById('bNext').onclick=function(){ir(cur+1)};
+  document.getElementById('bToc').onclick=function(){toc.hidden=!toc.hidden};
+  document.addEventListener('keydown',function(e){
+    if(e.target.closest&&e.target.closest('input,textarea'))return;
+    if(['ArrowDown','ArrowRight','PageDown',' '].indexOf(e.key)>=0){e.preventDefault();ir(cur+1);}
+    if(['ArrowUp','ArrowLeft','PageUp'].indexOf(e.key)>=0){e.preventDefault();ir(cur-1);}
+    if(e.key==='Home'){e.preventDefault();ir(0);} if(e.key==='End'){e.preventDefault();ir(sls.length-1);}
+    if(e.key==='Escape'){toc.hidden=true;}
+  });
+  pinta();
+})();
+</script>
 </body>
 </html>
