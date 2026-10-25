@@ -157,8 +157,10 @@ paquete E.
 <details><summary>Selección de can/could y criterios de aceptación</summary>
 
 En la lección confirmada por José el 24/10/2026, «Polite request» selecciona `could` y el pedido normal selecciona
-`can`. La ausencia de la etiqueta puede seleccionar `can` sólo cuando esa convención esté explicada al alumno antes
-de contestar. Si falta esa explicación, se señala la ambigüedad; no se presume una restricción oculta.
+`can`. La etiqueta de cortesía alcanza sola: si la consigna ofrece «could o can» y el ítem dice «Polite:» o «Polite
+request:», se pide `could` aunque la consigna no repita la convención (José, 25/10/2026: «como dice polite request,
+debe usar could»). La ausencia de la etiqueta puede seleccionar `can` sólo cuando esa convención esté explicada al
+alumno antes de contestar. Si falta esa explicación, se señala la ambigüedad; no se presume una restricción oculta.
 
 La fórmula completa debe estar establecida en la consigna efectiva del quiz o en su enunciado, incluidas las pistas o
 los modelos incorporados a esos textos que recibe el juez y ve el alumno antes de contestar. No se presupone una
@@ -169,6 +171,7 @@ La miniteoría posterior tampoco puede usarse como pista previa ([F-UNICA-R001](
 | Situación visible para el alumno | Resultado esperado |
 |---|---|
 | Consigna general «can o could» e ítem «Polite request» bajo la convención de la lección | Una variante con `can` no se reclama como respuesta faltante: incumple el selector de ese ítem. |
+| Consigna «Transforma las oraciones para que incluyan 'could' o 'can'.» e ítem «Play the radio. Polite: ___» | Una variante con `can` no se reclama: la etiqueta sola elige `could`. |
 | Pedido normal, o ausencia de etiqueta cuando la convención visible asigna ese caso a `can` | Una variante con `could` no se reclama como respuesta faltante por ser natural en una conversación. |
 | La tarea fija una fórmula de transformación | Sólo se consideran alternativas que respetan esa fórmula; no se convierte el ejercicio en paráfrasis libre. |
 | «After he finished, he left.» → «After finishing, he left.» | Cuenta «After having finished, he left.»: otra manera de la misma transformación. No cuenta «He left after finishing.»: reordena el resto. |
