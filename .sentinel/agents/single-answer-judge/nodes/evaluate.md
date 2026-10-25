@@ -133,6 +133,13 @@ una lección no las vuelve intercambiables ante cualquier selector. Una exigenci
 si el título dice «Comparativos» y la consigna pide cualquier forma comparativa,
 el título no obliga a usar `-er` ni prohíbe una forma analítica natural.
 
+Lo mismo vale para el registro y para el ejemplo resuelto de la consigna. Si la
+consigna pide un registro («oraciones formales»), una variante de otro registro
+no se lista, aunque sea correcta y natural en una conversación. Si la consigna
+trae un ejemplo resuelto («'They used to swim' se convierte en 'They still
+swim'»), el ejemplo muestra la forma pedida, incluido el lugar de la palabra que
+hay que usar: una respuesta que la pone en otro lugar no se lista.
+
 ### Selector del ítem y fórmula que se practica
 
 Una indicación como `Polite request:` es una condición de la respuesta, no una

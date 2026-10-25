@@ -150,6 +150,9 @@ paquete E.
 > misma oración: el resto queda igual y en el mismo orden, y cambia sólo la forma que pide la consigna, incluido el
 > lugar de la palabra que pide usar. Reordenar el resto de la oración, cambiar cuál es la principal o agregar, sacar o
 > cambiar otras palabras es paráfrasis libre y no se cuenta, salvo que la consigna permita reformular libremente.
+> Lo que pide la consigna manda también en el registro y en su ejemplo resuelto: si pide oraciones formales, una
+> variante informal no se cuenta; si trae un ejemplo resuelto, el ejemplo fija la forma, incluido el lugar de la palabra
+> que hay que usar.
 
 <details><summary>Selección de can/could y criterios de aceptación</summary>
 
