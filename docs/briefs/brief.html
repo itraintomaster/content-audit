@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lo que falta, una cuenta</title>
+<title>Análisis y opiniones, hecho</title>
 <!--
   TEMPLATE DE BRIEF · visual-brief
   1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
@@ -345,95 +345,112 @@
 <body>
 <div class="wrap">
 
+
   <header>
     <div class="kicker">
-      <span class="num">204</span>
-      <span class="badge">Diagnóstico</span>
+      <span class="num">205</span>
+      <span class="badge">Resumen</span>
       <span class="meta">Etapa 6 del estado único del tablero · 24/10/2026</span>
     </div>
-    <h1>«Lo que falta» se cuenta de tres maneras; va a quedar una</h1>
-    <p class="sub">Por qué el botón y los renglones de Correcciones no coinciden, y cuatro preguntas.</p>
+    <h1>Una cuenta de lo que falta, una lectura por pestaña</h1>
+    <p class="sub">La etapa 6, hecha y probada en una copia sin modelos: qué cambió, qué medí y qué pasa a la propuesta.</p>
   </header>
 
-  <div class="lede"><p><strong>Hoy el botón, el diálogo y los renglones de Correcciones cuentan «falta» cada uno a su manera.</strong> La etapa 6 lo cuenta una vez, en content-audit, y antes de diseñarla necesito cuatro respuestas.</p></div>
+  <div class="lede"><p><strong>El botón, el diálogo y los renglones leen la misma lista de content-audit; análisis y opiniones llegan una vez por pestaña, con el aviso.</strong> En la copia: 2.461 pares, 1.538 con su renglón.</p></div>
 
   <section>
-    <h2>Tres cuentas distintas para la misma pregunta</h2>
+    <h2>El botón y los renglones leen la misma lista</h2>
+    <div class="map">
+      <div class="ex">
+        <svg class="cap" viewBox="0 0 1280 1220" role="img" aria-label="Correcciones de la tanda 4 en la copia, con tres marcas: el botón Completar opiniones, un renglón todavía no opinó y el análisis vigente">
+          <image href="205-analisis-y-opiniones-hecho/correcciones.jpg" width="1280" height="1220"/>
+          <rect class="aro" x="955" y="60" width="248" height="52" rx="12"/>
+          <rect class="aro" x="346" y="1078" width="249" height="41" rx="10"/>
+          <g class="mk" transform="translate(955 60)"><circle r="30"/><text font-size="32">1</text></g>
+          <g class="mk" transform="translate(346 1078)"><circle r="30"/><text font-size="32">2</text></g>
+          <g class="mk gris" transform="translate(567 27)"><circle r="24"/><text font-size="27">3</text></g>
+        </svg>
+      </div>
+      <div class="who">
+        <div><b>1</b><span><strong>«Completar opiniones · faltan 2.461»</strong><br><small>la lista de content-audit; con la tanda abierta, apagado</small></span></div>
+        <div><b>2</b><span><strong>«todavía no opinó»</strong><br><small>sólo si su par está en la lista</small></span></div>
+        <div><b class="gris">3</b><span><strong>El análisis vigente</strong><br><small>el diálogo lee el mismo que la pantalla</small></span></div>
+      </div>
+    </div>
+    <p class="pie">La tanda 4 en la copia de verificación, con el código de la rama.</p>
+  </section>
+
+  <section>
+    <h2>Los números de la copia cuadran con la lista</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">2.461</div><div class="l">pares que faltan en la corrección 4: el botón dice lo mismo que content-audit</div></div>
+      <div class="kpi"><div class="n">1.538</div><div class="l">«todavía no opinó»: los pares de ejercicios que la tanda corrigió, ni uno más</div></div>
+      <div class="kpi"><div class="n">0,3<small>s</small></div><div class="l">del aviso al pedido, en el Mapa y en Correcciones a la vista</div></div>
+      <div class="kpi"><div class="n">1</div><div class="l">lectura del análisis por pestaña; antes, una por pantalla y otra del diálogo</div></div>
+    </div>
+    <p class="pie">Los otros 923 pares son de ejercicios que la tanda no cambió: no tienen renglón. El título del botón lo dice.</p>
+  </section>
+
+  <section>
+    <h2>Análisis y opiniones llegan una vez, con el aviso</h2>
     <div class="diagram">
-      <svg viewBox="0 0 760 236" style="min-width:600px" role="img" aria-label="Hoy hay tres cuentas de lo que falta; con la etapa, content-audit arma una lista y la leen el botón, el diálogo y los renglones">
+      <svg viewBox="0 0 760 250" style="min-width:600px" role="img" aria-label="Antes, cada pantalla traía su copia del análisis y Correcciones releía cada 5 segundos; ahora la pestaña lee una vez el análisis y las opiniones, y el aviso dice cuándo releer">
         <defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--fg-3)"/></marker></defs>
-        <text x="4" y="16" class="lbl-s" style="font-weight:600">HOY</text>
-        <rect x="4" y="26" width="226" height="56" rx="9" class="box-bad"/><text x="16" y="49" class="lbl" style="font-weight:600">Completar opiniones</text><text x="16" y="68" class="lbl-s">cuenta consultas pagas</text>
-        <rect x="4" y="92" width="226" height="56" rx="9" class="box-bad"/><text x="16" y="115" class="lbl" style="font-weight:600">El diálogo</text><text x="16" y="134" class="lbl-s">cuenta ejercicios distintos</text>
-        <rect x="4" y="158" width="226" height="56" rx="9" class="box-bad"/><text x="16" y="181" class="lbl" style="font-weight:600">Los renglones</text><text x="16" y="200" class="lbl-s">ejercicio por juez, con su criterio</text>
-        <text x="300" y="16" class="lbl-s" style="font-weight:600">CON LA ETAPA</text>
-        <rect x="300" y="88" width="210" height="66" rx="9" class="box-a"/><text x="314" y="114" class="lbl" style="font-weight:600">content-audit</text><text x="314" y="134" class="lbl-s">una lista de pares ejercicio-juez</text>
-        <path d="M510 121 L560 54" class="arrow" marker-end="url(#fl)"/>
-        <path d="M510 121 L560 121" class="arrow" marker-end="url(#fl)"/>
-        <path d="M510 121 L560 188" class="arrow" marker-end="url(#fl)"/>
-        <rect x="564" y="26" width="192" height="56" rx="9" class="box-ok"/><text x="576" y="49" class="lbl" style="font-weight:600">El botón</text><text x="576" y="68" class="lbl-s">«Completar · faltan 10»</text>
-        <rect x="564" y="92" width="192" height="56" rx="9" class="box-ok"/><text x="576" y="115" class="lbl" style="font-weight:600">El diálogo</text><text x="576" y="134" class="lbl-s">10 pares · 2 consultas</text>
-        <rect x="564" y="158" width="192" height="56" rx="9" class="box-ok"/><text x="576" y="181" class="lbl" style="font-weight:600">Los renglones</text><text x="576" y="200" class="lbl-s">los mismos 10</text>
+        <text x="4" y="16" class="lbl-s" style="font-weight:600">ANTES</text>
+        <rect x="4" y="26" width="236" height="52" rx="9" class="box-bad"/><text x="16" y="47" class="lbl" style="font-weight:600">El Mapa y Analizadores</text><text x="16" y="65" class="lbl-s">su estado traía el análisis entero</text>
+        <rect x="4" y="88" width="236" height="52" rx="9" class="box-bad"/><text x="16" y="109" class="lbl" style="font-weight:600">Correcciones</text><text x="16" y="127" class="lbl-s">la tanda lo traía; releía cada 5 s</text>
+        <rect x="4" y="150" width="236" height="52" rx="9" class="box-bad"/><text x="16" y="171" class="lbl" style="font-weight:600">El diálogo del análisis</text><text x="16" y="189" class="lbl-s">leía el suyo y avisaba por su canal</text>
+        <text x="300" y="16" class="lbl-s" style="font-weight:600">AHORA</text>
+        <rect x="300" y="40" width="186" height="60" rx="9" class="box-a"/><text x="312" y="64" class="lbl" style="font-weight:600">/api/analisis</text><text x="312" y="83" class="lbl-s">cuentas, jueces, lo que falta</text>
+        <rect x="300" y="130" width="186" height="60" rx="9" class="box-a"/><text x="312" y="154" class="lbl" style="font-weight:600">/api/opiniones</text><text x="312" y="173" class="lbl-s">renglones, chip y lo que falta</text>
+        <path d="M486 70 L540 112" class="arrow" marker-end="url(#fl)"/>
+        <path d="M486 160 L540 124" class="arrow" marker-end="url(#fl)"/>
+        <rect x="544" y="84" width="212" height="66" rx="9" class="box-ok"/><text x="556" y="110" class="lbl" style="font-weight:600">El store de la pestaña</text><text x="556" y="130" class="lbl-s">Mapa, Analizadores, Correcciones</text><text x="556" y="144" class="lbl-s">y el diálogo leen el mismo</text>
+        <text x="300" y="226" class="lbl-s">aviso «análisis» → relee los dos · aviso «tanda» → sólo las opiniones</text>
       </svg>
     </div>
-    <p class="pie">Un par es un ejercicio y un juez que le corresponde. Una consulta es lo que se paga: un juez por tema cubre muchos pares.</p>
+    <p class="pie">Integrar, reemplazar o quitar, desde el diálogo, otra pestaña o la terminal, avisa «análisis». Se fueron el canal propio del análisis y la relectura de 5 s.</p>
   </section>
 
   <section>
-    <h2>Cuatro casos de «todavía no opinó» que sí opinaron</h2>
-    <div class="ex">
-      <div class="cons">Correcciones · renglón de un ejercicio cambiado</div>
-      <div class="en">Coherencia de la pista · <b>Todavía no opinó</b> · [Pedir opinión]</div>
-      <div class="mark"><span class="x">✕</span><span>Una corrida vacía posterior tapa la opinión que había. <span class="sev a">20 el 13/10</span></span></div>
-      <div class="mark"><span class="x">✕</span><span>Un juez que Completar no cubre parece pendiente. <span class="sev m">11 el 13/10</span></span></div>
-      <div class="mark"><span class="x">✕</span><span>Una abstención guardada («no aplica») sale como si faltara. <span class="sev a">nuevo</span></span></div>
-      <div class="mark"><span class="x">✕</span><span>Lo pedido desde un renglón se ve, y Completar lo repaga. <span class="sev a">nuevo</span></span></div>
-      <div class="ft"><span>Los dos primeros, del brief 166; los otros dos, leyendo el código hoy</span><span>0 consultas</span></div>
-    </div>
-    <p class="pie">Los cuatro se van si el renglón dice «todavía no opinó» sólo cuando el par está en la lista.</p>
-  </section>
-
-  <section>
-    <h2>El mismo ejemplo, hoy y con la etapa</h2>
+    <h2>Los cuatro «todavía no opinó» falsos ya no salen</h2>
     <div class="ad">
-      <div class="lado antes"><span class="rot">Hoy · juez por tema, 2 temas, 10 ejercicios</span>
-        <ol><li>El botón no dice cuántos faltan.</li><li>El diálogo dice «10 ejercicios · 2 consultas nuevas».</li><li>Los renglones suman, además, abstenciones y opiniones tapadas.</li><li>Mientras corre, Correcciones relee la tanda entera cada 5 s.</li></ol>
-        <span class="res">tres números que no se pueden comparar</span></div>
+      <div class="lado antes"><span class="rot">Hasta hoy</span>
+        <ol><li>Una corrida vacía tapaba la opinión que había.</li><li>Gramática, que Completar no cubre, parecía pendiente.</li><li>Una abstención salía como si faltara.</li><li>Lo pedido desde un renglón quedaba suelto y Completar lo repagaba.</li></ol>
+        <span class="res">el renglón contaba por su cuenta</span></div>
       <div class="lado despues"><span class="rot">Con la etapa</span>
-        <ol><li>«Completar opiniones · faltan 10».</li><li>El diálogo: «10 pares en 10 ejercicios · 2 consultas».</li><li>Diez renglones «todavía no opinó»; la abstención dice «se abstuvo».</li><li>Correcciones relee sólo las opiniones, con el aviso.</li></ol>
-        <span class="res">un número, y las consultas aparte</span></div>
+        <ol><li>La corrida vacía no se integra ni tapa nada.</li><li>«No se completa desde acá»: 77 renglones en la copia.</li><li>«Se abstuvo», con su motivo.</li><li>Entra solo al análisis vigente, como Completar.</li></ol>
+        <span class="res">«todavía no opinó» sólo si el par está en la lista</span></div>
     </div>
   </section>
 
   <section>
-    <h2>Qué entra en la etapa y qué no</h2>
-    <div class="cambia">
-      <div class="si"><div class="ptl">Cambia</div><ul><li>Análisis y opiniones se leen una vez por pestaña.</li><li>Integrar en el Mapa cambia Correcciones sola.</li><li>Se van el canal entre pestañas y la relectura de 5 s.</li></ul></div>
-      <div class="no"><div class="ptl">No cambia</div><ul><li>El Mapa cuenta al día, de antes y sin medir como hoy.</li><li>Aprobar y decidir, de la etapa 7.</li></ul></div>
-    </div>
+    <h2>Para la propuesta: dos pruebas no se cumplen así</h2>
+    <div class="tw"><table>
+      <thead><tr><th>La propuesta dice</th><th>Lo que pasó</th></tr></thead>
+      <tbody>
+        <tr><td>Abrir «Completar»: el número es el de «todavía no opinó»</td><td>Sólo si la tanda corrigió todo. El botón cuenta la corrección entera; los renglones, los ejercicios corregidos. Lo dice el título.</td></tr>
+        <tr><td>Integrar en el Mapa: Correcciones cambia en 1 s</td><td>El pedido sale a 0,3 s; la respuesta tarda lo que el servidor en releer el análisis: 85 a 99 s desde la terminal.</td></tr>
+        <tr><td>Integrar relee sólo análisis y opiniones</td><td>Correcciones relee también la tanda, dos veces: sus hallazgos dependen del análisis.</td></tr>
+        <tr><td>Estadísticas y Publicar leen el análisis común</td><td>Siguen con su copia hasta la etapa 9.</td></tr>
+        <tr><td>Completar con la tanda abierta</td><td>Sigue apagado; ahora su título dice por qué.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="call c-warn">De la revisión quedan tres cosas: el filtro no se recalcula con opiniones nuevas; una corrida vieja que reemplaza queda suelta; un estado que falla deja sueltos los siguientes.</div>
   </section>
 
   <section>
-    <h2>Qué necesito de vos</h2>
+    <h2>Una decisión: qué cuenta el botón</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · Una opinión pedida desde un renglón, ¿entra al análisis vigente?</span>
-        <div class="ops"><span class="op rec">Entra sola, como Completar · recomendado</span><span class="op">Queda aparte y se cuenta</span></div>
-        <span class="why">Hoy queda aparte: el renglón la muestra y Completar la pide y la paga otra vez.</span></div>
-      <div class="ask"><span class="q">2 · ¿Qué trae la lectura de opiniones?</span>
-        <div class="ops"><span class="op rec">Todo lo de opinión · recomendado</span><span class="op">Sólo lo que falta</span></div>
-        <span class="why">Con todo, integrar relee sólo las opiniones, y no los 3 MB de la tanda.</span></div>
-      <div class="ask"><span class="q">3 · Un juez que Completar no cubre, ¿qué dice su renglón?</span>
-        <div class="ops"><span class="op rec">«No se completa desde acá» · recomendado</span><span class="op">Sumarlo a Completar</span></div>
-        <span class="why">Hoy es Gramática. Sumarlo es otra obra; marcarlo ya saca la confusión.</span></div>
-      <div class="ask"><span class="q">4 · Lo que opinó una versión anterior, ¿cuenta como «falta»?</span>
-        <div class="ops"><span class="op rec">No, sigue aparte · recomendado</span><span class="op">Sí, Completar lo repide</span></div>
-        <span class="why">Ya tiene su botón, «Medir con la de hoy». Así el número es el de los «todavía no opinó».</span></div>
+      <div class="ask"><span class="q">El botón, ¿cuenta la corrección entera o sólo la tanda?</span>
+        <div class="ops"><span class="op rec">La corrección entera, con el título partido · recomendado</span><span class="op">Sólo los ejercicios de la tanda</span></div>
+        <span class="why">Completar pide y paga la corrección entera; contar sólo la tanda escondería 923 pares.</span></div>
     </div>
   </section>
 
   <footer>
-    <span>Sin correr nada · ca DefaultContextOpinionService.correctionScopes, DefaultAnalysisComposer.hasStoredOpinion · ittm opinion_en_contexto.dart, lectura_del_despues.dart, correcciones/main.js:72-91, lib/analisis-vigente.js:201 · caso del 13/10: brief 166 · requisito F-OPINA</span>
-    <span>brief 204 · docs/briefs/204-analisis-y-opiniones-preguntas.html</span>
+    <span>Copia de verificación en 127.0.0.1:7845, sin modelos (stubs de codex, gemini, agy, claude y ollama) · campaña a1-v11 clonada · tanda 4 y tanda 1 · requisito F-OPINA (requirements/2026-10-24.03_analisis-y-opiniones) · ca ab7480f34, 12b86728e, be8c99156 · ittm 72b5d024f, c21d23007, a7207186c, a4a8e7601</span>
+    <span>brief 205 · docs/briefs/205-analisis-y-opiniones-hecho.html</span>
   </footer>
 
 </div>
