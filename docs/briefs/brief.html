@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Los resúmenes, hecho</title>
+<title>Evolución, un resumen</title>
 <!--
   TEMPLATE DE BRIEF · visual-brief
   1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
@@ -346,107 +346,105 @@
 
   <header>
     <div class="kicker">
-      <span class="num">212</span>
+      <span class="num">215</span>
       <span class="badge">Resumen</span>
-      <span class="meta">Etapa 9 del estado único del tablero · 25/10/2026</span>
+      <span class="meta">Evolución, el quinto resumen · 25/10/2026</span>
     </div>
-    <h1>Los resúmenes se ponen al día solos, y hay una sola estimación</h1>
-    <p class="sub">La etapa 9, en master y en el 7800, probada en una copia sin modelos: qué cambió, qué medí y qué pasa a la propuesta.</p>
+    <h1>Evolución se lee una vez y los resúmenes ya no la esperan</h1>
+    <p class="sub">Lo que decidiste en el brief 213: hecho, subido a master, andando en el 7800 y medido en una copia sin modelos.</p>
   </header>
 
-  <div class="lede"><p><strong>Al terminar una corrida el aviso ya no espera (1 ms; antes 6,3 s) y las cuatro pantallas se ponen al día solas.</strong> Queda una cola de 3 s que arma Evolución.</p></div>
+  <div class="lede"><p><strong>Cuando termina una corrida, ningún resumen espera más de 0,17 s (antes, 2,95 s).</strong> Evolución contesta lo que tenía, marcado «Actualizando…», y content-audit la vuelve a leer una sola vez, de fondo.</p></div>
 
   <section>
-    <h2>Vueltas, Estadísticas, Comparar y Publicar, sin «Volver a leer»</h2>
-    <div class="map">
+    <h2>La barra de Evolución avisa cuando se pone al día</h2>
+    <div class="map" style="grid-template-columns:minmax(0,1fr)">
       <div class="ex">
-        <svg class="cap" viewBox="0 0 1280 800" role="img" aria-label="Vueltas de la tanda A1, corrección 4, con cuatro marcas: la curva, la estimación de la próxima vuelta, la bandeja y la franja que dice que terminó la corrida">
-          <image href="212-los-resumenes-hecho/vueltas.jpg" width="1280" height="800"/>
-          <rect class="aro" x="108" y="214" width="1124" height="77" rx="12"/>
-          <rect class="aro" x="108" y="432" width="555" height="362" rx="12"/>
-          <rect class="aro" x="677" y="432" width="555" height="237" rx="12"/>
-          <g class="mk" transform="translate(84 252)"><circle r="22"/><text font-size="24">1</text></g>
-          <g class="mk" transform="translate(84 470)"><circle r="22"/><text font-size="24">2</text></g>
-          <g class="mk" transform="translate(1254 470)"><circle r="22"/><text font-size="24">3</text></g>
-          <g class="mk gris" transform="translate(352 16)"><circle r="14"/><text font-size="16">4</text></g>
+        <svg class="cap" viewBox="0 -46 1280 196" role="img" aria-label="La barra de Evolución arriba de Vueltas, recién terminada una corrida: la versión del contenido, la marca «Actualizando…» al lado del análisis, el botón «Comparar versiones» y, más abajo, Vueltas también actualizándose">
+          <image href="215-evolucion-es-un-resumen/barra.jpg" width="1280" height="150"/>
+          <rect class="aro" x="203" y="39" width="200" height="41" rx="10"/>
+          <rect class="aro" x="566" y="46" width="107" height="27" rx="8"/>
+          <rect class="aro" x="674" y="39" width="157" height="42" rx="10"/>
+          <line class="aro" x1="303" y1="-8" x2="303" y2="39" style="stroke-width:2"/>
+          <line class="aro" x1="620" y1="-8" x2="620" y2="46" style="stroke-width:2"/>
+          <line class="aro" x1="753" y1="-8" x2="753" y2="39" style="stroke-width:2"/>
+          <g class="mk" transform="translate(303 -24)"><circle r="18"/><text font-size="19">1</text></g>
+          <g class="mk" transform="translate(620 -24)"><circle r="18"/><text font-size="19">2</text></g>
+          <g class="mk" transform="translate(753 -24)"><circle r="18"/><text font-size="19">3</text></g>
+          <g class="mk gris" transform="translate(1150 117)"><circle r="14"/><text font-size="15">4</text></g>
         </svg>
       </div>
       <div class="who">
-        <div><b>1</b><span><strong>La curva</strong><br><small>se pide sola cuando cambia un tema suyo</small></span></div>
-        <div><b>2</b><span><strong>«Cuánto costaría la próxima vuelta»</strong><br><small>la cuenta del diálogo, con su motor</small></span></div>
-        <div><b>3</b><span><strong>La bandeja</strong><br><small>leída una vez para Vueltas y Publicar</small></span></div>
-        <div><b class="gris">4</b><span><strong>«Terminó»</strong><br><small>el aviso de la corrida, sin cola</small></span></div>
+        <div><b>1</b><span><strong>Las versiones</strong> · <small>una lectura para todas las pestañas, también Base</small></span></div>
+        <div><b>2</b><span><strong>«Actualizando…»</strong> · <small>lo que se ve es lo que había, mientras llega lo nuevo</small></span></div>
+        <div><b>3</b><span><strong>«Comparar versiones»</strong> · <small>otro resumen, que se pide sólo con el diálogo abierto</small></span></div>
+        <div><b class="gris">4</b><span><strong>Vueltas</strong> · <small>la pantalla se pone al día igual, desde la etapa 9</small></span></div>
       </div>
     </div>
-    <p class="pie">Vueltas en la copia, después de una corrida simulada y de tocar «Estimar», que es gratis. Exámenes y el catálogo de jueces también perdieron su «Volver a leer».</p>
+    <p class="pie">Vueltas en la copia, justo después de que cambiara la tanda. Arriba, la franja de la corrida simulada que acababa de terminar.</p>
   </section>
 
   <section>
-    <h2>El aviso sale enseguida; los resúmenes esperan a Evolución</h2>
+    <h2>Al terminar una corrida, nada espera a Evolución</h2>
     <div class="diagram">
-      <svg viewBox="0 0 760 286" style="min-width:620px" role="img" aria-label="Línea de tiempo al terminar una corrida con cinco pestañas. Hasta hoy: el aviso esperó 6,3 segundos y Comparar y Vueltas releían con el CLI hasta 7 segundos. Con la etapa: el aviso sale en 1 milisegundo; Evolución lee una vez por pestaña durante 3 segundos y los resúmenes esperan en la cola del navegador 2,95 segundos; el tablero los contesta en 0,2 segundos">
-        <text x="4" y="16" class="lbl-s" style="font-weight:600">HASTA HOY (20/10)</text>
-        <text x="4" y="45" class="lbl">el aviso</text>
-        <rect x="150" y="28" width="540" height="28" rx="7" class="box-bad"/><text x="162" y="47" class="lbl">espera una conexión · 6,3 s</text>
+      <svg viewBox="0 0 760 300" style="min-width:620px" role="img" aria-label="Línea de tiempo al terminar una corrida con cinco pestañas. Antes: Evolución leía una vez por pestaña durante 3 segundos y los resúmenes esperaban 2,95 segundos en la cola del navegador. Ahora: Evolución contesta lo que tenía en 0,15 segundos, los resúmenes esperan como mucho 0,17 segundos y llegan antes de 1 segundo; content-audit lee Evolución una vez, de fondo, en 3,5 segundos, y nadie lo espera">
+        <text x="4" y="16" class="lbl-s" style="font-weight:600">ANTES (BRIEF 212)</text>
+        <text x="4" y="45" class="lbl">Evolución</text>
+        <rect x="159" y="28" width="244" height="28" rx="7" class="box-bad"/><text x="171" y="47" class="lbl">5 lecturas, una por pestaña · 3 s</text>
         <text x="4" y="83" class="lbl">los resúmenes</text>
-        <rect x="150" y="66" width="600" height="28" rx="7" class="box"/><text x="162" y="85" class="lbl">releen con el CLI: Comparar 7 s, Vueltas 4,5 s</text>
+        <rect x="160" y="66" width="249" height="28" rx="7" class="box"/><text x="172" y="85" class="lbl">en la cola · 2,95 s</text>
+        <rect x="409" y="66" width="20" height="28" rx="5" class="box-ok"/><text x="439" y="85" class="lbl">llegan a los 3,3 s</text>
 
-        <text x="4" y="130" class="lbl-s" style="font-weight:600">CON LA ETAPA</text>
-        <text x="4" y="159" class="lbl">el aviso</text>
-        <rect x="150" y="142" width="8" height="28" rx="3" class="box-ok"/><text x="168" y="161" class="lbl">1 ms</text>
-        <text x="4" y="197" class="lbl">Evolución</text>
-        <rect x="159" y="180" width="257" height="28" rx="7" class="box-bad"/><text x="171" y="199" class="lbl">5 lecturas, una por pestaña · 3 s</text>
-        <text x="4" y="235" class="lbl">los resúmenes</text>
-        <rect x="160" y="218" width="253" height="28" rx="7" class="box"/><text x="172" y="237" class="lbl">en la cola · 2,95 s</text>
-        <rect x="413" y="218" width="20" height="28" rx="5" class="box-ok"/><text x="443" y="237" class="lbl">contesta en 0,2 s · llegan a los 3,3 s</text>
-        <text x="150" y="270" class="lbl-s">0 s</text><text x="403" y="270" class="lbl-s">3 s</text><text x="660" y="270" class="lbl-s">6 s</text>
+        <text x="4" y="132" class="lbl-s" style="font-weight:600">AHORA</text>
+        <text x="4" y="161" class="lbl">Evolución</text>
+        <rect x="150" y="144" width="13" height="28" rx="4" class="box-ok"/><text x="173" y="163" class="lbl">contesta lo que tenía · 0,15 s</text>
+        <text x="4" y="199" class="lbl">los resúmenes</text>
+        <rect x="150" y="182" width="84" height="28" rx="6" class="box-ok"/><text x="244" y="201" class="lbl">esperan ≤ 0,17 s · llegan antes de 1 s</text>
+        <text x="4" y="237" class="lbl">de fondo</text>
+        <rect x="150" y="220" width="295" height="28" rx="7" class="box" style="stroke-dasharray:5 4"/><text x="162" y="239" class="lbl">content-audit lee Evolución una vez · 3,5 s</text>
+        <text x="455" y="239" class="lbl-s">nadie lo espera</text>
+        <text x="150" y="282" class="lbl-s">0 s</text><text x="395" y="282" class="lbl-s">3 s</text><text x="648" y="282" class="lbl-s">6 s</text>
       </svg>
     </div>
-    <p class="pie">Medido en la copia con cinco pestañas a la vista. El navegador da seis conexiones: el canal de avisos y las cinco lecturas de Evolución las ocupan todas.</p>
+    <p class="pie">Cinco pestañas a la vista en la copia, con una corrida simulada que cambia la tanda. Dos muestras: la peor espera fue 0,17 s y 0,04 s.</p>
   </section>
 
   <section>
-    <h2>Un resumen se lee una vez, para todas las pestañas</h2>
+    <h2>Un resumen más, y un «releer» menos</h2>
     <div class="kpis">
-      <div class="kpi dest"><div class="n">6,3 s → 1<small>ms</small></div><div class="l">lo que espera el aviso de corridas al terminar una, con las cuatro pantallas abiertas</div></div>
-      <div class="kpi"><div class="n">0,2<small>s</small></div><div class="l">lo que tarda en contestar un resumen al terminar; antes, de 4,5 a 7 s</div></div>
-      <div class="kpi"><div class="n">4 → 1</div><div class="l">lugares que estiman: diálogo, Vueltas, Exámenes y Problemas dan el mismo número</div></div>
-      <div class="kpi"><div class="n">8</div><div class="l">«releer» que quedan, de otras pantallas, en una lista que sólo baja</div></div>
+      <div class="kpi dest"><div class="n">2,95 → 0,17<small>s</small></div><div class="l">lo más que espera un resumen en el navegador al terminar una corrida</div></div>
+      <div class="kpi"><div class="n">3,3 → 1<small>s</small></div><div class="l">cuándo llega el último resumen; en la segunda muestra, a los 0,4 s</div></div>
+      <div class="kpi"><div class="n">1<small>lectura</small></div><div class="l">de Evolución en content-audit por corrida, de fondo; las pestañas no la esperan</div></div>
+      <div class="kpi"><div class="n">8 → 7</div><div class="l">«releer» que quedan, todos de la tarjeta que corre en paralelo</div></div>
     </div>
-    <p class="pie">Decidir desde la terminal: Publicar contesta enseguida, marcado «actualizando», y lo nuevo llega a los 36 s, lo que tarda content-audit en releer la tanda y el análisis.</p>
   </section>
 
   <section>
-    <h2>Para la propuesta: sin ritmo de 5 s</h2>
+    <h2>Para la propuesta: dos resúmenes, y la comparación pesa</h2>
     <div class="tw"><table>
-      <thead><tr><th>La propuesta dice</th><th>Lo que pasó</th></tr></thead>
+      <thead><tr><th>El brief 213 dice</th><th>Lo que pasó</th></tr></thead>
       <tbody>
-        <tr><td>El ruido de una corrida se lee a lo sumo cada 5 s</td><td>Sin ritmo: mientras algo corre, el ruido no cuenta; al terminar, se lee una vez.</td></tr>
-        <tr><td>Decidir avisa «publicar»</td><td>Sube «decisiones», que es de Publicar, de la bandeja y de Vueltas, que cuenta lo rechazado.</td></tr>
-        <tr><td>Las cuatro pantallas, sin releer</td><td>También Exámenes y los jueces, como pediste, y la ayuda de las cinco ya no manda a ↻.</td></tr>
-        <tr><td>Un tope de «releer» que sólo baja</td><td>Quedan 8: Mapa, Analizadores, cambios, análisis vigente y Evolución. Ninguna etapa los saca.</td></tr>
-        <tr><td>Vueltas estima con el motor del diálogo</td><td>Y lo dice: «Estimada con gpt-6.1-sol, el de siempre». El examen fijo se cuenta una vez.</td></tr>
-        <tr><td>Criterio: la cola al terminar</td><td>El aviso, cumplido. Los resúmenes esperan 2,95 s detrás de Evolución, que no es de ninguna etapa.</td></tr>
+        <tr><td>Evolución pasa a ser el quinto resumen</td><td>Son dos: las versiones, que mira cada pestaña, y la comparación, que se pide sólo con su diálogo abierto.</td></tr>
+        <tr><td>Contesta lo guardado mientras vuelve a leer</td><td>Y lo marca en la barra. Decidir no pone viejas las versiones; crear una corrección sí, aunque algo corra.</td></tr>
+        <tr><td>Saca su «releer» de la lista</td><td>Quedan siete: Mapa, Analizadores, los cambios y el análisis vigente.</td></tr>
+        <tr><td>—</td><td>La comparación tarda 94 s en content-audit y pesa 122 MB en esta campaña: el tablero guarda sólo la última.</td></tr>
       </tbody>
     </table></div>
-    <div class="call c-warn">El doble aviso del vigía ya lo arregló F-AVISO-R008, juntado antes. En la copia, el ruido simulado no subió la tanda: «actualizando» lo probé con una decisión.</div>
+    <div class="call c-warn">Con «Comparar versiones» abierto, decidir la vuelve a leer de fondo: son 94 s en que content-audit no contesta otra cosa. No lo medí en el 7800.</div>
   </section>
 
   <section>
-    <h2>Dos decisiones</h2>
-    <div class="asks">
-      <div class="ask"><span class="q">¿Evolución pasa a ser el quinto resumen?</span>
-        <div class="ops"><span class="op rec">Sí, ahora · recomendado</span><span class="op">Más adelante</span></div>
-        <span class="why">Hoy ocupa cinco conexiones 3 s al terminar cada corrida. Como resumen, contestaría lo guardado al instante y se leería una vez.</span></div>
-      <div class="ask"><span class="q">Los 8 «releer» que quedan, ¿en qué etapa salen?</span>
-        <div class="ops"><span class="op rec">Una etapa nueva · recomendado</span><span class="op">Dejarlos</span></div>
-        <span class="why">Ninguna de las diez los nombra; la guardia ya impide sumar otro.</span></div>
+    <h2>Qué sigue</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><div class="h">Los otros siete «releer»</div><div class="d">Los saca la tarjeta en paralelo; ya repartimos los archivos.</div></div>
+      <div class="st"><span class="i">2</span><div class="h">Una prueba intermitente</div><div class="d">El número de una corrida pierde dígitos a veces. Ya pasaba.</div></div>
+      <div class="st end"><span class="i">3</span><div class="h">Nada más pendiente</div><div class="d">El 7800 la tiene desde las 10:40.</div></div>
     </div>
   </section>
 
   <footer>
-    <span>Copia de verificación en 127.0.0.1:7847, sin modelos (stubs de codex, gemini, agy, claude y ollama, dentro de un sandbox) · campaña a1-v11 clonada · tanda A1 corrección 4 · corrida simulada con un proceso inofensivo y el registro de actividad · requisito F-RESUM (requirements/2026-10-24.09_los-resumenes) · ittm 1a3ff52f9 (master, con la etapa; 77c72e873 el último paso) · 7800 reiniciado con la etapa · pruebas: 2.729 del navegador y 1.986 de flutter, en verde</span>
-    <span>brief 212 · docs/briefs/212-los-resumenes-hecho.html</span>
+    <span>Copia de verificación en 127.0.0.1:7847, sin modelos (stubs de codex, gemini, agy, claude y ollama, dentro de un sandbox) · campaña a1-v11 clonada · tanda A1 corrección 4 · corrida simulada de 20 s que reescribe la tanda una vez · requisito F-RESUM-R015 (requirements/2026-10-24.09_los-resumenes) · ittm 44af1c507 (master) · 7800 reiniciado con ittm 44af1c507 y content-audit 1920f682b · pruebas: 2.733 del navegador; flutter, todo test/ en verde salvo la prueba intermitente de Ejecuciones (3 de 3 al repetirla)</span>
+    <span>brief 215 · docs/briefs/215-evolucion-es-un-resumen.html</span>
   </footer>
 
 </div>
