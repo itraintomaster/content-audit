@@ -902,6 +902,44 @@ class CurrentAnalysisServiceTest {
         verify(repository, never()).save(any(), any()); verify(store, never()).save(any());
     }
 
+    CurrentAnalysisService.State correction(CurrentAnalysisService.View view) {
+        return view.states().stream().filter(s -> s.id().equals("correction")).findFirst().orElseThrow();
+    }
+    /** F-OPINA-R001: the read says, per state, what is missing; what an integration brings stops being missing. */
+    @Test @Tag("FEAT-OPINA") @Tag("F-OPINA-R001")
+    void theReadSaysWhatIsMissingAndAnIntegrationTakesItOff() {
+        var before = correction(read()).missingOpinions();
+        assertTrue(before.get(NAME).contains(TandaFixture.CHILD));
+        assertFalse(before.get(NAME).contains(TandaFixture.RESIDE), "The judge of options does not apply to a gap");
+        assertTrue(composer.supportedAnalyzers().containsAll(before.keySet()), "Only judges that Completar covers");
+        assertEquals(MissingOpinions.of(service.report(batch, "correction", DefaultCurrentAnalysisService.cut(course, batch.getLevel())),
+                composer.supportedAnalyzers()), before);
+
+        service.execute(select("integrate", "r1", "op-r1", null));
+
+        var after = correction(read()).missingOpinions();
+        assertFalse(after.getOrDefault(NAME, List.of()).contains(TandaFixture.CHILD));
+    }
+    /** F-OPINA-R004: a later run that left no verdict does not fit, is never integrated and hides nothing. */
+    @Test @Tag("FEAT-OPINA") @Tag("F-OPINA-R004")
+    void aLaterRunWithoutVerdictsNeverHidesTheIntegratedOne() {
+        service.execute(select("integrate", "r1", "op-r1", null));
+        int errorsBefore = errors(read());
+        saved.put("empty", report(false, false, "v1"));
+        var runs = new ArrayList<>(BatchBook.list(batch.getSelectiveRuns()));
+        runs.add(new SelectiveCorrection.Run("empty", "complete-opinions", NAME, "op-empty", 1, 6, "content", "v1",
+                "codex-cli / model / medium", "empty", null, List.of(), List.of(TandaFixture.CHILD), 1, 1, 0, 1, 0, 1,
+                "PARTIAL", "human", Instant.EPOCH, Instant.EPOCH, null, false, 6, "content", null));
+        batch.setSelectiveRuns(runs);
+
+        var view = read();
+        var fit = view.looseRuns().stream().filter(r -> r.id().equals("empty")).findFirst().orElseThrow()
+                .fits().stream().filter(f -> f.state().equals("correction")).findFirst().orElseThrow();
+        assertEquals(0, fit.compatible());
+        assertThrows(IllegalArgumentException.class, () -> service.execute(select("integrate", "empty", "op-empty-i", null)));
+        assertEquals(errorsBefore, errors(read()));
+        assertFalse(correction(read()).missingOpinions().getOrDefault(NAME, List.of()).contains(TandaFixture.CHILD));
+    }
     static void cover(AuditReport report, JudgeCoverageDiagnosis coverage) {
         var d = (DefaultCourseDiagnoses) report.getRoot().getDiagnoses();
         var list = new ArrayList<>(BatchBook.list(d.getJudgeCoverages())); list.add(coverage); d.setJudgeCoverages(list);

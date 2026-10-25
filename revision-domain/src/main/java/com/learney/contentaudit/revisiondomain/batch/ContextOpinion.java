@@ -48,14 +48,32 @@ public final class ContextOpinion {
             preliminaryOpinions = preliminaryOpinions == null ? List.of() : List.copyOf(preliminaryOpinions);
         }
     }
+    /**
+     * F-OPINA-R002: {@code pendingPairs} are the exercise-judge pairs of {@code selection} -- for «Completar opiniones»,
+     * exactly what is missing -- and {@code pendingExercises} the distinct exercises among them; {@code pendingQueries}
+     * is what is paid, apart: a judge of topics covers every pair of a topic with one query.
+     */
     public record State(String batchId, int contentVersion, String fingerprint, boolean allowed,
             String reason, int pendingQueries, int reusedQueries, List<Judge> judges,
-            Map<String, List<String>> selection, boolean wholeTopic, List<Run> runs, String scope) {
+            Map<String, List<String>> selection, boolean wholeTopic, List<Run> runs, String scope,
+            int pendingPairs, int pendingExercises) {
+        public State(String batchId, int contentVersion, String fingerprint, boolean allowed,
+                String reason, int pendingQueries, int reusedQueries, List<Judge> judges,
+                Map<String, List<String>> selection, boolean wholeTopic, List<Run> runs, String scope) {
+            this(batchId, contentVersion, fingerprint, allowed, reason, pendingQueries, reusedQueries, judges,
+                    selection, wholeTopic, runs, scope, pairs(selection), exercises(selection));
+        }
         public State(String batchId, int contentVersion, String fingerprint, boolean allowed,
                 String reason, int pendingQueries, int reusedQueries, List<Judge> judges,
                 Map<String, List<String>> selection, boolean wholeTopic, List<Run> runs) {
             this(batchId, contentVersion, fingerprint, allowed, reason, pendingQueries, reusedQueries, judges,
                     selection, wholeTopic, runs, null);
+        }
+        private static int pairs(Map<String, List<String>> selection) {
+            return selection == null ? 0 : selection.values().stream().mapToInt(List::size).sum();
+        }
+        private static int exercises(Map<String, List<String>> selection) {
+            return selection == null ? 0 : (int) selection.values().stream().flatMap(List::stream).distinct().count();
         }
     }
 }

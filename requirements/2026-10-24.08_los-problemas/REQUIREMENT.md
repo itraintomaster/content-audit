@@ -24,7 +24,7 @@ viejos y preparaba el examen fijo (hasta un minuto); abrir «Rendir» en Exámen
 sólo con otro motor decía «Primero debe aprobar» mientras el resto de las pantallas decía «habilitada».
 
 Fuente: la propuesta [«Un solo estado para el tablero»](../../docs/propuestas/estado-centralizado.html), etapa 8
-«Problemas». El diseño aprobado está en el brief 204. Las decisiones son de José (24/10/2026):
+«Problemas». El diseño aprobado está en el brief 206. Las decisiones son de José (24/10/2026):
 - un juez habilitado sólo con otro motor no frena: el paso y Probar consultan con el motor con que content-audit lo
   consultaría al cerrar la tanda ([F-CMOTOR-R006](../2026-10-24.01_cierre-con-cualquier-motor/REQUIREMENT.md#F-CMOTOR-R006)),
   y la confirmación lo dice antes de gastar;
@@ -241,7 +241,7 @@ CLI falso `test/support/problem_cli.py`). Cada prueba nombra su regla en el tít
 ## References
 
 - **Propuesta**: [Un solo estado para el tablero](../../docs/propuestas/estado-centralizado.html), etapa 8.
-- **Brief**: 204 (el diseño aprobado).
+- **Brief**: 206 (el diseño aprobado) y 207 (hecho y probado en la copia).
 - **FEAT-CORRI**: la tabla de corridas y el cierre por el registro ([F-CORRI-R007](../2026-10-21.01_las-corridas/REQUIREMENT.md#F-CORRI-R007),
   [F-CORRI-R009](../2026-10-21.01_las-corridas/REQUIREMENT.md#F-CORRI-R009)).
 - **FEAT-JUECES**: el catálogo ([F-JUECES-R002](../2026-10-24.02_los-jueces/REQUIREMENT.md#F-JUECES-R002)); la regla
