@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Los siete, criterio por criterio</title>
+<title>Los siete, uno por uno</title>
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -334,9 +334,18 @@
   .diagram .dash{stroke-dasharray:6 5}
 </style>
 <style>
-  .heat .hv{background:color-mix(in srgb,var(--ok) 24%,var(--bg-elev))}
-  .heat .rl small{display:block;color:var(--fg-3);font-size:11px}
-  @media (max-width:640px){ .heat .h{font-size:10px;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:anywhere} }
+  .g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+  .ex{display:grid;gap:7px;align-content:start}
+  .ex .cons b{color:var(--fg-2);font-weight:650}
+  .ex .en{font-size:17px}
+  .ex .ans i{font-family:ui-serif,Georgia,serif}
+  .ex .ans .lista{display:block;font-size:13px;line-height:1.5;color:var(--fg-2);margin-top:2px}
+  .ex .rotulo{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3)}
+  .ex .rotulo.antes{color:var(--bad)} .ex .rotulo.despues{color:var(--ok)}
+  .ex .cuenta{font-size:13px;color:var(--fg-2);border-top:1px dashed var(--line);padding-top:7px}
+  .ex .cuenta i{font-family:ui-serif,Georgia,serif}
+  .ex .cuenta .mal{color:var(--bad)}
+  .mark.warn{background:var(--warn-soft)} .mark.warn .x{color:var(--warn)}
 </style>
 </head>
 
@@ -345,96 +354,140 @@
 
   <header>
     <div class="kicker">
-      <span class="num">220</span>
-      <span class="badge">Prueba real · Resultado</span>
-      <span class="meta">C2 · los otros siete · 25/10/2026</span>
+      <span class="num">221</span>
+      <span class="badge">Resultado · Reemplaza al 220</span>
+      <span class="meta">Corrección 2 de A1 · 25/10/2026</span>
     </div>
-    <h1>Los siete, criterio por criterio: tres arreglados, cuatro trabados</h1>
-    <p class="sub">La corrida con la regla de la puntuación y el largo medido sobre la respuesta (brief 219).</p>
+    <h1>Los siete ejercicios que quedaban, uno por uno</h1>
+    <p class="sub">La Corrección 2 es la segunda pasada del corrector sobre los ejercicios de A1 que la primera dejó con problemas.</p>
   </header>
 
-  <div class="lede"><p><strong>Medir el largo sobre la respuesta dejó a 3 de los 7 sin problemas.</strong> Los otros 4 no mejoraron: dos se arreglan al publicar, uno es un falso problema y otro espera tu decisión.</p></div>
+  <div class="lede"><p><strong>Tres de los siete no necesitaban corrección: el largo estaba mal medido.</strong> De los otros cuatro, dos sólo tienen viejo el audio, uno tiene un problema falso y la radio necesita tu decisión.</p></div>
 
-  <div class="kpis" style="margin:0 0 38px">
-    <div class="kpi dest"><div class="n">3<small>de 7</small></div><div class="l">sin problemas: su único problema era el largo mal medido</div></div>
-    <div class="kpi"><div class="n">0<small>de 4</small></div><div class="l">mejorados: el corrector propuso dejarlos como estaban</div></div>
-    <div class="kpi"><div class="n">14<small>de 150</small></div><div class="l">consultas: 12 propuestas y 2 del juez de miniteoría</div></div>
-  </div>
+  <div class="call c-info">Miré los 15 criterios que se aplican, jueces incluidos; acá aparecen sólo los que marcan algo. Pragmatismo todavía no juzgó la versión corregida de seis.</div>
 
   <section>
-    <h2>Criterio por criterio: el largo se fue, quedan tres problemas</h2>
-    <div style="overflow-x:auto">
-    <div class="heat" style="--cols:6">
-      <span class="h"></span><span class="h">Largo</span><span class="h">Palabras de nivel</span><span class="h">Una sola respuesta</span><span class="h">Oración guar&shy;dada</span><span class="h">Prag&shy;ma&shy;tismo</span><span class="h">Los otros 10</span>
-      <span class="rl">Let's have eggs…<small>Oraciones con let's</small></span><span class="h0">✓</span><span class="h3">✕</span><span class="h0">✓</span><span class="h0">✓</span><span class="h1">?</span><span class="h0">✓</span>
-      <span class="rl">Play the radio. Polite…<small>Pedidos</small></span><span class="hv">✓</span><span class="h3">✕</span><span class="h3">✕</span><span class="h0">✓</span><span class="h0">✓</span><span class="h0">✓</span>
-      <span class="rl">…get me some tea<small>Pedidos</small></span><span class="hv">✓</span><span class="h0">✓</span><span class="h0">✓</span><span class="h3">✕</span><span class="h1">?</span><span class="h0">✓</span>
-      <span class="rl">…drink some water?<small>Pedidos</small></span><span class="hv">✓</span><span class="h0">✓</span><span class="h0">✓</span><span class="h3">✕</span><span class="h1">?</span><span class="h0">✓</span>
-      <span class="rl">Peter has breakfast…<small>Frecuencia</small></span><span class="hv">✓</span><span class="h0">✓</span><span class="h0">✓</span><span class="h0">✓</span><span class="h1">?</span><span class="h0">✓</span>
-      <span class="rl">…help me<small>Pedidos</small></span><span class="hv">✓</span><span class="h0">✓</span><span class="h0">✓</span><span class="h0">✓</span><span class="h1">?</span><span class="h0">✓</span>
-      <span class="rl">…give me some money<small>Pedidos</small></span><span class="hv">✓</span><span class="h0">✓</span><span class="h0">✓</span><span class="h0">✓</span><span class="h1">?</span><span class="h0">✓</span>
+    <h2>Tres ejercicios que ya estaban bien</h2>
+    <div class="grid g3">
+      <div class="ex">
+        <div class="cons"><b>Frecuencia: parte 2</b> · A1</div>
+        <div class="cons">Consigna: «Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.»</div>
+        <div class="en">Peter has breakfast at home. (always) <span class="gap"></span></div>
+        <div class="ans">Respuesta: <b>Peter always has breakfast at home.</b></div>
+        <div class="ans">Traducción: Peter siempre desayuna en casa.</div>
+        <div class="cuenta">Antes se contaba todo: <i>Peter has breakfast at home. Peter always has breakfast at home.</i> → <b class="mal">13</b><br>Ahora, sólo lo que escribe el alumno → <b>7</b></div>
+      </div>
+      <div class="ex">
+        <div class="cons"><b>Pedidos: formal o informal</b> · A1</div>
+        <div class="cons">Consigna: «Transforma las oraciones para que incluyan 'could' o 'can'.»</div>
+        <div class="en">I want you to help me. <span class="gap"></span></div>
+        <div class="ans">Respuestas aceptadas:<span class="lista">Could you help me? · Could you please help me? · Could you help me, please? · Please could you help me? · Can you help me? · Can you please help me? · Can you help me, please? · Please can you help me?</span></div>
+        <div class="ans">Traducción: Quiero que me ayudes. ¿Podrías ayudarme?</div>
+        <div class="cuenta">Antes se contaba todo: <i>I want you to help me. Could you help me?</i> → <b class="mal">12</b><br>Ahora, sólo lo que escribe el alumno → <b>5</b></div>
+      </div>
+      <div class="ex">
+        <div class="cons"><b>Pedidos: formal o informal</b> · A1</div>
+        <div class="cons">Consigna: «Transforma las oraciones para que incluyan 'could' o 'can'.»</div>
+        <div class="en">I want you to give me some money. <span class="gap"></span> you give me some money? (can / could)</div>
+        <div class="ans">Respuestas aceptadas: <b>Could</b> · <b>Can</b></div>
+        <div class="ans">Traducción: Quiero que me des algo de dinero. ¿Podrías darme algo de dinero?</div>
+        <div class="cuenta">Antes se contaba todo: <i>I want you to give me some money. Could you give me some money?</i> → <b class="mal">16</b><br>Ahora, sólo lo que escribe el alumno → <b>7</b></div>
+        <div class="mark warn"><span class="x">!</span><span>Su audio todavía dice «Could you lend me some money?».</span></div>
+      </div>
     </div>
-    </div>
-    <div class="leyenda"><span><i class="sw" style="background:color-mix(in srgb,var(--ok) 24%,var(--bg-elev))"></i>arreglado hoy, por la medida nueva</span><span><i class="sw" style="background:color-mix(in srgb,var(--bad) 32%,var(--bg-elev))"></i>problema</span><span><i class="sw" style="background:color-mix(in srgb,var(--warn) 16%,var(--bg-elev))"></i>sin medir la versión de hoy</span></div>
-    <p class="pie">Los otros 10, jueces incluidos (naturalidad, consigna, traducción, miniteoría), aprueban a los siete. Pragmatismo aprobó sus versiones del 24/10 y la de hoy no la midió.</p>
+    <p class="pie">En A1 una oración puede tener hasta 8 palabras y signos. Se contaba también la oración que el ejercicio da hecha. No gasté consultas en estos tres.</p>
   </section>
 
   <section>
-    <h2>En los cuatro, el corrector tenía razón en no tocar</h2>
-    <div class="tw"><table>
-      <thead><tr><th>Ejercicio</th><th>El problema</th><th>Qué hizo el corrector</th><th>Qué falta</th></tr></thead>
-      <tbody>
-        <tr><td>…get me some tea<br>…drink some water?</td><td>La oración guardada en producción es vieja: «bring», «soda»</td><td>Nada: «se vuelve a armar desde las partes»</td><td><span class="pill p-ok">nada</span> se arregla al publicar</td></tr>
-        <tr><td>Let's have eggs for breakfast.</td><td>«let» es de A2</td><td>No la sacó: el tema enseña «let's»</td><td><span class="pill p-warn">a decidir</span> que el analizador no la marque</td></tr>
-        <tr><td>Play the radio. Polite: ___</td><td>Con «please» también vale; «polite» es de A2</td><td>Explicó la fórmula en la miniteoría; probó «Con cortesía:» y la mesa lo frenó</td><td><span class="pill p-warn">a decidir</span> aceptar las formas con «please»</td></tr>
-      </tbody></table></div>
-    <p class="pie">Los tres primeros no tienen arreglo en el contenido y se llevaron 9 de las 14 consultas.</p>
+    <h2>Té y agua: el ejercicio está corregido, el audio no</h2>
+    <div class="grid g2">
+      <div class="ex">
+        <div class="rotulo antes">En producción hoy</div>
+        <div class="cons">Consigna: «Transforma las oraciones para que incluyan 'could' o 'can'.»</div>
+        <div class="en">Polite request: I want you to get me some tea. <span class="gap"></span></div>
+        <div class="ans">Respuesta: <b>Could you bring me some tea?</b></div>
+        <div class="ans">Oración guardada (la oración terminada, que el ejercicio guarda aparte) y audio: <i>Could you bring me some tea?</i></div>
+        <div class="mark"><span class="x">✕</span><span>Pide «get» y la respuesta dice «bring».</span></div>
+      </div>
+      <div class="ex">
+        <div class="rotulo despues">Después de la Corrección 1</div>
+        <div class="cons">Consigna: igual</div>
+        <div class="en">I want you to get me some tea. <span class="gap"></span></div>
+        <div class="ans">Respuestas aceptadas, 16:<span class="lista">Could you get me some tea? · Could you please get me some tea? · Could you get me some tea, please? · Please could you get me some tea? · Can you get me some tea? · Can you please get me some tea? · Can you get me some tea, please? · Please can you get me some tea? · Could you get some tea for me? · Could you please get some tea for me? · Could you get some tea for me, please? · Please could you get some tea for me? · Can you get some tea for me? · Can you please get some tea for me? · Can you get some tea for me, please? · Please can you get some tea for me?</span></div>
+        <div class="mark ok"><span class="x">✓</span><span>El ejercicio ya está bien.</span></div>
+        <div class="mark warn"><span class="x">!</span><span>El audio sigue diciendo «bring».</span></div>
+      </div>
+    </div>
+    <div class="grid g2" style="margin-top:12px">
+      <div class="ex">
+        <div class="rotulo antes">En producción hoy</div>
+        <div class="en">Polite request: I want to drink a glass of soda. <span class="gap"></span></div>
+        <div class="ans">Respuesta: <b>Could I have a glass of soda?</b></div>
+        <div class="ans">Oración guardada y audio: <i>Could I have a glass of soda?</i></div>
+      </div>
+      <div class="ex">
+        <div class="rotulo despues">Después de la Corrección 1</div>
+        <div class="en">I want to drink some water. <span class="gap"></span> I drink some water?</div>
+        <div class="ans">Respuestas aceptadas: <b>Could</b> · <b>Can</b> · <b>Please could</b> · <b>Please can</b></div>
+        <div class="mark warn"><span class="x">!</span><span>El audio sigue diciendo «Could I have a glass of soda?».</span></div>
+      </div>
+    </div>
+    <p class="pie">Lo que queda viejo está fuera del ejercicio y el corrector no puede tocarlo. Al publicar, la oración guardada se reescribe sola; el audio hay que regrabarlo.</p>
   </section>
 
   <section>
-    <h2>La mesa ya no acepta sacar puntos ni partir líneas</h2>
-    <div class="ad">
-      <div class="lado antes"><span class="rot">Lo que se coló en la C2</span>
-        <ol><li>No cameras. You ___ use cameras. → 9</li><li>No cameras⏎You ___ use cameras. → 8</li></ol>
-        <span class="res">aceptado: «mejoró» el largo</span></div>
-      <div class="lado despues"><span class="rot">Con la regla</span>
-        <ol><li>mete un salto de línea en el enunciado</li><li>saca el punto entre «cameras» y «You»</li></ol>
-        <span class="res">rechazado antes de medir, sin gastar consultas</span></div>
+    <h2>Let's: el analizador marca la palabra que el tema enseña</h2>
+    <div class="ex" style="max-width:560px">
+      <div class="cons"><b>Oraciones con let's</b> · A1</div>
+      <div class="cons">Consigna: «Crea oraciones utilizando "let's".»</div>
+      <div class="en">Let's <span class="gap"></span> (have) eggs for breakfast.</div>
+      <div class="ans">Respuesta: <b>have</b> · Traducción: Comamos huevos para desayunar.</div>
+      <div class="mark"><span class="x">✕</span><span>El analizador de vocabulario dice que «let» es de A2.</span></div>
+      <div class="mark ok"><span class="x">✓</span><span>El corrector no sacó «let's»: el tema existe para enseñarla.</span></div>
     </div>
-    <p class="pie">Probada sobre las 2.243 propuestas aceptadas de la C1: no frena ninguna. En la C2 frena sólo la cámara.</p>
+    <p class="pie">El problema es falso. El corrector sabe qué palabras enseña cada tema; el analizador no lo tiene en cuenta.</p>
   </section>
 
   <section>
-    <h2>Midiendo sólo la respuesta, se van 17 de 32</h2>
-    <div class="hb fijo">
-      <div class="r"><span class="t">Desaparecen<small>la oración guardada traía el estímulo</small></span><span class="tr"><span class="f g" style="width:53%"></span></span><span class="n">17</span></div>
-      <div class="r"><span class="t">Siguen<small>la respuesta misma es larga</small></span><span class="tr"><span class="f w" style="width:47%"></span></span><span class="n">15</span></div>
+    <h2>La radio: el corrector no hizo lo que hacía falta</h2>
+    <div class="ex" style="max-width:560px">
+      <div class="cons"><b>Pedidos: formal o informal</b> · A1</div>
+      <div class="cons">Consigna: «Transforma las oraciones para que incluyan 'could' o 'can'.»</div>
+      <div class="en">Play the radio. Polite: <span class="gap"></span></div>
+      <div class="ans">Única respuesta aceptada: <b>Could you play the radio?</b></div>
+      <div class="ans">Traducción: Pon la radio. Amable: ¿Podrías poner la radio?</div>
+      <div class="mark"><span class="x">✕</span><span>Si el alumno agrega «please», se le marca mal.</span></div>
+      <div class="ans">Se marcan mal: <i>Could you play the radio, please?</i> · <i>Could you please play the radio?</i> · <i>Please could you play the radio?</i></div>
+      <div class="mark"><span class="x">✕</span><span>«Polite» es una palabra de A2.</span></div>
+      <div class="rotulo">Lo que propuso el corrector</div>
+      <div class="ans"><b>Intentos 1 y 2:</b> el ejercicio igual, con otra miniteoría; por ejemplo, «Para el pedido cortés: Could + you + verbo base + complemento + ?». <b>Rechazado:</b> «please» se sigue marcando mal.</div>
+      <div class="ans"><b>Intento 3:</b> «Con cortesía:» en lugar de «Polite:». <b>Rechazado:</b> esa palabra le indica al alumno que use «could»; no se puede sacar.</div>
     </div>
-    <p class="pie">Hallazgos de largo en ejercicios de transformar de A1. En el curso publicado cambia en 18; en B1 aparecen 2 cortos, como «B: Neither have I.»</p>
+    <p class="pie">No probó lo que hace el ejercicio del té, del mismo tema: aceptar también las respuestas con «please».</p>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Dejo afuera de la corrida lo que se arregla solo al publicar?</span>
+      <div class="ask"><span class="q">1 · Radio: ¿acepto como correctas las tres respuestas con «please»?</span>
+        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">No, sólo una</span></div>
+        <span class="why">Es lo que ya hace el ejercicio del té. Si decís que sí, se lo pido al corrector sólo para este ejercicio.</span></div>
+      <div class="ask"><span class="q">2 · Let's: ¿el analizador deja de marcar la palabra que enseña el tema?</span>
         <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">No</span></div>
-        <span class="why">Acá fueron 6 de 14 consultas sin nada que hacer.</span></div>
-      <div class="ask"><span class="q">2 · ¿«Palabras de nivel» deja pasar la palabra que el tema enseña?</span>
+        <span class="why">Si no, va a seguir marcando «let's» como problema en cada ejercicio de «Oraciones con let's».</span></div>
+      <div class="ask"><span class="q">3 · ¿Dejo de mandarle al corrector lo que está fuera del ejercicio?</span>
         <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">No</span></div>
-        <span class="why">«let's» en «Oraciones con let's». El corrector ya sabe que el tema la enseña; el analizador no.</span></div>
-      <div class="ask"><span class="q">3 · En la radio, ¿se aceptan las formas con «please»?</span>
-        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">No, una sola</span></div>
-        <span class="why">«…get me some tea», del mismo tema, ya acepta 16 formas, con «please» y sin él.</span></div>
-      <div class="ask"><span class="q">4 · ¿Guardo sólo la respuesta en los ejercicios de transformar?</span>
+        <span class="why">Té y agua: no puede tocar la oración guardada ni el audio. Gastó 6 de las 14 consultas proponiendo el mismo ejercicio.</span></div>
+      <div class="ask"><span class="q">4 · Al publicar, ¿la oración guardada lleva sólo la respuesta del alumno?</span>
         <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">Todavía no</span></div>
-        <span class="why">Hoy se guardan estímulo y respuesta juntos. El largo ya no se equivoca, pero el audio y los jueces leen los dos.</span></div>
+        <span class="why">Hoy, en el té se guardaría «I want you to get me some tea. Could you get me some tea?», con la oración de partida.</span></div>
     </div>
-    <p class="pie">La propuesta de la cámara sigue esperando que la rechaces en la revisión (R). Con la medida nueva, la versión anterior ya estaba bien.</p>
+    <p class="pie">Aparte, la propuesta de la cámara (brief 219) sigue esperando que la rechaces en la revisión.</p>
   </section>
 
   <footer>
-    <span>Corrida ui-2026-10-25T17-40-52.543199Z-batch-recorrect · C2 tanda-A1-c2-1f1d898f · codex-cli gpt-6.1-sol medio · 14 consultas, 4 NO_WINNER. Análisis 2026-10-25T15-39-28 → 17-41-24. Reglas F-MESA-R018 (728f97a87) y F-SMODE-R004 (0a8043188). Datos: analysis/c2-mejoras-2026-10-25 (criterios.py, medir.py, jueces.py).</span>
-    <span>brief 220 · docs/briefs/220-los-siete-criterio-por-criterio.html</span>
+    <span>Corrida ui-2026-10-25T17-40-52.543199Z-batch-recorrect · C2 tanda-A1-c2-1f1d898f · codex-cli gpt-6.1-sol medio · 14 consultas, 4 sin propuesta ganadora. Ejercicios 67fab6d5993010229534 + 22da, 2dd6, 2dda, 2de0, 2589, 2dd7, 2de1. Producción: db/quiz-templates.json y db/grabaciones.json; el audio se controla al preparar la publicación (data-coherence, etapa PREPUBLICATION). Datos: analysis/c2-mejoras-2026-10-25 (casos.py, criterios.py, medir.py).</span>
+    <span>brief 221 · docs/briefs/221-los-siete-uno-por-uno.html</span>
   </footer>
 
 </div>
