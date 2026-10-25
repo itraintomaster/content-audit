@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Documentos · iterative-correction-improvements-1c3d2c</title><style>
+<title>Documentos · jolly-albattani-156866</title><style>
 :root{--bg:#fbfaf8;--bg-elev:#fff;--line:#e6e2db;--line-soft:#f0ece5;--fg:#1c1a17;
   --fg-2:#57524b;--fg-3:#8b847a;--accent:#b4531f;--accent-soft:#fdf1e7;
   --ok:#2f6b46;--ok-soft:#e9f4ed;--radius:10px}
@@ -40,7 +40,7 @@ code{font-family:ui-monospace,monospace;font-size:12.5px;background:var(--line-s
 <body><div class="wrap">
 <h1>Documentos del proyecto</h1>
 <p class="sub">14 propuestas y
-194 briefs. Cada uno es una página que se
+195 briefs. Cada uno es una página que se
 abre sola en el browser.</p>
 <div class="nota"><strong>Esta página se regenera.</strong> El titular, la bajada y la
 fecha de cada fila salen del archivo: corré <code>python3 docs/indice.py</code> después
@@ -48,8 +48,8 @@ de escribir o corregir cualquier documento y aparece acá. No editar
 <code>index.html</code> a mano.</div>
 <h2>Propuestas <span class="q">14</span></h2>
 <p class="que">Documentos vivos: se corrigen en el mismo archivo. Ordenados por última revisión.</p>
-<a class="d p" href="propuestas/estado-centralizado.html"><span class="k">estado-centralizado</span><span><span class="t">Un solo estado para todo el tablero</span><span class="b">Para entender, etapa por etapa, dónde vive cada dato del tablero, cuándo se pide y quién lo cambia.</span></span><span class="f">2026-10-25</span></a>
 <a class="d p" href="propuestas/analisis-vigente.html"><span class="k">analisis-vigente</span><span><span class="t">Un análisis que se completa juez por juez</span><span class="b">Para correr un juez después, sumarlo al análisis de su estado y verlo igual en todas las pantallas.</span></span><span class="f">2026-10-20</span></a>
+<a class="d p" href="propuestas/estado-centralizado.html"><span class="k">estado-centralizado</span><span><span class="t">Un solo estado para todo el tablero</span><span class="b">Para entender, etapa por etapa, dónde vive cada dato del tablero, cuándo se pide y quién lo cambia.</span></span><span class="f">2026-10-20</span></a>
 <a class="d p" href="propuestas/mapa-mediciones-por-juez.html"><span class="k">mapa-mediciones-por-juez</span><span><span class="t">El mapa cuenta jueces, no corridas</span><span class="b">Para ver de un vistazo qué juez falta medir y qué se suma sin gastar.</span></span><span class="f">2026-10-19</span></a>
 <a class="d p" href="propuestas/jueces-al-dia.html"><span class="k">jueces-al-dia</span><span><span class="t">Saber qué juez cambió desde que midió</span><span class="b">Para no corregir ni publicar con opiniones de un juez que ya no es el que está.</span></span><span class="f">2026-10-18</span></a>
 <a class="d p" href="propuestas/probar-la-solucion.html"><span class="k">probar-la-solucion</span><span><span class="t">Probar la solución con un solo botón</span><span class="b">Para cerrar un problema sin leer JSON: un botón corre todo y cada diferencia se lee en palabras.</span></span><span class="f">2026-10-13</span></a>
@@ -62,7 +62,7 @@ de escribir o corregir cualquier documento y aparece acá. No editar
 <a class="d p" href="propuestas/estados.html"><span class="k">estados</span><span><span class="t">Dónde estamos parados con los datos</span><span class="b">Un mapa que muestra qué está en producción, contra qué te comparás y qué falta revisar.</span></span><span class="f">2026-10-10</span></a>
 <a class="d p" href="propuestas/miniteorias-con-contexto.html"><span class="k">miniteorias-con-contexto</span><span><span class="t">Corregir y re-analizar sin salir del visor</span><span class="b">Mientras revisás, podés dar feedback, elegir una explicación existente o editarla vos; después pedís analizar esa versión.</span></span><span class="f">2026-10-09</span></a>
 <a class="d p" href="propuestas/centro-de-control.html"><span class="k">centro-de-control</span><span><span class="t">Manejar el curso sin intermediarios</span><span class="b">Un centro de control para entender, analizar, corregir y publicar cada mejora desde la app.</span></span><span class="f">2026-10-08</span></a>
-<h2>Briefs <span class="q">194</span></h2>
+<h2>Briefs <span class="q">195</span></h2>
 <p class="que">Instantáneas fechadas: se emiten y no se tocan más. Si algo cambió, hay un brief más nuevo que lo dice.</p>
 <h3>Base del curso y línea base</h3>
 <a class="d" href="briefs/020-content-audit-al-dia.html"><span class="k">020</span><span><span class="t">Content-audit, al día con el curso del 29/9</span><span class="b">El CLI vuelve a arrancar, db/ es copia fiel del backup de producción y la línea base de curso está sacada. Queda provisoria porque content-audit todavía no sabe leer la opción múltiple.</span></span><span class="f">2026-09-29</span></a>
@@ -262,6 +262,7 @@ de escribir o corregir cualquier documento y aparece acá. No editar
 <a class="d" href="briefs/212-los-resumenes-hecho.html"><span class="k">212</span><span><span class="t">Los resúmenes se ponen al día solos, y hay una sola estimación</span><span class="b">La etapa 9, en master y en el 7800, probada en una copia sin modelos: qué cambió, qué medí y qué pasa a la propuesta.</span></span><span class="f">2026-10-25</span></a>
 <a class="d" href="briefs/213-las-nueve-etapas.html"><span class="k">213</span><span><span class="t">Las nueve etapas están: el tablero ya no se contradice</span><span class="b">Qué cambió y qué mejoró de punta a punta, qué sería la etapa 10 y qué recomiendo.</span></span><span class="f">2026-10-25</span></a>
 <a class="d" href="briefs/214-mejoras-que-se-tiran.html"><span class="k">214</span><span><span class="t">Tiramos las propuestas que mejoran pero no terminan de arreglar</span><span class="b">El caso de la cámara en C2, C3 y C4, la regla que lo causa y cómo cambiarla.</span></span><span class="f">2026-10-25</span></a>
+<a class="d" href="briefs/215-evolucion-es-un-resumen.html"><span class="k">215</span><span><span class="t">Evolución se lee una vez y los resúmenes ya no la esperan</span><span class="b">Lo que decidiste en el brief 213: hecho, subido a master, andando en el 7800 y medido en una copia sin modelos.</span></span><span class="f">2026-10-25</span></a>
 <footer>docs/ · el brief más nuevo también está en <code>briefs/brief.html</code>,
 que es una URL fija para el browser</footer>
 </div></body></html>

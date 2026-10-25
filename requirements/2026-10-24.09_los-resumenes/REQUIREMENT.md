@@ -14,7 +14,8 @@ feature:
 actualizan solas cuando cambia algo que muestran, sin «Releer». Al terminar una corrida, cada una ve lo anterior marcado
 «actualizando» y en segundos lo nuevo, sin hacer esperar a las demás pantallas. Vueltas y Publicar leen la misma bandeja,
 una vez. Toda estimación de lo que gasta una corrida —el diálogo de lanzar, Vueltas, Exámenes y Problemas— sale de un
-solo cálculo: la misma pregunta da el mismo número en todas.
+solo cálculo: la misma pregunta da el mismo número en todas. Evolución, la barra de versiones que está arriba de cada
+pantalla, también es un resumen: se lee una vez para todas las pestañas (R015).
 
 **Por qué**: Cada una de las cuatro pantallas guardaba su copia del resumen, tenía su botón para volver a leer y lo
 volvía a pedir forzando al CLI cuando terminaba una corrida. Al terminar una, las pantallas ocupaban todas las
@@ -27,6 +28,10 @@ Fuente: la propuesta [«Un solo estado para el tablero»](../../docs/propuestas/
 - Vueltas estima con el motor con que abre el diálogo de lanzar;
 - el examen fijo se cuenta una vez, para Exámenes y para Problemas;
 - la guardia de «releer» es un tope que sólo baja.
+
+El 25/10 (brief 213) José decidió que Evolución pasara a ser el quinto resumen, con la etapa ya hecha. Su barra se leía
+una vez por pestaña: al terminar cada corrida, cinco pestañas ocupaban cinco conexiones durante 3 s, y los resúmenes
+esperaban 2,95 s detrás de ella (brief 212).
 
 El tablero es `pipeline/vocabulary_dashboard` en ittm.
 
@@ -118,8 +123,8 @@ actividad la tiene en curso, la haya lanzado el tablero o la terminal.
 > 2. Ningún pedido de un resumen ni de una estimación fuerza al tablero a leer de nuevo; si llega `releer`, se ignora.
 > 3. Los archivos del navegador y del tablero que todavía mandan o leen `releer` están en una lista, con cuántas veces
 >    y qué etapa los saca. La lista sólo puede bajar: un archivo nuevo, o uno con más, hace fallar las pruebas, y uno
->    con menos obliga a bajar la lista. Hoy quedan ocho, del Mapa, Analizadores, los cambios de Correcciones, el
->    análisis vigente y Evolución, y ninguna de las diez etapas los saca todavía: lo dicen así.
+>    con menos obliga a bajar la lista. Hoy quedan siete, del Mapa, Analizadores, los cambios de Correcciones y el
+>    análisis vigente, y ninguna de las diez etapas los saca todavía: lo dicen así. Evolución salió con R015.
 
 <a id="F-RESUM-R006"></a>
 ### Rule[F-RESUM-R006] - Ninguna pantalla guarda un resumen ni una estimación
@@ -199,6 +204,21 @@ actividad la tiene en curso, la haya lanzado el tablero o la terminal.
 > 2. Otro análisis arranca de cero.
 > 3. Si el análisis que se miraba ya no existe, vuelve al más nuevo y lo avisa.
 
+<a id="F-RESUM-R015"></a>
+### Rule[F-RESUM-R015] - Evolución se lee una vez para todas las pestañas
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> 1. Las versiones que muestra Evolución arriba de cada pantalla son un resumen más, con R001 a R004 y R013: se leen
+>    una vez para todas las pestañas. Al terminar una corrida, cada pestaña las vuelve a pedir una vez y recibe
+>    enseguida lo que había, marcado «actualizando», hasta que llega lo nuevo.
+> 2. Dependen de la tanda y del análisis. Decidir no las pone viejas.
+> 3. La comparación de «Comparar versiones» es otro resumen. Depende además de lo decidido y de los jueces, y se pide
+>    sólo mientras su diálogo está abierto: al cerrarlo, la pestaña la suelta. Como pesa (trae el contenido entero de
+>    cada versión), el tablero guarda sólo la última que se pidió.
+> 4. Base y su primera corrección tienen las mismas versiones: comparten lo guardado.
+> 5. Crear una corrección desde el tablero pone viejas las versiones y la comparación, aunque algo corra.
+> 6. Evolución no se lee por su cuenta: no tiene lectura propia ni manda «releer».
+
 ## Journeys
 
 ```yaml
@@ -262,7 +282,9 @@ journeys:
   nuevo? Sí (F-RESUM-R003).
 - (respondida por José, 24/10) El «releer» de Exámenes y del catálogo de jueces, ¿se saca en esta etapa? Sí: Exámenes
   se pone al día sola y sólo ofrece «Volver a intentar» cuando falla (F-RESUM-R005).
-- (pendiente de José) Los ocho archivos que todavía mandan o leen `releer` (F-RESUM-R005 inv. 3), ¿en qué etapa salen?
+- (respondida por José, 25/10, brief 213) Los archivos que todavía mandan o leen `releer` (F-RESUM-R005 inv. 3), ¿en
+  qué etapa salen? Evolución, en esta etapa (R015). Los otros siete, en una tarjeta aparte, «Sacar los «releer» que
+  quedan del tablero».
 
 ## Cómo se prueba
 
@@ -286,11 +308,12 @@ Ninguna prueba consulta a un modelo: las estimaciones son gratis y las corridas 
 | [R012](#F-RESUM-R012) | Lanzar estima de nuevo sin lo guardado; una recorrección de 2.400 preguntas se estima y se lanza | `contrato_de_punta_a_punta_test`, `rutas_de_la_estimacion_test`, `servidor_del_tablero_test` |
 | [R013](#F-RESUM-R013) | Una falla deja lo que se veía con el error; sin nada, «Volver a intentar»; se recuerda 5 s; otra tanda no se muestra | `memoria_de_un_resumen_test`, `rutas_de_los_resumenes_test`; `estado-resumenes`, `estado-estimacion`, `estadisticas-*`, `comparar-*`, `vueltas-*`, `publicar*` |
 | [R014](#F-RESUM-R014) | El mismo análisis con otros números conserva lugar, lo elegido y lo resaltado; otro arranca de cero; uno que ya no está vuelve al más nuevo y avisa | `estadisticas-operaciones`, `estadisticas-estado` |
+| [R015](#F-RESUM-R015) | La barra pide sus versiones por el resumen y nunca por la ruta de antes; al terminar una corrida, una vez, con «Actualizando…»; un tema suyo sí, uno ajeno no; cinco pestañas y Base, una lectura; decidir no la pone vieja; crear sí, aunque algo corra; la comparación se suelta al cerrar y el tablero guarda sólo la última; sin superficie no pide | `evolucion-resumen`, `evolucion-versiones`, `sin-releer`; `tablero_con_el_cli_test`, `rutas_de_los_resumenes_test`, `evolucion_test` |
 
 ## References
 
 - **Propuesta**: [Un solo estado para el tablero](../../docs/propuestas/estado-centralizado.html), etapa 9.
-- **Brief**: 209 (diseño).
+- **Brief**: 209 (diseño), 212 (la etapa hecha), 213 (José decide que Evolución sea el quinto resumen), 215 (Evolución, hecho).
 - **FEAT-AVISO**: el canal de avisos y la cola al terminar una corrida
   ([F-AVISO-R002](../2026-10-20.03_el-servidor-avisa/REQUIREMENT.md#F-AVISO-R002)).
 - **FEAT-LATAN**: la tanda que se mira ([F-LATAN-R008](../2026-10-21.02_la-tanda/REQUIREMENT.md#F-LATAN-R008)).

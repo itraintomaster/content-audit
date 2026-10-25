@@ -3,7 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mejoras que se tiran</title>
+<title>Evolución, un resumen</title>
+<!--
+  TEMPLATE DE BRIEF · visual-brief
+  1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
+  2. Por cada sección: un título que dice la conclusión, UN dibujo copiado del
+     catálogo del final y un pie de dos renglones. Primero el dibujo; el texto lo rotula.
+     Si habla de una pantalla: primero DÓNDE (la captura con marcas, .map), después EL
+     PROBLEMA como un caso de uso (la foto de hoy + .mark), después CÓMO QUEDA (la maqueta
+     .mq con números y su leyenda). Si ya está hecho, los dos lados del .ad son capturas.
+     Las fotos, con capturar.mjs, en docs/briefs/NNN-slug/ (SKILL.md §4).
+  3. BORRAR el catálogo entero (la section de clase cat, al final) y las secciones que no se usan.
+  4. Verificar: node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
+     y mirarlo: node ~/.claude/skills/visual-brief/assets/diapos.mjs <el brief> <scratchpad>/d (+ --tema=dark, --celular)
+  Topes: lede ≤ 2 frases y 35 palabras · ≤ 6 secciones · pie ≤ 30 · párrafo ≤ 40 ·
+  prosa total ≤ 400 (sin tablas ni gráficos). Cada componente trae el suyo en el catálogo.
+  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
+-->
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -324,143 +340,111 @@
     .map.alta .cap{width:min(55%,220px);margin:0 auto}
   }
 
-  /* la meta tiene que caer en el mismo lugar en todas las filas: ancho fijo para el número */
-  .hb.fijo .r{grid-template-columns:minmax(110px,38%) minmax(0,1fr) 92px}
-  @media (max-width:640px){ .hb.fijo .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) 84px} }
-</style>
-</head>
+  </style>
 <body>
 <div class="wrap">
 
   <header>
     <div class="kicker">
-      <span class="num">214</span>
-      <span class="badge">Diagnóstico · Propuesta</span>
-      <span class="meta">Correcciones iterativas · sobre el brief 195 · 25/10/2026</span>
+      <span class="num">215</span>
+      <span class="badge">Resumen</span>
+      <span class="meta">Evolución, el quinto resumen · 25/10/2026</span>
     </div>
-    <h1>Tiramos las propuestas que mejoran pero no terminan de arreglar</h1>
-    <p class="sub">El caso de la cámara en C2, C3 y C4, la regla que lo causa y cómo cambiarla.</p>
+    <h1>Evolución se lee una vez y los resúmenes ya no la esperan</h1>
+    <p class="sub">Lo que decidiste en el brief 213: hecho, subido a master, andando en el 7800 y medido en una copia sin modelos.</p>
   </header>
 
-  <div class="lede"><p><strong>Hoy una propuesta se acepta sólo si borra un problema entero: si lo achica, se tira y la pasada siguiente arranca de cero.</strong> Propongo guardar todo lo que mejora sin empeorar nada.</p></div>
+  <div class="lede"><p><strong>Cuando termina una corrida, ningún resumen espera más de 0,17 s (antes, 2,95 s).</strong> Evolución contesta lo que tenía, marcado «Actualizando…», y content-audit la vuelve a leer una sola vez, de fondo.</p></div>
 
   <section>
-    <h2>La cámara mejoró tres veces y no quedó ninguna</h2>
-    <div class="hb fijo">
-      <div class="r"><span class="t">En el curso, antes de C2<small>It's not okay to use a camera here. You can't use a camera here.</small></span><span class="tr"><span class="f b" style="width:100%"></span><span class="meta" style="left:44.4%"></span></span><span class="n">18</span></div>
-      <div class="r"><span class="t">Propuesta de C2<small>No cameras here. You can't use one.</small></span><span class="tr"><span class="f s" style="width:55.6%"></span><span class="meta" style="left:44.4%"></span></span><span class="n">10 · se tiró</span></div>
-      <div class="r"><span class="t">Propuesta de C3<small>Don't use cameras. You can't use cameras.</small></span><span class="tr"><span class="f s" style="width:61.1%"></span><span class="meta" style="left:44.4%"></span></span><span class="n">11 · se tiró</span></div>
-      <div class="r"><span class="t">Propuesta de C4<small>No cameras. You can't use cameras.</small></span><span class="tr"><span class="f s" style="width:50%"></span><span class="meta" style="left:44.4%"></span></span><span class="n">9 · se tiró</span></div>
-      <div class="r"><span class="t">En el curso, después de C4<small>la misma oración del principio</small></span><span class="tr"><span class="f b" style="width:100%"></span><span class="meta" style="left:44.4%"></span></span><span class="n">18</span></div>
+    <h2>La barra de Evolución avisa cuando se pone al día</h2>
+    <div class="map" style="grid-template-columns:minmax(0,1fr)">
+      <div class="ex">
+        <svg class="cap" viewBox="0 -46 1280 196" role="img" aria-label="La barra de Evolución arriba de Vueltas, recién terminada una corrida: la versión del contenido, la marca «Actualizando…» al lado del análisis, el botón «Comparar versiones» y, más abajo, Vueltas también actualizándose">
+          <image href="215-evolucion-es-un-resumen/barra.jpg" width="1280" height="150"/>
+          <rect class="aro" x="203" y="39" width="200" height="41" rx="10"/>
+          <rect class="aro" x="566" y="46" width="107" height="27" rx="8"/>
+          <rect class="aro" x="674" y="39" width="157" height="42" rx="10"/>
+          <line class="aro" x1="303" y1="-8" x2="303" y2="39" style="stroke-width:2"/>
+          <line class="aro" x1="620" y1="-8" x2="620" y2="46" style="stroke-width:2"/>
+          <line class="aro" x1="753" y1="-8" x2="753" y2="39" style="stroke-width:2"/>
+          <g class="mk" transform="translate(303 -24)"><circle r="18"/><text font-size="19">1</text></g>
+          <g class="mk" transform="translate(620 -24)"><circle r="18"/><text font-size="19">2</text></g>
+          <g class="mk" transform="translate(753 -24)"><circle r="18"/><text font-size="19">3</text></g>
+          <g class="mk gris" transform="translate(1150 117)"><circle r="14"/><text font-size="15">4</text></g>
+        </svg>
+      </div>
+      <div class="who">
+        <div><b>1</b><span><strong>Las versiones</strong> · <small>una lectura para todas las pestañas, también Base</small></span></div>
+        <div><b>2</b><span><strong>«Actualizando…»</strong> · <small>lo que se ve es lo que había, mientras llega lo nuevo</small></span></div>
+        <div><b>3</b><span><strong>«Comparar versiones»</strong> · <small>otro resumen, que se pide sólo con el diálogo abierto</small></span></div>
+        <div><b class="gris">4</b><span><strong>Vueltas</strong> · <small>la pantalla se pone al día igual, desde la etapa 9</small></span></div>
+      </div>
     </div>
-    <div class="leyenda"><span><i class="sw b"></i>lo que tiene el curso</span><span><i class="sw s"></i>propuesta que se tiró</span><span><i class="sw m"></i>la meta de A1: hasta 8</span></div>
-    <p class="pie">Largo: palabras y signos. Ninguna sumaba un error nuevo; se tiraron por seguir arriba de 8.</p>
+    <p class="pie">Vueltas en la copia, justo después de que cambiara la tanda. Arriba, la franja de la corrida simulada que acababa de terminar.</p>
   </section>
 
   <section>
-    <h2>La regla pide borrar el problema; no mira si mejoró</h2>
-    <div class="ad">
-      <div class="lado antes"><span class="rot">Hoy</span>
-        <ol>
-          <li>Propone «No cameras. You can't use cameras.»</li>
-          <li>Ningún error nuevo.</li>
-          <li>Largo: de 18 a 9; la meta es 8.</li>
-          <li>El problema sigue: se tira.</li>
-        </ol>
-        <span class="res">El curso queda con 18</span></div>
-      <div class="lado despues"><span class="rot">Con el cambio</span>
-        <ol>
-          <li>La misma propuesta.</li>
-          <li>Mejoró y nada empeoró.</li>
-          <li>Se guarda; el problema sigue abierto, con 9.</li>
-          <li>El intento siguiente parte de 9.</li>
-        </ol>
-        <span class="res">Cada intento suma; ninguno se pierde</span></div>
-    </div>
-    <p class="pie">Borrar un problema entero se sigue aceptando igual que hoy.</p>
-  </section>
-
-  <section>
-    <h2>«Mejor» y «peor» salen de medir, no de un modelo</h2>
-    <div class="opts">
-      <div class="opt"><div class="oh"><b>Mejor</b><span class="pill p-ok">alcanza con una</span></div>
-        <ul>
-          <li class="si">un problema desaparece (como hoy)</li>
-          <li class="si">un problema baja de gravedad</li>
-          <li class="si">el largo se acerca a la meta</li>
-          <li class="si">quedan menos palabras de otro nivel</li>
-        </ul></div>
-      <div class="opt"><div class="oh"><b>Peor</b><span class="pill p-bad">frena con una</span></div>
-        <ul>
-          <li class="no">aparece un problema nuevo (como hoy)</li>
-          <li class="no">aparece una palabra de otro nivel (como hoy)</li>
-          <li class="no">un problema sube de gravedad</li>
-          <li class="no">el largo se aleja de la meta</li>
-        </ul></div>
-      <div class="opt"><div class="oh"><b>No cuenta</b><span class="pill p-idle">sin medida</span></div>
-        <p>Aclarar la miniteoría de «Let's» no mueve ninguna medición.</p></div>
-    </div>
-    <p class="pie">Las dos últimas de «peor» son nuevas: hoy sólo frena un problema que antes no estaba.</p>
-  </section>
-
-  <section>
-    <h2>Sirve igual en las dos formas de iterar</h2>
+    <h2>Al terminar una corrida, nada espera a Evolución</h2>
     <div class="diagram">
-      <svg viewBox="0 0 660 214" style="min-width:560px" role="img" aria-label="Las dos formas de iterar: en la misma corrección y en una corrección nueva, cada paso parte del anterior">
-        <defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--fg-3)"/></marker></defs>
-        <text x="4" y="16" class="lbl" style="font-weight:650">A · En la misma corrección, con «Volver a corregir»</text>
-        <rect x="4" y="28" width="190" height="60" rx="9" class="box-a"/><text x="18" y="53" class="lbl" style="font-weight:600">Pasada 1</text><text x="18" y="73" class="lbl-s">18 → 10, se guarda</text>
-        <path d="M194 58 L234 58" class="arrow" marker-end="url(#fl)"/>
-        <rect x="238" y="28" width="190" height="60" rx="9" class="box-a"/><text x="252" y="53" class="lbl" style="font-weight:600">Pasada 2</text><text x="252" y="73" class="lbl-s">parte de 10, no de 18</text>
-        <path d="M428 58 L468 58" class="arrow" marker-end="url(#fl)"/>
-        <rect x="472" y="28" width="184" height="60" rx="9" class="box-ok"/><text x="486" y="53" class="lbl" style="font-weight:600">Hasta borrarlo</text><text x="486" y="73" class="lbl-s">o hasta que no mejore</text>
-        <text x="4" y="130" class="lbl" style="font-weight:650">B · Corrección nueva, con todo o sólo lo que falla</text>
-        <rect x="4" y="142" width="190" height="60" rx="9" class="box-a"/><text x="18" y="167" class="lbl" style="font-weight:600">C2</text><text x="18" y="187" class="lbl-s">18 → 10, se guarda</text>
-        <path d="M194 172 L234 172" class="arrow" marker-end="url(#fl)"/>
-        <rect x="238" y="142" width="190" height="60" rx="9" class="box-a"/><text x="252" y="167" class="lbl" style="font-weight:600">C3</text><text x="252" y="187" class="lbl-s">hereda 10</text>
-        <path d="M428 172 L468 172" class="arrow" marker-end="url(#fl)"/>
-        <rect x="472" y="142" width="184" height="60" rx="9" class="box-ok"/><text x="486" y="167" class="lbl" style="font-weight:600">C4</text><text x="486" y="187" class="lbl-s">hereda lo mejor de C3</text>
+      <svg viewBox="0 0 760 300" style="min-width:620px" role="img" aria-label="Línea de tiempo al terminar una corrida con cinco pestañas. Antes: Evolución leía una vez por pestaña durante 3 segundos y los resúmenes esperaban 2,95 segundos en la cola del navegador. Ahora: Evolución contesta lo que tenía en 0,15 segundos, los resúmenes esperan como mucho 0,17 segundos y llegan antes de 1 segundo; content-audit lee Evolución una vez, de fondo, en 3,5 segundos, y nadie lo espera">
+        <text x="4" y="16" class="lbl-s" style="font-weight:600">ANTES (BRIEF 212)</text>
+        <text x="4" y="45" class="lbl">Evolución</text>
+        <rect x="159" y="28" width="244" height="28" rx="7" class="box-bad"/><text x="171" y="47" class="lbl">5 lecturas, una por pestaña · 3 s</text>
+        <text x="4" y="83" class="lbl">los resúmenes</text>
+        <rect x="160" y="66" width="249" height="28" rx="7" class="box"/><text x="172" y="85" class="lbl">en la cola · 2,95 s</text>
+        <rect x="409" y="66" width="20" height="28" rx="5" class="box-ok"/><text x="439" y="85" class="lbl">llegan a los 3,3 s</text>
+
+        <text x="4" y="132" class="lbl-s" style="font-weight:600">AHORA</text>
+        <text x="4" y="161" class="lbl">Evolución</text>
+        <rect x="150" y="144" width="13" height="28" rx="4" class="box-ok"/><text x="173" y="163" class="lbl">contesta lo que tenía · 0,15 s</text>
+        <text x="4" y="199" class="lbl">los resúmenes</text>
+        <rect x="150" y="182" width="84" height="28" rx="6" class="box-ok"/><text x="244" y="201" class="lbl">esperan ≤ 0,17 s · llegan antes de 1 s</text>
+        <text x="4" y="237" class="lbl">de fondo</text>
+        <rect x="150" y="220" width="295" height="28" rx="7" class="box" style="stroke-dasharray:5 4"/><text x="162" y="239" class="lbl">content-audit lee Evolución una vez · 3,5 s</text>
+        <text x="455" y="239" class="lbl-s">nadie lo espera</text>
+        <text x="150" y="282" class="lbl-s">0 s</text><text x="395" y="282" class="lbl-s">3 s</text><text x="648" y="282" class="lbl-s">6 s</text>
       </svg>
     </div>
-    <p class="pie">Las dos ya parten de la última versión guardada: sólo falta guardar el avance. Lo que mejoró sigue fallando, así que entra en «sólo lo que falla».</p>
+    <p class="pie">Cinco pestañas a la vista en la copia, con una corrida simulada que cambia la tanda. Dos muestras: la peor espera fue 0,17 s y 0,04 s.</p>
   </section>
 
   <section>
-    <h2>Lo demás que muestra el 195 tiene otras causas</h2>
-    <div class="tw"><table>
-      <thead><tr><th>Caso</th><th style="text-align:right">Ejercicios</th><th>Por qué no avanza</th><th>Qué lo arregla</th></tr></thead>
-      <tbody>
-        <tr><td>Cámara: el largo</td><td class="num">1</td><td>se tira la mejora</td><td><span class="pill p-info">este cambio</span></td></tr>
-        <tr><td>«Let's» · huevos</td><td class="num">1</td><td>el analizador marca «let» de A2 aunque el tema enseña «let's»; el corrector, con razón, no lo saca</td><td>ajustar ese analizador</td></tr>
-        <tr><td>Oración de producción distinta</td><td class="num">5</td><td>es una copia fuera del ejercicio; el corrector no la toca</td><td>un arreglo aparte</td></tr>
-        <tr><td>Sin problemas, sin aprobar</td><td class="num">4</td><td>falta habilitar el juez de respuesta única</td><td>habilitarlo</td></tr>
-      </tbody></table></div>
-    <p class="pie">La cámara está en dos filas.</p>
-  </section>
-
-  <section>
-    <h2>Qué necesito de vos</h2>
-    <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Guardamos un avance aunque el problema siga abierto?</span>
-        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">No, sólo si lo borra entero</span></div>
-        <span class="why">C3 y C4 gastaron 41 consultas y no cambiaron nada.</span></div>
-      <div class="ask"><span class="q">2 · ¿De dónde parte cada intento dentro de una pasada?</span>
-        <div class="ops"><span class="op rec">Del mejor hasta ahí · recomendado</span><span class="op">Del original; se guarda el mejor al final</span></div>
-        <span class="why">Cada intento empuja desde el anterior, con las mismas consultas.</span></div>
-      <div class="ask"><span class="q">3 · ¿Para guardar un avance, el largo tampoco puede empeorar?</span>
-        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">No, el largo nunca frena</span></div>
-        <span class="why">Lo del 11/8 sigue para arreglos enteros; acá evita cambiar un problema por otro.</span></div>
-      <div class="ask"><span class="q">4 · ¿El avance se ve como un estado propio en el tablero?</span>
-        <div class="ops"><span class="op rec">Sí: «Mejoró, sigue abierto · 18 → 9» · recomendado</span><span class="op">No, «sin ganador» como hoy</span></div>
-        <span class="why">Hoy un avance y un fracaso se ven igual.</span></div>
+    <h2>Un resumen más, y un «releer» menos</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">2,95 → 0,17<small>s</small></div><div class="l">lo más que espera un resumen en el navegador al terminar una corrida</div></div>
+      <div class="kpi"><div class="n">3,3 → 1<small>s</small></div><div class="l">cuándo llega el último resumen; en la segunda muestra, a los 0,4 s</div></div>
+      <div class="kpi"><div class="n">1<small>lectura</small></div><div class="l">de Evolución en content-audit por corrida, de fondo; las pestañas no la esperan</div></div>
+      <div class="kpi"><div class="n">8 → 7</div><div class="l">«releer» que quedan, todos de la tarjeta que corre en paralelo</div></div>
     </div>
-    <p class="pie">Con tu sí, lo hago con sus pruebas y lo mido en una pasada C5 sobre los diez. Nada se publica solo.</p>
-    <div class="call c-warn"><b>No probé:</b> que un cambio que no cierra ninguna tarea llegue bien a publicar. Es lo primero.</div>
+  </section>
+
+  <section>
+    <h2>Para la propuesta: dos resúmenes, y la comparación pesa</h2>
+    <div class="tw"><table>
+      <thead><tr><th>El brief 213 dice</th><th>Lo que pasó</th></tr></thead>
+      <tbody>
+        <tr><td>Evolución pasa a ser el quinto resumen</td><td>Son dos: las versiones, que mira cada pestaña, y la comparación, que se pide sólo con su diálogo abierto.</td></tr>
+        <tr><td>Contesta lo guardado mientras vuelve a leer</td><td>Y lo marca en la barra. Decidir no pone viejas las versiones; crear una corrección sí, aunque algo corra.</td></tr>
+        <tr><td>Saca su «releer» de la lista</td><td>Quedan siete: Mapa, Analizadores, los cambios y el análisis vigente.</td></tr>
+        <tr><td>—</td><td>La comparación tarda 94 s en content-audit y pesa 122 MB en esta campaña: el tablero guarda sólo la última.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="call c-warn">Con «Comparar versiones» abierto, decidir la vuelve a leer de fondo: son 94 s en que content-audit no contesta otra cosa. No lo medí en el 7800.</div>
+  </section>
+
+  <section>
+    <h2>Qué sigue</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><div class="h">Los otros siete «releer»</div><div class="d">Los saca la tarjeta en paralelo; ya repartimos los archivos.</div></div>
+      <div class="st"><span class="i">2</span><div class="h">Una prueba intermitente</div><div class="d">El número de una corrida pierde dígitos a veces. Ya pasaba.</div></div>
+      <div class="st end"><span class="i">3</span><div class="h">Nada más pendiente</div><div class="d">El 7800 la tiene desde las 10:40.</div></div>
+    </div>
   </section>
 
   <footer>
-    <span>Datos: analysis/iterations-c2-c4-2026-10-24, panelDecisions. Regla: F-MESA-R006 cond. 1 (DefaultPanelDecisionScript); peor: F-NOEMP-R001 (DefaultChangeGate); intentos: DefaultTopicPanel.</span>
-    <span>brief 214 · docs/briefs/214-mejoras-que-se-tiran.html</span>
+    <span>Copia de verificación en 127.0.0.1:7847, sin modelos (stubs de codex, gemini, agy, claude y ollama, dentro de un sandbox) · campaña a1-v11 clonada · tanda A1 corrección 4 · corrida simulada de 20 s que reescribe la tanda una vez · requisito F-RESUM-R015 (requirements/2026-10-24.09_los-resumenes) · ittm 44af1c507 (master) · 7800 reiniciado con ittm 44af1c507 y content-audit 1920f682b · pruebas: 2.733 del navegador; flutter, todo test/ en verde salvo la prueba intermitente de Ejecuciones (3 de 3 al repetirla)</span>
+    <span>brief 215 · docs/briefs/215-evolucion-es-un-resumen.html</span>
   </footer>
 
 </div>
