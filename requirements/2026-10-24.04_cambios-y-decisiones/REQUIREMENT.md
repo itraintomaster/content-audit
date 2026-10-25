@@ -91,7 +91,9 @@ aprobaciones de los ejercicios sin cambios. La **edición** de los cambios cambi
 
 > 1. Aprobar o rechazar una corrección, y aprobar o reabrir un ejercicio sin cambios, avisan «decisiones», no «tanda»
 >    ni «cambios».
-> 2. Cada pestaña que mira esa tanda muestra la decisión en un segundo o menos.
+> 2. Cada pestaña que mira esa tanda muestra la decisión en un segundo o menos desde que content-audit la guarda. Lo
+>    que tarda guardar no cuenta en ese segundo: la pestaña que decide ya la muestra al instante
+>    ([R003](#F-DECIDE-R003)), y las otras no muestran lo que content-audit todavía puede rechazar (José, 24/10).
 > 3. Ninguna pestaña vuelve a leer los cambios por una decisión.
 
 <a id="F-DECIDE-R005"></a>
