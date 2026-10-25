@@ -3,23 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vencen con su tema</title>
-<!--
-  TEMPLATE DE BRIEF · visual-brief
-  1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
-  2. Por cada sección: un título que dice la conclusión, UN dibujo copiado del
-     catálogo del final y un pie de dos renglones. Primero el dibujo; el texto lo rotula.
-     Si habla de una pantalla: primero DÓNDE (la captura con marcas, .map), después EL
-     PROBLEMA como un caso de uso (la foto de hoy + .mark), después CÓMO QUEDA (la maqueta
-     .mq con números y su leyenda). Si ya está hecho, los dos lados del .ad son capturas.
-     Las fotos, con capturar.mjs, en docs/briefs/NNN-slug/ (SKILL.md §4).
-  3. BORRAR el catálogo entero (la section de clase cat, al final) y las secciones que no se usan.
-  4. Verificar: node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
-     y mirarlo: node ~/.claude/skills/visual-brief/assets/diapos.mjs <el brief> <scratchpad>/d (+ --tema=dark, --celular)
-  Topes: lede ≤ 2 frases y 35 palabras · ≤ 6 secciones · pie ≤ 30 · párrafo ≤ 40 ·
-  prosa total ≤ 400 (sin tablas ni gráficos). Cada componente trae el suyo en el catálogo.
-  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
--->
+<title>La cámara llegó a 8</title>
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -340,120 +324,113 @@
     .map.alta .cap{width:min(55%,220px);margin:0 auto}
   }
 
-  </style>
+  /* la meta tiene que caer en el mismo lugar en todas las filas: ancho fijo para el número */
+  .hb.fijo .r{grid-template-columns:minmax(110px,38%) minmax(0,1fr) 92px}
+  @media (max-width:640px){ .hb.fijo .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) 84px} }
+</style>
+<style>
+  .ex .txt{font-size:14px;line-height:1.45}
+  .ex .txt q{font-style:italic}
+  .diagram .dash{stroke-dasharray:6 5}
+</style>
+</head>
 <body>
 <div class="wrap">
 
   <header>
     <div class="kicker">
-      <span class="num">218</span>
-      <span class="badge">Resumen</span>
-      <span class="meta">Las memorias vencen con su tema · 25/10/2026</span>
+      <span class="num">219</span>
+      <span class="badge">Prueba real · Hallazgo</span>
+      <span class="meta">C2 nueva desde la C1 · la cámara · 25/10/2026</span>
     </div>
-    <h1>El Mapa, Analizadores y Correcciones se ponen al día solos</h1>
-    <p class="sub">La etapa que saca los «releer» que quedaban: hecha, en master y medida en una copia sin modelos.</p>
+    <h1>La cámara llegó a la meta, pero sacando el punto</h1>
+    <p class="sub">La primera prueba real del corrector que guarda las mejoras (brief 217).</p>
   </header>
 
-  <div class="lede"><p><strong>No queda ningún «releer» (eran 7) ni botón ↻.</strong> Una decisión tomada desde la terminal aparece sola en el Mapa a los 6 s y en Correcciones a los 5,5 s.</p></div>
+  <div class="lede"><p><strong>Cada intento siguió desde el mejor: 18 → 10 → 9 → 8, con 18 consultas, pero el último paso sacó un punto y nadie lo frenó.</strong> Propongo dos reglas antes de correr los otros siete.</p></div>
+
+  <div class="kpis" style="margin:0 0 38px">
+    <div class="kpi dest"><div class="n">18 → 8</div><div class="l">largo de la cámara en una pasada; meta de A1: hasta 8</div></div>
+    <div class="kpi"><div class="n">18<small>de 40</small></div><div class="l">consultas; C2–C4 viejas gastaron 59 y no guardaron nada</div></div>
+    <div class="kpi"><div class="n">4</div><div class="l">intentos: el 4.º porque el 3.º mejoró; no cambió nada y paró</div></div>
+  </div>
 
   <section>
-    <h2>El Mapa se pone al día sin que toques nada</h2>
-    <div class="map">
-      <div class="ex">
-        <svg class="cap" viewBox="0 0 1280 380" role="img" aria-label="El Mapa de estados en la copia: arriba, la barra de acciones sin el botón ↻; abajo, la tarjeta Estás acá con 240 aprobados y el resumen del día">
-          <image href="218-vencen-con-su-tema/mapa.jpg" width="1280" height="380"/>
-          <rect class="aro" x="705" y="64" width="562" height="44" rx="10"/>
-          <rect class="aro" x="590" y="132" width="288" height="84" rx="10"/>
-          <g class="mk" transform="translate(705 64)"><circle r="17"/><text font-size="18">1</text></g>
-          <g class="mk" transform="translate(590 132)"><circle r="17"/><text font-size="18">2</text></g>
-          <g class="mk gris" transform="translate(76 333)"><circle r="15"/><text font-size="16">3</text></g>
-        </svg>
-      </div>
-      <div class="who">
-        <div><b>1</b><span><strong>La barra</strong> · <small>sin ↻; la de Analizadores, igual</small></span></div>
-        <div><b>2</b><span><strong>Estás acá</strong> · <small>los aprobados suben solos cuando alguien decide</small></span></div>
-        <div><b class="gris">3</b><span><strong>El resumen del día</strong> · <small>sale de la misma lectura</small></span></div>
-      </div>
+    <h2>Cada intento guardó su avance y siguió desde ahí</h2>
+    <div class="hb fijo">
+      <div class="r"><span class="t">C1, de donde parte<small>It's not okay to use a camera here. You can't use a camera here.</small></span><span class="tr"><span class="f b" style="width:100%"></span><span class="meta" style="left:44.4%"></span></span><span class="n">18</span></div>
+      <div class="r"><span class="t">Intento 1<small>No cameras. You ___ use a camera.</small></span><span class="tr"><span class="f w" style="width:55.6%"></span><span class="meta" style="left:44.4%"></span></span><span class="n">10 · guardado</span></div>
+      <div class="r"><span class="t">Intento 2<small>No cameras. You ___ use cameras.</small></span><span class="tr"><span class="f w" style="width:50%"></span><span class="meta" style="left:44.4%"></span></span><span class="n">9 · guardado</span></div>
+      <div class="r"><span class="t">Intento 3<small>No cameras⏎You ___ use cameras.</small></span><span class="tr"><span class="f b" style="width:44.4%"></span><span class="meta" style="left:44.4%"></span></span><span class="n">8 · sin punto</span></div>
     </div>
-    <p class="pie">El Mapa en la copia, después de decidir ejercicios desde la terminal. Correcciones sacó «Volver a leer la tanda» de Herramientas y de la búsqueda.</p>
+    <div class="leyenda"><span><i class="sw w"></i>avance guardado</span><span><i class="sw b"></i>problema</span><span><i class="sw m"></i>la meta de A1: hasta 8</span></div>
+    <p class="pie">Largo: palabras y signos. El mecanismo hizo lo que pediste; el problema es cómo consiguió el último paso.</p>
   </section>
 
   <section>
-    <h2>El ↻ ya no hace falta: lo hace la pantalla</h2>
+    <h2>Llegó a 8 quitando el punto y partiendo la línea</h2>
+    <figure class="captura"><img src="219-la-camara-llego-a-8/cambio.jpg" alt="La cámara en Correcciones de la C2: antes «It's not okay to use a camera here. You ___ use a camera here.», ahora «No cameras You ___ use cameras.»">
+      <figcaption>Correcciones · Corrección 2 · filtrada por la pasada de hoy, en el 7800.</figcaption></figure>
+    <div class="mark" style="margin-top:12px"><span class="x">✕</span><span>El alumno lee «No cameras You ___ use cameras.», y el audio igual.</span></div>
+  </section>
+
+  <section>
+    <h2>Dos jueces lo vieron pasar sin frenarlo</h2>
+    <div class="grid g2">
+      <div class="ex"><span class="cons">Naturalidad · aprobó, con una nota</span><span class="txt"><q>El aviso «No cameras» y la oración aparecen concatenados sin puntuación ni separación.</q></span><span class="ft"><span>lo anota aparte de los problemas: no cuenta</span></span></div>
+      <div class="ex"><span class="cons">Consigna · aprobó</span><span class="txt">Pide <q>Transforma las oraciones…</q>, pero ya no queda una oración que transformar.</span><span class="ft"><span>pasa desde el intento 1</span></span></div>
+    </div>
+    <p class="pie">Ninguna de las dos cosas aparece como problema, así que la regla de «no empeora nada» no las ve.</p>
+  </section>
+
+  <section>
+    <h2>Medida sobre la respuesta sola, la cámara ya estaba bien</h2>
     <div class="ad">
-      <div class="lado antes">
-        <span class="rot">Antes</span>
-        <svg class="cap" viewBox="0 0 680 56" role="img" aria-label="La barra del Mapa con el botón ↻ a la derecha, rodeado"><image href="218-vencen-con-su-tema/mapa-antes.jpg" width="680" height="56"/><rect class="aro" x="625" y="8" width="40" height="40" rx="10" style="stroke-width:3"/></svg>
-        <svg class="cap" viewBox="0 0 680 56" role="img" aria-label="La barra de Analizadores con el botón ↻ a la derecha, rodeado"><image href="218-vencen-con-su-tema/az-antes.jpg" width="680" height="56"/><rect class="aro" x="625" y="8" width="40" height="40" rx="10" style="stroke-width:3"/></svg>
-        <div class="mark"><span class="x">✕</span><span>Lo decidido en la terminal no llegaba al Mapa hasta tocar ↻ o salir.</span></div>
-      </div>
-      <div class="lado despues">
-        <span class="rot">Ahora</span>
-        <img class="hoy" src="218-vencen-con-su-tema/mapa-ahora.jpg" width="680" height="56" alt="La barra del Mapa, sin ↻">
-        <img class="hoy" src="218-vencen-con-su-tema/az-ahora.jpg" width="680" height="56" alt="La barra de Analizadores, sin ↻">
-        <div class="mark ok"><span class="x">✓</span><span>Se pone al día sola, con su tema o al volver a la pestaña.</span></div>
-      </div>
+      <div class="lado antes"><span class="rot">Hoy: estímulo + respuesta</span>
+        <ol><li>It's not okay to use a camera here. → 10</li><li>You can't use a camera here. → 8</li></ol>
+        <span class="res">18: para llegar a 8 hay que borrar el estímulo</span></div>
+      <div class="lado despues"><span class="rot">Sólo la respuesta</span>
+        <ol><li>You can't use a camera here. → 8</li></ol>
+        <span class="res">8: dentro de la meta, nada que corregir</span></div>
     </div>
-    <p class="pie">Arriba el Mapa, abajo Analizadores, en la misma copia: antes con master sin esta etapa, ahora con ella.</p>
+    <p class="pie">Es un ejercicio de transformar. La meta empuja al corrector a sacar justo lo que la consigna pide transformar.</p>
   </section>
 
   <section>
-    <h2>Cada cosa que cambia sube el número de su tema</h2>
-    <div class="flow">
-      <div class="st"><span class="i">1</span><div class="h">Algo cambia</div><div class="d">Decidir, cambiar o medir, desde acá o desde la terminal.</div></div>
-      <div class="st"><span class="i">2</span><div class="h">Sube su tema</div><div class="d">Decisiones, cambios, análisis o tanda: cada uno lleva su número.</div></div>
-      <div class="st"><span class="i">3</span><div class="h">Lo guardado queda viejo</div><div class="d">El tablero lo vuelve a leer una vez, para todas las pestañas.</div></div>
-      <div class="st end"><span class="i">4</span><div class="h">La pantalla lo pide sola</div><div class="d">Si está a la vista; si no, al volver a verla.</div></div>
+    <h2>Lo que hice antes de correr</h2>
+    <div class="cambia">
+      <div class="si"><p class="ptl">Hecho</p><ul>
+        <li>Aparté C2, C3 y C4 con sus 5 corridas: 45 archivos, con manifiesto para devolverlas.</li>
+        <li>C2 nueva desde la C1: los mismos 8 corregibles de los diez.</li>
+        <li>Corrí sólo la cámara, con tope de 40.</li>
+      </ul></div>
+      <div class="no"><p class="ptl">No cambia</p><ul>
+        <li>La C1 está intacta.</li>
+        <li>Nada se publicó ni se aprobó: la propuesta de la cámara espera tu revisión.</li>
+        <li>Los análisis de esas corridas quedan guardados; no se ven como correcciones.</li>
+      </ul></div>
     </div>
-    <p class="pie">Mientras algo corre, «tanda» y «análisis» no cuentan porque cambian sin parar; al terminar la corrida se pide una vez. Es la regla de los resúmenes.</p>
-  </section>
-
-  <section>
-    <h2>Desde la terminal, en 6 s; lo lento es content-audit</h2>
-    <div class="hb">
-      <div class="r"><span class="t">Decidir desde la terminal → Mapa<small>aprobados 238 → 239</small></span><span class="tr"><span class="f g" style="width:18%"></span></span><span class="n">6,3 s</span></div>
-      <div class="r"><span class="t">Decidir desde la terminal → Correcciones<small>«4 de 20» → «5 de 20»</small></span><span class="tr"><span class="f g" style="width:15.7%"></span></span><span class="n">5,5 s</span></div>
-      <div class="r"><span class="t">Volver a la pestaña del Mapa<small>una lectura para todo lo que pidió</small></span><span class="tr"><span class="f g" style="width:8.9%"></span></span><span class="n">3,1 s</span></div>
-      <div class="r"><span class="t">Volver a la pestaña de Correcciones</span><span class="tr"><span class="f g" style="width:7.4%"></span></span><span class="n">2,6 s</span></div>
-      <div class="r"><span class="t">Termina una medición → Analizadores<small>pide a los 0,1 s; una lectura sirve a las dos cosas</small></span><span class="tr"><span class="f w" style="width:89.4%"></span></span><span class="n">31,3 s</span></div>
-      <div class="r"><span class="t">Sube «análisis» → Correcciones<small>la tanda y el análisis, leídos de nuevo</small></span><span class="tr"><span class="f w" style="width:87.7%"></span></span><span class="n">30,7 s</span></div>
-    </div>
-    <div class="leyenda"><span><span class="sw g"></span>content-audit lee la tanda (3 a 7 s)</span><span><span class="sw w"></span>content-audit lee el análisis (21 a 31 s)</span></div>
-    <p class="pie">Segundos desde que terminó el cambio hasta que la pantalla lo mostró, sin tocar nada, en la copia sin modelos. Casi todo es lo que tarda content-audit en leer.</p>
-  </section>
-
-  <section>
-    <h2>Para la propuesta: tres problemas cerrados, lista en cero</h2>
-    <div class="tw"><table>
-      <thead><tr><th>La propuesta dice</th><th>Cómo queda</th></tr></thead>
-      <tbody>
-        <tr><td>2.4 · Dos maneras de vencer una memoria</td><td>Una: el número de su tema. La huella de las carpetas queda de respaldo.</td></tr>
-        <tr><td>9.2 · Memorias que sólo vencen con «releer»</td><td>Ninguna. El catálogo de analizadores vence con «jueces» o, a lo sumo, a los 5 minutos.</td></tr>
-        <tr><td>9.4 · «Releer» en todos lados → «No hace falta»</td><td>Así quedó: el tablero ignora el pedido de releer y la lista bajó de 7 a 0.</td></tr>
-      </tbody>
-    </table></div>
-    <div class="call c-warn">Quedan dos «Volver a leer» fuera de la lista: el botón de Problemas y una frase de la ayuda de Exámenes. El de Ejecuciones no es una memoria.</div>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask">
-        <div class="q">¿Alcanza con que un analizador nuevo aparezca, a lo sumo, a los 5 minutos?</div>
-        <div class="ops"><span class="op rec">Alcanza</span><span class="op">Que lo avise el vigía</span></div>
-        <div class="why">Ningún tema avisa lo que se compila en content-audit. Para avisarlo, el vigía tendría que mirar una carpeta más.</div>
-      </div>
-      <div class="ask">
-        <div class="q">¿Saco el «Volver a leer» de Problemas y la frase de Exámenes?</div>
-        <div class="ops"><span class="op rec">Sí, en una tarea aparte</span><span class="op">Dejarlos</span></div>
-        <div class="why">No eran de esta etapa. Antes hay que confirmar que Problemas se pone al día solo en todos los casos.</div>
-      </div>
+      <div class="ask"><span class="q">1 · ¿La mesa rechaza una propuesta que saca puntuación o mete saltos de línea?</span>
+        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">No</span></div>
+        <span class="why">Es una regla sin modelos. La cámara habría quedado en 9, «mejoró, sigue abierta».</span></div>
+      <div class="ask"><span class="q">2 · ¿En un ejercicio de transformar, el largo mide sólo la respuesta?</span>
+        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">No, estímulo y respuesta</span></div>
+        <span class="why">Cambia la medida de todos los ejercicios de transformar; lo mido antes de tocarla.</span></div>
+      <div class="ask"><span class="q">3 · Con la regla 1 hecha, ¿corro los otros siete con tope de 150?</span>
+        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">Todavía no</span></div>
+        <span class="why">La C2 vieja gastó 143 en esos ocho.</span></div>
     </div>
+    <p class="pie">La propuesta de la cámara sugiero rechazarla en la revisión (R). Si decís que sí a la 1, la vuelvo a correr.</p>
   </section>
 
   <footer>
-    <span>Copia de verificación en 127.0.0.1:7851, sin modelos (stubs de los CLIs de modelos, dentro de un sandbox) · campaña a1-v11 clonada · decisiones y una medición escritas desde el CLI de la copia · la foto de antes, con ittm 4f50e8f1a en 127.0.0.1:7852 · requisito FEAT-VENCE, F-VENCE-R001 a R010 (requirements/2026-10-25.02_vencen-con-su-tema) · ittm master 93db53d55 (FEAT-VENCE de659b308, los merges de origin y el aviso de la evolución de problemas) · 7800 reiniciado a las 11:56 con ittm 93db53d55, sin compilar content-audit (de su lado sólo cambian docs y el requisito) · pruebas: 2.751 del navegador y todo test/ de flutter en verde</span>
-    <span>brief 218 · docs/briefs/218-vencen-con-su-tema.html</span>
+    <span>Corrida ui-2026-10-25T15-39-17.402587Z-batch-recorrect · C2 tanda-A1-c2-1f1d898f · codex-cli gpt-6.1-sol medio · 18 consultas. Jueces: native-usage-judge (writingConcern), quiz-instruction-validator. Apartadas: content-audit-corridas/2026-10-25-c2-c4-apartadas/manifiesto.json. Scripts y mediciones: content-audit-corridas/2026-10-25-c2-mejoras.</span>
+    <span>brief 219 · docs/briefs/219-la-camara-llego-a-8.html</span>
   </footer>
 
 </div>
