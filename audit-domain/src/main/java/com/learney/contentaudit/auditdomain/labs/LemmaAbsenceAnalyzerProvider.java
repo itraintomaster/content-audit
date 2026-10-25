@@ -67,10 +67,11 @@ public class LemmaAbsenceAnalyzerProvider implements AnalyzerProvider {
                 LemmaByLevelAbsenceAnalyzer.DESCRIPTION,
                 AuditTarget.COURSE,
                 "¿Están las palabras que el EVP espera, y ninguna de otro nivel?",
-                // F-METAS-R007: leaving out what the topic teaches changes what is measured, so the card says it.
+                // F-METAS-R007: leaving out what the topic teaches (R047) or what the student forms from the hint
+                // (R048) changes what is measured, so the card says it.
                 topicTeachingResolver != null
-                        ? "Los lemas de cada oración —sin las palabras que enseña su tema— y de cada nivel, contra el "
-                                + "catálogo EVP enriquecido con su nivel CEFR"
+                        ? "Los lemas de cada oración —sin las palabras que enseña su tema ni el adverbio que el alumno "
+                                + "forma con la pista— y de cada nivel, contra el catálogo EVP enriquecido con su nivel CEFR"
                         : "Los lemas de cada oración y de cada nivel, contra el catálogo EVP enriquecido con su nivel CEFR",
                 List.of(
                         new AnalyzerRuleCard(LemmaByLevelAbsenceAnalyzer.RULE_MISPLACED_WORD,

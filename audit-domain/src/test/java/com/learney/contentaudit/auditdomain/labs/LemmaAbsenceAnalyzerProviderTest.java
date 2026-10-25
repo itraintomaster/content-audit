@@ -77,6 +77,22 @@ public class LemmaAbsenceAnalyzerProviderTest {
         Assertions.assertFalse(without.contains("enseña su tema"), "R047: without the topic it does not say so: " + without);
     }
 
+    @Test
+    @DisplayName("should say in what the card of lemma-absence reads that it leaves out the adverb the student forms from the hint, only when it knows what the topic teaches")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R048")
+    public void shouldSayInWhatTheCardOfLemmaabsenceReadsThatItLeavesOutTheAdverbTheStudentFormsFromTheHintOnlyWhenItKnowsWhatTheTopicTeaches() {
+        // R048 and F-METAS-R007: with what the topic teaches, the formed adverb is left out too, and the card says it.
+        String withTopic = new LemmaAbsenceAnalyzerProvider(Mockito.mock(EvpCatalogPort.class),
+                Mockito.mock(LemmaAbsenceConfig.class), Mockito.mock(SentenceLexicalScorer.class),
+                new com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver()).describe().getReads();
+        String without = new LemmaAbsenceAnalyzerProvider(Mockito.mock(EvpCatalogPort.class),
+                Mockito.mock(LemmaAbsenceConfig.class), Mockito.mock(SentenceLexicalScorer.class)).describe().getReads();
+
+        Assertions.assertTrue(withTopic.contains("el adverbio que el alumno forma con la pista"), "R048: " + withTopic);
+        Assertions.assertFalse(without.contains("forma con la pista"), "R048: without the topic it does not say so: " + without);
+    }
+
     /** F-HALL-R006 inv. 1 and 2: no field of the card is empty, and its cost is the highest of its rules. */
     static void assertCompleteCard(com.learney.contentaudit.auditdomain.AnalyzerDescriptor card, String name) {
         org.junit.jupiter.api.Assertions.assertEquals(name, card.getName(), "the card carries the catalog name");

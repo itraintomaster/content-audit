@@ -201,9 +201,10 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
                 return quizzes.isEmpty() ? null : new KnowledgeEntity(k.getId(), k.getCode(), k.getKind(), k.getLabel(), k.getOldId(),
                         k.getParentId(), k.isIsRule(), k.getInstructions(), k.getOrder(), k.getSlug(), quizzes, k.getSentenceMode());
             });
+            // A saved verdict is reused by its content whatever version gave it: the exercises are declared to be asked again.
             AuditReport after = config.getAuditEngine().runAudit(config.getCourseMapper().map(only),
                     new com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection(List.of(analyzer), Map.of(analyzer,
-                            new EvaluationRunPolicy(Math.max(0, cap - spent), false, null, null, null,
+                            new EvaluationRunPolicy(Math.max(0, cap - spent), false, null, ids, EvaluationRunPurpose.REANALYSIS,
                                     settings != null && settings.getQueriesAtOnce() > 0 ? settings.getQueriesAtOnce() : 1))));
             spent += spent(after, analyzer);
             supplements.add(new com.learney.contentaudit.auditdomain.analysis.AnalysisSupplement(null, null, analyzer, runtime,

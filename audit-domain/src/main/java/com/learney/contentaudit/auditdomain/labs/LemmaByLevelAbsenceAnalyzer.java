@@ -697,9 +697,59 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
                     .filter(t -> t == null || !taught.teaches(t.getLemma(), Collections.singletonList(t.getText())))
                     .toList();
         }
+        // F-LABS-R048: the word the student forms from the word of the hint is what the exercise practices, and so
+        // part of what its topic teaches.
+        Set<String> hints = taught != null ? hintWords(quiz) : Set.of();
+        if (!hints.isEmpty()) {
+            tokens = tokens.stream().filter(t -> t == null || !formedFrom(t.getText(), hints)).toList();
+        }
         SentenceLexicalScore result = sentenceLexicalScorer.score(tokens, sentenceLevel);
         return new QuizScoringResult(
                 result.getScore(), result.getMisplacedLemmas(), result.getOutOfCatalogWords());
+    }
+
+    private static final java.util.regex.Pattern HINT = java.util.regex.Pattern.compile("\\(([^)]*)\\)");
+
+    /** The words the hints between parentheses give: «I slept today. (bad)» gives bad. */
+    static Set<String> hintWords(AuditableQuiz quiz) {
+        Set<String> words = new HashSet<>();
+        for (var part : quiz.getSentenceParts() != null ? quiz.getSentenceParts()
+                : List.<com.learney.contentaudit.coursedomain.SentencePartEntity>of()) {
+            if (part == null || part.getText() == null) {
+                continue;
+            }
+            var hint = HINT.matcher(part.getText());
+            while (hint.find()) {
+                for (String word : hint.group(1).toLowerCase(java.util.Locale.ROOT).split("[^\\p{L}']+")) {
+                    if (!word.isBlank()) {
+                        words.add(word);
+                    }
+                }
+            }
+        }
+        return words;
+    }
+
+    /** The adverb the student forms from an adjective of the hint: bad → badly, happy → happily, gentle → gently. */
+    static boolean formedFrom(String text, Set<String> hints) {
+        if (text == null) {
+            return false;
+        }
+        String word = text.toLowerCase(java.util.Locale.ROOT);
+        if (!word.endsWith("ly")) {
+            return false;
+        }
+        for (String hint : hints) {
+            String stem = hint.substring(0, hint.length() - 1);
+            if (word.equals(hint + "ly") || word.equals(hint + "ally")
+                    || hint.endsWith("y") && word.equals(stem + "ily")
+                    || hint.endsWith("le") && word.equals(stem + "y")
+                    || hint.endsWith("ll") && word.equals(hint + "y")
+                    || hint.endsWith("e") && word.equals(stem + "ly")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // --- R008/R024/R032: Compute level score relative to coverage target ---

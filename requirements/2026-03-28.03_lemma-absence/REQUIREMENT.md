@@ -653,6 +653,25 @@ La tarjeta del analizador lo dice al leer: «los lemas de cada oración —sin l
 
 **Error**: N/A (esta regla describe una exclusion)
 
+<a id="F-LABS-R048"></a>
+### Rule[F-LABS-R048] - La palabra que el alumno forma a partir de la pista no se marca mal ubicada
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> Cuando la pista entre paréntesis da una palabra y el alumno escribe el adverbio que se forma con ella —«(bad)» →
+> «badly», «(happy)» → «happily», «(gentle)» → «gently»—, ese adverbio es lo que el ejercicio practica: no se marca mal
+> ubicado ni fuera de catálogo, y no baja el puntaje de la oración: es parte de lo que el tema enseña, como en
+> [R047](#F-LABS-R047). Las demás palabras se miden igual. Un adverbio irregular («good» → «well») es una palabra propia
+> y se mide como cualquier otra.
+
+Caso: en «Adverbios de modo» (A1), «I slept today. (bad) ___ → I slept badly today.» y «She smiled (sweet). ___ → She
+smiled sweetly.». badly y sweetly son A2, así que la medición los marcaba en cada ejercicio; en la muestra del
+25/10/2026 el corrector, para sacarlos, pasó los dos a «good» → «well»: los dos ejercicios quedaron iguales y el tema
+dejó de practicar la forma regular con «-ly». smile, que es B1 y nadie forma, sigue marcada.
+
+La tarjeta lo dice al leer: «los lemas de cada oración —sin … el adverbio que el alumno forma con la pista—».
+
+**Error**: N/A (esta regla describe una exclusion)
+
 ---
 
 ### Grupo E - Assessment global y metricas por nivel

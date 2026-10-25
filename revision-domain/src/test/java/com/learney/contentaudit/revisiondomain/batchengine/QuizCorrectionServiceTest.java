@@ -468,6 +468,9 @@ class QuizCorrectionServiceTest {
             var policies = i.getArgument(1, com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection.class).getPolicies();
             assertEquals(Set.of("quiz-instruction"), policies.keySet(), "only the outdated judge is asked again");
             assertEquals(8, policies.get("quiz-instruction").getMaxNewEvaluations(), "within the cap of the run");
+            assertEquals(Set.of(quiz), policies.get("quiz-instruction").getReevaluationSubjectIds(),
+                    "asked again although a verdict of the same content is saved");
+            assertEquals(EvaluationRunPurpose.REANALYSIS, policies.get("quiz-instruction").getPurpose());
             var fresh = TandaFixture.report(course, List.of(), Map.of(), List.of());
             var coverage = new com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis();
             coverage.setJudgeName("quiz-instruction"); coverage.setUnit(AuditTarget.QUIZ);

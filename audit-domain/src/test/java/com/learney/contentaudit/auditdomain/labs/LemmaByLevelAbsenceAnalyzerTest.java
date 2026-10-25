@@ -3951,6 +3951,58 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         assertEquals(1.0, quiz.getScores().get("lemma-absence"), 1e-9, "R047: let does not lower the score");
     }
 
+    // -----------------------------------------------------------------------
+    // F-LABS-R048: the word the student forms from the hint is not misplaced
+    // -----------------------------------------------------------------------
+
+    @Test
+    @DisplayName("should not mark badly as misplaced in «I slept today. (bad)», where the student forms it, while smile in «She smiled (sweet).» stays marked")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R048")
+    public void shouldNotMarkBadlyAsMisplacedInISleptTodayBadWhereTheStudentFormsItWhileSmileInSheSmiledSweetStaysMarked() {
+        // R048: the A1 topic of adverbs of manner asks to form the adverb from the adjective of the hint; badly and
+        // sweetly are A2, and they are what the exercise practices. smile is B1 and nobody forms it.
+        stubMinimalConfig();
+        stubEmptyEvp();
+        when(evpCatalogPort.lookupLevel(any())).thenReturn(Optional.of(CefrLevel.A1));
+        when(evpCatalogPort.lookupLevel(new LemmaAndPos("badly", "ADV"))).thenReturn(Optional.of(CefrLevel.A2));
+        when(evpCatalogPort.lookupLevel(new LemmaAndPos("sweetly", "ADV"))).thenReturn(Optional.of(CefrLevel.A2));
+        when(evpCatalogPort.lookupLevel(new LemmaAndPos("smile", "VERB"))).thenReturn(Optional.of(CefrLevel.B1));
+        AuditNode root = a1Course("Adverbios de modo", List.of(List.of(
+                new NlpToken("I", "I", "PRON", 5, true, false),
+                new NlpToken("slept", "sleep", "VERB", 400, false, false),
+                new NlpToken("badly", "badly", "ADV", 3000, false, false),
+                new NlpToken("today", "today", "NOUN", 300, false, false),
+                new NlpToken(".", ".", "PUNCT", null, false, true)), List.of(
+                new NlpToken("She", "she", "PRON", 5, true, false),
+                new NlpToken("smiled", "smile", "VERB", 2500, false, false),
+                new NlpToken("sweetly", "sweetly", "ADV", 8000, false, false),
+                new NlpToken(".", ".", "PUNCT", null, false, true))),
+                List.of("I slept today. (bad)", "She smiled (sweet)."));
+        LemmaByLevelAbsenceAnalyzer withTopic = new LemmaByLevelAbsenceAnalyzer(evpCatalogPort, contentWordFilter,
+                lemmaAbsenceConfig, sentenceLexicalScorer, new DefaultTopicTeachingResolver());
+
+        run(withTopic, root);
+
+        List<AuditNode> quizzes = findByTarget(root, AuditTarget.KNOWLEDGE).getChildren();
+        assertEquals(List.of(), misplacedWords(quizzes.get(0)), "R048: badly is formed from bad");
+        assertEquals(1.0, quizzes.get(0).getScores().get("lemma-absence"), 1e-9, "R048: badly does not lower the score");
+        assertEquals(List.of("smile"), misplacedWords(quizzes.get(1)), "R048: only the formed word leaves; smile stays");
+    }
+
+    @Test
+    @DisplayName("should form happily from happy, gently from gentle and fully from full, but not quickly from slow")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R048")
+    public void shouldFormHappilyFromHappyGentlyFromGentleAndFullyFromFullButNotQuicklyFromSlow() {
+        assertTrue(LemmaByLevelAbsenceAnalyzer.formedFrom("happily", Set.of("happy")));
+        assertTrue(LemmaByLevelAbsenceAnalyzer.formedFrom("Gently", Set.of("gentle")));
+        assertTrue(LemmaByLevelAbsenceAnalyzer.formedFrom("fully", Set.of("full")));
+        assertTrue(LemmaByLevelAbsenceAnalyzer.formedFrom("basically", Set.of("basic")));
+        assertFalse(LemmaByLevelAbsenceAnalyzer.formedFrom("quickly", Set.of("slow")));
+        assertFalse(LemmaByLevelAbsenceAnalyzer.formedFrom("well", Set.of("good")), "an irregular adverb is its own word");
+    }
+
     /** «Pedidos: formal o informal», A1: three statements open with «Polite request:» and one has wallet. */
     private AuditNode politeRequestCourse() {
         stubMinimalConfig();
