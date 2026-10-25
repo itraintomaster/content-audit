@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cambios y decisiones, hecho</title>
+<title>Un cambio, un aviso · brief 210</title>
 <!--
   TEMPLATE DE BRIEF · visual-brief
   1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
@@ -340,112 +340,95 @@
     .map.alta .cap{width:min(55%,220px);margin:0 auto}
   }
 
-  </style>
+</style>
 </head>
 <body>
 <div class="wrap">
 
-
   <header>
     <div class="kicker">
-      <span class="num">208</span>
+      <span class="num">210</span>
       <span class="badge">Resumen</span>
-      <span class="meta">Etapa 7 del estado único del tablero · 24/10/2026</span>
+      <span class="meta">Tablero · el canal de avisos · 25/10/2026</span>
     </div>
-    <h1>Decidir cambia una cosa, y las pestañas se enteran</h1>
-    <p class="sub">La etapa 7, hecha, juntada con la 6 y probada en una copia sin modelos: qué cambió, qué medí y qué pasa a la propuesta.</p>
+    <h1>Un cambio ya llega una sola vez a cada pestaña</h1>
+    <p class="sub">Por qué Problemas leía la lista dos o tres veces, qué cambió y qué falta.</p>
   </header>
 
-  <div class="lede"><p><strong>Aprobar ya no relee la tanda: la otra pestaña y Publicar lo muestran 0,1 s después de que content-audit lo guarda.</strong> Guardar sigue tardando unos 6 s.</p></div>
+  <div class="lede"><p><strong>Un cambio, venga de la terminal o del tablero, da un aviso y una lectura por pestaña.</strong> Anotar con P todavía da dos mientras tarde 30 s en contestar; eso lo arregla la otra sesión.</p></div>
 
   <section>
-    <h2>Lo propuesto y lo decidido llegan por separado</h2>
-    <div class="map">
-      <div class="ex">
-        <svg class="cap" viewBox="0 0 1280 900" role="img" aria-label="Correcciones de la tanda A1, corrección 4, con cuatro marcas: el botón Aprobar, las correcciones decididas del tema, el filtro Vos lo aprobás y el ejercicio">
-          <image href="208-cambios-y-decisiones-hecho/correcciones.jpg" width="1280" height="900"/>
-          <rect class="aro" x="1131" y="838" width="127" height="52" rx="12"/>
-          <rect class="aro" x="1068" y="304" width="192" height="34" rx="10"/>
-          <rect class="aro" x="68" y="546" width="150" height="34" rx="10"/>
-          <g class="mk" transform="translate(1195 812)"><circle r="26"/><text font-size="28">1</text></g>
-          <g class="mk" transform="translate(1036 321)"><circle r="26"/><text font-size="28">2</text></g>
-          <g class="mk" transform="translate(248 563)"><circle r="26"/><text font-size="28">3</text></g>
-          <g class="mk gris" transform="translate(372 708)"><circle r="22"/><text font-size="24">4</text></g>
-        </svg>
-      </div>
-      <div class="who">
-        <div><b>1</b><span><strong>«Aprobar»</strong><br><small>al instante; si falla, vuelve y lo dice</small></span></div>
-        <div><b>2</b><span><strong>«4 de 20 correcciones decididas»</strong><br><small>de las decisiones, que llegan con su aviso</small></span></div>
-        <div><b>3</b><span><strong>«Vos lo aprobás 214»</strong><br><small>también: otra pestaña lo cuenta sin recargar</small></span></div>
-        <div><b class="gris">4</b><span><strong>El ejercicio y su cambio</strong><br><small>los cambios: una lectura por pestaña</small></span></div>
-      </div>
-    </div>
-    <p class="pie">Correcciones de la tanda A1, corrección 4, en el tablero de todos los días (7800), ya con la etapa.</p>
-  </section>
-
-  <section>
-    <h2>La otra pestaña y Publicar, 0,1 s después de guardado</h2>
-    <div class="diagram">
-      <svg viewBox="0 0 760 262" style="min-width:620px" role="img" aria-label="Línea de tiempo de una aprobación. Hoy: guardar tarda 6,4 segundos y las demás pestañas no se enteran hasta recargar. Ahora: tu pestaña la muestra al instante, guardar tarda 5,7 segundos y la otra pestaña y Publicar la muestran una décima después">
-        <text x="4" y="16" class="lbl-s" style="font-weight:600">HASTA HOY</text>
-        <text x="4" y="45" class="lbl">guardar</text>
-        <rect x="150" y="28" width="448" height="28" rx="7" class="box"/><text x="162" y="47" class="lbl">content-audit guarda · 6,4 s</text>
-        <text x="4" y="83" class="lbl">las demás</text>
-        <rect x="150" y="66" width="604" height="28" rx="7" class="box-bad"/><text x="162" y="85" class="lbl">la otra pestaña sigue «sin revisar» y Publicar no lo cuenta, hasta recargar</text>
-
-        <text x="4" y="130" class="lbl-s" style="font-weight:600">CON LA ETAPA</text>
-        <text x="4" y="159" class="lbl">tu pestaña</text>
-        <rect x="150" y="142" width="196" height="28" rx="7" class="box-ok"/><text x="162" y="161" class="lbl">aprobada al instante</text>
-        <text x="4" y="197" class="lbl">guardar</text>
-        <rect x="150" y="180" width="399" height="28" rx="7" class="box"/><text x="162" y="199" class="lbl">content-audit guarda · 5,7 s</text>
-        <text x="4" y="235" class="lbl">las demás</text>
-        <rect x="549" y="218" width="205" height="28" rx="7" class="box-ok"/><text x="561" y="237" class="lbl">otra pestaña y Publicar · +0,1 s</text>
-        <path d="M549 208 L549 218" class="arrow"/>
-        <text x="150" y="258" class="lbl-s">0 s</text><text x="430" y="258" class="lbl-s">4 s</text><text x="570" y="258" class="lbl-s">6 s</text>
-      </svg>
-    </div>
-    <p class="pie">Medido en la copia: la otra pestaña lo recibió a los 0,08 s y Publicar pasó de 169 a 170 a los 0,10 s, sin releer la tanda.</p>
-  </section>
-
-  <section>
-    <h2>Una pestaña baja la tercera parte, y nadie pregunta</h2>
+    <h2>Crear un problema: una lectura por pestaña, no dos</h2>
     <div class="kpis">
-      <div class="kpi dest"><div class="n">43 → 15<small>MB</small></div><div class="l">lo que baja una pestaña de Correcciones, con la etapa 6: cambios, opiniones y decisiones</div></div>
-      <div class="kpi"><div class="n">115<small>KB</small></div><div class="l">las decisiones de toda la tanda: lo único que se vuelve a leer al decidir</div></div>
-      <div class="kpi"><div class="n">0</div><div class="l">preguntas a la cola cada 2 s: avisa cada paso</div></div>
-      <div class="kpi"><div class="n">1</div><div class="l">lectura de los cambios por pestaña; antes, otra por cada aviso «tanda»</div></div>
+      <div class="kpi dest"><div class="n">1<small>antes 2</small></div><div class="l">crear un problema desde la terminal</div></div>
+      <div class="kpi dest"><div class="n">1<small>antes 2</small></div><div class="l">crear un problema desde el tablero</div></div>
+      <div class="kpi"><div class="n">2<small>antes 3</small></div><div class="l">anotar con P, que contesta 30 s después de guardar</div></div>
     </div>
-    <p class="pie">Una decisión desde la terminal o desde la app de Flutter también llega sola, aun con una medición corriendo.</p>
+    <p class="pie">Medido en una copia de la campaña, sin modelos, con Correcciones y Problemas abiertas y contando los pedidos de cada pestaña.</p>
   </section>
 
   <section>
-    <h2>Para la propuesta: el segundo cuenta desde que se guarda</h2>
-    <div class="tw"><table>
-      <thead><tr><th>La propuesta dice</th><th>Lo que pasó</th></tr></thead>
-      <tbody>
-        <tr><td>Aprobás y la otra pestaña, y Publicar, lo muestran en un segundo</td><td>En 0,1 s desde que content-audit lo guarda. Desde el clic, unos 6 s: lo que tarda guardar.</td></tr>
-        <tr><td>Aprobar no depende del tamaño de la tanda</td><td>Para las pantallas, no: releen 115 KB. Guardar sí: content-audit contesta con la revisión entera (78 MB) y el servidor la lee.</td></tr>
-        <tr><td>Comparar deja de importar el estado de Correcciones</td><td>Ya no lo importaba: lee su propia vista, de 4 KB. No hubo nada que mover.</td></tr>
-        <tr><td>Los cambios: ejercicio, parte, antes y después</td><td>Pesan 14 MB; 10 son de dónde sale el análisis de cada corrección. Eso es del análisis, no de esta etapa.</td></tr>
-        <tr><td>La miniteoría y la conversión suben «cambios»</td><td>También «decisiones»: incorporar puede cambiar lo decidido.</td></tr>
-        <tr><td>No lo decía</td><td>Lo decidido desde la terminal o desde Flutter llega solo, como pediste.</td></tr>
-      </tbody>
-    </table></div>
-    <div class="call c-warn">Quedan dos restos sin efecto visible: un dato que ya nadie lee en los errores, y las escrituras, que todavía devuelven lo decidido dos veces.</div>
+    <h2>Eran dos causas, y se sumaban</h2>
+    <div class="ad">
+      <div class="lado antes"><span class="rot">Antes</span>
+        <ol>
+          <li>content-audit guarda cada archivo en uno temporal y después lo renombra.</li>
+          <li>El disco cuenta esa sola escritura en cinco o seis pedazos.</li>
+          <li>El primero avisaba enseguida; los demás, medio segundo después.</li>
+          <li>Si escribía el tablero, avisaba él y el vigía de las carpetas, otra vez.</li>
+        </ol>
+        <span class="res">Dos o tres lecturas por cambio</span></div>
+      <div class="lado despues"><span class="rot">Ahora</span>
+        <ol>
+          <li>El archivo temporal no cuenta: el cambio es cuando se renombra.</li>
+          <li>Lo que el disco cuenta junto es un solo aviso.</li>
+          <li>Lo que el vigía ve de una escritura del tablero sale en su aviso.</li>
+          <li>Lo que ya estaba en el disco cuando su tema avisó no vuelve a avisar.</li>
+        </ol>
+        <span class="res">Una lectura por cambio</span></div>
+    </div>
+    <p class="pie">Lo que cambia después de un aviso avisa igual, aunque llegue enseguida: no se pierde nada. El vigía sigue viendo lo que se hace desde la terminal.</p>
   </section>
 
   <section>
-    <h2>Una decisión: desde cuándo cuenta el segundo</h2>
-    <div class="asks">
-      <div class="ask"><span class="q">«La otra pestaña lo muestra en ≤ 1 s»: ¿desde que se guarda o desde el clic?</span>
-        <div class="ops"><span class="op rec">Desde que se guarda · recomendado</span><span class="op">Desde el clic</span></div>
-        <span class="why">Mostrar en otras pestañas lo que content-audit todavía puede rechazar las haría volver atrás. Achicar los 6 s es pedirle a content-audit una respuesta corta.</span></div>
+    <h2>Anotar con P avisa dos veces porque tarda en contestar</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">Guarda el problema</span><span class="d">content-audit escribe el caso.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Espera medio segundo</span><span class="d">Lo visto espera a que la escritura termine.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">Sale solo</span><span class="eg">a los 3,3 s</span><span class="d">Anotar sigue releyendo la tanda entera.</span></div>
+      <div class="st end"><span class="i">4</span><span class="h">Anotar contesta y avisa</span><span class="eg">a los 30 s</span><span class="d">Pudo cambiar algo más que el disco.</span></div>
+    </div>
+    <p class="pie">Con la otra sesión, anotar contesta apenas guarda: el paso 3 desaparece y queda una lectura.</p>
+  </section>
+
+  <section>
+    <h2>Qué cambia y qué no</h2>
+    <div class="cambia">
+      <div class="si"><div class="ptl">Cambia</div><ul>
+        <li>Cada cambio da un aviso por tema.</li>
+        <li>Mientras el tablero escribe, lo de ese tema espera hasta medio segundo.</li>
+        <li>Si la escritura falla, lo que cambió mientras tanto avisa solo.</li>
+      </ul></div>
+      <div class="no"><div class="ptl">No cambia</div><ul>
+        <li>Un cambio desde la terminal se ve en menos de un segundo.</li>
+        <li>Lo de otro tema no espera a nadie.</li>
+        <li>Las pantallas: ninguna se tocó.</li>
+      </ul></div>
+    </div>
+    <div class="call c-warn"><b>Límite:</b> el disco da la hora en milisegundos. Algo escrito en el mismo milisegundo en que avisa su tema cuenta como ya avisado; quien relee lo hace después.</div>
+  </section>
+
+  <section>
+    <h2>Qué sigue</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">Juntar «anotar rápido»</span><span class="d">La otra sesión; anotar queda en una lectura.</span></div>
+      <div class="st end"><span class="i">2</span><span class="h">Mirarlo en el 7800</span><span class="d">Ya reiniciado con esto; nada para decidir.</span></div>
     </div>
   </section>
 
   <footer>
-    <span>Copia de verificación en 127.0.0.1:7848, sin modelos (stubs de codex, gemini, agy, claude y ollama) · campaña a1-v11 clonada · tanda A1 corrección 4 · pesos medidos en el 7800 con lecturas · requisito F-DECIDE (requirements/2026-10-24.04_cambios-y-decisiones) · ca 0444a3f1d · ittm cbbf1840d (la etapa), 0b8edba13 (juntada con la etapa 6, FEAT-OPINA)</span>
-    <span>brief 208 · docs/briefs/208-cambios-y-decisiones-hecho.html</span>
+    <span>Regla F-AVISO-R008 (FEAT-AVISO) · ittm master 218ee65fa · pruebas en novedades_test.dart y tablero_con_el_cli_test.dart · copia en el 7848 con Playwright</span>
+    <span>brief 210 · docs/briefs/210-un-solo-aviso.html</span>
   </footer>
 
 </div>
