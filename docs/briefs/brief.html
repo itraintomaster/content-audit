@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>La cámara llegó a 8</title>
+<title>Los siete, criterio por criterio</title>
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -333,104 +333,108 @@
   .ex .txt q{font-style:italic}
   .diagram .dash{stroke-dasharray:6 5}
 </style>
+<style>
+  .heat .hv{background:color-mix(in srgb,var(--ok) 24%,var(--bg-elev))}
+  .heat .rl small{display:block;color:var(--fg-3);font-size:11px}
+  @media (max-width:640px){ .heat .h{font-size:10px;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:anywhere} }
+</style>
 </head>
+
 <body>
 <div class="wrap">
 
   <header>
     <div class="kicker">
-      <span class="num">219</span>
-      <span class="badge">Prueba real · Hallazgo</span>
-      <span class="meta">C2 nueva desde la C1 · la cámara · 25/10/2026</span>
+      <span class="num">220</span>
+      <span class="badge">Prueba real · Resultado</span>
+      <span class="meta">C2 · los otros siete · 25/10/2026</span>
     </div>
-    <h1>La cámara llegó a la meta, pero sacando el punto</h1>
-    <p class="sub">La primera prueba real del corrector que guarda las mejoras (brief 217).</p>
+    <h1>Los siete, criterio por criterio: tres arreglados, cuatro trabados</h1>
+    <p class="sub">La corrida con la regla de la puntuación y el largo medido sobre la respuesta (brief 219).</p>
   </header>
 
-  <div class="lede"><p><strong>Cada intento siguió desde el mejor: 18 → 10 → 9 → 8, con 18 consultas, pero el último paso sacó un punto y nadie lo frenó.</strong> Propongo dos reglas antes de correr los otros siete.</p></div>
+  <div class="lede"><p><strong>Medir el largo sobre la respuesta dejó a 3 de los 7 sin problemas.</strong> Los otros 4 no mejoraron: dos se arreglan al publicar, uno es un falso problema y otro espera tu decisión.</p></div>
 
   <div class="kpis" style="margin:0 0 38px">
-    <div class="kpi dest"><div class="n">18 → 8</div><div class="l">largo de la cámara en una pasada; meta de A1: hasta 8</div></div>
-    <div class="kpi"><div class="n">18<small>de 40</small></div><div class="l">consultas; C2–C4 viejas gastaron 59 y no guardaron nada</div></div>
-    <div class="kpi"><div class="n">4</div><div class="l">intentos: el 4.º porque el 3.º mejoró; no cambió nada y paró</div></div>
+    <div class="kpi dest"><div class="n">3<small>de 7</small></div><div class="l">sin problemas: su único problema era el largo mal medido</div></div>
+    <div class="kpi"><div class="n">0<small>de 4</small></div><div class="l">mejorados: el corrector propuso dejarlos como estaban</div></div>
+    <div class="kpi"><div class="n">14<small>de 150</small></div><div class="l">consultas: 12 propuestas y 2 del juez de miniteoría</div></div>
   </div>
 
   <section>
-    <h2>Cada intento guardó su avance y siguió desde ahí</h2>
-    <div class="hb fijo">
-      <div class="r"><span class="t">C1, de donde parte<small>It's not okay to use a camera here. You can't use a camera here.</small></span><span class="tr"><span class="f b" style="width:100%"></span><span class="meta" style="left:44.4%"></span></span><span class="n">18</span></div>
-      <div class="r"><span class="t">Intento 1<small>No cameras. You ___ use a camera.</small></span><span class="tr"><span class="f w" style="width:55.6%"></span><span class="meta" style="left:44.4%"></span></span><span class="n">10 · guardado</span></div>
-      <div class="r"><span class="t">Intento 2<small>No cameras. You ___ use cameras.</small></span><span class="tr"><span class="f w" style="width:50%"></span><span class="meta" style="left:44.4%"></span></span><span class="n">9 · guardado</span></div>
-      <div class="r"><span class="t">Intento 3<small>No cameras⏎You ___ use cameras.</small></span><span class="tr"><span class="f b" style="width:44.4%"></span><span class="meta" style="left:44.4%"></span></span><span class="n">8 · sin punto</span></div>
+    <h2>Criterio por criterio: el largo se fue, quedan tres problemas</h2>
+    <div style="overflow-x:auto">
+    <div class="heat" style="--cols:6">
+      <span class="h"></span><span class="h">Largo</span><span class="h">Palabras de nivel</span><span class="h">Una sola respuesta</span><span class="h">Oración guar&shy;dada</span><span class="h">Prag&shy;ma&shy;tismo</span><span class="h">Los otros 10</span>
+      <span class="rl">Let's have eggs…<small>Oraciones con let's</small></span><span class="h0">✓</span><span class="h3">✕</span><span class="h0">✓</span><span class="h0">✓</span><span class="h1">?</span><span class="h0">✓</span>
+      <span class="rl">Play the radio. Polite…<small>Pedidos</small></span><span class="hv">✓</span><span class="h3">✕</span><span class="h3">✕</span><span class="h0">✓</span><span class="h0">✓</span><span class="h0">✓</span>
+      <span class="rl">…get me some tea<small>Pedidos</small></span><span class="hv">✓</span><span class="h0">✓</span><span class="h0">✓</span><span class="h3">✕</span><span class="h1">?</span><span class="h0">✓</span>
+      <span class="rl">…drink some water?<small>Pedidos</small></span><span class="hv">✓</span><span class="h0">✓</span><span class="h0">✓</span><span class="h3">✕</span><span class="h1">?</span><span class="h0">✓</span>
+      <span class="rl">Peter has breakfast…<small>Frecuencia</small></span><span class="hv">✓</span><span class="h0">✓</span><span class="h0">✓</span><span class="h0">✓</span><span class="h1">?</span><span class="h0">✓</span>
+      <span class="rl">…help me<small>Pedidos</small></span><span class="hv">✓</span><span class="h0">✓</span><span class="h0">✓</span><span class="h0">✓</span><span class="h1">?</span><span class="h0">✓</span>
+      <span class="rl">…give me some money<small>Pedidos</small></span><span class="hv">✓</span><span class="h0">✓</span><span class="h0">✓</span><span class="h0">✓</span><span class="h1">?</span><span class="h0">✓</span>
     </div>
-    <div class="leyenda"><span><i class="sw w"></i>avance guardado</span><span><i class="sw b"></i>problema</span><span><i class="sw m"></i>la meta de A1: hasta 8</span></div>
-    <p class="pie">Largo: palabras y signos. El mecanismo hizo lo que pediste; el problema es cómo consiguió el último paso.</p>
-  </section>
-
-  <section>
-    <h2>Llegó a 8 quitando el punto y partiendo la línea</h2>
-    <figure class="captura"><img src="219-la-camara-llego-a-8/cambio.jpg" alt="La cámara en Correcciones de la C2: antes «It's not okay to use a camera here. You ___ use a camera here.», ahora «No cameras You ___ use cameras.»">
-      <figcaption>Correcciones · Corrección 2 · filtrada por la pasada de hoy, en el 7800.</figcaption></figure>
-    <div class="mark" style="margin-top:12px"><span class="x">✕</span><span>El alumno lee «No cameras You ___ use cameras.», y el audio igual.</span></div>
-  </section>
-
-  <section>
-    <h2>Dos jueces lo vieron pasar sin frenarlo</h2>
-    <div class="grid g2">
-      <div class="ex"><span class="cons">Naturalidad · aprobó, con una nota</span><span class="txt"><q>El aviso «No cameras» y la oración aparecen concatenados sin puntuación ni separación.</q></span><span class="ft"><span>lo anota aparte de los problemas: no cuenta</span></span></div>
-      <div class="ex"><span class="cons">Consigna · aprobó</span><span class="txt">Pide <q>Transforma las oraciones…</q>, pero ya no queda una oración que transformar.</span><span class="ft"><span>pasa desde el intento 1</span></span></div>
     </div>
-    <p class="pie">Ninguna de las dos cosas aparece como problema, así que la regla de «no empeora nada» no las ve.</p>
+    <div class="leyenda"><span><i class="sw" style="background:color-mix(in srgb,var(--ok) 24%,var(--bg-elev))"></i>arreglado hoy, por la medida nueva</span><span><i class="sw" style="background:color-mix(in srgb,var(--bad) 32%,var(--bg-elev))"></i>problema</span><span><i class="sw" style="background:color-mix(in srgb,var(--warn) 16%,var(--bg-elev))"></i>sin medir la versión de hoy</span></div>
+    <p class="pie">Los otros 10, jueces incluidos (naturalidad, consigna, traducción, miniteoría), aprueban a los siete. Pragmatismo aprobó sus versiones del 24/10 y la de hoy no la midió.</p>
   </section>
 
   <section>
-    <h2>Medida sobre la respuesta sola, la cámara ya estaba bien</h2>
+    <h2>En los cuatro, el corrector tenía razón en no tocar</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Ejercicio</th><th>El problema</th><th>Qué hizo el corrector</th><th>Qué falta</th></tr></thead>
+      <tbody>
+        <tr><td>…get me some tea<br>…drink some water?</td><td>La oración guardada en producción es vieja: «bring», «soda»</td><td>Nada: «se vuelve a armar desde las partes»</td><td><span class="pill p-ok">nada</span> se arregla al publicar</td></tr>
+        <tr><td>Let's have eggs for breakfast.</td><td>«let» es de A2</td><td>No la sacó: el tema enseña «let's»</td><td><span class="pill p-warn">a decidir</span> que el analizador no la marque</td></tr>
+        <tr><td>Play the radio. Polite: ___</td><td>Con «please» también vale; «polite» es de A2</td><td>Explicó la fórmula en la miniteoría; probó «Con cortesía:» y la mesa lo frenó</td><td><span class="pill p-warn">a decidir</span> aceptar las formas con «please»</td></tr>
+      </tbody></table></div>
+    <p class="pie">Los tres primeros no tienen arreglo en el contenido y se llevaron 9 de las 14 consultas.</p>
+  </section>
+
+  <section>
+    <h2>La mesa ya no acepta sacar puntos ni partir líneas</h2>
     <div class="ad">
-      <div class="lado antes"><span class="rot">Hoy: estímulo + respuesta</span>
-        <ol><li>It's not okay to use a camera here. → 10</li><li>You can't use a camera here. → 8</li></ol>
-        <span class="res">18: para llegar a 8 hay que borrar el estímulo</span></div>
-      <div class="lado despues"><span class="rot">Sólo la respuesta</span>
-        <ol><li>You can't use a camera here. → 8</li></ol>
-        <span class="res">8: dentro de la meta, nada que corregir</span></div>
+      <div class="lado antes"><span class="rot">Lo que se coló en la C2</span>
+        <ol><li>No cameras. You ___ use cameras. → 9</li><li>No cameras⏎You ___ use cameras. → 8</li></ol>
+        <span class="res">aceptado: «mejoró» el largo</span></div>
+      <div class="lado despues"><span class="rot">Con la regla</span>
+        <ol><li>mete un salto de línea en el enunciado</li><li>saca el punto entre «cameras» y «You»</li></ol>
+        <span class="res">rechazado antes de medir, sin gastar consultas</span></div>
     </div>
-    <p class="pie">Es un ejercicio de transformar. La meta empuja al corrector a sacar justo lo que la consigna pide transformar.</p>
+    <p class="pie">Probada sobre las 2.243 propuestas aceptadas de la C1: no frena ninguna. En la C2 frena sólo la cámara.</p>
   </section>
 
   <section>
-    <h2>Lo que hice antes de correr</h2>
-    <div class="cambia">
-      <div class="si"><p class="ptl">Hecho</p><ul>
-        <li>Aparté C2, C3 y C4 con sus 5 corridas: 45 archivos, con manifiesto para devolverlas.</li>
-        <li>C2 nueva desde la C1: los mismos 8 corregibles de los diez.</li>
-        <li>Corrí sólo la cámara, con tope de 40.</li>
-      </ul></div>
-      <div class="no"><p class="ptl">No cambia</p><ul>
-        <li>La C1 está intacta.</li>
-        <li>Nada se publicó ni se aprobó: la propuesta de la cámara espera tu revisión.</li>
-        <li>Los análisis de esas corridas quedan guardados; no se ven como correcciones.</li>
-      </ul></div>
+    <h2>Midiendo sólo la respuesta, se van 17 de 32</h2>
+    <div class="hb fijo">
+      <div class="r"><span class="t">Desaparecen<small>la oración guardada traía el estímulo</small></span><span class="tr"><span class="f g" style="width:53%"></span></span><span class="n">17</span></div>
+      <div class="r"><span class="t">Siguen<small>la respuesta misma es larga</small></span><span class="tr"><span class="f w" style="width:47%"></span></span><span class="n">15</span></div>
     </div>
+    <p class="pie">Hallazgos de largo en ejercicios de transformar de A1. En el curso publicado cambia en 18; en B1 aparecen 2 cortos, como «B: Neither have I.»</p>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · ¿La mesa rechaza una propuesta que saca puntuación o mete saltos de línea?</span>
+      <div class="ask"><span class="q">1 · ¿Dejo afuera de la corrida lo que se arregla solo al publicar?</span>
         <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">No</span></div>
-        <span class="why">Es una regla sin modelos. La cámara habría quedado en 9, «mejoró, sigue abierta».</span></div>
-      <div class="ask"><span class="q">2 · ¿En un ejercicio de transformar, el largo mide sólo la respuesta?</span>
-        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">No, estímulo y respuesta</span></div>
-        <span class="why">Cambia la medida de todos los ejercicios de transformar; lo mido antes de tocarla.</span></div>
-      <div class="ask"><span class="q">3 · Con la regla 1 hecha, ¿corro los otros siete con tope de 150?</span>
+        <span class="why">Acá fueron 6 de 14 consultas sin nada que hacer.</span></div>
+      <div class="ask"><span class="q">2 · ¿«Palabras de nivel» deja pasar la palabra que el tema enseña?</span>
+        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">No</span></div>
+        <span class="why">«let's» en «Oraciones con let's». El corrector ya sabe que el tema la enseña; el analizador no.</span></div>
+      <div class="ask"><span class="q">3 · En la radio, ¿se aceptan las formas con «please»?</span>
+        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">No, una sola</span></div>
+        <span class="why">«…get me some tea», del mismo tema, ya acepta 16 formas, con «please» y sin él.</span></div>
+      <div class="ask"><span class="q">4 · ¿Guardo sólo la respuesta en los ejercicios de transformar?</span>
         <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">Todavía no</span></div>
-        <span class="why">La C2 vieja gastó 143 en esos ocho.</span></div>
+        <span class="why">Hoy se guardan estímulo y respuesta juntos. El largo ya no se equivoca, pero el audio y los jueces leen los dos.</span></div>
     </div>
-    <p class="pie">La propuesta de la cámara sugiero rechazarla en la revisión (R). Si decís que sí a la 1, la vuelvo a correr.</p>
+    <p class="pie">La propuesta de la cámara sigue esperando que la rechaces en la revisión (R). Con la medida nueva, la versión anterior ya estaba bien.</p>
   </section>
 
   <footer>
-    <span>Corrida ui-2026-10-25T15-39-17.402587Z-batch-recorrect · C2 tanda-A1-c2-1f1d898f · codex-cli gpt-6.1-sol medio · 18 consultas. Jueces: native-usage-judge (writingConcern), quiz-instruction-validator. Apartadas: content-audit-corridas/2026-10-25-c2-c4-apartadas/manifiesto.json. Scripts y mediciones: content-audit-corridas/2026-10-25-c2-mejoras.</span>
-    <span>brief 219 · docs/briefs/219-la-camara-llego-a-8.html</span>
+    <span>Corrida ui-2026-10-25T17-40-52.543199Z-batch-recorrect · C2 tanda-A1-c2-1f1d898f · codex-cli gpt-6.1-sol medio · 14 consultas, 4 NO_WINNER. Análisis 2026-10-25T15-39-28 → 17-41-24. Reglas F-MESA-R018 (728f97a87) y F-SMODE-R004 (0a8043188). Datos: analysis/c2-mejoras-2026-10-25 (criterios.py, medir.py, jueces.py).</span>
+    <span>brief 220 · docs/briefs/220-los-siete-criterio-por-criterio.html</span>
   </footer>
 
 </div>
