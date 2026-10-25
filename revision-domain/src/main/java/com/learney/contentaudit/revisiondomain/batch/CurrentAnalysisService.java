@@ -35,7 +35,21 @@ public interface CurrentAnalysisService {
             List<String> approvalWarnings, Map<String, List<String>> comparableAnalyzers, String analysisCode,
             Map<String, List<String>> inapplicableAnalyzers,
             List<com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCount> judges,
-            Map<String, Map<String, Map<String, Object>>> verdictMarks) {
+            Map<String, Map<String, Map<String, Object>>> verdictMarks,
+            Map<String, List<String>> missingOpinions) {
+        /** {@code missingOpinions}: F-OPINA-R001, per judge the exercises it applies to and has not opined on. */
+        public State {
+            missingOpinions = missingOpinions == null ? Map.of() : missingOpinions;
+        }
+        public State(String id, String label, String fingerprint, AuditDigest digest,
+                Map<String, QuizStudentView> studentViews, Map<String, Map<String, Object>> provenance,
+                List<String> approvalWarnings, Map<String, List<String>> comparableAnalyzers, String analysisCode,
+                Map<String, List<String>> inapplicableAnalyzers,
+                List<com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCount> judges,
+                Map<String, Map<String, Map<String, Object>>> verdictMarks) {
+            this(id, label, fingerprint, digest, studentViews, provenance, approvalWarnings, comparableAnalyzers,
+                    analysisCode, inapplicableAnalyzers, judges, verdictMarks, Map.of());
+        }
         public State(String id, String label, String fingerprint, AuditDigest digest,
                 Map<String, QuizStudentView> studentViews, Map<String, Map<String, Object>> provenance,
                 List<String> approvalWarnings, Map<String, List<String>> comparableAnalyzers, String analysisCode) {

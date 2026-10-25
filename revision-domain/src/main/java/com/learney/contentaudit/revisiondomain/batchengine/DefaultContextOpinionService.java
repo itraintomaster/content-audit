@@ -67,7 +67,13 @@ final class DefaultContextOpinionService implements ContextOpinionService {
         if (correction && (batch.getStatus() != BatchStatus.CLOSED || config.getCurrentAnalysisService() == null))
             throw new IllegalArgumentException("Completar opiniones necesita una corrección cerrada con análisis vigente.");
         var composed = ledger.composedCourse(batch, start);
-        List<Scope> scopes = correction ? correctionScopes(batch, review, start, composed) : scopes(request, review, start, composed);
+        // F-OPINA-R005: with a current analysis, a loose opinion reads what the analysis reads -- its level and, for the
+        // judges of the curriculum, the headers before it -- so that what it leaves fits there.
+        boolean asTheAnalysis = config.getCurrentAnalysisService() != null && batch.getLevel() != null;
+        List<Scope> scopes = correction ? correctionScopes(batch, review, start, composed) : asTheAnalysis
+                ? scopes(request, review, DefaultCurrentAnalysisService.cut(start, batch.getLevel()),
+                        DefaultCurrentAnalysisService.cut(composed, batch.getLevel()), true)
+                : scopes(request, review, start, composed);
         List<Judge> judges = scopes.stream().map(Scope::judge).toList();
         var selected = correction ? scopeSelection(scopes) : selection(request);
         String stamp = hash(fingerprint.apply(composed) + request.scope() + request.wholeTopic() + selected + judges
@@ -81,12 +87,16 @@ final class DefaultContextOpinionService implements ContextOpinionService {
         if (request.queryCap() == null || request.queryCap() < 0 || request.queryCap() > 10000
                 || request.reviewer() == null || request.reviewer().isBlank())
             throw new IllegalArgumentException("Falta un tope de 0 a 10000 y el autor del pedido.");
+        // F-OPINA-R005: an opinion asked for loose exercises enters the current analysis like Completar's, where the
+        // batch admits integrating (closed, or open with a later correction).
+        boolean integrates = config.getCurrentAnalysisService() != null && (correction || batch.getStatus() == BatchStatus.CLOSED
+                || config.getBatchStore().hasSuccessor(batch.getId()));
         BatchStatus previous = batch.getStatus();
         Instant created = Instant.now();
         var proposals = scopes.stream().flatMap(s -> s.context().stream()).distinct().toList();
         Run run = new Run(request.operationId(), request, BatchBook.correctionRevision(batch), batch.getContentVersion(),
                 stamp, request.queryCap(), 0, "RUNNING", created, null, judges, proposals, List.of(), null);
-        if (correction) config.getCurrentAnalysisService().seed(batch, start);
+        if (integrates) config.getCurrentAnalysisService().seed(batch, start);
         put(batch, run);
         batch.setStatus(BatchStatus.RUNNING);
         config.getBatchStore().saveIfVersion(batch, request.contentVersion(), previous);
@@ -101,7 +111,7 @@ final class DefaultContextOpinionService implements ContextOpinionService {
                 spent += spent(after, scope.analyzer());
                 for (RevisionProposal proposal : scope.proposals())
                     results.add(new Result(scope.analyzer(), outcome(scope.analyzer(), proposal, before, after, review)));
-                if (correction) recordSupplement(batch, request, scope, after, created);
+                if (integrates && composes(scope)) recordSupplement(batch, request, scope, after, created);
                 put(batch, new Run(run.id(), request, run.correctionRevision(), run.contentVersion(), stamp,
                         run.reserved(), spent, "RUNNING", created, null, judges, proposals, List.copyOf(results), null));
                 config.getBatchStore().save(batch);
@@ -119,7 +129,7 @@ final class DefaultContextOpinionService implements ContextOpinionService {
             batch.setStatus(previous);
             config.getBatchStore().save(batch);
         }
-        if (correction) integrateSupplements(batch, request, scopes);
+        if (integrates) integrateSupplements(batch, request, scopes.stream().filter(this::composes).toList());
         return state(batch, request, stamp, judges, selected);
     }
 
@@ -245,12 +255,8 @@ final class DefaultContextOpinionService implements ContextOpinionService {
     private List<Scope> correctionScopes(CorrectionBatch batch, BatchReview review, CourseEntity start, CourseEntity composed) {
         CourseEntity current = DefaultCurrentAnalysisService.cut(composed, batch.getLevel());
         AuditReport active = config.getCurrentAnalysisService().report(batch, "correction", current);
-        var missing = new TreeMap<String, List<String>>();
-        for (String analyzer : config.getCurrentAnalysisService().supportedAnalyzers()) {
-            var ids = nodes(active).stream().filter(n -> DefaultAnalysisComposer.eligible(n, analyzer)
-                    && !DefaultAnalysisComposer.hasStoredOpinion(n, analyzer)).map(n -> n.getEntity().getId()).sorted().toList();
-            if (!ids.isEmpty()) missing.put(analyzer, ids);
-        }
+        // F-OPINA-R001: the same list the analysis read says, never a count of its own.
+        var missing = MissingOpinions.of(active, config.getCurrentAnalysisService().supportedAnalyzers());
         if (missing.isEmpty()) return List.of();
         // Include unchanged exercises: an opinion belongs to the correction's content, not only to its proposals.
         var snapshots = new ArrayList<RevisionProposal>();
@@ -299,16 +305,25 @@ final class DefaultContextOpinionService implements ContextOpinionService {
                 && (complete(n, analyzer) || DefaultAnalysisComposer.abstention(n, analyzer).isPresent())).count();
     }
 
+    /** F-OPINA-R005 inv. 4: only a judge the current analysis composes enters it; the others stay in their run. */
+    private boolean composes(Scope scope) {
+        return config.getCurrentAnalysisService().supportedAnalyzers().contains(scope.analyzer());
+    }
+
     private void integrateSupplements(CorrectionBatch batch, Request request, List<Scope> scopes) {
         for (Scope scope : scopes) {
             var service = config.getCurrentAnalysisService();
             var view = service.execute(new CurrentAnalysisService.Request("read", batch.getId(), null, null, null, null, null, null, null, null));
             var run = view.looseRuns().stream().filter(r -> r.id().equals(supplementId(request, scope.analyzer()))).findFirst().orElseThrow();
             var fit = run.fits().stream().filter(f -> "correction".equals(f.state())).findFirst().orElseThrow();
-            if (fit.compatible() == 0) continue; // A failed or exhausted query never becomes an opinion.
+            // F-OPINA-R004: a failed, exhausted or empty query never becomes an opinion nor hides one.
+            if (fit.compatible() == 0 || fit.selected() == fit.compatible()) continue;
+            // F-OPINA-R005 inv. 2: it replaces an opinion only with today's version; otherwise it stays loose, to decide.
+            String action = fit.replaces() == 0 ? "integrate" : Boolean.TRUE.equals(fit.runToday()) ? "replace" : null;
+            if (action == null) continue;
             var state = view.states().stream().filter(s -> "correction".equals(s.id())).findFirst().orElseThrow();
-            service.execute(new CurrentAnalysisService.Request("integrate", batch.getId(), "correction", run.id(),
-                    run.id() + "-integrate", null, view.revision(), batch.getContentVersion(), state.fingerprint(), request.reviewer()));
+            service.execute(new CurrentAnalysisService.Request(action, batch.getId(), "correction", run.id(),
+                    run.id() + "-" + action, null, view.revision(), batch.getContentVersion(), state.fingerprint(), request.reviewer()));
         }
     }
 

@@ -209,7 +209,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                     courseFingerprint.apply("base".equals(state) ? baseCourse : current), digest("current-" + state, report.getRoot()),
                     studentViews, provenance, List.copyOf(warnings), comparable(reports.get("base"), report),
                     "base".equals(state) ? "A0" : BatchBook.list(batch.getClosings()).isEmpty() ? null : "A" + batch.getClosings().size(),
-                    inapplicable(batch, index), judges, verdictMarks));
+                    inapplicable(batch, index), judges, verdictMarks, MissingOpinions.of(report, composer.supportedAnalyzers())));
         }
         var loose = new ArrayList<LooseRun>();
         if (includeLoose) for (var run : BatchBook.list(batch.getSelectiveRuns())) {
