@@ -31,7 +31,9 @@ Fuente: la propuesta [«Un solo estado para el tablero»](../../docs/propuestas/
 - la lectura de opiniones trae todo lo de opinión: cada juez en cada cambio, lo que falta, «nadie le ve problemas» y el
   resumen; la tanda deja de traerlo;
 - un juez que Completar no cubre dice «no se completa desde acá», y no se cuenta;
-- lo que opinó una versión anterior del juez no cuenta como «falta»: sigue aparte, con su botón «Medir con la de hoy».
+- lo que opinó una versión anterior del juez no cuenta como «falta»: sigue aparte, con su botón «Medir con la de hoy»;
+- Completar cuenta la corrección entera, no sólo la tanda: es lo que pide y paga. Su título parte el número entre los
+  pares de esta tanda y los de lo que la tanda no cambió (brief 205, decidido después de hacerlo).
 
 El tablero es `pipeline/vocabulary_dashboard` en ittm.
 
