@@ -155,18 +155,25 @@ el CLI de verdad; no se cambia content-audit.
 > 4. El examen fijo de Exámenes rinde con el motor de siempre: si ya está habilitada con él, no hace falta rendir.
 
 <a id="F-PROBS-R009"></a>
-### Rule[F-PROBS-R009] - Anotar contesta apenas content-audit guarda el caso
+### Rule[F-PROBS-R009] - Anotar no espera a content-audit
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
-> 1. Anotás un problema con P, o deshacés la anotación: el tablero contesta apenas content-audit guarda el caso. No vuelve
->    a leer la tanda antes de contestar.
-> 2. Si anotar o deshacer sólo cambió el registro de problemas, lo leído de la tanda y del análisis sigue valiendo: ninguna
+> 1. Anotás un problema con P: el cajón se cierra enseguida, sin esperar a content-audit, y el caso se guarda de fondo.
+>    Mientras tanto, el aviso dice que se está guardando y la corrección que content-audit va a rechazar ya se ve
+>    rechazada. Cuando content-audit lo guarda, el aviso lo dice y ofrece deshacer la anotación. Deshacer también se ve
+>    enseguida: cada corrección vuelve a como estaba antes de anotar. Ninguno de los dos vuelve a leer la tanda.
+> 2. Si content-audit no guarda el caso (por ejemplo, porque la tanda cambió), la corrección vuelve a como estaba y el
+>    cajón vuelve a abrirse con lo que escribiste y el error. Si mientras tanto abriste el cajón de otro ejercicio, ése no
+>    se toca: el aviso dice qué no se guardó y ofrece volver a su cajón. Si content-audit no deshace la anotación, las
+>    correcciones vuelven a verse rechazadas y el aviso ofrece deshacer otra vez.
+> 3. Lo que guardás de fondo desde una pestaña se guarda de a uno, en el orden en que lo anotaste. El cajón siguiente ya
+>    propone el mismo problema, y su caso se suma después del anterior, a la versión del problema que dejó ése.
+> 4. Si anotar o deshacer sólo cambió el registro de problemas, lo leído de la tanda y del análisis sigue valiendo: ninguna
 >    pestaña vuelve a leer la tanda entera por eso. Tampoco al anotar el ejercicio siguiente desde «Nadie le ve problemas».
-> 3. Si además cambió un caso permanente de un juez, cambia lo que se muestra del juez: el tablero avisa «cambios» y la
+> 5. Si además cambió un caso permanente de un juez, cambia lo que se muestra del juez: el tablero avisa «cambios» y la
 >    tanda se vuelve a leer entera, una vez para todas las pestañas que la miran.
-> 4. Anotar y deshacer avisan «problemas» y «decisiones», no «tanda». La pestaña donde anotaste muestra enseguida la
->    corrección rechazada (al deshacer, como estaba), junto con el aviso. Las otras la muestran cuando el tablero lee lo
->    decidido; en el caso de 2, leyendo sólo los estados
+> 6. Anotar y deshacer avisan «problemas» y «decisiones», no «tanda». Las otras pestañas muestran lo que decidió
+>    content-audit cuando el tablero lee lo decidido; en el caso de 4, leyendo sólo los estados
 >    ([F-DECIDE-R009](../2026-10-24.04_cambios-y-decisiones/REQUIREMENT.md#F-DECIDE-R009)).
 
 <details><summary>Detail</summary>
@@ -177,7 +184,11 @@ guardaba en unos 6 s (`problem annotate`, `problem undo`). El resto era el table
 porque el archivo del problema está en la huella de la campaña: un problema confirmado cambia el examen de sus jueces.
 
 content-audit guarda un problema y sus casos permanentes en el mismo paso. Por eso, si el catálogo de casos permanentes
-quedó igual, el estado de los jueces no cambió. Lo que tarda content-audit en guardar el caso no cambia con esta regla.
+quedó igual, el estado de los jueces no cambió.
+
+*Con 4 a 6, el 25/10:* anotar y deshacer tardaban 6,2 s, todo de content-audit: lee la tanda entera, la vuelve a leer al
+guardar la decisión, y Java tarda ~1 s en arrancar. José eligió que el cajón no espere (1 a 3) antes que acelerar
+content-audit, que no bajaría de ~2 s. Lo que tarda content-audit en guardar el caso no cambia con esta regla.
 
 </details>
 
@@ -189,11 +200,17 @@ journeys:
     name: Anotar un problema desde Correcciones
     flow:
       - id: anotar
-        action: "José anota un problema con P en el cajón de Correcciones"
+        action: "José anota un problema con P en el cajón de Correcciones; el cajón se cierra enseguida"
         gate: [F-PROBS-R001, F-PROBS-R002, F-PROBS-R009]
         outcomes:
-          - when: "El tablero lo guarda"
+          - when: "content-audit lo guarda"
             then: lista
+          - when: "content-audit no lo guarda"
+            then: vuelve
+      - id: vuelve
+        action: "El cajón vuelve a abrirse con lo escrito y el error, y la corrección como estaba"
+        gate: [F-PROBS-R009]
+        result: failure
       - id: lista
         action: "La lista de la pestaña lo tiene enseguida y el servidor avisa «problemas»"
         gate: [F-PROBS-R002]
@@ -264,7 +281,7 @@ CLI falso `test/support/problem_cli.py`). Cada prueba nombra su regla en el tít
 | [R006](#F-PROBS-R006) | Leer la lista, la ficha, la inspección, los pasos y la prueba no cambia ningún archivo (con un trabajo viejo sin medir, un examen fijo sin preparar y una prueba en curso); el vigilante guarda lo que faltaba una vez; leer no cierra un trabajo; leer no prepara el examen fijo y tocar Probar, un paso o «Rendir» sí, una vez aunque se pida dos; la ficha dice «se prepara al probar, gratis», no lo cuenta y deja Probar habilitado | `test/tablero_html/problemas/pasos_de_problemas_test.dart`, `test/tablero_html/examenes/examen_fijo_test.dart`, `html/test/probar-solucion.test.js`, `html/test/examenes-operaciones.test.js` |
 | [R007](#F-PROBS-R007) | Probar avisa «problemas» al empezar, al cerrar un paso, al seguir, al frenar y al pedir revisión; una vuelta sin novedades no reescribe ni avisa; preparar el examen fijo avisa una vez; un trabajo guardado avisa; lanzar un paso, volver a medir, probar, seguir y frenar suben «problemas» | `test/tablero_html/problemas/pasos_de_problemas_test.dart`, `test/tablero_html/novedades_test.dart` |
 | [R008](#F-PROBS-R008) | Habilitada con el de siempre, sólo con otro motor (con y sin `closesWith`) y sin aprobar: qué motor usa el paso, cuándo frena y qué dice; el examen fijo con el de siempre y «no hace falta rendir»; la página lee el juez de `elJuez` y ninguna pantalla lo guarda; la ficha y la cuenta de Probar nombran el motor antes de gastar | `test/tablero_html/problemas/pasos_de_problemas_test.dart`, `test/tablero_html/examenes/examen_fijo_test.dart`, `html/test/ninguna-pantalla-guarda-un-juez.test.js`, `html/test/problemas.test.js`, `html/test/probar-solucion.test.js` |
-| [R009](#F-PROBS-R009) | Anotar y deshacer contestan sin pedirle al CLI la tanda ni el análisis; con sólo el registro de problemas cambiado, los cambios, las decisiones y lo que dijo cada juez de «Nadie le ve problemas» salen de lo leído, sin releer; con el catálogo de casos permanentes cambiado, avisa «cambios» y la tanda se vuelve a leer; una decisión de content-audit al anotar se lee sólo con los estados; la huella distingue el registro de problemas del resto; avisan «problemas» y «decisiones», no «tanda»; la pestaña que anota muestra la corrección rechazada y el aviso enseguida, sin releer los cambios, y al deshacer vuelve a lo que estaba | `test/tablero_html/problemas/anotar_sin_releer_test.dart`, `test/tablero_html/huella_de_la_campana_test.dart`, `test/tablero_html/novedades_test.dart`, `html/test/anotar-sin-releer.test.js` |
+| [R009](#F-PROBS-R009) | El cajón se cierra antes de que content-audit conteste, con la corrección rechazada y el aviso de que se guarda; «Deshacer» aparece cuando se guardó, y deshacer se ve enseguida; si content-audit no guarda el caso, el cajón vuelve con lo escrito y el error, o el aviso ofrece volver si hay otro cajón abierto; si no deshace, las correcciones vuelven a verse rechazadas y se puede reintentar; la anotación siguiente espera a la anterior y va con su revisión; anotar y deshacer contestan sin pedirle al CLI la tanda ni el análisis; con sólo el registro de problemas cambiado, los cambios, las decisiones y lo que dijo cada juez de «Nadie le ve problemas» salen de lo leído, sin releer; con el catálogo de casos permanentes cambiado, avisa «cambios» y la tanda se vuelve a leer; una decisión de content-audit al anotar se lee sólo con los estados; la huella distingue el registro de problemas del resto; avisan «problemas» y «decisiones», no «tanda» | `test/tablero_html/problemas/anotar_sin_releer_test.dart`, `test/tablero_html/huella_de_la_campana_test.dart`, `test/tablero_html/novedades_test.dart`, `html/test/anotar-sin-releer.test.js` |
 
 ## References
 
