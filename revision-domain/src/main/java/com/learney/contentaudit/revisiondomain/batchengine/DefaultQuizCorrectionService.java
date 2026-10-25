@@ -260,7 +260,9 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
         payload.put("didacticReferences", new TreeMap<>(references));
         payload.put("course", courseFingerprint.apply(current)); payload.put("version", batch.getContentVersion());
         payload.put("runtime", runtime); payload.put("selected", selected.stream().sorted().toList());
-        payload.put("includeApproved", includeApproved); payload.put("quizzes", rows);
+        // The analyzers add their findings as they finish: the same findings in another order are the same context.
+        payload.put("includeApproved", includeApproved); payload.put("quizzes", rows.stream().map(q -> new Quiz(q.quizId(), q.approved(),
+                q.correctable(), q.reason(), q.findings().stream().sorted(Comparator.comparing(DefaultQuizCorrectionService::key)).toList())).toList());
         payload.put("selections", config.getBatchStore().analysisSelections(batch.getId()).stream().map(Object::toString).toList());
         var opinions = new TreeMap<String, Object>();
         for (var node : DefaultAnalysisComposer.index(report.getRoot()).values()) {

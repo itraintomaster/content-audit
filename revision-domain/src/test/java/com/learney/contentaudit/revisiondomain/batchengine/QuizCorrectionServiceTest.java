@@ -430,6 +430,16 @@ class QuizCorrectionServiceTest {
         assertNotEquals(first.fingerprint(), service.execute(estimate(List.of(quiz), false)).fingerprint());
     }
 
+    @Test void theSameFindingsInTheOrderTheAnalyzersFinishGiveTheSameFingerprint() {
+        var node = DefaultAnalysisComposer.index(report.getRoot()).get(quiz);
+        String first = service.execute(estimate(List.of(quiz), false)).fingerprint();
+        Collections.reverse(node.getFindings());
+        assertEquals(first, service.execute(estimate(List.of(quiz), false)).fingerprint());
+        Finding naturalness = finding("naturalness", "odd-usage", quiz); naturalness.setResolution(FindingResolution.RANK_ONLY);
+        node.getFindings().add(naturalness);
+        assertNotEquals(first, service.execute(estimate(List.of(quiz), false)).fingerprint());
+    }
+
     @Test void factoryWithoutConfiguredLocatorCanReserveAndFinishAZeroBudgetRun() {
         // Main intentionally leaves the locator null; the factory must inject its effective default
         // into both the ledger and the pre-pass comparison capture, not just into the ledger.
