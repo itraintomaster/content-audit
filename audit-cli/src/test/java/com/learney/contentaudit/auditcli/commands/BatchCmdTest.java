@@ -23,6 +23,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchPublishRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchReport;
 import com.learney.contentaudit.revisiondomain.batch.BatchReview;
 import com.learney.contentaudit.revisiondomain.batch.BatchReviewDecision;
+import com.learney.contentaudit.revisiondomain.batch.BatchReviewSlice;
 import com.learney.contentaudit.revisiondomain.batch.BatchRunRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchService;
 import com.learney.contentaudit.revisiondomain.batch.BatchSettings;
@@ -85,6 +86,30 @@ public class BatchCmdTest {
         Run invalid = run(service, "review", "--decision-json", decision.replace("APPROVED", "UNKNOWN"));
         assertEquals(2, invalid.exit());
         assertEquals(1, service.reviewDecisions.size(), "invalid input cannot reach the service");
+    }
+
+    @Test
+    @Tag("FEAT-GUARDA")
+    @Tag("F-GUARDA-R002")
+    @DisplayName("should save a decision with --changed-only answering only what it changed, and without it the whole review")
+    public void shouldSaveADecisionWithChangedOnlyAnsweringOnlyWhatItChanged() throws Exception {
+        Service service = new Service();
+        String decision = """
+                {"batchId":"batch","selections":[{"changeId":"change","step":{"quizId":"quiz",
+                "parts":["TRANSLATION"],"after":null}}],"status":"REJECTED","reviewer":"José"}
+                """;
+        Run changed = run(service, "review", "--decision-json", decision, "--changed-only", "-f", "json");
+        assertEquals(0, changed.exit(), changed.err());
+        var answer = new ObjectMapper().readTree(changed.out());
+        assertEquals(1, answer.get("reviewCount").asInt());
+        assertFalse(answer.has("report"), "the short answer has no report, course or tasks");
+        assertEquals(1, service.savedReviews.size());
+        assertTrue(service.reviewDecisions.isEmpty(), "the whole review is not read again");
+
+        Run whole = run(service, "review", "--decision-json", decision, "-f", "json");
+        assertEquals(0, whole.exit(), whole.err());
+        assertTrue(new ObjectMapper().readTree(whole.out()).has("report"));
+        assertEquals(1, service.reviewDecisions.size());
     }
 
     @Test
@@ -315,6 +340,13 @@ public class BatchCmdTest {
         @Override public BatchReview review(BatchReviewDecision decision) {
             reviewDecisions.add(decision);
             return review(decision.batchId());
+        }
+
+        final List<BatchReviewDecision> savedReviews = new ArrayList<>();
+
+        @Override public BatchReviewSlice saveReview(BatchReviewDecision decision) {
+            savedReviews.add(decision);
+            return new BatchReviewSlice(decision.batchId(), 1, 1, BatchStatus.OPEN, savedReviews.size(), List.of());
         }
 
         /** What {@code close} hands back as the judges' accounts: the test sets the scenario before calling. */

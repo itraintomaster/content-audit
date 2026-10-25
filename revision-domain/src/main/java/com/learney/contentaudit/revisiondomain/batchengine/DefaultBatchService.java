@@ -35,6 +35,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchPublication;
 import com.learney.contentaudit.revisiondomain.batch.BatchPublishRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchReport;
 import com.learney.contentaudit.revisiondomain.batch.BatchReview;
+import com.learney.contentaudit.revisiondomain.batch.BatchReviewSlice;
 import com.learney.contentaudit.revisiondomain.batch.BatchReviewDecision;
 import com.learney.contentaudit.revisiondomain.batch.BatchRunRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchService;
@@ -438,6 +439,9 @@ class DefaultBatchService implements BatchService {
 
     @Override
     public BatchReview review(BatchReviewDecision decision) { return reviews.decide(decision); }
+
+    @Override
+    public BatchReviewSlice saveReview(BatchReviewDecision decision) { return reviews.save(decision); }
 
     // -------------------------------------------------------------------------
     // José's decisions from the tray (FEAT-BANDEJA)

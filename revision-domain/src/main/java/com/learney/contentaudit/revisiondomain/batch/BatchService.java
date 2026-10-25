@@ -31,4 +31,9 @@ public interface BatchService {
     default BatchReview review(BatchReviewDecision decision) {
         throw new UnsupportedOperationException("La revisión no está disponible.");
     }
+
+    /** F-GUARDA-R002: saves the decision like {@link #review(BatchReviewDecision)}, answering only what it changed. */
+    default BatchReviewSlice saveReview(BatchReviewDecision decision) {
+        throw new UnsupportedOperationException("La revisión no está disponible.");
+    }
 }

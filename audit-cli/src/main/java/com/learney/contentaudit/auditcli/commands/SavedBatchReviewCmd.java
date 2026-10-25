@@ -27,7 +27,10 @@ final class SavedBatchReviewCmd {
     static Integer execute(List<String> args, BatchReviewService service, PrintStream output, PrintStream error) {
         if (!matches(args)) return null;
         try {
-            var review = args.size() == 6
+            // F-GUARDA-R002: with --changed-only a decision answers only what it changed, not the whole review.
+            Object review = args.size() == 7
+                    ? service.save(CommandJson.read(args.get(3), BatchReviewDecision.class))
+                    : args.size() == 6
                     ? service.decide(CommandJson.read(args.get(3), BatchReviewDecision.class))
                     : service.read(args.size() == 5 ? args.get(2) : null);
             output.println(CommandJson.writeCompact(review));
@@ -40,12 +43,13 @@ final class SavedBatchReviewCmd {
 
     private static boolean matches(List<String> args) {
         // Only the UI's exact review forms. Every other command, option or help uses the full parser.
-        if (args.size() < 4 || args.size() > 6 || !args.get(0).equals("batch") || !args.get(1).equals("review")) {
+        if (args.size() < 4 || args.size() > 7 || !args.get(0).equals("batch") || !args.get(1).equals("review")) {
             return false;
         }
         int formatAt = args.size() - 2;
         if (!(args.get(formatAt).equals("-f") || args.get(formatAt).equals("--format"))
                 || !args.get(formatAt + 1).equals("json")) return false;
+        if (args.size() == 7) return args.get(2).equals("--decision-json") && args.get(4).equals("--changed-only");
         if (args.size() == 6) return args.get(2).equals("--decision-json");
         String batchId = args.size() == 5 ? args.get(2) : null;
         if (batchId != null && !batchId.matches("[A-Za-z0-9][A-Za-z0-9._-]*")) return false;

@@ -70,7 +70,7 @@ import picocli.CommandLine.Parameters;
                 + "  batch close [--budget juez=N[,juez=N…]] [--cap N]%n"
                 + "  batch drop (--change <id> | --rule <rule>) [--reason <text>]%n"
                 + "  batch report [<batchId>] [-f text|json]%n%n"
-                + "  batch review [<batchId>] [--decision-json <json>] [-f json]%n%n"
+                + "  batch review [<batchId>] [--decision-json <json> [--changed-only]] [-f json]%n%n"
                 + "Without --cap, batch run applies the rules only, which query no model; the panels open only under a"
                 + " cap of queries. Without --budget nor --cap, batch close pays no judge: it says how many queries each"
                 + " one still misses. Publishing is the single OK of the tray: content-audit tray publish.",
@@ -128,6 +128,10 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
 
     @Option(names = "--decision-json", description = "Exact saved steps and human decision; does not apply or publish")
     private String decisionJson;
+
+    @Option(names = "--changed-only", description = "With --decision-json, answer only the corrections the decision"
+            + " may have changed, not the whole review (F-GUARDA-R002)")
+    private boolean changedOnly;
 
     @Option(names = {"-f", "--format"}, description = "Output format of estimate/report: text or json (default: ${DEFAULT-VALUE})",
             defaultValue = "text")
@@ -476,7 +480,8 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
 
     private Integer reviewBatch() {
         try {
-            var review = decisionJson == null ? batchService.review(target)
+            Object review = decisionJson == null ? batchService.review(target)
+                    : changedOnly ? batchService.saveReview(CommandJson.read(decisionJson, BatchReviewDecision.class))
                     : batchService.review(CommandJson.read(decisionJson, BatchReviewDecision.class));
             System.out.println(CommandJson.writeCompact(review));
             return 0;

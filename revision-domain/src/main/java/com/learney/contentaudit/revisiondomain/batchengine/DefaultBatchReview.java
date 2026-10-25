@@ -12,18 +12,22 @@ import com.learney.contentaudit.revisiondomain.batch.BatchReview;
 import com.learney.contentaudit.revisiondomain.batch.BatchReviewCache;
 import com.learney.contentaudit.revisiondomain.batch.BatchReviewService;
 import com.learney.contentaudit.revisiondomain.batch.BatchReviewDecision;
+import com.learney.contentaudit.revisiondomain.batch.BatchReviewSlice;
 import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
 import com.learney.contentaudit.revisiondomain.batch.BatchStore;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
 import com.learney.contentaudit.revisiondomain.batch.NoOpenBatchException;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
+import java.util.function.Predicate;
 
 /** Reads existing reports and proposals; human decisions never mutate the live correction or the course. */
 final class DefaultBatchReview implements BatchReviewService {
@@ -67,6 +71,45 @@ final class DefaultBatchReview implements BatchReviewService {
 
     @Override
     public BatchReview decide(BatchReviewDecision request) {
+        return read(saved(request).batch());
+    }
+
+    @Override
+    public BatchReviewSlice save(BatchReviewDecision request) {
+        Saved saved = saved(request);
+        // Only a correction of a selected change and exercise can change its state: the decisions are kept by both.
+        var keys = new HashSet<String>();
+        for (var selected : request.selections()) keys.add(key(selected.changeId(), selected.step().getQuizId()));
+        return slice(saved.batch(), saved.proposals(), saved.quizzes(),
+                item -> keys.contains(key(item.changeId(), item.step().getQuizId())));
+    }
+
+    @Override
+    public BatchReviewSlice slice(String batchId, Collection<String> quizIds) {
+        CorrectionBatch batch = batchId == null ? batches.open().or(batches::latestPublished)
+                .orElseThrow(() -> new NoOpenBatchException("sin tanda para revisar"))
+                : batches.load(batchId).orElseThrow(() -> new IllegalArgumentException("No existe la tanda " + batchId));
+        Set<String> quizzes = new HashSet<>(quizIds == null ? List.of() : quizIds);
+        return slice(batch, proposals(batch, quizzes), quizzes, item -> true);
+    }
+
+    private BatchReviewSlice slice(CorrectionBatch batch, List<RevisionProposal> proposals, Set<String> quizzes,
+            Predicate<BatchReview.Item> kept) {
+        var history = batches.reviews(batch.getId());
+        return new BatchReviewSlice(batch.getId(), BatchBook.correctionRevision(batch), batch.getContentVersion(),
+                batch.getStatus(), history.size(),
+                standing(batch, proposals, quizzes, history).items().stream().filter(kept).toList());
+    }
+
+    /** What a validated, saved decision read: its batch, and the proposals of the exercises it names. */
+    private record Saved(CorrectionBatch batch, List<RevisionProposal> proposals, Set<String> quizzes) {}
+
+    /**
+     * F-GUARDA-R001, F-GUARDA-R005: validates the whole request against the saved corrections of the exercises it
+     * names, before writing anything, and saves it. The other exercises cannot change what it decides, so the rest of
+     * the review is not read.
+     */
+    private Saved saved(BatchReviewDecision request) {
         if (request == null || request.batchId() == null || request.batchId().isBlank()
                 || request.status() == null || request.selections() == null
                 || request.selections().isEmpty() || request.reviewer() == null || request.reviewer().isBlank()) {
@@ -77,10 +120,18 @@ final class DefaultBatchReview implements BatchReviewService {
         if (batch.getStatus() == BatchStatus.PUBLISHED) {
             throw new IllegalArgumentException("La tanda ya fue integrada; su revisión es histórica.");
         }
-        List<BatchReview.Item> current = items(batch, proposals(batch));
+        Set<String> quizzes = new HashSet<>();
+        for (BatchReviewDecision.Selection selected : request.selections()) {
+            if (selected == null || selected.step() == null) {
+                throw new IllegalArgumentException("La corrección cambió o fue retirada. Volvé a leer antes de aprobar.");
+            }
+            quizzes.add(selected.step().getQuizId());
+        }
+        List<RevisionProposal> proposals = proposals(batch, quizzes);
+        List<BatchReview.Item> current = standing(batch, proposals, quizzes, batches.reviews(batch.getId())).items();
         // Validate the whole request before writing anything. An old screen cannot approve changed content.
         for (BatchReviewDecision.Selection selected : request.selections()) {
-            if (selected == null || current.stream().noneMatch(item -> Objects.equals(item.changeId(), selected.changeId())
+            if (current.stream().noneMatch(item -> Objects.equals(item.changeId(), selected.changeId())
                     && Objects.equals(item.step(), selected.step()) && item.before() != null && item.after() != null
                     && Objects.equals(item.before(), selected.before()) && Objects.equals(item.after(), selected.after()))) {
                 throw new IllegalArgumentException("La corrección cambió o fue retirada. Volvé a leer antes de aprobar.");
@@ -93,7 +144,7 @@ final class DefaultBatchReview implements BatchReviewService {
                         .ifPresent(i -> ConversionJudgments.requireApproved(batch, i));
         batches.saveReview(new BatchReviewDecision(batch.getId(), List.copyOf(request.selections()), request.status(),
                 request.reviewer().trim(), Instant.now(), request.expectedReviewCount()));
-        return read(batch);
+        return new Saved(batch, proposals, quizzes);
     }
 
     private BatchReview read(CorrectionBatch batch) {
@@ -141,8 +192,18 @@ final class DefaultBatchReview implements BatchReviewService {
     }
 
     private List<RevisionProposal> proposals(CorrectionBatch batch) {
+        return proposals(batch, null);
+    }
+
+    /**
+     * The proposals of the exercises in {@code only}, or of every exercise when it is null. A batch names each
+     * proposal by the exercise it proposes for (the ledger writes both with the same node id), so the others are not
+     * loaded.
+     */
+    private List<RevisionProposal> proposals(CorrectionBatch batch, Set<String> only) {
         List<RevisionProposal> proposals = new ArrayList<>();
         for (BatchProposalRef ref : BatchBook.list(batch.getQuizProposals())) {
+            if (only != null && !only.contains(ref.getQuizId())) continue;
             artifacts.load(batch.getPlanId(), ref.getProposalId()).ifPresent(a -> {
                 RevisionProposal p = a.getProposal();
                 CourseElementSnapshot after = p.getElementBefore();
@@ -171,10 +232,20 @@ final class DefaultBatchReview implements BatchReviewService {
     }
 
     private ReviewStanding standing(CorrectionBatch batch, List<RevisionProposal> proposals) {
+        return standing(batch, proposals, null, batches.reviews(batch.getId()));
+    }
+
+    /**
+     * The corrections of the exercises in {@code only} (every exercise when it is null) with their saved decisions.
+     * The before of a step is what the earlier steps on the same exercise left, so the steps on other exercises are
+     * skipped without changing it.
+     */
+    private ReviewStanding standing(CorrectionBatch batch, List<RevisionProposal> proposals, Set<String> only,
+            List<BatchReviewDecision> saved) {
         Map<String, CourseElementSnapshot> states = new LinkedHashMap<>();
         for (RevisionProposal proposal : proposals) states.put(proposal.getNodeId(), proposal.getElementBefore());
         Map<String, BatchReviewDecision> decisions = new LinkedHashMap<>();
-        var history = new ArrayList<>(batches.reviews(batch.getId()));
+        var history = new ArrayList<>(saved);
         history.sort(Comparator.comparing(BatchReviewDecision::decidedAt));
         for (BatchReviewDecision decision : history) {
             for (BatchReviewDecision.Selection selection : decision.selections()) {
@@ -186,7 +257,7 @@ final class DefaultBatchReview implements BatchReviewService {
         for (BatchChange change : BatchBook.list(batch.getChanges())) {
             if (change == null || change.getDroppedReason() != null) continue;
             for (BatchChangeStep step : BatchBook.list(change.getSteps())) {
-                if (step == null) continue;
+                if (step == null || only != null && !only.contains(step.getQuizId())) continue;
                 CourseElementSnapshot before = states.get(step.getQuizId());
                 CourseElementSnapshot after = BatchBook.apply(before, step);
                 states.put(step.getQuizId(), after);

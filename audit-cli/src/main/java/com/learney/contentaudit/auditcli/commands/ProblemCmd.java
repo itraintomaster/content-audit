@@ -63,6 +63,7 @@ final class ProblemCmd implements Callable<Integer> {
     @Option(names = "--before") boolean before;
     @Option(names = "--regex") boolean regex;
     @Option(names = {"-f", "--format"}, defaultValue = "json") String format;
+    @Option(names = "--with-decisions") boolean withDecisions;
 
     ProblemCmd(Path workdir, Path project, PrintStream out) { this.workdir = workdir; this.project = project; this.out = out; }
     static Integer execute(List<String> args, Path workdir, Path project, PrintStream out, PrintStream err) {
@@ -121,16 +122,17 @@ final class ProblemCmd implements Callable<Integer> {
         use();
         if (batch == null) throw new IllegalArgumentException("Falta --batch.");
         Map<String, Map<String, Object>> said = verdicts();
-        long reviewCount = new FileSystemBatchStore(workdir).reviews(batch).size();
         var reviews = reviews(workdir);
-        BatchReview read = checkedReview(reviews);
-        var selected = read.items().stream().filter(i -> quizzes.contains(i.step().getQuizId())).toList();
+        // F-GUARDA-R003: only the corrections of the annotated quizzes, and the decisions saved when they were read.
+        BatchReviewSlice read = checkedReview(reviews);
+        long reviewCount = read.reviewCount();
+        var selected = read.items();
         // F-NADIE-R005: a quiz without a correction can only be annotated with what each judge said of it.
         for (String quiz : quizzes) if (selected.stream().noneMatch(i -> i.step().getQuizId().equals(quiz)) && !said.containsKey(quiz)) {
             throw new IllegalArgumentException("El quiz no tiene una corrección en esta tanda: " + quiz);
         }
         boolean rejects = !keepCorrection && use() != Use.GOOD && !selected.isEmpty();
-        if (rejects && read.report().getStatus() == BatchStatus.PUBLISHED)
+        if (rejects && read.status() == BatchStatus.PUBLISHED)
             throw new IllegalStateException("La tanda ya está publicada. Anotá con --keep-correction.");
         ContentProblem p = id == null ? service.create(title, criterion, failures, parts) : service.get(id);
         if (id != null && p.revision() != requireRevision()) throw new IllegalStateException("El problema cambió. Volvé a leer.");
@@ -166,15 +168,17 @@ final class ProblemCmd implements Callable<Integer> {
         }
         Set<String> existing = new HashSet<>(); p.cases().forEach(c -> existing.add(c.id()));
         additions.removeIf(c -> existing.contains(c.id()));
-        if (additions.isEmpty()) return Map.of("problem", p, "newCaseIds", List.of());
+        if (additions.isEmpty()) return Map.of("problem", p, "newCaseIds", List.of(), "decisions", List.of());
         var saved = service.addCases(p.id(), p.revision(), additions);
+        var decided = new ArrayList<BatchReviewSlice>();
         if (rejects) {
             try {
                 Set<String> addedQuizzes = new HashSet<>(); additions.forEach(c -> addedQuizzes.add(c.quizId()));
                 var rejected = selected.stream().filter(i -> addedQuizzes.contains(i.step().getQuizId())
                         && i.status() != BatchReviewDecision.Status.REJECTED).toList();
-                if (!rejected.isEmpty()) reviews.decide(new BatchReviewDecision(read.batchId(), selections(rejected),
-                        BatchReviewDecision.Status.REJECTED, "Problemas:" + p.id(), Instant.now(), reviewCount));
+                if (!rejected.isEmpty()) decided.add(reviews.save(new BatchReviewDecision(read.batchId(),
+                        selections(rejected), BatchReviewDecision.Status.REJECTED, "Problemas:" + p.id(), Instant.now(),
+                        reviewCount)));
             } catch (RuntimeException e) {
                 // A stale/withdrawn correction must not leave an annotation that claims it was rejected.
                 try { service.rollbackAnnotation(p, saved.revision()); }
@@ -182,8 +186,9 @@ final class ProblemCmd implements Callable<Integer> {
                 throw e;
             }
         }
+        // F-GUARDA-R003: what the rejection changed of the decisions travels with the case.
         return Map.of("problem", saved, "newCaseIds", additions.stream().map(Case::id).toList(),
-                "rejected", rejects);
+                "rejected", rejects, "decisions", decided);
     }
 
     private static final List<String> JUDGE_STATUSES = List.of("UP_TO_DATE", "EARLIER", "ABSTAINED", "NOT_MEASURED");
@@ -244,7 +249,7 @@ final class ProblemCmd implements Callable<Integer> {
         return value instanceof String s && !s.isBlank() ? s.trim() : null;
     }
 
-    private ContentProblem undo(ProblemService service) {
+    private Object undo(ProblemService service) {
         var p = service.get(requireId());
         if (p.revision() != requireRevision()) throw new IllegalStateException("El problema cambió. Volvé a leer.");
         if (caseIds == null || caseIds.isEmpty()) throw new IllegalArgumentException("Falta --case-id.");
@@ -254,13 +259,16 @@ final class ProblemCmd implements Callable<Integer> {
         record Restoration(BatchReviewService reviews, String batchId, BatchReview.Item item, String key) {}
         var restorations = new ArrayList<Restoration>();
         Map<String, Long> counts = new HashMap<>();
+        Map<String, BatchReviewService> byWorkdir = new HashMap<>();
         for (var c : chosen) {
             if (!Boolean.TRUE.equals(c.snapshot().get("rejectOnAnnotation"))) continue;
-            var reviews = reviews(Path.of(c.workdir()));
+            var reviews = byWorkdir.computeIfAbsent(c.workdir(), w -> reviews(Path.of(w)));
             String key = c.workdir() + "\n" + c.batchId();
-            counts.putIfAbsent(key, (long) new FileSystemBatchStore(Path.of(c.workdir())).reviews(c.batchId()).size());
-            var read = reviews.read(c.batchId());
-            for (var original : items(c)) {
+            var originals = items(c);
+            // F-GUARDA-R003: only the corrections of the case's quiz, and the decisions saved when they were read.
+            var read = reviews.slice(c.batchId(), originals.stream().map(i -> i.step().getQuizId()).toList());
+            counts.putIfAbsent(key, (long) read.reviewCount());
+            for (var original : originals) {
                 var current = read.items().stream().filter(i -> i.changeId().equals(original.changeId())
                         && i.step().equals(original.step()) && Objects.equals(i.before(), original.before())
                         && Objects.equals(i.after(), original.after())).findFirst()
@@ -273,12 +281,15 @@ final class ProblemCmd implements Callable<Integer> {
                 }
             }
         }
+        var decided = new ArrayList<BatchReviewSlice>();
         for (var r : restorations) {
-            r.reviews().decide(new BatchReviewDecision(r.batchId(), selections(List.of(r.item())),
-                    r.item().status(), "Deshacer problema", Instant.now(), counts.get(r.key())));
+            decided.add(r.reviews().save(new BatchReviewDecision(r.batchId(), selections(List.of(r.item())),
+                    r.item().status(), "Deshacer problema", Instant.now(), counts.get(r.key()))));
             counts.put(r.key(), counts.get(r.key()) + 1);
         }
-        return service.removeCases(p.id(), p.revision(), new HashSet<>(caseIds));
+        var undone = service.removeCases(p.id(), p.revision(), new HashSet<>(caseIds));
+        // F-GUARDA-R003: the problem alone, as always; with --with-decisions, also what the undo changed of them.
+        return withDecisions ? Map.of("problem", undone, "decisions", decided) : undone;
     }
 
     private Map<String, Object> search() {
@@ -305,11 +316,11 @@ final class ProblemCmd implements Callable<Integer> {
                         .map(e -> Map.of("text", e.getKey(), "quizIds", List.copyOf(e.getValue()))).toList());
     }
 
-    private BatchReview checkedReview(BatchReviewService reviews) {
+    private BatchReviewSlice checkedReview(BatchReviewService reviews) {
         if (batch == null || contentVersion == null || correctionRevision == null) {
             throw new IllegalArgumentException("Anotar necesita --batch, --content-version y --correction-revision de la tanda visible.");
         }
-        var read = reviews.read(batch);
+        var read = reviews.slice(batch, quizzes);
         if (read.contentVersion() != contentVersion || read.correctionRevision() != correctionRevision) {
             throw new IllegalStateException("La tanda cambió. Volvé a leer antes de anotar.");
         }

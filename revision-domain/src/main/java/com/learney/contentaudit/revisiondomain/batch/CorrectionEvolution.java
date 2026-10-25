@@ -39,7 +39,7 @@ public final class CorrectionEvolution {
     public static CourseElementSnapshot copySnapshot(CourseElementSnapshot snapshot) {
         return snapshot == null ? null : JSON.convertValue(JSON.valueToTree(snapshot), CourseElementSnapshot.class);
     }
-    private static List<BatchReviewDecision> copyReviews(List<BatchReviewDecision> reviews) {
+    public static List<BatchReviewDecision> copyReviews(List<BatchReviewDecision> reviews) {
         if (reviews == null) return List.of();
         return reviews.stream().map(r -> new BatchReviewDecision(r.batchId(), r.selections().stream().map(s ->
             new BatchReviewDecision.Selection(s.changeId(), new BatchChangeStep(s.step().getQuizId(),

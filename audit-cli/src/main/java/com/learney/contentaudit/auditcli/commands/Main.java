@@ -1858,6 +1858,12 @@ class Main {
             }
 
             @Override
+            public com.learney.contentaudit.revisiondomain.batch.BatchReviewSlice saveReview(
+                    com.learney.contentaudit.revisiondomain.batch.BatchReviewDecision decision) {
+                return factory.get().saveReview(decision);
+            }
+
+            @Override
             public com.learney.contentaudit.revisiondomain.batch.BatchPublication publish(
                     com.learney.contentaudit.revisiondomain.batch.BatchPublishRequest request) {
                 return factory.get().publish(request);

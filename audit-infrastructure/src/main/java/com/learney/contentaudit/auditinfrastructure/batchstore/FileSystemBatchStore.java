@@ -8,6 +8,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
 import com.learney.contentaudit.revisiondomain.batch.BatchReviewDecision;
 import com.learney.contentaudit.revisiondomain.batch.BatchStore;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionEvolution;
 import java.util.Map;
 import java.util.Objects;
 import com.learney.contentaudit.revisiondomain.publication.PublicationManifest;
@@ -367,8 +368,7 @@ public class FileSystemBatchStore implements BatchStore {
     @Override
     public List<BatchReviewDecision> reviews(String batchId) {
         Path dir = reviewDir(batchId);
-        List<BatchReviewDecision> decisions = new ArrayList<>();
-        load(batchId).map(CorrectionBatch::getEvolution).ifPresent(lineage -> decisions.addAll(lineage.inheritedReviews()));
+        List<BatchReviewDecision> decisions = new ArrayList<>(inheritedReviews(batchId));
         if (!Files.isDirectory(dir)) return decisions;
         try (Stream<Path> files = Files.list(dir)) {
             for (Path file : files.filter(f -> f.getFileName().toString().endsWith(SUFFIX)).sorted().toList()) {
@@ -483,9 +483,44 @@ public class FileSystemBatchStore implements BatchStore {
 
     private CorrectionBatch read(Path file) {
         try {
-            return mapper.readValue(file.toFile(), CorrectionBatch.class);
+            Object before = stamp(file);
+            CorrectionBatch batch = mapper.readValue(file.toFile(), CorrectionBatch.class);
+            if (before != null && before.equals(stamp(file))) {
+                var lineage = batch.getEvolution();
+                remember(file, new Inherited(before, lineage == null ? List.of() : lineage.inheritedReviews()));
+            }
+            return batch;
         } catch (IOException e) {
             throw new java.io.UncheckedIOException("No se pudo leer la tanda de " + file + ": " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * F-GUARDA-R001: the decisions a batch inherited from its predecessor, as the last read of its file had them, for
+     * as long as that file stays the same. Reading the decisions of a batch just loaded does not parse its tens of MB
+     * again. Every answer is a copy, as a fresh read would give.
+     */
+    private final Map<Path, Inherited> inherited = new java.util.HashMap<>();
+    private record Inherited(Object stamp, List<BatchReviewDecision> reviews) {}
+
+    private synchronized void remember(Path file, Inherited reviews) { inherited.put(file, reviews); }
+
+    private List<BatchReviewDecision> inheritedReviews(String batchId) {
+        Path file = dir().resolve(identifier(batchId) + SUFFIX);
+        Inherited known;
+        synchronized (this) { known = inherited.get(file); }
+        if (known != null && known.stamp().equals(stamp(file))) return CorrectionEvolution.copyReviews(known.reviews());
+        return load(batchId).map(CorrectionBatch::getEvolution).map(lineage -> lineage.inheritedReviews())
+                .orElse(List.of());
+    }
+
+    /** Size, modification time and file identity: an atomic rewrite moves another file over the old one. */
+    private static Object stamp(Path file) {
+        try {
+            var attributes = Files.readAttributes(file, java.nio.file.attribute.BasicFileAttributes.class);
+            return List.of(attributes.size(), attributes.lastModifiedTime(), String.valueOf(attributes.fileKey()));
+        } catch (IOException e) {
+            return null;
         }
     }
 }
