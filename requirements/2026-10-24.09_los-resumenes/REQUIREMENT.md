@@ -143,8 +143,8 @@ actividad la tiene en curso, la haya lanzado el tablero o la terminal.
 ### Rule[F-RESUM-R008] - Decidir pone vieja la bandeja enseguida
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
-> 1. Decidir una corrección, desde el tablero o desde la terminal, sube «decisiones», que es un tema de Publicar y de
->    la bandeja: Publicar y la bandeja de Vueltas se actualizan sin esperar.
+> 1. Decidir una corrección, desde el tablero o desde la terminal, sube «decisiones», que es un tema de Publicar, de
+>    la bandeja y de las vueltas (que cuentan lo rechazado): Publicar y Vueltas se actualizan sin esperar.
 > 2. Cerrar la muestra ciega, también.
 
 <a id="F-RESUM-R009"></a>
@@ -276,14 +276,14 @@ Ninguna prueba consulta a un modelo: las estimaciones son gratis y las corridas 
 | [R002](#F-RESUM-R002) | Mientras algo corre, tanda, análisis y corridas no hacen pedir ni ponen viejo lo guardado; lo firme sí; al terminar, una vez | `estado-resumenes`, `estado-estimacion`, `vueltas-operaciones`, `publicar`; `memoria_de_un_resumen_test`, `rutas_de_los_resumenes_test`, `rutas_de_la_estimacion_test` |
 | [R003](#F-RESUM-R003) | Lo viejo se contesta marcado «actualizando» y se lee una vez de fondo; al terminar avisa «resumenes»; la pantalla muestra lo anterior en su lugar | `memoria_de_un_resumen_test`, `rutas_de_los_resumenes_test`, `novedades_test`; `estado-resumenes`, `estado-avisos`, `estadisticas-*`, `comparar-*`, `vueltas-operaciones` |
 | [R004](#F-RESUM-R004) | Lo guardado vence a los 5 minutos en el tablero; al volver a la pestaña, lo de más de 5 minutos se vuelve a pedir | `memoria_de_un_resumen_test`; `estado-resumenes` |
-| [R005](#F-RESUM-R005) | Ninguna pantalla de resumen ni Exámenes ofrece «Volver a leer»; «Volver a intentar» pide lo mismo; el tablero ignora `releer`; la lista que sólo baja | `sin-releer`, `publicar-vistas`, `vueltas-vistas`, `examenes-*`; `rutas_de_los_resumenes_test` |
+| [R005](#F-RESUM-R005) | Ninguna pantalla de resumen ni Exámenes ofrece «Volver a leer», tampoco en su ayuda; «Volver a intentar» pide lo mismo; el tablero ignora `releer`; la lista que sólo baja | `sin-releer`, `ayuda-sin-releer`, `publicar-vistas`, `vueltas-vistas`, `examenes-*`; `rutas_de_los_resumenes_test`, `rutas_de_examenes_test`, `rutas_de_jueces_test`, `tablero_con_el_cli_test` |
 | [R006](#F-RESUM-R006) | Cada resumen y cada estimación están una vez en `calculos`; ninguna pantalla guarda su copia en ningún estado de su recorrido; un solo archivo pide cada ruta | `ninguna-pantalla-guarda-un-resumen`, `arquitectura`, `estado-resumenes`, `estado-estimacion`, `lanzar-operaciones` |
 | [R007](#F-RESUM-R007) | La bandeja se lee una vez para Vueltas y Publicar, con una sola forma; otra tanda da el mismo mensaje en las dos | `rutas_de_los_resumenes_test`, `estado_de_publicar_test`, `vista_de_vueltas_test`; `vueltas-*` |
-| [R008](#F-RESUM-R008) | Decidir y cerrar la muestra ciega ponen vieja la bandeja y Publicar la vuelve a pedir | `rutas_de_los_resumenes_test`, `rutas_de_publicar_test` |
+| [R008](#F-RESUM-R008) | Decidir y cerrar la muestra ciega ponen vieja la bandeja y Publicar la vuelve a pedir; lo decidido llega a Vueltas | `rutas_de_los_resumenes_test`, `rutas_de_publicar_test`, `tablero_con_el_cli_test` |
 | [R009](#F-RESUM-R009) | Diálogo, Vueltas, Exámenes y Problemas estiman en `/api/estimar`; la misma pregunta es la misma entrada; la estimación dice el motor | `estado-estimacion`, `lanzar-operaciones`, `vueltas-estado`, `examenes-operaciones`, `problemas`, `arquitectura`; `rutas_de_la_estimacion_test` |
 | [R010](#F-RESUM-R010) | Vueltas estima con la pregunta del diálogo al tocar «Estimar» y se mantiene al día con los mismos temas que el tablero | `estado-estimacion`, `vueltas-*`; `rutas_de_la_estimacion_test` |
 | [R011](#F-RESUM-R011) | Exámenes y Problemas cuentan igual lo que falta del examen fijo, también con trabajos a medias; los minutos salen de la estimación | `conteo_del_examen_fijo_test`; `probar-solucion` |
-| [R012](#F-RESUM-R012) | Lanzar estima de nuevo sin lo guardado; una recorrección de 2.400 preguntas se estima y se lanza | `rutas_de_la_estimacion_test`, `servidor_del_tablero_test` |
+| [R012](#F-RESUM-R012) | Lanzar estima de nuevo sin lo guardado; una recorrección de 2.400 preguntas se estima y se lanza | `contrato_de_punta_a_punta_test`, `rutas_de_la_estimacion_test`, `servidor_del_tablero_test` |
 | [R013](#F-RESUM-R013) | Una falla deja lo que se veía con el error; sin nada, «Volver a intentar»; se recuerda 5 s; otra tanda no se muestra | `memoria_de_un_resumen_test`, `rutas_de_los_resumenes_test`; `estado-resumenes`, `estado-estimacion`, `estadisticas-*`, `comparar-*`, `vueltas-*`, `publicar*` |
 | [R014](#F-RESUM-R014) | El mismo análisis con otros números conserva lugar, lo elegido y lo resaltado; otro arranca de cero; uno que ya no está vuelve al más nuevo y avisa | `estadisticas-operaciones`, `estadisticas-estado` |
 
