@@ -297,6 +297,94 @@ public class DefaultCandidateScreenTest {
                 otherAnswer)));
     }
 
+    @Test
+    @DisplayName("should reject before measuring a candidate of «That house belongs to Mary. ___» that leaves «That is ___ (Mary) house.», where the student no longer transforms the sentence")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R019")
+    public void shouldRejectBeforeMeasuringACandidateOfThatHouseBelongsToMaryThatLeavesThatIsMaryHouse() {
+        // F-MESA-R019 1: the real change of El posesivo in C1; the student writes «Mary's» instead of the sentence.
+        QuizTemplateEntity start = quiz(MARY, "Esa es la casa de Mary.", text("That house belongs to Mary. "),
+                cloze("That is Mary's house.|That's Mary's house."));
+        QuizTemplateEntity fill = withParts(start, text("That is "), cloze("Mary's"), text(" (Mary) house."));
+
+        List<String> violations = new DefaultCandidateScreen(corrections()).screen(rewriteWork(start), MARY,
+                candidate(PanelCandidateKind.WHOLE_EXERCISE, fill));
+
+        assertEquals(List.of("deja de ser de transformar: el punto de partida da «That house belongs to Mary.» y el "
+                + "alumno escribe la oración entera transformada; el candidato no da una oración de partida y deja un "
+                + "hueco para completar"), violations);
+    }
+
+    @Test
+    @DisplayName("should reject before measuring a candidate of «I slept today. (bad) ___» that keeps the sentence but leaves «I slept ___ today.» around the gap")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R019")
+    public void shouldRejectBeforeMeasuringACandidateThatKeepsTheSentenceButLeavesFixedTextAroundTheGap() {
+        // F-MESA-R019 2: the sentence is still there, but the student only writes the adverb.
+        QuizTemplateEntity start = quiz(SLEPT, "Hoy dormí mal.", text("I slept today. (bad) "),
+                cloze("I slept badly today."));
+        QuizTemplateEntity fixed = withParts(start, text("I slept today. (bad) I slept "), cloze("badly"), text(" today."));
+
+        List<String> violations = new DefaultCandidateScreen(corrections()).screen(rewriteWork(start), SLEPT,
+                candidate(PanelCandidateKind.WHOLE_EXERCISE, fixed));
+
+        assertEquals(List.of("deja de ser de transformar: el punto de partida da «I slept today.» y el alumno escribe "
+                + "la oración entera transformada; el candidato deja texto fijo alrededor del hueco y el alumno ya no "
+                + "escribe la oración entera"), violations);
+    }
+
+    @Test
+    @DisplayName("should let through a rewrite candidate that changes the sentence to transform, keeps «Polite request:» before it, or a fill-in of a topic that is not of rewriting")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R019")
+    public void shouldLetThroughARewriteCandidateThatChangesTheSentenceOrAFillInOfATopicThatIsNotOfRewriting() {
+        // F-MESA-R019: the words may change; what stays is a sentence to transform and the whole answer to write.
+        QuizTemplateEntity start = quiz(MARY, "Esa es la casa de Mary.", text("That house belongs to Mary. "),
+                cloze("That is Mary's house.|That's Mary's house."));
+        QuizTemplateEntity otherWords = withParts(start, text("That car belongs to Mary. "),
+                cloze("That is Mary's car.|That's Mary's car."));
+        String polite = "67fab6d59930102295342dd7";
+        QuizTemplateEntity request = quiz(polite, "Pedido formal: quiero que me ayudes.",
+                text("Polite request: I want you to help me. → "), cloze("Could you help me?"));
+        QuizTemplateEntity otherRequest = withParts(request, text("Polite request: I want you to open the door. → "),
+                cloze("Could you open the door?"));
+        TopicWork fillTopic = lengthWork(start);
+        fillTopic.setSentenceMode(com.learney.contentaudit.coursedomain.SentenceMode.FILL);
+        QuizTemplateEntity fill = withParts(start, text("That is "), cloze("Mary's"), text(" (Mary) house."));
+        DefaultCandidateScreen screen = new DefaultCandidateScreen(corrections());
+
+        assertEquals(List.of(), screen.screen(rewriteWork(start), MARY, candidate(PanelCandidateKind.WHOLE_EXERCISE,
+                otherWords)));
+        assertEquals(List.of(), screen.screen(rewriteWork(request), polite, candidate(PanelCandidateKind.WHOLE_EXERCISE,
+                otherRequest)));
+        assertEquals(List.of(), screen.screen(fillTopic, MARY, candidate(PanelCandidateKind.WHOLE_EXERCISE, fill)));
+    }
+
+    @Test
+    @DisplayName("should not ask a rewrite exercise that already was a fill-in, like «She is ___ coffee now. (drink)», to become a rewrite")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R019")
+    public void shouldNotAskARewriteExerciseThatAlreadyWasAFillInToBecomeARewrite() {
+        // F-MESA-R019: the rule keeps what the starting point is; it does not turn a fill-in into a rewrite.
+        String coffee = "67fab6d599301022953420d4";
+        QuizTemplateEntity start = quiz(coffee, "Ella está tomando café ahora.", text("She is "), cloze("drinking"),
+                text(" coffee now. (drink)"));
+        QuizTemplateEntity other = withParts(start, text("She is "), cloze("drinking"), text(" tea now. (drink)"));
+
+        assertEquals(List.of(), new DefaultCandidateScreen(corrections()).screen(rewriteWork(start), coffee,
+                candidate(PanelCandidateKind.WHOLE_EXERCISE, other)));
+    }
+
+    private static final String MARY = "67fab6d59930102295342367";
+    private static final String SLEPT = "67fab6d59930102295342f05";
+
+    /** The exercise alone in a topic of rewriting, with a task of length at the panel that may change all of it. */
+    private static TopicWork rewriteWork(QuizTemplateEntity quiz) {
+        TopicWork work = lengthWork(quiz);
+        work.setSentenceMode(com.learney.contentaudit.coursedomain.SentenceMode.REWRITE);
+        return work;
+    }
+
     private static final String CHILD = "67fab6d59930102295341e87";
     private static final String CAMERA = "67fab6d59930102295342de8";
 

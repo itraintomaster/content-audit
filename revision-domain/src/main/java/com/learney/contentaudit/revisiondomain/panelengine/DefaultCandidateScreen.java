@@ -27,8 +27,9 @@ import javax.annotation.processing.Generated;
  * What is structural is looked at before measuring, because it costs no query: that the candidate changes only what its
  * tasks declare (F-TAREA-R006); that a multiple choice stays one, with exactly one correct option among the same number
  * (F-MESA-R011); that a new mini theory belongs to one explicit quiz (F-MESA-R012);
- * that a conversion José ordered meets its three conditions (F-MESA-R015); and that it takes out no punctuation and
- * breaks no line (F-MESA-R018). Each violation is a line with its reason;
+ * that a conversion José ordered meets its three conditions (F-MESA-R015); that it takes out no punctuation and
+ * breaks no line (F-MESA-R018); and that an exercise of a rewrite topic stays one (F-MESA-R019). Each violation is a
+ * line with its reason;
  * none means the candidate goes on to be measured.
  */
 @Generated(
@@ -90,6 +91,8 @@ class DefaultCandidateScreen implements CandidateScreen {
             violations.addAll(conversion(work, original, candidate, proposed));
             return violations;
         }
+        // F-MESA-R019: an exercise of a rewrite topic stays one.
+        violations.addAll(RewritePreservation.violations(original, proposed, work.getSentenceMode()));
         Set<ExercisePart> changed = TopicState.changedParts(original, proposed);
         if (changed.isEmpty() && candidate.getTopicInstructions() == null) {
             violations.add("el candidato no cambia nada del ejercicio");

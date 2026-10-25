@@ -114,6 +114,13 @@ alcance permitido; no uses una restricción secreta ni cambies el objetivo.
    rechazo: esa propuesta mejoró el ejercicio sin terminar de arreglarlo y ya
    está en `topicView`. Partí de ella y trabajá sólo las tareas de `tasks`,
    que son las que siguen abiertas; lo que ya mejoró no puede empeorar.
+9. Si el ejercicio da una oración de partida antes del hueco y el alumno escribe
+   en el hueco la oración entera transformada («That house belongs to Mary. ___»
+   → «That is Mary's house.»), sigue siendo de transformar: entregá también una
+   oración de partida y un hueco para la oración entera. No lo conviertas en
+   completar una palabra dentro de la oración («That is ___ (Mary) house.») ni
+   dejes texto fijo alrededor del hueco. Podés cambiar las palabras de la
+   oración de partida y de la respuesta.
 
 ## Arreglar la frase y su explicación juntas
 

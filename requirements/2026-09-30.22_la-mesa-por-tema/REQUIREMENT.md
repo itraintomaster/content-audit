@@ -348,6 +348,34 @@ la C1, la regla no frena ninguna; en la C2 frena sólo esa.
 
 **Fuente**: brief 219; José aprobó la regla el 25/10/2026 («hacé la regla de puntuación y saltos de línea»).
 
+<a id="F-MESA-R019"></a>
+### Rule[F-MESA-R019] - Un ejercicio de transformar sigue siendo de transformar
+**Severity**: major | **Validation**: VALIDATED
+
+> En un tema de transformar (el modo de oración que reescribe), cuando el punto de partida da la oración de partida antes
+> del hueco y el alumno escribe en el hueco la oración entera, la mesa rechaza antes de medir, y sin gastar consultas, el
+> candidato que:
+> 1. ya no da una oración de partida y deja un hueco para completar: «That house belongs to Mary. ___» → «That is ___
+>    (Mary) house.»;
+> 2. da la oración pero deja texto fijo alrededor del hueco, así que el alumno ya no escribe la oración entera: «I slept
+>    today. (bad) ___» → «I slept today. (bad) I slept ___ today.».
+>
+> Puede cambiar las palabras de la oración de partida y de la respuesta. Entre la oración y el hueco puede haber una
+> flecha o el rótulo que dice qué hacer («Polite request:»); las pistas entre paréntesis no cuentan como oración. Un
+> ejercicio que en su punto de partida ya era de completar no se obliga a pasar a transformar. El motivo del rechazo cita
+> la oración de partida y dice cuál de las dos cosas hizo el candidato.
+
+En la Corrección 1 (C1, 7/10/2026), 34 ejercicios de temas de transformar pasaron a ser de completar y ningún juez lo
+dijo: 20 de «El posesivo», 5 de «Oraciones con $let's$», 4 de «Adverbios de modo», 2 de «Pedidos: formal o informal» y
+uno de «Cosas que pasan ahora», «$Before$ y $after$» y «Permiso general». El alumno ya no practicaba lo que pedía el
+tema: escribía «Mary's» en vez de «That is Mary's house.». Simulada sobre los 319 ejercicios que transformaban en
+producción, la regla frena justamente esos 34 y deja pasar los otros 285. Una oración de partida que sólo perdió su
+punto sigue contando como oración cuando el hueco pide una oración entera, con mayúscula y su signo; la falta del punto
+la dice [R018](#F-MESA-R018).
+
+**Fuente**: brief 222; José, el 25/10/2026: «hacé … la regla para que transformar siga siendo transformar … Los de
+transformar vuelven».
+
 ## Contexto
 
 **Por qué una mesa por tema.** El 077 revisó los 11.287 ejercicios con revisores por lote y verificadores que intentaron
