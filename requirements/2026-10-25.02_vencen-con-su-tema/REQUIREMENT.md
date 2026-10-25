@@ -31,7 +31,9 @@ releer» y 9.4 «Releer en todos lados». Las decisiones son de José (25/10/202
 - un analizador nuevo que aparece a lo sumo a los 5 minutos alcanza: no hace falta un aviso propio (brief 218,
   primera pregunta);
 - la frase de la ayuda de Exámenes que mandaba a volver a leer sale, y el «Volver a leer» de Problemas queda como
-  salida de emergencia (brief 218, segunda pregunta; F-VENCE-R009 inv. 3 y F-VENCE-R011).
+  salida de emergencia (brief 218, segunda pregunta; F-VENCE-R009 inv. 3 y F-VENCE-R011);
+- la ficha de Problemas se pone al día sola también con el aviso de «jueces», que cubre las entregas que son
+  definiciones de jueces; para las demás queda el «Volver a leer» (F-VENCE-R012).
 
 El tablero es `pipeline/vocabulary_dashboard` en ittm.
 
@@ -188,11 +190,21 @@ el registro de actividad lo tiene en curso.
 >    ([F-PROBS-R003](../2026-10-24.08_los-problemas/REQUIREMENT.md#F-PROBS-R003),
 >    [F-PROBS-R005](../2026-10-24.08_los-problemas/REQUIREMENT.md#F-PROBS-R005)).
 > 3. Hay una razón más para no sacarlo: la entrega se compara con los archivos que hay hoy en el proyecto (el código y
->    las definiciones de los jueces), y ningún tema le avisa a Problemas cuando cambian. De los 36 archivos de las
->    entregas registradas al 25/10/2026, 26 no los avisa ningún tema y 10 son de los jueces, que avisan «jueces», un tema
->    que Problemas no sigue.
+>    las definiciones de los jueces). De los 36 archivos de las entregas registradas al 25/10/2026, 10 son definiciones
+>    de jueces: avisan «jueces», y con eso la ficha se pone al día sola (F-VENCE-R012). Los otros 26 (el código, sobre
+>    todo) no los avisa ningún tema: para ésos queda el botón.
 > 4. No fuerza al tablero: pide lo mismo de siempre. Por eso no cuenta en la lista de lo que manda o lee `releer`
 >    ([F-RESUM-R005](../2026-10-24.09_los-resumenes/REQUIREMENT.md#F-RESUM-R005) inv. 3).
+
+<a id="F-VENCE-R012"></a>
+### Rule[F-VENCE-R012] - La ficha de Problemas se pone al día con «jueces»
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> 1. Con un aviso de «jueces», Problemas vuelve a leer la ficha que se mira: su entrega, sus trabajos y la prueba de la
+>    solución. Los trabajos y lo que cuesta probar salen del catálogo de los jueces y de sus casos permanentes, y una
+>    entrega puede traer la definición de un juez, que avisa «jueces» al cambiar.
+> 2. La lista de problemas no se vuelve a leer con «jueces», porque no depende de ellos. Tampoco cambia lo que lee el
+>    cajón de problemas de Correcciones, que es esa lista.
 
 ## Journeys
 
@@ -257,8 +269,8 @@ journeys:
   Analizadores a lo sumo a los 5 minutos (F-VENCE-R004 inv. 1). Alcanza: no hace falta un aviso propio.
 - (decidido por José, 25/10/2026) El «Volver a leer» de Problemas queda como salida de emergencia (F-VENCE-R011), y la
   frase de la ayuda de Exámenes que mandaba a volver a leer sale (F-VENCE-R009 inv. 3).
-- (pendiente de José) Problemas no sigue «jueces», y los trabajos de una ficha y lo que cuesta probar salen del catálogo
-  de los jueces y de sus casos permanentes. ¿Que la ficha se ponga al día también con «jueces»?
+- (decidido por José, 25/10/2026) Los trabajos de una ficha de Problemas y lo que cuesta probar salen del catálogo de
+  los jueces y de sus casos permanentes: la ficha se pone al día también con «jueces» (F-VENCE-R012).
 - (aclarado) «Volver a leer» de Ejecuciones no es una memoria del tablero: pide de nuevo lo que corre, que ya se pone
   al día con el aviso de «corridas». No es de esta etapa.
 
@@ -282,6 +294,7 @@ su regla en el título.
 | [R010](#F-VENCE-R010) | Una medición que termina en la terminal (el vigía ve `evaluations/`) sube «análisis»: el Mapa y el análisis vigente se leen de nuevo sin `releer`, aunque la huella no mira las mediciones. Medido además a mano en una copia de verificación (brief de la etapa) | `tablero_con_el_cli_test.dart` «F-VENCE-R010, F-VENCE-R001, F-VENCE-R002: …» |
 
 | [R011](#F-VENCE-R011) | El «Volver a leer» de Problemas sigue arriba y vuelve a leer la lista y la entrega de la ficha sin esperar ningún aviso | `estado-problemas.test.js` «F-VENCE-R011: …» |
+| [R012](#F-VENCE-R012) | Un aviso de «jueces» vuelve a leer la entrega, los pasos y la prueba de la ficha que se mira, y no la lista; el tema «jueces» marca viejas también las lecturas de la ficha | `estado-problemas.test.js` «F-VENCE-R012: …»; `estado-avisos.test.js` (la prueba de las etiquetas de cada tema, que nombra F-VENCE-R012) |
 
 ## References
 
