@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>216 · Guardar sin releer la tanda</title>
+<title>Las mejoras se guardan</title>
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -324,101 +324,123 @@
     .map.alta .cap{width:min(55%,220px);margin:0 auto}
   }
 
-  /* ============ CATÁLOGO · se borra entero al generar ============ */
-  .cat{margin-top:64px;padding-top:22px;border-top:3px solid var(--bad)}
-  .cat .adv{font-size:13px;color:var(--bad);font-weight:600;margin:0 0 20px}
-  .cat-g{display:grid;gap:16px}
-  .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
-  .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
-  .cat-i>.n b{color:var(--fg-2)}
+  /* la meta tiene que caer en el mismo lugar en todas las filas: ancho fijo para el número */
+  .hb.fijo .r{grid-template-columns:minmax(110px,38%) minmax(0,1fr) 92px}
+  @media (max-width:640px){ .hb.fijo .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) 84px} }
 </style>
+<style>
+  .ex .txt{font-size:14px;line-height:1.45}
+  .ex .txt q{font-style:italic}
+  .diagram .dash{stroke-dasharray:6 5}
+</style>
+</head>
 <body>
 <div class="wrap">
 
   <header>
     <div class="kicker">
-      <span class="num">216</span>
-      <span class="badge">Resumen</span>
-      <span class="meta">Guardar sin releer la tanda · 25/10/2026</span>
+      <span class="num">217</span>
+      <span class="badge">Resumen · Hecho</span>
+      <span class="meta">Correcciones iterativas · lo que pediste sobre el brief 214 · 25/10/2026</span>
     </div>
-    <h1>Guardar una decisión ya no relee la tanda entera</h1>
-    <p class="sub">La recomendación 2 del brief 213: hecha, medida en una copia sin modelos, subida y andando en el 7800.</p>
+    <h1>Las mejoras ya no se tiran: cada intento sigue desde la mejor</h1>
+    <p class="sub">Las cuatro recomendaciones del 214, más tus tres agregados, con sus pruebas, juntadas y subidas.</p>
   </header>
 
-  <div class="lede"><p><strong>Aprobar o rechazar pasa de unos 6 s a menos de 2, y anotar con P, de 10,7 a 1,5 s.</strong> content-audit lee sólo el ejercicio decidido; no hay nada para decidir.</p></div>
+  <div class="lede"><p><strong>La mesa guarda todo lo que mejora sin empeorar nada, y el intento siguiente parte de ahí.</strong> Falta verlo en una corrida real: necesito tu OK y un tope para la C5.</p></div>
+
+  <div class="kpis" style="margin:0 0 38px">
+    <div class="kpi dest"><div class="n">3<small>→ hasta 5</small></div><div class="l">intentos por ejercicio: dos más sólo si el último mejoró</div></div>
+    <div class="kpi"><div class="n">6</div><div class="l">intentos de pasadas anteriores que recibe el corrector, sin gastar los suyos</div></div>
+    <div class="kpi"><div class="n">22</div><div class="l">pruebas nuevas; ninguna falla nueva en 5.832 pruebas</div></div>
+  </div>
 
   <section>
-    <h2>De punta a punta, por debajo de los 2 s</h2>
-    <div class="hb">
-      <div class="r"><span class="t">Aprobar<small>antes</small></span><span class="tr"><span class="f b" style="width:29.1%"></span><span class="meta" style="left:9.1%"></span></span><span class="n">6,4 s</span></div>
-      <div class="r"><span class="t">Aprobar<small>ahora</small></span><span class="tr"><span class="f g" style="width:8.6%"></span><span class="meta" style="left:9.1%"></span></span><span class="n">1,9 s</span></div>
-      <div class="r"><span class="t">Rechazar<small>antes</small></span><span class="tr"><span class="f b" style="width:26.8%"></span><span class="meta" style="left:9.1%"></span></span><span class="n">5,9 s</span></div>
-      <div class="r"><span class="t">Rechazar<small>ahora</small></span><span class="tr"><span class="f g" style="width:5.5%"></span><span class="meta" style="left:9.1%"></span></span><span class="n">1,2 s</span></div>
-      <div class="r"><span class="t">Anotar con P<small>antes</small></span><span class="tr"><span class="f b" style="width:48.6%"></span><span class="meta" style="left:9.1%"></span></span><span class="n">10,7 s</span></div>
-      <div class="r"><span class="t">Anotar con P<small>ahora</small></span><span class="tr"><span class="f g" style="width:6.8%"></span><span class="meta" style="left:9.1%"></span></span><span class="n">1,5 s</span></div>
-      <div class="r"><span class="t">La otra pestaña ve el rechazo<small>antes</small></span><span class="tr"><span class="f b" style="width:100.0%"></span><span class="meta" style="left:9.1%"></span></span><span class="n">22 s</span></div>
-      <div class="r"><span class="t">La otra pestaña ve el rechazo<small>ahora</small></span><span class="tr"><span class="f g" style="width:7.3%"></span><span class="meta" style="left:9.1%"></span></span><span class="n">1,6 s</span></div>
+    <h2>Un avance se guarda; el siguiente intento parte de ahí</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">Intento 1</span><span class="eg">No cameras here…</span><span class="d">18 → 10, nada empeora: se guarda.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Intento 2</span><span class="eg">No cameras. You can't use cameras.</span><span class="d">Parte de 10, no de 18: 10 → 9, se guarda.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">Intento 3</span><span class="d">Parte de 9. Si llega a 8, la tarea queda resuelta.</span></div>
+      <div class="st end"><span class="i">✓</span><span class="h">Un solo cambio</span><span class="d">Revisado contra el original. Si no llegó: «Mejoró, sigue abierta».</span></div>
     </div>
-    <div class="leyenda"><span><i class="sw b"></i>antes</span><span><i class="sw g"></i>ahora</span><span><i class="sw m"></i>la meta: 2 s</span></div>
-    <p class="pie">Desde que se manda hasta que quedó guardado, en el tablero de la copia. Mediana de 3; la primera decisión de cada medición esperó una relectura (12,6 y 6,4 s).</p>
+    <p class="pie">Las oraciones son las de C2 y C4. Encadenadas así las cubren las pruebas nuevas; una corrida real, todavía no.</p>
   </section>
 
   <section>
-    <h2>Guardar dejó de leer todo para contestar</h2>
+    <h2>Tres intentos; dos más sólo si el último mejoró</h2>
+    <div class="diagram">
+      <svg viewBox="0 0 660 128" style="min-width:540px" role="img" aria-label="Cinco intentos: los tres primeros siempre, el cuarto y el quinto sólo si el anterior mejoró">
+        <defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--fg-3)"/></marker></defs>
+        <rect x="4" y="20" width="100" height="56" rx="9" class="box-a"/><text x="54" y="53" class="lbl" text-anchor="middle" style="font-weight:650">1</text>
+        <path d="M104 48 L130 48" class="arrow" marker-end="url(#fl)"/>
+        <rect x="134" y="20" width="100" height="56" rx="9" class="box-a"/><text x="184" y="53" class="lbl" text-anchor="middle" style="font-weight:650">2</text>
+        <path d="M234 48 L260 48" class="arrow" marker-end="url(#fl)"/>
+        <rect x="264" y="20" width="100" height="56" rx="9" class="box-a"/><text x="314" y="53" class="lbl" text-anchor="middle" style="font-weight:650">3</text>
+        <path d="M364 48 L390 48" class="arrow dash" marker-end="url(#fl)"/>
+        <rect x="394" y="20" width="100" height="56" rx="9" class="box dash"/><text x="444" y="53" class="lbl" text-anchor="middle" style="font-weight:650">4</text>
+        <path d="M494 48 L520 48" class="arrow dash" marker-end="url(#fl)"/>
+        <rect x="524" y="20" width="100" height="56" rx="9" class="box dash"/><text x="574" y="53" class="lbl" text-anchor="middle" style="font-weight:650">5</text>
+        <text x="184" y="104" class="lbl-s" text-anchor="middle">siempre</text>
+        <text x="509" y="104" class="lbl-s" text-anchor="middle">sólo si el anterior mejoró</text>
+      </svg>
+    </div>
+    <p class="pie">Si el 3.º mejoró, hay 4.º; si el 4.º también, hay 5.º. Si el 3.º no mejoró, para ahí, como hoy.</p>
+  </section>
+
+  <section>
+    <h2>El rechazo dice qué se propuso y cuánto falta</h2>
     <div class="ad">
       <div class="lado antes"><span class="rot">Antes</span>
-        <ol><li>Guarda la decisión.</li><li>Lee todas las tandas de la campaña para el historial: una pesa 301 MB.</li><li>Arma el curso entero, el plan y la revisión.</li><li>Contesta 40 MB, que el tablero vuelve a decodificar.</li></ol>
-        <span class="res">4,4 s en content-audit; anotar, 9,7 s</span></div>
+        <div class="ex"><span class="txt">no resuelve ninguna tarea del ejercicio</span></div>
+        <span class="res">El corrector no sabe qué probó ni cuánto le falta</span></div>
       <div class="lado despues"><span class="rot">Ahora</span>
-        <ol><li>Carga la tanda una sola vez.</li><li>Mira sólo las correcciones del ejercicio decidido.</li><li>Guarda la misma decisión, en el mismo archivo.</li><li>Contesta lo que cambió; el tablero lo pone sobre lo que tenía.</li></ol>
-        <span class="res">0,9 s en content-audit; anotar, 1,3 s</span></div>
+        <div class="ex"><span class="txt">propuso <q>It's really not okay to use a camera here.</q> · no resuelve ni mejora ninguna tarea del ejercicio — sigue abierta: largo 20 (meta 3 a 8)</span></div>
+        <span class="res">Lo lee en el intento siguiente</span></div>
     </div>
-    <p class="pie">El comando solo, sin el tablero, mediana de 3. La respuesta pasó de 40 MB a 5 KB; anotar ya no recorre los 580 MB de la campaña.</p>
+    <p class="pie">Un avance se anota igual: «se guardó como punto de partida: mejora (largo 18 → 10) y no empeora nada».</p>
   </section>
 
   <section>
-    <h2>Después de anotar, la otra pestaña no espera otra lectura</h2>
-    <div class="kpis">
-      <div class="kpi dest"><div class="n">0,1<small>s</small></div><div class="l">lo que tarda la otra pestaña en leer el rechazo, antes 13,3 s</div></div>
-      <div class="kpi"><div class="n">1<small>aviso</small></div><div class="l">de «decisiones» al anotar, antes 3: el rechazo sale con el de la escritura</div></div>
-      <div class="kpi"><div class="n">0</div><div class="l">archivos que cambian de forma: decisiones y casos, idénticos</div></div>
-    </div>
-    <p class="pie">Anotar trae el rechazo que guardó, y el tablero lo pone sobre la tanda que se mira mientras escribe. Antes, la otra pestaña releía los 40 MB.</p>
-  </section>
-
-  <section>
-    <h2>El segundo que queda: arrancar Java y leer la tanda</h2>
-    <div class="hb">
-      <div class="r"><span class="t">Arrancar Java<small>cargar clases, compilar</small></span><span class="tr"><span class="f s" style="width:100%"></span></span><span class="n">≈ 0,48 s</span></div>
-      <div class="r"><span class="t">Copiar los cursos que hereda la tanda</span><span class="tr"><span class="f" style="width:40%"></span></span><span class="n">≈ 0,19 s</span></div>
-      <div class="r"><span class="t">Leer el archivo de la tanda<small>62 MB</small></span><span class="tr"><span class="f" style="width:31%"></span></span><span class="n">≈ 0,15 s</span></div>
-      <div class="r"><span class="t">Todo lo demás<small>validar, guardar, contestar</small></span><span class="tr"><span class="f s" style="width:25%"></span></span><span class="n">≈ 0,12 s</span></div>
-    </div>
-    <p class="pie">Aprobar, 0,94 s, perfilado. El tablero suma ≈ 0,25 s: mira la campaña antes y después de escribir. Anotar lee la tanda dos veces.</p>
-  </section>
-
-  <section>
-    <h2>Qué cambia y qué no</h2>
-    <div class="cambia">
-      <div class="si"><div class="ptl">Cambia</div><ul><li>Guardar contesta sólo lo que cambió.</li><li>Anotar y deshacer traen lo que rechazaron o devolvieron.</li><li>El tablero lo pone sobre lo leído, sin pedir la tanda.</li></ul></div>
-      <div class="no"><div class="ptl">No cambia</div><ul><li>Los archivos de las decisiones y de los casos.</li><li>Los avisos, y lo que recibe el navegador.</li><li>La app de Flutter sigue pidiendo la revisión entera.</li><li>Abrir una tanda: 30 a 45 s en la copia.</li></ul></div>
-    </div>
-    <div class="call c-warn"><b>Ojo:</b> si alguien decide desde la terminal justo antes, el tablero no lo pone encima: lo trae la próxima lectura de las decisiones, como hoy.</div>
-  </section>
-
-  <section>
-    <h2>Qué sigue</h2>
+    <h2>La pasada nueva sabe lo que ya se probó</h2>
     <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">Anotar con una lectura</span><span class="d">Hoy lee la tanda dos veces: ≈ 0,3 s.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">No copiar los cursos heredados</span><span class="d">≈ 0,19 s de cada guardar.</span></div>
-      <div class="st"><span class="i">3</span><span class="h">El arranque del comando</span><span class="d">≈ 0,5 s de Java; la marca del juez, unos 3 s.</span></div>
-      <div class="st end"><span class="i">4</span><span class="h">«Integrar»</span><span class="d">85 a 99 s: el siguiente grande.</span></div>
+      <div class="st"><span class="i">C2</span><span class="h">Probó 4</span><span class="d">ninguno pasó</span></div>
+      <div class="st"><span class="i">C3</span><span class="h">Probó 4 más</span><span class="d">creada desde C2</span></div>
+      <div class="st end"><span class="i">→</span><span class="h">La pasada siguiente</span><span class="d">Recibe los 4 de C3 y 2 de C2, sin gastar intentos.</span></div>
     </div>
+    <p class="pie">Del más nuevo al más viejo. Vale para «Volver a corregir» y para una corrección nueva, con todo o sólo lo que falla.</p>
+  </section>
+
+  <section>
+    <h2>Lo que frenaba un arreglo lo sigue frenando</h2>
+    <div class="cambia">
+      <div class="si"><p class="ptl">Cambia</p><ul>
+        <li>Se acepta un problema más leve o un largo más cerca de la meta.</li>
+        <li>Frena también que un problema suba de gravedad, o que un avance aleje el largo.</li>
+        <li>En el tablero: «Mejoró, sigue abierta», en Correcciones y en Vueltas.</li>
+      </ul></div>
+      <div class="no"><p class="ptl">No cambia</p><ul>
+        <li>Borrar un problema entero se acepta como antes.</li>
+        <li>Un error nuevo o una palabra de otro nivel frenan como antes.</li>
+        <li>Lo mejorado sigue fallando: entra en «sólo lo que falla».</li>
+        <li>Nada se publica sin tu OK.</li>
+      </ul></div>
+    </div>
+    <div class="call c-warn"><b>Todavía no se ve en el tablero:</b> ninguna tarea terminó así, y el 7800 sigue con la versión anterior. Lo reinicio antes de la C5: otra sesión mide tiempos ahí.</div>
+  </section>
+
+  <section>
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask"><span class="q">¿Corro la C5 sobre los diez ejercicios, con un tope de 40 consultas?</span>
+        <div class="ops"><span class="op rec">Sí, tope 40 · recomendado</span><span class="op">Con otro tope</span><span class="op">Todavía no</span></div>
+        <span class="why">C3 y C4 gastaron 41 entre las dos; con hasta 5 intentos, una pasada puede gastar más que antes.</span></div>
+    </div>
+    <p class="pie">Con tu sí la lanzo y te traigo la cámara medida: de dónde partió, a dónde llegó y cuánto gastó.</p>
   </section>
 
   <footer>
-    <span>Copia de verificación en 127.0.0.1:7849, sin modelos (stubs y sandbox) · campaña a1-v11 clonada · tanda A1 corrección 4, 1.784 correcciones · tres ejercicios con una sola corrección, los mismos antes y después · antes: content-audit 0d0ce8647 e ittm 6c1d61d44 · requisito FEAT-GUARDA (requirements/2026-10-25.01_guardar-sin-releer) · <code>batch review --decision-json … --changed-only</code>, <code>problem undo --with-decisions</code> · perfil con JFR · content-audit 59bf6583b (main) · ittm 252ccc657 (master)</span>
-    <span>brief 216 · docs/briefs/216-guardar-sin-releer.html</span>
+    <span>Reglas: F-MESA-R006, R007 y R017 (requirements/2026-09-30.22_la-mesa-por-tema). Código: DefaultPanelDecisionScript, DefaultTopicPanel, DefaultPanelStage; desenlace IMPROVED. content-audit main 7436d617e · ittm master 7d0d33a73. Pruebas: revision-domain 1.101, audit-cli con sus 3 fallas de antes, navegador 2.733, Flutter 1.998.</span>
+    <span>brief 217 · docs/briefs/217-las-mejoras-se-guardan.html</span>
   </footer>
 
 </div>
