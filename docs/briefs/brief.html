@@ -3,8 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Los problemas, hecho</title>
-
+<title>Cambios y decisiones, hecho</title>
+<!--
+  TEMPLATE DE BRIEF · visual-brief
+  1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
+  2. Por cada sección: un título que dice la conclusión, UN dibujo copiado del
+     catálogo del final y un pie de dos renglones. Primero el dibujo; el texto lo rotula.
+     Si habla de una pantalla: primero DÓNDE (la captura con marcas, .map), después EL
+     PROBLEMA como un caso de uso (la foto de hoy + .mark), después CÓMO QUEDA (la maqueta
+     .mq con números y su leyenda). Si ya está hecho, los dos lados del .ad son capturas.
+     Las fotos, con capturar.mjs, en docs/briefs/NNN-slug/ (SKILL.md §4).
+  3. BORRAR el catálogo entero (la section de clase cat, al final) y las secciones que no se usan.
+  4. Verificar: node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
+     y mirarlo: node ~/.claude/skills/visual-brief/assets/diapos.mjs <el brief> <scratchpad>/d (+ --tema=dark, --celular)
+  Topes: lede ≤ 2 frases y 35 palabras · ≤ 6 secciones · pie ≤ 30 · párrafo ≤ 40 ·
+  prosa total ≤ 400 (sin tablas ni gráficos). Cada componente trae el suyo en el catálogo.
+  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
+-->
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -325,119 +340,112 @@
     .map.alta .cap{width:min(55%,220px);margin:0 auto}
   }
 
-</style>
+  </style>
 </head>
 <body>
 <div class="wrap">
 
+
   <header>
     <div class="kicker">
-      <span class="num">207</span>
+      <span class="num">208</span>
       <span class="badge">Resumen</span>
-      <span class="meta">Etapa 8 del estado único del tablero · 24/10/2026</span>
+      <span class="meta">Etapa 7 del estado único del tablero · 24/10/2026</span>
     </div>
-    <h1>Los problemas: una sola lista, y leer no escribe</h1>
-    <p class="sub">Qué quedó de la etapa 8, cómo se probó y qué cambia en la propuesta.</p>
+    <h1>Decidir cambia una cosa, y las pestañas se enteran</h1>
+    <p class="sub">La etapa 7, hecha, juntada con la 6 y probada en una copia sin modelos: qué cambió, qué medí y qué pasa a la propuesta.</p>
   </header>
 
-  <div class="lede"><p><strong>Problemas y el cajón de la tecla P leen la misma lista, se enteran solos y abrir una ficha ya no escribe nada.</strong> Quedan dos lentitudes de antes, de otras etapas.</p></div>
-
-  <div class="kpis">
-    <div class="kpi dest"><div class="n">2<small>→ 1</small></div><div class="l">listas de problemas por pestaña: Problemas y el cajón leen la misma</div></div>
-    <div class="kpi"><div class="n">0</div><div class="l">archivos escritos al abrir una ficha en la copia; antes preparaba el examen fijo</div></div>
-    <div class="kpi"><div class="n">1<small>s</small></div><div class="l">de anotar con P a verlo en Problemas, en otra pestaña, sin recargar</div></div>
-    <div class="kpi"><div class="n">4.586</div><div class="l">pruebas en verde con la 6 y la 7: 2.656 de página, 1.930 de servidor</div></div>
-  </div>
+  <div class="lede"><p><strong>Aprobar ya no relee la tanda: la otra pestaña y Publicar lo muestran 0,1 s después de que content-audit lo guarda.</strong> Guardar sigue tardando unos 6 s.</p></div>
 
   <section>
-    <h2>Antes cada pantalla pedía su lista; ahora, la pestaña</h2>
-    <div class="ad">
-      <div class="lado antes"><span class="rot">Antes</span>
-        <ol>
-          <li>Problemas pedía la lista cada 10 s.</li>
-          <li>El cajón la pedía al abrirse: otra copia.</li>
-          <li>Leer los pasos preparaba el examen fijo y guardaba trabajos viejos.</li>
-          <li>Probar avanzaba sin avisar a nadie.</li>
-        </ol>
-        <div class="res">Anotar con P llegaba a Problemas hasta 10 s después</div>
+    <h2>Lo propuesto y lo decidido llegan por separado</h2>
+    <div class="map">
+      <div class="ex">
+        <svg class="cap" viewBox="0 0 1280 900" role="img" aria-label="Correcciones de la tanda A1, corrección 4, con cuatro marcas: el botón Aprobar, las correcciones decididas del tema, el filtro Vos lo aprobás y el ejercicio">
+          <image href="208-cambios-y-decisiones-hecho/correcciones.jpg" width="1280" height="900"/>
+          <rect class="aro" x="1131" y="838" width="127" height="52" rx="12"/>
+          <rect class="aro" x="1068" y="304" width="192" height="34" rx="10"/>
+          <rect class="aro" x="68" y="546" width="150" height="34" rx="10"/>
+          <g class="mk" transform="translate(1195 812)"><circle r="26"/><text font-size="28">1</text></g>
+          <g class="mk" transform="translate(1036 321)"><circle r="26"/><text font-size="28">2</text></g>
+          <g class="mk" transform="translate(248 563)"><circle r="26"/><text font-size="28">3</text></g>
+          <g class="mk gris" transform="translate(372 708)"><circle r="22"/><text font-size="24">4</text></g>
+        </svg>
       </div>
-      <div class="lado despues"><span class="rot">Con la etapa</span>
-        <ol>
-          <li>La pestaña lee la lista una vez; las dos pantallas la miran.</li>
-          <li>Anotar, crear o probar avisa «problemas» y todas releen.</li>
-          <li>Leer no escribe: lo que falta lo guarda el vigilante, una vez.</li>
-          <li>El examen fijo se prepara al tocar Probar, un paso o «Rendir».</li>
-        </ol>
-        <div class="res">La otra pestaña lo ve al segundo</div>
+      <div class="who">
+        <div><b>1</b><span><strong>«Aprobar»</strong><br><small>al instante; si falla, vuelve y lo dice</small></span></div>
+        <div><b>2</b><span><strong>«4 de 20 correcciones decididas»</strong><br><small>de las decisiones, que llegan con su aviso</small></span></div>
+        <div><b>3</b><span><strong>«Vos lo aprobás 214»</strong><br><small>también: otra pestaña lo cuenta sin recargar</small></span></div>
+        <div><b class="gris">4</b><span><strong>El ejercicio y su cambio</strong><br><small>los cambios: una lectura por pestaña</small></span></div>
       </div>
     </div>
-    <p class="pie">El juez de cada paso sale del catálogo de los jueces: habilitado sólo con otro motor, ya no dice «Primero debe aprobar».</p>
+    <p class="pie">Correcciones de la tanda A1, corrección 4, en el tablero de todos los días (7800), ya con la etapa.</p>
   </section>
 
   <section>
-    <h2>En la copia pasó lo que se podía tocar</h2>
-    <div class="tw"><table>
-      <thead><tr><th>La prueba</th><th>En la copia</th><th>Automática</th></tr></thead>
-      <tbody>
-        <tr><td>Anotás un problema y aparece en la lista de las dos pantallas</td><td>en Problemas, otra pestaña, al segundo y sin recargar</td><td><span class="pill p-ok">pasa</span></td></tr>
-        <tr><td>Se lee una ficha y no cambia ningún archivo</td><td>0 archivos y ningún examen preparado</td><td><span class="pill p-ok">pasa</span></td></tr>
-        <tr><td>Termina la corrida de un paso: el paso y Ejecuciones dicen lo mismo</td><td>—</td><td><span class="pill p-ok">pasa, y relee ya</span></td></tr>
-        <tr><td>Problemas sin reloj con el canal abierto</td><td>una sola lectura en 26 s</td><td><span class="pill p-ok">pasa; sin canal, 10 s</span></td></tr>
-        <tr><td>Probar y «Rendir» preparan el examen</td><td>no se pudo: ver abajo</td><td><span class="pill p-ok">pasa</span></td></tr>
-      </tbody></table></div>
-    <div class="call c-warn"><b>No probado a mano:</b> en la copia las entregas apuntan a archivos de afuera, así que Probar frena; «Rendir» estaba apagado porque ese juez ya rindió.</div>
-    <p class="pie">Copia de la campaña A1 en 127.0.0.1:7849, con los modelos reemplazados por programas que fallan: nada pagó ni consultó.</p>
-  </section>
+    <h2>La otra pestaña y Publicar, 0,1 s después de guardado</h2>
+    <div class="diagram">
+      <svg viewBox="0 0 760 262" style="min-width:620px" role="img" aria-label="Línea de tiempo de una aprobación. Hoy: guardar tarda 6,4 segundos y las demás pestañas no se enteran hasta recargar. Ahora: tu pestaña la muestra al instante, guardar tarda 5,7 segundos y la otra pestaña y Publicar la muestran una décima después">
+        <text x="4" y="16" class="lbl-s" style="font-weight:600">HASTA HOY</text>
+        <text x="4" y="45" class="lbl">guardar</text>
+        <rect x="150" y="28" width="448" height="28" rx="7" class="box"/><text x="162" y="47" class="lbl">content-audit guarda · 6,4 s</text>
+        <text x="4" y="83" class="lbl">las demás</text>
+        <rect x="150" y="66" width="604" height="28" rx="7" class="box-bad"/><text x="162" y="85" class="lbl">la otra pestaña sigue «sin revisar» y Publicar no lo cuenta, hasta recargar</text>
 
-  <section>
-    <h2>Qué cambia y qué no</h2>
-    <div class="cambia">
-      <div class="si"><div class="ptl">Cambia</div><ul>
-        <li>El cajón de P abre al instante, con la lista que ya hay.</li>
-        <li>Abrir una ficha no tarda el minuto de preparar el examen.</li>
-        <li>Sin preparar, la ficha dice «se prepara al probar, gratis» y no lo cuenta.</li>
-        <li>Habilitado sólo con otro motor, la ficha y la cuenta dicen con cuál consulta.</li>
-      </ul></div>
-      <div class="no"><div class="ptl">No cambia</div><ul>
-        <li>Cuánto cuesta probar: se calcula igual (es de la etapa 9).</li>
-        <li>El resto de Correcciones (etapa 7) y las opiniones (etapa 6).</li>
-        <li>Qué hace cada paso, Frenar, Seguir y decidir un caso.</li>
-      </ul></div>
+        <text x="4" y="130" class="lbl-s" style="font-weight:600">CON LA ETAPA</text>
+        <text x="4" y="159" class="lbl">tu pestaña</text>
+        <rect x="150" y="142" width="196" height="28" rx="7" class="box-ok"/><text x="162" y="161" class="lbl">aprobada al instante</text>
+        <text x="4" y="197" class="lbl">guardar</text>
+        <rect x="150" y="180" width="399" height="28" rx="7" class="box"/><text x="162" y="199" class="lbl">content-audit guarda · 5,7 s</text>
+        <text x="4" y="235" class="lbl">las demás</text>
+        <rect x="549" y="218" width="205" height="28" rx="7" class="box-ok"/><text x="561" y="237" class="lbl">otra pestaña y Publicar · +0,1 s</text>
+        <path d="M549 208 L549 218" class="arrow"/>
+        <text x="150" y="258" class="lbl-s">0 s</text><text x="430" y="258" class="lbl-s">4 s</text><text x="570" y="258" class="lbl-s">6 s</text>
+      </svg>
     </div>
+    <p class="pie">Medido en la copia: la otra pestaña lo recibió a los 0,08 s y Publicar pasó de 169 a 170 a los 0,10 s, sin releer la tanda.</p>
   </section>
 
   <section>
-    <h2>Para la propuesta: cinco cosas quedaron distinto</h2>
+    <h2>Una pestaña baja la tercera parte, y nadie pregunta</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">43 → 15<small>MB</small></div><div class="l">lo que baja una pestaña de Correcciones, con la etapa 6: cambios, opiniones y decisiones</div></div>
+      <div class="kpi"><div class="n">115<small>KB</small></div><div class="l">las decisiones de toda la tanda: lo único que se vuelve a leer al decidir</div></div>
+      <div class="kpi"><div class="n">0</div><div class="l">preguntas a la cola cada 2 s: avisa cada paso</div></div>
+      <div class="kpi"><div class="n">1</div><div class="l">lectura de los cambios por pestaña; antes, otra por cada aviso «tanda»</div></div>
+    </div>
+    <p class="pie">Una decisión desde la terminal o desde la app de Flutter también llega sola, aun con una medición corriendo.</p>
+  </section>
+
+  <section>
+    <h2>Para la propuesta: el segundo cuenta desde que se guarda</h2>
     <div class="tw"><table>
-      <thead><tr><th>La propuesta decía</th><th>Quedó</th></tr></thead>
+      <thead><tr><th>La propuesta dice</th><th>Lo que pasó</th></tr></thead>
       <tbody>
-        <tr><td>Las otras pestañas releen la lista una vez</td><td>dos veces: el vigía avisa dos veces el mismo cambio, con medio segundo entre uno y otro (es del canal, etapa 2)</td></tr>
-        <tr><td>Anotar con P lo pone en la lista enseguida</td><td>en la otra pestaña, al segundo; la que anotó espera ~28 s, porque el servidor relee la tanda entera antes de contestar (de antes; la etapa 7 no lo tocó)</td></tr>
-        <tr><td>Tocar Probar muestra la cuenta</td><td>primero prepara el examen fijo (gratis; la primera vez tarda) y recién entonces la cuenta completa</td></tr>
-        <tr><td>La ficha se pide una vez por revisión</td><td>y otra vez al volver a ella: lo guardado pudo cambiar con la pestaña oculta</td></tr>
-        <tr><td>Problemas lee por la puerta, como las demás</td><td>sí, pero con su propia forma de mirar: cuatro temas repiten el mismo código de ritmo (para juntar en la etapa 10)</td></tr>
-      </tbody></table></div>
+        <tr><td>Aprobás y la otra pestaña, y Publicar, lo muestran en un segundo</td><td>En 0,1 s desde que content-audit lo guarda. Desde el clic, unos 6 s: lo que tarda guardar.</td></tr>
+        <tr><td>Aprobar no depende del tamaño de la tanda</td><td>Para las pantallas, no: releen 115 KB. Guardar sí: content-audit contesta con la revisión entera (78 MB) y el servidor la lee.</td></tr>
+        <tr><td>Comparar deja de importar el estado de Correcciones</td><td>Ya no lo importaba: lee su propia vista, de 4 KB. No hubo nada que mover.</td></tr>
+        <tr><td>Los cambios: ejercicio, parte, antes y después</td><td>Pesan 14 MB; 10 son de dónde sale el análisis de cada corrección. Eso es del análisis, no de esta etapa.</td></tr>
+        <tr><td>La miniteoría y la conversión suben «cambios»</td><td>También «decisiones»: incorporar puede cambiar lo decidido.</td></tr>
+        <tr><td>No lo decía</td><td>Lo decidido desde la terminal o desde Flutter llega solo, como pediste.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="call c-warn">Quedan dos restos sin efecto visible: un dato que ya nadie lee en los errores, y las escrituras, que todavía devuelven lo decidido dos veces.</div>
   </section>
 
   <section>
-    <h2>Qué necesito de vos</h2>
+    <h2>Una decisión: desde cuándo cuenta el segundo</h2>
     <div class="asks">
-      <div class="ask">
-        <div class="q">1 · El vigía avisa dos veces cada cambio: ¿lo arreglo?</div>
-        <div class="ops"><span class="op rec">Sí, en una sesión aparte · recomendado</span><span class="op">Dejarlo</span></div>
-        <div class="why">Es del canal de avisos, no de Problemas: le pasa a todos los temas. Cuesta una lectura de más por pestaña.</div>
-      </div>
-      <div class="ask">
-        <div class="q">2 · Anotar con P tarda ~28 s en contestar: ¿lo arreglo?</div>
-        <div class="ops"><span class="op rec">Sí, en una sesión aparte · recomendado</span><span class="op">Dejarlo</span></div>
-        <div class="why">El servidor relee la tanda de Correcciones antes de contestar. La etapa 7 ya se juntó y no lo cambió.</div>
-      </div>
+      <div class="ask"><span class="q">«La otra pestaña lo muestra en ≤ 1 s»: ¿desde que se guarda o desde el clic?</span>
+        <div class="ops"><span class="op rec">Desde que se guarda · recomendado</span><span class="op">Desde el clic</span></div>
+        <span class="why">Mostrar en otras pestañas lo que content-audit todavía puede rechazar las haría volver atrás. Achicar los 6 s es pedirle a content-audit una respuesta corta.</span></div>
     </div>
   </section>
 
   <footer>
-    <span>ittm master 44da2809f (la etapa: 2b2da5994; juntada con la 6 y la 7) · requisito FEAT-PROBS, requirements/2026-10-24.08_los-problemas · la copia de 127.0.0.1:7849, borrada</span>
-    <span>brief 207 · docs/briefs/207-los-problemas-hecho.html</span>
+    <span>Copia de verificación en 127.0.0.1:7848, sin modelos (stubs de codex, gemini, agy, claude y ollama) · campaña a1-v11 clonada · tanda A1 corrección 4 · pesos medidos en el 7800 con lecturas · requisito F-DECIDE (requirements/2026-10-24.04_cambios-y-decisiones) · ca 0444a3f1d · ittm cbbf1840d (la etapa), 0b8edba13 (juntada con la etapa 6, FEAT-OPINA)</span>
+    <span>brief 208 · docs/briefs/208-cambios-y-decisiones-hecho.html</span>
   </footer>
 
 </div>
