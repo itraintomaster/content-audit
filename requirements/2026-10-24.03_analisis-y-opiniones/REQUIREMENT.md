@@ -81,7 +81,9 @@ desde Correcciones.
 >    nuevas». Por juez, sus pares y sus temas.
 > 3. Con un juez por tema, 2 temas y 10 ejercicios que faltan: 10 pares y 2 consultas, en el botón, el diálogo y los
 >    renglones.
-> 4. Al abrir el diálogo, el número de pares es el número de «todavía no opinó» de la corrección.
+> 4. Al abrir el diálogo, el número de pares es el de la lista. Los «todavía no opinó» de los renglones son los pares de
+>    esa lista que caen en ejercicios que la tanda corrigió: los demás son de ejercicios que la tanda no cambió y no
+>    tienen renglón. Si hay de esos, el botón dice cuántos son unos y otros.
 
 <a id="F-OPINA-R003"></a>
 ### Rule[F-OPINA-R003] - El renglón dice «todavía no opinó» sólo si el par falta
@@ -230,14 +232,14 @@ navegador, con un servidor de mentira y el store de verdad. Cada prueba nombra s
 | Regla | Qué se comprueba | Pruebas |
 |---|---|---|
 | [R001](#F-OPINA-R001) | La lista por estado: aplica y sin opinión; la abstención, la versión anterior y lo que no aplica no faltan; un juez que el análisis no compone no entra; Completar pide la lista exacta; el tablero la pasa como la dice content-audit | `MissingOpinionsTest`, `CurrentAnalysisServiceTest`, `FOpinaMissingOpinionsTest` (content-audit); `test/tablero_html/opiniones/rutas_de_opiniones_test.dart` (tablero) |
-| [R002](#F-OPINA-R002) | Juez por tema, 2 temas, 10 ejercicios: 10 pares y 2 consultas en la estimación, el diálogo, el botón y los renglones; sin ninguno, el botón no pide | `FOpinaMissingOpinionsTest`; `test/tablero_html/ejecuciones/opinion_test.dart`, `test/tablero_html/opinion_en_contexto_test.dart`, `html/test/estado-opiniones.test.js`, `html/test/lanzar-opinion-pares.test.js` |
-| [R003](#F-OPINA-R003) | «todavía no opinó» si y sólo si el par falta; «se abstuvo»; «no se completa desde acá»; versión anterior; midiendo; un CLI sin la lista; el chip y «Nadie le ve problemas» leen la misma lista | `test/tablero_html/opinion_en_contexto_test.dart`, `test/tablero_html/correcciones/opinion_de_los_jueces_test.dart`, `test/tablero_html/correcciones/nadie_le_ve_problemas_test.dart`, `html/test/estado-opiniones.test.js` |
+| [R002](#F-OPINA-R002) | Juez por tema, 2 temas, 10 ejercicios: 10 pares y 2 consultas en la estimación, el diálogo, el botón y los renglones; sin ninguno, el botón no pide; los pares de ejercicios corregidos son tantos como los «todavía no opinó», y el botón dice los dos números | `FOpinaMissingOpinionsTest`; `test/tablero_html/ejecuciones/opinion_test.dart`, `test/tablero_html/opinion_en_contexto_test.dart`, `test/tablero_html/opiniones/rutas_de_opiniones_test.dart`, `html/test/estado-opiniones.test.js`, `html/test/lanzar-opinion-pares.test.js` |
+| [R003](#F-OPINA-R003) | «todavía no opinó» si y sólo si el par falta; «se abstuvo»; «no se completa desde acá»; versión anterior; midiendo o cortada; un CLI sin la lista; el chip y «Nadie le ve problemas» leen la misma lista | `test/tablero_html/opinion_en_contexto_test.dart`, `test/tablero_html/correcciones/opinion_de_los_jueces_test.dart`, `test/tablero_html/correcciones/nadie_le_ve_problemas_test.dart`, `html/test/estado-opiniones.test.js` |
 | [R004](#F-OPINA-R004) | Una corrida vacía, fallida o agotada no se integra ni tapa en el renglón | `FOpinaExerciseOpinionTest`, `CurrentAnalysisServiceTest`; `test/tablero_html/opinion_en_contexto_test.dart` |
 | [R005](#F-OPINA-R005) | Lo pedido desde un renglón se integra; reemplaza sólo con la versión de hoy; un juez sin componer no entra; Completar ya no lo pide | `FOpinaExerciseOpinionTest` |
-| [R006](#F-OPINA-R006) | `GET /api/analisis` liviano, una lectura por pestaña, leída por el diálogo, el Mapa, Correcciones y Analizadores; el estado del Mapa y la tanda ya no lo traen | `test/tablero_html/analisis_vigente_test.dart`, `test/tablero_html/revision_compartida_test.dart`, `html/test/estado-analisis.test.js`, `html/test/arquitectura.test.js` |
+| [R006](#F-OPINA-R006) | `GET /api/analisis` liviano, una lectura por pestaña, leída por el diálogo, el Mapa, Correcciones y Analizadores; el estado del Mapa y la tanda ya no lo traen | `test/tablero_html/analisis_vigente_test.dart`, `html/test/estado-analisis.test.js`, `html/test/arquitectura.test.js` |
 | [R007](#F-OPINA-R007) | `GET /api/opiniones` trae lo de opinión y la tanda no; Correcciones las junta sin pedirlas por su lado, sólo si son de su tanda, versión y corrección | `test/tablero_html/opiniones/rutas_de_opiniones_test.dart`, `html/test/estado-opiniones.test.js`, `html/test/arquitectura.test.js` |
 | [R008](#F-OPINA-R008) | Integrar avisa «análisis», desde el tablero y desde la terminal; el diálogo escribe una vez y relee ya; el aviso relee análisis y opiniones en cada pestaña; sin canal propio | `test/tablero_html/novedades_test.dart`, `html/test/estado-analisis.test.js`, `html/test/estado-avisos.test.js`, `html/test/arquitectura.test.js` |
-| [R009](#F-OPINA-R009) | Sin relectura cada 5 s; cuando una opinión empieza o termina se releen sólo las opiniones | `html/test/estado-opiniones.test.js` |
+| [R009](#F-OPINA-R009) | Sin relectura cada 5 s; el aviso de la tanda relee las opiniones una vez y no el análisis; cuando una opinión empieza, termina o queda cortada se releen sólo las opiniones; lo que guarda content-audit al avanzar o terminar avisa la tanda, el análisis y las corridas | `html/test/estado-analisis.test.js`, `html/test/estado-opiniones.test.js`, `test/tablero_html/novedades_test.dart` |
 
 ## References
 

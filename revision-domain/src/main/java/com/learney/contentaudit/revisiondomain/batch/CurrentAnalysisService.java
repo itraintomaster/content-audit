@@ -30,6 +30,7 @@ public interface CurrentAnalysisService {
             String contentFingerprint, String reviewer) {}
     record View(String batchId, int contentVersion, int revision, List<State> states,
             List<LooseRun> looseRuns, List<AnalysisSelection> history, List<String> supportedAnalyzers) {}
+    /** {@code missingOpinions}: F-OPINA-R001, per judge the exercises it applies to and has not opined on. */
     record State(String id, String label, String fingerprint, AuditDigest digest,
             Map<String, QuizStudentView> studentViews, Map<String, Map<String, Object>> provenance,
             List<String> approvalWarnings, Map<String, List<String>> comparableAnalyzers, String analysisCode,
@@ -37,7 +38,6 @@ public interface CurrentAnalysisService {
             List<com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCount> judges,
             Map<String, Map<String, Map<String, Object>>> verdictMarks,
             Map<String, List<String>> missingOpinions) {
-        /** {@code missingOpinions}: F-OPINA-R001, per judge the exercises it applies to and has not opined on. */
         public State {
             missingOpinions = missingOpinions == null ? Map.of() : missingOpinions;
         }
