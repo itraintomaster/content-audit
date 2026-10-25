@@ -27,7 +27,11 @@ problemas que quedaron a medias (brief 213): 2.4 «Dos maneras de vencer una mem
 releer» y 9.4 «Releer en todos lados». Las decisiones son de José (25/10/2026):
 - los ocho «releer» salen en una etapa propia (brief 212, segunda pregunta);
 - Evolución pasa a ser un resumen, y eso lo hace la etapa 9
-  ([F-RESUM-R015](../2026-10-24.09_los-resumenes/REQUIREMENT.md)): acá no se toca.
+  ([F-RESUM-R015](../2026-10-24.09_los-resumenes/REQUIREMENT.md)): acá no se toca;
+- un analizador nuevo que aparece a lo sumo a los 5 minutos alcanza: no hace falta un aviso propio (brief 218,
+  primera pregunta);
+- la frase de la ayuda de Exámenes que mandaba a volver a leer sale, y el «Volver a leer» de Problemas queda como
+  salida de emergencia (brief 218, segunda pregunta; F-VENCE-R009 inv. 3 y F-VENCE-R011).
 
 El tablero es `pipeline/vocabulary_dashboard` en ittm.
 
@@ -161,6 +165,9 @@ el registro de actividad lo tiene en curso.
 >    «Volver a leer» ni «Releer». Dice que la pantalla se pone al día sola.
 > 2. Los mensajes del Mapa, Analizadores y Correcciones no piden volver a leer: cuando algo cambió mientras se leía,
 >    dicen que se vuelve a leer solo o qué esperar.
+> 3. Tampoco la ayuda de Exámenes: cuando se aprueba la medición de un juez que bloquea, dice que la pantalla lo muestra
+>    sola. Exámenes se pone al día con cada aviso de «jueces»
+>    ([F-RESUM-R005](../2026-10-24.09_los-resumenes/REQUIREMENT.md#F-RESUM-R005)), y anotar la medición lo avisa.
 
 <a id="F-VENCE-R010"></a>
 ### Rule[F-VENCE-R010] - Lo de la terminal llega solo
@@ -168,6 +175,24 @@ el registro de actividad lo tiene en curso.
 
 > 1. Con el Mapa, Analizadores y Correcciones abiertos, una medición que termina, una línea base nueva o una decisión
 >    escritas desde la terminal se ven en esas pantallas sin tocar nada, en lo que tarda content-audit en leerlas.
+
+<a id="F-VENCE-R011"></a>
+### Rule[F-VENCE-R011] - El «Volver a leer» de Problemas queda, a propósito
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> 1. Problemas conserva su botón «Volver a leer», arriba. Vuelve a leer la lista y la ficha que se mira, con su
+>    entrega, sin esperar ningún aviso.
+> 2. Queda por decisión de José (25/10/2026), no como un resto de los «releer» que esta etapa sacó: es la salida de
+>    emergencia si se corta el canal de avisos. Problemas ya se pone al día solo con «problemas», al volver a la pestaña
+>    o a la ventana y al terminar la corrida de un trabajo abierto
+>    ([F-PROBS-R003](../2026-10-24.08_los-problemas/REQUIREMENT.md#F-PROBS-R003),
+>    [F-PROBS-R005](../2026-10-24.08_los-problemas/REQUIREMENT.md#F-PROBS-R005)).
+> 3. Hay una razón más para no sacarlo: la entrega se compara con los archivos que hay hoy en el proyecto (el código y
+>    las definiciones de los jueces), y ningún tema le avisa a Problemas cuando cambian. De los 36 archivos de las
+>    entregas registradas al 25/10/2026, 26 no los avisa ningún tema y 10 son de los jueces, que avisan «jueces», un tema
+>    que Problemas no sigue.
+> 4. No fuerza al tablero: pide lo mismo de siempre. Por eso no cuenta en la lista de lo que manda o lee `releer`
+>    ([F-RESUM-R005](../2026-10-24.09_los-resumenes/REQUIREMENT.md#F-RESUM-R005) inv. 3).
 
 ## Journeys
 
@@ -228,9 +253,12 @@ journeys:
 
 ## Open Questions
 
-- (pendiente de José) Un analizador nuevo escrito en content-audit no lo avisa ningún tema: aparece en Analizadores a
-  lo sumo a los 5 minutos (F-VENCE-R004 inv. 1). ¿Alcanza, o el vigía tiene que mirar también lo que compila
-  content-audit?
+- (decidido por José, 25/10/2026) Un analizador nuevo escrito en content-audit no lo avisa ningún tema: aparece en
+  Analizadores a lo sumo a los 5 minutos (F-VENCE-R004 inv. 1). Alcanza: no hace falta un aviso propio.
+- (decidido por José, 25/10/2026) El «Volver a leer» de Problemas queda como salida de emergencia (F-VENCE-R011), y la
+  frase de la ayuda de Exámenes que mandaba a volver a leer sale (F-VENCE-R009 inv. 3).
+- (pendiente de José) Problemas no sigue «jueces», y los trabajos de una ficha y lo que cuesta probar salen del catálogo
+  de los jueces y de sus casos permanentes. ¿Que la ficha se ponga al día también con «jueces»?
 - (aclarado) «Volver a leer» de Ejecuciones no es una memoria del tablero: pide de nuevo lo que corre, que ya se pone
   al día con el aviso de «corridas». No es de esta etapa.
 
@@ -246,18 +274,21 @@ su regla en el título.
 | [R002](#F-VENCE-R002) | Sube «análisis»: se lee de nuevo aunque la huella sea la misma; mientras algo corre, no, y al terminar una vez; integrar lo deja viejo enseguida aunque algo corra; un pedido con otra clave no se queda con la lectura en vuelo | `analisis_vigente_test.dart` (grupo «F-VENCE-R002: el análisis vence con «análisis»») |
 | [R003](#F-VENCE-R003) | Integrar contesta sin leer la tanda; la pantalla que la pide después la lee una vez, para todas | `tablero_con_el_cli_test.dart` «F-VENCE-R003: integrar contesta sin volver a leer la tanda…» |
 | [R004](#F-VENCE-R004) | Otro catálogo de los jueces arma otra vista; el mismo catálogo releído, no; lo del análisis vigente llega nuevo en cada pedido sin volver a armar la vista | `rutas_de_analizadores_test.dart` «F-VENCE-R004: con otro catálogo de los jueces…» y «F-VENCE-R004 inv. 2: lo del análisis vigente sale de cada pedido…» |
-| [R005](#F-VENCE-R005) | `releer=1` se ignora en el Mapa, Analizadores y el análisis vigente; `POST /api/cambios/releer` contesta 404; el navegador no lo manda; no hay ↻ ni «Volver a leer» en ningún estado del Mapa ni de Analizadores, ni en el menú ni la búsqueda de Correcciones; «Volver a intentar» pide lo de siempre; la lista de `releer` queda sólo con Evolución | `rutas_de_mapa_test.dart`, `rutas_de_analizadores_test.dart`, `analisis_vigente_test.dart`, `servidor_del_tablero_test.dart`, `tablero_con_el_cli_test.dart` («F-VENCE-R005: …»); `sin-releer.test.js`; `mapa-operaciones.test.js`, `mapa-gestos.test.js`, `mapa-vistas.test.js`, `analizadores-estado.test.js`, `analizadores-gestos.test.js`, `analizadores-vistas.test.js`, `gestos.test.js`, `operaciones.test.js` («F-VENCE-R005: …») |
+| [R005](#F-VENCE-R005) | `releer=1` se ignora en el Mapa, Analizadores y el análisis vigente; `POST /api/cambios/releer` contesta 404; el navegador no lo manda; no hay ↻ ni «Volver a leer» en ningún estado del Mapa ni de Analizadores, ni en el menú ni la búsqueda de Correcciones; «Volver a intentar» pide lo de siempre; la lista de `releer` queda vacía | `rutas_de_mapa_test.dart`, `rutas_de_analizadores_test.dart`, `analisis_vigente_test.dart`, `servidor_del_tablero_test.dart`, `tablero_con_el_cli_test.dart` («F-VENCE-R005: …»); `sin-releer.test.js`; `mapa-operaciones.test.js`, `mapa-gestos.test.js`, `mapa-vistas.test.js`, `analizadores-estado.test.js`, `analizadores-gestos.test.js`, `analizadores-vistas.test.js`, `gestos.test.js`, `operaciones.test.js` («F-VENCE-R005: …») |
 | [R006](#F-VENCE-R006) | El Mapa se pone al día al terminar una corrida y con «tanda», «cambios» y «decisiones» (la regla del ruido), al integrar desde su diálogo y al volver a la pestaña; de fondo; una vez aunque lleguen varios motivos y otra más si llega uno mientras lee; un fallo seguido de otra lectura no se avisa; oculta no pide | `vencen-con-su-tema.test.js` y `mapa-operaciones.test.js` («F-VENCE-R006: …») |
 | [R007](#F-VENCE-R007) | Analizadores se pone al día al terminar una corrida y con «tanda», no con «decisiones» ni «cambios»; de fondo, sin aviso; una vez aunque lleguen varios; un motivo durante una lectura pedida se pide al terminar ésa; el fallo, abajo | `vencen-con-su-tema.test.js` y `analizadores-estado.test.js` («F-VENCE-R007: …») |
 | [R008](#F-VENCE-R008) | Correcciones vuelve a pedir los cambios al terminar una corrida, al integrar, al incorporar una miniteoría y al sugerir una conversión, sin forzar al tablero y con la edición que tiene; si el pedido que contestó salió antes, los pide otra vez; un 409 al decidir o al convertir la relee sola y el aviso lo dice | `vencen-con-su-tema.test.js`, `miniteoria.test.js`, `conversion.test.js`, `operaciones.test.js` («F-VENCE-R008: …») |
-| [R009](#F-VENCE-R009) | Ningún tema de la ayuda del Mapa, Analizadores y Correcciones, en ningún estado de su recorrido, manda a ↻, «Volver a leer» ni «Releer»; los avisos de un fallo, de una muestra que cambió y de una comparación de problemas de otra versión no piden volver a leer | `ayuda-sin-releer.test.js`, `mapa-ayuda.test.js`, `mapa-vistas.test.js`, `operaciones.test.js`, `muestra.test.js`, `evolucion-problemas.test.js` («F-VENCE-R009: …») |
+| [R009](#F-VENCE-R009) | Ningún tema de la ayuda del Mapa, Analizadores y Correcciones, en ningún estado de su recorrido, manda a ↻, «Volver a leer» ni «Releer»; los avisos de un fallo, de una muestra que cambió y de una comparación de problemas de otra versión no piden volver a leer; la ayuda de Exámenes, cuando se aprueba un juez que bloquea, dice que la pantalla lo muestra sola, y la guardia reconoce «Volvé a leer» también al empezar la frase | `ayuda-sin-releer.test.js`, `mapa-ayuda.test.js`, `mapa-vistas.test.js`, `operaciones.test.js`, `muestra.test.js`, `evolucion-problemas.test.js` («F-VENCE-R009: …») |
 | [R010](#F-VENCE-R010) | Una medición que termina en la terminal (el vigía ve `evaluations/`) sube «análisis»: el Mapa y el análisis vigente se leen de nuevo sin `releer`, aunque la huella no mira las mediciones. Medido además a mano en una copia de verificación (brief de la etapa) | `tablero_con_el_cli_test.dart` «F-VENCE-R010, F-VENCE-R001, F-VENCE-R002: …» |
+
+| [R011](#F-VENCE-R011) | El «Volver a leer» de Problemas sigue arriba y vuelve a leer la lista y la entrega de la ficha sin esperar ningún aviso | `estado-problemas.test.js` «F-VENCE-R011: …» |
 
 ## References
 
 - **Propuesta**: [Un solo estado para el tablero](../../docs/propuestas/estado-centralizado.html), problemas 2.4, 9.2 y
   9.4.
-- **Briefs**: 212 (los ocho «releer») y 213 (las nueve etapas).
+- **Briefs**: 212 (los ocho «releer»), 213 (las nueve etapas) y 218 (esta etapa, con las dos preguntas que José
+  contestó).
 - **FEAT-RESUM**: los resúmenes, la regla del ruido y la lista que sólo baja
   ([F-RESUM-R002](../2026-10-24.09_los-resumenes/REQUIREMENT.md#F-RESUM-R002),
   [F-RESUM-R005](../2026-10-24.09_los-resumenes/REQUIREMENT.md#F-RESUM-R005)).
