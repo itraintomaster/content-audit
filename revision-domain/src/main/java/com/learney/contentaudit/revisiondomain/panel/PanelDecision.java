@@ -2,7 +2,10 @@ package com.learney.contentaudit.revisiondomain.panel;
 
 import com.learney.contentaudit.auditdomain.finding.Finding;
 import com.learney.contentaudit.revisiondomain.nonregression.ChangeGateVerdict;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
 
@@ -36,6 +39,12 @@ public class PanelDecision {
     private List<Finding> tieFindings;
 
     private int queriesSpent;
+
+    /** F-MESA-R007 inv. 4: the tasks the accepted candidate left better but still open. */
+    private List<String> improvedTaskIds = new ArrayList<>();
+
+    /** F-MESA-R007 inv. 4: by improved task, its measure before and after, as «largo 18 → 9 (meta 3 a 8)». */
+    private Map<String, String> improvements = new LinkedHashMap<>();
 
     public PanelDecision() {
     }
@@ -156,6 +165,22 @@ public class PanelDecision {
         this.tieFindings = tieFindings;
     }
 
+    public List<String> getImprovedTaskIds() {
+        return this.improvedTaskIds;
+    }
+
+    public void setImprovedTaskIds(List<String> improvedTaskIds) {
+        this.improvedTaskIds = improvedTaskIds != null ? improvedTaskIds : new ArrayList<>();
+    }
+
+    public Map<String, String> getImprovements() {
+        return this.improvements;
+    }
+
+    public void setImprovements(Map<String, String> improvements) {
+        this.improvements = improvements != null ? improvements : new LinkedHashMap<>();
+    }
+
     public int getQueriesSpent() {
         return this.queriesSpent;
     }
@@ -181,11 +206,13 @@ public class PanelDecision {
                     && Objects.equals(this.bestFailing, that.bestFailing)
                     && Objects.equals(this.bestFailingVerdict, that.bestFailingVerdict)
                     && Objects.equals(this.tieFindings, that.tieFindings)
-                    && Objects.equals(this.queriesSpent, that.queriesSpent);
+                    && Objects.equals(this.queriesSpent, that.queriesSpent)
+                    && Objects.equals(this.improvedTaskIds, that.improvedTaskIds)
+                    && Objects.equals(this.improvements, that.improvements);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(knowledgeId, quizIds, taskIds, outcome, accepted, acceptedVerdict, resolvedTaskIds, attempts, rejections, bestFailing, bestFailingVerdict, tieFindings, queriesSpent);
+        return Objects.hash(knowledgeId, quizIds, taskIds, outcome, accepted, acceptedVerdict, resolvedTaskIds, attempts, rejections, bestFailing, bestFailingVerdict, tieFindings, queriesSpent, improvedTaskIds, improvements);
     }
 }

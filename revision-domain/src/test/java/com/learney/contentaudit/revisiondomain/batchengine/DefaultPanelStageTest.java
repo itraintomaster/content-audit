@@ -372,6 +372,110 @@ public class DefaultPanelStageTest {
     }
 
 
+    @Test
+    @DisplayName("should give the proposer, on «Volver a corregir», what the earlier pass of the same correction tried with the vegetables, the most recent first and without spending attempts")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R017")
+    public void shouldGiveTheProposerWhatTheEarlierPassOfTheSameCorrectionTried() {
+        // R017: the first pass tried three candidates on «I ___ a lot of vegetables.» and none passed. On «Volver a
+        // corregir» its task is new, but the proposer gets those three back, the third first; what that pass had
+        // itself carried, attempt 0, is not repeated.
+        Stage s = new Stage();
+        CorrectionBatch batch = s.batch("t-pista", "t-respuesta", "t-nino");
+        batch.setPanelDecisions(new ArrayList<>(List.of(tried(MesaFixture.AFIRMATIVAS, "t-viejo", 0, 1, 2, 3))));
+        s.panels.spendOnePerDecision = false;
+
+        new DefaultPanelStage(s.panels, TandaFixture.briefer(), MesaFixture.corrections(), null, s.ledger(), s.store)
+                .withPlans(s.plans).runSelected(batch, s.start, s.course, new Turns(2), java.util.Set.of("t-respuesta"),
+                        List.of("single-answer"));
+
+        TopicWork work = s.panels.works.get(0);
+        assertTrue(work.getAttemptsUsed().isEmpty(), "what was tried before spends no attempts of this pass");
+        List<String> carried = work.getCarriedRejections().stream().map(r -> r.getReasons().get(0)).toList();
+        assertEquals(List.of("Antes, en esta corrección, intento 3: candidato 3 de t-viejo",
+                "Antes, en esta corrección, intento 2: candidato 2 de t-viejo",
+                "Antes, en esta corrección, intento 1: candidato 1 de t-viejo"), carried);
+        assertTrue(work.getCarriedRejections().stream().allMatch(r -> r.getAttempt() == 0));
+    }
+
+    @Test
+    @DisplayName("should give the proposer of a new correction what the correction it comes from tried, after what this one tried, and no more than six")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R017")
+    public void shouldGiveTheProposerOfANewCorrectionWhatTheCorrectionItComesFromTried() {
+        // R017: C2 tried four candidates on the vegetables; C3, created from C2, already tried four more. A third pass in
+        // C3 gets the four of C3, the most recent first, and then the two most recent of C2: six in all.
+        Stage s = new Stage();
+        CorrectionBatch parent = s.batch("t-c2");
+        parent.setId("tanda-c2");
+        parent.setPanelDecisions(new ArrayList<>(List.of(tried(MesaFixture.AFIRMATIVAS, "t-c2", 1, 2, 3, 4))));
+        s.store.save(parent);
+        CorrectionBatch batch = s.batch("t-pista", "t-respuesta", "t-nino");
+        batch.setEvolution(new com.learney.contentaudit.revisiondomain.batch.CorrectionEvolution.Lineage("tanda-c2", 1, 1,
+                "op-c3", null, null, null, List.of()));
+        batch.setPanelDecisions(new ArrayList<>(List.of(tried(MesaFixture.AFIRMATIVAS, "t-c3", 1, 2, 3, 4))));
+        s.panels.spendOnePerDecision = false;
+
+        new DefaultPanelStage(s.panels, TandaFixture.briefer(), MesaFixture.corrections(), null, s.ledger(), s.store)
+                .withPlans(s.plans).runSelected(batch, s.start, s.course, new Turns(2), java.util.Set.of("t-respuesta"),
+                        List.of("single-answer"));
+
+        List<String> carried = s.panels.works.get(0).getCarriedRejections().stream().map(r -> r.getReasons().get(0))
+                .toList();
+        assertEquals(List.of("Antes, en esta corrección, intento 4: candidato 4 de t-c3",
+                "Antes, en esta corrección, intento 3: candidato 3 de t-c3",
+                "Antes, en esta corrección, intento 2: candidato 2 de t-c3",
+                "Antes, en esta corrección, intento 1: candidato 1 de t-c3",
+                "En una corrección anterior, intento 4: candidato 4 de t-c2",
+                "En una corrección anterior, intento 3: candidato 3 de t-c2"), carried);
+        assertEquals(DefaultPanelStage.TRIED_BEFORE, carried.size());
+    }
+
+    @Test
+    @DisplayName("should end as «mejoró, sigue abierta» a task the accepted candidate improved without resolving it, with its measure, in the same change as the resolved one")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R007")
+    @Tag("F-TANDA-R005")
+    public void shouldEndAsImprovedATaskTheAcceptedCandidateImprovedWithoutResolvingIt() {
+        // R007 inv. 4: the vegetables resolve another answer and leave the translation better but still open. The first
+        // ends resolved, the second improved with its measure; both name the one change.
+        Stage stage = new Stage();
+        CorrectionBatch batch = stage.batch("t-respuesta", "t-traduccion");
+        QuizTemplateEntity vegetables = TandaFixture.exercise(stage.course, MesaFixture.VEGETABLES);
+        PanelCandidate rewrite = new PanelCandidate(PanelCandidateKind.ENGLISH_CHANGE, withParts(vegetables, text("I"),
+                cloze("love"), text("vegetables.")), null, null, "sin «a lot of»");
+        stage.panels.decide = work -> {
+            PanelDecision decision = TandaFixture.decision(MesaFixture.AFIRMATIVAS, MesaFixture.VEGETABLES, taskIds(work),
+                    PanelOutcomeKind.ACCEPTED, rewrite, List.of("t-respuesta"), 2);
+            decision.setImprovedTaskIds(new ArrayList<>(List.of("t-traduccion")));
+            decision.setImprovements(new LinkedHashMap<>(Map.of("t-traduccion", "1 marca alta → 1 marca baja")));
+            return List.of(decision);
+        };
+
+        batch = stage.run(batch, new Turns(100));
+
+        BatchTaskOutcome improved = BatchBook.outcome(batch, "t-traduccion").orElseThrow();
+        assertEquals(BatchTaskOutcomeKind.IMPROVED, improved.getKind());
+        assertEquals("mejoró, sigue abierta: 1 marca alta → 1 marca baja", improved.getDetail());
+        assertEquals("mesa-" + MesaFixture.VEGETABLES, improved.getChangeId());
+        assertEquals(BatchTaskOutcomeKind.RESOLVED_BY_PANEL, BatchBook.outcome(batch, "t-respuesta").orElseThrow().getKind());
+        assertEquals(List.of("t-respuesta", "t-traduccion"), batch.getChanges().get(0).getTaskIds(),
+                "if the batch gate returns the change, both tasks open again");
+    }
+
+    /** A decision of an earlier pass over the vegetables, with one rejected candidate per attempt given. */
+    private static PanelDecision tried(String knowledgeId, String taskId, int... attempts) {
+        PanelDecision decision = TandaFixture.decision(knowledgeId, MesaFixture.VEGETABLES, List.of(taskId),
+                PanelOutcomeKind.NO_WINNER, null, List.of(), attempts.length);
+        List<com.learney.contentaudit.revisiondomain.panel.CandidateRejection> rejections = new ArrayList<>();
+        for (int attempt : attempts) {
+            rejections.add(new com.learney.contentaudit.revisiondomain.panel.CandidateRejection(attempt,
+                    PanelCandidateKind.WHOLE_EXERCISE, new ArrayList<>(List.of("candidato " + attempt + " de " + taskId))));
+        }
+        decision.setRejections(rejections);
+        return decision;
+    }
+
     /** A save of the batch as it was at that moment: its decisions, the outcome of each task and its proposals. */
     record Snapshot(int decisions, Map<String, BatchTaskOutcomeKind> outcomes, List<String> proposals) {
     }

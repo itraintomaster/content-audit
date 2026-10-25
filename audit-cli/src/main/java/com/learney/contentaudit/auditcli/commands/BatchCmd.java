@@ -517,6 +517,7 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
             Map.entry(BatchTaskOutcomeKind.PENDING, "pendientes"),
             Map.entry(BatchTaskOutcomeKind.RESOLVED_BY_RULE, "resueltas por regla"),
             Map.entry(BatchTaskOutcomeKind.RESOLVED_BY_PANEL, "resueltas por la mesa"),
+            Map.entry(BatchTaskOutcomeKind.IMPROVED, "mejoradas, siguen abiertas"),
             Map.entry(BatchTaskOutcomeKind.NO_LONGER_HOLDS, "ya no se sostienen"),
             Map.entry(BatchTaskOutcomeKind.COVERED, "cubiertas"),
             Map.entry(BatchTaskOutcomeKind.NO_WINNER, "sin ganador"),

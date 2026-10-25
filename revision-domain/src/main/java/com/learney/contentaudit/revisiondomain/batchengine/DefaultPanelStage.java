@@ -43,6 +43,8 @@ import com.learney.contentaudit.revisiondomain.panel.DidacticRepairBrief;
 import com.learney.contentaudit.revisiondomain.panelengine.DidacticContracts;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -252,6 +254,14 @@ class DefaultPanelStage implements PanelStage {
                 carried.add(new CandidateRejection(0, null, List.of(reason)));
             }
         }
+        // F-MESA-R017: what was already tried with these exercises in earlier passes goes first, without attempts.
+        Set<String> exercises = new LinkedHashSet<>();
+        for (RefinementTask task : tasks) {
+            if (task.getNodeTarget() == AuditTarget.QUIZ && task.getNodeId() != null) {
+                exercises.add(task.getNodeId());
+            }
+        }
+        carried.addAll(0, tried(batch, exercises));
         TopicWordLights lights = null;
         if (wordLightsQuery != null && auditEngine == null) {
             try {
@@ -294,9 +304,12 @@ class DefaultPanelStage implements PanelStage {
             }
         }
         Set<String> resolved = new LinkedHashSet<>(BatchBook.list(decision.getResolvedTaskIds()));
+        Set<String> improved = decision.getOutcome() == PanelOutcomeKind.ACCEPTED
+                ? new LinkedHashSet<>(BatchBook.list(decision.getImprovedTaskIds())) : Set.of();
         for (String taskId : BatchBook.list(decision.getTaskIds())) {
             BatchTaskOutcomeKind kind = switch (decision.getOutcome()) {
                 case ACCEPTED -> resolved.contains(taskId) ? BatchTaskOutcomeKind.RESOLVED_BY_PANEL
+                        : improved.contains(taskId) ? BatchTaskOutcomeKind.IMPROVED
                         : BatchTaskOutcomeKind.NO_WINNER;
                 case NO_LONGER_HOLDS -> BatchTaskOutcomeKind.NO_LONGER_HOLDS;
                 case NO_WINNER -> BatchTaskOutcomeKind.NO_WINNER;
@@ -305,11 +318,53 @@ class DefaultPanelStage implements PanelStage {
                 case NO_DECLARED_SCOPE -> BatchTaskOutcomeKind.NO_DECLARED_SCOPE;
             };
             String detail = kind == BatchTaskOutcomeKind.NO_WINNER && decision.getOutcome() == PanelOutcomeKind.ACCEPTED
-                    ? "el candidato aceptado del ejercicio no la resolvió" : null;
-            BatchBook.setOutcome(batch, taskId, kind, resolved.contains(taskId) ? changeId : null, decision.getAttempts(),
-                    detail);
+                    ? "el candidato aceptado del ejercicio no la resolvió"
+                    : kind == BatchTaskOutcomeKind.IMPROVED
+                    ? "mejoró, sigue abierta: " + decision.getImprovements().getOrDefault(taskId, "") : null;
+            BatchBook.setOutcome(batch, taskId, kind, resolved.contains(taskId) || improved.contains(taskId) ? changeId
+                    : null, decision.getAttempts(), detail);
         }
         return batch;
+    }
+
+    /** F-MESA-R017: how many earlier candidates the proposer gets back, the most recent first. */
+    static final int TRIED_BEFORE = 6;
+
+    /**
+     * F-MESA-R017: what was tried with these exercises in the earlier passes of this correction and of the corrections
+     * it comes from, the most recent first and up to six: what each candidate proposed, how it measured and why it was
+     * not accepted or what it improved. What an earlier pass itself carried is not repeated.
+     */
+    private List<CandidateRejection> tried(CorrectionBatch batch, Set<String> exercises) {
+        List<CandidateRejection> tried = new ArrayList<>();
+        if (exercises.isEmpty()) {
+            return tried;
+        }
+        Set<String> visited = new HashSet<>();
+        String where = "Antes, en esta corrección";
+        CorrectionBatch at = batch;
+        while (at != null && visited.add(String.valueOf(at.getId())) && tried.size() < TRIED_BEFORE) {
+            List<PanelDecision> decisions = BatchBook.list(at.getPanelDecisions());
+            for (int i = decisions.size() - 1; i >= 0 && tried.size() < TRIED_BEFORE; i--) {
+                PanelDecision decision = decisions.get(i);
+                if (decision == null || Collections.disjoint(BatchBook.list(decision.getQuizIds()), exercises)) {
+                    continue;
+                }
+                List<CandidateRejection> rejections = BatchBook.list(decision.getRejections());
+                for (int j = rejections.size() - 1; j >= 0 && tried.size() < TRIED_BEFORE; j--) {
+                    CandidateRejection rejection = rejections.get(j);
+                    if (rejection == null || rejection.getAttempt() <= 0 || BatchBook.list(rejection.getReasons()).isEmpty()) {
+                        continue;
+                    }
+                    tried.add(new CandidateRejection(0, rejection.getCandidateKind(), new ArrayList<>(List.of(where
+                            + ", intento " + rejection.getAttempt() + ": " + String.join("; ", rejection.getReasons())))));
+                }
+            }
+            String parent = at.getEvolution() != null ? at.getEvolution().parentBatchId() : null;
+            at = parent != null && batchStore != null ? batchStore.load(parent).orElse(null) : null;
+            where = "En una corrección anterior";
+        }
+        return tried;
     }
 
     /** The accepted candidate as steps on the exercises it reaches, over the course as the batch leaves it. */
@@ -324,9 +379,15 @@ class DefaultPanelStage implements PanelStage {
                 : decision.getKnowledgeId();
         String changeId = BatchBook.freeChangeId(batch,
                 (origin == BatchChangeOrigin.CONVERSION ? "conversion-" : "mesa-") + target);
-        return new BatchChange(changeId, origin, null, decision.getKnowledgeId(),
-                new ArrayList<>(BatchBook.list(decision.getResolvedTaskIds())), steps, decision.getAcceptedVerdict(), false,
-                Instant.now(), null);
+        // An improved task goes with its change: if the batch gate returns the change, the task is open again.
+        List<String> taskIds = new ArrayList<>(BatchBook.list(decision.getResolvedTaskIds()));
+        for (String taskId : BatchBook.list(decision.getImprovedTaskIds())) {
+            if (!taskIds.contains(taskId)) {
+                taskIds.add(taskId);
+            }
+        }
+        return new BatchChange(changeId, origin, null, decision.getKnowledgeId(), taskIds, steps,
+                decision.getAcceptedVerdict(), false, Instant.now(), null);
     }
 
     /** Whether José's order on a topic already got its outcomes in this batch. */

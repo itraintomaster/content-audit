@@ -101,11 +101,19 @@ alcance permitido; no uses una restricción secreta ni cambies el objetivo.
    en la oración (regla 3), con la cantidad de opciones pedida; la traducción y
    la miniteoría no cambian; la consigna pide elegir sin pedir una forma.
 7. Cuando `previousRejections` tenga motivos, leelos desde el primer intento:
-   pueden provenir de una devolución anterior al cierre o de esta misma mesa.
-   No vuelvas a proponer el arreglo que ya fue rechazado. Si quedó casi igual
-   a otro quiz, planteá una frase distinta que practique el objetivo del tema,
-   con vocabulario del nivel, y adaptá pista, respuesta, traducción y tarjeta
-   según lo que `mayTouch` permita.
+   pueden provenir de una devolución anterior al cierre, de pasadas anteriores
+   («Antes, en esta corrección…», «En una corrección anterior…») o de esta
+   misma mesa. Cada uno dice lo que se propuso («propuso «…»») y cómo quedó
+   medida cada tarea abierta («sigue abierta …: largo 10 (meta 3 a 8)»). No
+   vuelvas a proponer el arreglo que ya fue rechazado y usá esas medidas para
+   saber cuánto falta. Si quedó casi igual a otro quiz, planteá una frase
+   distinta que practique el objetivo del tema, con vocabulario del nivel, y
+   adaptá pista, respuesta, traducción y tarjeta según lo que `mayTouch`
+   permita.
+8. Un motivo que empieza con «se guardó como punto de partida» no es un
+   rechazo: esa propuesta mejoró el ejercicio sin terminar de arreglarlo y ya
+   está en `topicView`. Partí de ella y trabajá sólo las tareas de `tasks`,
+   que son las que siguen abiertas; lo que ya mejoró no puede empeorar.
 
 ## Arreglar la frase y su explicación juntas
 

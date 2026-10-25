@@ -21,6 +21,9 @@ class ScriptDecision {
 
     private List<String> reasons;
 
+    /** F-MESA-R006: what the winner did to each task, against the starting point; none without a winner. */
+    private TaskProgress progress = TaskProgress.NONE;
+
     public ScriptDecision() {
     }
 
@@ -73,6 +76,14 @@ class ScriptDecision {
         this.reasons = reasons;
     }
 
+    public TaskProgress getProgress() {
+        return this.progress;
+    }
+
+    public void setProgress(TaskProgress progress) {
+        this.progress = progress != null ? progress : TaskProgress.NONE;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -82,11 +93,12 @@ class ScriptDecision {
                     && Objects.equals(this.winnerIndex, that.winnerIndex)
                     && Objects.equals(this.resolvedTaskIds, that.resolvedTaskIds)
                     && Objects.equals(this.tieFindings, that.tieFindings)
-                    && Objects.equals(this.reasons, that.reasons);
+                    && Objects.equals(this.reasons, that.reasons)
+                    && Objects.equals(this.progress, that.progress);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(outcome, winnerIndex, resolvedTaskIds, tieFindings, reasons);
+        return Objects.hash(outcome, winnerIndex, resolvedTaskIds, tieFindings, reasons, progress);
     }
 }

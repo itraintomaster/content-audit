@@ -269,6 +269,37 @@ public class DefaultTrayServiceTest {
     }
 
     @Test
+    @DisplayName("should take into the batch a fix of José that improves the exercise without resolving its task, leaving the task «mejoró, sigue abierta» with its measure")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R007")
+    public void shouldTakeAFixOfJoseThatImprovesWithoutResolvingLeavingTheTaskImprovedButOpen() {
+        // R007 inv. 4: José's fix leaves «have» fitting, but less: the panel accepts it as an advance. It enters the batch
+        // as his change and the task stays open, saying how much it improved.
+        BandejaFixture.Bandeja bandeja = opened();
+        PanelCandidate fix = new PanelCandidate(PanelCandidateKind.WHOLE_EXERCISE, withParts(TandaFixture.exercise(bandeja.course,
+                BandejaFixture.TEA), text("I"), cloze("drink"), text("(drink) green tea in the morning.")), null, null,
+                "arreglo de José");
+        bandeja.panels.assess = (work, candidate) -> {
+            PanelDecision decision = new PanelDecision(MesaFixture.AFIRMATIVAS, List.of(BandejaFixture.TEA),
+                    List.of("t-tea"), PanelOutcomeKind.ACCEPTED, candidate, null, List.of(), 1, List.of(), null, null,
+                    List.of(), 4);
+            decision.setImprovedTaskIds(new ArrayList<>(List.of("t-tea")));
+            LinkedHashMap<String, String> improvements = new LinkedHashMap<>();
+            improvements.put("t-tea", "1 marca bloqueante → 1 marca media");
+            decision.setImprovements(improvements);
+            return decision;
+        };
+
+        bandeja.tray.answer(new TrayResponse(TEA_ITEM, TrayAnswer.WRITE_FIX, null, null, null, fix, null, "José"));
+
+        BatchTaskOutcome tea = outcome(bandeja.saved(), "t-tea");
+        assertEquals(BatchTaskOutcomeKind.IMPROVED, tea.getKind());
+        assertEquals("mejoró, sigue abierta: 1 marca bloqueante → 1 marca media", tea.getDetail());
+        assertEquals("jose-" + BandejaFixture.TEA, tea.getChangeId(), "the task names José's change");
+        assertEquals(BatchChangeOrigin.JOSE, change(bandeja.saved(), "jose-" + BandejaFixture.TEA).getOrigin());
+    }
+
+    @Test
     @DisplayName("should approve the changes of a rule when José answers that its sample is fine")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R004")

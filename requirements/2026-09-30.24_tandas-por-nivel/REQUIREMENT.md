@@ -237,8 +237,8 @@ toma lo que dice la lista de la tanda ([F-PUBPROD-R006](#F-PUBPROD-R006)).
 ### Rule[F-TANDA-R010] - El informe de la tanda cierra sus cuentas
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
-> El informe de una tanda da cuántas tareas terminaron resueltas por regla, resueltas por la mesa, ya no se sostienen,
-> cubiertas, sin ganador, en desempate, devueltas sin intentos, sin alcance declarado, pendientes de regrabar y sin
+> El informe de una tanda da cuántas tareas terminaron resueltas por regla, resueltas por la mesa, mejoradas pero
+> abiertas ([F-MESA-R007](#F-MESA-R007)), ya no se sostienen, cubiertas, sin ganador, en desempate, devueltas sin intentos, sin alcance declarado, pendientes de regrabar y sin
 > intentar, y la suma da sus tareas. Da aparte cuántos ejercicios de cada encargo de José quedaron hechos y cuántos sin ganador. Da además, por
 > analizador y nivel, los ejercicios con error antes y después; la lista de audios para regrabar; las consultas gastadas
 > por puesto y las horas; y las decisiones de José.

@@ -55,7 +55,7 @@ public class DefaultPanelDecisionScriptTest {
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R006")
     public void shouldRejectACandidateThatSolvesNoTaskOfTheExerciseEvenIfItWorsensNothing() {
-        // F-MESA-R006 inv. 1: a candidate that worsens nothing but solves nothing is not accepted.
+        // F-MESA-R006 cond. 1: a candidate that worsens nothing but neither solves nor improves anything is not accepted.
         UnitMeasurement original = measured(List.of(come()), List.of(), "He comes every year.", true);
         ScoredCandidate same = scored("same", measured(List.of(come()), List.of(), "He comes every year.", true), original);
 
@@ -64,7 +64,11 @@ public class DefaultPanelDecisionScriptTest {
         assertEquals(PanelOutcomeKind.NO_WINNER, decision.getOutcome());
         assertEquals(-1, decision.getWinnerIndex());
         assertTrue(same.getGate().isPasses(), "it worsens nothing");
-        assertTrue(decision.getReasons().get(0).endsWith("no resuelve ninguna tarea del ejercicio"), decision.getReasons().toString());
+        assertTrue(decision.getReasons().get(0).contains("no resuelve ni mejora ninguna tarea del ejercicio"),
+                decision.getReasons().toString());
+        // F-MESA-R007 inv. 2: the rejection says how the task still open measures in the candidate.
+        assertTrue(decision.getReasons().get(0).contains("sigue abierta t-come: single-answer bloqueante"),
+                decision.getReasons().toString());
     }
 
     @Test

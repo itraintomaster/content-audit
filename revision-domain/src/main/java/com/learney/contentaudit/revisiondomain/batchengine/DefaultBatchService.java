@@ -564,7 +564,19 @@ class DefaultBatchService implements BatchService {
         decisions.add(decision);
         batch.setPanelDecisions(decisions);
         if (decision.getOutcome() == PanelOutcomeKind.ACCEPTED) {
-            return accept(batch, adjustment, course, decision.getAcceptedVerdict(), "el arreglo de José pasó la mesa");
+            batch = accept(batch, adjustment, course, decision.getAcceptedVerdict(), "el arreglo de José pasó la mesa");
+            // F-MESA-R007 inv. 4: a task José's fix only improved stays open, with its measure before and after.
+            for (String taskId : BatchBook.list(decision.getImprovedTaskIds())) {
+                if (BatchBook.list(decision.getResolvedTaskIds()).contains(taskId)
+                        || !BatchBook.list(adjustment.getTaskIds()).contains(taskId)) {
+                    continue;
+                }
+                BatchTaskOutcome was = BatchBook.outcome(batch, taskId).orElse(null);
+                BatchBook.setOutcome(batch, taskId, BatchTaskOutcomeKind.IMPROVED,
+                        was != null ? was.getChangeId() : null, was != null ? was.getAttempts() : 0,
+                        "mejoró, sigue abierta: " + decision.getImprovements().getOrDefault(taskId, ""));
+            }
+            return batch;
         }
         List<String> reasons = new ArrayList<>();
         for (CandidateRejection rejection : BatchBook.list(decision.getRejections())) {

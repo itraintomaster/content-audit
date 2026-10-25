@@ -49,14 +49,14 @@ import org.junit.jupiter.api.Test;
 )
 public class DefaultBatchReportBuilderTest {
     @Test
-    @DisplayName("should count the tasks of the batch by outcome, resolved by rule, resolved by the panel, no longer holds, covered, no winner, tie, returned without attempts, no declared scope, pending rerecording and not attempted, adding up to its tasks")
+    @DisplayName("should count the tasks of the batch by outcome, resolved by rule, resolved by the panel, improved but open, no longer holds, covered, no winner, tie, returned without attempts, no declared scope, pending rerecording and not attempted, adding up to its tasks")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R010")
-    public void shouldCountTheTasksOfTheBatchByOutcomeResolvedByRuleResolvedByThePanelNoLongerHoldsCoveredNoWinnerTieReturnedWithoutAttemptsNoDeclaredScopePendingRerecordingAndNotAttemptedAddingUpToItsTasks(
+    public void shouldCountTheTasksOfTheBatchByOutcomeResolvedByRuleResolvedByThePanelImprovedButOpenNoLongerHoldsCoveredNoWinnerTieReturnedWithoutAttemptsNoDeclaredScopePendingRerecordingAndNotAttemptedAddingUpToItsTasks(
             ) {
         // R010: each task of the batch has one outcome at a time, and the outcomes add up to its tasks.
         CorrectionBatch batch = TandaFixture.batch("tanda-a1");
-        int[] times = {1, 3, 4, 1, 2, 2, 1, 1, 1, 2, 1};
+        int[] times = {1, 3, 4, 2, 1, 2, 2, 1, 1, 1, 2, 1};
         List<String> taskIds = new ArrayList<>();
         BatchTaskOutcomeKind[] kinds = BatchTaskOutcomeKind.values();
         for (int k = 0; k < kinds.length; k++) {
@@ -72,7 +72,7 @@ public class DefaultBatchReportBuilderTest {
 
         BatchReport report = new DefaultBatchReportBuilder().build(batch);
 
-        assertEquals(19, report.getTotalTasks());
+        assertEquals(21, report.getTotalTasks());
         List<OutcomeCount> expected = new ArrayList<>();
         for (int k = 0; k < kinds.length; k++) {
             expected.add(new OutcomeCount(kinds[k], times[k]));

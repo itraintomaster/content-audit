@@ -114,33 +114,65 @@ traducción y sentido; si cambia el inglés de un CLOZE, también el de una sola
 consultas, las que estimó el paquete C.
 
 <a id="F-MESA-R006"></a>
-### Rule[F-MESA-R006] - Decide un script: resuelve, no empeora y le gana al original
+### Rule[F-MESA-R006] - Decide un script: queda mejor que el punto de partida y no empeora nada
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-> La decisión no la toma un modelo: sale sólo de las mediciones y los veredictos. Un candidato se acepta si:
-> 1. resuelve al menos una tarea del ejercicio: el analizador que la marcó ya no la marca;
-> 2. no empeora nada del ejercicio ([F-NOEMP-R001](#F-NOEMP-R001) a [F-NOEMP-R004](#F-NOEMP-R004));
-> 3. conserva el objetivo, la fórmula y los selectores didácticos del ejercicio ([F-MESA-R016](#F-MESA-R016)).
+> La decisión no la toma un modelo: sale sólo de las mediciones y los veredictos. Cada candidato se compara con el
+> ejercicio como estaba al empezar ese intento, su **punto de partida** ([F-MESA-R007](#F-MESA-R007)). Por cada tarea, el
+> candidato la **resuelve** si el analizador que la marcó ya no marca ninguno de sus hallazgos; la **mejora** si no la
+> resuelve pero, de sus hallazgos, alguno desaparece o baja de gravedad y ninguno sube, o —en una tarea de largo— el
+> ejercicio queda más cerca del rango de su nivel. Un candidato se acepta si:
+> 1. resuelve o mejora al menos una tarea del ejercicio;
+> 2. no empeora nada del ejercicio ([F-NOEMP-R001](#F-NOEMP-R001) a [F-NOEMP-R004](#F-NOEMP-R004)) y ningún hallazgo que
+>    ya tenía sube de gravedad;
+> 3. si no resuelve ninguna tarea, tampoco aleja del rango el largo de ningún ejercicio;
+> 4. conserva el objetivo, la fórmula y los selectores didácticos del ejercicio ([F-MESA-R016](#F-MESA-R016)).
 >
-> Con 1, 2 y 3, el candidato tiene menos errores que el original por gravedad. Si se aceptan varios, gana el que deja menos
-> hallazgos, por gravedad; a igualdad, el que no cambia lo que se escucha; después, el que queda en el rango de largo; y
-> si siguen empatados, el primero. Las mismas mediciones dan siempre la misma decisión, con sus motivos.
+> Un hallazgo cuyo juez no evaluó el candidato no cuenta como desaparecido. Si se aceptan varios, gana el que resuelve
+> más tareas; después el que deja menos hallazgos, por gravedad; el que no cambia lo que se escucha; el que deja el largo
+> más cerca del rango; y si siguen empatados, el primero. Cada motivo de rechazo dice, por tarea abierta, cómo quedó
+> medida: el largo con su rango, o el hallazgo con su gravedad. Las mismas mediciones dan siempre la misma decisión, con
+> sus motivos.
 
 Es la vara absoluta de la propuesta («acepta si pasa los bloqueantes, no empeora nada y le gana al original»), no la
 comparativa de [F-QICOR-R013](#F-QICOR-R013), que sigue valiendo en `revise-instructions`. El orden de desempate es
 [ASSUMPTION]: prefiere no regrabar porque cada audio nuevo es trabajo fuera de content-audit.
 
+Hasta el 25/10 la condición 1 pedía resolver una tarea entera, y la mesa tiraba lo que mejoraba sin terminar: en C2, C3 y
+C4 la cámara (`…2de8`, A1) bajó de 18 a 10, 11 y 9 de largo, con meta de 3 a 8, sin sumar un error, y las tres
+propuestas se descartaron; cada pasada volvió a partir de 18 (brief 214). La condición 3 deja en pie, para los arreglos
+enteros, la decisión de José del 11/8 de que el largo no frena ([F-NOEMP-R003](#F-NOEMP-R003)); para un avance sí frena,
+para no cambiar un problema por otro ([DOUBT-AVANCE-PARCIAL](#DOUBT-AVANCE-PARCIAL)).
+
 <a id="F-MESA-R007"></a>
-### Rule[F-MESA-R007] - Hasta tres intentos; si nadie gana, queda el original y va a la bandeja
+### Rule[F-MESA-R007] - Tres intentos, cada uno desde el mejor; hasta cinco mientras mejore
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-> Un candidato rechazado vuelve a quien propone con los criterios que no pasó y su evidencia. Cada ejercicio tiene hasta
-> tres intentos; agotados sin un candidato aceptado, el ejercicio queda como estaba, sus tareas siguen abiertas y la
-> bandeja recibe el original, el candidato que menos falló con lo que no pasó y los motivos de cada intento.
+> Cada ejercicio tiene hasta tres intentos por pasada. El primero parte del ejercicio como está; cada intento siguiente
+> parte del último candidato aceptado en esa pasada, y trabaja sólo las tareas que siguen abiertas. Invariantes:
+> 1. si el último intento dejó el ejercicio mejor y le quedan tareas abiertas, tiene otro intento, hasta cinco en total;
+>    un intento que no mejora no da otro;
+> 2. un candidato rechazado vuelve a quien propone con lo que propuso, los criterios que no pasó y cómo quedó medida
+>    cada tarea abierta ([F-MESA-R006](#F-MESA-R006));
+> 3. un candidato aceptado que deja tareas abiertas vuelve igual, como punto de partida, con lo que mejoró y lo que falta;
+> 4. al terminar, si hubo algún candidato aceptado, el ejercicio queda como lo dejó el último: un solo cambio desde como
+>    estaba, con la compuerta contra ese original ([F-NOEMP-R001](#F-NOEMP-R001) a [F-NOEMP-R004](#F-NOEMP-R004)); sus
+>    tareas resueltas quedan resueltas por la mesa, y las mejoradas, «mejoró, sigue abierta», con su medida de antes y
+>    de después;
+> 5. si no hubo ninguno, el ejercicio queda como estaba, sus tareas siguen abiertas y la bandeja recibe el original, el
+>    candidato que menos falló con lo que no pasó y los motivos de cada intento;
+> 6. si los jueces no coinciden ([F-MESA-R008](#F-MESA-R008)) después de un candidato aceptado, el ejercicio se queda
+>    con lo aceptado, sin más intentos, y el desacuerdo queda entre los motivos;
+> 7. la tarea del tema entero, la conversión que encargó José ([F-MESA-R015](#F-MESA-R015)) y un candidato que reescribe
+>    la consigna del tema terminan al aceptarse, sin servir de punto de partida;
+> 8. los intentos que ya gastó un cambio que volvió de la compuerta de la tanda cuentan dentro de los tres.
 
 Mantiene el tope de [DOUBT-REINTENTOS](#DOUBT-REINTENTOS) de FEAT-QICOR (3) y el espíritu de
 [DOUBT-SIN-CORRECCION](#DOUBT-SIN-CORRECCION): lo mejor que se logró no se tira, se muestra con lo que falla y decide
-José ([F-BANDEJA-R003](#F-BANDEJA-R003)). A diferencia de `revise-instructions`, la mesa no lo acepta sola.
+José ([F-BANDEJA-R003](#F-BANDEJA-R003)). A diferencia de `revise-instructions`, la mesa no lo acepta sola. Los dos
+intentos de más son la decisión de José del 25/10: «son tres vueltas, pero si está viendo mejoras, que se hagan hasta 5,
+a ver si se puede solucionar el problema en esa» ([DOUBT-AVANCE-PARCIAL](#DOUBT-AVANCE-PARCIAL)). Antes, cada intento
+partía del original y el rechazo decía sólo «no resuelve ninguna tarea del ejercicio», sin la medida.
 
 <a id="F-MESA-R008"></a>
 ### Rule[F-MESA-R008] - Si los dos jueces de un criterio no coinciden, decide José
@@ -282,6 +314,19 @@ permitir distinguir una reparación del contenido de un cambio de objetivo pedid
 
 </details>
 
+<a id="F-MESA-R017"></a>
+### Rule[F-MESA-R017] - La pasada siguiente sabe lo que ya se intentó
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> Cuando se vuelve a corregir un ejercicio —en la misma corrección o en una corrección nueva que parte de la anterior—,
+> quien propone recibe desde el primer intento lo que se intentó con ese ejercicio en las pasadas anteriores de esa
+> cadena: por cada candidato, lo que propuso, cómo quedó medido y por qué no se aceptó o qué mejoró, los más recientes
+> primero y hasta seis. Esos antecedentes no gastan intentos.
+
+En C3 y C4 el corrector volvió a probar acortar la cámara sin saber que en C2 había llegado a 10 y no alcanzaba: sólo
+recibía la devolución de la compuerta de la tanda. Seis alcanza para las dos pasadas anteriores con tres intentos cada
+una [ASSUMPTION].
+
 ## Contexto
 
 **Por qué una mesa por tema.** El 077 revisó los 11.287 ejercicios con revisores por lote y verificadores que intentaron
@@ -337,19 +382,31 @@ journeys:
           - when: "Sigue al menos uno"
             then: proponer
       - id: proponer
-        action: "Quien propone entrega candidatos del ejercicio entero y content-audit los mide"
-        gate: [F-MESA-R003, F-MESA-R004]
+        action: "Quien propone, con lo que ya se intentó en pasadas anteriores, entrega candidatos del ejercicio entero y content-audit los mide"
+        gate: [F-MESA-R003, F-MESA-R004, F-MESA-R017]
         then: juzgar
       - id: juzgar
         action: "Los jueces que leen lo que cambió juzgan cada candidato como queda, y el script decide"
         gate: [F-MESA-R005, F-MESA-R006, F-MESA-R013, F-MESA-R016]
         outcomes:
-          - when: "Un candidato resuelve al menos una tarea, no empeora nada y conserva el objetivo y las restricciones didácticas"
+          - when: "Un candidato resuelve todas las tareas que seguían abiertas, no empeora nada y conserva el objetivo y las restricciones didácticas"
             then: aceptado
+          - when: "Un candidato resuelve o mejora alguna tarea sin empeorar nada, y quedan tareas abiertas e intentos"
+            then: seguir_desde_el_mejor
+          - when: "Se acaban los intentos con algún candidato aceptado y tareas todavía abiertas"
+            then: mejoro_sigue_abierto
           - when: "Los dos jueces de traducción y sentido no coinciden"
             then: desempate
-          - when: "Ningún candidato pasa después del tercer intento"
+          - when: "Ningún candidato pasa y se acaban los intentos"
             then: sin_ganador
+      - id: seguir_desde_el_mejor
+        action: "El candidato aceptado pasa a ser el punto de partida del intento siguiente, que recibe lo que mejoró y lo que falta; si mejoró, puede haber hasta cinco intentos"
+        gate: [F-MESA-R007]
+        then: proponer
+      - id: mejoro_sigue_abierto
+        action: "El ejercicio queda como lo dejó el último candidato aceptado, en un solo cambio; lo resuelto queda resuelto y lo mejorado, «mejoró, sigue abierta», con su medida"
+        gate: [F-MESA-R007, F-MESA-R009]
+        result: success
       - id: aceptado
         action: "El candidato queda como propuesta pendiente de la tanda y el curso no cambia"
         gate: [F-MESA-R009]
@@ -426,6 +483,24 @@ Esta decisión reemplaza la opción A tomada el 30/9 con una comprensión distin
 
 **Answer**: **Opción A** (José, 30/9): sin agente nuevo que refute. Si la muestra ciega de la tanda A1 no cumple su meta
 ([F-CIEGA-R004](#F-CIEGA-R004)), se vuelve a preguntar por B.
+
+<a id="DOUBT-AVANCE-PARCIAL"></a>
+### Doubt[DOUBT-AVANCE-PARCIAL] - ¿Qué hace la mesa con un candidato que mejora sin terminar de arreglar?
+**Status**: RESOLVED (2026-10-25)
+
+Brief 214. En C2, C3 y C4 la cámara bajó de 18 a 10, 11 y 9 de largo, con meta de 3 a 8, y las tres propuestas se
+tiraron porque el hallazgo de largo seguía.
+
+- [x] Guardar el avance aunque la tarea siga abierta, como «mejoró, sigue abierta» (recomendada).
+- [ ] Aceptar sólo lo que resuelve una tarea entera, como hasta el 24/10.
+- [x] Cada intento parte del mejor candidato aceptado hasta ahí (recomendada), no del original.
+- [x] Para guardar un avance, el largo tampoco puede alejarse del rango (recomendada); para un arreglo entero sigue sin
+  frenar.
+- [x] El avance se ve como un desenlace propio en el tablero (recomendada), no como «sin ganador».
+
+**Answer** (José, 25/10): que se haga el cambio del brief 214, con sus recomendaciones; no las eligió una por una.
+Sumó tres cosas: que el rechazo diga la medida, que la pasada nueva herede lo que se intentó en la anterior
+([F-MESA-R017](#F-MESA-R017)) y que, si un intento mejora, haya más intentos, hasta cinco ([F-MESA-R007](#F-MESA-R007)).
 
 <a id="DOUBT-OPCIONES-CONTRACCIONES"></a>
 ### Doubt[DOUBT-OPCIONES-CONTRACCIONES] - ¿Cuántas opciones lleva un ejercicio de «Contracciones» pasado a opción múltiple?

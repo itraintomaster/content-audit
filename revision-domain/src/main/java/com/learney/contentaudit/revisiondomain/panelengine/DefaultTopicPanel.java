@@ -87,6 +87,9 @@ class DefaultTopicPanel implements TopicPanel {
     /** F-MESA-R007 and DOUBT-REINTENTOS: three attempts when nothing else is asked. */
     static final int DEFAULT_MAX_ATTEMPTS = 3;
 
+    /** F-MESA-R007 inv. 1: while the last attempt improved, up to two more -- five with the default three. */
+    static final int EXTRA_ATTEMPTS_WHILE_IMPROVING = 2;
+
     /** The declarations of the analyzers, to know which tasks want two fixes (R003); none means one candidate. */
     private AnalyzerCorrectionCatalog corrections;
 
@@ -213,9 +216,15 @@ class DefaultTopicPanel implements TopicPanel {
         ScriptDecision decision = script.decide(tasks, before, List.of(scored));
         List<String> reasons = decision.getReasons() != null ? decision.getReasons() : List.of();
         return switch (decision.getOutcome()) {
-            case ACCEPTED -> new PanelDecision(knowledgeId, quizIdsOf(quizId, candidate, tasks), taskIds(tasks),
-                    PanelOutcomeKind.ACCEPTED, candidate, scored.getGate(), new ArrayList<>(decision.getResolvedTaskIds()),
-                    1, new ArrayList<>(), null, null, new ArrayList<>(), counting.spent());
+            case ACCEPTED -> {
+                PanelDecision accepted = new PanelDecision(knowledgeId, quizIdsOf(quizId, candidate, tasks),
+                        taskIds(tasks), PanelOutcomeKind.ACCEPTED, candidate, scored.getGate(),
+                        new ArrayList<>(decision.getResolvedTaskIds()), 1, new ArrayList<>(), null, null,
+                        new ArrayList<>(), counting.spent());
+                accepted.setImprovedTaskIds(new ArrayList<>(decision.getProgress().improved()));
+                accepted.setImprovements(new LinkedHashMap<>(decision.getProgress().improvements()));
+                yield accepted;
+            }
             case TIE -> new PanelDecision(knowledgeId, List.of(quizId), taskIds(tasks), PanelOutcomeKind.TIE, null, null,
                     new ArrayList<>(), 1, new ArrayList<>(), candidate, scored.getGate(),
                     new ArrayList<>(decision.getTieFindings()), counting.spent());
@@ -280,25 +289,26 @@ class DefaultTopicPanel implements TopicPanel {
         ScoredCandidate bestFailing = null;
         int bestFailingScore = Integer.MAX_VALUE;
         int attempt = attemptsUsed;
-        while (attempt < maxAttempts) {
+        // R007: each attempt starts from the last candidate accepted in this pass, on the tasks still open.
+        Progress progress = new Progress(current, now, before, holding);
+        while (attempt < maxAttempts || progress.improvedLast && attempt < maxAttempts + EXTRA_ATTEMPTS_WHILE_IMPROVING) {
             // Refresh before reserving a query, so a context failure cannot leak budget.
             TopicWordLights lights;
             try {
-                lights = vocabulary != null ? vocabulary.lightsFor(now) : work.getWordLights();
+                lights = vocabulary != null ? vocabulary.lightsFor(progress.work) : work.getWordLights();
             } catch (RuntimeException e) {
                 allowance.trip("Falló el contexto léxico: " + e.getMessage());
                 throw e;
             }
             // R010: a query of the proposer takes its turn on the shared allowance.
             if (!Allowances.reserve(allowance, 1)) {
-                emit.accept(decision(knowledgeId, unitQuizIds, holding, PanelOutcomeKind.NOT_ATTEMPTED, attempt,
-                        rejections, allowance.spent() - spentBefore));
-                return new Unit(current, true, false);
+                return interrupted(progress, knowledgeId, quizId, unitQuizIds, holding, before, attempt, rejections,
+                        allowance, spentBefore, emit, vocabulary, now);
             }
             PanelRequest request = new PanelRequest(work.getBatchId(), work.getLevel(), knowledgeId, quizId,
-                    topicView(current), new ArrayList<>(holding), lights, work.getConversion(), attempt + 1,
-                    new ArrayList<>(rejections), twoFixes(holding));
-            request.setTopicQuizIds(topicQuizIds(current));
+                    topicView(progress.topic), new ArrayList<>(progress.open), lights, work.getConversion(), attempt + 1,
+                    new ArrayList<>(rejections), twoFixes(progress.open));
+            request.setTopicQuizIds(topicQuizIds(progress.topic));
             request.setDidacticReference(work.getDidacticReferences().get(quizId));
             PanelProposal proposal;
             try {
@@ -311,9 +321,8 @@ class DefaultTopicPanel implements TopicPanel {
                 allowance.settle(1, 0);
                 allowance.trip(proposal != null && proposal.getUnavailableReason() != null
                         ? proposal.getUnavailableReason() : "quien propone no está disponible");
-                emit.accept(decision(knowledgeId, unitQuizIds, holding, PanelOutcomeKind.NOT_ATTEMPTED, attempt,
-                        rejections, allowance.spent() - spentBefore));
-                return new Unit(current, true, false);
+                return interrupted(progress, knowledgeId, quizId, unitQuizIds, holding, before, attempt, rejections,
+                        allowance, spentBefore, emit, vocabulary, now);
             }
             allowance.settle(1, 1);
 
@@ -326,52 +335,61 @@ class DefaultTopicPanel implements TopicPanel {
                         ? new PanelCandidate(proposed.getKind(), proposed.getQuiz(), proposed.getMiniTheoryText(), null,
                                 proposed.getRationale())
                         : proposed;
-                ScoredCandidate one = score(now, current, quizId, candidate, holding, before, analyzers, allowance);
+                ScoredCandidate one = score(progress.work, progress.topic, quizId, candidate, progress.open,
+                        progress.measurement, analyzers, allowance);
                 if (Allowances.tripped(allowance)) {
                     // R010 inv. 2: a measurement cut by a failure decides nothing and spends no attempt.
-                    emit.accept(decision(knowledgeId, unitQuizIds, holding, PanelOutcomeKind.NOT_ATTEMPTED, attempt,
-                            rejections, allowance.spent() - spentBefore));
-                    return new Unit(current, true, false);
+                    return interrupted(progress, knowledgeId, quizId, unitQuizIds, holding, before, attempt, rejections,
+                            allowance, spentBefore, emit, vocabulary, now);
                 }
                 scored.add(one);
             }
             attempt++;
             if (scored.isEmpty()) {
+                progress.improvedLast = false;
                 rejections.add(new CandidateRejection(attempt, null,
                         new ArrayList<>(List.of("quien propone no entregó candidatos"))));
                 continue;
             }
-            ScriptDecision decision = script.decide(holding, before, scored);
+            ScriptDecision decision = script.decide(progress.open, progress.measurement, scored);
             if (decision.getOutcome() == PanelOutcomeKind.ACCEPTED) {
                 ScoredCandidate winner = scored.get(decision.getWinnerIndex());
-                KnowledgeEntity accepted = TopicState.apply(current, quizId, winner.getCandidate(), holding);
-                emit.accept(new PanelDecision(knowledgeId, quizIdsOf(quizId, winner.getCandidate(), holding),
-                        taskIds(holding), PanelOutcomeKind.ACCEPTED, winner.getCandidate(), winner.getGate(),
-                        new ArrayList<>(decision.getResolvedTaskIds()), attempt, new ArrayList<>(rejections), null, null,
-                        new ArrayList<>(), allowance.spent() - spentBefore));
-                if (vocabulary != null) {
-                    try {
-                        vocabulary.accepted(now, accepted);
-                    } catch (RuntimeException e) {
-                        allowance.trip("La propuesta quedó guardada, pero falló su delta léxico: " + e.getMessage());
-                        throw e;
-                    }
+                PanelCandidate chosen = winner.getCandidate();
+                String shown = shown(progress.topic, quizId, chosen, progress.open);
+                progress.take(winner, TopicState.apply(progress.topic, quizId, chosen, progress.open),
+                        decision.getProgress(), work);
+                // R007 inv. 7: the task of the whole topic, a conversion and new instructions of the topic end here.
+                boolean ends = quizId == null || conversion || chosen.getKind() == PanelCandidateKind.MULTIPLE_CHOICE_CONVERSION
+                        || chosen.getTopicInstructions() != null;
+                if (ends || progress.open.isEmpty()) {
+                    break;
                 }
-                return new Unit(accepted, false, winner.getCandidate().getTopicInstructions() != null);
+                // R007 inv. 3: the advance goes back as the starting point, with what it improved and what is left.
+                rejections.add(new CandidateRejection(attempt, chosen.getKind(), withShown(shown,
+                        List.of("se guardó como punto de partida: " + String.join(" ", reasonsOf(decision,
+                                decision.getWinnerIndex()))))));
+                continue;
             }
+            progress.improvedLast = false;
             if (decision.getOutcome() == PanelOutcomeKind.TIE) {
                 ScoredCandidate tied = tiedCandidate(scored, decision);
-                emit.accept(new PanelDecision(knowledgeId, unitQuizIds, taskIds(holding), PanelOutcomeKind.TIE, null, null,
-                        new ArrayList<>(), attempt, new ArrayList<>(rejections),
-                        tied != null ? tied.getCandidate() : null, tied != null ? tied.getGate() : null,
-                        new ArrayList<>(decision.getTieFindings()), allowance.spent() - spentBefore));
-                return new Unit(current, false, false);
+                if (progress.accepted.isEmpty()) {
+                    emit.accept(new PanelDecision(knowledgeId, unitQuizIds, taskIds(holding), PanelOutcomeKind.TIE, null,
+                            null, new ArrayList<>(), attempt, new ArrayList<>(rejections),
+                            tied != null ? tied.getCandidate() : null, tied != null ? tied.getGate() : null,
+                            new ArrayList<>(decision.getTieFindings()), allowance.spent() - spentBefore));
+                    return new Unit(current, false, false);
+                }
+                // R007 inv. 6: after an advance, a disagreement of the judges ends the attempts and keeps the advance.
+                rejections.add(new CandidateRejection(attempt, tied != null && tied.getCandidate() != null
+                        ? tied.getCandidate().getKind() : null, new ArrayList<>(decision.getReasons())));
+                break;
             }
-            // R007: each rejected candidate goes back with what it did not pass.
+            // R007: each rejected candidate goes back with what it proposed and what it did not pass.
             for (int i = 0; i < scored.size(); i++) {
                 ScoredCandidate one = scored.get(i);
                 rejections.add(new CandidateRejection(attempt, one.getCandidate() != null ? one.getCandidate().getKind() : null,
-                        reasonsOf(decision, i)));
+                        withShown(shown(progress.topic, quizId, one.getCandidate(), progress.open), reasonsOf(decision, i))));
                 int failure = failure(one);
                 if (failure < bestFailingScore) {
                     bestFailingScore = failure;
@@ -379,11 +397,163 @@ class DefaultTopicPanel implements TopicPanel {
                 }
             }
         }
+        if (!progress.accepted.isEmpty()) {
+            return keep(progress, knowledgeId, quizId, unitQuizIds, holding, before, attempt, rejections, allowance,
+                    spentBefore, emit, vocabulary, now, false);
+        }
         emit.accept(new PanelDecision(knowledgeId, unitQuizIds, taskIds(holding), PanelOutcomeKind.NO_WINNER, null, null,
                 new ArrayList<>(), attempt, new ArrayList<>(rejections),
                 bestFailing != null ? bestFailing.getCandidate() : null, bestFailing != null ? bestFailing.getGate() : null,
                 new ArrayList<>(), allowance.spent() - spentBefore));
         return new Unit(current, false, false);
+    }
+
+    /**
+     * R007: where a pass stands on one exercise. {@code topic} and {@code measurement} are the starting point of the
+     * next attempt; {@code open}, the tasks it still works; {@code accepted}, the candidates accepted on the way.
+     */
+    private static final class Progress {
+        KnowledgeEntity topic;
+        TopicWork work;
+        UnitMeasurement measurement;
+        List<ErrorTaskBrief> open;
+        final List<ScoredCandidate> accepted = new ArrayList<>();
+        final Set<String> repairsDone = new LinkedHashSet<>();
+        boolean improvedLast;
+
+        Progress(KnowledgeEntity topic, TopicWork work, UnitMeasurement measurement, List<ErrorTaskBrief> open) {
+            this.topic = topic;
+            this.work = work;
+            this.measurement = measurement;
+            this.open = new ArrayList<>(open);
+        }
+
+        void take(ScoredCandidate winner, KnowledgeEntity next, TaskProgress done, TopicWork original) {
+            accepted.add(winner);
+            topic = next;
+            work = with(original, next);
+            measurement = winner.getMeasurement();
+            improvedLast = true;
+            for (ErrorTaskBrief brief : open) {
+                if (brief instanceof com.learney.contentaudit.revisiondomain.panel.DidacticRepairBrief
+                        && done.resolved().contains(brief.getTask().getId())) {
+                    repairsDone.add(brief.getTask().getId());
+                }
+            }
+            open.removeIf(brief -> done.resolved().contains(brief.getTask().getId()));
+        }
+    }
+
+    /** R010 inv. 2 with R007 inv. 4: a cut keeps what the pass already accepted; without it, nothing was attempted. */
+    private Unit interrupted(Progress progress, String knowledgeId, String quizId, List<String> unitQuizIds,
+            List<ErrorTaskBrief> holding, UnitMeasurement before, int attempt, List<CandidateRejection> rejections,
+            Allowances.Counting allowance, int spentBefore, Consumer<PanelDecision> emit,
+            PanelVocabularyContext vocabulary, TopicWork now) {
+        if (!progress.accepted.isEmpty()) {
+            return keep(progress, knowledgeId, quizId, unitQuizIds, holding, before, attempt, rejections, allowance,
+                    spentBefore, emit, vocabulary, now, true);
+        }
+        emit.accept(decision(knowledgeId, unitQuizIds, holding, PanelOutcomeKind.NOT_ATTEMPTED, attempt, rejections,
+                allowance.spent() - spentBefore));
+        return new Unit(progress.topic, true, false);
+    }
+
+    /**
+     * R007 inv. 4: the exercise as the last accepted candidate left it, as one change from how it was, with the gate
+     * against that original; its tasks resolved, improved -- with their measure before and after -- or open.
+     */
+    private Unit keep(Progress progress, String knowledgeId, String quizId, List<String> unitQuizIds,
+            List<ErrorTaskBrief> holding, UnitMeasurement before, int attempt, List<CandidateRejection> rejections,
+            Allowances.Counting allowance, int spentBefore, Consumer<PanelDecision> emit,
+            PanelVocabularyContext vocabulary, TopicWork now, boolean interrupted) {
+        ScoredCandidate last = progress.accepted.get(progress.accepted.size() - 1);
+        PanelCandidate kept;
+        ChangeGateVerdict verdict;
+        if (progress.accepted.size() == 1) {
+            kept = last.getCandidate();
+            verdict = last.getGate();
+        } else {
+            List<String> rationales = new ArrayList<>();
+            for (ScoredCandidate step : progress.accepted) {
+                String rationale = step.getCandidate() != null ? step.getCandidate().getRationale() : null;
+                if (rationale != null && !rationale.isBlank()) {
+                    rationales.add(rationale.strip());
+                }
+            }
+            kept = new PanelCandidate(PanelCandidateKind.WHOLE_EXERCISE,
+                    TopicState.quiz(progress.topic, quizId).map(TopicState::copy).orElse(null), null, null,
+                    String.join(" · ", rationales));
+            verdict = changeGate.check(new ChangeProbe(new ArrayList<>(unitQuizIds), false, before,
+                    progress.measurement, new ArrayList<>()));
+        }
+        TaskProgress done = script.progress(holding, before, progress.measurement);
+        List<String> resolved = new ArrayList<>(done.resolved());
+        for (String repair : progress.repairsDone) {
+            if (!resolved.contains(repair)) {
+                resolved.add(repair);
+            }
+        }
+        List<String> improved = new ArrayList<>(done.improved());
+        improved.removeAll(resolved);
+        Map<String, String> improvements = new LinkedHashMap<>();
+        for (String taskId : improved) {
+            improvements.put(taskId, done.improvements().get(taskId));
+        }
+        PanelDecision decision = new PanelDecision(knowledgeId, quizIdsOf(quizId, kept, holding), taskIds(holding),
+                PanelOutcomeKind.ACCEPTED, kept, verdict, resolved, attempt, new ArrayList<>(rejections), null, null,
+                new ArrayList<>(), allowance.spent() - spentBefore);
+        decision.setImprovedTaskIds(improved);
+        decision.setImprovements(improvements);
+        emit.accept(decision);
+        if (vocabulary != null) {
+            try {
+                vocabulary.accepted(now, progress.topic);
+            } catch (RuntimeException e) {
+                allowance.trip("La propuesta quedó guardada, pero falló su delta léxico: " + e.getMessage());
+                throw e;
+            }
+        }
+        boolean topicInstructions = false;
+        for (ScoredCandidate step : progress.accepted) {
+            topicInstructions |= step.getCandidate() != null && step.getCandidate().getTopicInstructions() != null;
+        }
+        return new Unit(progress.topic, interrupted, topicInstructions);
+    }
+
+    /** F-MESA-R017 and R007 inv. 2: what a candidate proposed, as the student would read it, before its reasons. */
+    private static List<String> withShown(String shown, List<String> reasons) {
+        List<String> all = new ArrayList<>();
+        if (shown != null) {
+            all.add("propuso " + shown);
+        }
+        all.addAll(reasons);
+        return all;
+    }
+
+    /** The exercise a candidate leaves, as the student reads it: «No cameras. You ___ use cameras.» (can't). */
+    private String shown(KnowledgeEntity topic, String quizId, PanelCandidate candidate, List<ErrorTaskBrief> tasks) {
+        if (quizStudentViewRenderer == null || candidate == null || quizId == null) {
+            return null;
+        }
+        try {
+            Optional<QuizTemplateEntity> quiz = TopicState.quiz(TopicState.apply(topic, quizId, candidate, tasks), quizId);
+            if (quiz.isEmpty()) {
+                return null;
+            }
+            QuizStudentView view = quizStudentViewRenderer.render(TopicState.auditable(quiz.get()));
+            if (view == null || view.getStatement() == null) {
+                return null;
+            }
+            List<String> answers = new ArrayList<>();
+            for (var gap : view.getGaps() != null ? view.getGaps() : List.<com.learney.contentaudit.auditdomain.studentview.StudentGapView>of()) {
+                if (gap != null && gap.getFirstAnswer() != null) {
+                    answers.add(gap.getFirstAnswer());
+                }
+            }
+            return "«" + view.getStatement() + "»" + (answers.isEmpty() ? "" : " (" + String.join(" / ", answers) + ")");
+        } catch (RuntimeException e) {
+            return null; // what was proposed is context for the next attempt, never a reason to stop
+        }
     }
 
     /** Screens, measures and gates one candidate against the exercise as it was measured before. */

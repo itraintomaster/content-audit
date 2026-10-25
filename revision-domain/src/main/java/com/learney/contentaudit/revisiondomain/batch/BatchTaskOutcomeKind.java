@@ -13,6 +13,9 @@ public enum BatchTaskOutcomeKind {
 
     RESOLVED_BY_PANEL,
 
+    /** F-MESA-R007 inv. 4: the panel left it better but still open; the next pass starts from there. */
+    IMPROVED,
+
     NO_LONGER_HOLDS,
 
     COVERED,

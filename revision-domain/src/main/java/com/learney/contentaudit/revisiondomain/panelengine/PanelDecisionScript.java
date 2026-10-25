@@ -12,4 +12,7 @@ import javax.annotation.processing.Generated;
 interface PanelDecisionScript {
     ScriptDecision decide(List<ErrorTaskBrief> tasks, UnitMeasurement original,
             List<ScoredCandidate> candidates);
+
+    /** F-MESA-R006 and R007 inv. 4: what the exercise as {@code to} did to each task, against {@code from}. */
+    TaskProgress progress(List<ErrorTaskBrief> tasks, UnitMeasurement from, UnitMeasurement to);
 }
