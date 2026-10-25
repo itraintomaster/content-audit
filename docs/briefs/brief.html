@@ -3,8 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Anotar sin esperar</title>
-<meta name="description" content="Anotar con P cierra el cajón al instante y content-audit guarda de fondo; antes, 44 s con el cajón abierto.">
+<title>Los resúmenes, hecho</title>
 <!--
   TEMPLATE DE BRIEF · visual-brief
   1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
@@ -341,145 +340,113 @@
     .map.alta .cap{width:min(55%,220px);margin:0 auto}
   }
 
-  /* ============ CATÁLOGO · se borra entero al generar ============ */
-  .cat{margin-top:64px;padding-top:22px;border-top:3px solid var(--bad)}
-  .cat .adv{font-size:13px;color:var(--bad);font-weight:600;margin:0 0 20px}
-  .cat-g{display:grid;gap:16px}
-  .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
-  .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
-  .cat-i>.n b{color:var(--fg-2)}
-</style>
-</head>
+  </style>
 <body>
 <div class="wrap">
 
   <header>
     <div class="kicker">
-      <span class="num">211</span>
+      <span class="num">212</span>
       <span class="badge">Resumen</span>
-      <span class="meta">Anotar con P · 25/10/2026</span>
+      <span class="meta">Etapa 9 del estado único del tablero · 25/10/2026</span>
     </div>
-    <h1>Anotar con P ya no espera: el cajón se cierra enseguida</h1>
-    <p class="sub">Qué cambió, qué medí en una copia sin modelos y lo único que sigue tardando.</p>
+    <h1>Los resúmenes se ponen al día solos, y hay una sola estimación</h1>
+    <p class="sub">La etapa 9, en master y en el 7800, probada en una copia sin modelos: qué cambió, qué medí y qué pasa a la propuesta.</p>
   </header>
 
-  <div class="lede"><p><strong>Tocás «Anotar caso» y el cajón se cierra en el acto; antes quedaba abierto 44 s.</strong> content-audit guarda de fondo en unos 6 s, y ahí aparece «Deshacer».</p></div>
+  <div class="lede"><p><strong>Al terminar una corrida el aviso ya no espera (1 ms; antes 6,3 s) y las cuatro pantallas se ponen al día solas.</strong> Queda una cola de 3 s que arma Evolución.</p></div>
 
   <section>
-    <h2>De 44 segundos a cero, sin releer la tanda</h2>
-    <div class="kpis">
-      <div class="kpi dest"><div class="n">0<small>s</small></div><div class="l">lo que tarda en cerrarse el cajón; antes, 44 s (deshacer, 40)</div></div>
-      <div class="kpi"><div class="n">6,2<small>s</small></div><div class="l">lo que tarda content-audit en guardar el caso, ahora de fondo</div></div>
-      <div class="kpi"><div class="n">0</div><div class="l">relecturas de la tanda y del análisis; antes, 35 s por anotación</div></div>
-      <div class="kpi"><div class="n">8<small>s</small></div><div class="l">después de guardado, otra pestaña lo cuenta sin recargar</div></div>
-    </div>
-    <p class="pie">Medido en la copia de la campaña A1, corrección 4, con el código ya juntado con «un cambio, un aviso».</p>
-  </section>
-
-  <section>
-    <h2>Dónde: el cajón de la tecla P, en Correcciones</h2>
+    <h2>Vueltas, Estadísticas, Comparar y Publicar, sin «Volver a leer»</h2>
     <div class="map">
       <div class="ex">
-        <svg class="cap" viewBox="0 0 1280 800" role="img" aria-label="Captura del cajón para anotar un problema, con tres marcas">
-          <image href="211-anotar-sin-esperar/cajon.jpg" width="1280" height="800"/>
-          <rect class="tapa" x="0" y="0" width="560" height="800"/>
-          <rect class="aro" x="578" y="121" width="684" height="56" rx="10"/>
-          <rect class="aro" x="578" y="300" width="230" height="45" rx="10"/>
-          <rect class="aro" x="576" y="734" width="125" height="56" rx="10"/>
-          <g class="mk" transform="translate(560 149)"><circle r="26"/><text font-size="29">1</text></g>
-          <g class="mk" transform="translate(838 323)"><circle r="26"/><text font-size="29">2</text></g>
-          <g class="mk" transform="translate(639 702)"><circle r="26"/><text font-size="29">3</text></g>
+        <svg class="cap" viewBox="0 0 1280 800" role="img" aria-label="Vueltas de la tanda A1, corrección 4, con cuatro marcas: la curva, la estimación de la próxima vuelta, la bandeja y la franja que dice que terminó la corrida">
+          <image href="212-los-resumenes-hecho/vueltas.jpg" width="1280" height="800"/>
+          <rect class="aro" x="108" y="214" width="1124" height="77" rx="12"/>
+          <rect class="aro" x="108" y="432" width="555" height="362" rx="12"/>
+          <rect class="aro" x="677" y="432" width="555" height="237" rx="12"/>
+          <g class="mk" transform="translate(84 252)"><circle r="22"/><text font-size="24">1</text></g>
+          <g class="mk" transform="translate(84 470)"><circle r="22"/><text font-size="24">2</text></g>
+          <g class="mk" transform="translate(1254 470)"><circle r="22"/><text font-size="24">3</text></g>
+          <g class="mk gris" transform="translate(352 16)"><circle r="14"/><text font-size="16">4</text></g>
         </svg>
       </div>
       <div class="who">
-        <div><b>1</b><span><strong>El problema</strong><br><small>propone el último, aunque todavía se guarde</small></span></div>
-        <div><b>2</b><span><strong>Rechazar la corrección</strong><br><small>se ve rechazada al instante</small></span></div>
-        <div><b>3</b><span><strong>Anotar caso</strong><br><small>cierra el cajón sin esperar</small></span></div>
+        <div><b>1</b><span><strong>La curva</strong><br><small>se pide sola cuando cambia un tema suyo</small></span></div>
+        <div><b>2</b><span><strong>«Cuánto costaría la próxima vuelta»</strong><br><small>la cuenta del diálogo, con su motor</small></span></div>
+        <div><b>3</b><span><strong>La bandeja</strong><br><small>leída una vez para Vueltas y Publicar</small></span></div>
+        <div><b class="gris">4</b><span><strong>«Terminó»</strong><br><small>el aviso de la corrida, sin cola</small></span></div>
       </div>
     </div>
-    <p class="pie">El cajón no cambió de forma: cambió cuándo se cierra. Captura de la copia, 1280 × 800.</p>
+    <p class="pie">Vueltas en la copia, después de una corrida simulada y de tocar «Estimar», que es gratis. Exámenes y el catálogo de jueces también perdieron su «Volver a leer».</p>
   </section>
 
   <section>
-    <h2>Un segundo después: ya se ve, mientras se guarda</h2>
-    <div class="map">
-      <div class="ex">
-        <svg class="cap" viewBox="0 0 1280 800" role="img" aria-label="Captura de Correcciones un segundo después de anotar, con tres marcas">
-          <image href="211-anotar-sin-esperar/guardando.jpg" width="1280" height="800"/>
-          <rect class="tapa" x="0" y="110" width="328" height="690"/>
-          <rect class="aro" x="506" y="654" width="269" height="58" rx="12"/>
-          <rect class="aro" x="819" y="741" width="110" height="48" rx="10"/>
-          <rect class="aro" x="1068" y="304" width="192" height="34" rx="10"/>
-          <g class="mk" transform="translate(805 683)"><circle r="26"/><text font-size="29">1</text></g>
-          <g class="mk" transform="translate(874 712)"><circle r="26"/><text font-size="29">2</text></g>
-          <g class="mk" transform="translate(1036 321)"><circle r="26"/><text font-size="29">3</text></g>
-        </svg>
-      </div>
-      <div class="who">
-        <div><b>1</b><span><strong>«Guardando el caso…»</strong><br><small>después, «Caso guardado» y «Deshacer»</small></span></div>
-        <div><b>2</b><span><strong>Rechazado</strong><br><small>antes de que content-audit conteste</small></span></div>
-        <div><b>3</b><span><strong>6 de 20 decididas</strong><br><small>la cuenta ya lo suma</small></span></div>
-      </div>
-    </div>
-    <p class="pie">Si content-audit no lo guarda, la corrección vuelve a como estaba y el cajón se abre otra vez con lo que escribiste y el error.</p>
-  </section>
-
-  <section>
-    <h2>Lo que tarda content-audit ya no lo esperás vos</h2>
+    <h2>El aviso sale enseguida; los resúmenes esperan a Evolución</h2>
     <div class="diagram">
-      <svg viewBox="0 0 760 270" style="min-width:620px" role="img" aria-label="Línea de tiempo de una anotación. Hasta hoy: el cajón quedaba abierto 44 segundos. Ahora: el cajón se cierra en el acto, content-audit guarda en 6,2 segundos, ahí aparece Deshacer, y otra pestaña lo cuenta 8 segundos después">
-        <text x="4" y="16" class="lbl-s" style="font-weight:600">HASTA HOY</text>
-        <text x="4" y="45" class="lbl">el cajón</text>
-        <rect x="150" y="28" width="604" height="28" rx="7" class="box-bad"/><text x="162" y="47" class="lbl">abierto: content-audit guarda y el tablero relee la tanda · 44 s →</text>
+      <svg viewBox="0 0 760 286" style="min-width:620px" role="img" aria-label="Línea de tiempo al terminar una corrida con cinco pestañas. Hasta hoy: el aviso esperó 6,3 segundos y Comparar y Vueltas releían con el CLI hasta 7 segundos. Con la etapa: el aviso sale en 1 milisegundo; Evolución lee una vez por pestaña durante 3 segundos y los resúmenes esperan en la cola del navegador 2,95 segundos; el tablero los contesta en 0,2 segundos">
+        <text x="4" y="16" class="lbl-s" style="font-weight:600">HASTA HOY (20/10)</text>
+        <text x="4" y="45" class="lbl">el aviso</text>
+        <rect x="150" y="28" width="540" height="28" rx="7" class="box-bad"/><text x="162" y="47" class="lbl">espera una conexión · 6,3 s</text>
+        <text x="4" y="83" class="lbl">los resúmenes</text>
+        <rect x="150" y="66" width="600" height="28" rx="7" class="box"/><text x="162" y="85" class="lbl">releen con el CLI: Comparar 7 s, Vueltas 4,5 s</text>
 
-        <text x="4" y="92" class="lbl-s" style="font-weight:600">AHORA</text>
-        <text x="4" y="121" class="lbl">el cajón</text>
-        <rect x="150" y="104" width="250" height="28" rx="7" class="box-ok"/><text x="162" y="123" class="lbl">cerrado, «Rechazado» · 0 s</text>
-        <text x="4" y="159" class="lbl">content-audit</text>
-        <rect x="150" y="142" width="186" height="28" rx="7" class="box"/><text x="162" y="161" class="lbl">guarda · 6,2 s</text>
-        <rect x="336" y="142" width="200" height="28" rx="7" class="box-ok"/><text x="348" y="161" class="lbl">«Deshacer» aparece</text>
-        <text x="4" y="197" class="lbl">otra pestaña</text>
-        <rect x="336" y="180" width="240" height="28" rx="7" class="box"/><text x="348" y="199" class="lbl">lee sólo los estados · 8 s</text>
-        <rect x="576" y="180" width="178" height="28" rx="7" class="box-ok"/><text x="588" y="199" class="lbl">lo cuenta · ~14 s</text>
-        <path d="M336 170 L336 180" class="arrow"/>
-        <text x="150" y="232" class="lbl-s">0 s</text><text x="300" y="232" class="lbl-s">5 s</text><text x="450" y="232" class="lbl-s">10 s</text><text x="600" y="232" class="lbl-s">15 s</text><text x="726" y="232" class="lbl-s">20 s</text>
-        <text x="150" y="258" class="lbl-s">Deshacer, igual: vuelve a como estaba en el acto y content-audit lo confirma en 6,2 s.</text>
+        <text x="4" y="130" class="lbl-s" style="font-weight:600">CON LA ETAPA</text>
+        <text x="4" y="159" class="lbl">el aviso</text>
+        <rect x="150" y="142" width="8" height="28" rx="3" class="box-ok"/><text x="168" y="161" class="lbl">1 ms</text>
+        <text x="4" y="197" class="lbl">Evolución</text>
+        <rect x="159" y="180" width="257" height="28" rx="7" class="box-bad"/><text x="171" y="199" class="lbl">5 lecturas, una por pestaña · 3 s</text>
+        <text x="4" y="235" class="lbl">los resúmenes</text>
+        <rect x="160" y="218" width="253" height="28" rx="7" class="box"/><text x="172" y="237" class="lbl">en la cola · 2,95 s</text>
+        <rect x="413" y="218" width="20" height="28" rx="5" class="box-ok"/><text x="443" y="237" class="lbl">contesta en 0,2 s · llegan a los 3,3 s</text>
+        <text x="150" y="270" class="lbl-s">0 s</text><text x="403" y="270" class="lbl-s">3 s</text><text x="660" y="270" class="lbl-s">6 s</text>
       </svg>
     </div>
-    <p class="pie">Con la máquina ocupada por las pruebas, content-audit tardó 7 a 8 s y la otra pestaña lo contó a los 17 s del clic.</p>
+    <p class="pie">Medido en la copia con cinco pestañas a la vista. El navegador da seis conexiones: el canal de avisos y las cinco lecturas de Evolución las ocupan todas.</p>
   </section>
 
   <section>
-    <h2>Lo que cambia y lo que sigue igual</h2>
-    <div class="cambia">
-      <div class="si"><div class="ptl">Cambia</div><ul>
-        <li>El cajón se cierra apenas anotás, y deshacer se ve en el acto.</li>
-        <li>Si no se guarda, vuelve con lo escrito y el error.</li>
-        <li>Con otro cajón abierto, el aviso ofrece volver al que falló.</li>
-        <li>El siguiente espera al anterior y se suma al mismo problema.</li>
-        <li>Anotar ya no relee la tanda ni el análisis.</li>
-      </ul></div>
-      <div class="no"><div class="ptl">No cambia</div><ul>
-        <li>content-audit tarda lo mismo en guardar: unos 6 s.</li>
-        <li>Aprobar o rechazar a mano sigue tardando esos 6 s.</li>
-        <li>Lo que se guarda, el caso y su copia, es igual que antes.</li>
-      </ul></div>
+    <h2>Un resumen se lee una vez, para todas las pestañas</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">6,3 s → 1<small>ms</small></div><div class="l">lo que espera el aviso de corridas al terminar una, con las cuatro pantallas abiertas</div></div>
+      <div class="kpi"><div class="n">0,2<small>s</small></div><div class="l">lo que tarda en contestar un resumen al terminar; antes, de 4,5 a 7 s</div></div>
+      <div class="kpi"><div class="n">4 → 1</div><div class="l">lugares que estiman: diálogo, Vueltas, Exámenes y Problemas dan el mismo número</div></div>
+      <div class="kpi"><div class="n">8</div><div class="l">«releer» que quedan, de otras pantallas, en una lista que sólo baja</div></div>
     </div>
-    <div class="call c-warn"><b>Ojo:</b> si la anotación crea un problema nuevo, el cajón siguiente lo propone recién cuando se guardó.</div>
+    <p class="pie">Decidir desde la terminal: Publicar contesta enseguida, marcado «actualizando», y lo nuevo llega a los 36 s, lo que tarda content-audit en releer la tanda y el análisis.</p>
   </section>
 
   <section>
-    <h2>Qué necesito de vos</h2>
+    <h2>Para la propuesta: sin ritmo de 5 s</h2>
+    <div class="tw"><table>
+      <thead><tr><th>La propuesta dice</th><th>Lo que pasó</th></tr></thead>
+      <tbody>
+        <tr><td>El ruido de una corrida se lee a lo sumo cada 5 s</td><td>Sin ritmo: mientras algo corre, el ruido no cuenta; al terminar, se lee una vez.</td></tr>
+        <tr><td>Decidir avisa «publicar»</td><td>Sube «decisiones», que es de Publicar, de la bandeja y de Vueltas, que cuenta lo rechazado.</td></tr>
+        <tr><td>Las cuatro pantallas, sin releer</td><td>También Exámenes y los jueces, como pediste, y la ayuda de las cinco ya no manda a ↻.</td></tr>
+        <tr><td>Un tope de «releer» que sólo baja</td><td>Quedan 8: Mapa, Analizadores, cambios, análisis vigente y Evolución. Ninguna etapa los saca.</td></tr>
+        <tr><td>Vueltas estima con el motor del diálogo</td><td>Y lo dice: «Estimada con gpt-6.1-sol, el de siempre». El examen fijo se cuenta una vez.</td></tr>
+        <tr><td>Criterio: la cola al terminar</td><td>El aviso, cumplido. Los resúmenes esperan 2,95 s detrás de Evolución, que no es de ninguna etapa.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="call c-warn">El doble aviso del vigía ya lo arregló F-AVISO-R008, juntado antes. En la copia, el ruido simulado no subió la tanda: «actualizando» lo probé con una decisión.</div>
+  </section>
+
+  <section>
+    <h2>Dos decisiones</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Bajamos los 6 s de content-audit en otra sesión?</span>
-        <div class="ops"><span class="op rec">Sí, en otra sesión · recomendado</span><span class="op">No por ahora</span></div>
-        <span class="why">Anotar y aprobar pagan lo mismo: lee la tanda entera y la relee al guardar. Quedaría en unos 2 s.</span></div>
+      <div class="ask"><span class="q">¿Evolución pasa a ser el quinto resumen?</span>
+        <div class="ops"><span class="op rec">Sí, ahora · recomendado</span><span class="op">Más adelante</span></div>
+        <span class="why">Hoy ocupa cinco conexiones 3 s al terminar cada corrida. Como resumen, contestaría lo guardado al instante y se leería una vez.</span></div>
+      <div class="ask"><span class="q">Los 8 «releer» que quedan, ¿en qué etapa salen?</span>
+        <div class="ops"><span class="op rec">Una etapa nueva · recomendado</span><span class="op">Dejarlos</span></div>
+        <span class="why">Ninguna de las diez los nombra; la guardia ya impide sumar otro.</span></div>
     </div>
   </section>
 
   <footer>
-    <span>Copia de verificación en 127.0.0.1:7845, sin modelos (stubs de codex, gemini, agy, claude y ollama), campaña a1-v11 clonada. Regla F-PROBS-R009 (requirements/2026-10-24.08_los-problemas). ittm master 3e772a488 (c43fef9c4 y 025a038e1, juntados con 218ee65fa). Perfil de content-audit con JFR: DefaultBatchReview.read y decide.</span>
-    <span>brief 211 · docs/briefs/211-anotar-sin-esperar.html</span>
+    <span>Copia de verificación en 127.0.0.1:7847, sin modelos (stubs de codex, gemini, agy, claude y ollama, dentro de un sandbox) · campaña a1-v11 clonada · tanda A1 corrección 4 · corrida simulada con un proceso inofensivo y el registro de actividad · requisito F-RESUM (requirements/2026-10-24.09_los-resumenes) · ittm 1a3ff52f9 (master, con la etapa; 77c72e873 el último paso) · 7800 reiniciado con la etapa · pruebas: 2.729 del navegador y 1.986 de flutter, en verde</span>
+    <span>brief 212 · docs/briefs/212-los-resumenes-hecho.html</span>
   </footer>
 
 </div>
