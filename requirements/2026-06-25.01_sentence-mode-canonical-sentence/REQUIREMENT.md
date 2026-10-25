@@ -158,6 +158,26 @@ La exclusion es total: la oracion fuente no aporta tokens, no aparece
 concatenada, y no influye en el conteo ni en el delta respecto al rango
 objetivo ([F-SLEN-R002](#F-SLEN-R002)).
 
+Desde el 25/10/2026 la regla cubre dos casos que se le escapaban, encontrados en la primera corrida real de la
+mesa que guarda las mejoras (brief 219):
+
+1. **La oracion guardada trae la fuente.** Una correccion que rearmo la oracion guardada sin mirar el modo la
+   dejo con la fuente y la respuesta juntas («I want you to help me. Could you help me?», 12 tokens). Si la
+   oracion guardada es el enunciado entero armado y la respuesta sola es otra, se mide la respuesta sola
+   («Could you help me?», 5). La oracion guardada no se toca: es la que leen los jueces, y los demas analizadores
+   siguen leyendo sus tokens. La evidencia del hallazgo de longitud muestra la oracion que se conto, y la ficha del
+   analizador de longitud dice que en un ejercicio de transformar mide solo la respuesta, asi la comparacion con la
+   linea base lo muestra como cambio de medida ([F-METAS-R007](#F-METAS-R007)).
+2. **La fuente comparte el texto con el comienzo de la respuesta.** En «It's not okay to use a camera here. You
+   ___ use a camera here.» la fuente y «You » son una sola parte de texto, asi que no es un andamio aparte. Lo
+   que viene antes del ultimo fin de oracion de esa parte es fuente: se mide «You can't use a camera here.».
+
+Una oracion guardada que ya es la respuesta sola se sigue midiendo como esta, aunque armada desde las partes
+saliera distinta («She visits her father (every week)» no tiene punto). Medido el 25/10 sobre el curso y la C2 de
+A1: desaparecen 17 de los 32 hallazgos de longitud de los ejercicios de transformar de A1 y siguen 15; en el curso
+cambia lo medido en 8 ejercicios de A1, 4 de A2 y 6 de B1; en B1 aparecen 2 respuestas cortas («B: Neither have
+I.», 5 tokens contra 8 a 18).
+
 **Error**: "La frase canonica del quiz '{quizId}' (modo REWRITE) incluyo la oracion fuente; debe contener solo la respuesta"
 
 </details>

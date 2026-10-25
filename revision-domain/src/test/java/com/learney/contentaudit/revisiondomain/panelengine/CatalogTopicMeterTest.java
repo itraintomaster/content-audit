@@ -165,6 +165,31 @@ public class CatalogTopicMeterTest {
     }
 
     @Test
+    @DisplayName("should declare for the gate the length the analyzer counted: «I want you to help me. Could you help me?» of a rewrite topic, 5 tokens of its answer and within range")
+    @Tag("FEAT-SMODE")
+    @Tag("F-SMODE-R004")
+    public void shouldDeclareForTheGateTheLengthTheAnalyzerCountedOnTheAnswerOfARewriteExercise() {
+        // F-SMODE-R004: the panel keeps a candidate from moving a length away from its range with the same count the
+        // analyzer uses; a rewrite exercise whose stored sentence carries its source is counted on its answer alone.
+        QuizTemplateEntity help = quiz("67fab6d59930102295342dd7", "¿Podrías ayudarme?", text("I want you to help me. "),
+                cloze("Could you help me?"));
+        assertEquals(List.of("I want you to help me. Could you help me?"), help.getSentences(), "source and answer stored");
+        KnowledgeEntity topic = topic("6814dafa7d73e7209a13d3e4", "Pedidos: formal o informal",
+                new java.util.ArrayList<>(List.of(help)));
+        topic.setSentenceMode(com.learney.contentaudit.coursedomain.SentenceMode.REWRITE);
+        MeterBench bench = new MeterBench();
+
+        UnitMeasurement measured = bench.meter().measure(work(topic, List.of()), topic, List.of("sentence-length"),
+                allowance(null, 4));
+
+        assertEquals(1, measured.getLengths().size());
+        assertEquals(5, measured.getLengths().get(0).getTokens(), "«Could you help me?» alone");
+        assertTrue(measured.getLengths().get(0).isInRange());
+        assertTrue(measured.getFindings().stream().noneMatch(f -> f.getAnalyzer().equals("sentence-length")),
+                keys(measured.getFindings()).toString());
+    }
+
+    @Test
     @DisplayName("should measure each candidate with every instant analyzer of the starting analysis")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R004")

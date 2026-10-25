@@ -19,9 +19,18 @@ public class SentenceLengthAnalyzerProvider implements AnalyzerProvider {
 
     private final SentenceLengthConfig config;
 
+    /** F-SMODE-R004: the finished sentence of each mode, to measure a rewrite exercise on its answer alone. */
+    private final QuizStudentViewRenderer studentViewRenderer;
+
     public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthConfig config) {
+        this(nlpTokenizer, config, null);
+    }
+
+    public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthConfig config,
+            QuizStudentViewRenderer studentViewRenderer) {
         this.nlpTokenizer = nlpTokenizer;
         this.config = config;
+        this.studentViewRenderer = studentViewRenderer;
     }
 
     @Override
@@ -40,7 +49,11 @@ public class SentenceLengthAnalyzerProvider implements AnalyzerProvider {
                 SentenceLengthAnalyzer.DESCRIPTION,
                 AuditTarget.QUIZ,
                 "¿La oración tiene el largo de su nivel?",
-                "La oración de cada ejercicio, contada en tokens como la cuenta spaCy, y el nivel del ejercicio",
+                // F-METAS-R007: the card says what is measured, so a change of measure shows apart.
+                studentViewRenderer != null
+                        ? "La oración de cada ejercicio —en uno de transformar, sólo su respuesta—, contada en tokens como la"
+                                + " cuenta spaCy, y el nivel del ejercicio"
+                        : "La oración de cada ejercicio, contada en tokens como la cuenta spaCy, y el nivel del ejercicio",
                 // F-RONDA1-R005 inv. 4: one rule for each side of the goal, so the level can say
                 // how many sentences are shorter and how many longer without computing anything.
                 List.of(new AnalyzerRuleCard(SentenceLengthAnalyzer.RULE_SHORTER,
@@ -59,7 +72,7 @@ public class SentenceLengthAnalyzerProvider implements AnalyzerProvider {
 
     @Override
     public ContentAnalyzer create(EvaluationRunPolicy policy) {
-        return new SentenceLengthAnalyzer(nlpTokenizer, config);
+        return new SentenceLengthAnalyzer(nlpTokenizer, config, studentViewRenderer);
     }
 
     @Override

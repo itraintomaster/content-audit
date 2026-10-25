@@ -4,7 +4,10 @@ import com.learney.contentaudit.auditdomain.finding.FindingDraft;
 import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import java.util.IdentityHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 
@@ -30,9 +33,21 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
 
     private final NlpTokenizer nlpTokenizer;
 
+    /** F-SMODE-R004: builds the finished sentence of each mode; without it, the stored sentence is measured whole. */
+    private final QuizStudentViewRenderer studentViewRenderer;
+
+    /** F-SMODE-R004: the answer measured alone, by quiz node, for the evidence of its finding. */
+    private final Map<AuditNode, String> measuredAnswers = java.util.Collections.synchronizedMap(new IdentityHashMap<>());
+
     public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig config) {
+        this(nlpTokenizer, config, null);
+    }
+
+    public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig config,
+            QuizStudentViewRenderer studentViewRenderer) {
         this.nlpTokenizer = nlpTokenizer;
         this.config = config;
+        this.studentViewRenderer = studentViewRenderer;
     }
 
     @Override
@@ -84,6 +99,11 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
 
         TargetRange range = rangeOpt.get();
         int tokens = quiz.getTokens() != null ? quiz.getTokens().size() : 0;
+        String answer = answerAlone(quiz, knowledge.getSentenceMode());
+        if (answer != null) {
+            tokens = answerTokens(quiz.getTokens(), quiz.getSentences().get(0), answer);
+            measuredAnswers.put(node, answer);
+        }
         double score = scoreQuiz(tokens, range);
         node.getScores().put(ANALYZER_NAME, score);
 
@@ -113,6 +133,60 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
     @Override
     public Void onCourseComplete(AuditNode rootNode) {
         return null;
+    }
+
+    /**
+     * F-SMODE-R004: the answer of a rewrite exercise whose stored sentence is its whole statement -- the source and
+     * the answer together, as a revision that rebuilt it without the mode leaves it --, which is then measured alone.
+     * Null when the stored sentence is what is measured: any other mode, a multiple choice, a stored sentence that is
+     * already the answer, or one that is not the whole statement.
+     */
+    private String answerAlone(AuditableQuiz quiz, SentenceMode mode) {
+        if (studentViewRenderer == null || mode != SentenceMode.REWRITE || quiz.getSentences() == null
+                || quiz.getSentences().isEmpty() || quiz.getSentences().get(0) == null || quiz.getTokens() == null) {
+            return null;
+        }
+        String stored = quiz.getSentences().get(0);
+        String whole;
+        String answer;
+        try {
+            whole = studentViewRenderer.finishedSentence(quiz, SentenceMode.FILL);
+            answer = studentViewRenderer.finishedSentence(quiz, SentenceMode.REWRITE);
+        } catch (RuntimeException e) {
+            return null; // parts the converter cannot read keep their stored sentence, as before
+        }
+        if (whole == null || answer == null || !spaced(stored).equals(spaced(whole))
+                || spaced(answer).equals(spaced(whole)) || !unspaced(stored).endsWith(unspaced(answer))) {
+            return null;
+        }
+        return answer;
+    }
+
+    /**
+     * How many of the tokens of {@code sentence} are those of its tail {@code answer}: the ones left after the tokens
+     * that spell the part before it. The tokenizer cuts at the spaces, so the tail alone has the same tokens, and
+     * nothing new needs tokenizing.
+     */
+    private static int answerTokens(List<NlpToken> tokens, String sentence, String answer) {
+        int before = unspaced(sentence).length() - unspaced(answer).length();
+        int spelled = 0;
+        int skipped = 0;
+        for (NlpToken token : tokens) {
+            if (spelled >= before) {
+                break;
+            }
+            spelled += token.getText() != null ? unspaced(token.getText()).length() : 0;
+            skipped++;
+        }
+        return Math.max(0, tokens.size() - skipped);
+    }
+
+    private static String spaced(String text) {
+        return text.replaceAll("\\s+", " ").strip();
+    }
+
+    private static String unspaced(String text) {
+        return text.replaceAll("\\s+", "");
     }
 
     private double scoreQuiz(int tokens, TargetRange range) {
@@ -168,7 +242,8 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
         if (score == null || score >= 1.0) {
             return List.of();
         }
-        String sentence = sentenceOf(node);
+        // F-SMODE-R004: the evidence is the sentence that was counted.
+        String sentence = measuredAnswers.containsKey(node) ? measuredAnswers.get(node) : sentenceOf(node);
         Optional<SentenceLengthDiagnosis> diagnosis = node.getDiagnoses() instanceof DefaultQuizDiagnoses quizDiagnoses
                 ? quizDiagnoses.getSentenceLengthDiagnosis()
                 : Optional.empty();

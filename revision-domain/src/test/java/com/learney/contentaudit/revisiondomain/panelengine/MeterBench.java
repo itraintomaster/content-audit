@@ -118,6 +118,9 @@ public final class MeterBench {
     public MeterBench() {
         DefaultQuizStudentViewRenderer renderer = new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create());
         providers.add(new HintCoherenceAnalyzerProvider(irregularForms(), renderer));
+        // F-SMODE-R004: the real length analyzer, which measures a rewrite exercise on its answer alone.
+        providers.add(new com.learney.contentaudit.auditdomain.SentenceLengthAnalyzerProvider(tokenizer(), lengthConfig(),
+                renderer));
         providers.add(new MultipleChoiceValidityAnalyzerProvider(exactCorrector(), new ChoiceJudge(), renderer));
         providers.add(new Judge("translation-sense", List.of("translation-sense-from-english",
                 "translation-sense-from-translation"), "same-meaning",

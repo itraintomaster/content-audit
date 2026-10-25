@@ -11,6 +11,7 @@ import com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceSerializat
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.annotation.processing.Generated;
 
@@ -48,6 +49,9 @@ public PlainSentenceDeriver(WhitespaceNormalizer whitespaceNormalizer) {
 
     /** Pattern that matches a sentence-terminal punctuation at end of a string. */
     private static final Pattern SENTENCE_END_PATTERN = Pattern.compile(".*[.?!]\\s*$");
+
+    /** A sentence that ends inside a text, with more text after it. */
+    private static final Pattern INNER_SENTENCE_END = Pattern.compile("[.?!][\"»”')]*\\s+");
 
     /**
      * Post-processes a derived sentence list by removing spurious spaces that appear
@@ -125,6 +129,11 @@ public PlainSentenceDeriver(WhitespaceNormalizer whitespaceNormalizer) {
                 // Skip: this is the source/prompt scaffold TEXT sentence
                 continue;
             }
+            if (i < firstClozeIndex && part.getKind() == SentencePartKind.TEXT) {
+                // F-SMODE-R004: the source sentence may share its TEXT with the start of the answer
+                // ("It's not okay to use a camera here. You " + "can't"): only what follows its end is answer.
+                part = answerStart(part);
+            }
             filtered.add(part);
         }
 
@@ -149,6 +158,19 @@ public PlainSentenceDeriver(WhitespaceNormalizer whitespaceNormalizer) {
      * <p>Inline hints are stripped before matching (F-SMODE-R004): a trailing hint block
      * (e.g. {@code "(every Friday) "}) must not mask terminal punctuation that precedes it.
      */
+    private static SentencePartEntity answerStart(SentencePartEntity part) {
+        if (part.getText() == null) {
+            return part;
+        }
+        String withoutHints = HINT_PATTERN.matcher(part.getText()).replaceAll("");
+        Matcher end = INNER_SENTENCE_END.matcher(withoutHints);
+        int start = -1;
+        while (end.find()) {
+            start = end.end();
+        }
+        return start < 0 ? part : new SentencePartEntity(part.getKind(), withoutHints.substring(start), part.getOptions());
+    }
+
     private boolean isScaffoldSentence(String text) {
         if (text == null || text.isBlank()) {
             return false;

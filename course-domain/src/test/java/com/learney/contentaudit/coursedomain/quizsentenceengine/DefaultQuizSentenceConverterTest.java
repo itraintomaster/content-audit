@@ -1083,6 +1083,28 @@ public class DefaultQuizSentenceConverterTest {
     }
 
     @Test
+    @DisplayName("should leave out the source sentence that shares its TEXT with the start of the answer, so «It's not okay to use a camera here. You ___ use a camera here.» measures «You can't use a camera here.»")
+    @Tag("FEAT-SMODE")
+    @Tag("F-SMODE-R004")
+    public void shouldLeaveOutTheSourceSentenceThatSharesItsTextWithTheStartOfTheAnswer() {
+        // R004 (25/10/2026): the real camera of C2. The source sentence and «You » are one TEXT, so it is not a scaffold
+        // of its own; what comes before the end of the source sentence is still not the answer. FILL keeps it whole.
+        FormEntity form = form(
+                text("It's not okay to use a camera here. You "),
+                cloze("can't"),
+                text(" use a camera here.")
+        );
+        FormEntity noSource = form(text("Let's "), cloze("have"), text(" (have) eggs for breakfast."));
+
+        assertEquals("You can't use a camera here.", normalize(converter.toPlainSentences(form, SentenceMode.REWRITE).get(0)));
+        assertEquals("It's not okay to use a camera here. You can't use a camera here.",
+                normalize(converter.toPlainSentences(form, SentenceMode.FILL).get(0)));
+        assertEquals("Let's have eggs for breakfast.",
+                normalize(converter.toPlainSentences(noSource, SentenceMode.REWRITE).get(0)),
+                "a TEXT before the blank without a sentence end is the start of the answer");
+    }
+
+    @Test
     @DisplayName("should keep the form kind, incidence, label and name of the base form when parsing a quizSentence onto it")
     @Tag("FEAT-LAPS")
     @Tag("F-LAPS-R014")

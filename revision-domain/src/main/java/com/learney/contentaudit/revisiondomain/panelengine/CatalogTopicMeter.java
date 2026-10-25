@@ -7,6 +7,7 @@ import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.AuditableCourse;
 import com.learney.contentaudit.auditdomain.AuditableKnowledge;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.DefaultQuizDiagnoses;
 import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.auditdomain.CourseMapper;
 import com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses;
@@ -299,7 +300,11 @@ class CatalogTopicMeter implements TopicMeter {
                         new ArrayList<>(spokenTextBuilder.spokenTexts(quiz, mode))));
             }
             if (isSentence && range.isPresent()) {
-                int tokens = quiz.getTokens() != null ? quiz.getTokens().size() : 0;
+                // F-SMODE-R004: the length the analyzer counted -- a rewrite exercise, on its answer alone -- when it ran.
+                int tokens = quizNode.getDiagnoses() instanceof DefaultQuizDiagnoses diagnoses
+                        && diagnoses.getSentenceLengthDiagnosis().isPresent()
+                        ? diagnoses.getSentenceLengthDiagnosis().get().getTokenCount()
+                        : quiz.getTokens() != null ? quiz.getTokens().size() : 0;
                 int min = range.get().getMinTokens();
                 int max = range.get().getMaxTokens();
                 lengths.add(new LengthDeclaration(quiz.getId(), tokens, min, max, tokens >= min && tokens <= max));

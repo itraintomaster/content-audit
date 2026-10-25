@@ -717,7 +717,8 @@ class Main {
         // packages A, C and D are built above, and all seventeen are on.
         // ----------------------------------------------------------------
         List<AnalyzerProvider> analyzerProviders = new ArrayList<>();
-        analyzerProviders.add(new SentenceLengthAnalyzerProvider(nlpTokenizer, sentenceLengthConfig));     //  1
+        analyzerProviders.add(new SentenceLengthAnalyzerProvider(nlpTokenizer, sentenceLengthConfig,
+                studentViewRenderer));                                                                   //  1
 
         analyzerProviders.add(new KnowledgeTitleLengthAnalyzerProvider());                                 //  2
 

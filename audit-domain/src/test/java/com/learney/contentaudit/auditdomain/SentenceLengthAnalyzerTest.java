@@ -819,4 +819,124 @@ public class SentenceLengthAnalyzerTest {
         Assertions.assertTrue(drafts.get(0).getEvidence().getObservation().contains("1 de menos"),
                 drafts.get(0).getEvidence().getObservation());
     }
+
+    // ------------------------------------------------------------------
+    // F-SMODE-R004: a rewrite exercise is measured on its answer alone
+    // ------------------------------------------------------------------
+
+    /** Words and marks, cut at the spaces like spaCy: enough to tell how many tokens a sentence takes. */
+    private static List<NlpToken> wordsAndMarks(String sentence) {
+        List<NlpToken> words = new ArrayList<>();
+        for (String chunk : sentence.trim().split("\\s+")) {
+            String word = chunk.replaceAll("[.?!,]+$", "");
+            if (!word.isEmpty()) words.add(new NlpToken(word, word, "X", 0, false, false));
+            if (word.length() < chunk.length()) {
+                String mark = chunk.substring(word.length());
+                words.add(new NlpToken(mark, mark, "PUNCT", 0, false, true));
+            }
+        }
+        return words;
+    }
+
+    private static com.learney.contentaudit.coursedomain.SentencePartEntity text(String text) {
+        return new com.learney.contentaudit.coursedomain.SentencePartEntity(
+                com.learney.contentaudit.coursedomain.SentencePartKind.TEXT, text, null);
+    }
+
+    private static com.learney.contentaudit.coursedomain.SentencePartEntity gap(String... answers) {
+        return new com.learney.contentaudit.coursedomain.SentencePartEntity(
+                com.learney.contentaudit.coursedomain.SentencePartKind.CLOZE, "", List.of(answers));
+    }
+
+    /** An exercise of A1 as the analysis maps it: its parts, its stored sentence and that sentence's tokens. */
+    private AuditNode rewriteQuiz(com.learney.contentaudit.coursedomain.SentenceMode mode, String id, String stored,
+            com.learney.contentaudit.coursedomain.SentencePartEntity... parts) {
+        Mockito.lenient().when(config.getTargetRange(Mockito.any()))
+                .thenReturn(Optional.of(new TargetRange(CefrLevel.A1, 3, 8)));
+        Mockito.lenient().when(config.getToleranceMargin()).thenReturn(5);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Pedidos: formal o informal", "Transforma.",
+                true, "k-" + id, "Pedidos: formal o informal", "K", mode, null);
+        AuditableQuiz quiz = new AuditableQuiz(wordsAndMarks(stored), id, "Pedidos", "Q", null, List.of(stored), null,
+                null, List.of(parts), null, null, null);
+        return fullTree("A1", knowledge, quiz);
+    }
+
+    private static SentenceLengthAnalyzer measuringAnswers(NlpTokenizer tokenizer, SentenceLengthConfig config) {
+        return new SentenceLengthAnalyzer(tokenizer, config, new com.learney.contentaudit.auditdomain.studentview
+                .DefaultQuizStudentViewRenderer(com.learney.contentaudit.coursedomain.quizsentenceengine
+                .DefaultQuizSentenceConverter.create()));
+    }
+
+    private static int counted(AuditNode quizNode) {
+        return ((DefaultQuizDiagnoses) quizNode.getDiagnoses()).getSentenceLengthDiagnosis().orElseThrow().getTokenCount();
+    }
+
+    @Test
+    @DisplayName("should measure only the answer of a rewrite exercise whose stored sentence is its source and its answer together: «I want you to help me. Could you help me?» counts the 5 tokens of «Could you help me?»")
+    @Tag("FEAT-SMODE")
+    @Tag("F-SMODE-R004")
+    public void shouldMeasureOnlyTheAnswerOfARewriteExerciseWhoseStoredSentenceIsItsSourceAndItsAnswerTogether() {
+        // Three real exercises of C2 (25/10/2026), as the panel left them: the source in its own TEXT, with a hint after
+        // it, or sharing its TEXT with the start of the answer. Each was measured over source and answer, out of range.
+        var REWRITE = com.learney.contentaudit.coursedomain.SentenceMode.REWRITE;
+        AuditNode help = rewriteQuiz(REWRITE, "2dd7", "I want you to help me. Could you help me?",
+                text("I want you to help me. "), gap("Could you help me?", "Can you help me?"));
+        AuditNode peter = rewriteQuiz(REWRITE, "2589", "Peter has breakfast at home. Peter always has breakfast at home.",
+                text("Peter has breakfast at home. (always) "), gap("Peter always has breakfast at home."));
+        AuditNode camera = rewriteQuiz(REWRITE, "2de8", "It's not okay to use a camera here. You can't use a camera here.",
+                text("It's not okay to use a camera here. You "), gap("can't"), text(" use a camera here."));
+        SentenceLengthAnalyzer analyzer = measuringAnswers(null, config);
+
+        for (AuditNode quiz : List.of(help, peter, camera)) analyzer.onQuiz(quiz);
+
+        Assertions.assertEquals(List.of(5, 7, 7), List.of(counted(help), counted(peter), counted(camera)),
+                "the answer's tokens alone: 12, 13 and 16 with the source");
+        for (AuditNode quiz : List.of(help, peter, camera)) {
+            Assertions.assertEquals(1.0, quiz.getScores().get("sentence-length"), 1e-9, "within 3 to 8");
+            Assertions.assertEquals(List.of(), analyzer.findingsAt(quiz));
+        }
+    }
+
+    @Test
+    @DisplayName("should give as evidence of a rewrite exercise measured on its answer alone that answer, «They want a bigger house. They'd like a bigger house.», with the tokens of that answer")
+    @Tag("FEAT-SMODE")
+    @Tag("F-SMODE-R004")
+    public void shouldGiveAsEvidenceOfARewriteExerciseMeasuredOnItsAnswerAloneThatAnswerWithItsTokens() {
+        // A real C2 exercise whose answer asks to write the source again: still too long on its answer alone.
+        String answer = "They want a bigger house. They'd like a bigger house.";
+        AuditNode house = rewriteQuiz(com.learney.contentaudit.coursedomain.SentenceMode.REWRITE, "2535",
+                "They want a bigger house. " + answer, text("They want a bigger house. "),
+                text("(Escribe primero la oración original y después la versión amable.) "),
+                gap(answer, "They want a bigger house. They would like a bigger house."));
+        SentenceLengthAnalyzer analyzer = measuringAnswers(null, config);
+
+        analyzer.onQuiz(house);
+        List<EvidencePart> examined = analyzer.findingsAt(house).get(0).getEvidence().getExamined();
+
+        Assertions.assertEquals(answer, examined.get(0).getText());
+        Assertions.assertEquals("12 tokens", examined.get(1).getText());
+    }
+
+    @Test
+    @DisplayName("should keep measuring the stored sentence of a rewrite exercise that already holds its answer alone, a fill exercise whole, and every exercise as before without the finished sentence")
+    @Tag("FEAT-SMODE")
+    @Tag("F-SMODE-R004")
+    public void shouldKeepMeasuringTheStoredSentenceOfARewriteExerciseThatAlreadyHoldsItsAnswerAloneAndAFillWhole() {
+        // «She visits her father (every week)» has no period, so built from its parts it would read the source twice;
+        // its stored sentence is the answer and stays what is measured. A fill exercise is measured whole.
+        AuditNode father = rewriteQuiz(com.learney.contentaudit.coursedomain.SentenceMode.REWRITE, "2f0e",
+                "She visits her father every week.", text("She visits her father (every week)"),
+                gap("She visits her father every week."), text(""));
+        AuditNode hungry = rewriteQuiz(com.learney.contentaudit.coursedomain.SentenceMode.FILL, "fill",
+                "I'm hungry. I want a sandwich.", text("I'm hungry. I "), gap("want"), text(" a sandwich."));
+        AuditNode withoutRenderer = rewriteQuiz(com.learney.contentaudit.coursedomain.SentenceMode.REWRITE, "2dd7",
+                "I want you to help me. Could you help me?", text("I want you to help me. "), gap("Could you help me?"));
+
+        SentenceLengthAnalyzer analyzer = measuringAnswers(null, config);
+        analyzer.onQuiz(father);
+        analyzer.onQuiz(hungry);
+        new SentenceLengthAnalyzer(null, config).onQuiz(withoutRenderer);
+
+        Assertions.assertEquals(List.of(7, 8, 12), List.of(counted(father), counted(hungry), counted(withoutRenderer)));
+    }
 }
