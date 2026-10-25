@@ -9,6 +9,9 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 import com.learney.contentaudit.auditdomain.*;
+import com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
 import java.util.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -3878,5 +3881,149 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         AuditNode quiz = findByTarget(root, AuditTarget.QUIZ);
         assertTrue(quiz.getScores().get("lemma-absence") < 1.0, "fixture: wallet lowers the score of the quiz");
         return quiz;
+    }
+
+    // -----------------------------------------------------------------------
+    // F-LABS-R047: the word the topic teaches is not misplaced
+    // -----------------------------------------------------------------------
+
+    @Test
+    @DisplayName("should not mark polite and request as misplaced in the A1 topic whose statements open with «Polite request:», while wallet, which the topic does not teach, stays marked")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R047")
+    public void shouldNotMarkPoliteAndRequestAsMisplacedInTheA1TopicWhoseStatementsOpenWithPoliteRequestWhileWalletWhichTheTopicDoesNotTeachStaysMarked() {
+        // R047: «Polite request:» opens 3 of the 4 statements, so polite and request are the instruction of the
+        // exercise; they are A2 but the topic teaches them. wallet is A2 too and the topic does not teach it.
+        AuditNode root = politeRequestCourse();
+        LemmaByLevelAbsenceAnalyzer withTopic = new LemmaByLevelAbsenceAnalyzer(evpCatalogPort, contentWordFilter,
+                lemmaAbsenceConfig, sentenceLexicalScorer, new DefaultTopicTeachingResolver());
+
+        run(withTopic, root);
+
+        List<AuditNode> quizzes = findByTarget(root, AuditTarget.KNOWLEDGE).getChildren();
+        for (int i = 0; i < 3; i++) {
+            assertEquals(List.of(), misplacedWords(quizzes.get(i)), "R047: polite and request are taught here");
+            assertEquals(1.0, quizzes.get(i).getScores().get("lemma-absence"), 1e-9, "R047: nothing lowers the score");
+        }
+        assertEquals(List.of("wallet"), misplacedWords(quizzes.get(3)), "R047: a word the topic does not teach");
+    }
+
+    @Test
+    @DisplayName("should still mark polite as misplaced in «Polite request: I want you to help me.» when nobody says what the topic teaches")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R047")
+    public void shouldStillMarkPoliteAsMisplacedInPoliteRequestIWantYouToHelpMeWhenNobodySaysWhatTheTopicTeaches() {
+        // R047: the same course without what the topic teaches marks polite and request, as it did before; that
+        // is what the rule takes away.
+        AuditNode root = politeRequestCourse();
+
+        run(sut, root);
+
+        AuditNode first = findByTarget(root, AuditTarget.KNOWLEDGE).getChildren().get(0);
+        assertEquals(List.of("polite", "request"), misplacedWords(first), "R047: without the topic, both are marked");
+    }
+
+    @Test
+    @DisplayName("should not mark let as misplaced in «Let's go to the park.» of the A1 topic «$Let's$ para sugerir»")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R047")
+    public void shouldNotMarkLetAsMisplacedInLetsGoToTheParkOfTheA1TopicLetsParaSugerir() {
+        // R047: the title of the topic teaches «Let's», so let is not misplaced in its quizzes even though it is A2.
+        stubMinimalConfig();
+        stubEmptyEvp();
+        when(evpCatalogPort.lookupLevel(any())).thenReturn(Optional.of(CefrLevel.A1));
+        when(evpCatalogPort.lookupLevel(new LemmaAndPos("let", "VERB"))).thenReturn(Optional.of(CefrLevel.A2));
+        AuditNode root = a1Course("$Let's$ para sugerir", List.of(List.of(
+                new NlpToken("Let", "let", "VERB", 300, false, false),
+                new NlpToken("'s", "us", "PRON", 20, true, false),
+                new NlpToken("go", "go", "VERB", 50, false, false),
+                new NlpToken("to", "to", "ADP", 5, true, false),
+                new NlpToken("the", "the", "DET", 1, true, false),
+                new NlpToken("park", "park", "NOUN", 900, false, false),
+                new NlpToken(".", ".", "PUNCT", null, false, true))), List.of("Let's go to the"));
+        LemmaByLevelAbsenceAnalyzer withTopic = new LemmaByLevelAbsenceAnalyzer(evpCatalogPort, contentWordFilter,
+                lemmaAbsenceConfig, sentenceLexicalScorer, new DefaultTopicTeachingResolver());
+
+        run(withTopic, root);
+
+        AuditNode quiz = findByTarget(root, AuditTarget.QUIZ);
+        assertEquals(List.of(), misplacedWords(quiz), "R047: the title teaches let");
+        assertEquals(1.0, quiz.getScores().get("lemma-absence"), 1e-9, "R047: let does not lower the score");
+    }
+
+    /** «Pedidos: formal o informal», A1: three statements open with «Polite request:» and one has wallet. */
+    private AuditNode politeRequestCourse() {
+        stubMinimalConfig();
+        stubEmptyEvp();
+        when(evpCatalogPort.lookupLevel(any())).thenReturn(Optional.of(CefrLevel.A1));
+        when(evpCatalogPort.lookupLevel(new LemmaAndPos("polite", "ADJ"))).thenReturn(Optional.of(CefrLevel.A2));
+        when(evpCatalogPort.lookupLevel(new LemmaAndPos("request", "NOUN"))).thenReturn(Optional.of(CefrLevel.A2));
+        when(evpCatalogPort.lookupLevel(new LemmaAndPos("wallet", "NOUN"))).thenReturn(Optional.of(CefrLevel.A2));
+        List<NlpToken> polite = List.of(
+                new NlpToken("Polite", "polite", "ADJ", 4000, false, false),
+                new NlpToken("request", "request", "NOUN", 3000, false, false),
+                new NlpToken(":", ":", "PUNCT", null, false, true),
+                new NlpToken("Could", "could", "AUX", 80, true, false),
+                new NlpToken("you", "you", "PRON", 10, true, false),
+                new NlpToken("help", "help", "VERB", 200, false, false),
+                new NlpToken("me", "me", "PRON", 30, true, false),
+                new NlpToken("?", "?", "PUNCT", null, false, true));
+        List<NlpToken> wallet = List.of(
+                new NlpToken("Could", "could", "AUX", 80, true, false),
+                new NlpToken("you", "you", "PRON", 10, true, false),
+                new NlpToken("find", "find", "VERB", 150, false, false),
+                new NlpToken("my", "my", "PRON", 40, true, false),
+                new NlpToken("wallet", "wallet", "NOUN", 9000, false, false),
+                new NlpToken("?", "?", "PUNCT", null, false, true));
+        String statement = "Polite request: I want you to help me. →";
+        return a1Course("Pedidos: formal o informal", List.of(polite, polite, polite, wallet),
+                List.of(statement, statement, statement, "I want you to find my wallet. →"));
+    }
+
+    /** An A1 course with one topic of the given title whose quizzes have these tokens and statements. */
+    private AuditNode a1Course(String title, List<List<NlpToken>> quizTokens, List<String> statements) {
+        AuditNode root = makeNode(AuditTarget.COURSE, null, null);
+        root.setDiagnoses(new DefaultCourseDiagnoses());
+        for (CefrLevel level : COURSE_LEVELS) {
+            AuditNode milestone = makeNode(AuditTarget.MILESTONE,
+                    new AuditableMilestone(List.of(), "m-" + level.name(), level.name(), null), root);
+            milestone.setDiagnoses(new DefaultLevelDiagnoses());
+            if (level != CefrLevel.A1) {
+                continue;
+            }
+            AuditNode topic = makeNode(AuditTarget.TOPIC, new AuditableTopic(List.of(), "t1", title, "T"), milestone);
+            AuditNode knowledge = makeNode(AuditTarget.KNOWLEDGE,
+                    new AuditableKnowledge(List.of(), title, "Transforma.", true, "k1", title, "K", null, null), topic);
+            for (int i = 0; i < quizTokens.size(); i++) {
+                AuditableQuiz quiz = new AuditableQuiz(quizTokens.get(i), "q" + i, statements.get(i), "Q", null,
+                        List.of(statements.get(i)), null, null, null, null, null, null);
+                quiz.setSentenceParts(List.of(new SentencePartEntity(SentencePartKind.TEXT, statements.get(i), null),
+                        new SentencePartEntity(SentencePartKind.CLOZE, null, List.of("answer"))));
+                makeNode(AuditTarget.QUIZ, quiz, knowledge).setDiagnoses(new DefaultQuizDiagnoses());
+            }
+        }
+        return root;
+    }
+
+    /** Runs an analyzer over the course: every quiz, then the course. */
+    private static void run(LemmaByLevelAbsenceAnalyzer analyzer, AuditNode node) {
+        if (node.getTarget() == AuditTarget.QUIZ) {
+            analyzer.onQuiz(node);
+        }
+        node.getChildren().forEach(child -> run(analyzer, child));
+        if (node.getTarget() == AuditTarget.COURSE) {
+            analyzer.onCourseComplete(node);
+        }
+    }
+
+    /** The lemmas the analyzer marked as misplaced in a quiz, in order. */
+    private static List<String> misplacedWords(AuditNode quiz) {
+        LemmaPlacementDiagnosis placement = ((QuizDiagnoses) quiz.getDiagnoses()).getLemmaAbsenceDiagnosis()
+                .orElseThrow(() -> new AssertionError("the quiz has its placement"));
+        List<String> words = new ArrayList<>();
+        for (MisplacedLemma lemma : placement.getMisplacedLemmas()) {
+            words.add(lemma.getLemmaAndPos().getLemma());
+        }
+        return words;
     }
 }

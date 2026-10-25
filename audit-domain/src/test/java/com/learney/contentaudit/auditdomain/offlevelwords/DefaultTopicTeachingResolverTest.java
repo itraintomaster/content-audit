@@ -150,6 +150,76 @@ public class DefaultTopicTeachingResolverTest {
         assertEquals(List.of("happen"), frequent, "R003: only the answer, never the rest of the sentence");
     }
 
+    @Test
+    @DisplayName("should take as taught the words of the label «Polite request:» that opens the statement of 3 of the 10 quizzes of 'Pedidos: formal o informal'")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R003")
+    public void shouldTakeAsTaughtTheWordsOfTheLabelPoliteRequestThatOpensTheStatementOf3OfThe10QuizzesOfPedidosFormalOInformal(
+            ) {
+        // R003, 6: «Polite request:» opens 3 of 10 statements and «Normal request:» 3 more: polite, normal and
+        // request are the instruction of the exercise, not its content.
+        AuditNode topic = topic("Pedidos: formal o informal");
+        for (int i = 0; i < 3; i++) {
+            stated(topic, "Polite request: I want you to help me. →", "Could you help me?");
+            stated(topic, "Normal request: I want you to open the door. →", "Can you open the door?");
+        }
+        for (int i = 0; i < 4; i++) {
+            stated(topic, "I want you to call me. →", "Can you call me?");
+        }
+
+        List<String> labels = new DefaultTopicTeachingResolver().taughtWords(topic).getLabelTerms();
+
+        assertTrue(labels.containsAll(List.of("polite", "request", "normal")), "R003, 6: 3 of 10 each: " + labels);
+    }
+
+    @Test
+    @DisplayName("should take as taught the label that comes right after a sentence, like «Polite:» in «Play the radio. Polite:»")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R003")
+    public void shouldTakeAsTaughtTheLabelThatComesRightAfterASentenceLikePoliteInPlayTheRadioPolite() {
+        // R003, 6: the label can follow the sentence to transform instead of opening the statement.
+        AuditNode topic = topic("Pedidos: formal o informal");
+        for (int i = 0; i < 3; i++) {
+            stated(topic, "Play the radio. Polite:", "Could you play the radio?");
+        }
+
+        List<String> labels = new DefaultTopicTeachingResolver().taughtWords(topic).getLabelTerms();
+
+        assertEquals(List.of("polite"), labels, "R003, 6: «Polite:» after «Play the radio.»");
+    }
+
+    @Test
+    @DisplayName("should not take as a label a word before a colon in the middle of a sentence, nor a label of only 2 quizzes")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R003")
+    public void shouldNotTakeAsALabelAWordBeforeAColonInTheMiddleOfASentenceNorALabelOfOnly2Quizzes() {
+        // R003, 6: «I have two things:» is a sentence, not a label; «Polite request:» in 2 quizzes is not enough.
+        AuditNode topic = topic("Pedidos: formal o informal");
+        for (int i = 0; i < 3; i++) {
+            stated(topic, "I have two things: a pen and", "a book");
+        }
+        for (int i = 0; i < 2; i++) {
+            stated(topic, "Polite request: I want you to help me. →", "Could you help me?");
+        }
+
+        List<String> labels = new DefaultTopicTeachingResolver().taughtWords(topic).getLabelTerms();
+
+        assertTrue(labels.isEmpty(), "R003, 6: neither a colon inside a sentence nor 2 quizzes: " + labels);
+    }
+
+    @Test
+    @DisplayName("should say that a topic teaches «Polite» by its label and «Let» by its title, but not «help»")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R003")
+    public void shouldSayThatATopicTeachesPoliteByItsLabelAndLetByItsTitleButNotHelp() {
+        // R003: the label and the title both teach; a word that is in neither is not taught.
+        TaughtWords taught = new TaughtWords("k", List.of("let's", "let"), List.of(), List.of("polite", "request"));
+
+        assertTrue(taught.teaches("polite", List.of("Polite")), "R003, 6: by the label");
+        assertTrue(taught.teaches("let", List.of("Let")), "R003, 1: by the title");
+        assertFalse(taught.teaches("help", List.of("help")), "R003: help is in neither");
+    }
+
     private static int counter = 0;
 
     private static AuditNode topic(String title) {
@@ -175,6 +245,14 @@ public class DefaultTopicTeachingResolverTest {
     private static void answered(AuditNode topic, String sentence, String answer, String tokens) {
         AuditableQuiz quiz = quiz(sentence, tokens);
         quiz.setSentenceParts(List.of(new SentencePartEntity(SentencePartKind.TEXT, "…", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, null, List.of(answer))));
+        child(topic, quiz);
+    }
+
+    /** A quiz whose statement is the given text and a gap that accepts the answer. */
+    private static void stated(AuditNode topic, String statement, String answer) {
+        AuditableQuiz quiz = quiz(statement, "x|x|X");
+        quiz.setSentenceParts(List.of(new SentencePartEntity(SentencePartKind.TEXT, statement, null),
                 new SentencePartEntity(SentencePartKind.CLOZE, null, List.of(answer))));
         child(topic, quiz);
     }

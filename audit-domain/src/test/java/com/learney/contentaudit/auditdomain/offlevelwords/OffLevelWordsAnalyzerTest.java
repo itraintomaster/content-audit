@@ -284,6 +284,45 @@ public class OffLevelWordsAnalyzerTest {
     }
 
     @Test
+    @DisplayName("should not mark 'polite' (B1) in the A1 quiz «Polite request: I want you to help me.» when «Polite request:» opens 3 statements of its topic, but mark it when only 1 does")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R003")
+    public void shouldNotMarkPoliteB1InTheA1QuizPoliteRequestIWantYouToHelpMeWhenPoliteRequestOpens3StatementsOfItsTopicButMarkItWhenOnly1Does(
+            ) {
+        // R003, 6: «Polite request:» is the instruction of the exercise when it opens 3 statements of the topic;
+        // in a topic where only one quiz has it, it is just a word of the sentence. B1 is two levels above A1, what
+        // this analyzer counts as an error (R002).
+        Course course = new Course();
+        List<AuditNode> labelled = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            labelled.add(politeRequest(course, "Pedidos: formal o informal", "q-polite-" + i));
+        }
+        AuditNode alone = politeRequest(course, "Pedidos", "q-alone");
+        for (int i = 0; i < 3; i++) {
+            AuditNode other = course.quiz("A1", "Pedidos", "q-other-" + i, "I want you to help me.", "Quiero que me "
+                    + "ayudes.", "I|I|PRON want|want|VERB you|you|PRON to|to|PART help|help|VERB me|me|PRON .|.|PUNCT");
+            entity(other).setSentenceParts(List.of(part(SentencePartKind.TEXT, "I want you to help me. →", null),
+                    part(SentencePartKind.CLOZE, null, List.of("Can you help me?"))));
+        }
+
+        course.walk(new Lexicon().level("polite", "ADJ", CefrLevel.B1).level("request", "NOUN", CefrLevel.B1)
+                .level("want", "VERB", CefrLevel.A1).level("help", "VERB", CefrLevel.A1).analyzer());
+
+        labelled.forEach(quiz -> assertEquals(List.of(), lemmas(quiz), "R003, 6: the label of 3 of 3 statements"));
+        assertEquals(List.of("polite", "request"), lemmas(alone), "R003, 6: the label of 1 of 4 statements");
+    }
+
+    /** An A1 quiz of the given topic whose statement opens with «Polite request:». */
+    private static AuditNode politeRequest(Course course, String title, String id) {
+        AuditNode quiz = course.quiz("A1", title, id, "Polite request: I want you to help me.", "Pedido formal: quiero "
+                + "que me ayudes.", "Polite|polite|ADJ request|request|NOUN :|:|PUNCT I|I|PRON want|want|VERB "
+                + "you|you|PRON to|to|PART help|help|VERB me|me|PRON .|.|PUNCT");
+        entity(quiz).setSentenceParts(List.of(part(SentencePartKind.TEXT, "Polite request: I want you to help me. →",
+                null), part(SentencePartKind.CLOZE, null, List.of("Could you help me?"))));
+        return quiz;
+    }
+
+    @Test
     @DisplayName("should not mark 'sushi' in 'We make sushi and pizza.' because the translation repeats it whole")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R004")

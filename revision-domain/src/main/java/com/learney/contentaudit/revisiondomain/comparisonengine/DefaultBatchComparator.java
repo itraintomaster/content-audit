@@ -922,6 +922,12 @@ public class DefaultBatchComparator implements BatchComparator {
                 return true;
             }
         }
+        // F-NIVFR-R003, 6: a word of the label that opens the topic's statements.
+        for (String label : listOrEmpty(words.getLabelTerms())) {
+            if (label != null && label.toLowerCase(Locale.ROOT).equals(lower)) {
+                return true;
+            }
+        }
         return false;
     }
 

@@ -1,6 +1,8 @@
 package com.learney.contentaudit.auditdomain.offlevelwords;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
 
@@ -15,13 +17,22 @@ public class TaughtWords {
 
     private List<String> frequentAnswers;
 
+    /** F-NIVFR-R003, 6: the words of the label that opens the statement of the topic's quizzes («Polite request:»). */
+    private List<String> labelTerms;
+
     public TaughtWords() {
     }
 
     public TaughtWords(String knowledgeId, List<String> titleTerms, List<String> frequentAnswers) {
+        this(knowledgeId, titleTerms, frequentAnswers, List.of());
+    }
+
+    public TaughtWords(String knowledgeId, List<String> titleTerms, List<String> frequentAnswers,
+            List<String> labelTerms) {
         this.knowledgeId = knowledgeId;
         this.titleTerms = titleTerms;
         this.frequentAnswers = frequentAnswers;
+        this.labelTerms = labelTerms;
     }
 
     public String getKnowledgeId() {
@@ -48,6 +59,40 @@ public class TaughtWords {
         this.frequentAnswers = frequentAnswers;
     }
 
+    public List<String> getLabelTerms() {
+        return this.labelTerms;
+    }
+
+    public void setLabelTerms(List<String> labelTerms) {
+        this.labelTerms = labelTerms;
+    }
+
+    /**
+     * F-NIVFR-R003, 1, 2 and 6: the topic teaches the word -- a word of its title's terms or of the label that opens
+     * its statements, by its lemma or by one of its written forms, or a frequent lemma of its answers.
+     */
+    public boolean teaches(String lemma, Collection<String> texts) {
+        if (lemma == null) {
+            return false;
+        }
+        String lowerLemma = lemma.toLowerCase(Locale.ROOT);
+        for (List<String> terms : List.of(orEmpty(titleTerms), orEmpty(labelTerms))) {
+            if (terms.contains(lowerLemma)) {
+                return true;
+            }
+            for (String text : texts != null ? texts : List.<String>of()) {
+                if (text != null && terms.contains(text.toLowerCase(Locale.ROOT))) {
+                    return true;
+                }
+            }
+        }
+        return orEmpty(frequentAnswers).contains(lowerLemma);
+    }
+
+    private static List<String> orEmpty(List<String> list) {
+        return list != null ? list : List.of();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,11 +100,12 @@ public class TaughtWords {
         TaughtWords that = (TaughtWords) o;
         return Objects.equals(this.knowledgeId, that.knowledgeId)
                     && Objects.equals(this.titleTerms, that.titleTerms)
-                    && Objects.equals(this.frequentAnswers, that.frequentAnswers);
+                    && Objects.equals(this.frequentAnswers, that.frequentAnswers)
+                    && Objects.equals(this.labelTerms, that.labelTerms);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(knowledgeId, titleTerms, frequentAnswers);
+        return Objects.hash(knowledgeId, titleTerms, frequentAnswers, labelTerms);
     }
 }

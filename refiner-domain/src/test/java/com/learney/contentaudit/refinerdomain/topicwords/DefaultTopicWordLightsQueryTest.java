@@ -473,6 +473,28 @@ public class DefaultTopicWordLightsQueryTest {
     }
 
     @Test
+    @DisplayName("should never paint red 'polite' (A2) in 'Pedidos: formal o informal' (A1), whose statements open with «Polite request:», and show it as taught by the topic")
+    @Tag("FEAT-SEMAF")
+    @Tag("F-SEMAF-R004")
+    public void shouldNeverPaintRedPoliteA2InPedidosFormalOInformalA1WhoseStatementsOpenWithPoliteRequestAndShowItAsTaughtByTheTopic(
+            ) {
+        // R004 and F-NIVFR-R003, 6: «Polite request:» opens 3 statements of the topic; it is the instruction of the
+        // exercise, so the corrector does not see polite as a word to take out.
+        World world = movement();
+        world.word("polite", "ADJ", CefrLevel.A2, 4000).word("help", "VERB", CefrLevel.A1, 200);
+        Topic topic = world.topic("A1", "Pedidos: formal o informal", "k-pedidos");
+        for (int i = 0; i < 3; i++) {
+            topic.stated("q" + i, "Polite|polite|ADJ :|:|PUNCT Help|help|VERB me|me|PRON .|.|PUNCT",
+                    "Polite request: Help me. →", "Could you help me?");
+        }
+
+        TopicWord polite = world.words("k-pedidos", criteria()).get("polite|ADJ");
+
+        assertEquals(List.of("NEUTRAL", "true"), List.of(polite.getLight().name(), String.valueOf(polite.isTaughtByTopic())),
+                "R004: the label teaches polite, never red");
+    }
+
+    @Test
     @DisplayName("should paint red a word lexis flags as misplaced for the topic's level in any of its quizzes, like 'bench' (B2) in 'Posicion del adjetivo' (A2), with its catalog level")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R005")
@@ -782,6 +804,15 @@ public class DefaultTopicWordLightsQueryTest {
         /** A quiz whose gap is answered with the given word. */
         Topic answered(String id, String tokens, String answer) {
             world.quizUnder(knowledge, id, tokens, answer);
+            return this;
+        }
+
+        /** A quiz whose statement is the given text and whose gap is answered with the given answer. */
+        Topic stated(String id, String tokens, String statement, String answer) {
+            world.quizUnder(knowledge, id, tokens, answer);
+            AuditableQuiz quiz = (AuditableQuiz) world.quizzes.get(world.quizzes.size() - 1).getEntity();
+            quiz.setSentenceParts(List.of(new SentencePartEntity(SentencePartKind.TEXT, statement, null),
+                    new SentencePartEntity(SentencePartKind.CLOZE, null, List.of(answer))));
             return this;
         }
     }

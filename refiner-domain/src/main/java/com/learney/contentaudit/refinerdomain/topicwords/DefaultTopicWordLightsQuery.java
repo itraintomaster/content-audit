@@ -232,22 +232,12 @@ public class DefaultTopicWordLightsQuery implements TopicWordLightsQuery {
         return toAdd;
     }
 
-    /** R004: the topic teaches it -- a word of its title's terms, or a frequent lemma of its answers. */
+    /**
+     * R004: the topic teaches it -- a word of its title's terms or of the label that opens its statements, or a
+     * frequent lemma of its answers (F-NIVFR-R003, 1, 2 and 6).
+     */
     private static boolean taught(TaughtWords taught, String lemma, Set<String> texts) {
-        if (taught == null) {
-            return false;
-        }
-        String lowerLemma = lemma.toLowerCase(Locale.ROOT);
-        List<String> terms = taught.getTitleTerms() != null ? taught.getTitleTerms() : List.of();
-        if (terms.contains(lowerLemma)) {
-            return true;
-        }
-        for (String text : texts) {
-            if (text != null && terms.contains(text.toLowerCase(Locale.ROOT))) {
-                return true;
-            }
-        }
-        return taught.getFrequentAnswers() != null && taught.getFrequentAnswers().contains(lowerLemma);
+        return taught != null && taught.teaches(lemma, texts);
     }
 
     private static Optional<AuditNode> findKnowledge(AuditNode node, String knowledgeId) {

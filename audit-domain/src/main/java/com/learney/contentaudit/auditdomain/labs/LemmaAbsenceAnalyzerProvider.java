@@ -15,6 +15,7 @@ import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
 import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter;
+import com.learney.contentaudit.auditdomain.offlevelwords.TopicTeachingResolver;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -32,11 +33,21 @@ public class LemmaAbsenceAnalyzerProvider implements AnalyzerProvider {
 
     private final SentenceLexicalScorer sentenceLexicalScorer;
 
+    private final TopicTeachingResolver topicTeachingResolver;
+
     public LemmaAbsenceAnalyzerProvider(EvpCatalogPort evpCatalogPort,
             LemmaAbsenceConfig lemmaAbsenceConfig, SentenceLexicalScorer sentenceLexicalScorer) {
+        this(evpCatalogPort, lemmaAbsenceConfig, sentenceLexicalScorer, null);
+    }
+
+    /** F-LABS-R047: with what each topic teaches, whose words are never misplaced in it. */
+    public LemmaAbsenceAnalyzerProvider(EvpCatalogPort evpCatalogPort,
+            LemmaAbsenceConfig lemmaAbsenceConfig, SentenceLexicalScorer sentenceLexicalScorer,
+            TopicTeachingResolver topicTeachingResolver) {
         this.evpCatalogPort = evpCatalogPort;
         this.lemmaAbsenceConfig = lemmaAbsenceConfig;
         this.sentenceLexicalScorer = sentenceLexicalScorer;
+        this.topicTeachingResolver = topicTeachingResolver;
     }
 
     @Override
@@ -56,7 +67,11 @@ public class LemmaAbsenceAnalyzerProvider implements AnalyzerProvider {
                 LemmaByLevelAbsenceAnalyzer.DESCRIPTION,
                 AuditTarget.COURSE,
                 "¿Están las palabras que el EVP espera, y ninguna de otro nivel?",
-                "Los lemas de cada oración y de cada nivel, contra el catálogo EVP enriquecido con su nivel CEFR",
+                // F-METAS-R007: leaving out what the topic teaches changes what is measured, so the card says it.
+                topicTeachingResolver != null
+                        ? "Los lemas de cada oración —sin las palabras que enseña su tema— y de cada nivel, contra el "
+                                + "catálogo EVP enriquecido con su nivel CEFR"
+                        : "Los lemas de cada oración y de cada nivel, contra el catálogo EVP enriquecido con su nivel CEFR",
                 List.of(
                         new AnalyzerRuleCard(LemmaByLevelAbsenceAnalyzer.RULE_MISPLACED_WORD,
                                 "La oración usa una palabra de un nivel más alto que el suyo", AnalysisCost.INSTANT),
@@ -80,7 +95,7 @@ public class LemmaAbsenceAnalyzerProvider implements AnalyzerProvider {
     @Override
     public ContentAnalyzer create(EvaluationRunPolicy policy) {
         return new LemmaByLevelAbsenceAnalyzer(evpCatalogPort, new DefaultContentWordFilter(), lemmaAbsenceConfig,
-                sentenceLexicalScorer);
+                sentenceLexicalScorer, topicTeachingResolver);
     }
 
     @Override

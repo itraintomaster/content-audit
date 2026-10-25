@@ -370,8 +370,10 @@ class CatalogTopicMeter implements TopicMeter {
         if (words == null) {
             return taught;
         }
+        // F-NIVFR-R003, 6: the words of the label that opens the topic's statements are taught too.
         for (List<String> list : List.of(words.getTitleTerms() != null ? words.getTitleTerms() : List.<String>of(),
-                words.getFrequentAnswers() != null ? words.getFrequentAnswers() : List.<String>of())) {
+                words.getFrequentAnswers() != null ? words.getFrequentAnswers() : List.<String>of(),
+                words.getLabelTerms() != null ? words.getLabelTerms() : List.<String>of())) {
             for (String term : list) {
                 java.util.regex.Matcher m = WORD.matcher(term != null ? term.toLowerCase(Locale.ROOT) : "");
                 while (m.find()) {

@@ -728,7 +728,9 @@ class Main {
 
         analyzerProviders.add(new LemmaRecurrenceAnalyzerProvider(lemmaRecurrenceConfig));                 //  5
 
-        analyzerProviders.add(new LemmaAbsenceAnalyzerProvider(evpCatalog, lemmaAbsenceConfig, sentenceLexicalScorer)); //  6
+        // F-LABS-R047: the words a topic teaches («let's», «Polite request:») are not misplaced in it.
+        analyzerProviders.add(new LemmaAbsenceAnalyzerProvider(evpCatalog, lemmaAbsenceConfig, sentenceLexicalScorer,
+                topicTeachingResolver)); //  6
 
         analyzerProviders.add(offLevelWordsProvider);                                                     //  7 · D · FEAT-NIVFR
 

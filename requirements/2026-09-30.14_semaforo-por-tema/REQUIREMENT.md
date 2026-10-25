@@ -115,7 +115,9 @@ usa, así que pedir 10 devuelve 10 mientras alcancen.
 
 > Una palabra que el tema enseña no es roja: 1. figura entre los términos en inglés del título del tema, los que van
 > entre `$` (let's cuenta como let); o 2. es parte de la respuesta de al menos 3 ejercicios del tema y del 20 % o más de
-> ellos. Se muestra como «la enseña el tema». Es la excepción de [F-NIVFR-R003](#F-NIVFR-R003).
+> ellos; o 3. es palabra del rótulo que abre el enunciado de al menos 3 ejercicios del tema y del 20 % o más de ellos
+> («Polite request:»). Se muestra como «la enseña el tema». Es la excepción de [F-NIVFR-R003](#F-NIVFR-R003), en sus
+> ítems 1, 2 y 6.
 
 «$Invest time$ + gerundio» (A2) enseña invest, que es B2; «Orden o simultaneidad» (B1) tiene sequence y simultaneous como
 respuesta. Sale del curso, nunca de una lista escrita a mano ([F-LABS-R035](#F-LABS-R035)).

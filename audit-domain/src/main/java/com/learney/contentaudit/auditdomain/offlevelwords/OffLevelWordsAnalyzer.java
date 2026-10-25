@@ -346,22 +346,9 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
                 || formedWithTaughtSuffix(lessons, lemma, texts, level);
     }
 
-    /** R003: the topic teaches it -- a word of its title's terms, or a frequent lemma of its answers. */
+    /** R003: the topic teaches it -- a word of its title's terms or of its statements' label, or a frequent answer. */
     private static boolean taught(TaughtWords taught, String lemma, Set<String> texts) {
-        if (taught == null || lemma == null) {
-            return false;
-        }
-        String lowerLemma = lemma.toLowerCase(Locale.ROOT);
-        List<String> terms = taught.getTitleTerms() != null ? taught.getTitleTerms() : List.of();
-        if (terms.contains(lowerLemma)) {
-            return true;
-        }
-        for (String text : texts) {
-            if (terms.contains(text.toLowerCase(Locale.ROOT))) {
-                return true;
-            }
-        }
-        return taught.getFrequentAnswers() != null && taught.getFrequentAnswers().contains(lowerLemma);
+        return taught != null && taught.teaches(lemma, texts);
     }
 
     /** R003: the lemma or one of its written forms is among the words. */

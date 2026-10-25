@@ -62,7 +62,7 @@ Las reglas se organizan en seis grupos segun la fase y el tema al que pertenecen
 - **Grupo A - Identificacion de lemas ausentes (R001-R005, R039-R046)**: reglas que describen como se determinan los lemas esperados, presentes y ausentes para cada nivel CEFR, incluyendo como se interpreta el catalogo de vocabulario en toda consulta de nivel (que entradas fijan el nivel de un lema, que entradas solo pueden rebajarlo, que categoria gramatical rige el emparejamiento y que entradas de metalenguaje curado quedan fuera de los lemas esperados aunque sigan resolviendo nivel para la mal-ubicacion).
 - **Grupo B - Clasificacion del tipo de ausencia (R006-R010)**: reglas que describen como se clasifica cada lema ausente segun donde aparece (o no) en el curso.
 - **Grupo C - Prioridad y enriquecimiento (R011-R016)**: reglas que describen como se asigna prioridad basada en frecuencia COCA y como se enriquece cada lema con informacion adicional.
-- **Grupo D - Scoring por oracion y vocabulario avanzado (R017-R020, R033-R038, R045)**: reglas que describen como se evalua el impacto de los lemas mal ubicados en cada oracion del curso, incluyendo el vocabulario de nivel superior al rango del curso (C1/C2), las palabras de contenido fuera de catalogo y la normalizacion a minusculas del lema del token como repliegue del emparejamiento.
+- **Grupo D - Scoring por oracion y vocabulario avanzado (R017-R020, R033-R038, R045, R047)**: reglas que describen como se evalua el impacto de los lemas mal ubicados en cada oracion del curso, incluyendo el vocabulario de nivel superior al rango del curso (C1/C2), las palabras de contenido fuera de catalogo y la normalizacion a minusculas del lema del token como repliegue del emparejamiento.
 - **Grupo E - Assessment global y metricas por nivel (R021-R026)**: reglas que describen la evaluacion global, los umbrales de tolerancia y las metricas resultantes por nivel.
 - **Grupo F - Recomendaciones (R027-R031)**: reglas que describen la generacion de recomendaciones accionables para corregir las brechas de vocabulario.
 
@@ -633,6 +633,25 @@ Cada oracion penalizada expone en su diagnostico el detalle de **cada lema que g
 Para las palabras fuera de catalogo el motivo se expresa como "fuera de catalogo" con el ranking observado; no se les inventa un nivel CEFR. Este detalle alimenta el pipeline existente de planes y revisiones igual que los lemas mal ubicados actuales, de modo que las nuevas penalizaciones producen tareas corregibles.
 
 **Error**: N/A (esta regla describe la estructura del detalle diagnostico)
+
+<a id="F-LABS-R047"></a>
+### Rule[F-LABS-R047] - La palabra que el tema enseña no se marca mal ubicada
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> En los ejercicios de un tema, una palabra que el tema enseña no se marca mal ubicada ni fuera de catálogo, y no baja
+> el puntaje de la oración: se deja afuera antes de medirla. Lo que el tema enseña es lo de
+> [F-NIVFR-R003](../2026-09-30.13_nivel-con-frases/REQUIREMENT.md#F-NIVFR-R003) en 1 (el título entre `$`), 2 (la
+> respuesta frecuente) y 6 (el rótulo del enunciado). Las demás palabras del ejercicio se miden igual que antes.
+
+Caso: en «Pedidos: formal o informal» (A1) los enunciados abren con «Polite request:» o «Normal request:», la indicación
+de si hay que pedir con «could» o con «can». polite y request son A2, así que esta medición las marcaba mal ubicadas en
+cada ejercicio y el corrector, para sacarlas, borraba la indicación: el ejercicio dejaba de decir que había que usar
+«could» y pasaba a aceptar «can». Lo mismo con let en «$Let's$ para sugerir»: el tema enseña justamente «let's».
+
+La tarjeta del analizador lo dice al leer: «los lemas de cada oración —sin las palabras que enseña su tema—»
+([F-METAS-R007](../2026-09-30.27_antes-y-despues-con-metas/REQUIREMENT.md#F-METAS-R007)).
+
+**Error**: N/A (esta regla describe una exclusion)
 
 ---
 

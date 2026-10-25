@@ -33,6 +33,10 @@ import javax.annotation.processing.Generated;
  *       more of them: the gap's answers or, in a multiple choice, its correct option (0.2), read
  *       on the tokens the quiz already carries, so nothing is tokenized again. A word of the
  *       sentence outside the answer never counts.</li>
+ *   <li>The words of the label that opens the statement of at least 3 quizzes of the topic and of
+ *       20 % or more of them: one or two words and a colon at its start or right after a sentence,
+ *       «Polite request: I want you to help me.», «Play the radio. Polite:». The label is the
+ *       instruction of the exercise, not its content (6).</li>
  * </ul>
  */
 @Generated(
@@ -55,6 +59,9 @@ public class DefaultTopicTeachingResolver implements TopicTeachingResolver {
 
     private static final String TERM_PUNCTUATION = "'.?!¿¡\"()";
 
+    /** F-NIVFR-R003, 6: a label of one or two words and a colon, at the start or after a sentence. */
+    private static final Pattern LABEL = Pattern.compile("(?:^\\s*|[.!?]\\s+)(\\p{L}+(?:\\s+\\p{L}+)?)\\s*:");
+
     @Override
     public TaughtWords taughtWords(AuditNode knowledgeNode) {
         if (knowledgeNode == null) {
@@ -64,7 +71,8 @@ public class DefaultTopicTeachingResolver implements TopicTeachingResolver {
         String knowledgeId = entity != null ? entity.getId() : null;
         String title = entity instanceof AuditableKnowledge knowledge && knowledge.getTitle() != null
                 ? knowledge.getTitle() : entity != null ? entity.getLabel() : null;
-        return new TaughtWords(knowledgeId, titleTerms(title), frequentAnswers(quizzesOf(knowledgeNode)));
+        List<AuditableQuiz> quizzes = quizzesOf(knowledgeNode);
+        return new TaughtWords(knowledgeId, titleTerms(title), frequentAnswers(quizzes), labelTerms(quizzes));
     }
 
     /** The words of the English terms between {@code $} of the title, lower-cased and in order. */
@@ -136,6 +144,51 @@ public class DefaultTopicTeachingResolver implements TopicTeachingResolver {
             }
         }
         return frequent;
+    }
+
+    /**
+     * F-NIVFR-R003, 6: the words of the labels that open the statement of at least 3 quizzes and of 20 % or more of
+     * the topic's quizzes, lower-cased: «Polite request:» in «Pedidos: formal o informal» teaches polite and request.
+     */
+    static List<String> labelTerms(List<AuditableQuiz> quizzes) {
+        Map<String, Integer> quizzesWithWord = new LinkedHashMap<>();
+        for (AuditableQuiz quiz : quizzes) {
+            for (String word : labelWords(quiz)) {
+                quizzesWithWord.merge(word, 1, Integer::sum);
+            }
+        }
+        List<String> terms = new ArrayList<>();
+        int total = quizzes.size();
+        for (Map.Entry<String, Integer> entry : quizzesWithWord.entrySet()) {
+            int count = entry.getValue();
+            if (count >= MIN_QUIZZES && total > 0 && (double) count / total >= MIN_SHARE) {
+                terms.add(entry.getKey());
+            }
+        }
+        return terms;
+    }
+
+    /** The words of the labels in the statement of a quiz: its text parts, without the gap's answers. */
+    static Set<String> labelWords(AuditableQuiz quiz) {
+        Set<String> words = new LinkedHashSet<>();
+        if (quiz == null || quiz.getSentenceParts() == null) {
+            return words;
+        }
+        StringBuilder statement = new StringBuilder();
+        for (SentencePartEntity part : quiz.getSentenceParts()) {
+            if (part != null && part.getKind() == SentencePartKind.TEXT && part.getText() != null) {
+                statement.append(part.getText()).append(' ');
+            } else {
+                statement.append("___ ");
+            }
+        }
+        Matcher matcher = LABEL.matcher(statement.toString());
+        while (matcher.find()) {
+            for (String word : matcher.group(1).toLowerCase(Locale.ROOT).split("\\s+")) {
+                words.add(word);
+            }
+        }
+        return words;
     }
 
     /** The lemmas of the quiz's tokens whose text is a word of its answer. */

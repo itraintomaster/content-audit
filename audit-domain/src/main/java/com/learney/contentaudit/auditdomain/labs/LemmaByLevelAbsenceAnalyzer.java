@@ -22,6 +22,8 @@ import com.learney.contentaudit.auditdomain.DefaultTopicDiagnoses;
 import com.learney.contentaudit.auditdomain.EvpCatalogPort;
 import com.learney.contentaudit.auditdomain.LemmaAbsenceConfig;
 import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.auditdomain.offlevelwords.TaughtWords;
+import com.learney.contentaudit.auditdomain.offlevelwords.TopicTeachingResolver;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumMap;
@@ -54,11 +56,19 @@ public class LemmaByLevelAbsenceAnalyzer implements IncrementalContentAnalyzer {
 
 private final SentenceLexicalScorer sentenceLexicalScorer;
 
+/** F-LABS-R047: what each topic teaches, whose words are never misplaced in it; null leaves every word in. */
+private final TopicTeachingResolver topicTeachingResolver;
+
 public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFilter contentWordFilter, LemmaAbsenceConfig lemmaAbsenceConfig, SentenceLexicalScorer sentenceLexicalScorer) {
+    this(evpCatalogPort, contentWordFilter, lemmaAbsenceConfig, sentenceLexicalScorer, null);
+}
+
+public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFilter contentWordFilter, LemmaAbsenceConfig lemmaAbsenceConfig, SentenceLexicalScorer sentenceLexicalScorer, TopicTeachingResolver topicTeachingResolver) {
     this.evpCatalogPort = evpCatalogPort;
     this.contentWordFilter = contentWordFilter;
     this.lemmaAbsenceConfig = lemmaAbsenceConfig;
     this.sentenceLexicalScorer = sentenceLexicalScorer;
+    this.topicTeachingResolver = topicTeachingResolver;
 }
 
     static final String ANALYZER_NAME = "lemma-absence";
@@ -570,6 +580,9 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
                     List<MisplacedLemma> knowledgeMisplacedLemmas = new ArrayList<>();
                     Set<String> knowledgeOocSeen = new HashSet<>();
                     List<OutOfCatalogWord> knowledgeOutOfCatalogWords = new ArrayList<>();
+                    // F-LABS-R047: the words the topic teaches are not misplaced in its quizzes.
+                    TaughtWords taught = topicTeachingResolver != null
+                            ? topicTeachingResolver.taughtWords(knowledgeNode) : null;
 
                     for (AuditNode quizNode : quizNodes) {
                         AuditableQuiz quiz = (AuditableQuiz) quizNode.getEntity();
@@ -577,7 +590,7 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
                         List<MisplacedLemma> typedMisplacedLemmas = Collections.emptyList();
                         List<OutOfCatalogWord> outOfCatalogWords = Collections.emptyList();
                         if (quiz != null) {
-                            QuizScoringResult qsr = scoreQuiz(quiz, sentenceLevel);
+                            QuizScoringResult qsr = scoreQuiz(quiz, sentenceLevel, taught);
                             quizScore = qsr.score;
                             typedMisplacedLemmas = qsr.typedMisplacedLemmas;
                             outOfCatalogWords = qsr.outOfCatalogWords;
@@ -672,11 +685,19 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
     // R017-R020, R033-R036, R038, R045: el emparejamiento lexico por oracion vive ahora
     // en SentenceLexicalScorer (FEAT-CLEX), unica fuente de verdad compartida con la
     // consulta lexica del CLI (F-CLEX-R006). El analyzer solo delega y reempaqueta.
-    private QuizScoringResult scoreQuiz(AuditableQuiz quiz, CefrLevel sentenceLevel) {
+    private QuizScoringResult scoreQuiz(AuditableQuiz quiz, CefrLevel sentenceLevel, TaughtWords taught) {
         if (quiz == null || quiz.getTokens() == null) {
             return new QuizScoringResult(1.0, Collections.emptyList(), Collections.emptyList());
         }
-        SentenceLexicalScore result = sentenceLexicalScorer.score(quiz.getTokens(), sentenceLevel);
+        // F-LABS-R047: a word the topic teaches is left out before the sentence is matched, so it neither
+        // penalizes the score nor shows as misplaced; every other word is matched as before.
+        List<NlpToken> tokens = quiz.getTokens();
+        if (taught != null) {
+            tokens = tokens.stream()
+                    .filter(t -> t == null || !taught.teaches(t.getLemma(), Collections.singletonList(t.getText())))
+                    .toList();
+        }
+        SentenceLexicalScore result = sentenceLexicalScorer.score(tokens, sentenceLevel);
         return new QuizScoringResult(
                 result.getScore(), result.getMisplacedLemmas(), result.getOutOfCatalogWords());
     }

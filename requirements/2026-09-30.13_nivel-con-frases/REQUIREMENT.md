@@ -132,12 +132,18 @@ En el curso del 29/9 no cambia ninguna marca, porque las dos están en temas que
 > tema enseña entre `$`, en su título o sus miniteorías («Adjetivo + $-ly$», «$+ing$»), la forma desde una palabra del
 > nivel del ejercicio o de antes («nicely» en A1, por «nice»), aunque el EVP la traiga con su nivel: cuando el tema enseña
 > justamente a formarla, usarla es el ejercicio ([R002](#F-NIVFR-R002)); o 5. es parte del nombre de un tema del curso, su propio
-> metalenguaje («modal» en «modal verbs», por «Modal Verbs»), sin los ejemplos que ese nombre cite entre `$`.
+> metalenguaje («modal» en «modal verbs», por «Modal Verbs»), sin los ejemplos que ese nombre cite entre `$`; o 6. es
+> palabra del rótulo que abre el enunciado de al menos 3 ejercicios del tema y del 20 % o más de ellos: una o dos palabras
+> y dos puntos, al principio del enunciado o justo después de una oración («Polite request: I want you to help me.»,
+> «Play the radio. Polite:»). El rótulo es la indicación del ejercicio, no su contenido; dos puntos en medio de una
+> oración («I have two things:») no son un rótulo.
 > Sale de los datos del curso, nunca de una lista escrita a mano.
 
 Saca 9 ejercicios de A2 («$Invest time$ + gerundio»: invest es B2) y 28 de B1 («Orden o simultaneidad», con sequence y
 simultaneous como respuesta; «¿Con coma o sin coma?», con non-defining), y ninguno del 077. El semáforo usa la misma
-excepción en 1 y 2 ([F-SEMAF-R004](#F-SEMAF-R004)); 3 a 5 son, por ahora, sólo de este analizador.
+excepción en 1, 2 y 6 ([F-SEMAF-R004](#F-SEMAF-R004)), y también la medición del vocabulario
+([F-LABS-R047](../2026-03-28.03_lemma-absence/REQUIREMENT.md#F-LABS-R047)); 3 a 5 son, por ahora, sólo de este analizador. El 6 (25/10) salió de «Pedidos: formal o informal», donde
+polite y request (A2) del rótulo «Polite request:» se marcaban en cada ejercicio de A1 y el corrector borraba el rótulo.
 
 <details><summary>Detalle: la miniteoría, el sufijo y el metalenguaje (1/10)</summary>
 
