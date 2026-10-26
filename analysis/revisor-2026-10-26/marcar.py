@@ -26,7 +26,7 @@ def correr(etiqueta, tope, cortos):
     c2 = (OUT / 'c2-id.txt').read_text().strip()
     ref = referencia()
     quiz = [q for q in ref if not cortos or q[-4:] in cortos]
-    args = ['bash', str(CLI), '--workdir', str(WORK), 'batch', 'mark', c2, '-f', 'json', '--concurrency', '4']
+    args = ['bash', str(CLI), '--workdir', str(WORK), 'batch', 'mark', c2, '-f', 'json', '--concurrency', '3']
     for q in quiz:
         args += ['--quiz', q]
     if int(tope):

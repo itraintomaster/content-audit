@@ -1,0 +1,66 @@
+{
+ "batchId": "tanda-A1-c2-1f1d898f-3ba9-3fcc-bc91-a104f79e53ca",
+ "reviewerVersion": "6f899ccf1fa0728710d0d081af611cadf939cad5a2d95f2198d4dd3676b1bd84",
+ "runtime": "codex-cli / gpt-6.1-sol / medium",
+ "changed": 3,
+ "upToDate": 3,
+ "pending": 0,
+ "spent": 3,
+ "budget": 3,
+ "rows": [
+  {
+   "quizId": "67fab6d59930102295341f5d",
+   "topic": "Respuestas cortas",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295341f5d",
+    "mark": "WORSE",
+    "problems": [
+     {
+      "where": "EXERCISE",
+      "fragment": "B: No, it ___ .",
+      "what": "Se perdió el «No,» que introducía la respuesta corta negativa, aunque la traducción todavía lo incluye."
+     }
+    ],
+    "reason": "En producción se practicaba la respuesta corta completa «No, it isn't». Ahora queda «It isn't», sin el «No,» que conserva la traducción y que corresponde al formato de respuesta corta practicado."
+   },
+   "reviewerVersion": "6f899ccf1fa0728710d0d081af611cadf939cad5a2d95f2198d4dd3676b1bd84",
+   "before": "Consigna del ejercicio: Usa $short forms$ si es posible. Escribe la respuesta corta.\nEjercicio, como lo ve el alumno antes de contestar: A: Is it hot today? B: No, it ___ .\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: isn't\nTraducción, que el alumno ve al corregir: No, no lo es/está.\nMiniteoría, que el alumno ve al corregir: Si la pregunta lleva $be$, contestá con $be$: $am$/$is$/$are$, nunca $do$ ni $does$.",
+   "after": "Consigna del ejercicio: Responde negativamente con una respuesta corta en inglés estándar.\nEjercicio, como lo ve el alumno antes de contestar: Is this tea? It ___ .\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: isn't | is not | 's not\nTraducción, que el alumno ve al corregir: ¿Esto es té? No, no es té.\nMiniteoría, que el alumno ve al corregir: Para responder negativamente a $Is this…?$: $It$ + $is not$. También puedes contraerlo como $isn't$ o $'s not$."
+  },
+  {
+   "quizId": "67fab6d5993010229534245a",
+   "topic": "Tiempo: $at$, $in$, $on$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d5993010229534245a",
+    "mark": "DOUBTFUL",
+    "problems": [
+     {
+      "where": "EXERCISE",
+      "fragment": "her birthday",
+      "what": "El posesivo «her» no tiene un referente que permita saber de quién es el cumpleaños."
+     }
+    ],
+    "reason": "Sigue practicando el uso de «on» con la mañana de un día concreto y los campos coinciden, pero la nueva oración introduce un posesivo sin referente."
+   },
+   "reviewerVersion": "6f899ccf1fa0728710d0d081af611cadf939cad5a2d95f2198d4dd3676b1bd84",
+   "before": "Consigna del ejercicio: Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.\nEjercicio, como lo ve el alumno antes de contestar: ___ Sunday morning we are visiting friends.\nOpciones que ve el alumno: - / at / in / on\nRespuestas que acepta el corrector: Opción correcta: on\nTraducción, que el alumno ve al corregir: El domingo por la mañana vamos a visitar a unos amigos.\nMiniteoría, que el alumno ve al corregir: Día + mañana/tarde/noche (Sunday morning) va con $on$, no in.",
+   "after": "Consigna del ejercicio: Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.\nEjercicio, como lo ve el alumno antes de contestar: We are visiting friends ___ the morning of her birthday.\nOpciones que ve el alumno: - / at / in / on\nRespuestas que acepta el corrector: Opción correcta: on\nTraducción, que el alumno ve al corregir: Vamos a visitar a unos amigos la mañana de su cumpleaños.\nMiniteoría, que el alumno ve al corregir: Usamos $on$ para la mañana de un día concreto, no $in$."
+  },
+  {
+   "quizId": "67fab6d59930102295341f57",
+   "topic": "Respuestas cortas",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295341f57",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "Agrega «Yes,» y deja completa la respuesta corta afirmativa, en concordancia con la respuesta aceptada y la traducción. La miniteoría explica la forma que practica el tema."
+   },
+   "reviewerVersion": "6f899ccf1fa0728710d0d081af611cadf939cad5a2d95f2198d4dd3676b1bd84",
+   "before": "Consigna del ejercicio: Usa $short forms$ si es posible. Escribe la respuesta corta.\nEjercicio, como lo ve el alumno antes de contestar: Does he need water? He ___ .\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: does\nTraducción, que el alumno ve al corregir: ¿Necesita agua? Sí.\nMiniteoría, que el alumno ve al corregir: Se contesta con el auxiliar, no con el verbo: $Yes, he does$ / $No, he doesn't$.",
+   "after": "Consigna del ejercicio: Escribe la respuesta corta.\nEjercicio, como lo ve el alumno antes de contestar: Does he need water? Yes, he ___ .\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: does\nTraducción, que el alumno ve al corregir: ¿Necesita agua? Sí.\nMiniteoría, que el alumno ve al corregir: En respuestas cortas afirmativas a $Does he…?$: $Yes, he does$. No repitas el verbo principal."
+  }
+ ]
+}

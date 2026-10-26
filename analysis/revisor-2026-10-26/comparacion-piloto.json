@@ -1,0 +1,61 @@
+{
+ "leyenda": {
+  "mia": "mi lectura a mano (referencia)",
+  "revisor": "la marca del revisor",
+  "coincide": "los dos dicen bien, o los dos marcan algo (dudoso o mal)"
+ },
+ "resumen": {
+  "consultas": 3,
+  "segundos": 1157,
+  "version": "6f899ccf1fa0728710d0d081af611cadf939cad5a2d95f2198d4dd3676b1bd84",
+  "motor": "codex-cli / gpt-6.1-sol / medium",
+  "ejercicios": 3,
+  "veLoQueYoMarque": 2,
+  "yoMarque": 2,
+  "marcaLoQueYoDiPorBueno": 0,
+  "yoDiPorBueno": 1,
+  "sinMarca": 0
+ },
+ "discrepancias": [],
+ "filas": [
+  {
+   "id": "1f5d",
+   "mia": "mal",
+   "revisor": "mal",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "En producción se practicaba la respuesta corta completa «No, it isn't». Ahora queda «It isn't», sin el «No,» que conserva la traducción y que corresponde al formato de respuesta corta practicado.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "B: No, it ___ .",
+     "what": "Se perdió el «No,» que introducía la respuesta corta negativa, aunque la traducción todavía lo incluye."
+    }
+   ]
+  },
+  {
+   "id": "245a",
+   "mia": "dudoso",
+   "revisor": "dudoso",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "Sigue practicando el uso de «on» con la mañana de un día concreto y los campos coinciden, pero la nueva oración introduce un posesivo sin referente.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "her birthday",
+     "what": "El posesivo «her» no tiene un referente que permita saber de quién es el cumpleaños."
+    }
+   ]
+  },
+  {
+   "id": "1f57",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "Agrega «Yes,» y deja completa la respuesta corta afirmativa, en concordancia con la respuesta aceptada y la traducción. La miniteoría explica la forma que practica el tema.",
+   "problemas": []
+  }
+ ]
+}

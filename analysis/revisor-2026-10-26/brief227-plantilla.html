@@ -1,0 +1,97 @@
+<style>
+  .tw td i{font-family:ui-serif,Georgia,serif}
+  .tw td.num{text-align:center;font-variant-numeric:tabular-nums;font-weight:600}
+  .tw td.diag{background:var(--accent-soft);color:var(--accent)}
+  .tw.casos td{font-size:12.5px;line-height:1.45;min-width:150px}
+  .tw.casos td:first-child{min-width:70px}
+  pre.cmd{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:10px 13px;
+    font:12.5px/1.5 ui-monospace,monospace;overflow-x:auto;margin:12px 0 0}
+</style>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">
+      <span class="num">227</span>
+      <span class="badge">Resumen · Jueces</span>
+      <span class="meta">A1 · 26/10/2026</span>
+    </div>
+    <h1>El juez «no regala» aprobó y el revisor ve lo que veo</h1>
+    <p class="sub">Lo que pediste antes del tramo grave: el largo leve, el juez «no regala» y un revisor que marca.</p>
+  </header>
+
+  <div class="lede"><p><strong>Los tres están hechos y subidos.</strong> El revisor ve 12 de mis 14 defectos y 3 que a mí se me pasaron; lo que frena ahora es codex, que racionado tarda 10 minutos por consulta.</p></div>
+
+  <section>
+    <h2>Los tres pedidos, hechos y medidos</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">{{REGALA}}</div><div class="l">ejercicios que regalan y el juez «no regala» ve; da {{FALSAS}} falsas alarmas</div></div>
+      <div class="kpi dest"><div class="n">{{VE}}</div><div class="l">de mis defectos que el revisor marca, y suma 3 que yo no vi</div></div>
+      <div class="kpi"><div class="n">230</div><div class="l">tareas de largo que se cierran; el curso pasa de 74,07 a 74,29 %</div></div>
+      <div class="kpi"><div class="n">85</div><div class="l">consultas: 34 del examen y 51 del revisor, de las 10.000 que me diste</div></div>
+    </div>
+    <p class="pie">Todo está en main y subido. Mis veredictos son una referencia para comparar, no una verdad certificada.</p>
+  </section>
+
+  <section>
+    <h2>El juez «no regala» aprobó su examen</h2>
+    <div class="hb fijo">
+      <div class="r"><div class="t">Regalan la respuesta<small>los 5 de la prueba ancha, 1 que yo había dado por bueno y 5 inventados</small></div><div class="tr"><div class="f g" style="width:{{REGALA_PCT}}%"></div><div class="meta" style="left:90.9%"></div></div><div class="n">{{REGALA}}</div></div>
+      <div class="r"><div class="t">No regalan<small>su versión de producción y otros del curso</small></div><div class="tr"><div class="f g" style="width:{{NOREGALA_PCT}}%"></div><div class="meta" style="left:95.2%"></div></div><div class="n">{{NOREGALA_OK}}</div></div>
+    </div>
+    <div class="tw"><table><thead><tr><th>Caso</th><th>Lo que ve el alumno</th><th>Yo</th><th>El juez</th></tr></thead><tbody>
+{{FILAS_EXAMEN}}
+    </tbody></table></div>
+    <p class="pie">La raya es la meta. Desde hoy mide toda propuesta de la mesa que toque consigna o enunciado; un regalo nuevo no se acepta.</p>
+    <div class="call c-warn"><b>Un error mío.</b> 1e8d, 1e8e y 1e92 dicen «colocando el verbo antes del sujeto», como 21c9, y los había dado por buenos. El juez y el revisor los marcaron.</div>
+  </section>
+
+  <section>
+    <h2>El revisor pone producción al lado y marca, no decide</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">Lee los dos lados enteros</span><span class="d">consigna, ejercicio, respuestas, opciones, traducción y miniteoría, con el tema</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Pregunta lo que pregunto yo</span><span class="d">qué se perdió, si regala, si los campos coinciden</span></div>
+      <div class="st"><span class="i">3</span><span class="h">Marca bien, dudoso o mal</span><span class="d">cada problema en su campo, con el fragmento tal cual</span></div>
+      <div class="st end"><span class="i">4</span><span class="h">Vos mirás lo marcado</span><span class="d">y una muestra del resto; la marca no cambia ninguna decisión</span></div>
+    </div>
+    <pre class="cmd">content-audit batch mark &lt;tanda&gt;              # sin tope: muestra las marcas y cuántas faltan
+content-audit batch mark &lt;tanda&gt; --budget 50  # pide hasta 50 marcas nuevas</pre>
+    <p class="pie">Una consulta por ejercicio cambiado. Lo ya marcado no se vuelve a pagar; si el ejercicio cambia, la marca vence.</p>
+  </section>
+
+  <section>
+    <h2>Marca 12 de mis 14, y 3 que no vi</h2>
+    <div class="tw"><table><thead><tr><th>Yo, en la prueba ancha</th><th>Revisor: bien</th><th>dudoso</th><th>mal</th><th>Total</th></tr></thead><tbody>
+{{MATRIZ}}
+    </tbody></table></div>
+    <div class="tw casos" style="margin-top:12px"><table><thead><tr><th>Caso</th><th>Producción</th><th>Ahora</th><th>Yo</th><th>El revisor</th><th>Quién tiene razón</th></tr></thead><tbody>
+{{FILAS_REVISOR}}
+    </tbody></table></div>
+    <p class="pie">Los 51 cambios de la prueba ancha. Es más estricto que yo: marca 16 de 51 para mirar, contra mis 14.</p>
+  </section>
+
+  <section>
+    <h2>Codex está racionado: 27 veces más lento que anoche</h2>
+    <div class="hb fijo">
+      <div class="r"><div class="t">Anoche, la prueba ancha<small>900 consultas en 66 minutos</small></div><div class="tr"><div class="f" style="width:100%"></div></div><div class="n">13,6 por min</div></div>
+      <div class="r"><div class="t">Hoy, examen y revisor<small>cada consulta espera ~10 minutos por un «429, demasiados pedidos»</small></div><div class="tr"><div class="f b" style="width:3.7%"></div></div><div class="n">0,5 por min</div></div>
+    </div>
+    <p class="pie">A este ritmo, el tramo grave (~15.000 consultas) tardaría unas 3 semanas; marcar los 1.539 cambios de la C2, unos 2 días.</p>
+    <div class="call c-warn"><b>Lo que no sé.</b> Si el límite es de la hora o del día, y cuánto de ese cupo es tu propio Codex, que usa la misma cuenta.</div>
+  </section>
+
+  <section>
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask"><span class="q">1 · ¿Arranco el tramo grave?</span><div class="ops"><span class="op rec">Cuando codex vuelva a su ritmo · recomendado</span><span class="op">Ya, aunque tarde</span></div><span class="why">Con el juez y el revisor listos, lo único que frena es el cupo, y lo comparte tu Codex.</span></div>
+      <div class="ask"><span class="q">2 · ¿Un defecto que viene de producción cuenta en la marca?</span><div class="ops"><span class="op rec">Sí, marcado como heredado · recomendado</span><span class="op">No, sólo lo que trajo el cambio</span></div><span class="why">26c7 y 26d2: la corrección no lo metió, pero no los publicaría así.</span></div>
+      <div class="ask"><span class="q">3 · ¿Hago la pantalla de las marcas en el tablero?</span><div class="ops"><span class="op rec">Sí, en Correcciones · recomendado</span><span class="op">No por ahora</span></div><span class="why">Hoy las marcas se ven sólo con el comando: falta la pantalla para que las evalúes en la app.</span></div>
+      <div class="ask"><span class="q">4 · En 2419, ¿«para que incluyan there» regala?</span><div class="ops"><span class="op rec">No, nombra la tarea · recomendado</span><span class="op">Sí, regala</span></div><span class="why">Si no regala, le paso al juez la consigna del tema, como al revisor; eso pide otro examen.</span></div>
+    </div>
+  </section>
+
+  <footer class="pie">Brief 227 · content-audit main fe74089f4 · FEAT-REGALA (answer-giveaway 04552ec9, APROBADO con codex-cli/gpt-6.1-sol medium) · FEAT-MARCA (change-reviewer 6f899ccf, batch mark) · F-SMODE-R008 · analysis/regala-2026-10-26 (rendir.py, examen-v2) · analysis/revisor-2026-10-26 (marcar.py, comparacion-v1.json) · veredictos-ancha.json · corrida ui-2026-10-26T03-46-29.</footer>
+</div>
+
+</body>
+</html>
