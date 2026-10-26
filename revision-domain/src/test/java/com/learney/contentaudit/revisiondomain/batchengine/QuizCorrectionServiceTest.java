@@ -535,6 +535,45 @@ class QuizCorrectionServiceTest {
         assertFalse(DefaultQuizCorrectionService.contextFindings(report, sourceTasks.get(0)).contains(production));
     }
 
+    @Tag("F-MESA-R029")
+    @Test void anExerciseWhoseOnlyProblemIsItsLengthIsNotCorrectedAndSaysWhy() {
+        // F-MESA-R029: «He isn't going to play football this summer.» is 9 words in A1; a change that only shortens is not
+        // accepted, so the exercise stays measured, with its finding, and gives no task.
+        Finding length = length(sibling);
+        sourceTasks.add(TandaFixture.task("length", length, knowledge, CefrLevel.A1));
+        report = TandaFixture.report(course, List.of(instruction, translation, length), Map.of(), List.of());
+
+        State state = service.execute(estimate(List.of(sibling), false));
+
+        var row = state.quizzes().stream().filter(q -> q.quizId().equals(sibling)).findFirst().orElseThrow();
+        assertFalse(row.correctable());
+        assertEquals(DefaultQuizCorrectionService.ONLY_THE_LENGTH, row.reason());
+        assertEquals(List.of(length), row.findings(), "it stays visible");
+        assertFalse(state.allowed());
+        verifyNoInteractions(panels, runner);
+    }
+
+    @Tag("F-MESA-R029")
+    @Test void theLengthOfAnExerciseWithAnotherProblemStaysOneOfItsTasks() {
+        // F-MESA-R029: with its instructions to correct, the exercise goes to the panel and its length goes with it, light.
+        Finding length = length(quiz);
+        sourceTasks.add(TandaFixture.task("length", length, knowledge, CefrLevel.A1));
+        report = TandaFixture.report(course, List.of(instruction, translation, length), Map.of(), List.of());
+
+        State estimate = service.execute(estimate(List.of(quiz), false));
+
+        var row = estimate.quizzes().stream().filter(q -> q.quizId().equals(quiz)).findFirst().orElseThrow();
+        assertTrue(row.correctable(), String.valueOf(row.reason()));
+        assertTrue(row.findings().contains(length));
+    }
+
+    private static Finding length(String id) {
+        return new Finding("sentence-length", "longer-than-goal", new FindingNodeRef(AuditTarget.QUIZ, id, id),
+                FindingSeverity.LOW, new FindingEvidence(List.of(new EvidencePart("Largo", "9 tokens")),
+                        "Largo: 9 tokens, A1 de 3 a 8 (1 de más)", List.of()),
+                FindingResolution.PANEL, null, new FindingIdentity("sentence-length|longer-than-goal|" + id, null));
+    }
+
     private static Finding production(String id) {
         return new Finding("data-coherence", "saved-sentence", new FindingNodeRef(AuditTarget.QUIZ, id, id),
                 FindingSeverity.MEDIUM, new FindingEvidence(List.of(new EvidencePart("Oración guardada (producción)",

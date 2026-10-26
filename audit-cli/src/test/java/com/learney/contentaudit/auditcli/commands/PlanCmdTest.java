@@ -489,8 +489,10 @@ public class PlanCmdTest {
                 + run.err());
         ArgumentCaptor<RefinementPlan> saved = ArgumentCaptor.forClass(RefinementPlan.class);
         verify(plans).save(saved.capture());
-        assertEquals(4036, saved.getValue().getTasks().size(), "the plan keeps the 4.036 tasks of the seven classics");
-        assertTrue(run.out().contains("4036 improvements identified"), run.out());
+        // F-SMODE-R008, José 26/10: 230 SENTENCE_LENGTH tasks fewer, of the quizzes whose too long statement,
+        // measured by its longest sentence, fits the range
+        assertEquals(3806, saved.getValue().getTasks().size(), "the plan keeps the 4.036 tasks of the seven classics");
+        assertTrue(run.out().contains("3806 improvements identified"), run.out());
     }
 
     @Test

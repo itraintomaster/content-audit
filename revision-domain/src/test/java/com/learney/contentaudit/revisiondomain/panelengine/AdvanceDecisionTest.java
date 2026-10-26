@@ -32,20 +32,22 @@ import org.junit.jupiter.api.Test;
 public class AdvanceDecisionTest {
 
     @Test
-    @DisplayName("should accept the camera shortened from 18 to 10 as an advance, with its length task improved but open")
+    @DisplayName("should no longer accept the camera shortened from 18 to 10 when that is all it does, though its length task measures improved")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R006")
-    public void shouldAcceptTheCameraShortenedFrom18To10AsAnAdvance() {
+    @Tag("F-MESA-R029")
+    public void shouldNotAcceptTheCameraShortenedFrom18To10WhenThatIsAllItDoes() {
         UnitMeasurement original = measured(List.of(length()), 18, "It's not okay to use a camera here.");
-        ScoredCandidate shorter = scored(measured(List.of(length()), 10, "No cameras here. You can't use one."), original);
+        UnitMeasurement shorter = measured(List.of(length()), 10, "No cameras here. You can't use one.");
 
-        ScriptDecision decision = script().decide(List.of(lengthTask()), original, List.of(shorter));
+        ScriptDecision decision = script().decide(List.of(lengthTask()), original, List.of(scored(shorter, original)));
+        TaskProgress progress = script().progress(List.of(lengthTask()), original, shorter);
 
-        assertEquals(PanelOutcomeKind.ACCEPTED, decision.getOutcome());
-        assertTrue(decision.getResolvedTaskIds().isEmpty(), "the length is still out of range");
-        assertEquals(List.of("t-largo"), decision.getProgress().improved());
-        assertEquals("largo 18 → 10 (meta 3 a 8)", decision.getProgress().improvements().get("t-largo"));
-        assertEquals("largo 10 (meta 3 a 8)", decision.getProgress().open().get("t-largo"));
+        assertEquals(PanelOutcomeKind.NO_WINNER, decision.getOutcome());
+        assertTrue(decision.getReasons().get(0).contains("sólo acorta, y el largo solo no alcanza para aceptar un cambio"
+                + " — sigue abierta t-largo: largo 10 (meta 3 a 8)"), decision.getReasons().toString());
+        assertEquals(List.of("t-largo"), progress.improved(), "the measure still says what it did to the length");
+        assertEquals("largo 18 → 10 (meta 3 a 8)", progress.improvements().get("t-largo"));
     }
 
     @Test
@@ -84,6 +86,7 @@ public class AdvanceDecisionTest {
     @DisplayName("should reject an advance that takes the length out of its range, 5 → 12, even if its finding gets lighter")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R006")
+    @Tag("F-MESA-R029")
     public void shouldRejectAnAdvanceThatTakesTheLengthAwayFromItsRange() {
         UnitMeasurement original = measured(List.of(come(FindingSeverity.BLOCKING)), 5, "He comes every year.");
         ScoredCandidate away = scored(measured(List.of(come(FindingSeverity.LOW)), 12, "He comes every year."), original);
@@ -174,6 +177,78 @@ public class AdvanceDecisionTest {
         assertEquals(List.of("t-come"), progress.resolved());
         assertEquals(List.of("t-largo"), progress.improved());
         assertEquals("largo 18 → 9 (meta 3 a 8)", progress.improvements().get("t-largo"));
+    }
+
+    @Test
+    @DisplayName("should reject a candidate whose only advance is the length, even when it brings the length into its range")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R029")
+    public void shouldRejectACandidateWhoseOnlyAdvanceIsTheLength() {
+        UnitMeasurement original = measured(List.of(length(), come(FindingSeverity.BLOCKING)), 12, "He comes every year.");
+        ScoredCandidate shorter = scored(measured(List.of(come(FindingSeverity.BLOCKING)), 8, "He comes each year."),
+                original);
+
+        ScriptDecision decision = script().decide(List.of(lengthTask(), comeTask()), original, List.of(shorter));
+
+        assertEquals(PanelOutcomeKind.NO_WINNER, decision.getOutcome());
+        assertTrue(decision.getReasons().get(0).contains("sólo acorta, y el largo solo no alcanza para aceptar un cambio"),
+                decision.getReasons().toString());
+    }
+
+    @Test
+    @DisplayName("should prefer the candidate that resolves a high task over the one that resolves two low ones")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R029")
+    public void shouldPreferTheCandidateThatResolvesAHighTaskOverOneThatResolvesTwoLowOnes() {
+        Finding duplicate = finding("exact-duplicates", "same-exercise", COME, FindingSeverity.LOW, FindingResolution.PANEL,
+                null, "duplicado");
+        UnitMeasurement original = measured(List.of(come(FindingSeverity.HIGH), duplicate, saved(FindingSeverity.LOW)), 5,
+                "He comes every year.");
+        ScoredCandidate twoLow = scored(measured(List.of(come(FindingSeverity.HIGH)), 5, "He comes every year."), original);
+        ScoredCandidate oneHigh = scored(measured(List.of(duplicate, saved(FindingSeverity.LOW)), 5, "He comes every year."),
+                original);
+
+        ScriptDecision decision = script().decide(List.of(brief("t-come", come(FindingSeverity.HIGH)),
+                brief("t-dup", duplicate), brief("t-saved", saved(FindingSeverity.LOW))), original, List.of(twoLow, oneHigh));
+
+        assertEquals(PanelOutcomeKind.ACCEPTED, decision.getOutcome());
+        assertEquals(1, decision.getWinnerIndex(), decision.getReasons().toString());
+        assertEquals(List.of("t-come"), decision.getResolvedTaskIds());
+    }
+
+    @Test
+    @DisplayName("should prefer the candidate that does not change what is heard over the one that also brings the length into its range")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R029")
+    public void shouldLetTheLengthBreakATieOnlyAtTheEnd() {
+        UnitMeasurement original = measured(List.of(length(), come(FindingSeverity.BLOCKING)), 12, "He comes every year.");
+        ScoredCandidate keepsItsLength = scored(measured(List.of(length()), 12, "He comes every year."), original);
+        ScoredCandidate alsoShorter = scored(measured(List.of(), 8, "He comes each year."), original);
+
+        ScriptDecision decision = script().decide(List.of(lengthTask(), comeTask()), original,
+                List.of(alsoShorter, keepsItsLength));
+
+        assertEquals(PanelOutcomeKind.ACCEPTED, decision.getOutcome());
+        assertEquals(1, decision.getWinnerIndex(), "resolving the length and leaving no finding of it count nothing; "
+                + "not changing what is heard comes first: " + decision.getReasons());
+    }
+
+    @Test
+    @DisplayName("should accept an advance that takes the length two words farther from its range, 8 → 10, and reject one that takes it three, 8 → 11")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R029")
+    public void shouldAcceptAnAdvanceThatTakesTheLengthTwoWordsFartherButNotThree() {
+        UnitMeasurement original = measured(List.of(come(FindingSeverity.BLOCKING)), 8, "He comes every year.");
+        ScoredCandidate two = scored(measured(List.of(come(FindingSeverity.LOW)), 10, "He comes every year."), original);
+        ScoredCandidate three = scored(measured(List.of(come(FindingSeverity.LOW)), 11, "He comes every year."), original);
+
+        ScriptDecision accepted = script().decide(List.of(comeTask()), original, List.of(two));
+        ScriptDecision rejected = script().decide(List.of(comeTask()), original, List.of(three));
+
+        assertEquals(PanelOutcomeKind.ACCEPTED, accepted.getOutcome(), accepted.getReasons().toString());
+        assertEquals(PanelOutcomeKind.NO_WINNER, rejected.getOutcome());
+        assertTrue(rejected.getReasons().get(0).contains("aleja el largo del rango: 8 → 11 (meta 3 a 8)"),
+                rejected.getReasons().toString());
     }
 
     // -------------------------------------------------------------------------

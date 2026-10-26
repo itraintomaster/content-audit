@@ -287,18 +287,20 @@ arrastre de la oracion fuente.
 </details>
 
 <a id="F-SMODE-R008"></a>
-### Rule[F-SMODE-R008] - Un enunciado de varias oraciones se mide por la mas larga
-**Severity**: major | **Validation**: ASSUMPTION
+### Rule[F-SMODE-R008] - Un enunciado de varias oraciones que se pasa del rango se mide por la mas larga
+**Severity**: major | **Validation**: VALIDATED
 
 > Fuera de los ejercicios de transformar, cuando la oracion guardada tiene varias oraciones —los dos renglones de un
-> dialogo, una oracion de contexto antes de la que se completa—, el largo es el de la oracion mas larga, y la
-> evidencia del hallazgo muestra esa oracion. Invariantes:
+> dialogo, una oracion de contexto antes de la que se completa— y entera se pasa del maximo de su nivel, el largo es el
+> de la oracion mas larga, y la evidencia del hallazgo muestra esa oracion. Invariantes:
 > 1. una oracion termina en «.», «?» o «!», salvo el punto de «Mr.», «Mrs.», «Ms.», «Dr.» y «St.»;
 > 2. la respuesta de un ejercicio de transformar se sigue midiendo entera ([F-SMODE-R004](#F-SMODE-R004)): pide una sola
 >    oracion, y una de dos es la fuente pegada, que el largo tiene que seguir mostrando;
 > 3. si los tokens no deletrean las oraciones una tras otra, se mide entera, como antes;
 > 4. la ficha del analizador lo dice, asi la comparacion con la linea base lo muestra como cambio de medida
->    ([F-METAS-R007](#F-METAS-R007)).
+>    ([F-METAS-R007](#F-METAS-R007));
+> 5. un enunciado que entero entra en el rango o queda corto se sigue midiendo entero, y tambien uno cuya oracion mas
+>    larga queda por debajo del minimo: un dialogo de renglones cortos no es corto.
 
 <details><summary>Detalle</summary>
 
@@ -309,7 +311,12 @@ tokens; 7 el renglon mas largo), y 115 de ellos entran midiendo la mas larga. Pa
 prueba ancha de esa noche recorto lo que les daba sentido: «Is this tea? It ___ .» perdio el «No,» que la traduccion
 conserva, y «He ___ (not / play) football this summer.» perdio el «this summer» que justificaba $going to$.
 
-**Fuente**: prueba ancha de la C2 de A1, 26/10/2026.
+Medida sobre todo enunciado de varias oraciones, la regla bajaba B1 y B2 (79,5 → 79,4 y 63,5 → 63,1 en el curso del
+29/9): sus dialogos entran enteros en el rango y, medidos por el renglon mas largo, quedaban cortos. De ahi el
+invariante 5.
+
+**Fuente**: prueba ancha de la C2 de A1, 26/10/2026; brief 226, pregunta 1; José, el 26/10/2026: «Sí: hacé el largo
+leve».
 
 </details>
 

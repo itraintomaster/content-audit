@@ -923,8 +923,8 @@ public class SentenceLengthAnalyzerTest {
     @Tag("F-SMODE-R004")
     public void shouldKeepMeasuringTheStoredSentenceOfARewriteExerciseThatAlreadyHoldsItsAnswerAloneAndAFillWhole() {
         // «She visits her father (every week)» has no period, so built from its parts it would read the source twice;
-        // its stored sentence is the answer and stays what is measured. A fill exercise is not cut to its answer: of its
-        // two sentences, the longest is measured (F-SMODE-R008).
+        // its stored sentence is the answer and stays what is measured. A fill exercise is not cut to its answer: its two
+        // sentences fit the range together, so they are measured whole (F-SMODE-R008).
         AuditNode father = rewriteQuiz(com.learney.contentaudit.coursedomain.SentenceMode.REWRITE, "2f0e",
                 "She visits her father every week.", text("She visits her father (every week)"),
                 gap("She visits her father every week."), text(""));
@@ -938,7 +938,7 @@ public class SentenceLengthAnalyzerTest {
         analyzer.onQuiz(hungry);
         new SentenceLengthAnalyzer(null, config).onQuiz(withoutRenderer);
 
-        Assertions.assertEquals(List.of(7, 5, 12), List.of(counted(father), counted(hungry), counted(withoutRenderer)));
+        Assertions.assertEquals(List.of(7, 8, 12), List.of(counted(father), counted(hungry), counted(withoutRenderer)));
     }
 
     // ------------------------------------------------------------------
@@ -981,6 +981,26 @@ public class SentenceLengthAnalyzerTest {
 
         Assertions.assertEquals(question, examined.get(0).getText());
         Assertions.assertEquals("12 tokens", examined.get(1).getText());
+    }
+
+    @Test
+    @DisplayName("should keep measuring whole a dialogue that fits the range, «A: Hi! B: Hello.», and a too long one whose longest sentence is below the range")
+    @Tag("FEAT-SMODE")
+    @Tag("F-SMODE-R008")
+    public void shouldKeepMeasuringWholeAStatementThatFitsTheRangeOrWhoseLongestSentenceIsTooShort() {
+        // Measured by its longest line, «A: Hi!», the greeting would be 3 tokens, shorter than the 5 to 8 of the range:
+        // a dialogue of short lines is not short. Five one-word answers are 10 tokens and 2 the longest: whole too.
+        AuditNode greeting = rewriteQuiz(com.learney.contentaudit.coursedomain.SentenceMode.FILL, "hi",
+                "A: Hi! B: Hello.", text("A: Hi! B: "), gap("Hello"), text("."));
+        AuditNode answers = rewriteQuiz(com.learney.contentaudit.coursedomain.SentenceMode.FILL, "short",
+                "Yes. No. Maybe. Sure. Okay.", text("Yes. No. Maybe. Sure. "), gap("Okay"), text("."));
+        SentenceLengthAnalyzer analyzer = measuringAnswers(null, config);
+
+        analyzer.onQuiz(greeting);
+        analyzer.onQuiz(answers);
+
+        Assertions.assertEquals(List.of(6, 10), List.of(counted(greeting), counted(answers)));
+        Assertions.assertEquals(List.of(), analyzer.findingsAt(greeting));
     }
 
     @Test

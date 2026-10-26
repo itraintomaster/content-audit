@@ -134,6 +134,7 @@ import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Arrays;
 import java.util.HexFormat;
 import java.util.Iterator;
@@ -1331,6 +1332,87 @@ public class AnalyzeCmdTest {
         /** The tasks of the plan 2026-09-30T11-54-12, made before the contract from that analysis. */
         static List<String> preContractPlan() {
             return readFixture(PLAN);
+        }
+
+        /** The SENTENCE_LENGTH tasks of the 29/9 plan whose quiz fits the range since F-SMODE-R008. */
+        static final int FIT_SINCE_LONGEST_SENTENCE = 230;
+
+        /**
+         * F-SMODE-R008, José 26/10: a too long statement of several sentences is measured by its longest one, and
+         * against the 29/9 analysis only the length moves. The vocabulary each node had before the contract, with
+         * the sentence-length of {@code today} in place of the one of 29/9.
+         */
+        static Map<String, Double> preContractVocabulary(AuditReport today) {
+            Map<String, Double> lengthToday = new HashMap<>();
+            walk(today.getRoot(), node -> {
+                Double length = node.getScores() == null ? null : node.getScores().get("sentence-length");
+                if (length != null) {
+                    lengthToday.put(key(node), length);
+                }
+            });
+            ObjectMapper json = new ObjectMapper();
+            Map<String, Double> result = new LinkedHashMap<>();
+            for (String line : readFixture(FIXTURES.resolve("nodes.jsonl.gz"))) {
+                JsonNode row = tree(json, line);
+                String key = row.get(0).asText() + " " + row.get(1).asText();
+                double sum = 0;
+                int count = 0;
+                boolean course = "COURSE".equals(row.get(0).asText());
+                for (Iterator<Map.Entry<String, JsonNode>> it = row.get(2).fields(); it.hasNext(); ) {
+                    Map.Entry<String, JsonNode> score = it.next();
+                    if (!score.getKey().contains("/")) {
+                        // Opción B de F-RECUR-R001, José 1/10, as in preContractVocabulary()
+                        boolean recurrence = course && "lemma-recurrence".equals(score.getKey());
+                        boolean length = "sentence-length".equals(score.getKey()) && lengthToday.containsKey(key);
+                        sum += recurrence ? 0.09 : length ? lengthToday.get(key) : score.getValue().asDouble();
+                        count++;
+                    }
+                }
+                result.put(key, sum / count);
+            }
+            return result;
+        }
+
+        /**
+         * F-SMODE-R008, José 26/10: {@code tasks}, the plan of {@code today}, against {@code before}, tasks of the
+         * 29/9 plan. The same tasks but the SENTENCE_LENGTH of the quizzes that fit the range; and since the plan goes
+         * from the lowest score up, the SENTENCE_LENGTH of a quiz whose length moved may change place, while every
+         * other task keeps its order, task by task.
+         */
+        static void assertPlanOfBefore(AuditReport today, List<String> before, List<String> tasks, String message) {
+            Map<String, Double> length = quizLength(today);
+            Map<String, Double> length299 = new HashMap<>();
+            ObjectMapper json = new ObjectMapper();
+            for (String line : readFixture(FIXTURES.resolve("nodes.jsonl.gz"))) {
+                JsonNode row = tree(json, line);
+                if ("QUIZ".equals(row.get(0).asText()) && row.get(2).has("sentence-length")) {
+                    length299.put(row.get(1).asText(), row.get(2).get("sentence-length").asDouble());
+                }
+            }
+            List<String> expected = new ArrayList<>(before);
+            expected.removeIf(task -> ofTheQuizLength(task) && length.getOrDefault(task.split("\t")[1], 0.0) >= 1.0);
+            assertEquals(before.size() - FIT_SINCE_LONGEST_SENTENCE, expected.size(),
+                    "F-SMODE-R008: the SENTENCE_LENGTH tasks whose quiz fits the range since then");
+            assertEquals(expected.stream().sorted().toList(), tasks.stream().sorted().toList(), message);
+            java.util.function.Predicate<String> stays = task -> !ofTheQuizLength(task)
+                    || length.get(task.split("\t")[1]).equals(length299.get(task.split("\t")[1]));
+            assertEquals(expected.stream().filter(stays).toList(), tasks.stream().filter(stays).toList(),
+                    message + ", in the same order but the SENTENCE_LENGTH whose length moved");
+        }
+
+        private static boolean ofTheQuizLength(String task) {
+            return task.startsWith("QUIZ\t") && task.endsWith("\tSENTENCE_LENGTH");
+        }
+
+        private static Map<String, Double> quizLength(AuditReport report) {
+            Map<String, Double> length = new HashMap<>();
+            walk(report.getRoot(), node -> {
+                Double score = node.getScores() == null ? null : node.getScores().get("sentence-length");
+                if (node.getTarget() == AuditTarget.QUIZ && score != null) {
+                    length.put(node.getEntity().getId(), score);
+                }
+            });
+            return length;
         }
 
         static String key(AuditNode node) {

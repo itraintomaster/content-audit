@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.learney.contentaudit.auditdomain.catalog.UnknownAnalyzerException;
 import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerScore;
@@ -1082,6 +1083,7 @@ public class DefaultAuditRunnerTest {
         assertEquals(11760, nodes.size(), "R013: the 11.760 nodes of the 29/9 course");
         assertEquals(expectedNodes.size(), nodes.size());
         ObjectMapper json = diagnosesMapper();
+        int shortened = 0;
         for (int i = 0; i < nodes.size(); i++) {
             AuditNode node = nodes.get(i);
             JsonNode expected = parse(json, expectedNodes.get(i));
@@ -1095,13 +1097,32 @@ public class DefaultAuditRunnerTest {
                 // lemma-recurrence da 0,09 en el curso en vez del 0,08 publicado el 29/9; el resto, igual.
                 expectedScores.put("lemma-recurrence", 0.09);
             }
-            assertEquals(expectedScores, node.getScores(), "R013: the same score of each analyzer on " + id);
-            assertEquals(new ArrayList<>(expectedScores.keySet()), new ArrayList<>(node.getScores().keySet()),
-                    "and in the same order on " + id);
             JsonNode expectedTree = parse(json, expectedDiagnoses.get(i));
-            assertEquals(expectedTree, withoutNewEmptyFields(expectedTree, diagnosesTree(json, node)),
-                    "R013: the same typed diagnoses on " + id);
+            JsonNode actualTree = withoutNewEmptyFields(expectedTree, diagnosesTree(json, node));
+            // F-SMODE-R008, José 26/10: a too long statement of several sentences is measured by its longest one. Only
+            // the length moves: on the quizzes with such a statement, always shorter, and on the nodes above them.
+            Map<String, Double> actualScores = new LinkedHashMap<>(node.getScores());
+            boolean shorter = node.getTarget() == AuditTarget.QUIZ
+                    && expectedTree.path("sentenceLengthDiagnosis").path("tokenCount").asInt()
+                    != actualTree.path("sentenceLengthDiagnosis").path("tokenCount").asInt();
+            if (shorter) {
+                shortened++;
+                assertTrue(actualTree.path("sentenceLengthDiagnosis").path("tokenCount").asInt()
+                        < expectedTree.path("sentenceLengthDiagnosis").path("tokenCount").asInt(),
+                        "R008: the longest sentence is shorter than the whole statement on " + id);
+                ((ObjectNode) expectedTree).remove("sentenceLengthDiagnosis");
+                ((ObjectNode) actualTree).remove("sentenceLengthDiagnosis");
+            }
+            if (shorter || node.getTarget() != AuditTarget.QUIZ) {
+                expectedScores.remove("sentence-length");
+                actualScores.remove("sentence-length");
+            }
+            assertEquals(expectedScores, actualScores, "R013: the same score of each analyzer on " + id);
+            assertEquals(new ArrayList<>(expectedScores.keySet()), new ArrayList<>(actualScores.keySet()),
+                    "and in the same order on " + id);
+            assertEquals(expectedTree, actualTree, "R013: the same typed diagnoses on " + id);
         }
+        assertEquals(248, shortened, "R008: the quizzes measured by their longest sentence");
         assertEquals(new HashSet<>(List.of("sentence-length", "knowledge-title-length", "knowledge-instructions-length",
                 "coca-buckets-distribution", "lemma-recurrence", "lemma-absence", "lemma-count")),
                 new HashSet<>(report.getRoot().getNumbers().getAnalyzerScores().stream().map(AnalyzerScore::getAnalyzer)
@@ -1349,8 +1370,10 @@ public class DefaultAuditRunnerTest {
         // the opción B of F-RECUR-R001, José 1/10: la puntuación no ocupa posición; the levels do not move).
         AuditReport report = runRoundOne(new DefaultLemmaCountConfigLoader().load(null), workdir);
 
-        assertEquals("74,00", percent2(report.getRoot().getNumbers().getVocabularyScore()), "R008: the course");
-        assertEquals(List.of("96,0", "93,6", "78,9", "63,9"), report.getRoot().getChildren().stream()
+        // F-SMODE-R008, José 26/10: 74,22 % since a too long statement of several sentences is measured by its longest one.
+        assertEquals("74,22", percent2(report.getRoot().getNumbers().getVocabularyScore()), "R008: the course");
+        // F-SMODE-R008: A1 and A2 go up; B1 and B2, whose dialogues fit the range whole, do not move.
+        assertEquals(List.of("96,5", "94,1", "78,9", "63,9"), report.getRoot().getChildren().stream()
                 .map(level -> percent1(level.getNumbers().getVocabularyScore())).toList(), "R008: A1, A2, B1 and B2");
     }
 
@@ -1365,8 +1388,10 @@ public class DefaultAuditRunnerTest {
         // before the opción B of F-RECUR-R001, José 1/10: la puntuación no ocupa posición).
         AuditReport report = runRoundOne(new DefaultLemmaCountConfigLoader().load("4"), workdir);
 
-        assertEquals("74,07", percent2(report.getRoot().getNumbers().getVocabularyScore()), "R008: the course");
-        assertEquals(List.of("96,5", "94,2", "79,5", "63,5"), report.getRoot().getChildren().stream()
+        // F-SMODE-R008, José 26/10: 74,29 % since a too long statement of several sentences is measured by its longest one.
+        assertEquals("74,29", percent2(report.getRoot().getNumbers().getVocabularyScore()), "R008: the course");
+        // F-SMODE-R008: A1 and A2 go up; B1 and B2, whose dialogues fit the range whole, do not move.
+        assertEquals(List.of("97,1", "94,7", "79,5", "63,5"), report.getRoot().getChildren().stream()
                 .map(level -> percent1(level.getNumbers().getVocabularyScore())).toList(), "R008: A1, A2, B1 and B2");
     }
 
@@ -1636,8 +1661,10 @@ public class DefaultAuditRunnerTest {
         // opción B of F-RECUR-R001, José 1/10: la puntuación no ocupa posición; the levels do not move).
         AuditReport report = runRoundTwo(workdir);
 
-        assertEquals("74,00", percent2(report.getRoot().getNumbers().getVocabularyScore()), "R010: the course");
-        assertEquals(List.of("96,02", "93,60", "78,87", "63,86"), report.getRoot().getChildren().stream()
+        // F-SMODE-R008, José 26/10: 74,22 % since a too long statement of several sentences is measured by its longest one.
+        assertEquals("74,22", percent2(report.getRoot().getNumbers().getVocabularyScore()), "R010: the course");
+        // F-SMODE-R008: A1 and A2 go up; B1 and B2, whose dialogues fit the range whole, almost do not move.
+        assertEquals(List.of("96,55", "94,10", "78,88", "63,86"), report.getRoot().getChildren().stream()
                 .map(level -> percent2(level.getNumbers().getVocabularyScore())).toList(), "R010: A1, A2, B1 and B2");
     }
 

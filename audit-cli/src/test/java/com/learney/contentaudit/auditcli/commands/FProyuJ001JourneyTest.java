@@ -162,9 +162,11 @@ public class FProyuJ001JourneyTest {
                 Proyeccion299.BANDS_OF_29_9);
         assertEquals(Proyeccion299.vocabulary(written299), Proyeccion299.vocabulary(projection.getProjected()),
                 "R001: every node, the course included, as analyze on the copy with the four written");
-        assertEquals("74,07", Proyeccion299.percent(projection.getProjected().getRoot().getNumbers()
-                .getVocabularyScore()), "R001: the course at 74,07 %"); // (73,92 % before the opción B of F-RECUR-R001, José 1/10: la puntuación no ocupa posición)
-        assertEquals(List.of("96,54", "94,16", "79,45", "63,51"), Proyeccion299.levels(projection.getProjected()),
+        // F-SMODE-R008, José 26/10: 74,29 % since a too long statement is measured by its longest sentence
+        assertEquals("74,29", Proyeccion299.percent(projection.getProjected().getRoot().getNumbers()
+                .getVocabularyScore()), "R001: the course at 74,29 %"); // (73,92 % before the opción B of F-RECUR-R001, José 1/10: la puntuación no ocupa posición)
+        // F-SMODE-R008: A1 and A2 go up; B1 and B2, whose dialogues fit the range whole, almost do not move
+        assertEquals(List.of("97,06", "94,66", "79,46", "63,51"), Proyeccion299.levels(projection.getProjected()),
                 "R001: the levels, not 92,38 in A1");
         assertEquals(0.9, Proyeccion299.node(projection.getProjected(), Proyeccion299.GRANDMOTHER).getScores()
                 .get("lemma-absence"), 1e-9, "R001: «My grandmother ___ (come) every year.» from 1,0 to 0,9");

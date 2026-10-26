@@ -90,6 +90,9 @@ class DefaultTopicPanel implements TopicPanel {
     /** F-MESA-R007 inv. 1: while the last attempt improved, up to two more -- five with the default three. */
     static final int EXTRA_ATTEMPTS_WHILE_IMPROVING = 2;
 
+    /** F-MESA-R029: why an exercise with only the length open is not tried. */
+    static final String ONLY_THE_LENGTH = "sólo queda el largo, y un cambio que sólo acorta no alcanza: no se intenta";
+
     /** The declarations of the analyzers, to know which tasks want two fixes (R003); none means one candidate. */
     private AnalyzerCorrectionCatalog corrections;
 
@@ -280,6 +283,12 @@ class DefaultTopicPanel implements TopicPanel {
         if (holding.isEmpty() && !conversion) {
             return new Unit(current, false, false);
         }
+        // F-MESA-R029: a change that only shortens is not accepted, so an exercise left with only the length is not tried.
+        if (!conversion && holding.stream().allMatch(DefaultPanelDecisionScript::ofTheLength)) {
+            emit.accept(decision(knowledgeId, unitQuizIds, holding, PanelOutcomeKind.NO_WINNER, attemptsUsed,
+                    List.of(new CandidateRejection(attemptsUsed, null, new ArrayList<>(List.of(ONLY_THE_LENGTH)))), 0));
+            return new Unit(current, false, false);
+        }
 
         int maxAttempts = settings != null && settings.getMaxAttempts() > 0 ? settings.getMaxAttempts() : DEFAULT_MAX_ATTEMPTS;
         List<CandidateRejection> rejections = new ArrayList<>();
@@ -361,7 +370,8 @@ class DefaultTopicPanel implements TopicPanel {
                 // R007 inv. 7: the task of the whole topic, a conversion and new instructions of the topic end here.
                 boolean ends = quizId == null || conversion || chosen.getKind() == PanelCandidateKind.MULTIPLE_CHOICE_CONVERSION
                         || chosen.getTopicInstructions() != null;
-                if (ends || progress.open.isEmpty()) {
+                // F-MESA-R029: what only the length keeps open is not worth another attempt.
+                if (ends || progress.open.stream().allMatch(DefaultPanelDecisionScript::ofTheLength)) {
                     break;
                 }
                 // R007 inv. 3: the advance goes back as the starting point, with what it improved and what is left.

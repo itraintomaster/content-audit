@@ -299,7 +299,9 @@ public class FHallJ001JourneyTest {
      * the 29/9 course before the contract; on the course, 73,9 %, the same get audit and analyze show.
      */
     private static void assertVocabularyOfTheCourse(Analysis analysis) {
-        Map<String, Double> before = Base299.preContractVocabulary();
+        // F-SMODE-R008, José 26/10: a too long statement of several sentences is measured by its longest one;
+        // only the length moves against 29/9.
+        Map<String, Double> before = Base299.preContractVocabulary(analysis.report());
         List<AuditNode> nodes = new ArrayList<>();
         Base299.walk(analysis.report().getRoot(), nodes::add);
         assertEquals(Base299.NODES, nodes.size(), "the 11.760 nodes of the 29/9 course");
@@ -309,13 +311,14 @@ public class FHallJ001JourneyTest {
                     "R009: the vocabulary score of " + key);
         }
         AuditNode course = analysis.report().getRoot();
-        // Opción B, José 1/10: la recurrencia da 0,09 y el vocabulario del curso, 74,1 %
-        assertEquals("74,1 %", GetCmd.scoreText(course.getNumbers().getVocabularyScore()), "R010: on the course");
-        assertEquals(List.of("96,5 %", "94,2 %", "79,5 %", "63,5 %"), course.getChildren().stream()
+        // Opción B, José 1/10: la recurrencia da 0,09 y el vocabulario del curso, 74,1 %; 74,3 % since F-SMODE-R008,
+        // with A1 and A2 up and B1 and B2, whose dialogues fit the range whole, the same
+        assertEquals("74,3 %", GetCmd.scoreText(course.getNumbers().getVocabularyScore()), "R010: on the course");
+        assertEquals(List.of("97,1 %", "94,7 %", "79,5 %", "63,5 %"), course.getChildren().stream()
                 .map(level -> GetCmd.scoreText(level.getNumbers().getVocabularyScore())).toList(), "R010: on the levels");
         Base299.Captured audit = Base299.run(Base299.getCmd(analysis.store(), analysis.catalog()), "audit", analysis.id());
-        assertTrue(audit.out().contains("Score:    74,1 %"), "R010: the one get audit shows: " + audit.out());
-        assertTrue(Pattern.compile("Score: 74[.,]1%").matcher(analysis.output().out()).find(),
+        assertTrue(audit.out().contains("Score:    74,3 %"), "R010: the one get audit shows: " + audit.out());
+        assertTrue(Pattern.compile("Score: 74[.,]3%").matcher(analysis.output().out()).find(),
                 "R010: the one analyze shows: " + analysis.output().out());
     }
 
@@ -354,8 +357,10 @@ public class FHallJ001JourneyTest {
                 .map(task -> task.getNodeTarget() + "\t" + task.getNodeId() + "\t" + task.getNodeLabel() + "\t"
                         + task.getDiagnosisKind())
                 .toList();
-        assertEquals(4036, tasks.size(), "R013: 3.051 + 950 + 25 + 6 + 3 + 1 tasks");
-        assertEquals(Base299.preContractPlan(), tasks, "R013: the tasks of the plan made before the contract");
+        // F-SMODE-R008: 230 SENTENCE_LENGTH tasks fewer, of the quizzes that measured by their longest sentence fit
+        assertEquals(4036 - Base299.FIT_SINCE_LONGEST_SENTENCE, tasks.size(), "R013: 3.051 + 950 + 25 + 6 + 3 + 1 tasks");
+        Base299.assertPlanOfBefore(analysis.report(), Base299.preContractPlan(), tasks,
+                "R013: the tasks of the plan made before the contract");
         assertTrue(run.err().contains("Aviso: rule-stand-in dejó 1 nodo con puntaje menor que 1 sin convertir en "
                 + "tareas: su ficha no declara un tipo de tarea"), "R004: " + run.err());
     }

@@ -4403,15 +4403,16 @@ public class GetCmdTest {
 
         Map<String, Double> courseKeys = store.load(id).orElseThrow().getRoot().getScores();
         assertEquals(11, courseKeys.size(), "the eleven course keys: " + courseKeys.keySet());
-        // Opción B, José 1/10: la recurrencia da 0,09 y el vocabulario del curso, 74,1 % (73,5 % la media de las claves)
-        assertEquals("73,5 %", GetCmd.scoreText(courseKeys.values().stream().mapToDouble(d -> d).average().orElseThrow()),
+        // Opción B, José 1/10: la recurrencia da 0,09 y el vocabulario del curso, 74,1 % (73,5 % la media de las claves);
+        // since F-SMODE-R008, 74,3 % and 73,7 %
+        assertEquals("73,7 %", GetCmd.scoreText(courseKeys.values().stream().mapToDouble(d -> d).average().orElseThrow()),
                 "their average, what get audits and get audit showed before the contract");
         assertEquals(0, audits.exit(), audits.err());
         assertEquals(0, audit.exit(), audit.err());
-        assertTrue(audits.out().lines().anyMatch(line -> line.startsWith(id) && line.endsWith("74,1 %")),
-                "R010: get audits shows 74,1 %: " + audits.out());
-        assertTrue(audit.out().contains("Score:    74,1 %"), "R010: get audit shows 74,1 %: " + audit.out());
-        assertFalse(audits.out().contains("73,5") || audit.out().contains("73,5"), "R010: never the average of the keys");
+        assertTrue(audits.out().lines().anyMatch(line -> line.startsWith(id) && line.endsWith("74,3 %")),
+                "R010: get audits shows 74,3 %: " + audits.out());
+        assertTrue(audit.out().contains("Score:    74,3 %"), "R010: get audit shows 74,3 %: " + audit.out());
+        assertFalse(audits.out().contains("73,7") || audit.out().contains("73,7"), "R010: never the average of the keys");
     }
 
     /** F-HALL-R006: the lines of the card that get analyzers prints, every field of it. */
@@ -4745,12 +4746,13 @@ public class GetCmdTest {
         assertTrue(before.keySet().stream().anyMatch(path -> path.contains("plans")), "the plan is among them: " + before);
         com.learney.contentaudit.auditdomain.AuditReport stored =
                 new FileSystemAuditReportStore(workdir, null).load(id).orElseThrow();
-        // Opción B, José 1/10: la recurrencia da 0,09 y el vocabulario del curso, 74,07 %
-        assertEquals("74,07 %", String.format(java.util.Locale.ROOT, "%.2f %%",
-                stored.getRoot().getNumbers().getVocabularyScore() * 100).replace('.', ','), "R007: 74,07 % in the course");
-        assertEquals(Base299.preContractVocabulary().get("COURSE root"),
+        // Opción B, José 1/10: la recurrencia da 0,09 y el vocabulario del curso, 74,07 %; 74,29 % since F-SMODE-R008
+        assertEquals("74,29 %", String.format(java.util.Locale.ROOT, "%.2f %%",
+                stored.getRoot().getNumbers().getVocabularyScore() * 100).replace('.', ','), "R007: 74,29 % in the course");
+        assertEquals(Base299.preContractVocabulary(stored).get("COURSE root"),
                 stored.getRoot().getNumbers().getVocabularyScore(), 1e-12, "the vocabulary of before the round");
-        assertEquals(4036, new com.learney.contentaudit.auditinfrastructure.FileSystemRefinementPlanStore(workdir)
+        // F-SMODE-R008: 230 SENTENCE_LENGTH tasks fewer, of the quizzes that measured by their longest sentence fit
+        assertEquals(4036 - Base299.FIT_SINCE_LONGEST_SENTENCE, new com.learney.contentaudit.auditinfrastructure.FileSystemRefinementPlanStore(workdir)
                 .loadLatest().orElseThrow().getTasks().size(), "R007: the 4.036 tasks of the plan");
     }
 

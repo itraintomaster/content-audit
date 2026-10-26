@@ -75,8 +75,10 @@ public class FCeroJ001JourneyTest {
         assertEquals(0, asked.exit(), asked.err());
         assertEquals(vocabulary(newInvocation), vocabulary(photos.getProjected()),
                 "R001: every node of the photo with the pending proposals, as a new invocation");
-        assertEquals("74,07", percent(photos.getProjected().getRoot().getNumbers().getVocabularyScore()), "R001: the course");
-        assertEquals(List.of("96,54", "94,16", "79,45", "63,51"), levels(photos.getProjected()), "R001: A1 to B2");
+        // F-SMODE-R008, José 26/10: 74,29 % since a too long statement is measured by its longest sentence
+        assertEquals("74,29", percent(photos.getProjected().getRoot().getNumbers().getVocabularyScore()), "R001: the course");
+        // F-SMODE-R008: A1 and A2 go up; B1 and B2, whose dialogues fit the range whole, almost do not move
+        assertEquals(List.of("97,06", "94,66", "79,46", "63,51"), levels(photos.getProjected()), "R001: A1 to B2");
         assertEquals(0.9, node(photos.getProjected(), GRANDMOTHER).getScores().get("lemma-absence"), 1e-9,
                 "R001: «My grandmother ___ (come) every year.» from 1,0 to 0,9");
 
@@ -116,7 +118,8 @@ public class FCeroJ001JourneyTest {
         assertEquals(0, asked.exit(), asked.err());
         assertEquals(vocabulary(analyzed), vocabulary(photos.getApproved()),
                 "R001: every node of the photo with what is approved, as analyze on the course");
-        assertEquals("74,07", percent(photos.getApproved().getRoot().getNumbers().getVocabularyScore()), "R001: the course");
+        // F-SMODE-R008, José 26/10: 74,29 % since a too long statement is measured by its longest sentence
+        assertEquals("74,29", percent(photos.getApproved().getRoot().getNumbers().getVocabularyScore()), "R001: the course");
         assertEquals(cocaTokens(analyzed), cocaTokens(photos.getApproved()), "R001: the COCA tokens of its 55 topics");
         assertSame(photos.getApproved(), photos.getProjected(), "nothing pending: the photo with pending proposals is the same");
         assertTrue(view(asked.out()).get("nodeImpacts").isEmpty(), "nothing changed, so the view shows no node: "

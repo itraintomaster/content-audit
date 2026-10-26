@@ -155,16 +155,18 @@ public class FNivfrJ001JourneyTest {
      * LEMMA_ABSENCE task of its quizzes.
      */
     private static void assertUntouched(Analysis analysis) {
-        Map<String, Double> before = Base299.preContractVocabulary();
+        // F-SMODE-R008, José 26/10: a too long statement of several sentences is measured by its longest one;
+        // only the length moves against 29/9.
+        Map<String, Double> before = Base299.preContractVocabulary(analysis.report());
         List<AuditNode> nodes = new ArrayList<>();
         Base299.walk(analysis.report().getRoot(), nodes::add);
         for (AuditNode node : nodes) {
             assertEquals(before.get(Base299.key(node)), node.getNumbers().getVocabularyScore(), 1e-12,
                     "R006: the vocabulary of " + Base299.key(node));
         }
-        // Opción B, José 1/10: la recurrencia da 0,09 y el vocabulario del curso, 74,1 %
-        assertEquals("74,1 %", GetCmd.scoreText(analysis.report().getRoot().getNumbers().getVocabularyScore()),
-                "R006: 74,1 % in the course with option B");
+        // Opción B, José 1/10: la recurrencia da 0,09 y el vocabulario del curso, 74,1 %; 74,3 % since F-SMODE-R008
+        assertEquals("74,3 %", GetCmd.scoreText(analysis.report().getRoot().getNumbers().getVocabularyScore()),
+                "R006: 74,3 % in the course with option B and F-SMODE-R008");
         FileSystemRefinementPlanStore plans = new FileSystemRefinementPlanStore(analysis.workdir());
         PlanCmd plan = new PlanCmd(analysis.store(), new DefaultRefinerEngine(analysis.catalog(), null), plans,
                 mock(EphemeralPlanRenderer.class));
@@ -174,7 +176,8 @@ public class FNivfrJ001JourneyTest {
                 .map(task -> task.getNodeTarget() + "\t" + task.getNodeId() + "\t" + task.getNodeLabel() + "\t"
                         + task.getDiagnosisKind())
                 .toList();
-        assertEquals(Base299.preContractPlan(), tasks, "R006: the 4,036 tasks of the plan, task by task");
+        Base299.assertPlanOfBefore(analysis.report(), Base299.preContractPlan(), tasks,
+                "R006: the 4,036 tasks of the plan but the 230 of F-SMODE-R008, task by task");
         assertTrue(run.err().contains("off-level-words") && run.err().contains("cubierto por la tarea LEMMA_ABSENCE"),
                 "R006: declared covered by the LEMMA_ABSENCE task, never dropped: " + run.err());
     }

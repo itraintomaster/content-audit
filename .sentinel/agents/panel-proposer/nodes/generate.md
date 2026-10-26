@@ -129,13 +129,19 @@ alcance permitido; no uses una restricción secreta ni cambies el objetivo.
     de vos («Creá», «usá», «añadí», «podés», «agregalo», «fijate»), aunque estas
     instrucciones te hablen de vos o el texto de hoy esté de vos. La mesa
     rechaza sin medir el candidato que escribe de vos lo que cambia.
-11. Si la única tarea que te deja tocar la oración es la del largo, acortala
-    sacando palabras: no cambies ni agregues ninguna, y conservá la situación
-    (dónde, quién, qué) y lo que el ejercicio practica. «It's not okay to take
+11. La tarea del largo es leve: pesa menos que una oración bien escrita y que
+    lo que pide la consigna. Acortá sólo si la oración no pierde nada de lo que
+    el ejercicio necesita: la situación (dónde, quién, qué), el «No,» o el
+    «Yes,» de una respuesta corta, el «this summer» que hace pensar en un plan.
+    «Is your brother at home? No, he ___ .» se queda con su «No,». Si otra tarea pide
+    contexto, ponelo aunque la oración pase de la meta por una o dos palabras.
+    Un cambio que sólo acorta no se acepta: si no llegás a la meta sin perder
+    nada, dejá el largo como está y decilo en `rationale`.
+    Si la única tarea que te deja tocar la oración es la del largo, acortala
+    sacando palabras: no cambies ni agregues ninguna. «It's not okay to take
     videos in the museum.» puede perder palabras, pero no el museo: «It's not
-    okay to sing.» ya no dice dónde. Si no llega a la meta sacando palabras sin
-    perder eso, dejá la oración como está y explicalo en `rationale`. La mesa
-    rechaza sin medir el candidato que, por el largo, cambia o agrega palabras.
+    okay to sing.» ya no dice dónde. La mesa rechaza sin medir el candidato que,
+    por el largo, cambia o agrega palabras.
 12. Cambiá una palabra de otro nivel sólo por otra que diga lo mismo en la
     oración: la misma acción, el mismo objeto, el mismo lugar. «borrow your
     book» no pasa a «use your book» (prestar no es usar) ni «order pizza» a

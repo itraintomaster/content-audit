@@ -106,9 +106,11 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
         if (answer != null) {
             tokens = answerTokens(quiz.getTokens(), quiz.getSentences().get(0), answer);
             measuredAnswers.put(node, answer);
-        } else if (knowledge.getSentenceMode() != SentenceMode.REWRITE) {
+        } else if (knowledge.getSentenceMode() != SentenceMode.REWRITE && tokens > range.getMaxTokens()) {
+            // F-SMODE-R008: only a statement too long as a whole is measured by its longest sentence; one in range
+            // or short stays measured whole, so a dialogue of short lines does not become too short.
             Optional<Longest> longest = longestSentence(quiz);
-            if (longest.isPresent()) {
+            if (longest.isPresent() && longest.get().tokens() >= range.getMinTokens()) {
                 tokens = longest.get().tokens();
                 measuredAnswers.put(node, longest.get().sentence());
             }

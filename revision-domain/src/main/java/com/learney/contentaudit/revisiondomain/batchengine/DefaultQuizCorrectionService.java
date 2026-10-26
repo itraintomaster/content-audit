@@ -26,6 +26,9 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
     private static final String NOTE = "El tope incluye propuestas, validaciones y reintentos; el consumo depende de los cambios. "
             + "La cantidad de quizzes es una referencia de propuestas, no una estimación del total ni un gasto mínimo obligatorio.";
     private static final ObjectMapper JSON = mapper();
+    /** F-MESA-R029: the analyzers of the length, which alone do not make a correction. */
+    private static final Set<String> LENGTH = Set.of("sentence-length", "knowledge-title-length", "knowledge-instructions-length");
+    static final String ONLY_THE_LENGTH = "Sólo el largo: un cambio que sólo acorta no alcanza para corregir; queda medido, con su hallazgo.";
     private final BatchServiceConfig config;
     private final BatchChangeLedger ledger;
     private final DefaultPanelStage panels;
@@ -377,6 +380,9 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
                     reason = "La corrección cambia la consigna del tema y requiere un alcance más amplio."; break;
                 }
             }
+            // F-MESA-R029: the length alone is not worth a change; the exercise stays measured, with its finding.
+            if (reason == null && !reached.isEmpty() && !repairs.contains(id)
+                    && reached.stream().allMatch(DefaultQuizCorrectionService::ofTheLength)) reason = ONLY_THE_LENGTH;
             rows.add(new Quiz(id, approved.contains(id), reason == null, reason, List.copyOf(findings.values())));
         }
         List<String> validators = config.getAnalyzerCatalog() == null ? new ArrayList<>(safe(batch.getAnalyzers()))
@@ -541,6 +547,11 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
         for (Finding finding : findings(task)) if (finding != null) all.putIfAbsent(key(finding), finding);
         return all.values().stream().filter(f -> !com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceStage.isAudioFinding(f)
                 && !waitsForPublishing(f)).toList();
+    }
+    /** F-MESA-R029: a task whose findings are all of the length. */
+    private static boolean ofTheLength(RefinementTask task) {
+        var all = findings(task);
+        return !all.isEmpty() && all.stream().allMatch(f -> LENGTH.contains(f.getAnalyzer()));
     }
     /** F-MESA-R026: the sentence production keeps, which only publishing changes: the mark {@code produccion}. */
     static boolean waitsForPublishing(Finding finding) {

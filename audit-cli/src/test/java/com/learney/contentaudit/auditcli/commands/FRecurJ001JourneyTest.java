@@ -91,9 +91,11 @@ public class FRecurJ001JourneyTest {
         for (AuditNode level : course.getChildren()) {
             assertFalse(level.getScores().containsKey(RECURRENCE), "R004: detail, never a score of the level");
         }
-        assertEquals("74,1 %", GetCmd.scoreText(course.getNumbers().getVocabularyScore()), "R002: 74,1 % with option B");
+        // F-SMODE-R008, José 26/10: 74,3 % since a too long statement is measured by its longest sentence
+        assertEquals("74,3 %", GetCmd.scoreText(course.getNumbers().getVocabularyScore()), "R002: 74,3 % with option B");
         List<String> tasks = plan(analysis);
-        assertEquals(Base299.preContractPlan(), tasks, "R002: the 4,036 tasks of the plan, task by task");
+        Base299.assertPlanOfBefore(analysis.report(), Base299.preContractPlan(), tasks,
+                "R002: the 4,036 tasks of the plan but the 230 of F-SMODE-R008, task by task");
         assertEquals(1, tasks.stream().filter(t -> t.endsWith("LEMMA_RECURRENCE")).count(),
                 "R002: a single LEMMA_RECURRENCE task, on the course");
         // result: success
@@ -131,7 +133,8 @@ public class FRecurJ001JourneyTest {
         List<String> tasks = plan(analysis);
         List<String> before = new ArrayList<>(Base299.preContractPlan());
         before.removeIf(t -> t.endsWith("LEMMA_RECURRENCE"));
-        assertEquals(before, tasks, "R002: the tasks of before, without the LEMMA_RECURRENCE of a course below 1");
+        Base299.assertPlanOfBefore(analysis.report(), before, tasks,
+                "R002: the tasks of before, without the LEMMA_RECURRENCE of a course below 1");
         // result: success
     }
 

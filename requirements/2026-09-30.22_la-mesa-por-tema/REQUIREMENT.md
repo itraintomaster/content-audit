@@ -122,15 +122,17 @@ consultas, las que estimó el paquete C.
 > candidato la **resuelve** si el analizador que la marcó ya no marca ninguno de sus hallazgos; la **mejora** si no la
 > resuelve pero, de sus hallazgos, alguno desaparece o baja de gravedad y ninguno sube, o —en una tarea de largo— el
 > ejercicio queda más cerca del rango de su nivel. Un candidato se acepta si:
-> 1. resuelve o mejora al menos una tarea del ejercicio;
+> 1. resuelve o mejora al menos una tarea del ejercicio que no es del largo ([F-MESA-R029](#F-MESA-R029));
 > 2. no empeora nada del ejercicio ([F-NOEMP-R001](#F-NOEMP-R001) a [F-NOEMP-R004](#F-NOEMP-R004)) y ningún hallazgo que
 >    ya tenía sube de gravedad;
-> 3. si no resuelve ninguna tarea, tampoco aleja del rango el largo de ningún ejercicio;
+> 3. si no resuelve ninguna tarea, tampoco aleja el largo de ningún ejercicio más de dos palabras de su rango
+>    ([F-MESA-R029](#F-MESA-R029));
 > 4. conserva el objetivo, la fórmula y los selectores didácticos del ejercicio ([F-MESA-R016](#F-MESA-R016)).
 >
 > Un hallazgo cuyo juez no evaluó el candidato no cuenta como desaparecido. Si se aceptan varios, gana el que resuelve
-> más tareas; después el que deja menos hallazgos, por gravedad; el que no cambia lo que se escucha; el que deja el largo
-> más cerca del rango; y si siguen empatados, el primero. Cada motivo de rechazo dice, por tarea abierta, cómo quedó
+> las tareas más graves —una alta antes que dos bajas—; después el que deja menos hallazgos, por gravedad; el que no
+> cambia lo que se escucha; el que deja el largo más cerca del rango; y si siguen empatados, el primero. En las dos
+> primeras cuentas el largo no entra ([F-MESA-R029](#F-MESA-R029)). Cada motivo de rechazo dice, por tarea abierta, cómo quedó
 > medida: el largo con su rango, o el hallazgo con su gravedad. Las mismas mediciones dan siempre la misma decisión, con
 > sus motivos.
 
@@ -555,6 +557,42 @@ Sumarlo a lo que la tanda compara inflaría «algún error» contra la base, que
 ejercicios de vos de la C2 que no iban a la mesa también van.
 
 **Fuente**: prueba del 26/10/2026; consecuencia de [F-MESA-R025](#F-MESA-R025).
+
+<a id="F-MESA-R029"></a>
+### Rule[F-MESA-R029] - El largo es leve: no justifica un cambio ni lo decide
+**Severity**: major | **Validation**: VALIDATED
+
+> El largo es la medida menos importante de un ejercicio: pesa menos que una oración bien escrita y que respetar la
+> consigna. Por eso:
+> 1. Un ejercicio cuyas únicas tareas son del largo no se corrige: queda medido, con su hallazgo, y la estimación dice
+>    «Sólo el largo: un cambio que sólo acorta no alcanza para corregir». Si en la mesa sólo le quedan tareas del
+>    largo, no se intenta y lo dice, sin gastar consultas.
+> 2. Un candidato que sólo acorta no se acepta: resolver o acercar al rango una tarea del largo no es el avance de
+>    [F-MESA-R006](#F-MESA-R006) (cond. 1), y el motivo dice «sólo acorta». Cuando un candidato aceptado deja abiertas
+>    sólo tareas del largo, la mesa no hace otro intento.
+> 3. Entre candidatos aceptados gana el que resuelve las tareas más graves —la gravedad de una tarea es la de su hallazgo
+>    más grave al empezar—; después, el que deja menos hallazgos por gravedad. En las dos cuentas el largo no entra:
+>    sólo desempata al final.
+> 4. Un candidato que mejora otra tarea puede alejar el largo hasta dos palabras de su rango; más, no (cond. 3 de
+>    [F-MESA-R006](#F-MESA-R006)).
+> 5. Quien propone lee la tarea del largo como leve: acorta sólo si la oración no pierde nada de lo que el ejercicio
+>    necesita, pone el contexto que otra tarea pide aunque pase de la meta, y si no puede acortar sin perder, deja el
+>    largo y lo dice.
+>
+> La regla vale para los tres analizadores del largo: el de las oraciones, el de los títulos y el de las consignas de los
+> temas. [F-MESA-R022](#F-MESA-R022) sigue valiendo: cuando el largo es lo único que deja tocar la oración, sólo se sacan
+> palabras.
+
+En la prueba ancha del 26/10/2026, 15 de los 64 ejercicios tenían una tarea de largo, y en 3 quien propone recortó
+sentido para cumplirla: en `…1f5d` sacó el «No,» de «No, it isn't» («elimino «No» para acortar») y la traducción lo
+conservó; en `…2185` la única tarea era el largo y se fue «this summer», lo único que hacía pensar en un plan; en
+`…2419` se fue «a lot of». En 4 dejó el largo pendiente y el cambio se aceptó igual por sus otras tareas. Hasta acá la
+tarea del largo contaba como cualquier otra para elegir ganador. Con la regla, en la C2 34 de los 1.985 ejercicios
+corregibles quedan sin corregir porque sólo tienen el largo.
+
+**Fuente**: brief 226, pregunta 1; José, el 26/10/2026: «Esto es un eval algorítmico (no un llm) … debería pesar mucho
+menos que la oración bien escrita o respetando el enunciado … tendría que haber quedado la opción que se pasaba un poco
+del largo» y «Sí: hacé el largo leve».
 
 ## Contexto
 

@@ -72,13 +72,15 @@ public class FMetasJ001JourneyTest {
         assertEquals(List.of("lemma-count"), comparison.getMeasureChanges().stream().map(MeasureChange::getAnalyzer)
                 .toList(), "R007: the measure of lemma-count changed since the baseline");
         ComparisonRow course = row(comparison, "vocabulario", "root");
-        assertEquals("74,07", Proyeccion299.percent(course.getBaseline().getValue()), "R007: the baseline as it was");
-        assertEquals("74,00", Proyeccion299.percent(course.getRemeasuredBaseline().getValue()),
+        // F-SMODE-R008, José 26/10: 74,29 % since a too long statement is measured by its longest sentence
+        assertEquals("74,29", Proyeccion299.percent(course.getBaseline().getValue()), "R007: the baseline as it was");
+        assertEquals("74,22", Proyeccion299.percent(course.getRemeasuredBaseline().getValue()),
                 "R007: measured again with today's bands");
-        assertTrue(text.contains("cambio de medida: 74,07 → 74,0"), text); // 73,92 → 73,86 before the opción B of F-RECUR-R001
+        assertTrue(text.contains("cambio de medida: 74,29 → 74,2"), text); // 73,92 → 73,86 before the opción B of F-RECUR-R001
         ComparisonRow a1 = row(comparison, "vocabulario", Proyeccion299.LEVELS.get(0));
-        assertEquals("96,54", Proyeccion299.percent(a1.getBaseline().getValue()));
-        assertEquals("96,02", Proyeccion299.percent(a1.getRemeasuredBaseline().getValue()), "R007: «96,54 → 96,02»");
+        // F-SMODE-R008, José 26/10: 96,54 → 96,02 before a too long statement was measured by its longest sentence
+        assertEquals("97,06", Proyeccion299.percent(a1.getBaseline().getValue()));
+        assertEquals("96,55", Proyeccion299.percent(a1.getRemeasuredBaseline().getValue()), "R007: «97,06 → 96,55»");
 
         // nodos · vuelven
         ChangeOutcome grandmother = change(comparison, "p-" + Proyeccion299.GRANDMOTHER);
@@ -169,7 +171,8 @@ public class FMetasJ001JourneyTest {
         BatchComparison comparison = work.comparator(Proyeccion299.BANDS_OF_29_9).compare(Proyeccion299.COURSE, null);
 
         assertTrue(comparison.getMeasureChanges().isEmpty(), "R007: the same measures");
-        assertEquals("74,07", Proyeccion299.percent(row(comparison, "vocabulario", "root").getProjected().getValue()));
+        // F-SMODE-R008, José 26/10: 74,29 % since a too long statement is measured by its longest sentence
+        assertEquals("74,29", Proyeccion299.percent(row(comparison, "vocabulario", "root").getProjected().getValue()));
         assertEquals(0.0, row(comparison, "vocabulario", "root").getChange(), 0.005, "R001: the course does not move");
         ComparisonRow regular = row(comparison, "lemma-absence", Proyeccion299.REGULAR_AFFIRMATIVES);
         assertEquals(-0.5, regular.getChange(), 0.005, "R001: «Afirmativas regulares» −0,5 points");

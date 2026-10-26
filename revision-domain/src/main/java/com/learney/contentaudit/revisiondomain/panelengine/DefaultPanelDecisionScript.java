@@ -28,9 +28,9 @@ import javax.annotation.processing.Generated;
  * against its starting point. A candidate is accepted when it resolves or improves at least one task of the exercise --
  * none of the task's findings is marked any more, or one is gone or lighter and none heavier, or its length is closer to
  * the range -- and worsens nothing: the change gate passes and no finding it had gets heavier; one that resolves nothing
- * also keeps every length as close to its range as it was. Among several, the one that resolves more tasks wins; then
- * the one that leaves fewer findings by severity; then the one that does not change what is heard; then the one with
- * its lengths closer to the range; then the first. A candidate on which the two judges of a criterion disagree -- the
+ * also takes no length more than two words farther from its range. Among several, the one that resolves the heaviest
+ * tasks wins; then the one that leaves fewer findings by severity; then the one that does not change what is heard;
+ * then the one with its lengths closer to the range; then the first. A candidate on which the two judges of a criterion disagree -- the
  * tie rule its analyzer declares -- is neither accepted nor rejected: it goes to José (F-MESA-R008). A conversion José
  * ordered is accepted when it worsens nothing (F-MESA-R015).
  *
@@ -40,6 +40,9 @@ import javax.annotation.processing.Generated;
  * <p>F-MESA-R026: the sentence production keeps follows the exercise. Its finding stays marked until the course goes to
  * production, so a candidate that rebuilt the saved sentence of the exercise -- the one of the tree is no longer marked
  * -- resolves it: publishing the candidate carries that sentence.
+ *
+ * <p>F-MESA-R029: the length is light. A task of the length resolved or improved is not the advance that accepts a
+ * candidate, and neither the tasks resolved nor the findings left count it: it only breaks a tie, at the end.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -54,6 +57,9 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
             "knowledge-instructions-length");
 
     private static final int OBSERVATION_CHARS = 160;
+
+    /** F-MESA-R029: how many words farther from its range a candidate that advances another task may take a length. */
+    static final int LENGTH_ALLOWANCE = 2;
 
     private final AnalyzerCorrectionCatalog correctionCatalog;
 
@@ -98,7 +104,9 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
             TaskProgress progress = progress(briefs, start, candidate.getMeasurement(),
                     candidate.getRestoredContractTaskIds());
             if (!conversion && !progress.better()) {
-                reasons.add(label + ": no resuelve ni mejora ninguna tarea del ejercicio" + still(progress));
+                reasons.add(label + (progress.onlyShortens()
+                        ? ": sólo acorta, y el largo solo no alcanza para aceptar un cambio"
+                        : ": no resuelve ni mejora ninguna tarea del ejercicio") + still(progress));
                 continue;
             }
             ChangeGateVerdict gate = candidate.getGate();
@@ -119,7 +127,7 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
                         + String.join("; ", farther) + still(progress));
                 continue;
             }
-            int[] key = rank(candidate, progress);
+            int[] key = rank(candidate, progress, briefs, start);
             reasons.add(label + ": " + (conversion ? "pasa a opción múltiple" : done(progress)) + " y no empeora nada"
                     + still(progress));
             if (best == null || compare(key, best) < 0) {
@@ -156,6 +164,7 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
         Set<UnevaluatedMark> unevaluated = new HashSet<>(to.getUnevaluated() != null ? to.getUnevaluated() : List.of());
         List<String> resolved = new ArrayList<>();
         List<String> followed = new ArrayList<>();
+        List<String> length = new ArrayList<>();
         List<String> improved = new ArrayList<>();
         Map<String, String> improvements = new LinkedHashMap<>();
         Map<String, String> open = new LinkedHashMap<>();
@@ -173,6 +182,9 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
                 continue;
             }
             List<Finding> own = findingsOf(brief);
+            if (ofTheLength(brief)) {
+                length.add(taskId);
+            }
             boolean stays = false;
             boolean pending = false;
             boolean follows = false;
@@ -224,7 +236,7 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
                         : count(own, before) + " → " + count(own, after));
             }
         }
-        return new TaskProgress(resolved, improved, improvements, open, followed);
+        return new TaskProgress(resolved, improved, improvements, open, followed, length);
     }
 
     /**
@@ -311,7 +323,7 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
         return heavier;
     }
 
-    /** F-MESA-R006 cond. 3: the lengths an advance leaves farther from their range. */
+    /** F-MESA-R006 cond. 3: the lengths an advance leaves more than two words farther from their range (F-MESA-R029). */
     private static List<String> farther(UnitMeasurement from, UnitMeasurement to) {
         Map<String, LengthDeclaration> before = new HashMap<>();
         for (LengthDeclaration length : from.getLengths() != null ? from.getLengths() : List.<LengthDeclaration>of()) {
@@ -322,7 +334,7 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
         List<String> farther = new ArrayList<>();
         for (LengthDeclaration is : to.getLengths() != null ? to.getLengths() : List.<LengthDeclaration>of()) {
             LengthDeclaration was = is != null ? before.get(is.getQuizId()) : null;
-            if (was != null && distance(is) > distance(was)) {
+            if (was != null && distance(is) - distance(was) > LENGTH_ALLOWANCE) {
                 farther.add(was.getTokens() + " → " + is.getTokens() + " (meta " + is.getTargetMin() + " a "
                         + is.getTargetMax() + ")");
             }
@@ -389,14 +401,29 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
     }
 
     /**
-     * The order among accepted candidates: more tasks resolved; fewer findings by severity, from blocking down; not
-     * changing what is heard; lengths closer to the range.
+     * The order among accepted candidates: the heaviest tasks resolved -- one high before two low --; fewer findings by
+     * severity, from blocking down; not changing what is heard; lengths closer to the range. The length counts only
+     * there, at the end (F-MESA-R029).
      */
-    private static int[] rank(ScoredCandidate candidate, TaskProgress progress) {
-        int[] bySeverity = new int[FindingSeverity.values().length];
+    private static int[] rank(ScoredCandidate candidate, TaskProgress progress, List<ErrorTaskBrief> briefs,
+            UnitMeasurement start) {
+        int severities = FindingSeverity.values().length;
+        int[] resolvedBySeverity = new int[severities];
+        Map<String, Finding> before = present(start);
+        for (ErrorTaskBrief brief : briefs) {
+            if (brief == null || brief.getTask() == null || brief.getFinding() == null) {
+                continue;
+            }
+            String taskId = brief.getTask().getId();
+            if (progress.resolved().contains(taskId) && !progress.followed().contains(taskId)
+                    && !progress.length().contains(taskId)) {
+                resolvedBySeverity[heaviest(brief, before)]++;
+            }
+        }
+        int[] bySeverity = new int[severities];
         for (Finding finding : candidate.getMeasurement().getFindings() != null
                 ? candidate.getMeasurement().getFindings() : List.<Finding>of()) {
-            if (finding != null && finding.getSeverity() != null) {
+            if (finding != null && finding.getSeverity() != null && !LENGTH.contains(finding.getAnalyzer())) {
                 bySeverity[severityRank(finding.getSeverity())]++;
             }
         }
@@ -408,12 +435,26 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
                 outOfRange += distance(length);
             }
         }
-        int[] key = new int[bySeverity.length + 3];
-        key[0] = -progress.resolved().size();
-        System.arraycopy(bySeverity, 0, key, 1, bySeverity.length);
-        key[bySeverity.length + 1] = heardChanges;
-        key[bySeverity.length + 2] = outOfRange;
+        int[] key = new int[2 * severities + 2];
+        for (int i = 0; i < severities; i++) {
+            key[i] = -resolvedBySeverity[i];
+        }
+        System.arraycopy(bySeverity, 0, key, severities, severities);
+        key[2 * severities] = heardChanges;
+        key[2 * severities + 1] = outOfRange;
         return key;
+    }
+
+    /** The rank of the heaviest finding of a task where it started; its own finding when the start does not mark it. */
+    private static int heaviest(ErrorTaskBrief brief, Map<String, Finding> before) {
+        int heaviest = severityRank(brief.getFinding().getSeverity());
+        for (Finding finding : findingsOf(brief)) {
+            Finding was = before.get(identity(finding));
+            if (was != null) {
+                heaviest = Math.min(heaviest, severityRank(was.getSeverity()));
+            }
+        }
+        return Math.min(heaviest, FindingSeverity.values().length - 1);
     }
 
     /** How far a length is from its range: 0 inside it. */
@@ -422,6 +463,13 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
             return length.getTargetMin() - length.getTokens();
         }
         return Math.max(0, length.getTokens() - length.getTargetMax());
+    }
+
+    /** F-MESA-R029: whether all the findings of a task are of the length. */
+    static boolean ofTheLength(ErrorTaskBrief brief) {
+        return brief != null && brief.getFinding() != null && !(brief instanceof
+                com.learney.contentaudit.revisiondomain.panel.DidacticRepairBrief)
+                && findingsOf(brief).stream().allMatch(finding -> LENGTH.contains(finding.getAnalyzer()));
     }
 
     /** The length of the exercise of a length task, as a measurement declares it. */
