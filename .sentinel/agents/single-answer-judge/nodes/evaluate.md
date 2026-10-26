@@ -146,10 +146,10 @@ Una indicación como `Polite request:` es una condición de la respuesta, no una
 palabra decorativa que se pueda ignorar. Si la regla visible del ejercicio
 asigna `could` a `Polite request` y `can` al pedido normal, esa condición elige
 la rama: no listes `can` bajo `Polite request` por la mera oferta global «can o
-could», ni la rama inversa. La etiqueta de cortesía alcanza sola: cuando la
-consigna ofrece `can` y `could` y el ítem dice `Polite:` o `Polite request:`,
-la etiqueta pide la forma cortés de las dos, `could`, aunque la consigna no
-repita la convención. La ausencia de una etiqueta sólo selecciona una
+could», ni la rama inversa. La etiqueta alcanza sola: cuando la consigna
+ofrece `can` y `could`, el ítem que dice `Polite:` o `Polite request:` pide la
+forma cortés de las dos, `could`, y el que dice `Informal request:` o `Normal
+request:` pide `can`, aunque la consigna no repita la convención. La ausencia de una etiqueta sólo selecciona una
 rama cuando esa convención está explicada al alumno. No la inventes desde el
 título ni desde la respuesta que hoy acepta el corrector.
 
