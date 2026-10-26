@@ -53,7 +53,7 @@ public class AgentPanelProposerTest {
         source.setMiniTheory("$Can$ para normal, $Could$ para cortés.");
         var provenance = new com.learney.contentaudit.revisiondomain.panel.DidacticReference.Provenance("c1", "operation-stamp", "snapshot-stamp",
                 List.of(new com.learney.contentaudit.revisiondomain.panel.DidacticReference.AncestryStep("c2", "c1", 11, "parent-stamp")));
-        var reference = new com.learney.contentaudit.revisiondomain.panel.DidacticReference("past", 10, source.getId(), source, true, "Usá exactamente la fórmula indicada.", provenance);
+        var reference = new com.learney.contentaudit.revisiondomain.panel.DidacticReference("past", 10, source.getId(), source, true, "Usa exactamente la fórmula indicada.", provenance);
         request.setDidacticReference(reference);
         var task = new RefinementTask("repair", AuditTarget.QUIZ, source.getId(), "Restaurar contrato", DiagnosisKind.QUIZ_INSTRUCTION,
                 0, RefinementTaskStatus.IN_BATCH, null);

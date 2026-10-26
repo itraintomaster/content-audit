@@ -12,7 +12,7 @@ public final class DidacticContracts {
     public static DidacticReference reference(String sourceOperationId, int version, String quizId,
             QuizTemplateEntity source, boolean restoreRequestFormula) {
         String modal = restoreRequestFormula && source != null ? RequestFormPreservation.requestModal(source) : null;
-        String directive = modal == null ? null : "Usá exactamente: " + modal
+        String directive = modal == null ? null : "Usa exactamente: " + modal
                 + " + sujeto + verbo base + complemento + ?. No agregues please ni palabras opcionales.";
         return new DidacticReference(sourceOperationId, version, quizId, source, restoreRequestFormula, directive);
     }

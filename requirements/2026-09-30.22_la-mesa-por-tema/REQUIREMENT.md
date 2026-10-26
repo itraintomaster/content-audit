@@ -396,6 +396,66 @@ las 120 consultas persiguiéndolas: cambió ejercicios que estaban bien y dejó 
 **Fuente**: brief 223; José, el 25/10/2026: «lo primero es llegar a que todos los jueces den bien, y que el corrector
 corrija bien».
 
+<a id="F-MESA-R021"></a>
+### Rule[F-MESA-R021] - Lo que el alumno lee en español va de tú
+**Severity**: major | **Validation**: VALIDATED
+
+> Antes de medir un candidato, y sin gastar consultas, la mesa lo rechaza si escribe de vos lo que cambia de lo que el
+> alumno lee en español: la consigna del ejercicio o del tema, la traducción o la miniteoría. Invariantes:
+> 1. de vos son el presente («podés», «decidís», «necesitás»), el imperativo con el acento al final donde empieza una
+>    frase («Usá», «añadí», «Creá», «poné») y el imperativo con pronombre sin tilde («agregalo», «fijate»);
+> 2. no lo son el pasado ni el futuro («Escribí tres oraciones», «dibujará», «sabrás») ni las palabras que sólo terminan
+>    igual («más», «inglés», «cortés», «después», «país», «está»); el imperativo con acento se busca sólo en la consigna
+>    y la miniteoría, porque en una traducción «Escribí» es el pasado;
+> 3. el inglés entre `$` no se lee;
+> 4. un texto que el candidato dejó como estaba no es suyo: no lo rechaza por eso;
+> 5. el motivo dice qué parte va de tú y qué palabras dice de vos.
+>
+> Lo que la mesa misma agrega a la consigna también va de tú («Usa exactamente: …»).
+
+Las consignas de A1 son de tú: 2.062 de 2.102. La Corrección 1 escribió las tarjetas de vos (392 de 537), porque las
+instrucciones de quien propone le hablan de vos y las imita. Después de la C1, 597 ejercicios de A1 dicen algo de vos: 507
+en la tarjeta, 82 en la consigna y 56 en la traducción. Las formas más comunes son «usá» (269), «elegí» (84), «añadí» (45)
+y «decidís» (42).
+
+**Fuente**: brief 223, pregunta 1; José, el 25/10/2026: «Coincido con tus recomendaciones» (de tú, como las consignas).
+
+<a id="F-MESA-R022"></a>
+### Rule[F-MESA-R022] - Por el largo sólo se sacan palabras
+**Severity**: major | **Validation**: VALIDATED
+
+> Cuando las únicas tareas de un ejercicio que dejan tocar la oración —el enunciado o las respuestas— son del largo, la
+> mesa rechaza antes de medir, y sin gastar consultas, el candidato que pone una palabra que la oración no tenía, o que
+> la pone más veces, o que cambia el orden de las que quedan. Lo que se compara es lo que el alumno lee y escribe: el
+> enunciado sin las pistas y la primera respuesta de cada hueco. Puede sacar palabras y cambiar mayúsculas y signos.
+> Si otra tarea deja tocar la oración (una palabra de otro nivel, otra respuesta válida), la regla no se aplica. El motivo
+> dice qué palabras puso.
+
+En la C2 del 25/10/2026, para bajar de 9 a 8 palabras, quien propone cambió «He went to the bar after he left work.» por
+«He left the bar after he ate lunch.», y «It's not okay to take videos in the museum.» por «It's not okay to sing.». La
+primera estaba bien y la segunda perdió el lugar: «No se puede cantar» queda como una prohibición sin dónde. Quien
+propone también lo lee en sus instrucciones: si sacando palabras no llega a la meta sin perder la situación, deja la
+oración y lo dice.
+
+**Fuente**: brief 224, pregunta 2; José, el 25/10/2026: «hacé … el arreglo de largo y vocabulario con tus
+recomendaciones del 224» («No: sólo sacar una palabra»).
+
+<a id="F-MESA-R023"></a>
+### Rule[F-MESA-R023] - Una palabra de otro nivel se cambia sólo por otra que diga lo mismo
+**Severity**: major | **Validation**: VALIDATED
+
+> Quien propone cambia una palabra de otro nivel sólo por otra del nivel que dice lo mismo en la oración: la misma acción,
+> el mismo objeto, el mismo lugar. Si ninguna lo conserva, deja la palabra y lo explica: es mejor una palabra de otro nivel
+> que un ejercicio que dice otra cosa. Una respuesta que un juez pidió aceptar vale para la oración que juzgó: si cambia la
+> oración de partida, vuelve a pensar cada respuesta pedida contra la nueva.
+
+Es una instrucción a quien propone, no un control: que la palabra nueva diga lo mismo no se puede medir sin un modelo.
+Se mira en la prueba ancha, ejercicio por ejercicio. En la C2 del 25/10/2026, «borrow» (A2) pasó a «use» («¿Me prestas tu
+libro?» → «¿Puedo usar tu libro?») y «order» (A2) a «buy»; en «How about Monday?», quien propone sumó «Let's go Monday.»,
+que el juez de una sola respuesta había pedido para la oración vieja, a «How about going on Monday?».
+
+**Fuente**: brief 224, pregunta 1; José, el 25/10/2026: «borrow» y «order» se quedan en Pedidos («Sí, son las del tema»).
+
 ## Contexto
 
 **Por qué una mesa por tema.** El 077 revisó los 11.287 ejercicios con revisores por lote y verificadores que intentaron

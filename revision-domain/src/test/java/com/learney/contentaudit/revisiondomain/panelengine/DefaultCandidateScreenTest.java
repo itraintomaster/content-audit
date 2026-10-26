@@ -3,6 +3,8 @@ package com.learney.contentaudit.revisiondomain.panelengine;
 import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.correctionengine.SentenceLengthCorrection;
 import com.learney.contentaudit.auditdomain.finding.Finding;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
@@ -250,7 +252,9 @@ public class DefaultCandidateScreenTest {
         List<String> violations = new DefaultCandidateScreen(corrections()).screen(lengthWork(start), CAMERA,
                 candidate(PanelCandidateKind.WHOLE_EXERCISE, glued));
 
-        assertEquals(List.of("pega la oración que empieza en «You» a la anterior, sin el signo que las separaba"), violations);
+        // F-MESA-R022: and, shortened only for its length, it puts «no» and «cameras» where the sentence had other words.
+        assertEquals(List.of("pega la oración que empieza en «You» a la anterior, sin el signo que las separaba",
+                "por el largo sólo se sacan palabras, y el candidato pone «no», «cameras»"), violations);
     }
 
     @Test
@@ -291,9 +295,9 @@ public class DefaultCandidateScreenTest {
 
         assertEquals(List.of(), screen.screen(lengthWork(start), CAMERA, candidate(PanelCandidateKind.WHOLE_EXERCISE,
                 oneSentence)));
-        assertEquals(List.of(), screen.screen(lengthWork(start), CAMERA, candidate(PanelCandidateKind.WHOLE_EXERCISE,
+        assertEquals(List.of(), screen.screen(openWork(start), CAMERA, candidate(PanelCandidateKind.WHOLE_EXERCISE,
                 otherWords)));
-        assertEquals(List.of(), screen.screen(lengthWork(twoLines), dialog, candidate(PanelCandidateKind.WHOLE_EXERCISE,
+        assertEquals(List.of(), screen.screen(openWork(twoLines), dialog, candidate(PanelCandidateKind.WHOLE_EXERCISE,
                 otherAnswer)));
     }
 
@@ -348,7 +352,7 @@ public class DefaultCandidateScreenTest {
                 text("Polite request: I want you to help me. → "), cloze("Could you help me?"));
         QuizTemplateEntity otherRequest = withParts(request, text("Polite request: I want you to open the door. → "),
                 cloze("Could you open the door?"));
-        TopicWork fillTopic = lengthWork(start);
+        TopicWork fillTopic = openWork(start);
         fillTopic.setSentenceMode(com.learney.contentaudit.coursedomain.SentenceMode.FILL);
         QuizTemplateEntity fill = withParts(start, text("That is "), cloze("Mary's"), text(" (Mary) house."));
         DefaultCandidateScreen screen = new DefaultCandidateScreen(corrections());
@@ -378,9 +382,9 @@ public class DefaultCandidateScreenTest {
     private static final String MARY = "67fab6d59930102295342367";
     private static final String SLEPT = "67fab6d59930102295342f05";
 
-    /** The exercise alone in a topic of rewriting, with a task of length at the panel that may change all of it. */
+    /** The exercise alone in a topic of rewriting, with a task at the panel that may change all of it. */
     private static TopicWork rewriteWork(QuizTemplateEntity quiz) {
-        TopicWork work = lengthWork(quiz);
+        TopicWork work = openWork(quiz);
         work.setSentenceMode(com.learney.contentaudit.coursedomain.SentenceMode.REWRITE);
         return work;
     }
@@ -389,12 +393,20 @@ public class DefaultCandidateScreenTest {
     private static final String CAMERA = "67fab6d59930102295342de8";
 
     /** The exercise alone in its topic, with a task of length at the panel that may change all of it. */
+    /** The exercise alone in its topic, with a task at the panel that may change all of it and is not of its length. */
+    private static TopicWork openWork(QuizTemplateEntity quiz) {
+        KnowledgeEntity topic = topic("6814dafa7d73e7209a13d3f0", "Can: permiso", new ArrayList<>(List.of(quiz)));
+        Finding other = finding("single-answer", "different-valid-answer", quiz.getId(), FindingSeverity.HIGH,
+                FindingResolution.PANEL, null, "otra respuesta también vale");
+        return work(topic, List.of(brief("t-otra", other, List.of(ExercisePart.WHOLE_EXERCISE))));
+    }
+
     private static TopicWork lengthWork(QuizTemplateEntity quiz) {
         KnowledgeEntity topic = topic("6814dafa7d73e7209a13d3f0", "Can: permiso", new ArrayList<>(List.of(quiz)));
         Finding length = finding("sentence-length", "length-out-of-range", quiz.getId(), FindingSeverity.MEDIUM,
                 FindingResolution.PANEL, null, "largo fuera del rango del nivel");
         return work(topic, List.of(brief("t-largo", length,
-                List.of(com.learney.contentaudit.auditdomain.correction.ExercisePart.WHOLE_EXERCISE))));
+                List.of(ExercisePart.WHOLE_EXERCISE))));
     }
 
     /** «___ a child? (He)» with its capitals fixed, and its task of multiple-choice-validity at the panel. */
@@ -418,6 +430,116 @@ public class DefaultCandidateScreenTest {
     private static Finding miniTheory(String quizId) {
         return finding("mini-theory", "explains-this-quiz", quizId, FindingSeverity.HIGH,
                 FindingResolution.PANEL, STATE_VERBS, "no explica el caso de este quiz");
+    }
+
+    @Test
+    @DisplayName("should reject before measuring a candidate that writes the mini theory, the instructions or the translation in vos, and let the same text in tú through")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R021")
+    public void shouldRejectBeforeMeasuringACandidateThatWritesWhatTheStudentReadsInVos() {
+        // F-MESA-R021: the real texts of «Adverbios de modo» in C1 (vos) against the instructions of the course (tú).
+        String quizId = "67fab6d59930102295342548";
+        QuizTemplateEntity start = quiz(quizId, "Ella sonrió dulcemente.", text("She smiled (sweet)."),
+                cloze("She smiled sweetly."));
+        Finding card = finding("mini-theory", "over-specific-for-quiz", quizId, FindingSeverity.LOW,
+                FindingResolution.PANEL, null, "la tarjeta especifica de más");
+        TopicWork work = work(topic("adverbios", "Adverbios de modo", new ArrayList<>(List.of(start))),
+                List.of(brief("t-tarjeta", card, List.of(ExercisePart.MINI_THEORY, ExercisePart.INSTRUCTIONS,
+                        ExercisePart.TRANSLATION))));
+        DefaultCandidateScreen screen = new DefaultCandidateScreen(corrections());
+
+        QuizTemplateEntity vos = rewritten(start, q -> {
+            q.setMiniTheory("Para formar el adverbio de este ejercicio, añadí $-ly$ al adjetivo entre paréntesis.");
+            q.setInstructions("Creá un adverbio a partir del adjetivo y agregalo a la oración.");
+        });
+        assertEquals(List.of("la consigna va de tú y dice «Creá», «agregalo», de vos",
+                "la miniteoría va de tú y dice «añadí», de vos"),
+                screen.screen(work, quizId, candidate(PanelCandidateKind.WHOLE_EXERCISE, vos)));
+
+        QuizTemplateEntity tu = rewritten(start, q -> {
+            q.setMiniTheory("Para formar el adverbio de este ejercicio, añade $-ly$ al adjetivo entre paréntesis.");
+            q.setInstructions("Crea un adverbio a partir del adjetivo y agrégalo a la oración.");
+        });
+        assertEquals(List.of(), screen.screen(work, quizId, candidate(PanelCandidateKind.WHOLE_EXERCISE, tu)));
+
+        assertEquals(List.of("la traducción va de tú y dice «prestás», de vos"), screen.screen(work, quizId,
+                candidate(PanelCandidateKind.WHOLE_EXERCISE, withTranslation(start, "¿Me prestás tu libro?"))));
+        assertEquals(List.of("la miniteoría va de tú y dice «Usá», de vos"), screen.screen(work, quizId,
+                new PanelCandidate(PanelCandidateKind.MINI_THEORY, null, "Usá $could$ para pedir con cortesía.", null,
+                        "la tarjeta")));
+    }
+
+    @Test
+    @DisplayName("should not reject in a candidate the vos of a text it left as it was, nor the past, the future or the words that only end like vos")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R021")
+    public void shouldNotRejectTheVosOfAnUntouchedTextNorThePastTheFutureOrWordsThatOnlyEndLikeVos() {
+        // F-MESA-R021: only what the candidate changed is read; «Escribí» in a translation is the past.
+        String quizId = "67fab6d599301022953424f8";
+        QuizTemplateEntity start = rewritten(quiz(quizId, "Escribí tres oraciones.", text("I"), cloze("wrote"),
+                text("(write) three sentences.")), q -> q.setMiniTheory("Usá el pasado de $write$."));
+        Finding card = finding("mini-theory", "over-specific-for-quiz", quizId, FindingSeverity.LOW,
+                FindingResolution.PANEL, null, "la tarjeta especifica de más");
+        TopicWork work = work(topic("pasado", "Pasado simple", new ArrayList<>(List.of(start))),
+                List.of(brief("t-tarjeta", card, List.of(ExercisePart.MINI_THEORY, ExercisePart.STATEMENT,
+                        ExercisePart.ANSWERS, ExercisePart.TRANSLATION, ExercisePart.STORED_SENTENCE))));
+        DefaultCandidateScreen screen = new DefaultCandidateScreen(corrections());
+
+        QuizTemplateEntity otherSentence = rewritten(withParts(start, text("I"), cloze("wrote"),
+                text("(write) two sentences.")), q -> q.setTranslation("Escribí dos oraciones."));
+        assertEquals(List.of(), screen.screen(work, quizId, candidate(PanelCandidateKind.WHOLE_EXERCISE, otherSentence)));
+
+        QuizTemplateEntity card2 = rewritten(start, q -> q.setMiniTheory("La etiqueta $Polite$ pide el pedido cortés:"
+                + " después de $could$, el verbo irá en su forma base, como en inglés; así está bien."));
+        assertEquals(List.of(), screen.screen(work, quizId, candidate(PanelCandidateKind.WHOLE_EXERCISE, card2)));
+    }
+
+    @Test
+    @DisplayName("should reject before measuring a candidate that shortens a sentence only for its length by changing its words, and let one that only takes words out through")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R022")
+    public void shouldRejectACandidateThatShortensASentenceOnlyForItsLengthByChangingItsWords() {
+        // F-MESA-R022: the real «$Before$ y $after$» of C2, 9 → 8 words by changing the whole sentence.
+        String quizId = "67fab6d5993010229534246d";
+        QuizTemplateEntity start = quiz(quizId, "Él fue al bar después de salir del trabajo.",
+                text("He went to the bar after he left work."), cloze("He went to the bar after leaving work."));
+        Finding length = finding("sentence-length", "longer-than-goal", quizId, FindingSeverity.LOW,
+                FindingResolution.PANEL, null, "largo 9 (meta 3 a 8)");
+        TopicWork work = work(topic("before-after", "Before y after", new ArrayList<>(List.of(start))),
+                List.of(brief("t-largo", length, new SentenceLengthCorrection().editScope(FindingResolution.PANEL))));
+        DefaultCandidateScreen screen = new DefaultCandidateScreen(corrections());
+
+        QuizTemplateEntity other = rewritten(withParts(start, text("He left the bar after he ate lunch."),
+                cloze("He left the bar after eating lunch.")), q -> q.setTranslation("Él salió del bar después de almorzar."));
+        assertEquals(List.of("por el largo sólo se sacan palabras, y el candidato pone «ate», «lunch», «left», «eating»"),
+                screen.screen(work, quizId, candidate(PanelCandidateKind.WHOLE_EXERCISE, other)));
+
+        QuizTemplateEntity shorter = rewritten(withParts(start, text("He went to the bar after he left."),
+                cloze("He went to the bar after leaving.")), q -> q.setTranslation("Él fue al bar después de salir."));
+        assertEquals(List.of(), screen.screen(work, quizId, candidate(PanelCandidateKind.WHOLE_EXERCISE, shorter)));
+    }
+
+    @Test
+    @DisplayName("should let a candidate change the words of a long sentence when another task of the exercise lets it touch the sentence")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R022")
+    public void shouldLetACandidateChangeTheWordsOfALongSentenceWhenAnotherTaskLetsItTouchTheSentence() {
+        // F-MESA-R022: «video» (A2) has to go; the length is not the only reason to touch the sentence.
+        String quizId = "67fab6d59930102295342de8";
+        QuizTemplateEntity start = quiz(quizId, "No se pueden tomar videos en el museo.",
+                text("It's not okay to take videos in the museum."), cloze("You can't take videos in the museum."));
+        Finding length = finding("sentence-length", "longer-than-goal", quizId, FindingSeverity.LOW,
+                FindingResolution.PANEL, null, "largo 9 (meta 3 a 8)");
+        Finding word = finding("lemma-absence", "misplaced-word", quizId, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, "video", "video es A2");
+        TopicWork work = work(topic("permiso", "Permiso general", new ArrayList<>(List.of(start))),
+                List.of(brief("t-largo", length, new SentenceLengthCorrection().editScope(FindingResolution.PANEL)),
+                        brief("t-palabra", word)));
+
+        QuizTemplateEntity photos = rewritten(withParts(start, text("It's not okay to take photos in the museum."),
+                cloze("You can't take photos in the museum.")), q -> q.setTranslation("No se pueden tomar fotos en el museo."));
+        assertEquals(List.of(), new DefaultCandidateScreen(corrections()).screen(work, quizId,
+                candidate(PanelCandidateKind.WHOLE_EXERCISE, photos)));
     }
 
     private static TopicWork converting(KnowledgeEntity topic) {

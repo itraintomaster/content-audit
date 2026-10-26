@@ -28,8 +28,9 @@ import javax.annotation.processing.Generated;
  * tasks declare (F-TAREA-R006); that a multiple choice stays one, with exactly one correct option among the same number
  * (F-MESA-R011); that a new mini theory belongs to one explicit quiz (F-MESA-R012);
  * that a conversion José ordered meets its three conditions (F-MESA-R015); that it takes out no punctuation and
- * breaks no line (F-MESA-R018); and that an exercise of a rewrite topic stays one (F-MESA-R019). Each violation is a
- * line with its reason;
+ * breaks no line (F-MESA-R018); that an exercise of a rewrite topic stays one (F-MESA-R019); that what the student
+ * reads in Spanish goes in «tú» (F-MESA-R021); and that a sentence shortened only for its length loses words and gains
+ * none (F-MESA-R022). Each violation is a line with its reason;
  * none means the candidate goes on to be measured.
  */
 @Generated(
@@ -61,6 +62,8 @@ class DefaultCandidateScreen implements CandidateScreen {
         KnowledgeEntity topic = work.getKnowledge();
         if (candidate.getKind() == PanelCandidateKind.MINI_THEORY) {
             violations.addAll(miniTheory(work, quizId, candidate));
+            // F-MESA-R021: the new mini theory goes in «tú».
+            SpanishRegister.violation("la miniteoría", candidate.getMiniTheoryText()).ifPresent(violations::add);
             TopicState.quiz(topic, quizId).ifPresent(q -> violations.addAll(DidacticContracts.violations(
                     work.getDidacticReferences().get(quizId), q, topic.getInstructions(), work.getSentenceMode())));
             return violations;
@@ -87,12 +90,22 @@ class DefaultCandidateScreen implements CandidateScreen {
                 topic.getInstructions(), work.getSentenceMode()));
         // F-MESA-R018: a measure is not won by taking punctuation out or breaking the line.
         violations.addAll(PunctuationPreservation.violations(original, proposed));
+        // F-MESA-R021: what the student reads in Spanish goes in «tú».
+        violations.addAll(SpanishRegister.violations(original, proposed));
+        if (candidate.getTopicInstructions() != null
+                && !Objects.equals(candidate.getTopicInstructions(), topic.getInstructions())) {
+            SpanishRegister.violation("la consigna del tema", candidate.getTopicInstructions()).ifPresent(violations::add);
+        }
         if (isConversion(work, original, candidate)) {
             violations.addAll(conversion(work, original, candidate, proposed));
             return violations;
         }
         // F-MESA-R019: an exercise of a rewrite topic stays one.
         violations.addAll(RewritePreservation.violations(original, proposed, work.getSentenceMode()));
+        // F-MESA-R022: shortened only for its length, the sentence loses words and gains none.
+        if (onlyItsLengthOpensTheSentence(work, quizId)) {
+            violations.addAll(LengthByRemoval.violations(original, proposed));
+        }
         Set<ExercisePart> changed = TopicState.changedParts(original, proposed);
         if (changed.isEmpty() && candidate.getTopicInstructions() == null) {
             violations.add("el candidato no cambia nada del ejercicio");
@@ -228,6 +241,38 @@ class DefaultCandidateScreen implements CandidateScreen {
 
     // -------------------------------------------------------------------------
 
+    /**
+     * F-MESA-R022: some task of the exercise lets the candidate touch the sentence -- its statement or its answers --
+     * and all of them are of its length.
+     */
+    private boolean onlyItsLengthOpensTheSentence(TopicWork work, String quizId) {
+        boolean length = false;
+        for (ErrorTaskBrief brief : work.getBriefs() != null ? work.getBriefs() : List.<ErrorTaskBrief>of()) {
+            if (brief == null || brief.getTask() == null || brief.getTask().getNodeTarget() != AuditTarget.QUIZ
+                    || !Objects.equals(brief.getTask().getNodeId(), quizId)) {
+                continue;
+            }
+            Set<ExercisePart> scope = scopeOf(brief);
+            if (scope.contains(ExercisePart.WHOLE_EXERCISE) || scope.contains(ExercisePart.STATEMENT)
+                    || scope.contains(ExercisePart.ANSWERS)) {
+                if (brief.getFinding() == null || !LengthByRemoval.LENGTH.equals(brief.getFinding().getAnalyzer())) {
+                    return false;
+                }
+                length = true;
+            }
+        }
+        return length;
+    }
+
+    private Set<ExercisePart> scopeOf(ErrorTaskBrief brief) {
+        List<ExercisePart> scope = brief.getEditScope();
+        if ((scope == null || scope.isEmpty()) && brief.getFinding() != null && correctionCatalog != null) {
+            scope = correctionCatalog.find(brief.getFinding().getAnalyzer())
+                    .map(c -> c.editScope(brief.getFinding().getResolution())).orElse(List.of());
+        }
+        return scope == null || scope.isEmpty() ? EnumSet.noneOf(ExercisePart.class) : EnumSet.copyOf(scope);
+    }
+
     /** The parts the tasks of the exercise may change, by the declaration of the analyzer of each one. */
     private Set<ExercisePart> allowedParts(TopicWork work, String quizId) {
         Set<ExercisePart> allowed = EnumSet.noneOf(ExercisePart.class);
@@ -236,14 +281,7 @@ class DefaultCandidateScreen implements CandidateScreen {
                     || !Objects.equals(brief.getTask().getNodeId(), quizId)) {
                 continue;
             }
-            List<ExercisePart> scope = brief.getEditScope();
-            if ((scope == null || scope.isEmpty()) && brief.getFinding() != null && correctionCatalog != null) {
-                scope = correctionCatalog.find(brief.getFinding().getAnalyzer())
-                        .map(c -> c.editScope(brief.getFinding().getResolution())).orElse(List.of());
-            }
-            if (scope != null) {
-                allowed.addAll(scope);
-            }
+            allowed.addAll(scopeOf(brief));
         }
         if (allowed.contains(ExercisePart.STATEMENT) || allowed.contains(ExercisePart.ANSWERS)) {
             // The translation follows the English: a new sentence brings its own.

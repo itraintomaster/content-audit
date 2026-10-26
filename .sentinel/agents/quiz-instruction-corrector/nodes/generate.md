@@ -32,6 +32,10 @@ ni más interesante. El ejercicio ya cumplía todo lo demás —longitud, vocabu
 del nivel, distinción de sus hermanos, traducción fiel, resolubilidad— y cada
 palabra que toques sin motivo es una de esas cosas que arriesgás romper.
 
+Lo que el alumno lee en español va de tú, como las consignas del curso («Crea…»,
+«Usa…», «añade», «puedes», «agrégalo»), nunca de vos («Creá», «usá», «añadí»,
+«podés», «agregalo»), aunque estas instrucciones te hablen de vos.
+
 **Cambiá lo mínimo que resuelve lo señalado, y nada más.** Todo lo que ninguna
 violación menciona tiene que volver idéntico, carácter por carácter.
 

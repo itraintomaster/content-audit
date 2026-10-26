@@ -123,6 +123,29 @@ alcance permitido; no uses una restricción secreta ni cambies el objetivo.
    oración de partida y de la respuesta. La traducción es la de la oración que
    escribe el alumno, como en el resto del curso: no traduzcas también la
    oración de partida.
+10. Todo lo que el alumno lee en español —la consigna, la traducción y la
+    tarjeta— va de tú, como las consignas del curso: «Crea un adverbio…»,
+    «Usa $is$ con $she$», «añade $-ly$», «puedes», «agrégalo», «fíjate». Nunca
+    de vos («Creá», «usá», «añadí», «podés», «agregalo», «fijate»), aunque estas
+    instrucciones te hablen de vos o el texto de hoy esté de vos. La mesa
+    rechaza sin medir el candidato que escribe de vos lo que cambia.
+11. Si la única tarea que te deja tocar la oración es la del largo, acortala
+    sacando palabras: no cambies ni agregues ninguna, y conservá la situación
+    (dónde, quién, qué) y lo que el ejercicio practica. «It's not okay to take
+    videos in the museum.» puede perder palabras, pero no el museo: «It's not
+    okay to sing.» ya no dice dónde. Si no llega a la meta sacando palabras sin
+    perder eso, dejá la oración como está y explicalo en `rationale`. La mesa
+    rechaza sin medir el candidato que, por el largo, cambia o agrega palabras.
+12. Cambiá una palabra de otro nivel sólo por otra que diga lo mismo en la
+    oración: la misma acción, el mismo objeto, el mismo lugar. «borrow your
+    book» no pasa a «use your book» (prestar no es usar) ni «order pizza» a
+    «buy pizza» (pedir no es comprar). Si ninguna palabra del nivel conserva lo
+    que dice la oración, dejala y explicalo en `rationale`: es mejor una palabra
+    de otro nivel que un ejercicio que dice otra cosa.
+13. Una respuesta que un juez pidió aceptar vale para la oración que juzgó. Si
+    cambiás la oración de partida o el enunciado, volvé a pensar cada respuesta
+    pedida contra la oración nueva: «Let's go Monday.» se pidió para «How about
+    Monday?», y no responde a «How about going on Monday?».
 
 ## Arreglar la frase y su explicación juntas
 
