@@ -509,6 +509,26 @@ lo había resuelto. Es lo que ya hacen las compuertas, que la cuentan como pendi
 
 **Fuente**: prueba del 26/10/2026 con tres ejercicios de A1.
 
+<a id="F-MESA-R027"></a>
+### Rule[F-MESA-R027] - Lo viejo de vos que la mesa toca pasa a tú por regla
+**Severity**: major | **Validation**: ASSUMPTION
+
+> En cada ejercicio que la mesa propone cambiar, la consigna, la miniteoría y la traducción que quien propone deja
+> como estaban se escriben de tú: cada palabra de vos que reconoce [F-MESA-R021](#F-MESA-R021) y que está en la tabla
+> del curso pasa a la forma de tú, con su tilde («Creá… y agregalo» → «Crea… y agrégalo», «Poné» → «Pon», «podés» →
+> «puedes»). El inglés entre «$» no se toca y una palabra que la tabla no tiene queda como estaba. Invariantes:
+> 1. el cambio que se guarda en la tanda es el mismo que la mesa midió;
+> 2. un texto que sólo pasó a tú no es un cambio que las tareas del ejercicio tengan que permitir, ni vos que haya
+>    escrito quien propone;
+> 3. lo que quien propone escribe sigue [F-MESA-R021](#F-MESA-R021).
+
+El 26/10/2026, de los 1.856 ejercicios de A1 que cambió la primera corrección, 555 tienen vos, 513 en la miniteoría; 426
+de ellos van a la mesa por otro problema. Con esta regla salen de tú sin pedir nada más que la opinión del juez del
+texto que cambió. Los otros 129 (120 sin ningún otro problema) necesitan que la tanda mida
+[F-MESA-R025](#F-MESA-R025): la C2 mide los 21 analizadores con que se armó la C1, el 7/10.
+
+**Fuente**: José, el 25/10/2026: lo que lee el alumno va de tú, como las consignas (brief 223, pregunta 1).
+
 ## Contexto
 
 **Por qué una mesa por tema.** El 077 revisó los 11.287 ejercicios con revisores por lote y verificadores que intentaron

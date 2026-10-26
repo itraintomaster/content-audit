@@ -13,6 +13,7 @@ import com.learney.contentaudit.revisiondomain.panel.ConversionOrder;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
 import com.learney.contentaudit.revisiondomain.panel.TopicWork;
+import com.learney.contentaudit.auditdomain.spanishregister.Tuteo;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.LinkedHashSet;
@@ -141,7 +142,7 @@ class DefaultCandidateScreen implements CandidateScreen {
             boolean settled = StoredSentenceRehydrator.answerAloneInsteadOf(original)
                     .map(alone -> alone.equals(proposed.getSentences())).orElse(false);
             for (ExercisePart part : changed) {
-                if (part == ExercisePart.STORED_SENTENCE && settled) {
+                if (part == ExercisePart.STORED_SENTENCE && settled || inTuOnly(part, original, proposed)) {
                     continue;
                 }
                 if (!allowed.contains(part)) {
@@ -152,6 +153,16 @@ class DefaultCandidateScreen implements CandidateScreen {
             }
         }
         return violations;
+    }
+
+    /** F-MESA-R027: a text that only went from «vos» to «tú» with the exercise is not the candidate's change. */
+    private static boolean inTuOnly(ExercisePart part, QuizTemplateEntity original, QuizTemplateEntity proposed) {
+        return switch (part) {
+            case INSTRUCTIONS -> Tuteo.onlyInTu(original.getInstructions(), proposed.getInstructions(), true);
+            case MINI_THEORY -> Tuteo.onlyInTu(original.getMiniTheory(), proposed.getMiniTheory(), true);
+            case TRANSLATION -> Tuteo.onlyInTu(original.getTranslation(), proposed.getTranslation(), false);
+            default -> false;
+        };
     }
 
     // -------------------------------------------------------------------------

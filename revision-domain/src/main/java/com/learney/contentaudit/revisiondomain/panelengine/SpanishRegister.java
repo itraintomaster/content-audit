@@ -1,5 +1,6 @@
 package com.learney.contentaudit.revisiondomain.panelengine;
 
+import com.learney.contentaudit.auditdomain.spanishregister.Tuteo;
 import com.learney.contentaudit.auditdomain.spanishregister.Voseo;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import java.util.ArrayList;
@@ -31,8 +32,10 @@ final class SpanishRegister {
     static List<String> violations(QuizTemplateEntity startingPoint, QuizTemplateEntity proposed) {
         List<String> violations = new ArrayList<>();
         for (Field field : FIELDS) {
+            String before = field.text().apply(startingPoint);
             String after = field.text().apply(proposed);
-            if (!Objects.equals(field.text().apply(startingPoint), after)) {
+            // F-MESA-R027: an old text that only went to «tú» with the exercise is not what the candidate wrote.
+            if (!Objects.equals(before, after) && !Tuteo.onlyInTu(before, after, field.instructs())) {
                 reason(field.name(), voseo(after, field.instructs())).ifPresent(violations::add);
             }
         }

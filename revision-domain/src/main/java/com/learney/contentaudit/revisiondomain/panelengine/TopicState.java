@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Locale;
+import com.learney.contentaudit.auditdomain.spanishregister.Tuteo;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -170,6 +171,8 @@ final class TopicState {
         }
         // F-DATOS-R001: whatever the candidate changes, a transformation keeps its answer alone as its stored sentence.
         StoredSentenceRehydrator.answerAloneInsteadOf(rewritten).ifPresent(rewritten::setSentences);
+        // F-MESA-R027: the old texts in «vos» the candidate left as they were go in «tú» with it.
+        Tuteo.keptInTu(old, proposed, rewritten);
         return rewritten;
     }
 

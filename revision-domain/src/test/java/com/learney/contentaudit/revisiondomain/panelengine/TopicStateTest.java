@@ -75,6 +75,29 @@ class TopicStateTest {
     }
 
     @Test
+    @DisplayName("should write in tú the old card and instructions in vos a candidate left as they were, and keep what the candidate wrote")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R027")
+    void shouldWriteInTuTheOldTextsInVosACandidateLeftAsTheyWereAndKeepWhatItWrote() {
+        // F-MESA-R027: the candidate changes only the translation of an exercise whose card and instructions the first
+        // correction wrote in vos; applied, both go in tú and its translation is the one it wrote.
+        KnowledgeEntity original = afirmativas();
+        QuizTemplateEntity vegetables = exercise(original, VEGETABLES);
+        vegetables.setMiniTheory("Usá $love$ sin $-ing$: es un verbo de estado.");
+        vegetables.setInstructions("Completá con el verbo en presente y agregalo a la oración.");
+
+        KnowledgeEntity applied = TopicState.apply(original, VEGETABLES, candidate(PanelCandidateKind.WHOLE_EXERCISE,
+                MesaFixture.withTranslation(vegetables, "Me encantan las verduras.")), List.of());
+
+        QuizTemplateEntity after = exercise(applied, VEGETABLES);
+        assertEquals("Usa $love$ sin $-ing$: es un verbo de estado.", after.getMiniTheory());
+        assertEquals("Completa con el verbo en presente y agrégalo a la oración.", after.getInstructions());
+        assertEquals("Me encantan las verduras.", after.getTranslation());
+        assertEquals("Usá $love$ sin $-ing$: es un verbo de estado.", exercise(original, VEGETABLES).getMiniTheory(),
+                "apply keeps the source quiz untouched");
+    }
+
+    @Test
     @DisplayName("should rebuild the stored sentence from changed CLOZE parts when an accepted candidate has no sentences")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R001")

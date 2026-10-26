@@ -523,6 +523,31 @@ public class DefaultCandidateScreenTest {
     }
 
     @Test
+    @DisplayName("should let through a translation-only candidate of an exercise whose card in vos goes in tú with it")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R027")
+    public void shouldLetThroughATranslationOnlyCandidateOfAnExerciseWhoseCardInVosGoesInTuWithIt() {
+        // F-MESA-R027: the card «Usá el pasado de $write$.» goes in tú with any candidate; that is not a change of the
+        // mini theory its tasks do not allow, nor vos the candidate wrote.
+        String quizId = "67fab6d599301022953424f8";
+        QuizTemplateEntity start = rewritten(quiz(quizId, "Escribí tres oraciones.", text("I"), cloze("wrote"),
+                text("(write) three sentences.")), q -> q.setMiniTheory("Usá el pasado de $write$."));
+        Finding sense = finding("translation-sense", "natural", quizId, FindingSeverity.MEDIUM, FindingResolution.PANEL,
+                null, "la traducción no suena natural");
+        TopicWork work = work(topic("pasado", "Pasado simple", new ArrayList<>(List.of(start))),
+                List.of(brief("t-traduccion", sense, List.of(ExercisePart.TRANSLATION))));
+        DefaultCandidateScreen screen = new DefaultCandidateScreen(corrections());
+
+        assertEquals(List.of(), screen.screen(work, quizId, candidate(PanelCandidateKind.TRANSLATION_ONLY,
+                withTranslation(start, "Yo escribí tres oraciones."))));
+        assertEquals(List.of("el candidato de sólo la traducción cambia también la miniteoría"), screen.screen(work,
+                quizId, candidate(PanelCandidateKind.TRANSLATION_ONLY, rewritten(start, q -> {
+                    q.setTranslation("Yo escribí tres oraciones.");
+                    q.setMiniTheory("Usa el pasado de $write$: $wrote$.");
+                }))));
+    }
+
+    @Test
     @DisplayName("should reject before measuring a candidate that shortens a sentence only for its length by changing its words, and let one that only takes words out through")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R022")
