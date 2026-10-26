@@ -287,12 +287,12 @@ public class DefaultPanelDecisionScriptTest {
     }
 
     @Test
-    @DisplayName("should keep open the task of a sentence production keeps when the exercise had its own saved sentence right and the candidate only solves another task")
+    @DisplayName("should resolve the task of a sentence production keeps with the candidate that solves another task when the exercise had its own saved sentence right")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R026")
-    public void shouldKeepOpenTheTaskOfASentenceProductionKeepsWhenTheExerciseHadItsOwnSavedSentenceRightAndTheCandidateOnlySolvesAnotherTask() {
-        // F-MESA-R026: the tree was already right, so no candidate rebuilt it; solving the single-answer task does not
-        // resolve the copy of production.
+    public void shouldResolveTheTaskOfASentenceProductionKeepsWithTheCandidateThatSolvesAnotherTaskWhenTheExerciseHadItsOwnSavedSentenceRight() {
+        // F-MESA-R026: the tree was already right and production still keeps the old sentence; the candidate solves the
+        // single-answer task and keeps the tree right, so publishing it carries the sentence and both tasks are done.
         UnitMeasurement original = measured(List.of(come(), comeInProduction()), List.of(), "He comes every year.", true);
         ScoredCandidate winter = scored("winter", measured(List.of(comeInProduction()), List.of(),
                 "Winter comes every year.", true), original);
@@ -301,7 +301,43 @@ public class DefaultPanelDecisionScriptTest {
                 original, List.of(winter));
 
         assertEquals(PanelOutcomeKind.ACCEPTED, decision.getOutcome());
-        assertEquals(List.of("t-come"), decision.getResolvedTaskIds());
+        assertEquals(List.of("t-come", "t-produccion"), decision.getResolvedTaskIds());
+    }
+
+    @Test
+    @DisplayName("should keep open the task of a sentence production keeps when the candidate leaves the saved sentence of the exercise marked")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R026")
+    public void shouldKeepOpenTheTaskOfASentenceProductionKeepsWhenTheCandidateLeavesTheSavedSentenceOfTheExerciseMarked() {
+        // F-MESA-R026: the candidate solves the single-answer task but its own saved sentence is glued, so what it would
+        // carry to production is wrong too.
+        UnitMeasurement original = measured(List.of(come(), comeInProduction()), List.of(), "He comes every year.", true);
+        UnitMeasurement winter = measured(List.of(glued("arbol"), comeInProduction()), List.of(),
+                "Winter comes every year.", true);
+
+        TaskProgress progress = script().progress(List.of(comeTask(), brief("t-produccion", comeInProduction())),
+                original, winter);
+
+        assertEquals(List.of("t-come"), progress.resolved());
+        assertTrue(progress.open().containsKey("t-produccion"), progress.open().toString());
+    }
+
+    @Test
+    @DisplayName("should not accept a candidate whose only progress is the sentence production keeps following the exercise")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R026")
+    public void shouldNotAcceptACandidateWhoseOnlyProgressIsTheSentenceProductionKeepsFollowingTheExercise() {
+        // F-MESA-R026: that task is settled by publishing, not by the candidate, so it does not make a change worth
+        // taking -- otherwise any trivial change would «resolve» it.
+        UnitMeasurement original = measured(List.of(comeInProduction()), List.of(), "He comes every year.", true);
+        ScoredCandidate same = scored("same", measured(List.of(comeInProduction()), List.of(),
+                "He comes every year.", true), original);
+
+        ScriptDecision decision = script().decide(List.of(brief("t-produccion", comeInProduction())), original,
+                List.of(same));
+
+        assertEquals(PanelOutcomeKind.NO_WINNER, decision.getOutcome());
+        assertTrue(decision.getReasons().get(0).contains("no resuelve ni mejora"), decision.getReasons().toString());
     }
 
     private static Finding glued(String copy) {

@@ -500,17 +500,22 @@ En lo publicado (la copia del 29/9) hay 699 ejercicios con palabras de vos: 231 
 **Severity**: major | **Validation**: ASSUMPTION
 
 > La tarea de la oración guardada en la copia de producción ([F-DATOS-R001](#F-DATOS-R001)) se resuelve con el candidato
-> que volvió a armar la oración guardada del propio ejercicio: la del árbol estaba marcada y en el candidato ya no. Al
-> publicarse, el candidato lleva esa oración a producción. Si la del árbol ya estaba bien, ningún candidato la resuelve.
+> que la mesa acepta si la oración guardada del propio ejercicio está bien en él: al publicarse, el candidato lleva esa
+> oración a producción. Invariantes:
+> 1. esa tarea no hace mejor a un candidato: uno que sólo la «resuelve» no se acepta, y el ejercicio que no tiene otra
+>    cosa que arreglar espera a que se publique;
+> 2. si el candidato deja marcada la oración guardada del ejercicio, la de producción sigue abierta.
 
 La copia de producción no cambia hasta publicar, así que su hallazgo sigue en cada candidato. El 26/10 «She drinks
 coffee in the morning. (sometimes) ___» (`…2578`, A1) guardaba «She drinks coffee in the morning. She sometimes drinks
 coffee in the morning.» en el árbol y en producción; el primer intento la dejó en «She sometimes drinks coffee in the
 morning.», y la mesa gastó dos intentos más buscando arreglar lo que sólo arregla publicar, y terminó diciendo que no
 lo había resuelto. Es lo que ya hacen las compuertas, que la cuentan como pendiente y no como error nuevo
-([F-NOEMP-R004](#F-NOEMP-R004)).
+([F-NOEMP-R004](#F-NOEMP-R004)). En la prueba ancha de esa noche, «Does he need water? Yes, he ___ .» (`…1f57`) tenía
+bien la oración del árbol desde la primera corrección y la vieja en producción: el candidato que arregló la miniteoría
+no la resolvía y la mesa gastó dos intentos más. Por eso alcanza con que la del árbol esté bien en el candidato.
 
-**Fuente**: prueba del 26/10/2026 con tres ejercicios de A1.
+**Fuente**: prueba del 26/10/2026 con tres ejercicios de A1 y prueba ancha de la misma noche.
 
 <a id="F-MESA-R027"></a>
 ### Rule[F-MESA-R027] - Lo viejo de vos que la mesa toca pasa a tú por regla

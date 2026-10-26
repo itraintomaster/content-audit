@@ -112,7 +112,7 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
                 reasons.add(label + ": sube de gravedad " + String.join("; ", heavier) + still(progress));
                 continue;
             }
-            List<String> farther = conversion || !progress.resolved().isEmpty() ? List.of()
+            List<String> farther = conversion || progress.resolvesOwn() ? List.of()
                     : farther(start, candidate.getMeasurement());
             if (!farther.isEmpty()) {
                 reasons.add(label + ": " + done(progress) + ", pero aleja el largo del rango: "
@@ -155,6 +155,7 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
         Map<String, Finding> after = present(to);
         Set<UnevaluatedMark> unevaluated = new HashSet<>(to.getUnevaluated() != null ? to.getUnevaluated() : List.of());
         List<String> resolved = new ArrayList<>();
+        List<String> followed = new ArrayList<>();
         List<String> improved = new ArrayList<>();
         Map<String, String> improvements = new LinkedHashMap<>();
         Map<String, String> open = new LinkedHashMap<>();
@@ -174,13 +175,19 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
             List<Finding> own = findingsOf(brief);
             boolean stays = false;
             boolean pending = false;
+            boolean follows = false;
             for (Finding finding : own) {
+                boolean marked = after.containsKey(identity(finding));
+                boolean following = marked && followsItsExercise(finding, after);
                 pending |= unevaluated.contains(mark(finding));
-                stays |= after.containsKey(identity(finding)) && !followsItsExercise(finding, before, after)
-                        || unevaluated.contains(mark(finding));
+                follows |= following;
+                stays |= marked && !following || unevaluated.contains(mark(finding));
             }
             if (!stays) {
                 resolved.add(taskId);
+                if (follows) {
+                    followed.add(taskId);
+                }
                 continue;
             }
             open.put(taskId, measure(brief, after, to));
@@ -217,20 +224,20 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
                         : count(own, before) + " → " + count(own, after));
             }
         }
-        return new TaskProgress(resolved, improved, improvements, open);
+        return new TaskProgress(resolved, improved, improvements, open, followed);
     }
 
     /**
-     * F-MESA-R026: the saved sentence of the production copy, whose exercise had its own saved sentence marked and no
-     * longer has it -- the candidate rebuilt it, and publishing the candidate carries it.
+     * F-MESA-R026: the saved sentence of the production copy, whose exercise has its own saved sentence right in the
+     * candidate -- publishing the candidate carries it.
      */
-    private static boolean followsItsExercise(Finding finding, Map<String, Finding> before, Map<String, Finding> after) {
+    private static boolean followsItsExercise(Finding finding, Map<String, Finding> after) {
         if (!savedSentence(finding, "produccion")) {
             return false;
         }
         String quiz = finding.getNode() != null ? finding.getNode().getNodeId() : null;
-        return before.values().stream().anyMatch(was -> savedSentence(was, "arbol") && was.getNode() != null
-                && Objects.equals(quiz, was.getNode().getNodeId()) && !after.containsKey(identity(was)));
+        return after.values().stream().noneMatch(is -> savedSentence(is, "arbol") && is.getNode() != null
+                && Objects.equals(quiz, is.getNode().getNodeId()));
     }
 
     /** A saved sentence of data-coherence, with the mark of its copy or that mark and the number that tells two apart. */
@@ -330,8 +337,12 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
     /** «resuelve t1; mejora t2 (largo 18 → 10 (meta 3 a 8))». */
     private static String done(TaskProgress progress) {
         List<String> parts = new ArrayList<>();
-        if (!progress.resolved().isEmpty()) {
-            parts.add("resuelve " + String.join(", ", progress.resolved()));
+        List<String> own = progress.resolved().stream().filter(task -> !progress.followed().contains(task)).toList();
+        if (!own.isEmpty()) {
+            parts.add("resuelve " + String.join(", ", own));
+        }
+        if (!progress.followed().isEmpty()) {
+            parts.add("la copia de producción sigue al ejercicio en " + String.join(", ", progress.followed()));
         }
         if (!progress.improved().isEmpty()) {
             List<String> improved = new ArrayList<>();
