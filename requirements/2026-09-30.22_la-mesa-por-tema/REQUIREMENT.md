@@ -475,6 +475,40 @@ ejercicios antes de la tanda, con una consulta por ejercicio.
 
 **Fuente**: brief 223, pregunta 2; José, el 25/10/2026: «Sí, en esos temas».
 
+<a id="F-MESA-R025"></a>
+### Rule[F-MESA-R025] - Lo que ya está de vos se corrige
+**Severity**: major | **Validation**: VALIDATED
+
+> Un analizador de errores lee la consigna, la miniteoría y la traducción de cada ejercicio y marca cada una que tenga
+> palabras de vos, con la misma lectura que [F-MESA-R021](#F-MESA-R021): hallazgo *medio* para la *mesa*, que la vuelve
+> a escribir de tú sin tocar el inglés del ejercicio. Un ejercicio con alguna tiene puntaje 0; sin ninguna, 1.
+
+[F-MESA-R021](#F-MESA-R021) sólo frena el vos que escribe quien propone; un texto viejo que no toca queda como estaba. El
+25/10/2026 la primera corrección había dejado de vos 392 de las 537 tarjetas que escribió y 40 de las 2.102 consignas
+de A1, como «Creá un adverbio… y agregalo a la oración». Sin este analizador, una corrida completa los dejaba así.
+
+**Fuente**: brief 223, pregunta 1; José, el 25/10/2026: lo que lee el alumno va de tú, como las consignas.
+
+En lo publicado (la copia del 29/9) hay 699 ejercicios con palabras de vos: 231 de A1, 171 de A2, 269 de B1 y 28 de B2,
+529 en la miniteoría y 170 en la consigna («Colocá», «hablás», «preferís», «Mirá»), ninguna en la traducción.
+
+<a id="F-MESA-R026"></a>
+### Rule[F-MESA-R026] - La oración que guarda producción sigue al ejercicio
+**Severity**: major | **Validation**: ASSUMPTION
+
+> La tarea de la oración guardada en la copia de producción ([F-DATOS-R001](#F-DATOS-R001)) se resuelve con el candidato
+> que volvió a armar la oración guardada del propio ejercicio: la del árbol estaba marcada y en el candidato ya no. Al
+> publicarse, el candidato lleva esa oración a producción. Si la del árbol ya estaba bien, ningún candidato la resuelve.
+
+La copia de producción no cambia hasta publicar, así que su hallazgo sigue en cada candidato. El 26/10 «She drinks
+coffee in the morning. (sometimes) ___» (`…2578`, A1) guardaba «She drinks coffee in the morning. She sometimes drinks
+coffee in the morning.» en el árbol y en producción; el primer intento la dejó en «She sometimes drinks coffee in the
+morning.», y la mesa gastó dos intentos más buscando arreglar lo que sólo arregla publicar, y terminó diciendo que no
+lo había resuelto. Es lo que ya hacen las compuertas, que la cuentan como pendiente y no como error nuevo
+([F-NOEMP-R004](#F-NOEMP-R004)).
+
+**Fuente**: prueba del 26/10/2026 con tres ejercicios de A1.
+
 ## Contexto
 
 **Por qué una mesa por tema.** El 077 revisó los 11.287 ejercicios con revisores por lote y verificadores que intentaron

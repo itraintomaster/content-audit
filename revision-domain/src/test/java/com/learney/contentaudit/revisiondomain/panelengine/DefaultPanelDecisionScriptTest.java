@@ -266,6 +266,54 @@ public class DefaultPanelDecisionScriptTest {
         assertTrue(decision.getReasons().get(0).contains("F-NOEMP-R001: error nuevo de single-answer"), decision.getReasons().toString());
     }
 
+    @Test
+    @DisplayName("should resolve the task of the sentence production keeps glued in «She drinks coffee in the morning. (sometimes) ___» with the candidate that rebuilt the saved sentence of the exercise")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R026")
+    public void shouldResolveTheTaskOfTheSentenceProductionKeepsGluedWithTheCandidateThatRebuiltTheSavedSentenceOfTheExercise() {
+        // F-MESA-R026: the tree and production keep «She drinks coffee in the morning. She sometimes drinks coffee in the
+        // morning.»; the candidate keeps only the answer, so the tree is no longer marked and production still is until
+        // the course goes to production. Both tasks are resolved: publishing the candidate carries its sentence.
+        UnitMeasurement original = measured(List.of(glued("arbol"), glued("produccion")), List.of(),
+                "She sometimes drinks coffee in the morning.", true);
+        ScoredCandidate rebuilt = scored("rebuilt", measured(List.of(glued("produccion")), List.of(),
+                "She sometimes drinks coffee in the morning.", true), original);
+
+        ScriptDecision decision = script().decide(List.of(brief("t-arbol", glued("arbol")),
+                brief("t-produccion", glued("produccion"))), original, List.of(rebuilt));
+
+        assertEquals(PanelOutcomeKind.ACCEPTED, decision.getOutcome());
+        assertEquals(List.of("t-arbol", "t-produccion"), decision.getResolvedTaskIds());
+    }
+
+    @Test
+    @DisplayName("should keep open the task of a sentence production keeps when the exercise had its own saved sentence right and the candidate only solves another task")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R026")
+    public void shouldKeepOpenTheTaskOfASentenceProductionKeepsWhenTheExerciseHadItsOwnSavedSentenceRightAndTheCandidateOnlySolvesAnotherTask() {
+        // F-MESA-R026: the tree was already right, so no candidate rebuilt it; solving the single-answer task does not
+        // resolve the copy of production.
+        UnitMeasurement original = measured(List.of(come(), comeInProduction()), List.of(), "He comes every year.", true);
+        ScoredCandidate winter = scored("winter", measured(List.of(comeInProduction()), List.of(),
+                "Winter comes every year.", true), original);
+
+        ScriptDecision decision = script().decide(List.of(comeTask(), brief("t-produccion", comeInProduction())),
+                original, List.of(winter));
+
+        assertEquals(PanelOutcomeKind.ACCEPTED, decision.getOutcome());
+        assertEquals(List.of("t-come"), decision.getResolvedTaskIds());
+    }
+
+    private static Finding glued(String copy) {
+        return finding("data-coherence", "saved-sentence", COME, FindingSeverity.MEDIUM, FindingResolution.RULE, copy,
+                "oración guardada: \"She drinks coffee in the morning. She sometimes drinks coffee in the morning.\"");
+    }
+
+    private static Finding comeInProduction() {
+        return finding("data-coherence", "saved-sentence", COME, FindingSeverity.MEDIUM, FindingResolution.RULE,
+                "produccion", "oración guardada (producción): \"He comes/is coming every year.\"");
+    }
+
 
     private static DefaultPanelDecisionScript script() {
         return new DefaultPanelDecisionScript(corrections());

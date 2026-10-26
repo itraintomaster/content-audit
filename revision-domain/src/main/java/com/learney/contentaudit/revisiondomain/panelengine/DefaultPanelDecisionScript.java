@@ -18,6 +18,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import javax.annotation.processing.Generated;
@@ -35,6 +36,10 @@ import javax.annotation.processing.Generated;
  *
  * <p>The same measurements give the same decision, with its reasons, one line per candidate; a rejection says how each
  * task still open measures in it.
+ *
+ * <p>F-MESA-R026: the sentence production keeps follows the exercise. Its finding stays marked until the course goes to
+ * production, so a candidate that rebuilt the saved sentence of the exercise -- the one of the tree is no longer marked
+ * -- resolves it: publishing the candidate carries that sentence.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -171,7 +176,8 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
             boolean pending = false;
             for (Finding finding : own) {
                 pending |= unevaluated.contains(mark(finding));
-                stays |= after.containsKey(identity(finding)) || unevaluated.contains(mark(finding));
+                stays |= after.containsKey(identity(finding)) && !followsItsExercise(finding, before, after)
+                        || unevaluated.contains(mark(finding));
             }
             if (!stays) {
                 resolved.add(taskId);
@@ -212,6 +218,26 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
             }
         }
         return new TaskProgress(resolved, improved, improvements, open);
+    }
+
+    /**
+     * F-MESA-R026: the saved sentence of the production copy, whose exercise had its own saved sentence marked and no
+     * longer has it -- the candidate rebuilt it, and publishing the candidate carries it.
+     */
+    private static boolean followsItsExercise(Finding finding, Map<String, Finding> before, Map<String, Finding> after) {
+        if (!savedSentence(finding, "produccion")) {
+            return false;
+        }
+        String quiz = finding.getNode() != null ? finding.getNode().getNodeId() : null;
+        return before.values().stream().anyMatch(was -> savedSentence(was, "arbol") && was.getNode() != null
+                && Objects.equals(quiz, was.getNode().getNodeId()) && !after.containsKey(identity(was)));
+    }
+
+    /** A saved sentence of data-coherence, with the mark of its copy or that mark and the number that tells two apart. */
+    private static boolean savedSentence(Finding finding, String copy) {
+        String marker = finding.getIdentity() != null ? finding.getIdentity().getMarker() : null;
+        return "data-coherence".equals(finding.getAnalyzer()) && "saved-sentence".equals(finding.getRule())
+                && marker != null && (marker.equals(copy) || marker.startsWith(copy + " ("));
     }
 
     /** How a task still open measures: its length with the range, or its findings with their severity. */
