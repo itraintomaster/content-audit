@@ -36,7 +36,10 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
     /** F-SMODE-R004: builds the finished sentence of each mode; without it, the stored sentence is measured whole. */
     private final QuizStudentViewRenderer studentViewRenderer;
 
-    /** F-SMODE-R004: the answer measured alone, by quiz node, for the evidence of its finding. */
+    /**
+     * F-SMODE-R004 and R008: what was measured when it is not the stored sentence whole -- the answer alone, or the
+     * longest of its sentences --, by quiz node, for the evidence of its finding.
+     */
     private final Map<AuditNode, String> measuredAnswers = java.util.Collections.synchronizedMap(new IdentityHashMap<>());
 
     public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig config) {
@@ -103,6 +106,12 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
         if (answer != null) {
             tokens = answerTokens(quiz.getTokens(), quiz.getSentences().get(0), answer);
             measuredAnswers.put(node, answer);
+        } else if (knowledge.getSentenceMode() != SentenceMode.REWRITE) {
+            Optional<Longest> longest = longestSentence(quiz);
+            if (longest.isPresent()) {
+                tokens = longest.get().tokens();
+                measuredAnswers.put(node, longest.get().sentence());
+            }
         }
         double score = scoreQuiz(tokens, range);
         node.getScores().put(ANALYZER_NAME, score);
@@ -179,6 +188,49 @@ public class SentenceLengthAnalyzer implements ContentAnalyzer {
             skipped++;
         }
         return Math.max(0, tokens.size() - skipped);
+    }
+
+    /** F-SMODE-R008: the sentence of a statement that has several, and its tokens. */
+    private record Longest(String sentence, int tokens) {}
+
+    /** Where a sentence of a statement ends: after «.», «?» or «!», unless it closes «Mr.», «Mrs.», «Ms.», «Dr.» or «St.». */
+    private static final java.util.regex.Pattern SENTENCE_END = java.util.regex.Pattern.compile(
+            "(?<=[.?!])(?<!\\bMr\\.)(?<!\\bMrs\\.)(?<!\\bMs\\.)(?<!\\bDr\\.)(?<!\\bSt\\.)\\s+(?=\\S)");
+
+    /**
+     * F-SMODE-R008: the longest sentence of a stored sentence that holds several -- the two lines of a dialogue, a
+     * sentence of context before the one to complete --, with its tokens. Empty when it holds one, or when its tokens
+     * do not spell its sentences one after the other, which is then measured whole as before.
+     */
+    private static Optional<Longest> longestSentence(AuditableQuiz quiz) {
+        if (quiz.getSentences() == null || quiz.getSentences().isEmpty() || quiz.getSentences().get(0) == null
+                || quiz.getTokens() == null) {
+            return Optional.empty();
+        }
+        String[] sentences = SENTENCE_END.split(quiz.getSentences().get(0).strip());
+        if (sentences.length < 2) {
+            return Optional.empty();
+        }
+        List<NlpToken> tokens = quiz.getTokens();
+        int next = 0;
+        Longest longest = null;
+        for (String sentence : sentences) {
+            int length = unspaced(sentence).length();
+            int spelled = 0;
+            int count = 0;
+            while (spelled < length && next < tokens.size()) {
+                String text = tokens.get(next++).getText();
+                spelled += text != null ? unspaced(text).length() : 0;
+                count++;
+            }
+            if (spelled != length) {
+                return Optional.empty();
+            }
+            if (longest == null || count > longest.tokens()) {
+                longest = new Longest(sentence.strip(), count);
+            }
+        }
+        return next == tokens.size() ? Optional.ofNullable(longest) : Optional.empty();
     }
 
     private static String spaced(String text) {
