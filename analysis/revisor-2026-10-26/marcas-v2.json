@@ -1,0 +1,877 @@
+{
+ "batchId": "tanda-A1-c2-1f1d898f-3ba9-3fcc-bc91-a104f79e53ca",
+ "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+ "runtime": "codex-cli / gpt-6.1-sol / medium",
+ "changed": 51,
+ "upToDate": 51,
+ "pending": 0,
+ "spent": 0,
+ "rows": [
+  {
+   "quizId": "67fab6d59930102295341f5d",
+   "topic": "Respuestas cortas",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295341f5d",
+    "mark": "WORSE",
+    "problems": [
+     {
+      "where": "EXERCISE",
+      "fragment": "No,",
+      "what": "Se perdió el «No,» que introducía la respuesta corta negativa; la traducción todavía lo incluye y el hueco sólo permite completar el verbo.",
+      "inherited": false
+     }
+    ],
+    "reason": "En producción se practicaba la respuesta corta completa «No, it isn't». Ahora queda «It isn't», sin el «No,» que conserva la traducción, y se debilita la práctica del tema."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Usa $short forms$ si es posible. Escribe la respuesta corta.\nEjercicio, como lo ve el alumno antes de contestar: A: Is it hot today? B: No, it ___ .\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: isn't\nTraducción, que el alumno ve al corregir: No, no lo es/está.\nMiniteoría, que el alumno ve al corregir: Si la pregunta lleva $be$, contestá con $be$: $am$/$is$/$are$, nunca $do$ ni $does$.",
+   "after": "Consigna del ejercicio: Responde negativamente con una respuesta corta en inglés estándar.\nEjercicio, como lo ve el alumno antes de contestar: Is this tea? It ___ .\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: isn't | is not | 's not\nTraducción, que el alumno ve al corregir: ¿Esto es té? No, no es té.\nMiniteoría, que el alumno ve al corregir: Para responder negativamente a $Is this…?$: $It$ + $is not$. También puedes contraerlo como $isn't$ o $'s not$."
+  },
+  {
+   "quizId": "67fab6d59930102295341e8d",
+   "topic": "$Be$: preguntas $yes / no$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295341e8d",
+    "mark": "DOUBTFUL",
+    "problems": [
+     {
+      "where": "INSTRUCTIONS",
+      "fragment": "colocando el verbo antes del sujeto indicado en la pista",
+      "what": "La consigna revela el orden del verbo y el sujeto, que es parte de lo que el alumno debe decidir al formar la pregunta.",
+      "inherited": false
+     }
+    ],
+    "reason": "La nueva oración y su traducción son correctas, pero, a diferencia de producción, la consigna anticipa el orden que practica el tema."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ on the bus? (We)\nOpciones que ve el alumno: am i / are we / are you / is he / is it / is she\nRespuestas que acepta el corrector: Opción correcta: are we\nTraducción, que el alumno ve al corregir: ¿Estamos en el autobús?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+   "after": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta de sí o no con el verbo $be$, colocando el verbo antes del sujeto indicado en la pista.\nEjercicio, como lo ve el alumno antes de contestar: ___ wrong? (We)\nOpciones que ve el alumno: Am we / Are we / Is we / We are / We is / We am\nRespuestas que acepta el corrector: Opción correcta: Are we\nTraducción, que el alumno ve al corregir: ¿Estamos equivocados?\nMiniteoría, que el alumno ve al corregir: Para preguntar con $we$, usamos $are$ antes del sujeto: $Are we$…?"
+  },
+  {
+   "quizId": "67fab6d59930102295341e8e",
+   "topic": "$Be$: preguntas $yes / no$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295341e8e",
+    "mark": "DOUBTFUL",
+    "problems": [
+     {
+      "where": "INSTRUCTIONS",
+      "fragment": "colocando el verbo antes del sujeto indicado en la pista",
+      "what": "La consigna revela el orden que el alumno debe reconocer y permite descartar las opciones que empiezan por el sujeto.",
+      "inherited": false
+     }
+    ],
+    "reason": "El ejercicio sigue practicando preguntas de sí o no con be y sus campos coinciden, pero la nueva consigna adelanta parte de la regla evaluada; producción no daba esa ayuda."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ an adult? (She)\nOpciones que ve el alumno: am i / are we / are you / is he / is it / is she\nRespuestas que acepta el corrector: Opción correcta: is she\nTraducción, que el alumno ve al corregir: ¿Ella es adulta?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+   "after": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta de sí o no con el verbo $be$, colocando el verbo antes del sujeto indicado en la pista.\nEjercicio, como lo ve el alumno antes de contestar: ___ happy at work? (She)\nOpciones que ve el alumno: Am she / Are she / Is she / She is / She are / She am\nRespuestas que acepta el corrector: Opción correcta: Is she\nTraducción, que el alumno ve al corregir: ¿Ella está feliz en el trabajo?\nMiniteoría, que el alumno ve al corregir: Con $she$ usamos $is$. Para preguntar: $Is she$ + complemento + ?"
+  },
+  {
+   "quizId": "67fab6d59930102295341e92",
+   "topic": "$Be$: preguntas $yes / no$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295341e92",
+    "mark": "DOUBTFUL",
+    "problems": [
+     {
+      "where": "INSTRUCTIONS",
+      "fragment": "colocando el verbo antes del sujeto indicado en la pista",
+      "what": "La consigna indica el orden que el alumno debe reconocer, permitiéndole descartar las opciones con el sujeto primero sin resolver esa parte de la regla.",
+      "inherited": false
+     }
+    ],
+    "reason": "La oración, la traducción y la respuesta correcta son coherentes, y las opciones permiten practicar concordancia e inversión. Sin embargo, la consigna nueva revela el orden que ahora se busca evaluar con esas opciones."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ at school? (She)\nOpciones que ve el alumno: am i / are we / are you / is he / is it / is she\nRespuestas que acepta el corrector: Opción correcta: is she\nTraducción, que el alumno ve al corregir: ¿Ella está en la escuela?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+   "after": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta de sí o no con el verbo $be$, colocando el verbo antes del sujeto indicado en la pista.\nEjercicio, como lo ve el alumno antes de contestar: ___ tired? (She)\nOpciones que ve el alumno: Am she / Are she / Is she / She is / She are / She am\nRespuestas que acepta el corrector: Opción correcta: Is she\nTraducción, que el alumno ve al corregir: ¿Ella está cansada?\nMiniteoría, que el alumno ve al corregir: Con $she$ usamos $is$. Para preguntar: $Is she$ + complemento + ?"
+  },
+  {
+   "quizId": "67fab6d599301022953425f2",
+   "topic": "Todas las formas",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d599301022953425f2",
+    "mark": "DOUBTFUL",
+    "problems": [
+     {
+      "where": "EXERCISE",
+      "fragment": "the shirts",
+      "what": "El artículo definido presupone unas camisas identificadas, pero la oración no presenta cuáles son ni aporta contexto.",
+      "inherited": false
+     }
+    ],
+    "reason": "Sigue practicando correctamente la pregunta con be y sujeto plural, y elimina la exigencia de contracciones. Sin embargo, introduce una referencia a unas camisas concretas sin contexto que permita identificarlas."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Usa $short forms$ si es posible. Escribe las oraciones en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (they / be) ready for the exam?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Are they\nTraducción, que el alumno ve al corregir: ¿Están listos para el examen?\nMiniteoría, que el alumno ve al corregir: Si el verbo es be va solo; el resto pide $do$ / $does$ para negar y preguntar.",
+   "after": "Consigna del ejercicio: Escribe las oraciones en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (the shirts / be) white?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Are the shirts\nTraducción, que el alumno ve al corregir: ¿Son blancas las camisas?\nMiniteoría, que el alumno ve al corregir: Para preguntar con $be$ en presente simple y un sujeto plural, usa $are$: $Are$ + sujeto + complemento + $?$."
+  },
+  {
+   "quizId": "67fab6d599301022953426ef",
+   "topic": "Elegir la forma natural",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d599301022953426ef",
+    "mark": "DOUBTFUL",
+    "problems": [
+     {
+      "where": "INSTRUCTIONS",
+      "fragment": "Acabas de decidir hacer algo por la otra persona porque podría estar ocupada; no tenías un plan previo.",
+      "what": "La consigna revela que corresponde una decisión espontánea y, por tanto, indica qué forma elegir cuando eso es lo que el tema practica.",
+      "inherited": false
+     }
+    ],
+    "reason": "Las opciones ahora permiten comparar 'will' con 'going to' con concordancia correcta, pero la nueva consigna resuelve esa elección por el alumno. En producción se explicaba la regla sin indicar qué caso correspondía al ejercicio."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Elige 'will' ('ll) para decisiones espontáneas o 'be going to' para planes preestablecidos.\nEjercicio, como lo ve el alumno antes de contestar: Are you busy? If so, I ___ do it for you.\nOpciones que ve el alumno: 'll / 're going to / 's going to / are going to / is going to\nRespuestas que acepta el corrector: Opción correcta: 'll\nTraducción, que el alumno ve al corregir: ¿Estás ocupado? Si es así, lo haré por ti.\nMiniteoría, que el alumno ve al corregir: Lo decidís en el momento → $will$. Ya estaba planeado → $going to$.",
+   "after": "Consigna del ejercicio: Acabas de decidir hacer algo por la otra persona porque podría estar ocupada; no tenías un plan previo. Elige 'will' ('ll) para decisiones espontáneas o 'be going to' para planes preestablecidos.\nEjercicio, como lo ve el alumno antes de contestar: Do you have a lot to do? I ___ do it.\nOpciones que ve el alumno: 'll / 'm going to / 'm going / going to / 'll to\nRespuestas que acepta el corrector: Opción correcta: 'll\nTraducción, que el alumno ve al corregir: ¿Tienes mucho que hacer? Lo haré.\nMiniteoría, que el alumno ve al corregir: Lo decides en el momento → $will$. Ya estaba planeado → $going to$."
+  },
+  {
+   "quizId": "67fab6d599301022953421bc",
+   "topic": "Preguntas con $be$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d599301022953421bc",
+    "mark": "DOUBTFUL",
+    "problems": [
+     {
+      "where": "INSTRUCTIONS",
+      "fragment": "colocando el verbo delante del sujeto",
+      "what": "La consigna revela el orden que el alumno debe reconocer para elegir cómo se forma la pregunta.",
+      "inherited": false
+     }
+    ],
+    "reason": "Las nuevas opciones permiten practicar la formación de preguntas mejor que en producción, pero la consigna añadida adelanta la inversión que el alumno debería resolver."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ (he / be) on the train?\nOpciones que ve el alumno: was he / was it / was she / was that woman / were they / were you\nRespuestas que acepta el corrector: Opción correcta: was he\nTraducción, que el alumno ve al corregir: ¿Estaba él en el tren?\nMiniteoría, que el alumno ve al corregir: be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
+   "after": "Consigna del ejercicio: Elige la opción que completa la pregunta en pasado simple con el verbo $be$, colocando el verbo delante del sujeto.\nEjercicio, como lo ve el alumno antes de contestar: ___ (he / be) on the train?\nOpciones que ve el alumno: Was he / Were he / He was / He were / Was he be / Was be he\nRespuestas que acepta el corrector: Opción correcta: Was he\nTraducción, que el alumno ve al corregir: ¿Estaba él en el tren?\nMiniteoría, que el alumno ve al corregir: Con $he$, el pasado de $be$ es $was$. Pregunta con inversión: $was$ + $he$ + complemento + ?"
+  },
+  {
+   "quizId": "67fab6d599301022953421bf",
+   "topic": "Preguntas con $be$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d599301022953421bf",
+    "mark": "DOUBTFUL",
+    "problems": [
+     {
+      "where": "INSTRUCTIONS",
+      "fragment": "colocando el verbo delante del sujeto",
+      "what": "La consigna revela el orden que el alumno debe reconocer para formar la pregunta, que es parte de lo que practica el tema.",
+      "inherited": false
+     }
+    ],
+    "reason": "Las opciones nuevas permiten evaluar la formación de preguntas con el mismo sujeto, pero la consigna agregó una indicación que resuelve parte de esa tarea. Publicaría el ejercicio sin esa ayuda."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ (they / be) from Berlin?\nOpciones que ve el alumno: was he / was it / was she / was that woman / were they / were you\nRespuestas que acepta el corrector: Opción correcta: were they\nTraducción, que el alumno ve al corregir: ¿Eran ellos de Berlín?\nMiniteoría, que el alumno ve al corregir: be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
+   "after": "Consigna del ejercicio: Elige la opción que completa la pregunta en pasado simple con el verbo $be$, colocando el verbo delante del sujeto.\nEjercicio, como lo ve el alumno antes de contestar: ___ (they / be) from Berlin?\nOpciones que ve el alumno: Was they / They were / They was / Was they be / Were they / Were be they\nRespuestas que acepta el corrector: Opción correcta: Were they\nTraducción, que el alumno ve al corregir: ¿Eran ellos de Berlín?\nMiniteoría, que el alumno ve al corregir: Con $they$, el pasado de $be$ es $were$. Pregunta con inversión: $were$ + $they$ + complemento + ?"
+  },
+  {
+   "quizId": "67fab6d599301022953421c9",
+   "topic": "Preguntas con $be$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d599301022953421c9",
+    "mark": "DOUBTFUL",
+    "problems": [
+     {
+      "where": "INSTRUCTIONS",
+      "fragment": "colocando el verbo delante del sujeto",
+      "what": "La consigna revela el orden que el alumno debe decidir para formar la pregunta y permite descartar opciones sin resolver esa parte del ejercicio.",
+      "inherited": false
+     }
+    ],
+    "reason": "Las nuevas opciones mejoran la práctica al contrastar formas y órdenes del verbo y el sujeto, pero la consigna agregada adelanta la inversión que el tema busca practicar."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Elige la opción que completa la pregunta en pasado simple con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ (it / be) the right bus?\nOpciones que ve el alumno: was he / was it / was she / was that woman / were they / were you\nRespuestas que acepta el corrector: Opción correcta: was it\nTraducción, que el alumno ve al corregir: ¿Era el autobús correcto?\nMiniteoría, que el alumno ve al corregir: be pasa adelante del sujeto: $Was he$…?, $Were they$…? La wh- va primero.",
+   "after": "Consigna del ejercicio: Elige la opción que completa la pregunta en pasado simple con el verbo $be$, colocando el verbo delante del sujeto.\nEjercicio, como lo ve el alumno antes de contestar: ___ (it / be) the right bus?\nOpciones que ve el alumno: Were it / Was it / It was / It were / Was it be / Was be it\nRespuestas que acepta el corrector: Opción correcta: Was it\nTraducción, que el alumno ve al corregir: ¿Era el autobús correcto?\nMiniteoría, que el alumno ve al corregir: Con $it$, el pasado de $be$ es $was$. Pregunta con inversión: $was$ + $it$ + complemento + ?"
+  },
+  {
+   "quizId": "67fab6d5993010229534222d",
+   "topic": "Práctica mixta",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d5993010229534222d",
+    "mark": "DOUBTFUL",
+    "problems": [
+     {
+      "where": "MINI_THEORY",
+      "fragment": "Para preguntar con $be$: $Were$ + $you$ + complemento + signo de interrogación.",
+      "what": "Presenta la combinación específica «Were you» como estructura general para preguntar con be, sin explicar la inversión de was/were y el sujeto.",
+      "inherited": false
+     }
+    ],
+    "reason": "Eliminar la exigencia de contracciones mejora la consigna, y el ejercicio y su respuesta siguen siendo correctos. Sin embargo, la nueva miniteoría reemplaza la explicación general por una fórmula limitada a este ejercicio."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ (you / be) at the party?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Were you\nTraducción, que el alumno ve al corregir: ¿Estabas tú en la fiesta?\nMiniteoría, que el alumno ve al corregir: Si el verbo es be va $was$ / $were$. Si no, $-ed$ para afirmar y $didn't$ para negar.",
+   "after": "Consigna del ejercicio: Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ (you / be) at the party?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Were you\nTraducción, que el alumno ve al corregir: ¿Estabas tú en la fiesta?\nMiniteoría, que el alumno ve al corregir: En pasado, con $you$ corresponde $were$. Para preguntar con $be$: $Were$ + $you$ + complemento + signo de interrogación."
+  },
+  {
+   "quizId": "67fab6d5993010229534223b",
+   "topic": "Práctica mixta",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d5993010229534223b",
+    "mark": "DOUBTFUL",
+    "problems": [
+     {
+      "where": "EXERCISE",
+      "fragment": "the lessons",
+      "what": "El artículo definido presupone unas lecciones concretas que la oración no presentó ni permite identificar.",
+      "inherited": false
+     }
+    ],
+    "reason": "La nueva versión conserva la práctica de preguntas con be en pasado y elimina la exigencia de contracciones, pero introduce unas lecciones definidas sin contexto que las identifique."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ (they / be) at the party?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Were they\nTraducción, que el alumno ve al corregir: ¿Estaban ellos en la fiesta?\nMiniteoría, que el alumno ve al corregir: Be se arregla solo: para preguntar, $was$/$were$ se pone antes del sujeto.",
+   "after": "Consigna del ejercicio: Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ (the lessons / be) very hard?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Were the lessons\nTraducción, que el alumno ve al corregir: ¿Eran muy difíciles las lecciones?\nMiniteoría, que el alumno ve al corregir: En pasado, un sujeto plural lleva $were$. Para preguntar con $be$: $Were$ + sujeto plural + complemento + signo de interrogación."
+  },
+  {
+   "quizId": "67fab6d5993010229534245a",
+   "topic": "Tiempo: $at$, $in$, $on$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d5993010229534245a",
+    "mark": "DOUBTFUL",
+    "problems": [
+     {
+      "where": "EXERCISE",
+      "fragment": "her birthday",
+      "what": "El posesivo «her» no tiene un referente presentado: no se sabe de quién es el cumpleaños.",
+      "inherited": false
+     }
+    ],
+    "reason": "Sigue practicando correctamente el uso de «on» con la mañana de un día concreto, pero introduce un posesivo sin referente que no estaba en producción."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.\nEjercicio, como lo ve el alumno antes de contestar: ___ Sunday morning we are visiting friends.\nOpciones que ve el alumno: - / at / in / on\nRespuestas que acepta el corrector: Opción correcta: on\nTraducción, que el alumno ve al corregir: El domingo por la mañana vamos a visitar a unos amigos.\nMiniteoría, que el alumno ve al corregir: Día + mañana/tarde/noche (Sunday morning) va con $on$, no in.",
+   "after": "Consigna del ejercicio: Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.\nEjercicio, como lo ve el alumno antes de contestar: We are visiting friends ___ the morning of her birthday.\nOpciones que ve el alumno: - / at / in / on\nRespuestas que acepta el corrector: Opción correcta: on\nTraducción, que el alumno ve al corregir: Vamos a visitar a unos amigos la mañana de su cumpleaños.\nMiniteoría, que el alumno ve al corregir: Usamos $on$ para la mañana de un día concreto, no $in$."
+  },
+  {
+   "quizId": "67fab6d59930102295342535",
+   "topic": "Cortesía con $would like$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342535",
+    "mark": "DOUBTFUL",
+    "problems": [
+     {
+      "where": "EXERCISE",
+      "fragment": "(Escribe la versión amable; cambia solo «want» por «would like», con o sin contracción.)",
+      "what": "La indicación da la transformación exacta que el alumno debe realizar y le resuelve la reescritura que practica el tema.",
+      "inherited": false
+     }
+    ],
+    "reason": "La oración y las respuestas siguen siendo correctas, pero ahora el ejercicio explica exactamente qué reemplazar. En producción el alumno debía realizar esa transformación por su cuenta."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Haz que las oraciones sean más educadas utilizando 'would like'.\nEjercicio, como lo ve el alumno antes de contestar: They want a bigger house. ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: They'd like a bigger house. | They would like a bigger house.\nTraducción, que el alumno ve al corregir: Quieren una casa más grande. Les gustaría una casa más grande.\nMiniteoría, que el alumno ve al corregir: $would like$ es el $want$ amable. Si sigue un verbo, va $would like to$.",
+   "after": "Consigna del ejercicio: Haz que las oraciones sean más educadas utilizando 'would like'.\nEjercicio, como lo ve el alumno antes de contestar: They want a bigger house. (Escribe la versión amable; cambia solo «want» por «would like», con o sin contracción.) ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: They'd like a bigger house. | They would like a bigger house.\nTraducción, que el alumno ve al corregir: Les gustaría una casa más grande.\nMiniteoría, que el alumno ve al corregir: Para expresar el deseo amablemente, cambia $want$ por $would like$. $They would$ puede contraerse como $They'd$."
+  },
+  {
+   "quizId": "67fab6d59930102295342580",
+   "topic": "Adverbios de frecuencia",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342580",
+    "mark": "DOUBTFUL",
+    "problems": [
+     {
+      "where": "MINI_THEORY",
+      "fragment": "Con $I$, la forma de $be$ es $am$: $I$ + $am$ + $always$ + complemento.",
+      "what": "Reemplaza la regla general de posición de los adverbios por la fórmula de la respuesta de este ejercicio.",
+      "inherited": false
+     },
+     {
+      "where": "EXERCISE",
+      "fragment": "I ___ in the kitchen. (always)",
+      "what": "Presenta un hueco para completar, aunque el tipo REWRITE requiere escribir la oración entera a partir de otra.",
+      "inherited": true
+     }
+    ],
+    "reason": "La respuesta sigue siendo correcta, pero la nueva miniteoría pierde la explicación general que tenía producción y muestra la fórmula puntual. Además, conserva el desajuste entre el ejercicio de completar y el tipo REWRITE."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: I ___ in the kitchen. (always)\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: am always\nTraducción, que el alumno ve al corregir: Siempre estoy en la cocina.\nMiniteoría, que el alumno ve al corregir: $always$, $never$ y $usually$ van antes del verbo, pero después de $be$.",
+   "after": "Consigna del ejercicio: Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: I ___ in the kitchen. (always)\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: am always\nTraducción, que el alumno ve al corregir: Siempre estoy en la cocina.\nMiniteoría, que el alumno ve al corregir: $always$ significa «siempre». Con $I$, la forma de $be$ es $am$: $I$ + $am$ + $always$ + complemento."
+  },
+  {
+   "quizId": "67fab6d59930102295342584",
+   "topic": "Frecuencia: parte 2",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342584",
+    "mark": "DOUBTFUL",
+    "problems": [
+     {
+      "where": "MINI_THEORY",
+      "fragment": "En este ejercicio, coloca la expresión de frecuencia al final de la oración.",
+      "what": "La miniteoría reemplaza la regla general sobre las expresiones de frecuencia por una orden para resolver este ejercicio.",
+      "inherited": false
+     }
+    ],
+    "reason": "El ejercicio y la respuesta siguen siendo correctos, pero la miniteoría perdió la explicación general que ofrecía producción y ahora solo indica dónde colocar la expresión en este caso."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.\nEjercicio, como lo ve el alumno antes de contestar: I visit my friend. (every week) ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: I visit my friend every week.\nTraducción, que el alumno ve al corregir: Visito a mi amigo cada semana.\nMiniteoría, que el alumno ve al corregir: Las frases largas como $every month$ o $twice a week$ van al final.",
+   "after": "Consigna del ejercicio: Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.\nEjercicio, como lo ve el alumno antes de contestar: I visit my friend. (every week) ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: I visit my friend every week.\nTraducción, que el alumno ve al corregir: Visito a mi amigo cada semana.\nMiniteoría, que el alumno ve al corregir: En este ejercicio, coloca la expresión de frecuencia al final de la oración."
+  },
+  {
+   "quizId": "67fab6d599301022953426c7",
+   "topic": "Con $short forms$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d599301022953426c7",
+    "mark": "DOUBTFUL",
+    "problems": [
+     {
+      "where": "EXERCISE",
+      "fragment": "ride the bicycle",
+      "what": "«The bicycle» presupone una bicicleta específica que la oración no presentó; para hablar de andar en bicicleta en general, corresponde «ride a bike».",
+      "inherited": true
+     }
+    ],
+    "reason": "La corrección elimina la exigencia arbitraria de usar contracciones y la miniteoría coincide con la respuesta. Sin embargo, conserva la referencia a una bicicleta específica sin contexto que ya estaba en producción."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Usa $short forms$ si es posible. Crea oraciones usando 'will' o 'be going to'.\nEjercicio, como lo ve el alumno antes de contestar: Be going to: he / ride the bicycle. ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: He's going to ride the bicycle.\nTraducción, que el alumno ve al corregir: Él va a andar en bicicleta.\nMiniteoría, que el alumno ve al corregir: $will$ + verbo base. $be going to$ + verbo base, y el que se conjuga es be.",
+   "after": "Consigna del ejercicio: Crea oraciones usando 'will' o 'be going to'.\nEjercicio, como lo ve el alumno antes de contestar: Be going to: he / ride the bicycle. ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: He's going to ride the bicycle.\nTraducción, que el alumno ve al corregir: Él va a andar en bicicleta.\nMiniteoría, que el alumno ve al corregir: Con $he$, usamos $is going to$ + verbo en forma base. $He's$ significa $He is$."
+  },
+  {
+   "quizId": "67fab6d599301022953426d2",
+   "topic": "Con $short forms$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d599301022953426d2",
+    "mark": "DOUBTFUL",
+    "problems": [
+     {
+      "where": "EXERCISE",
+      "fragment": "Be going to: I not / walk to the park. ___",
+      "what": "Pide escribir la oración entera a partir de palabras guía, lo que corresponde a REWRITE y no al tipo FILL declarado.",
+      "inherited": true
+     }
+    ],
+    "reason": "La corrección elimina la exigencia arbitraria de usar contracciones y mantiene respuestas y miniteoría correctas. Sin embargo, conserva el desajuste de producción entre la tarea de escribir una oración completa y el tipo FILL."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Usa $short forms$ si es posible. Crea oraciones usando 'will' o 'be going to'.\nEjercicio, como lo ve el alumno antes de contestar: Be going to: I not / walk to the park. ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: I'm not going to walk to the park.\nTraducción, que el alumno ve al corregir: No voy a caminar al parque.\nMiniteoría, que el alumno ve al corregir: $won't$ = will + not. Con going to, el $not$ va después de be.",
+   "after": "Consigna del ejercicio: Crea oraciones usando 'will' o 'be going to'.\nEjercicio, como lo ve el alumno antes de contestar: Be going to: I not / walk to the park. ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: I'm not going to walk to the park. | I am not going to walk to the park.\nTraducción, que el alumno ve al corregir: No voy a caminar al parque.\nMiniteoría, que el alumno ve al corregir: Con $I$, la negativa es $I am not going to$ + verbo base + complemento. $I'm$ significa $I am$."
+  },
+  {
+   "quizId": "67fab6d59930102295342185",
+   "topic": "Elegir la forma natural",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342185",
+    "mark": "DOUBTFUL",
+    "problems": [
+     {
+      "where": "EXERCISE",
+      "fragment": "He ___ (not / play) football",
+      "what": "Falta un contexto que permita elegir entre una decisión recién tomada con will y un plan previo con going to; ambas formas pueden ser correctas.",
+      "inherited": true
+     }
+    ],
+    "reason": "La elección ya era ambigua en producción: «this summer» situaba la acción en el futuro, pero no indicaba que hubiera un plan previo. La versión actual mantiene ese problema y el corrector sigue aceptando únicamente going to."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: ¿Es más natural usar 'will' o 'going to'? Escribe oraciones.\nEjercicio, como lo ve el alumno antes de contestar: He ___ (not / play) football this summer.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: isn't going to play | is not going to play | 's not going to play\nTraducción, que el alumno ve al corregir: Él no va a jugar al fútbol este verano.\nMiniteoría, que el alumno ve al corregir: ¿Lo decidís recién o ya estaba planeado? Recién → $will$. Planeado → $going to$.",
+   "after": "Consigna del ejercicio: ¿Es más natural usar 'will' o 'going to'? Escribe oraciones.\nEjercicio, como lo ve el alumno antes de contestar: He ___ (not / play) football.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: isn't going to play | is not going to play | 's not going to play\nTraducción, que el alumno ve al corregir: Él no va a jugar al fútbol.\nMiniteoría, que el alumno ve al corregir: ¿Lo decides recién o ya estaba planeado? Recién → $will$. Planeado → $going to$."
+  },
+  {
+   "quizId": "67fab6d59930102295342572",
+   "topic": "Adverbios de frecuencia",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342572",
+    "mark": "DOUBTFUL",
+    "problems": [
+     {
+      "where": "EXERCISE",
+      "fragment": "We ___ eat eggs every morning.",
+      "what": "El ejercicio pide completar un hueco, pero el tipo REWRITE requiere escribir la oración entera a partir de otra.",
+      "inherited": true
+     }
+    ],
+    "reason": "Ahora proporciona el adverbio y permite practicar su posición respecto de «eat», pero conserva el desajuste de producción: sigue siendo un ejercicio de completar un hueco cuando corresponde reescribir la oración entera."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: We ___ eat eggs every morning.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: always\nTraducción, que el alumno ve al corregir: Siempre comemos huevos todas las mañanas.\nMiniteoría, que el alumno ve al corregir: $always$, $never$ y $usually$ van antes del verbo, pero después de $be$.",
+   "after": "Consigna del ejercicio: Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: We ___ eggs every morning. (eat / always)\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: always eat\nTraducción, que el alumno ve al corregir: Siempre comemos huevos todas las mañanas.\nMiniteoría, que el alumno ve al corregir: $always$ significa «siempre». Con un verbo principal distinto de $be$: sujeto + $always$ + verbo principal + complemento."
+  },
+  {
+   "quizId": "67fab6d5993010229534257f",
+   "topic": "Adverbios de frecuencia",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d5993010229534257f",
+    "mark": "DOUBTFUL",
+    "problems": [
+     {
+      "where": "INSTRUCTIONS",
+      "fragment": "Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+      "what": "La consigna indica la posición del adverbio, que es justamente lo que el alumno debe decidir.",
+      "inherited": true
+     },
+     {
+      "where": "ANSWERS",
+      "fragment": "They sometimes go to the park.",
+      "what": "El corrector solo acepta esta posición, aunque «Sometimes they go to the park.» y «They go to the park sometimes.» también son respuestas correctas.",
+      "inherited": true
+     }
+    ],
+    "reason": "La nueva miniteoría explica el adverbio utilizado y mantiene una regla general. Sin embargo, persisten dos problemas de producción: la consigna revela la colocación y el corrector excluye otras posiciones válidas de «sometimes»."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: They go to the park. (sometimes) ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: They sometimes go to the park.\nTraducción, que el alumno ve al corregir: A veces van al parque.\nMiniteoría, que el alumno ve al corregir: $always$, $never$ y $usually$ van antes del verbo, pero después de $be$.",
+   "after": "Consigna del ejercicio: Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: They go to the park. (sometimes) ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: They sometimes go to the park.\nTraducción, que el alumno ve al corregir: A veces van al parque.\nMiniteoría, que el alumno ve al corregir: $sometimes$ significa «a veces». Con un verbo principal distinto de $be$: sujeto + $sometimes$ + verbo principal + complemento."
+  },
+  {
+   "quizId": "67fab6d59930102295341f57",
+   "topic": "Respuestas cortas",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295341f57",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "Se agregó «Yes,» para que la respuesta afirmativa quede determinada y coincida con la traducción. La consigna, la respuesta aceptada y la miniteoría son coherentes y practican respuestas cortas con «does»."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Usa $short forms$ si es posible. Escribe la respuesta corta.\nEjercicio, como lo ve el alumno antes de contestar: Does he need water? He ___ .\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: does\nTraducción, que el alumno ve al corregir: ¿Necesita agua? Sí.\nMiniteoría, que el alumno ve al corregir: Se contesta con el auxiliar, no con el verbo: $Yes, he does$ / $No, he doesn't$.",
+   "after": "Consigna del ejercicio: Escribe la respuesta corta.\nEjercicio, como lo ve el alumno antes de contestar: Does he need water? Yes, he ___ .\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: does\nTraducción, que el alumno ve al corregir: ¿Necesita agua? Sí.\nMiniteoría, que el alumno ve al corregir: En respuestas cortas afirmativas a $Does he…?$: $Yes, he does$. No repitas el verbo principal."
+  },
+  {
+   "quizId": "67fab6d59930102295342627",
+   "topic": "Respuestas cortas",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342627",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "La nueva versión conserva la práctica de respuestas cortas con be y acepta la respuesta correcta. La traducción coincide con el inglés y la miniteoría explica la estructura que se practica."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Escribe la respuesta corta.\nEjercicio, como lo ve el alumno antes de contestar: A: Is Emily walking? B: Yes, she ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: is\nTraducción, que el alumno ve al corregir: A: ¿Emily está caminando? B: Sí, lo está.\nMiniteoría, que el alumno ve al corregir: La respuesta corta repite el be de la pregunta: $Yes, she is$ / $No, they aren't$.",
+   "after": "Consigna del ejercicio: Escribe la respuesta corta.\nEjercicio, como lo ve el alumno antes de contestar: Is she right? Yes, she ___ .\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: is\nTraducción, que el alumno ve al corregir: ¿Tiene ella razón? Sí, la tiene.\nMiniteoría, que el alumno ve al corregir: En respuestas cortas afirmativas a preguntas con $Is she…?$: $Yes, she$ + $is$."
+  },
+  {
+   "quizId": "67fab6d5993010229534262e",
+   "topic": "Respuestas cortas",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d5993010229534262e",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "Ahora practica una respuesta corta con be en presente simple y la traducción coincide con el diálogo completo. Las respuestas aceptadas son correctas y la miniteoría explica el cambio de sujeto y las formas negativas."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Escribe la respuesta corta.\nEjercicio, como lo ve el alumno antes de contestar: A: Am I parking in the correct space? B: No, you ___ .\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: aren't\nTraducción, que el alumno ve al corregir: No, no lo eres.\nMiniteoría, que el alumno ve al corregir: Si preguntan $Am I?$, el sujeto pasa a $you$: la respuesta usa $are$ o $aren't$, no $am$.",
+   "after": "Consigna del ejercicio: Escribe la respuesta corta en inglés estándar.\nEjercicio, como lo ve el alumno antes de contestar: Am I ready? No, you ___ .\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: aren't | are not | 're not\nTraducción, que el alumno ve al corregir: ¿Estoy listo? No, no lo estás.\nMiniteoría, que el alumno ve al corregir: Al responder negativamente a $Am I…?$, cambia $I$ por $you$: $No, you$ + $are not$. Puedes usar $aren't$ o $'re not$."
+  },
+  {
+   "quizId": "67fab6d59930102295341fb0",
+   "topic": "Todas las formas",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295341fb0",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "El cambio elimina la exigencia de usar contracciones y mejora la naturalidad del inglés. El ejercicio sigue practicando la negación en presente simple y coincide con las respuestas, la traducción y la miniteoría."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Usa $short forms$ si es posible. Escribe oraciones en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: We ___ (not / drive) by car.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: don't drive\nTraducción, que el alumno ve al corregir: No conducimos en coche.\nMiniteoría, que el alumno ve al corregir: Mirá primero qué verbo es: be se da vuelta solo, el resto necesita $do$ / $does$.",
+   "after": "Consigna del ejercicio: Escribe oraciones en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: We ___ (not / drive) a car.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: don't drive | do not drive\nTraducción, que el alumno ve al corregir: No conducimos un coche.\nMiniteoría, que el alumno ve al corregir: Negación en presente simple con $we$ y un verbo distinto de $be$: $we$ + $do not$ / $don't$ + verbo base."
+  },
+  {
+   "quizId": "67fab6d59930102295342602",
+   "topic": "Todas las formas",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342602",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "La corrección elimina la exigencia de usar contracciones y precisa la regla de be para este sujeto. El ejercicio sigue practicando presente simple y la respuesta, la traducción y la miniteoría coinciden."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Usa $short forms$ si es posible. Escribe las oraciones en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: The weather ___ (be) nice today.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: is\nTraducción, que el alumno ve al corregir: El clima es agradable hoy.\nMiniteoría, que el alumno ve al corregir: Mirá el verbo: be no lleva auxiliar; los demás piden $do$ / $does$.",
+   "after": "Consigna del ejercicio: Escribe las oraciones en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: The weather ___ (be) nice today.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: is\nTraducción, que el alumno ve al corregir: El clima es agradable hoy.\nMiniteoría, que el alumno ve al corregir: En afirmativo del presente simple, con un sujeto de tercera persona singular, usa $is$ como forma de $be$."
+  },
+  {
+   "quizId": "67fab6d59930102295342019",
+   "topic": "Preguntas sí/no",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342019",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "La eliminación de «only» mantiene la práctica de preguntas sí/no en presente continuo y está reflejada en la respuesta y la traducción. La miniteoría explica correctamente la estructura que se practica."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Formula preguntas de sí/no en 'present continuous'.\nEjercicio, como lo ve el alumno antes de contestar: ___ (you / only / listen) to music?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Are you only listening\nTraducción, que el alumno ve al corregir: ¿Solo estás escuchando música?\nMiniteoría, que el alumno ve al corregir: be pasa adelante y el $-ing$ se queda: $Is she working$?",
+   "after": "Consigna del ejercicio: Formula preguntas de sí/no en 'present continuous'.\nEjercicio, como lo ve el alumno antes de contestar: ___ (you / listen) to music?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Are you listening\nTraducción, que el alumno ve al corregir: ¿Estás escuchando música?\nMiniteoría, que el alumno ve al corregir: Con $you$, usa $are$. Pregunta en presente continuo: $Are you$ + verbo en $-ing$ + complemento + ?"
+  },
+  {
+   "quizId": "67fab6d59930102295342021",
+   "topic": "Preguntas sí/no",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342021",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "Corrige la falta de presente continuo en producción: ahora se practica una pregunta sí/no con «Am I using». La respuesta aceptada, la traducción y la miniteoría coinciden con el ejercicio."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Formula preguntas de sí/no en 'present continuous'.\nEjercicio, como lo ve el alumno antes de contestar: ___ below you?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Am I\nTraducción, que el alumno ve al corregir: ¿Estoy debajo de ti?\nMiniteoría, que el alumno ve al corregir: Con $I$ el be es $am$: $Am I$ ...?",
+   "after": "Consigna del ejercicio: Formula preguntas de sí/no en 'present continuous'.\nEjercicio, como lo ve el alumno antes de contestar: ___ (I / use) your book?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Am I using\nTraducción, que el alumno ve al corregir: ¿Estoy usando tu libro?\nMiniteoría, que el alumno ve al corregir: Con $I$, usa $am$. Pregunta en presente continuo: $Am I$ + verbo en $-ing$ + complemento + ? Si el verbo termina en $e$ muda, elimínala antes de añadir $-ing$."
+  },
+  {
+   "quizId": "67fab6d59930102295342127",
+   "topic": "Preguntas con $will$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342127",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "La versión actual conserva la práctica de preguntas con will y agrega una respuesta corta coherente. La respuesta aceptada, la traducción y la miniteoría coinciden con el ejercicio."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.\nEjercicio, como lo ve el alumno antes de contestar: ___ (he / watch) the movie?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Will he watch\nTraducción, que el alumno ve al corregir: ¿Verá la película?\nMiniteoría, que el alumno ve al corregir: $Will$ pasa adelante del sujeto: $Will you come$? Con wh-, la wh- va primero.",
+   "after": "Consigna del ejercicio: Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.\nEjercicio, como lo ve el alumno antes de contestar: ___ (he / watch) the movie? Yes, he will.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Will he watch\nTraducción, que el alumno ve al corregir: ¿Verá la película? Sí, la verá.\nMiniteoría, que el alumno ve al corregir: Para una pregunta cerrada: $Will$ + sujeto + verbo base + complemento + signo de interrogación."
+  },
+  {
+   "quizId": "67fab6d59930102295342129",
+   "topic": "Preguntas con $will$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342129",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "El ejercicio nuevo practica correctamente las preguntas cerradas con will y se entiende por sí solo. La respuesta aceptada, la traducción y la miniteoría coinciden, sin perder contenido necesario respecto de producción."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.\nEjercicio, como lo ve el alumno antes de contestar: ___ (she / visit) them?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Will she visit\nTraducción, que el alumno ve al corregir: ¿Los visitará?\nMiniteoría, que el alumno ve al corregir: $Will$ pasa adelante del sujeto: $Will you come$? Con wh-, la wh- va primero.",
+   "after": "Consigna del ejercicio: Formula una pregunta cerrada con $will$ utilizando el sujeto y el verbo de la pista.\nEjercicio, como lo ve el alumno antes de contestar: ___ (you / drive) on Sunday?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Will you drive\nTraducción, que el alumno ve al corregir: ¿Conducirás el domingo?\nMiniteoría, que el alumno ve al corregir: Para una pregunta cerrada: $Will$ + sujeto + verbo base + complemento + signo de interrogación."
+  },
+  {
+   "quizId": "67fab6d5993010229534212a",
+   "topic": "Preguntas con $will$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d5993010229534212a",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "El ejercicio sigue practicando correctamente una pregunta cerrada con will. La nueva miniteoría explica la estructura que corresponde y coincide con la respuesta aceptada y la traducción."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.\nEjercicio, como lo ve el alumno antes de contestar: ___ (they / play) football?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Will they play\nTraducción, que el alumno ve al corregir: ¿Jugarán al fútbol?\nMiniteoría, que el alumno ve al corregir: $Will$ pasa adelante del sujeto: $Will you come$? Con wh-, la wh- va primero.",
+   "after": "Consigna del ejercicio: Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.\nEjercicio, como lo ve el alumno antes de contestar: ___ (they / play) football?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Will they play\nTraducción, que el alumno ve al corregir: ¿Jugarán al fútbol?\nMiniteoría, que el alumno ve al corregir: Para una pregunta cerrada: $Will$ + sujeto + verbo base + complemento + signo de interrogación."
+  },
+  {
+   "quizId": "67fab6d59930102295342132",
+   "topic": "Preguntas con $will$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342132",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "El ejercicio conserva una pregunta correcta con will y todos sus campos coinciden. La nueva miniteoría explica la estructura de la pregunta cerrada que se practica."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.\nEjercicio, como lo ve el alumno antes de contestar: ___ (they / listen) to music?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Will they listen\nTraducción, que el alumno ve al corregir: ¿Escucharán música?\nMiniteoría, que el alumno ve al corregir: $Will$ pasa adelante del sujeto: $Will you come$? Con wh-, la wh- va primero.",
+   "after": "Consigna del ejercicio: Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.\nEjercicio, como lo ve el alumno antes de contestar: ___ (they / listen) to music?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Will they listen\nTraducción, que el alumno ve al corregir: ¿Escucharán música?\nMiniteoría, que el alumno ve al corregir: Para una pregunta cerrada: $Will$ + sujeto + verbo base + complemento + signo de interrogación."
+  },
+  {
+   "quizId": "67fab6d59930102295342190",
+   "topic": "Elegir la forma natural",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342190",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "El nuevo contexto permite interpretar una decisión tomada en el momento y practica la misma elección de will que en producción. La respuesta, la traducción y la miniteoría coinciden, y la oración suena natural."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: ¿Es más natural usar 'will' o 'going to'? Escribe oraciones.\nEjercicio, como lo ve el alumno antes de contestar: Someone calls. I ___ (answer).\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: 'll answer | will answer\nTraducción, que el alumno ve al corregir: Alguien llama. Contestaré.\nMiniteoría, que el alumno ve al corregir: ¿Lo decidís recién o ya estaba planeado? Recién → $will$. Planeado → $going to$.",
+   "after": "Consigna del ejercicio: ¿Es más natural usar 'will' o 'going to'? Escribe oraciones.\nEjercicio, como lo ve el alumno antes de contestar: No coffee? I ___ (have) tea, then.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: 'll have | will have\nTraducción, que el alumno ve al corregir: ¿No hay café? Entonces tomaré té.\nMiniteoría, que el alumno ve al corregir: Para una decisión tomada en el momento: sujeto + $will$ (o $'ll$) + verbo base."
+  },
+  {
+   "quizId": "67fab6d5993010229534223e",
+   "topic": "Práctica mixta",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d5993010229534223e",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "Mantiene la práctica de preguntas en pasado simple y acepta la respuesta correcta. La traducción coincide con el cambio a «a bus» y la miniteoría explica correctamente la estructura general."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ (she / catch) the bus?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Did she catch\nTraducción, que el alumno ve al corregir: ¿Ella cogió el autobús?\nMiniteoría, que el alumno ve al corregir: El pasado aparece una sola vez: o en el verbo, o en $did$ / $didn't$.",
+   "after": "Consigna del ejercicio: Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ (she / catch) a bus?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Did she catch\nTraducción, que el alumno ve al corregir: ¿Ella tomó un autobús?\nMiniteoría, que el alumno ve al corregir: Para preguntar en pasado con un verbo distinto de $be$: $Did$ + sujeto + verbo en forma base + complemento + $?$."
+  },
+  {
+   "quizId": "67fab6d59930102295342258",
+   "topic": "Práctica mixta",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342258",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "La nueva oración es natural y adecuada para A1, y sigue practicando el pasado simple de un verbo regular terminado en e. La respuesta, la traducción y la miniteoría coinciden, y se eliminó la exigencia innecesaria de usar contracciones."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Usa $short forms$ si es posible. Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: I ___ (like) that he'd stay.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: liked\nTraducción, que el alumno ve al corregir: Me gustó que él se quedara.\nMiniteoría, que el alumno ve al corregir: En afirmativo, be usa $was$/$were$; los demás suman $-ed$ (sólo $-d$ si ya termina en e).",
+   "after": "Consigna del ejercicio: Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: I ___ (like) the music.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: liked\nTraducción, que el alumno ve al corregir: Me gustó la música.\nMiniteoría, que el alumno ve al corregir: En pasado afirmativo, si un verbo regular termina en $e$, añade sólo $-d$."
+  },
+  {
+   "quizId": "67fab6d599301022953423e7",
+   "topic": "Sujeto u objeto",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d599301022953423e7",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "El cambio conserva la práctica de elegir entre pronombre sujeto y objeto y presenta una oración natural con respuesta única. La traducción y la miniteoría ahora coinciden con el ejercicio y explican correctamente el uso de me después de with."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Selecciona el pronombre correcto.\nEjercicio, como lo ve el alumno antes de contestar: Do you visit he / him ___ ?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: him\nTraducción, que el alumno ve al corregir: ¿Lo visitas?\nMiniteoría, que el alumno ve al corregir: Antes del verbo va $she$. Después del verbo o de una preposición va $her$.",
+   "after": "Consigna del ejercicio: Selecciona el pronombre correcto.\nEjercicio, como lo ve el alumno antes de contestar: Come with ___ (I / me).\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: me\nTraducción, que el alumno ve al corregir: Ven conmigo.\nMiniteoría, que el alumno ve al corregir: Después de la preposición $with$, la forma de objeto de «yo» es $me$, no $I$."
+  },
+  {
+   "quizId": "67fab6d599301022953423ef",
+   "topic": "Sujeto u objeto",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d599301022953423ef",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "Corrige el formato confuso de producción y mantiene la práctica de elegir entre sujeto y objeto. La oración, la respuesta, la traducción y la miniteoría coinciden y son naturales."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Selecciona el pronombre correcto.\nEjercicio, como lo ve el alumno antes de contestar: I phoned he / him ___ today.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: him\nTraducción, que el alumno ve al corregir: Lo llamé hoy.\nMiniteoría, que el alumno ve al corregir: Antes del verbo va $she$. Después del verbo o de una preposición va $her$.",
+   "after": "Consigna del ejercicio: Selecciona el pronombre correcto.\nEjercicio, como lo ve el alumno antes de contestar: I have dinner with ___ (he / him).\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: him\nTraducción, que el alumno ve al corregir: Ceno con él.\nMiniteoría, que el alumno ve al corregir: Después de la preposición $with$, usa la forma de objeto $him$, no $he$."
+  },
+  {
+   "quizId": "67fab6d599301022953423f2",
+   "topic": "Sujeto u objeto",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d599301022953423f2",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "El ejercicio nuevo practica correctamente la elección entre pronombre sujeto y objeto: corresponde «He» porque forma parte del sujeto junto con «I». La traducción y la miniteoría coinciden con la oración, y se corrige el formato confuso de producción."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Selecciona el pronombre correcto.\nEjercicio, como lo ve el alumno antes de contestar: We didn't visit he / him ___ today.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: him\nTraducción, que el alumno ve al corregir: No lo visitamos hoy.\nMiniteoría, que el alumno ve al corregir: Antes del verbo va $she$. Después del verbo o de una preposición va $her$.",
+   "after": "Consigna del ejercicio: Selecciona el pronombre correcto.\nEjercicio, como lo ve el alumno antes de contestar: ___ (he / him) and I work.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: He\nTraducción, que el alumno ve al corregir: Él y yo trabajamos.\nMiniteoría, que el alumno ve al corregir: Usa $he$, no $him$, cuando él forma parte del sujeto junto con $I$: ambos realizan la acción."
+  },
+  {
+   "quizId": "67fab6d59930102295342bb4",
+   "topic": "Sujeto u objeto",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342bb4",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "Corrige la construcción incorrecta de producción al usar «explained the lesson to us». La traducción y la miniteoría coinciden con la oración, que sigue practicando la elección entre pronombre sujeto y objeto."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Elige el pronombre correcto.\nEjercicio, como lo ve el alumno antes de contestar: The teacher explained ___ (we / us) the lesson.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: us\nTraducción, que el alumno ve al corregir: El profesor nos explicó la lección.\nMiniteoría, que el alumno ve al corregir: Antes del verbo va $they$. Después del verbo o de una preposición, $them$.",
+   "after": "Consigna del ejercicio: Elige el pronombre correcto.\nEjercicio, como lo ve el alumno antes de contestar: The teacher explained the lesson to ___ (we / us).\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: us\nTraducción, que el alumno ve al corregir: El maestro nos explicó la lección.\nMiniteoría, que el alumno ve al corregir: Después de la preposición $to$, usa la forma de objeto $us$ para referirte a «nosotros» o «nosotras»."
+  },
+  {
+   "quizId": "67fab6d5993010229534240c",
+   "topic": "Oraciones más naturales",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d5993010229534240c",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "El ejercicio sigue practicando la reescritura con «there is» y conserva una respuesta correcta, natural y coherente con la traducción. La miniteoría ahora explica el caso singular que corresponde a «an animal»."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.\nEjercicio, como lo ve el alumno antes de contestar: An animal is near here. ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: There is an animal near here.\nTraducción, que el alumno ve al corregir: Hay un animal cerca de aquí.\nMiniteoría, que el alumno ve al corregir: $There is$ con singular e incontable. $There are$ con plural.",
+   "after": "Consigna del ejercicio: Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.\nEjercicio, como lo ve el alumno antes de contestar: An animal is near here. ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: There is an animal near here.\nTraducción, que el alumno ve al corregir: Hay un animal cerca de aquí.\nMiniteoría, que el alumno ve al corregir: Con un sustantivo singular se usa $there is$."
+  },
+  {
+   "quizId": "67fab6d5993010229534240d",
+   "topic": "Oraciones más naturales",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d5993010229534240d",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "El ejercicio conserva la reescritura con «there is», y la respuesta y la traducción coinciden. La miniteoría ahora explica la regla de singular que se practica, sin dar una orden específica para este ejercicio."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.\nEjercicio, como lo ve el alumno antes de contestar: A new place is near here. ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: There is a new place near here.\nTraducción, que el alumno ve al corregir: Hay un lugar nuevo cerca de aquí.\nMiniteoría, que el alumno ve al corregir: $There is$ con singular e incontable. $There are$ con plural.",
+   "after": "Consigna del ejercicio: Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.\nEjercicio, como lo ve el alumno antes de contestar: A new place is near here. ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: There is a new place near here.\nTraducción, que el alumno ve al corregir: Hay un lugar nuevo cerca de aquí.\nMiniteoría, que el alumno ve al corregir: Con un sustantivo singular se usa $there is$."
+  },
+  {
+   "quizId": "67fab6d59930102295342414",
+   "topic": "Oraciones más naturales",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342414",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "El cambio sólo agrega el formato del curso a los términos en inglés de la miniteoría. El ejercicio sigue practicando la reescritura con «there» y la respuesta, la traducción y la explicación coinciden."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.\nEjercicio, como lo ve el alumno antes de contestar: Are any people in the room? ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Are there any people in the room?\nTraducción, que el alumno ve al corregir: ¿Hay gente en la habitación?\nMiniteoría, que el alumno ve al corregir: En pregunta, $there$ va pegado justo después de is o are: Is there? Are there?",
+   "after": "Consigna del ejercicio: Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.\nEjercicio, como lo ve el alumno antes de contestar: Are any people in the room? ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Are there any people in the room?\nTraducción, que el alumno ve al corregir: ¿Hay gente en la habitación?\nMiniteoría, que el alumno ve al corregir: En pregunta, $there$ va pegado justo después de $is$ o $are$: $Is there?$ $Are there?$"
+  },
+  {
+   "quizId": "67fab6d59930102295342419",
+   "topic": "Oraciones más naturales",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342419",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "La nueva versión conserva la práctica de reescribir con «there are» y mantiene coherentes la respuesta, la traducción y la miniteoría. Quitar «a lot of» no elimina información necesaria para resolver el ejercicio."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.\nEjercicio, como lo ve el alumno antes de contestar: A lot of museums are in Paris. ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: There are a lot of museums in Paris.\nTraducción, que el alumno ve al corregir: Hay muchos museos en París.\nMiniteoría, que el alumno ve al corregir: $There is$ con singular e incontable. $There are$ con plural.",
+   "after": "Consigna del ejercicio: Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.\nEjercicio, como lo ve el alumno antes de contestar: Museums are in Paris. ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: There are museums in Paris.\nTraducción, que el alumno ve al corregir: Hay museos en París.\nMiniteoría, que el alumno ve al corregir: Con un sustantivo plural se usa $there are$."
+  },
+  {
+   "quizId": "67fab6d59930102295342427",
+   "topic": "Tiempo: $at$, $in$, $on$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342427",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "La nueva oración conserva la práctica de «in» con partes del día y tiene una única opción correcta. La traducción coincide y la miniteoría explica el uso de «in the afternoon»."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.\nEjercicio, como lo ve el alumno antes de contestar: Could we talk ___ the afternoon?\nOpciones que ve el alumno: - / at / in / on\nRespuestas que acepta el corrector: Opción correcta: in\nTraducción, que el alumno ve al corregir: ¿Podríamos hablar por la tarde?\nMiniteoría, que el alumno ve al corregir: Las partes del día (morning, afternoon, evening) llevan $in$; la excepción es night.",
+   "after": "Consigna del ejercicio: Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.\nEjercicio, como lo ve el alumno antes de contestar: We talk ___ the afternoon.\nOpciones que ve el alumno: - / at / in / on\nRespuestas que acepta el corrector: Opción correcta: in\nTraducción, que el alumno ve al corregir: Hablamos por la tarde.\nMiniteoría, que el alumno ve al corregir: Para decir «por la tarde» usamos $in the afternoon$."
+  },
+  {
+   "quizId": "67fab6d5993010229534243c",
+   "topic": "Tiempo: $at$, $in$, $on$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d5993010229534243c",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "El ejercicio sigue practicando el uso de on con fechas y conserva la respuesta correcta. La nueva consigna, las opciones, la traducción y la miniteoría son coherentes entre sí."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.\nEjercicio, como lo ve el alumno antes de contestar: The party is ___ the first of January.\nOpciones que ve el alumno: - / at / in / on\nRespuestas que acepta el corrector: Opción correcta: on\nTraducción, que el alumno ve al corregir: La fiesta es el primero de enero.\nMiniteoría, que el alumno ve al corregir: $in$ para el año o el mes, $on$ para la fecha. Con $next$, $last$ y $every$, nada.",
+   "after": "Consigna del ejercicio: Elige la preposición correcta.\nEjercicio, como lo ve el alumno antes de contestar: The party is ___ the first of January.\nOpciones que ve el alumno: of / at / in / on\nRespuestas que acepta el corrector: Opción correcta: on\nTraducción, que el alumno ve al corregir: La fiesta es el primero de enero.\nMiniteoría, que el alumno ve al corregir: Para indicar una fecha usamos $on$: $on the first of January$ (el primero de enero)."
+  },
+  {
+   "quizId": "67fab6d5993010229534243f",
+   "topic": "Tiempo: $at$, $in$, $on$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d5993010229534243f",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "La nueva oración conserva la práctica de omitir la preposición con $last$ y una estación. Es natural, la traducción coincide y la miniteoría explica la regla correctamente."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.\nEjercicio, como lo ve el alumno antes de contestar: ___ last winter we visited our family.\nOpciones que ve el alumno: - / at / in / on\nRespuestas que acepta el corrector: Opción correcta: -\nTraducción, que el alumno ve al corregir: El invierno pasado visitamos a nuestra familia.\nMiniteoría, que el alumno ve al corregir: $in$ para el año o el mes, $on$ para la fecha. Con $next$, $last$ y $every$, nada.",
+   "after": "Consigna del ejercicio: Elige 'at', 'in' u 'on', o '-' si no hace falta preposición.\nEjercicio, como lo ve el alumno antes de contestar: I learned to drive ___ last winter.\nOpciones que ve el alumno: - / at / in / on\nRespuestas que acepta el corrector: Opción correcta: -\nTraducción, que el alumno ve al corregir: Aprendí a conducir el invierno pasado.\nMiniteoría, que el alumno ve al corregir: Con $last$ delante de una estación no usamos preposición."
+  },
+  {
+   "quizId": "67fab6d59930102295342533",
+   "topic": "Cortesía con $would like$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342533",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "El ejercicio sigue practicando la reformulación cortés con would like y todos los campos coinciden. La nueva miniteoría explica el uso y la contracción de la forma que se practica, sin imponerla."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Haz que las oraciones sean más educadas utilizando 'would like'.\nEjercicio, como lo ve el alumno antes de contestar: I want a glass of juice. ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: I'd like a glass of juice. | I would like a glass of juice.\nTraducción, que el alumno ve al corregir: Me gustaría un vaso de jugo.\nMiniteoría, que el alumno ve al corregir: $would like$ es el $want$ amable. Si sigue un verbo, va $would like to$.",
+   "after": "Consigna del ejercicio: Haz que las oraciones sean más educadas utilizando 'would like'.\nEjercicio, como lo ve el alumno antes de contestar: I want a glass of juice. ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: I'd like a glass of juice. | I would like a glass of juice.\nTraducción, que el alumno ve al corregir: Me gustaría un vaso de jugo.\nMiniteoría, que el alumno ve al corregir: Para expresar un deseo de forma amable, cambia $want$ por $would like$. $I would$ puede contraerse como $I'd$."
+  },
+  {
+   "quizId": "67fab6d5993010229534253c",
+   "topic": "Cortesía con $would like$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d5993010229534253c",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "Mantiene la práctica de cortesía con would like y la reescritura de una pregunta. La respuesta, la traducción y la miniteoría coinciden con la acción añadida, y la traducción corrige el problema de concordancia de producción."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Haz que las oraciones sean más educadas utilizando 'would like'.\nEjercicio, como lo ve el alumno antes de contestar: Do you want cookies or cake? ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Would you like cookies or cake?\nTraducción, que el alumno ve al corregir: ¿Te gustaría galletas o pastel?\nMiniteoría, que el alumno ve al corregir: En preguntas, $would$ se pone antes del sujeto: no lleva $do$.",
+   "after": "Consigna del ejercicio: Haz que las oraciones sean más educadas utilizando 'would like'.\nEjercicio, como lo ve el alumno antes de contestar: Do you want to eat cookies or cake? ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Would you like to eat cookies or cake?\nTraducción, que el alumno ve al corregir: ¿Te gustaría comer galletas o pastel?\nMiniteoría, que el alumno ve al corregir: Para preguntar de forma amable por una acción, transforma $Do you want to$ + verbo base + complemento en $Would you like to$ + verbo base + complemento."
+  },
+  {
+   "quizId": "67fab6d59930102295342df0",
+   "topic": "Cortesía con $would like$",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342df0",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "El ejercicio conserva la práctica de reformular un deseo con cortesía usando would like. La nueva miniteoría explica la transformación pertinente y coincide con la respuesta aceptada y la traducción."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Transforma estas oraciones en peticiones más educadas utilizando 'would like'.\nEjercicio, como lo ve el alumno antes de contestar: I want a bowl of soup. ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: I would like a bowl of soup.\nTraducción, que el alumno ve al corregir: Me gustaría un plato de sopa.\nMiniteoría, que el alumno ve al corregir: $would like$ es el $want$ amable: $Would you like a coffee?$",
+   "after": "Consigna del ejercicio: Transforma estas oraciones en peticiones más educadas utilizando 'would like'.\nEjercicio, como lo ve el alumno antes de contestar: I want a bowl of soup. ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: I would like a bowl of soup.\nTraducción, que el alumno ve al corregir: Me gustaría un plato de sopa.\nMiniteoría, que el alumno ve al corregir: Para expresar un deseo de forma amable, cambia $want$ por $would like$."
+  },
+  {
+   "quizId": "67fab6d59930102295342588",
+   "topic": "Frecuencia: parte 2",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342588",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "El ejercicio sigue practicando la posición de always y conserva la respuesta correcta y la traducción. La nueva miniteoría explica correctamente su ubicación antes del verbo principal en presente simple."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.\nEjercicio, como lo ve el alumno antes de contestar: We say goodbye. (always) ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: We always say goodbye.\nTraducción, que el alumno ve al corregir: Siempre decimos adiós.\nMiniteoría, que el alumno ve al corregir: Los adverbios cortos como $always$ o $never$ van antes del verbo, no al final.",
+   "after": "Consigna del ejercicio: Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.\nEjercicio, como lo ve el alumno antes de contestar: We say goodbye. (always) ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: We always say goodbye.\nTraducción, que el alumno ve al corregir: Siempre decimos adiós.\nMiniteoría, que el alumno ve al corregir: Con un verbo principal en presente simple: sujeto + $always$ + verbo + complemento."
+  },
+  {
+   "quizId": "67fab6d5993010229534258d",
+   "topic": "Frecuencia: parte 2",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d5993010229534258d",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "El ejercicio sigue practicando la posición intermedia de often y todos los campos coinciden. La miniteoría mejora la de producción: explica la posición esperada y reconoce que la posición final también es válida, aunque la consigna prioriza la intermedia."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.\nEjercicio, como lo ve el alumno antes de contestar: He visits his friends. (often) ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: He often visits his friends.\nTraducción, que el alumno ve al corregir: Él a menudo visita a sus amigos.\nMiniteoría, que el alumno ve al corregir: Los adverbios cortos como $always$ o $never$ van antes del verbo, no al final.",
+   "after": "Consigna del ejercicio: Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.\nEjercicio, como lo ve el alumno antes de contestar: He visits his friends. (often) ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: He often visits his friends.\nTraducción, que el alumno ve al corregir: Él a menudo visita a sus amigos.\nMiniteoría, que el alumno ve al corregir: Con un verbo principal en presente simple, la posición intermedia es: sujeto + $often$ + verbo + complemento. La posición final también es válida, pero la consigna prioriza la intermedia."
+  },
+  {
+   "quizId": "67fab6d59930102295342591",
+   "topic": "Frecuencia: parte 2",
+   "state": "MARKED",
+   "verdict": {
+    "quizId": "67fab6d59930102295342591",
+    "mark": "GOOD",
+    "problems": [],
+    "reason": "Ahora presenta el adverbio que debe reubicarse y pide reescribir la oración completa, de acuerdo con el tipo REWRITE. La respuesta aceptada, la traducción y la miniteoría coinciden y practican la posición de sometimes antes del verbo principal."
+   },
+   "reviewerVersion": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+   "before": "Consigna del ejercicio: Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.\nEjercicio, como lo ve el alumno antes de contestar: We ___ visit museums.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: sometimes\nTraducción, que el alumno ve al corregir: A veces visitamos museos.\nMiniteoría, que el alumno ve al corregir: Los adverbios cortos como $always$ o $never$ van antes del verbo, no al final.",
+   "after": "Consigna del ejercicio: Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.\nEjercicio, como lo ve el alumno antes de contestar: We visit museums. (sometimes) ___\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: We sometimes visit museums.\nTraducción, que el alumno ve al corregir: A veces visitamos museos.\nMiniteoría, que el alumno ve al corregir: $Sometimes$ significa «a veces». Con un verbo principal en presente simple: sujeto + $sometimes$ + verbo + complemento."
+  }
+ ]
+}

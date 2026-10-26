@@ -1,0 +1,793 @@
+{
+ "leyenda": {
+  "mia": "mi lectura a mano (referencia)",
+  "revisor": "la marca del revisor",
+  "coincide": "los dos dicen bien, o los dos marcan algo (dudoso, heredado o mal)"
+ },
+ "resumen": {
+  "consultas": 0,
+  "segundos": 4,
+  "version": "a67dac842724121be57c06685add9d9b7d6adf601177adf0e554b7717b8818c4",
+  "motor": "codex-cli / gpt-6.1-sol / medium",
+  "ejercicios": 51,
+  "veLoQueYoMarque": 12,
+  "yoMarque": 14,
+  "marcaLoQueYoDiPorBueno": 8,
+  "heredados": 5,
+  "yoDiPorBueno": 37,
+  "sinMarca": 0
+ },
+ "discrepancias": [
+  {
+   "id": "25f2",
+   "mia": "bien",
+   "revisor": "dudoso",
+   "estado": "MARKED",
+   "coincide": false,
+   "razon": "Sigue practicando correctamente la pregunta con be y sujeto plural, y elimina la exigencia de contracciones. Sin embargo, introduce una referencia a unas camisas concretas sin contexto que permita identificarlas.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "the shirts",
+     "what": "El artículo definido presupone unas camisas identificadas, pero la oración no presenta cuáles son ni aporta contexto.",
+     "inherited": false
+    }
+   ]
+  },
+  {
+   "id": "222d",
+   "mia": "bien",
+   "revisor": "dudoso",
+   "estado": "MARKED",
+   "coincide": false,
+   "razon": "Eliminar la exigencia de contracciones mejora la consigna, y el ejercicio y su respuesta siguen siendo correctos. Sin embargo, la nueva miniteoría reemplaza la explicación general por una fórmula limitada a este ejercicio.",
+   "problemas": [
+    {
+     "where": "MINI_THEORY",
+     "fragment": "Para preguntar con $be$: $Were$ + $you$ + complemento + signo de interrogación.",
+     "what": "Presenta la combinación específica «Were you» como estructura general para preguntar con be, sin explicar la inversión de was/were y el sujeto.",
+     "inherited": false
+    }
+   ]
+  },
+  {
+   "id": "223b",
+   "mia": "bien",
+   "revisor": "dudoso",
+   "estado": "MARKED",
+   "coincide": false,
+   "razon": "La nueva versión conserva la práctica de preguntas con be en pasado y elimina la exigencia de contracciones, pero introduce unas lecciones definidas sin contexto que las identifique.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "the lessons",
+     "what": "El artículo definido presupone unas lecciones concretas que la oración no presentó ni permite identificar.",
+     "inherited": false
+    }
+   ]
+  },
+  {
+   "id": "2580",
+   "mia": "bien",
+   "revisor": "dudoso",
+   "estado": "MARKED",
+   "coincide": false,
+   "razon": "La respuesta sigue siendo correcta, pero la nueva miniteoría pierde la explicación general que tenía producción y muestra la fórmula puntual. Además, conserva el desajuste entre el ejercicio de completar y el tipo REWRITE.",
+   "problemas": [
+    {
+     "where": "MINI_THEORY",
+     "fragment": "Con $I$, la forma de $be$ es $am$: $I$ + $am$ + $always$ + complemento.",
+     "what": "Reemplaza la regla general de posición de los adverbios por la fórmula de la respuesta de este ejercicio.",
+     "inherited": false
+    },
+    {
+     "where": "EXERCISE",
+     "fragment": "I ___ in the kitchen. (always)",
+     "what": "Presenta un hueco para completar, aunque el tipo REWRITE requiere escribir la oración entera a partir de otra.",
+     "inherited": true
+    }
+   ]
+  },
+  {
+   "id": "26c7",
+   "mia": "bien",
+   "revisor": "heredado",
+   "estado": "MARKED",
+   "coincide": false,
+   "razon": "La corrección elimina la exigencia arbitraria de usar contracciones y la miniteoría coincide con la respuesta. Sin embargo, conserva la referencia a una bicicleta específica sin contexto que ya estaba en producción.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "ride the bicycle",
+     "what": "«The bicycle» presupone una bicicleta específica que la oración no presentó; para hablar de andar en bicicleta en general, corresponde «ride a bike».",
+     "inherited": true
+    }
+   ]
+  },
+  {
+   "id": "26d2",
+   "mia": "bien",
+   "revisor": "heredado",
+   "estado": "MARKED",
+   "coincide": false,
+   "razon": "La corrección elimina la exigencia arbitraria de usar contracciones y mantiene respuestas y miniteoría correctas. Sin embargo, conserva el desajuste de producción entre la tarea de escribir una oración completa y el tipo FILL.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "Be going to: I not / walk to the park. ___",
+     "what": "Pide escribir la oración entera a partir de palabras guía, lo que corresponde a REWRITE y no al tipo FILL declarado.",
+     "inherited": true
+    }
+   ]
+  },
+  {
+   "id": "2572",
+   "mia": "bien",
+   "revisor": "heredado",
+   "estado": "MARKED",
+   "coincide": false,
+   "razon": "Ahora proporciona el adverbio y permite practicar su posición respecto de «eat», pero conserva el desajuste de producción: sigue siendo un ejercicio de completar un hueco cuando corresponde reescribir la oración entera.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "We ___ eat eggs every morning.",
+     "what": "El ejercicio pide completar un hueco, pero el tipo REWRITE requiere escribir la oración entera a partir de otra.",
+     "inherited": true
+    }
+   ]
+  },
+  {
+   "id": "257f",
+   "mia": "bien",
+   "revisor": "heredado",
+   "estado": "MARKED",
+   "coincide": false,
+   "razon": "La nueva miniteoría explica el adverbio utilizado y mantiene una regla general. Sin embargo, persisten dos problemas de producción: la consigna revela la colocación y el corrector excluye otras posiciones válidas de «sometimes».",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+     "what": "La consigna indica la posición del adverbio, que es justamente lo que el alumno debe decidir.",
+     "inherited": true
+    },
+    {
+     "where": "ANSWERS",
+     "fragment": "They sometimes go to the park.",
+     "what": "El corrector solo acepta esta posición, aunque «Sometimes they go to the park.» y «They go to the park sometimes.» también son respuestas correctas.",
+     "inherited": true
+    }
+   ]
+  },
+  {
+   "id": "1fb0",
+   "mia": "dudoso",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": false,
+   "razon": "El cambio elimina la exigencia de usar contracciones y mejora la naturalidad del inglés. El ejercicio sigue practicando la negación en presente simple y coincide con las respuestas, la traducción y la miniteoría.",
+   "problemas": []
+  },
+  {
+   "id": "253c",
+   "mia": "dudoso",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": false,
+   "razon": "Mantiene la práctica de cortesía con would like y la reescritura de una pregunta. La respuesta, la traducción y la miniteoría coinciden con la acción añadida, y la traducción corrige el problema de concordancia de producción.",
+   "problemas": []
+  }
+ ],
+ "filas": [
+  {
+   "id": "1f5d",
+   "mia": "mal",
+   "revisor": "mal",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "En producción se practicaba la respuesta corta completa «No, it isn't». Ahora queda «It isn't», sin el «No,» que conserva la traducción, y se debilita la práctica del tema.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "No,",
+     "what": "Se perdió el «No,» que introducía la respuesta corta negativa; la traducción todavía lo incluye y el hueco sólo permite completar el verbo.",
+     "inherited": false
+    }
+   ]
+  },
+  {
+   "id": "1e8d",
+   "mia": "dudoso",
+   "revisor": "dudoso",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "La nueva oración y su traducción son correctas, pero, a diferencia de producción, la consigna anticipa el orden que practica el tema.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "colocando el verbo antes del sujeto indicado en la pista",
+     "what": "La consigna revela el orden del verbo y el sujeto, que es parte de lo que el alumno debe decidir al formar la pregunta.",
+     "inherited": false
+    }
+   ]
+  },
+  {
+   "id": "1e8e",
+   "mia": "dudoso",
+   "revisor": "dudoso",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "El ejercicio sigue practicando preguntas de sí o no con be y sus campos coinciden, pero la nueva consigna adelanta parte de la regla evaluada; producción no daba esa ayuda.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "colocando el verbo antes del sujeto indicado en la pista",
+     "what": "La consigna revela el orden que el alumno debe reconocer y permite descartar las opciones que empiezan por el sujeto.",
+     "inherited": false
+    }
+   ]
+  },
+  {
+   "id": "1e92",
+   "mia": "dudoso",
+   "revisor": "dudoso",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "La oración, la traducción y la respuesta correcta son coherentes, y las opciones permiten practicar concordancia e inversión. Sin embargo, la consigna nueva revela el orden que ahora se busca evaluar con esas opciones.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "colocando el verbo antes del sujeto indicado en la pista",
+     "what": "La consigna indica el orden que el alumno debe reconocer, permitiéndole descartar las opciones con el sujeto primero sin resolver esa parte de la regla.",
+     "inherited": false
+    }
+   ]
+  },
+  {
+   "id": "25f2",
+   "mia": "bien",
+   "revisor": "dudoso",
+   "estado": "MARKED",
+   "coincide": false,
+   "razon": "Sigue practicando correctamente la pregunta con be y sujeto plural, y elimina la exigencia de contracciones. Sin embargo, introduce una referencia a unas camisas concretas sin contexto que permita identificarlas.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "the shirts",
+     "what": "El artículo definido presupone unas camisas identificadas, pero la oración no presenta cuáles son ni aporta contexto.",
+     "inherited": false
+    }
+   ]
+  },
+  {
+   "id": "26ef",
+   "mia": "dudoso",
+   "revisor": "dudoso",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "Las opciones ahora permiten comparar 'will' con 'going to' con concordancia correcta, pero la nueva consigna resuelve esa elección por el alumno. En producción se explicaba la regla sin indicar qué caso correspondía al ejercicio.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Acabas de decidir hacer algo por la otra persona porque podría estar ocupada; no tenías un plan previo.",
+     "what": "La consigna revela que corresponde una decisión espontánea y, por tanto, indica qué forma elegir cuando eso es lo que el tema practica.",
+     "inherited": false
+    }
+   ]
+  },
+  {
+   "id": "21bc",
+   "mia": "dudoso",
+   "revisor": "dudoso",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "Las nuevas opciones permiten practicar la formación de preguntas mejor que en producción, pero la consigna añadida adelanta la inversión que el alumno debería resolver.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "colocando el verbo delante del sujeto",
+     "what": "La consigna revela el orden que el alumno debe reconocer para elegir cómo se forma la pregunta.",
+     "inherited": false
+    }
+   ]
+  },
+  {
+   "id": "21bf",
+   "mia": "dudoso",
+   "revisor": "dudoso",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "Las opciones nuevas permiten evaluar la formación de preguntas con el mismo sujeto, pero la consigna agregó una indicación que resuelve parte de esa tarea. Publicaría el ejercicio sin esa ayuda.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "colocando el verbo delante del sujeto",
+     "what": "La consigna revela el orden que el alumno debe reconocer para formar la pregunta, que es parte de lo que practica el tema.",
+     "inherited": false
+    }
+   ]
+  },
+  {
+   "id": "21c9",
+   "mia": "dudoso",
+   "revisor": "dudoso",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "Las nuevas opciones mejoran la práctica al contrastar formas y órdenes del verbo y el sujeto, pero la consigna agregada adelanta la inversión que el tema busca practicar.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "colocando el verbo delante del sujeto",
+     "what": "La consigna revela el orden que el alumno debe decidir para formar la pregunta y permite descartar opciones sin resolver esa parte del ejercicio.",
+     "inherited": false
+    }
+   ]
+  },
+  {
+   "id": "222d",
+   "mia": "bien",
+   "revisor": "dudoso",
+   "estado": "MARKED",
+   "coincide": false,
+   "razon": "Eliminar la exigencia de contracciones mejora la consigna, y el ejercicio y su respuesta siguen siendo correctos. Sin embargo, la nueva miniteoría reemplaza la explicación general por una fórmula limitada a este ejercicio.",
+   "problemas": [
+    {
+     "where": "MINI_THEORY",
+     "fragment": "Para preguntar con $be$: $Were$ + $you$ + complemento + signo de interrogación.",
+     "what": "Presenta la combinación específica «Were you» como estructura general para preguntar con be, sin explicar la inversión de was/were y el sujeto.",
+     "inherited": false
+    }
+   ]
+  },
+  {
+   "id": "223b",
+   "mia": "bien",
+   "revisor": "dudoso",
+   "estado": "MARKED",
+   "coincide": false,
+   "razon": "La nueva versión conserva la práctica de preguntas con be en pasado y elimina la exigencia de contracciones, pero introduce unas lecciones definidas sin contexto que las identifique.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "the lessons",
+     "what": "El artículo definido presupone unas lecciones concretas que la oración no presentó ni permite identificar.",
+     "inherited": false
+    }
+   ]
+  },
+  {
+   "id": "245a",
+   "mia": "dudoso",
+   "revisor": "dudoso",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "Sigue practicando correctamente el uso de «on» con la mañana de un día concreto, pero introduce un posesivo sin referente que no estaba en producción.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "her birthday",
+     "what": "El posesivo «her» no tiene un referente presentado: no se sabe de quién es el cumpleaños.",
+     "inherited": false
+    }
+   ]
+  },
+  {
+   "id": "2535",
+   "mia": "dudoso",
+   "revisor": "dudoso",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "La oración y las respuestas siguen siendo correctas, pero ahora el ejercicio explica exactamente qué reemplazar. En producción el alumno debía realizar esa transformación por su cuenta.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "(Escribe la versión amable; cambia solo «want» por «would like», con o sin contracción.)",
+     "what": "La indicación da la transformación exacta que el alumno debe realizar y le resuelve la reescritura que practica el tema.",
+     "inherited": false
+    }
+   ]
+  },
+  {
+   "id": "2580",
+   "mia": "bien",
+   "revisor": "dudoso",
+   "estado": "MARKED",
+   "coincide": false,
+   "razon": "La respuesta sigue siendo correcta, pero la nueva miniteoría pierde la explicación general que tenía producción y muestra la fórmula puntual. Además, conserva el desajuste entre el ejercicio de completar y el tipo REWRITE.",
+   "problemas": [
+    {
+     "where": "MINI_THEORY",
+     "fragment": "Con $I$, la forma de $be$ es $am$: $I$ + $am$ + $always$ + complemento.",
+     "what": "Reemplaza la regla general de posición de los adverbios por la fórmula de la respuesta de este ejercicio.",
+     "inherited": false
+    },
+    {
+     "where": "EXERCISE",
+     "fragment": "I ___ in the kitchen. (always)",
+     "what": "Presenta un hueco para completar, aunque el tipo REWRITE requiere escribir la oración entera a partir de otra.",
+     "inherited": true
+    }
+   ]
+  },
+  {
+   "id": "2584",
+   "mia": "dudoso",
+   "revisor": "dudoso",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "El ejercicio y la respuesta siguen siendo correctos, pero la miniteoría perdió la explicación general que ofrecía producción y ahora solo indica dónde colocar la expresión en este caso.",
+   "problemas": [
+    {
+     "where": "MINI_THEORY",
+     "fragment": "En este ejercicio, coloca la expresión de frecuencia al final de la oración.",
+     "what": "La miniteoría reemplaza la regla general sobre las expresiones de frecuencia por una orden para resolver este ejercicio.",
+     "inherited": false
+    }
+   ]
+  },
+  {
+   "id": "26c7",
+   "mia": "bien",
+   "revisor": "heredado",
+   "estado": "MARKED",
+   "coincide": false,
+   "razon": "La corrección elimina la exigencia arbitraria de usar contracciones y la miniteoría coincide con la respuesta. Sin embargo, conserva la referencia a una bicicleta específica sin contexto que ya estaba en producción.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "ride the bicycle",
+     "what": "«The bicycle» presupone una bicicleta específica que la oración no presentó; para hablar de andar en bicicleta en general, corresponde «ride a bike».",
+     "inherited": true
+    }
+   ]
+  },
+  {
+   "id": "26d2",
+   "mia": "bien",
+   "revisor": "heredado",
+   "estado": "MARKED",
+   "coincide": false,
+   "razon": "La corrección elimina la exigencia arbitraria de usar contracciones y mantiene respuestas y miniteoría correctas. Sin embargo, conserva el desajuste de producción entre la tarea de escribir una oración completa y el tipo FILL.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "Be going to: I not / walk to the park. ___",
+     "what": "Pide escribir la oración entera a partir de palabras guía, lo que corresponde a REWRITE y no al tipo FILL declarado.",
+     "inherited": true
+    }
+   ]
+  },
+  {
+   "id": "2185",
+   "mia": "dudoso",
+   "revisor": "heredado",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "La elección ya era ambigua en producción: «this summer» situaba la acción en el futuro, pero no indicaba que hubiera un plan previo. La versión actual mantiene ese problema y el corrector sigue aceptando únicamente going to.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "He ___ (not / play) football",
+     "what": "Falta un contexto que permita elegir entre una decisión recién tomada con will y un plan previo con going to; ambas formas pueden ser correctas.",
+     "inherited": true
+    }
+   ]
+  },
+  {
+   "id": "2572",
+   "mia": "bien",
+   "revisor": "heredado",
+   "estado": "MARKED",
+   "coincide": false,
+   "razon": "Ahora proporciona el adverbio y permite practicar su posición respecto de «eat», pero conserva el desajuste de producción: sigue siendo un ejercicio de completar un hueco cuando corresponde reescribir la oración entera.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "We ___ eat eggs every morning.",
+     "what": "El ejercicio pide completar un hueco, pero el tipo REWRITE requiere escribir la oración entera a partir de otra.",
+     "inherited": true
+    }
+   ]
+  },
+  {
+   "id": "257f",
+   "mia": "bien",
+   "revisor": "heredado",
+   "estado": "MARKED",
+   "coincide": false,
+   "razon": "La nueva miniteoría explica el adverbio utilizado y mantiene una regla general. Sin embargo, persisten dos problemas de producción: la consigna revela la colocación y el corrector excluye otras posiciones válidas de «sometimes».",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Recuerda, va antes del verbo principal pero después del verbo 'be'.",
+     "what": "La consigna indica la posición del adverbio, que es justamente lo que el alumno debe decidir.",
+     "inherited": true
+    },
+    {
+     "where": "ANSWERS",
+     "fragment": "They sometimes go to the park.",
+     "what": "El corrector solo acepta esta posición, aunque «Sometimes they go to the park.» y «They go to the park sometimes.» también son respuestas correctas.",
+     "inherited": true
+    }
+   ]
+  },
+  {
+   "id": "1f57",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "Se agregó «Yes,» para que la respuesta afirmativa quede determinada y coincida con la traducción. La consigna, la respuesta aceptada y la miniteoría son coherentes y practican respuestas cortas con «does».",
+   "problemas": []
+  },
+  {
+   "id": "2627",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "La nueva versión conserva la práctica de respuestas cortas con be y acepta la respuesta correcta. La traducción coincide con el inglés y la miniteoría explica la estructura que se practica.",
+   "problemas": []
+  },
+  {
+   "id": "262e",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "Ahora practica una respuesta corta con be en presente simple y la traducción coincide con el diálogo completo. Las respuestas aceptadas son correctas y la miniteoría explica el cambio de sujeto y las formas negativas.",
+   "problemas": []
+  },
+  {
+   "id": "1fb0",
+   "mia": "dudoso",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": false,
+   "razon": "El cambio elimina la exigencia de usar contracciones y mejora la naturalidad del inglés. El ejercicio sigue practicando la negación en presente simple y coincide con las respuestas, la traducción y la miniteoría.",
+   "problemas": []
+  },
+  {
+   "id": "2602",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "La corrección elimina la exigencia de usar contracciones y precisa la regla de be para este sujeto. El ejercicio sigue practicando presente simple y la respuesta, la traducción y la miniteoría coinciden.",
+   "problemas": []
+  },
+  {
+   "id": "2019",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "La eliminación de «only» mantiene la práctica de preguntas sí/no en presente continuo y está reflejada en la respuesta y la traducción. La miniteoría explica correctamente la estructura que se practica.",
+   "problemas": []
+  },
+  {
+   "id": "2021",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "Corrige la falta de presente continuo en producción: ahora se practica una pregunta sí/no con «Am I using». La respuesta aceptada, la traducción y la miniteoría coinciden con el ejercicio.",
+   "problemas": []
+  },
+  {
+   "id": "2127",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "La versión actual conserva la práctica de preguntas con will y agrega una respuesta corta coherente. La respuesta aceptada, la traducción y la miniteoría coinciden con el ejercicio.",
+   "problemas": []
+  },
+  {
+   "id": "2129",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "El ejercicio nuevo practica correctamente las preguntas cerradas con will y se entiende por sí solo. La respuesta aceptada, la traducción y la miniteoría coinciden, sin perder contenido necesario respecto de producción.",
+   "problemas": []
+  },
+  {
+   "id": "212a",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "El ejercicio sigue practicando correctamente una pregunta cerrada con will. La nueva miniteoría explica la estructura que corresponde y coincide con la respuesta aceptada y la traducción.",
+   "problemas": []
+  },
+  {
+   "id": "2132",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "El ejercicio conserva una pregunta correcta con will y todos sus campos coinciden. La nueva miniteoría explica la estructura de la pregunta cerrada que se practica.",
+   "problemas": []
+  },
+  {
+   "id": "2190",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "El nuevo contexto permite interpretar una decisión tomada en el momento y practica la misma elección de will que en producción. La respuesta, la traducción y la miniteoría coinciden, y la oración suena natural.",
+   "problemas": []
+  },
+  {
+   "id": "223e",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "Mantiene la práctica de preguntas en pasado simple y acepta la respuesta correcta. La traducción coincide con el cambio a «a bus» y la miniteoría explica correctamente la estructura general.",
+   "problemas": []
+  },
+  {
+   "id": "2258",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "La nueva oración es natural y adecuada para A1, y sigue practicando el pasado simple de un verbo regular terminado en e. La respuesta, la traducción y la miniteoría coinciden, y se eliminó la exigencia innecesaria de usar contracciones.",
+   "problemas": []
+  },
+  {
+   "id": "23e7",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "El cambio conserva la práctica de elegir entre pronombre sujeto y objeto y presenta una oración natural con respuesta única. La traducción y la miniteoría ahora coinciden con el ejercicio y explican correctamente el uso de me después de with.",
+   "problemas": []
+  },
+  {
+   "id": "23ef",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "Corrige el formato confuso de producción y mantiene la práctica de elegir entre sujeto y objeto. La oración, la respuesta, la traducción y la miniteoría coinciden y son naturales.",
+   "problemas": []
+  },
+  {
+   "id": "23f2",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "El ejercicio nuevo practica correctamente la elección entre pronombre sujeto y objeto: corresponde «He» porque forma parte del sujeto junto con «I». La traducción y la miniteoría coinciden con la oración, y se corrige el formato confuso de producción.",
+   "problemas": []
+  },
+  {
+   "id": "2bb4",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "Corrige la construcción incorrecta de producción al usar «explained the lesson to us». La traducción y la miniteoría coinciden con la oración, que sigue practicando la elección entre pronombre sujeto y objeto.",
+   "problemas": []
+  },
+  {
+   "id": "240c",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "El ejercicio sigue practicando la reescritura con «there is» y conserva una respuesta correcta, natural y coherente con la traducción. La miniteoría ahora explica el caso singular que corresponde a «an animal».",
+   "problemas": []
+  },
+  {
+   "id": "240d",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "El ejercicio conserva la reescritura con «there is», y la respuesta y la traducción coinciden. La miniteoría ahora explica la regla de singular que se practica, sin dar una orden específica para este ejercicio.",
+   "problemas": []
+  },
+  {
+   "id": "2414",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "El cambio sólo agrega el formato del curso a los términos en inglés de la miniteoría. El ejercicio sigue practicando la reescritura con «there» y la respuesta, la traducción y la explicación coinciden.",
+   "problemas": []
+  },
+  {
+   "id": "2419",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "La nueva versión conserva la práctica de reescribir con «there are» y mantiene coherentes la respuesta, la traducción y la miniteoría. Quitar «a lot of» no elimina información necesaria para resolver el ejercicio.",
+   "problemas": []
+  },
+  {
+   "id": "2427",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "La nueva oración conserva la práctica de «in» con partes del día y tiene una única opción correcta. La traducción coincide y la miniteoría explica el uso de «in the afternoon».",
+   "problemas": []
+  },
+  {
+   "id": "243c",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "El ejercicio sigue practicando el uso de on con fechas y conserva la respuesta correcta. La nueva consigna, las opciones, la traducción y la miniteoría son coherentes entre sí.",
+   "problemas": []
+  },
+  {
+   "id": "243f",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "La nueva oración conserva la práctica de omitir la preposición con $last$ y una estación. Es natural, la traducción coincide y la miniteoría explica la regla correctamente.",
+   "problemas": []
+  },
+  {
+   "id": "2533",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "El ejercicio sigue practicando la reformulación cortés con would like y todos los campos coinciden. La nueva miniteoría explica el uso y la contracción de la forma que se practica, sin imponerla.",
+   "problemas": []
+  },
+  {
+   "id": "253c",
+   "mia": "dudoso",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": false,
+   "razon": "Mantiene la práctica de cortesía con would like y la reescritura de una pregunta. La respuesta, la traducción y la miniteoría coinciden con la acción añadida, y la traducción corrige el problema de concordancia de producción.",
+   "problemas": []
+  },
+  {
+   "id": "2df0",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "El ejercicio conserva la práctica de reformular un deseo con cortesía usando would like. La nueva miniteoría explica la transformación pertinente y coincide con la respuesta aceptada y la traducción.",
+   "problemas": []
+  },
+  {
+   "id": "2588",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "El ejercicio sigue practicando la posición de always y conserva la respuesta correcta y la traducción. La nueva miniteoría explica correctamente su ubicación antes del verbo principal en presente simple.",
+   "problemas": []
+  },
+  {
+   "id": "258d",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "El ejercicio sigue practicando la posición intermedia de often y todos los campos coinciden. La miniteoría mejora la de producción: explica la posición esperada y reconoce que la posición final también es válida, aunque la consigna prioriza la intermedia.",
+   "problemas": []
+  },
+  {
+   "id": "2591",
+   "mia": "bien",
+   "revisor": "bien",
+   "estado": "MARKED",
+   "coincide": true,
+   "razon": "Ahora presenta el adverbio que debe reubicarse y pide reescribir la oración completa, de acuerdo con el tipo REWRITE. La respuesta aceptada, la traducción y la miniteoría coinciden y practican la posición de sometimes antes del verbo principal.",
+   "problemas": []
+  }
+ ]
+}

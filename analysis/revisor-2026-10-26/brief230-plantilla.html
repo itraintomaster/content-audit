@@ -1,0 +1,114 @@
+<style>
+  .tw td i{font-family:ui-serif,Georgia,serif}
+  .tw.casos td{font-size:12.5px;line-height:1.45;min-width:150px}
+  .tw.casos td:first-child{min-width:70px}
+  .tw .cambio{background:var(--accent-soft);border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  details.grupo{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev);margin:10px 0 0}
+  details.grupo>summary{cursor:pointer;padding:10px 14px;font-size:14px;line-height:1.4;list-style-position:inside}
+  details.grupo>summary span{color:var(--fg-3);font-size:13px;margin-left:6px}
+  details.grupo .tw{margin:0;border:0;border-top:1px solid var(--line);border-radius:0 0 var(--radius) var(--radius)}
+  .ex .ft b{color:var(--fg-2)}
+  .hb .f.i{background:var(--info)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">
+      <span class="num">230</span>
+      <span class="badge">Resumen · Revisor</span>
+      <span class="meta">A1 · C2 · 26/10/2026</span>
+    </div>
+    <h1>De 24 falsas alarmas quedan {{FALSAS_V2}}, y lo heredado va aparte</h1>
+    <p class="sub">El revisor ya sabe qué ve el alumno y qué acepta el corrector.</p>
+  </header>
+
+  <div class="lede"><p><strong>En las 100 de la C2, el ruido casi desapareció.</strong> En la prueba ancha aparecieron dos causas nuevas, una mía; sacarlas cuesta 151 consultas antes de pedir las {{FALTAN}} que faltan.</p></div>
+
+  <section>
+    <h2>En las 100 marca la mitad, casi todo real</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">{{REALES_V2}} de {{MARCADOS_V2}}</div><div class="l">marcas reales hoy; antes, 20 de {{MARCADOS_V1}}</div></div>
+      <div class="kpi"><div class="n">{{APAGADAS}} de 24</div><div class="l">falsas alarmas que se apagaron</div></div>
+      <div class="kpi"><div class="n">{{MAL_V1}} → {{MAL_V2}}</div><div class="l">«mal»: los 5 por la forma larga bajaron</div></div>
+      <div class="kpi"><div class="n">{{HEREDADOS}}</div><div class="l">heredados, aparte del dudoso</div></div>
+    </div>
+    <div class="hb fijo" style="margin-top:16px">
+      <div class="r"><div class="t">Lo dejó la corrección<small>marcados dudoso o mal, ninguno como heredado</small></div><div class="tr"><div class="f b" style="width:{{NUEVOS_PCT}}%"></div></div><div class="n">{{NUEVOS}}</div></div>
+      <div class="r"><div class="t">Ya estaba en producción<small>marcados «heredado»</small></div><div class="tr"><div class="f i" style="width:{{HEREDADOS_PCT}}%"></div></div><div class="n">{{HEREDADOS}}</div></div>
+      <div class="r"><div class="t">Marca sin razón<small>«at the house», «the work»</small></div><div class="tr"><div class="f s" style="width:{{FALSAS_PCT}}%"></div></div><div class="n">{{FALSAS_V2}}</div></div>
+      <div class="r"><div class="t">Se le pasan<small>todos leves</small></div><div class="tr"><div class="f w" style="width:{{PASAN_PCT}}%"></div></div><div class="n">{{PASAN}}</div></div>
+    </div>
+    <p class="pie">Contra mi lectura del brief 229. Releyendo, cambio dos: 25b0 es heredado y en 1edc se me pasó «No veo ningún hermano».</p>
+  </section>
+
+  <section>
+    <h2>En Correcciones, «Heredado» es un filtro propio</h2>
+    <div class="map">
+      <div class="ex">
+        <svg class="cap" viewBox="0 0 1440 900" role="img" aria-label="Correcciones de la C2 con el filtro Heredado del revisor puesto, en el ejercicio 25b4">
+          <image href="230-el-revisor-recalibrado/pantalla.jpg" width="1440" height="900"/>
+          <rect class="aro" x="68" y="682" width="117" height="34" rx="9"/>
+          <rect class="aro" x="731" y="418" width="143" height="36" rx="9"/>
+          <g class="mk" transform="translate(36 699)"><circle r="24"/><text font-size="27">1</text></g>
+          <g class="mk" transform="translate(803 388)"><circle r="24"/><text font-size="27">2</text></g>
+          <g class="mk gris" transform="translate(328 431)"><circle r="24"/><text font-size="27">3</text></g>
+        </svg>
+      </div>
+      <div class="who">
+        <div><b>1</b><span><strong>Heredado</strong><br><small>entre dudoso y sin marca, con cuántos</small></span></div>
+        <div><b>2</b><span><strong>La marca del ejercicio</strong><br><small>«Revisor: heredado», en violeta</small></span></div>
+        <div><b class="gris">3</b><span><strong>Según los jueces</strong><br><small>igual que antes</small></span></div>
+      </div>
+    </div>
+    <figure class="captura"><img src="230-el-revisor-recalibrado/bloque.jpg" alt="Bloque del revisor de 25b4: lo marca heredado; la pregunta con Why ya estaba en producción">
+      <figcaption>Abajo de la galerada, cada problema que ya estaba lo dice.</figcaption></figure>
+    <p class="pie">El 7800, con <code>?revisor=heredado</code>. Un «mal» sigue siendo mal aunque traiga algo heredado.</p>
+  </section>
+
+  <section>
+    <h2>En la prueba ancha, dos causas nuevas de ruido</h2>
+    <div class="par">
+      <div class="ex">
+        <div class="rotulo">1 · Un «the» le parece sin contexto</div>
+        <div class="cons"><b>25f2</b> · Todas las formas</div>
+        <div class="en"><span class="gap"></span> (the shirts / be) white?</div>
+        <div class="ans">El revisor: «presupone unas camisas identificadas». <b>Lo provoqué yo:</b> la instrucción 4 nombra «un "the" que presupone algo».</div>
+        <div class="ft"><span><b>5 casos</b>, 2 en las 100</span><span>y 3 en las 51</span></div>
+      </div>
+      <div class="ex">
+        <div class="rotulo">2 · Compara con el tipo de oración</div>
+        <div class="cons"><b>2572</b> · Adverbios de frecuencia</div>
+        <div class="en">We <span class="gap"></span> eggs every morning. (eat / always)</div>
+        <div class="ans">El revisor: «el tipo REWRITE pide escribir la oración entera». <b>El alumno no lo ve</b>, y se lo dije; igual lo usa.</div>
+        <div class="ft"><span><b>3 casos</b> en las 51</span><span>2 como heredados</span></div>
+      </div>
+    </div>
+    <div class="hb fijo" style="margin-top:16px">
+      <div class="r"><div class="t">Ve lo que marqué yo<small>de {{ANCHA_YO}}; antes, {{ANCHA_VE_V1}}</small></div><div class="tr"><div class="f g" style="width:{{ANCHA_VE_PCT}}%"></div></div><div class="n">{{ANCHA_VE_V2}}</div></div>
+      <div class="r"><div class="t">Marca lo que di por bueno<small>de {{ANCHA_BIEN}}; antes, {{ANCHA_FALSA_V1}}</small></div><div class="tr"><div class="f b" style="width:{{ANCHA_FALSA_PCT}}%"></div></div><div class="n">{{ANCHA_FALSA_V2}}</div></div>
+    </div>
+    <p class="pie">Releyendo, en 3 de esos {{ANCHA_FALSA_V2}} le doy la razón: 257f (rechaza «Sometimes they go…») y dos miniteorías que quedaron fórmula.</p>
+    <div class="call c-warn"><b>Lo que no sé.</b> Si un tipo de oración que no coincide rompe algo en la app, como la oración guardada o el audio. Ahí esas marcas serían reales.</div>
+  </section>
+
+  <section>
+    <h2>Cada caso que cambió, con el ejercicio entero</h2>
+{{CASOS}}
+    <p class="pie">Resaltado, lo que cambió respecto de producción. «(ya estaba)»: el revisor dice que producción ya lo tenía, y el fragmento está tal cual en producción.</p>
+  </section>
+
+  <section>
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask"><span class="q">1 · ¿Saco esas dos causas y vuelvo a marcar las 151?</span><div class="ops"><span class="op rec">Sí, primero eso · recomendado</span><span class="op">Pedir las {{FALTAN}} así</span></div><span class="why">Cambia la versión otra vez: 151 consultas, unos 6 minutos. Hoy, 151 tardaron 338 segundos con 4 a la vez.</span></div>
+      <div class="ask"><span class="q">2 · Después, ¿pido las {{FALTAN}} que faltan?</span><div class="ops"><span class="op rec">Sí, desde Correcciones · recomendado</span><span class="op">Todavía no</span></div><span class="why">Unas {{FALTAN}} consultas por suscripción, menos de una hora a este ritmo. No deciden nada: ordenan qué mirar.</span></div>
+    </div>
+  </section>
+
+  <footer class="pie">Brief 230 · change-reviewer a67dac84 (antes 6f899ccf) · ca b7fbf3f84, ittm 5d1e13384 (F-MARCA-R010) · 151 consultas, codex-cli medium · analysis/revisor-2026-10-26 (remarcar.py, comparar100.py, brief230.py) · referencia: brief 229 y veredictos-ancha.json.</footer>
+</div>
+
+</body>
+</html>
