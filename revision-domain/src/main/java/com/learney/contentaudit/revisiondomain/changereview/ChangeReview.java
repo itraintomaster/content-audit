@@ -33,11 +33,20 @@ public final class ChangeReview {
         }
     }
 
-    public record Problem(Where where, String fragment, String what) {
+    /** F-MARCA-R010: {@code inherited} when production already had it; a mark of an earlier version never says so. */
+    public record Problem(Where where, String fragment, String what, boolean inherited) {
         public Problem {
             Objects.requireNonNull(where, "where");
             if (fragment == null || fragment.isBlank()) throw new IllegalArgumentException("Problema sin fragmento");
             if (what == null || what.isBlank()) throw new IllegalArgumentException("Problema sin qué pasa");
+        }
+
+        public Problem(Where where, String fragment, String what) {
+            this(where, fragment, what, false);
+        }
+
+        public Problem asNew() {
+            return new Problem(where, fragment, what, false);
         }
     }
 
@@ -52,6 +61,11 @@ public final class ChangeReview {
                 throw new IllegalArgumentException("Una marca «bien» no trae problemas");
             if (mark != Mark.GOOD && problems.isEmpty())
                 throw new IllegalArgumentException("Una marca «dudoso» o «mal» trae al menos un problema");
+        }
+
+        /** F-MARCA-R010: a doubtful mark whose problems production already had is «heredado»; WORSE never is. */
+        public boolean inheritedOnly() {
+            return mark == Mark.DOUBTFUL && problems.stream().allMatch(Problem::inherited);
         }
     }
 

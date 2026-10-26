@@ -69,7 +69,7 @@ def parse_json(raw):
 
 
 KEYS = ("quizId", "mark", "problems", "reason")
-PROBLEM_KEYS = ("where", "fragment", "what")
+PROBLEM_KEYS = ("where", "fragment", "what", "inherited")
 WHERE = ("INSTRUCTIONS", "EXERCISE", "ANSWERS", "OPTIONS", "TRANSLATION", "MINI_THEORY")
 
 
@@ -96,6 +96,9 @@ def validate(verdict, inputs):
         if text(problem["fragment"]).strip() not in sides:
             raise ValueError("el fragmento no está en ninguno de los dos lados")
         text(problem["what"])
+        # F-MARCA-R010: whether production already had it; the service checks it against production.
+        if not isinstance(problem["inherited"], bool):
+            raise ValueError("inherited no es verdadero o falso")
     return verdict
 
 def main():

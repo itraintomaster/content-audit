@@ -39,6 +39,27 @@ class JacksonChangeReviewVerdictReaderTest {
     }
 
     @Test
+    @DisplayName("should read whether each problem was already in production, take a problem of an earlier version that did not say it as new, and not read it if it is not true or false")
+    @Tag("FEAT-MARCA")
+    @Tag("F-MARCA-R010")
+    void shouldReadWhetherEachProblemWasAlreadyInProduction() {
+        var today = reader.read("{\"quizId\":\"q\",\"mark\":\"DOUBTFUL\",\"problems\":["
+                + "{\"where\":\"EXERCISE\",\"fragment\":\"Where is he\",\"what\":\"Pregunta con Where.\",\"inherited\":true},"
+                + "{\"where\":\"MINI_THEORY\",\"fragment\":\"completamos con\",\"what\":\"Una orden.\",\"inherited\":false}],"
+                + "\"reason\":\"r\"}");
+        var older = reader.read("{\"quizId\":\"q\",\"mark\":\"DOUBTFUL\",\"problems\":[{\"where\":\"EXERCISE\","
+                + "\"fragment\":\"Where is he\",\"what\":\"Pregunta con Where.\"}],\"reason\":\"r\"}");
+
+        assertEquals(List.of(new ChangeReview.Problem(ChangeReview.Where.EXERCISE, "Where is he", "Pregunta con Where.", true),
+                new ChangeReview.Problem(ChangeReview.Where.MINI_THEORY, "completamos con", "Una orden.", false)),
+                today.problems());
+        assertFalse(today.inheritedOnly(), "one problem is new");
+        assertFalse(older.problems().get(0).inherited(), "an earlier version did not say it: the problem is new");
+        assertThrows(IllegalArgumentException.class, () -> reader.read("{\"quizId\":\"q\",\"mark\":\"DOUBTFUL\","
+                + "\"problems\":[{\"where\":\"EXERCISE\",\"fragment\":\"a\",\"what\":\"b\",\"inherited\":\"true\"}],\"reason\":\"r\"}"));
+    }
+
+    @Test
     @DisplayName("should not read an answer with an unknown field, mark or place, a missing field or a repeated key")
     @Tag("FEAT-MARCA")
     @Tag("F-MARCA-R004")

@@ -228,11 +228,16 @@ class DefaultChangeReviewServiceTest {
     }
 
     @Test
-    @DisplayName("should list worse first, then doubtful, then the unmarked and good last, each group in the order of the course")
+    @DisplayName("should list worse first, then doubtful, then inherited, then the unmarked and good last, each group in the order of the course")
     @Tag("FEAT-MARCA")
     @Tag("F-MARCA-R005")
-    void shouldListWorseThenDoubtfulThenUnmarkedThenGoodInTheOrderOfTheCourse() {
+    @Tag("F-MARCA-R010")
+    void shouldListWorseThenDoubtfulThenInheritedThenUnmarkedThenGoodInTheOrderOfTheCourse() {
         Bench bench = new Bench().changeAll();
+        bench.now.knowledge().getQuizTemplates().add(exercise("cold", "Are you cold? No, I ___ .", "'m not",
+                "¿Tenés frío? No."));
+        bench.production.knowledge().getQuizTemplates().add(exercise("cold", "Are you cold? No, I ___ .", "'m not",
+                "¿Tenés frío? No, nada."));
         bench.now.knowledge().getQuizTemplates().add(exercise("late", "Are you late? No, I ___ .", "'m not",
                 "¿Llegás tarde? No."));
         bench.reviewer.answers.put("hungry", subject -> mark("hungry", "GOOD"));
@@ -240,10 +245,40 @@ class DefaultChangeReviewServiceTest {
                 problem("TRANSLATION", "No, en absoluto.", "Dice más que el inglés.")));
         bench.reviewer.answers.put("pick", subject -> mark("pick", "WORSE",
                 problem("OPTIONS", "Do she like tea?", "Hay dos opciones incorrectas iguales.")));
+        bench.reviewer.answers.put("cold", subject -> mark("cold", "DOUBTFUL",
+                inherited("EXERCISE", "Are you cold?", "Una pregunta que el tema no practica.")));
 
-        ChangeReview.Result result = bench.service().review(new ChangeReview.Request(BATCH, List.of(), 3, 1));
+        ChangeReview.Result result = bench.service().review(new ChangeReview.Request(BATCH, List.of(), 4, 1));
 
-        assertEquals(List.of("pick", "tired", "late", "hungry"), result.rows().stream().map(ChangeReview.Row::quizId).toList());
+        assertEquals(List.of("pick", "tired", "cold", "late", "hungry"),
+                result.rows().stream().map(ChangeReview.Row::quizId).toList());
+    }
+
+    @Test
+    @DisplayName("should keep a problem as already in production only when its fragment is in production as it is, and call inherited a doubtful mark whose problems all were")
+    @Tag("FEAT-MARCA")
+    @Tag("F-MARCA-R010")
+    void shouldKeepAProblemAsInheritedOnlyWhenItsFragmentIsInProduction() {
+        Bench bench = new Bench().changeAll();
+        // «Are you hungry? No, I» is the same in both sides; «No, para nada.» is only in the new translation.
+        bench.reviewer.answers.put("hungry", subject -> mark("hungry", "DOUBTFUL",
+                inherited("EXERCISE", "Are you hungry? No, I", "La respuesta corta ya estaba sin contexto."),
+                inherited("TRANSLATION", "No, para nada.", "Dice más que el inglés.")));
+        bench.reviewer.answers.put("tired", subject -> mark("tired", "DOUBTFUL",
+                inherited("EXERCISE", "Is she tired? No, she", "Ya estaba así.")));
+        bench.reviewer.answers.put("pick", subject -> mark("pick", "WORSE",
+                inherited("OPTIONS", "Does she like tea?", "Ya estaba."),
+                problem("OPTIONS", "Do she like tea?", "Una opción nueva repite el error.")));
+
+        ChangeReview.Result result = bench.service().review(new ChangeReview.Request(BATCH, List.of(), 5, 1));
+
+        var hungry = row(result, "hungry").verdict();
+        assertTrue(hungry.problems().get(0).inherited(), "its fragment is in production");
+        assertFalse(hungry.problems().get(1).inherited(), "not in production as it is: it cannot have been there");
+        assertFalse(hungry.inheritedOnly());
+        assertTrue(row(result, "tired").verdict().inheritedOnly(), "doubtful, and production already had all of it");
+        assertFalse(row(result, "pick").verdict().inheritedOnly(), "worse stays worse");
+        assertEquals(Mark.WORSE, row(result, "pick").verdict().mark());
     }
 
     @Test
@@ -272,6 +307,11 @@ class DefaultChangeReviewServiceTest {
 
     static String problem(String where, String fragment, String what) {
         return "{\"where\":\"" + where + "\",\"fragment\":\"" + fragment + "\",\"what\":\"" + what + "\"}";
+    }
+
+    /** A problem the reviewer says production already had (F-MARCA-R010). */
+    static String inherited(String where, String fragment, String what) {
+        return problem(where, fragment, what).replace("}", ",\"inherited\":true}");
     }
 
     static BatchReview.Item item(String quizId, String changeId) {
@@ -432,7 +472,7 @@ class DefaultChangeReviewServiceTest {
                 var problems = new ArrayList<ChangeReview.Problem>();
                 for (var p : json.get("problems"))
                     problems.add(new ChangeReview.Problem(Where.valueOf(p.get("where").asText()), p.get("fragment").asText(),
-                            p.get("what").asText()));
+                            p.get("what").asText(), p.has("inherited") && p.get("inherited").asBoolean()));
                 return new ChangeReview.Verdict(json.get("quizId").asText(), Mark.valueOf(json.get("mark").asText()),
                         problems, json.get("reason").asText());
             } catch (Exception e) {

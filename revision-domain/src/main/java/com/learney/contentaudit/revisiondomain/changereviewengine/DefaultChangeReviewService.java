@@ -86,7 +86,7 @@ final class DefaultChangeReviewService implements ChangeReviewService {
             unavailable = session.unavailableReason().orElse(null);
         }
 
-        // F-MARCA-R005: WORSE, DOUBTFUL, without a mark, GOOD; the order of the course within each.
+        // F-MARCA-R005: WORSE, DOUBTFUL, inherited, without a mark, GOOD; the order of the course within each.
         List<ChangeReview.Row> ordered = IntStream.range(0, rows.size()).boxed()
                 .sorted(Comparator.comparingInt((Integer i) -> group(rows.get(i))).thenComparingInt(i -> i))
                 .map(rows::get).toList();
@@ -107,11 +107,15 @@ final class DefaultChangeReviewService implements ChangeReviewService {
             verdict = reader.read(answer.getPayload());
             if (!changed.quizId().equals(verdict.quizId()))
                 throw new IllegalArgumentException("la marca es de otro ejercicio (" + verdict.quizId() + ")");
+            List<ChangeReview.Problem> problems = new ArrayList<>();
             for (ChangeReview.Problem problem : verdict.problems()) {
                 String fragment = problem.fragment().strip();
                 if (!changed.before().contains(fragment) && !changed.after().contains(fragment))
                     throw new IllegalArgumentException("el fragmento «" + fragment + "» no está en ninguno de los dos lados");
+                // F-MARCA-R010: what is not in production as it is cannot have been there already.
+                problems.add(problem.inherited() && !changed.before().contains(fragment) ? problem.asNew() : problem);
             }
+            verdict = new ChangeReview.Verdict(verdict.quizId(), verdict.mark(), problems, verdict.reason());
         } catch (RuntimeException unusable) {
             return row(changed, ChangeReview.State.UNUSABLE, null, answer.getEvaluatorVersion(),
                     "La marca no se puede usar: " + unusable.getMessage());
@@ -128,11 +132,11 @@ final class DefaultChangeReviewService implements ChangeReviewService {
     }
 
     private static int group(ChangeReview.Row row) {
-        if (row.verdict() == null) return 2;
+        if (row.verdict() == null) return 3;
         return switch (row.verdict().mark()) {
             case WORSE -> 0;
-            case DOUBTFUL -> 1;
-            case GOOD -> 3;
+            case DOUBTFUL -> row.verdict().inheritedOnly() ? 2 : 1;
+            case GOOD -> 4;
         };
     }
 

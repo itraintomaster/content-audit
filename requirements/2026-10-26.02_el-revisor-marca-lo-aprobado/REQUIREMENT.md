@@ -42,7 +42,10 @@ el estado de ninguna corrección.
 > la miniteoría. Lee también el nivel, la unidad, el nombre del tema, la consigna del tema y el tipo de oración; no lee
 > qué tareas tenía la corrección, porque marca cómo quedó el ejercicio y no si se cumplió una tarea. Es una lectura por
 > ejercicio, aunque lo hayan tocado varios cambios; un ejercicio que quedó igual que en producción no se lee.
-> Producción es el curso del que partió la corrección, no la tanda anterior.
+> Producción es el curso del que partió la corrección, no la tanda anterior. Sabe qué ve el alumno: el nombre del
+> tema, la consigna del ejercicio, el ejercicio y sus opciones, y al corregir la traducción y la miniteoría. La
+> consigna del tema y el tipo de oración no los ve: le dicen al revisor qué practica el tema y cómo se arma el
+> ejercicio, y no se le exige al ejercicio que diga lo que dicen ellos.
 
 <a id="F-MARCA-R002"></a>
 ### Rule[F-MARCA-R002] - Marca bien, dudoso o mal, sin decidir
@@ -52,7 +55,9 @@ el estado de ninguna corrección.
 > quedó peor que en producción o roto. Cada problema dice dónde está —la consigna, el ejercicio, las respuestas, las
 > opciones, la traducción o la miniteoría—, copia el fragmento tal cual de uno de los dos lados y dice qué pasa. «Bien»
 > no trae problemas; «dudoso» y «mal» traen al menos uno. La marca no cambia el estado de ninguna corrección, ni lo que
-> decidió José, ni el cierre, ni la publicación.
+> decidió José, ni el cierre, ni la publicación. El corrector toma la forma contraída y la larga como la misma
+> respuesta («'s» e «is», «isn't» e «is not»): que el ejercicio acepte una sola de las dos, o que la consigna no pida
+> ninguna, no es un problema.
 
 <a id="F-MARCA-R003"></a>
 ### Rule[F-MARCA-R003] - Consulta sólo con tope, y lo marcado no se paga dos veces
@@ -77,16 +82,16 @@ el estado de ninguna corrección.
 ### Rule[F-MARCA-R005] - Lo marcado primero
 **Severity**: minor | **Validation**: VALIDATED
 
-> La lista muestra primero lo «mal», después lo «dudoso», después lo que no tiene marca y al final lo «bien»; dentro de
-> cada grupo, en el orden del curso. Se puede pedir sólo algunos ejercicios de la tanda.
+> La lista muestra primero lo «mal», después lo «dudoso», después lo «heredado», después lo que no tiene marca y al
+> final lo «bien»; dentro de cada grupo, en el orden del curso. Se puede pedir sólo algunos ejercicios de la tanda.
 
 <a id="F-MARCA-R006"></a>
 ### Rule[F-MARCA-R006] - Correcciones muestra la marca de cada ejercicio cambiado
 **Severity**: major | **Validation**: VALIDATED
 
 > En Correcciones, cada ejercicio que la tanda dejó distinto de producción dice qué marcó el revisor: «bien», «dudoso»,
-> «mal» o «sin marca». Con «dudoso» y «mal» se ve la razón y cada problema con su campo, el fragmento tal cual y qué
-> pasa. «Sin marca» dice por qué: falta pedirla —también cuando el ejercicio cambió después de marcarlo— o la respuesta
+> «heredado», «mal» o «sin marca». Con «dudoso», «heredado» y «mal» se ve la razón y cada problema con su campo, el
+> fragmento tal cual, qué pasa y, si ya estaba en producción, que ya estaba. «Sin marca» dice por qué: falta pedirla —también cuando el ejercicio cambió después de marcarlo— o la respuesta
 > no se pudo usar. Una marca de una versión anterior del revisor se muestra con lo que dijo y dice que es de antes. Un
 > ejercicio que quedó igual que en producción no lleva marca. La marca no cambia ninguna decisión: aprobar, rechazar y
 > publicar funcionan igual con cualquier marca. Leer las marcas no consulta al revisor.
@@ -95,8 +100,8 @@ el estado de ninguna corrección.
 ### Rule[F-MARCA-R007] - La lista se filtra según el revisor
 **Severity**: major | **Validation**: VALIDATED
 
-> La lista de Correcciones se puede filtrar por la marca del revisor: «mal», «dudoso», «sin marca» o «bien», cada una con
-> cuántos ejercicios tiene en la tanda. Con una marca elegida, la lista trae sólo los temas con algún ejercicio de esa
+> La lista de Correcciones se puede filtrar por la marca del revisor: «mal», «dudoso», «heredado», «sin marca» o
+> «bien», cada una con cuántos ejercicios tiene en la tanda. Con una marca elegida, la lista trae sólo los temas con algún ejercicio de esa
 > marca, aunque ya estén decididos, y la tira y las flechas pasan sólo por ellos. Se combina con los otros filtros: entra
 > el ejercicio que cumple todos. Lo que no tiene marca nunca entra con «bien». Como el filtro de los jueces, se puede
 > llegar con él puesto desde un enlace (`?revisor=mal`).
@@ -120,6 +125,16 @@ el estado de ninguna corrección.
 > Cuando el revisor guarda una marca, cuando una corrida de marcas termina o se corta, y cuando cambia lo que la tanda
 > propone, Correcciones vuelve a leer las marcas sin que haya que recargar la página.
 
+<a id="F-MARCA-R010"></a>
+### Rule[F-MARCA-R010] - Lo heredado, aparte
+**Severity**: major | **Validation**: VALIDATED
+
+> Cada problema dice si ya estaba en producción: la corrección no lo trajo ni lo empeoró. Un problema cuyo fragmento no
+> está tal cual en producción nunca es heredado, diga lo que diga el revisor. Un «dudoso» cuyos problemas ya estaban
+> todos en producción es «heredado»: no se publicaría así, pero no es del cambio, y se cuenta y se filtra aparte del
+> «dudoso». Un «mal» sigue siendo «mal» aunque traiga problemas heredados. Lo heredado nunca cuenta como «bien». Una
+> marca de una versión anterior, que no decía qué ya estaba, cuenta sus problemas como nuevos.
+
 ## Contexto
 
 - **No es un juez del análisis**: no abre tareas ni cuenta en el puntaje del curso. Por eso no necesita examen aprobado
@@ -133,6 +148,13 @@ el estado de ninguna corrección.
 - **La pantalla del tablero** (R006 a R009) la pidió José el 26/10/2026, respondiendo al brief 227: «Sí: hacé la
   pantalla de las marcas del revisor en Correcciones del tablero». El código está en ittm, en el tablero
   (`pipeline/vocabulary_dashboard`).
+- **Lo que ve y acepta el alumno, y lo heredado** (R001, R002 y R010): en las primeras 100 marcas de la C2 (brief
+  229), 24 de 44 eran falsas alarmas. 21 comparaban el ejercicio con la consigna del tema, que la app no muestra, y 5
+  de los 7 «mal» decían que el corrector rechazaba la forma larga, que acepta desde el 30/9/2026 (ittm #1191). José,
+  el 26/10/2026: «enseñale al revisor que el corrector acepta las dos formas y que el alumno no ve la consigna del
+  tema, marcá lo heredado aparte». Que el problema ya estaba lo dice el revisor, que tiene los dos lados; que el
+  fragmento esté en producción lo confirma, porque un problema puede estar en un campo que no cambió y nacer de otro
+  que sí (la traducción quedó igual y el inglés cambió).
 
 ## Cómo se prueba
 
@@ -142,11 +164,12 @@ el estado de ninguna corrección.
 | R002 | `DefaultChangeReviewServiceTest`: las tres marcas con sus problemas; no cambia ninguna decisión; `JacksonChangeReviewVerdictReaderTest`: bien sin problemas, dudoso y mal con al menos uno |
 | R003 | `DefaultChangeReviewServiceTest`: sin tope no consulta; con tope consulta a lo sumo eso; lo marcado de hoy no se paga; una marca vieja se muestra y se vuelve a pedir con tope |
 | R004 | `DefaultChangeReviewServiceTest`: otro ejercicio, fragmento ajeno, ilegible y ejercicio que volvió a cambiar quedan sin marcar |
-| R005 | `DefaultChangeReviewServiceTest`: mal, dudoso, sin marcar y bien, en ese orden; pedir algunos ejercicios; `ChangeReviewCmdTest`: lo que muestra el comando |
+| R005 | `DefaultChangeReviewServiceTest`: mal, dudoso, heredado, sin marcar y bien, en ese orden; pedir algunos ejercicios; `ChangeReviewCmdTest`: lo que muestra el comando |
 | R006 | En ittm, el tablero: `test/tablero_html/marcas/rutas_de_marcas_test.dart` (leer no consulta; cada ejercicio con estado, marca, razón y problemas; de antes y sin marca; los dos lados no viajan; otra tanda no se muestra); `html/test/revisor-marcas.test.js` (la etiqueta de la cabecera, el bloque con la razón y cada problema, la marca de antes, por qué no tiene marca, la marca no decide, lo del revisor se escribe como texto) y `html/test/arquitectura.test.js` (sólo `js/estado/marcas.js` pide `/api/marcas`) |
-| R007 | `html/test/revisor-marcas.test.js`: los cuatro valores con su cuenta; sin marca nunca es bien y la de antes cuenta con lo que dijo; los temas con esa marca aunque estén decididos, la tira sólo por ellos; se combina con el motivo y con la opinión; chips, «Todos» y abrir un ejercicio escondido; `?revisor=`; apagado mientras se lee o si falla |
+| R007 | `html/test/revisor-marcas.test.js`: los cinco valores con su cuenta; sin marca nunca es bien y la de antes cuenta con lo que dijo; los temas con esa marca aunque estén decididos, la tira sólo por ellos; se combina con el motivo y con la opinión; chips, «Todos» y abrir un ejercicio escondido; `?revisor=`; apagado mientras se lee o si falla |
 | R008 | `test/tablero_html/ejecuciones/marcas_test.dart` (la estimación gratis con sus cifras, el tope de 1 a lo que falta, la de un ejercicio, sin nada que pedir, una estimación que cambió, un tope que se pasa, la corrida paga en Ejecuciones, la cuenta al terminar aunque la respuesta traiga cada ejercicio con sus dos lados, no se retoma, el pedido con id); `html/test/revisor-marcas.test.js` (los dos botones abren el diálogo, sin nada que pedir no hay botón, en la base tampoco, lo que dice el diálogo, el tope y el pedido, la de un ejercicio, el freno, con otro motor no se lanza, el nombre en Ejecuciones) |
 | R009 | `html/test/revisor-marcas.test.js`: se leen una vez; los avisos de «analisis», «tanda» y «cambios» las releen y los demás no; una corrida de marcas que empieza, termina o queda cortada las relee; `html/test/estado-avisos.test.js`: las etiquetas de cada aviso |
+| R010 | `JacksonChangeReviewVerdictReaderTest`: lee si cada problema ya estaba, una marca de antes sin decirlo lo cuenta nuevo, «true» como texto no se lee; `ChangeReviewerAgentGateTest`: el agente deja pasar sólo un problema que lo dice como verdadero o falso, y lo que deja pasar lo lee Java; `DefaultChangeReviewServiceTest`: un fragmento que no está en producción no es heredado, un dudoso con todo heredado va aparte y un mal sigue mal; `ChangeReviewCmdTest`: el grupo «heredado» y «(ya estaba en producción)»; en ittm, el tablero: `test/tablero_html/marcas/rutas_de_marcas_test.dart` (dudoso con todo heredado es «heredado», con algo nuevo sigue dudoso, mal sigue mal, una marca de antes cuenta nuevo) y `html/test/revisor-marcas.test.js` (la etiqueta y el bloque de «heredado», «Ya estaba en producción» en cada problema que ya estaba, el chip con su cuenta, aparte del dudoso y nunca bien, la ayuda) |
 
 ## References
 

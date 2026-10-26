@@ -5,6 +5,7 @@ import com.learney.contentaudit.revisiondomain.changereview.ChangeReviewService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Model;
@@ -53,8 +54,9 @@ public final class ChangeReviewCmd implements Callable<Integer> {
                 : " Esta vez: " + result.spent() + (result.spent() == 1 ? " consulta" : " consultas") + " de un tope de "
                         + result.budget() + ".\n");
         if (result.unavailableReason() != null) out.append("El revisor no está disponible: ").append(result.unavailableReason()).append('\n');
-        group(out, result.rows(), "mal", ChangeReview.Mark.WORSE);
-        group(out, result.rows(), "dudoso", ChangeReview.Mark.DOUBTFUL);
+        group(out, result.rows(), "mal", v -> v.mark() == ChangeReview.Mark.WORSE);
+        group(out, result.rows(), "dudoso", v -> v.mark() == ChangeReview.Mark.DOUBTFUL && !v.inheritedOnly());
+        group(out, result.rows(), "heredado", ChangeReview.Verdict::inheritedOnly);
         List<ChangeReview.Row> unmarked = result.rows().stream().filter(r -> r.verdict() == null).toList();
         if (!unmarked.isEmpty()) {
             out.append("sin marca (").append(unmarked.size()).append("):\n");
@@ -71,8 +73,9 @@ public final class ChangeReviewCmd implements Callable<Integer> {
         return out.toString();
     }
 
-    private static void group(StringBuilder out, List<ChangeReview.Row> rows, String name, ChangeReview.Mark mark) {
-        List<ChangeReview.Row> marked = rows.stream().filter(r -> r.verdict() != null && r.verdict().mark() == mark).toList();
+    private static void group(StringBuilder out, List<ChangeReview.Row> rows, String name,
+            Predicate<ChangeReview.Verdict> belongs) {
+        List<ChangeReview.Row> marked = rows.stream().filter(r -> r.verdict() != null && belongs.test(r.verdict())).toList();
         if (marked.isEmpty()) return;
         out.append(name).append(" (").append(marked.size()).append("):\n");
         for (ChangeReview.Row row : marked) {
@@ -80,7 +83,7 @@ public final class ChangeReviewCmd implements Callable<Integer> {
                     .append(row.verdict().reason()).append('\n');
             for (ChangeReview.Problem problem : row.verdict().problems())
                 out.append("    - ").append(where(problem.where())).append(" «").append(problem.fragment()).append("»: ")
-                        .append(problem.what()).append('\n');
+                        .append(problem.what()).append(problem.inherited() ? " (ya estaba en producción)" : "").append('\n');
         }
     }
 
