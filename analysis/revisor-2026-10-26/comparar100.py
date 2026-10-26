@@ -1,7 +1,7 @@
 # Compara las 100 marcas del revisor de F-MARCA-R010 (versión a67dac84) con mi lectura de brief 229, que leí una por
 # una con la versión anterior (6f899ccf). Leer es gratis: `batch mark` sin --budget no consulta.
 # Mi lectura es una referencia, no una verdad certificada: lo que el revisor nuevo marca distinto se vuelve a leer.
-# Uso: comparar100.py   (después de remarcar.py)
+# Uso: comparar100.py [etiqueta]   (después de remarcar.py; etiqueta v2 si no se dice)
 import json
 import subprocess
 import sys
@@ -65,7 +65,8 @@ if __name__ == '__main__':
               'leyenda': {'antes': 'marca de la versión 6f899ccf (brief 229)', 'ahora': 'marca de la versión de hoy',
                           'yo': 'mi lectura de brief 229 (heredado = ya estaba en producción)'},
               'cuenta': dict(sorted(cuenta.items())), 'filas': filas}
-    (AQUI / 'comparacion-100-v2.json').write_text(json.dumps(salida, ensure_ascii=False, indent=1))
+    etiqueta = sys.argv[1] if len(sys.argv) > 1 else 'v2'
+    (AQUI / f'comparacion-100-{etiqueta}.json').write_text(json.dumps(salida, ensure_ascii=False, indent=1))
     print(json.dumps({k: salida[k] for k in ('version', 'alDia', 'faltan', 'cuenta')}, ensure_ascii=False))
     for f in filas:
         if f['clase'] not in ('bien igual', 'falsa alarma apagada', 'nuevo bien visto', 'heredado aparte'):

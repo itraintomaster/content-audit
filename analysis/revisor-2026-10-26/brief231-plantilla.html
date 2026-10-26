@@ -1,0 +1,96 @@
+<style>
+  .tw td i{font-family:ui-serif,Georgia,serif}
+  .tw.casos td{font-size:12.5px;line-height:1.45;min-width:150px}
+  .tw.casos td:first-child{min-width:70px}
+  .tw .cambio{background:var(--accent-soft);border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  .tw.cuenta td,.tw.cuenta th{text-align:center}
+  .tw.cuenta td:first-child,.tw.cuenta th:first-child{text-align:left}
+  details.grupo{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev);margin:10px 0 0}
+  details.grupo>summary{cursor:pointer;padding:10px 14px;font-size:14px;line-height:1.4;list-style-position:inside}
+  details.grupo>summary span{color:var(--fg-3);font-size:13px;margin-left:6px}
+  details.grupo .tw{margin:0;border:0;border-top:1px solid var(--line);border-radius:0 0 var(--radius) var(--radius)}
+  .ex .ft b{color:var(--fg-2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">
+      <span class="num">231</span>
+      <span class="badge">Resumen · Corrección y revisor</span>
+      <span class="meta">A1 · C2 · 26/10/2026</span>
+    </div>
+    <h1>El tramo grave corre y el revisor ya no marca de más</h1>
+    <p class="sub">Corrige los {{GRAVE_EJERCICIOS}} ejercicios con problemas graves; el revisor marca lo que conviene mirar.</p>
+  </header>
+
+  <div class="lede"><p><strong>Lancé la corrección de los {{GRAVE_EJERCICIOS}} ejercicios graves: unas 5.350 consultas y 6 horas, no las 2.700 que te dije.</strong> El revisor pulido no marca nada sin razón en los 151 que leí.</p></div>
+
+  <section>
+    <h2>La estimación da casi lo mismo que en el 225</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">{{GRAVE_EJERCICIOS}}</div><div class="l">ejercicios; 346 son los mismos del 225</div></div>
+      <div class="kpi"><div class="n">{{GRAVE_MINIMO}}</div><div class="l">consultas seguras antes de corregir; en el 225, 1.268</div></div>
+      <div class="kpi"><div class="n">~5.350</div><div class="l">en total, con tope en 5.500; en el 225, ~5.000</div></div>
+      <div class="kpi"><div class="n">~6 h</div><div class="l">empezó 19:45; termina cerca de la 1:45</div></div>
+    </div>
+    <p class="pie">Lo seguro sube 352 porque ahora también opina el juez «no regala», que el 225 no tenía. El resto depende de cuántas vueltas pida cada ejercicio.</p>
+    <div class="call c-warn"><b>Me equivoqué antes.</b> Te dije 2.700 consultas y 3 a 4 horas; el 225 ya decía 5.000 y 6 horas.</div>
+  </section>
+
+  <section>
+    <h2>El revisor ya no marca nada sin razón</h2>
+    <div class="tw cuenta"><table>
+      <thead><tr><th></th><th>100 de la C2<br><small>antes → hoy</small></th><th>51 de la prueba ancha<br><small>antes → hoy</small></th></tr></thead>
+      <tbody>
+        <tr><td>Marca y tiene razón</td><td>{{C100_REALES_V2}} → <b>{{C100_REALES_V3}}</b></td><td>{{C51_REALES_V2}} → <b>{{C51_REALES_V3}}</b></td></tr>
+        <tr><td>Marca sin razón</td><td>{{C100_FALSAS_V2}} → <b>{{C100_FALSAS_V3}}</b></td><td>{{C51_FALSAS_V2}} → <b>{{C51_FALSAS_V3}}</b></td></tr>
+        <tr><td>Se le pasa</td><td>{{C100_PASAN_V2}} → <b>{{C100_PASAN_V3}}</b></td><td>{{C51_PASAN_V2}} → <b>{{C51_PASAN_V3}}</b></td></tr>
+        <tr><td>Lo marca como heredado</td><td>{{C100_HEREDADOS_V2}} → {{C100_HEREDADOS_V3}}</td><td>{{C51_HEREDADOS_V2}} → {{C51_HEREDADOS_V3}}</td></tr>
+      </tbody>
+    </table></div>
+    <p class="pie">«Antes» es el revisor del brief 230. «Tiene razón» y «se le pasa», según mi lectura de cada ejercicio entero.</p>
+    <div class="cambia">
+      <div class="si"><div class="ptl">Le cambié</div><ul><li>Ya no lee el tipo de oración, que la app no usa.</li><li>Una oración que nombra a alguien sin presentarlo es normal.</li><li>Ya no le nombro «un "the" que presupone algo».</li></ul></div>
+      <div class="no"><div class="ptl">Sigue igual</div><ul><li>Lo heredado va aparte.</li><li>Sabe que el corrector toma las dos formas.</li><li>No decide nada: ordena qué mirar.</li></ul></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Se le pasa uno real; los otros cuatro son leves</h2>
+    <div class="ad">
+      <div class="lado antes"><span class="rot">Producción · 1e9b</span>
+        <ol><li>How ___ ? (She)</li><li>Acepta «is she».</li><li>El alumno ordena be y el sujeto.</li></ol>
+        <span class="res">practica lo que pide el tema</span></div>
+      <div class="lado despues"><span class="rot">Ahora</span>
+        <ol><li>How ___ she? (be)</li><li>Acepta «is».</li><li>La miniteoría dice «How + is + she».</li></ol>
+        <span class="res">el orden ya está escrito</span></div>
+    </div>
+    <p class="pie">El revisor del 230 lo marcaba; el de hoy lo da por bueno. Los leves: 1efa (miniteoría), 1ed6 (traducción), 1fb0 y 253c (poco natural).</p>
+  </section>
+
+  <section>
+    <h2>Cada caso que cambió, con el ejercicio entero</h2>
+{{CASOS}}
+    <p class="pie">Resaltado, lo que cambió respecto de producción. «(ya estaba)»: el revisor dice que producción ya lo tenía.</p>
+  </section>
+
+  <section>
+    <h2>Qué sigue cuando termine la corrida</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">Termina el tramo grave</span><span class="eg">cerca de la 1:45</span><span class="d">Lo veo en Ejecuciones; no compilo mientras corre.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Pido las marcas</span><span class="eg">1.388 + lo que cambie</span><span class="d">Las que faltan de la C2 y lo que cambie el tramo.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">Leo lo marcado</span><span class="d">Te lo traigo con una muestra de lo no marcado.</span></div>
+      <div class="st end"><span class="i">4</span><span class="h">Vos decidís</span><span class="d">Qué se publica y qué se descarta, desde Correcciones.</span></div>
+    </div>
+    <div class="asks">
+      <div class="ask"><span class="q">1 · ¿Pido las marcas apenas termine el tramo?</span><div class="ops"><span class="op rec">Sí, al terminar · recomendado</span><span class="op">Esperá a que lo mire</span></div><span class="why">Pedirlas antes las gasta en ejercicios que el tramo va a cambiar.</span></div>
+    </div>
+  </section>
+
+  <footer class="pie">Brief 231 · change-reviewer cb2111fe (antes a67dac84) · corrida ui-2026-10-26T22-45-04.197082Z-batch-recorrect, tope 5.500, codex-cli medium · analysis/c2-mejoras-2026-10-25/tramo_grave.py · analysis/revisor-2026-10-26/brief231.py.</footer>
+</div>
+
+</body>
+</html>

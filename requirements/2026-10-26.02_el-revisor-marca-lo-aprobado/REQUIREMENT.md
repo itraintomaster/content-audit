@@ -39,13 +39,14 @@ el estado de ninguna corrección.
 
 > Por cada ejercicio que la tanda dejó distinto de producción, el revisor lee los dos lados completos: la consigna, el
 > ejercicio como lo ve el alumno con sus pistas, las opciones, las respuestas que acepta el corrector, la traducción y
-> la miniteoría. Lee también el nivel, la unidad, el nombre del tema, la consigna del tema y el tipo de oración; no lee
-> qué tareas tenía la corrección, porque marca cómo quedó el ejercicio y no si se cumplió una tarea. Es una lectura por
-> ejercicio, aunque lo hayan tocado varios cambios; un ejercicio que quedó igual que en producción no se lee.
+> la miniteoría. Lee también el nivel, la unidad, el nombre del tema y la consigna del tema. No juzga por el tipo de
+> oración del tema, que la app no usa y no cambia lo que ve el alumno. No lee qué tareas tenía la corrección, porque
+> marca cómo quedó el ejercicio y no si se cumplió una tarea. Es una lectura por ejercicio, aunque lo hayan tocado
+> varios cambios; un ejercicio que quedó igual que en producción no se lee.
 > Producción es el curso del que partió la corrección, no la tanda anterior. Sabe qué ve el alumno: el nombre del
 > tema, la consigna del ejercicio, el ejercicio y sus opciones, y al corregir la traducción y la miniteoría. La
-> consigna del tema y el tipo de oración no los ve: le dicen al revisor qué practica el tema y cómo se arma el
-> ejercicio, y no se le exige al ejercicio que diga lo que dicen ellos.
+> consigna del tema no la ve: le dice al revisor qué practica el tema, y no se le exige al ejercicio que diga lo que
+> dice ella. Una oración suelta de práctica que habla de alguien o de algo sin presentarlo es normal en el curso.
 
 <a id="F-MARCA-R002"></a>
 ### Rule[F-MARCA-R002] - Marca bien, dudoso o mal, sin decidir
@@ -160,7 +161,7 @@ el estado de ninguna corrección.
 
 | Regla | Prueba |
 |---|---|
-| R001 | `DefaultChangeReviewServiceTest`: lee los dos lados enteros y el contexto; una lectura por ejercicio; lo que no cambió no se lee; producción es el curso de partida |
+| R001 | `DefaultChangeReviewServiceTest`: lee los dos lados enteros y el contexto; una lectura por ejercicio; lo que no cambió no se lee; producción es el curso de partida. Lo que sabe el revisor (qué ve el alumno, qué no cuenta) se prueba con la calibración: `analysis/revisor-2026-10-26/marcar.py` contra la prueba ancha y `comparar100.py` contra las 100 del brief 229 |
 | R002 | `DefaultChangeReviewServiceTest`: las tres marcas con sus problemas; no cambia ninguna decisión; `JacksonChangeReviewVerdictReaderTest`: bien sin problemas, dudoso y mal con al menos uno |
 | R003 | `DefaultChangeReviewServiceTest`: sin tope no consulta; con tope consulta a lo sumo eso; lo marcado de hoy no se paga; una marca vieja se muestra y se vuelve a pedir con tope |
 | R004 | `DefaultChangeReviewServiceTest`: otro ejercicio, fragmento ajeno, ilegible y ejercicio que volvió a cambiar quedan sin marcar |
