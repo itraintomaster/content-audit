@@ -224,6 +224,42 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
         return new Measured(config.getAnalysisComposer().compose(snapshot.report(), supplements), spent);
     }
 
+    /**
+     * F-MESA-R028: an instant analyzer of the catalog with a correction of its own that the batch does not measure -- it
+     * came after the batch was made -- also gives this correction its tasks, measured for free on the course as it is
+     * now. The batch keeps comparing with the analyzers it was made with.
+     */
+    private AuditReport withInstantAnalyzersTheBatchLacks(CorrectionBatch batch, CourseEntity current, AuditReport report) {
+        if (config.getAnalyzerCatalog() == null || config.getCorrectionCatalog() == null || config.getAuditEngine() == null
+                || config.getCourseMapper() == null || report == null || report.getRoot() == null) return report;
+        var index = DefaultAnalysisComposer.index(report.getRoot());
+        var names = new ArrayList<String>();
+        for (AnalyzerDescriptor card : safe(config.getAnalyzerCatalog().list())) {
+            String name = card.getName();
+            if (name == null || safe(batch.getAnalyzers()).contains(name) || card.getCost() != AnalysisCost.INSTANT
+                    || card.getFamily() != com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.ERRORS
+                    || config.getCorrectionCatalog().find(name).map(AnalyzerCorrection::contextOnly).orElse(true)
+                    || index.values().stream().anyMatch(n -> n.getScores().containsKey(name))) continue;
+            names.add(name);
+        }
+        if (names.isEmpty()) return report;
+        var policies = new LinkedHashMap<String, EvaluationRunPolicy>();
+        for (String name : names) policies.put(name, new EvaluationRunPolicy(0, false, null, null, EvaluationRunPurpose.READING, 1));
+        AuditReport extra = config.getAuditEngine().runAudit(config.getCourseMapper().map(current),
+                new com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection(names, policies));
+        if (extra == null || extra.getRoot() == null) return report;
+        for (var entry : DefaultAnalysisComposer.index(extra.getRoot()).entrySet()) {
+            AuditNode to = index.get(entry.getKey());
+            if (to == null) continue;
+            for (String name : names) {
+                Double score = entry.getValue().getScores().get(name);
+                if (score != null) to.getScores().put(name, score);
+                to.getFindings().addAll(entry.getValue().getFindings().stream().filter(f -> name.equals(f.getAnalyzer())).toList());
+            }
+        }
+        return report;
+    }
+
     private static int spent(AuditReport report, String analyzer) {
         if (report == null || report.getRoot() == null || !(report.getRoot().getDiagnoses() instanceof CourseDiagnoses d)) return 0;
         return safe(d.getJudgeCoverages()).stream().filter(c -> analyzer.equals(c.getJudgeName())).findFirst()
@@ -285,7 +321,8 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
         if (config.getCurrentAnalysisService() == null) throw new IllegalStateException("Falta el análisis vigente integrado.");
         CourseEntity start = BatchCourses.start(batch, config.getCourseRepository().load(config.getCoursePath()), config.getBatchStore());
         CourseEntity current = DefaultCurrentAnalysisService.cut(ledger.composedCourse(batch, start), batch.getLevel());
-        AuditReport report = measured != null ? measured : config.getCurrentAnalysisService().report(batch, "correction", current);
+        AuditReport report = withInstantAnalyzersTheBatchLacks(batch, current,
+                measured != null ? measured : config.getCurrentAnalysisService().report(batch, "correction", current));
         RefinementPlan plan = config.getRefinerEngine().plan(report, "current-quiz-correction");
         List<RefinementTask> tasks = safe(plan.getTasks());
         Map<String, DidacticReference> references = DidacticReferences.resolve(batch, sourceOperationId, selected,

@@ -529,6 +529,21 @@ texto que cambió. Los otros 129 (120 sin ningún otro problema) necesitan que l
 
 **Fuente**: José, el 25/10/2026: lo que lee el alumno va de tú, como las consignas (brief 223, pregunta 1).
 
+<a id="F-MESA-R028"></a>
+### Rule[F-MESA-R028] - Un analizador instantáneo que llegó después de la tanda igual da tareas
+**Severity**: major | **Validation**: ASSUMPTION
+
+> Al estimar y al corregir, un analizador instantáneo de errores del catálogo, con corrección propia, que la tanda no
+> mide —llegó después de que se armó— se corre gratis sobre el curso como está y sus hallazgos dan tareas como los de
+> los demás. La tanda sigue comparando con los analizadores con que se armó: el nuevo no entra en la comparación con la
+> base ni en la compuerta de la tanda.
+
+La C2 nació de la C1 con sus 21 analizadores (7/10/2026), así que [F-MESA-R025](#F-MESA-R025) no le marcaba nada.
+Sumarlo a lo que la tanda compara inflaría «algún error» contra la base, que nunca lo midió. Con esta regla los 129
+ejercicios de vos de la C2 que no tienen otro problema también van a la mesa.
+
+**Fuente**: prueba del 26/10/2026; consecuencia de [F-MESA-R025](#F-MESA-R025).
+
 ## Contexto
 
 **Por qué una mesa por tema.** El 077 revisó los 11.287 ejercicios con revisores por lote y verificadores que intentaron

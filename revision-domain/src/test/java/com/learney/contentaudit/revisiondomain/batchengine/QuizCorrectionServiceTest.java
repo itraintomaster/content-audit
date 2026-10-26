@@ -458,6 +458,56 @@ class QuizCorrectionServiceTest {
         });
     }
 
+    @Tag("F-MESA-R028")
+    @Test void anInstantAnalyzerTheBatchDoesNotMeasureGivesTheCorrectionItsTasksWithoutAQuery() {
+        // F-MESA-R028: the batch was made before spanish-register; correcting, the card in vos of the exercise is a
+        // finding of its own, measured for free on the course as it is now, and the batch keeps its analyzers.
+        Finding vos = new Finding("spanish-register", "tu-register", new FindingNodeRef(AuditTarget.QUIZ, quiz, quiz),
+                FindingSeverity.MEDIUM, new FindingEvidence(List.of(new EvidencePart("Miniteoría", "Usá $love$.")),
+                        "la miniteoría va de tú y dice «Usá», de vos", List.of()), FindingResolution.PANEL, null,
+                new FindingIdentity("spanish-register|tu-register|" + quiz + "|miniteoria", "miniteoria"));
+        List<AnalyzerDescriptor> listed = List.of(card("spanish-register", AnalysisCost.INSTANT),
+                card("quiz-instruction", AnalysisCost.PAID_MODEL), card("grammar", AnalysisCost.INSTANT));
+        AnalyzerCatalog cards = mock(AnalyzerCatalog.class);
+        when(cards.list()).thenReturn(listed);
+        config.setAnalyzerCatalog(cards);
+        AnalyzerCorrectionCatalog corrections = mock(AnalyzerCorrectionCatalog.class);
+        when(corrections.find(any())).thenReturn(Optional.empty());
+        when(corrections.find("spanish-register")).thenReturn(Optional.of(
+                new com.learney.contentaudit.auditdomain.spanishregister.SpanishRegisterCorrection()));
+        config.setCorrectionCatalog(corrections);
+        AuditEngine engine = mock(AuditEngine.class);
+        config.setAuditEngine(engine); config.setCourseMapper(mock(CourseMapper.class));
+        var asked = new ArrayList<com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection>();
+        when(engine.runAudit(any(), any(com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection.class))).thenAnswer(i -> {
+            asked.add(i.getArgument(1));
+            var fresh = TandaFixture.report(course, List.of(vos), Map.of(), List.of());
+            DefaultAnalysisComposer.index(fresh.getRoot()).get(quiz).getScores().put("spanish-register", 0.0);
+            return fresh;
+        });
+        ArgumentCaptor<AuditReport> planned = ArgumentCaptor.forClass(AuditReport.class);
+        List<String> before = List.copyOf(batch.getAnalyzers() == null ? List.of() : batch.getAnalyzers());
+
+        State estimate = service.execute(estimate(List.of(quiz), false));
+
+        assertTrue(estimate.quizzes().get(0).findings().stream().anyMatch(f -> "spanish-register".equals(f.getAnalyzer())),
+                estimate.quizzes().get(0).findings().toString());
+        assertEquals(List.of("spanish-register"), asked.get(0).getAnalyzers(), "only the instant one the batch lacks");
+        assertEquals(0, asked.get(0).getPolicies().get("spanish-register").getMaxNewEvaluations(), "without a query");
+        verify(refiner, atLeastOnce()).plan(planned.capture(), anyString());
+        assertTrue(DefaultAnalysisComposer.index(planned.getValue().getRoot()).get(quiz).getFindings().contains(vos),
+                "the refiner gets its task");
+        assertEquals(before, batch.getAnalyzers() == null ? List.of() : batch.getAnalyzers(), "the batch keeps its analyzers");
+    }
+
+    private static AnalyzerDescriptor card(String name, AnalysisCost cost) {
+        AnalyzerDescriptor card = mock(AnalyzerDescriptor.class);
+        when(card.getName()).thenReturn(name);
+        when(card.getCost()).thenReturn(cost);
+        when(card.getFamily()).thenReturn(com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.ERRORS);
+        return card;
+    }
+
     @Tag("F-MESA-R020")
     @Test void anOpinionOfAnEarlierVersionIsMeasuredAgainWithTodaysBeforeItGivesWork() {
         instructionOpinedByAnEarlierVersion(true);
