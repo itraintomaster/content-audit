@@ -1,0 +1,1640 @@
+{
+ "tanda": "tanda-A1-c2-1f1d898f-3ba9-3fcc-bc91-a104f79e53ca",
+ "version": "6f899ccf1fa0728710d0d081af611cadf939cad5a2d95f2198d4dd3676b1bd84",
+ "motor": "codex-cli / gpt-6.1-sol / medium",
+ "cambiados": 1539,
+ "alDia": 151,
+ "faltan": 1388,
+ "nuevas": 100,
+ "cuenta": {
+  "mal": 7,
+  "dudoso": 37,
+  "bien": 56
+ },
+ "filas": [
+  {
+   "id": "25ad",
+   "quizId": "67fab6d599301022953425ad",
+   "orden": 0,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "mal",
+   "razon": "Al quitar la indicación de usar contracciones sin ampliar las respuestas aceptadas, ahora se rechaza is aunque cumple la consigna. Además, la miniteoría incorpora una orden específica para el hueco y persiste la falta de correspondencia con el tema de preguntas yes / no.",
+   "problemas": [
+    {
+     "where": "ANSWERS",
+     "fragment": "Hueco 1: 's",
+     "what": "Sólo acepta la contracción y rechaza is, que es una respuesta correcta con la consigna actual."
+    },
+    {
+     "where": "MINI_THEORY",
+     "fragment": "Como She ya está escrito antes del hueco, completamos con $'s$.",
+     "what": "La explicación pasó a indicar qué escribir en este hueco en lugar de limitarse a explicar la regla."
+    },
+    {
+     "where": "EXERCISE",
+     "fragment": "She ___ (be) at the store.",
+     "what": "Es una afirmación y no practica las preguntas yes / no con be que pide el tema."
+    }
+   ],
+   "hora": "2026-10-26T17:16:25.622742Z",
+   "antes": "Consigna del ejercicio: Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: She ___ (be) at the store.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: 's\nTraducción, que el alumno ve al corregir: Ella está en la tienda.\n\nMiniteoría, que el alumno ve al corregir: $'m$ con I, $'s$ con he/she/it, $'re$ con you/we/they. Negativo: $isn't$, $aren't$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: She ___ (be) at the store.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: 's\nTraducción, que el alumno ve al corregir: Ella está en la tienda.\n\nMiniteoría, que el alumno ve al corregir: Con she usamos is. Podemos contraer $She is$ como $She's$. Como She ya está escrito antes del hueco, completamos con $'s$."
+  },
+  {
+   "id": "25ae",
+   "quizId": "67fab6d599301022953425ae",
+   "orden": 1,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "mal",
+   "razon": "Empeoró respecto de producción: se eliminó la exigencia de usar formas contraídas sin incorporar «is not» entre las respuestas aceptadas, aunque la nueva miniteoría enseña esa forma. Además, conserva la falta de correspondencia con el tema de preguntas yes/no.",
+   "problemas": [
+    {
+     "where": "ANSWERS",
+     "fragment": "Hueco 1: isn't",
+     "what": "Al quitar la indicación de usar contracciones, «is not» también es una respuesta correcta, pero el corrector no la acepta."
+    },
+    {
+     "where": "EXERCISE",
+     "fragment": "He ___ (not / be) in the living-room.",
+     "what": "El ejercicio practica una afirmación negativa con be, aunque el tema pide preguntas yes/no."
+    }
+   ],
+   "hora": "2026-10-26T17:16:34.400278Z",
+   "antes": "Consigna del ejercicio: Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: He ___ (not / be) in the living-room.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: isn't\nTraducción, que el alumno ve al corregir: Él no está en la sala.\n\nMiniteoría, que el alumno ve al corregir: $'m$ con I, $'s$ con he/she/it, $'re$ con you/we/they. Negativo: $isn't$, $aren't$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: He ___ (not / be) in the living-room.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: isn't\nTraducción, que el alumno ve al corregir: Él no está en la sala.\n\nMiniteoría, que el alumno ve al corregir: Con he usamos is. Para negar, ponemos not después de is: $He is not$. La contracción de $is not$ es $isn't$: $He isn't$."
+  },
+  {
+   "id": "25b6",
+   "quizId": "67fab6d599301022953425b6",
+   "orden": 2,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "mal",
+   "razon": "Empeoró respecto de producción: al quitar la exigencia de usar contracciones, is pasa a ser una respuesta válida que el corrector no acepta. Además, la nueva miniteoría justifica incorrectamente la contracción obligatoria y persiste la falta de correspondencia con el tema.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Usa $short forms$ si es posible.",
+     "what": "Se eliminó la indicación de usar contracciones, pero el corrector sigue aceptando únicamente 's y rechaza is, que también es correcto."
+    },
+    {
+     "where": "MINI_THEORY",
+     "fragment": "Como He ya está escrito antes del hueco, completamos con $'s$.",
+     "what": "Que He esté escrito no obliga a contraer: también se puede completar con is; la explicación convierte la regla en una orden para este ejercicio."
+    },
+    {
+     "where": "EXERCISE",
+     "fragment": "He ___ (be) always happy.",
+     "what": "Es una afirmación y no practica las preguntas yes / no con be que pide el tema."
+    }
+   ],
+   "hora": "2026-10-26T17:18:11.750048Z",
+   "antes": "Consigna del ejercicio: Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: He ___ (be) always happy.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: 's\nTraducción, que el alumno ve al corregir: Siempre está feliz.\n\nMiniteoría, que el alumno ve al corregir: $'m$ con I, $'s$ con he/she/it, $'re$ con you/we/they. Negativo: $isn't$, $aren't$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: He ___ (be) always happy.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: 's\nTraducción, que el alumno ve al corregir: Siempre está feliz.\n\nMiniteoría, que el alumno ve al corregir: Con he usamos is. Podemos contraer $He is$ como $He's$. Como He ya está escrito antes del hueco, completamos con $'s$."
+  },
+  {
+   "id": "25b7",
+   "quizId": "67fab6d599301022953425b7",
+   "orden": 3,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "mal",
+   "razon": "Quedó peor que en producción: al quitar la instrucción de usar contracciones, are pasa a ser una respuesta válida que el corrector no acepta. Además, la miniteoría indica la respuesta concreta y se mantiene la falta de correspondencia con el tema de preguntas yes / no.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Usa $short forms$ si es posible.",
+     "what": "Se eliminó la indicación de usar contracciones, pero el corrector sigue aceptando sólo 're y rechaza are, que también es correcto con la nueva consigna."
+    },
+    {
+     "where": "MINI_THEORY",
+     "fragment": "Como We ya está escrito antes del hueco, completamos con $'re$.",
+     "what": "La explicación pasa a indicar qué escribir en este hueco, en lugar de explicar una regla general."
+    },
+    {
+     "where": "EXERCISE",
+     "fragment": "We ___ (be) tired.",
+     "what": "La oración es afirmativa y no practica las preguntas yes / no con be que pide el tema."
+    }
+   ],
+   "hora": "2026-10-26T17:18:13.465778Z",
+   "antes": "Consigna del ejercicio: Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: We ___ (be) tired.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: 're\nTraducción, que el alumno ve al corregir: Estamos cansados.\n\nMiniteoría, que el alumno ve al corregir: $'m$ con I, $'s$ con he/she/it, $'re$ con you/we/they. Negativo: $isn't$, $aren't$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: We ___ (be) tired.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: 're\nTraducción, que el alumno ve al corregir: Estamos cansados.\n\nMiniteoría, que el alumno ve al corregir: Con we usamos are. Podemos contraer $We are$ como $We're$. Como We ya está escrito antes del hueco, completamos con $'re$."
+  },
+  {
+   "id": "25b9",
+   "quizId": "67fab6d599301022953425b9",
+   "orden": 4,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "mal",
+   "razon": "Empeoró respecto de producción: se eliminó la instrucción que justificaba exigir la contracción, pero no se agregó «are» a las respuestas aceptadas. Además, la miniteoría ahora dicta la respuesta y persiste la falta de correspondencia con el tema.",
+   "problemas": [
+    {
+     "where": "ANSWERS",
+     "fragment": "'re",
+     "what": "Al quitar la indicación de usar contracciones, «are» también es una respuesta correcta, pero el corrector no la acepta."
+    },
+    {
+     "where": "MINI_THEORY",
+     "fragment": "Como They ya está escrito antes del hueco, completamos con $'re$.",
+     "what": "La explicación pasa a indicar qué escribir en este hueco; que el sujeto esté escrito no obliga a contraer el verbo."
+    },
+    {
+     "where": "EXERCISE",
+     "fragment": "They ___ (be) at the park today.",
+     "what": "La oración es afirmativa y no practica las preguntas yes / no con be que pide el tema."
+    }
+   ],
+   "hora": "2026-10-26T17:18:13.903051Z",
+   "antes": "Consigna del ejercicio: Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ (be) at the park today.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: 're\nTraducción, que el alumno ve al corregir: Están en el parque hoy.\n\nMiniteoría, que el alumno ve al corregir: $'m$ con I, $'s$ con he/she/it, $'re$ con you/we/they. Negativo: $isn't$, $aren't$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ (be) at the park today.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: 're\nTraducción, que el alumno ve al corregir: Están en el parque hoy.\n\nMiniteoría, que el alumno ve al corregir: Con they usamos are. Podemos contraer $They are$ como $They're$. Como They ya está escrito antes del hueco, completamos con $'re$."
+  },
+  {
+   "id": "25be",
+   "quizId": "67fab6d599301022953425be",
+   "orden": 5,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "mal",
+   "razon": "Aceptar are not y 're not amplía correctamente las respuestas de producción, pero incorporar ain't empeora el ejercicio para esta práctica de inglés estándar. Además, persiste la falta de correspondencia con el tema y la miniteoría ahora incluye instrucciones específicas sobre el hueco.",
+   "problemas": [
+    {
+     "where": "ANSWERS",
+     "fragment": "ain't",
+     "what": "Se incorpora una forma no estándar como respuesta válida en una práctica A1 del presente simple de be."
+    },
+    {
+     "where": "MINI_THEORY",
+     "fragment": "Como We ya está escrito, en el hueco aceptamos $are not$, $aren't$ y $'re not$.",
+     "what": "La explicación deja de presentar una regla general y pasa a enumerar las respuestas de este ejercicio."
+    },
+    {
+     "where": "EXERCISE",
+     "fragment": "We ___ (not / be) real.",
+     "what": "Sigue practicando una afirmación negativa, aunque el tema pide preguntas yes / no con be."
+    }
+   ],
+   "hora": "2026-10-26T17:19:16.065434Z",
+   "antes": "Consigna del ejercicio: Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: We ___ (not / be) real.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: aren't\nTraducción, que el alumno ve al corregir: No somos reales.\nMiniteoría, que el alumno ve al corregir: $'m$ con I, $'s$ con he/she/it, $'re$ con you/we/they. Negativo: $isn't$, $aren't$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: We ___ (not / be) real.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: aren't | are not | 're not | ain't\nTraducción, que el alumno ve al corregir: No somos reales.\nMiniteoría, que el alumno ve al corregir: Con we usamos are. Para negar, agregamos not: $We are not$. Podemos contraer are not: $We aren't$, o we are: $We're not$. Como We ya está escrito, en el hueco aceptamos $are not$, $aren't$ y $'re not$. También aceptamos $ain't$, una forma informal de negar que no pertenece al inglés estándar."
+  },
+  {
+   "id": "1eeb",
+   "quizId": "67fab6d59930102295341eeb",
+   "orden": 6,
+   "tema": "Preguntas sí/no",
+   "estado": "MARKED",
+   "marca": "mal",
+   "razon": "En producción, el alumno debía elegir y agregar el auxiliar para formar la pregunta. Ahora recibe «Do» entre las palabras y sólo necesita ordenarlas, por lo que se pierde la decisión que practica el tema.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "___ (Do / you / like) people?",
+     "what": "El auxiliar «Do» ya está dado, aunque elegir entre «do» y «does» es lo que pide practicar el tema."
+    }
+   ],
+   "hora": "2026-10-26T17:20:15.890718Z",
+   "antes": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (you / like) people?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do you like\nTraducción, que el alumno ve al corregir: ¿Te gusta la gente?\nMiniteoría, que el alumno ve al corregir: $Do$ o $Does$ adelante y el verbo en forma base: $Does he read$…?",
+   "despues": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (Do / you / like) people?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do you like\nTraducción, que el alumno ve al corregir: ¿Te gusta la gente?\nMiniteoría, que el alumno ve al corregir: Para hacer una pregunta en presente simple con $you$, usá $Do + you + verbo en forma base$: $Do you like people?$"
+  },
+  {
+   "id": "1e60",
+   "quizId": "67fab6d59930102295341e60",
+   "orden": 10,
+   "tema": "Afirmativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La miniteoría abreviada sigue expresando una regla correcta y suficiente para esta oración. Sin embargo, conserva la discrepancia de producción entre escribir la respuesta y elegirla entre opciones.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma afirmativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir entre opciones, aunque la consigna del tema pide escribir la forma y el tipo de ejercicio es FILL."
+    }
+   ],
+   "hora": "2026-10-26T17:05:02.564409Z",
+   "antes": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ very short.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: are\nTraducción, que el alumno ve al corregir: Ellos son muy bajos.\nMiniteoría, que el alumno ve al corregir: $am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+   "despues": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ very short.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: are\nTraducción, que el alumno ve al corregir: Ellos son muy bajos.\nMiniteoría, que el alumno ve al corregir: $are$ va con they."
+  },
+  {
+   "id": "1e62",
+   "quizId": "67fab6d59930102295341e62",
+   "orden": 11,
+   "tema": "Afirmativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "El ejercicio conserva un problema de producción: la oración no aporta contexto para identificar a qué se refiere «It». La miniteoría abreviada sigue siendo correcta y la respuesta aceptada coincide con el tema.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "It ___ under the chair.",
+     "what": "El pronombre «It» no tiene un referente que permita saber qué está debajo de la silla."
+    }
+   ],
+   "hora": "2026-10-26T17:04:58.280033Z",
+   "antes": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: It ___ under the chair.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: is\nTraducción, que el alumno ve al corregir: Está debajo de la silla.\nMiniteoría, que el alumno ve al corregir: $am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+   "despues": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: It ___ under the chair.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: is\nTraducción, que el alumno ve al corregir: Está debajo de la silla.\nMiniteoría, que el alumno ve al corregir: $is$ va con it."
+  },
+  {
+   "id": "1e63",
+   "quizId": "67fab6d59930102295341e63",
+   "orden": 12,
+   "tema": "Afirmativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "Conserva una discrepancia de producción entre la modalidad del ejercicio y lo que pide el tema. La miniteoría abreviada sigue siendo correcta y explica la forma necesaria.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma afirmativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir entre opciones, aunque el tipo FILL y la consigna del tema piden escribir la forma de 'be'."
+    }
+   ],
+   "hora": "2026-10-26T17:05:05.630476Z",
+   "antes": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: He ___ at school.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: is\nTraducción, que el alumno ve al corregir: Él está en la escuela.\nMiniteoría, que el alumno ve al corregir: $am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+   "despues": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: He ___ at school.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: is\nTraducción, que el alumno ve al corregir: Él está en la escuela.\nMiniteoría, que el alumno ve al corregir: $is$ va con he."
+  },
+  {
+   "id": "1e6b",
+   "quizId": "67fab6d59930102295341e6b",
+   "orden": 13,
+   "tema": "Afirmativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "El ejercicio conserva un problema de producción: falta contexto para identificar a qué se refiere «It». La miniteoría abreviada sigue explicando correctamente la concordancia que se practica.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "It ___ in the box.",
+     "what": "El pronombre «It» no tiene un referente que permita saber qué está en la caja."
+    }
+   ],
+   "hora": "2026-10-26T17:08:50.608117Z",
+   "antes": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: It ___ in the box.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: is\nTraducción, que el alumno ve al corregir: Está en la caja.\nMiniteoría, que el alumno ve al corregir: $am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+   "despues": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: It ___ in the box.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: is\nTraducción, que el alumno ve al corregir: Está en la caja.\nMiniteoría, que el alumno ve al corregir: $is$ va con it."
+  },
+  {
+   "id": "1e6d",
+   "quizId": "67fab6d59930102295341e6d",
+   "orden": 14,
+   "tema": "Afirmativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La respuesta y la traducción siguen siendo correctas, y la miniteoría abreviada conserva una regla válida. Sin embargo, persiste la discordancia de producción entre elegir una opción y completar por escrito, por lo que lo devolvería para ajustar ese formato.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma afirmativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir entre opciones, aunque el tipo FILL y la consigna del tema piden escribir la forma de 'be'."
+    }
+   ],
+   "hora": "2026-10-26T17:09:09.817342Z",
+   "antes": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: It ___ cold outside.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: is\nTraducción, que el alumno ve al corregir: Hace frío afuera.\nMiniteoría, que el alumno ve al corregir: $am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+   "despues": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: It ___ cold outside.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: is\nTraducción, que el alumno ve al corregir: Hace frío afuera.\nMiniteoría, que el alumno ve al corregir: $is$ va con it."
+  },
+  {
+   "id": "1e74",
+   "quizId": "67fab6d59930102295341e74",
+   "orden": 15,
+   "tema": "Negativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La respuesta, la traducción y la nueva miniteoría son correctas y coherentes. Sin embargo, conserva el problema de producción: el alumno elige una forma verbal en lugar de escribir la oración que pide el tema.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma negativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir una opción, aunque la consigna del tema pide escribir una oración sin contracciones."
+    }
+   ],
+   "hora": "2026-10-26T17:11:07.145637Z",
+   "antes": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: She ___ my sister.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: is not\nTraducción, que el alumno ve al corregir: Ella no es mi hermana.\nMiniteoría, que el alumno ve al corregir: El $not$ va detrás de be: $is not$, $are not$, $am not$. No entra ningún otro auxiliar.",
+   "despues": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: She ___ my sister.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: is not\nTraducción, que el alumno ve al corregir: Ella no es mi hermana.\nMiniteoría, que el alumno ve al corregir: Con $she$, la forma negativa de $be$ en presente simple es $is not$."
+  },
+  {
+   "id": "1e75",
+   "quizId": "67fab6d59930102295341e75",
+   "orden": 16,
+   "tema": "Negativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La nueva miniteoría es correcta y coincide con la respuesta, pero persiste la contradicción de producción entre elegir una forma y escribir una oración completa.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma negativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir una opción, mientras que la consigna del tema pide escribir una oración sin contracciones."
+    }
+   ],
+   "hora": "2026-10-26T17:11:07.083678Z",
+   "antes": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: He ___ German.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: is not\nTraducción, que el alumno ve al corregir: Él no es alemán.\nMiniteoría, que el alumno ve al corregir: El $not$ va detrás de be: $is not$, $are not$, $am not$. No entra ningún otro auxiliar.",
+   "despues": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: He ___ German.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: is not\nTraducción, que el alumno ve al corregir: Él no es alemán.\nMiniteoría, que el alumno ve al corregir: Con $he$, la forma negativa de $be$ en presente simple es $is not$."
+  },
+  {
+   "id": "1e76",
+   "quizId": "67fab6d59930102295341e76",
+   "orden": 17,
+   "tema": "Negativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "Conserva una inconsistencia de producción entre la tarea de escritura indicada por el tema y el ejercicio de opción múltiple. La nueva miniteoría es correcta y coincide con la respuesta, pero esa inconsistencia sigue pendiente.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma negativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir una opción, aunque la consigna del tema pide escribir una oración sin contracciones y el tipo declarado es FILL."
+    }
+   ],
+   "hora": "2026-10-26T17:11:10.585432Z",
+   "antes": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: She ___ young.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: is not\nTraducción, que el alumno ve al corregir: Ella no es joven.\nMiniteoría, que el alumno ve al corregir: El $not$ va detrás de be: $is not$, $are not$, $am not$. No entra ningún otro auxiliar.",
+   "despues": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: She ___ young.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: is not\nTraducción, que el alumno ve al corregir: Ella no es joven.\nMiniteoría, que el alumno ve al corregir: Con $she$, la forma negativa de $be$ en presente simple es $is not$."
+  },
+  {
+   "id": "1e77",
+   "quizId": "67fab6d59930102295341e77",
+   "orden": 18,
+   "tema": "Negativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La nueva miniteoría explica correctamente la forma negativa con they y coincide con la respuesta. Sin embargo, persiste la contradicción de producción entre escribir una oración y elegir una opción para completar un hueco.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma negativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir una forma entre opciones, pero la consigna del tema pide escribir una oración sin contracciones."
+    }
+   ],
+   "hora": "2026-10-26T17:11:55.958599Z",
+   "antes": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ slim.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: are not\nTraducción, que el alumno ve al corregir: Ellos no son delgados.\nMiniteoría, que el alumno ve al corregir: El $not$ va detrás de be: $is not$, $are not$, $am not$. No entra ningún otro auxiliar.",
+   "despues": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ slim.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: are not\nTraducción, que el alumno ve al corregir: Ellos no son delgados.\nMiniteoría, que el alumno ve al corregir: Con $they$, la forma negativa del verbo $be$ en presente simple es $are not$."
+  },
+  {
+   "id": "1e78",
+   "quizId": "67fab6d59930102295341e78",
+   "orden": 19,
+   "tema": "Negativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La nueva miniteoría es correcta y coincide con la respuesta. Sin embargo, persiste la discrepancia de producción entre la tarea de escritura que anuncia el tema y la selección de opciones que propone el ejercicio.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma negativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir una forma entre opciones, pero la consigna del tema pide escribir una oración sin contracciones."
+    }
+   ],
+   "hora": "2026-10-26T17:11:55.021997Z",
+   "antes": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: She ___ short.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: is not\nTraducción, que el alumno ve al corregir: Ella no es baja.\nMiniteoría, que el alumno ve al corregir: El $not$ va detrás de be: $is not$, $are not$, $am not$. No entra ningún otro auxiliar.",
+   "despues": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: She ___ short.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: is not\nTraducción, que el alumno ve al corregir: Ella no es baja.\nMiniteoría, que el alumno ve al corregir: Con $she$, la forma negativa de $be$ en presente simple es $is not$."
+  },
+  {
+   "id": "1e79",
+   "quizId": "67fab6d59930102295341e79",
+   "orden": 20,
+   "tema": "Negativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La nueva miniteoría es correcta y coincide con la respuesta, pero se mantiene un problema de producción: el ejercicio ofrece opciones para completar un hueco cuando el tema pide escribir una oración.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma negativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir una opción, pero la consigna del tema pide escribir una oración sin contracciones."
+    }
+   ],
+   "hora": "2026-10-26T17:11:55.022242Z",
+   "antes": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: He ___ at work.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: is not\nTraducción, que el alumno ve al corregir: Él no está en el trabajo.\nMiniteoría, que el alumno ve al corregir: El $not$ va detrás de be: $is not$, $are not$, $am not$. No entra ningún otro auxiliar.",
+   "despues": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: He ___ at work.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: is not\nTraducción, que el alumno ve al corregir: Él no está en el trabajo.\nMiniteoría, que el alumno ve al corregir: Con $he$, la forma negativa de $be$ en presente simple es $is not$."
+  },
+  {
+   "id": "1e7a",
+   "quizId": "67fab6d59930102295341e7a",
+   "orden": 21,
+   "tema": "Negativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La nueva miniteoría es correcta y coincide con el ejercicio, pero se mantiene la contradicción de producción entre escribir una oración completa y elegir una forma para completar el hueco.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma negativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir una opción, aunque la consigna del tema pide escribir una oración sin contracciones; el corrector sólo evalúa la forma que completa el hueco."
+    }
+   ],
+   "hora": "2026-10-26T17:11:55.021157Z",
+   "antes": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: It ___ hot.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: is not\nTraducción, que el alumno ve al corregir: No hace calor.\nMiniteoría, que el alumno ve al corregir: El $not$ va detrás de be: $is not$, $are not$, $am not$. No entra ningún otro auxiliar.",
+   "despues": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: It ___ hot.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: is not\nTraducción, que el alumno ve al corregir: No hace calor.\nMiniteoría, que el alumno ve al corregir: Con $it$, usamos $is$ para el verbo $be$ en presente simple. Para negar, agregamos $not$ después de $is$: $it is not$. Por ejemplo: $It is not hot$ significa «No hace calor»."
+  },
+  {
+   "id": "1e7b",
+   "quizId": "67fab6d59930102295341e7b",
+   "orden": 22,
+   "tema": "Negativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La nueva miniteoría es correcta y coincide con la respuesta y la traducción. Sin embargo, conserva la incompatibilidad de producción entre el formato de selección y la tarea de escritura indicada por el tema.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma negativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir una opción, aunque la consigna del tema pide escribir una oración sin contracciones y el tipo declarado es FILL."
+    }
+   ],
+   "hora": "2026-10-26T17:12:56.700958Z",
+   "antes": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: She ___ at school.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: is not\nTraducción, que el alumno ve al corregir: Ella no está en la escuela.\nMiniteoría, que el alumno ve al corregir: El $not$ va detrás de be: $is not$, $are not$, $am not$. No entra ningún otro auxiliar.",
+   "despues": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: She ___ at school.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: is not\nTraducción, que el alumno ve al corregir: Ella no está en la escuela.\nMiniteoría, que el alumno ve al corregir: Con $she$, la forma negativa del verbo $be$ en presente simple es $is not$: $She is not at school$ significa «Ella no está en la escuela»."
+  },
+  {
+   "id": "1e7c",
+   "quizId": "67fab6d59930102295341e7c",
+   "orden": 23,
+   "tema": "Negativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La respuesta y la nueva miniteoría son correctas y coherentes con la oración. Sin embargo, conserva de producción la discrepancia entre elegir una forma y escribir la oración que pide el tema.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma negativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir una opción para completar un hueco, aunque la consigna del tema pide escribir una oración sin contracciones."
+    }
+   ],
+   "hora": "2026-10-26T17:12:06.965481Z",
+   "antes": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ at the house.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: are not\nTraducción, que el alumno ve al corregir: Ellos no están en la casa.\nMiniteoría, que el alumno ve al corregir: El $not$ va detrás de be: $is not$, $are not$, $am not$. No entra ningún otro auxiliar.",
+   "despues": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ at the house.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: are not\nTraducción, que el alumno ve al corregir: Ellos no están en la casa.\nMiniteoría, que el alumno ve al corregir: Con $they$, la forma negativa de $be$ en presente simple es $are not$: $They are not at the house$ significa «Ellos no están en la casa». El $not$ va después de $are$."
+  },
+  {
+   "id": "1e7d",
+   "quizId": "67fab6d59930102295341e7d",
+   "orden": 24,
+   "tema": "Negativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La nueva miniteoría es correcta y mantiene la explicación de la negación con be. Sin embargo, persiste la discrepancia de producción entre elegir una forma y escribir una oración completa, como pide el tema.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma negativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir una opción, pero la consigna del tema pide escribir una oración sin contracciones."
+    }
+   ],
+   "hora": "2026-10-26T17:12:56.315775Z",
+   "antes": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ Canadian.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: are not\nTraducción, que el alumno ve al corregir: Ellos no son canadienses.\nMiniteoría, que el alumno ve al corregir: El $not$ va detrás de be: $is not$, $are not$, $am not$. No entra ningún otro auxiliar.",
+   "despues": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ Canadian.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: are not\nTraducción, que el alumno ve al corregir: Ellos no son canadienses.\nMiniteoría, que el alumno ve al corregir: Con $they$, usamos $are$ para el verbo $be$ en presente simple. Para negar, agregamos $not$ después de $are$: $they are not$. Por ejemplo: $They are not Canadian$ significa «Ellos no son canadienses»."
+  },
+  {
+   "id": "1e7e",
+   "quizId": "67fab6d59930102295341e7e",
+   "orden": 25,
+   "tema": "Negativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La nueva miniteoría es correcta y coincide con la respuesta y la traducción. Sin embargo, persiste la contradicción de producción entre escribir una oración y elegir una forma para completar el hueco.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma negativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir una opción, pero la consigna del tema pide escribir una oración sin contracciones."
+    }
+   ],
+   "hora": "2026-10-26T17:12:06.490902Z",
+   "antes": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: It ___ possible.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: is not\nTraducción, que el alumno ve al corregir: No es posible.\nMiniteoría, que el alumno ve al corregir: El $not$ va detrás de be: $is not$, $are not$, $am not$. No entra ningún otro auxiliar.",
+   "despues": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: It ___ possible.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: is not\nTraducción, que el alumno ve al corregir: No es posible.\nMiniteoría, que el alumno ve al corregir: Con $it$, usamos $is$ para el verbo $be$ en presente simple. Para negar, agregamos $not$ después de $is$: $it is not$. Por ejemplo: $It is not possible$ significa «No es posible»."
+  },
+  {
+   "id": "1e7f",
+   "quizId": "67fab6d59930102295341e7f",
+   "orden": 26,
+   "tema": "Negativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La nueva miniteoría es correcta y coincide con el ejercicio, la respuesta y la traducción. Sin embargo, conserva la contradicción de producción entre escribir una oración y elegir una opción.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma negativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir una opción para completar un hueco, mientras que la consigna del tema pide escribir una oración sin contracciones."
+    }
+   ],
+   "hora": "2026-10-26T17:12:54.850674Z",
+   "antes": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ tired.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: are not\nTraducción, que el alumno ve al corregir: Ellos no están cansados.\nMiniteoría, que el alumno ve al corregir: El $not$ va detrás de be: $is not$, $are not$, $am not$. No entra ningún otro auxiliar.",
+   "despues": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ tired.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: are not\nTraducción, que el alumno ve al corregir: Ellos no están cansados.\nMiniteoría, que el alumno ve al corregir: Con $they$, usamos $are$ para el verbo $be$ en presente simple. Para negar, agregamos $not$ después de $are$: $they are not$. Por ejemplo: $They are not tired$ significa «Ellos no están cansados»."
+  },
+  {
+   "id": "1e80",
+   "quizId": "67fab6d59930102295341e80",
+   "orden": 27,
+   "tema": "Negativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La miniteoría nueva es correcta y explica la forma practicada. Sin embargo, conserva la discrepancia de producción entre elegir una opción y escribir la oración que pide el tema.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma negativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir una opción, pero la consigna del tema pide escribir una oración sin contracciones."
+    }
+   ],
+   "hora": "2026-10-26T17:13:01.520549Z",
+   "antes": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: I ___ excited.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: am not\nTraducción, que el alumno ve al corregir: Yo no estoy emocionado.\nMiniteoría, que el alumno ve al corregir: El $not$ va detrás de be: $is not$, $are not$, $am not$. No entra ningún otro auxiliar.",
+   "despues": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: I ___ excited.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: am not\nTraducción, que el alumno ve al corregir: Yo no estoy emocionado.\nMiniteoría, que el alumno ve al corregir: Con $I$, usamos $am$ para el verbo $be$ en presente simple. Para negar, agregamos $not$ después de $am$: $I am not$. Por ejemplo: $I am not excited$ significa «Yo no estoy emocionado»."
+  },
+  {
+   "id": "1e82",
+   "quizId": "67fab6d59930102295341e82",
+   "orden": 28,
+   "tema": "Negativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La nueva miniteoría explica correctamente la negativa con they y coincide con la respuesta y la traducción. Sin embargo, conserva la discrepancia de producción entre elegir una forma y escribir una oración, por lo que requiere revisión.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma negativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir una opción, pero la consigna del tema pide escribir una oración sin contracciones; completar el hueco no cumple esa tarea."
+    }
+   ],
+   "hora": "2026-10-26T17:13:09.364953Z",
+   "antes": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ white.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: are not\nTraducción, que el alumno ve al corregir: Ellos no son blancos.\nMiniteoría, que el alumno ve al corregir: El $not$ va detrás de be: $is not$, $are not$, $am not$. No entra ningún otro auxiliar.",
+   "despues": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ white.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: are not\nTraducción, que el alumno ve al corregir: Ellos no son blancos.\nMiniteoría, que el alumno ve al corregir: Con $they$, usamos $are$ para el verbo $be$ en presente simple. Para negar, agregamos $not$ después de $are$: $they are not$. Por ejemplo: $They are not white$ significa «Ellos no son blancos»."
+  },
+  {
+   "id": "1e83",
+   "quizId": "67fab6d59930102295341e83",
+   "orden": 29,
+   "tema": "Negativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La miniteoría nueva es correcta y coincide con el ejercicio y la traducción. Sin embargo, se mantiene la discrepancia de producción entre la tarea de elegir una forma y la consigna del tema de escribir una oración completa.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma negativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir una forma para completar un hueco, pero la consigna del tema pide escribir una oración sin contracciones."
+    }
+   ],
+   "hora": "2026-10-26T17:13:08.803550Z",
+   "antes": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: We ___ in Japan.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: are not\nTraducción, que el alumno ve al corregir: Nosotros no estamos en Japón.\nMiniteoría, que el alumno ve al corregir: El $not$ va detrás de be: $is not$, $are not$, $am not$. No entra ningún otro auxiliar.",
+   "despues": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: We ___ in Japan.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: are not\nTraducción, que el alumno ve al corregir: Nosotros no estamos en Japón.\nMiniteoría, que el alumno ve al corregir: Con $we$, usamos $are$ para el verbo $be$ en presente simple. Para negar, agregamos $not$ después de $are$: $we are not$. Por ejemplo: $We are not in Japan$ significa «Nosotros no estamos en Japón»."
+  },
+  {
+   "id": "1e84",
+   "quizId": "67fab6d59930102295341e84",
+   "orden": 30,
+   "tema": "Negativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La nueva miniteoría explica correctamente la negativa con I y coincide con la respuesta y la traducción. Sin embargo, conserva la contradicción de producción entre elegir una opción y escribir una oración completa.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma negativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir una opción, pero la consigna del tema pide escribir una oración sin contracciones."
+    }
+   ],
+   "hora": "2026-10-26T17:13:58.220693Z",
+   "antes": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: I ___ an animal.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: am not\nTraducción, que el alumno ve al corregir: Yo no soy un animal.\nMiniteoría, que el alumno ve al corregir: El $not$ va detrás de be: $is not$, $are not$, $am not$. No entra ningún otro auxiliar.",
+   "despues": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: I ___ an animal.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: am not\nTraducción, que el alumno ve al corregir: Yo no soy un animal.\nMiniteoría, que el alumno ve al corregir: Con $I$, usamos $am$ para el verbo $be$ en presente simple. Para negar, agregamos $not$ después de $am$: $I am not$. Por ejemplo: $I am not an animal$ significa «Yo no soy un animal»."
+  },
+  {
+   "id": "1e85",
+   "quizId": "67fab6d59930102295341e85",
+   "orden": 31,
+   "tema": "Negativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La nueva miniteoría es correcta y coincide con la respuesta y la traducción. Sin embargo, se mantiene la contradicción de producción entre escribir una oración y elegir una forma para completar el hueco.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma negativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir una forma entre opciones, mientras que la consigna del tema pide escribir una oración sin contracciones."
+    }
+   ],
+   "hora": "2026-10-26T17:13:57.330303Z",
+   "antes": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: You ___ at the supermarket.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: are not\nTraducción, que el alumno ve al corregir: Tú no estás en el supermercado.\nMiniteoría, que el alumno ve al corregir: El $not$ va detrás de be: $is not$, $are not$, $am not$. No entra ningún otro auxiliar.",
+   "despues": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: You ___ at the supermarket.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: are not\nTraducción, que el alumno ve al corregir: Tú no estás en el supermercado.\nMiniteoría, que el alumno ve al corregir: Con $you$ («tú»), usamos $are$ para el verbo $be$ en presente simple. Para negar, agregamos $not$ después de $are$: $you are not$. Por ejemplo: $You are not at the supermarket$ significa «Tú no estás en el supermercado»."
+  },
+  {
+   "id": "1e86",
+   "quizId": "67fab6d59930102295341e86",
+   "orden": 32,
+   "tema": "Negativas con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La nueva miniteoría es correcta y coincide con el ejercicio, pero persiste la contradicción de producción entre la tarea del tema y la del ejercicio.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "Elige la forma negativa del verbo 'be' en presente simple.",
+     "what": "Pide elegir una opción para completar un hueco, mientras que la consigna del tema pide escribir una oración sin contracciones."
+    }
+   ],
+   "hora": "2026-10-26T17:13:19.531402Z",
+   "antes": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: I ___ from Berlin.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: am not\nTraducción, que el alumno ve al corregir: Yo no soy de Berlín.\nMiniteoría, que el alumno ve al corregir: El $not$ va detrás de be: $is not$, $are not$, $am not$. No entra ningún otro auxiliar.",
+   "despues": "Consigna del ejercicio: Elige la forma negativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: I ___ from Berlin.\nOpciones que ve el alumno: am not / are not / is not\nRespuestas que acepta el corrector: Opción correcta: am not\nTraducción, que el alumno ve al corregir: Yo no soy de Berlín.\nMiniteoría, que el alumno ve al corregir: Con $I$, usamos $am$ para el verbo $be$ en presente simple. Para negar, agregamos $not$ después de $am$: $I am not$. Por ejemplo: $I am not from Berlin$ significa «Yo no soy de Berlín»."
+  },
+  {
+   "id": "1e8b",
+   "quizId": "67fab6d59930102295341e8b",
+   "orden": 33,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La capitalización de las opciones mejora respecto de producción y la respuesta sigue siendo correcta. Sin embargo, la miniteoría reemplaza la explicación general de la inversión por una explicación limitada a she y una orden para resolver este caso.",
+   "problemas": [
+    {
+     "where": "MINI_THEORY",
+     "fragment": "Con la pista (She), elegí $Is she$.",
+     "what": "La miniteoría pasa de explicar una regla general a dar una orden con la respuesta de este ejercicio."
+    }
+   ],
+   "hora": "2026-10-26T17:14:58.396072Z",
+   "antes": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ a student? (She)\nOpciones que ve el alumno: am i / are we / are you / is he / is it / is she\nRespuestas que acepta el corrector: Opción correcta: is she\nTraducción, que el alumno ve al corregir: ¿Ella es estudiante?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+   "despues": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ a student? (She)\nOpciones que ve el alumno: Am I / Are we / Are you / Is he / Is it / Is she\nRespuestas que acepta el corrector: Opción correcta: Is she\nTraducción, que el alumno ve al corregir: ¿Ella es estudiante?\nMiniteoría, que el alumno ve al corregir: Para preguntar con she, usamos is antes del sujeto: $Is she$…? Con la pista (She), elegí $Is she$."
+  },
+  {
+   "id": "1e8f",
+   "quizId": "67fab6d59930102295341e8f",
+   "orden": 36,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La capitalización mejora las opciones y conserva la respuesta correcta, pero sigue faltando el referente de «It», un problema que ya estaba en producción.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "___ on the table? (It)",
+     "what": "El pronombre «It» no tiene un referente: falta contexto para saber por qué objeto se pregunta."
+    }
+   ],
+   "hora": "2026-10-26T17:15:01.358608Z",
+   "antes": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ on the table? (It)\nOpciones que ve el alumno: am i / are we / are you / is he / is it / is she\nRespuestas que acepta el corrector: Opción correcta: is it\nTraducción, que el alumno ve al corregir: ¿Está sobre la mesa?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+   "despues": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ on the table? (It)\nOpciones que ve el alumno: Am I / Are we / Are you / Is he / Is it / Is she\nRespuestas que acepta el corrector: Opción correcta: Is it\nTraducción, que el alumno ve al corregir: ¿Está sobre la mesa?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?"
+  },
+  {
+   "id": "1e97",
+   "quizId": "67fab6d59930102295341e97",
+   "orden": 38,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La capitalización mejora y la miniteoría explica correctamente la pregunta con I, pero se mantiene la falta de contexto de producción. Practica la forma del tema, aunque convendría usar un atributo más natural para preguntar por uno mismo.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "___ brown? (I)",
+     "what": "La pregunta «Am I brown?» resulta poco natural sin un contexto que explique por qué alguien pregunta si es marrón."
+    }
+   ],
+   "hora": "2026-10-26T17:16:13.375084Z",
+   "antes": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ brown? (I)\nOpciones que ve el alumno: am i / are we / are you / is he / is it / is she\nRespuestas que acepta el corrector: Opción correcta: am i\nTraducción, que el alumno ve al corregir: ¿Soy marrón?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+   "despues": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ brown? (I)\nOpciones que ve el alumno: Am I / Are we / Are you / Is he / Is it / Is she\nRespuestas que acepta el corrector: Opción correcta: Am I\nTraducción, que el alumno ve al corregir: ¿Soy marrón?\nMiniteoría, que el alumno ve al corregir: Con I usamos am. Para hacer una pregunta de sí o no, ponemos am antes de I: $I am$ → $Am I$…? La pista (I) indica que el sujeto es I."
+  },
+  {
+   "id": "25ac",
+   "quizId": "67fab6d599301022953425ac",
+   "orden": 39,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "Ahora practica preguntas de sí o no con be y los campos coinciden, corrigiendo el desajuste de producción con el tema. Sin embargo, la consigna adelanta la inversión entre verbo y sujeto que el alumno debe aprender a aplicar.",
+   "problemas": [
+    {
+     "where": "INSTRUCTIONS",
+     "fragment": "colocando el verbo antes del sujeto indicado en la pista",
+     "what": "La consigna indica el orden que el alumno debería decidir para formar la pregunta, que es justamente lo que practica el tema."
+    }
+   ],
+   "hora": "2026-10-26T17:17:04.752306Z",
+   "antes": "Consigna del ejercicio: Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ (not / be) from Ireland.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: 're not\nTraducción, que el alumno ve al corregir: No son de Irlanda.\n\nMiniteoría, que el alumno ve al corregir: $'m$ con I, $'s$ con he/she/it, $'re$ con you/we/they. Negativo: $isn't$, $aren't$.",
+   "despues": "Consigna del ejercicio: Completa la pregunta de sí o no con el verbo $be$ en presente simple, colocando el verbo antes del sujeto indicado en la pista.\nEjercicio, como lo ve el alumno antes de contestar: ___ (they / be) from Ireland?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Are they\nTraducción, que el alumno ve al corregir: ¿Son de Irlanda?\nMiniteoría, que el alumno ve al corregir: Con $they$ usamos $are$. Para preguntar: $Are they$ + complemento + ?"
+  },
+  {
+   "id": "25af",
+   "quizId": "67fab6d599301022953425af",
+   "orden": 40,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "Quitar la indicación sobre short forms mejora la consigna, pero conserva el problema de producción: el ejercicio practica una pregunta con «Who» en un tema de preguntas yes / no.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "Who ___ (they / be)?",
+     "what": "Es una pregunta con «Who», no una pregunta yes / no como pide el tema."
+    }
+   ],
+   "hora": "2026-10-26T17:16:42.466259Z",
+   "antes": "Consigna del ejercicio: Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: Who ___ (they / be)?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: are they\nTraducción, que el alumno ve al corregir: ¿Quiénes son?\n\nMiniteoría, que el alumno ve al corregir: Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: Who ___ (they / be)?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: are they\nTraducción, que el alumno ve al corregir: ¿Quiénes son?\n\nMiniteoría, que el alumno ve al corregir: Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$."
+  },
+  {
+   "id": "25b0",
+   "quizId": "67fab6d599301022953425b0",
+   "orden": 41,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "Eliminar la exigencia de contracción y aceptar ambas formas correctas es coherente. Sin embargo, persiste la falta de correspondencia con el tema y la miniteoría incorpora una indicación específica para resolver el hueco.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "She ___ (not / be) British.",
+     "what": "Practica una oración negativa en lugar de las preguntas yes/no con be que pide el tema; este problema ya estaba en producción."
+    },
+    {
+     "where": "MINI_THEORY",
+     "fragment": "En el hueco se puede escribir $is not$ o $isn't$.",
+     "what": "La explicación termina indicando las respuestas de este ejercicio en vez de mantener una regla general."
+    }
+   ],
+   "hora": "2026-10-26T17:17:11.561060Z",
+   "antes": "Consigna del ejercicio: Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: She ___ (not / be) British.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: isn't\nTraducción, que el alumno ve al corregir: Ella no es británica.\n\nMiniteoría, que el alumno ve al corregir: $'m$ con I, $'s$ con he/she/it, $'re$ con you/we/they. Negativo: $isn't$, $aren't$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: She ___ (not / be) British.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: isn't | is not\nTraducción, que el alumno ve al corregir: Ella no es británica.\n\nMiniteoría, que el alumno ve al corregir: Con she usamos is. Para negar, ponemos not después de is: $She is not$. Podemos contraer is not como isn't: $She isn't$. En el hueco se puede escribir $is not$ o $isn't$."
+  },
+  {
+   "id": "25b1",
+   "quizId": "67fab6d599301022953425b1",
+   "orden": 42,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "Eliminar la indicación sobre short forms es adecuado, pero persiste el desajuste de producción: el ejercicio practica una pregunta con Where en un tema de preguntas yes / no.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "Where ___ (my wallet / be)?",
+     "what": "Practica una pregunta con Where, cuya respuesta indica un lugar, aunque el tema pide preguntas yes / no."
+    }
+   ],
+   "hora": "2026-10-26T17:17:10.765370Z",
+   "antes": "Consigna del ejercicio: Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: Where ___ (my wallet / be)?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: is my wallet\nTraducción, que el alumno ve al corregir: ¿Dónde está mi billetera?\n\nMiniteoría, que el alumno ve al corregir: Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: Where ___ (my wallet / be)?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: is my wallet\nTraducción, que el alumno ve al corregir: ¿Dónde está mi billetera?\n\nMiniteoría, que el alumno ve al corregir: Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$."
+  },
+  {
+   "id": "25b4",
+   "quizId": "67fab6d599301022953425b4",
+   "orden": 43,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "Eliminar la indicación sobre contracciones mejora la consigna, pero mantiene el desajuste de producción: el ejercicio practica una pregunta con Why en un tema de preguntas yes / no.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "Why ___ (she / be) so late?",
+     "what": "La pregunta con Why practica una pregunta abierta, pero el tema pide preguntas yes / no."
+    }
+   ],
+   "hora": "2026-10-26T17:17:11.698430Z",
+   "antes": "Consigna del ejercicio: Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: Why ___ (she / be) so late?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: is she\nTraducción, que el alumno ve al corregir: ¿Por qué llega tan tarde?\n\nMiniteoría, que el alumno ve al corregir: Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: Why ___ (she / be) so late?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: is she\nTraducción, que el alumno ve al corregir: ¿Por qué llega tan tarde?\n\nMiniteoría, que el alumno ve al corregir: Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$."
+  },
+  {
+   "id": "25b5",
+   "quizId": "67fab6d599301022953425b5",
+   "orden": 44,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "Quitar la indicación de usar formas cortas mejora la consigna, pero conserva el problema de producción: el ejercicio practica una pregunta de ubicación en un tema de preguntas yes / no.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "Where ___ (he / be) now?",
+     "what": "Es una pregunta con «Where», no una pregunta de sí o no como pide el tema."
+    }
+   ],
+   "hora": "2026-10-26T17:17:15.306158Z",
+   "antes": "Consigna del ejercicio: Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: Where ___ (he / be) now?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: is he\nTraducción, que el alumno ve al corregir: ¿Dónde está él ahora?\n\nMiniteoría, que el alumno ve al corregir: Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: Where ___ (he / be) now?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: is he\nTraducción, que el alumno ve al corregir: ¿Dónde está él ahora?\n\nMiniteoría, que el alumno ve al corregir: Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$."
+  },
+  {
+   "id": "25ba",
+   "quizId": "67fab6d599301022953425ba",
+   "orden": 45,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "Quitar la indicación de usar contracciones no perjudica el ejercicio, porque aquí no corresponde contraer «are you». Sin embargo, conserva el problema de producción: practica una pregunta con «What» en un tema de preguntas yes / no.",
+   "problemas": [
+    {
+     "where": "EXERCISE",
+     "fragment": "What ___ (you / be)?",
+     "what": "Es una pregunta abierta con «What», pero el tema pide practicar preguntas que se responden con sí o no."
+    }
+   ],
+   "hora": "2026-10-26T17:18:08.731463Z",
+   "antes": "Consigna del ejercicio: Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: What ___ (you / be)?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: are you\nTraducción, que el alumno ve al corregir: ¿Qué eres?\n\nMiniteoría, que el alumno ve al corregir: Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: What ___ (you / be)?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: are you\nTraducción, que el alumno ve al corregir: ¿Qué eres?\n\nMiniteoría, que el alumno ve al corregir: Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$."
+  },
+  {
+   "id": "1e9b",
+   "quizId": "67fab6d59930102295341e9b",
+   "orden": 46,
+   "tema": "Preguntas $wh$ con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "El ejercicio sigue siendo correcto y coincide con la traducción y la respuesta aceptada. Sin embargo, la miniteoría de producción explicaba el orden general wh + be + sujeto; ahora se limita a la conjugación con she y a resolver esta pregunta.",
+   "problemas": [
+    {
+     "where": "MINI_THEORY",
+     "fragment": "Para esta pregunta: $How + is + she$?",
+     "what": "Reemplaza la regla general sobre el orden de las preguntas wh con be por el esquema de resolución de este ejercicio."
+    }
+   ],
+   "hora": "2026-10-26T17:19:14.028871Z",
+   "antes": "Consigna del ejercicio: Formula una pregunta 'wh' en presente simple usando el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: How ___ ? (She)\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: is she\nTraducción, que el alumno ve al corregir: ¿Cómo está ella?\nMiniteoría, que el alumno ve al corregir: La palabra wh- primero y después be + sujeto: $Where is he$?",
+   "despues": "Consigna del ejercicio: Formula una pregunta 'wh' en presente simple usando el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: How ___ she? (be)\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: is\nTraducción, que el alumno ve al corregir: ¿Cómo está ella?\nMiniteoría, que el alumno ve al corregir: Con she, be toma la forma is. Para esta pregunta: $How + is + she$?"
+  },
+  {
+   "id": "1eae",
+   "quizId": "67fab6d59930102295341eae",
+   "orden": 47,
+   "tema": "Preguntas $wh$ con $be$",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La nueva oración tiene sentido y la traducción coincide, mejorando producción. Sin embargo, la miniteoría perdió la explicación general del orden wh + be + sujeto y pasó a indicar cómo armar esta pregunta concreta.",
+   "problemas": [
+    {
+     "where": "MINI_THEORY",
+     "fragment": "Para esta pregunta: $When + is + she + complemento$?",
+     "what": "Reemplaza la regla general de orden de las preguntas wh por una fórmula específica para resolver este ejercicio."
+    }
+   ],
+   "hora": "2026-10-26T17:19:10.904621Z",
+   "antes": "Consigna del ejercicio: Formula una pregunta 'wh' en presente simple usando el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: When ___ ? (She)\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: is she\nTraducción, que el alumno ve al corregir: ¿Cuándo es ella?\nMiniteoría, que el alumno ve al corregir: La palabra wh- primero y después be + sujeto: $Where is he$?",
+   "despues": "Consigna del ejercicio: Formula una pregunta 'wh' en presente simple usando el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: When ___ with her husband? (She)\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: is she\nTraducción, que el alumno ve al corregir: ¿Cuándo está ella con su marido?\nMiniteoría, que el alumno ve al corregir: Con she, be toma la forma is. Para esta pregunta: $When + is + she + complemento$?"
+  },
+  {
+   "id": "1eee",
+   "quizId": "67fab6d59930102295341eee",
+   "orden": 48,
+   "tema": "Preguntas sí/no",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "La nueva miniteoría explica correctamente la formación de preguntas con you y se muestra después de contestar. El ejercicio conserva lo que practica, pero mantiene la traducción poco natural de producción.",
+   "problemas": [
+    {
+     "where": "TRANSLATION",
+     "fragment": "¿Comes el almuerzo todos los días?",
+     "what": "La traducción suena calcada del inglés; en castellano natural se diría «¿Almorzás todos los días?»."
+    }
+   ],
+   "hora": "2026-10-26T17:20:12.009646Z",
+   "antes": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (you / eat) lunch every day?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do you eat\nTraducción, que el alumno ve al corregir: ¿Comes el almuerzo todos los días?\nMiniteoría, que el alumno ve al corregir: $Do$ o $Does$ adelante y el verbo en forma base: $Does he read$…?",
+   "despues": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (you / eat) lunch every day?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do you eat\nTraducción, que el alumno ve al corregir: ¿Comes el almuerzo todos los días?\nMiniteoría, que el alumno ve al corregir: Para hacer preguntas en presente simple con $you$, usá $Do + you + verbo en forma base$. Por ejemplo: $Do you eat lunch every day?$"
+  },
+  {
+   "id": "1efa",
+   "quizId": "67fab6d59930102295341efa",
+   "orden": 49,
+   "tema": "Preguntas sí/no",
+   "estado": "MARKED",
+   "marca": "dudoso",
+   "razon": "El ejercicio sigue siendo correcto y practica lo mismo que en producción. Sin embargo, la miniteoría reemplaza la regla general sobre ambos auxiliares por instrucciones y una resolución específicas para esta oración.",
+   "problemas": [
+    {
+     "where": "MINI_THEORY",
+     "fragment": "Con $they$ corresponde $Do$, y $drink$ queda sin cambios: $Do they drink at home?$",
+     "what": "La explicación se centra en resolver este ejercicio y pierde la regla general para elegir entre $do$ y $does$."
+    }
+   ],
+   "hora": "2026-10-26T17:21:34.351718Z",
+   "antes": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (they / drink) at home?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do they drink\nTraducción, que el alumno ve al corregir: ¿Beben en casa?\nMiniteoría, que el alumno ve al corregir: $Do$ o $Does$ adelante y el verbo en forma base: $Does he read$…?",
+   "despues": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (they / drink) at home?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do they drink\nTraducción, que el alumno ve al corregir: ¿Beben en casa?\nMiniteoría, que el alumno ve al corregir: Para hacer una pregunta en presente simple con $they$, usá $Do + they + verbo en forma base$. Con $they$ corresponde $Do$, y $drink$ queda sin cambios: $Do they drink at home?$"
+  },
+  {
+   "id": "1e5f",
+   "quizId": "67fab6d59930102295341e5f",
+   "orden": 1448,
+   "tema": "Afirmativas con $be$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La miniteoría se acortó, pero conserva una regla correcta para el sujeto del ejercicio. La respuesta, la traducción y la práctica de la forma afirmativa de be siguen siendo coherentes.",
+   "problemas": [],
+   "hora": "2026-10-26T17:04:47.925815Z",
+   "antes": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: She ___ English.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: is\nTraducción, que el alumno ve al corregir: Ella es inglesa.\nMiniteoría, que el alumno ve al corregir: $am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+   "despues": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: She ___ English.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: is\nTraducción, que el alumno ve al corregir: Ella es inglesa.\nMiniteoría, que el alumno ve al corregir: $is$ va con she."
+  },
+  {
+   "id": "1e61",
+   "quizId": "67fab6d59930102295341e61",
+   "orden": 1449,
+   "tema": "Afirmativas con $be$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La miniteoría se acortó, pero conserva la regla que practica el ejercicio: con I se usa am. El ejercicio, las opciones, la respuesta y la traducción siguen siendo correctos y coherentes.",
+   "problemas": [],
+   "hora": "2026-10-26T17:04:56.349145Z",
+   "antes": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: I ___ sorry.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: am\nTraducción, que el alumno ve al corregir: Lo siento.\nMiniteoría, que el alumno ve al corregir: $am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+   "despues": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: I ___ sorry.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: am\nTraducción, que el alumno ve al corregir: Lo siento.\nMiniteoría, que el alumno ve al corregir: $am$ va con I."
+  },
+  {
+   "id": "1e64",
+   "quizId": "67fab6d59930102295341e64",
+   "orden": 1450,
+   "tema": "Afirmativas con $be$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La miniteoría se acortó, pero conserva la regla que practica este ejercicio: con I se usa am. La oración, las opciones, la respuesta y la traducción siguen siendo correctas y coherentes.",
+   "problemas": [],
+   "hora": "2026-10-26T17:06:47.093005Z",
+   "antes": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: I ___ hot.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: am\nTraducción, que el alumno ve al corregir: Tengo calor.\nMiniteoría, que el alumno ve al corregir: $am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+   "despues": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: I ___ hot.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: am\nTraducción, que el alumno ve al corregir: Tengo calor.\nMiniteoría, que el alumno ve al corregir: $am$ va con I."
+  },
+  {
+   "id": "1e65",
+   "quizId": "67fab6d59930102295341e65",
+   "orden": 1451,
+   "tema": "Afirmativas con $be$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La miniteoría se acortó, pero conserva la regla que practica el ejercicio: $are$ va con you. La respuesta, la traducción y la consigna siguen siendo correctas y coherentes entre sí.",
+   "problemas": [],
+   "hora": "2026-10-26T17:06:49.975934Z",
+   "antes": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: You ___ German.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: are\nTraducción, que el alumno ve al corregir: Eres alemán.\nMiniteoría, que el alumno ve al corregir: $am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+   "despues": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: You ___ German.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: are\nTraducción, que el alumno ve al corregir: Eres alemán.\nMiniteoría, que el alumno ve al corregir: $are$ va con you."
+  },
+  {
+   "id": "1e66",
+   "quizId": "67fab6d59930102295341e66",
+   "orden": 1452,
+   "tema": "Afirmativas con $be$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La miniteoría se acortó, pero sigue expresando una regla general correcta: $are$ va con we. El ejercicio conserva lo que practica y la respuesta, la traducción y la explicación coinciden.",
+   "problemas": [],
+   "hora": "2026-10-26T17:06:51.989293Z",
+   "antes": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: We ___ on the train.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: are\nTraducción, que el alumno ve al corregir: Estamos en el tren.\nMiniteoría, que el alumno ve al corregir: $am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+   "despues": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: We ___ on the train.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: are\nTraducción, que el alumno ve al corregir: Estamos en el tren.\nMiniteoría, que el alumno ve al corregir: $are$ va con we."
+  },
+  {
+   "id": "1e67",
+   "quizId": "67fab6d59930102295341e67",
+   "orden": 1453,
+   "tema": "Afirmativas con $be$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La miniteoría se acorta, pero conserva una regla general correcta para el sujeto del ejercicio. La oración, las opciones, la respuesta y la traducción siguen siendo coherentes y practican la forma afirmativa de be.",
+   "problemas": [],
+   "hora": "2026-10-26T17:06:50.112720Z",
+   "antes": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: We ___ great.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: are\nTraducción, que el alumno ve al corregir: Somos geniales.\nMiniteoría, que el alumno ve al corregir: $am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+   "despues": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: We ___ great.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: are\nTraducción, que el alumno ve al corregir: Somos geniales.\nMiniteoría, que el alumno ve al corregir: $are$ va con we."
+  },
+  {
+   "id": "1e68",
+   "quizId": "67fab6d59930102295341e68",
+   "orden": 1454,
+   "tema": "Afirmativas con $be$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La miniteoría se acortó, pero conserva una regla general correcta que explica la respuesta. El ejercicio sigue practicando la forma afirmativa de be con he y todos los campos coinciden.",
+   "problemas": [],
+   "hora": "2026-10-26T17:07:00.801095Z",
+   "antes": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: He ___ tired.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: is\nTraducción, que el alumno ve al corregir: Él está cansado.\nMiniteoría, que el alumno ve al corregir: $am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+   "despues": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: He ___ tired.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: is\nTraducción, que el alumno ve al corregir: Él está cansado.\nMiniteoría, que el alumno ve al corregir: $is$ va con he."
+  },
+  {
+   "id": "1e69",
+   "quizId": "67fab6d59930102295341e69",
+   "orden": 1455,
+   "tema": "Afirmativas con $be$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La miniteoría se acortó, pero conserva la regla que practica el ejercicio: $are$ va con they. La oración, las opciones, la respuesta y la traducción siguen siendo correctas y coherentes.",
+   "problemas": [],
+   "hora": "2026-10-26T17:08:54.191672Z",
+   "antes": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ at school.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: are\nTraducción, que el alumno ve al corregir: Ellos están en la escuela.\nMiniteoría, que el alumno ve al corregir: $am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+   "despues": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ at school.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: are\nTraducción, que el alumno ve al corregir: Ellos están en la escuela.\nMiniteoría, que el alumno ve al corregir: $are$ va con they."
+  },
+  {
+   "id": "1e6a",
+   "quizId": "67fab6d59930102295341e6a",
+   "orden": 1456,
+   "tema": "Afirmativas con $be$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La miniteoría se acortó, pero sigue explicando la concordancia que practica el ejercicio. La respuesta correcta, las opciones y la traducción siguen siendo coherentes, sin revelar la respuesta antes de contestar.",
+   "problemas": [],
+   "hora": "2026-10-26T17:08:48.945292Z",
+   "antes": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ ok.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: are\nTraducción, que el alumno ve al corregir: Ellos están bien.\nMiniteoría, que el alumno ve al corregir: $am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+   "despues": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ ok.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: are\nTraducción, que el alumno ve al corregir: Ellos están bien.\nMiniteoría, que el alumno ve al corregir: $are$ va con they."
+  },
+  {
+   "id": "1e6c",
+   "quizId": "67fab6d59930102295341e6c",
+   "orden": 1457,
+   "tema": "Afirmativas con $be$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La miniteoría se acortó, pero conserva una regla correcta que explica la respuesta. El ejercicio sigue practicando la forma afirmativa de be y todos sus campos coinciden.",
+   "problemas": [],
+   "hora": "2026-10-26T17:08:50.834941Z",
+   "antes": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: He ___ at home.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: is\nTraducción, que el alumno ve al corregir: Él está en casa.\nMiniteoría, que el alumno ve al corregir: $am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+   "despues": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: He ___ at home.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: is\nTraducción, que el alumno ve al corregir: Él está en casa.\nMiniteoría, que el alumno ve al corregir: $is$ va con he."
+  },
+  {
+   "id": "1e6e",
+   "quizId": "67fab6d59930102295341e6e",
+   "orden": 1458,
+   "tema": "Afirmativas con $be$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La miniteoría quedó más acotada que en producción, pero sigue expresando una regla correcta y pertinente. El ejercicio conserva la misma práctica y todos sus campos coinciden.",
+   "problemas": [],
+   "hora": "2026-10-26T17:10:54.077165Z",
+   "antes": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: She ___ in the garden.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: is\nTraducción, que el alumno ve al corregir: Ella está en el jardín.\nMiniteoría, que el alumno ve al corregir: $am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+   "despues": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: She ___ in the garden.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: is\nTraducción, que el alumno ve al corregir: Ella está en el jardín.\nMiniteoría, que el alumno ve al corregir: $is$ va con she."
+  },
+  {
+   "id": "1e6f",
+   "quizId": "67fab6d59930102295341e6f",
+   "orden": 1459,
+   "tema": "Afirmativas con $be$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La miniteoría se acortó, pero conserva la regla necesaria para resolver este ejercicio: $am$ va con I. La oración, la respuesta y la traducción siguen siendo correctas y practican la misma forma afirmativa de $be$ que en producción.",
+   "problemas": [],
+   "hora": "2026-10-26T17:10:56.807775Z",
+   "antes": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: I ___ young.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: am\nTraducción, que el alumno ve al corregir: Soy joven.\nMiniteoría, que el alumno ve al corregir: $am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+   "despues": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: I ___ young.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: am\nTraducción, que el alumno ve al corregir: Soy joven.\nMiniteoría, que el alumno ve al corregir: $am$ va con I."
+  },
+  {
+   "id": "1e70",
+   "quizId": "67fab6d59930102295341e70",
+   "orden": 1460,
+   "tema": "Afirmativas con $be$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La miniteoría se acortó, pero conserva una regla general correcta para el sujeto del ejercicio. La respuesta, las opciones y la traducción siguen siendo coherentes y se practica la misma forma que en producción.",
+   "problemas": [],
+   "hora": "2026-10-26T17:10:52.551991Z",
+   "antes": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: You ___ at work.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: are\nTraducción, que el alumno ve al corregir: Estás en el trabajo.\nMiniteoría, que el alumno ve al corregir: $am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+   "despues": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: You ___ at work.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: are\nTraducción, que el alumno ve al corregir: Estás en el trabajo.\nMiniteoría, que el alumno ve al corregir: $are$ va con you."
+  },
+  {
+   "id": "1e71",
+   "quizId": "67fab6d59930102295341e71",
+   "orden": 1461,
+   "tema": "Afirmativas con $be$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La miniteoría es más breve, pero sigue explicando una regla general correcta. El ejercicio conserva lo que practica en producción y todos los campos coinciden.",
+   "problemas": [],
+   "hora": "2026-10-26T17:10:51.519023Z",
+   "antes": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: She ___ from London.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: is\nTraducción, que el alumno ve al corregir: Ella es de Londres.\nMiniteoría, que el alumno ve al corregir: $am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+   "despues": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: She ___ from London.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: is\nTraducción, que el alumno ve al corregir: Ella es de Londres.\nMiniteoría, que el alumno ve al corregir: $is$ va con she."
+  },
+  {
+   "id": "1e72",
+   "quizId": "67fab6d59930102295341e72",
+   "orden": 1462,
+   "tema": "Afirmativas con $be$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "Se quitó «not» y se ajustó la traducción, por lo que ahora la oración practica la forma afirmativa que pide el tema. La respuesta «are» es correcta y la miniteoría mantiene una regla válida de concordancia.",
+   "problemas": [],
+   "hora": "2026-10-26T17:11:03.223209Z",
+   "antes": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: We ___ not ready.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: are\nTraducción, que el alumno ve al corregir: No estamos listos.\nMiniteoría, que el alumno ve al corregir: $am$ va con I. $is$ va con he, she, it. $are$ va con you, we, they.",
+   "despues": "Consigna del ejercicio: Elige la forma afirmativa del verbo 'be' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: We ___ ready.\nOpciones que ve el alumno: am / are / is\nRespuestas que acepta el corrector: Opción correcta: are\nTraducción, que el alumno ve al corregir: Estamos listos.\nMiniteoría, que el alumno ve al corregir: $are$ va con we."
+  },
+  {
+   "id": "1e87",
+   "quizId": "67fab6d59930102295341e87",
+   "orden": 1463,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El cambio corrige las mayúsculas iniciales de las opciones y de la respuesta aceptada. La pregunta, el sujeto dado, la traducción y la miniteoría siguen siendo coherentes y practican las preguntas yes / no con be.",
+   "problemas": [],
+   "hora": "2026-10-26T17:13:54.671579Z",
+   "antes": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ a child? (He)\nOpciones que ve el alumno: am i / are we / are you / is he / is it / is she\nRespuestas que acepta el corrector: Opción correcta: is he\nTraducción, que el alumno ve al corregir: ¿Él es un niño?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+   "despues": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ a child? (He)\nOpciones que ve el alumno: Am I / Are we / Are you / Is he / Is it / Is she\nRespuestas que acepta el corrector: Opción correcta: Is he\nTraducción, que el alumno ve al corregir: ¿Él es un niño?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?"
+  },
+  {
+   "id": "1e88",
+   "quizId": "67fab6d59930102295341e88",
+   "orden": 1464,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El cambio corrige las mayúsculas iniciales de las opciones y de la respuesta correcta. El ejercicio sigue practicando preguntas con be y todos los campos coinciden.",
+   "problemas": [],
+   "hora": "2026-10-26T17:13:54.177197Z",
+   "antes": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ friends? (We)\nOpciones que ve el alumno: am i / are we / are you / is he / is it / is she\nRespuestas que acepta el corrector: Opción correcta: are we\nTraducción, que el alumno ve al corregir: ¿Somos amigos?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+   "despues": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ friends? (We)\nOpciones que ve el alumno: Am I / Are we / Are you / Is he / Is it / Is she\nRespuestas que acepta el corrector: Opción correcta: Are we\nTraducción, que el alumno ve al corregir: ¿Somos amigos?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?"
+  },
+  {
+   "id": "1e89",
+   "quizId": "67fab6d59930102295341e89",
+   "orden": 1465,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El cambio corrige la mayúscula inicial de las opciones y de la respuesta correcta. El ejercicio sigue practicando preguntas con be y todos los campos coinciden.",
+   "problemas": [],
+   "hora": "2026-10-26T17:14:02.854624Z",
+   "antes": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ hot today? (It)\nOpciones que ve el alumno: am i / are we / are you / is he / is it / is she\nRespuestas que acepta el corrector: Opción correcta: is it\nTraducción, que el alumno ve al corregir: ¿Hace calor hoy?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+   "despues": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ hot today? (It)\nOpciones que ve el alumno: Am I / Are we / Are you / Is he / Is it / Is she\nRespuestas que acepta el corrector: Opción correcta: Is it\nTraducción, que el alumno ve al corregir: ¿Hace calor hoy?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?"
+  },
+  {
+   "id": "1e8a",
+   "quizId": "67fab6d59930102295341e8a",
+   "orden": 1466,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El cambio corrige las mayúsculas iniciales de las opciones y de la respuesta aceptada. El ejercicio sigue practicando la inversión de be con el sujeto dado, y la traducción y la miniteoría coinciden.",
+   "problemas": [],
+   "hora": "2026-10-26T17:14:57.566933Z",
+   "antes": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ at school? (We)\nOpciones que ve el alumno: am i / are we / are you / is he / is it / is she\nRespuestas que acepta el corrector: Opción correcta: are we\nTraducción, que el alumno ve al corregir: ¿Estamos en la escuela?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+   "despues": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ at school? (We)\nOpciones que ve el alumno: Am I / Are we / Are you / Is he / Is it / Is she\nRespuestas que acepta el corrector: Opción correcta: Are we\nTraducción, que el alumno ve al corregir: ¿Estamos en la escuela?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?"
+  },
+  {
+   "id": "1e8c",
+   "quizId": "67fab6d59930102295341e8c",
+   "orden": 1467,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El cambio corrige la mayúscula inicial de las opciones y de la respuesta aceptada. La pregunta, la traducción y la miniteoría son coherentes y siguen practicando preguntas con be y el sujeto dado.",
+   "problemas": [],
+   "hora": "2026-10-26T17:14:56.647153Z",
+   "antes": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ five o'clock? (It)\nOpciones que ve el alumno: am i / are we / are you / is he / is it / is she\nRespuestas que acepta el corrector: Opción correcta: is it\nTraducción, que el alumno ve al corregir: ¿Son las cinco en punto?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+   "despues": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ five o'clock? (It)\nOpciones que ve el alumno: Am I / Are we / Are you / Is he / Is it / Is she\nRespuestas que acepta el corrector: Opción correcta: Is it\nTraducción, que el alumno ve al corregir: ¿Son las cinco en punto?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?"
+  },
+  {
+   "id": "1e90",
+   "quizId": "67fab6d59930102295341e90",
+   "orden": 1468,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El cambio corrige la mayúscula inicial de las opciones y de la respuesta correcta. El ejercicio sigue practicando preguntas con be y todos los campos son coherentes.",
+   "problemas": [],
+   "hora": "2026-10-26T17:15:03.681346Z",
+   "antes": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ at work? (You)\nOpciones que ve el alumno: am i / are we / are you / is he / is it / is she\nRespuestas que acepta el corrector: Opción correcta: are you\nTraducción, que el alumno ve al corregir: ¿Estás en el trabajo?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+   "despues": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ at work? (You)\nOpciones que ve el alumno: Am I / Are we / Are you / Is he / Is it / Is she\nRespuestas que acepta el corrector: Opción correcta: Are you\nTraducción, que el alumno ve al corregir: ¿Estás en el trabajo?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?"
+  },
+  {
+   "id": "1e91",
+   "quizId": "67fab6d59930102295341e91",
+   "orden": 1469,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El cambio corrige las mayúsculas iniciales de las opciones y de la respuesta aceptada. Conserva la práctica de preguntas con be y todos los campos coinciden.",
+   "problemas": [],
+   "hora": "2026-10-26T17:15:06.358260Z",
+   "antes": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ from Germany? (She)\nOpciones que ve el alumno: am i / are we / are you / is he / is it / is she\nRespuestas que acepta el corrector: Opción correcta: is she\nTraducción, que el alumno ve al corregir: ¿Ella es de Alemania?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+   "despues": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ from Germany? (She)\nOpciones que ve el alumno: Am I / Are we / Are you / Is he / Is it / Is she\nRespuestas que acepta el corrector: Opción correcta: Is she\nTraducción, que el alumno ve al corregir: ¿Ella es de Alemania?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?"
+  },
+  {
+   "id": "1e93",
+   "quizId": "67fab6d59930102295341e93",
+   "orden": 1470,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La versión actual conserva el sujeto dado y la pregunta de producción, con opciones y respuesta correctamente capitalizadas. La miniteoría sigue explicando una regla general para preguntar con he y coincide con el ejercicio y la traducción.",
+   "problemas": [],
+   "hora": "2026-10-26T17:15:58.369407Z",
+   "antes": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ your brother? (He)\nOpciones que ve el alumno: am i / are we / are you / is he / is it / is she\nRespuestas que acepta el corrector: Opción correcta: is he\nTraducción, que el alumno ve al corregir: ¿Él es tu hermano?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+   "despues": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ your brother? (He)\nOpciones que ve el alumno: Am I / Are we / Are you / Is he / Is it / Is she\nRespuestas que acepta el corrector: Opción correcta: Is he\nTraducción, que el alumno ve al corregir: ¿Él es tu hermano?\nMiniteoría, que el alumno ve al corregir: Para preguntar con he, usamos is antes del sujeto: $Is he$…?"
+  },
+  {
+   "id": "1e94",
+   "quizId": "67fab6d59930102295341e94",
+   "orden": 1471,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "Se mantiene la práctica de formar preguntas con be y el sujeto dado. La capitalización mejora las opciones y la miniteoría explica correctamente la forma con you; como se muestra al corregir, no adelanta la respuesta.",
+   "problemas": [],
+   "hora": "2026-10-26T17:16:00.676404Z",
+   "antes": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ ready? (You)\nOpciones que ve el alumno: am i / are we / are you / is he / is it / is she\nRespuestas que acepta el corrector: Opción correcta: are you\nTraducción, que el alumno ve al corregir: ¿Estás listo?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+   "despues": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ ready? (You)\nOpciones que ve el alumno: Am I / Are we / Are you / Is he / Is it / Is she\nRespuestas que acepta el corrector: Opción correcta: Are you\nTraducción, que el alumno ve al corregir: ¿Estás listo?\nMiniteoría, que el alumno ve al corregir: Para preguntar con you, usamos are antes del sujeto: $Are you$…? La pista (You) indica que la pregunta es sobre vos."
+  },
+  {
+   "id": "1e95",
+   "quizId": "67fab6d59930102295341e95",
+   "orden": 1472,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La capitalización de las opciones mejora respecto de producción y la respuesta sigue siendo correcta. La miniteoría explica la regla para el sujeto dado y coincide con el ejercicio y la traducción.",
+   "problemas": [],
+   "hora": "2026-10-26T17:15:59.732809Z",
+   "antes": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ in the green room? (We)\nOpciones que ve el alumno: am i / are we / are you / is he / is it / is she\nRespuestas que acepta el corrector: Opción correcta: are we\nTraducción, que el alumno ve al corregir: ¿Estamos en la sala verde?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+   "despues": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ in the green room? (We)\nOpciones que ve el alumno: Am I / Are we / Are you / Is he / Is it / Is she\nRespuestas que acepta el corrector: Opción correcta: Are we\nTraducción, que el alumno ve al corregir: ¿Estamos en la sala verde?\nMiniteoría, que el alumno ve al corregir: Para preguntar con we, usamos are antes del sujeto: $Are we$…?"
+  },
+  {
+   "id": "1e96",
+   "quizId": "67fab6d59930102295341e96",
+   "orden": 1473,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La capitalización de las opciones y la respuesta es correcta. La miniteoría sigue explicando una regla válida para he, y el ejercicio conserva lo que practicaba en producción.",
+   "problemas": [],
+   "hora": "2026-10-26T17:15:59.222846Z",
+   "antes": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ at the park? (He)\nOpciones que ve el alumno: am i / are we / are you / is he / is it / is she\nRespuestas que acepta el corrector: Opción correcta: is he\nTraducción, que el alumno ve al corregir: ¿Él está en el parque?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+   "despues": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ at the park? (He)\nOpciones que ve el alumno: Am I / Are we / Are you / Is he / Is it / Is she\nRespuestas que acepta el corrector: Opción correcta: Is he\nTraducción, que el alumno ve al corregir: ¿Él está en el parque?\nMiniteoría, que el alumno ve al corregir: Para preguntar con he, usamos is antes del sujeto: $Is he$…?"
+  },
+  {
+   "id": "1e98",
+   "quizId": "67fab6d59930102295341e98",
+   "orden": 1474,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La actualización corrige las mayúsculas de las opciones y conserva la pregunta, la respuesta y la traducción. La miniteoría sigue explicando una regla válida para he y coincide con lo que practica el ejercicio.",
+   "problemas": [],
+   "hora": "2026-10-26T17:16:09.262178Z",
+   "antes": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ at the bank? (He)\nOpciones que ve el alumno: am i / are we / are you / is he / is it / is she\nRespuestas que acepta el corrector: Opción correcta: is he\nTraducción, que el alumno ve al corregir: ¿Él está en el banco?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+   "despues": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ at the bank? (He)\nOpciones que ve el alumno: Am I / Are we / Are you / Is he / Is it / Is she\nRespuestas que acepta el corrector: Opción correcta: Is he\nTraducción, que el alumno ve al corregir: ¿Él está en el banco?\nMiniteoría, que el alumno ve al corregir: Para preguntar con he, usamos is antes del sujeto: $Is he$…?"
+  },
+  {
+   "id": "1e99",
+   "quizId": "67fab6d59930102295341e99",
+   "orden": 1475,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "Conserva la práctica de preguntas con be y el sujeto dado. Corrige las mayúsculas de las opciones y amplía la miniteoría con una explicación correcta, visible recién al corregir; todos los campos coinciden.",
+   "problemas": [],
+   "hora": "2026-10-26T17:16:08.877551Z",
+   "antes": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ Canadian? (You)\nOpciones que ve el alumno: am i / are we / are you / is he / is it / is she\nRespuestas que acepta el corrector: Opción correcta: are you\nTraducción, que el alumno ve al corregir: ¿Eres canadiense?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+   "despues": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ Canadian? (You)\nOpciones que ve el alumno: Am I / Are we / Are you / Is he / Is it / Is she\nRespuestas que acepta el corrector: Opción correcta: Are you\nTraducción, que el alumno ve al corregir: ¿Eres canadiense?\nMiniteoría, que el alumno ve al corregir: Con you usamos are. Para hacer una pregunta de sí o no, ponemos are antes de you: $You are$ → $Are you$…? La pista (You) indica que el sujeto es you."
+  },
+  {
+   "id": "1e9a",
+   "quizId": "67fab6d59930102295341e9a",
+   "orden": 1476,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El cambio corrige las mayúsculas iniciales de las opciones y de la respuesta correcta. El ejercicio sigue practicando preguntas con be y el sujeto dado; todos los campos coinciden.",
+   "problemas": [],
+   "hora": "2026-10-26T17:16:59.021677Z",
+   "antes": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ from London? (You)\nOpciones que ve el alumno: am i / are we / are you / is he / is it / is she\nRespuestas que acepta el corrector: Opción correcta: are you\nTraducción, que el alumno ve al corregir: ¿Eres de Londres?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?",
+   "despues": "Consigna del ejercicio: Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: ___ from London? (You)\nOpciones que ve el alumno: Am I / Are we / Are you / Is he / Is it / Is she\nRespuestas que acepta el corrector: Opción correcta: Are you\nTraducción, que el alumno ve al corregir: ¿Eres de Londres?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?"
+  },
+  {
+   "id": "25ab",
+   "quizId": "67fab6d599301022953425ab",
+   "orden": 1477,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "Se eliminó la indicación innecesaria sobre contracciones. El ejercicio sigue practicando preguntas yes/no con be y mantiene la coherencia entre la respuesta, la traducción y la miniteoría.",
+   "problemas": [],
+   "hora": "2026-10-26T17:16:58.525602Z",
+   "antes": "Consigna del ejercicio: Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (he / be) from Canada?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Is he\nTraducción, que el alumno ve al corregir: ¿Es él de Canadá?\n\nMiniteoría, que el alumno ve al corregir: Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (he / be) from Canada?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Is he\nTraducción, que el alumno ve al corregir: ¿Es él de Canadá?\n\nMiniteoría, que el alumno ve al corregir: Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$."
+  },
+  {
+   "id": "25b3",
+   "quizId": "67fab6d599301022953425b3",
+   "orden": 1478,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "Se eliminó la indicación de usar contracciones, que no correspondía a esta pregunta. El ejercicio sigue practicando preguntas yes/no con be y todos los campos coinciden.",
+   "problemas": [],
+   "hora": "2026-10-26T17:17:06.748448Z",
+   "antes": "Consigna del ejercicio: Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (John / be) a teacher?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Is John\nTraducción, que el alumno ve al corregir: ¿Es John profesor?\n\nMiniteoría, que el alumno ve al corregir: Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (John / be) a teacher?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Is John\nTraducción, que el alumno ve al corregir: ¿Es John profesor?\n\nMiniteoría, que el alumno ve al corregir: Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$."
+  },
+  {
+   "id": "25bb",
+   "quizId": "67fab6d599301022953425bb",
+   "orden": 1479,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "Se eliminó una indicación sobre contracciones que no aplicaba a esta pregunta. El ejercicio sigue practicando preguntas yes/no con be y todos los campos coinciden.",
+   "problemas": [],
+   "hora": "2026-10-26T17:18:15.484994Z",
+   "antes": "Consigna del ejercicio: Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (you / be) really blonde?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Are you\nTraducción, que el alumno ve al corregir: ¿Eres realmente rubia?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (you / be) really blonde?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Are you\nTraducción, que el alumno ve al corregir: ¿Eres realmente rubia?\nMiniteoría, que el alumno ve al corregir: Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$."
+  },
+  {
+   "id": "25bc",
+   "quizId": "67fab6d599301022953425bc",
+   "orden": 1480,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "Se eliminó la indicación innecesaria de usar formas cortas, que no corresponde a esta pregunta. El ejercicio sigue practicando preguntas con be y todos los campos coinciden.",
+   "problemas": [],
+   "hora": "2026-10-26T17:18:19.318428Z",
+   "antes": "Consigna del ejercicio: Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (she / be) at home?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Is she\nTraducción, que el alumno ve al corregir: ¿Está ella en casa?\n\nMiniteoría, que el alumno ve al corregir: Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (she / be) at home?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Is she\nTraducción, que el alumno ve al corregir: ¿Está ella en casa?\n\nMiniteoría, que el alumno ve al corregir: Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$."
+  },
+  {
+   "id": "25bd",
+   "quizId": "67fab6d599301022953425bd",
+   "orden": 1481,
+   "tema": "$Be$: preguntas $yes / no$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "Se eliminó la indicación de usar contracciones, que no correspondía a esta pregunta. El ejercicio sigue practicando la inversión de be con el sujeto y todos los campos coinciden.",
+   "problemas": [],
+   "hora": "2026-10-26T17:18:19.948575Z",
+   "antes": "Consigna del ejercicio: Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (I / be) wrong?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Am I\nTraducción, que el alumno ve al corregir: ¿Estoy equivocado/a?\n\nMiniteoría, que el alumno ve al corregir: Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo 'ser/estar' en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (I / be) wrong?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Am I\nTraducción, que el alumno ve al corregir: ¿Estoy equivocado/a?\n\nMiniteoría, que el alumno ve al corregir: Para preguntar, be va antes del sujeto: $Is$, $Are$ o $Am$."
+  },
+  {
+   "id": "1e9c",
+   "quizId": "67fab6d59930102295341e9c",
+   "orden": 1482,
+   "tema": "Preguntas $wh$ con $be$",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "Se conserva la respuesta de producción y se agrega «is he at», una variante coloquial válida que mantiene el significado y el orden interrogativo con be. El ejercicio sigue practicando lo que pide el tema.",
+   "problemas": [],
+   "hora": "2026-10-26T17:19:13.118346Z",
+   "antes": "Consigna del ejercicio: Formula una pregunta 'wh' en presente simple usando el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: Where ___ ? (He)\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: is he\nTraducción, que el alumno ve al corregir: ¿Dónde está él?\nMiniteoría, que el alumno ve al corregir: La palabra wh- primero y después be + sujeto: $Where is he$?",
+   "despues": "Consigna del ejercicio: Formula una pregunta 'wh' en presente simple usando el verbo 'be'.\nEjercicio, como lo ve el alumno antes de contestar: Where ___ ? (He)\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: is he | is he at\nTraducción, que el alumno ve al corregir: ¿Dónde está él?\nMiniteoría, que el alumno ve al corregir: La palabra wh- primero y después be + sujeto: $Where is he$?"
+  },
+  {
+   "id": "1ecd",
+   "quizId": "67fab6d59930102295341ecd",
+   "orden": 1483,
+   "tema": "Afirmativas regulares",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "Agregar «(love)» identifica el verbo que debe conjugarse y elimina la ambigüedad de producción. El alumno sigue teniendo que elegir la forma del presente simple correspondiente a «I», y la respuesta aceptada y la miniteoría coinciden.",
+   "problemas": [],
+   "hora": "2026-10-26T17:19:20.434607Z",
+   "antes": "Consigna del ejercicio: Escribe la forma afirmativa en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: I ___ a lot of vegetables.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: love\nTraducción, que el alumno ve al corregir: Me gustan mucho las verduras.\nMiniteoría, que el alumno ve al corregir: Con he, she, it el verbo lleva $-s$. Con I, you, we, they va en forma base.",
+   "despues": "Consigna del ejercicio: Escribe la forma afirmativa en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: I ___ (love) a lot of vegetables.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: love\nTraducción, que el alumno ve al corregir: Me gustan mucho las verduras.\nMiniteoría, que el alumno ve al corregir: Con he, she, it el verbo lleva $-s$. Con I, you, we, they va en forma base."
+  },
+  {
+   "id": "1ed6",
+   "quizId": "67fab6d59930102295341ed6",
+   "orden": 1484,
+   "tema": "Afirmativas regulares",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El cambio de traducción conserva el sentido de llevar sombreros. El ejercicio sigue practicando la terminación -s de tercera persona y la respuesta aceptada coincide con la consigna y la miniteoría.",
+   "problemas": [],
+   "hora": "2026-10-26T17:19:21.181674Z",
+   "antes": "Consigna del ejercicio: Escribe la forma afirmativa en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: She ___ (sport) hats.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: sports\nTraducción, que el alumno ve al corregir: Ella luce sombreros.\nMiniteoría, que el alumno ve al corregir: Con he, she, it el verbo lleva $-s$. Con I, you, we, they va en forma base.",
+   "despues": "Consigna del ejercicio: Escribe la forma afirmativa en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: She ___ (sport) hats.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: sports\nTraducción, que el alumno ve al corregir: Ella lleva puestos sombreros.\nMiniteoría, que el alumno ve al corregir: Con he, she, it el verbo lleva $-s$. Con I, you, we, they va en forma base."
+  },
+  {
+   "id": "1edc",
+   "quizId": "67fab6d59930102295341edc",
+   "orden": 1485,
+   "tema": "Negativas regulares",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La consigna del tema sigue indicando que se responda sin contracciones, por lo que quitar esa indicación del ejercicio no pierde información necesaria. La miniteoría explica correctamente la negativa con $I$, y la respuesta y la traducción siguen coincidiendo con el ejercicio.",
+   "problemas": [],
+   "hora": "2026-10-26T17:19:25.210607Z",
+   "antes": "Consigna del ejercicio: Usa $long forms$. Escribe la forma negativa en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: I ___ (not / see) any brothers.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: do not see\nTraducción, que el alumno ve al corregir: No veo ningún hermano.\nMiniteoría, que el alumno ve al corregir: $do not$ o $does not$ + verbo base. La $-s$ se la queda $does$.",
+   "despues": "Consigna del ejercicio: Escribe la forma negativa en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: I ___ (not / see) any brothers.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: do not see\nTraducción, que el alumno ve al corregir: No veo ningún hermano.\nMiniteoría, que el alumno ve al corregir: Con $I$, la negativa en presente simple se forma con $do not$ + verbo base: $I do not see$."
+  },
+  {
+   "id": "1edf",
+   "quizId": "67fab6d59930102295341edf",
+   "orden": 1486,
+   "tema": "Negativas regulares",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La consigna del tema sigue indicando que no se usen contracciones, por lo que quitar esa indicación repetida no pierde ninguna restricción. El ejercicio, la respuesta y la traducción coinciden, y la miniteoría explica correctamente la negativa con $they$.",
+   "problemas": [],
+   "hora": "2026-10-26T17:20:09.816538Z",
+   "antes": "Consigna del ejercicio: Usa $long forms$. Escribe la forma negativa en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ (not / wake) up.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: do not wake\nTraducción, que el alumno ve al corregir: Ellos no se despiertan.\nMiniteoría, que el alumno ve al corregir: $do not$ o $does not$ + verbo base. La $-s$ se la queda $does$.",
+   "despues": "Consigna del ejercicio: Escribe la forma negativa en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: They ___ (not / wake) up.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: do not wake\nTraducción, que el alumno ve al corregir: Ellos no se despiertan.\nMiniteoría, que el alumno ve al corregir: Con $they$, la negativa en presente simple se forma con $do not$ + verbo base: $They do not wake up$."
+  },
+  {
+   "id": "1eef",
+   "quizId": "67fab6d59930102295341eef",
+   "orden": 1487,
+   "tema": "Preguntas sí/no",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El ejercicio conserva la pregunta y la respuesta correcta de producción. La miniteoría explica correctamente la estructura con «does» y por qué «do» queda en forma base; se muestra después de corregir y coincide con los demás campos.",
+   "problemas": [],
+   "hora": "2026-10-26T17:20:10.622525Z",
+   "antes": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (she / do) the work?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Does she do\nTraducción, que el alumno ve al corregir: ¿Ella hace el trabajo?\nMiniteoría, que el alumno ve al corregir: $Do$ o $Does$ adelante y el verbo en forma base: $Does he read$…?",
+   "despues": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (she / do) the work?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Does she do\nTraducción, que el alumno ve al corregir: ¿Ella hace el trabajo?\nMiniteoría, que el alumno ve al corregir: Para hacer una pregunta en presente simple con $she$, usá $Does + she + verbo en forma base$. Si el verbo es $do$ («hacer»), queda $do$, sin agregar $-s$: $Does she do the work?$"
+  },
+  {
+   "id": "1ef1",
+   "quizId": "67fab6d59930102295341ef1",
+   "orden": 1488,
+   "tema": "Preguntas sí/no",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El ejercicio conserva la pregunta y la respuesta correcta de producción. La nueva miniteoría explica la regla para $we$ y la ilustra con el ejercicio después de corregir, sin anticiparle la respuesta al alumno.",
+   "problemas": [],
+   "hora": "2026-10-26T17:20:22.961730Z",
+   "antes": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (we / live) in a flat?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do we live\nTraducción, que el alumno ve al corregir: ¿Vivimos en un apartamento?\nMiniteoría, que el alumno ve al corregir: $Do$ o $Does$ adelante y el verbo en forma base: $Does he read$…?",
+   "despues": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (we / live) in a flat?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do we live\nTraducción, que el alumno ve al corregir: ¿Vivimos en un apartamento?\nMiniteoría, que el alumno ve al corregir: Para hacer una pregunta en presente simple con $we$, usá $Do + we + verbo en forma base$. El verbo $live$ queda sin cambios: $Do we live in a flat?$"
+  },
+  {
+   "id": "1ef2",
+   "quizId": "67fab6d59930102295341ef2",
+   "orden": 1489,
+   "tema": "Preguntas sí/no",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El ejercicio y la respuesta se mantienen correctos y practican preguntas con do. La nueva miniteoría explica la regla para they y la ilustra con el ejercicio; se muestra al corregir y coincide con los demás campos.",
+   "problemas": [],
+   "hora": "2026-10-26T17:20:21.074982Z",
+   "antes": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (they / play) tennis in the park?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do they play\nTraducción, que el alumno ve al corregir: ¿Juegan al tenis en el parque?\nMiniteoría, que el alumno ve al corregir: $Do$ o $Does$ adelante y el verbo en forma base: $Does he read$…?",
+   "despues": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (they / play) tennis in the park?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do they play\nTraducción, que el alumno ve al corregir: ¿Juegan al tenis en el parque?\nMiniteoría, que el alumno ve al corregir: Para hacer una pregunta en presente simple con $they$, usá $Do + they + verbo en forma base$. El verbo $play$ queda sin cambios: $Do they play tennis in the park?$"
+  },
+  {
+   "id": "1ef3",
+   "quizId": "67fab6d59930102295341ef3",
+   "orden": 1490,
+   "tema": "Preguntas sí/no",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El ejercicio conserva la pregunta y la respuesta correctas de producción. La miniteoría explica la regla para preguntar con I y la ilustra con el ejercicio; como se muestra al corregir, no anticipa la respuesta.",
+   "problemas": [],
+   "hora": "2026-10-26T17:20:21.490663Z",
+   "antes": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (I / use) a computer?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do I use\nTraducción, que el alumno ve al corregir: ¿Uso una computadora?\nMiniteoría, que el alumno ve al corregir: $Do$ o $Does$ adelante y el verbo en forma base: $Does he read$…?",
+   "despues": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (I / use) a computer?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do I use\nTraducción, que el alumno ve al corregir: ¿Uso una computadora?\nMiniteoría, que el alumno ve al corregir: Para hacer una pregunta en presente simple con $I$, usá $Do + I + verbo en forma base$. El verbo $use$ queda sin cambios: $Do I use a computer?$"
+  },
+  {
+   "id": "1ef6",
+   "quizId": "67fab6d59930102295341ef6",
+   "orden": 1491,
+   "tema": "Preguntas sí/no",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El ejercicio conserva la práctica de preguntas con «do» y todos los campos coinciden. La miniteoría explica la regla para «we» y la ejemplifica al corregir, sin anticiparle la respuesta al alumno.",
+   "problemas": [],
+   "hora": "2026-10-26T17:21:15.925812Z",
+   "antes": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (we / want) a lot of money?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do we want\nTraducción, que el alumno ve al corregir: ¿Queremos mucho dinero?\nMiniteoría, que el alumno ve al corregir: $Do$ o $Does$ adelante y el verbo en forma base: $Does he read$…?",
+   "despues": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (we / want) a lot of money?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do we want\nTraducción, que el alumno ve al corregir: ¿Queremos mucho dinero?\nMiniteoría, que el alumno ve al corregir: Para hacer una pregunta en presente simple con $we$, usá $Do + we + verbo en forma base$. Con $we$ corresponde $Do$, y el verbo $want$ queda sin cambios: $Do we want a lot of money?$"
+  },
+  {
+   "id": "1ef7",
+   "quizId": "67fab6d59930102295341ef7",
+   "orden": 1492,
+   "tema": "Preguntas sí/no",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El ejercicio conserva la pregunta, la respuesta correcta y la traducción de producción. La miniteoría explica correctamente la regla con $you$ y la aplica al ejemplo después de corregir, sin adelantarle la respuesta al alumno.",
+   "problemas": [],
+   "hora": "2026-10-26T17:21:18.396116Z",
+   "antes": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (you / buy) a lot of bread?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do you buy\nTraducción, que el alumno ve al corregir: ¿Compras mucho pan?\nMiniteoría, que el alumno ve al corregir: $Do$ o $Does$ adelante y el verbo en forma base: $Does he read$…?",
+   "despues": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (you / buy) a lot of bread?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do you buy\nTraducción, que el alumno ve al corregir: ¿Compras mucho pan?\nMiniteoría, que el alumno ve al corregir: Para hacer una pregunta en presente simple con $you$, usá $Do + you + verbo en forma base$. Con $you$ corresponde $Do$, y $buy$ queda sin cambios: $Do you buy a lot of bread?$"
+  },
+  {
+   "id": "1ef8",
+   "quizId": "67fab6d59930102295341ef8",
+   "orden": 1493,
+   "tema": "Preguntas sí/no",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El ejercicio conserva la práctica de preguntas con «do» y todos los campos coinciden. La nueva miniteoría explica correctamente la regla con «we» y muestra la solución después de corregir.",
+   "problemas": [],
+   "hora": "2026-10-26T17:21:15.007325Z",
+   "antes": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (we / drive) to school?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do we drive\nTraducción, que el alumno ve al corregir: ¿Conducimos a la escuela?\nMiniteoría, que el alumno ve al corregir: $Do$ o $Does$ adelante y el verbo en forma base: $Does he read$…?",
+   "despues": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (we / drive) to school?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do we drive\nTraducción, que el alumno ve al corregir: ¿Conducimos a la escuela?\nMiniteoría, que el alumno ve al corregir: Para hacer una pregunta en presente simple con $we$, usá $Do + we + verbo en forma base$. Con $we$ corresponde $Do$, y el verbo $drive$ queda sin cambios: $Do we drive to school?$"
+  },
+  {
+   "id": "1ef9",
+   "quizId": "67fab6d59930102295341ef9",
+   "orden": 1494,
+   "tema": "Preguntas sí/no",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El ejercicio conserva la pregunta y la respuesta correctas de producción. La miniteoría explica la regla para they y la ilustra con el ejercicio después de corregir, sin anticiparle la respuesta al alumno.",
+   "problemas": [],
+   "hora": "2026-10-26T17:21:19.825281Z",
+   "antes": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (they / learn) Italian?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do they learn\nTraducción, que el alumno ve al corregir: ¿Ellos aprenden italiano?\nMiniteoría, que el alumno ve al corregir: $Do$ o $Does$ adelante y el verbo en forma base: $Does he read$…?",
+   "despues": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (they / learn) Italian?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do they learn\nTraducción, que el alumno ve al corregir: ¿Ellos aprenden italiano?\nMiniteoría, que el alumno ve al corregir: Para hacer una pregunta en presente simple con $they$, usá $Do + they + verbo en forma base$. Con $they$ corresponde $Do$, y el verbo $learn$ queda sin cambios: $Do they learn Italian?$"
+  },
+  {
+   "id": "1efb",
+   "quizId": "67fab6d59930102295341efb",
+   "orden": 1495,
+   "tema": "Preguntas sí/no",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El ejercicio conserva la pregunta y la respuesta correcta de producción. La miniteoría explica la regla para I y la ilustra con el ejercicio; como se muestra al corregir, no anticipa la respuesta.",
+   "problemas": [],
+   "hora": "2026-10-26T17:21:30.365664Z",
+   "antes": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (I / need) a mobile?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do I need\nTraducción, que el alumno ve al corregir: ¿Necesito un móvil?\nMiniteoría, que el alumno ve al corregir: $Do$ o $Does$ adelante y el verbo en forma base: $Does he read$…?",
+   "despues": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (I / need) a mobile?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do I need\nTraducción, que el alumno ve al corregir: ¿Necesito un móvil?\nMiniteoría, que el alumno ve al corregir: Para hacer una pregunta en presente simple con $I$, usá $Do + I + verbo en forma base$. Con $I$ corresponde $Do$, y el verbo $need$ queda sin cambios: $Do I need a mobile?$"
+  },
+  {
+   "id": "1efd",
+   "quizId": "67fab6d59930102295341efd",
+   "orden": 1496,
+   "tema": "Preguntas sí/no",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "La miniteoría mantiene la regla general para preguntas con I y la ilustra con el ejercicio después de corregir. No se perdió contenido respecto de producción y todos los campos coinciden.",
+   "problemas": [],
+   "hora": "2026-10-26T17:21:28.640202Z",
+   "antes": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (I / talk) too much?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do I talk\nTraducción, que el alumno ve al corregir: ¿Hablo demasiado?\nMiniteoría, que el alumno ve al corregir: $Do$ o $Does$ adelante y el verbo en forma base: $Does he read$…?",
+   "despues": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (I / talk) too much?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Do I talk\nTraducción, que el alumno ve al corregir: ¿Hablo demasiado?\nMiniteoría, que el alumno ve al corregir: Para hacer una pregunta en presente simple con $I$, usá $Do + I + verbo en forma base$. Con $I$ corresponde $Do$, y el verbo $talk$ queda sin cambios: $Do I talk too much?$"
+  },
+  {
+   "id": "1efe",
+   "quizId": "67fab6d59930102295341efe",
+   "orden": 1497,
+   "tema": "Preguntas sí/no",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El ejercicio conserva la pregunta y la respuesta correcta de producción. La miniteoría explica correctamente el uso de Does con she y el verbo en forma base; se muestra al corregir y coincide con los demás campos.",
+   "problemas": [],
+   "hora": "2026-10-26T17:22:12.815425Z",
+   "antes": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (she / like) coffee?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Does she like\nTraducción, que el alumno ve al corregir: ¿A ella le gusta el café?\nMiniteoría, que el alumno ve al corregir: $Do$ o $Does$ adelante y el verbo en forma base: $Does he read$…?",
+   "despues": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: ___ (she / like) coffee?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: Does she like\nTraducción, que el alumno ve al corregir: ¿A ella le gusta el café?\nMiniteoría, que el alumno ve al corregir: Para hacer una pregunta en presente simple con $she$, usá $Does + she + verbo en forma base$. Con $she$ corresponde $Does$, y $like$ queda sin agregar $-s$: $Does she like coffee?$"
+  },
+  {
+   "id": "1f12",
+   "quizId": "67fab6d59930102295341f12",
+   "orden": 1498,
+   "tema": "Preguntas $wh$ con verbos",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El ejercicio conserva la pregunta, la respuesta correcta y la traducción de producción. La nueva miniteoría explica correctamente la elección entre do y does según el sujeto y sigue siendo una regla general.",
+   "problemas": [],
+   "hora": "2026-10-26T17:22:11.446181Z",
+   "antes": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: Where ___ (do / does) you live?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: do\nTraducción, que el alumno ve al corregir: ¿Dónde vives?\nMiniteoría, que el alumno ve al corregir: wh- + $do$ / $does$ + sujeto + verbo base: $Where does she live$?",
+   "despues": "Consigna del ejercicio: Formula preguntas en presente simple.\nEjercicio, como lo ve el alumno antes de contestar: Where ___ (do / does) you live?\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: do\nTraducción, que el alumno ve al corregir: ¿Dónde vives?\nMiniteoría, que el alumno ve al corregir: Usá $do$ con $I$, $you$, $we$ y $they$. Usá $does$ con $he$, $she$ e $it$."
+  },
+  {
+   "id": "1f27",
+   "quizId": "67fab6d59930102295341f27",
+   "orden": 1499,
+   "tema": "Cambios al final",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El ejercicio conserva la práctica de agregar -es a watch con he y todos los campos coinciden. La miniteoría ahora se concentra en el caso que se practica y sigue explicando una regla general.",
+   "problemas": [],
+   "hora": "2026-10-26T17:22:11.580519Z",
+   "antes": "Consigna del ejercicio: Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!\nEjercicio, como lo ve el alumno antes de contestar: He ___ (watch) TV.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: watches\nTraducción, que el alumno ve al corregir: Él mira la televisión.\nMiniteoría, que el alumno ve al corregir: Consonante + y → $-ies$. Termina en s, sh, ch, x, o → $-es$. El resto, $-s$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!\nEjercicio, como lo ve el alumno antes de contestar: He ___ (watch) TV.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: watches\nTraducción, que el alumno ve al corregir: Él mira la televisión.\nMiniteoría, que el alumno ve al corregir: Con he, she, it, los verbos que terminan en ch agregan $-es$ en presente simple: watch → watches."
+  },
+  {
+   "id": "1f28",
+   "quizId": "67fab6d59930102295341f28",
+   "orden": 1500,
+   "tema": "Cambios al final",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El ejercicio conserva la práctica del cambio de consonante + y a -ies y la respuesta correcta. La nueva miniteoría explica la regla pertinente y coincide con la oración y la traducción.",
+   "problemas": [],
+   "hora": "2026-10-26T17:22:11.732472Z",
+   "antes": "Consigna del ejercicio: Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!\nEjercicio, como lo ve el alumno antes de contestar: The student ___ (study) hard.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: studies\nTraducción, que el alumno ve al corregir: El estudiante estudia mucho.\nMiniteoría, que el alumno ve al corregir: Consonante + y → $-ies$. Termina en s, sh, ch, x, o → $-es$. El resto, $-s$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!\nEjercicio, como lo ve el alumno antes de contestar: The student ___ (study) hard.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: studies\nTraducción, que el alumno ve al corregir: El estudiante estudia mucho.\nMiniteoría, que el alumno ve al corregir: Con he, she, it, si el verbo termina en consonante + y, cambiamos la y por $-ies$ en presente simple: study → studies."
+  },
+  {
+   "id": "1f29",
+   "quizId": "67fab6d59930102295341f29",
+   "orden": 1501,
+   "tema": "Cambios al final",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El ejercicio conserva la práctica de agregar -es a wash en tercera persona singular. La nueva miniteoría explica la regla aplicable y coincide con la respuesta y la traducción.",
+   "problemas": [],
+   "hora": "2026-10-26T17:22:21.327528Z",
+   "antes": "Consigna del ejercicio: Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!\nEjercicio, como lo ve el alumno antes de contestar: The man ___ (wash) the car.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: washes\nTraducción, que el alumno ve al corregir: El hombre lava el coche.\nMiniteoría, que el alumno ve al corregir: Consonante + y → $-ies$. Termina en s, sh, ch, x, o → $-es$. El resto, $-s$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!\nEjercicio, como lo ve el alumno antes de contestar: The man ___ (wash) the car.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: washes\nTraducción, que el alumno ve al corregir: El hombre lava el coche.\nMiniteoría, que el alumno ve al corregir: Con he, she, it, los verbos que terminan en sh agregan $-es$ en presente simple: wash → washes."
+  },
+  {
+   "id": "1f2a",
+   "quizId": "67fab6d59930102295341f2a",
+   "orden": 1502,
+   "tema": "Cambios al final",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El ejercicio conserva la práctica de agregar -es a wash y la respuesta coincide con la traducción. La miniteoría ahora explicita la tercera persona y mantiene una regla general correcta, ilustrada con el ejercicio.",
+   "problemas": [],
+   "hora": "2026-10-26T17:22:19.442212Z",
+   "antes": "Consigna del ejercicio: Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!\nEjercicio, como lo ve el alumno antes de contestar: My mom ___ (wash) her arm.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: washes\nTraducción, que el alumno ve al corregir: Mi mamá lava su brazo.\nMiniteoría, que el alumno ve al corregir: Consonante + y → $-ies$. Termina en s, sh, ch, x, o → $-es$. El resto, $-s$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!\nEjercicio, como lo ve el alumno antes de contestar: My mom ___ (wash) her arm.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: washes\nTraducción, que el alumno ve al corregir: Mi mamá lava su brazo.\nMiniteoría, que el alumno ve al corregir: Con he, she, it, los verbos que terminan en sh agregan $-es$ en presente simple: wash → washes. My mom equivale a she."
+  },
+  {
+   "id": "1f2b",
+   "quizId": "67fab6d59930102295341f2b",
+   "orden": 1503,
+   "tema": "Cambios al final",
+   "estado": "MARKED",
+   "marca": "bien",
+   "razon": "El ejercicio conserva la práctica de agregar -es a teach con he. La miniteoría ahora explica ese caso con precisión y coincide con la respuesta aceptada y la traducción.",
+   "problemas": [],
+   "hora": "2026-10-26T17:22:19.769683Z",
+   "antes": "Consigna del ejercicio: Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!\nEjercicio, como lo ve el alumno antes de contestar: He ___ (teach) his wife.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: teaches\nTraducción, que el alumno ve al corregir: Él le enseña a su esposa.\nMiniteoría, que el alumno ve al corregir: Consonante + y → $-ies$. Termina en s, sh, ch, x, o → $-es$. El resto, $-s$.",
+   "despues": "Consigna del ejercicio: Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!\nEjercicio, como lo ve el alumno antes de contestar: He ___ (teach) his wife.\nOpciones que ve el alumno: (no es de opción múltiple)\nRespuestas que acepta el corrector: Hueco 1: teaches\nTraducción, que el alumno ve al corregir: Él le enseña a su esposa.\nMiniteoría, que el alumno ve al corregir: Con he, she, it, los verbos que terminan en ch agregan $-es$ en presente simple: teach → teaches."
+  }
+ ]
+}

@@ -1,0 +1,92 @@
+<style>
+  .tw td i{font-family:ui-serif,Georgia,serif}
+  .tw.casos td{font-size:12.5px;line-height:1.45;min-width:150px}
+  .tw.casos td:first-child{min-width:70px}
+  .tw .cambio{background:var(--accent-soft);border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  details.grupo{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev);margin:10px 0 0}
+  details.grupo>summary{cursor:pointer;padding:10px 14px;font-size:14px;line-height:1.4;list-style-position:inside}
+  details.grupo>summary span{color:var(--fg-3);font-size:13px;margin-left:6px}
+  details.grupo .tw{margin:0;border:0;border-top:1px solid var(--line);border-radius:0 0 var(--radius) var(--radius)}
+  .ex .ft b{color:var(--fg-2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">
+      <span class="num">229</span>
+      <span class="badge">Resumen · Revisor</span>
+      <span class="meta">A1 · C2 · 26/10/2026</span>
+    </div>
+    <h1>De 44 marcas, 20 son reales y 24 falsas alarmas</h1>
+    <p class="sub">Las 100 marcas que pediste desde Correcciones, leídas una por una.</p>
+  </header>
+
+  <div class="lede"><p><strong>Las 100 marcas tardaron 18 minutos.</strong> De las 44 marcadas, 20 son defectos reales; casi todo el resto sale de dos cosas que el revisor no sabe: conviene enseñárselas antes de pedir las {{FALTAN}}.</p></div>
+
+  <section>
+    <h2>Lo que marcó, y lo que leo yo</h2>
+    <div class="kpis">
+      <div class="kpi"><div class="n">100</div><div class="l">marcas en 18 minutos, sin esperas; las {{FALTAN}} que faltan, unas 4 horas</div></div>
+      <div class="kpi"><div class="n">{{MAL}} · {{DUDOSO}} · {{BIEN}}</div><div class="l">mal, dudoso y bien, según el revisor</div></div>
+      <div class="kpi dest"><div class="n">{{REALES}} de {{MARCADOS}}</div><div class="l">marcas que señalan algo real: {{CORRIGE}} los dejó la corrección y {{HEREDA}} ya estaban</div></div>
+      <div class="kpi"><div class="n">{{BIEN_OK}} de {{BIEN}}</div><div class="l">«bien» que comparto; los otros 2 son leves</div></div>
+    </div>
+    <div class="hb fijo" style="margin-top:16px">
+      <div class="r"><div class="t">Los dejó la corrección<small>regala, enseña algo falso o perdió lo que practica</small></div><div class="tr"><div class="f b" style="width:{{CORRIGE_PCT}}%"></div></div><div class="n">{{CORRIGE}}</div></div>
+      <div class="r"><div class="t">Ya estaban en producción<small>la corrección no los tocó</small></div><div class="tr"><div class="f w" style="width:{{HEREDA_PCT}}%"></div></div><div class="n">{{HEREDA}}</div></div>
+      <div class="r"><div class="t">Falsas alarmas<small>21 por la consigna del tema, 3 por «It» sin referente</small></div><div class="tr"><div class="f s" style="width:{{FALSAS_PCT}}%"></div></div><div class="n">{{FALSAS}}</div></div>
+    </div>
+    <p class="pie">Los 44 que marcó mal o dudoso, ejercicio por ejercicio. Costó 100 consultas por suscripción.</p>
+  </section>
+
+  <section>
+    <h2>El ruido sale de dos cosas que no sabe</h2>
+    <div class="par">
+      <div class="ex">
+        <div class="rotulo">1 · Cree que el corrector rechaza «is»</div>
+        <div class="cons"><b>25ad</b> · Be: preguntas yes / no · acepta «'s»</div>
+        <div class="en">She <span class="gap"></span> (be) at the store.</div>
+        <div class="ans">El revisor: «sólo acepta la contracción y rechaza <i>is</i>». <b>No es así:</b> desde el 30/9 el corrector acepta las dos formas, y lo prueba con «She ___ (be) a doctor».</div>
+        <div class="ft"><span><b>5 de los 7 «mal»</b> bajan a dudoso</span><span>ittm #1191</span></div>
+      </div>
+      <div class="ex">
+        <div class="rotulo">2 · Cree que el alumno ve la consigna del tema</div>
+        <div class="cons"><b>1e74</b> · Negativas con be · Elige la forma negativa</div>
+        <div class="en">She <span class="gap"></span> my sister. <small>am not / are not / is not</small></div>
+        <div class="ans">El revisor: «pide elegir, aunque la consigna del tema pide escribir una oración». <b>El alumno no la ve:</b> la app muestra sólo la del ejercicio.</div>
+        <div class="ft"><span><b>21 de los 37 «dudoso»</b> son falsas alarmas</span><span>y dice «sin contracciones»</span></div>
+      </div>
+    </div>
+    <p class="pie">Revisé además los 420 cambios que sacaron «Usa short forms»: con el corrector del 30/9, ninguno rechaza una respuesta buena.</p>
+    <div class="call c-warn"><b>Lo que no sé.</b> No encontré la consigna del tema en la app ni en el servidor; si el alumno la ve en otro lado, esos 21 vuelven a contar.</div>
+  </section>
+
+  <section>
+    <h2>Cada marca, con el ejercicio entero</h2>
+{{CASOS}}
+    <p class="pie">Resaltado, lo que cambió respecto de producción. Abierto, lo que dejó la corrección; el resto se abre con un clic.</p>
+  </section>
+
+  <section>
+    <h2>Terminó bien, pero el tablero decía «falló»</h2>
+    <figure class="captura"><img src="229-las-100-marcas/ejecuciones.jpg" alt="Ejecuciones con la corrida de marcas: terminó bien, 100 de hasta 100 consultas, 18 minutos">
+      <figcaption>Ejecuciones en el 7800, ya arreglado: «Terminó bien», 100 de hasta 100 consultas.</figcaption></figure>
+    <p class="pie">Al cerrarla leía las últimas 20 líneas de una respuesta de 1,9 MB. Ahora lee el registro entero; está subido y el 7800, reiniciado.</p>
+    <div class="call c-warn"><b>Sin tocar.</b> Corriendo, la franja decía «0 de hasta 100» con marcas ya a la vista; el diálogo avisó «se está lanzando otra corrida» por la suya.</div>
+  </section>
+
+  <section>
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask"><span class="q">1 · ¿Le enseño al revisor esas dos cosas antes de pedir las {{FALTAN}}?</span><div class="ops"><span class="op rec">Sí, primero eso · recomendado</span><span class="op">Pedirlas así</span></div><span class="why">Cambia su versión: las 151 marcas pasan a «de antes». Recalibrar y volver a marcar estas 100 son unas 150 consultas.</span></div>
+      <div class="ask"><span class="q">2 · ¿Lo heredado cuenta como «dudoso»?</span><div class="ops"><span class="op rec">Sí, marcado como heredado y aparte · recomendado</span><span class="op">No, sólo lo que trajo el cambio</span></div><span class="why">Abierta desde el brief 227; hoy son 8 de 44. Se sabe sin preguntarle al modelo: el fragmento está igual en los dos lados.</span></div>
+    </div>
+  </section>
+
+  <footer class="pie">Brief 229 · corrida ui-2026-10-26T17-04-23.735583Z-batch-mark · change-reviewer 6f899ccf · ittm 4a61061fe (F-MARCA-R008) · corrector ittm #1191 · knowledge.instructions sin uso en be/ ni mobile/ · analysis/revisor-2026-10-26 (primeras100.py, forma_corta.py).</footer>
+</div>
+
+</body>
+</html>
