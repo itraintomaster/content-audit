@@ -500,6 +500,49 @@ class QuizCorrectionServiceTest {
         assertEquals(before, batch.getAnalyzers() == null ? List.of() : batch.getAnalyzers(), "the batch keeps its analyzers");
     }
 
+    @Tag("F-MESA-R026")
+    @Test void anExerciseWhoseOnlyProblemIsTheSentenceProductionKeepsWaitsForPublishingWithoutATask() {
+        // F-MESA-R026: «Does he need water? Yes, he ___ .» has its tree right and production keeps «He does.»; no
+        // correction changes production, so the exercise is not corrected: it says that only publishing is missing.
+        Finding production = production(sibling);
+        sourceTasks.add(TandaFixture.task("production", production, knowledge, CefrLevel.A1));
+        report = TandaFixture.report(course, List.of(instruction, translation, production), Map.of(), List.of());
+
+        State state = service.execute(estimate(List.of(sibling), false));
+
+        var row = state.quizzes().stream().filter(q -> q.quizId().equals(sibling)).findFirst().orElseThrow();
+        assertFalse(row.correctable());
+        assertTrue(row.reason().contains("Sólo falta publicar"), row.reason());
+        assertEquals(List.of(production), row.findings(), "it stays visible");
+        assertFalse(state.allowed());
+        verifyNoInteractions(panels, runner);
+    }
+
+    @Tag("F-MESA-R026")
+    @Test void theSentenceProductionKeepsIsNotATaskNorContextOfAnExerciseWithAnotherProblem() {
+        // F-MESA-R026: the exercise is corrected for its instructions and its translation; the sentence production keeps
+        // follows it when it is published.
+        Finding production = production(quiz);
+        sourceTasks.add(TandaFixture.task("production", production, knowledge, CefrLevel.A1));
+        report = TandaFixture.report(course, List.of(instruction, translation, production), Map.of(), List.of());
+
+        State estimate = service.execute(estimate(List.of(quiz), false));
+        service.execute(correct(estimate, List.of(quiz), false));
+
+        var fresh = savedPlans.get(batch.getPlanId()).getTasks().subList(1, savedPlans.get(batch.getPlanId()).getTasks().size());
+        assertEquals(Set.of("quiz-instruction", "translation-sense"), fresh.stream()
+                .map(t -> t.getOrigin().getFinding().getAnalyzer()).collect(java.util.stream.Collectors.toSet()));
+        assertFalse(DefaultQuizCorrectionService.contextFindings(report, sourceTasks.get(0)).contains(production));
+    }
+
+    private static Finding production(String id) {
+        return new Finding("data-coherence", "saved-sentence", new FindingNodeRef(AuditTarget.QUIZ, id, id),
+                FindingSeverity.MEDIUM, new FindingEvidence(List.of(new EvidencePart("Oración guardada (producción)",
+                        "Does he need water? He does.")), "oración guardada (producción) distinta de la de hoy", List.of()),
+                FindingResolution.RULE, null, new FindingIdentity("data-coherence|saved-sentence|" + id + "|produccion",
+                        "produccion"));
+    }
+
     private static AnalyzerDescriptor card(String name, AnalysisCost cost) {
         AnalyzerDescriptor card = mock(AnalyzerDescriptor.class);
         when(card.getName()).thenReturn(name);

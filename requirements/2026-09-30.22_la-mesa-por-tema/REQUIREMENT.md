@@ -499,12 +499,14 @@ En lo publicado (la copia del 29/9) hay 699 ejercicios con palabras de vos: 231 
 ### Rule[F-MESA-R026] - La oración que guarda producción sigue al ejercicio
 **Severity**: major | **Validation**: ASSUMPTION
 
-> La tarea de la oración guardada en la copia de producción ([F-DATOS-R001](#F-DATOS-R001)) se resuelve con el candidato
-> que la mesa acepta si la oración guardada del propio ejercicio está bien en él: al publicarse, el candidato lleva esa
-> oración a producción. Invariantes:
-> 1. esa tarea no hace mejor a un candidato: uno que sólo la «resuelve» no se acepta, y el ejercicio que no tiene otra
->    cosa que arreglar espera a que se publique;
-> 2. si el candidato deja marcada la oración guardada del ejercicio, la de producción sigue abierta.
+> La oración guardada en la copia de producción ([F-DATOS-R001](#F-DATOS-R001)) la cambia publicar, no la corrección.
+> Invariantes:
+> 1. volver a corregir no hace una tarea de ella ni se la pasa como contexto a quien propone; el ejercicio que no tiene
+>    otro problema no se corrige y dice que sólo falta publicar, y el hallazgo sigue a la vista;
+> 2. cuando una tanda ya la tiene como tarea, se resuelve con el candidato que la mesa acepta si la oración guardada del
+>    propio ejercicio está bien en él: al publicarse, el candidato lleva esa oración a producción;
+> 3. esa tarea no hace mejor a un candidato: uno que sólo la «resuelve» no se acepta;
+> 4. si el candidato deja marcada la oración guardada del ejercicio, la de producción sigue abierta.
 
 La copia de producción no cambia hasta publicar, así que su hallazgo sigue en cada candidato. El 26/10 «She drinks
 coffee in the morning. (sometimes) ___» (`…2578`, A1) guardaba «She drinks coffee in the morning. She sometimes drinks
@@ -513,7 +515,9 @@ morning.», y la mesa gastó dos intentos más buscando arreglar lo que sólo ar
 lo había resuelto. Es lo que ya hacen las compuertas, que la cuentan como pendiente y no como error nuevo
 ([F-NOEMP-R004](#F-NOEMP-R004)). En la prueba ancha de esa noche, «Does he need water? Yes, he ___ .» (`…1f57`) tenía
 bien la oración del árbol desde la primera corrección y la vieja en producción: el candidato que arregló la miniteoría
-no la resolvía y la mesa gastó dos intentos más. Por eso alcanza con que la del árbol esté bien en el candidato.
+no la resolvía y la mesa gastó dos intentos más. Por eso alcanza con que la del árbol esté bien en el candidato. En
+la C2, 19 de los ejercicios corregibles no tenían otro problema que ése: cada uno habría ido a la mesa a gastar tres
+intentos sin que ninguno pudiera aceptarse.
 
 **Fuente**: prueba del 26/10/2026 con tres ejercicios de A1 y prueba ancha de la misma noche.
 

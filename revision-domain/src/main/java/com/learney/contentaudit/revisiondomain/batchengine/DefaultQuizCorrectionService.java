@@ -324,7 +324,8 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
         AuditReport report = withInstantAnalyzersTheBatchLacks(batch, current,
                 measured != null ? measured : config.getCurrentAnalysisService().report(batch, "correction", current));
         RefinementPlan plan = config.getRefinerEngine().plan(report, "current-quiz-correction");
-        List<RefinementTask> tasks = safe(plan.getTasks());
+        // F-MESA-R026: the sentence production keeps changes by publishing, so no correction is a task for it.
+        List<RefinementTask> tasks = safe(plan.getTasks()).stream().filter(t -> !waitsForPublishing(t)).toList();
         Map<String, DidacticReference> references = DidacticReferences.resolve(batch, sourceOperationId, selected,
                 restoreRequestFormula, config.getBatchStore(), ledger, courseFingerprint);
         Set<String> repairs = new LinkedHashSet<>();
@@ -358,7 +359,10 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
                 } else if (findings.isEmpty()) continue;
             }
             String reason = null;
-            if (reached.isEmpty() && !repairs.contains(id) && !noWork.containsKey(id)) reason = "Estos problemas sólo tienen una opinión; todavía no hay una tarea con alcance de corrección declarado.";
+            if (reached.isEmpty() && !repairs.contains(id) && !noWork.containsKey(id)) reason = findings.values().stream()
+                    .noneMatch(this::problem) && findings.values().stream().anyMatch(DefaultQuizCorrectionService::waitsForPublishing)
+                    ? "Sólo falta publicar: producción guarda la oración de antes y la actualiza al publicar."
+                    : "Estos problemas sólo tienen una opinión; todavía no hay una tarea con alcance de corrección declarado.";
             for (var finding : findings.values()) {
                 if (!problem(finding)) continue; // Context, never an edit permission or a resolution requirement.
                 boolean covered = reached.stream().anyMatch(t -> findings(t).stream().anyMatch(f -> key(f).equals(key(finding))));
@@ -535,7 +539,21 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
                     && (ancestor == node || applies(finding, task.getNodeId()) || findings(task).stream().anyMatch(f -> key(f).equals(key(finding)))))
                 all.putIfAbsent(key(finding), finding);
         for (Finding finding : findings(task)) if (finding != null) all.putIfAbsent(key(finding), finding);
-        return all.values().stream().filter(f -> !com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceStage.isAudioFinding(f)).toList();
+        return all.values().stream().filter(f -> !com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceStage.isAudioFinding(f)
+                && !waitsForPublishing(f)).toList();
+    }
+    /** F-MESA-R026: the sentence production keeps, which only publishing changes: the mark {@code produccion}. */
+    static boolean waitsForPublishing(Finding finding) {
+        String marker = finding == null || finding.getIdentity() == null ? null : finding.getIdentity().getMarker();
+        return "data-coherence".equals(finding == null ? null : finding.getAnalyzer()) && "saved-sentence".equals(finding.getRule())
+                && marker != null && (marker.equals("produccion") || marker.startsWith("produccion ("));
+    }
+    private static boolean waitsForPublishing(RefinementTask task) {
+        if (task.getOrigin() == null || task.getOrigin().getFinding() == null) return false;
+        var all = new ArrayList<Finding>(List.of(task.getOrigin().getFinding()));
+        all.addAll(safe(task.getOrigin().getCoveredFindings()));
+        return all.stream().allMatch(f -> waitsForPublishing(f)
+                || com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceStage.isAudioFinding(f));
     }
     private static List<Finding> findings(RefinementTask task) {
         if (task.getOrigin() == null) return List.of();
@@ -544,7 +562,7 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
         result.addAll(safe(task.getOrigin().getCoveredFindings())); return result.stream().filter(f -> !com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceStage.isAudioFinding(f)).toList();
     }
     private boolean problem(Finding finding) {
-        if (finding == null || finding.getResolution() == FindingResolution.RANK_ONLY) return false;
+        if (finding == null || finding.getResolution() == FindingResolution.RANK_ONLY || waitsForPublishing(finding)) return false;
         // Some judges request independent PANEL review without defining a rewrite task.
         // Their explicit context declaration keeps the observation visible to the proposer;
         // it neither grants edit permission nor certifies that observation as resolved.
