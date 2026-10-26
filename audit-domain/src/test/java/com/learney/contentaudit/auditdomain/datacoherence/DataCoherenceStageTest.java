@@ -58,8 +58,8 @@ class DataCoherenceStageTest {
         var copies = new DataCoherenceAnalyzerTest.Copies();
         var content = provider(copies, DataCoherenceStage.CONTENT);
         var prepub = provider(copies, DataCoherenceStage.PREPUBLICATION);
-        assertEquals(List.of("saved-sentence", "no-slash"), content.describe().getRules().stream().map(r -> r.getId()).toList());
-        assertEquals(4, prepub.describe().getRules().size());
+        assertEquals(List.of("saved-sentence", "no-slash", "answer-translation"), content.describe().getRules().stream().map(r -> r.getId()).toList());
+        assertEquals(5, prepub.describe().getRules().size());
         assertNotEquals(new DefaultAnalyzerCatalog(List.of(content)).measure("data-coherence").orElseThrow().getFingerprint(),
                 new DefaultAnalyzerCatalog(List.of(prepub)).measure("data-coherence").orElseThrow().getFingerprint());
         assertEquals("PREPUBLICATION", prepub.config().orElseThrow().describe().get("stage"));

@@ -105,6 +105,23 @@ public class FDatosJ001JourneyTest {
         assertEquals(1.0, cats.getScores().get("data-coherence"));
     }
 
+    @Test
+    @Order(6)
+    @Tag("path-6")
+    @DisplayName("path-6: El operador corre analyze pidiendo só... → El informe compara, en cada ejercicio... → Hallazgo media para la mesa, con la t... [La traducción de una transformación traduce también la oración de partida] → success")
+    public void path6_laTraduccinDeUnaTransformacinTraduceTambinLaOracinDePartida_success() {
+        // correr → comparar → traduccion: «Play the radio. Polite: ___» (…2dd6, A1) translates the sentence to transform
+        // too: medium for the panel, with the translation and what the student writes as evidence (R006).
+        AuditNode root = DataCoherenceAnalyzerTest.engine(new DataCoherenceAnalyzerTest.Copies()
+                .recording("A1.10.02.09", "Could you play the radio?"),
+                List.of(DataCoherenceAnalyzerTest.playTheRadio("Pon la radio. Amable: ¿Podrías poner la radio?")));
+        Finding translation = only(quiz(root, "67fab6d59930102295342dd6"));
+        assertEquals("answer-translation", translation.getRule());
+        assertEquals(FindingSeverity.MEDIUM, translation.getSeverity());
+        assertEquals(FindingResolution.PANEL, translation.getResolution());
+        assertEquals("Could you play the radio?", part(translation, "Lo que escribe el alumno"));
+    }
+
     private static AuditNode quiz(AuditNode node, String id) {
         if (node.getEntity() != null && id.equals(node.getEntity().getId())) {
             return node;

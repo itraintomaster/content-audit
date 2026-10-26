@@ -16,6 +16,7 @@ import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentenceToTransform;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
 import java.text.Normalizer;
@@ -38,7 +39,8 @@ import javax.annotation.processing.Generated;
  * <ul>
  *   <li>R001: the saved sentence of the tree and the one of the production copy are the exercise
  *       built with its first answer, compared as the corrector -- in a rewriting topic, the answer
- *       alone or the whole exercise (DOUBT-DATOS-718, A). Medium, rebuilt by rule.</li>
+ *       alone or the whole exercise (DOUBT-DATOS-718, A), but in a transformation, in which the student
+ *       writes again the sentence before the gap, the answer alone (José, 25/10). Medium, rebuilt by rule.</li>
  *   <li>R002: no accepted answer has «/» (blocking, «/» becomes «|») and the recorded text does not
  *       read one (medium, recorded again with today's text).</li>
  *   <li>R003: the recorded text says one of the texts the exercise says today, by the rule of the
@@ -48,6 +50,8 @@ import javax.annotation.processing.Generated;
  *   <li>R004: every exercise has an audio key of its own whose recording the registry knows. Low,
  *       recorded by rule. A shared key is only seen with the whole course, so it is marked in
  *       {@link #onCourseComplete}, which the engine calls before aggregating.</li>
+ *   <li>R006: the translation of a transformation translates the answer alone, not the sentence to
+ *       transform too: it has no more sentences than the answer. Medium, for the panel.</li>
  * </ul>
  * Every mismatch names the copy that is wrong; with one the exercise scores 0, with none 1.
  */
@@ -75,6 +79,15 @@ class DataCoherenceAnalyzer implements ContentAnalyzer {
 
     /** R004: every exercise has an audio of its own whose text is known. */
     static final String RULE_AUDIO_KNOWN = "audio-known";
+
+    /** R006: the translation of a transformation translates the answer alone. */
+    static final String RULE_ANSWER_TRANSLATION = "answer-translation";
+
+    /** The end of a sentence: its mark, before a space or the end. */
+    private static final Pattern SENTENCE_END = Pattern.compile("[.?!…]+(?=\\s|$)");
+
+    /** The period of a title, which does not end the sentence: «el Sr. Smith». */
+    private static final Pattern TITLE = Pattern.compile("\\b(Sr|Sra|Srta|Dr|Dra|Ud|Uds|Mr|Mrs|Ms|St)\\.");
 
     private static final Pattern NOT_A_LETTER = Pattern.compile("[^a-z0-9]");
 
@@ -144,17 +157,30 @@ class DataCoherenceAnalyzer implements ContentAnalyzer {
         // answer alone or the whole exercise, whatever the topic (DOUBT-DATOS-718, A): a rewrite
         // saved as its answer alone is not a difference. With «/» in an answer the sentence is
         // rebuilt anyway once the slash becomes «|», so it is not counted twice.
+        // A transformation keeps the answer alone (José, 25/10): «Mary is at home. Mary is always at home.» is the
+        // sentence to transform glued to it.
+        boolean transformation = quiz.getMultipleChoice() == null && SentenceToTransform.rewritten(quiz.getSentenceParts());
         List<String> built = new ArrayList<>();
-        addIfPresent(built, studentViewRenderer.finishedSentence(quiz, mode));
-        addIfPresent(built, studentViewRenderer.finishedSentence(quiz, SentenceMode.FILL));
-        addIfPresent(built, studentViewRenderer.finishedSentence(quiz, SentenceMode.REWRITE));
-        if (!built.isEmpty() && issues.isEmpty()) {
-            addIfPresent(built, firstAnswer(quiz));
+        if (!transformation) {
+            addIfPresent(built, studentViewRenderer.finishedSentence(quiz, mode));
+            addIfPresent(built, studentViewRenderer.finishedSentence(quiz, SentenceMode.FILL));
+            addIfPresent(built, studentViewRenderer.finishedSentence(quiz, SentenceMode.REWRITE));
+        }
+        if ((transformation || !built.isEmpty()) && issues.isEmpty()) {
+            addIfPresent(built, transformation ? SentenceToTransform.answer(quiz.getSentenceParts()) : firstAnswer(quiz));
             savedSentence(firstOf(quiz.getSentences()), built, ExerciseCopy.TREE_SENTENCE, issues);
             Optional<List<String>> production = productionSentences != null
                     ? productionSentences.savedSentences(quiz.getId()) : Optional.empty();
             production.ifPresent(sentences ->
                     savedSentence(firstOf(sentences), built, ExerciseCopy.PRODUCTION_SENTENCE, issues));
+        }
+
+        // R006: the translation of a transformation says what the student writes, not the sentence to transform too.
+        String answer = transformation ? SentenceToTransform.answer(quiz.getSentenceParts()) : null;
+        if (answer != null && !answer.isEmpty() && quiz.getTranslation() != null
+                && sentences(quiz.getTranslation()) > sentences(answer)) {
+            issues.add(new CopyMismatch(RULE_ANSWER_TRANSLATION, CopyMismatchKind.TRANSLATION_OF_SOURCE,
+                    ExerciseCopy.TRANSLATION, answer, quiz.getTranslation()));
         }
 
         // R004 (no key, unknown recording), R002.2 and R003 over the recorded text.
@@ -359,6 +385,15 @@ class DataCoherenceAnalyzer implements ContentAnalyzer {
                     observation = which + ": \"" + there + "\"; hoy: \"" + today + "\". Se vuelve a armar desde las"
                             + " partes.";
                 }
+                case TRANSLATION_OF_SOURCE -> {
+                    examined.add(new EvidencePart("Traducción", there));
+                    examined.add(new EvidencePart("Lo que escribe el alumno", today));
+                    severity = FindingSeverity.MEDIUM;
+                    resolution = FindingResolution.PANEL;
+                    marker = "traduccion";
+                    observation = "la traducción \"" + there + "\" traduce también la oración de partida; traduce sólo"
+                            + " lo que escribe el alumno: \"" + today + "\".";
+                }
                 case SLASH_IN_ANSWER -> {
                     examined.add(new EvidencePart("Respuesta", there));
                     examined.add(new EvidencePart("Con «|»", today));
@@ -445,6 +480,19 @@ class DataCoherenceAnalyzer implements ContentAnalyzer {
             }
         }
         return null;
+    }
+
+    /** How many sentences the text has: one per end mark before a space or the end, not a title's, at least one. */
+    static int sentences(String text) {
+        if (text == null || text.isBlank()) {
+            return 0;
+        }
+        int count = 0;
+        java.util.regex.Matcher matcher = SENTENCE_END.matcher(TITLE.matcher(text.strip()).replaceAll("$1"));
+        while (matcher.find()) {
+            count++;
+        }
+        return Math.max(count, 1);
     }
 
     private static void addIfPresent(List<String> list, String text) {

@@ -7,7 +7,10 @@ import com.learney.contentaudit.coursedomain.QuizTemplateEntities;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.SentenceToTransform;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 /** Rebuilds the canonical stored sentence after a revision changes what the student completes. */
@@ -29,10 +32,13 @@ public final class StoredSentenceRehydrator {
             return List.of();
         }
         String correctOption = correctOption(quiz);
-        boolean answerAlone = correctOption == null && SentenceToTransform.given(quiz);
+        if (correctOption == null && SentenceToTransform.given(quiz)) {
+            String answer = SentenceToTransform.answer(quiz.getForm().getSentenceParts());
+            return answer.isEmpty() ? List.of() : List.of(answer);
+        }
         StringBuilder sentence = new StringBuilder();
         for (SentencePartEntity part : quiz.getForm().getSentenceParts()) {
-            if (part == null || answerAlone && part.getKind() != SentencePartKind.CLOZE) {
+            if (part == null) {
                 continue;
             }
             String fragment = null;
@@ -48,6 +54,21 @@ public final class StoredSentenceRehydrator {
         String canonical = sentence.toString().replaceAll("\\s+", " ")
                 .replaceAll("\\s+([,.;:?!])", "$1").strip();
         return canonical.isEmpty() ? List.of() : List.of(canonical);
+    }
+
+    /**
+     * F-DATOS-R001: the stored sentence a transformation should keep instead of the one it has, when the one it has is
+     * not its answer alone -- the sentence to transform glued before it, «Mary is at home. Mary is always at home.» for
+     * «Mary is always at home.». Empty when it is not a transformation, has no stored sentence or keeps it right.
+     */
+    public static Optional<List<String>> answerAloneInsteadOf(QuizTemplateEntity quiz) {
+        if (quiz == null || quiz.getSentences() == null || quiz.getSentences().isEmpty() || correctOption(quiz) != null
+                || !SentenceToTransform.rewritten(quiz)) {
+            return Optional.empty();
+        }
+        List<String> alone = rebuild(quiz);
+        return alone.isEmpty() || alone.equals(quiz.getSentences()) ? Optional.empty()
+                : Optional.of(new ArrayList<>(alone));
     }
 
     private static String correctOption(QuizTemplateEntity quiz) {

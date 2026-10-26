@@ -25,6 +25,24 @@ class StoredSentenceRehydratorTest {
                 StoredSentenceRehydrator.rebuild(quiz(text("I slept today. (bad)"), gap("I slept badly today."))));
     }
 
+    @Test
+    @Tag("F-DATOS-R001")
+    void aTransformationThatKeptItsSentenceToTransformGluedGetsItsAnswerAloneAndNothingElseDoes() {
+        // F-DATOS-R001 (José, 25/10): «Mary is at home. Mary is always at home.» (…257c) gets its answer alone; the reply
+        // of a dialog and a word to choose keep their context, and an answer already alone has nothing to change.
+        var mary = quiz(text("Mary is at home. (always)"), gap("Mary is always at home."));
+        mary.setSentences(List.of("Mary is at home. Mary is always at home."));
+        assertEquals(Optional.of(List.of("Mary is always at home.")), StoredSentenceRehydrator.answerAloneInsteadOf(mary));
+        mary.setSentences(List.of("Mary is always at home."));
+        assertEquals(Optional.empty(), StoredSentenceRehydrator.answerAloneInsteadOf(mary));
+        var neither = quiz(text("A: He hasn't done anything. (I) B:"), gap("Neither have I."));
+        neither.setSentences(List.of("A: He hasn't done anything. B: Neither have I."));
+        assertEquals(Optional.empty(), StoredSentenceRehydrator.answerAloneInsteadOf(neither));
+        var nobody = quiz(text("Everybody / Nobody enjoys paying for shaves. We all dislike it!"), gap("Nobody"));
+        nobody.setSentences(List.of("Everybody / Nobody enjoys paying for shaves. We all dislike it! Nobody"));
+        assertEquals(Optional.empty(), StoredSentenceRehydrator.answerAloneInsteadOf(nobody));
+    }
+
     @Test void aGapInsideTheSentenceStillStoresTheWholeCompletedSentence() {
         assertEquals(List.of("She likes apples."),
                 StoredSentenceRehydrator.rebuild(quiz(text("She"), gap("likes"), text("(like) apples."))));

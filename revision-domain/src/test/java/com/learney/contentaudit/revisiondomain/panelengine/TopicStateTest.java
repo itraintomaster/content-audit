@@ -55,6 +55,26 @@ class TopicStateTest {
     }
 
     @Test
+    @DisplayName("should keep the answer alone as the stored sentence of a transformation whatever an applied candidate changes, as «Mary is always at home.» when only its translation changes")
+    @Tag("FEAT-DATOS")
+    @Tag("F-DATOS-R001")
+    void shouldKeepTheAnswerAloneAsTheStoredSentenceOfATransformationWhateverAnAppliedCandidateChanges() {
+        // F-DATOS-R001 (José, 25/10): the candidate changes only the translation of «Mary is at home. (always) ___», whose
+        // stored sentence had the sentence to transform glued; measured, it keeps its answer alone.
+        KnowledgeEntity original = afirmativas();
+        QuizTemplateEntity mary = exercise(original, VEGETABLES);
+        mary.getForm().setSentenceParts(new java.util.ArrayList<>(List.of(text("Mary is at home. (always)"),
+                cloze("Mary is always at home."))));
+        mary.setSentences(new java.util.ArrayList<>(List.of("Mary is at home. Mary is always at home.")));
+
+        KnowledgeEntity applied = TopicState.apply(original, VEGETABLES, candidate(PanelCandidateKind.WHOLE_EXERCISE,
+                MesaFixture.withTranslation(mary, "Mary siempre está en casa.")), List.of());
+
+        assertEquals(List.of("Mary is always at home."), exercise(applied, VEGETABLES).getSentences());
+        assertEquals("Mary siempre está en casa.", exercise(applied, VEGETABLES).getTranslation());
+    }
+
+    @Test
     @DisplayName("should rebuild the stored sentence from changed CLOZE parts when an accepted candidate has no sentences")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R001")

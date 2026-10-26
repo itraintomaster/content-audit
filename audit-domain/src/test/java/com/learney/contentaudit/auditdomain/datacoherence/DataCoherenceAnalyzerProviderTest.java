@@ -44,7 +44,7 @@ public class DataCoherenceAnalyzerProviderTest {
         assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());
         assertEquals(List.of(FindingResolution.RULE, FindingResolution.PANEL), card.getResolutions());
         assertEquals(AnalysisCost.INSTANT, card.getCost());
-        assertEquals(List.of("saved-sentence", "no-slash"),
+        assertEquals(List.of("saved-sentence", "no-slash", "answer-translation"),
                 card.getRules().stream().map(AnalyzerRuleCard::getId).toList());
         assertTrue(card.getRules().stream().allMatch(r -> r.getCost() == AnalysisCost.INSTANT));
         assertEquals(Optional.of(new AnalyzerPlanBinding("DATA_COHERENCE", List.of(AuditTarget.QUIZ))), provider.planBinding(),

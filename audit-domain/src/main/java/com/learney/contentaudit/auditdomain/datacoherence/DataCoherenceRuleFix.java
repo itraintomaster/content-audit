@@ -15,6 +15,7 @@ import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.SentenceMode;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.SentenceToTransform;
 import com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceConverter;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,8 @@ import javax.annotation.processing.Generated;
  * <ul>
  *   <li>an accepted answer with «/» gets «|» instead, and the stored sentence is built again from the parts, with the
  *       first answer, by the shared converter (R002 inv. 1 and R001);</li>
- *   <li>a stored sentence that is not the exercise built with its first answer is built again the same way (R001);</li>
+ *   <li>a stored sentence that is not the exercise built with its first answer is built again the same way (R001); a
+ *       transformation, in which the student writes again the sentence before the gap, keeps its answer alone;</li>
  *   <li>an audio that reads the «/» or the hint, or whose text nobody knows, or an exercise without a key, is not fixed
  *       in the exercise: the fix asks to record it with what the exercise says as it stays -- the text of the
  *       re-recording of 24/8 for its first answer, without the hint, the context between parentheses or any «/» --
@@ -105,8 +107,15 @@ public class DataCoherenceRuleFix implements RuleFix {
         boolean asksSentence = mine.stream().anyMatch(f -> DataCoherenceAnalyzer.RULE_SAVED_SENTENCE.equals(f.getRule()));
         boolean sentenceBuilt = false;
         if (answersChanged || asksSentence) {
-            List<String> rebuilt = changed.getForm() != null ? quizSentenceConverter.toPlainSentences(changed.getForm(), mode)
-                    : List.of();
+            List<String> rebuilt;
+            if (changed.getForm() == null) {
+                rebuilt = List.of();
+            } else if (changed.getForm().getMultipleChoice() == null && SentenceToTransform.rewritten(changed)) {
+                String answer = SentenceToTransform.answer(changed.getForm().getSentenceParts());
+                rebuilt = answer.isEmpty() ? List.of() : List.of(answer);
+            } else {
+                rebuilt = quizSentenceConverter.toPlainSentences(changed.getForm(), mode);
+            }
             if (rebuilt != null && !rebuilt.isEmpty()) {
                 sentenceBuilt = true;
                 if (!Objects.equals(rebuilt, quiz.getSentences())) {

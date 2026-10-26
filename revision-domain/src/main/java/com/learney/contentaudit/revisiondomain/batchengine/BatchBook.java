@@ -515,6 +515,8 @@ final class BatchBook {
         } else if (proposed.getSentences() != null && !Objects.equals(old.getSentences(), proposed.getSentences())) {
             rewritten.setSentences(new ArrayList<>(proposed.getSentences()));
         }
+        // F-DATOS-R001: whatever the candidate changes, a transformation keeps its answer alone as its stored sentence.
+        StoredSentenceRehydrator.answerAloneInsteadOf(rewritten).ifPresent(rewritten::setSentences);
         return rewritten;
     }
 

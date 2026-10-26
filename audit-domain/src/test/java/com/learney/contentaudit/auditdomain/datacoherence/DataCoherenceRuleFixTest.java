@@ -124,6 +124,31 @@ public class DataCoherenceRuleFixTest {
     }
 
 
+    @Test
+    @DisplayName("should rebuild the stored sentence of a transformation as its answer alone, as «Mary is always at home.» for «Mary is at home. Mary is always at home.»")
+    @Tag("FEAT-DATOS")
+    @Tag("F-DATOS-R001")
+    public void shouldRebuildTheStoredSentenceOfATransformationAsItsAnswerAloneAsMaryIsAlwaysAtHome(
+            ) {
+        // R001 and DOUBT-DATOS-PEGADAS (José, 25/10): «Mary is at home. (always) ___» (…257c) kept the sentence to transform
+        // glued before its answer. Rebuilt from the parts in either mode, it keeps the answer alone.
+        for (SentenceMode mode : List.of(SentenceMode.FILL, SentenceMode.REWRITE)) {
+            QuizTemplateEntity mary = quiz(MARY, "A1.11.04.14", List.of(text("Mary is at home. (always)"),
+                    cloze("Mary is always at home.")), List.of("Mary is at home. Mary is always at home."));
+            Finding glued = dataFinding(MARY, "saved-sentence", "arbol", FindingSeverity.MEDIUM,
+                    "Mary is at home. Mary is always at home.");
+
+            RuleFixResult result = fix().fix(new RuleFixRequest(mary, null, mode, List.of(glued)));
+
+            assertEquals(List.of(glued.getIdentity()), result.getFixed(), mode + ": " + result.getDetail());
+            assertEquals(List.of("Mary is always at home."), result.getQuiz().getSentences(), mode + ": the answer alone");
+            assertEquals(List.of("Mary is at home. Mary is always at home."), mary.getSentences(),
+                    "the exercise it received stays as it was");
+        }
+    }
+
+    private static final String MARY = "67fab6d5993010229534257c";
+
     private static final String CUT = "67fab6d5993010229534286c";
     private static final String LEARNED = "67fab6d5993010229534399b";
     private static final String PINCHED = "67fab6d599301022953439a0";

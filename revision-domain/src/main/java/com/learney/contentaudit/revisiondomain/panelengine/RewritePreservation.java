@@ -2,7 +2,7 @@ package com.learney.contentaudit.revisiondomain.panelengine;
 
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.SentenceMode;
-import com.learney.contentaudit.revisiondomain.SentenceToTransform;
+import com.learney.contentaudit.coursedomain.SentenceToTransform;
 import java.util.List;
 
 /**

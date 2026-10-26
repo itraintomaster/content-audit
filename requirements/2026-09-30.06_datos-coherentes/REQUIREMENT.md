@@ -44,15 +44,28 @@ corrector** es sin mayúsculas, espacios, signos ni tildes ([F-RESPC-R001](#F-RE
 
 > La oración guardada en el árbol de content-audit y la de la copia de producción son iguales, comparadas como el
 > corrector, a la que resulta de poner la primera respuesta en el hueco: las partes enteras sin la pista, o sólo la
-> respuesta en un tema de reescritura o en una transformación ([F-SMODE-R003](#F-SMODE-R003)); en opción múltiple, el
-> enunciado con la correcta ([F-OPMUL-R004](#F-OPMUL-R004)). Por cada una que no, hallazgo *media*, que se resuelve con
-> una *regla*: se vuelve a armar desde las partes.
+> respuesta en un tema de reescritura ([F-SMODE-R003](#F-SMODE-R003)); en opción múltiple, el enunciado con la correcta
+> ([F-OPMUL-R004](#F-OPMUL-R004)). En una **transformación** vale sólo la respuesta: la oración de partida pegada
+> adelante es un error. Por cada una que no, hallazgo *media*, que se resuelve con una *regla*: se vuelve a armar
+> desde las partes.
+
+Una transformación da una oración antes del hueco y el alumno la vuelve a escribir entera, cambiada: la respuesta es
+una oración completa y conserva por lo menos la mitad de las palabras de la de partida, contando como una las formas
+de una palabra que comparten sus cuatro primeras letras («follow» y «followed»). «Mary is at home. (always) ___» →
+«Mary is always at home.» lo es; la respuesta de un diálogo («A: He hasn't done anything. B: ___» → «Neither have I.»)
+y la palabra que se elige («everything / nothing … ___» → «everything») no: conservan su contexto y siguen valiendo
+las dos formas.
 
 Hoy da 0 en el árbol del curso: al importar, content-audit vuelve a armar la oración si cambió el contenido. Las 9
 oraciones con barra del 077 sólo están en la copia de producción, que el importador dejó en
 `db/quiz-templates.json` (A2 5, B1 4), como «The tree has not grown/hasn't grown yet.» (`67fab6d5993010229534287e`).
 José decidió el 30/9 que se leen las dos ([DOUBT-DATOS-PRODUCCION](#DOUBT-DATOS-PRODUCCION)) y que espacios y
-reescrituras no cuentan ([DOUBT-DATOS-718](#DOUBT-DATOS-718)).
+reescrituras no cuentan ([DOUBT-DATOS-718](#DOUBT-DATOS-718)), y el 25/10 que una transformación guarda sólo su
+respuesta ([DOUBT-DATOS-PEGADAS](#DOUBT-DATOS-PEGADAS)). Con eso, el 25/10 hay 22 oraciones pegadas, las mismas en el
+árbol y en producción (A1 8, A2 7, B1 5, B2 2), como «Mary is at home. Mary is always at home.»
+(`67fab6d5993010229534257c`) o «Play the radio. Polite: Could you play the radio?» (`67fab6d59930102295342dd6`). De
+las 4.019 que dan una oración antes del hueco, 3.472 son transformaciones; de las 547 que no, 237 son respuestas de
+diálogo de *Short Answers with So and Neither* (B1).
 
 <a id="F-DATOS-R002"></a>
 ### Rule[F-DATOS-R002] - Ni las respuestas ni el audio llevan «/»
@@ -120,6 +133,21 @@ compartidas: 0. Si el archivo existe en el almacenamiento de audios no se mira: 
 Ejemplo de evidencia: «He ___ (not / cut) himself. → audio: "He has not cut/hasn't cut himself."; hoy: "He has not cut
 himself."». El nombre es [ASSUMPTION].
 
+<a id="F-DATOS-R006"></a>
+### Rule[F-DATOS-R006] - La traducción de una transformación traduce sólo lo que escribe el alumno
+**Severity**: major | **Validation**: ASSUMPTION
+
+> En una transformación ([F-DATOS-R001](#F-DATOS-R001)), la traducción no tiene más oraciones que la respuesta:
+> traduce lo que escribe el alumno, no también la oración de partida. Si tiene más, hallazgo *media* para la *mesa*,
+> que puede cambiar la traducción. El punto de un tratamiento («Sr.», «Mr.») no cierra una oración.
+
+Hoy: 19 (A1 5, A2 1, B1 13). Por ejemplo, «Pon la radio. Amable: ¿Podrías poner la radio?» para «Could you play the
+radio?» (`67fab6d59930102295342dd6`), «Ella está en la fiesta. ¿Ella está en la fiesta?» para «Is she at the party?»
+(`67fab6d59930102295341f97`) y «Los expertos siguen las reglas. Las reglas son seguidas por los expertos.» para «The
+rules are followed (by the experts).» (`67fab6d599301022953435ee`). Va a la *mesa* porque una regla no traduce. Que la
+oración de partida no se traduzca es [ASSUMPTION]: José pidió el 25/10 arreglar las oraciones pegadas, y la traducción
+pegada es la misma falla en la otra copia.
+
 ## Contexto
 
 La propuesta pide que el texto del audio salga «del generador de marzo de 2025 y de la regrabación del 24/8». Son dos
@@ -148,10 +176,11 @@ leyendo la copia de producción, y 8 de cada 10 marcas nuevas reales. **Costo**:
 
 ## Alcance
 
-- **Adentro**: R001 a R004, el registro de grabaciones como dato de entrada y la ficha.
+- **Adentro**: R001 a R004 y R006, el registro de grabaciones como dato de entrada y la ficha.
 - **Afuera**: transcribir una muestra de audios para confirmar (la propuesta sugiere Whisper, con otro costo);
-  regrabar, que hace el paquete E con el script de content-audit y la misma voz; la [traducción](glossary:Traducción) y la miniteoría (otros
-  analizadores); y escribir el curso al analizar ([F-HALL-R015](#F-HALL-R015)).
+  regrabar, que hace el paquete E con el script de content-audit y la misma voz; la [traducción](glossary:Traducción), salvo la
+  que traduce también la oración de partida (R006), y la miniteoría (otros analizadores); y escribir el curso al
+  analizar ([F-HALL-R015](#F-HALL-R015)).
 
 ## User Journeys
 
@@ -174,11 +203,13 @@ journeys:
           - {when: "La oración guardada no es el ejercicio armado con su primera respuesta", then: oracion}
           - {when: "El audio dice otra cosa que el ejercicio de hoy", then: audio}
           - {when: "El ejercicio no tiene audio, o nadie sabe con qué se grabó", then: sin_audio}
+          - {when: "La traducción de una transformación traduce también la oración de partida", then: traduccion}
           - {when: "Las tres copias coinciden", then: coincide}
       - {id: barra, action: "Hallazgo bloqueante si la barra está en la respuesta, media si la lee el audio, con arreglo por regla", gate: [F-DATOS-R002], result: success}
       - {id: oracion, action: "Hallazgo media que se arregla volviendo a armar la oración guardada", gate: [F-DATOS-R001], result: success}
       - {id: audio, action: "Hallazgo media para la mesa, con el texto grabado y el de hoy como evidencia", gate: [F-DATOS-R003], result: success}
       - {id: sin_audio, action: "Hallazgo baja que se arregla grabando con el texto de hoy", gate: [F-DATOS-R004], result: success}
+      - {id: traduccion, action: "Hallazgo media para la mesa, con la traducción y lo que escribe el alumno como evidencia", gate: [F-DATOS-R006], result: success}
       - {id: coincide, action: "Sin hallazgo de este analizador; el ejercicio queda con puntaje 1", gate: [F-DATOS-R005], result: success}
 ```
 
@@ -204,6 +235,17 @@ que leerá la próxima regrabación, y en 9 tiene barra. Con B esos 9 no cuentan
 
 **Answer**: **Opción A** (José, 30/9, con la recomendación): espacios y reescrituras no cuentan. B marcaba las 718 de DOUBT-718-CLOZE de FEAT-OPMUL (325 por espacios como «We 've»,
 352 diálogos sin recortar), que no son lo que el 077 llamó error. A no cierra esa duda: sólo no la cuenta.
+
+<a id="DOUBT-DATOS-PEGADAS"></a>
+### Doubt[DOUBT-DATOS-PEGADAS] - ¿Vale guardar una transformación con su oración de partida pegada?
+**Status**: RESOLVED (2026-10-25)
+
+- [x] Opción A (recomendada): no; una transformación guarda sólo su respuesta, y la oración pegada es un hallazgo.
+- [ ] Opción B: sí, como en reescritura ([DOUBT-DATOS-718](#DOUBT-DATOS-718)).
+
+**Answer**: **Opción A** (José, 25/10, brief 223: «arreglar las oraciones pegadas»). La oración pegada se lee como dos:
+«Mary is at home. Mary is always at home.», y la mide el largo de oración, que la ve el doble de larga. Una corrección
+que la toca la vuelve a armar con la respuesta sola.
 
 <a id="DOUBT-DATOS-REGISTRO"></a>
 ### Doubt[DOUBT-DATOS-REGISTRO] - ¿Dónde vive el registro de grabaciones?

@@ -9,10 +9,11 @@ import java.util.Optional;
 import javax.annotation.processing.Generated;
 
 /**
- * How a finding of {@code data-coherence} is corrected (F-TAREA-R006, F-DATOS-R001, R002, R004, hook E-03): the rule
+ * How a finding of {@code data-coherence} is corrected (F-TAREA-R006, F-DATOS-R001, R002, R004, R006, hook E-03): the rule
  * rebuilds the stored sentence from the parts, turns the «/» of an answer into «|» or only asks to re-record the audio
  * with what the exercise says today -- the audio follows the exercise, never the other way round (F-NOEMP-R004); at the
- * panel, when the audio says something else, the statement and the answers too.
+ * panel, when the audio says something else, the statement and the answers too, and the translation of a transformation
+ * that also translates the sentence to transform (F-DATOS-R006).
  *
  * <p>Its findings about the audio are the ones whose marker the analyzer starts with {@code audio}: the audio that reads
  * the «/» or the hint ({@code no-slash}, {@code audio}), the one that says something else ({@code audio-matches}) and
@@ -29,7 +30,7 @@ public class DataCoherenceCorrection implements AnalyzerCorrection {
 
     private static final List<ExercisePart> RULE_SCOPE = List.of(ExercisePart.STORED_SENTENCE, ExercisePart.ANSWERS, ExercisePart.AUDIO);
 
-    private static final List<ExercisePart> PANEL_SCOPE = List.of(ExercisePart.STATEMENT, ExercisePart.ANSWERS, ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO);
+    private static final List<ExercisePart> PANEL_SCOPE = List.of(ExercisePart.STATEMENT, ExercisePart.ANSWERS, ExercisePart.STORED_SENTENCE, ExercisePart.TRANSLATION, ExercisePart.AUDIO);
 
     @Override
     public String analyzerName() {

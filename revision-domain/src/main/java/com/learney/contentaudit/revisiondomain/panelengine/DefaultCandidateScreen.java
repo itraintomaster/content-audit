@@ -8,6 +8,7 @@ import com.learney.contentaudit.coursedomain.KnowledgeEntity;
 import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBrief;
+import com.learney.contentaudit.revisiondomain.StoredSentenceRehydrator;
 import com.learney.contentaudit.revisiondomain.panel.ConversionOrder;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
@@ -135,7 +136,14 @@ class DefaultCandidateScreen implements CandidateScreen {
             allowed = EnumSet.of(ExercisePart.TRANSLATION);
         }
         if (!allowed.contains(ExercisePart.WHOLE_EXERCISE)) {
+            // F-DATOS-R001: a transformation whose stored sentence had the sentence to transform glued gets its answer
+            // alone with any change; that is the exercise's own sentence following it, not something the candidate did.
+            boolean settled = StoredSentenceRehydrator.answerAloneInsteadOf(original)
+                    .map(alone -> alone.equals(proposed.getSentences())).orElse(false);
             for (ExercisePart part : changed) {
+                if (part == ExercisePart.STORED_SENTENCE && settled) {
+                    continue;
+                }
                 if (!allowed.contains(part)) {
                     violations.add(candidate.getKind() == PanelCandidateKind.TRANSLATION_ONLY
                             ? "el candidato de sólo la traducción cambia también " + name(part)

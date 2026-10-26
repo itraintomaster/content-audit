@@ -19,5 +19,6 @@ public enum CopyMismatchKind {
 
     SHARED_AUDIO_KEY,
 
-    UNKNOWN_RECORDING
+    UNKNOWN_RECORDING,
+    TRANSLATION_OF_SOURCE
 }

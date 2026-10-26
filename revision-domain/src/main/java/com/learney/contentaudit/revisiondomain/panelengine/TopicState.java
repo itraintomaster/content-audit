@@ -168,6 +168,8 @@ final class TopicState {
         } else {
             rewritten.setSentences(old.getSentences() != null ? new ArrayList<>(old.getSentences()) : null);
         }
+        // F-DATOS-R001: whatever the candidate changes, a transformation keeps its answer alone as its stored sentence.
+        StoredSentenceRehydrator.answerAloneInsteadOf(rewritten).ifPresent(rewritten::setSentences);
         return rewritten;
     }
 

@@ -379,6 +379,34 @@ public class DefaultCandidateScreenTest {
                 candidate(PanelCandidateKind.WHOLE_EXERCISE, other)));
     }
 
+    @Test
+    @DisplayName("should let a candidate of a glued transformation take the answer alone as its stored sentence, though its task does not let it touch the sentence")
+    @Tag("FEAT-DATOS")
+    @Tag("F-DATOS-R001")
+    public void shouldLetACandidateOfAGluedTransformationTakeTheAnswerAloneAsItsStoredSentenceThoughItsTaskDoesNotLetItTouchTheSentence() {
+        // F-DATOS-R001 (José, 25/10): «Mary is at home. (always) ___» (…257c) kept «Mary is at home. Mary is always at
+        // home.». Its translation task may not touch the stored sentence, but the answer alone is the exercise's own
+        // sentence following it; and whatever other sentence a candidate writes, the transformation keeps its answer.
+        String quizId = "67fab6d5993010229534257c";
+        QuizTemplateEntity start = quiz(quizId, "Mary está en casa. Mary siempre está en casa.",
+                text("Mary is at home. (always)"), cloze("Mary is always at home."));
+        start.setSentences(new ArrayList<>(List.of("Mary is at home. Mary is always at home.")));
+        Finding doubled = finding("data-coherence", "answer-translation", quizId, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, null, "la traducción traduce también la oración de partida");
+        TopicWork work = work(topic("frecuencia", "Adverbios de frecuencia", new ArrayList<>(List.of(start))),
+                List.of(brief("t-traduccion", doubled, List.of(ExercisePart.TRANSLATION))));
+        DefaultCandidateScreen screen = new DefaultCandidateScreen(corrections());
+
+        QuizTemplateEntity alone = withTranslation(start, "Mary siempre está en casa.");
+        alone.setSentences(new ArrayList<>(List.of("Mary is always at home.")));
+        assertEquals(List.of(), screen.screen(work, quizId, candidate(PanelCandidateKind.WHOLE_EXERCISE, alone)));
+
+        QuizTemplateEntity other = withTranslation(start, "Mary siempre está en casa.");
+        other.setSentences(new ArrayList<>(List.of("Mary is always at home today.")));
+        assertEquals(List.of("Mary is always at home."), TopicState.merged(start, other).getSentences());
+        assertEquals(List.of(), screen.screen(work, quizId, candidate(PanelCandidateKind.WHOLE_EXERCISE, other)));
+    }
+
     private static final String MARY = "67fab6d59930102295342367";
     private static final String SLEPT = "67fab6d59930102295342f05";
 

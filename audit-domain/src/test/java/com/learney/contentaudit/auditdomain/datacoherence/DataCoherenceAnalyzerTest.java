@@ -119,6 +119,72 @@ public class DataCoherenceAnalyzerTest {
     }
 
     @Test
+    @DisplayName("should report a transformation saved with its sentence to transform glued before its answer, in either mode, as «Mary is at home. Mary is always at home.» for «Mary is at home. (always) ___»")
+    @Tag("FEAT-DATOS")
+    @Tag("F-DATOS-R001")
+    public void shouldReportATransformationSavedWithItsSentenceToTransformGluedBeforeItsAnswerInEitherModeAsMaryIsAtHomeMaryIsAlwaysAtHome(
+            ) {
+        // R001 and DOUBT-DATOS-PEGADAS (José, 25/10): «Mary is at home. (always) ___» (…257c, A1) saved the sentence to
+        // transform glued to its answer; a transformation keeps its answer alone, whatever the mode of its topic.
+        Copies copies = new Copies().recording("A1.11.04.14", "Mary is always at home.");
+        for (SentenceMode mode : List.of(SentenceMode.FILL, SentenceMode.REWRITE)) {
+            FindingDraft glued = only(analyze(copies, mode, maryIsAtHome("Mary is at home. Mary is always at home.")),
+                    "saved-sentence");
+            assertEquals("arbol", glued.getMarker());
+            assertEquals(FindingResolution.RULE, glued.getResolution());
+            assertEquals("Mary is always at home.", part(glued, "Hoy"), mode + ": the answer alone");
+            assertEquals(List.of(), diagnosis(analyze(copies, mode, maryIsAtHome("Mary is always at home."))).getIssues());
+        }
+    }
+
+    @Test
+    @DisplayName("should keep both forms for a reply in a dialog and a word to choose, which keep their context, as «A: He hasn't done anything. B: Neither have I.» and «… We all dislike it! Nobody»")
+    @Tag("FEAT-DATOS")
+    @Tag("F-DATOS-R001")
+    public void shouldKeepBothFormsForAReplyInADialogAndAWordToChooseWhichKeepTheirContextAsNeitherHaveIAndNobody(
+            ) {
+        // R001: the reply «Neither have I.» (…33ef, B1) and the word «Nobody» (…398b, A2) do not write the sentence before
+        // the gap again: saved with their context, as the course has them, they are no glued sentence.
+        Copies copies = new Copies().recording("B1.05.10.01", "Neither have I.").recording("A2.08.06.01", "Nobody");
+        assertEquals(List.of(), diagnosis(analyze(copies, SentenceMode.REWRITE, neitherHaveI())).getIssues());
+        assertEquals(List.of(), diagnosis(analyze(copies, SentenceMode.FILL, nobodyEnjoysShaves())).getIssues());
+    }
+
+    @Test
+    @DisplayName("should send to the panel as medium the translation of a transformation that also translates the sentence to transform, as «Pon la radio. Amable: ¿Podrías poner la radio?» for «Could you play the radio?»")
+    @Tag("FEAT-DATOS")
+    @Tag("F-DATOS-R006")
+    public void shouldSendToThePanelAsMediumTheTranslationOfATransformationThatAlsoTranslatesTheSentenceToTransformAsPonLaRadio(
+            ) {
+        // R006: «Play the radio. Polite: ___» (…2dd6, A1) translates the sentence to transform too; the panel may change
+        // the translation, a rule does not translate. Translated alone, nothing to say.
+        Copies copies = new Copies().recording("A1.10.02.09", "Could you play the radio?");
+        FindingDraft both = only(analyze(copies, SentenceMode.FILL,
+                playTheRadio("Pon la radio. Amable: ¿Podrías poner la radio?")), "answer-translation");
+        assertEquals(FindingSeverity.MEDIUM, both.getSeverity());
+        assertEquals(FindingResolution.PANEL, both.getResolution());
+        assertEquals("traduccion", both.getMarker());
+        assertEquals("Pon la radio. Amable: ¿Podrías poner la radio?", part(both, "Traducción"));
+        assertEquals("Could you play the radio?", part(both, "Lo que escribe el alumno"));
+        assertEquals(List.of(), diagnosis(analyze(copies, SentenceMode.FILL, playTheRadio("¿Podrías poner la radio?")))
+                .getIssues());
+    }
+
+    @Test
+    @DisplayName("should not take the period of a title for the end of a sentence, nor ask a word to choose to translate it alone, as «el Sr. Smith» and «A nadie le gusta pagar por afeitadas. ¡A todos nos disgusta!»")
+    @Tag("FEAT-DATOS")
+    @Tag("F-DATOS-R006")
+    public void shouldNotTakeThePeriodOfATitleForTheEndOfASentenceNorAskAWordToChooseToTranslateItAloneAsElSrSmithAndANadieLeGusta(
+            ) {
+        // R006: «Me preguntaba si el Sr. Smith podría llamarme más tarde.» (…401b, B2) is one sentence; the word to choose
+        // of «Everybody / Nobody enjoys paying for shaves. We all dislike it!» (…398b, A2) is not a transformation.
+        Copies copies = new Copies().recording("B2.03.06.04", "I wondered if Mr Smith could call me later.")
+                .recording("A2.08.06.01", "Nobody");
+        assertEquals(List.of(), diagnosis(analyze(copies, SentenceMode.REWRITE, mrSmith())).getIssues());
+        assertEquals(List.of(), diagnosis(analyze(copies, SentenceMode.FILL, nobodyEnjoysShaves())).getIssues());
+    }
+
+    @Test
     @DisplayName("should raise a blocking finding on an accepted answer with «/», fixed by rule turning the slash into «|», as «has not cut/hasn't cut» for «He ___ (not / cut) himself.»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R002")
@@ -458,6 +524,40 @@ public class DataCoherenceAnalyzerTest {
     static AuditableQuiz youSeeCats() {
         return quiz("67fab6d59930102295341ec3", "A1.01.06.01", List.of("You see cats."), text("You"), cloze("see"),
                 text("(see) cats."));
+    }
+
+    static AuditableQuiz maryIsAtHome(String treeSentence) {
+        return quiz("67fab6d5993010229534257c", "A1.11.04.14", List.of(treeSentence), text("Mary is at home. (always)"),
+                cloze("Mary is always at home."));
+    }
+
+    static AuditableQuiz neitherHaveI() {
+        return quiz("67fab6d599301022953433ef", "B1.05.10.01", List.of("A: He hasn't done anything. B: Neither have I."),
+                text("A: He hasn't done anything. (I)\t\t\tB:"), cloze("Neither have I."), text(""));
+    }
+
+    static AuditableQuiz nobodyEnjoysShaves() {
+        AuditableQuiz quiz = quiz("67fab6d5993010229534398b", "A2.08.06.01",
+                List.of("Everybody / Nobody enjoys paying for shaves. We all dislike it! Nobody"),
+                text("Everybody / Nobody enjoys paying for shaves. We all dislike it!"), cloze("Nobody"));
+        quiz.setTranslation("A nadie le gusta pagar por afeitadas. ¡A todos nos disgusta!");
+        return quiz;
+    }
+
+    static AuditableQuiz playTheRadio(String translation) {
+        AuditableQuiz quiz = quiz("67fab6d59930102295342dd6", "A1.10.02.09", List.of("Could you play the radio?"),
+                text("Play the radio. Polite:"), cloze("Could you play the radio?"));
+        quiz.setTranslation(translation);
+        return quiz;
+    }
+
+    static AuditableQuiz mrSmith() {
+        AuditableQuiz quiz = quiz("67fab6d5993010229534401b", "B2.03.06.04",
+                List.of("I wondered if Mr Smith could call me later."),
+                text("Could Mr Smith call me later? (wonder / past simple)"),
+                cloze("I wondered if Mr Smith could call me later."));
+        quiz.setTranslation("Me preguntaba si el Sr. Smith podría llamarme más tarde.");
+        return quiz;
     }
 
     static AuditableQuiz quiz(String id, String audioKey, List<String> sentences, SentencePartEntity... parts) {

@@ -39,7 +39,8 @@ public class DataCoherenceCorrectionTest {
         Assertions.assertEquals(List.of(ExercisePart.STORED_SENTENCE, ExercisePart.ANSWERS, ExercisePart.AUDIO),
                 correction.editScope(FindingResolution.RULE), "the stored sentence, the «/» of the answers, or the audio");
         Assertions.assertEquals(List.of(ExercisePart.STATEMENT, ExercisePart.ANSWERS, ExercisePart.STORED_SENTENCE,
-                ExercisePart.AUDIO), correction.editScope(FindingResolution.PANEL));
+                ExercisePart.TRANSLATION, ExercisePart.AUDIO), correction.editScope(FindingResolution.PANEL),
+                "F-DATOS-R006: the panel also translates a transformation again");
         Assertions.assertFalse(correction.editScope(FindingResolution.RULE).contains(ExercisePart.STATEMENT),
                 "a rule never rewrites what the exercise says");
     }

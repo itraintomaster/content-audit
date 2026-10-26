@@ -1,21 +1,20 @@
-package com.learney.contentaudit.revisiondomain;
+package com.learney.contentaudit.coursedomain;
 
-import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
-import com.learney.contentaudit.coursedomain.SentencePartEntity;
-import com.learney.contentaudit.coursedomain.SentencePartKind;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
  * An exercise that gives a sentence before the gap and in which the student writes the whole transformed sentence:
- * «That house belongs to Mary. ___» → «That is Mary's house.». F-MESA-R019 keeps it one, and F-SMODE-R004 stores only
- * the answer as its sentence.
+ * «That house belongs to Mary. ___» → «That is Mary's house.». F-MESA-R019 keeps it one, F-SMODE-R004 stores only the
+ * answer as its sentence, and F-DATOS-R001 and R006 check that its stored sentence and its translation are the answer's
+ * alone. The panel reads an exercise; the analysis reads its parts.
  */
 public final class SentenceToTransform {
     /** The end of a sentence: its mark, the quotes or brackets that close it, and a space. */
     private static final Pattern SENTENCE_END = Pattern.compile("[.?!…][\"»”')]*\\s");
     private static final Pattern HINT = Pattern.compile("\\([^)]*\\)");
+    private static final Pattern WORD = Pattern.compile("\\p{L}+(?:'\\p{L}+)?");
     /** What may sit between the sentence to transform and the gap, or after the gap: arrows, marks and spaces. */
     private static final Pattern FILLER = Pattern.compile("[\\s→⇒=>:\\-–—.,;!?…\"»”')]*");
     /** Between the sentence and the gap there may also be the label that says what to do: «Play the radio. Polite: ___». */
@@ -26,7 +25,12 @@ public final class SentenceToTransform {
 
     /** It gives a sentence before the gap, and from there on there are only gaps and marks: the answer is whole. */
     public static boolean given(QuizTemplateEntity quiz) {
-        List<SentencePartEntity> parts = parts(quiz);
+        return given(parts(quiz));
+    }
+
+    /** The same, over the parts of an exercise. */
+    public static boolean given(List<SentencePartEntity> parts) {
+        parts = parts != null ? parts : List.of();
         int firstGap = firstGap(parts);
         if (firstGap < 0) {
             return false;
@@ -47,13 +51,62 @@ public final class SentenceToTransform {
         return true;
     }
 
+    /**
+     * The student writes the given sentence again, changed: it gives one before the gap, the answer is a whole sentence
+     * and keeps at least half of the words of the given one -- «Mary is at home. ___» → «Mary is always at home.». A
+     * reply in a dialog («A: He hasn't done anything. B: ___» → «Neither have I.») or a word to choose («everything /
+     * nothing … ___» → «everything») are not: they keep their context.
+     */
+    public static boolean rewritten(QuizTemplateEntity quiz) {
+        return rewritten(parts(quiz));
+    }
+
+    /** The same, over the parts of an exercise. */
+    public static boolean rewritten(List<SentencePartEntity> parts) {
+        if (!given(parts) || !opensASentence(parts.get(firstGap(parts)))) {
+            return false;
+        }
+        List<String> given = words(source(parts));
+        List<String> written = words(answer(parts));
+        if (given.isEmpty()) {
+            return false;
+        }
+        int kept = 0;
+        for (String word : given) {
+            if (written.stream().anyMatch(other -> sameWord(word, other))) {
+                kept++;
+            }
+        }
+        return 2 * kept >= given.size();
+    }
+
     /** The sentences before the gap, as the student reads them, without the hints and the arrow. */
     public static String source(QuizTemplateEntity quiz) {
-        List<SentencePartEntity> parts = parts(quiz);
+        return source(parts(quiz));
+    }
+
+    /** The same, over the parts of an exercise. */
+    public static String source(List<SentencePartEntity> parts) {
+        parts = parts != null ? parts : List.of();
         int firstGap = firstGap(parts);
         String before = firstGap < 0 ? "" : before(parts, firstGap);
         int end = lastSentenceEnd(before);
         return (end < 0 ? before : before.substring(0, end)).replaceAll("\\s+", " ").trim();
+    }
+
+    /**
+     * What the student writes: the first accepted answer of each gap, without the sentence to transform -- what a
+     * transformation keeps as its stored sentence. Empty without a gap.
+     */
+    public static String answer(List<SentencePartEntity> parts) {
+        StringBuilder answer = new StringBuilder();
+        for (SentencePartEntity part : parts != null ? parts : List.<SentencePartEntity>of()) {
+            if (part != null && part.getKind() == SentencePartKind.CLOZE && part.getOptions() != null
+                    && !part.getOptions().isEmpty() && part.getOptions().get(0) != null) {
+                answer.append(' ').append(part.getOptions().get(0).split("\\|", -1)[0].strip());
+            }
+        }
+        return answer.toString().replaceAll("\\s+", " ").replaceAll("\\s+([,.;:?!])", "$1").strip();
     }
 
     /** Some sentence ends before the first gap, whatever comes between it and the gap. */
@@ -77,6 +130,20 @@ public final class SentenceToTransform {
             }
         }
         return true;
+    }
+
+    /** The same word, or one of its forms: «follow» and «followed» share their first four letters. */
+    private static boolean sameWord(String a, String b) {
+        return a.equals(b) || a.length() >= 4 && b.length() >= 4 && a.regionMatches(0, b, 0, 4);
+    }
+
+    private static List<String> words(String text) {
+        List<String> words = new java.util.ArrayList<>();
+        Matcher matcher = WORD.matcher(text);
+        while (matcher.find()) {
+            words.add(matcher.group().toLowerCase(java.util.Locale.ROOT));
+        }
+        return words;
     }
 
     private static int lastSentenceEnd(String text) {

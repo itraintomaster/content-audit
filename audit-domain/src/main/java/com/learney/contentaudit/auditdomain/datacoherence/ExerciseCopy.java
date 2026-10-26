@@ -13,5 +13,6 @@ public enum ExerciseCopy {
 
     ACCEPTED_ANSWER,
 
-    AUDIO
+    AUDIO,
+    TRANSLATION
 }
