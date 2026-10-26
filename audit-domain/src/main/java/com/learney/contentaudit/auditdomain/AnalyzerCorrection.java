@@ -23,6 +23,14 @@ public interface AnalyzerCorrection {
         return false;
     }
 
+    /**
+     * F-MESA-R024: whether a selected exercise this judge has not opined on yet is measured before it is corrected, so
+     * that what it would find is corrected too. Only a judge of exercises one by one says so.
+     */
+    default boolean measuredBeforeCorrecting() {
+        return false;
+    }
+
     List<ExercisePart> editScope(FindingResolution resolution);
 
     Optional<String> coveringAnalyzer();

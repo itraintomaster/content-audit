@@ -10,7 +10,12 @@ import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
 import com.learney.contentaudit.auditdomain.finishedsentence.FinishedSentenceReader;
 import com.learney.contentaudit.auditdomain.judging.JudgeRuntime;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
 import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
@@ -62,21 +67,38 @@ class ContextOnlyCorrectionTest {
 
     @Test
     void realCatalogRetainsContextOnlyPanelDeclarationsWithoutInventingPlanBindings() {
-        var providers = List.of(provider(EnglishQualityAnalyzerProvider.Kind.NATURALNESS),
-                provider(EnglishQualityAnalyzerProvider.Kind.A1_DIDACTIC));
-        var analyzers = new DefaultAnalyzerCatalog(List.copyOf(providers));
-        var corrections = new DefaultAnalyzerCorrectionCatalog(List.of(
-                new ContextOnlyCorrection("a1-didactic"), new ContextOnlyCorrection("naturalness")), analyzers);
-        assertEquals(List.of("naturalness", "a1-didactic"), corrections.list().stream()
-                .map(AnalyzerCorrection::analyzerName).toList());
-        for (var provider : providers) {
-            assertEquals(List.of(FindingResolution.PANEL), provider.describe().getResolutions());
-            assertTrue(provider.planBinding().isEmpty());
-            var declaration = corrections.find(provider.analyzerName()).orElseThrow();
-            assertTrue(declaration.contextOnly());
-            assertTrue(declaration.editScope(FindingResolution.PANEL).isEmpty());
-        }
+        var naturalness = provider(EnglishQualityAnalyzerProvider.Kind.NATURALNESS);
+        var analyzers = new DefaultAnalyzerCatalog(List.of(naturalness));
+        var corrections = new DefaultAnalyzerCorrectionCatalog(List.of(new ContextOnlyCorrection("naturalness")), analyzers);
+        assertEquals(List.of("naturalness"), corrections.list().stream().map(AnalyzerCorrection::analyzerName).toList());
+        assertEquals(List.of(FindingResolution.PANEL), naturalness.describe().getResolutions());
+        assertTrue(naturalness.planBinding().isEmpty());
+        var declaration = corrections.find("naturalness").orElseThrow();
+        assertTrue(declaration.contextOnly());
+        assertTrue(declaration.editScope(FindingResolution.PANEL).isEmpty());
         assertTrue(corrections.find("unknown-unsupported").isEmpty());
+    }
+
+    @Test
+    @DisplayName("should make what the judge of A1 finds in an example an A1_DIDACTIC task on the exercise, corrected at the panel by changing the example and never the instructions nor the mini theory")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R024")
+    void shouldMakeWhatTheJudgeOfA1FindsInAnExampleATaskCorrectedAtThePanelByChangingTheExample() {
+        // F-MESA-R024 (José, 25/10, brief 223): «Those are the sons' Saturdays.» passed the judges of English; only the
+        // judge of A1 saw it, and it only said so. Its findings are now a problem with a task, not context.
+        var a1 = provider(EnglishQualityAnalyzerProvider.Kind.A1_DIDACTIC);
+        var corrections = new DefaultAnalyzerCorrectionCatalog(List.of(
+                new com.learney.contentaudit.auditdomain.englishquality.A1DidacticCorrection()),
+                new DefaultAnalyzerCatalog(List.of(a1)));
+        assertEquals(Optional.of(new AnalyzerPlanBinding("A1_DIDACTIC", List.of(AuditTarget.QUIZ))), a1.planBinding());
+        var declaration = corrections.find("a1-didactic").orElseThrow();
+        assertFalse(declaration.contextOnly());
+        assertEquals(List.of(ExercisePart.STATEMENT, ExercisePart.HINT, ExercisePart.ANSWERS, ExercisePart.OPTIONS,
+                ExercisePart.TRANSLATION, ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO),
+                declaration.editScope(FindingResolution.PANEL));
+        assertFalse(declaration.editScope(FindingResolution.PANEL).contains(ExercisePart.INSTRUCTIONS));
+        assertFalse(declaration.editScope(FindingResolution.PANEL).contains(ExercisePart.MINI_THEORY));
+        assertTrue(declaration.editScope(FindingResolution.RULE).isEmpty(), "a rule does not rewrite an example");
     }
 
     private static EnglishQualityAnalyzerProvider provider(EnglishQualityAnalyzerProvider.Kind kind) {

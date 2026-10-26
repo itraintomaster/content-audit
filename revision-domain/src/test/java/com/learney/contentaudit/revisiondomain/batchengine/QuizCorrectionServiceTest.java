@@ -504,6 +504,74 @@ class QuizCorrectionServiceTest {
         assertEquals(13, batch.getQueriesSpent());
     }
 
+    /** The judge of A1, promoted, declared to measure before correcting, and measuring nothing new: it opines d1. */
+    private AuditEngine judgeOfA1MeasuresBeforeCorrecting(String... asked) {
+        config.setJudgeFreshnessCatalog(name -> Optional.of(new com.learney.contentaudit.auditdomain.judging.JudgeFreshnessReference(
+                name, "d1", Set.of(), true, Set.of(), null)));
+        AnalyzerCorrectionCatalog catalog = mock(AnalyzerCorrectionCatalog.class);
+        when(catalog.find(any())).thenReturn(Optional.empty());
+        when(catalog.find("a1-didactic")).thenReturn(Optional.of(
+                new com.learney.contentaudit.auditdomain.englishquality.A1DidacticCorrection()));
+        config.setCorrectionCatalog(catalog);
+        var analyzers = new ArrayList<>(batch.getAnalyzers() == null ? List.<String>of() : batch.getAnalyzers());
+        analyzers.add("a1-didactic"); batch.setAnalyzers(analyzers);
+        AuditEngine engine = mock(AuditEngine.class); CourseMapper mapper = mock(CourseMapper.class);
+        var composer = mock(com.learney.contentaudit.auditdomain.analysis.AnalysisComposer.class);
+        config.setAuditEngine(engine); config.setCourseMapper(mapper); config.setAnalysisComposer(composer);
+        when(engine.runAudit(any(), any(com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection.class))).thenAnswer(i -> {
+            var policies = i.getArgument(1, com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection.class).getPolicies();
+            assertEquals(Set.of("a1-didactic"), policies.keySet(), "only the judge that never saw it");
+            assertEquals(Set.of(asked), policies.get("a1-didactic").getReevaluationSubjectIds());
+            var fresh = TandaFixture.report(course, List.of(), Map.of(), List.of());
+            var coverage = new com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis();
+            coverage.setJudgeName("a1-didactic"); coverage.setUnit(AuditTarget.QUIZ);
+            coverage.setEvaluators(List.of(new com.learney.contentaudit.auditdomain.judging.EvaluatorCoverage("a1-didactic",
+                    new com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage(1, 1, 1, 0, 0, 0), "d1")));
+            ((DefaultCourseDiagnoses) fresh.getRoot().getDiagnoses()).setJudgeCoverages(List.of(coverage));
+            return fresh;
+        });
+        when(composer.compose(any(), any())).thenAnswer(i -> report);
+        return engine;
+    }
+
+    @Tag("F-MESA-R024")
+    @Test void aJudgeWhoseCorrectionAsksForItMeasuresTheSelectedExercisesItHasNotOpinedOnWithTheHeadersOfTheCourse() {
+        // F-MESA-R024 (José, 25/10, brief 223): the judge of A1 never measured the course; before correcting an exercise of
+        // A1 it is asked for its opinion, reading the headers of the topics before it as the analysis gives them.
+        judgeOfA1MeasuresBeforeCorrecting(quiz);
+        CourseMapper mapper = config.getCourseMapper();
+
+        State estimate = service.execute(estimate(List.of(quiz), false));
+        assertTrue(estimate.allowed(), estimate.reason());
+        assertTrue(estimate.estimateNote().contains("pide 1 opinión que falta de a1-didactic"), estimate.estimateNote());
+        assertFalse(estimate.estimateNote().contains("vuelve a medir"), estimate.estimateNote());
+
+        State done = service.execute(correct(estimate, List.of(quiz), false));
+        ArgumentCaptor<CourseEntity> measured = ArgumentCaptor.forClass(CourseEntity.class);
+        verify(mapper).map(measured.capture());
+        var topics = measured.getValue().getRoot().getMilestones().get(0).getTopics().get(0).getKnowledges();
+        assertEquals(5, topics.size(), "the headers of the level stay, as the analysis reads them");
+        assertEquals(1, topics.stream().mapToInt(k -> k.getQuizTemplates().size()).sum(), "only the selected exercise is asked");
+        assertEquals(3, done.spent(), "1 opinion that was missing and 2 of the panel");
+    }
+
+    @Tag("F-MESA-R024")
+    @Test void anExerciseWithoutProblemsThatTheJudgeOfA1NeverSawCanBeSelectedAndGivesNoWorkIfTheJudgeFindsNothing() {
+        // F-MESA-R024: in a topic that is corrected, an exercise the other judges approve is still measured by the judge of
+        // A1; if it finds nothing, the run ends without asking the panel.
+        AuditEngine engine = judgeOfA1MeasuresBeforeCorrecting(sibling);
+
+        State estimate = service.execute(estimate(List.of(sibling), false));
+        assertTrue(estimate.allowed(), estimate.reason());
+        State done = service.execute(correct(estimate, List.of(sibling), false));
+
+        verify(engine, times(1)).runAudit(any(), any(com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection.class));
+        verifyNoInteractions(panels);
+        assertEquals("DONE", done.status());
+        assertEquals(1, done.spent(), "only the opinion that was missing");
+        assertFalse(service.execute(estimate(List.of(knowledge), false)).allowed(), "what is not an exercise of the judge stays out");
+    }
+
     @Tag("F-MESA-R020")
     @Test void anOpinionOfAJudgeWhoseVersionOfTodayIsNotApprovedIsNotMeasuredAgain() {
         instructionOpinedByAnEarlierVersion(false);

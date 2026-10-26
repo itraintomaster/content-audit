@@ -904,7 +904,7 @@ class Main {
                 new LemmaAbsenceCorrection(),
                 new SentenceLengthCorrection(),
                 new ContextOnlyCorrection("naturalness"),
-                new ContextOnlyCorrection("a1-didactic"),
+                new com.learney.contentaudit.auditdomain.englishquality.A1DidacticCorrection(),  // F-MESA-R024
                 new HintCoherenceCorrection(),               // A (E-03)
                 new AnswerCompletenessCorrection(),          // A (E-03)
                 new MultipleChoiceValidityCorrection(),      // A (E-03)

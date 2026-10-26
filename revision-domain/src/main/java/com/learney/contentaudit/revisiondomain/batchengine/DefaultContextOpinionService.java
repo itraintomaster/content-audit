@@ -19,6 +19,8 @@ import java.util.function.Function;
 
 /** A budgeted pass on the current composition. No rule stage, rollback, closing or course writer. */
 final class DefaultContextOpinionService implements ContextOpinionService {
+    /** The judges that read the course before the exercise: the headers of the earlier topics are part of what they see. */
+    static final Set<String> CURRICULUM_JUDGES = Set.of("a1-didactic", "naturalness");
     private final BatchServiceConfig config;
     private final BatchChangeLedger ledger;
     private final BatchReviewService reviews;
@@ -337,7 +339,7 @@ final class DefaultContextOpinionService implements ContextOpinionService {
         List<Scope> result = new ArrayList<>();
         for (var entry : wanted.entrySet()) {
             String analyzer = entry.getKey();
-            boolean curriculum = correctionContext && Set.of("a1-didactic", "naturalness").contains(analyzer);
+            boolean curriculum = correctionContext && CURRICULUM_JUDGES.contains(analyzer);
             if (config.getAnalyzerCatalog().list().stream().noneMatch(c -> analyzer.equals(c.getName())))
                 throw new IllegalArgumentException("Juez desconocido: " + analyzer);
             Set<String> quizIds = new LinkedHashSet<>(entry.getValue());

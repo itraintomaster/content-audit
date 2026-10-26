@@ -39,5 +39,7 @@ public enum DiagnosisKind {
 
     GRAMMAR,
 
-    NEAR_DUPLICATES
+    NEAR_DUPLICATES,
+
+    A1_DIDACTIC
 }

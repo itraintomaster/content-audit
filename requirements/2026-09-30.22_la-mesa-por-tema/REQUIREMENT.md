@@ -456,6 +456,25 @@ que el juez de una sola respuesta había pedido para la oración vieja, a «How 
 
 **Fuente**: brief 224, pregunta 1; José, el 25/10/2026: «borrow» y «order» se quedan en Pedidos («Sí, son las del tema»).
 
+<a id="F-MESA-R024"></a>
+### Rule[F-MESA-R024] - La calidad didáctica A1 se corrige en los temas que se corrigen
+**Severity**: major | **Validation**: VALIDATED
+
+> Lo que el juez de calidad didáctica A1 encuentra en un ejemplo es un problema que se corrige en la mesa, no sólo
+> contexto para quien propone: se arregla cambiando el ejemplo —enunciado, pista, respuestas u opciones, con su
+> traducción, su oración guardada y su audio detrás—, nunca la consigna del tema ni la miniteoría. Antes de corregir un
+> ejercicio de A1 que ese juez todavía no vio, se le pide su opinión, con una consulta dentro del tope, leyendo los
+> encabezados de los temas anteriores como los lee el análisis. Un ejercicio de A1 sin otro problema también se puede
+> elegir para eso: si el juez no encuentra nada, no da trabajo. Los demás jueces que corrigen siguen como en
+> [F-MESA-R020](#F-MESA-R020): sólo vuelven a preguntar lo que opinó una versión anterior.
+
+El 25/10/2026 la tanda A1 tenía 2.402 ejercicios y ninguno con opinión de este juez: sólo había validado propuestas.
+Así pasaron «Those are the sons' Saturdays.» y «That is the waiters' water.», que pragmatismo y uso nativo aprueban y de
+las que este juez dijo que «exige imaginar un calendario». Para un tema entero se pide la opinión de todos sus
+ejercicios antes de la tanda, con una consulta por ejercicio.
+
+**Fuente**: brief 223, pregunta 2; José, el 25/10/2026: «Sí, en esos temas».
+
 ## Contexto
 
 **Por qué una mesa por tema.** El 077 revisó los 11.287 ejercicios con revisores por lote y verificadores que intentaron

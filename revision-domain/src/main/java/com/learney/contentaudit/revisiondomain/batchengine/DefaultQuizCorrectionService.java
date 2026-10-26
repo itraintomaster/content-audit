@@ -168,6 +168,8 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
     /**
      * F-MESA-R020: for each judge of exercises whose version of today approved its exam, the selected exercises it
      * opined on with an earlier version. A judge of topics is left as it is: measuring it again needs the whole topic.
+     * F-MESA-R024: a judge whose correction asks for it also measures the selected exercises of its own it has not
+     * opined on yet.
      */
     private Map<String, Set<String>> outdated(AuditReport report, List<String> selected, List<String> validators) {
         var result = new TreeMap<String, Set<String>>();
@@ -178,9 +180,16 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
             var coverage = report.getRoot().getDiagnoses() instanceof CourseDiagnoses d ? safe(d.getJudgeCoverages()).stream()
                     .filter(c -> analyzer.equals(c.getJudgeName())).findFirst().orElse(null) : null;
             if (today.isEmpty() || coverage != null && coverage.getUnit() == AuditTarget.KNOWLEDGE) continue;
+            boolean firstTime = config.getCorrectionCatalog() != null && config.getCorrectionCatalog().find(analyzer)
+                    .map(c -> !c.contextOnly() && c.measuredBeforeCorrecting()).orElse(false);
             for (String id : selected) {
                 AuditNode node = index.get(id);
-                if (node == null || !DefaultAnalysisComposer.hasStoredOpinion(node, analyzer)) continue;
+                if (node == null) continue;
+                if (!DefaultAnalysisComposer.hasStoredOpinion(node, analyzer)) {
+                    if (firstTime && DefaultAnalysisComposer.eligible(node, analyzer))
+                        result.computeIfAbsent(analyzer, k -> new TreeSet<>()).add(id);
+                    continue;
+                }
                 String version = DefaultAnalysisComposer.version(node, analyzer, report);
                 if (version != null && !today.get().getSameVersions().contains(version))
                     result.computeIfAbsent(analyzer, k -> new TreeSet<>()).add(id);
@@ -196,9 +205,11 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
         for (var entry : snapshot.outdated().entrySet()) {
             String analyzer = entry.getKey();
             Set<String> ids = entry.getValue();
+            // A judge of the curriculum reads the headers of the topics before the exercise, as the analysis gives them.
+            boolean curriculum = DefaultContextOpinionService.CURRICULUM_JUDGES.contains(analyzer);
             CourseEntity only = ChangedCourseCuts.cut(snapshot.current(), k -> {
                 var quizzes = safe(k.getQuizTemplates()).stream().filter(q -> ids.contains(q.getId())).toList();
-                return quizzes.isEmpty() ? null : new KnowledgeEntity(k.getId(), k.getCode(), k.getKind(), k.getLabel(), k.getOldId(),
+                return quizzes.isEmpty() && !curriculum ? null : new KnowledgeEntity(k.getId(), k.getCode(), k.getKind(), k.getLabel(), k.getOldId(),
                         k.getParentId(), k.isIsRule(), k.getInstructions(), k.getOrder(), k.getSlug(), quizzes, k.getSentenceMode());
             });
             // A saved verdict is reused by its content whatever version gave it: the exercises are declared to be asked again.
@@ -221,10 +232,22 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
     }
 
     private static String remeasureNote(Snapshot snapshot) {
-        int pairs = snapshot.outdated().values().stream().mapToInt(Set::size).sum();
-        return pairs == 0 ? "" : " Antes de corregir vuelve a medir " + (pairs == 1 ? "1 opinión" : pairs + " opiniones")
-                + " de una versión anterior de "
-                + String.join(", ", snapshot.outdated().keySet()) + ", con una consulta por opinión dentro del tope.";
+        var index = snapshot.report() == null || snapshot.report().getRoot() == null ? Map.<String, AuditNode>of()
+                : DefaultAnalysisComposer.index(snapshot.report().getRoot());
+        var again = new TreeMap<String, Integer>();
+        var first = new TreeMap<String, Integer>();
+        snapshot.outdated().forEach((analyzer, ids) -> ids.forEach(id -> {
+            AuditNode node = index.get(id);
+            (node != null && !DefaultAnalysisComposer.hasStoredOpinion(node, analyzer) ? first : again).merge(analyzer, 1, Integer::sum);
+        }));
+        String note = "";
+        int pairs = again.values().stream().mapToInt(Integer::intValue).sum();
+        if (pairs > 0) note += " Antes de corregir vuelve a medir " + (pairs == 1 ? "1 opinión" : pairs + " opiniones")
+                + " de una versión anterior de " + String.join(", ", again.keySet()) + ", con una consulta por opinión dentro del tope.";
+        int fresh = first.values().stream().mapToInt(Integer::intValue).sum();
+        if (fresh > 0) note += " Antes de corregir pide " + (fresh == 1 ? "1 opinión que falta" : fresh + " opiniones que faltan") + " de "
+                + String.join(", ", first.keySet()) + ", con una consulta por opinión dentro del tope.";
+        return note;
     }
 
     private State compare(CorrectionBatch batch, String operationId) {
@@ -329,15 +352,23 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
         if (reason == null && safe(batch.getOpinionRuns()).stream().anyMatch(r -> Set.of("RUNNING", "NEEDS_REVIEW").contains(r.status())))
             reason = "Hay una medición de contexto abierta o interrumpida.";
         Map<String, Quiz> byId = new HashMap<>(); rows.forEach(q -> byId.put(q.quizId(), q));
+        Map<String, Set<String>> toMeasure = measured != null ? Map.of() : outdated(report, selected, validators);
         for (String id : selected) {
             Quiz quiz = byId.get(id);
+            // F-MESA-R024: a judge that never saw it measures it first; it gives work only if that judge finds something.
+            boolean firstOpinion = report != null && report.getRoot() != null && toMeasure.entrySet().stream().anyMatch(e ->
+                    e.getValue().contains(id) && !DefaultAnalysisComposer.hasStoredOpinion(index.get(id), e.getKey()));
+            if (quiz == null && firstOpinion) {
+                if (approved.contains(id) && !includeApproved) { reason = "Hay quizzes aprobados: confirmá explícitamente su inclusión."; break; }
+                continue;
+            }
             if (quiz == null) { reason = "El quiz ya no tiene problemas vigentes: " + id; break; }
             if (!quiz.correctable()) { reason = quiz.reason(); break; }
             if (quiz.approved() && !includeApproved) { reason = "Hay quizzes aprobados: confirmá explícitamente su inclusión."; break; }
         }
         String stamp = stamp(batch, current, report, rows, selected, includeApproved, validators, references);
         return new Snapshot(start, current, report, tasks, rows, validators, stamp, reason == null, reason, selected.size(), references,
-                Set.copyOf(repairs), Map.copyOf(noWork), measured != null ? Map.of() : outdated(report, selected, validators));
+                Set.copyOf(repairs), Map.copyOf(noWork), toMeasure);
     }
 
     private String stamp(CorrectionBatch batch, CourseEntity current, AuditReport report, List<Quiz> rows,
@@ -391,7 +422,9 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
         for (String quizId : snapshot.repairs()) result.add(new RefinementTask(DidacticContracts.taskId(operation, quizId),
                 AuditTarget.QUIZ, quizId, "Restaurar contrato didáctico de v" + snapshot.references().get(quizId).sourceContentVersion(),
                 DiagnosisKind.QUIZ_INSTRUCTION, 0, RefinementTaskStatus.IN_BATCH, null));
-        if (result.isEmpty() && snapshot.references().isEmpty()) throw new IllegalStateException("No hay tareas vigentes que se puedan corregir.");
+        // After asking for the opinions that were missing, finding nothing to correct is an answer, not a failure.
+        if (result.isEmpty() && snapshot.references().isEmpty() && snapshot.outdated().isEmpty())
+            throw new IllegalStateException("No hay tareas vigentes que se puedan corregir.");
         return result;
     }
 

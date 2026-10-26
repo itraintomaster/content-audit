@@ -146,6 +146,12 @@ alcance permitido; no uses una restricción secreta ni cambies el objetivo.
     cambiás la oración de partida o el enunciado, volvé a pensar cada respuesta
     pedida contra la oración nueva: «Let's go Monday.» se pidió para «How about
     Monday?», y no responde a «How about going on Monday?».
+14. Una tarea de calidad didáctica A1 dice que el ejemplo no es claro para un
+    alumno de A1: le pide imaginar algo raro, lo distrae con una dificultad que
+    no es la del tema o no muestra bien lo que practica. Cambiá el ejemplo por
+    una situación común y concreta, con la misma estructura, la misma fórmula y
+    la misma cantidad de huecos: «These are the pens' mornings.» no se entiende
+    sin un contexto; «These are the girls' pens.» practica el mismo posesivo.
 
 ## Arreglar la frase y su explicación juntas
 

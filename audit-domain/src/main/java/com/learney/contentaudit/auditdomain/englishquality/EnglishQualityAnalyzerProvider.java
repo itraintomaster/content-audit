@@ -43,6 +43,13 @@ public final class EnglishQualityAnalyzerProvider implements AnalyzerProvider {
     @Override public ContentAnalyzer create(EvaluationRunPolicy policy) {
         return new EnglishQualityAnalyzer(kind, runtime.open(kind.name, evaluator == null ? List.of() : List.of(evaluator), policy), runtime, builder, reader);
     }
-    @Override public Optional<AnalyzerPlanBinding> planBinding() { return Optional.empty(); }
+    /**
+     * F-MESA-R024: what the judge of A1 finds in an example becomes an A1_DIDACTIC task on the exercise; naturalness stays
+     * context for the one who proposes.
+     */
+    @Override public Optional<AnalyzerPlanBinding> planBinding() {
+        return kind == Kind.A1_DIDACTIC ? Optional.of(new AnalyzerPlanBinding(A1DidacticCorrection.TASK_KIND,
+                List.of(AuditTarget.QUIZ))) : Optional.empty();
+    }
     @Override public Optional<SelfDescribingConfig> config() { return Optional.empty(); }
 }
