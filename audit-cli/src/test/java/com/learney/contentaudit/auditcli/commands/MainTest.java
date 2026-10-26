@@ -200,7 +200,7 @@ public class MainTest {
         for (int i = 17; i < 20; i++) {
             lastThree.add(cards.get(i).get("name").asText() + " " + cards.get(i).get("displayName").asText());
         }
-        org.junit.jupiter.api.Assertions.assertEquals(23, cards.size(), "historical order, distractor quality, pragmatism and independent A1 quality");
+        org.junit.jupiter.api.Assertions.assertEquals(24, cards.size(), "historical order, distractor quality, pragmatism, independent A1 quality and Spanish register");
         org.junit.jupiter.api.Assertions.assertEquals("multiple-choice-quality", cards.get(20).get("name").asText());
         org.junit.jupiter.api.Assertions.assertEquals("Calidad de distractores", cards.get(20).get("displayName").asText());
         org.junit.jupiter.api.Assertions.assertEquals(java.util.List.of("grammar Error de gramática",
@@ -221,7 +221,7 @@ public class MainTest {
         for (int i = 0; i < 17; i++) {
             firstSeventeen.add(cards.get(i).get("name").asText() + " " + cards.get(i).get("displayName").asText());
         }
-        org.junit.jupiter.api.Assertions.assertEquals(23, cards.size(), "historical positions remain unchanged");
+        org.junit.jupiter.api.Assertions.assertEquals(24, cards.size(), "historical positions remain unchanged");
         org.junit.jupiter.api.Assertions.assertEquals(java.util.List.of(
                 "sentence-length Oraciones con el largo de su nivel", "knowledge-title-length Títulos de largo adecuado",
                 "knowledge-instructions-length Consignas de largo adecuado",
@@ -279,8 +279,9 @@ public class MainTest {
         table.put("multiple-choice-quality", "Calidad de distractores");
         table.put("pragmatism", "Pragmatismo comunicativo");
         table.put("a1-didactic", "Calidad didáctica A1");
+        table.put("spanish-register", "Texto de vos");
         org.junit.jupiter.api.Assertions.assertEquals(table, names, "R001: the names of the table, by unique name");
-        org.junit.jupiter.api.Assertions.assertEquals(23, new java.util.HashSet<>(names.values()).size(),
+        org.junit.jupiter.api.Assertions.assertEquals(24, new java.util.HashSet<>(names.values()).size(),
                 "R001 inv. 3: twenty different names");
         java.util.List<String> vocabulary = new java.util.ArrayList<>();
         families.forEach((name, family) -> {
@@ -352,6 +353,8 @@ public class MainTest {
         table.put("multiple-choice-quality", "Opción múltiple que se acierta por una pista o cuyas opciones incorrectas no practican el objetivo pedagógico.");
         table.put("pragmatism", "Oración sin uso comunicativo plausible; señal para revisión independiente, sin corrección automática.");
         table.put("a1-didactic", structuredExplanation);
+        table.put("spanish-register", "Consignas, miniteorías y traducciones escritas de vos («Usá», «podés», "
+                + "«agregalo») donde el curso habla de tú («Usa», «puedes», «agrégalo»).");
         org.junit.jupiter.api.Assertions.assertEquals(table, explanations, "R004 inv. 1: the sentences of the table");
     }
 }

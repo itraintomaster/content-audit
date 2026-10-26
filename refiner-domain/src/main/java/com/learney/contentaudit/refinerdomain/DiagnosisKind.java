@@ -41,5 +41,7 @@ public enum DiagnosisKind {
 
     NEAR_DUPLICATES,
 
-    A1_DIDACTIC
+    A1_DIDACTIC,
+
+    SPANISH_REGISTER
 }

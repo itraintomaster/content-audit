@@ -17,6 +17,7 @@ class SpanishRegisterTest {
         assertEquals(List.of("Usá"), SpanishRegister.voseo("Usá $is$ con $she$.", true));
         assertEquals(List.of("usá"), SpanishRegister.voseo("Con $he$ usá $is$.", true));
         assertEquals(List.of("Elegí"), SpanishRegister.voseo("Elegí la opción correcta.", true));
+        assertEquals(List.of("Mirá", "parás"), SpanishRegister.voseo("Mirá: si parás un tiempo, va en continuo.", true));
         assertEquals(List.of("decidís", "podés"), SpanishRegister.voseo(
                 "Si decidís usar $can$, podés pedir permiso.", true));
         assertEquals(List.of("Colocá", "colocalo"), SpanishRegister.voseo(
@@ -41,5 +42,7 @@ class SpanishRegisterTest {
         assertEquals(List.of(), SpanishRegister.voseo("Mañana dibujará una casa y sabrás la verdad.", false));
         assertEquals(List.of(), SpanishRegister.voseo("Mary está en casa. Él habla inglés y francés en París.", false));
         assertEquals(List.of(), SpanishRegister.voseo("¿Me prestas tu libro? Sí, aquí está, en el país de mamá.", false));
+        assertEquals(List.of(), SpanishRegister.voseo("José habla con Inés de sus esquís. Así se dice en inglés.", true));
+        assertEquals(List.of(), SpanishRegister.voseo("Mañana será lunes y te dará tiempo; irás al cine y verás.", true));
     }
 }

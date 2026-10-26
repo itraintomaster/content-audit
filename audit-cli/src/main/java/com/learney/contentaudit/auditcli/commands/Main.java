@@ -780,6 +780,8 @@ class Main {
                 judgeRuntime, a1DidacticJudge,
                 new com.learney.contentaudit.quizinstructioninfrastructure.englishquality.JacksonEnglishQualityVerdictReader(),
                 studentViewRenderer, finishedSentenceReader));
+        // F-MESA-R025: what the student reads goes in «tú»; a text in «vos» is a task for the panel.
+        analyzerProviders.add(new com.learney.contentaudit.auditdomain.spanishregister.SpanishRegisterAnalyzerProvider());
         AnalyzerCatalog analyzerCatalog = new DefaultAnalyzerCatalog(analyzerProviders);
 
         ScoreAggregator scoreAggregator =
@@ -905,6 +907,7 @@ class Main {
                 new SentenceLengthCorrection(),
                 new ContextOnlyCorrection("naturalness"),
                 new com.learney.contentaudit.auditdomain.englishquality.A1DidacticCorrection(),  // F-MESA-R024
+                new com.learney.contentaudit.auditdomain.spanishregister.SpanishRegisterCorrection(),  // F-MESA-R025
                 new HintCoherenceCorrection(),               // A (E-03)
                 new AnswerCompletenessCorrection(),          // A (E-03)
                 new MultipleChoiceValidityCorrection(),      // A (E-03)
