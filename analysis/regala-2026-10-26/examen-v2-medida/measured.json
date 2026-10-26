@@ -1,0 +1,31 @@
+{
+ "juez": "answer-giveaway",
+ "version": "04552ec90ceeb579a55c5f533a9e48c793db3529f98df6d6ab12290eaa8d3fbf",
+ "estado": "APROBADO",
+ "grupos": [
+  {
+   "grupo": "regala",
+   "casos": 11,
+   "comoSeEspera": 11,
+   "noComoSeEspera": 0
+  },
+  {
+   "grupo": "no-regala",
+   "casos": 21,
+   "comoSeEspera": 20,
+   "noComoSeEspera": 1
+  }
+ ],
+ "noDieronLoEsperado": [
+  "017e782c05580708fe05847e"
+ ],
+ "alcanzoLaMeta": true,
+ "foto": "/Users/josecullen/projects/learney/content-audit/.claude/worktrees/iterative-correction-improvements-1c3d2c/analysis/regala-2026-10-26/examen/course",
+ "medidoPor": "analysis/regala-2026-10-26/rendir.py; regala ≥ 10/11 y a lo sumo 1 falsa alarma en 21; referencias editoriales del asistente, no verdad certificada",
+ "proveedor": "codex-cli",
+ "modelo": "gpt-6.1-sol",
+ "esfuerzo": "medium",
+ "examFingerprint": null,
+ "regressionSuiteFingerprint": null,
+ "regressionCaseIds": []
+}
