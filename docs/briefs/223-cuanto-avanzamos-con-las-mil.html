@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cuánto avanzamos</title>
+<style>
+  /* ============ tokens: claro y, abajo, oscuro ============ */
+  :root{
+    --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
+    --fg:#1c1a17; --fg-2:#57524b; --fg-3:#8b847a;
+    --accent:#b4531f; --accent-soft:#fdf1e7;
+    --ok:#2f6b46; --ok-soft:#e9f4ed;
+    --warn:#8a6314; --warn-soft:#fbf2dd;
+    --bad:#a3342c; --bad-soft:#fbecea;
+    --info:#2a5b8f; --info-soft:#e9f1f9;
+    --radius:10px; --shadow:0 1px 2px rgba(28,26,23,.05), 0 8px 24px -16px rgba(28,26,23,.25);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#131211; --bg-elev:#1b1a18; --line:#302d29; --line-soft:#252320;
+      --fg:#efece7; --fg-2:#a8a29a; --fg-3:#7b756c;
+      --accent:#e08b4f; --accent-soft:#2a1f16;
+      --ok:#7fc79c; --ok-soft:#16241c;
+      --warn:#e0b657; --warn-soft:#272013;
+      --bad:#e58b82; --bad-soft:#2a1917;
+      --info:#8ab6e5; --info-soft:#141f2b;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.6 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+    font-feature-settings:"kern","liga","cv05";
+    padding:40px 24px 80px;
+  }
+  .wrap{max-width:940px;margin:0 auto}
+  code,kbd,pre,.mono{font-family:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace}
+  a{color:var(--accent)}
+  code,a{overflow-wrap:anywhere}   /* una ruta o un link largo desborda el celular: 15 de 76 briefs viejos */
+
+  /* ============ encabezado ============ */
+  header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
+  .kicker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .kicker .num{font:700 12px ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.04em;color:var(--fg-3);
+    background:var(--line-soft);padding:3px 8px;border-radius:6px;font-variant-numeric:tabular-nums}
+  .badge{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;background:var(--accent-soft);color:var(--accent);
+    border:1px solid color-mix(in srgb,var(--accent) 22%,transparent)}
+  .meta{font-size:12.5px;color:var(--fg-3)}
+  h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2;margin:0;letter-spacing:-.02em;font-weight:650}
+  .sub{margin:10px 0 0;color:var(--fg-2);font-size:16px;max-width:62ch}
+
+  /* ============ el lede: la conclusión, dos renglones ============ */
+  .lede{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:var(--radius);padding:16px 18px;margin:0 0 34px;box-shadow:var(--shadow)}
+  .lede p{margin:0;font-size:17.5px;line-height:1.5;max-width:68ch}
+  .lede strong{font-weight:650}
+
+  /* ============ sección: título = conclusión · un dibujo · un pie ============ */
+  section{margin:0 0 38px}
+  h2{font-size:19px;line-height:1.3;font-weight:650;letter-spacing:-.01em;margin:0 0 14px;max-width:60ch}
+  p{margin:0 0 12px}
+  .pie{font-size:13.5px;line-height:1.5;color:var(--fg-2);margin:10px 0 0;max-width:78ch}
+  .grid{display:grid;gap:12px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;
+    box-shadow:var(--shadow);min-width:0}
+  .ptl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-3);font-weight:700;margin:0 0 10px}
+
+  /* ============ KPIs: el número grande, su comparación abajo ============ */
+  .kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+  .kpi{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:32px;font-weight:700;letter-spacing:-.025em;line-height:1.05;font-variant-numeric:tabular-nums}
+  .kpi .n small{font-size:.48em;font-weight:600;color:var(--fg-3);margin-left:.3em;letter-spacing:0}
+  .kpi .l{font-size:13px;color:var(--fg-2);line-height:1.4;margin-top:6px}
+  .kpi.dest .n{color:var(--accent)}
+
+  /* ============ barras horizontales con etiqueta ============ */
+  .hb{display:grid;gap:10px}
+  .hb .r{display:grid;grid-template-columns:minmax(110px,38%) minmax(0,1fr) auto;gap:12px;align-items:center;font-size:13.5px}
+  .hb .t{color:var(--fg-2);line-height:1.3;min-width:0}
+  .hb .t small{display:block;color:var(--fg-3);font-size:12px}
+  .hb .tr{position:relative;height:10px;border-radius:99px;background:var(--line-soft)}
+  .hb .f{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent)}
+  .hb .f.g{background:var(--ok)} .hb .f.b{background:var(--bad)} .hb .f.w{background:var(--warn)}
+  .hb .f.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .hb .meta{position:absolute;top:-4px;bottom:-4px;width:2px;border-radius:1px;background:var(--fg)}
+  .hb .n{font-weight:650;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--fg-2);margin-top:12px}
+  .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--accent)}
+  .sw.g{background:var(--ok)} .sw.b{background:var(--bad)} .sw.w{background:var(--warn)}
+  .sw.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .sw.m{width:2px;height:13px;border-radius:0;background:var(--fg);vertical-align:-2px}
+
+  /* ============ flujo en pasos ============ */
+  .flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:16px}
+  .flow .st{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:12px 13px;display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow);min-width:0}
+  .flow .st:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:8px;height:8px;z-index:1;
+    border-top:2px solid var(--fg-3);border-right:2px solid var(--fg-3);transform:translateY(-50%) rotate(45deg)}
+  .flow .i{font:700 12px/24px ui-monospace,monospace;width:24px;height:24px;border-radius:7px;text-align:center;
+    background:var(--accent-soft);color:var(--accent)}
+  .flow .h{font-weight:650;font-size:14px;line-height:1.25}
+  .flow .eg{font:italic 14px/1.3 ui-serif,Georgia,serif;color:var(--fg)}
+  .flow .d{font-size:12.5px;line-height:1.4;color:var(--fg-2)}
+  .flow .st.end{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+
+  /* ============ antes y después ============ */
+  .ad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}
+  .ad .lado{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:13px 15px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow);min-width:0}
+  .ad .antes{border-top:3px solid var(--bad)} .ad .despues{border-top:3px solid var(--ok)}
+  .ad .rot{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+  .ad .antes .rot{color:var(--bad)} .ad .despues .rot{color:var(--ok)}
+  .ad .despues::before{content:"→";position:absolute;left:-24px;top:50%;transform:translateY(-50%);
+    font-size:19px;color:var(--fg-3)}
+  .ad ol{margin:0;padding-left:20px;font-size:13.5px;line-height:1.45;color:var(--fg-2);display:grid;gap:3px}
+  .ad .res{font-weight:650;font-size:14.5px;border-top:1px dashed var(--line);padding-top:7px;margin-top:auto}
+  .ad .antes .res{color:var(--bad)} .ad .despues .res{color:var(--ok)}
+
+  /* ============ mapa de calor ============ */
+  .heat{display:grid;grid-template-columns:minmax(110px,1.6fr) repeat(var(--cols,4),minmax(0,1fr));gap:4px;font-size:12.5px}
+  .heat span{padding:7px 4px;border-radius:6px;text-align:center;font-variant-numeric:tabular-nums;background:var(--line-soft)}
+  .heat .h{background:none;color:var(--fg-3);font-size:11.5px;font-weight:600}
+  .heat .rl{background:none;text-align:left;color:var(--fg-2)}
+  .heat .h0{color:var(--fg-3)}
+  .heat .h1{background:color-mix(in srgb,var(--warn) 16%,var(--bg-elev))}
+  .heat .h2{background:color-mix(in srgb,var(--warn) 34%,var(--bg-elev))}
+  .heat .h3{background:color-mix(in srgb,var(--bad) 32%,var(--bg-elev))}
+
+  /* ============ tarjetas de decisión: la recomendada, marcada ============ */
+  .opts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+  .opt{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
+    box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;min-width:0}
+  .opt.rec{border:1.5px solid var(--accent);box-shadow:0 0 0 3px var(--accent-soft),var(--shadow)}
+  .opt .oh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14.5px}
+  .opt .ol{font:700 13px/26px ui-monospace,monospace;width:26px;height:26px;border-radius:7px;text-align:center;
+    background:var(--line-soft);flex:none}
+  .opt.rec .ol{background:var(--accent);color:var(--bg-elev)}
+  .opt p{font-size:13px;color:var(--fg-2);margin:0}
+  .opt ul{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-size:13px}
+  .opt li::before{font-weight:800;margin-right:6px}
+  .opt li.si::before{content:"✓";color:var(--ok)} .opt li.no::before{content:"✕";color:var(--bad)}
+
+  /* ============ ejemplo real ============ */
+  .ex{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
+    display:grid;gap:7px;box-shadow:var(--shadow);min-width:0}
+  .ex .cons{font-size:12px;color:var(--fg-3)}
+  .ex .en{font:italic 18px/1.35 ui-serif,Georgia,serif}
+  .ex .gap{display:inline-block;min-width:48px;border-bottom:2px solid var(--fg-3);margin:0 4px}
+  .ex .ans{font-size:13.5px;color:var(--fg-2)} .ex .ans b{color:var(--fg)}
+  .ex .ft{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--fg-3);
+    border-top:1px dashed var(--line);padding-top:7px}
+  .mark{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;line-height:1.45;background:var(--bad-soft);
+    border-radius:8px;padding:8px 10px}
+  .mark .x{color:var(--bad);font-weight:800}
+  .mark.ok{background:var(--ok-soft)} .mark.ok .x{color:var(--ok)}
+  .sev{font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;white-space:nowrap}
+  .sev.b{background:var(--bad);color:var(--bg-elev)} .sev.a{background:var(--bad-soft);color:var(--bad)}
+  .sev.m{background:var(--warn-soft);color:var(--warn)} .sev.l{background:var(--line-soft);color:var(--fg-2)}
+
+  /* ============ preguntas, con la recomendación ============ */
+  .asks{display:grid;gap:10px}
+  .ask{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);
+    padding:12px 15px;display:grid;gap:8px;box-shadow:var(--shadow)}
+  .ask .q{font-size:15px;font-weight:650;line-height:1.35}
+  .ask .ops{display:flex;gap:6px;flex-wrap:wrap}
+  .ask .op{font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--bg)}
+  .ask .op.rec{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .ask .why{font-size:13px;color:var(--fg-2);line-height:1.45}
+
+  /* ============ qué cambia y qué no ============ */
+  .cambia{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .cambia>div{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 15px;box-shadow:var(--shadow)}
+  .cambia ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13.5px;line-height:1.45}
+  .cambia li{position:relative;padding-left:22px}
+  .cambia li::before{position:absolute;left:0;top:0;font-weight:800}
+  .cambia .si li::before{content:"✓";color:var(--ok)}
+  .cambia .no li::before{content:"=";color:var(--fg-3)}
+
+  /* ============ captura real, con su pie ============ */
+  .captura{margin:0;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:10px;
+    box-shadow:var(--shadow);min-width:0}
+  .captura img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft)}
+  .captura.cel img{max-width:300px;margin:0 auto}
+  .captura figcaption{font-size:12.5px;color:var(--fg-3);margin-top:8px}
+
+  /* ============ dónde estamos: la captura real, con lo que cambia rodeado y numerado ============
+     El viewBox del svg.cap es el tamaño de la foto: las marcas van en sus píxeles (capturar.mjs --medir). */
+  .map{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);box-shadow:var(--shadow);border-radius:var(--radius)}
+  .map.alta{grid-template-columns:minmax(0,200px) minmax(0,1fr)}       /* una página más alta que la pantalla */
+  .map .ex{border-radius:var(--radius) 0 0 var(--radius);padding:10px;align-content:center;box-shadow:none}
+  .map .who{display:grid;gap:9px;align-content:center;padding:14px 16px;background:var(--bg);border:1px solid var(--line);
+    border-left:0;border-radius:0 var(--radius) var(--radius) 0}
+  .map .who div{display:flex;gap:9px;align-items:center;font-size:13.5px;line-height:1.35}
+  .map .who b{font:800 11.5px/22px ui-monospace,monospace;width:22px;height:22px;border-radius:6px;text-align:center;
+    background:var(--accent);color:var(--bg-elev);flex:none}
+  .map .who b.gris{background:var(--line);color:var(--fg-3)}       /* lo que se ve pero no cambia */
+  .map .who small{color:var(--fg-3);font-size:12px}
+  .map .who .ptl{margin:0}
+  .cap{display:block;width:100%;height:auto}
+  .cap .mk circle{fill:var(--accent);stroke:var(--bg-elev);stroke-width:4}
+  .cap .mk text{fill:var(--bg-elev);font-weight:800;font-family:ui-monospace,monospace;text-anchor:middle;dominant-baseline:central}
+  .cap .mk.gris circle{fill:var(--fg-3)}
+  .cap .aro{fill:none;stroke:var(--accent);stroke-width:4}         /* rodea lo que cambia */
+  .cap .tapa{fill:var(--bg-elev);opacity:.74}                       /* atenúa lo que no */
+  .cap .raya{stroke:var(--fg-3);stroke-width:2;stroke-dasharray:9 9}  /* dónde termina cada pantalla */
+
+  /* ============ hoy → con X: la foto de hoy con el problema; la maqueta de cómo queda, con su leyenda ============ */
+  .ad.asim{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+  .hoy{display:block;max-width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft);align-self:flex-start}
+  .franja{display:flex;gap:12px;align-items:flex-end}               /* una página alta, al lado de su marca */
+  .franja .cap{width:34%;flex:none} .franja .mark{flex:1}
+  .nb{display:inline-flex;align-items:center;justify-content:center;flex:none;width:1.75em;height:1.75em;border-radius:99px;
+    background:var(--accent);color:var(--bg-elev);font:800 .74em/1 ui-monospace,monospace}
+  ol.leg{list-style:none;margin:0;padding:0;display:grid;gap:5px;font-size:13.5px;line-height:1.45;color:var(--fg-2)}
+  .leg li{display:flex;gap:8px;align-items:baseline} .leg .nb{font-size:11px}
+  /* la maqueta: .mq es su propio contenedor y la letra (en .mi) escala con su ancho, así que una
+     maqueta más ancha NO entra más. Si no entra: menos filas, o .mq.denso. El kit entero, con cada
+     pieza a la vista, está en el catálogo de presentacion.html. */
+  .mq{container-type:inline-size;background:var(--bg-elev);border:1px solid var(--line);border-radius:10px;overflow:hidden;
+    box-shadow:var(--shadow)}
+  .mi{font-size:max(10.5px,2.75cqi);line-height:1.35;padding:3cqi 3.2cqi;display:flex;flex-direction:column;gap:2.2cqi;color:var(--fg)}
+  .mq.denso .mi{font-size:max(10px,2.45cqi);gap:1.7cqi;padding:2.6cqi 2.8cqi}
+  .mi .fila{display:flex;gap:.55em;align-items:center;min-width:0} .mi .fila.env{flex-wrap:wrap;row-gap:.4em}
+  .mi .crece{flex:1;min-width:0}
+  .mi .vt{display:flex;flex-direction:column;gap:.25em;min-width:0}
+  .mi .in{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:.5em;padding:.45em .7em;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mi .sel{background:var(--bg);border:1px solid var(--line);border-radius:.5em;padding:.45em .6em;white-space:nowrap;flex:none}
+  .mi .bt{background:var(--accent);color:var(--bg-elev);border-radius:.5em;padding:.45em .85em;font-weight:700;white-space:nowrap;flex:none}
+  .mi .bt.gh{background:var(--bg-elev);color:var(--fg);border:1px solid var(--line);font-weight:600}
+  .mi .chp{display:inline-flex;align-items:center;gap:.35em;border:1px solid var(--line);background:var(--bg);border-radius:99px;
+    padding:.18em .7em;font-size:.86em;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  .mi .chp.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .mi .chp.no{color:var(--fg-3);text-decoration:line-through}
+  .mi .chp.ok{border-color:var(--ok);background:var(--ok-soft);color:var(--ok);font-weight:650}
+  .mi .chp.fal{border-color:var(--warn);background:var(--warn-soft);color:var(--warn);font-weight:650}
+  .mi .rt{font-size:.72em;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--fg-3)}
+  .mi .tt{font-weight:700;font-size:1.1em;letter-spacing:-.01em} .mi .ts{font-weight:700;font-size:1.15em;letter-spacing:-.01em}
+  .mi .s{font-size:.84em;color:var(--fg-3)} .mi .neg{font-weight:700}
+  .mi .bien{color:var(--ok);font-weight:800} .mi .mal{color:var(--bad);font-weight:800}
+  .mi .corta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .mi .th{width:5.2em;aspect-ratio:16/9;border-radius:.35em;object-fit:cover;flex:none;display:block}
+  .mi .th.ch{width:3.6em} .mi .th.gr{width:60%}
+  .mi .hr{height:1px;background:var(--line-soft)} .mi .apagado{opacity:.4}
+  .mi .expl{background:var(--bg);border:1px solid var(--line-soft);border-radius:.5em;padding:.5em .7em;font-size:.86em;color:var(--fg-2)}
+  .mi .aviso{display:flex;gap:.5em;align-items:center;border-radius:.5em;padding:.45em .7em;font-weight:650;
+    background:var(--bad-soft);color:var(--bad)}
+  .mi .aviso.ok{background:var(--ok-soft);color:var(--ok)}
+  .mi .campo{border:1.5px solid var(--accent);border-radius:.6em;padding:.6em .8em;background:var(--bg-elev);display:flex;flex-direction:column;gap:.3em}
+  .mi .hueco{border:1px dashed var(--warn);border-radius:.4em;height:1.7em;background:var(--warn-soft)}
+  .mi .av{width:2.1em;height:2.1em;border-radius:99px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;
+    font-size:.8em;background:var(--accent-soft);color:var(--accent);flex:none}
+  .mi .fase{display:grid;grid-template-columns:1.5em 1fr auto;gap:.25em .55em;align-items:center}
+  .mi .fase .ic{font-weight:800;text-align:center}
+  .mi .fase.hecha .ic{color:var(--ok)} .mi .fase.va .ic{color:var(--accent)} .mi .fase.falta{color:var(--fg-3)}
+  .mi .riel{grid-column:2/4;height:.42em;border-radius:99px;background:var(--line-soft);overflow:hidden}
+  .mi .riel i{display:block;height:100%;width:var(--hecho,40%);background:var(--accent);border-radius:99px}
+  .mi .dos{display:grid;grid-template-columns:1.15fr 1fr;border:1px solid var(--line-soft);border-radius:.6em;overflow:hidden}
+  .mi .dos>div{padding:.75em;display:flex;flex-direction:column;gap:.55em;min-width:0}
+  .mi .lat{background:var(--bg);border-left:1px solid var(--line)}
+  .mi .item{display:flex;gap:.5em;align-items:center;padding:.3em;border-radius:.4em;min-width:0}
+  .mi .item.on{background:var(--accent-soft);box-shadow:inset 0 0 0 1.5px var(--accent)}
+
+  /* ============ pills de estado ============ */
+  .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}
+  .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
+  .p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)}
+  .p-bad{background:var(--bad-soft);color:var(--bad)} .p-info{background:var(--info-soft);color:var(--info)}
+  .p-idle{background:var(--line-soft);color:var(--fg-3)}
+
+  /* ============ tabla chica (≤ 6 filas; si es más, es un gráfico) ============ */
+  .tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}
+  th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);
+    font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:ui-monospace,monospace;font-size:13px}
+
+  /* ============ diagrama SVG a mano ============ */
+  .diagram{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
+    overflow-x:auto;box-shadow:var(--shadow)}
+  .diagram svg{display:block;max-width:100%;height:auto;margin:0 auto}
+  svg .box{fill:var(--bg);stroke:var(--line)}
+  svg .box-a{fill:var(--accent-soft);stroke:var(--accent)}
+  svg .box-ok{fill:var(--ok-soft);stroke:var(--ok)}
+  svg .box-bad{fill:var(--bad-soft);stroke:var(--bad)}
+  svg .lbl{fill:var(--fg);font:13px ui-sans-serif,system-ui,sans-serif}
+  svg .lbl-s{fill:var(--fg-3);font:11px ui-sans-serif,system-ui,sans-serif}
+  svg .arrow{stroke:var(--fg-3);fill:none;stroke-width:1.2}
+
+  /* ============ comandos · aviso de lo que no sé ============ */
+  pre{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;
+    overflow-x:auto;font-size:13px;line-height:1.55;margin:0}
+  pre code{color:var(--fg)}
+  .call{border-radius:var(--radius);padding:10px 13px;font-size:13.5px;border:1px solid;margin:12px 0 0}
+  .c-warn{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 28%,transparent)}
+  .c-bad{background:var(--bad-soft);border-color:color-mix(in srgb,var(--bad) 28%,transparent)}
+  .c-info{background:var(--info-soft);border-color:color-mix(in srgb,var(--info) 28%,transparent)}
+  .call b:first-child{margin-right:4px}
+
+  footer{border-top:1px solid var(--line);margin-top:36px;padding-top:14px;font-size:12.5px;color:var(--fg-3);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  /* ============ celular ============ */
+  @media (max-width:640px){
+    body{padding:24px 16px 60px}
+    h2{font-size:17px}
+    .flow{grid-auto-flow:row}
+    .flow .st:not(:last-child)::after{right:auto;left:22px;top:auto;bottom:-11px;transform:rotate(135deg)}
+    .ad{grid-template-columns:minmax(0,1fr);gap:28px}
+    .ad .despues::before{content:"↓";left:50%;top:-25px;transform:translateX(-50%)}
+    .hb .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) auto;gap:8px}
+    .heat{grid-template-columns:minmax(80px,1.3fr) repeat(var(--cols,4),minmax(0,1fr));font-size:11.5px}
+    .kpi .n{font-size:28px}
+    .map,.map.alta,.ad.asim{grid-template-columns:minmax(0,1fr)}
+    .map .ex{border-radius:var(--radius) var(--radius) 0 0}
+    .map .who{border-left:1px solid var(--line);border-top:0;border-radius:0 0 var(--radius) var(--radius)}
+    .map.alta .cap{width:min(55%,220px);margin:0 auto}
+  }
+
+  /* la meta tiene que caer en el mismo lugar en todas las filas: ancho fijo para el número */
+  .hb.fijo .r{grid-template-columns:minmax(110px,38%) minmax(0,1fr) 92px}
+  @media (max-width:640px){ .hb.fijo .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) 84px} }
+</style>
+<style>
+  .ex .txt{font-size:14px;line-height:1.45}
+  .ex .txt q{font-style:italic}
+  .diagram .dash{stroke-dasharray:6 5}
+</style>
+<style>
+  .ex .cons b{color:var(--fg-2);font-weight:650}
+  .ex .en{font-size:17px}
+  .ex .ans i{font-family:ui-serif,Georgia,serif}
+  .ex .ans .lista{display:block;font-size:13px;line-height:1.5;color:var(--fg-2);margin-top:2px}
+  .ex .rotulo{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);
+    border-top:1px dashed var(--line);padding-top:8px;margin-top:2px}
+  .ex .rotulo.antes{color:var(--ok)} .ex .rotulo.despues{color:var(--bad)}
+  .ex .cue{font-style:normal;font-weight:700;color:var(--ok);background:var(--ok-soft);border-radius:4px;padding:0 4px}
+  .mark.warn{background:var(--warn-soft)} .mark.warn .x{color:var(--warn)}
+  .tw td{vertical-align:top}
+  .tw td small{display:block;color:var(--fg-3);font-size:12px;margin-top:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">
+      <span class="num">223</span>
+      <span class="badge">Resumen · Iteración con 1000 consultas</span>
+      <span class="meta">A1 · 25/10/2026</span>
+    </div>
+    <h1>La corrección ya no rompe ejercicios: 0 mal en 55</h1>
+    <p class="sub">Los pasos 1 a 4 del 222 y la prueba con hasta 1000 consultas, mirando las respuestas y no sólo a los jueces.</p>
+  </header>
+
+  <div class="lede"><p><strong>De 55 ejercicios corregidos, 45 quedaron bien, 7 defendibles, 3 dudosos y ninguno mal; antes eran 4 mal de 11.</strong> Para la corrida completa faltan dos decisiones tuyas y arreglar las oraciones pegadas.</p></div>
+
+  <div class="kpis" style="margin:18px 0 6px">
+      <div class="kpi dest"><div class="n">0<small>mal</small></div><div class="l">de 55 corregidos. Antes de los arreglos: 4 mal de 11.</div></div><div class="kpi"><div class="n">45<small>bien</small></div><div class="l">7 defendibles y 3 dudosos; cada uno, abajo con su motivo.</div></div><div class="kpi"><div class="n">160 → 6</div><div class="l">reclamos del juez de una sola respuesta en Pedidos. Los 6 que quedan son ciertos.</div></div><div class="kpi"><div class="n">973<small>de 1000</small></div><div class="l">consultas usadas. Quedan 27.</div></div>
+  </div>
+
+  <section>
+    <h2>Cinco cosas fallaban; las cinco quedaron arregladas y probadas</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Qué fallaba, con el caso</th><th>Quién fallaba</th><th>Qué cambié</th><th>Cómo lo probé</th></tr></thead>
+      <tbody>
+        <tr><td>El corrector arreglaba problemas que la versión de hoy de un juez ya no ve. En «She / drink / coffee now.» sacó «now» para cumplir tareas viejas de una sola respuesta.<small>En la muestra 1b, 25 de las 34 tareas venían de versiones anteriores de un juez.</small></td>
+          <td>La mesa: reusaba la opinión guardada sin mirar su versión</td>
+          <td>Antes de corregir, le vuelve a preguntar a la versión de hoy lo que opinó una anterior, una consulta por opinión y dentro del tope.</td>
+          <td>Dos pruebas nuevas. En las rondas volvió a medir 29, 34 y 74 opiniones.</td></tr>
+        <tr><td>La traducción traducía también la oración de partida: «Pedido cortés: Quiero que me ayudes. ¿Podrías ayudarme?».<small>Pasó en los 5 aceptados de la muestra 1b.</small></td>
+          <td>La mesa: guardaba la oración de partida pegada a la respuesta</td>
+          <td>Guarda la respuesta sola, como ya la guardan 629 de los 678 ejercicios de transformar del curso.</td>
+          <td>Dos pruebas nuevas.</td></tr>
+        <tr><td>Marcaba «badly» como palabra de otro nivel, aunque el alumno la forma con la pista «(bad)». El corrector pasó dos ejercicios a «good → well» y quedaron iguales a otro del tema.</td>
+          <td>El analizador de vocabulario</td>
+          <td>El adverbio que el alumno forma con la pista no cuenta como palabra fuera de nivel.</td>
+          <td>Tres pruebas nuevas. «I slept today. (bad)» y «She smiled (sweet).» dejaron de ir a «well».</td></tr>
+        <tr><td>El corrector reescribía la oración antes de aceptar otra respuesta válida. En «That house belongs to Mary.» rearmó todo el ejercicio.</td>
+          <td>El corrector</td>
+          <td>Primero acepta la otra respuesta con «|»; cambia la oración sólo si aceptarla deja de practicar el tema. Y traduce sólo lo que escribe el alumno.</td>
+          <td>Las rondas 2a y 2b: los 20 de «El posesivo» conservan su oración.</td></tr>
+        <tr><td>El juez de una sola respuesta reclamaba «Can you play the radio?» con «Polite:» y «Could you find the cat?» con «Informal request:».</td>
+          <td>El juez de una sola respuesta</td>
+          <td>La etiqueta sola elige: «Polite» pide «could»; «Informal» y «Normal», «can». Es tu regla: «como dice polite request, debe usar could».</td>
+          <td>Examen aprobado: 26 de 27 con otra respuesta válida, 2 falsas alarmas en 31 sanos (máximo 2), 5 de 5 didácticos. Falla en los mismos 3 casos que la versión anterior.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="call c-warn"><b>Para que lo sepas.</b> Para arreglar el juez miré qué casos del examen fallaba, incluidos los dos de «Polite». No copié frases del examen: una prueba lo controla.</div>
+  </section>
+
+  <section>
+    <h2>El juez de pedidos: de 160 reclamos a 6</h2>
+    <div class="tw"><table><thead><tr><th>Ejercicio</th><th>Oración de partida</th><th>Lo que reclamaba la versión de anoche</th><th>La de hoy</th></tr></thead><tbody><tr><td>ej. 2dd7</td><td><i>Polite request: I want you to help me.</i></td><td>«Can you help me?»</td><td>nada</td></tr><tr><td>ej. 2de0</td><td><i>Polite request: I want to drink a glass of milk.</i></td><td>«Can I drink a glass of milk?»</td><td>nada</td></tr><tr><td>ej. 2dd6</td><td><i>Play the radio. Polite:</i></td><td>«Can you play the radio?»</td><td>nada</td></tr><tr><td>ej. 2dda</td><td><i>Polite request: I want you to get me some tea.</i></td><td>«Can you get me some tea?» y «Can you get some tea for me?»</td><td>nada</td></tr></tbody></table></div><div class="tw" style="margin-top:14px"><table><thead><tr><th>Los 6 que quedan</th><th>Acepta</th><th>Reclama</th><th>Por qué es cierto</th></tr></thead><tbody><tr><td><i>Informal request: I want to eat some cake.</i></td><td>Can I have some cake?</td><td>Can I eat some cake?</td><td>Conserva el verbo de la partida. Ya está arreglado.</td></tr><tr><td><i>___ I put on this skirt?</i></td><td>Could</td><td>Can</td><td>No tiene etiqueta: valen las dos.</td></tr><tr><td><i>Polite request: I want a cookie.</i></td><td>Could I have a cookie?</td><td>Could I get a cookie?</td><td>La partida no trae verbo. Ahora dice «I want to have a cookie.»</td></tr><tr><td><i>Normal request: I want you to repeat that once more.</i></td><td>Can you say that again?</td><td>Can you repeat that once more?</td><td>Repite la partida. Ahora la partida dice «say that again».</td></tr><tr><td><i>Normal request: I want a glass of water.</i></td><td>Can I have a glass of water?</td><td>Can I get a glass of water?</td><td>La partida no trae verbo. No se alcanzó.</td></tr><tr><td><i>Normal request: I want to see your tablet.</i></td><td>Can I see it?</td><td>Can I see your tablet?</td><td>Repite la partida. No se alcanzó.</td></tr></tbody></table></div><div class="hb fijo" style="margin-top:14px"><div class="r"><div class="t">Sólo cambió la tarjeta<small>dice qué elige la etiqueta de ese ejercicio</small></div><div class="tr"><div class="f g" style="width:100.0%"></div></div><div class="n">14</div></div><div class="r"><div class="t">Ya no tenían problema<small>medidos con la versión de hoy</small></div><div class="tr"><div class="f s" style="width:64.3%"></div></div><div class="n">9</div></div><div class="r"><div class="t">Cambió el ejercicio<small>la partida y la respuesta dicen lo mismo; casi duplicado</small></div><div class="tr"><div class="f g" style="width:50.0%"></div></div><div class="n">7</div></div><div class="r"><div class="t">No se alcanzaron<small>el tope cortó antes</small></div><div class="tr"><div class="f w" style="width:50.0%"></div></div><div class="n">7</div></div><div class="r"><div class="t">No se pueden arreglar acá<small>la oración guardada de producción; se arregla al publicar</small></div><div class="tr"><div class="f s" style="width:14.3%"></div></div><div class="n">2</div></div></div><p class="pie">160 reclamos en los 39 de Pedidos, casi todos de la versión reprobada del 24/10. Con tope 250, antes de corregir volvió a medir 74 opiniones viejas.</p>
+  </section>
+
+  <section>
+    <h2>Cada ejercicio, entero: 45 bien, 7 defendibles, 3 dudosos</h2>
+    <p class="pie">Verde: bien. Amarillo: defendible. Rojo: dudoso. Gris: quedó como en producción.</p>
+    <h3>21 cambiaron el ejercicio o tienen algo que mirar</h3>
+    <div class="tw"><table><thead><tr><th>Tema y consigna</th><th>En producción</th><th>Ahora, en la Corrección 2</th><th>Mi lectura</th></tr></thead><tbody><tr><td>Before y after<small>ej. 246d</small><small>Consigna: «Transforma las oraciones para que incluyan la forma &#x27;verb-ing&#x27;.»</small></td><td><i>He went to the bar after he left work. <span class="gap"></span></i><small>Respuesta: <b>He went to the bar after leaving work.</b></small><small>Traducción: Él fue al bar después de salir del trabajo.</small><small>Tarjeta: Después de <i>before</i> y <i>after</i> el verbo va con <i>-ing</i>: <i>before going</i>.</small></td><td><i>He left the bar after he ate lunch. <span class="gap"></span></i><small>Respuestas, 4: <b>He left the bar after eating lunch.</b> · <b>After eating lunch, he left the bar.</b> · <b>He left the bar after having eaten lunch.</b> · <b>After having eaten lunch, he left the bar.</b></small><small>Traducción: Él salió del bar después de almorzar.</small><small>Tarjeta: Cuando ambas acciones tienen el mismo sujeto: <i>after</i> + verbo con <i>-ing</i>. Esta parte puede ir al principio o al final de la oración. También se admite <i>having</i> + participio para expresar la acción anterior, aunque es más formal.</small></td><td><span class="pill p-warn">Defendible</span><small>Cambió la oración entera («He went to the bar after he left work.» → «He left the bar after he ate lunch.») para bajar el largo de 9 a 8, y aceptó el orden invertido y «having eaten», que el juez de una sola respuesta pedía. La tarjeta quedó larga: tres oraciones.</small></td></tr><tr><td>Adverbios de modo<small>ej. 2548</small><small>Consigna: «Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.»</small></td><td><i>She smiled (sweet). <span class="gap"></span></i><small>Respuesta: <b>She smiled sweetly.</b></small><small>Traducción: Ella sonrió dulcemente.</small><small>Tarjeta: Adjetivo + <i>-ly</i>: <i>slow</i> → <i>slowly</i>. <i>good</i> → <i>well</i>, y <i>fast</i> no cambia.</small></td><td><i>She sang (sweet). <span class="gap"></span></i><small>Respuestas, 3: <b>She sang sweetly.</b> · <b>She sweetly sang.</b> · <b>Sweetly, she sang.</b></small><small>Traducción: Ella cantó dulcemente.</small><small>Tarjeta: Para formar el adverbio de este ejercicio, añade <i>-ly</i> al adjetivo entre paréntesis. El adverbio indica cómo se realiza la acción.</small></td><td><span class="pill p-warn">Defendible</span><small>«smile» es B1 en el catálogo EVP, por eso pasó a «sang». Sigue practicando «sweet → sweetly». Acepta también «She sweetly sang.», que es correcta aunque rara.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 2dd7</small><small>Consigna: «Transforma las oraciones para que incluyan &#x27;could&#x27; o &#x27;can&#x27;.»</small></td><td><i>Polite request: I want you to assist me. <span class="gap"></span></i><small>Respuesta: <b>Could you help me?</b></small><small>Traducción: ¿Podrías ayudarme?</small><small>Tarjeta: <i>Can</i> para el pedido normal, <i>Could</i> para el cortés. Después, verbo base.</small></td><td><i>Polite request: I want you to help me. <span class="gap"></span></i><small>Respuesta: <b>Could you help me?</b></small><small>Traducción: ¿Podrías ayudarme?</small><small>Tarjeta: En este ejercicio, la etiqueta <i>Polite request</i> indica usar <i>Could</i> para formular el pedido cortés.</small></td><td><span class="pill p-ok">Bien</span><small>La oración de partida decía «assist» y la respuesta «help»: ahora las dos dicen «help». Conserva «Polite request».</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 2de0</small><small>Consigna: «Transforma las oraciones para que incluyan &#x27;could&#x27; o &#x27;can&#x27;.»</small></td><td><i>Polite request: I want to drink a glass of soda. <span class="gap"></span></i><small>Respuesta: <b>Could I have a glass of soda?</b></small><small>Traducción: ¿Podría tomar un vaso de soda?</small><small>Tarjeta: <i>Can</i> para el pedido normal, <i>Could</i> para el cortés. Después, verbo base.</small></td><td><i>Polite request: I want to drink a glass of milk. <span class="gap"></span></i><small>Respuesta: <b>Could I drink a glass of milk?</b></small><small>Traducción: ¿Podría tomar un vaso de leche?</small><small>Tarjeta: Para pedir permiso con cortesía: <i>Could I</i> + verbo base + complemento + <i>?</i>.</small></td><td><span class="pill p-ok">Bien</span><small>Partida «drink», respuesta «have»: ahora «drink». «soda» (A2) pasó a «milk» (A1). Queda la oración guardada de producción, que se arregla al publicar.</small></td></tr><tr><td>Permiso general<small>ej. 2de8</small><small>Consigna: «Transforma las oraciones para que incluyan &#x27;can&#x27; cuando algo esté permitido y &#x27;can&#x27;t&#x27; cuando no lo esté, usando &#x27;you&#x27; para referirse a la gente en general. Por ejemplo: it&#x27;s okay to pay later -&gt; you can pay later.»</small></td><td><i>It&#x27;s not okay to take videos in the museum. <span class="gap"></span></i><small>Respuesta: <b>You can&#x27;t take videos in the museum.</b></small><small>Traducción: No se pueden tomar videos en el museo.</small><small>Tarjeta: <i>You can</i> si está permitido, <i>You can&#x27;t</i> si no. El <i>you</i> es la gente en general.</small></td><td><i>It&#x27;s not okay to sing. <span class="gap"></span></i><small>Respuesta: <b>You can&#x27;t sing.</b></small><small>Traducción: No se puede cantar.</small><small>Tarjeta: <i>You can&#x27;t</i> + verbo base expresa que algo no está permitido. Aquí <i>you</i> se refiere a la gente en general.</small></td><td><span class="pill p-bad">Dudoso</span><small>Para bajar el largo y sacar «video» (A2), pasó de «It&#x27;s not okay to take videos in the museum.» a «It&#x27;s not okay to sing.». Sin el lugar, «No se puede cantar» es una prohibición rara. El juez de pragmatismo la dio por buena.</small></td></tr><tr><td>Oraciones con let&#x27;s<small>ej. 22c7</small><small>Consigna: «Crea oraciones utilizando &quot;let&#x27;s&quot;.»</small></td><td><i>How about reading a book? <span class="gap"></span></i><small>Respuesta: <b>Let&#x27;s read a book</b></small><small>Traducción: ¿Qué tal si leemos un libro? Leamos un libro.</small><small>Tarjeta: <i>Let&#x27;s</i> + verbo sin <i>to</i>. Para negar, <i>Let&#x27;s not</i> + verbo.</small></td><td><i>How about reading a book? <span class="gap"></span></i><small>Respuesta: <b>Let&#x27;s read a book.</b></small><small>Traducción: Leamos un libro.</small><small>Tarjeta: <i>Let&#x27;s</i> + verbo sin <i>to</i>. Para negar, <i>Let&#x27;s not</i> + verbo.</small></td><td><span class="pill p-ok">Bien</span><small>Le faltaba el punto final y la traducción traducía también la pregunta de partida («¿Qué tal si leemos un libro? Leamos un libro.»).</small></td></tr><tr><td>Oraciones con let&#x27;s<small>ej. 22cb</small><small>Consigna: «Crea oraciones utilizando &quot;let&#x27;s&quot;.»</small></td><td><i>How about Monday? <span class="gap"></span></i><small>Respuesta: <b>Let&#x27;s go on Monday.</b></small><small>Traducción: ¿Qué tal el lunes? Vayamos el lunes.</small><small>Tarjeta: <i>Let&#x27;s</i> + verbo sin <i>to</i>. Para negar, <i>Let&#x27;s not</i> + verbo.</small></td><td><i>How about going now? <span class="gap"></span></i><small>Respuesta: <b>Let&#x27;s go now.</b></small><small>Traducción: Vayamos ahora.</small><small>Tarjeta: Para hacer una propuesta afirmativa: <i>Let&#x27;s</i> + verbo base + complemento.</small></td><td><span class="pill p-warn">Defendible</span><small>El problema era real: «go» no salía de «How about Monday?» y había varias respuestas posibles («Let&#x27;s meet on Monday», «Let&#x27;s do Monday»). El arreglo chico era «How about going on Monday?». El corrector lo probó, pero sumó «Let&#x27;s go Monday.», que el juez de una sola respuesta había pedido para la oración vieja, y el juez de consigna lo frenó porque saca «on». Entonces cambió el lunes por «now».</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 2dd6</small><small>Consigna: «Transforma las oraciones para que incluyan &#x27;could&#x27; o &#x27;can&#x27;.»</small></td><td><i>Play the radio. Polite: <span class="gap"></span></i><small>Respuesta: <b>Could you play the radio?</b></small><small>Traducción: Pon la radio. Amable: ¿Podrías poner la radio?</small><small>Tarjeta: <i>Can</i> para el pedido normal, <i>Could</i> para el cortés. Después, verbo base.</small></td><td><i>Play the radio. Polite: <span class="gap"></span></i><small>Respuesta: <b>Could you play the radio?</b></small><small>Traducción: Pon la radio. Amable: ¿Podrías poner la radio?</small><small>Tarjeta: En este ejercicio, la etiqueta <i>Polite</i> indica que se practica el pedido cortés con <i>Could</i>.</small></td><td><span class="pill p-bad">Dudoso</span><small>La tarjeta quedó bien, pero esta ronda guardó la oración pegada («Play the radio. Polite: Could you play the radio?»), y la traducción de producción traduce las dos («Pon la radio. Amable: ¿Podrías poner la radio?»). Ningún juez lo marca.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 2dda</small><small>Consigna: «Transforma las oraciones para que incluyan &#x27;could&#x27; o &#x27;can&#x27;.»</small></td><td><i>Polite request: I want you to get me some tea. <span class="gap"></span></i><small>Respuesta: <b>Could you bring me some tea?</b></small><small>Traducción: ¿Podrías traerme un poco de té?</small><small>Tarjeta: <i>Can</i> para el pedido normal, <i>Could</i> para el cortés. Después, verbo base.</small></td><td><i>Polite request: I want you to get me some tea. <span class="gap"></span></i><small>Respuestas, 2: <b>Could you get me some tea?</b> · <b>Could you get some tea for me?</b></small><small>Traducción: ¿Podrías traerme un poco de té?</small><small>Tarjeta: Para este pedido cortés: <i>Could you</i> + verbo base + complemento + <i>?</i>.</small></td><td><span class="pill p-ok">Bien</span><small>Partida «get», respuesta «bring»: ahora las dos dicen «get». Vuelve «Polite request», que la Corrección 1 había sacado. Acepta también «Could you get some tea for me?». En esta ronda no lo tocó: queda la oración guardada de producción («Could you bring me some tea?»), que se arregla al publicar, y gastó 10 consultas en intentarlo.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 2de1</small><small>Consigna: «Transforma las oraciones para que incluyan &#x27;could&#x27; o &#x27;can&#x27;.»</small></td><td><i>Polite request: I want you to give me some money. <span class="gap"></span></i><small>Respuesta: <b>Could you lend me some money?</b></small><small>Traducción: ¿Podrías prestarme algo de dinero?</small><small>Tarjeta: <i>Can</i> para el pedido normal, <i>Could</i> para el cortés. Después, verbo base.</small></td><td><i>Polite request: I want you to give me some money. <span class="gap"></span></i><small>Respuestas, 2: <b>Could you give me some money?</b> · <b>Could you give some money to me?</b></small><small>Traducción: ¿Podrías darme algo de dinero?</small><small>Tarjeta: En este ejercicio, <i>Polite request</i> indica que se practica el pedido cortés con <i>Could</i>.</small></td><td><span class="pill p-ok">Bien</span><small>Partida «give», respuesta «lend»: ahora «give». Acepta también «Could you give some money to me?», correcta aunque menos natural.</small></td></tr><tr><td>Adverbios de modo<small>ej. 2ef2</small><small>Consigna: «Creá un adverbio a partir del adjetivo y agregalo a la oración.»</small></td><td><i>He closed the door. (slow) <span class="gap"></span></i><small>Respuesta: <b>He closed the door slowly.</b></small><small>Traducción: Cerró la puerta lentamente.</small><small>Tarjeta: Adjetivo + <i>-ly</i>: <i>slow</i> → <i>slowly</i>. <i>good</i> → <i>well</i>, y <i>high</i> no cambia.</small></td><td><i>The children read the words. (slow) <span class="gap"></span></i><small>Respuestas, 3: <b>The children read the words slowly.</b> · <b>The children slowly read the words.</b> · <b>Slowly, the children read the words.</b></small><small>Traducción: Los niños leen las palabras lentamente.</small><small>Tarjeta: Para formar el adverbio de este ejercicio, añadí <i>-ly</i> al adjetivo entre paréntesis. El adverbio indica cómo se realiza la acción y puede ir al final, antes del verbo o al principio seguido de coma.</small></td><td><span class="pill p-ok">Bien</span><small>Era casi igual a otro del tema («She closed the door (slow).»). Ahora es «The children read the words. (slow)», y acepta el adverbio al final, antes del verbo o al principio.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 24f7</small><small>Consigna: «Transforma las oraciones para que incluyan &#x27;can&#x27; o &#x27;could&#x27;.»</small></td><td><i>Polite request: I want to eat some cake. <span class="gap"></span></i><small>Respuesta: <b>Could I have some cake?</b></small><small>Traducción: ¿Podría comerme un poco de pastel?</small><small>Tarjeta: <i>Can</i> para pedir de confianza, <i>Could</i> para pedir con cortesía.</small></td><td><i>Polite request: I want to eat some cake. <span class="gap"></span></i><small>Respuesta: <b>Could I eat some cake?</b></small><small>Traducción: ¿Podría comerme un poco de pastel?</small><small>Tarjeta: En este ejercicio, <i>Polite request</i> indica que se practica el pedido cortés con <i>Could</i>.</small></td><td><span class="pill p-ok">Bien</span><small>La partida decía «eat» y la respuesta «have»: ahora la respuesta es «Could I eat some cake?».</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 24f8</small><small>Consigna: «Transforma las oraciones para que incluyan &#x27;can&#x27; o &#x27;could&#x27;.»</small></td><td><i>Polite request: I want to stay here. <span class="gap"></span></i><small>Respuesta: <b>Could I stay here?</b></small><small>Traducción: Petición amable: Quiero quedarme aquí. ¿Podría quedarme aquí?</small><small>Tarjeta: <i>Can</i> para pedir de confianza, <i>Could</i> para pedir con cortesía.</small></td><td><i>Polite request: I want to stay here. <span class="gap"></span></i><small>Respuesta: <b>Could I stay here?</b></small><small>Traducción: ¿Podría quedarme aquí?</small><small>Tarjeta: <i>Can</i> para pedir de confianza, <i>Could</i> para pedir con cortesía.</small></td><td><span class="pill p-ok">Bien</span><small>Los reclamos eran de la versión del 24/10 del juez de una sola respuesta. Medido con la de hoy, ya no tiene problemas y queda como en producción. Sólo cambió la traducción doble («Petición amable: Quiero quedarme aquí. ¿Podría quedarme aquí?»), que arregló la Corrección 1.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 2501</small><small>Consigna: «Transforma las oraciones para que incluyan &#x27;can&#x27; o &#x27;could&#x27;.»</small></td><td><i>Ask (use / your phone): <span class="gap"></span></i><small>Respuesta: <b>Can I use your phone?</b></small><small>Traducción: Pregunta: ¿Puedo usar tu teléfono?</small><small>Tarjeta: Si no se aclara la cortesía, el pedido va con <i>Can</i> por defecto.</small></td><td><i>Ask (I / play / with / the cat): <span class="gap"></span></i><small>Respuestas, 2: <b>Can I play with the cat?</b> · <b>Could I play with the cat?</b></small><small>Traducción: ¿Puedo jugar con el gato? / ¿Podría jugar con el gato?</small><small>Tarjeta: Sin un selector de cortesía, este ejercicio admite <i>Can I</i> o <i>Could I</i>: la segunda forma expresa mayor cortesía.</small></td><td><span class="pill p-warn">Defendible</span><small>Era casi igual a «Informal request: I want to use your phone.». Ahora pide jugar con el gato. Sin etiqueta acepta «Can» y «Could», como dice tu regla, pero la traducción lleva las dos («¿Puedo jugar con el gato? / ¿Podría jugar con el gato?»).</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 2505</small><small>Consigna: «Transforma las oraciones para que incluyan &#x27;can&#x27; o &#x27;could&#x27;.»</small></td><td><i>Informal request: I want to eat some cake. <span class="gap"></span></i><small>Respuesta: <b>Can I have some cake?</b></small><small>Traducción: ¿Puedo comerme un poco de pastel?</small><small>Tarjeta: <i>Can</i> para pedir de confianza, <i>Could</i> para pedir con cortesía.</small></td><td><i>Informal request: I want to eat some cake. <span class="gap"></span></i><small>Respuestas, 3: <b>Can I eat some cake?</b> · <b>Can I eat some cake, please?</b> · <b>Can I please eat some cake?</b></small><small>Traducción: ¿Puedo comerme un poco de pastel?</small><small>Tarjeta: En este ejercicio, la etiqueta <i>Informal request</i> indica que se practica el pedido con <i>Can</i>.</small></td><td><span class="pill p-warn">Defendible</span><small>Igual que el anterior, «have» pasó a «eat». Pero sumó dos respuestas con «please» que pidió el juez de una sola respuesta. Con «Polite request» el juez no las pide y con «Informal request» sí: no es coherente, aunque al alumno no le hace daño.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 2508</small><small>Consigna: «Transforma las oraciones para que incluyan &#x27;can&#x27; o &#x27;could&#x27;.»</small></td><td><i>Informal request: I want to start now. <span class="gap"></span></i><small>Respuesta: <b>Can I start now?</b></small><small>Traducción: Petición informal: Quiero empezar ahora. ¿Puedo empezar ahora?</small><small>Tarjeta: <i>Can</i> para pedir de confianza, <i>Could</i> para pedir con cortesía.</small></td><td><i>Informal request: I want to start now. <span class="gap"></span></i><small>Respuesta: <b>Can I start now?</b></small><small>Traducción: ¿Puedo empezar ahora?</small><small>Tarjeta: En este ejercicio, la etiqueta <i>Informal request</i> indica que se practica el pedido con <i>Can</i>.</small></td><td><span class="pill p-ok">Bien</span><small>La tarjeta decía como regla general «Can para el pedido normal, Could para el cortés»; el juez de miniteoría la marcaba porque «can» también puede ser cortés. Ahora dice qué elige la etiqueta de este ejercicio. La traducción doble («Petición informal: Quiero empezar ahora. ¿Puedo empezar ahora?») ya la había arreglado la Corrección 1.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 250a</small><small>Consigna: «Transforma las oraciones para que incluyan &#x27;can&#x27; o &#x27;could&#x27;.»</small></td><td><i><span class="gap"></span> I put on this skirt?</i><small>Respuesta: <b>Could</b></small><small>Traducción: ¿Podría ponerme esta pollera?</small><small>Tarjeta: Pedirle algo a un desconocido, como en un local, va con <i>Could</i>.</small></td><td><i><span class="gap"></span> I put on this skirt?</i><small>Respuesta: <b>Could</b></small><small>Traducción: ¿Podría ponerme esta pollera?</small><small>Tarjeta: Para pedir permiso con mayor cortesía, usamos <i>Could I</i>.</small></td><td><span class="pill p-bad">Dudoso</span><small>No tiene etiqueta, y el juez dice que «Can» también vale: sigue sin aceptarlo. La tarjeta nueva («Para pedir permiso con mayor cortesía, usamos Could I») el alumno la ve recién después de contestar.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 2dd0</small><small>Consigna: «Transforma las oraciones para que incluyan &#x27;could&#x27; o &#x27;can&#x27;.»</small></td><td><i>Polite request: I want a cookie. <span class="gap"></span></i><small>Respuesta: <b>Could I have a cookie?</b></small><small>Traducción: ¿Podría comerme una galleta?</small><small>Tarjeta: <i>Can</i> para el pedido normal, <i>Could</i> para el cortés. Después, verbo base.</small></td><td><i>Polite request: I want to have a cookie. <span class="gap"></span></i><small>Respuesta: <b>Could I have a cookie?</b></small><small>Traducción: ¿Podría comerme una galleta?</small><small>Tarjeta: En este ejercicio, <i>Polite request</i> indica usar: <i>Could I</i> + verbo base + complemento + <i>?</i> para pedir con cortesía.</small></td><td><span class="pill p-ok">Bien</span><small>«I want a cookie.» no traía verbo y la respuesta inventaba «have»; ahora la partida dice «I want to have a cookie.».</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 2dd2</small><small>Consigna: «Transforma las oraciones para que incluyan &#x27;could&#x27; o &#x27;can&#x27;.»</small></td><td><i>Normal request: I want you to repeat that once more. <span class="gap"></span></i><small>Respuesta: <b>Can you say that again?</b></small><small>Traducción: ¿Puedes repetir eso?</small><small>Tarjeta: <i>Can</i> para el pedido normal, <i>Could</i> para el cortés. Después, verbo base.</small></td><td><i>Normal request: I want you to say that again. <span class="gap"></span></i><small>Respuesta: <b>Can you say that again?</b></small><small>Traducción: ¿Puedes repetir eso?</small><small>Tarjeta: En este ejercicio, la etiqueta <i>Normal request</i> indica usar <i>Can</i> para formular el pedido.</small></td><td><span class="pill p-ok">Bien</span><small>La partida decía «repeat that once more» y la respuesta «say that again»: ahora la partida dice «say that again».</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 2dd3</small><small>Consigna: «Transforma las oraciones para que incluyan &#x27;could&#x27; o &#x27;can&#x27;.»</small></td><td><i>Normal request: I want you to order pizza. <span class="gap"></span></i><small>Respuesta: <b>Can you order pizza?</b></small><small>Traducción: ¿Puedes pedir pizza?</small><small>Tarjeta: <i>Can</i> para el pedido normal, <i>Could</i> para el cortés. Después, verbo base.</small></td><td><i>Normal request: I want you to buy pizza. <span class="gap"></span></i><small>Respuesta: <b>Can you buy pizza?</b></small><small>Traducción: ¿Puedes comprar pizza?</small><small>Tarjeta: En este ejercicio, la etiqueta <i>Normal request</i> indica usar <i>Can</i> para formular el pedido.</small></td><td><span class="pill p-warn">Defendible</span><small>«order» es A2 en el catálogo, por eso pasó a «buy pizza». «Order pizza» era más natural.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 2dd4</small><small>Consigna: «Transforma las oraciones para que incluyan &#x27;could&#x27; o &#x27;can&#x27;.»</small></td><td><i>Normal request: I want to borrow your book. <span class="gap"></span></i><small>Respuesta: <b>Can I borrow your book?</b></small><small>Traducción: ¿Me prestas tu libro?</small><small>Tarjeta: <i>Can</i> para el pedido normal, <i>Could</i> para el cortés. Después, verbo base.</small></td><td><i>Normal request: I want to use your book. <span class="gap"></span></i><small>Respuesta: <b>Can I use your book?</b></small><small>Traducción: ¿Puedo usar tu libro?</small><small>Tarjeta: En este ejercicio, la etiqueta <i>Normal request</i> indica usar <i>Can</i> para formular el pedido.</small></td><td><span class="pill p-warn">Defendible</span><small>«borrow» es A2 en el catálogo, por eso pasó a «use your book». Pero cambia el sentido (prestar → usar) y pierde una palabra muy útil para pedir.</small></td></tr></tbody></table></div>
+    <h3>34 cambiaron sólo la tarjeta</h3>
+    <div class="tw"><table><thead><tr><th>Tema</th><th>Ejercicio</th><th>Respuestas y traducción, iguales antes y ahora</th><th>Tarjeta en producción</th><th>Tarjeta ahora</th></tr></thead><tbody><tr><td>Cosas que pasan ahora<small>ej. 20d4</small></td><td><i>She / drink / coffee now. <span class="gap"></span></i></td><td>She is drinking coffee now. · She&#x27;s drinking coffee now.<small>Ella está tomando café ahora.</small></td><td>Para lo que está pasando ahora y no terminó: be + <i>-ing</i>, con <i>now</i> o <i>at the moment</i>.</td><td>Para lo que está pasando ahora y no terminó: <i>be</i> + <i>-ing</i>, con <i>now</i> o <i>at the moment</i>.</td></tr><tr><td>Oraciones con let&#x27;s<small>ej. 22d8</small></td><td><i>How about not going on Friday? <span class="gap"></span></i></td><td>Let&#x27;s not go on Friday.<small>No vayamos el viernes.</small></td><td><i>Let&#x27;s</i> + verbo sin <i>to</i>. Para negar, <i>Let&#x27;s not</i> + verbo.</td><td>Para una propuesta negativa: <i>Let&#x27;s not</i> + verbo base + complemento.</td></tr><tr><td>El posesivo<small>ej. 2367</small></td><td><i>That house belongs to Mary. <span class="gap"></span></i></td><td>That is Mary&#x27;s house. · That&#x27;s Mary&#x27;s house.<small>Esa es la casa de Mary.</small></td><td>Singular → <i>&#x27;s</i>. Plural terminado en s → sólo <i>&#x27;</i>. Plural irregular → <i>&#x27;s</i>.</td><td>Para indicar posesión con un poseedor singular, añadí <i>&#x27;s</i>.</td></tr><tr><td>El posesivo<small>ej. 2370</small></td><td><i>Those jeans belong to my family. <span class="gap"></span></i></td><td>Those are my family&#x27;s jeans.<small>Esos jeans son de mi familia.</small></td><td>Singular → <i>&#x27;s</i>. Plural terminado en s → sólo <i>&#x27;</i>. Plural irregular → <i>&#x27;s</i>.</td><td>Para indicar posesión con un poseedor singular, añadí <i>&#x27;s</i>.</td></tr><tr><td>Adverbios de modo<small>ej. 2f05</small></td><td><i>I slept today. (bad) <span class="gap"></span></i></td><td>I slept badly today.<small>Dormí mal hoy.</small></td><td>Adjetivo + <i>-ly</i>: <i>slow</i> → <i>slowly</i>. <i>good</i> → <i>well</i>, y <i>high</i> no cambia.</td><td>Para formar el adverbio de este ejercicio, añadí <i>-ly</i> al adjetivo entre paréntesis. El adverbio indica cómo se realiza la acción.</td></tr><tr><td>El posesivo<small>ej. 2368</small></td><td><i>That garden belongs to my parents. <span class="gap"></span></i></td><td>That is my parents&#x27; garden. · That&#x27;s my parents&#x27; garden.<small>Ese es el jardín de mis padres.</small></td><td>Singular → <i>&#x27;s</i>. Plural terminado en s → sólo <i>&#x27;</i>. Plural irregular → <i>&#x27;s</i>.</td><td>Con un poseedor plural terminado en <i>s</i>, añadí sólo un apóstrofo al final.</td></tr><tr><td>El posesivo<small>ej. 2369</small></td><td><i>Those pencils belong to the students. <span class="gap"></span></i></td><td>Those are the students&#x27; pencils.<small>Esos son los lápices de los estudiantes.</small></td><td>Singular → <i>&#x27;s</i>. Plural terminado en s → sólo <i>&#x27;</i>. Plural irregular → <i>&#x27;s</i>.</td><td>Con un poseedor plural terminado en <i>s</i>, añadí sólo un apóstrofo al final.</td></tr><tr><td>El posesivo<small>ej. 236a</small></td><td><i>That game belongs to Michael. <span class="gap"></span></i></td><td>That is Michael&#x27;s game. · That&#x27;s Michael&#x27;s game.<small>Ese es el juego de Michael.</small></td><td>Singular → <i>&#x27;s</i>. Plural terminado en s → sólo <i>&#x27;</i>. Plural irregular → <i>&#x27;s</i>.</td><td>Para indicar posesión con un poseedor singular, añadí <i>&#x27;s</i>.</td></tr><tr><td>Adverbios de modo<small>ej. 2efe</small></td><td><i>He played the guitar. (bad) <span class="gap"></span></i></td><td>He played the guitar badly.<small>Él tocó la guitarra mal.</small></td><td>Adjetivo + <i>-ly</i>: <i>slow</i> → <i>slowly</i>. <i>good</i> → <i>well</i>, y <i>high</i> no cambia.</td><td>Para formar el adverbio de este ejercicio, añadí <i>-ly</i> al adjetivo entre paréntesis. El adverbio indica cómo se realiza la acción.</td></tr><tr><td>El posesivo<small>ej. 236b</small></td><td><i>That candy belongs to the child. <span class="gap"></span></i></td><td>That is the child&#x27;s candy. · That&#x27;s the child&#x27;s candy.<small>Ese es el caramelo del niño.</small></td><td>Singular → <i>&#x27;s</i>. Plural terminado en s → sólo <i>&#x27;</i>. Plural irregular → <i>&#x27;s</i>.</td><td>Para indicar posesión con un poseedor singular, añadí <i>&#x27;s</i>.</td></tr><tr><td>El posesivo<small>ej. 236c</small></td><td><i>That pen belongs to Sarah. <span class="gap"></span></i></td><td>That is Sarah&#x27;s pen. · That&#x27;s Sarah&#x27;s pen.<small>Esa es la pluma de Sarah.</small></td><td>Singular → <i>&#x27;s</i>. Plural terminado en s → sólo <i>&#x27;</i>. Plural irregular → <i>&#x27;s</i>.</td><td>Para indicar posesión con un poseedor singular, añadí <i>&#x27;s</i>.</td></tr><tr><td>El posesivo<small>ej. 236d</small></td><td><i>Those jackets belong to the waitresses. <span class="gap"></span></i></td><td>Those are the waitresses&#x27; jackets.<small>Esas son las chaquetas de las camareras.</small></td><td>Singular → <i>&#x27;s</i>. Plural terminado en s → sólo <i>&#x27;</i>. Plural irregular → <i>&#x27;s</i>.</td><td>Con un poseedor plural terminado en <i>s</i>, añadí sólo un apóstrofo al final.</td></tr><tr><td>El posesivo<small>ej. 236e</small></td><td><i>Those eyes belong to the dogs. <span class="gap"></span></i></td><td>Those are the dogs&#x27; eyes.<small>Esos son los ojos de los perros.</small></td><td>Singular → <i>&#x27;s</i>. Plural terminado en s → sólo <i>&#x27;</i>. Plural irregular → <i>&#x27;s</i>.</td><td>Con un poseedor plural terminado en <i>s</i>, añadí sólo un apóstrofo al final.</td></tr><tr><td>El posesivo<small>ej. 236f</small></td><td><i>That dress belongs to Emily. <span class="gap"></span></i></td><td>That is Emily&#x27;s dress. · That&#x27;s Emily&#x27;s dress.<small>Ese es el vestido de Emily.</small></td><td>Singular → <i>&#x27;s</i>. Plural terminado en s → sólo <i>&#x27;</i>. Plural irregular → <i>&#x27;s</i>.</td><td>Para indicar posesión con un poseedor singular, añadí <i>&#x27;s</i>.</td></tr><tr><td>El posesivo<small>ej. 2371</small></td><td><i>Those tomatoes belong to the man. <span class="gap"></span></i></td><td>Those are the man&#x27;s tomatoes.<small>Esos tomates son del hombre.</small></td><td>Singular → <i>&#x27;s</i>. Plural terminado en s → sólo <i>&#x27;</i>. Plural irregular → <i>&#x27;s</i>.</td><td>Para indicar posesión con un poseedor singular, añadí <i>&#x27;s</i>.</td></tr><tr><td>El posesivo<small>ej. 2372</small></td><td><i>That home belongs to the birds. <span class="gap"></span></i></td><td>That is the birds&#x27; home. · That&#x27;s the birds&#x27; home.<small>Ese es el hogar de los pájaros.</small></td><td>Singular → <i>&#x27;s</i>. Plural terminado en s → sólo <i>&#x27;</i>. Plural irregular → <i>&#x27;s</i>.</td><td>Con un poseedor plural terminado en <i>s</i>, añadí sólo un apóstrofo al final.</td></tr><tr><td>El posesivo<small>ej. 2373</small></td><td><i>That drink belongs to the pig. <span class="gap"></span></i></td><td>That is the pig&#x27;s drink. · That&#x27;s the pig&#x27;s drink.<small>Esa es la bebida del cerdo.</small></td><td>Singular → <i>&#x27;s</i>. Plural terminado en s → sólo <i>&#x27;</i>. Plural irregular → <i>&#x27;s</i>.</td><td>Para indicar posesión con un poseedor singular, añadí <i>&#x27;s</i>.</td></tr><tr><td>El posesivo<small>ej. 2374</small></td><td><i>Those books belong to your friends. <span class="gap"></span></i></td><td>Those are your friends&#x27; books.<small>Esos son los libros de tus amigos.</small></td><td>Singular → <i>&#x27;s</i>. Plural terminado en s → sólo <i>&#x27;</i>. Plural irregular → <i>&#x27;s</i>.</td><td>Con un poseedor plural terminado en <i>s</i>, añadí sólo un apóstrofo al final.</td></tr><tr><td>El posesivo<small>ej. 2375</small></td><td><i>Those Saturdays belong to the sons. <span class="gap"></span></i></td><td>Those are the sons&#x27; Saturdays.<small>Esos sábados son de los hijos.</small></td><td>Singular → <i>&#x27;s</i>. Plural terminado en s → sólo <i>&#x27;</i>. Plural irregular → <i>&#x27;s</i>.</td><td>Con un poseedor plural terminado en <i>s</i>, añadí sólo un apóstrofo al final.</td></tr><tr><td>El posesivo<small>ej. 2376</small></td><td><i>That ball belongs to the player. <span class="gap"></span></i></td><td>That is the player&#x27;s ball. · That&#x27;s the player&#x27;s ball.<small>Esa es la pelota del jugador.</small></td><td>Singular → <i>&#x27;s</i>. Plural terminado en s → sólo <i>&#x27;</i>. Plural irregular → <i>&#x27;s</i>.</td><td>Para indicar posesión con un poseedor singular, añadí <i>&#x27;s</i>.</td></tr><tr><td>El posesivo<small>ej. 2377</small></td><td><i>Those skirts belong to the girls. <span class="gap"></span></i></td><td>Those are the girls&#x27; skirts.<small>Esas son las faldas de las chicas.</small></td><td>Singular → <i>&#x27;s</i>. Plural terminado en s → sólo <i>&#x27;</i>. Plural irregular → <i>&#x27;s</i>.</td><td>Con un poseedor plural terminado en <i>s</i>, añadí sólo un apóstrofo al final.</td></tr><tr><td>El posesivo<small>ej. 2378</small></td><td><i>That book belongs to the women. <span class="gap"></span></i></td><td>That is the women&#x27;s book. · That&#x27;s the women&#x27;s book.<small>Ese es el libro de las mujeres.</small></td><td>Singular → <i>&#x27;s</i>. Plural terminado en s → sólo <i>&#x27;</i>. Plural irregular → <i>&#x27;s</i>.</td><td>Con un poseedor plural que no termina en <i>s</i>, añadí <i>&#x27;s</i>.</td></tr><tr><td>El posesivo<small>ej. 2379</small></td><td><i>Those coats belong to the people. <span class="gap"></span></i></td><td>Those are the people&#x27;s coats.<small>Esos son los abrigos de la gente.</small></td><td>Singular → <i>&#x27;s</i>. Plural terminado en s → sólo <i>&#x27;</i>. Plural irregular → <i>&#x27;s</i>.</td><td>Con un poseedor plural que no termina en <i>s</i>, añadí <i>&#x27;s</i>.</td></tr><tr><td>El posesivo<small>ej. 237a</small></td><td><i>That water belongs to the waiters. <span class="gap"></span></i></td><td>That is the waiters&#x27; water. · That&#x27;s the waiters&#x27; water.<small>Esa es el agua de los camareros.</small></td><td>Singular → <i>&#x27;s</i>. Plural terminado en s → sólo <i>&#x27;</i>. Plural irregular → <i>&#x27;s</i>.</td><td>Con un poseedor plural terminado en <i>s</i>, añadí sólo un apóstrofo al final.</td></tr><tr><td>Pedidos: formal o informal<small>ej. 2502</small></td><td><i>Polite request: I want you to give me your car. <span class="gap"></span></i></td><td>Could you give me your car?<small>¿Podrías darme tu coche?</small></td><td><i>Can</i> para pedir de confianza, <i>Could</i> para pedir con cortesía.</td><td>En este ejercicio, la etiqueta <i>Polite request</i> indica que se practica el pedido cortés con <i>Could</i>.</td></tr><tr><td>Pedidos: formal o informal<small>ej. 2503</small></td><td><i>Polite request: I want you to buy some bread. <span class="gap"></span></i></td><td>Could you buy some bread?<small>¿Podrías comprar un poco de pan?</small></td><td><i>Can</i> para pedir de confianza, <i>Could</i> para pedir con cortesía.</td><td>En este ejercicio, la etiqueta <i>Polite request</i> indica que se practica el pedido cortés con <i>Could</i>.</td></tr><tr><td>Pedidos: formal o informal<small>ej. 2504</small></td><td><i>Informal request: I want you to buy some bread. <span class="gap"></span></i></td><td>Can you buy some bread?<small>¿Puedes comprar un poco de pan?</small></td><td><i>Can</i> para pedir de confianza, <i>Could</i> para pedir con cortesía.</td><td>En este ejercicio, la etiqueta <i>Informal request</i> indica que se practica el pedido informal con <i>Can</i>.</td></tr><tr><td>Pedidos: formal o informal<small>ej. 2506</small></td><td><i>Polite request: I want you to give me the sugar. <span class="gap"></span></i></td><td>Could you give me the sugar?<small>¿Podrías darme el azúcar?</small></td><td><i>Can</i> para pedir de confianza, <i>Could</i> para pedir con cortesía.</td><td>En este ejercicio, la etiqueta <i>Polite request</i> indica que se practica el pedido cortés con <i>Could</i>.</td></tr><tr><td>Pedidos: formal o informal<small>ej. 2507</small></td><td><i>Polite request: I want to use your phone. <span class="gap"></span></i></td><td>Could I use your phone?<small>¿Podría usar tu teléfono?</small></td><td><i>Can</i> para pedir de confianza, <i>Could</i> para pedir con cortesía.</td><td>En este ejercicio, la etiqueta <i>Polite request</i> indica que se practica el pedido cortés con <i>Could</i>.</td></tr><tr><td>Pedidos: formal o informal<small>ej. 2509</small></td><td><i>Informal request: I want to walk with you. <span class="gap"></span></i></td><td>Can I walk with you?<small>¿Puedo caminar contigo?</small></td><td><i>Can</i> para pedir de confianza, <i>Could</i> para pedir con cortesía.</td><td>En este ejercicio, la etiqueta <i>Informal request</i> indica que se practica el pedido con <i>Can</i>.</td></tr><tr><td>Pedidos: formal o informal<small>ej. 2dd1</small></td><td><i>Normal request: I want to listen to music. <span class="gap"></span></i></td><td>Can I listen to music?<small>¿Puedo escuchar música?</small></td><td><i>Can</i> para el pedido normal, <i>Could</i> para el cortés. Después, verbo base.</td><td>En este ejercicio, la etiqueta <i>Normal request</i> indica usar <i>Can</i>.</td></tr><tr><td>Pedidos: formal o informal<small>ej. 2dd5</small></td><td><i>Normal request: I want to sleep in your bedroom. <span class="gap"></span></i></td><td>Can I sleep in your bedroom?<small>¿Puedo dormir en tu dormitorio?</small></td><td><i>Can</i> para el pedido normal, <i>Could</i> para el cortés. Después, verbo base.</td><td>En este ejercicio, la etiqueta <i>Normal request</i> indica usar <i>Can</i> para formular el pedido.</td></tr><tr><td>Pedidos: formal o informal<small>ej. 2dd8</small></td><td><i>Normal request: I want you to close the windows. <span class="gap"></span></i></td><td>Can you close the windows?<small>¿Puedes cerrar las ventanas?</small></td><td><i>Can</i> para el pedido normal, <i>Could</i> para el cortés. Después, verbo base.</td><td>En este ejercicio, la etiqueta <i>Normal request</i> indica usar <i>Can</i> para formular el pedido.</td></tr><tr><td>Pedidos: formal o informal<small>ej. 2dd9</small></td><td><i>Polite request: I want to wait here. <span class="gap"></span></i></td><td>Could I wait here?<small>¿Podría esperar aquí?</small></td><td><i>Can</i> para el pedido normal, <i>Could</i> para el cortés. Después, verbo base.</td><td>En este ejercicio, la etiqueta <i>Polite request</i> indica usar <i>Could</i> para formular el pedido cortés.</td></tr></tbody></table></div>
+    <h3>17 quedaron como en producción</h3>
+    <div class="tw"><table><thead><tr><th>Tema</th><th>Ejercicio</th><th>Respuestas y traducción</th><th>Por qué quedó igual</th></tr></thead><tbody><tr><td>Oraciones con let&#x27;s<small>ej. 22cf</small></td><td><i>How about talking later? <span class="gap"></span></i></td><td>Let&#x27;s talk later.<small>Hablemos más tarde.</small></td><td><span class="pill p-idle">Sin trabajo, igual</span><small>En la muestra 2 se había cambiado sin necesidad; lo devolví y, medido de nuevo, no tiene problemas.</small></td></tr><tr><td>Oraciones con let&#x27;s<small>ej. 22c9</small></td><td><i>How about going to Italy next year? <span class="gap"></span></i></td><td>Let&#x27;s go to Italy next year.<small>Vayamos a Italia el año que viene.</small></td><td><span class="pill p-idle">Sin trabajo, igual</span><small>Medido con la versión de hoy de los jueces, ya no tiene problemas: queda como en producción.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 24f9</small></td><td><i>Polite request: I want to walk with you. <span class="gap"></span></i></td><td>Could I walk with you?<small>¿Podría caminar contigo?</small></td><td><span class="pill p-idle">Sin trabajo, igual</span><small>Los reclamos eran de la versión del 24/10 del juez de una sola respuesta. Medido con la de hoy, ya no tiene problemas y queda como en producción.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 24fa</small></td><td><i>Informal request: I want you to find the cat. <span class="gap"></span></i></td><td>Can you find the cat?<small>¿Puedes encontrar al gato?</small></td><td><span class="pill p-idle">Sin trabajo, igual</span><small>Los reclamos eran de la versión del 24/10 del juez de una sola respuesta. Medido con la de hoy, ya no tiene problemas y queda como en producción.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 24fb</small></td><td><i>Polite request: I want you to watch the cat. <span class="gap"></span></i></td><td>Could you watch the cat?<small>¿Podrías cuidar al gato?</small></td><td><span class="pill p-idle">Sin trabajo, igual</span><small>Los reclamos eran de la versión del 24/10 del juez de una sola respuesta. Medido con la de hoy, ya no tiene problemas y queda como en producción.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 24fc</small></td><td><i>Polite request: I want you to visit us soon. <span class="gap"></span></i></td><td>Could you visit us soon?<small>¿Podrías visitarnos pronto?</small></td><td><span class="pill p-idle">Sin trabajo, igual</span><small>Los reclamos eran de la versión del 24/10 del juez de una sola respuesta. Medido con la de hoy, ya no tiene problemas y queda como en producción.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 24fd</small></td><td><i>Informal request: I want you to show me your car. <span class="gap"></span></i></td><td>Can you show me your car?<small>¿Me puedes mostrar tu coche?</small></td><td><span class="pill p-idle">Sin trabajo, igual</span><small>Los reclamos eran de la versión del 24/10 del juez de una sola respuesta. Medido con la de hoy, ya no tiene problemas y queda como en producción.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 24fe</small></td><td><i>Informal request: I want you to get me the sugar. <span class="gap"></span></i></td><td>Can you get me the sugar?<small>¿Me puedes traer el azúcar?</small></td><td><span class="pill p-idle">Sin trabajo, igual</span><small>Los reclamos eran de la versión del 24/10 del juez de una sola respuesta. Medido con la de hoy, ya no tiene problemas y queda como en producción.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 24ff</small></td><td><i>Informal request: I want you to visit us soon. <span class="gap"></span></i></td><td>Can you visit us soon?<small>¿Puedes visitarnos pronto?</small></td><td><span class="pill p-idle">Sin trabajo, igual</span><small>Los reclamos eran de la versión del 24/10 del juez de una sola respuesta. Medido con la de hoy, ya no tiene problemas y queda como en producción.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 2500</small></td><td><i>Informal request: I want to use your phone. <span class="gap"></span></i></td><td>Can I use your phone?<small>¿Puedo usar tu teléfono?</small></td><td><span class="pill p-idle">Sin trabajo, igual</span><small>Los reclamos eran de la versión del 24/10 del juez de una sola respuesta. Medido con la de hoy, ya no tiene problemas y queda como en producción.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 2ddb</small></td><td><i>Polite request: I want you to check my exam. <span class="gap"></span></i></td><td>Could you check my exam?<small>¿Podrías revisar mi examen?</small></td><td><span class="pill p-idle">No alcanzado</span><small>No se alcanzó: el tope cortó antes de llegar. Lo marcan por «check», «shut» o «borrow», de A2.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 2ddc</small></td><td><i>Normal request: I want a glass of water. <span class="gap"></span></i></td><td>Can I have a glass of water?<small>¿Puedo tomar un vaso de agua?</small></td><td><span class="pill p-idle">No alcanzado</span><small>No se alcanzó: el tope cortó antes de llegar. Tiene un problema real: «I want a glass of water.» no trae verbo y la respuesta inventa «have».</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 2ddd</small></td><td><i>Normal request: I want to see your tablet. <span class="gap"></span></i></td><td>Can I see it?<small>¿Puedo verla?</small></td><td><span class="pill p-idle">No alcanzado</span><small>No se alcanzó: el tope cortó antes de llegar. Tiene un problema real: la partida dice «your tablet» y la respuesta «Can I see it?».</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 2dde</small></td><td><i>Normal request: I want you to get some milk. <span class="gap"></span></i></td><td>Can you get some milk?<small>¿Puedes conseguir leche?</small></td><td><span class="pill p-idle">No alcanzado</span><small>No se alcanzó: el tope cortó antes de llegar.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 2ddf</small></td><td><i>Polite request: I want to close this window. <span class="gap"></span></i></td><td>Could I close this window?<small>¿Podría cerrar esta ventana?</small></td><td><span class="pill p-idle">No alcanzado</span><small>No se alcanzó: el tope cortó antes de llegar.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 2de2</small></td><td><i>Polite request: I want you to shut this. <span class="gap"></span></i></td><td>Could you shut this?<small>¿Podrías cerrar esto?</small></td><td><span class="pill p-idle">No alcanzado</span><small>No se alcanzó: el tope cortó antes de llegar. Lo marcan por «check», «shut» o «borrow», de A2.</small></td></tr><tr><td>Pedidos: formal o informal<small>ej. 2de3</small></td><td><i>Polite request: I want to borrow your rubber. <span class="gap"></span></i></td><td>Could I borrow your rubber?<small>¿Podría tomar prestada tu goma de borrar?</small></td><td><span class="pill p-idle">No alcanzado</span><small>No se alcanzó: el tope cortó antes de llegar. Lo marcan por «check», «shut» o «borrow», de A2.</small></td></tr></tbody></table></div>
+  </section>
+
+  <section>
+    <h2>Cinco cosas que ningún juez marca</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Qué pasa</th><th>El caso</th><th>Por qué no lo ve nadie</th><th>Qué haría</th></tr></thead>
+      <tbody>
+        <tr><td>De tú y de vos en el mismo tema</td><td>En Adverbios de modo, una consigna dice «Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.» y otra «Creá un adverbio a partir del adjetivo y agregalo a la oración.».<small>Consignas de A1: 2.062 de tú y 40 de vos. Tarjetas de la Corrección 1: 392 de vos y 145 de tú. La app habla de vos: «Tocá», «Probá».</small></td><td>Ningún juez mira el registro. El corrector imita mis instrucciones, que están de vos.</td><td>Lo decidís vos (pregunta 1).</td></tr>
+        <tr><td>Oraciones raras que pasan</td><td><i>Those are the sons' Saturdays. · That is the waiters' water. · Those are the dogs' eyes.</i></td><td>Pragmatismo y uso nativo las aprueban. Calidad didáctica A1 dijo de la primera que «exige imaginar un calendario», pero sólo valida propuestas.</td><td>Que corra en los temas que se corrigen (pregunta 2).</td></tr>
+        <tr><td>Traducción doble</td><td><i>Mary is at home. (always) ___</i><small>Guardada: «Mary is at home. Mary is always at home.» · Traducción: «Mary está en casa. Mary siempre está en casa.»</small></td><td>El juez de traducción compara contra la oración guardada, que también está pegada.</td><td>Rearmar la oración guardada y volver a traducir (pregunta 3).</td></tr>
+        <tr><td>Una prohibición sin lugar</td><td><i>It's not okay to take videos in the museum.</i> → <i>It's not okay to sing.</i><small>Respuesta: You can't sing. · Traducción: No se puede cantar.</small></td><td>Sacó el museo para bajar de 9 a 8 palabras y sacar «video» (A2). Pragmatismo la aprobó.</td><td>Mirarla a mano.</td></tr>
+        <tr><td>Una respuesta pedida para la oración vieja</td><td><i>How about Monday?</i> → <i>How about going on Monday?</i> con <b>Let's go Monday.</b></td><td>La pidió el juez de una sola respuesta para la oración sin «on». El de consigna la frenó y el corrector pasó a «now».</td><td>Decirle al corrector que, si cambia la partida, lo pedido para la vieja puede no valer.</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>En qué se fueron las consultas</h2>
+    <div class="hb fijo"><div class="r"><div class="t">Examen de una sola respuesta, primera versión<small>reprobó: 3 falsas alarmas en 31</small></div><div class="tr"><div class="f b" style="width:25.2%"></div></div><div class="n">63</div></div><div class="r"><div class="t">Examen, versión de anoche<small>aprobó</small></div><div class="tr"><div class="f g" style="width:25.2%"></div></div><div class="n">63</div></div><div class="r"><div class="t">Muestra 1b: 11 ejercicios<small>llegó al tope; mostró las tareas viejas</small></div><div class="tr"><div class="f s" style="width:48.0%"></div></div><div class="n">120</div></div><div class="r"><div class="t">Muestra 2: 11 ejercicios<small>4 mal, devueltos</small></div><div class="tr"><div class="f s" style="width:48.8%"></div></div><div class="n">122</div></div><div class="r"><div class="t">Ronda 2a: 15 ejercicios<small>29 opiniones medidas de nuevo</small></div><div class="tr"><div class="f g" style="width:55.6%"></div></div><div class="n">139</div></div><div class="r"><div class="t">Ronda 2b: 17 de El posesivo<small>34 opiniones medidas de nuevo</small></div><div class="tr"><div class="f g" style="width:43.2%"></div></div><div class="n">108</div></div><div class="r"><div class="t">Examen frenado a mitad<small>arreglé sólo «Polite»; faltaba «Informal»</small></div><div class="tr"><div class="f b" style="width:18.0%"></div></div><div class="n">45</div></div><div class="r"><div class="t">Examen con las dos etiquetas<small>aprobó</small></div><div class="tr"><div class="f g" style="width:25.2%"></div></div><div class="n">63</div></div><div class="r"><div class="t">Pedidos: 39 ejercicios<small>llegó al tope; 74 opiniones medidas de nuevo</small></div><div class="tr"><div class="f w" style="width:100.0%"></div></div><div class="n">250</div></div></div><p class="pie">Total: 973 de 1000. Quedan 27.</p>
+    <div class="call c-warn"><b>Cómo leí «¿Te gusta Opus?».</b> Como un tope de 1000 consultas. Corregí y juzgué con el motor de siempre; Opus no corrigió nada. Si querías probarlo, lo comparo.</div>
+  </section>
+
+  <section>
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask"><span class="q">1 · ¿Lo que lee el alumno va de tú o de vos?</span><div class="ops"><span class="op rec">De tú, como las consignas · recomendado</span><span class="op">De vos, como la app</span></div><span class="why">Consignas: 2.062 de tú de 2.102. Tarjetas del corrector: 392 de vos de 537. Lo que elijas, se lo digo al corrector.</span></div><div class="ask"><span class="q">2 · ¿Calidad didáctica A1 entra al análisis de los temas que se corrigen?</span><div class="ops"><span class="op rec">Sí, en esos temas · recomendado</span><span class="op">No, sólo valida</span></div><span class="why">Es el único que vio «the sons' Saturdays». Hoy sólo frena errores nuevos. Cuesta una consulta por ejercicio del tema.</span></div><div class="ask"><span class="q">3 · ¿Arreglo las oraciones pegadas antes de la corrida completa?</span><div class="ops"><span class="op rec">Sí, primero · recomendado</span><span class="op">Después</span></div><span class="why">14 de 143 guardan la partida pegada y 9 traducen las dos. Es código, y no sé cómo se pegó la de la radio.</span></div><div class="ask"><span class="q">4 · ¿«please» suma respuestas aceptadas?</span><div class="ops"><span class="op rec">No: la fórmula es sin «please» · recomendado</span><span class="op">Sí</span></div><span class="why">Con «Polite» el juez ya no las pide; con «Informal», sí: el corrector sumó «Can I eat some cake, please?».</span></div><div class="ask"><span class="q">5 · ¿Corrida completa?</span><div class="ops"><span class="op rec">Después de 1 a 3 · recomendado</span><span class="op">Ya</span></div><span class="why">Lo que salía mal ya no sale: 0 mal en 55. Faltan dos criterios tuyos y las oraciones pegadas.</span></div>
+    </div>
+  </section>
+
+  <footer class="pie">Brief 223 · content-audit main 04109a515 · tanda tanda-A1-c2-1f1d898f · corridas ui-2026-10-25T22-07 · 22-40 · 23-26 · 23-48 · ui-2026-10-26T00-25 · scripts y datos en content-audit-corridas/2026-10-25-c2-mejoras.</footer>
+</div>
+
+</body>
+</html>
