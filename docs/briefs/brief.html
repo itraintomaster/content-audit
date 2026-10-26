@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lista para corregir A1</title>
+<title>Revisor y contrapesos</title>
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -347,96 +347,96 @@
   .tw td small{display:block;color:var(--fg-3);font-size:12px;margin-top:2px}
   .tw .gap{display:inline-block;min-width:40px;border-bottom:2px solid var(--fg-3);margin:0 4px}
 </style>
+<style>
+  .tw td i{font-family:ui-serif,Georgia,serif}
+</style>
 </head>
 <body>
 <div class="wrap">
 
   <header>
     <div class="kicker">
-      <span class="num">225</span>
-      <span class="badge">Resumen · Prueba ancha</span>
-      <span class="meta">A1 · noche del 25 al 26/10/2026</span>
+      <span class="num">226</span>
+      <span class="badge">Opinión · Jueces</span>
+      <span class="meta">A1 · 26/10/2026</span>
     </div>
-    <h1>Lista para corregir A1, empezando por lo grave</h1>
-    <p class="sub">Lo acordado en el 224, la prueba ancha de 64 ejercicios mirada a mano y cómo seguiría mañana.</p>
+    <h1>Un revisor que marque y dos contrapesos</h1>
+    <p class="sub">Tus tres preguntas: cómo veo lo sutil, cuánto pesa el largo y quién mira lo que regala la respuesta.</p>
   </header>
 
-  <div class="lede"><p><strong>Podemos arrancar:</strong> de los 51 ejercicios que la prueba cambió, 40 quedaron bien, 10 dudosos y 1 mal. Arreglé lo que la frenaba y propongo tres tramos, de lo grave a lo leve.</p></div>
-
-  <div class="kpis" style="margin:18px 0 6px">
-    <div class="kpi dest"><div class="n">40<small>de 51</small></div><div class="l">cambios que publicaría tal cual (78 %); 10 dudosos, 1 mal.</div></div>
-    <div class="kpi"><div class="n">900</div><div class="l">consultas para 64 ejercicios: 14 cada uno, todo incluido.</div></div>
-    <div class="kpi"><div class="n">1.899</div><div class="l">ejercicios corregibles hoy: 347 graves, 721 medios, 831 leves.</div></div>
-    <div class="kpi"><div class="n">~15.000</div><div class="l">consultas y unas 18 horas, la corrida completa por tramos.</div></div>
-  </div>
+  <div class="lede"><p><strong>Coincido en las tres:</strong> 7 de los 11 cambios con defecto vienen de dos empujones sin contrapeso, el largo y «una sola respuesta». Propongo frenarlos antes del tramo grave y sumar un revisor que marque.</p></div>
 
   <section>
-    <h2>La prueba ancha: cuatro de cada cinco cambios, bien</h2>
-    <div class="hb fijo">
-      <div class="r"><div class="t">Bien<small>lo publicaría</small></div><div class="tr"><div class="f g" style="width:62.5%"></div></div><div class="n">40</div></div>
-      <div class="r"><div class="t">Dudoso<small>mejor que antes, con un defecto</small></div><div class="tr"><div class="f w" style="width:15.6%"></div></div><div class="n">10</div></div>
-      <div class="r"><div class="t">Mal<small>peor que en producción</small></div><div class="tr"><div class="f b" style="width:1.6%"></div></div><div class="n">1</div></div>
-      <div class="r"><div class="t">Sin ganador<small>queda como estaba</small></div><div class="tr"><div class="f s" style="width:9.4%"></div></div><div class="n">6</div></div>
-      <div class="r"><div class="t">Sin tocar<small>ya no aplica, empate o tope</small></div><div class="tr"><div class="f s" style="width:10.9%"></div></div><div class="n">7</div></div>
-    </div>
-    <p class="pie">Los 64 ejercicios de 15 temas nuevos, leídos uno por uno contra su consigna y su tema. Cada veredicto, con su porqué, en veredictos-ancha.json.</p>
-  </section>
-
-  <section>
-    <h2>Lo que no quedó bien tiene tres causas</h2>
-    <div class="tw"><table><thead><tr><th>Tema y consigna</th><th>En producción</th><th>Ahora</th><th>Por qué</th><th>¿Lo vio un juez?</th></tr></thead><tbody>
-      <tr><td>Respuestas cortas<small>ej. 1f5d</small><small>«Escribe la respuesta corta.»</small></td><td><i>A: Is it hot today? B: No, it <span class="gap"></span>.</i><small>Respuesta: <b>isn&#x27;t</b></small><small>Traducción: No, no lo es/está.</small></td><td><i>Is this tea? It <span class="gap"></span>.</i><small>Respuestas: <b>isn&#x27;t</b> · <b>is not</b> · <b>&#x27;s not</b></small><small>Traducción: ¿Esto es té? No, no es té.</small></td><td><span class="pill p-bad">Mal</span><small>El largo: sacó el «No,» para llegar a 8 tokens, y la traducción lo conserva.</small></td><td><span class="pill p-bad">No</span><small>Ni el de traducción ni el didáctico: hoy sólo le queda la copia de producción.</small></td></tr>
-      <tr><td>Elegir la forma natural<small>ej. 2185</small><small>«¿Es más natural usar &#x27;will&#x27; o &#x27;going to&#x27;?»</small></td><td><i>He <span class="gap"></span> (not / play) football this summer.</i><small>Respuesta: <b>isn&#x27;t going to play</b></small></td><td><i>He <span class="gap"></span> (not / play) football.</i><small>Respuesta: <b>isn&#x27;t going to play</b></small></td><td><span class="pill p-warn">Dudoso</span><small>El largo: perdió «this summer», lo único que sugería un plan.</small></td><td><span class="pill p-warn">En parte</span><small>Respuesta única marca que «won&#x27;t play» también vale, antes y después; nadie marca que se perdió el plan.</small></td></tr>
-      <tr><td>Frecuencia: parte 2<small>ej. 2584</small></td><td><small>Miniteoría: «Las frases largas como $every month$ o $twice a week$ van al final.»</small></td><td><small>Miniteoría: «En este ejercicio, coloca la expresión de frecuencia al final de la oración.»</small></td><td><span class="pill p-warn">Dudoso</span><small>Un juez: la regla general pasó a ser una orden.</small></td><td><span class="pill p-bad">No, lo pidió</span><small>El de miniteoría marcaba la regla como exagerada: «debe delimitarla» a este ejercicio. La versión nueva la aprobó.</small></td></tr>
-      <tr><td>Cortesía con would like<small>ej. 2535</small></td><td><i>They want a bigger house. <span class="gap"></span></i><small>Traducción: Quieren una casa más grande. Les gustaría una casa más grande.</small></td><td><i>They want a bigger house. (Escribe la versión amable; cambia solo «want» por «would like», con o sin contracción.) <span class="gap"></span></i><small>Traducción: Les gustaría una casa más grande.</small></td><td><span class="pill p-warn">Dudoso</span><small>Arregló la traducción pegada, pero dejó en el enunciado un paréntesis que da la respuesta.</small></td><td><span class="pill p-bad">No</span><small>Ningún juez marca el paréntesis; lo había puesto una corrección anterior.</small></td></tr>
-      <tr><td>Todas las formas<small>ej. 1fbd</small></td><td><i><span class="gap"></span> (he / have) a sister?</i><small>Respuesta: <b>Does he have</b></small></td><td><small>Sin cambios: 3 intentos, 23 consultas.</small></td><td><span class="pill p-idle">Sin ganador</span><small>Dos jueces chocan: uno pide aceptar «Has he», el otro lo rechaza. Igual con «gonna» en 26d6 y 26c8.</small></td><td><span class="pill p-ok">Sí, los dos</span><small>Respuesta única pide «Has he» y «Has he got»; el didáctico rechazó los tres intentos que los aceptaban.</small></td></tr>
-      <tr><td>Preguntas con be<small>ej. 21bb</small></td><td><i>Where <span class="gap"></span> (she / be) last night?</i><small>Respuesta: <b>was she</b>, entre seis opciones</small><small>Miniteoría: que be va antes del sujeto, con ejemplos de he y they.</small></td><td><small>Sin cambios: 3 intentos, 39 consultas.</small></td><td><span class="pill p-idle">Sin ganador</span><small>Permiso: las opciones nuevas dejaban corta la miniteoría, que no podía tocar.</small></td><td><span class="pill p-ok">Sí</span><small>El de miniteoría la marca en cada intento y hoy sigue marcada.</small></td></tr>
+    <h2>Me doy cuenta mirando el cambio, no el candidato</h2>
+    <div class="tw"><table><thead><tr><th>Lo que me pregunto</th><th>Dónde apareció en la prueba</th><th>¿Algún juez lo pregunta?</th></tr></thead><tbody>
+      <tr><td>¿Qué perdió respecto de producción?</td><td>1f5d perdió el «No,» de la respuesta corta; 2185, el «this summer» que sugería un plan.</td><td><span class="pill p-bad">No</span><small>Cada juez mira el candidato solo, sin producción al lado.</small></td></tr>
+      <tr><td>¿Algo de lo que ve el alumno le hace el trabajo?</td><td>26ef, 21c9, 21bc, 21bf y 2535, más abajo.</td><td><span class="pill p-warn">Sólo en opciones y pistas</span></td></tr>
+      <tr><td>¿Los campos dicen lo mismo entre sí?</td><td>1f5d: la traducción conserva el «No,» que el inglés perdió.</td><td><span class="pill p-bad">Lo dejó pasar</span><small>El juez de traducción lo aprobó.</small></td></tr>
+      <tr><td>¿La oración se entiende sola?</td><td>245a: <i>We are visiting friends on the morning of her birthday.</i> ¿De quién es «her»?</td><td><span class="pill p-bad">No</span></td></tr>
+      <tr><td>¿La regla sigue siendo regla?</td><td>2584: «Las frases largas como $every month$ van al final» pasó a «En este ejercicio, coloca la expresión de frecuencia al final de la oración».</td><td><span class="pill p-bad">No, la pidió</span><small>El de miniteoría pedía delimitarla a este ejercicio.</small></td></tr>
     </tbody></table></div>
-    <p class="pie">En los cuatro cambios con defecto, ningún juez marcó lo que se rompió; en 2584, un juez hasta lo pidió. Por eso miro cada tramo a mano.</p>
-    <div class="call c-info"><b>Corrijo el 223.</b> La oración pegada de 2dd6 venía de producción, no del corrector.</div>
+    <p class="pie">Miro el cambio entero: producción al lado, cada campo contra los otros y contra el tema. Y pregunto qué se perdió.</p>
+    <div class="call c-warn"><b>Lo que no sé.</b> Nadie revisó mis 64 veredictos, y un solo «mal» es poco para calificar a otro.</div>
   </section>
 
   <section>
-    <h2>Lo que quedó arreglado esta noche</h2>
-    <div class="cambia">
-      <div class="si"><p class="ptl">Cambia</p><ul>
-        <li>Lo viejo de vos pasa a tú sin consultas: «Lo decidís» → «Lo decides».</li>
-        <li>El juez de registro entra a la corrección gratis: encuentra 513 textos con vos.</li>
-        <li>La oración que guarda producción ya no es tarea: 24 ejercicios dicen «sólo falta publicar».</li>
-        <li>«hice», «comí»: el pasado de yo ya no se toma por vos.</li>
-        <li>Probado en vivo con 3 ejercicios que sólo tenían vos: los 3 bien, 30 consultas.</li>
-      </ul></div>
-      <div class="no"><p class="ptl">No cambia</p><ul>
-        <li>El largo de los diálogos: la regla está lista en una rama, esperando tu sí.</li>
-        <li>Ningún juez cambió de versión.</li>
-        <li>«borrow» y «order» siguen marcadas: hacerles lugar pide una lista de palabras por tema.</li>
-        <li>Producción: nada publicado.</li>
-      </ul></div>
+    <h2>7 de los 11 defectos vienen de dos empujones</h2>
+    <div class="hb fijo">
+      <div class="r"><div class="t">Regala la respuesta<small>para dejar una sola, la dice</small></div><div class="tr"><div class="f b" style="width:45.5%"></div></div><div class="n">5</div></div>
+      <div class="r"><div class="t">Recorta sentido<small>para entrar en el largo</small></div><div class="tr"><div class="f b" style="width:18.2%"></div></div><div class="n">2</div></div>
+      <div class="r"><div class="t">Otros<small>traducción literal, «her» suelto, regla vuelta orden, «to eat» agregado</small></div><div class="tr"><div class="f s" style="width:36.4%"></div></div><div class="n">4</div></div>
     </div>
+    <p class="pie">De 51 cambios, los 11 que no publicaría tal cual. Los dos empujones van para un solo lado.</p>
   </section>
 
   <section>
-    <h2>Corregir de lo grave a lo leve, mirando cada tramo</h2>
-    <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">Grave</span><span class="eg">347 ejercicios</span><span class="d">~5.000 consultas, unas 6 horas.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">Medio</span><span class="eg">721 ejercicios</span><span class="d">~6.000; 6 de cada 10 tienen vos.</span></div>
-      <div class="st"><span class="i">3</span><span class="h">Leve</span><span class="eg">831 ejercicios</span><span class="d">~4.000; casi todo miniteoría.</span></div>
-      <div class="st end"><span class="i">✓</span><span class="h">Entre tramos</span><span class="eg">20 a mano</span><span class="d">Antes de lanzar el siguiente.</span></div>
+    <h2>El largo pesa lo mismo que un error de traducción</h2>
+    <div class="ad">
+      <div class="lado antes"><span class="rot">Hoy</span>
+        <ol><li>Al corrector, el largo le llega como una tarea más.</li><li>Recorta para cumplirla: en 1f5d, «elimino «No» para acortar».</li><li>Un cambio que sólo acorta se acepta: 2185.</li><li>Para elegir ganador, el largo cuenta como una tarea.</li></ol>
+        <span class="res">3 recortes de sentido en 15 con largo</span></div>
+      <div class="lado despues"><span class="rot">Con el arreglo</span>
+        <ol><li>Le llega como leve: acortar sólo si no se pierde nada.</li><li>Medido por oración, el diálogo de 1f5d entra en el rango.</li><li>Un cambio que sólo acorta no alcanza.</li><li>El largo sólo desempata, al final.</li></ol>
+        <span class="res">1f5d y 2185 conservan su sentido</span></div>
     </div>
-    <div class="call c-warn"><b>Lo que no sé.</b> El costo de medios y leves sale de sólo 20 ejercicios de la prueba; el primer tramo da el número real.</div>
+    <p class="pie">Hay gravedades, pero el ganador sale de contar tareas, y el corrector persigue el largo como a cualquier otra.</p>
+  </section>
+
+  <section>
+    <h2>Nadie mira si la consigna regala la respuesta</h2>
+    <div class="tw"><table><thead><tr><th>Dónde puede regalarse</th><th>Quién lo mira hoy</th><th>Caso de la prueba</th></tr></thead><tbody>
+      <tr><td>Las opciones</td><td><span class="pill p-ok">Juez de opción múltiple</span><small>Opciones que se aciertan por parecido; artículo que delata.</small></td><td><small>—</small></td></tr>
+      <tr><td>La pista entre paréntesis</td><td><span class="pill p-ok">Regla «la pista no regala»</span></td><td><small>—</small></td></tr>
+      <tr><td>La consigna</td><td><span class="pill p-bad">Nadie</span><small>El juez de consigna mira lo contrario: que se pueda resolver.</small></td><td>21c9, 21bc, 21bf: «Elige la opción que completa la pregunta en pasado simple con el verbo $be$, colocando el verbo delante del sujeto.»<small>26ef: «Acabas de decidir hacer algo por la otra persona porque podría estar ocupada; no tenías un plan previo.»</small></td></tr>
+      <tr><td>Una indicación en el enunciado</td><td><span class="pill p-bad">Nadie</span></td><td>2535: <i>They want a bigger house.</i> «(Escribe la versión amable; cambia solo «want» por «would like», con o sin contracción.)»</td></tr>
+    </tbody></table></div>
+    <p class="pie">Los 5 los puso una corrección, no producción: para dejar una sola respuesta, el corrector la dijo.</p>
+  </section>
+
+  <section>
+    <h2>Un revisor que marque, no que decida</h2>
+    <div class="opts">
+      <div class="opt rec"><div class="oh"><span class="ol">A</span><b>Marca sobre lo aprobado</b><span class="pill p-ok">recomiendo</span></div>
+        <ul><li class="si">no frena lo bueno sin calibrar</li><li class="si">una consulta por cambio: ~+10 %</li><li class="no">lo marcado hay que mirarlo</li></ul></div>
+      <div class="opt"><div class="oh"><span class="ol">B</span><b>Decide en la mesa</b></div>
+        <ul><li class="si">lo malo no se acepta</li><li class="no">sin calibrar, frena también lo bueno</li><li class="no">una por candidato: ~+30 %</li></ul></div>
+      <div class="opt"><div class="oh"><span class="ol">C</span><b>Sólo yo, al final</b></div>
+        <p>Cero consultas, pero serían ~1.500 cambios; leí 64 en una noche.</p></div>
+    </div>
+    <p class="pie">Haría lo que hago yo. Lo califico con mis 64 veredictos antes de dejarlo frenar algo.</p>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Arranco el tramo grave?</span><div class="ops"><span class="op rec">Sí, 347 ejercicios · recomendado</span><span class="op">Esperar las otras respuestas</span></div><span class="why">No depende de las tres preguntas que siguen; cada una sólo ahorra intentos.</span></div>
-      <div class="ask"><span class="q">2 · ¿Mido el largo por oración?</span><div class="ops"><span class="op rec">Sí, junto la rama · recomendado</span><span class="op">No</span></div><span class="why">«A: Is he tired? B: No, he isn&#x27;t.» mide 14; por renglón, 7. Se van 115 hallazgos de diálogos; la base sube a 74,19.</span></div>
-      <div class="ask"><span class="q">3 · ¿El juez de respuesta única deja de pedir inglés informal?</span><div class="ops"><span class="op rec">Sí, inglés estándar · recomendado</span><span class="op">No</span></div><span class="why">54 de sus 411 hallazgos piden «ain&#x27;t», «gonna» o «Has he»; el juez didáctico los rechaza. Volver a medirlo cuesta ~400 consultas.</span></div>
-      <div class="ask"><span class="q">4 · ¿El corrector puede acotar la consigna?</span><div class="ops"><span class="op rec">Sí, sin dar la respuesta · recomendado</span><span class="op">No</span></div><span class="why">15 de 141 decisiones quedaron frenadas por no poder tocarla. El riesgo es una consigna que regala la respuesta, como en 26ef.</span></div>
+      <div class="ask"><span class="q">1 · ¿El largo pasa a ser leve de verdad?</span><div class="ops"><span class="op rec">Sí, sólo desempata · recomendado</span><span class="op">No</span></div><span class="why">En 3 de 15 con largo, el corrector recortó sentido para entrar.</span></div>
+      <div class="ask"><span class="q">2 · ¿Armo el juez «no regala» para consigna y enunciado?</span><div class="ops"><span class="op rec">Sí, antes del tramo grave · recomendado</span><span class="op">Después, sobre lo aprobado</span></div><span class="why">Es la mitad de los dudosos, y 4 de 5 están en la consigna (pregunta 4 del 225).</span></div>
+      <div class="ask"><span class="q">3 · ¿El revisor marca o decide?</span><div class="ops"><span class="op rec">Marca sobre lo aprobado · recomendado</span><span class="op">Decide en la mesa</span></div><span class="why">Miro lo marcado y una muestra del resto.</span></div>
+      <div class="ask"><span class="q">4 · ¿El tramo grave espera a 1 y 2?</span><div class="ops"><span class="op rec">Sí, espera · recomendado</span><span class="op">Arrancar ya</span></div><span class="why">Cambio lo que dije en el 225: sin ellos, 1 de cada 7 cambios sale con estos defectos.</span></div>
     </div>
   </section>
 
-  <footer class="pie">Brief 225 · content-audit main fde21d2d0 · rama claude/largo-por-oracion 6302d79f3 (F-SMODE-R008) · F-MESA-R021, R025 a R028 · corrida ui-2026-10-26T03-46-29 · inspección c2-inspeccion-225.json · datos en content-audit-corridas/2026-10-25-c2-mejoras.</footer>
+  <footer class="pie">Brief 226 · content-audit main 979fad422 · DefaultPanelDecisionScript.rank y TaskProgress.better · choice-quality-judge ANSWER_CUE · F-OMVAL-R004 · F-PISTA-R007 · quiz-instruction-validator (solvability) · corrida ui-2026-10-26T03-46-29 · revision-ancha.json, veredictos-ancha.json.</footer>
 </div>
 
 </body>
