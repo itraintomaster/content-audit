@@ -1,0 +1,82 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "quizId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "OK",
+        "GIVES_AWAY",
+        "REVIEW",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "practicedDecision": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "where": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "INSTRUCTIONS",
+        "STATEMENT",
+        null
+      ]
+    },
+    "givenAway": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "extent": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "WHOLE",
+        "PART",
+        null
+      ]
+    },
+    "reason": {
+      "type": "string"
+    },
+    "proposedAction": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "handoffs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "HINT",
+          "OPTIONS"
+        ]
+      }
+    }
+  },
+  "required": [
+    "quizId",
+    "status",
+    "practicedDecision",
+    "where",
+    "givenAway",
+    "extent",
+    "reason",
+    "proposedAction",
+    "handoffs"
+  ]
+}

@@ -700,6 +700,10 @@ class Main {
         Evaluator a1DidacticJudge = lazyAgentJudge(agentJudgeFactory, llmProviderResolver, agentJudgeConfig,
                 new AgentJudgeSpec("a1-didactic-judge", "a1DidacticVerdict", "Calidad didáctica A1"),
                 quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
+        // FEAT-REGALA: whether the instructions give away the decision the topic practices.
+        Evaluator answerGiveawayJudge = lazyAgentJudge(agentJudgeFactory, llmProviderResolver, agentJudgeConfig,
+                new AgentJudgeSpec("answer-giveaway-judge", "answerGiveawayVerdict", "No regala la respuesta"),
+                quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
         Evaluator nearDuplicatesAlternative = lazyAgentJudge(agentJudgeFactory, llmProviderResolver, agentJudgeConfig,
                 new AgentJudgeSpec("near-duplicates-pair-judge", "sameExerciseVerdict",
                         "Duplicados parecidos (claude -p)"),
@@ -782,6 +786,11 @@ class Main {
                 studentViewRenderer, finishedSentenceReader));
         // F-MESA-R025: what the student reads goes in «tú»; a text in «vos» is a task for the panel.
         analyzerProviders.add(new com.learney.contentaudit.auditdomain.spanishregister.SpanishRegisterAnalyzerProvider());
+        // FEAT-REGALA: at the end, so every analyzer before keeps its place.
+        analyzerProviders.add(new com.learney.contentaudit.auditdomain.answergiveaway.AnswerGiveawayAnalyzerProvider(
+                judgeRuntime, answerGiveawayJudge,
+                new com.learney.contentaudit.quizinstructioninfrastructure.answergiveaway.JacksonAnswerGiveawayVerdictReader(),
+                studentViewRenderer));
         AnalyzerCatalog analyzerCatalog = new DefaultAnalyzerCatalog(analyzerProviders);
 
         ScoreAggregator scoreAggregator =
@@ -907,6 +916,7 @@ class Main {
                 new SentenceLengthCorrection(),
                 new ContextOnlyCorrection("naturalness"),
                 new com.learney.contentaudit.auditdomain.englishquality.A1DidacticCorrection(),  // F-MESA-R024
+                new com.learney.contentaudit.auditdomain.answergiveaway.AnswerGiveawayCorrection(),  // F-REGALA-R003
                 new com.learney.contentaudit.auditdomain.spanishregister.SpanishRegisterCorrection(),  // F-MESA-R025
                 new HintCoherenceCorrection(),               // A (E-03)
                 new AnswerCompletenessCorrection(),          // A (E-03)
@@ -1414,6 +1424,7 @@ class Main {
                 Map.entry("pragmatism", agentExamProvenance),
                 Map.entry("naturalness", agentExamProvenance),
                 Map.entry("a1-didactic", agentExamProvenance),
+                Map.entry("answer-giveaway", agentExamProvenance),
                 Map.entry("near-duplicates", agentExamProvenance));
         // F-ALDIA-R002: exam cutover, once, over the judges built from an AgentJudgeSpec. The consigna
         // judge is not among them: its version keeps its own rule (F-ALDIA-R001 inv. 4).
@@ -1423,7 +1434,7 @@ class Main {
                         miniTheoryJudge.evaluatorId(), choiceAlternativeJudge.evaluatorId(),
                         choiceQualityJudge.evaluatorId(), nearDuplicatesAlternative.evaluatorId(),
                         pragmatismJudge.evaluatorId(), nativeUsageJudge.evaluatorId(),
-                        a1DidacticJudge.evaluatorId()), java.time.Clock.systemUTC());
+                        a1DidacticJudge.evaluatorId(), answerGiveawayJudge.evaluatorId()), java.time.Clock.systemUTC());
         // F-JEXAM-R015: exam status -f json asks the catalog who to read, only when it is used. Opening the sessions
         // of today's judges consults nothing; F-ALDIA-R003 marks the verdicts of an analysis against the same standings.
         Map<String, List<Evaluator>> activeJudges = Map.of(
@@ -1435,7 +1446,8 @@ class Main {
                 "multiple-choice-quality", List.of(choiceQualityJudge),
                 "pragmatism", List.of(pragmatismJudge),
                 "naturalness", List.of(nativeUsageJudge),
-                "a1-didactic", List.of(a1DidacticJudge));
+                "a1-didactic", List.of(a1DidacticJudge),
+                "answer-giveaway", List.of(answerGiveawayJudge));
         java.util.function.Supplier<Map<String, com.learney.contentaudit.auditdomain.judging.JudgeExamStanding>>
                 currentJudgeStandings = () -> {
                     Map<String, com.learney.contentaudit.auditdomain.judging.JudgeExamStanding> standings =

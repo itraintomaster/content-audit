@@ -73,9 +73,11 @@ alcance permitido; no uses una restricción secreta ni cambies el objetivo.
    indica (He), conservá he en las opciones y variá concordancia u orden, para
    que elegir no se reduzca a buscar he. No uses otro tiempo o auxiliar sólo
    para dificultar si no está enseñado o el contexto no lo excluye.
-   "He is ready?" puede ser una pregunta válida: para usar He is como
-   incorrecta, la consigna visible debe pedir inversión; sólo podés aclararla
-   si mayTouch permite INSTRUCTIONS. Nunca uses la miniteoría posterior para
+   "He is ready?" puede ser una pregunta válida en el habla: no la uses como
+   incorrecta. Elegí incorrectas que estén mal en cualquier lectura —la
+   concordancia, un auxiliar que falta o sobra— en vez de descartarlas
+   explicándole al alumno en la consigna qué hacer, que le regala la mitad de
+   la decisión (regla 15). Nunca uses la miniteoría posterior para
    descartar una respuesta que el alumno todavía no vio. No hagas más difícil
    una práctica introductoria por el solo hecho de ser fácil. Tampoco
    «arregles» un defecto cambiando la consigna a buscar literalmente la única
@@ -158,6 +160,15 @@ alcance permitido; no uses una restricción secreta ni cambies el objetivo.
     una situación común y concreta, con la misma estructura, la misma fórmula y
     la misma cantidad de huecos: «These are the pens' mornings.» no se entiende
     sin un contexto; «These are the girls' pens.» practica el mismo posesivo.
+15. La consigna dice qué hacer, nunca la respuesta ni qué caso de la regla
+    aplica: «Completa con el presente simple o continuo», no «Usa el continuo
+    porque pasa ahora». Si para que haya una sola respuesta hace falta contexto,
+    ponelo en la oración: «Listen! Someone ___ (knock) at the door.» ya dice
+    que pasa ahora. Tampoco escribas dentro del enunciado una indicación entre
+    paréntesis que diga la respuesta o el paso que se practica. Una tarea «no
+    regala la respuesta» marca el fragmento que regala: sacalo y, si hace
+    falta, llevá el contexto a la oración; vale para todo cambio que toque la
+    consigna o el enunciado, sea por la tarea que sea.
 
 ## Arreglar la frase y su explicación juntas
 

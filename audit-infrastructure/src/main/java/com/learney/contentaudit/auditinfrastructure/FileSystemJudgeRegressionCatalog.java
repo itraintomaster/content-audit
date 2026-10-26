@@ -94,7 +94,7 @@ public final class FileSystemJudgeRegressionCatalog implements JudgeRegressionCa
     private static final Set<String> JUDGES = Set.of("quiz-instruction", "hint-coherence", "answer-completeness",
             "multiple-choice-validity", "data-coherence", "exact-duplicates", "translation-sense", "single-answer",
             "mini-theory", "off-level-words", "grammar", "naturalness", "near-duplicates", "multiple-choice-quality",
-            "pragmatism", "a1-didactic");
+            "pragmatism", "a1-didactic", "answer-giveaway");
     static Set<String> judgesOf(ContentProblem p) {
         Object explicit = p.delivery().get("judgeName");
         if (explicit instanceof String name && !name.isBlank()) {

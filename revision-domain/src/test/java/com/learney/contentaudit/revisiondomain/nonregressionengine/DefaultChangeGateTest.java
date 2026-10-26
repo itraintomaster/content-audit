@@ -58,6 +58,24 @@ public class DefaultChangeGateTest {
     }
 
     @Test
+    @DisplayName("should reject a fix of the single answer that writes in the instructions which case of the rule to use, since the judge «no regala» marks it as a new error")
+    @Tag("FEAT-REGALA")
+    @Tag("F-REGALA-R004")
+    public void shouldRejectAFixOfTheSingleAnswerThatWritesInTheInstructionsWhichCaseOfTheRuleToUse() {
+        // F-REGALA-R004: to leave a single answer, a candidate adds «porque pasa ahora» to the instructions. The single
+        // answer is gone, but the judge «no regala» marks that fragment: it is a new error, and the change does not pass.
+        Finding givesAway = finding("answer-giveaway", "gives-away-the-decision", VEGETABLES, FindingSeverity.HIGH,
+                FindingResolution.PANEL, "porque pasa ahora", "le dice al alumno qué tiempo usar");
+        UnitMeasurement before = unit(List.of(single(VEGETABLES)), List.of(), List.of(), List.of());
+        UnitMeasurement after = unit(List.of(givesAway), List.of(), List.of(), List.of());
+
+        ChangeGateVerdict verdict = gate().check(probe(List.of(VEGETABLES), false, before, after));
+
+        assertFalse(verdict.isPasses(), "giving the answer away is a new error");
+        assertEquals(List.of(givesAway), verdict.getNewErrors());
+    }
+
+    @Test
     @DisplayName("should pass the change to «I ___ (love) vegetables.», which removes the findings of hint-coherence and single-answer and adds none")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R001")

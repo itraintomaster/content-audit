@@ -43,5 +43,7 @@ public enum DiagnosisKind {
 
     A1_DIDACTIC,
 
-    SPANISH_REGISTER
+    SPANISH_REGISTER,
+
+    ANSWER_GIVEAWAY
 }

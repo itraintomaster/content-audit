@@ -55,7 +55,11 @@ final class AnalyzerReads {
             Map.entry("grammar", EnumSet.of(ExercisePart.STATEMENT, ExercisePart.ANSWERS, ExercisePart.OPTIONS,
                     ExercisePart.STORED_SENTENCE, ExercisePart.FORM_KIND)),
             Map.entry("naturalness", EnumSet.of(ExercisePart.STATEMENT, ExercisePart.ANSWERS, ExercisePart.OPTIONS,
-                    ExercisePart.STORED_SENTENCE, ExercisePart.FORM_KIND)));
+                    ExercisePart.STORED_SENTENCE, ExercisePart.FORM_KIND)),
+            // F-REGALA-R004: a change of the instructions or the statement made for any other task may give the
+            // answer away, so the judge measures it; one of only the translation or the mini theory cannot.
+            Map.entry("answer-giveaway", EnumSet.of(ExercisePart.INSTRUCTIONS, ExercisePart.STATEMENT,
+                    ExercisePart.HINT, ExercisePart.ANSWERS, ExercisePart.OPTIONS, ExercisePart.FORM_KIND)));
 
     private AnalyzerReads() {
     }

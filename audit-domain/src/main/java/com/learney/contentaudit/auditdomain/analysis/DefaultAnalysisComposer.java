@@ -26,7 +26,7 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
         this.numbers = Objects.requireNonNull(numbers);
         this.qualityInputs = new ChoiceQualitySubjectBuilder(Objects.requireNonNull(renderer));
         this.fingerprinter = Objects.requireNonNull(fingerprinter);
-        inputs = Map.of(
+        var known = new HashMap<String, java.util.function.Function<AuditNode, com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject>>(Map.of(
                 "naturalness", new com.learney.contentaudit.auditdomain.englishquality.EnglishQualitySubjectBuilder(renderer,
                         new com.learney.contentaudit.auditdomain.finishedsentence.DefaultFinishedSentenceReader())::build,
                 "a1-didactic", new com.learney.contentaudit.auditdomain.englishquality.EnglishQualitySubjectBuilder(renderer,
@@ -39,7 +39,9 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
                 "multiple-choice-validity", new com.learney.contentaudit.auditdomain.choicealternativeengine.DefaultChoiceAlternativeSubjectBuilder(renderer)::build,
                 "near-duplicates", new com.learney.contentaudit.auditdomain.nearduplicates.NearDuplicatesSubjectBuilder(renderer)::build,
                 "mini-theory", n -> new com.learney.contentaudit.auditdomain.minitheoryengine.DefaultMiniTheorySubjectBuilder(renderer)
-                        .build(n.getTarget() == AuditTarget.KNOWLEDGE ? n : n.ancestor(AuditTarget.KNOWLEDGE).orElseThrow()));
+                        .build(n.getTarget() == AuditTarget.KNOWLEDGE ? n : n.ancestor(AuditTarget.KNOWLEDGE).orElseThrow())));
+        known.put("answer-giveaway", new com.learney.contentaudit.auditdomain.answergiveaway.AnswerGiveawaySubjectBuilder(renderer)::build);
+        inputs = Map.copyOf(known);
     }
     @Override public Set<String> supportedAnalyzers() { return inputs.keySet(); }
 
@@ -161,7 +163,7 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
                 to.getFindings().addAll(from.getFindings().stream().filter(f -> name.equals(f.getAnalyzer())).toList());
                 if (to.getDiagnoses() instanceof DefaultQuizDiagnoses d && from.getDiagnoses() instanceof QuizDiagnoses s) {
                     switch (name) {
-                        case "naturalness", "a1-didactic" -> {
+                        case "naturalness", "a1-didactic", "answer-giveaway" -> {
                             if ("naturalness".equals(name)) d.setNaturalnessDiagnosis(null);
                             to.getMetadata().remove(name + "OutputIssue");
                             for (String suffix : List.of("Verdict", "Version", "Reused", "InputContract")) {
@@ -258,7 +260,7 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
                     List.of(), new JudgeQuizTally(reached, evaluated, reached - evaluated)));
         }
         root.setDiagnoses(diagnosis);
-        for (String name : List.of("naturalness", "a1-didactic")) if (ran.contains(name))
+        for (String name : List.of("naturalness", "a1-didactic", "answer-giveaway")) if (ran.contains(name))
             rebuildStructuredCounts(root,target.values(),name);
         aggregator.aggregate(root);
         numbers.compute(root, catalog.list().stream().filter(c -> ran.contains(c.getName())).toList());
@@ -280,6 +282,9 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
     private static boolean structuredVerdict(AuditNode node, String name) {
         if ("pragmatism".equals(name) && node.getDiagnoses() instanceof QuizDiagnoses diagnoses)
             return diagnoses.getPragmatismDiagnosis().map(d -> d.verdict() != null).orElse(false);
+        if ("answer-giveaway".equals(name))
+            return com.learney.contentaudit.auditdomain.answergiveaway.AnswerGiveawaySubjectBuilder.CONTRACT
+                    .equals(node.getMetadata().get(name + "InputContract")) && node.getMetadata().get(name + "Verdict") != null;
         return ("naturalness".equals(name) || "a1-didactic".equals(name))
                 && com.learney.contentaudit.auditdomain.englishquality.EnglishQualitySubjectBuilder.CONTRACT
                     .equals(node.getMetadata().get(name + "InputContract"))
@@ -294,11 +299,13 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
                 nativeVerdict.assessments().forEach(a -> counts.merge(a.status().name(),1,Integer::sum));
             else if (verdict instanceof com.learney.contentaudit.auditdomain.englishquality.A1DidacticVerdict didacticVerdict)
                 counts.merge(didacticVerdict.status().name(),1,Integer::sum);
+            else if (verdict instanceof com.learney.contentaudit.auditdomain.answergiveaway.AnswerGiveawayVerdict giveaway)
+                counts.merge(giveaway.status().name(),1,Integer::sum);
             else if (verdict instanceof Map<?,?> saved) {
                 if ("naturalness".equals(name) && saved.get("assessments") instanceof List<?> assessments)
                     for (Object item : assessments) if (item instanceof Map<?,?> a && a.get("status") != null)
                         counts.merge(a.get("status").toString(),1,Integer::sum);
-                if ("a1-didactic".equals(name) && saved.get("status") != null)
+                if (("a1-didactic".equals(name) || "answer-giveaway".equals(name)) && saved.get("status") != null)
                     counts.merge(saved.get("status").toString(),1,Integer::sum);
             }
         }
@@ -327,6 +334,8 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
         if (verdict instanceof com.learney.contentaudit.auditdomain.englishquality.NativeUsageVerdict v)
             v.assessments().forEach(a -> statuses.add(a.status().name()));
         else if (verdict instanceof com.learney.contentaudit.auditdomain.englishquality.A1DidacticVerdict v)
+            statuses.add(v.status().name());
+        else if (verdict instanceof com.learney.contentaudit.auditdomain.answergiveaway.AnswerGiveawayVerdict v)
             statuses.add(v.status().name());
         else if (verdict instanceof Map<?,?> saved) {
             if (saved.get("status") != null) statuses.add(saved.get("status").toString());
