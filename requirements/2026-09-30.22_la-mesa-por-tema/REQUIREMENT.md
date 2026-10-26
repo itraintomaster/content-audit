@@ -406,7 +406,10 @@ corrija bien».
 >    frase («Usá», «añadí», «Creá», «poné») y el imperativo con pronombre sin tilde («agregalo», «fijate»);
 > 2. no lo son el pasado ni el futuro («Escribí tres oraciones», «dibujará», «sabrás») ni las palabras que sólo terminan
 >    igual («más», «inglés», «cortés», «después», «país», «está»); el imperativo con acento se busca sólo en la consigna
->    y la miniteoría, porque en una traducción «Escribí» es el pasado;
+>    y la miniteoría, porque en una traducción «Escribí» es el pasado; y el que termina en «é» o «í», que se escribe como
+>    el pasado de «yo» («Compré», «Escuché»), sólo al empezar o después de «.», «,», «;», «:» o «y», no después de un
+>    ejemplo en inglés o de un paréntesis, donde la tarjeta lo traduce («$I heard a funny noise.$ = Escuché un ruido
+>    raro.»);
 > 3. el inglés entre `$` no se lee;
 > 4. un texto que el candidato dejó como estaba no es suyo: no lo rechaza por eso;
 > 5. el motivo dice qué parte va de tú y qué palabras dice de vos.
@@ -522,9 +525,9 @@ lo había resuelto. Es lo que ya hacen las compuertas, que la cuentan como pendi
 >    escrito quien propone;
 > 3. lo que quien propone escribe sigue [F-MESA-R021](#F-MESA-R021).
 
-El 26/10/2026, de los 1.856 ejercicios de A1 que cambió la primera corrección, 555 tienen vos, 513 en la miniteoría; 426
+El 26/10/2026, de los 1.856 ejercicios de A1 que cambió la primera corrección, 549 tienen vos, 507 en la miniteoría; 421
 de ellos van a la mesa por otro problema. Con esta regla salen de tú sin pedir nada más que la opinión del juez del
-texto que cambió. Los otros 129 (120 sin ningún otro problema) necesitan que la tanda mida
+texto que cambió. Los otros 128 (120 sin ningún otro problema) necesitan que la tanda mida
 [F-MESA-R025](#F-MESA-R025): la C2 mide los 21 analizadores con que se armó la C1, el 7/10.
 
 **Fuente**: José, el 25/10/2026: lo que lee el alumno va de tú, como las consignas (brief 223, pregunta 1).
@@ -539,8 +542,8 @@ texto que cambió. Los otros 129 (120 sin ningún otro problema) necesitan que l
 > base ni en la compuerta de la tanda.
 
 La C2 nació de la C1 con sus 21 analizadores (7/10/2026), así que [F-MESA-R025](#F-MESA-R025) no le marcaba nada.
-Sumarlo a lo que la tanda compara inflaría «algún error» contra la base, que nunca lo midió. Con esta regla los 129
-ejercicios de vos de la C2 que no tienen otro problema también van a la mesa.
+Sumarlo a lo que la tanda compara inflaría «algún error» contra la base, que nunca lo midió. Con esta regla los 128
+ejercicios de vos de la C2 que no iban a la mesa también van.
 
 **Fuente**: prueba del 26/10/2026; consecuencia de [F-MESA-R025](#F-MESA-R025).
 

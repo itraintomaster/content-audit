@@ -18,6 +18,8 @@ class SpanishRegisterTest {
         assertEquals(List.of("usá"), SpanishRegister.voseo("Con $he$ usá $is$.", true));
         assertEquals(List.of("Elegí"), SpanishRegister.voseo("Elegí la opción correcta.", true));
         assertEquals(List.of("Mirá", "parás"), SpanishRegister.voseo("Mirá: si parás un tiempo, va en continuo.", true));
+        assertEquals(List.of("elegí", "Poné"), SpanishRegister.voseo("Con la pista (She), elegí $Is she$. Poné el signo.",
+                true));
         assertEquals(List.of("decidís", "podés"), SpanishRegister.voseo(
                 "Si decidís usar $can$, podés pedir permiso.", true));
         assertEquals(List.of("Colocá", "colocalo"), SpanishRegister.voseo(
@@ -44,5 +46,9 @@ class SpanishRegisterTest {
         assertEquals(List.of(), SpanishRegister.voseo("¿Me prestas tu libro? Sí, aquí está, en el país de mamá.", false));
         assertEquals(List.of(), SpanishRegister.voseo("José habla con Inés de sus esquís. Así se dice en inglés.", true));
         assertEquals(List.of(), SpanishRegister.voseo("Mañana será lunes y te dará tiempo; irás al cine y verás.", true));
+        assertEquals(List.of(), SpanishRegister.voseo("En afirmativo: $I heard a funny noise.$ = Escuché un ruido raro.",
+                true));
+        assertEquals(List.of(), SpanishRegister.voseo("Sin preposición: I bought jeans (Compré jeans el invierno pasado).",
+                true));
     }
 }

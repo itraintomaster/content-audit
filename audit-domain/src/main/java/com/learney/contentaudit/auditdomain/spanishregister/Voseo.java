@@ -15,8 +15,11 @@ import java.util.regex.Pattern;
  * («dormirás», «sabrás») nor the words that end the same way («más», «inglés», «cortés», «país»). The imperative with
  * its stress on the end («usá», «añadí», «poné») only in what instructs -- the instructions and the mini theory --, and
  * only where a clause opens -- at the start, after a mark, after an English term or after «y» --, because in a
- * translation «Escribí tres oraciones» is the past, and «el verbo irá al final» is the future. And the imperative with
- * a pronoun and no accent («agregalo», «fijate», «preguntate»), which in «tú» carries one («agrégalo», «fíjate»).
+ * translation «Escribí tres oraciones» is the past, and «el verbo irá al final» is the future. One ending in «é» or «í»
+ * («poné», «elegí») is written as the past of «yo» («compré», «escuché»), so it counts only where a sentence or a clause
+ * opens -- at the start, after «.», «,», «;», «:» or «y» --, not after an English example or a parenthesis, where a card
+ * translates it: «$I heard a funny noise.$ = Escuché un ruido raro.». And the imperative with a pronoun and no accent
+ * («agregalo», «fijate», «preguntate»), which in «tú» carries one («agrégalo», «fíjate»).
  */
 public final class Voseo {
     /** An English term between the native marks: the student reads it in English, so it is not Spanish. */
@@ -44,6 +47,8 @@ public final class Voseo {
             "colocala", "colocalos", "colocalas", "preguntate", "fijate", "ponelo", "ponela", "decime", "decilo",
             "contame", "acordate", "usalo", "usala", "escribilo", "escribila", "completalo", "completala", "elegilo",
             "elegila", "cambialo", "cambiala", "pasalo", "pasala", "ponete", "mirala", "miralo", "anotalo", "anotala");
+    /** The marks after which a sentence or a clause opens. */
+    private static final Set<String> CLAUSE_MARKS = Set.of(".", ",", ";", ":", "!", "?", "¿", "¡");
     /** Words after which a clause opens, as a mark does: «… y agregalo», «Con $he$ usá …». */
     private static final Set<String> OPENS = Set.of("y", "e", "o", "u", "luego", "después", "primero", "entonces",
             "ahora", "siempre", "también");
@@ -59,19 +64,23 @@ public final class Voseo {
         }
         Matcher tokens = TOKEN.matcher(ENGLISH.matcher(text).replaceAll(" \\$ "));
         boolean opens = true;
+        boolean clause = true;
         while (tokens.find()) {
             String token = tokens.group();
             String word = token.toLowerCase(Locale.ROOT);
             if (!Character.isLetter(token.charAt(0))) {
                 opens = true;
+                clause = CLAUSE_MARKS.contains(token);
                 continue;
             }
+            boolean imperative = instructs && IMPERATIVE.matcher(word).matches() && (word.endsWith("á") ? opens : clause);
             if (WITH_PRONOUN.contains(word)
                     || !NOT_A_VERB.contains(word) && !FUTURE.matcher(word).matches()
-                    && (PRESENT.matcher(word).matches() || instructs && opens && IMPERATIVE.matcher(word).matches())) {
+                    && (PRESENT.matcher(word).matches() || imperative)) {
                 found.add(token);
             }
             opens = OPENS.contains(word);
+            clause = opens;
         }
         return List.copyOf(found);
     }
