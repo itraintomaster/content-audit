@@ -704,6 +704,10 @@ class Main {
         Evaluator answerGiveawayJudge = lazyAgentJudge(agentJudgeFactory, llmProviderResolver, agentJudgeConfig,
                 new AgentJudgeSpec("answer-giveaway-judge", "answerGiveawayVerdict", "No regala la respuesta"),
                 quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
+        // FEAT-MARCA: the reviewer that marks what a batch changed, production beside now; not a judge of the analysis.
+        Evaluator changeReviewer = lazyAgentJudge(agentJudgeFactory, llmProviderResolver, agentJudgeConfig,
+                new AgentJudgeSpec("change-reviewer", "changeReviewVerdict", "Revisor de cambios"),
+                quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
         Evaluator nearDuplicatesAlternative = lazyAgentJudge(agentJudgeFactory, llmProviderResolver, agentJudgeConfig,
                 new AgentJudgeSpec("near-duplicates-pair-judge", "sameExerciseVerdict",
                         "Duplicados parecidos (claude -p)"),
@@ -1600,6 +1604,15 @@ class Main {
                 new com.learney.contentaudit.revisiondomain.batchengine.DefaultContextOpinionServiceFactory().create(
                         batchConfig.get(), new com.learney.contentaudit.auditinfrastructure.minitheory.FileSystemMiniTheoryWorkspaceStore(baseDir)::fingerprint,
                         com.learney.contentaudit.revisioninfrastructure.preliminary.FileSystemPreliminaryOpinionSourceFactory.create(courseRepository)))));
+        // FEAT-MARCA: marks only with --budget, and never changes a decision.
+        batchCommand.addSubcommand("mark", new ChangeReviewCmd(memoized(() ->
+                new com.learney.contentaudit.revisiondomain.changereviewengine.DefaultChangeReviewServiceFactory().create(
+                        new com.learney.contentaudit.revisiondomain.batchengine.DefaultBatchReviewServiceFactory().create(
+                                batchStore, revisionArtifactStore, refinementPlanStore,
+                                new com.learney.contentaudit.auditinfrastructure.FileSystemBatchReviewCache(baseDir)),
+                        evaluationSessionFactory, changeReviewer,
+                        new com.learney.contentaudit.revisioninfrastructure.changereview.JacksonChangeReviewVerdictReader(),
+                        studentViewRenderer))));
         cmd.addSubcommand("batch", batchCommand);            // E · FEAT-TANDA
         cmd.addSubcommand("problem", new ProblemCmd(baseDir, problemProject, System.out));
         cmd.addSubcommand("tray", new picocli.CommandLine(new TrayCmd(trayService, quizSentenceConverter, batchStore))); // E · BANDEJA

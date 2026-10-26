@@ -1,0 +1,57 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "quizId": {
+      "type": "string"
+    },
+    "mark": {
+      "type": "string",
+      "enum": [
+        "GOOD",
+        "DOUBTFUL",
+        "WORSE"
+      ]
+    },
+    "problems": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "where": {
+            "type": "string",
+            "enum": [
+              "INSTRUCTIONS",
+              "EXERCISE",
+              "ANSWERS",
+              "OPTIONS",
+              "TRANSLATION",
+              "MINI_THEORY"
+            ]
+          },
+          "fragment": {
+            "type": "string"
+          },
+          "what": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "where",
+          "fragment",
+          "what"
+        ]
+      }
+    },
+    "reason": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "quizId",
+    "mark",
+    "problems",
+    "reason"
+  ]
+}
