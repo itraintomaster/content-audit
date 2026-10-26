@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Juez y revisor</title>
+<title>Marcas en Correcciones</title>
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -327,6 +327,11 @@
   /* la meta tiene que caer en el mismo lugar en todas las filas: ancho fijo para el número */
   .hb.fijo .r{grid-template-columns:minmax(110px,38%) minmax(0,1fr) 92px}
   @media (max-width:640px){ .hb.fijo .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) 84px} }
+  /* dos capturas lado a lado; en el celular, una abajo de la otra */
+  .par{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+  .pila{display:grid;gap:10px}
+  .nota{font-size:12.5px;color:var(--fg-3);margin:8px 0 0}
+  @media (max-width:700px){.par{grid-template-columns:1fr}}
 </style>
 <style>
   .ex .txt{font-size:14px;line-height:1.45}
@@ -363,95 +368,84 @@
 <body>
 <div class="wrap">
 
+
   <header>
     <div class="kicker">
-      <span class="num">227</span>
-      <span class="badge">Resumen · Jueces</span>
+      <span class="num">228</span>
+      <span class="badge">Resumen · Tablero</span>
       <span class="meta">A1 · 26/10/2026</span>
     </div>
-    <h1>El juez «no regala» aprobó y el revisor ve lo que veo</h1>
-    <p class="sub">Lo que pediste antes del tramo grave: el largo leve, el juez «no regala» y un revisor que marca.</p>
+    <h1>Las marcas del revisor ya están en Correcciones</h1>
+    <p class="sub">Lo que pediste: la pantalla de las marcas del revisor en Correcciones del tablero.</p>
   </header>
 
-  <div class="lede"><p><strong>Los tres están hechos y subidos.</strong> El revisor ve 12 de mis 14 defectos y 3 que a mí se me pasaron; lo que frena ahora es codex, que racionado tarda 10 minutos por consulta.</p></div>
+  <div class="lede"><p><strong>Hecho, subido y en el 7800.</strong> Cada ejercicio cambiado dice qué marcó el revisor, la lista se filtra por marca y las que faltan se piden ahí, con estimación y tope.</p></div>
 
   <section>
-    <h2>Los tres pedidos, hechos y medidos</h2>
+    <h2>Está en Correcciones, debajo de «Según los jueces»</h2>
+    <div class="map">
+      <div class="ex">
+        <svg class="cap" viewBox="0 0 1440 900" role="img" aria-label="Correcciones de la C2 con el filtro Mal del revisor puesto y tres marcas">
+          <image href="228-marcas-en-correcciones/pantalla.jpg" width="1440" height="900"/>
+          <rect class="aro" x="66" y="630" width="279" height="98" rx="10"/>
+          <rect class="aro" x="752" y="416" width="114" height="40" rx="9"/>
+          <rect class="aro" x="66" y="729" width="163" height="32" rx="9"/>
+          <g class="mk" transform="translate(352 676)"><circle r="24"/><text font-size="27">1</text></g>
+          <g class="mk" transform="translate(809 388)"><circle r="24"/><text font-size="27">2</text></g>
+          <g class="mk" transform="translate(258 745)"><circle r="24"/><text font-size="27">3</text></g>
+          <g class="mk gris" transform="translate(290 418)"><circle r="24"/><text font-size="27">4</text></g>
+        </svg>
+      </div>
+      <div class="who">
+        <div><b>1</b><span><strong>Según el revisor</strong><br><small>mal, dudoso, sin marca, bien, con cuántos</small></span></div>
+        <div><b>2</b><span><strong>La marca del ejercicio</strong><br><small>en su cabecera, al lado del tipo</small></span></div>
+        <div><b>3</b><span><strong>Pedir las que faltan</strong><br><small>abre el diálogo; no gasta sin confirmar</small></span></div>
+        <div><b class="gris">4</b><span><strong>Según los jueces</strong><br><small>igual que antes; se combinan</small></span></div>
+      </div>
+    </div>
+    <p class="nota">La C2 en una copia del tablero, con <code>?revisor=mal</code>: el enlace entra con el filtro puesto.</p>
+  </section>
+
+  <section>
+    <h2>Cada ejercicio dice qué marcó y por qué</h2>
+    <div class="pila">
+      <figure class="captura"><img src="228-marcas-en-correcciones/bloque-mal.jpg" alt="Bloque del revisor: lo marca mal porque se perdió el No de la respuesta corta">
+        <figcaption>Mal: la razón y cada problema con su campo, el fragmento y qué pasa.</figcaption></figure>
+      <figure class="captura"><img src="228-marcas-en-correcciones/bloque-dudoso.jpg" alt="Bloque del revisor: lo marca dudoso porque she no tiene referente">
+        <figcaption>Dudoso: «she» quedó sin a quién referirse.</figcaption></figure>
+      <figure class="captura"><img src="228-marcas-en-correcciones/bloque-sin.jpg" alt="Bloque del revisor: todavía no lo marcó, con el botón Pedir la marca">
+        <figcaption>Sin marca: dice por qué, y se pide la de ese ejercicio solo.</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>En la C2 hay 51 marcas y faltan 1.488</h2>
     <div class="kpis">
-      <div class="kpi dest"><div class="n">11 de 11</div><div class="l">ejercicios que regalan y el juez «no regala» ve; da 1 de 21 falsas alarmas</div></div>
-      <div class="kpi dest"><div class="n">12 de 14</div><div class="l">de mis defectos que el revisor marca, y suma 3 que yo no vi</div></div>
-      <div class="kpi"><div class="n">230</div><div class="l">tareas de largo que se cierran; el curso pasa de 74,07 a 74,29 %</div></div>
-      <div class="kpi"><div class="n">85</div><div class="l">consultas: 34 del examen y 51 del revisor, de las 10.000 que me diste</div></div>
+      <div class="kpi dest"><div class="n">1.488<small>de 1.539</small></div><div class="l">ejercicios cambiados sin la marca de hoy</div></div>
+      <div class="kpi"><div class="n">3 · 13</div><div class="l">marcados mal y dudosos, de 51 con marca</div></div>
+      <div class="kpi"><div class="n">35</div><div class="l">marcados bien; sin marca nunca cuenta como bien</div></div>
     </div>
-    <p class="pie">Todo está en main y subido. Mis veredictos son una referencia para comparar, no una verdad certificada.</p>
   </section>
 
   <section>
-    <h2>El juez «no regala» aprobó su examen</h2>
-    <div class="hb fijo">
-      <div class="r"><div class="t">Regalan la respuesta<small>los 5 de la prueba ancha, 1 que yo había dado por bueno y 5 inventados</small></div><div class="tr"><div class="f g" style="width:100.0%"></div><div class="meta" style="left:90.9%"></div></div><div class="n">11 de 11</div></div>
-      <div class="r"><div class="t">No regalan<small>su versión de producción y otros del curso</small></div><div class="tr"><div class="f g" style="width:95.2%"></div><div class="meta" style="left:95.2%"></div></div><div class="n">20 de 21</div></div>
+    <h2>Pedirlas se estima gratis y lleva tope</h2>
+    <div class="par">
+      <figure class="captura"><img src="228-marcas-en-correcciones/dialogo.jpg" alt="Diálogo: 1.539 cambiaron, 51 con marca de hoy, 1.488 por pedir, tope de 1 a 1.488">
+        <figcaption>Una consulta por ejercicio; corre en Ejecuciones y se puede cortar.</figcaption></figure>
+      <figure class="captura"><img src="228-marcas-en-correcciones/freno-otro-motor.jpg" alt="Diálogo con Claude Opus elegido: no deja lanzar porque Correcciones lee las marcas de codex">
+        <figcaption>Con otro motor no lanza: las marcas se guardan por motor.</figcaption></figure>
     </div>
-    <div class="tw"><table><thead><tr><th>Caso</th><th>Lo que ve el alumno</th><th>Yo</th><th>El juez</th></tr></thead><tbody>
-<tr><td>2419<small>c2-corregida</small></td><td><b>Consigna:</b> Cambia estas oraciones (¡inusuales!) para que incluyan &#x27;there&#x27;.<br><b>Ejercicio:</b> <i>Museums are in Paris. ___</i></td><td><span class="pill p-ok">no regala</span><small>Incluir there es la tarea misma, no un paso de ella.</small></td><td><span class="pill p-warn">regala una parte</span><small>«para que incluyan &#x27;there&#x27;»: La consigna indica usar «there», aunque elegir esa construcción es parte de la reformulación que se practica y el nombre del tema no la anticipa. Todavía queda construir y ordenar «There are museums in Paris». Propuesta: Cambiar la consigna por «Reescribe estas oraciones de forma más natural» y conservar la oración original, que aporta el lugar y la concordancia necesarios para la reformulación esperada.</small></td></tr>
-    </tbody></table></div>
-    <p class="pie">La raya es la meta. Desde hoy mide toda propuesta de la mesa que toque consigna o enunciado; un regalo nuevo no se acepta.</p>
-    <div class="call c-warn"><b>Un error mío.</b> 1e8d, 1e8e y 1e92 dicen «colocando el verbo antes del sujeto», como 21c9, y los había dado por buenos. El juez y el revisor los marcaron.</div>
-  </section>
-
-  <section>
-    <h2>El revisor pone producción al lado y marca, no decide</h2>
-    <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">Lee los dos lados enteros</span><span class="d">consigna, ejercicio, respuestas, opciones, traducción y miniteoría, con el tema</span></div>
-      <div class="st"><span class="i">2</span><span class="h">Pregunta lo que pregunto yo</span><span class="d">qué se perdió, si regala, si los campos coinciden</span></div>
-      <div class="st"><span class="i">3</span><span class="h">Marca bien, dudoso o mal</span><span class="d">cada problema en su campo, con el fragmento tal cual</span></div>
-      <div class="st end"><span class="i">4</span><span class="h">Vos mirás lo marcado</span><span class="d">y una muestra del resto; la marca no cambia ninguna decisión</span></div>
-    </div>
-    <pre class="cmd">content-audit batch mark &lt;tanda&gt;              # sin tope: muestra las marcas y cuántas faltan
-content-audit batch mark &lt;tanda&gt; --budget 50  # pide hasta 50 marcas nuevas</pre>
-    <p class="pie">Una consulta por ejercicio cambiado. Lo ya marcado no se vuelve a pagar; si el ejercicio cambia, la marca vence.</p>
-  </section>
-
-  <section>
-    <h2>Marca 12 de mis 14, y 3 que no vi</h2>
-    <div class="tw"><table><thead><tr><th>Yo, en la prueba ancha</th><th>Revisor: bien</th><th>dudoso</th><th>mal</th><th>Total</th></tr></thead><tbody>
-<tr><td><span class="pill p-ok">bien</span></td><td class="num diag">33</td><td class="num">4</td><td class="num">0</td><td class="num">37</td></tr>
-<tr><td><span class="pill p-warn">dudoso</span></td><td class="num">2</td><td class="num diag">9</td><td class="num">2</td><td class="num">13</td></tr>
-<tr><td><span class="pill p-bad">mal</span></td><td class="num">0</td><td class="num">0</td><td class="num diag">1</td><td class="num">1</td></tr>
-    </tbody></table></div>
-    <div class="tw casos" style="margin-top:12px"><table><thead><tr><th>Caso</th><th>Producción</th><th>Ahora</th><th>Yo</th><th>El revisor</th><th>Quién tiene razón</th></tr></thead><tbody>
-<tr><td>2627<small>Respuestas cortas</small></td><td><b>Consigna:</b> Escribe la respuesta corta.<br><b>Ejercicio:</b> A: Is Emily walking? B: Yes, she ___<br><b>Opciones:</b> (no es de opción múltiple)<br><b>Respuestas:</b> Hueco 1: is<br><b>Traducción:</b> A: ¿Emily está caminando? B: Sí, lo está.<br><b>Miniteoría:</b> La respuesta corta repite el be de la pregunta: $Yes, she is$ / $No, they aren&#x27;t$.</td><td><b>Consigna:</b> Escribe la respuesta corta.<br><b>Ejercicio:</b> Is she right? Yes, she ___ .<br><b>Opciones:</b> (no es de opción múltiple)<br><b>Respuestas:</b> Hueco 1: is<br><b>Traducción:</b> ¿Tiene ella razón? Sí, la tiene.<br><b>Miniteoría:</b> En respuestas cortas afirmativas a preguntas con $Is she … ?$: $Yes, she$ + $is$.</td><td><span class="pill p-ok">bien</span><small>«Is she right? Yes, she ___ .» (is) con «¿Tiene ella razón? Sí, la tiene.».</small></td><td><span class="pill p-warn">dudoso</span><small>Ahora practica una respuesta corta en presente simple y los campos coinciden, pero al reemplazar a Emily por «she» se perdió el referente explícito que tenía producción.</small><small>· ejercicio «Is she right?»: El pronombre «she» no tiene un referente identificado ni contexto que permita saber de quién se habla.</small></td><td><span class="pill p-info">yo</span><small>Exceso de celo: «Is she right?» es una pregunta suelta normal; el pronombre no deja dudas.</small></td></tr>
-<tr><td>26c7<small>Con $short forms$</small></td><td><b>Consigna:</b> Usa $short forms$ si es posible. Crea oraciones usando &#x27;will&#x27; o &#x27;be going to&#x27;.<br><b>Ejercicio:</b> Be going to: he / ride the bicycle. ___<br><b>Opciones:</b> (no es de opción múltiple)<br><b>Respuestas:</b> Hueco 1: He&#x27;s going to ride the bicycle.<br><b>Traducción:</b> Él va a andar en bicicleta.<br><b>Miniteoría:</b> $will$ + verbo base. $be going to$ + verbo base, y el que se conjuga es be.</td><td><b>Consigna:</b> Crea oraciones usando &#x27;will&#x27; o &#x27;be going to&#x27;.<br><b>Ejercicio:</b> Be going to: he / ride the bicycle. ___<br><b>Opciones:</b> (no es de opción múltiple)<br><b>Respuestas:</b> Hueco 1: He&#x27;s going to ride the bicycle.<br><b>Traducción:</b> Él va a andar en bicicleta.<br><b>Miniteoría:</b> Con $he$, usamos $is going to$ + verbo en forma base. $He&#x27;s$ significa $He is$.</td><td><span class="pill p-ok">bien</span><small>«Be going to: he / ride the bicycle.» queda; la miniteoría explica $He&#x27;s$. Sigue abierta «bicycle», que el catálogo pone en A2.</small></td><td><span class="pill p-warn">dudoso</span><small>La nueva miniteoría explica correctamente la forma que se completa y la indicación de contraer sigue en la consigna del tema. Sin embargo, conserva el desajuste de producción: practica &#x27;be going to&#x27; cuando el tema pide &#x27;will&#x27;.</small><small>· ejercicio «Be going to: he / ride the bicycle. ___»: El ejercicio pide formar una oración con &#x27;be going to&#x27;, pero la consigna del tema pide practicar oraciones con &#x27;will&#x27;.</small></td><td><span class="pill p-info">revisor</span><small>Se me pasó: el tema pide «will» y el ejercicio practica «going to». Ya venía de producción.</small></td></tr>
-<tr><td>26d2<small>Con $short forms$</small></td><td><b>Consigna:</b> Usa $short forms$ si es posible. Crea oraciones usando &#x27;will&#x27; o &#x27;be going to&#x27;.<br><b>Ejercicio:</b> Be going to: I not / walk to the park. ___<br><b>Opciones:</b> (no es de opción múltiple)<br><b>Respuestas:</b> Hueco 1: I&#x27;m not going to walk to the park.<br><b>Traducción:</b> No voy a caminar al parque.<br><b>Miniteoría:</b> $won&#x27;t$ = will + not. Con going to, el $not$ va después de be.</td><td><b>Consigna:</b> Crea oraciones usando &#x27;will&#x27; o &#x27;be going to&#x27;.<br><b>Ejercicio:</b> Be going to: I not / walk to the park. ___<br><b>Opciones:</b> (no es de opción múltiple)<br><b>Respuestas:</b> Hueco 1: I&#x27;m not going to walk to the park. | I am not going to walk to the park.<br><b>Traducción:</b> No voy a caminar al parque.<br><b>Miniteoría:</b> Con $I$, la negativa es $I am not going to$ + verbo base + complemento. $I&#x27;m$ significa $I am$.</td><td><span class="pill p-ok">bien</span><small>«Be going to: I not / walk to the park.» acepta también «I am not going to … » y la miniteoría explica la negativa con $I$.</small></td><td><span class="pill p-warn">dudoso</span><small>La versión actual conserva un desajuste que ya estaba en producción: practica «be going to» en un tema cuya consigna pide «will». Las respuestas aceptadas, la traducción y la miniteoría son coherentes entre sí.</small><small>· ejercicio «Be going to: I not / walk to the park. ___»: El ejercicio practica la negativa de «be going to», pero la consigna del tema pide oraciones afirmativas y negativas de «will».</small></td><td><span class="pill p-info">revisor</span><small>Igual que 26c7: un desajuste heredado que la corrección no tocó.</small></td></tr>
-<tr><td>2580<small>Adverbios de frecuencia</small></td><td><b>Consigna:</b> Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo &#x27;be&#x27;.<br><b>Ejercicio:</b> I ___ in the kitchen. (always)<br><b>Opciones:</b> (no es de opción múltiple)<br><b>Respuestas:</b> Hueco 1: am always<br><b>Traducción:</b> Siempre estoy en la cocina.<br><b>Miniteoría:</b> $always$, $never$ y $usually$ van antes del verbo, pero después de $be$.</td><td><b>Consigna:</b> Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo &#x27;be&#x27;.<br><b>Ejercicio:</b> I ___ in the kitchen. (always)<br><b>Opciones:</b> (no es de opción múltiple)<br><b>Respuestas:</b> Hueco 1: am always<br><b>Traducción:</b> Siempre estoy en la cocina.<br><b>Miniteoría:</b> $always$ significa «siempre». Con $I$, la forma de $be$ es $am$: $I$ + $am$ + $always$ + complemento.</td><td><span class="pill p-ok">bien</span><small>Sólo la miniteoría: $I$ + $am$ + $always$.</small></td><td><span class="pill p-warn">dudoso</span><small>El ejercicio conserva lo que practicaba en producción y la respuesta es correcta, pero la miniteoría perdió la explicación general sobre dónde van los adverbios de frecuencia.</small><small>· miniteoría «Con $I$, la forma de $be$ es $am$: $I$ + $am$ + $always$ + complemento.»: Reemplaza la regla general de ubicación del adverbio por una fórmula que reproduce la respuesta de este ejercicio.</small></td><td><span class="pill p-info">revisor</span><small>Se me pasó: la miniteoría dejó la regla y pasó a ser la fórmula de esta respuesta, como 2584.</small></td></tr>
-<tr><td>1fb0<small>Todas las formas</small></td><td><b>Consigna:</b> Usa $short forms$ si es posible. Escribe oraciones en presente simple.<br><b>Ejercicio:</b> We ___ (not / drive) by car.<br><b>Opciones:</b> (no es de opción múltiple)<br><b>Respuestas:</b> Hueco 1: don&#x27;t drive<br><b>Traducción:</b> No conducimos en coche.<br><b>Miniteoría:</b> Mirá primero qué verbo es: be se da vuelta solo, el resto necesita $do$ / $does$.</td><td><b>Consigna:</b> Escribe oraciones en presente simple.<br><b>Ejercicio:</b> We ___ (not / drive) a car.<br><b>Opciones:</b> (no es de opción múltiple)<br><b>Respuestas:</b> Hueco 1: don&#x27;t drive | do not drive<br><b>Traducción:</b> No conducimos un coche.<br><b>Miniteoría:</b> Negación en presente simple con $we$ y un verbo distinto de $be$: $we$ + $do not$ / $don&#x27;t$ + verbo base.</td><td><span class="pill p-warn">dudoso</span><small>«We ___ (not / drive) a car.» arregla el «drive by car» de producción, pero «No conducimos un coche» es una traducción literal; un nativo diría «No tenemos auto» o «No manejamos».</small></td><td><span class="pill p-ok">bien</span><small>La nueva versión corrige el poco natural «drive by car» por «drive a car» y mantiene la práctica de negación en presente simple. La traducción y la miniteoría coinciden con la oración, y ambas respuestas aceptadas son correctas.</small></td><td><span class="pill p-info">yo</span><small>Leve: «No conducimos un coche» se entiende, pero es palabra por palabra.</small></td></tr>
-<tr><td>253c<small>Cortesía con $would like$</small></td><td><b>Consigna:</b> Haz que las oraciones sean más educadas utilizando &#x27;would like&#x27;.<br><b>Ejercicio:</b> Do you want cookies or cake? ___<br><b>Opciones:</b> (no es de opción múltiple)<br><b>Respuestas:</b> Hueco 1: Would you like cookies or cake?<br><b>Traducción:</b> ¿Te gustaría galletas o pastel?<br><b>Miniteoría:</b> En preguntas, $would$ se pone antes del sujeto: no lleva $do$.</td><td><b>Consigna:</b> Haz que las oraciones sean más educadas utilizando &#x27;would like&#x27;.<br><b>Ejercicio:</b> Do you want to eat cookies or cake? ___<br><b>Opciones:</b> (no es de opción múltiple)<br><b>Respuestas:</b> Hueco 1: Would you like to eat cookies or cake?<br><b>Traducción:</b> ¿Te gustaría comer galletas o pastel?<br><b>Miniteoría:</b> Para preguntar de forma amable por una acción, transforma $Do you want to$ + verbo base + complemento en $Would you like to$ + verbo base + complemento.</td><td><span class="pill p-warn">dudoso</span><small>«Do you want to eat cookies or cake?»: agregó «to eat» al inglés para que encaje la traducción, cuando lo natural era arreglar la traducción («¿Quieres galletas o pastel?»).</small></td><td><span class="pill p-ok">bien</span><small>La nueva versión sigue practicando la cortesía con would like y conserva el sentido de la oración al reescribirla. La respuesta, la traducción y la miniteoría coinciden con la acción añadida y corrigen la falta de concordancia de la traducción de producción.</small></td><td><span class="pill p-info">yo</span><small>Leve: forzó el inglés con «to eat» para que encaje la traducción.</small></td></tr>
-    </tbody></table></div>
-    <p class="pie">Los 51 cambios de la prueba ancha. Es más estricto que yo: marca 16 de 51 para mirar, contra mis 14.</p>
-  </section>
-
-  <section>
-    <h2>Codex está racionado: 27 veces más lento que anoche</h2>
-    <div class="hb fijo">
-      <div class="r"><div class="t">Anoche, la prueba ancha<small>900 consultas en 66 minutos</small></div><div class="tr"><div class="f" style="width:100%"></div></div><div class="n">13,6 por min</div></div>
-      <div class="r"><div class="t">Hoy, examen y revisor<small>cada consulta espera ~10 minutos por un «429, demasiados pedidos»</small></div><div class="tr"><div class="f b" style="width:3.7%"></div></div><div class="n">0,5 por min</div></div>
-    </div>
-    <p class="pie">A este ritmo, el tramo grave (~15.000 consultas) tardaría unas 3 semanas; marcar los 1.539 cambios de la C2, unos 2 días.</p>
-    <div class="call c-warn"><b>Lo que no sé.</b> Si el límite es de la hora o del día, y cuánto de ese cupo es tu propio Codex, que usa la misma cuenta.</div>
+    <div class="call c-warn"><b>Lo que no sé.</b> Cuánto tarda hoy: anoche codex iba a 10 minutos por consulta. Ejecuciones muestra el avance al terminar; las marcas, en cambio, aparecen solas apenas se guardan.</div>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Arranco el tramo grave?</span><div class="ops"><span class="op rec">Cuando codex vuelva a su ritmo · recomendado</span><span class="op">Ya, aunque tarde</span></div><span class="why">Con el juez y el revisor listos, lo único que frena es el cupo, y lo comparte tu Codex.</span></div>
-      <div class="ask"><span class="q">2 · ¿Un defecto que viene de producción cuenta en la marca?</span><div class="ops"><span class="op rec">Sí, marcado como heredado · recomendado</span><span class="op">No, sólo lo que trajo el cambio</span></div><span class="why">26c7 y 26d2: la corrección no lo metió, pero no los publicaría así.</span></div>
-      <div class="ask"><span class="q">3 · ¿Hago la pantalla de las marcas en el tablero?</span><div class="ops"><span class="op rec">Sí, en Correcciones · recomendado</span><span class="op">No por ahora</span></div><span class="why">Hoy las marcas se ven sólo con el comando: falta la pantalla para que las evalúes en la app.</span></div>
-      <div class="ask"><span class="q">4 · En 2419, ¿«para que incluyan there» regala?</span><div class="ops"><span class="op rec">No, nombra la tarea · recomendado</span><span class="op">Sí, regala</span></div><span class="why">Si no regala, le paso al juez la consigna del tema, como al revisor; eso pide otro examen.</span></div>
+      <div class="ask"><span class="q">1 · ¿Pido las marcas que faltan de la C2?</span><div class="ops"><span class="op rec">Primero 100 · recomendado</span><span class="op">Las 1.488</span><span class="op">Las pido yo</span></div><span class="why">Con 100 se ve cuántos salen mal o dudosos antes de gastar; quedan unas 8.900 consultas.</span></div>
     </div>
   </section>
 
-  <footer class="pie">Brief 227 · content-audit main fe74089f4 · FEAT-REGALA (answer-giveaway 04552ec9, APROBADO con codex-cli/gpt-6.1-sol medium) · FEAT-MARCA (change-reviewer 6f899ccf, batch mark) · F-SMODE-R008 · analysis/regala-2026-10-26 (rendir.py, examen-v2) · analysis/revisor-2026-10-26 (marcar.py, comparacion-v1.json) · veredictos-ancha.json · corrida ui-2026-10-26T03-46-29.</footer>
+  <footer class="pie">Brief 228 · ittm da0f97373 · F-MARCA-R006 a R009 · revisor 6f899ccf, codex-cli/gpt-6.1-sol medium · capturas de una copia de a1-v11 sin modelos · pruebas: 2.785 del navegador y 2.045 de Dart.</footer>
 </div>
-
 </body>
 </html>

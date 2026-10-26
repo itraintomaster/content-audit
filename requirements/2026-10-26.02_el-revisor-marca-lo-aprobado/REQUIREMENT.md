@@ -80,6 +80,46 @@ el estado de ninguna corrección.
 > La lista muestra primero lo «mal», después lo «dudoso», después lo que no tiene marca y al final lo «bien»; dentro de
 > cada grupo, en el orden del curso. Se puede pedir sólo algunos ejercicios de la tanda.
 
+<a id="F-MARCA-R006"></a>
+### Rule[F-MARCA-R006] - Correcciones muestra la marca de cada ejercicio cambiado
+**Severity**: major | **Validation**: VALIDATED
+
+> En Correcciones, cada ejercicio que la tanda dejó distinto de producción dice qué marcó el revisor: «bien», «dudoso»,
+> «mal» o «sin marca». Con «dudoso» y «mal» se ve la razón y cada problema con su campo, el fragmento tal cual y qué
+> pasa. «Sin marca» dice por qué: falta pedirla —también cuando el ejercicio cambió después de marcarlo— o la respuesta
+> no se pudo usar. Una marca de una versión anterior del revisor se muestra con lo que dijo y dice que es de antes. Un
+> ejercicio que quedó igual que en producción no lleva marca. La marca no cambia ninguna decisión: aprobar, rechazar y
+> publicar funcionan igual con cualquier marca. Leer las marcas no consulta al revisor.
+
+<a id="F-MARCA-R007"></a>
+### Rule[F-MARCA-R007] - La lista se filtra según el revisor
+**Severity**: major | **Validation**: VALIDATED
+
+> La lista de Correcciones se puede filtrar por la marca del revisor: «mal», «dudoso», «sin marca» o «bien», cada una con
+> cuántos ejercicios tiene en la tanda. Con una marca elegida, la lista trae sólo los temas con algún ejercicio de esa
+> marca, aunque ya estén decididos, y la tira y las flechas pasan sólo por ellos. Se combina con los otros filtros: entra
+> el ejercicio que cumple todos. Lo que no tiene marca nunca entra con «bien». Como el filtro de los jueces, se puede
+> llegar con él puesto desde un enlace (`?revisor=mal`).
+
+<a id="F-MARCA-R008"></a>
+### Rule[F-MARCA-R008] - Las marcas se piden con estimación y tope
+**Severity**: major | **Validation**: VALIDATED
+
+> Desde Correcciones se pueden pedir las marcas que faltan en la tanda, o la de un ejercicio. Antes de gastar se ve
+> cuántos ejercicios cambió la tanda, cuántos tienen marca de la versión de hoy, cuántas consultas faltan, con qué
+> versión del revisor y con qué motor, y se elige un tope de 1 a lo que falta. Si al lanzar la estimación ya no es la
+> misma, no se lanza. Las marcas se guardan por motor y Correcciones muestra las del motor con que las lee: con otro
+> perfil u otro esfuerzo no se lanza, y el diálogo dice con cuál pedirlas. Corre como cualquier corrida paga: se ve en
+> Ejecuciones, se puede cancelar, y lo que el revisor marcó antes de cancelar queda guardado. Sin nada que falte, no hay
+> nada que pedir.
+
+<a id="F-MARCA-R009"></a>
+### Rule[F-MARCA-R009] - Las marcas nuevas se ven solas
+**Severity**: minor | **Validation**: VALIDATED
+
+> Cuando el revisor guarda una marca, cuando una corrida de marcas termina o se corta, y cuando cambia lo que la tanda
+> propone, Correcciones vuelve a leer las marcas sin que haya que recargar la página.
+
 ## Contexto
 
 - **No es un juez del análisis**: no abre tareas ni cuenta en el puntaje del curso. Por eso no necesita examen aprobado
@@ -90,7 +130,9 @@ el estado de ninguna corrección.
 - **Pregunta lo que pregunto yo** al revisar: qué se perdió respecto de producción, si algo de lo que ve el alumno le
   hace el trabajo, si los campos dicen lo mismo entre sí, si la oración se entiende sola, si la regla sigue siendo regla
   y si el inglés y el castellano suenan naturales.
-- **La pantalla del tablero** para ver las marcas no es parte de este requisito.
+- **La pantalla del tablero** (R006 a R009) la pidió José el 26/10/2026, respondiendo al brief 227: «Sí: hacé la
+  pantalla de las marcas del revisor en Correcciones del tablero». El código está en ittm, en el tablero
+  (`pipeline/vocabulary_dashboard`).
 
 ## Cómo se prueba
 
@@ -101,6 +143,10 @@ el estado de ninguna corrección.
 | R003 | `DefaultChangeReviewServiceTest`: sin tope no consulta; con tope consulta a lo sumo eso; lo marcado de hoy no se paga; una marca vieja se muestra y se vuelve a pedir con tope |
 | R004 | `DefaultChangeReviewServiceTest`: otro ejercicio, fragmento ajeno, ilegible y ejercicio que volvió a cambiar quedan sin marcar |
 | R005 | `DefaultChangeReviewServiceTest`: mal, dudoso, sin marcar y bien, en ese orden; pedir algunos ejercicios; `ChangeReviewCmdTest`: lo que muestra el comando |
+| R006 | En ittm, el tablero: `test/tablero_html/marcas/rutas_de_marcas_test.dart` (leer no consulta; cada ejercicio con estado, marca, razón y problemas; de antes y sin marca; los dos lados no viajan; otra tanda no se muestra); `html/test/revisor-marcas.test.js` (la etiqueta de la cabecera, el bloque con la razón y cada problema, la marca de antes, por qué no tiene marca, la marca no decide, lo del revisor se escribe como texto) y `html/test/arquitectura.test.js` (sólo `js/estado/marcas.js` pide `/api/marcas`) |
+| R007 | `html/test/revisor-marcas.test.js`: los cuatro valores con su cuenta; sin marca nunca es bien y la de antes cuenta con lo que dijo; los temas con esa marca aunque estén decididos, la tira sólo por ellos; se combina con el motivo y con la opinión; chips, «Todos» y abrir un ejercicio escondido; `?revisor=`; apagado mientras se lee o si falla |
+| R008 | `test/tablero_html/ejecuciones/marcas_test.dart` (la estimación gratis con sus cifras, el tope de 1 a lo que falta, la de un ejercicio, sin nada que pedir, una estimación que cambió, un tope que se pasa, la corrida paga en Ejecuciones, no se retoma, el pedido con id); `html/test/revisor-marcas.test.js` (los dos botones abren el diálogo, sin nada que pedir no hay botón, en la base tampoco, lo que dice el diálogo, el tope y el pedido, la de un ejercicio, el freno, con otro motor no se lanza, el nombre en Ejecuciones) |
+| R009 | `html/test/revisor-marcas.test.js`: se leen una vez; los avisos de «analisis», «tanda» y «cambios» las releen y los demás no; una corrida de marcas que empieza, termina o queda cortada las relee; `html/test/estado-avisos.test.js`: las etiquetas de cada aviso |
 
 ## References
 
