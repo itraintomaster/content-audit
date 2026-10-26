@@ -166,6 +166,10 @@ La fórmula completa debe estar establecida en la consigna efectiva del quiz o e
 los modelos incorporados a esos textos que recibe el juez y ve el alumno antes de contestar. No se presupone una
 consigna general adicional ni un modelo externo no recibido. La respuesta aceptada permite conocer qué espera el corrector, pero no basta por sí sola para
 inventar una fórmula, un verbo obligatorio o una prohibición de `please` que el alumno no pudo conocer.
+`please` es otra cosa: la fórmula de los pedidos con `can` y `could` del curso es sin `please`, con cualquier etiqueta o
+sin ninguna, así que una variante que lo agrega no se reclama, salvo que la consigna o el ítem pidan `please` (José,
+25/10/2026, brief 223, pregunta 4: «No: la fórmula es sin "please"»). Con «Polite request» la versión e4bb1985 ya no lo
+pedía; con «Informal request» sí, y en la C2 quien propone sumó «Can I eat some cake, please?».
 La miniteoría posterior tampoco puede usarse como pista previa ([F-UNICA-R001](#F-UNICA-R001)).
 
 | Situación visible para el alumno | Resultado esperado |
@@ -173,6 +177,7 @@ La miniteoría posterior tampoco puede usarse como pista previa ([F-UNICA-R001](
 | Consigna general «can o could» e ítem «Polite request» bajo la convención de la lección | Una variante con `can` no se reclama como respuesta faltante: incumple el selector de ese ítem. |
 | Consigna «Transforma las oraciones para que incluyan 'could' o 'can'.» e ítem «Play the radio. Polite: ___» | Una variante con `can` no se reclama: la etiqueta sola elige `could`. |
 | La misma consigna e ítem «Informal request: I want you to find the cat. ___» | Una variante con `could` no se reclama: la etiqueta sola elige `can`. |
+| La misma consigna e ítem «Informal request: I want to eat some cake. ___» | «Can I eat some cake, please?» no se reclama: la fórmula es sin `please`. |
 | Pedido normal, o ausencia de etiqueta cuando la convención visible asigna ese caso a `can` | Una variante con `could` no se reclama como respuesta faltante por ser natural en una conversación. |
 | La tarea fija una fórmula de transformación | Sólo se consideran alternativas que respetan esa fórmula; no se convierte el ejercicio en paráfrasis libre. |
 | «After he finished, he left.» → «After finishing, he left.» | Cuenta «After having finished, he left.»: otra manera de la misma transformación. No cuenta «He left after finishing.»: reordena el resto. |

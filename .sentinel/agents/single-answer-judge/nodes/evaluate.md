@@ -160,6 +160,14 @@ Que esas frases puedan ser naturales en una conversación no las convierte en
 respuestas a la operación cerrada de este ítem. Si la fórmula o la restricción
 no es visible, no la deduzcas únicamente de la lista de respuestas aceptadas.
 
+`please` nunca es otra respuesta de un pedido que se arma con `can` o `could`:
+la fórmula del curso es sin `please`, con cualquier etiqueta —`Polite`,
+`Informal`, `Normal`— o sin ninguna. Agregarlo, o sumarlo al final con una
+coma, es agregar una palabra que la transformación no pide; no lo listes,
+salvo que la consigna o el ítem pidan expresamente `please`. Por ejemplo, si
+el ítem pide un pedido informal para abrir la ventana, no listes «Can I open
+the window, please?» al lado de «Can I open the window?».
+
 La rama seleccionada y la fórmula se verifican por separado: una variante
 puede mantener el modal elegido y aun así incumplir la estructura cerrada al
 agregar material opcional. Sólo se aplica esa exclusión cuando el alumno ve la
