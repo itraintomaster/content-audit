@@ -27,7 +27,7 @@ Las reglas se agrupan en tres bloques:
 
 - **Grupo A - Modo de frase del knowledge (R001, R002)**: el modo como
   propiedad declarada de cada knowledge basado en sentencias.
-- **Grupo B - Frase canonica puntuable segun el modo (R003, R004, R005)**:
+- **Grupo B - Frase canonica puntuable segun el modo (R003, R004, R005, R008)**:
   como el modo selecciona la frase que se tokeniza y puntua.
 - **Grupo C - Estabilidad del modo a traves de la revision (R006, R007)**:
   que el modo gobierna tambien la frase canonica del quiz revisado.
@@ -283,6 +283,33 @@ cambiar — pero ese cambio refleja la longitud real de la respuesta, no el
 arrastre de la oracion fuente.
 
 **Error**: "La revision REWRITE del quiz '{quizId}' degrado el score de longitud sin cambiar la longitud de la respuesta"
+
+</details>
+
+<a id="F-SMODE-R008"></a>
+### Rule[F-SMODE-R008] - Un enunciado de varias oraciones se mide por la mas larga
+**Severity**: major | **Validation**: ASSUMPTION
+
+> Fuera de los ejercicios de transformar, cuando la oracion guardada tiene varias oraciones —los dos renglones de un
+> dialogo, una oracion de contexto antes de la que se completa—, el largo es el de la oracion mas larga, y la
+> evidencia del hallazgo muestra esa oracion. Invariantes:
+> 1. una oracion termina en «.», «?» o «!», salvo el punto de «Mr.», «Mrs.», «Ms.», «Dr.» y «St.»;
+> 2. la respuesta de un ejercicio de transformar se sigue midiendo entera ([F-SMODE-R004](#F-SMODE-R004)): pide una sola
+>    oracion, y una de dos es la fuente pegada, que el largo tiene que seguir mostrando;
+> 3. si los tokens no deletrean las oraciones una tras otra, se mide entera, como antes;
+> 4. la ficha del analizador lo dice, asi la comparacion con la linea base lo muestra como cambio de medida
+>    ([F-METAS-R007](#F-METAS-R007)).
+
+<details><summary>Detalle</summary>
+
+El rango de A1 (3 a 8 tokens, con la puntuacion) es para una oracion: un dialogo de dos renglones cortos es lo que
+A1 tiene que leer, y medido entero nunca entra. El 26/10/2026, 138 de los 265 hallazgos de largo de los ejercicios
+corregibles de A1 eran de enunciados de varias oraciones, casi todos dialogos («A: Is he tired? B: No, he isn't.», 14
+tokens; 7 el renglon mas largo), y 115 de ellos entran midiendo la mas larga. Para acercarse a 8, el corrector de la
+prueba ancha de esa noche recorto lo que les daba sentido: «Is this tea? It ___ .» perdio el «No,» que la traduccion
+conserva, y «He ___ (not / play) football this summer.» perdio el «this summer» que justificaba $going to$.
+
+**Fuente**: prueba ancha de la C2 de A1, 26/10/2026.
 
 </details>
 

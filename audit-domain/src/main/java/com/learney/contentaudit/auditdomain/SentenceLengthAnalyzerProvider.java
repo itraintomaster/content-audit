@@ -51,9 +51,10 @@ public class SentenceLengthAnalyzerProvider implements AnalyzerProvider {
                 "¿La oración tiene el largo de su nivel?",
                 // F-METAS-R007: the card says what is measured, so a change of measure shows apart.
                 studentViewRenderer != null
-                        ? "La oración de cada ejercicio —en uno de transformar, sólo su respuesta—, contada en tokens como la"
-                                + " cuenta spaCy, y el nivel del ejercicio"
-                        : "La oración de cada ejercicio, contada en tokens como la cuenta spaCy, y el nivel del ejercicio",
+                        ? "La oración de cada ejercicio —en uno de transformar, sólo su respuesta; en uno de varias oraciones,"
+                                + " la más larga—, contada en tokens como la cuenta spaCy, y el nivel del ejercicio"
+                        : "La oración de cada ejercicio —en uno de varias oraciones, la más larga—, contada en tokens como la"
+                                + " cuenta spaCy, y el nivel del ejercicio",
                 // F-RONDA1-R005 inv. 4: one rule for each side of the goal, so the level can say
                 // how many sentences are shorter and how many longer without computing anything.
                 List.of(new AnalyzerRuleCard(SentenceLengthAnalyzer.RULE_SHORTER,

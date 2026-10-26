@@ -918,12 +918,13 @@ public class SentenceLengthAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should keep measuring the stored sentence of a rewrite exercise that already holds its answer alone, a fill exercise whole, and every exercise as before without the finished sentence")
+    @DisplayName("should keep measuring the stored sentence of a rewrite exercise that already holds its answer alone, a fill exercise not cut to its answer, and every exercise as before without the finished sentence")
     @Tag("FEAT-SMODE")
     @Tag("F-SMODE-R004")
     public void shouldKeepMeasuringTheStoredSentenceOfARewriteExerciseThatAlreadyHoldsItsAnswerAloneAndAFillWhole() {
         // «She visits her father (every week)» has no period, so built from its parts it would read the source twice;
-        // its stored sentence is the answer and stays what is measured. A fill exercise is measured whole.
+        // its stored sentence is the answer and stays what is measured. A fill exercise is not cut to its answer: of its
+        // two sentences, the longest is measured (F-SMODE-R008).
         AuditNode father = rewriteQuiz(com.learney.contentaudit.coursedomain.SentenceMode.REWRITE, "2f0e",
                 "She visits her father every week.", text("She visits her father (every week)"),
                 gap("She visits her father every week."), text(""));
@@ -937,6 +938,72 @@ public class SentenceLengthAnalyzerTest {
         analyzer.onQuiz(hungry);
         new SentenceLengthAnalyzer(null, config).onQuiz(withoutRenderer);
 
-        Assertions.assertEquals(List.of(7, 8, 12), List.of(counted(father), counted(hungry), counted(withoutRenderer)));
+        Assertions.assertEquals(List.of(7, 5, 12), List.of(counted(father), counted(hungry), counted(withoutRenderer)));
+    }
+
+    // ------------------------------------------------------------------
+    // F-SMODE-R008: a statement of several sentences is measured by its longest one
+    // ------------------------------------------------------------------
+
+    @Test
+    @DisplayName("should measure the longest line of a dialogue: «A: Is he tired? B: No, he isn't.» counts only «B: No, he isn't.», within the 3 to 8 of A1")
+    @Tag("FEAT-SMODE")
+    @Tag("F-SMODE-R008")
+    public void shouldMeasureTheLongestLineOfADialogue() {
+        // A real exercise of A1 (C2, 26/10/2026): 14 tokens whole, so the corrector cut «No,» or the question to reach 8.
+        AuditNode tired = rewriteQuiz(com.learney.contentaudit.coursedomain.SentenceMode.FILL, "tired",
+                "A: Is he tired? B: No, he isn't.", text("A: Is he tired? B: No, he "), gap("isn't"), text("."));
+        AuditNode water = rewriteQuiz(com.learney.contentaudit.coursedomain.SentenceMode.FILL, "1f57",
+                "Does he need water? Yes, he does.", text("Does he need water? Yes, he "), gap("does"), text(" ."));
+        SentenceLengthAnalyzer analyzer = measuringAnswers(null, config);
+
+        analyzer.onQuiz(tired);
+        analyzer.onQuiz(water);
+
+        // The words and marks of this test keep «B:» as one token, as spaCy does not: 6 here, 7 with spaCy.
+        Assertions.assertEquals(List.of(6, 5), List.of(counted(tired), counted(water)), "12 and 10 whole");
+        Assertions.assertEquals(List.of(), analyzer.findingsAt(tired));
+        Assertions.assertEquals(1.0, water.getScores().get("sentence-length"), 1e-9);
+    }
+
+    @Test
+    @DisplayName("should give as evidence of a statement of several sentences the longest one, with its tokens, when it is still too long")
+    @Tag("FEAT-SMODE")
+    @Tag("F-SMODE-R008")
+    public void shouldGiveAsEvidenceOfAStatementOfSeveralSentencesTheLongestOne() {
+        String question = "A: Am I parking in the right space near the door?";
+        AuditNode parking = rewriteQuiz(com.learney.contentaudit.coursedomain.SentenceMode.FILL, "262e",
+                question + " B: No, you aren't.", text(question + " B: No, you "), gap("aren't"), text("."));
+        SentenceLengthAnalyzer analyzer = measuringAnswers(null, config);
+
+        analyzer.onQuiz(parking);
+        List<EvidencePart> examined = analyzer.findingsAt(parking).get(0).getEvidence().getExamined();
+
+        Assertions.assertEquals(question, examined.get(0).getText());
+        Assertions.assertEquals("12 tokens", examined.get(1).getText());
+    }
+
+    @Test
+    @DisplayName("should keep measuring whole a rewrite answer of two sentences, «Mr. Brown is here.» as one sentence, and a statement its tokens do not spell")
+    @Tag("FEAT-SMODE")
+    @Tag("F-SMODE-R008")
+    public void shouldKeepMeasuringWholeARewriteAnswerOfTwoSentencesAnAbbreviationAndTokensThatDoNotSpellIt() {
+        // A transformation asks for one sentence: an answer of two is not cut, so its length still shows the glue.
+        AuditNode glued = rewriteQuiz(com.learney.contentaudit.coursedomain.SentenceMode.REWRITE, "2535",
+                "They want a bigger house. They'd like a bigger house.",
+                gap("They want a bigger house. They'd like a bigger house."));
+        AuditNode mister = rewriteQuiz(com.learney.contentaudit.coursedomain.SentenceMode.FILL, "mr",
+                "Mr. Brown is my new English teacher at school.", text("Mr. Brown "), gap("is"),
+                text(" my new English teacher at school."));
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "Completa.", true, "k-w", "T", "K",
+                com.learney.contentaudit.coursedomain.SentenceMode.FILL, null);
+        AuditNode unspelled = fullTree("A1", knowledge, new AuditableQuiz(tokens(10), "w", "T", "Q", null,
+                List.of("Is he here? Yes, he is."), null, null, List.of(), null, null, null));
+        SentenceLengthAnalyzer analyzer = measuringAnswers(null, config);
+
+        for (AuditNode quiz : List.of(glued, mister, unspelled)) analyzer.onQuiz(quiz);
+
+        // «Mr.» is two tokens with the words and marks of this test, one with spaCy: 11 here, whole.
+        Assertions.assertEquals(List.of(12, 11, 10), List.of(counted(glued), counted(mister), counted(unspelled)));
     }
 }
