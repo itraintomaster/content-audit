@@ -70,6 +70,22 @@ public class FileSystemBatchStoreTest {
         assertThrows(IllegalStateException.class, () -> second.saveAnalysisSelection(oldContent));
         assertEquals(1, first.analysisSelections("analysis").size());
     }
+    @Test @Tag("FEAT-ABIER") @Tag("F-ABIER-R004")
+    void anOpenBatchTakesASelectionAndOneHeldOrPublishedDoesNot() {
+        var store = new FileSystemBatchStore(workdir);
+        var b = batch("abierta", Instant.EPOCH); b.setStatus(BatchStatus.OPEN); b.setContentVersion(57); store.save(b);
+        var integrate = new com.learney.contentaudit.revisiondomain.batch.AnalysisSelection("s1", "abierta", "correction",
+                "integrate", "run", null, "a1-didactic", List.of("quiz"), 0, 57, "content", "human", Instant.EPOCH);
+        store.saveAnalysisSelection(integrate);
+        assertEquals(List.of(integrate), store.analysisSelections("abierta"));
+        for (var status : List.of(BatchStatus.RUNNING, BatchStatus.PUBLISHED)) {
+            b.setStatus(status); store.save(b);
+            var later = new com.learney.contentaudit.revisiondomain.batch.AnalysisSelection("s-" + status, "abierta", "correction",
+                    "integrate", "run2", null, "a1-didactic", List.of("quiz"), 1, 57, "content", "human", Instant.EPOCH);
+            assertThrows(IllegalStateException.class, () -> store.saveAnalysisSelection(later), status.name());
+        }
+        assertEquals(1, store.analysisSelections("abierta").size());
+    }
     @Test void guardedUndoCannotOverwriteAReviewAppendedByAnotherProcess() {
         var first = new FileSystemBatchStore(workdir);
         var second = new FileSystemBatchStore(workdir);

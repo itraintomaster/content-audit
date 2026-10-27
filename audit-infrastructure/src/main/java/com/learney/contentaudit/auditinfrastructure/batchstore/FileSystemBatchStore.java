@@ -350,8 +350,8 @@ public class FileSystemBatchStore implements BatchStore {
                 return;
             }
             CorrectionBatch batch = load(selection.batchId()).orElseThrow();
-            if ((batch.getStatus() != BatchStatus.CLOSED
-                    && !(batch.getStatus() == BatchStatus.OPEN && hasSuccessor(batch.getId())))
+            // F-ABIER-R004: an open batch takes a selection like a closed one; one held by another operation does not.
+            if ((batch.getStatus() != BatchStatus.CLOSED && batch.getStatus() != BatchStatus.OPEN)
                     || batch.getContentVersion() != selection.contentVersion()
                     || history.size() != selection.expectedRevision())
                 throw new IllegalStateException("El análisis o el contenido cambió: volvé a leer antes de confirmar.");
