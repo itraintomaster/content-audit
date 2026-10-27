@@ -1,0 +1,114 @@
+<style>
+  .tw td i{font-family:ui-serif,Georgia,serif}
+  .tw.casos td{font-size:12.5px;line-height:1.45;min-width:150px}
+  .tw.casos td:first-child{min-width:70px}
+  .tw .cambio{background:var(--accent-soft);border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  details.grupo{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev);margin:10px 0 0}
+  details.grupo>summary{cursor:pointer;padding:10px 14px;font-size:14px;line-height:1.4;list-style-position:inside}
+  details.grupo>summary span{color:var(--fg-3);font-size:13px;margin-left:6px}
+  details.grupo .tw{margin:0;border:0;border-top:1px solid var(--line);border-radius:0 0 var(--radius) var(--radius)}
+  .ex .ft b{color:var(--fg-2)}
+  .ex .antes{color:var(--fg-3);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--fg-3) 60%,transparent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">
+      <span class="num">232</span>
+      <span class="badge">Resumen · Revisor</span>
+      <span class="meta">A1 · C2 · 27/10/2026</span>
+    </div>
+    <h1>{{REALES}} de {{CAMBIADOS}} cambios no se publican tal cual</h1>
+    <p class="sub">Las marcas de la C2 con el tramo grave, leídas una por una.</p>
+  </header>
+
+  <div class="lede"><p><strong>El revisor marcó {{MARCADAS}} de los {{CAMBIADOS}} cambios; {{REALES}} tienen un problema real, casi todos de cinco tipos.</strong> Lo que da por bueno, está bueno: {{MUESTRA_BIEN}} de {{MUESTRA}} leídos.</p></div>
+
+  <section>
+    <h2>Lo que marca, leído uno por uno</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">{{REALES}}</div><div class="l">problemas reales de la corrección</div></div>
+      <div class="kpi"><div class="n">{{BIEN}}</div><div class="l">dados por buenos; muestra: {{MUESTRA_BIEN}} de {{MUESTRA}} bien</div></div>
+      <div class="kpi"><div class="n">{{CASO_LEVE}} + {{CASO_FALSA}}</div><div class="l">miniteorías del caso: leves o bien</div></div>
+    </div>
+    <div class="hb fijo" style="margin-top:16px">
+      <div class="r"><div class="t">Real<small>no se publica así</small></div><div class="tr"><div class="f b" style="width:{{W_REALES}}%"></div></div><div class="n">{{REALES}}</div></div>
+      <div class="r"><div class="t">Decidís vos<small>Contable o incontable</small></div><div class="tr"><div class="f i" style="width:{{W_DECIDIR}}%"></div></div><div class="n">{{DECIDIR}}</div></div>
+      <div class="r"><div class="t">Leve<small>{{CASO_LEVE}} son la miniteoría del caso</small></div><div class="tr"><div class="f w" style="width:{{W_LEVES}}%"></div></div><div class="n">{{LEVES}}</div></div>
+      <div class="r"><div class="t">Ya estaba en producción<small>bien separado como heredado</small></div><div class="tr"><div class="f" style="width:{{W_HEREDADOS_BIEN}}%"></div></div><div class="n">{{HEREDADOS_BIEN}}</div></div>
+      <div class="r"><div class="t">Sin problema<small>{{CASO_FALSA}} son la miniteoría del caso</small></div><div class="tr"><div class="f s" style="width:{{W_FALSAS}}%"></div></div><div class="n">{{FALSAS}}</div></div>
+    </div>
+    <p class="pie">{{MAL}} «mal», {{DUDOSO}} «dudoso», {{HEREDADOS}} «heredado». Dos heredados esconden una pista nueva: van como reales.</p>
+  </section>
+
+  <section>
+    <h2>El tramo grave cambió {{GRAVE_ACEPTADOS}} de {{GRAVE_EJERCICIOS}}; {{GRAVE_REALES}} quedaron mal</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">{{GRAVE_ACEPTADOS}} de {{GRAVE_EJERCICIOS}}</div><div class="l">con un cambio aceptado</div></div>
+      <div class="kpi"><div class="n">{{GRAVE_CONSULTAS}}</div><div class="l">consultas: el tope, a las 2:05</div></div>
+      <div class="kpi"><div class="n">{{GRAVE_REALES}}</div><div class="l">reales; {{GRAVE_DESCARTE}} por opciones de descarte</div></div>
+    </div>
+    <p class="pie">Sin cambio: {{GRAVE_SIN_GANADOR}} sin ganador, {{GRAVE_SIN_INTENTAR}} sin intentar, {{GRAVE_EMPATE}} empates, {{GRAVE_SIN_DECIDIR}} cortado por el tope.</p>
+  </section>
+
+  <section>
+    <h2>Cinco tipos de problema explican casi todo</h2>
+    <div class="hb fijo">
+      <div class="r"><div class="t">Una pista regala la respuesta</div><div class="tr"><div class="f b" style="width:{{P_PISTA}}%"></div></div><div class="n">{{R_PISTA}}</div></div>
+      <div class="r"><div class="t">Practica otra cosa que el tema</div><div class="tr"><div class="f b" style="width:{{P_TEMA}}%"></div></div><div class="n">{{R_TEMA}}</div></div>
+      <div class="r"><div class="t">La miniteoría obliga a contraer</div><div class="tr"><div class="f b" style="width:{{P_FORMA}}%"></div></div><div class="n">{{R_FORMA}}</div></div>
+      <div class="r"><div class="t">Acepta «ain't»</div><div class="tr"><div class="f b" style="width:{{P_AINT}}%"></div></div><div class="n">{{R_AINT}}</div></div>
+      <div class="r"><div class="t">Opciones por descarte</div><div class="tr"><div class="f b" style="width:{{P_DESCARTE}}%"></div></div><div class="n">{{R_DESCARTE}}</div></div>
+      <div class="r"><div class="t">Otros<small>traducción, miniteoría falsa, clave</small></div><div class="tr"><div class="f s" style="width:{{P_OTRAS}}%"></div></div><div class="n">{{R_OTRAS}}</div></div>
+    </div>
+    <div class="par" style="margin-top:16px">
+      <div class="ex">
+        <div class="rotulo">Pista · 24d2</div>
+        <div class="cons"><b>Verbos y sus preposiciones</b></div>
+        <div class="en">We talked <span class="gap"></span> her nationality. (Pista: la preposición empieza con a y tiene cinco letras.)</div>
+        <div class="ans">Producción, sin pista.</div>
+      </div>
+      <div class="ex">
+        <div class="rotulo">Otro tema · 2cdd</div>
+        <div class="cons"><b>Verbos de movimiento</b></div>
+        <div class="en"><span class="antes">She walked ___ school.</span><br>Can you see your face <span class="gap"></span> the water?</div>
+        <div class="ans">Sin movimiento: «in» de lugar.</div>
+      </div>
+      <div class="ex">
+        <div class="rotulo">«Ain't» · 25f7</div>
+        <div class="cons"><b>Todas las formas</b></div>
+        <div class="en">He <span class="gap"></span> (not / be) sad.</div>
+        <div class="ans">Acepta «ain't», «se acepta aquí».</div>
+      </div>
+      <div class="ex">
+        <div class="rotulo">Descarte · 26f5 · tramo grave</div>
+        <div class="cons"><b>Elegir la forma natural</b></div>
+        <div class="en">Today is Friday. She <span class="gap"></span> later.</div>
+        <div class="ans">will calls / will called / 's going to call / will calling</div>
+      </div>
+    </div>
+    <p class="pie">Contraer: «Completá el hueco con 's», aunque el corrector toma «is».</p>
+  </section>
+
+  <section>
+    <h2>Cada caso marcado, entero</h2>
+{{CASOS}}
+    <p class="pie">Resaltado, lo que cambió. No van los {{HEREDADOS_BIEN}} heredados bien separados.</p>
+  </section>
+
+  <section>
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask"><span class="q">1 · ¿Una miniteoría que explica el caso, con su porqué, está bien?</span><div class="ops"><span class="op rec">Sí; le enseño al revisor · recomendado</span><span class="op">No, siempre la regla general</span></div><span class="why">«Para decir cómo cantó, usá el adverbio con -ly». Saca {{CASO_FALSA}} marcas.</span></div>
+      <div class="ask"><span class="q">2 · Contable o incontable: ¿clasificar o usar el sustantivo?</span><div class="ops"><span class="op rec">Usar, si practica contable · recomendado</span><span class="op">Clasificar, como pide el tema</span></div><span class="why">«much / many» practica contable; «There ___ a computer», no.</span></div>
+      <div class="ask"><span class="q">3 · ¿Descarto los {{REALES}} y arreglo el corrector antes de rehacerlos?</span><div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">Rehacerlos ya</span></div><span class="why">Descartados, queda producción. Sin tocar el corrector, vuelven los cinco problemas.</span></div>
+    </div>
+  </section>
+
+  <footer class="pie">Brief 232 · change-reviewer cb2111fe, 1.596 consultas (ui-2026-10-27T05-09-43.360502Z-batch-mark) · tramo grave ui-2026-10-26T22-45-04.197082Z-batch-recorrect · lectura: analysis/revisor-2026-10-26/lectura_c2.py · brief232.py.</footer>
+</div>
+
+</body>
+</html>
