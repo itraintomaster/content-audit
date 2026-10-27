@@ -66,8 +66,9 @@ final class DefaultContextOpinionService implements ContextOpinionService {
         if (request.scope() != null && !"correction".equals(request.scope()))
             throw new IllegalArgumentException("Elegí el alcance correction o ejercicios seleccionados.");
         boolean correction = "correction".equals(request.scope());
-        if (correction && (batch.getStatus() != BatchStatus.CLOSED || config.getCurrentAnalysisService() == null))
-            throw new IllegalArgumentException("Completar opiniones necesita una corrección cerrada con análisis vigente.");
+        // F-ABIER-R003: Completar measures and changes no exercise, so an open batch completes like a closed one.
+        if (correction && config.getCurrentAnalysisService() == null)
+            throw new IllegalArgumentException("Completar opiniones necesita una corrección con análisis vigente.");
         var composed = ledger.composedCourse(batch, start);
         // F-OPINA-R005: with a current analysis, a loose opinion reads what the analysis reads -- its level and, for the
         // judges of the curriculum, the headers before it -- so that what it leaves fits there.
@@ -89,10 +90,9 @@ final class DefaultContextOpinionService implements ContextOpinionService {
         if (request.queryCap() == null || request.queryCap() < 0 || request.queryCap() > 10000
                 || request.reviewer() == null || request.reviewer().isBlank())
             throw new IllegalArgumentException("Falta un tope de 0 a 10000 y el autor del pedido.");
-        // F-OPINA-R005: an opinion asked for loose exercises enters the current analysis like Completar's, where the
-        // batch admits integrating (closed, or open with a later correction).
-        boolean integrates = config.getCurrentAnalysisService() != null && (correction || batch.getStatus() == BatchStatus.CLOSED
-                || config.getBatchStore().hasSuccessor(batch.getId()));
+        // F-OPINA-R005, F-ABIER-R003: an opinion asked for loose exercises enters the current analysis like Completar's,
+        // with the batch open or closed.
+        boolean integrates = config.getCurrentAnalysisService() != null;
         BatchStatus previous = batch.getStatus();
         Instant created = Instant.now();
         var proposals = scopes.stream().flatMap(s -> s.context().stream()).distinct().toList();

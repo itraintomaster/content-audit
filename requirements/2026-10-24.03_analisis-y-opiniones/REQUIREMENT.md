@@ -114,7 +114,7 @@ desde Correcciones.
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
 > 1. Una opinión pedida para ejercicios sueltos que deja veredicto entra sola al análisis vigente de la corrección,
->    como la de Completar, si la tanda admite integrar (cerrada, o abierta con otra corrección después).
+>    como la de Completar, con la tanda abierta o cerrada ([F-ABIER-R003](../2026-10-27.01_medir-con-la-tanda-abierta/REQUIREMENT.md#F-ABIER-R003)).
 > 2. Si en ese ejercicio había una opinión del mismo juez y la nueva es de la versión de hoy, la reemplaza. Si la nueva
 >    no es de la versión de hoy, queda suelta para decidir en el diálogo del análisis vigente.
 > 3. Entrada, ese par deja de faltar: Completar no lo vuelve a pedir ni a pagar.

@@ -154,19 +154,44 @@ class FOpinaExerciseOpinionTest {
         assertEquals(1, state.runs().get(0).results().size(), "Its opinion stays in its run, shown as until now");
     }
 
-    @Test @Tag("FEAT-OPINA") @Tag("F-OPINA-R005")
-    void anOpenBatchEntersOnlyWithALaterCorrection() {
+    @Test @Tag("FEAT-OPINA") @Tag("F-OPINA-R005") @Tag("FEAT-ABIER") @Tag("F-ABIER-R003")
+    void anOpenBatchEntersLikeAClosedOne() {
         batch.setStatus(BatchStatus.OPEN);
         ask();
-        verify(analysis, never()).seed(any(), any());
-        assertTrue(BatchBook.list(batch.getSelectiveRuns()).isEmpty());
-        assertTrue(writes.isEmpty());
-
-        when(store.hasSuccessor("batch")).thenReturn(true); batch.setOpinionRuns(List.of());
-        var estimate = service.execute(new Request("estimate", "batch", Map.of(judge, List.of(TandaFixture.RESIDE)), false,
-                null, null, null, null, null));
-        service.execute(new Request("measure", "batch", estimate.selection(), false, "op-reside-2", 5, estimate.fingerprint(), 1, "José"));
+        verify(analysis).seed(same(batch), any());
+        assertEquals(1, batch.getSelectiveRuns().size());
         assertEquals(List.of("integrate"), writes.stream().map(CurrentAnalysisService.Request::action).toList());
+        assertEquals(BatchStatus.OPEN, batch.getStatus(), "Asking for an opinion never closes the batch");
+    }
+
+    @Test @Tag("FEAT-ABIER") @Tag("F-ABIER-R003")
+    void completingAnOpenBatchMeasuresWhatIsMissingAndEntersItsAnalysis() {
+        batch.setStatus(BatchStatus.OPEN);
+        var active = TandaFixture.report(DefaultCurrentAnalysisService.cut(course, batch.getLevel()), List.of(), Map.of(), List.of(judge));
+        var index = com.learney.contentaudit.auditdomain.analysis.DefaultAnalysisComposer.index(active.getRoot());
+        index.values().forEach(n -> n.getScores().put(judge, 1.0));
+        index.get(TandaFixture.RESIDE).getScores().remove(judge);
+        when(analysis.report(any(), eq("correction"), any())).thenReturn(active);
+
+        var estimate = service.execute(new Request("estimate", "batch", null, false, null, null, null, null, null, "correction"));
+        assertTrue(estimate.allowed(), estimate.reason());
+        assertEquals(List.of(TandaFixture.RESIDE), estimate.selection().get(judge));
+        service.execute(new Request("measure", "batch", null, false, "completar", 5, estimate.fingerprint(), 1, "José", "correction"));
+
+        assertEquals(List.of("integrate"), writes.stream().map(CurrentAnalysisService.Request::action).toList());
+        assertEquals(BatchStatus.OPEN, batch.getStatus());
+    }
+
+    @Test @Tag("FEAT-ABIER") @Tag("F-ABIER-R003")
+    void completingNeedsACurrentAnalysis() {
+        batch.setStatus(BatchStatus.OPEN);
+        var bare = new BatchServiceConfig(); bare.setBatchStore(store); bare.setCourseRepository(repository);
+        bare.setCoursePath(TandaFixture.COURSE_PATH); bare.setCourseMapper(mapper); bare.setAuditEngine(engine);
+        bare.setAnalyzerCatalog(catalog); bare.setAuditReportStore(audits);
+        var withoutAnalysis = new DefaultContextOpinionService(bare, ledger, reviews, c -> "content");
+        var refused = assertThrows(IllegalArgumentException.class, () -> withoutAnalysis.execute(
+                new Request("estimate", "batch", null, false, null, null, null, null, null, "correction")));
+        assertEquals("Completar opiniones necesita una corrección con análisis vigente.", refused.getMessage());
     }
 
     @Test @Tag("FEAT-OPINA") @Tag("F-OPINA-R005")

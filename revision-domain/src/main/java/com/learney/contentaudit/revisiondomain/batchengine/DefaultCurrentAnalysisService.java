@@ -93,9 +93,11 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         }
         View view = view(batch, history);
         if (!writes) return view;
-        if (batch.getStatus() != BatchStatus.CLOSED && !(batch.getStatus() == BatchStatus.OPEN
-                && config.getBatchStore().hasSuccessor(batch.getId())))
-            throw new IllegalArgumentException("La tanda debe estar cerrada.");
+        // F-ABIER-R004: integrating changes no exercise, so an open batch integrates like a closed one.
+        if (batch.getStatus() == BatchStatus.PUBLISHED)
+            throw new IllegalArgumentException("La tanda está publicada: su análisis ya no cambia.");
+        if (batch.getStatus() != BatchStatus.CLOSED && batch.getStatus() != BatchStatus.OPEN)
+            throw new IllegalArgumentException("La tanda está tomada por otra operación: integrá cuando termine.");
         if (request.reviewer() == null || request.reviewer().isBlank()) throw new IllegalArgumentException("Falta quién confirma.");
         if (request.expectedRevision() == null || request.expectedRevision() != history.size()
                 || request.contentVersion() == null || request.contentVersion() != batch.getContentVersion())

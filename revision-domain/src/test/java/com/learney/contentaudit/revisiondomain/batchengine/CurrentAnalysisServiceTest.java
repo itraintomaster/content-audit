@@ -160,6 +160,30 @@ class CurrentAnalysisServiceTest {
         verify(repository, never()).save(any(), any()); verify(store, never()).save(any());
     }
 
+    @Test @Tag("FEAT-ABIER") @Tag("F-ABIER-R004")
+    void anOpenBatchIntegratesAndRemovesAnalysisWithoutChangingItsContent() {
+        batch.setStatus(BatchStatus.OPEN);
+        var before = CorrectionEvolution.copyCourse(course);
+        assertEquals(1, errors(service.execute(select("integrate", "r1", "open-analysis", null))));
+        assertThrows(IllegalStateException.class, () -> service.execute(new CurrentAnalysisService.Request("integrate", "batch",
+                "correction", "r1", "stale", null, 0, 6, "content", "human")), "A selection read before still stops it");
+        assertEquals(0, errors(service.execute(select("remove", "r1", "open-remove", "open-analysis"))));
+        assertEquals(BatchStatus.OPEN, batch.getStatus());
+        assertEquals(6, batch.getContentVersion()); assertEquals(before, course);
+        verify(repository, never()).save(any(), any()); verify(store, never()).save(any());
+    }
+
+    @Test @Tag("FEAT-ABIER") @Tag("F-ABIER-R004")
+    void aBatchHeldByAnotherOperationOrPublishedDoesNotIntegrate() {
+        batch.setStatus(BatchStatus.RUNNING);
+        assertEquals("La tanda está tomada por otra operación: integrá cuando termine.", assertThrows(IllegalArgumentException.class,
+                () -> service.execute(select("integrate", "r1", "held", null))).getMessage());
+        batch.setStatus(BatchStatus.PUBLISHED);
+        assertEquals("La tanda está publicada: su análisis ya no cambia.", assertThrows(IllegalArgumentException.class,
+                () -> service.execute(select("integrate", "r1", "published", null))).getMessage());
+        assertTrue(history.isEmpty());
+    }
+
     @Test void looseRunDoesNotCountUntilExplicitlyIntegratedAndRemovalRestoresEverything() {
         assertEquals(0, errors(read()));
         assertEquals("v1", read().looseRuns().get(0).judgeVersion());

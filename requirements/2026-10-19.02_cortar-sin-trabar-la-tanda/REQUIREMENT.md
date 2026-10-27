@@ -119,7 +119,8 @@ consultas; la base no llegó a empezar. Conciliada: la principal gasta 83, mide 
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
 > Invariantes:
-> 1. al conciliar la última medición abierta, la tanda vuelve a quedar cerrada, como estaba antes de lanzarla;
+> 1. al conciliar la última medición abierta, la tanda vuelve a quedar como estaba antes de lanzarla, abierta o
+>    cerrada ([F-ABIER-R002](../2026-10-27.01_medir-con-la-tanda-abierta/REQUIREMENT.md#F-ABIER-R002));
 > 2. si queda otra medición abierta, la tanda no se toca;
 > 3. si a la tanda la tiene tomada otra operación (una opinión en curso), no se la libera y el detalle lo dice;
 > 4. después de conciliar, la estimación de cualquier juez ya no lleva el freno de esa medición.

@@ -852,7 +852,8 @@ class SelectiveCorrectionServiceTest {
         service.execute(req("analyze", "medicion", List.of(), 2, false));
         Run atStart = recorded.get();
         assertEquals("RUNNING", atStart.status());
-        assertEquals(new RunProcess(4242, PROCESS_START, List.of("multiple-choice-quality"), CHATGPT), atStart.process());
+        assertEquals(new RunProcess(4242, PROCESS_START, List.of("multiple-choice-quality"), CHATGPT, BatchStatus.CLOSED),
+                atStart.process(), "F-ABIER-R002: it also records how it found the batch");
         assertEquals(2, atStart.reached()); assertEquals(1, atStart.evaluated()); assertEquals(1, atStart.missing());
         assertEquals(atStart.process(), run("medicion").process(), "the closed run keeps what it recorded");
         verify(store).saveIfVersion(argThat(b -> b.getSelectiveRuns().stream().anyMatch(x -> x.id().equals("medicion") && x.process() != null)),
@@ -906,5 +907,117 @@ class SelectiveCorrectionServiceTest {
             assertEquals(10, run("new-version").reserved());
         }
         verifyNoInteractions(engine, repository, factory, panel);
+    }
+
+    // ── F-ABIER: measuring with the batch open ──────────────────────────────────────────────────────────────────
+
+    /** The judge's audit as in setup, noting the batch's state at each paid pass; {@code paid} fails the paid pass. */
+    List<BatchStatus> measuringWith(RuntimeException paid) {
+        var during = new ArrayList<BatchStatus>();
+        when(engine.runAudit(any(), any(AnalyzerRunSelection.class))).thenAnswer(i -> {
+            var s = i.getArgument(1, AnalyzerRunSelection.class);
+            var ec = new EvaluationCoverage();
+            if (s.getPolicies().get(s.getAnalyzers().get(0)).getMaxNewEvaluations() > 0) {
+                during.add(batch.getStatus());
+                if (paid != null) throw paid;
+                ec.setEvaluatedInRun(1);
+            }
+            for (var c : List.of(quality, unique, single, instruction, translation))
+                if (s.getAnalyzers().contains(c.getJudgeName())) c.setEvaluators(List.of(new EvaluatorCoverage(c.getJudgeName(), ec, "v1")));
+            return report;
+        });
+        return during;
+    }
+
+    @Test @Tag("FEAT-ABIER") @Tag("F-ABIER-R001") @Tag("F-ABIER-R002")
+    void anOpenBatchMeasuresLikeAClosedOneAndIsLeftOpen() {
+        batch.setStatus(BatchStatus.OPEN);
+        var during = measuringWith(null);
+        var estimate = service.execute(req("estimate", null, List.of(), null, false));
+        assertTrue(estimate.allowed(), estimate.reason());
+
+        var state = analyze();
+
+        assertEquals(List.of(BatchStatus.RUNNING), during, "While it measures, the batch is held");
+        assertEquals(BatchStatus.OPEN, batch.getStatus(), "Measuring never closes the batch");
+        assertEquals(BatchStatus.OPEN, state.runs().get(0).process().idleStatus());
+        assertEquals(1, state.runs().get(0).spent());
+        assertEquals(5, batch.getContentVersion());
+        verify(store).saveIfVersion(batch, 5, BatchStatus.OPEN);
+        verifyNoInteractions(panel);
+    }
+
+    @Test @Tag("FEAT-ABIER") @Tag("F-ABIER-R001")
+    void aBatchHeldByAnotherOperationOrPublishedIsNotMeasuredAndTheEstimateSaysWhich() {
+        batch.setStatus(BatchStatus.RUNNING);
+        var held = service.execute(req("estimate", null, List.of(), null, false));
+        assertFalse(held.allowed());
+        assertEquals("Hay otra operación activa en la tanda.", held.reason());
+        assertEquals("Hay otra operación activa en la tanda.", assertThrows(IllegalArgumentException.class, this::analyze).getMessage());
+
+        batch.setStatus(BatchStatus.PUBLISHED);
+        var published = service.execute(req("estimate", null, List.of(), null, false));
+        assertFalse(published.allowed());
+        assertEquals("La tanda está publicada: ya no se mide.", published.reason());
+        assertThrows(IllegalArgumentException.class, this::analyze);
+
+        verify(audits, never()).save(any());
+        assertTrue(BatchBook.list(batch.getSelectiveRuns()).isEmpty());
+    }
+
+    @Test @Tag("FEAT-ABIER") @Tag("F-ABIER-R001")
+    void aSelectiveCorrectionStillNeedsTheBatchClosed() {
+        batch.setStatus(BatchStatus.OPEN);
+        analyze();
+        var refused = assertThrows(IllegalArgumentException.class, () ->
+                service.execute(req("correct", "correction", List.of("selective-analysis-quality"), 7, false)));
+        assertEquals("La corrección selectiva cambia ejercicios: la tanda debe estar cerrada.", refused.getMessage());
+        assertEquals(5, batch.getContentVersion());
+        assertEquals(BatchStatus.OPEN, batch.getStatus());
+        verifyNoInteractions(panel);
+    }
+
+    @Test @Tag("FEAT-ABIER") @Tag("F-ABIER-R002")
+    void aMeasurementThatFailsOnAnOpenBatchLeavesItOpen() {
+        batch.setStatus(BatchStatus.OPEN);
+        measuringWith(new IllegalStateException("provider stopped"));
+        var state = analyze();
+        assertEquals("NEEDS_REVIEW", state.runs().get(0).status());
+        assertEquals(BatchStatus.OPEN, batch.getStatus());
+    }
+
+    @Test @Tag("FEAT-ABIER") @Tag("F-ABIER-R002")
+    void bothStatesOnAnOpenBatchLeaveItOpen() {
+        batch.setStatus(BatchStatus.OPEN);
+        var current = mock(CurrentAnalysisService.class);
+        when(current.supportedAnalyzers()).thenReturn(Set.of("multiple-choice-quality"));
+        when(current.reanalysisScope(anyString(), any(), any(), any())).thenReturn(
+                new CurrentAnalysisService.ReanalysisScope(Set.of("shared"), Set.of(quiz), 1, 1));
+        config.setCurrentAnalysisService(current);
+        var joint = new DefaultSelectiveCorrectionService(config, ledger, panel, reviews, c -> "context");
+        var estimate = joint.execute(new Request("estimate", "batch", "multiple-choice-quality", null, null, null, null, null, null,
+                List.of(), false, "human", "both", true));
+        assertTrue(estimate.allowed(), estimate.reason());
+
+        joint.execute(new Request("reanalyze", "batch", "multiple-choice-quality", "joint", null, 5, estimate.fingerprint(), "v1", 2,
+                List.of(), false, "human", "both", true));
+
+        assertEquals(BatchStatus.OPEN, batch.getStatus());
+        assertEquals(List.of(BatchStatus.OPEN, BatchStatus.OPEN, BatchStatus.OPEN), batch.getSelectiveRuns().stream()
+                .map(x -> x.process().idleStatus()).toList(), "The operation and each of its two parts found it open");
+    }
+
+    @Test @Tag("FEAT-ABIER") @Tag("F-ABIER-R002")
+    void reconcilingReturnsTheBatchToHowTheMeasurementFoundIt() {
+        cutWorld();
+        cut(open("abierta", "analyze", "naturalness", null, 10, 10, 0, "RUNNING",
+                new RunProcess(4242, PROCESS_START, List.of("native-usage-judge"), CHATGPT, BatchStatus.OPEN)));
+        service.execute(reconcile("abierta", false));
+        assertEquals(BatchStatus.OPEN, batch.getStatus());
+
+        // A measurement from before the rule did not record it: back to closed, as until now.
+        cut(open("vieja", "analyze", "naturalness", null, 10, 10, 0, "RUNNING", process("native-usage-judge")));
+        service.execute(reconcile("vieja", false));
+        assertEquals(BatchStatus.CLOSED, batch.getStatus());
     }
 }

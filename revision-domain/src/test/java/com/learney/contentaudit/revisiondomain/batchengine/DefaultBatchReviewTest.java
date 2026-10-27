@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 class DefaultBatchReviewTest {
@@ -58,7 +59,8 @@ class DefaultBatchReviewTest {
         doAnswer(invocation -> { decisions.add(invocation.getArgument(0)); return null; }).when(store).saveReview(any());
     }
 
-    @Test void savesOneDecisionDuringRunWithoutWritingBatchOrApplyingCourse() {
+    @Test @Tag("FEAT-ABIER") @Tag("F-ABIER-R001")
+    void savesOneDecisionDuringRunWithoutWritingBatchOrApplyingCourse() {
         var result = review.decide(request(List.of(selection("one", step)),
                 BatchReviewDecision.Status.APPROVED));
         assertEquals(BatchReviewDecision.Status.APPROVED, result.items().get(0).status());
