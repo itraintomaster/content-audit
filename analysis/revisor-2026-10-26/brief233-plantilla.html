@@ -1,0 +1,108 @@
+<style>
+  .apila{display:grid;gap:12px}
+  .apila .r{display:grid;grid-template-columns:minmax(92px,20%) minmax(0,1fr);gap:12px;align-items:center;font-size:13.5px}
+  .apila .t{color:var(--fg-2);line-height:1.3}
+  .apila .t small{display:block;color:var(--fg-3);font-size:12px}
+  .apila .barra{display:flex;height:28px;border-radius:7px;overflow:hidden;background:var(--line-soft)}
+  .apila .barra span{display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:650;min-width:0;overflow:hidden;white-space:nowrap}
+  .apila .s0{background:var(--ok);color:var(--bg)} .apila .s1{background:var(--ok-soft);color:var(--fg)}
+  .apila .s2{background:var(--warn);color:var(--bg)} .apila .s3{background:var(--bad);color:var(--bg)}
+  .ley{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:12.5px;color:var(--fg-2)}
+  .ley i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+  .tw.casos td{font-size:12.5px;line-height:1.45;min-width:150px}
+  .tw.casos td:first-child{min-width:70px}
+  .tw .cambio{background:var(--accent-soft);border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  details.grupo{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev);margin:12px 0 0}
+  details.grupo>summary{cursor:pointer;padding:10px 14px;font-size:14px;line-height:1.4;list-style-position:inside}
+  details.grupo>summary span{color:var(--fg-3);font-size:13px;margin-left:6px}
+  details.grupo .tw{margin:0;border:0;border-top:1px solid var(--line);border-radius:0 0 var(--radius) var(--radius)}
+  .ad .lado .campo{font-size:13px;line-height:1.45;color:var(--fg-2)}
+  .ad .lado .campo b{color:var(--fg)}
+  .ad .lado .cambio{background:var(--accent-soft);border-radius:3px}
+  .ad.peor{margin-top:16px}
+  .ad.peor .antes{border-top-color:var(--line)} .ad.peor .antes .rot,.ad.peor .antes .res{color:var(--fg-2)}
+  .ad.peor .despues{border-top-color:var(--bad)} .ad.peor .despues .rot,.ad.peor .despues .res{color:var(--bad)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">
+      <span class="num">233</span>
+      <span class="badge">Resumen · Corrección 2</span>
+      <span class="meta">A1 · 27/10/2026</span>
+    </div>
+    <h1>Lo grave bajó de {{GRAVES_ANTES}} a {{GRAVES_AHORA}}, pero no se publica entera</h1>
+    <p class="sub">A1: la Corrección 2 contra producción, ejercicio por ejercicio.</p>
+  </header>
+
+  <div class="lede"><p><strong>{{LISTOS}} de los {{CAMBIADOS}} cambios quedaron sin ningún problema, y los graves casi desaparecieron.</strong> Antes de publicar hay que sacar {{FUERA}}: problemas reales, consignas reescritas y lo que los jueces ven peor.</p></div>
+
+  <section>
+    <h2>Producción contra hoy: {{GRAVES_ANTES}} graves pasan a {{GRAVES_AHORA}}</h2>
+    <div class="apila bars">
+      <div class="r"><div class="t">Producción<small>{{TOTAL}} ejercicios</small></div><div class="barra">{{BARRA_ANTES}}</div></div>
+      <div class="r"><div class="t">Corrección 2<small>{{CAMBIADOS}} cambiados</small></div><div class="barra">{{BARRA_AHORA}}</div></div>
+    </div>
+    <div class="ley">
+      <span><i style="background:var(--ok)"></i>Sin problema: {{CERO_ANTES}} → {{CERO_AHORA}}</span>
+      <span><i style="background:var(--ok-soft)"></i>Sólo leves: {{LEVE_ANTES}} → {{LEVE_AHORA}}</span>
+      <span><i style="background:var(--warn)"></i>Medios: {{MEDIO_ANTES}} → {{MEDIO_AHORA}}</span>
+      <span><i style="background:var(--bad)"></i>Graves: {{GRAVES_ANTES}} → {{GRAVES_AHORA}}</span>
+    </div>
+    <p class="pie">Cada ejercicio cuenta por su peor problema. Problemas: {{PROBLEMAS_ANTES}} → {{PROBLEMAS_AHORA}}.</p>
+    <div class="call c-warn"><b>Ojo:</b> sin que nadie los toque, {{DERIVA_MEJOR}} de {{SIN_CAMBIAR}} mejoran y {{DERIVA_PEOR}} empeoran: cambiaron los jueces.</div>
+  </section>
+
+  <section>
+    <h2>{{LISTOS}} de {{CAMBIADOS}} cambios no tienen nada</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">{{LISTOS}}</div><div class="l">sin problema para jueces y revisor</div></div>
+      <div class="kpi"><div class="n">{{A_CERO}}</div><div class="l">sin problema para los jueces; el revisor objeta {{OBJETA}}</div></div>
+      <div class="kpi"><div class="n">{{DE_GRAVE}}</div><div class="l">eran graves y ya no</div></div>
+    </div>
+    <div class="hb fijo" style="margin-top:16px">
+{{FILAS_CAMBIOS}}
+    </div>
+    <p class="pie">«El revisor ve algo»: un detalle leve o algo que producción ya tenía.</p>
+  </section>
+
+  <section>
+    <h2>El corrector reescribió {{REESCRITAS}} consignas, y tenía permiso</h2>
+    <div class="hb fijo">
+{{FILAS_PERMISO}}
+    </div>
+    <p class="pie">Cada ejercicio guarda su consigna. La tarea dice qué partes se tocan, no qué cambio.</p>
+{{CASO_CONTABLE}}
+{{CASO_BE}}
+    <p class="pie">Otras {{FORMS}} sólo sacaron «Usa short forms», como decidiste el 30/9.</p>
+    <details class="grupo"><summary><b>Las {{REESCRITAS}} consignas reescritas</b> <span>con la tarea que lo permitió</span></summary>
+{{TABLA_CONSIGNAS}}
+    </details>
+  </section>
+
+  <section>
+    <h2>Mi opinión: se publica sin esos {{FUERA}}</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">Consigna fija</span><span class="d">El corrector no la toca.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Sacar {{FUERA}}</span><span class="d">Vuelven a producción.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">Publicar {{PUBLICAR}}</span><span class="d">Ninguno con problema real ni peor.</span></div>
+      <div class="st end"><span class="i">4</span><span class="h">Arreglar y seguir</span><span class="d">Rehacerlos; después, medio y leve.</span></div>
+    </div>
+    <p class="pie">Quedan {{GRAVES_AHORA}} graves: {{GRAVES_NO_TOCADOS}} sin cambiar y {{GRAVES_CAMBIADOS}} cambiados.</p>
+  </section>
+
+  <section>
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask"><span class="q">1 · ¿La consigna queda fija para el corrector?</span><div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">Sólo con permiso tuyo</span></div><span class="why">Tú y «short forms» los cambia una regla.</span></div>
+      <div class="ask"><span class="q">2 · ¿Saco los {{FUERA}} y publico los {{PUBLICAR}}?</span><div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">Guardar las {{REESCRITAS_BIEN}} buenas</span></div><span class="why">Otra consigna cambia lo que se practica.</span></div>
+    </div>
+  </section>
+
+  <footer class="pie">Brief 233 · batch analysis read de la tanda C2 (contentVersion {{VERSION}}) · lectura: analysis/revisor-2026-10-26/pasada_c2.py, lectura_c2.py · brief233.py.</footer>
+</div>
+
+</body>
+</html>
