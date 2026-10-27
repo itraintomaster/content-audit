@@ -17,15 +17,24 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import activity_run
+from monitor_analysis_activity import JUDGE_FILES, JUDGE_NAMES
 
+# F-OPINA-R010: every judge an opinion can ask for, not only the four of the first opinions.
 FILES = {
+    **JUDGE_FILES,
     "a1-didactic": ("a1-didactic-judge.jsonl",),
     "naturalness": ("native-usage-judge.jsonl",),
     "pragmatism": ("pragmatism-judge.jsonl",),
     "near-duplicates": ("near-duplicates-pair-judge.jsonl",),
 }
-NAMES = {"a1-didactic": "Didáctica A1", "naturalness": "Naturalidad",
+NAMES = {**JUDGE_NAMES, "a1-didactic": "Didáctica A1", "naturalness": "Naturalidad",
          "pragmatism": "Pragmatismo", "near-duplicates": "Ejercicios parecidos"}
+STATUS_GRADES = {
+    "a1-didactic-judge": {"SUITABLE":"GOOD", "IMPROVE":"BAD", "REWRITE_REQUIRED":"BAD",
+                          "REVIEW":"REVIEW", "NOT_APPLICABLE":"NOT_APPLICABLE"},
+    "answer-giveaway-judge": {"OK":"GOOD", "GIVES_AWAY":"BAD", "REVIEW":"REVIEW", "NOT_APPLICABLE":"NOT_APPLICABLE"},
+    "choice-quality-judge": {"PASS":"GOOD", "FAIL":"BAD", "NEEDS_CONTEXT":"REVIEW"},
+}
 
 
 def read(path):
@@ -44,9 +53,8 @@ def grade(payload, evaluator):
     """One opinion per exercise (or pair), even with multiple accepted sentences."""
     if not isinstance(payload, dict):
         return "UNKNOWN"
-    if evaluator == "a1-didactic-judge":
-        return {"SUITABLE":"GOOD", "IMPROVE":"BAD", "REWRITE_REQUIRED":"BAD",
-                "REVIEW":"REVIEW", "NOT_APPLICABLE":"NOT_APPLICABLE"}.get(payload.get("status"), "UNKNOWN")
+    if evaluator in STATUS_GRADES:
+        return STATUS_GRADES[evaluator].get(payload.get("status"), "UNKNOWN")
     if evaluator == "near-duplicates-pair-judge":
         return "BAD" if payload.get("sameExercise") is True else "GOOD" if payload.get("sameExercise") is False else "UNKNOWN"
     assessments = payload.get("assessments")
@@ -160,6 +168,9 @@ def snapshot(campaign, activity, *, now=None):
                 partial.append(label)
                 if reason:
                     result += " " + reason
+        elif analyzer not in FILES:
+            status = "WAITING"
+            result = "Las opiniones de este juez no se cuentan acá: su avance no se ve hasta que termine."
         else:
             status = "RUNNING" if count else "WAITING"
             result = f"{count} opiniones nuevas guardadas." if count else "Todavía no comenzó este juez."

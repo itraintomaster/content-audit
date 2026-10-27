@@ -159,6 +159,23 @@ desde Correcciones.
 >    las opiniones una vez.
 > 3. Al terminar la corrida, el aviso de las corridas y del análisis trae el resultado.
 
+<a id="F-OPINA-R010"></a>
+### Rule[F-OPINA-R010] - Ejecuciones cuenta lo que opina cada juez
+**Severity**: major | **Validation**: VALIDATED
+
+> 1. El avance de una opinión en Ejecuciones cuenta lo que guarda cada juez de la corrida, cualquiera sea: Didáctica,
+>    Naturalidad, Pragmatismo, Ejercicios parecidos, No regala la respuesta, Consigna, las dos de opción múltiple,
+>    Traducción, Más de una respuesta y Miniteoría.
+> 2. Mientras un juez guarda opiniones, su renglón no dice «todavía no comenzó» y el resumen no dice que no hay otra
+>    opinión válida.
+> 3. Un juez cuyas opiniones no se pueden contar lo dice, en vez de parecer que no empezó.
+> 4. Las opiniones de No regala la respuesta y de Calidad de distractores se cuentan como bien, mal, para revisar o no
+>    aplica, igual que las de Didáctica.
+
+José, el 27/10/2026, con Completar corriendo: «La UI parece estancada». La corrida decía 282 y «sin otra opinión válida
+desde hace 63 min» mientras No regala la respuesta guardaba 8 opiniones por minuto: el contador sólo conocía cuatro
+jueces.
+
 ## Journeys
 
 ```yaml
@@ -242,6 +259,7 @@ navegador, con un servidor de mentira y el store de verdad. Cada prueba nombra s
 | [R007](#F-OPINA-R007) | `GET /api/opiniones` trae lo de opinión y la tanda no; Correcciones las junta sin pedirlas por su lado, sólo si son de su tanda, versión y corrección | `test/tablero_html/opiniones/rutas_de_opiniones_test.dart`, `html/test/estado-opiniones.test.js`, `html/test/arquitectura.test.js` |
 | [R008](#F-OPINA-R008) | Integrar avisa «análisis», desde el tablero y desde la terminal; el diálogo escribe una vez y relee ya; el aviso relee análisis y opiniones en cada pestaña; sin canal propio | `test/tablero_html/novedades_test.dart`, `html/test/estado-analisis.test.js`, `html/test/estado-avisos.test.js`, `html/test/arquitectura.test.js` |
 | [R009](#F-OPINA-R009) | Sin relectura cada 5 s; el aviso de la tanda relee las opiniones una vez y no el análisis; cuando una opinión empieza, termina o queda cortada se releen sólo las opiniones; lo que guarda content-audit al avanzar o terminar avisa la tanda, el análisis y las corridas | `html/test/estado-analisis.test.js`, `html/test/estado-opiniones.test.js`, `test/tablero_html/novedades_test.dart` |
+| [R010](#F-OPINA-R010) | Los ocho jueces de un Completar real cuentan lo que guardan; ninguno con opiniones queda en «todavía no comenzó» ni el resumen dice que no avanza; un juez sin contador lo dice; No regala y Calidad de distractores se clasifican | `analysis/test_monitor_opinion_activity.py` |
 
 ## References
 

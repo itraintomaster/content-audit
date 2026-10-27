@@ -119,6 +119,44 @@ class OpinionMonitorTest(unittest.TestCase):
         self.assertEqual(monitor.grade({"sameExercise":False},"near-duplicates-pair-judge"),"GOOD")
         self.assertEqual(monitor.grade({"sameExercise":"false"},"near-duplicates-pair-judge"),"UNKNOWN")
 
+    def test_f_opina_r010_every_judge_of_a_completar_counts_what_it_saves(self):
+        files={"a1-didactic":"a1-didactic-judge","naturalness":"native-usage-judge","pragmatism":"pragmatism-judge",
+            "near-duplicates":"near-duplicates-pair-judge","answer-giveaway":"answer-giveaway-judge",
+            "quiz-instruction":"quiz-instruction-validator","multiple-choice-validity":"choice-alternative-judge",
+            "multiple-choice-quality":"choice-quality-judge","translation-sense":"translation-sense-from-english",
+            "single-answer":"single-answer-judge","mini-theory":"mini-theory-judge"}
+        self.run.update(results=[],request={"selection":{j:["a","b"] for j in files}},
+            judges=[{"analyzer":j,"quizzes":2,"pendingQueries":1,"judgeVersion":"v1"} for j in files])
+        self.save_batch()
+        for judge,evaluator in files.items():
+            subject="a~b" if judge=="near-duplicates" else "a"
+            self.ledger([self.row(evaluatorId=evaluator,subjectRef=subject)],filename=evaluator+".jsonl")
+        state=monitor.snapshot(self.root,self.record,now=datetime(2026,10,14,16,1,10,tzinfo=timezone.utc))
+        self.assertEqual({s["label"]:s["progress"]["completed"] for s in state["stages"]},
+                         {monitor.NAMES[j]:1 for j in files})
+        self.assertTrue(all(s["status"]=="RUNNING" for s in state["stages"]))
+        self.assertFalse(any("Todavía no comenzó" in s["result"] for s in state["stages"]))
+        self.assertEqual(state["completed"],len(files))
+        self.assertNotIn("no confirma avance",state["summary"])
+        self.assertIn("No regala la respuesta",[s["label"] for s in state["stages"]])
+
+    def test_f_opina_r010_a_judge_whose_opinions_cannot_be_counted_says_so(self):
+        self.run.update(results=[],request={"selection":{"a-new-judge":["a"]}},
+            judges=[{"analyzer":"a-new-judge","quizzes":1,"judgeVersion":"v1"}])
+        self.save_batch()
+        stage=monitor.snapshot(self.root,self.record)["stages"][0]
+        self.assertIn("no se cuentan acá",stage["result"])
+        self.assertNotIn("Todavía no comenzó",stage["result"])
+
+    def test_f_opina_r010_giveaway_and_distractor_opinions_are_graded(self):
+        for evaluator,cases in [("answer-giveaway-judge",[("OK","GOOD"),("GIVES_AWAY","BAD"),("REVIEW","REVIEW"),
+                                    ("NOT_APPLICABLE","NOT_APPLICABLE"),("other","UNKNOWN")]),
+                                ("choice-quality-judge",[("PASS","GOOD"),("FAIL","BAD"),("NEEDS_CONTEXT","REVIEW"),
+                                    ("other","UNKNOWN")])]:
+            for status,expected in cases:
+                with self.subTest(evaluator=evaluator,status=status):
+                    self.assertEqual(monitor.grade({"status":status},evaluator),expected)
+
     def test_latest_duplicate_replaces_grade_without_inflating_count(self):
         good=json.dumps({"assessments":[{"status":"PASS"}]});bad=json.dumps({"assessments":[{"status":"FAIL"}]})
         self.ledger([self.row(payload=good),self.row(payload=bad,recordedAt="2026-10-14T16:02:00Z"),self.row(payload=good)])

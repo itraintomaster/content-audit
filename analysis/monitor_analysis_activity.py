@@ -34,6 +34,7 @@ JUDGE_FILES: dict[str, tuple[str, ...]] = {
     ),
     "single-answer": ("single-answer-judge.jsonl",),
     "mini-theory": ("mini-theory-judge.jsonl",),
+    "answer-giveaway": ("answer-giveaway-judge.jsonl",),
 }
 
 JUDGE_NAMES = {
@@ -43,6 +44,7 @@ JUDGE_NAMES = {
     "translation-sense": "Traducción que no corresponde",
     "single-answer": "Más de una respuesta válida",
     "mini-theory": "Miniteoría con error",
+    "answer-giveaway": "No regala la respuesta",
 }
 
 PROGRESS_PREFIX = "@@CONTENT_AUDIT_PROGRESS "
