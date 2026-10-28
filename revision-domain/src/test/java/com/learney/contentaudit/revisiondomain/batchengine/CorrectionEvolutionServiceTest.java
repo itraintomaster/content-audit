@@ -232,6 +232,86 @@ class CorrectionEvolutionServiceTest {
         assertEquals(BatchStatus.OPEN, first.getStatus()); assertEquals(8, first.getContentVersion());
         assertEquals(1, batches.list().size()); assertTrue(courses.written.isEmpty());
     }
+    // ── F-MOTIVO: each inherited change keeps its reasons ────────────────────
+    /** c1's change of the exercise, with its reason as task-001 of c1's plan; the next plan's task-001 is another exercise's. */
+    private void reasonsInTwoNumberings() {
+        var reason = com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.finding("single-answer",
+                "different-valid-answer", quiz, com.learney.contentaudit.auditdomain.finding.FindingSeverity.HIGH,
+                com.learney.contentaudit.auditdomain.finding.FindingResolution.PANEL, null, "«like» también encaja");
+        plans.save(TandaFixture.plan(TandaFixture.task("task-001", reason, "topic", CefrLevel.A1)));
+        var after = BatchBook.copy(TandaFixture.exercise(ledger.composedCourse(first, courses.course), quiz));
+        after.setTranslation("Primera");
+        ledger.record(first, TandaFixture.change("first-edit", BatchChangeOrigin.PANEL, null, List.of("task-001"),
+                TandaFixture.step(after, ExercisePart.TRANSLATION)), courses.course);
+        var other = com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.finding("near-duplicates",
+                "same-exercise", TandaFixture.RESIDE, com.learney.contentaudit.auditdomain.finding.FindingSeverity.MEDIUM,
+                com.learney.contentaudit.auditdomain.finding.FindingResolution.PANEL, null, "otro ejercicio");
+        when(refiner.plan(any(), anyString())).thenAnswer(i ->
+                TandaFixture.plan(TandaFixture.task("task-001", other, "other-topic", CefrLevel.A1)));
+    }
+    private CorrectionEvolution.Tasks tasks(CorrectionBatch batch) {
+        return service.execute(new Request("tasks", batch.getId(), null, null, null, null, null)).tasks();
+    }
+    private CorrectionEvolution.Tasks carry(CorrectionBatch batch, Integer version) {
+        return service.execute(new Request("carry-tasks", batch.getId(), null, version, null, null, null)).tasks();
+    }
+    @Tag("FEAT-MOTIVO") @Tag("F-MOTIVO-R001")
+    @Test void aNewCorrectionTakesTheTasksOfItsInheritedChangesUnderIdsOfItsOwnPlan() {
+        reasonsInTwoNumberings();
+        var second = create("c1", "next-2");
+        assertEquals(List.of("task-002"), second.getChanges().get(0).getTaskIds());
+        var plan = BatchBook.tasksById(plans.load(second.getPlanId()).orElseThrow());
+        assertEquals(quiz, plan.get("task-002").getNodeId());
+        assertEquals("different-valid-answer", plan.get("task-002").getOrigin().getFinding().getRule());
+        assertEquals(RefinementTaskStatus.IN_BATCH, plan.get("task-002").getStatus());
+        assertFalse(second.getTaskIds().contains("task-002"), "the copy is the inherited change's, not new work");
+        assertEquals(TandaFixture.RESIDE, plan.get("task-001").getNodeId(), "the new plan's own task stays as it was");
+        assertEquals(List.of("task-001"), first.getChanges().get(0).getTaskIds(), "the predecessor keeps its numbering");
+        assertEquals(new CorrectionEvolution.Tasks(0, 0, 0, 0, 0, false), tasks(second), "nothing left to repair");
+        assertEquals("Primera", translation(second));
+    }
+    @Tag("FEAT-MOTIVO") @Tag("F-MOTIVO-R003")
+    @Test void aCorrectionCreatedBeforeIsRepairedOnceWithoutTouchingItsContentOrItsVersion() {
+        reasonsInTwoNumberings();
+        var second = create("c1", "next-2");
+        // As before F-MOTIVO-R001: the inherited change names c1's task-001, which here is another exercise's...
+        plans.load(second.getPlanId()).orElseThrow().getTasks().removeIf(t -> "task-002".equals(t.getId()));
+        second.getChanges().get(0).setTaskIds(new ArrayList<>(List.of("task-001")));
+        // ...and dropping it wrote its outcome on that other exercise's task.
+        ledger.drop(second, "first-edit", "sale", courses.course);
+        int version = second.getContentVersion(), saves = batches.saves;
+        assertEquals("volvió a pendiente: sale", BatchBook.outcome(second, "task-001").orElseThrow().getDetail());
+
+        assertEquals(new CorrectionEvolution.Tasks(1, 1, 1, 0, 1, false), tasks(second));
+        assertEquals(List.of("task-001"), second.getChanges().get(0).getTaskIds(), "looking does not change anything");
+        assertFalse(BatchBook.tasksById(plans.load(second.getPlanId()).orElseThrow()).containsKey("task-002"));
+        assertEquals(saves, batches.saves);
+
+        assertThrows(IllegalStateException.class, () -> carry(second, version + 1));
+        assertEquals(new CorrectionEvolution.Tasks(1, 1, 1, 0, 1, true), carry(second, version));
+        var saved = batches.load(second.getId()).orElseThrow();
+        assertEquals(List.of("task-002"), saved.getChanges().get(0).getTaskIds());
+        assertEquals(quiz, BatchBook.tasksById(plans.load(second.getPlanId()).orElseThrow()).get("task-002").getNodeId());
+        assertEquals("volvió a pendiente: sale", BatchBook.outcome(saved, "task-002").orElseThrow().getDetail());
+        assertTrue(BatchBook.outcome(saved, "task-001").isEmpty(), "the other exercise's task gets its outcome back");
+        assertEquals(version, saved.getContentVersion());
+        assertEquals(new CorrectionEvolution.Tasks(0, 0, 0, 0, 0, false), carry(second, version), "a second time is a no-op");
+        assertEquals(1, BatchBook.list(plans.load(second.getPlanId()).orElseThrow().getTasks()).stream()
+                .filter(t -> quiz.equals(t.getNodeId())).count());
+    }
+    @Tag("FEAT-MOTIVO") @Tag("F-MOTIVO-R003")
+    @Test void aRepairWaitsForTheOperationRunningOnTheCorrection() {
+        reasonsInTwoNumberings();
+        var second = create("c1", "next-2");
+        second.getChanges().get(0).setTaskIds(new ArrayList<>(List.of("task-001")));
+        second.setSelectiveRuns(new ArrayList<>(List.of(new SelectiveCorrection.Run("running", "reanalyze", "single-answer",
+                null, 2, second.getContentVersion(), "fingerprint", null, "fake-runtime", "audit", second.getPlanId(),
+                List.of(), List.of(quiz), 10, 1, 0, 0, 0, 0, "RUNNING", "José", Instant.EPOCH, null, null, false,
+                second.getContentVersion(), null, "fake-runtime"))));
+        var e = assertThrows(IllegalStateException.class, () -> carry(second, second.getContentVersion()));
+        assertTrue(e.getMessage().contains("corriendo"));
+        assertEquals(List.of("task-001"), second.getChanges().get(0).getTaskIds());
+    }
     private String translation(CorrectionBatch batch) {
         return TandaFixture.exercise(ledger.composedCourse(batch, courses.course), quiz).getTranslation();
     }

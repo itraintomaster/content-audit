@@ -2,6 +2,7 @@ package com.learney.contentaudit.revisiondomain.batchengine;
 
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
 import com.learney.contentaudit.revisiondomain.batch.*;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionEvolution.*;
@@ -23,10 +24,12 @@ final class DefaultCorrectionEvolutionService implements CorrectionEvolutionServ
     @Override public View execute(Request request) {
         Objects.requireNonNull(request, "Falta el pedido de nueva corrección.");
         String action = Objects.toString(request.action(), "view");
-        if (!Set.of("view", "read", "catalog", "estimate", "create").contains(action))
+        if (!Set.of("view", "read", "catalog", "estimate", "create", "tasks", "carry-tasks").contains(action))
             throw new IllegalArgumentException("Operación de evolución desconocida.");
         CorrectionBatch parent = batch(request.batchId());
         if ("catalog".equals(action)) return catalog(parent);
+        if ("tasks".equals(action)) return new View(parent.getId(), List.of(), null, null, inheritedTasks(parent, false).tasks());
+        if ("carry-tasks".equals(action)) return carryTasks(parent, request);
         if (!"create".equals(action)) {
             Estimate estimate = estimate(parent);
             return "estimate".equals(action) ? new View(parent.getId(), List.of(), estimate, null)
@@ -80,6 +83,11 @@ final class DefaultCorrectionEvolutionService implements CorrectionEvolutionServ
             // The ledger remains cumulative, so publication includes every inherited change. New proposal ids are
             // owned by this batch. Reviews carry exact before/after snapshots and expire when these inputs change.
             ledger.inherit(child, BatchBook.list(latest.getChanges()).stream().map(DefaultCorrectionEvolutionService::copy).toList(), base);
+            // F-MOTIVO-R001: every inherited change takes its tasks along, under ids of the new plan.
+            Map<String, Set<String>> all = new HashMap<>();
+            for (var change : BatchBook.list(child.getChanges()))
+                if (change != null) all.put(change.getChangeId(), new HashSet<>(BatchBook.list(change.getTaskIds())));
+            InheritedTasks.carry(plans(latest), plan, BatchBook.list(child.getChanges()), all);
             Set<String> selected = new HashSet<>(BatchBook.list(child.getTaskIds()));
             for (var task : BatchBook.list(plan.getTasks())) if (selected.contains(task.getId())) task.setStatus(RefinementTaskStatus.IN_BATCH);
             config.getRefinementPlanStore().save(plan);
@@ -180,6 +188,108 @@ final class DefaultCorrectionEvolutionService implements CorrectionEvolutionServ
         if (r.operationId() == null || !r.operationId().matches("[A-Za-z0-9][A-Za-z0-9._-]{0,127}"))
             throw new IllegalArgumentException("Falta una identidad de operación válida.");
         if (r.reviewer() == null || r.reviewer().isBlank()) throw new IllegalArgumentException("Falta el autor de la nueva corrección.");
+    }
+    /** What {@link #inheritedTasks} found, and the plan to save with the tasks it had before. */
+    private record Carry(Tasks tasks, RefinementPlan plan, List<RefinementTask> before) {}
+    private static final Carry NOTHING = new Carry(new Tasks(0, 0, 0, 0, 0, false), null, List.of());
+    /**
+     * F-MOTIVO-R003: the inherited changes of {@code batch} whose tasks still have its predecessor's numbering, and
+     * what carrying them would do. With {@code apply}, the changes of {@code batch} and its own plan are the ones
+     * that change; without it, copies do.
+     */
+    private Carry inheritedTasks(CorrectionBatch batch, boolean apply) {
+        var lineage = batch.getEvolution();
+        var store = config.getRefinementPlanStore();
+        if (lineage == null || store == null || batch.getPlanId() == null) return NOTHING;
+        CorrectionBatch predecessor = config.getBatchStore().load(lineage.parentBatchId()).orElse(null);
+        RefinementPlan own = store.load(batch.getPlanId()).orElse(null);
+        if (predecessor == null || own == null) return NOTHING;
+        Map<String, List<String>> predecessorIds = new HashMap<>();
+        for (var change : BatchBook.list(predecessor.getChanges()))
+            if (change != null) predecessorIds.put(change.getChangeId(), BatchBook.list(change.getTaskIds()));
+        Map<String, RefinementTask> ownTasks = BatchBook.tasksById(own);
+        Map<String, Set<String>> inherited = new HashMap<>();
+        List<BatchChange> changes = new ArrayList<>();
+        for (var change : BatchBook.list(batch.getChanges())) {
+            if (change == null) continue;
+            Set<String> ids = new HashSet<>();
+            for (String id : BatchBook.list(change.getTaskIds())) {
+                // An id of the predecessor's change that the batch's own plan does not resolve to this exercise.
+                RefinementTask mine = ownTasks.get(id);
+                if (predecessorIds.getOrDefault(change.getChangeId(), List.of()).contains(id)
+                        && (mine == null || !InheritedTasks.belongs(mine, change))) ids.add(id);
+            }
+            if (ids.isEmpty()) continue;
+            inherited.put(change.getChangeId(), ids);
+            // Looking only: carrying rewrites the ids of a copy that shares the steps.
+            changes.add(apply ? change : new BatchChange(change.getChangeId(), change.getOrigin(), change.getRuleId(),
+                    change.getKnowledgeId(), new ArrayList<>(BatchBook.list(change.getTaskIds())), change.getSteps(),
+                    change.getGateVerdict(), change.isJoseException(), change.getCreatedAt(), change.getDroppedReason()));
+        }
+        List<RefinementTask> before = new ArrayList<>(BatchBook.list(own.getTasks()));
+        RefinementPlan target = apply ? own : new RefinementPlan(own.getId(), own.getSourceAuditId(), own.getCreatedAt(),
+                new ArrayList<>(before));
+        var carried = InheritedTasks.carry(plans(predecessor), target, changes, inherited);
+        // A drop or a gate return of an inherited change wrote its outcome under the predecessor's id, on whatever
+        // task of this batch has that number: the outcome goes to the copy. One of this batch's own tasks keeps an
+        // outcome that is not the inherited change's.
+        Set<String> selected = new HashSet<>(BatchBook.list(batch.getTaskIds()));
+        Map<String, List<String>> dropped = new HashMap<>();
+        for (var change : changes)
+            if (change.getDroppedReason() != null && !change.getDroppedReason().isBlank())
+                for (String id : inherited.getOrDefault(change.getChangeId(), Set.of()))
+                    dropped.computeIfAbsent(id, k -> new ArrayList<>()).add(change.getDroppedReason());
+        int outcomes = 0;
+        for (var outcome : BatchBook.list(batch.getOutcomes())) {
+            String copy = outcome == null ? null : carried.renamed().get(outcome.getTaskId());
+            if (copy == null) continue;
+            String detail = outcome.getDetail();
+            boolean borrowed = !selected.contains(outcome.getTaskId()) || detail != null && dropped
+                    .getOrDefault(outcome.getTaskId(), List.of()).stream().anyMatch(r -> detail.contains(r) || r.contains(detail));
+            if (!borrowed) continue;
+            if (apply) outcome.setTaskId(copy);
+            outcomes++;
+        }
+        return new Carry(new Tasks(inherited.size(), carried.changes(), carried.tasks(), carried.unresolved(), outcomes, false),
+                carried.changes() > 0 ? target : null, before);
+    }
+    /** F-MOTIVO-R003: repairs a batch created before its inherited changes took their tasks along. */
+    private View carryTasks(CorrectionBatch selected, Request request) {
+        if (request.expectedVersion() == null) throw new IllegalArgumentException("Falta la versión de la corrección que se repara.");
+        return config.getBatchStore().withAnalysisLock(selected.getId(), () -> {
+            CorrectionBatch batch = batch(selected.getId());
+            if (!Objects.equals(request.expectedVersion(), batch.getContentVersion()))
+                throw new IllegalStateException("La corrección cambió: volvé a mirar sus tareas heredadas.");
+            if (BatchBook.list(batch.getSelectiveRuns()).stream().anyMatch(r -> "RUNNING".equals(r.status()))
+                    || BatchBook.list(batch.getOpinionRuns()).stream().anyMatch(r -> "RUNNING".equals(r.status())))
+                throw new IllegalStateException("Todavía hay una operación corriendo sobre esta corrección.");
+            Carry carry = inheritedTasks(batch, true);
+            Tasks tasks = carry.tasks();
+            if (carry.plan() == null) return new View(batch.getId(), List.of(), null, null, tasks);
+            var store = config.getRefinementPlanStore();
+            store.save(carry.plan());
+            try {
+                config.getBatchStore().saveIfVersion(batch, batch.getContentVersion(), batch.getStatus());
+            } catch (RuntimeException e) {
+                // The batch was not saved: the plan goes back to the tasks it had, so trying again copies them once.
+                carry.plan().setTasks(new ArrayList<>(carry.before())); store.save(carry.plan());
+                throw e;
+            }
+            return new View(batch.getId(), List.of(), null, null,
+                    new Tasks(tasks.inherited(), tasks.changes(), tasks.tasks(), tasks.unresolved(), tasks.outcomes(), true));
+        });
+    }
+    /** The plans of {@code batch} and its predecessors, the nearest first (F-MOTIVO-R001). */
+    private List<RefinementPlan> plans(CorrectionBatch batch) {
+        var store = config.getRefinementPlanStore();
+        var plans = new ArrayList<RefinementPlan>();
+        Set<String> seen = new HashSet<>();
+        for (CorrectionBatch b = batch; b != null && seen.add(b.getId()); ) {
+            if (store != null && b.getPlanId() != null) store.load(b.getPlanId()).ifPresent(plans::add);
+            String parentId = b.getEvolution() == null ? null : b.getEvolution().parentBatchId();
+            b = parentId == null ? null : config.getBatchStore().load(parentId).orElse(null);
+        }
+        return plans;
     }
     private static BatchChange copy(BatchChange c) {
         return new BatchChange(c.getChangeId(), c.getOrigin(), c.getRuleId(), c.getKnowledgeId(),

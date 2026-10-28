@@ -588,6 +588,28 @@ class CurrentAnalysisServiceTest {
         assertEquals(BatchReviewDecision.Status.APPROVED, qualityApproval.status());
     }
 
+    @Tag("FEAT-MOTIVO") @Tag("F-MOTIVO-R002")
+    @Test void aTaskOfAnotherExerciseNeverWarnsAnApprovalOfThisOne() {
+        // The change of CHILD names, by number, a task of RESIDE: its mark going away says nothing about CHILD.
+        var task = new com.learney.contentaudit.refinerdomain.RefinementTask(); task.setId("borrowed-task");
+        task.setNodeTarget(com.learney.contentaudit.auditdomain.AuditTarget.QUIZ); task.setNodeId(TandaFixture.RESIDE);
+        var origin = new com.learney.contentaudit.refinerdomain.TaskOrigin();
+        var finding = new Finding(); finding.setAnalyzer(NAME); finding.setRule("answer-cue"); origin.setFinding(finding); task.setOrigin(origin);
+        var own = new com.learney.contentaudit.refinerdomain.RefinementTask(); own.setId("own-task");
+        own.setNodeTarget(com.learney.contentaudit.auditdomain.AuditTarget.QUIZ); own.setNodeId(TandaFixture.CHILD); own.setOrigin(origin);
+        var step = new BatchChangeStep(); step.setQuizId(TandaFixture.CHILD);
+        var borrowed = new BatchReview.Item("borrowed-change", step, null, null, "panel", null,
+                BatchReviewDecision.Status.APPROVED, "human", Instant.EPOCH, List.of(task.getId()), null);
+        var mine = new BatchReview.Item("own-change", step, null, null, "panel", null,
+                BatchReviewDecision.Status.APPROVED, "human", Instant.EPOCH, List.of(own.getId()), null);
+        when(reviews.read("batch")).thenReturn(new BatchReview("batch", 1, 6, null, List.of(task, own), List.of(),
+                List.of(borrowed, mine), List.of(), List.of()));
+        service.execute(select("integrate", "r1", "s1", null)); run("r2", false, "v2");
+        service.execute(select("replace", "r2", "s2", null));
+        var state = read().states().stream().filter(x -> x.id().equals("correction")).findFirst().orElseThrow();
+        assertEquals(List.of("own-change"), state.approvalWarnings());
+    }
+
     @Test void aPartialReplacementKeepsThePreviousVerdictAndVersionOutsideItsMeasuredSlice() {
         var old = report(true, true, "v1");
         var index = DefaultAnalysisComposer.index(old.getRoot());

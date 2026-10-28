@@ -576,14 +576,17 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         var old = DefaultAnalysisComposer.index(before.getRoot()); var now = DefaultAnalysisComposer.index(after.getRoot());
         var warnings = new LinkedHashSet<String>();
         for (var item : items) if (item.status() == BatchReviewDecision.Status.APPROVED && item.step() != null) {
-            boolean originatedHere = BatchBook.list(tasks).stream().anyMatch(t -> BatchBook.list(item.taskIds()).contains(t.getId())
-                    && t.getOrigin() != null && t.getOrigin().getFinding() != null
+            // F-MOTIVO-R002: a task of another exercise is never the reason of this one's change.
+            Set<String> quiz = item.step().getQuizId() == null ? Set.of() : Set.of(item.step().getQuizId());
+            var reasons = BatchBook.list(tasks).stream().filter(t -> BatchBook.list(item.taskIds()).contains(t.getId())
+                    && InheritedTasks.belongs(t, quiz, null)).toList();
+            boolean originatedHere = reasons.stream().anyMatch(t -> t.getOrigin() != null && t.getOrigin().getFinding() != null
                     && analyzer.equals(t.getOrigin().getFinding().getAnalyzer()));
             if (!originatedHere) continue;
             String id = item.step().getQuizId(); var a = old.get(id); var b = now.get(id);
             if (a == null || b == null || !DefaultAnalysisComposer.evaluated(b, analyzer)) continue;
             var oldMarks = marks(a, analyzer); var newMarks = marks(b, analyzer);
-            boolean disappeared = BatchBook.list(tasks).stream().filter(t -> BatchBook.list(item.taskIds()).contains(t.getId()))
+            boolean disappeared = reasons.stream()
                     .filter(t -> t.getOrigin() != null && t.getOrigin().getFinding() != null)
                     .map(t -> t.getOrigin().getFinding()).filter(f -> analyzer.equals(f.getAnalyzer()))
                     .map(DefaultCurrentAnalysisService::mark).anyMatch(k -> oldMarks.contains(k) && !newMarks.contains(k));

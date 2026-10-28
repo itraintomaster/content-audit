@@ -12,7 +12,18 @@ public final class CorrectionEvolution {
 
     public record Request(String action, String batchId, String operationId, Integer expectedVersion,
             String fingerprint, Integer analysisRevision, String reviewer) {}
-    public record View(String batchId, List<Version> versions, Estimate estimate, Result result) {}
+    public record View(String batchId, List<Version> versions, Estimate estimate, Result result, Tasks tasks) {
+        public View(String batchId, List<Version> versions, Estimate estimate, Result result) {
+            this(batchId, versions, estimate, result, null);
+        }
+    }
+    /**
+     * F-MOTIVO-R003: the inherited changes whose tasks the batch still reads in a predecessor's numbering
+     * ({@code inherited}), the ones that point to copies after carrying ({@code changes}), the copies made
+     * ({@code tasks}), the ids no predecessor resolves ({@code unresolved}), the outcomes written under a
+     * predecessor's id that go to its copy ({@code outcomes}) and whether it was saved.
+     */
+    public record Tasks(int inherited, int changes, int tasks, int unresolved, int outcomes, boolean applied) {}
     public record Estimate(boolean allowed, String blockedReason, int contentVersion, String fingerprint,
             int analysisRevision, int nextCorrectionRevision) {}
     public record Result(String status, String newBatchId, int correctionRevision) {}
