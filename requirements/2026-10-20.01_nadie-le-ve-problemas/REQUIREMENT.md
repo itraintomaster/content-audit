@@ -21,13 +21,13 @@ Un **analizador** mide sin modelo: largo de la oración, palabras poco vistas, p
 ### Rule[F-NADIE-R001] - Elegibilidad del recorrido sin problemas detectados
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-> Un ejercicio es elegible para el recorrido sin problemas detectados si no tiene hallazgos, los analizadores que no son jueces lo evaluaron por completo, al menos un juez aplicable opinó al día sin abstenerse y se midió el contenido vigente. Esta elegibilidad no limita «Vos lo aprobás»: ese grupo también incluye ejercicios con aprobación humana vigente aunque algún juez señale problemas o falten opiniones vigentes.
+> Un ejercicio es elegible para el recorrido sin problemas detectados si no tiene hallazgos que no sean leves, los analizadores que no son jueces lo evaluaron por completo, al menos un juez aplicable opinó al día sin abstenerse y se midió el contenido vigente. Esta elegibilidad no limita «Vos lo aprobás»: ese grupo también incluye ejercicios con aprobación humana vigente aunque algún juez señale problemas o falten opiniones vigentes.
 
 <details><summary>Detalle</summary>
 
 Deben cumplirse las cuatro condiciones:
 
-1. No tiene ningún hallazgo de ningún analizador ni juez, de ninguna gravedad. Un hallazgo de una opinión de antes también lo excluye.
+1. No tiene ningún hallazgo de gravedad media, alta o bloqueante, de ningún analizador ni juez. Un hallazgo así de una opinión de antes también lo excluye. Una observación leve no lo excluye, pero se ve ([F-LEVE-R001](../2026-10-28.04_lo-leve-no-frena/REQUIREMENT.md#F-LEVE-R001)).
 2. Ningún analizador que no es juez lo dejó sin evaluar o evaluado a medias.
 3. Al menos un juez aplicable opinó con su versión de hoy, sin abstenerse.
 4. Lo medido es el contenido de hoy: si el ejercicio se editó después de medir, no es elegible.
