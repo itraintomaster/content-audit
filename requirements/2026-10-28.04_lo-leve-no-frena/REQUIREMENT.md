@@ -53,8 +53,9 @@ Que la tarjeta use las palabras del ejercicio no le regala nada.
 
 > En el ejercicio abierto, el bloque de lo que dijo cada juez
 > ([F-NADIE-R004](../2026-10-20.01_nadie-le-ve-problemas/REQUIREMENT.md#F-NADIE-R004)) muestra cada observación leve:
-> quién la dejó y lo que observó. Dice que no frena. Se ve también en un ejercicio sin cambios, que en estas listas no
-> muestra los hallazgos del plan.
+> quién la dejó y lo que observó, con el inglés resaltado. Dice que no frena. Se ve también en un ejercicio sin cambios,
+> que en estas listas no muestra los hallazgos del plan. La fila del juez que la dejó dice «dijo: algo leve», no «dijo: sin
+> error».
 >
 > Arriba de «Todos los jueces lo aprueban», «Preparados para entregar» y «Faltan opiniones», una nota dice cuántos de esos
 > ejercicios tienen observaciones leves.
@@ -86,7 +87,7 @@ Que la tarjeta use las palabras del ejercicio no le regala nada.
 | Regla | Prueba |
 |---|---|
 | R001 | `test/tablero_html/correcciones/nadie_le_ve_problemas_test.dart`: entra con una observación leve de un juez y de un analizador, y trae quién la dejó y lo que observó. Lo deja afuera una media, una alta o una bloqueante. Con lo leve de un juez de antes, queda en «Faltan opiniones». El analizador con lo leve no está entre los «sin observaciones» |
-| R002 | `html/test/lo-leve-no-frena.test.js`: el bloque del ejercicio muestra cada observación leve con quién la dejó y dice que no frena, también sin cambios. La nota de cada lista cuenta los que tienen algo leve, y no aparece si no hay ninguno |
+| R002 | `html/test/lo-leve-no-frena.test.js`: el bloque del ejercicio muestra cada observación leve con quién la dejó, sin los `$`, y dice que no frena, también sin cambios. La fila del juez dice «algo leve». La nota de cada lista cuenta los que tienen algo leve, y no aparece si no hay ninguno |
 | R003 | `html/test/lo-leve-no-frena.test.js`: el «resuelto» no nombra lo leve como motivo |
 
 ## References
