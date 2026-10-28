@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "runId": "ui-2026-10-28T19-27-27.553139Z-batch-recorrect",
+  "estado": "lanzada",
+  "lanzadaPor": "tablero-html",
+  "lanzadaEn": "2026-10-28T19:27:27.556658Z",
+  "clase": "recorrect",
+  "tanda": "tanda-A1-c2-1f1d898f-3ba9-3fcc-bc91-a104f79e53ca",
+  "campana": {
+    "tipo": "Propuesta",
+    "etiqueta": "A1 · V11"
+  },
+  "perfil": {
+    "id": "codex-chatgpt",
+    "proveedor": "codex-cli",
+    "modelo": "gpt-6.1-sol",
+    "esfuerzo": "medium"
+  },
+  "tope": 1000,
+  "topes": null,
+  "pedidoId": "pasada-c2-tramo-1-20261028",
+  "retomaDe": null,
+  "especificacion": {
+    "operation": "batch-recorrect",
+    "batchId": "tanda-A1-c2-1f1d898f-3ba9-3fcc-bc91-a104f79e53ca",
+    "title": "A1 · V11 · volver a corregir",
+    "scope": "batchId=tanda-A1-c2-1f1d898f-3ba9-3fcc-bc91-a104f79e53ca · contenido v59 · 50 ejercicios · tope 1000 · perfil codex-chatgpt",
+    "totalQueries": 1000,
+    "queriesBefore": 13600,
+    "batchStatusBefore": null,
+    "closingsBefore": null,
+    "provider": "codex-cli",
+    "model": "gpt-6.1-sol",
+    "reasoningEffort": "medium",
+    "instructionModel": null,
+    "version": "A1 · V11",
+    "baseline": null,
+    "judgeBudgets": {},
+    "evaluationOffsets": {}
+  },
+  "pidDelEnvoltorio": 56204,
+  "pidDelCli": 56205,
+  "huella": {
+    "pid": 56205,
+    "inicio": "2026-10-28T19:27:27.829478Z",
+    "comando": "--workdir /Users/josecullen/projects/learney/content-audit/.content-audit/campaigns/a1-v11 batch recorrect"
+  },
+  "cerradaEn": null,
+  "salida": null
+}
