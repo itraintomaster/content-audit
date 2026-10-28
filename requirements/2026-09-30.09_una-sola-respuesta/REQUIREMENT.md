@@ -202,6 +202,22 @@ ejemplo resuelto piden, y la versión final agrega que la consigna también mand
 
 </details>
 
+<a id="F-UNICA-R009"></a>
+### Rule[F-UNICA-R009] - Lo que no es inglés estándar no es otra respuesta
+**Severity**: critical | **Validation**: VALIDATED
+
+> Una respuesta que el juez lista y que no es inglés estándar —«ain't», «amn't», «gonna», «wanna», «gotta», «innit»— no es
+> otra respuesta válida, diga lo que diga el juez de su registro. No da hallazgo y queda a la vista en el diagnóstico,
+> aparte de las que el corrector ya acepta. La lista es cerrada y corta: una forma informal pero estándar, como una
+> contracción, no está.
+
+El 28/10/2026, en la C2 de A1, el juez de respuesta única pedía aceptar «ain't» en 6 ejercicios y «amn't» en 1: «"No, he
+ain't" es una respuesta corta negativa natural en variedades coloquiales del inglés» (`…1f54`). Así entró «ain't» en
+14 ejercicios en la C1 (7 a 9/10): la mesa lo agregó para resolver esa tarea. La regla no cambia el juez, que sigue
+con su versión y sus opiniones: decide la cuenta, como ya decide el corrector en [F-UNICA-R002](#F-UNICA-R002).
+
+**Fuente**: brief 232, «ain't» (14 reales); José, 28/10/2026: «arreglá … los defectos del 232».
+
 ## Contexto
 
 | Ficha | `single-answer` |

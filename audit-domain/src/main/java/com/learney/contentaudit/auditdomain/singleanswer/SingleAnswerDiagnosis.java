@@ -15,6 +15,9 @@ public class SingleAnswerDiagnosis {
 
     private List<String> droppedAsAccepted;
 
+    /** F-UNICA-R009: what the judge listed that is not standard English, as «ain't»: no finding. */
+    private List<String> droppedAsNonStandard = List.of();
+
     private double score;
 
     private boolean reusedFromPreviousRun;
@@ -55,6 +58,14 @@ public class SingleAnswerDiagnosis {
         this.droppedAsAccepted = droppedAsAccepted;
     }
 
+    public List<String> getDroppedAsNonStandard() {
+        return this.droppedAsNonStandard;
+    }
+
+    public void setDroppedAsNonStandard(List<String> droppedAsNonStandard) {
+        this.droppedAsNonStandard = droppedAsNonStandard;
+    }
+
     public double getScore() {
         return this.score;
     }
@@ -79,12 +90,13 @@ public class SingleAnswerDiagnosis {
         return Objects.equals(this.verdict, that.verdict)
                     && Objects.equals(this.counted, that.counted)
                     && Objects.equals(this.droppedAsAccepted, that.droppedAsAccepted)
+                    && Objects.equals(this.droppedAsNonStandard, that.droppedAsNonStandard)
                     && Objects.equals(this.score, that.score)
                     && Objects.equals(this.reusedFromPreviousRun, that.reusedFromPreviousRun);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(verdict, counted, droppedAsAccepted, score, reusedFromPreviousRun);
+        return Objects.hash(verdict, counted, droppedAsAccepted, droppedAsNonStandard, score, reusedFromPreviousRun);
     }
 }

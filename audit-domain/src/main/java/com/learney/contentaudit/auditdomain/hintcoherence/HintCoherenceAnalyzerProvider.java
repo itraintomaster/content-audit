@@ -74,6 +74,9 @@ public class HintCoherenceAnalyzerProvider implements AnalyzerProvider {
                                 AnalysisCost.INSTANT),
                         new AnalyzerRuleCard(HintCoherenceAnalyzer.RULE_HINT_GIVEAWAY,
                                 "F-PISTA-R007: la pista no regala la respuesta si el alumno todavía tiene que decidir algo",
+                                AnalysisCost.INSTANT),
+                        new AnalyzerRuleCard(HintCoherenceAnalyzer.RULE_LETTER_HINT,
+                                "F-PISTA-R008: la pista no da las primeras letras de la respuesta",
                                 AnalysisCost.INSTANT)),
                 "0 ejercicios con error. Un ejercicio sin pista es error cuando la llevan tres cuartos o más de los"
                         + " de su tipo, o de todo su tema",

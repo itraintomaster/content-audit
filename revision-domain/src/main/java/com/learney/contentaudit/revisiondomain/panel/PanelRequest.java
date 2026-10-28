@@ -42,6 +42,14 @@ public class PanelRequest {
     public DidacticReference getDidacticReference() { return didacticReference; }
     public void setDidacticReference(DidacticReference reference) { didacticReference = reference; }
 
+    /** F-MESA-R031: the title and the instructions of the topic, which say what case of the rule it practices. */
+    private String topicTitle;
+    private String topicInstructions;
+    public String getTopicTitle() { return topicTitle; }
+    public void setTopicTitle(String topicTitle) { this.topicTitle = topicTitle; }
+    public String getTopicInstructions() { return topicInstructions; }
+    public void setTopicInstructions(String topicInstructions) { this.topicInstructions = topicInstructions; }
+
     public PanelRequest() {
     }
 

@@ -35,8 +35,8 @@ import javax.annotation.processing.Generated;
  *
  * <p><strong>Adapter↔graph contract (inputs):</strong> {@code batchId}, {@code level}, {@code knowledgeId},
  * {@code quizId} (empty for a task of the whole topic), {@code attempt}, {@code twoFixes} («true»/«false»),
- * {@code topicView}, {@code tasks}, {@code wordLights}, {@code conversion} and {@code previousRejections}, each a JSON
- * text, and {@code project_root}.
+ * {@code topicView}, {@code topic} (its title and instructions, F-MESA-R031), {@code tasks}, {@code wordLights},
+ * {@code conversion} and {@code previousRejections}, each a JSON text, and {@code project_root}.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -110,12 +110,21 @@ class AgentPanelProposer implements PanelProposer {
         inputs.put("attempt", String.valueOf(request.getAttempt()));
         inputs.put("twoFixes", String.valueOf(request.isTwoFixes()));
         inputs.put("topicView", json(topicView(request.getTopicView(), request.getTopicQuizIds())));
+        inputs.put("topic", json(topic(request)));
         inputs.put("tasks", json(tasks(request.getBriefs())));
         inputs.put("wordLights", json(wordLights(request.getWordLights())));
         inputs.put("conversion", json(conversion(request.getConversion())));
         inputs.put("previousRejections", json(rejections(request.getPreviousRejections())));
         inputs.put("didacticReference", json(didacticReference(request)));
         return inputs;
+    }
+
+    /** F-MESA-R031: the title and the instructions of the topic: what it practices, which the student view does not say. */
+    private static ObjectNode topic(PanelRequest request) {
+        ObjectNode node = JSON.createObjectNode();
+        node.put("title", request.getTopicTitle());
+        node.put("instructions", request.getTopicInstructions());
+        return node;
     }
 
     private static ObjectNode didacticReference(PanelRequest request) {

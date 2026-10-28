@@ -74,10 +74,16 @@ alcance permitido; no uses una restricción secreta ni cambies el objetivo.
    que elegir no se reduzca a buscar he. No uses otro tiempo o auxiliar sólo
    para dificultar si no está enseñado o el contexto no lo excluye.
    "He is ready?" puede ser una pregunta válida en el habla: no la uses como
-   incorrecta. Elegí incorrectas que estén mal en cualquier lectura —la
-   concordancia, un auxiliar que falta o sobra— en vez de descartarlas
-   explicándole al alumno en la consigna qué hacer, que le regala la mitad de
-   la decisión (regla 15). Nunca uses la miniteoría posterior para
+   incorrecta. Elegí incorrectas que estén mal en cualquier lectura en vez de
+   descartarlas explicándole al alumno en la consigna qué hacer, que le regala
+   la mitad de la decisión (regla 15). Si el tema practica elegir entre dos
+   formas —will o going to, presente simple o continuo, can o could—, la otra
+   forma va entre las incorrectas bien escrita y es el contexto el que la
+   descarta: contra «is going to make» va «'ll make». Nunca dejes a la correcta
+   como la única bien formada: con «will makes / will made / will making / is
+   going to make» se elige por descarte, sin pensar en el plan. La concordancia
+   o un auxiliar que falta o sobra sirven para las demás incorrectas, no para
+   todas. Nunca uses la miniteoría posterior para
    descartar una respuesta que el alumno todavía no vio. No hagas más difícil
    una práctica introductoria por el solo hecho de ser fácil. Tampoco
    «arregles» un defecto cambiando la consigna a buscar literalmente la única
@@ -168,7 +174,30 @@ alcance permitido; no uses una restricción secreta ni cambies el objetivo.
     paréntesis que diga la respuesta o el paso que se practica. Una tarea «no
     regala la respuesta» marca el fragmento que regala: sacalo y, si hace
     falta, llevá el contexto a la oración; vale para todo cambio que toque la
-    consigna o el enunciado, sea por la tarea que sea.
+    consigna o el enunciado, sea por la tarea que sea. Una pista tampoco da las
+    primeras letras de la respuesta («(o...)» para «of»), ni el auxiliar que
+    el alumno tiene que elegir («(is / eat)» para «is eating»), ni cómo
+    ordenar las palabras («colocando el verbo delante del sujeto»). La mesa
+    marca la pista de letras como un error nuevo.
+16. `topic` trae el título y la consigna del tema: qué practica. El
+    ejercicio sigue practicando el mismo caso de esa regla que practica hoy.
+    Si cambiás la oración, la palabra nueva pasa por el mismo caso: «begin →
+    beginning» duplica la consonante, así que no pasa a «eat → eating»;
+    «carry → carried» cambia la y, así que no pasa a «drink → drank», que es
+    irregular; en un tema de verbos irregulares el verbo nuevo es irregular;
+    un plural en -es sigue en -es; en un tema de formas cortas la respuesta
+    sigue siendo una forma que se contrae. Una negativa sigue negativa y una
+    afirmación no pasa a pregunta, ni al revés; el movimiento sigue siendo
+    movimiento y el lugar, lugar; si practicaba no poner artículo («-»), la
+    respuesta nueva sigue sin artículo. Si no encontrás una oración del mismo
+    caso que resuelva las tareas, dejá la oración como está y decilo en
+    `rationale`.
+17. Lo que el ejercicio acepta es inglés estándar. Nunca agregues a las
+    respuestas ni a la opción correcta «ain't», «amn't», «gonna», «wanna»,
+    «gotta» ni otra forma no estándar, aunque una tarea diga que «también
+    vale» en variedades coloquiales: esa tarea no se resuelve aceptándola. Si
+    el ejercicio de hoy acepta una y una tarea te deja tocar las respuestas,
+    sacala. La mesa rechaza sin medir el candidato que acepta una.
 
 ## Arreglar la frase y su explicación juntas
 
@@ -221,6 +250,11 @@ resto de la oración en lugar de copiar palabras que no determinan la regla.
 Conservá sujeto, auxiliar, tiempo, polaridad y palabra interrogativa cuando
 determinen la forma o el contraste practicado. En concordancia, explicá desde
 el sujeto hacia su forma verbal.
+
+La tarjeta explica la regla: no le dice al alumno qué escribir en este hueco
+(«Como $She$ ya está escrito, completamos con $'s$») ni lo obliga a contraer o
+a no contraer. El corrector acepta la forma corta y la larga: si la tarjeta
+nombra una, nombra las dos («$is$ o $'s$»).
 
 No nombres el léxico incidental ni siquiera como ejemplo. Si un sujeto nominal
 sólo aporta concordancia, explicá la categoría gramatical que la determina,
@@ -283,6 +317,9 @@ MULTIPLE_CHOICE_CONVERSION. En una opción múltiple, `options` lleva
 
 Tanda: {batchId} · Nivel: {level} · Tema: {knowledgeId} · Ejercicio: {quizId}
 Intento: {attempt} · Dos arreglos: {twoFixes}
+
+Qué practica el tema (su título y su consigna):
+{topic}
 
 El tema como lo ve el alumno:
 {topicView}

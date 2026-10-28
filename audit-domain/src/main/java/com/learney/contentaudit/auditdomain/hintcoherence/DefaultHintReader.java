@@ -301,6 +301,27 @@ class DefaultHintReader implements HintReader {
     }
 
     /**
+     * F-PISTA-R008: the hints the student sees that are the first letters of a word followed by an ellipsis, «(o...)» or
+     * «(at…)», each with its gaps. {@link #gapHints} leaves them out because their dots read as a sentence.
+     */
+    static List<GapHint> letterHints(List<SentencePartEntity> parts, ExerciseShape shape) {
+        List<GapHint> hints = new ArrayList<>();
+        List<Integer> gaps = gaps(parts);
+        if (gaps.isEmpty()) {
+            return hints;
+        }
+        for (GapHint candidate : candidates(parts, gaps, shape)) {
+            if (candidate.text() != null && LETTERS.matcher(candidate.text().strip()).matches()) {
+                hints.add(candidate);
+            }
+        }
+        return hints;
+    }
+
+    /** F-PISTA-R008: one to four letters and an ellipsis of two or more dots or «…». */
+    static final Pattern LETTERS = Pattern.compile("([A-Za-z]{1,4})\\s*(?:\\.{2,}|…)");
+
+    /**
      * Every answer a gap accepts (F-QSENT-R001): each entry of its options cut by «|», without edge spaces and without the
      * empty ones. Unlike {@link #firstAnswers}, which is what the audio says, these are all the variants of the same answer.
      */

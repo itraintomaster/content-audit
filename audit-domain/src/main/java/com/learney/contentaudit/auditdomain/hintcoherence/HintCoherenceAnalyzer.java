@@ -45,6 +45,8 @@ import javax.annotation.processing.Generated;
  *       (no verb, or one already conjugated), also by {@link HintAnswerCheck}: a high finding, marked with the
  *       hint; fixed by rule with the verb in base form, or at the panel when what gives the answer away does
  *       not conjugate.</li>
+ *   <li>R008: the hint of a gap that is the first letters of one of its answers, «(o...)» for «of», also by
+ *       {@link HintAnswerCheck}: a high finding, marked with the hint, at the panel.</li>
  * </ul>
  *
  * An exercise with a finding scores 0, one without any scores 1. The evidence is the exercise as
@@ -79,6 +81,9 @@ class HintCoherenceAnalyzer implements ContentAnalyzer {
 
     /** R007: the hint does not give the answer away when the student still has something to decide. */
     static final String RULE_HINT_GIVEAWAY = "hint-giveaway";
+
+    /** R008: the hint does not give the first letters of the answer. */
+    static final String RULE_LETTER_HINT = "letter-hint";
 
     private final HintReader hintReader;
 
@@ -186,6 +191,13 @@ class HintCoherenceAnalyzer implements ContentAnalyzer {
         } else {
             issues = List.of();
         }
+        // R008: a hint of letters is not read as a hint by R001 to R007, so it is looked at for every exercise.
+        List<HintIssue> letters = answerCheck.checkLetterHint(quiz, reading.shape());
+        if (!letters.isEmpty()) {
+            List<HintIssue> all = new ArrayList<>(issues);
+            all.addAll(letters);
+            issues = all;
+        }
         if (reading.shape() == ExerciseShape.WHOLE_SENTENCE) {
             // R006: only an answer that is the whole sentence; a gap inside it is R002's (inv. 2).
             List<HintIssue> all = new ArrayList<>(issues);
@@ -288,6 +300,9 @@ class HintCoherenceAnalyzer implements ContentAnalyzer {
         if (issue.getKind() == HintIssueKind.REWRITE_WORD_NOT_ANNOUNCED) {
             return ". Va a la mesa: quien reescribe fiel da mal";
         }
+        if (issue.getKind() == HintIssueKind.LETTER_HINT) {
+            return ". Va a la mesa: unas letras no tienen forma base, y el alumno tiene que poder elegir";
+        }
         if (issue.getKind() == HintIssueKind.HINT_GIVEAWAY) {
             return panel
                     ? ". Va a la mesa: no se conjuga, y sacar la pista dejaría sin pista un tema que la lleva"
@@ -302,11 +317,12 @@ class HintCoherenceAnalyzer implements ContentAnalyzer {
     }
 
     /**
-     * R001 and R007 are high: the exercise does not become impossible, it stops teaching (F-HALL-R002); a hint that does not
+     * R001, R007 and R008 are high: the exercise does not become impossible, it stops teaching (F-HALL-R002); a hint that does not
      * match its answer makes the exercise impossible.
      */
     static FindingSeverity severityOf(HintIssueKind kind) {
         return kind == HintIssueKind.MISSING_HINT || kind == HintIssueKind.HINT_GIVEAWAY
+                || kind == HintIssueKind.LETTER_HINT
                 ? FindingSeverity.HIGH
                 : FindingSeverity.BLOCKING;
     }
@@ -332,6 +348,7 @@ class HintCoherenceAnalyzer implements ContentAnalyzer {
             case NEGATION_WITHOUT_NEGATIVE -> "la pista lleva not y la respuesta no niega";
             case REWRITE_WORD_NOT_ANNOUNCED -> "«" + word + "» no sale de la oración de partida, la pista ni la consigna";
             case HINT_GIVEAWAY -> "la pista «" + word + "» es la respuesta: el alumno sólo la copia";
+            case LETTER_HINT -> "la pista «" + word + "» da las primeras letras de la respuesta: el alumno no elige, completa";
         };
     }
 

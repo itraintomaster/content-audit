@@ -21,5 +21,7 @@ public enum HintIssueKind {
 
     REWRITE_WORD_NOT_ANNOUNCED,
 
-    HINT_GIVEAWAY
+    HINT_GIVEAWAY,
+
+    LETTER_HINT
 }

@@ -68,6 +68,22 @@ Que la tarjeta use las palabras del ejercicio no le regala nada.
 > chip ([F-DICE-R002](../2026-10-28.03_cada-aviso-dice-que-paso/REQUIREMENT.md#F-DICE-R002)) nombra sólo a quien le ve un
 > problema medio, alto o bloqueante. Una observación leve no se nombra como motivo.
 
+<a id="F-LEVE-R004"></a>
+### Rule[F-LEVE-R004] - Lo que arregla publicar tampoco frena
+**Severity**: major | **Validation**: VALIDATED
+
+> La oración guardada en la copia de producción que no es la del ejercicio de hoy
+> ([F-MESA-R026](../2026-09-30.22_la-mesa-por-tema/REQUIREMENT.md#F-MESA-R026)) no deja al ejercicio afuera de
+> «Todos los jueces lo aprueban», aunque su hallazgo sea medio: la cambia publicar, que guarda la del ejercicio. El bloque
+> del ejercicio dice «Se arregla al publicar», con la oración de producción, y el analizador que la marcó no figura entre
+> los que lo evaluaron «sin observaciones». No es una observación leve ni se cuenta como tal. El «resuelto» nunca la
+> nombra como motivo. La oración guardada del propio ejercicio, la del árbol, sí frena: ésa la arregla la corrección.
+
+El 28/10/2026, en la C2 de A1, 70 ejercicios tenían ese hallazgo y en 47 era lo único que los dejaba afuera, todos con
+cambios: la corrección cambió el ejercicio y producción guarda la oración de antes, como «I love a lot of vegetables.»
+para «I ___ (love) vegetables.» (`…1ecd`). Publicar escribe `form.sentences` desde el árbol, así que el hallazgo se va
+solo. El brief 239 los contó como «oraciones desfasadas» que había que arreglar: 3 eran del árbol.
+
 ## Contexto
 
 - **Leve** es la gravedad más baja de un hallazgo. En la miniteoría, son leves:
@@ -89,6 +105,7 @@ Que la tarjeta use las palabras del ejercicio no le regala nada.
 | R001 | `test/tablero_html/correcciones/nadie_le_ve_problemas_test.dart`: entra con una observación leve de un juez y de un analizador, y trae quién la dejó y lo que observó. Lo deja afuera una media, una alta o una bloqueante. Con lo leve de un juez de antes, queda en «Faltan opiniones». El analizador con lo leve no está entre los «sin observaciones» |
 | R002 | `html/test/lo-leve-no-frena.test.js`: el bloque del ejercicio muestra cada observación leve con quién la dejó, sin los `$`, y dice que no frena, también sin cambios. La fila del juez dice «algo leve». La nota de cada lista cuenta los que tienen algo leve, y no aparece si no hay ninguno |
 | R003 | `html/test/lo-leve-no-frena.test.js`: el «resuelto» no nombra lo leve como motivo |
+| R004 | `test/tablero_html/correcciones/nadie_le_ve_problemas_test.dart`: entra con la oración de producción, trae la de producción y no la cuenta como leve; la del árbol, o la de producción con otro hallazgo medio, lo deja afuera. `html/test/lo-leve-no-frena.test.js`: el bloque dice «Se arregla al publicar» con la oración, y el «resuelto» no la nombra |
 
 ## References
 

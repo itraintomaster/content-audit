@@ -594,6 +594,55 @@ corregibles quedan sin corregir porque sólo tienen el largo.
 menos que la oración bien escrita o respetando el enunciado … tendría que haber quedado la opción que se pasaba un poco
 del largo» y «Sí: hacé el largo leve».
 
+<a id="F-MESA-R030"></a>
+### Rule[F-MESA-R030] - Lo que el ejercicio acepta es inglés estándar
+**Severity**: critical | **Validation**: VALIDATED
+
+> Antes de medir, la mesa rechaza el candidato que hace aceptar al ejercicio una forma que no es inglés estándar
+> ([F-UNICA-R009](#F-UNICA-R009)): en las respuestas de un hueco o en la opción correcta. El motivo dice «acepta «ain't»,
+> que no es inglés estándar». Si el ejercicio ya aceptaba una, el candidato que cambia las respuestas la saca: si la
+> deja, el motivo dice «cambia las respuestas y sigue aceptando «ain't»». Uno que no toca las respuestas las deja como
+> estaban. Quien propone lo sabe: nunca la agrega, aunque una tarea diga que «también vale», y la saca cuando una tarea
+> le deja tocar las respuestas.
+
+En la C1 de A1 la mesa agregó «ain't» en 14 ejercicios, como «We ___ (not / be) real.» (`…25be`, 8/10), cuya tarjeta
+llegó a decir «También aceptamos $ain't$, una forma informal de negar que no pertenece al inglés estándar».
+
+**Fuente**: brief 232; José, 28/10/2026: «arreglá … los defectos del 232».
+
+<a id="F-MESA-R031"></a>
+### Rule[F-MESA-R031] - Quien propone conserva lo que el tema practica
+**Severity**: critical | **Validation**: VALIDATED
+
+> Quien propone recibe el título y la consigna del tema, que dicen qué practica y que la vista del alumno de sus
+> ejercicios no trae. Con eso:
+> 1. el ejercicio sigue practicando el mismo caso de la regla que practica hoy: «begin → beginning» duplica la
+>    consonante y no pasa a «eat → eating»; una negativa sigue negativa y una afirmación no pasa a pregunta;
+> 2. la tarjeta explica la regla: no dice qué escribir en el hueco ni obliga a contraer o a no contraer, porque el
+>    corrector toma las dos formas; si nombra una, nombra las dos;
+> 3. en una opción múltiple que practica elegir entre dos formas —will o going to—, la otra forma va entre las
+>    incorrectas bien escrita y la descarta el contexto; la correcta nunca es la única bien formada;
+> 4. una pista no da las primeras letras de la respuesta, el auxiliar que hay que elegir ni el orden de las palabras.
+>
+> Si no encuentra una oración del mismo caso que resuelva las tareas, deja la oración y lo dice.
+
+El revisor de cambios leyó las 1.725 marcas de la C2 de A1 y quedaron 136 defectos reales (brief 232). Cuatro tipos
+son de quien propone:
+
+| Tipo | Ejercicios | Ejemplo |
+|---|---:|---|
+| Otro tema | 30 | `…1fe1`, «Doble consonante y e»: «begin → beginning» pasó a «eat → eating» |
+| Tarjeta que obliga a contraer | 17 | `…25ad`: «Como She ya está escrito antes del hueco, completamos con $'s$» |
+| Opciones por descarte | 12 | `…26f0`: «will makes / will made / will making / is going to» |
+| Pista de letras | 9 | `…24bf`: «We were scared ___ (o...) the dark.» |
+
+Casi todos salieron de la C1, el 7 al 9/10. Quien propone veía cada ejercicio del tema como lo ve el alumno, pero no
+el título del tema. La regla 3 de su guía, desde el 26/10, pedía incorrectas que estuvieran mal «por la concordancia, un
+auxiliar que falta o sobra». Las pistas de letras las marca también el analizador de pistas
+([F-PISTA-R008](#F-PISTA-R008)), así que la compuerta rechaza un candidato que trae una nueva.
+
+**Fuente**: brief 232; José, 28/10/2026: «arreglá … los defectos del 232».
+
 ## Contexto
 
 **Por qué una mesa por tema.** El 077 revisó los 11.287 ejercicios con revisores por lote y verificadores que intentaron

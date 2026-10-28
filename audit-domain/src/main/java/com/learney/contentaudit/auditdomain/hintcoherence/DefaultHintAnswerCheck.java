@@ -858,6 +858,39 @@ class DefaultHintAnswerCheck implements HintAnswerCheck {
     }
 
     /**
+     * F-PISTA-R008: a hint of a gap that is the first letters of one of the answers that gap accepts, with an ellipsis --
+     * «We were scared ___ (o...) the dark.» for «of» -- leaves the student nothing to choose: the issue is marked with
+     * the hint as it is written and goes to the panel, because letters have no base form to fall back to. It needs no
+     * tokens: the letters are compared with the beginning of each answer, without case.
+     */
+    @Override
+    public List<HintIssue> checkLetterHint(AuditableQuiz quiz, ExerciseShape shape) {
+        List<HintIssue> issues = new ArrayList<>();
+        if (quiz == null) {
+            return issues;
+        }
+        List<SentencePartEntity> parts = DefaultHintReader.parts(quiz);
+        for (DefaultHintReader.GapHint hint : DefaultHintReader.letterHints(parts, shape)) {
+            java.util.regex.Matcher m = DefaultHintReader.LETTERS.matcher(hint.text().strip());
+            if (!m.matches()) {
+                continue;
+            }
+            String letters = m.group(1).toLowerCase(Locale.ROOT);
+            boolean begins = false;
+            for (int gap : hint.gaps()) {
+                for (String accepted : DefaultHintReader.acceptedAnswers(parts, gap)) {
+                    begins |= accepted.strip().toLowerCase(Locale.ROOT).startsWith(letters);
+                }
+            }
+            if (begins) {
+                issues.add(issue(HintCoherenceAnalyzer.RULE_LETTER_HINT, HintIssueKind.LETTER_HINT, hint.text().strip(),
+                        null));
+            }
+        }
+        return deduplicated(issues);
+    }
+
+    /**
      * Lower case, everything that is not a letter or a digit turned into a space -- the «/», the straight and the
      * curved apostrophes, «%», the quotes --, single spaces and no edges: «(I / am)» is «i am», «We're going» is
      * «we re going».

@@ -599,4 +599,28 @@ public class DefaultSingleAnswerClassifierTest {
                 withOther.getFindings().stream().map(FindingDraft::getRule).toList());
         assertEquals(withMain.getScore(), withOther.getScore(), 1e-9);
     }
+
+    @Test
+    @DisplayName("should drop «ain't» and «amn't» listed by the judge as another valid answer, leaving no single-answer finding and keeping them apart in the diagnosis, while a standard answer still counts")
+    @Tag("FEAT-UNICA")
+    @Tag("F-UNICA-R009")
+    public void shouldDropAintAndAmntListedByTheJudgeAsAnotherValidAnswerLeavingNoFindingWhileAStandardAnswerStillCounts() {
+        // F-UNICA-R009: «A: Is he tired? B: No, he ___ .» (…1f54, A1) accepts «isn't»; the judge listed «ain't» as natural
+        // «en variedades coloquiales del inglés», and in the C1 the panel added it. «amn't» is the case of …25fc.
+        AuditableQuiz tired = quiz("q-aint", "Respuestas cortas", "Escribe la respuesta corta.",
+                text("A: Is he tired? B: No, he"), cloze("isn't"), text("."));
+        SingleAnswerVerdict verdict = verdict(
+                alt("ain't", 1, AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.MEDIUM,
+                        "«No, he ain't» es natural en variedades coloquiales."),
+                alt("AMN’T", 1, AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.MEDIUM, "Irlandés."),
+                alt("is not tired", 1, AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.MEDIUM,
+                        "Repite el adjetivo."));
+
+        SingleAnswerOutcome outcome = classifier(new FakeCorrector()).classify(verdict, tired, false);
+
+        assertEquals(List.of("is not tired"), outcome.getFindings().stream().map(FindingDraft::getMarker).toList(),
+                "only the standard answer is another answer");
+        assertEquals(List.of("ain't", "AMN’T"), outcome.getDiagnosis().getDroppedAsNonStandard());
+        assertEquals(List.of(), outcome.getDiagnosis().getDroppedAsAccepted(), "the corrector does not accept them");
+    }
 }

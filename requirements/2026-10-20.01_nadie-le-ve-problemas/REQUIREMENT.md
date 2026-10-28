@@ -27,7 +27,7 @@ Un **analizador** mide sin modelo: largo de la oración, palabras poco vistas, p
 
 Deben cumplirse las cuatro condiciones:
 
-1. No tiene ningún hallazgo de gravedad media, alta o bloqueante, de ningún analizador ni juez. Un hallazgo así de una opinión de antes también lo excluye. Una observación leve no lo excluye, pero se ve ([F-LEVE-R001](../2026-10-28.04_lo-leve-no-frena/REQUIREMENT.md#F-LEVE-R001)).
+1. No tiene ningún hallazgo de gravedad media, alta o bloqueante, de ningún analizador ni juez. Un hallazgo así de una opinión de antes también lo excluye. Una observación leve no lo excluye, pero se ve ([F-LEVE-R001](../2026-10-28.04_lo-leve-no-frena/REQUIREMENT.md#F-LEVE-R001)); tampoco la oración que guarda producción, que arregla publicar ([F-LEVE-R004](../2026-10-28.04_lo-leve-no-frena/REQUIREMENT.md#F-LEVE-R004)).
 2. Ningún analizador que no es juez lo dejó sin evaluar o evaluado a medias.
 3. Al menos un juez aplicable opinó con su versión de hoy, sin abstenerse.
 4. Lo medido es el contenido de hoy: si el ejercicio se editó después de medir, no es elegible.

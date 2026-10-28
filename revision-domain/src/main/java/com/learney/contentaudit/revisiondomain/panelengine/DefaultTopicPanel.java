@@ -318,6 +318,9 @@ class DefaultTopicPanel implements TopicPanel {
                     topicView(progress.topic), new ArrayList<>(progress.open), lights, work.getConversion(), attempt + 1,
                     new ArrayList<>(rejections), twoFixes(progress.open));
             request.setTopicQuizIds(topicQuizIds(progress.topic));
+            // F-MESA-R031: what the topic practices, which the student view of its exercises does not say.
+            request.setTopicTitle(progress.topic.getLabel());
+            request.setTopicInstructions(progress.topic.getInstructions());
             request.setDidacticReference(work.getDidacticReferences().get(quizId));
             PanelProposal proposal;
             try {

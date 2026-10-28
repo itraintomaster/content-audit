@@ -14,4 +14,7 @@ interface HintAnswerCheck {
     List<HintIssue> checkRewrite(AuditableQuiz quiz);
 
     List<HintIssue> checkGiveaway(AuditableQuiz quiz, ExerciseShape shape);
+
+    /** F-PISTA-R008: the hint of a gap that gives the first letters of one of its answers. */
+    List<HintIssue> checkLetterHint(AuditableQuiz quiz, ExerciseShape shape);
 }

@@ -598,4 +598,42 @@ public class DefaultCandidateScreenTest {
     private static TopicWork converting(KnowledgeEntity topic) {
         return work(topic, List.of(), new ConversionOrder(CONTRACCIONES, FormKind.MULTIPLE_CHOICE, 3), Map.of(), List.of());
     }
+
+    @Test
+    @DisplayName("should reject before measuring a candidate that makes the exercise accept «ain't», and one that changes the answers but keeps the «ain't» it had, but not one that leaves the answers as they were")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R030")
+    public void shouldRejectACandidateThatMakesTheExerciseAcceptAintOrChangesTheAnswersAndKeepsIt() {
+        // F-MESA-R030: «A: Am I wrong? B: No, you ___ .» (…1f53, A1): in the C1 the panel added «ain't» to «aren't».
+        String quizId = "67fab6d59930102295341f53";
+        QuizTemplateEntity start = quiz(quizId, "No, no lo eres.", text("A: Am I wrong? B: No, you"), cloze("aren't"),
+                text("."));
+        Finding answer = finding("single-answer", "different-valid-answer", quizId, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, "are not", "«are not» también vale");
+        TopicWork work = work(topic("cortas", "Respuestas cortas", new ArrayList<>(List.of(start))),
+                List.of(brief("t-otra", answer, List.of(ExercisePart.ANSWERS, ExercisePart.TRANSLATION,
+                        ExercisePart.MINI_THEORY))));
+        DefaultCandidateScreen screen = new DefaultCandidateScreen(corrections());
+
+        QuizTemplateEntity aint = withParts(start, text("A: Am I wrong? B: No, you"), cloze("aren't|are not|ain't"),
+                text("."));
+        assertEquals(List.of("acepta «ain't», que no es inglés estándar"),
+                screen.screen(work, quizId, candidate(PanelCandidateKind.WHOLE_EXERCISE, aint)));
+
+        QuizTemplateEntity had = withParts(start, text("A: Am I wrong? B: No, you"), cloze("aren't|ain’t"), text("."));
+        TopicWork withIt = work(topic("cortas", "Respuestas cortas", new ArrayList<>(List.of(had))),
+                List.of(brief("t-otra", answer, List.of(ExercisePart.ANSWERS, ExercisePart.TRANSLATION,
+                        ExercisePart.MINI_THEORY))));
+        QuizTemplateEntity kept = withParts(had, text("A: Am I wrong? B: No, you"), cloze("aren't|are not|ain’t"),
+                text("."));
+        assertEquals(List.of("cambia las respuestas y sigue aceptando «ain't», que no es inglés estándar"),
+                screen.screen(withIt, quizId, candidate(PanelCandidateKind.WHOLE_EXERCISE, kept)));
+
+        QuizTemplateEntity takenOut = withParts(had, text("A: Am I wrong? B: No, you"), cloze("aren't|are not"),
+                text("."));
+        assertEquals(List.of(), screen.screen(withIt, quizId, candidate(PanelCandidateKind.WHOLE_EXERCISE, takenOut)));
+        QuizTemplateEntity onlyTheCard = rewritten(had, q -> q.setMiniTheory("Se responde con el auxiliar: $you are$."));
+        assertEquals(List.of(), screen.screen(withIt, quizId, candidate(PanelCandidateKind.WHOLE_EXERCISE, onlyTheCard)),
+                "the answers stay as they were");
+    }
 }

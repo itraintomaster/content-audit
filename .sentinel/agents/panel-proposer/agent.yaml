@@ -43,6 +43,7 @@ dependencies:
   - attempt
   - twoFixes            # "true": entregar uno que cambia sólo la traducción y otro que cambia el inglés
   - topicView           # JSON: el tema como lo ve el alumno, con lo ya aceptado en la tanda
+  - topic               # JSON: el título y la consigna del tema, que dicen qué caso de la regla practica (F-MESA-R031)
   - tasks               # JSON: las tareas del ejercicio, su hallazgo, evidencia y lo que pueden tocar
   - wordLights          # JSON: el semáforo de palabras del tema
   - conversion          # JSON: el encargo de José (pasar a opción múltiple), o vacío

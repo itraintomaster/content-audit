@@ -227,8 +227,10 @@ public class AgentPanelProposerTest {
                 List.of("F-NOEMP-R001: error nuevo de translation-sense (natural)")))));
 
         Map<String, String> inputs = sent.get();
-        assertEquals(List.of("batchId", "level", "knowledgeId", "quizId", "attempt", "twoFixes", "topicView", "tasks", "wordLights",
-                "conversion", "previousRejections", "didacticReference", "project_root"), new ArrayList<>(inputs.keySet()), "nothing else");
+        // F-MESA-R031: the title and the instructions of the topic go too.
+        assertEquals(List.of("batchId", "level", "knowledgeId", "quizId", "attempt", "twoFixes", "topicView", "topic", "tasks",
+                "wordLights", "conversion", "previousRejections", "didacticReference", "project_root"),
+                new ArrayList<>(inputs.keySet()), "nothing else");
         assertEquals("A1", inputs.get("level"));
         assertEquals("2", inputs.get("attempt"));
         assertEquals("true", inputs.get("twoFixes"));
@@ -270,6 +272,49 @@ public class AgentPanelProposerTest {
     }
 
     /** The request of the panel for «I ___ a lot of vegetables.», on the given attempt and with its rejections. */
+    @Test
+    @org.junit.jupiter.api.DisplayName("should give the proposer the title and the instructions of the topic, and the prompt should keep the case of the rule, a card that does not prescribe a form, options that need the decision, no hint of letters and only standard English")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R031")
+    @Tag("F-MESA-R030")
+    void givesTheProposerWhatTheTopicPracticesAndThePromptSaysWhatToKeep() throws Exception {
+        // F-MESA-R031: in the C1 of A1, «begin → beginning» (…1fe1, «Doble consonante y e») became «eat → eating»: the
+        // proposer saw the exercises of the topic, never its title. The brief 232 read 30 changes of another topic, 17
+        // cards that ask to contract, 12 multiple choices answered by discarding and 9 hints of letters.
+        PanelRequest request = request(1, List.of());
+        request.setTopicTitle("Doble consonante y e");
+        request.setTopicInstructions("Escribe el verbo con -ing.");
+
+        com.fasterxml.jackson.databind.JsonNode topic = new com.fasterxml.jackson.databind.ObjectMapper()
+                .readTree(AgentPanelProposer.inputs(request).get("topic"));
+        assertEquals("Doble consonante y e", topic.path("title").asText());
+        assertEquals("Escribe el verbo con -ing.", topic.path("instructions").asText());
+
+        java.nio.file.Path root = java.nio.file.Path.of("").toAbsolutePath();
+        while (root != null && !java.nio.file.Files.isDirectory(root.resolve(".sentinel/agents/panel-proposer"))) {
+            root = root.getParent();
+        }
+        assertTrue(root != null, "the proposer definition must be available to the test");
+        java.nio.file.Path agent = root.resolve(".sentinel/agents/panel-proposer");
+        String prompt = java.nio.file.Files.readString(agent.resolve("nodes/generate.md"));
+        String yaml = java.nio.file.Files.readString(agent.resolve("agent.yaml"));
+        assertTrue(yaml.contains("  - topic "), "the graph declares the input");
+        assertTrue(prompt.contains("{topic}"), "the user prompt renders it");
+        for (String rule : List.of(
+                "El\n    ejercicio sigue practicando el mismo caso de esa regla que practica hoy.",
+                "no pasa a «eat → eating»",
+                "Nunca dejes a la correcta\n   como la única bien formada",
+                "no le dice al alumno qué escribir en este hueco",
+                "nombra las dos («$is$ o $'s$»)",
+                "primeras letras de la respuesta («(o...)» para «of»)",
+                "Lo que el ejercicio acepta es inglés estándar.",
+                "La mesa rechaza sin medir el candidato que acepta una.")) {
+            assertTrue(prompt.contains(rule), "the prompt says: " + rule);
+        }
+        assertFalse(prompt.contains("—la\n   concordancia, un auxiliar que falta o sobra— en vez de"),
+                "it no longer asks every wrong option to be wrong by agreement");
+    }
+
     static PanelRequest request(int attempt, List<CandidateRejection> rejections) {
         String quiz = "67fab6d59930102295341ecd";
         Finding translation = new Finding("translation-sense", "same-meaning", new FindingNodeRef(AuditTarget.QUIZ, quiz, quiz),

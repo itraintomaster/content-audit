@@ -14,6 +14,9 @@ import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
 import com.learney.contentaudit.revisiondomain.panel.TopicWork;
 import com.learney.contentaudit.auditdomain.spanishregister.Tuteo;
+import com.learney.contentaudit.auditdomain.standardenglish.NonStandardForms;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.LinkedHashSet;
@@ -31,8 +34,8 @@ import javax.annotation.processing.Generated;
  * (F-MESA-R011); that a new mini theory belongs to one explicit quiz (F-MESA-R012);
  * that a conversion José ordered meets its three conditions (F-MESA-R015); that it takes out no punctuation and
  * breaks no line (F-MESA-R018); that an exercise of a rewrite topic stays one (F-MESA-R019); that what the student
- * reads in Spanish goes in «tú» (F-MESA-R021); and that a sentence shortened only for its length loses words and gains
- * none (F-MESA-R022). Each violation is a line with its reason;
+ * reads in Spanish goes in «tú» (F-MESA-R021); that a sentence shortened only for its length loses words and gains
+ * none (F-MESA-R022); and that what the exercise accepts is standard English (F-MESA-R030). Each violation is a line with its reason;
  * none means the candidate goes on to be measured.
  */
 @Generated(
@@ -94,6 +97,8 @@ class DefaultCandidateScreen implements CandidateScreen {
         violations.addAll(PunctuationPreservation.violations(original, proposed));
         // F-MESA-R021: what the student reads in Spanish goes in «tú».
         violations.addAll(SpanishRegister.violations(original, proposed));
+        // F-MESA-R030: what the exercise accepts is standard English.
+        violations.addAll(standardEnglish(original, proposed));
         if (candidate.getTopicInstructions() != null
                 && !Objects.equals(candidate.getTopicInstructions(), topic.getInstructions())) {
             SpanishRegister.violation("la consigna del tema", candidate.getTopicInstructions()).ifPresent(violations::add);
@@ -153,6 +158,57 @@ class DefaultCandidateScreen implements CandidateScreen {
             }
         }
         return violations;
+    }
+
+    /**
+     * F-MESA-R030: a candidate never makes the exercise accept a form that is not standard English, as «ain't»; and one
+     * that changes the answers takes out the one the exercise accepted. One that does not touch the answers leaves them
+     * as they were.
+     */
+    static List<String> standardEnglish(QuizTemplateEntity original, QuizTemplateEntity proposed) {
+        List<String> before = accepted(original);
+        List<String> after = accepted(proposed);
+        List<String> violations = new ArrayList<>();
+        Set<String> already = new LinkedHashSet<>();
+        before.forEach(answer -> already.addAll(NonStandardForms.in(answer)));
+        Set<String> now = new LinkedHashSet<>();
+        after.forEach(answer -> now.addAll(NonStandardForms.in(answer)));
+        for (String form : now) {
+            if (!already.contains(form)) {
+                violations.add("acepta «" + form + "», que no es inglés estándar");
+            } else if (!before.equals(after)) {
+                violations.add("cambia las respuestas y sigue aceptando «" + form + "», que no es inglés estándar");
+            }
+        }
+        return violations;
+    }
+
+    /** Every answer the exercise accepts: each gap's, cut by «|», and the correct option of a multiple choice. */
+    private static List<String> accepted(QuizTemplateEntity quiz) {
+        List<String> answers = new ArrayList<>();
+        if (quiz == null || quiz.getForm() == null) {
+            return answers;
+        }
+        if (quiz.getForm().getSentenceParts() != null) {
+            for (SentencePartEntity part : quiz.getForm().getSentenceParts()) {
+                if (part == null || part.getKind() != SentencePartKind.CLOZE || part.getOptions() == null) {
+                    continue;
+                }
+                for (String option : part.getOptions()) {
+                    for (String answer : option == null ? new String[0] : option.split("\\|")) {
+                        if (!answer.isBlank()) {
+                            answers.add(answer.strip());
+                        }
+                    }
+                }
+            }
+        }
+        for (MultipleChoiceItemEntity item : items(quiz)) {
+            if (item != null && item.getIncidence() > 0.0 && item.getLabel() != null) {
+                answers.add(item.getLabel().strip());
+            }
+        }
+        return answers;
     }
 
     /** F-MESA-R027: a text that only went from «vos» to «tú» with the exercise is not the candidate's change. */

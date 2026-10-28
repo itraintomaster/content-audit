@@ -14,6 +14,7 @@ import com.learney.contentaudit.auditdomain.singleanswer.AlternativeAnswer;
 import com.learney.contentaudit.auditdomain.singleanswer.AlternativeAnswerKind;
 import com.learney.contentaudit.auditdomain.singleanswer.SingleAnswerDiagnosis;
 import com.learney.contentaudit.auditdomain.singleanswer.SingleAnswerVerdict;
+import com.learney.contentaudit.auditdomain.standardenglish.NonStandardForms;
 import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
 import com.learney.contentaudit.coursedomain.SentenceMode;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
@@ -42,6 +43,9 @@ import javax.annotation.processing.Generated;
  *       only ranks and names answer-completeness as the one that fixes it with a rule (R003); any
  *       other is an error with its severity, resolved at the panel (R004). An answer the judge
  *       repeats for the same gap counts once.</li>
+ *   <li>An answer that is not standard English -- «ain't», «amn't» -- is never another answer either (F-UNICA-R009):
+ *       the course does not accept it, whatever the judge says about its register. It is dropped and stays visible in
+ *       the diagnosis, apart from the ones the corrector accepts.</li>
  *   <li>The score is 1 without a different valid answer and, otherwise, the configuration's for
  *       the gravest of them.</li>
  * </ol>
@@ -99,6 +103,7 @@ class DefaultSingleAnswerClassifier implements SingleAnswerClassifier {
 
         List<AlternativeAnswer> counted = new ArrayList<>();
         List<String> droppedAsAccepted = new ArrayList<>();
+        List<String> droppedAsNonStandard = new ArrayList<>();
         List<FindingDraft> drafts = new ArrayList<>();
         Set<String> seen = new HashSet<>();
         FindingSeverity gravest = null;
@@ -121,6 +126,10 @@ class DefaultSingleAnswerClassifier implements SingleAnswerClassifier {
             }
             if (acceptedByCorrector(answer, gap, gaps)) {
                 droppedAsAccepted.add(marker);
+                continue;
+            }
+            if (NonStandardForms.has(answer)) {
+                droppedAsNonStandard.add(marker);
                 continue;
             }
 
@@ -148,6 +157,7 @@ class DefaultSingleAnswerClassifier implements SingleAnswerClassifier {
         double score = gravest == null ? PASSES : config.getScoreFor(gravest);
         SingleAnswerDiagnosis diagnosis = new SingleAnswerDiagnosis(verdict, counted, droppedAsAccepted, score,
                 reused);
+        diagnosis.setDroppedAsNonStandard(droppedAsNonStandard);
         return new SingleAnswerOutcome(diagnosis, drafts, score);
     }
 

@@ -28,6 +28,7 @@ public class HintCoherenceAnalyzerProviderTest {
     @DisplayName("should describe hint-coherence in the catalog as an errors analyzer that evaluates exercises, resolves by rule or at the panel and costs instant, asking «¿La pista le anuncia al alumno lo que tiene que escribir?»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R005")
+    @Tag("F-PISTA-R008")
     public void shouldDescribeHintcoherenceInTheCatalogAsAnErrorsAnalyzerThatEvaluatesExercisesResolvesByRuleOrAtThePanelAndCostsInstantAskingLaPistaLeAnunciaAlAlumnoLoQueTieneQueEscribir(
             ) {
         // R005 and F-HALL-R006: the card the catalog validates at startup, with the Spanish name of
@@ -44,7 +45,9 @@ public class HintCoherenceAnalyzerProviderTest {
         assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());
         assertEquals(List.of(FindingResolution.RULE, FindingResolution.PANEL), card.getResolutions());
         assertEquals(AnalysisCost.INSTANT, card.getCost());
-        assertEquals(List.of("missing-hint", "hint-words", "hint-subject", "hint-negation", "rewrite-words", "hint-giveaway"),
+        // F-PISTA-R008 adds the hint of letters.
+        assertEquals(List.of("missing-hint", "hint-words", "hint-subject", "hint-negation", "rewrite-words", "hint-giveaway",
+                        "letter-hint"),
                 card.getRules().stream().map(AnalyzerRuleCard::getId).toList());
         assertTrue(card.getRules().stream().allMatch(r -> r.getCost() == AnalysisCost.INSTANT));
         assertTrue(card.getGoal().contains("tres cuartos"), "the threshold of José is written in the goal");

@@ -250,6 +250,24 @@ oración guardada el tokenizador lee *sleep* como verbo.
 
 </details>
 
+<a id="F-PISTA-R008"></a>
+### Rule[F-PISTA-R008] - La pista no da las primeras letras de la respuesta
+**Severity**: critical | **Validation**: VALIDATED
+
+> En un hueco para escribir, una pista de una a cuatro letras seguidas de puntos suspensivos («(o...)», «(at…)») regala
+> la respuesta cuando una de las respuestas aceptadas de su hueco empieza con esas letras: el alumno ya no elige,
+> completa. Es un hallazgo alto, marcado con la pista, que va a la mesa: unas letras no tienen forma base a la que
+> volver.
+
+En producción ningún ejercicio de A1 tiene una pista así. La C1 de A1 (8/10/2026) las escribió en 9 ejercicios de
+«Adjetivos con preposición» para que entrara una sola preposición: «We were scared ___ (o...) the dark.» (`…24bf`), «He
+is very bad ___ (at...) remembering!» (`…24c3`), donde la pista ya es la respuesta entera. El juez «no regala» las vio y
+las dejó para «el juez de pistas» (`handoffs: HINT`), que no las leía: sus puntos la hacían pasar por una nota. Las
+marcó el revisor de cambios (brief 232). Unas letras que no son el comienzo de la respuesta («(w...)» para «of») no
+regalan.
+
+**Fuente**: brief 232, «pista que regala» (43 reales, 9 de letras); José, 28/10/2026: «arreglá … los defectos del 232».
+
 ## Contexto
 
 Base: curso vivo del 29/9 en `db/english-course`, medido con un prototipo de las reglas en el scratchpad del analista.

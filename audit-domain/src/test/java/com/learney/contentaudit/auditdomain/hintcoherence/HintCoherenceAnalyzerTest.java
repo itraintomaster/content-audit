@@ -694,4 +694,53 @@ public class HintCoherenceAnalyzerTest {
         }
         return quizzes;
     }
+
+    @Test
+    @DisplayName("should raise a high finding at the panel marked with the hint when the hint gives the first letters of the answer, as «We were scared ___ (o...) the dark.» answered «of»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R008")
+    public void shouldRaiseAHighFindingAtThePanelMarkedWithTheHintWhenTheHintGivesTheFirstLettersOfTheAnswerAsWeWereScaredOTheDarkAnsweredOf() {
+        // R008: the C1 of A1 wrote «(o...)» in «We were scared ___ (o...) the dark.» (…24bf, 8/10) so that only «of»
+        // fits; production had no hint of letters. The student no longer chooses the preposition: he completes it.
+        AuditableQuiz scared = quiz("67fab6d599301022953424bf", "We were scared of the dark.",
+                "We|we|PRON were|be|AUX scared|scared|ADJ of|of|ADP the|the|DET dark|dark|NOUN .|.|PUNCT",
+                text("We were scared"), cloze("of"), text("(o...) the dark."));
+        AuditNode topic = run(knowledge("6814dafa7d73e7209a13d3e0", "Adjetivos con preposición", SentenceMode.FILL,
+                List.of(scared)));
+        AuditNode node = quizNode(topic, "24bf");
+
+        List<FindingDraft> drafts = analyzer.findingsAt(node);
+
+        assertEquals(List.of("letter-hint"), rules(drafts));
+        FindingDraft letters = drafts.get(0);
+        assertEquals("o...", letters.getMarker());
+        assertEquals(FindingSeverity.HIGH, letters.getSeverity());
+        assertEquals(FindingResolution.PANEL, letters.getResolution());
+        String observation = letters.getEvidence().getObservation();
+        assertTrue(observation.contains("la pista «o...» da las primeras letras de la respuesta: el alumno no elige,"
+                + " completa"), observation);
+        assertTrue(observation.endsWith(". Va a la mesa: unas letras no tienen forma base, y el alumno tiene que poder"
+                + " elegir"), observation);
+        assertEquals(0.0, node.getScores().get(HintCoherenceAnalyzer.ANALYZER_NAME));
+    }
+
+    @Test
+    @DisplayName("should raise no letter finding when the letters of the hint are not the beginning of the answer, as «(w...)» for «of», and one when the ellipsis is «…», as «(at…)» for «at»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R008")
+    public void shouldRaiseNoLetterFindingWhenTheLettersOfTheHintAreNotTheBeginningOfTheAnswerAndOneWhenTheEllipsisIsTheSingleCharacter() {
+        // R008: only the first letters of an answer of the same gap give it away; with the ellipsis written as «…» too.
+        AuditableQuiz other = quiz("67fab6d599301022953424c7", "He is tired of the night.",
+                "He|he|PRON is|be|AUX tired|tired|ADJ of|of|ADP the|the|DET night|night|NOUN .|.|PUNCT",
+                text("He is tired"), cloze("of"), text("(w...) the night."));
+        AuditableQuiz ellipsis = quiz("67fab6d599301022953424c3", "He is very bad at remembering!",
+                "He|he|PRON is|be|AUX very|very|ADV bad|bad|ADJ at|at|ADP remembering|remember|VERB !|!|PUNCT",
+                text("He is very bad"), cloze("at"), text("(at…) remembering!"));
+        AuditNode topic = run(knowledge("6814dafa7d73e7209a13d3e0", "Adjetivos con preposición", SentenceMode.FILL,
+                List.of(other, ellipsis)));
+
+        assertFalse(rules(analyzer.findingsAt(quizNode(topic, "24c7"))).contains("letter-hint"), "w is not of");
+        assertEquals(List.of("letter-hint"), rules(analyzer.findingsAt(quizNode(topic, "24c3")).stream()
+                .filter(d -> d.getRule().equals("letter-hint")).toList()), "«…» is an ellipsis too");
+    }
 }
