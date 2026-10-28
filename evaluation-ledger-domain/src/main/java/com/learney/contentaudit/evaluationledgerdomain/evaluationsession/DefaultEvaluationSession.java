@@ -109,6 +109,9 @@ class DefaultEvaluationSession implements EvaluationSession {
 
     private int failed = 0;
 
+    /** F-SIGUE-R002: the version of today and the ones recorded as equivalent, asked once if needed. */
+    private Set<String> todaysVersions;
+
     public DefaultEvaluationSession(EvaluationLedger ledger, ContentFingerprinter fingerprinter,
             Evaluator evaluator, EvaluationBudget budget) {
         this.ledger = ledger;
@@ -137,6 +140,39 @@ class DefaultEvaluationSession implements EvaluationSession {
     @Override
     public EvaluationResolution resolveForced(EvaluationSubject subject) {
         return resolveInternal(subject, true);
+    }
+
+    /**
+     * F-SIGUE-R002: volver a medir. A result of the version of today is kept as it is, without
+     * consulting or spending; one of an earlier version, or none, is asked again as a forced one.
+     */
+    @Override
+    public EvaluationResolution resolveRefreshing(EvaluationSubject subject) {
+        Optional<EvaluationRecord> latest = ledger.findLatest(keyOf(subject));
+        if (latest.isPresent() && ofTodaysVersion(latest.get())) {
+            reached++;
+            reused++;
+            return reusedResolution(latest.get());
+        }
+        return resolveInternal(subject, true);
+    }
+
+    @Override
+    public boolean current(EvaluationSubject subject) {
+        return ledger.findLatest(keyOf(subject)).filter(this::ofTodaysVersion).isPresent();
+    }
+
+    private synchronized boolean ofTodaysVersion(EvaluationRecord record) {
+        if (todaysVersions == null) {
+            Set<String> versions = new HashSet<>();
+            evaluatorVersion.ifPresent(versions::add);
+            Set<String> compatible = evaluator.compatibleEvaluatorVersions();
+            if (compatible != null) {
+                versions.addAll(compatible);
+            }
+            todaysVersions = versions;
+        }
+        return record.getEvaluatorVersion() != null && todaysVersions.contains(record.getEvaluatorVersion());
     }
 
     @Override
@@ -379,6 +415,20 @@ class DefaultEvaluationSession implements EvaluationSession {
                         results[i] = reuseOrPending(key);
                     }
                 }
+                case REFRESH -> {
+                    // F-SIGUE-R002: what is already of today stays; the rest is asked as forced.
+                    Optional<EvaluationRecord> latest = ledger.findLatest(key);
+                    if (latest.isPresent() && ofTodaysVersion(latest.get())) {
+                        reused++;
+                        results[i] = reusedResolution(latest.get());
+                    } else if (reserveConsultation()) {
+                        scheduled.add(i);
+                        scheduledKeys.add(key);
+                    } else {
+                        pending++;
+                        results[i] = pendingResolution();
+                    }
+                }
                 default -> {
                     Optional<EvaluationRecord> current = ledger.findLatest(key);
                     if (current.isPresent()) {
@@ -458,6 +508,7 @@ class DefaultEvaluationSession implements EvaluationSession {
         return switch (modeOf(request)) {
             case FORCE -> resolveForced(subject);
             case PREFER_NEW -> resolvePreferringNew(subject);
+            case REFRESH -> resolveRefreshing(subject);
             case REUSE_ONLY -> resolveWithoutConsulting(subject);
             default -> resolve(subject);
         };

@@ -202,6 +202,7 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
                 purpose, maxConcurrent);
         effectivePolicy.setNewEvaluationSubjectIds(policy != null ? policy.getNewEvaluationSubjectIds() : null);
         effectivePolicy.setAnyEnabledRuntime(policy != null && policy.isAnyEnabledRuntime());
+        effectivePolicy.setKeepCurrentVersion(policy != null && policy.isKeepCurrentVersion());
         return new JudgeSessions(judgeName, judgeVersion, evaluatorIds, sessions, standing, effectivePolicy,
                 runtimeIdentity, compatibleJudgeVersions);
     }
@@ -325,8 +326,9 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
                 modes.add(hits.isEmpty() ? EvaluationRequestMode.REUSE_ONLY
                         : purpose == EvaluationRunPurpose.REANALYSIS ? EvaluationRequestMode.FORCE : EvaluationRequestMode.PREFER_NEW);
             } else if (policy != null && policy.isReevaluate() && inScope(unit, policy.getReevaluationScope())) {
-                // F-QINST-R012: an explicit re-evaluation by area (or of the whole course).
-                modes.add(EvaluationRequestMode.FORCE);
+                // F-QINST-R012: an explicit re-evaluation by area (or of the whole course). F-SIGUE-R002:
+                // volver a medir keeps what is already of the version of today.
+                modes.add(policy.isKeepCurrentVersion() ? EvaluationRequestMode.REFRESH : EvaluationRequestMode.FORCE);
             } else {
                 modes.add(EvaluationRequestMode.REUSE_OR_EVALUATE);
             }

@@ -379,4 +379,32 @@ public class DefaultJudgeProviderReadinessProbeTest {
                     "renovala con gemini", authFailure);
         }
     }
+
+    @Test
+    @DisplayName("should read a model at capacity or overloaded as a saturated model, and a spent quota or a request limit as before")
+    @Tag("FEAT-SIGUE")
+    @Tag("F-SIGUE-R001")
+    void shouldReadAModelAtCapacityOrOverloadedAsASaturatedModelAndASpentQuotaOrARequestLimitAsBefore() {
+        DefaultJudgeProviderReadinessProbe probe = new DefaultJudgeProviderReadinessProbe(List.of());
+        String saturatedRemedy = "el proveedor siguió saturado después de esperar media hora; volvé a medir más "
+                + "tarde: lo ya medido se conserva";
+
+        for (String saturated : List.of(
+                // What Codex printed on 27/10/2026 at 23:09 and 23:59, when two measurements of the C2 stopped.
+                "El juez de consigna no produjo el artifact quizInstructionVerdict en esta corrida: [ERROR] llm_call "
+                        + "failed: codex CLI exited with 1: OpenAI Codex v0.164.0-alpha.11.1\n--------\nmodel: "
+                        + "gpt-6.1-sol\nprovider: openai\nERROR: Selected model is at capacity. Please try a "
+                        + "different model.",
+                "API Error: 529 {\"type\":\"error\",\"error\":{\"type\":\"overloaded_error\",\"message\":\"Overloaded\"}}")) {
+            assertExplained(probe.explain(CODEX_CLI, saturated), JudgeUnavailabilityCause.MODEL_SATURATED,
+                    "modelo saturado", saturatedRemedy, saturated);
+        }
+
+        assertEquals(JudgeUnavailabilityCause.QUOTA_EXHAUSTED,
+                probe.explain(CODEX_CLI, "Claude AI usage limit reached|1759276800").getCause(),
+                "a spent quota does not pass by itself: it is not a saturation");
+        assertEquals(JudgeUnavailabilityCause.QUOTA_EXHAUSTED,
+                probe.explain(CODEX_CLI, "HTTP 429 TooManyRequests").getCause(),
+                "a request limit stays what it was");
+    }
 }

@@ -18,6 +18,7 @@ import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeSpec;
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadiness;
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadinessProbe;
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeUnavailabilityCause;
+import com.learney.contentaudit.quizinstructioninfrastructure.SaturationWaits;
 import com.sentinel.agents.framework.state.ArtifactPointer;
 import com.sentinel.agents.framework.state.RunState;
 import com.sentinel.agents.framework.state.RunStatus;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -371,5 +373,81 @@ public class AgentJudgeTest {
         assertEquals(List.of("cefrLevel", "instructions", "exercise", "acceptedSentences", "translation"),
                 new ArrayList<>(call.inputs().keySet()), "in the order of the content map, and no other key");
         assertTrue(call.tools().isEmpty(), "and nothing else: no tool is handed to the judge");
+    }
+
+    /** What Codex printed at 23:09 on 27/10/2026, when the Consigna of the C2 stopped at 773 of 2.402. */
+    private static final String SATURATED_TERMINATION = "[ERROR] llm_call failed: codex CLI exited with 1: "
+            + "OpenAI Codex v0.164.0-alpha.11.1\nmodel: gpt-6.1-sol\nprovider: openai\n"
+            + "ERROR: Selected model is at capacity. Please try a different model.";
+
+    private static RunState saturated() {
+        return RunState.empty().withRunStatus(RunStatus.HALTED).withTerminationReason(SATURATED_TERMINATION);
+    }
+
+    @Test
+    @DisplayName("should wait and ask the same exercise again when the model is saturated, and emit the answer that comes after")
+    @Tag("FEAT-SIGUE")
+    @Tag("F-SIGUE-R001")
+    public void shouldWaitAndAskTheSameExerciseAgainWhenTheModelIsSaturatedAndEmitTheAnswerThatComesAfter(
+            @TempDir Path dir) throws IOException {
+        RunState answered = runStateWithVerdict(dir, "translationSenseVerdict", FAILING_VERDICT);
+        AtomicInteger asked = new AtomicInteger();
+        RecordingRunner runner = new RecordingRunner(call -> asked.incrementAndGet() <= 2 ? saturated() : answered);
+        List<Duration> slept = Collections.synchronizedList(new ArrayList<>());
+        AgentJudge judge = new AgentJudge(FROM_ENGLISH, CONFIG, runner, VERSION, (config, provider) -> mock(ChatModel.class),
+                CLAUDE_CLI, new DefaultJudgeProviderReadinessProbe(recordedAuthStatus(dir, STATUS_LOGGED_IN, 0)),
+                new SaturationWaits(SaturationWaits.STANDARD, slept::add));
+
+        EvaluationEmitted emitted = assertInstanceOf(EvaluationEmitted.class, judge.evaluate(subject("quiz-1")),
+                "the saturation passed: the answer is a judgment, as if nothing had happened");
+        assertEquals(FAILING_VERDICT, emitted.getPayload());
+        assertEquals(3, runner.calls.size(), "asked twice into the saturation and once more");
+        assertTrue(runner.calls.stream().allMatch(call -> call.inputs().equals(runner.calls.get(0).inputs())),
+                "always the same exercise");
+        assertEquals(List.of(Duration.ofSeconds(30), Duration.ofMinutes(1)), slept, "30 seconds, then a minute");
+    }
+
+    @Test
+    @DisplayName("should become unavailable as a saturated model, with what to do, only after the last wait")
+    @Tag("FEAT-SIGUE")
+    @Tag("F-SIGUE-R001")
+    public void shouldBecomeUnavailableAsASaturatedModelWithWhatToDoOnlyAfterTheLastWait(@TempDir Path dir)
+            throws IOException {
+        RecordingRunner runner = new RecordingRunner(call -> saturated());
+        List<Duration> slept = Collections.synchronizedList(new ArrayList<>());
+        AgentJudge judge = new AgentJudge(FROM_ENGLISH, CONFIG, runner, VERSION, (config, provider) -> mock(ChatModel.class),
+                CLAUDE_CLI, new DefaultJudgeProviderReadinessProbe(recordedAuthStatus(dir, STATUS_LOGGED_IN, 0)),
+                new SaturationWaits(SaturationWaits.STANDARD, slept::add));
+
+        EvaluationNotEmitted notEmitted = assertInstanceOf(EvaluationNotEmitted.class, judge.evaluate(subject("quiz-1")));
+        assertEquals(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, notEmitted.getKind(),
+                "after half an hour it is a service failure, as any other");
+        assertTrue(notEmitted.getReason().startsWith("modelo saturado: "), notEmitted.getReason());
+        assertTrue(notEmitted.getReason().contains("lo ya medido se conserva"), notEmitted.getReason());
+        assertEquals(SaturationWaits.STANDARD, slept, "every wait, in order: 30 s, 1, 2, 4, 8 and 15 min");
+        assertEquals(7, runner.calls.size(), "once, and once more after each wait");
+    }
+
+    @Test
+    @DisplayName("should not wait when the first consultation comes back for an expired session or an exhausted quota")
+    @Tag("FEAT-SIGUE")
+    @Tag("F-SIGUE-R001")
+    public void shouldNotWaitWhenTheFirstConsultationComesBackForAnExpiredSessionOrAnExhaustedQuota(@TempDir Path dir)
+            throws IOException {
+        List<Duration> slept = Collections.synchronizedList(new ArrayList<>());
+        JudgeProviderReadinessProbe probe =
+                new DefaultJudgeProviderReadinessProbe(recordedAuthStatus(dir, STATUS_LOGGED_IN, 0));
+        RecordingRunner quotaRunner = new RecordingRunner(call -> RunState.empty()
+                .withRunStatus(RunStatus.HALTED)
+                .withTerminationReason("[ERROR] top-level agent threw: claude CLI exited with 1: "
+                        + "Claude AI usage limit reached|1759276800"));
+        AgentJudge quotaJudge = new AgentJudge(FROM_ENGLISH, CONFIG, quotaRunner, VERSION,
+                (config, provider) -> mock(ChatModel.class), CLAUDE_CLI, probe,
+                new SaturationWaits(SaturationWaits.STANDARD, slept::add));
+
+        EvaluationNotEmitted noQuota = assertInstanceOf(EvaluationNotEmitted.class, quotaJudge.evaluate(subject("quiz-1")));
+        assertTrue(noQuota.getReason().startsWith("cuota agotada"), noQuota.getReason());
+        assertEquals(1, quotaRunner.calls.size(), "a spent quota does not pass by itself: the run stops at once");
+        assertTrue(slept.isEmpty(), "and nothing is waited for");
     }
 }

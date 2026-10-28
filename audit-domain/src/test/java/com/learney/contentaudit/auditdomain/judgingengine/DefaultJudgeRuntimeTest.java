@@ -102,6 +102,24 @@ public class DefaultJudgeRuntimeTest {
     }
 
     @Test
+    @org.junit.jupiter.api.Tag("FEAT-SIGUE")
+    @org.junit.jupiter.api.Tag("F-SIGUE-R002")
+    void aForcedReanalysisThatKeepsTheVersionOfTodayRefreshesAndTheCommandLineStillForces() {
+        approved(SINGLE_ANSWER, "v1");
+        var judge = ScriptedJudge.healthy(SINGLE_ANSWER + "-judge", "v1");
+        var units = quizUnits("q1", "q2");
+        var forced = new EvaluationRunPolicy(10, true, null, null, EvaluationRunPurpose.COURSE, 1);
+        assertEquals(List.of(EvaluationRequestMode.FORCE, EvaluationRequestMode.FORCE), runtime.plan(units, forced).getModes(),
+                "a forced re-evaluation of the command line asks everything again");
+
+        forced.setKeepCurrentVersion(true);
+        var opened = runtime.open(SINGLE_ANSWER, List.of(judge), forced);
+        assertTrue(opened.getEffectivePolicy().isKeepCurrentVersion(), "the policy the analyzers plan with keeps it");
+        assertEquals(List.of(EvaluationRequestMode.REFRESH, EvaluationRequestMode.REFRESH),
+                runtime.plan(units, opened.getEffectivePolicy()).getModes(), "volver a medir refreshes");
+    }
+
+    @Test
     void consultationScopeIsAnUpperBoundOnForcedReevaluationAndEmptyMeansReuseOnly() {
         var units = quizUnits("neighbor", "selected");
         var forced = new EvaluationRunPolicy(10, true, null, null, EvaluationRunPurpose.COURSE, 1);

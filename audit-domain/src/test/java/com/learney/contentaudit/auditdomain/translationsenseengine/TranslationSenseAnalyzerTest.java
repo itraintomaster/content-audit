@@ -954,6 +954,44 @@ public class TranslationSenseAnalyzerTest {
     }
 
     @Test
+    @DisplayName("volver a medir asks each judge only what lacks its verdict of today, and the command line still asks everything")
+    @Tag("FEAT-SIGUE")
+    @Tag("F-SIGUE-R002")
+    public void volverAMedirAsksEachJudgeOnlyWhatLacksItsVerdictOfToday() {
+        Lab lab = new Lab(subject -> emits(PASS), subject -> emits(PASS));
+        Judge oldEnglish = new Judge(EN_ID, "tse-en-0", subject -> emits(PASS));
+        Judge oldTranslation = new Judge(TR_ID, "tse-tr-0", subject -> emits(PASS));
+        Course course = new Course();
+        AuditNode ofToday = course.add(numbered(1));
+        AuditNode old = course.add(numbered(2));
+        AuditNode half = course.add(numbered(3));
+        course.add(numbered(4));
+        lab.seed(lab.fromEnglish, ofToday, PASS);
+        lab.seed(lab.fromTranslation, ofToday, PASS);
+        lab.seed(oldEnglish, old, PASS);
+        lab.seed(oldTranslation, old, PASS);
+        lab.seed(lab.fromEnglish, half, PASS);
+        lab.seed(oldTranslation, half, PASS);
+
+        EvaluationRunPolicy volverAMedir = new EvaluationRunPolicy(10, true, null, null, null, null);
+        volverAMedir.setKeepCurrentVersion(true);
+        lab.run(volverAMedir, course);
+
+        assertEquals(List.of("q02", "q04"), sorted(lab.fromEnglish.calls), "the English judge keeps its two of today");
+        assertEquals(List.of("q02", "q03", "q04"), sorted(lab.fromTranslation.calls),
+                "the translation judge asks again the one of an earlier version, even next to a verdict of today");
+        assertEquals(4, course.coverage().getEvaluated());
+
+        lab.fromEnglish.calls.clear();
+        lab.fromTranslation.calls.clear();
+        lab.run(volverAMedir, course);
+        assertEquals(0, lab.consultations(), "everything is of today: relaunched, nothing is asked");
+
+        lab.run(new EvaluationRunPolicy(10, true, null, null, null, null), course);
+        assertEquals(8, lab.consultations(), "the forced re-evaluation of the command line still asks everything");
+    }
+
+    @Test
     @DisplayName("should declare in its tally as many exercises as quizzes, in each state")
     @Tag("FEAT-CIERRE")
     @Tag("F-CIERRE-R001")

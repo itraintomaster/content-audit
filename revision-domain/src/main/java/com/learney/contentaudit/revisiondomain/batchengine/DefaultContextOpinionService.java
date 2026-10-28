@@ -108,8 +108,8 @@ final class DefaultContextOpinionService implements ContextOpinionService {
             for (Scope scope : scopes) {
                 AuditReport before = audit(scope.before(), scope.analyzer(), 0);
                 // A zero cap means reuse only for paid providers; instant/local judges still run for free.
-                int perEvaluatorCap = capWithin(Math.max(0, request.queryCap() - spent), scope.pendingByEvaluator());
-                AuditReport after = audit(scope.after(), scope.analyzer(), perEvaluatorCap);
+                AuditReport after = audit(scope.after(), scope.analyzer(),
+                        judgeCap(scope.analyzer(), Math.max(0, request.queryCap() - spent), scope.pendingByEvaluator()));
                 spent += spent(after, scope.analyzer());
                 for (RevisionProposal proposal : scope.proposals())
                     results.add(new Result(scope.analyzer(), outcome(scope.analyzer(), proposal, before, after, review)));
@@ -380,6 +380,12 @@ final class DefaultContextOpinionService implements ContextOpinionService {
                             coverage == null || coverage.getStanding() == null ? null : Objects.toString(coverage.getStanding().getRuntimeIdentity(), null), selectedCost, topicCost)));
         }
         return result;
+    }
+    // F-SIGUE-R003: translation shares one total between its paired verdicts (F-TRSEN-R005), so it gets every
+    // consultation it planned, up to what is left of the cap; the other judges cap each evaluator separately.
+    private static int judgeCap(String analyzer, int remaining, List<Integer> pending) {
+        if (!"translation-sense".equals(analyzer)) return capWithin(remaining, pending);
+        return Math.min(remaining, pending.stream().mapToInt(Integer::intValue).sum());
     }
     // The native policy caps each evaluator separately. Allocate a per-evaluator cap whose
     // sum of possible new consultations fits the one ceiling confirmed by the operator.

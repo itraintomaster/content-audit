@@ -175,9 +175,11 @@ public QuizInstructionAnalyzer(EvaluationSession session, QuizInstructionSubject
                 : QuizInstructionReevaluationDecision.ORDINARY;
     }
 
-    private static EvaluationRequestMode modeOf(QuizInstructionReevaluationDecision decision) {
+    private EvaluationRequestMode modeOf(QuizInstructionReevaluationDecision decision) {
         return switch (decision) {
-            case AREA_REEVALUATION -> EvaluationRequestMode.FORCE;
+            // F-SIGUE-R002: volver a medir keeps what is already of the version of today.
+            case AREA_REEVALUATION -> policy.isKeepCurrentVersion()
+                    ? EvaluationRequestMode.REFRESH : EvaluationRequestMode.FORCE;
             case DECLARED_SET_REEVALUATION -> EvaluationRequestMode.PREFER_NEW;
             case OUTSIDE_DECLARED_SET -> EvaluationRequestMode.REUSE_ONLY;
             default -> EvaluationRequestMode.REUSE_OR_EVALUATE;

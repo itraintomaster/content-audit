@@ -136,7 +136,8 @@ class SelectiveCorrectionServiceTest {
         when(refiner.plan(any(), anyString())).thenReturn(TandaFixture.plan(singleTasks().toArray(RefinementTask[]::new)));
         return service.execute(singleReq("analyze", "single-analysis", List.of(), 2, false));
     }
-    @Test void bothStatesShareOneCapReuseOnlyFreshSharedInputsAndDoNotAutomaticallyReplay() {
+    @Test @Tag("FEAT-SIGUE") @Tag("F-SIGUE-R002")
+    void bothStatesShareOneCapReuseOnlyFreshSharedInputsAndDoNotAutomaticallyReplay() {
         var current = mock(CurrentAnalysisService.class);
         when(current.supportedAnalyzers()).thenReturn(Set.of("multiple-choice-quality"));
         when(current.reanalysisScope(anyString(), any(), any(), any())).thenReturn(
@@ -158,6 +159,8 @@ class SelectiveCorrectionServiceTest {
         verify(engine).runAudit(any(),argThat(s -> s.getPolicies().get("multiple-choice-quality").getMaxNewEvaluations()==1
                 && s.getPolicies().get("multiple-choice-quality").getPurpose()==EvaluationRunPurpose.REANALYSIS
                 && s.getPolicies().get("multiple-choice-quality").getReevaluationSubjectIds().equals(Set.of(quiz))));
+        // F-SIGUE-R002: the opinion of the two states still asks its declared set again.
+        verify(engine, never()).runAudit(any(), argThat(s -> s.getPolicies().get("multiple-choice-quality").isKeepCurrentVersion()));
         clearInvocations(engine);
         joint.execute(request);
         verifyNoInteractions(engine);
@@ -168,6 +171,13 @@ class SelectiveCorrectionServiceTest {
         verify(engine, times(2)).runAudit(any(), argThat(s -> s.getAnalyzers().equals(List.of("multiple-choice-quality"))
                 && s.getPolicies().get("multiple-choice-quality").isReevaluate()));
         assertEquals("reanalyze", state.runs().get(0).action());
+    }
+    @Test @Tag("FEAT-SIGUE") @Tag("F-SIGUE-R002")
+    void volverAMedirOneStateKeepsTheVersionOfTodayAndItsEstimateToo() {
+        service.execute(req("reanalyze", "volver-a-medir", List.of(), 2, false));
+        verify(engine, times(2)).runAudit(any(), argThat(s -> s.getPolicies().get("multiple-choice-quality").isReevaluate()
+                && s.getPolicies().get("multiple-choice-quality").isKeepCurrentVersion()));
+        verify(engine, never()).runAudit(any(), argThat(s -> !s.getPolicies().get("multiple-choice-quality").isKeepCurrentVersion()));
     }
     @Test void independentEvaluatorBudgetsCannotSpendMoreThanTheSingleReservedAllowance() {
         quality.setJudgeName("independent-evaluators");

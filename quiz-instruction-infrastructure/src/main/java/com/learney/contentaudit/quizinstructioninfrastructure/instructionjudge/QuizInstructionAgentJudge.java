@@ -18,6 +18,7 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluatorVersionEquivalen
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadiness;
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeUnavailabilityCause;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig;
+import com.learney.contentaudit.quizinstructioninfrastructure.SaturationWaits;
 import com.sentinel.agents.framework.state.ArtifactPointer;
 import com.sentinel.agents.framework.state.RunState;
 import dev.langchain4j.model.chat.ChatModel;
@@ -68,7 +69,14 @@ private final LlmProviderResolved provider;
 
 private final JudgeProviderReadinessProbe readinessProbe;
 
+private final SaturationWaits saturationWaits;
+
 public QuizInstructionAgentJudge(QuizInstructionJudgeConfig config, AgentGraphRunner agentGraphRunner, QuizInstructionJudgeVersionResolver versionResolver, JudgeChatModelFactory chatModelFactory, LlmProviderResolved provider, JudgeProviderReadinessProbe readinessProbe) {
+    this(config, agentGraphRunner, versionResolver, chatModelFactory, provider, readinessProbe, SaturationWaits.standard());
+}
+
+public QuizInstructionAgentJudge(QuizInstructionJudgeConfig config, AgentGraphRunner agentGraphRunner, QuizInstructionJudgeVersionResolver versionResolver, JudgeChatModelFactory chatModelFactory, LlmProviderResolved provider, JudgeProviderReadinessProbe readinessProbe, SaturationWaits saturationWaits) {
+    this.saturationWaits = saturationWaits;
     this.config = config;
     this.agentGraphRunner = agentGraphRunner;
     this.versionResolver = versionResolver;
@@ -120,12 +128,21 @@ public QuizInstructionAgentJudge(QuizInstructionJudgeConfig config, AgentGraphRu
 
     @Override
     public EvaluationOutcome evaluate(EvaluationSubject subject) {
+        // F-SIGUE-R001: a saturated model is waited for and the same exercise asked again.
+        return saturationWaits.consult(() -> consultOnce(subject), Consultation::saturated).outcome();
+    }
+
+    /** One consultation's answer, and whether it was a saturation that is worth waiting for. */
+    private record Consultation(EvaluationOutcome outcome, boolean saturated) {
+    }
+
+    private Consultation consultOnce(EvaluationSubject subject) {
         try {
             // F-JEXAM-R011: before the first consultation, once, the free check of the provider's
             // session. Without a session the agent never runs, now or on any later consultation.
             JudgeProviderReadiness checked = readinessBeforeFirstConsultation();
             if (!checked.isReady()) {
-                return unavailable(checked);
+                return failed(checked);
             }
 
             // Lazy construction: the ChatModel is only ever built at the moment we
@@ -151,7 +168,7 @@ public QuizInstructionAgentJudge(QuizInstructionJudgeConfig config, AgentGraphRu
                 // A run that halts carries why in its termination reason: an expired session
                 // or an exhausted quota of the first consultation arrives here, not as an
                 // exception, and the probe names it (F-JEXAM-R011).
-                return unavailable(explain(withoutVerdict(runState)));
+                return failed(explain(withoutVerdict(runState)));
             }
 
             String payload = Files.readString(verdictArtifact.location());
@@ -161,33 +178,33 @@ public QuizInstructionAgentJudge(QuizInstructionJudgeConfig config, AgentGraphRu
             } catch (JsonProcessingException e) {
                 // Only the parser's own words: the artifact's text is the judge's free prose and
                 // must never be read as the cause of a service failure.
-                return unavailable(explain("El artifact " + VERDICT_ARTIFACT_KEY
+                return failed(explain("El artifact " + VERDICT_ARTIFACT_KEY
                         + " del juez de consigna no es un JSON legible: " + e.getOriginalMessage()));
             }
             if (verdictNode == null || !verdictNode.isObject()) {
-                return unavailable(explain("El artifact " + VERDICT_ARTIFACT_KEY
+                return failed(explain("El artifact " + VERDICT_ARTIFACT_KEY
                         + " del juez de consigna no trae un veredicto"));
             }
 
             if (isConservativeInfrastructureVerdict(verdictNode)) {
                 // F-QINST-R013: confidence nula + violacion JUDGE_OUTPUT_INVALID es una
                 // falla transitoria del juez, no un juicio -- nunca llega al registro.
-                return new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE,
+                return new Consultation(new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE,
                         "El juez agoto sus intentos de salida valida y emitio su veredicto "
-                                + "conservador de infraestructura");
+                                + "conservador de infraestructura"), false);
             }
 
             // A genuine non-compliant verdict (the judge did pronounce itself) is an
             // emitted result, not a failure -- otherwise a trigger-happy classifier here
             // would silently swallow real judgments and the analyzer would never report
             // anything.
-            return new EvaluationEmitted(payload);
+            return new Consultation(new EvaluationEmitted(payload), false);
         } catch (Exception e) {
             // F-QINST-R007: any judge service disruption -- down service, timed-out
             // call, rejected auth, exhausted credit, or even a malformed/missing
             // artifact -- is reported as an unavailable evaluator, never propagated.
             // F-JEXAM-R011: with its cause and its remedy, as the probe explains them.
-            return unavailable(explain(describe(e)));
+            return failed(explain(describe(e)));
         }
     }
 
@@ -236,6 +253,11 @@ public QuizInstructionAgentJudge(QuizInstructionJudgeConfig config, AgentGraphRu
         }
         return new JudgeProviderReadiness(false, JudgeUnavailabilityCause.UNKNOWN,
                 "El juez de consigna no esta disponible: " + failure, null);
+    }
+
+    private static Consultation failed(JudgeProviderReadiness why) {
+        return new Consultation(unavailable(why),
+                why != null && why.getCause() == JudgeUnavailabilityCause.MODEL_SATURATED);
     }
 
     /** F-JEXAM-R011: the report shows the cause and the remedy as «detail: remedy». */

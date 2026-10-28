@@ -26,6 +26,7 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationRequestMode;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationBudget;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
@@ -119,6 +120,8 @@ public class DefaultEvaluationSessionTest {
                 return session.resolveForced(request.getSubject());
             case PREFER_NEW:
                 return session.resolvePreferringNew(request.getSubject());
+            case REFRESH:
+                return session.resolveRefreshing(request.getSubject());
             case REUSE_ONLY:
                 return session.resolveWithoutConsulting(request.getSubject());
             default:
@@ -211,7 +214,7 @@ public class DefaultEvaluationSessionTest {
      * Answers what its script recorded for each content, never a model; counts which contents it was
      * asked, and how many consultations were in flight at the same time.
      */
-    private static final class ScriptedEvaluator implements Evaluator {
+    private static class ScriptedEvaluator implements Evaluator {
         private final String version;
         private final Function<String, EvaluationOutcome> script;
         private final List<String> consulted = Collections.synchronizedList(new ArrayList<>());
@@ -1529,5 +1532,95 @@ public class DefaultEvaluationSessionTest {
         assertTrue(ledger.history(new EvaluationKey(JUDGE_ID, "fp:c1")).isEmpty(), "nothing for the failure");
         assertFalse(ledger.appendedInRun().stream().anyMatch(line -> line.contains(secret)),
                 "the cause is never written");
+    }
+
+    // -------------------------------------------------------------------------
+    // FEAT-SIGUE: volver a medir keeps what is already of the version of today.
+    // -------------------------------------------------------------------------
+
+    /** The judge of today is «v2», and it recorded in writing that «v1-same» is the same version. */
+    private static ScriptedEvaluator judgeOfToday() {
+        return new ScriptedEvaluator("v2", text -> new EvaluationEmitted("new verdict for " + text)) {
+            @Override
+            public Set<String> compatibleEvaluatorVersions() {
+                return Set.of("v2", "v1-same");
+            }
+        };
+    }
+
+    /** today: of v2; equivalent: of v1-same; old: of v1; missing: never asked. */
+    private static List<EvaluationRecord> recordedBeforeTheRun() {
+        return List.of(recorded("today", "verdict of today", "v2"),
+                recorded("equivalent", "verdict of an equivalent version", "v1-same"),
+                recorded("old", "verdict of an earlier version", "v1"));
+    }
+
+    @Test
+    @DisplayName("should keep without consulting a result of the version of today or of an equivalent one, and ask again an old one and a missing one, when refreshing one at a time")
+    @Tag("FEAT-SIGUE")
+    @Tag("F-SIGUE-R002")
+    public void shouldKeepWithoutConsultingAResultOfTheVersionOfTodayOrOfAnEquivalentOneAndAskAgainAnOldOneAndAMissingOneWhenRefreshingOneAtATime() {
+        SynchronizedLedger ledger = new SynchronizedLedger(recordedBeforeTheRun());
+        ScriptedEvaluator judge = judgeOfToday();
+        DefaultEvaluationSession session = new DefaultEvaluationSession(ledger, TEXT_FINGERPRINT, judge,
+                new EvaluationBudget(10));
+
+        EvaluationResolution today = session.resolveRefreshing(subject("today"));
+        EvaluationResolution equivalent = session.resolveRefreshing(subject("equivalent"));
+        EvaluationResolution old = session.resolveRefreshing(subject("old"));
+        EvaluationResolution missing = session.resolveRefreshing(subject("missing"));
+
+        assertEquals(EvaluationResolutionKind.REUSED, today.getKind());
+        assertEquals("verdict of today", today.getPayload());
+        assertEquals(EvaluationResolutionKind.REUSED, equivalent.getKind(), "an equivalent version is of today");
+        assertEquals(EvaluationResolutionKind.EVALUATED, old.getKind(), "an earlier version is asked again");
+        assertEquals("new verdict for old", old.getPayload());
+        assertEquals(EvaluationResolutionKind.EVALUATED, missing.getKind());
+        assertEquals(List.of("old", "missing"), judge.consulted(), "only what was not of today was asked");
+        EvaluationCoverage coverage = session.coverage();
+        assertEquals(4, coverage.getReached());
+        assertEquals(2, coverage.getReused());
+        assertEquals(2, coverage.getEvaluatedInRun(), "two consultations, the cost of what was not of today");
+        assertTrue(session.current(subject("today")));
+        assertTrue(session.current(subject("old")), "after the run, the old one is of today too");
+    }
+
+    @Test
+    @DisplayName("should keep a result of the version of today and ask the rest, exactly as one at a time, when refreshing a batch, and count only the rest when it may not consult")
+    @Tag("FEAT-SIGUE")
+    @Tag("F-SIGUE-R002")
+    public void shouldKeepAResultOfTheVersionOfTodayAndAskTheRestExactlyAsOneAtATimeWhenRefreshingABatchAndCountOnlyTheRestWhenItMayNotConsult() {
+        List<String> texts = List.of("today", "old", "equivalent", "missing");
+
+        ScriptedEvaluator judge = judgeOfToday();
+        SynchronizedLedger ledger = new SynchronizedLedger(recordedBeforeTheRun());
+        List<EvaluationResolution> batch = new DefaultEvaluationSession(ledger, TEXT_FINGERPRINT, judge,
+                new EvaluationBudget(10)).resolveAll(requests(texts, EvaluationRequestMode.REFRESH), 3);
+        assertEquals(List.of(EvaluationResolutionKind.REUSED, EvaluationResolutionKind.EVALUATED,
+                EvaluationResolutionKind.REUSED, EvaluationResolutionKind.EVALUATED), kinds(batch));
+        assertEquals(List.of("missing", "old"), sorted(judge.consulted()));
+
+        ScriptedEvaluator alone = judgeOfToday();
+        DefaultEvaluationSession oneAtATime = new DefaultEvaluationSession(
+                new SynchronizedLedger(recordedBeforeTheRun()), TEXT_FINGERPRINT, alone, new EvaluationBudget(10));
+        List<EvaluationResolutionKind> expected = texts.stream()
+                .map(text -> resolveOneAtATime(oneAtATime, request(text, EvaluationRequestMode.REFRESH)).getKind())
+                .collect(Collectors.toList());
+        assertEquals(expected, kinds(batch), "the batch gives what one at a time gives");
+
+        // The estimate: without budget, what is of today is kept and only the rest stays pending.
+        ScriptedEvaluator estimated = judgeOfToday();
+        DefaultEvaluationSession estimate = new DefaultEvaluationSession(
+                new SynchronizedLedger(recordedBeforeTheRun()), TEXT_FINGERPRINT, estimated, new EvaluationBudget(0));
+        estimate.resolveAll(requests(texts, EvaluationRequestMode.REFRESH), 1);
+        assertEquals(2, estimate.coverage().getPending(), "the old and the missing are what volver a medir would ask");
+        assertEquals(2, estimate.coverage().getReused());
+        assertTrue(estimated.consulted().isEmpty());
+
+        // A forced re-evaluation, as the command line asks it, still asks everything.
+        ScriptedEvaluator forced = judgeOfToday();
+        new DefaultEvaluationSession(new SynchronizedLedger(recordedBeforeTheRun()), TEXT_FINGERPRINT, forced,
+                new EvaluationBudget(10)).resolveAll(requests(texts, EvaluationRequestMode.FORCE), 1);
+        assertEquals(sorted(texts), sorted(forced.consulted()));
     }
 }

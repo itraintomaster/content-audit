@@ -75,7 +75,11 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         if (r.state() != null && !List.of("base", "correction").contains(r.state())) fail("Elegí la base o la corrección.");
         if (base && "correct".equals(r.action())) fail("Las correcciones se aplican sólo a la corrección vigente.");
         CourseEntity cut = level(base ? start : ledger.composedCourse(batch, start), batch.getLevel());
-        AuditReport trial = audit(cut, judge, 0, r.force() || r.action().startsWith("reanalyze"), forceOnly);
+        boolean forced = r.force() || r.action().startsWith("reanalyze");
+        // F-SIGUE-R002: volver a medir one state keeps what is already of the judge's version of today; the
+        // two states at once, and the marks a reviewer could not use, still ask their set again.
+        boolean keepCurrentVersion = forced && forceOnly == null && coordinatedBy == null;
+        AuditReport trial = audit(cut, judge, 0, forced, forceOnly, keepCurrentVersion);
         State estimate = state(batch, trial, cut, judge, coordinatedBy);
         if (List.of("read", "estimate").contains(r.action())) return estimate;
         if (!idleForMeasurement(batch)) fail(busy(batch));
@@ -143,7 +147,7 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
                 // providers retain the conservative per-evaluator limit until they declare shared budgeting.
                 int evaluatorCount = Math.max(1, BatchBook.list(coverage(trial, judge).getEvaluators()).size());
                 int judgeBudget = "translation-sense".equals(judge) ? r.queryCap() : r.queryCap() / evaluatorCount;
-                result = audit(cut, judge, judgeBudget, r.force() || r.action().startsWith("reanalyze"), forceOnly);
+                result = audit(cut, judge, judgeBudget, forced, forceOnly, keepCurrentVersion);
                 String auditId = config.getAuditReportStore().save(result);
                 RefinementPlan plan = config.getRefinerEngine().plan(result, auditId);
                 List<RefinementTask> tasks = BatchBook.list(plan.getTasks()).stream()
@@ -507,14 +511,17 @@ final class DefaultSelectiveCorrectionService implements SelectiveCorrectionServ
         return audit(course, analyzer, cap, false);
     }
     private AuditReport audit(CourseEntity course, String analyzer, int cap, boolean force) {
-        return audit(course, analyzer, cap, force, null);
+        return audit(course, analyzer, cap, force, null, false);
     }
-    private AuditReport audit(CourseEntity course, String analyzer, int cap, boolean force, Set<String> forceOnly) {
+    private AuditReport audit(CourseEntity course, String analyzer, int cap, boolean force, Set<String> forceOnly,
+            boolean keepCurrentVersion) {
         if (forceOnly != null && forceOnly.isEmpty()) return config.getAuditEngine().runAudit(config.getCourseMapper().map(course),
                 new AnalyzerRunSelection(List.of(analyzer), Map.of(analyzer, new EvaluationRunPolicy(0, false, null, null, EvaluationRunPurpose.READING, 1))));
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(cap, forceOnly == null && force, null, forceOnly,
+                forceOnly == null ? null : EvaluationRunPurpose.REANALYSIS, 1);
+        policy.setKeepCurrentVersion(keepCurrentVersion);
         return config.getAuditEngine().runAudit(config.getCourseMapper().map(course),
-                new AnalyzerRunSelection(List.of(analyzer), Map.of(analyzer, new EvaluationRunPolicy(cap, forceOnly == null && force, null, forceOnly,
-                        forceOnly == null ? null : EvaluationRunPurpose.REANALYSIS, 1))));
+                new AnalyzerRunSelection(List.of(analyzer), Map.of(analyzer, policy)));
     }
 
     private State both(Request r) {

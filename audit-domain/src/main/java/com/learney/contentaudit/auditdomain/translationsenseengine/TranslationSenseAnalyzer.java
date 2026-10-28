@@ -300,6 +300,10 @@ class TranslationSenseAnalyzer implements ContentAnalyzer {
         if (mode == EvaluationRequestMode.REUSE_OR_EVALUATE) {
             return !scheduled.contains(subject.getContent()) && !session.recorded(subject);
         }
+        if (mode == EvaluationRequestMode.REFRESH) {
+            // F-SIGUE-R002: a verdict of the version of today is kept, and costs nothing.
+            return !scheduled.contains(subject.getContent()) && !session.current(subject);
+        }
         return true;
     }
 
@@ -311,6 +315,10 @@ class TranslationSenseAnalyzer implements ContentAnalyzer {
     private static EvaluationRequestMode withoutBudget(EvaluationRequestMode mode, EvaluationSession session,
             EvaluationSubject subject) {
         if (mode == EvaluationRequestMode.FORCE && session.recorded(subject)) {
+            return null;
+        }
+        if (mode == EvaluationRequestMode.REFRESH && session.recorded(subject) && !session.current(subject)) {
+            // F-SIGUE-R002: an old verdict is not today's, exactly as a forced one.
             return null;
         }
         return EvaluationRequestMode.REUSE_ONLY;

@@ -32,6 +32,7 @@ class ContextOpinionServiceTest {
     String quiz, second;
     boolean thematic = true, approved = true, failPaid, beforeMeasured, reuseSecond;
     int evaluatorCount = 1, failed = 0;
+    String judge = "judge";
     List<Finding> old = List.of(), current = List.of();
 
     @BeforeEach void setup() {
@@ -45,22 +46,22 @@ class ContextOpinionServiceTest {
         when(repository.load(TandaFixture.COURSE_PATH)).thenReturn(course);
         when(ledger.composedCourse(any(), same(course))).thenReturn(course);
         when(mapper.map(any())).thenAnswer(i -> { mapped.add(i.getArgument(0)); return new AuditableCourse(List.of()); });
-        var descriptor = new AnalyzerDescriptor(); descriptor.setName("judge"); descriptor.setDisplayName("Juez"); descriptor.setCost(AnalysisCost.PAID_MODEL);
-        when(catalog.list()).thenReturn(List.of(descriptor));
+        var descriptor = new AnalyzerDescriptor(); descriptor.setDisplayName("Juez"); descriptor.setCost(AnalysisCost.PAID_MODEL);
+        when(catalog.list()).thenAnswer(i -> { descriptor.setName(judge); return List.of(descriptor); });
         when(engine.runAudit(any(), any(AnalyzerRunSelection.class))).thenAnswer(i -> {
             var selection = i.getArgument(1, AnalyzerRunSelection.class);
-            int cap = selection.getPolicies().get("judge").getMaxNewEvaluations(); caps.add(cap);
+            int cap = selection.getPolicies().get(judge).getMaxNewEvaluations(); caps.add(cap);
             if (cap > 0 && failPaid) throw new IllegalStateException("provider stopped");
-            var r = TandaFixture.report(mapped.get(mapped.size()-1), cap > 0 ? current : old, Map.of(), List.of("judge"));
-            score(r.getRoot(), cap > 0 && failed == 0 || cap == 0 && beforeMeasured);
-            var c = new JudgeCoverageDiagnosis(); c.setJudgeName("judge"); c.setUnit(thematic ? AuditTarget.KNOWLEDGE : AuditTarget.QUIZ);
+            var r = TandaFixture.report(mapped.get(mapped.size()-1), cap > 0 ? current : old, Map.of(), List.of(judge));
+            score(r.getRoot(), cap > 0 && failed == 0 && pairFits(cap) || cap == 0 && beforeMeasured);
+            var c = new JudgeCoverageDiagnosis(); c.setJudgeName(judge); c.setUnit(thematic ? AuditTarget.KNOWLEDGE : AuditTarget.QUIZ);
             var standing = new JudgeExamStanding(); standing.setConsultsOnCourse(approved); standing.setJudgeVersion("v1"); c.setStanding(standing);
             int units = thematic ? 1 : count(mapped.get(mapped.size()-1));
             c.setCost(new JudgeCostEstimate(units, units * (reuseSecond ? 1 : evaluatorCount), 0, false, 0, 1, 0));
             var es = new ArrayList<EvaluatorCoverage>();
             for (int e = 0; e < evaluatorCount; e++) {
                 int needed = reuseSecond && e > 0 ? 0 : units;
-                int evaluated = cap > 0 && failed == 0 && needed > 0 ? 1 : 0;
+                int evaluated = cap > 0 && failed == 0 && needed > 0 && pairFits(cap) ? 1 : 0;
                 es.add(new EvaluatorCoverage("e"+e,
                     new EvaluationCoverage(units, evaluated, evaluated, needed == 0 ? units : 0,
                         cap == 0 ? needed : 0, cap > 0 && needed > 0 ? failed : 0), "v1"));
@@ -76,10 +77,15 @@ class ContextOpinionServiceTest {
         var snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, id, TandaFixture.exercise(course,id), null);
         p.setElementBefore(snapshot); p.setElementAfter(snapshot); return p;
     }
+    // Translation shares one total between the verdicts of a pair: less than the pair asks neither.
+    boolean pairFits(int cap) {
+        int units = thematic ? 1 : count(mapped.get(mapped.size()-1));
+        return !"translation-sense".equals(judge) || cap >= units * evaluatorCount;
+    }
     int topicCount() { return course.getRoot().getMilestones().get(0).getTopics().get(0).getKnowledges().get(0).getQuizTemplates().size(); }
     static int count(CourseEntity c) { return c.getRoot().getMilestones().stream().flatMap(m -> m.getTopics().stream()).flatMap(t -> t.getKnowledges().stream()).mapToInt(k -> k.getQuizTemplates().size()).sum(); }
-    void score(AuditNode n, boolean measured) { n.getScores().put("judge", measured ? 1.0 : Double.NaN); n.getChildren().forEach(c -> score(c,measured)); }
-    Request estimate(boolean all) { return new Request("estimate","batch",Map.of("judge", List.of(quiz,second,quiz)),all,null,null,null,null,null); }
+    void score(AuditNode n, boolean measured) { n.getScores().put(judge, measured ? 1.0 : Double.NaN); n.getChildren().forEach(c -> score(c,measured)); }
+    Request estimate(boolean all) { return new Request("estimate","batch",Map.of(judge, List.of(quiz,second,quiz)),all,null,null,null,null,null); }
     Request measure(State e, int cap) { return new Request("measure","batch",e.selection(),e.wholeTopic(),"op",5,e.fingerprint(),cap,"human"); }
     @Test void estimateDeduplicatesAndNeverPaysOrWrites() {
         var e = service.execute(estimate(false)); assertEquals(1,e.pendingQueries()); assertEquals(2,e.selection().get("judge").size());
@@ -109,6 +115,17 @@ class ContextOpinionServiceTest {
         assertEquals(0,run.spent()); assertEquals("PARTIAL",run.status()); assertTrue(caps.stream().allMatch(c -> c == 0));
         batch.setOpinionRuns(List.of()); failed=1; e=service.execute(estimate(true)); run=service.execute(measure(e,2)).runs().get(0);
         assertEquals(2,run.spent()); assertEquals("PARTIAL",run.status()); assertTrue(caps.stream().allMatch(c -> c <= 1));
+    }
+    @Test @Tag("FEAT-SIGUE") @Tag("F-SIGUE-R003")
+    void translationGetsBothConsultationsOfEveryExerciseItPlannedAndNeverMoreThanTheCap() {
+        judge = "translation-sense"; evaluatorCount = 2;
+        var e = service.execute(estimate(true)); assertEquals(2, e.pendingQueries());
+        var run = service.execute(measure(e, 2)).runs().get(0);
+        assertEquals("DONE", run.status()); assertEquals(2, run.spent()); assertEquals(12, batch.getQueriesSpent());
+        assertTrue(caps.contains(2)); assertTrue(caps.stream().allMatch(c -> c <= 2));
+        batch.setOpinionRuns(List.of()); caps.clear(); e = service.execute(estimate(true));
+        run = service.execute(measure(e, 1)).runs().get(0);
+        assertEquals("PARTIAL", run.status()); assertEquals(0, run.spent()); assertTrue(caps.stream().allMatch(c -> c <= 1));
     }
     @Test void oneCachedEvaluatorDoesNotMakeOnePendingConsultationUnaffordable() {
         evaluatorCount=2; reuseSecond=true; var e=service.execute(estimate(true)); assertEquals(1,e.pendingQueries());

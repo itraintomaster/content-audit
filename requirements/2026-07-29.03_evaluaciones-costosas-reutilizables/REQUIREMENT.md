@@ -324,6 +324,8 @@ registrados y no consulta al evaluador.
 > acota el consumidor, contenido por contenido: esta capacidad vuelve a evaluar el
 > contenido puntual que se le pide y **ningun otro**, de modo que el contenido
 > vecino con resultado registrado se sigue reutilizando en esa misma corrida.
+> Volver a medir desde el tablero pide la re-evaluacion solo del contenido cuyo resultado es
+> de una version anterior ([F-SIGUE-R002](../2026-10-28.01_la-medicion-sigue/REQUIREMENT.md#F-SIGUE-R002)).
 
 <details><summary>Detalle</summary>
 
@@ -383,6 +385,8 @@ del contenido reutilizable bajo ese runtime no se consulta.
 > consultar** al evaluador y todo el contenido restante queda pendiente. En ninguno
 > de los dos casos se aborta el analisis: la corrida termina con lo que alcanzo a
 > evaluar.
+> Una saturacion del modelo se espera antes de contarla como falla del servicio
+> ([F-SIGUE-R001](../2026-10-28.01_la-medicion-sigue/REQUIREMENT.md#F-SIGUE-R001)).
 
 <details><summary>Detalle</summary>
 

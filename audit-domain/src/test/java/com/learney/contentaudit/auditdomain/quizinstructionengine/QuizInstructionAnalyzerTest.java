@@ -130,6 +130,38 @@ public class QuizInstructionAnalyzerTest {
         assertEquals(3, none.judgeCoverage().getEvaluators().get(0).getCoverage().getReused());
     }
 
+    @Test
+    @Tag("FEAT-SIGUE")
+    @Tag("F-SIGUE-R002")
+    void volverAMedirAsksOnlyWhatIsNotOfTheVersionOfTodayAndACutRunResumesWhereItStopped() {
+        JexamLedger ledger = new JexamLedger();
+        CountingJudge old = new CountingJudge("v-old", COMPLIANT);
+        JexamCourse.withQuizzes(3).run(consignaAnalyzer(ledger, old, approvedExams("v-old"), budget(10, 1)));
+        assertEquals(List.of("q1", "q2", "q3"), old.asked());
+
+        CountingJudge today = new CountingJudge("v-today", COMPLIANT);
+        var volverAMedir = reevaluatePolicy(1, null);
+        volverAMedir.setKeepCurrentVersion(true);
+        JexamCourse cut = JexamCourse.withQuizzes(3);
+        cut.run(consignaAnalyzer(ledger, today, approvedExams("v-today"), volverAMedir));
+        assertEquals(List.of("q1"), today.asked(), "a run cut after one consultation");
+
+        volverAMedir.setMaxNewEvaluations(10);
+        JexamCourse resumed = JexamCourse.withQuizzes(3);
+        resumed.run(consignaAnalyzer(ledger, today, approvedExams("v-today"), volverAMedir));
+        assertEquals(List.of("q1", "q2", "q3"), today.asked(), "relaunched, it asks only the two of an earlier version");
+        assertEquals(1, resumed.judgeCoverage().getEvaluators().get(0).getCoverage().getReused());
+        assertEquals(3, resumed.judgeCoverage().getEvaluated());
+
+        JexamCourse again = JexamCourse.withQuizzes(3);
+        again.run(consignaAnalyzer(ledger, today, approvedExams("v-today"), volverAMedir));
+        assertEquals(3, today.asked().size(), "everything is of today: nothing is asked");
+
+        JexamCourse commandLine = JexamCourse.withQuizzes(3);
+        commandLine.run(consignaAnalyzer(ledger, today, approvedExams("v-today"), reevaluatePolicy(10, null)));
+        assertEquals(6, today.asked().size(), "the forced re-evaluation of the command line still asks everything");
+    }
+
     // ------------------------------------------------------------------
     // Helpers
     // ------------------------------------------------------------------

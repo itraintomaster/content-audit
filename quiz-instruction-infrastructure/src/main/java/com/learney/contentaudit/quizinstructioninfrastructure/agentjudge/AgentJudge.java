@@ -18,6 +18,7 @@ import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeSpec;
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadiness;
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadinessProbe;
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeUnavailabilityCause;
+import com.learney.contentaudit.quizinstructioninfrastructure.SaturationWaits;
 import com.sentinel.agents.framework.state.ArtifactPointer;
 import com.sentinel.agents.framework.state.RunState;
 import dev.langchain4j.model.chat.ChatModel;
@@ -73,10 +74,21 @@ class AgentJudge implements Evaluator {
 
     private final JudgeProviderReadinessProbe readinessProbe;
 
+    private final SaturationWaits saturationWaits;
+
     public AgentJudge(AgentJudgeSpec spec, AgentJudgeConfig config,
             AgentGraphRunner agentGraphRunner, AgentJudgeVersionResolver versionResolver,
             AgentJudgeChatModelFactory chatModelFactory, LlmProviderResolved provider,
             JudgeProviderReadinessProbe readinessProbe) {
+        this(spec, config, agentGraphRunner, versionResolver, chatModelFactory, provider, readinessProbe,
+                SaturationWaits.standard());
+    }
+
+    public AgentJudge(AgentJudgeSpec spec, AgentJudgeConfig config,
+            AgentGraphRunner agentGraphRunner, AgentJudgeVersionResolver versionResolver,
+            AgentJudgeChatModelFactory chatModelFactory, LlmProviderResolved provider,
+            JudgeProviderReadinessProbe readinessProbe, SaturationWaits saturationWaits) {
+        this.saturationWaits = saturationWaits;
         this.spec = spec;
         this.config = config;
         this.agentGraphRunner = agentGraphRunner;
@@ -93,12 +105,21 @@ class AgentJudge implements Evaluator {
 
     @Override
     public EvaluationOutcome evaluate(EvaluationSubject subject) {
+        // F-SIGUE-R001: a saturated model is waited for and the same exercise asked again.
+        return saturationWaits.consult(() -> consultOnce(subject), Consultation::saturated).outcome();
+    }
+
+    /** One consultation's answer, and whether it was a saturation that is worth waiting for. */
+    private record Consultation(EvaluationOutcome outcome, boolean saturated) {
+    }
+
+    private Consultation consultOnce(EvaluationSubject subject) {
         try {
             JudgeProviderReadiness checked = readinessBeforeFirstConsultation();
             if (!checked.isReady()) {
                 // F-JEXAM-R011: without a session the agent never runs, now or on any later
                 // consultation of this instance.
-                return unavailable(checked);
+                return failed(checked);
             }
 
             // Built lazily, at the moment of talking to the judge: a bad credential surfaces here
@@ -118,7 +139,7 @@ class AgentJudge implements Evaluator {
             if (verdictArtifact == null) {
                 // A run that halts carries why in its termination reason: an expired session or
                 // an exhausted quota of the first consultation arrives here, not as an exception.
-                return unavailable(explain(withoutVerdict(runState, artifactKey)));
+                return failed(explain(withoutVerdict(runState, artifactKey)));
             }
 
             String payload = Files.readString(verdictArtifact.location());
@@ -126,27 +147,27 @@ class AgentJudge implements Evaluator {
             try {
                 verdict = objectMapper.readTree(payload);
             } catch (JsonProcessingException e) {
-                return unavailable(explain("el artifact " + artifactKey + " del agente " + evaluatorId()
+                return failed(explain("el artifact " + artifactKey + " del agente " + evaluatorId()
                         + " no es un JSON legible: " + e.getOriginalMessage()));
             }
             if (verdict == null || !verdict.isObject()) {
-                return unavailable(explain("el artifact " + artifactKey + " del agente " + evaluatorId()
+                return failed(explain("el artifact " + artifactKey + " del agente " + evaluatorId()
                         + " no trae un veredicto"));
             }
 
             if (verdict.path(OUTPUT_UNUSABLE_FIELD).asBoolean(false)) {
-                return new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE,
+                return new Consultation(new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE,
                         "el agente " + evaluatorId() + " agotó sus intentos sin un veredicto válido y "
-                                + "emitió su veredicto conservador");
+                                + "emitió su veredicto conservador"), false);
             }
 
             // A judgment, whatever it says: what it means is for the reader and the classifier.
-            return new EvaluationEmitted(payload);
+            return new Consultation(new EvaluationEmitted(payload), false);
         } catch (Exception e) {
             // F-QINST-R007 / F-JEXAM-R011: any disruption -- down service, rejected session,
             // exhausted quota, unreadable artifact -- is an unavailable evaluator with its cause
             // named, never an exception.
-            return unavailable(explain(describe(e)));
+            return failed(explain(describe(e)));
         }
     }
 
@@ -231,6 +252,11 @@ class AgentJudge implements Evaluator {
             }
         }
         return new JudgeProviderReadiness(false, JudgeUnavailabilityCause.UNKNOWN, failure, null);
+    }
+
+    private Consultation failed(JudgeProviderReadiness why) {
+        return new Consultation(unavailable(why),
+                why != null && why.getCause() == JudgeUnavailabilityCause.MODEL_SATURATED);
     }
 
     /** F-JEXAM-R011: the report shows the cause and the remedy as «detail: remedy». */

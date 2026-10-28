@@ -35,6 +35,13 @@ public class EvaluationRunPolicy {
      */
     private boolean anyEnabledRuntime;
 
+    /**
+     * F-SIGUE-R002: a re-evaluation that keeps, without consulting, every result already of the
+     * judge's version of today -- volver a medir from the board. Off, a forced re-evaluation asks
+     * everything in its scope again, as the command line does.
+     */
+    private boolean keepCurrentVersion;
+
     public EvaluationRunPolicy() {
     }
 
@@ -113,6 +120,14 @@ public class EvaluationRunPolicy {
         this.anyEnabledRuntime = anyEnabledRuntime;
     }
 
+    public boolean isKeepCurrentVersion() {
+        return this.keepCurrentVersion;
+    }
+
+    public void setKeepCurrentVersion(boolean keepCurrentVersion) {
+        this.keepCurrentVersion = keepCurrentVersion;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -125,12 +140,13 @@ public class EvaluationRunPolicy {
                     && Objects.equals(this.newEvaluationSubjectIds, that.newEvaluationSubjectIds)
                     && Objects.equals(this.purpose, that.purpose)
                     && Objects.equals(this.maxConcurrentEvaluations, that.maxConcurrentEvaluations)
-                    && this.anyEnabledRuntime == that.anyEnabledRuntime;
+                    && this.anyEnabledRuntime == that.anyEnabledRuntime
+                    && this.keepCurrentVersion == that.keepCurrentVersion;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(maxNewEvaluations, reevaluate, reevaluationScope, reevaluationSubjectIds,
-                newEvaluationSubjectIds, purpose, maxConcurrentEvaluations, anyEnabledRuntime);
+                newEvaluationSubjectIds, purpose, maxConcurrentEvaluations, anyEnabledRuntime, keepCurrentVersion);
     }
 }

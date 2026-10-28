@@ -181,6 +181,7 @@ public class NearDuplicatesAnalyzerProvider implements AnalyzerProvider {
         EvaluationRunPolicy vectors = new EvaluationRunPolicy(Integer.MAX_VALUE, policy.isReevaluate(), policy.getReevaluationScope(),
                 policy.getReevaluationSubjectIds(), policy.getPurpose(), policy.getMaxConcurrentEvaluations());
         vectors.setNewEvaluationSubjectIds(policy.getNewEvaluationSubjectIds());
+        vectors.setKeepCurrentVersion(policy.isKeepCurrentVersion());
         return vectors;
     }
 

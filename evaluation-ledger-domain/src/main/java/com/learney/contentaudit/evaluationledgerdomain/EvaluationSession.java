@@ -13,6 +13,12 @@ public interface EvaluationSession {
 
     EvaluationResolution resolveForced(EvaluationSubject subject);
 
+    /**
+     * F-SIGUE-R002: keeps, without consulting, a result already of the evaluator's version of today
+     * (or of a version recorded as equivalent); anything else is asked again, as {@link #resolveForced}.
+     */
+    EvaluationResolution resolveRefreshing(EvaluationSubject subject);
+
     EvaluationCoverage coverage();
 
     Optional<String> consultedEvaluatorVersion();
@@ -24,6 +30,9 @@ public interface EvaluationSession {
     List<EvaluationResolution> resolveAll(List<EvaluationRequest> requests, int maxConcurrent);
 
     boolean recorded(EvaluationSubject subject);
+
+    /** F-SIGUE-R002: whether the latest result for exactly this content is of the version of today. */
+    boolean current(EvaluationSubject subject);
 
     Optional<String> unavailableReason();
 }

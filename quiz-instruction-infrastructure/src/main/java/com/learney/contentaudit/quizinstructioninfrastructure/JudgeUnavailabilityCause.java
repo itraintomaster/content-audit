@@ -17,5 +17,8 @@ public enum JudgeUnavailabilityCause {
 
     NOT_INSTALLED,
 
+    /** F-SIGUE-R001: the model is at capacity for a while; asking again later works. */
+    MODEL_SATURATED,
+
     UNKNOWN
 }

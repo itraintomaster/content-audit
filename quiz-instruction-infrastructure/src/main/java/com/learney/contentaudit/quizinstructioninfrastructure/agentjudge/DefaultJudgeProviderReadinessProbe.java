@@ -52,6 +52,9 @@ public class DefaultJudgeProviderReadinessProbe implements JudgeProviderReadines
     static final String REQUEST_LIMIT_DETAIL = "límite de solicitudes informado por el proveedor";
     static final String REQUEST_LIMIT_REMEDY =
             "volvé a intentar más tarde o bajá las consultas a la vez con --concurrency";
+    static final String MODEL_SATURATED_DETAIL = "modelo saturado";
+    static final String MODEL_SATURATED_REMEDY =
+            "el proveedor siguió saturado después de esperar media hora; volvé a medir más tarde: lo ya medido se conserva";
     static final String SERVICE_UNREACHABLE_DETAIL = "servicio caído";
     static final String SERVICE_UNREACHABLE_REMEDY =
             "revisá la conexión y volvé a correr cuando el servicio responda";
@@ -111,6 +114,11 @@ public class DefaultJudgeProviderReadinessProbe implements JudgeProviderReadines
             literal("TooManyRequests"),
             literal("limit reached"),
             statusCode("429"));
+
+    /** F-SIGUE-R001: the model answers that it is busy for now; it passes by itself. */
+    private static final List<Pattern> MODEL_SATURATED_SIGNS = List.of(
+            literal("at capacity"),
+            literal("overloaded"));
 
     /** The service cannot be reached at all. */
     private static final List<Pattern> SERVICE_UNREACHABLE_SIGNS = List.of(
@@ -200,6 +208,10 @@ public class DefaultJudgeProviderReadinessProbe implements JudgeProviderReadines
             // the plan or credits are exhausted merely because a request was rate limited.
             return notReady(JudgeUnavailabilityCause.QUOTA_EXHAUSTED, REQUEST_LIMIT_DETAIL,
                     REQUEST_LIMIT_REMEDY);
+        }
+        if (matchesAny(MODEL_SATURATED_SIGNS, text)) {
+            return notReady(JudgeUnavailabilityCause.MODEL_SATURATED, MODEL_SATURATED_DETAIL,
+                    MODEL_SATURATED_REMEDY);
         }
         if (matchesAny(SERVICE_UNREACHABLE_SIGNS, text)) {
             return notReady(JudgeUnavailabilityCause.SERVICE_UNREACHABLE, SERVICE_UNREACHABLE_DETAIL,

@@ -26,6 +26,8 @@ import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadi
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadinessProbe;
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeUnavailabilityCause;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig;
+import com.learney.contentaudit.quizinstructioninfrastructure.SaturationWaits;
+import com.learney.contentaudit.quizinstructioninfrastructure.agentjudge.DefaultJudgeProviderReadinessProbe;
 import com.sentinel.agents.framework.state.ArtifactPointer;
 import com.sentinel.agents.framework.state.RunState;
 import com.sentinel.agents.framework.state.RunStatus;
@@ -33,7 +35,9 @@ import dev.langchain4j.model.chat.ChatModel;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -297,5 +301,56 @@ public class QuizInstructionAgentJudgeTest {
         verifyNoInteractions(agentGraphRunner);
         assertEquals(0, chatModels.get(), "not even its model is built without a session");
         assertEquals(1, expired.probes.get(), "the session is checked once, before the first consultation");
+    }
+
+    @Test
+    @DisplayName("should wait and ask the same quiz again when the model is saturated, as it happened to the Consigna of the C2")
+    @Tag("FEAT-SIGUE")
+    @Tag("F-SIGUE-R001")
+    public void shouldWaitAndAskTheSameQuizAgainWhenTheModelIsSaturatedAsItHappenedToTheConsignaOfTheC2()
+            throws IOException {
+        AgentGraphRunner agentGraphRunner = mock(AgentGraphRunner.class);
+        RunState saturated = RunState.empty().withRunStatus(RunStatus.HALTED).withTerminationReason(
+                "[ERROR] llm_call failed: codex CLI exited with 1: OpenAI Codex v0.164.0-alpha.11.1\n"
+                        + "ERROR: Selected model is at capacity. Please try a different model.");
+        when(agentGraphRunner.run(anyString(), anyMap(), any(ChatModel.class), anyMap()))
+                .thenReturn(saturated)
+                .thenReturn(runStateWithVerdictArtifact(GENUINE_NON_COMPLIANT_VERDICT_JSON));
+        List<Duration> slept = new ArrayList<>();
+        JudgeProviderReadinessProbe probe = new DefaultJudgeProviderReadinessProbe(
+                List.of("sh", "-c", "echo '{\"loggedIn\": true}'"));
+        QuizInstructionAgentJudge judge = new QuizInstructionAgentJudge(buildConfig(), agentGraphRunner,
+                mock(QuizInstructionJudgeVersionResolver.class), CHAT_MODEL_FACTORY, PROVIDER, probe,
+                new SaturationWaits(SaturationWaits.STANDARD, slept::add));
+        EvaluationSubject subject = new EvaluationSubject("quiz-77", buildDeclaredInputs());
+
+        assertInstanceOf(EvaluationEmitted.class, judge.evaluate(subject),
+                "F-SIGUE-R001: after the wait the judge pronounced itself, and that is the answer");
+        verify(agentGraphRunner, org.mockito.Mockito.times(2))
+                .run(anyString(), org.mockito.ArgumentMatchers.eq(subject.getContent()), any(ChatModel.class), anyMap());
+        assertEquals(List.of(Duration.ofSeconds(30)), slept, "one wait of 30 seconds");
+    }
+
+    @Test
+    @DisplayName("should become unavailable as a saturated model only after the last wait")
+    @Tag("FEAT-SIGUE")
+    @Tag("F-SIGUE-R001")
+    public void shouldBecomeUnavailableAsASaturatedModelOnlyAfterTheLastWait() {
+        AgentGraphRunner agentGraphRunner = mock(AgentGraphRunner.class);
+        when(agentGraphRunner.run(anyString(), anyMap(), any(ChatModel.class), anyMap()))
+                .thenReturn(RunState.empty().withRunStatus(RunStatus.HALTED).withTerminationReason(
+                        "ERROR: Selected model is at capacity. Please try a different model."));
+        List<Duration> slept = new ArrayList<>();
+        QuizInstructionAgentJudge judge = new QuizInstructionAgentJudge(buildConfig(), agentGraphRunner,
+                mock(QuizInstructionJudgeVersionResolver.class), CHAT_MODEL_FACTORY, PROVIDER,
+                new DefaultJudgeProviderReadinessProbe(List.of("sh", "-c", "echo '{\"loggedIn\": true}'")),
+                new SaturationWaits(SaturationWaits.STANDARD, slept::add));
+
+        EvaluationNotEmitted notEmitted = assertInstanceOf(EvaluationNotEmitted.class,
+                judge.evaluate(new EvaluationSubject("quiz-77", buildDeclaredInputs())));
+        assertEquals(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, notEmitted.getKind());
+        assertEquals(true, notEmitted.getReason().startsWith("modelo saturado: "), notEmitted.getReason());
+        assertEquals(SaturationWaits.STANDARD, slept);
+        verify(agentGraphRunner, org.mockito.Mockito.times(7)).run(anyString(), anyMap(), any(ChatModel.class), anyMap());
     }
 }

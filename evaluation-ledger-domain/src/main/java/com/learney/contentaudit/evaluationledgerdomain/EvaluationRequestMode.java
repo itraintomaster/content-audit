@@ -13,5 +13,11 @@ public enum EvaluationRequestMode {
 
     PREFER_NEW,
 
-    REUSE_ONLY
+    REUSE_ONLY,
+
+    /**
+     * F-SIGUE-R002: asks again unless the latest result is already of the judge's version of today
+     * (or of a version recorded as equivalent), which is kept without consulting.
+     */
+    REFRESH
 }
