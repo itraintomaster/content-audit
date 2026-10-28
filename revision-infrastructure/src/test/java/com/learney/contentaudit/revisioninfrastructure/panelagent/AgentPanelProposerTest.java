@@ -303,6 +303,7 @@ public class AgentPanelProposerTest {
         for (String rule : List.of(
                 "El\n    ejercicio sigue practicando el mismo caso de esa regla que practica hoy.",
                 "no pasa a «eat → eating»",
+                "el título manda: llevalo a un caso\n    del tema («study → studied»)",
                 "Nunca dejes a la correcta\n   como la única bien formada",
                 "no le dice al alumno qué escribir en este hueco",
                 "nombra las dos («$is$ o $'s$»)",

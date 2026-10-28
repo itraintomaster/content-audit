@@ -189,9 +189,12 @@ alcance permitido; no uses una restricción secreta ni cambies el objetivo.
     sigue siendo una forma que se contrae. Una negativa sigue negativa y una
     afirmación no pasa a pregunta, ni al revés; el movimiento sigue siendo
     movimiento y el lugar, lugar; si practicaba no poner artículo («-»), la
-    respuesta nueva sigue sin artículo. Si no encontrás una oración del mismo
-    caso que resuelva las tareas, dejá la oración como está y decilo en
-    `rationale`.
+    respuesta nueva sigue sin artículo. Si el ejercicio de hoy no practica el
+    caso que dice el título —una tarea lo marca: «catch → caught» es
+    irregular en «Cambios ortográficos»—, el título manda: llevalo a un caso
+    del tema («study → studied») y cambiá la respuesta. Si no encontrás una
+    oración del mismo caso que resuelva las tareas, dejá la oración como está
+    y decilo en `rationale`.
 17. Lo que el ejercicio acepta es inglés estándar. Nunca agregues a las
     respuestas ni a la opción correcta «ain't», «amn't», «gonna», «wanna»,
     «gotta» ni otra forma no estándar, aunque una tarea diga que «también

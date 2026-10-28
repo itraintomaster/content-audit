@@ -617,7 +617,9 @@ llegó a decir «También aceptamos $ain't$, una forma informal de negar que no 
 > Quien propone recibe el título y la consigna del tema, que dicen qué practica y que la vista del alumno de sus
 > ejercicios no trae. Con eso:
 > 1. el ejercicio sigue practicando el mismo caso de la regla que practica hoy: «begin → beginning» duplica la
->    consonante y no pasa a «eat → eating»; una negativa sigue negativa y una afirmación no pasa a pregunta;
+>    consonante y no pasa a «eat → eating»; una negativa sigue negativa y una afirmación no pasa a pregunta. Si hoy
+>    practica otro caso que el que dice el título, el título manda: «catch → caught», irregular, en «Cambios
+>    ortográficos» pasa a un caso del tema, como «study → studied»;
 > 2. la tarjeta explica la regla: no dice qué escribir en el hueco ni obliga a contraer o a no contraer, porque el
 >    corrector toma las dos formas; si nombra una, nombra las dos;
 > 3. en una opción múltiple que practica elegir entre dos formas —will o going to—, la otra forma va entre las
@@ -640,6 +642,10 @@ Casi todos salieron de la C1, el 7 al 9/10. Quien propone veía cada ejercicio d
 el título del tema. La regla 3 de su guía, desde el 26/10, pedía incorrectas que estuvieran mal «por la concordancia, un
 auxiliar que falta o sobra». Las pistas de letras las marca también el analizador de pistas
 ([F-PISTA-R008](#F-PISTA-R008)), así que la compuerta rechaza un candidato que trae una nueva.
+
+La prueba del 28/10 sobre tres ejercicios de la C2 mostró que conservar el caso de hoy no alcanza cuando el de hoy ya
+es de otro tema: para `…221d`, «The boy ___ (catch) the bus.» en «Cambios ortográficos», quien propone devolvió el
+mismo ejercicio tres veces, porque la guía le pedía que el verbo nuevo siguiera irregular. Por eso manda el título.
 
 **Fuente**: brief 232; José, 28/10/2026: «arreglá … los defectos del 232».
 
