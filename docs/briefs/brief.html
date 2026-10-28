@@ -3,7 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>La pasada de la C2</title>
+<title>No queda opinión por pedir; dos jueces quedaron viejos</title>
+<!--
+  TEMPLATE DE BRIEF · visual-brief
+  1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
+  2. Por cada sección: un título que dice la conclusión, UN dibujo copiado del
+     catálogo del final y un pie de dos renglones. Primero el dibujo; el texto lo rotula.
+     Si habla de una pantalla: primero DÓNDE (la captura con marcas, .map), después EL
+     PROBLEMA como un caso de uso (la foto de hoy + .mark), después CÓMO QUEDA (la maqueta
+     .mq con números y su leyenda). Si ya está hecho, los dos lados del .ad son capturas.
+     Las fotos, con capturar.mjs, en docs/briefs/NNN-slug/ (SKILL.md §4).
+  3. BORRAR el catálogo entero (la section de clase cat, al final) y las secciones que no se usan.
+  4. Verificar: node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
+     y mirarlo: node ~/.claude/skills/visual-brief/assets/diapos.mjs <el brief> <scratchpad>/d (+ --tema=dark, --celular)
+  Topes: lede ≤ 2 frases y 35 palabras · ≤ 6 secciones · pie ≤ 30 · párrafo ≤ 40 ·
+  prosa total ≤ 400 (sin tablas ni gráficos). Cada componente trae el suyo en el catálogo.
+  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
+-->
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -152,12 +168,18 @@
   .ex .en{font:italic 18px/1.35 ui-serif,Georgia,serif}
   .ex .gap{display:inline-block;min-width:48px;border-bottom:2px solid var(--fg-3);margin:0 4px}
   .ex .ans{font-size:13.5px;color:var(--fg-2)} .ex .ans b{color:var(--fg)}
+  .ex .rotulo{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3)}
+  .ex .rotulo.antes{color:var(--bad)} .ex .rotulo.despues{color:var(--ok)}
+  .ex .ans .lista{display:block;font-size:13px;line-height:1.5;color:var(--fg-2);margin-top:2px}
+  .ex .cuenta{font-size:13px;color:var(--fg-2);border-top:1px dashed var(--line);padding-top:7px}
+  .ex .cuenta i,.ex .ans i{font-family:ui-serif,Georgia,serif} .ex .cuenta .mal{color:var(--bad)}
   .ex .ft{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--fg-3);
     border-top:1px dashed var(--line);padding-top:7px}
   .mark{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;line-height:1.45;background:var(--bad-soft);
     border-radius:8px;padding:8px 10px}
   .mark .x{color:var(--bad);font-weight:800}
   .mark.ok{background:var(--ok-soft)} .mark.ok .x{color:var(--ok)}
+  .mark.warn{background:var(--warn-soft)} .mark.warn .x{color:var(--warn)}
   .sev{font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;white-space:nowrap}
   .sev.b{background:var(--bad);color:var(--bg-elev)} .sev.a{background:var(--bad-soft);color:var(--bad)}
   .sev.m{background:var(--warn-soft);color:var(--warn)} .sev.l{background:var(--line-soft);color:var(--fg-2)}
@@ -324,97 +346,13 @@
     .map.alta .cap{width:min(55%,220px);margin:0 auto}
   }
 
-  /* la meta tiene que caer en el mismo lugar en todas las filas: ancho fijo para el número */
-  .hb.fijo .r{grid-template-columns:minmax(110px,38%) minmax(0,1fr) 92px}
-  @media (max-width:640px){ .hb.fijo .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) 84px} }
-  /* dos capturas lado a lado; en el celular, una abajo de la otra */
-  .par{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
-  .pila{display:grid;gap:10px}
-  .nota{font-size:12.5px;color:var(--fg-3);margin:8px 0 0}
-  @media (max-width:700px){.par{grid-template-columns:1fr}}
-</style>
-<style>
-  .ex .txt{font-size:14px;line-height:1.45}
-  .ex .txt q{font-style:italic}
-  .diagram .dash{stroke-dasharray:6 5}
-</style>
-<style>
-  .ex .cons b{color:var(--fg-2);font-weight:650}
-  .ex .en{font-size:17px}
-  .ex .ans i{font-family:ui-serif,Georgia,serif}
-  .ex .ans .lista{display:block;font-size:13px;line-height:1.5;color:var(--fg-2);margin-top:2px}
-  .ex .rotulo{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);
-    border-top:1px dashed var(--line);padding-top:8px;margin-top:2px}
-  .ex .rotulo.antes{color:var(--ok)} .ex .rotulo.despues{color:var(--bad)}
-  .ex .cue{font-style:normal;font-weight:700;color:var(--ok);background:var(--ok-soft);border-radius:4px;padding:0 4px}
-  .mark.warn{background:var(--warn-soft)} .mark.warn .x{color:var(--warn)}
-  .tw td{vertical-align:top}
-  .tw td small{display:block;color:var(--fg-3);font-size:12px;margin-top:2px}
-  .tw .gap{display:inline-block;min-width:40px;border-bottom:2px solid var(--fg-3);margin:0 4px}
-</style>
-<style>
-  .tw td i{font-family:ui-serif,Georgia,serif}
-</style>
-<style>
-  .tw td i{font-family:ui-serif,Georgia,serif}
-  .tw.casos td{font-size:12.5px;line-height:1.45;min-width:150px}
-  .tw.casos td:first-child{min-width:70px}
-  .tw .cambio{background:var(--accent-soft);border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-  details.grupo{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev);margin:10px 0 0}
-  details.grupo>summary{cursor:pointer;padding:10px 14px;font-size:14px;line-height:1.4;list-style-position:inside}
-  details.grupo>summary span{color:var(--fg-3);font-size:13px;margin-left:6px}
-  details.grupo .tw{margin:0;border:0;border-top:1px solid var(--line);border-radius:0 0 var(--radius) var(--radius)}
-  .ex .ft b{color:var(--fg-2)}
-</style>
-<style>
-  .tw td i{font-family:ui-serif,Georgia,serif}
-  .tw.casos td{font-size:12.5px;line-height:1.45;min-width:150px}
-  .tw.casos td:first-child{min-width:70px}
-  .tw .cambio{background:var(--accent-soft);border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-  details.grupo{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev);margin:10px 0 0}
-  details.grupo>summary{cursor:pointer;padding:10px 14px;font-size:14px;line-height:1.4;list-style-position:inside}
-  details.grupo>summary span{color:var(--fg-3);font-size:13px;margin-left:6px}
-  details.grupo .tw{margin:0;border:0;border-top:1px solid var(--line);border-radius:0 0 var(--radius) var(--radius)}
-  .ex .ft b{color:var(--fg-2)}
-  .hb .f.i{background:var(--info)}
-</style>
-<style>
-  .tw td i{font-family:ui-serif,Georgia,serif}
-  .tw.casos td{font-size:12.5px;line-height:1.45;min-width:150px}
-  .tw.casos td:first-child{min-width:70px}
-  .tw .cambio{background:var(--accent-soft);border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-  .tw.cuenta td,.tw.cuenta th{text-align:center}
-  .tw.cuenta td:first-child,.tw.cuenta th:first-child{text-align:left}
-  details.grupo{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev);margin:10px 0 0}
-  details.grupo>summary{cursor:pointer;padding:10px 14px;font-size:14px;line-height:1.4;list-style-position:inside}
-  details.grupo>summary span{color:var(--fg-3);font-size:13px;margin-left:6px}
-  details.grupo .tw{margin:0;border:0;border-top:1px solid var(--line);border-radius:0 0 var(--radius) var(--radius)}
-  .ex .ft b{color:var(--fg-2)}
-</style>
-<style>
-  .apila{display:grid;gap:12px}
-  .apila .r{display:grid;grid-template-columns:minmax(92px,20%) minmax(0,1fr);gap:12px;align-items:center;font-size:13.5px}
-  .apila .t{color:var(--fg-2);line-height:1.3}
-  .apila .t small{display:block;color:var(--fg-3);font-size:12px}
-  .apila .barra{display:flex;height:28px;border-radius:7px;overflow:hidden;background:var(--line-soft)}
-  .apila .barra span{display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:650;min-width:0;overflow:hidden;white-space:nowrap}
-  .apila .s0{background:var(--ok);color:var(--bg)} .apila .s1{background:var(--ok-soft);color:var(--fg)}
-  .apila .s2{background:var(--warn);color:var(--bg)} .apila .s3{background:var(--bad);color:var(--bg)}
-  .ley{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:12.5px;color:var(--fg-2)}
-  .ley i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
-  .tw.casos td{font-size:12.5px;line-height:1.45;min-width:150px}
-  .tw.casos td:first-child{min-width:70px}
-  .tw .cambio{background:var(--accent-soft);border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-  details.grupo{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev);margin:12px 0 0}
-  details.grupo>summary{cursor:pointer;padding:10px 14px;font-size:14px;line-height:1.4;list-style-position:inside}
-  details.grupo>summary span{color:var(--fg-3);font-size:13px;margin-left:6px}
-  details.grupo .tw{margin:0;border:0;border-top:1px solid var(--line);border-radius:0 0 var(--radius) var(--radius)}
-  .ad .lado .campo{font-size:13px;line-height:1.45;color:var(--fg-2)}
-  .ad .lado .campo b{color:var(--fg)}
-  .ad .lado .cambio{background:var(--accent-soft);border-radius:3px}
-  .ad.peor{margin-top:16px}
-  .ad.peor .antes{border-top-color:var(--line)} .ad.peor .antes .rot,.ad.peor .antes .res{color:var(--fg-2)}
-  .ad.peor .despues{border-top-color:var(--bad)} .ad.peor .despues .rot,.ad.peor .despues .res{color:var(--bad)}
+  /* ============ CATÁLOGO · se borra entero al generar ============ */
+  .cat{margin-top:64px;padding-top:22px;border-top:3px solid var(--bad)}
+  .cat .adv{font-size:13px;color:var(--bad);font-weight:600;margin:0 0 20px}
+  .cat-g{display:grid;gap:16px}
+  .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
+  .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
+  .cat-i>.n b{color:var(--fg-2)}
 </style>
 </head>
 <body>
@@ -422,186 +360,93 @@
 
   <header>
     <div class="kicker">
-      <span class="num">233</span>
-      <span class="badge">Resumen · Corrección 2</span>
-      <span class="meta">A1 · 27/10/2026</span>
+      <span class="num">234</span>
+      <span class="badge">Diagnóstico · Para decidir</span>
+      <span class="meta">Tanda A1 · C2 · 28/10/2026</span>
     </div>
-    <h1>Lo grave bajó de 693 a 66, pero no se publica entera</h1>
-    <p class="sub">A1: la Corrección 2 contra producción, ejercicio por ejercicio.</p>
+    <h1>No queda opinión por pedir; dos jueces quedaron viejos</h1>
+    <p class="sub">Lo que midió la noche, por qué cortaron Consigna y Una sola respuesta, y cómo terminarlas.</p>
   </header>
 
-  <div class="lede"><p><strong>459 de los 1.725 cambios quedaron sin ningún problema, y los graves casi desaparecieron.</strong> Antes de publicar hay que sacar 234: problemas reales, consignas reescritas y lo que los jueces ven peor.</p></div>
+  <div class="lede"><p><strong>Completar terminó: en la C2 no queda ninguna opinión por pedir.</strong> Consigna y Una sola respuesta cortaron por una saturación de OpenAI, y antes de relanzar sus 2.480 opiniones viejas propongo tres arreglos.</p></div>
 
   <section>
-    <h2>Producción contra hoy: 693 graves pasan a 66</h2>
-    <div class="apila bars">
-      <div class="r"><div class="t">Producción<small>2.402 ejercicios</small></div><div class="barra"><span class="s0" style="width:5.6%"></span><span class="s1" style="width:43.0%">1.033</span><span class="s2" style="width:22.5%">541</span><span class="s3" style="width:28.9%">693</span></div></div>
-      <div class="r"><div class="t">Corrección 2<small>1.725 cambiados</small></div><div class="barra"><span class="s0" style="width:30.2%">726</span><span class="s1" style="width:46.4%">1.114</span><span class="s2" style="width:20.6%">496</span><span class="s3" style="width:2.7%"></span></div></div>
-    </div>
-    <div class="ley">
-      <span><i style="background:var(--ok)"></i>Sin problema: 135 → 726</span>
-      <span><i style="background:var(--ok-soft)"></i>Sólo leves: 1.033 → 1.114</span>
-      <span><i style="background:var(--warn)"></i>Medios: 541 → 496</span>
-      <span><i style="background:var(--bad)"></i>Graves: 693 → 66</span>
-    </div>
-    <p class="pie">Cada ejercicio cuenta por su peor problema. Problemas: 4.879 → 2.308.</p>
-    <div class="call c-warn"><b>Ojo:</b> sin que nadie los toque, 76 de 677 mejoran y 62 empeoran: cambiaron los jueces.</div>
-  </section>
-
-  <section>
-    <h2>459 de 1.725 cambios no tienen nada</h2>
+    <h2>La noche midió casi todo lo que faltaba</h2>
     <div class="kpis">
-      <div class="kpi dest"><div class="n">459</div><div class="l">sin problema para jueces y revisor</div></div>
-      <div class="kpi"><div class="n">598</div><div class="l">sin problema para los jueces; el revisor objeta 139</div></div>
-      <div class="kpi"><div class="n">645</div><div class="l">eran graves y ya no</div></div>
+      <div class="kpi dest"><div class="n">0<small>de 5.467</small></div><div class="l">opiniones por pedir, contra las de ayer a la tarde</div></div>
+      <div class="kpi"><div class="n">167<small>ayer 33</small></div><div class="l">ejercicios que todos los jueces aprueban</div></div>
+      <div class="kpi"><div class="n">256<small>de 2.155</small></div><div class="l">sólo esperan la Consigna o Una sola de hoy</div></div>
     </div>
-    <div class="hb fijo" style="margin-top:16px">
-      <div class="r"><div class="t">Sin problema<small>jueces y revisor de acuerdo</small></div><div class="tr"><div class="f g" style="width:27%"></div></div><div class="n">459</div></div>
-      <div class="r"><div class="t">Sin problema para los jueces<small>el revisor ve algo</small></div><div class="tr"><div class="f s" style="width:5%"></div></div><div class="n">88</div></div>
-      <div class="r"><div class="t">Eran graves, ahora no<small>quedan medios o leves</small></div><div class="tr"><div class="f g" style="width:19%"></div></div><div class="n">336</div></div>
-      <div class="r"><div class="t">Bajaron algo<small>siguen con problemas</small></div><div class="tr"><div class="f s" style="width:25%"></div></div><div class="n">436</div></div>
-      <div class="r"><div class="t">Igual o peor<small>para los jueces</small></div><div class="tr"><div class="f s" style="width:14%"></div></div><div class="n">243</div></div>
-      <div class="r"><div class="t">Siguen graves</div><div class="tr"><div class="f b" style="width:1%"></div></div><div class="n">15</div></div>
-      <div class="r"><div class="t">Problema real<small>no se publica así</small></div><div class="tr"><div class="f b" style="width:8%"></div></div><div class="n">136</div></div>
-      <div class="r"><div class="t">Decidís vos<small>Contable o incontable</small></div><div class="tr"><div class="f i" style="width:1%"></div></div><div class="n">12</div></div>
-    </div>
-    <p class="pie">«El revisor ve algo»: un detalle leve o algo que producción ya tenía.</p>
+    <p class="pie">Gastó 3.774 consultas de la suscripción de ChatGPT, de 15:19 a 01:10. Todo quedó integrado y la tanda sigue abierta.</p>
   </section>
 
   <section>
-    <h2>El corrector reescribió 88 consignas, y tenía permiso</h2>
-    <div class="hb fijo">
-      <div class="r"><div class="t">Ejercicio repetido<small>lo rehace entero · 20 con problema real o para decidir</small></div><div class="tr"><div class="f b" style="width:50%"></div></div><div class="n">44</div></div>
-      <div class="r"><div class="t">«No regala»<small>saca lo que regala · 1 con problema real o para decidir</small></div><div class="tr"><div class="f b" style="width:18%"></div></div><div class="n">16</div></div>
-      <div class="r"><div class="t">Calidad de las opciones<small>opciones y consigna · 5 con problema real o para decidir</small></div><div class="tr"><div class="f b" style="width:9%"></div></div><div class="n">8</div></div>
-      <div class="r"><div class="t">Sacar «Usa short forms»<small>la regla de las formas · 1 con problema real o para decidir</small></div><div class="tr"><div class="f b" style="width:7%"></div></div><div class="n">6</div></div>
-      <div class="r"><div class="t">Tú o vos<small>pasar a tú · 1 con problema real o para decidir</small></div><div class="tr"><div class="f b" style="width:16%"></div></div><div class="n">14</div></div>
+    <h2>Lo medido marca 267 problemas y 15 dudas</h2>
+    <div class="hb">
+      <div class="r"><span class="t">No regala la respuesta<small>207 de 2.054</small></span><span class="tr"><span class="f b" style="width:100%"></span></span><span class="n">207</span></div>
+      <div class="r"><span class="t">Didáctica A1<small>24 mal y 15 para revisar, de 282</small></span><span class="tr"><span class="f b" style="width:12%"></span><span class="f s" style="width:7%"></span></span><span class="n">39</span></div>
+      <div class="r"><span class="t">Miniteoría<small>16 graves y 6 medios, de 434</small></span><span class="tr"><span class="f b" style="width:11%"></span></span><span class="n">22</span></div>
+      <div class="r"><span class="t">Una sola respuesta<small>14 de 327 tienen otra respuesta válida</small></span><span class="tr"><span class="f b" style="width:7%"></span></span><span class="n">14</span></div>
+      <div class="r"><span class="t">Naturalidad<small>de 289</small></span><span class="tr"><span class="f g" style="width:1%"></span></span><span class="n">0</span></div>
+      <div class="r"><span class="t">Consigna<small>de 773</small></span><span class="tr"><span class="f g" style="width:1%"></span></span><span class="n">0</span></div>
     </div>
-    <p class="pie">Cada ejercicio guarda su consigna. La tarea dice qué partes se tocan, no qué cambio.</p>
-    <div class="ad peor">
-      <div class="lado antes"><span class="rot">Producción · 230b · Contable o incontable</span><div class="campo"><b>Consigna:</b> ¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</div><div class="campo"><b>Ejercicio:</b> the past ___</div><div class="campo"><b>Opciones:</b> plural countable / singular countable / uncountable</div><div class="campo"><b>Respuestas:</b> Opción correcta: uncountable</div><div class="campo"><b>Traducción:</b> el pasado incontable</div><div class="campo"><b>Miniteoría:</b> $The past$ no tiene plural: es incontable, como $work$ o $time$.</div><span class="res">Practica clasificar el sustantivo.</span></div>
-      <div class="lado despues"><span class="rot">Hoy · rehecho por repetido</span><div class="campo"><span class=cambio><b>Consigna:</b> Elegí la opción correcta para completar la oración.</span></div><div class="campo"><span class=cambio><b>Ejercicio:</b> There ___ two glasses.</span></div><div class="campo"><span class=cambio><b>Opciones:</b> are / is / am</span></div><div class="campo"><span class=cambio><b>Respuestas:</b> Opción correcta: are</span></div><div class="campo"><span class=cambio><b>Traducción:</b> Hay dos vasos.</span></div><div class="campo"><span class=cambio><b>Miniteoría:</b> $Two glasses$ significa «dos vasos» y es plural contable. Para decir que hay dos vasos, usamos $there are two glasses$.</span></div><span class="res">Practica «there are», otro tema.</span></div>
-    </div>
-    <div class="ad peor">
-      <div class="lado antes"><span class="rot">Producción · 1e8d · $Be$: preguntas $yes / no$</span><div class="campo"><b>Consigna:</b> Elige el comienzo correcto de la pregunta &#x27;yes / no&#x27; con el verbo &#x27;be&#x27;.</div><div class="campo"><b>Ejercicio:</b> ___ on the bus? (We)</div><div class="campo"><b>Opciones:</b> am i / are we / are you / is he / is it / is she</div><div class="campo"><b>Respuestas:</b> Opción correcta: are we</div><div class="campo"><b>Traducción:</b> ¿Estamos en el autobús?</div><div class="campo"><b>Miniteoría:</b> Para preguntar, be pasa adelante del sujeto: $Is he$ ⋯ ?, $Are we$ ⋯ ?</div><span class="res">Se acierta copiando la pista.</span></div>
-      <div class="lado despues"><span class="rot">Hoy · por la tarea de opciones</span><div class="campo"><span class=cambio><b>Consigna:</b> Elige el comienzo correcto de la pregunta de sí o no con el verbo $be$, colocando el verbo antes del sujeto indicado en la pista.</span></div><div class="campo"><span class=cambio><b>Ejercicio:</b> ___ wrong? (We)</span></div><div class="campo"><span class=cambio><b>Opciones:</b> Am we / Are we / Is we / We are / We is / We am</span></div><div class="campo"><span class=cambio><b>Respuestas:</b> Opción correcta: Are we</span></div><div class="campo"><span class=cambio><b>Traducción:</b> ¿Estamos equivocados?</span></div><div class="campo"><span class=cambio><b>Miniteoría:</b> Para preguntar con $we$, usamos $are$ antes del sujeto: $Are we$ ⋯ ?</span></div><span class="res">La consigna dice el orden: media respuesta.</span></div>
-    </div>
-    <p class="pie">Otras 460 sólo sacaron «Usa short forms», como decidiste el 30/9.</p>
-    <details class="grupo"><summary><b>Las 88 consignas reescritas</b> <span>con la tarea que lo permitió</span></summary>
-<div class="tw casos"><table><thead><tr><th>Caso</th><th>Consigna en producción</th><th>Consigna hoy</th><th>Lo permitió</th><th>Yo</th></tr></thead><tbody>
-<tr><td>21a4<small>$Be$: afirmar y negar</small><small>C1</small></td><td>Elige la forma del verbo &#x27;be&#x27; en pasado simple, afirmativa o negativa.</td><td><span class="cambio">Elige la forma de &#x27;be&#x27; en pasado simple para completar la pregunta.</span></td><td>Ejercicio repetido<small>near-duplicates/same-exercise</small></td><td><span class="pill p-bad">real</span></td></tr>
-<tr><td>21a6<small>$Be$: afirmar y negar</small><small>C1</small></td><td>Elige la forma del verbo &#x27;be&#x27; en pasado simple, afirmativa o negativa.</td><td><span class="cambio">Elige la forma de &#x27;be&#x27; en pasado simple para completar la pregunta.</span></td><td>Ejercicio repetido<small>mini-theory/other-subtopic-content, multiple-choice-validity/another-option-valid, near-duplicates/same-exercise</small></td><td><span class="pill p-bad">real</span></td></tr>
-<tr><td>1e8d<small>$Be$: preguntas $yes / no$</small><small>C2</small></td><td>Elige el comienzo correcto de la pregunta &#x27;yes / no&#x27; con el verbo &#x27;be&#x27;.</td><td><span class="cambio">Elige el comienzo correcto de la pregunta de sí o no con el verbo $be$, colocando el verbo antes del sujeto indicado en la pista.</span></td><td>Ejercicio repetido<small>mini-theory/missing-english-highlight, multiple-choice-quality/answer-cue, near-duplicates/same-exercise</small></td><td><span class="pill p-bad">real</span></td></tr>
-<tr><td>1e8e<small>$Be$: preguntas $yes / no$</small><small>C2</small></td><td>Elige el comienzo correcto de la pregunta &#x27;yes / no&#x27; con el verbo &#x27;be&#x27;.</td><td><span class="cambio">Elige el comienzo correcto de la pregunta de sí o no con el verbo $be$, colocando el verbo antes del sujeto indicado en la pista.</span></td><td>Ejercicio repetido<small>mini-theory/missing-english-highlight, multiple-choice-quality/answer-cue, near-duplicates/same-exercise</small></td><td><span class="pill p-bad">real</span></td></tr>
-<tr><td>1e92<small>$Be$: preguntas $yes / no$</small><small>C2</small></td><td>Elige el comienzo correcto de la pregunta &#x27;yes / no&#x27; con el verbo &#x27;be&#x27;.</td><td><span class="cambio">Elige el comienzo correcto de la pregunta de sí o no con el verbo $be$, colocando el verbo antes del sujeto indicado en la pista.</span></td><td>Ejercicio repetido<small>mini-theory/missing-english-highlight, multiple-choice-quality/answer-cue, near-duplicates/same-exercise</small></td><td><span class="pill p-bad">real</span></td></tr>
-<tr><td>25ac<small>$Be$: preguntas $yes / no$</small><small>C2</small></td><td>Usa $short forms$ si es posible. Conjuga el verbo &#x27;ser/estar&#x27; en presente simple.</td><td><span class="cambio">Completa la pregunta de sí o no con el verbo $be$ en presente simple, colocando el verbo antes del sujeto indicado en la pista.</span></td><td>Tú o vos<small>a1-didactic/a1-example-quality, spanish-register/tu-register</small></td><td><span class="pill p-bad">real</span></td></tr>
-<tr><td>25b8<small>$Be$: preguntas $yes / no$</small><small>C2</small></td><td>Usa $short forms$ si es posible. Conjuga el verbo &#x27;ser/estar&#x27; en presente simple.</td><td><span class="cambio">Completa la pregunta de sí o no con el verbo $be$ en presente simple.</span></td><td>Sacar «Usa short forms»<small>a1-didactic/a1-example-quality, answer-completeness/form-request, mini-theory/insufficient-for-quiz</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>25bc<small>$Be$: preguntas $yes / no$</small><small>C2</small></td><td>Usa $short forms$ si es posible. Conjuga el verbo &#x27;ser/estar&#x27; en presente simple.</td><td><span class="cambio">Completa la pregunta de sí o no con el verbo $be$ en presente simple.</span></td><td>Ejercicio repetido<small>mini-theory/insufficient-for-quiz, near-duplicates/same-exercise</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>246b<small>$Before$ y $after$</small><small>C2</small></td><td>Transforma las oraciones para que incluyan la forma &#x27;verb-ing&#x27;.</td><td><span class="cambio">Reescribe la oración abreviando la parte que empieza con $before$, sin cambiar su posición ni el significado.</span></td><td>«No regala»<small>answer-giveaway/gives-away-the-decision, mini-theory/other-subtopic-content</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>246e<small>$Before$ y $after$</small><small>C2</small></td><td>Transforma las oraciones para que incluyan la forma &#x27;verb-ing&#x27;.</td><td><span class="cambio">Reescribe la oración abreviando la parte que empieza con $before$, sin cambiar su posición ni el significado.</span></td><td>«No regala»<small>answer-giveaway/gives-away-the-decision, mini-theory/other-subtopic-content, sentence-length/longer-than-goal</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>246f<small>$Before$ y $after$</small><small>C2</small></td><td>Transforma las oraciones para que incluyan la forma &#x27;verb-ing&#x27;.</td><td><span class="cambio">Reescribe la oración abreviando la parte que empieza con $before$, sin cambiar su posición ni el significado.</span></td><td>«No regala»<small>answer-giveaway/gives-away-the-decision, mini-theory/other-subtopic-content</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2470<small>$Before$ y $after$</small><small>C2</small></td><td>Transforma las oraciones para que incluyan la forma &#x27;verb-ing&#x27;.</td><td><span class="cambio">Reescribe la oración abreviando la parte que empieza con $before$, sin cambiar su posición ni el significado.</span></td><td>«No regala»<small>answer-giveaway/gives-away-the-decision, mini-theory/other-subtopic-content</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2471<small>$Before$ y $after$</small><small>C2</small></td><td>Transforma las oraciones para que incluyan la forma &#x27;verb-ing&#x27;.</td><td><span class="cambio">Reescribe la oración sustituyendo $we went home$ por una expresión equivalente de dos palabras, sin sustituir el verbo por otro ni modificar el resto de la oración. Escribe la oración completa.</span></td><td>«No regala»<small>answer-giveaway/gives-away-the-decision, mini-theory/other-subtopic-content</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2472<small>$Before$ y $after$</small><small>C2</small></td><td>Transforma las oraciones para que incluyan la forma &#x27;verb-ing&#x27;.</td><td><span class="cambio">Reescribe la oración usando $after$ seguido directamente de un verbo, sin cambiar su posición, el resto de la oración ni el significado. Escribe la oración completa.</span></td><td>«No regala»<small>answer-giveaway/gives-away-the-decision, mini-theory/other-subtopic-content, single-answer/different-valid-answer</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2473<small>$Before$ y $after$</small><small>C2</small></td><td>Transforma las oraciones para que incluyan la forma &#x27;verb-ing&#x27;.</td><td><span class="cambio">Reescribe la oración usando $after$ seguido directamente de un verbo, sin cambiar su posición, el resto de la oración ni el significado. Escribe la oración completa.</span></td><td>«No regala»<small>answer-giveaway/gives-away-the-decision, mini-theory/other-subtopic-content, single-answer/different-valid-answer</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2474<small>$Before$ y $after$</small><small>C2</small></td><td>Transforma las oraciones para que incluyan la forma &#x27;verb-ing&#x27;.</td><td><span class="cambio">Reescribe la oración abreviando la parte que empieza con $after$, sin sustituir el verbo por otro ni cambiar su posición, el resto de la oración o el significado. Escribe la oración completa.</span></td><td>«No regala»<small>answer-giveaway/gives-away-the-decision, mini-theory/other-subtopic-content, single-answer/different-valid-answer</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2ad9<small>$Some$ y $any$</small><small>C1</small></td><td>Elige &#x27;some&#x27; o &#x27;any&#x27;.</td><td><span class="cambio">Elige la opción correcta.</span></td><td>Ejercicio repetido<small>mini-theory/other-subtopic-content, near-duplicates/same-but-wildcard</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2ae0<small>$Some$ y $any$</small><small>C1</small></td><td>Elige &#x27;some&#x27; o &#x27;any&#x27;.</td><td><span class="cambio">Elige la opción correcta.</span></td><td>Ejercicio repetido<small>mini-theory/other-subtopic-content, near-duplicates/same-exercise</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2eda<small>Adjetivo o adverbio</small><small>C2</small></td><td>Elegí la palabra correcta.</td><td><span class="cambio">Elige la palabra correcta.</span></td><td>Tú o vos<small>spanish-register/tu-register</small></td><td><span class="pill p-idle">ya estaba</span></td></tr>
-<tr><td>2ef3<small>Adverbios de modo</small><small>C2</small></td><td>Creá un adverbio a partir del adjetivo y agregalo a la oración.</td><td><span class="cambio">Crea un adverbio a partir del adjetivo y agrégalo a la oración.</span></td><td>Tú o vos<small>mini-theory/other-subtopic-content, single-answer/different-valid-answer, spanish-register/tu-register</small></td><td><span class="pill p-warn">leve</span></td></tr>
-<tr><td>2ef9<small>Adverbios de modo</small><small>C2</small></td><td>Creá un adverbio a partir del adjetivo y agregalo a la oración.</td><td><span class="cambio">Crea un adverbio a partir del adjetivo y agrégalo a la oración.</span></td><td>Tú o vos<small>single-answer/different-valid-answer, spanish-register/tu-register</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2efd<small>Adverbios de modo</small><small>C2</small></td><td>Creá un adverbio a partir del adjetivo y agregalo a la oración.</td><td><span class="cambio">Crea un adverbio a partir del adjetivo y agrégalo a la oración.</span></td><td>Tú o vos<small>lemma-absence/misplaced-word, mini-theory/other-subtopic-content, single-answer/different-valid-answer, spanish-register/tu-register</small></td><td><span class="pill p-warn">leve</span></td></tr>
-<tr><td>2f02<small>Adverbios de modo</small><small>C2</small></td><td>Creá un adverbio a partir del adjetivo y agregalo a la oración.</td><td><span class="cambio">Crea un adverbio a partir del adjetivo y agrégalo a la oración.</span></td><td>Tú o vos<small>mini-theory/other-subtopic-content, single-answer/different-valid-answer, spanish-register/tu-register</small></td><td><span class="pill p-warn">leve</span></td></tr>
-<tr><td>231c<small>Clasificación: repaso</small><small>C1</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elegí la clasificación de los dos sustantivos, en el orden en que aparecen.</span></td><td>Ejercicio repetido<small>mini-theory/insufficient-for-quiz, near-duplicates/same-exercise, translation-sense/same-meaning</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>231e<small>Clasificación: repaso</small><small>C2</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elige la expresión cuyo sustantivo principal es incontable.</span></td><td>Ejercicio repetido<small>mini-theory/other-subtopic-content, multiple-choice-validity/another-option-valid, near-duplicates/same-exercise, sentence-length/shorter-than-goal</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>231f<small>Clasificación: repaso</small><small>C1</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elegí la clasificación de los dos sustantivos, en el orden en que aparecen.</span></td><td>Ejercicio repetido<small>mini-theory/insufficient-for-quiz, near-duplicates/same-exercise, translation-sense/same-meaning</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2321<small>Clasificación: repaso</small><small>C1</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elegí la clasificación de los dos sustantivos, en el orden en que aparecen.</span></td><td>Ejercicio repetido<small>mini-theory/insufficient-for-quiz, near-duplicates/same-exercise, translation-sense/same-meaning</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2323<small>Clasificación: repaso</small><small>C1</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elegí la clasificación de los dos sustantivos, en el orden en que aparecen.</span></td><td>Ejercicio repetido<small>mini-theory/insufficient-for-quiz, near-duplicates/same-exercise, translation-sense/same-meaning</small></td><td><span class="pill p-warn">leve</span></td></tr>
-<tr><td>2326<small>Clasificación: repaso</small><small>C1</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elegí la clasificación de los dos sustantivos, en el orden en que aparecen.</span></td><td>Ejercicio repetido<small>mini-theory/insufficient-for-quiz, near-duplicates/same-exercise, translation-sense/same-meaning</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2327<small>Clasificación: repaso</small><small>C1</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elegí la clasificación de los tres sustantivos, en el orden en que aparecen.</span></td><td>Ejercicio repetido<small>mini-theory/insufficient-for-quiz, near-duplicates/same-exercise, translation-sense/same-meaning</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2328<small>Clasificación: repaso</small><small>C1</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elegí la clasificación de los tres sustantivos, en el orden en que aparecen.</span></td><td>Ejercicio repetido<small>mini-theory/insufficient-for-quiz, near-duplicates/same-exercise, translation-sense/same-meaning</small></td><td><span class="pill p-warn">leve</span></td></tr>
-<tr><td>2329<small>Clasificación: repaso</small><small>C1</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elegí la clasificación de los tres sustantivos, en el orden en que aparecen.</span></td><td>Ejercicio repetido<small>mini-theory/other-subtopic-content, near-duplicates/same-exercise, translation-sense/same-meaning</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2306<small>Contable o incontable</small><small>C1</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elegí la opción correcta para completar la oración.</span></td><td>Ejercicio repetido<small>mini-theory/other-subtopic-content, near-duplicates/same-exercise</small></td><td><span class="pill p-info">decidís vos</span></td></tr>
-<tr><td>2307<small>Contable o incontable</small><small>C1</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elegí la opción correcta para completar la oración.</span></td><td>Ejercicio repetido<small>mini-theory/insufficient-for-quiz, near-duplicates/same-exercise</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2309<small>Contable o incontable</small><small>C1</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elegí la opción correcta para completar la expresión.</span></td><td>Ejercicio repetido<small>mini-theory/insufficient-for-quiz, near-duplicates/same-exercise</small></td><td><span class="pill p-info">decidís vos</span></td></tr>
-<tr><td>230a<small>Contable o incontable</small><small>C1</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elegí la opción correcta para completar la oración.</span></td><td>Ejercicio repetido<small>mini-theory/insufficient-for-quiz, near-duplicates/same-exercise</small></td><td><span class="pill p-info">decidís vos</span></td></tr>
-<tr><td>230b<small>Contable o incontable</small><small>C1</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elegí la opción correcta para completar la oración.</span></td><td>Ejercicio repetido<small>mini-theory/other-subtopic-content, near-duplicates/same-exercise</small></td><td><span class="pill p-info">decidís vos</span></td></tr>
-<tr><td>230c<small>Contable o incontable</small><small>C1</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elegí la opción correcta para completar la oración.</span></td><td>Ejercicio repetido<small>mini-theory/other-subtopic-content, near-duplicates/same-exercise</small></td><td><span class="pill p-info">decidís vos</span></td></tr>
-<tr><td>230d<small>Contable o incontable</small><small>C2</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elige la opción correcta para completar la oración.</span></td><td>Ejercicio repetido<small>mini-theory/insufficient-for-quiz, near-duplicates/same-exercise, spanish-register/tu-register</small></td><td><span class="pill p-info">decidís vos</span></td></tr>
-<tr><td>230f<small>Contable o incontable</small><small>C2</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elige la opción correcta para completar la oración.</span></td><td>Calidad de las opciones<small>multiple-choice-quality/implausible-distractors, spanish-register/tu-register</small></td><td><span class="pill p-info">decidís vos</span></td></tr>
-<tr><td>2310<small>Contable o incontable</small><small>C1</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elegí la opción correcta para completar la pregunta.</span></td><td>Ejercicio repetido<small>mini-theory/other-subtopic-content, near-duplicates/same-exercise</small></td><td><span class="pill p-info">decidís vos</span></td></tr>
-<tr><td>2311<small>Contable o incontable</small><small>C1</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elegí la opción correcta para completar la oración.</span></td><td>Ejercicio repetido<small>mini-theory/insufficient-for-quiz, near-duplicates/same-exercise</small></td><td><span class="pill p-info">decidís vos</span></td></tr>
-<tr><td>2312<small>Contable o incontable</small><small>C1</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elegí la opción correcta para completar la oración.</span></td><td>Ejercicio repetido<small>near-duplicates/same-exercise</small></td><td><span class="pill p-info">decidís vos</span></td></tr>
-<tr><td>2313<small>Contable o incontable</small><small>C2</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elige la opción correcta para completar la oración.</span></td><td>Ejercicio repetido<small>mini-theory/insufficient-for-quiz, near-duplicates/same-exercise, sentence-length/shorter-than-goal, spanish-register/tu-register</small></td><td><span class="pill p-info">decidís vos</span></td></tr>
-<tr><td>2314<small>Contable o incontable</small><small>C1</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elegí la opción correcta para completar la oración.</span></td><td>Ejercicio repetido<small>exact-duplicates/exact-duplicate, mini-theory/insufficient-for-quiz</small></td><td><span class="pill p-info">decidís vos</span></td></tr>
-<tr><td>2315<small>Contable o incontable</small><small>C1</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elegí la opción correcta para completar la oración.</span></td><td>Ejercicio repetido<small>mini-theory/insufficient-for-quiz, near-duplicates/same-exercise</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2316<small>Contable o incontable</small><small>C1</small></td><td>¿El sustantivo es &#x27;singular countable&#x27;, &#x27;plural countable&#x27; o &#x27;uncountable&#x27;?</td><td><span class="cambio">Elegí la opción correcta para completar la pregunta.</span></td><td>Ejercicio repetido<small>mini-theory/insufficient-for-quiz, near-duplicates/same-exercise</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>26ef<small>Elegir la forma natural</small><small>C2</small></td><td>Elige &#x27;will&#x27; (&#x27;ll) para decisiones espontáneas o &#x27;be going to&#x27; para planes preestablecidos.</td><td><span class="cambio">Acabas de decidir hacer algo por la otra persona porque podría estar ocupada; no tenías un plan previo. Elige &#x27;will&#x27; (&#x27;ll) para decisiones espontáneas o &#x27;be going to&#x27; para planes preestablecidos.</span></td><td>Calidad de las opciones<small>lemma-absence/misplaced-word, multiple-choice-quality/irrelevant-distractors, multiple-choice-validity/distinct-options, sentence-length/longer-than-goal</small></td><td><span class="pill p-bad">real</span></td></tr>
-<tr><td>26fc<small>Elegir la forma natural</small><small>C2</small></td><td>Elige &#x27;will&#x27; (&#x27;ll) para decisiones espontáneas o &#x27;be going to&#x27; para planes preestablecidos.</td><td><span class="cambio">Elige la forma más natural para la situación: &#x27;will&#x27; (&#x27;ll) para decisiones espontáneas o &#x27;be going to&#x27; para planes preestablecidos.</span></td><td>Calidad de las opciones<small>multiple-choice-quality/irrelevant-distractors, multiple-choice-validity/another-option-valid, multiple-choice-validity/distinct-options, sentence-length/longer-than-goal, spanish-register/tu-register</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>26fd<small>Elegir la forma natural</small><small>C2</small></td><td>Elige &#x27;will&#x27; (&#x27;ll) para decisiones espontáneas o &#x27;be going to&#x27; para planes preestablecidos.</td><td><span class="cambio">Elige la forma más natural para la situación: &#x27;will&#x27; (&#x27;ll) para decisiones espontáneas o &#x27;be going to&#x27; para planes preestablecidos.</span></td><td>Calidad de las opciones<small>multiple-choice-quality/irrelevant-distractors, sentence-length/longer-than-goal, spanish-register/tu-register</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>20f6<small>Estado vs. acción</small><small>C1</small></td><td>Usa $long forms$. Escribe las oraciones en &#x27;present simple&#x27; o &#x27;present continuous&#x27;. Todas las oraciones hablan sobre el presente.</td><td><span class="cambio">Escribe las oraciones en &#x27;present simple&#x27; o &#x27;present continuous&#x27;. Todas las oraciones hablan sobre el presente. Completa el hueco con la forma negativa del verbo indicado, sin agregar otras palabras. Puedes usar contracciones.</span></td><td>Sacar «Usa short forms»<small>answer-completeness/form-request, single-answer/different-valid-answer</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>24ea<small>Expresar habilidad</small><small>C1</small></td><td>Elige &#x27;can&#x27;, &#x27;can&#x27;t&#x27;, &#x27;could&#x27; o &#x27;couldn&#x27;t&#x27;.</td><td><span class="cambio">Elige &#x27;can&#x27;, &#x27;can&#x27;t&#x27;, &#x27;could&#x27; o &#x27;couldn&#x27;t&#x27; para completar la respuesta sobre el pasado.</span></td><td>Ejercicio repetido<small>mini-theory/insufficient-for-quiz, near-duplicates/same-exercise</small></td><td><span class="pill p-warn">leve</span></td></tr>
-<tr><td>24f3<small>Expresar habilidad</small><small>C1</small></td><td>Elige &#x27;can&#x27;, &#x27;can&#x27;t&#x27;, &#x27;could&#x27; o &#x27;couldn&#x27;t&#x27;.</td><td><span class="cambio">Elige &#x27;can&#x27;, &#x27;can&#x27;t&#x27;, &#x27;could&#x27; o &#x27;couldn&#x27;t&#x27; para completar la pregunta final negativa que confirma la afirmación.</span></td><td>Ejercicio repetido<small>mini-theory/insufficient-for-quiz, near-duplicates/same-exercise</small></td><td><span class="pill p-bad">real</span></td></tr>
-<tr><td>240a<small>Oraciones más naturales</small><small>C2</small></td><td>Cambia estas oraciones (¡inusuales!) para que incluyan &#x27;there&#x27;.</td><td><span class="cambio">Reescribe la oración de forma más natural como respuesta a «What&#x27;s in the box?». Conserva todas las palabras originales y añade solo una palabra; puedes cambiar el orden.</span></td><td>«No regala»<small>answer-giveaway/gives-away-the-decision, mini-theory/other-subtopic-content</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>240e<small>Oraciones más naturales</small><small>C2</small></td><td>Cambia estas oraciones (¡inusuales!) para que incluyan &#x27;there&#x27;.</td><td><span class="cambio">Reescribe la pregunta para que suene natural, conservando su significado. Conserva todas las palabras originales y añade solo una palabra; puedes cambiar el orden.</span></td><td>«No regala»<small>answer-giveaway/gives-away-the-decision, mini-theory/missing-english-highlight</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2412<small>Oraciones más naturales</small><small>C2</small></td><td>Cambia estas oraciones (¡inusuales!) para que incluyan &#x27;there&#x27;.</td><td><span class="cambio">Reescribe la pregunta para que suene natural, sin cambiar su significado. Conserva todas las palabras originales y añade solo una palabra; puedes cambiar el orden.</span></td><td>«No regala»<small>answer-giveaway/gives-away-the-decision</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2413<small>Oraciones más naturales</small><small>C2</small></td><td>Cambia estas oraciones (¡inusuales!) para que incluyan &#x27;there&#x27;.</td><td><span class="cambio">Reescribe la pregunta para que suene más natural, sin cambiar su significado. Conserva todas las palabras originales y añade solo una palabra; puedes cambiar el orden.</span></td><td>«No regala»<small>answer-giveaway/gives-away-the-decision</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2415<small>Oraciones más naturales</small><small>C2</small></td><td>Cambia estas oraciones (¡inusuales!) para que incluyan &#x27;there&#x27;.</td><td><span class="cambio">Reescribe la oración de forma más natural, manteniendo su significado. Conserva todas las palabras originales y añade solo una palabra; puedes cambiar el orden.</span></td><td>«No regala»<small>answer-giveaway/gives-away-the-decision, mini-theory/other-subtopic-content</small></td><td><span class="pill p-bad">real</span></td></tr>
-<tr><td>2417<small>Oraciones más naturales</small><small>C2</small></td><td>Cambia estas oraciones (¡inusuales!) para que incluyan &#x27;there&#x27;.</td><td><span class="cambio">Reescribe la oración de forma más natural, manteniendo su significado. Conserva todas las palabras originales y añade solo una palabra; puedes cambiar el orden.</span></td><td>«No regala»<small>answer-giveaway/gives-away-the-decision, mini-theory/other-subtopic-content</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2619<small>Oraciones negativas</small><small>C2</small></td><td>Usa $short forms$ si es posible. Escribe las oraciones en presente continuo.</td><td><span class="cambio">Escribe oraciones negativas en presente continuo.</span></td><td>Sacar «Usa short forms»<small>a1-didactic/a1-example-quality, answer-completeness/form-request, single-answer/different-valid-answer</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2625<small>Oraciones negativas</small><small>C1</small></td><td>Usa $short forms$ si es posible. Escribe las oraciones en presente continuo.</td><td><span class="cambio">Completa la pregunta afirmativa en presente continuo.</span></td><td>Sacar «Usa short forms»<small>answer-completeness/form-request, single-answer/different-valid-answer</small></td><td><span class="pill p-bad">real</span></td></tr>
-<tr><td>2626<small>Oraciones negativas</small><small>C1</small></td><td>Usa $short forms$ si es posible. Escribe las oraciones en presente continuo.</td><td><span class="cambio">Completa la pregunta afirmativa en presente continuo.</span></td><td>Sacar «Usa short forms»<small>answer-completeness/form-request</small></td><td><span class="pill p-idle">ya estaba</span></td></tr>
-<tr><td>2501<small>Pedidos: formal o informal</small><small>C2</small></td><td>Transforma las oraciones para que incluyan &#x27;can&#x27; o &#x27;could&#x27;.</td><td><span class="cambio">Formula un pedido de permiso con &#x27;can&#x27; o &#x27;could&#x27;. Usá todas las palabras de la pista en el orden dado, sin agregar otras.</span></td><td>Ejercicio repetido<small>mini-theory/overstated-for-quiz, near-duplicates/same-exercise</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2ddc<small>Pedidos: formal o informal</small><small>C2</small></td><td>Transforma las oraciones para que incluyan &#x27;could&#x27; o &#x27;can&#x27;.</td><td><span class="cambio">Transforma la oración en una pregunta con &#x27;can&#x27; o &#x27;could&#x27;. Conserva el verbo y el complemento de la oración de partida, sin añadir palabras opcionales.</span></td><td>«No regala»<small>answer-giveaway/gives-away-the-decision, hint-coherence/rewrite-words, mini-theory/overstated-for-quiz, single-answer/different-valid-answer</small></td><td><span class="pill p-warn">leve</span></td></tr>
-<tr><td>252c<small>Permiso general</small><small>C2</small></td><td>Transforma las oraciones para que incluyan &#x27;can&#x27; y &#x27;you&#x27;. Este es el uso general de &#x27;you&#x27;.</td><td><span class="cambio">Reformula la oración con el modal de permiso general practicado en este tema. Conserva el significado y el vocabulario.</span></td><td>«No regala»<small>answer-giveaway/gives-away-the-decision, mini-theory/other-subtopic-content</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2161<small>Preguntas $yes/no$ y $wh$</small><small>C2</small></td><td>Crea preguntas cerradas (yes/no) y preguntas abiertas (&#x27;wh&#x27; questions) utilizando &#x27;going to&#x27;.</td><td><span class="cambio">Crea una pregunta cerrada (de sí o no) utilizando $going to$.</span></td><td>Tú o vos<small>mini-theory/over-specific-for-quiz, sentence-length/longer-than-goal, single-answer/different-valid-answer, spanish-register/tu-register</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2168<small>Preguntas $yes/no$ y $wh$</small><small>C2</small></td><td>Crea preguntas cerradas (yes/no) y preguntas abiertas (&#x27;wh&#x27; questions) utilizando &#x27;going to&#x27;.</td><td><span class="cambio">Crea una pregunta cerrada (de sí o no) utilizando $going to$.</span></td><td>Tú o vos<small>mini-theory/over-specific-for-quiz, spanish-register/tu-register</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2169<small>Preguntas $yes/no$ y $wh$</small><small>C2</small></td><td>Crea preguntas cerradas (yes/no) y preguntas abiertas (&#x27;wh&#x27; questions) utilizando &#x27;going to&#x27;.</td><td><span class="cambio">Crea una pregunta cerrada (de sí o no) utilizando $going to$.</span></td><td>Tú o vos<small>mini-theory/over-specific-for-quiz, spanish-register/tu-register</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>216c<small>Preguntas $yes/no$ y $wh$</small><small>C2</small></td><td>Crea preguntas cerradas (yes/no) y preguntas abiertas (&#x27;wh&#x27; questions) utilizando &#x27;going to&#x27;.</td><td><span class="cambio">Crea una pregunta cerrada (de sí o no) utilizando $going to$.</span></td><td>Tú o vos<small>mini-theory/over-specific-for-quiz, spanish-register/tu-register</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>216d<small>Preguntas $yes/no$ y $wh$</small><small>C2</small></td><td>Crea preguntas cerradas (yes/no) y preguntas abiertas (&#x27;wh&#x27; questions) utilizando &#x27;going to&#x27;.</td><td><span class="cambio">Crea una pregunta cerrada (de sí o no) utilizando $going to$.</span></td><td>Tú o vos<small>mini-theory/over-specific-for-quiz, single-answer/different-valid-answer, spanish-register/tu-register</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2171<small>Preguntas $yes/no$ y $wh$</small><small>C2</small></td><td>Crea preguntas cerradas (yes/no) y preguntas abiertas (&#x27;wh&#x27; questions) utilizando &#x27;going to&#x27;.</td><td><span class="cambio">Crea una pregunta cerrada (de sí o no) utilizando $going to$.</span></td><td>Tú o vos<small>mini-theory/over-specific-for-quiz, spanish-register/tu-register</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2172<small>Preguntas $yes/no$ y $wh$</small><small>C2</small></td><td>Crea preguntas cerradas (yes/no) y preguntas abiertas (&#x27;wh&#x27; questions) utilizando &#x27;going to&#x27;.</td><td><span class="cambio">Crea una pregunta cerrada (de sí o no) utilizando $going to$.</span></td><td>Tú o vos<small>mini-theory/over-specific-for-quiz, spanish-register/tu-register</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2173<small>Preguntas $yes/no$ y $wh$</small><small>C2</small></td><td>Crea preguntas cerradas (yes/no) y preguntas abiertas (&#x27;wh&#x27; questions) utilizando &#x27;going to&#x27;.</td><td><span class="cambio">Crea una pregunta cerrada (de sí o no) utilizando $going to$.</span></td><td>Tú o vos<small>mini-theory/over-specific-for-quiz, single-answer/different-valid-answer, spanish-register/tu-register</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>21bc<small>Preguntas con $be$</small><small>C2</small></td><td>Elige la opción que completa la pregunta en pasado simple con el verbo &#x27;be&#x27;.</td><td><span class="cambio">Elige la opción que completa la pregunta en pasado simple con el verbo $be$, colocando el verbo delante del sujeto.</span></td><td>Calidad de las opciones<small>mini-theory/other-subtopic-content, multiple-choice-quality/answer-cue, multiple-choice-validity/sentence-start-capital</small></td><td><span class="pill p-bad">real</span></td></tr>
-<tr><td>21bf<small>Preguntas con $be$</small><small>C2</small></td><td>Elige la opción que completa la pregunta en pasado simple con el verbo &#x27;be&#x27;.</td><td><span class="cambio">Elige la opción que completa la pregunta en pasado simple con el verbo $be$, colocando el verbo delante del sujeto.</span></td><td>Calidad de las opciones<small>mini-theory/other-subtopic-content, multiple-choice-quality/answer-cue, multiple-choice-validity/sentence-start-capital</small></td><td><span class="pill p-bad">real</span></td></tr>
-<tr><td>21c9<small>Preguntas con $be$</small><small>C2</small></td><td>Elige la opción que completa la pregunta en pasado simple con el verbo &#x27;be&#x27;.</td><td><span class="cambio">Elige la opción que completa la pregunta en pasado simple con el verbo $be$, colocando el verbo delante del sujeto.</span></td><td>Calidad de las opciones<small>mini-theory/insufficient-for-quiz, multiple-choice-quality/answer-cue, multiple-choice-validity/sentence-start-capital</small></td><td><span class="pill p-bad">real</span></td></tr>
-<tr><td>2129<small>Preguntas con $will$</small><small>C2</small></td><td>Formula preguntas cerradas (yes/no) y preguntas abiertas (&#x27;wh&#x27; questions) utilizando &#x27;will&#x27;.</td><td><span class="cambio">Formula una pregunta cerrada con $will$ utilizando el sujeto y el verbo de la pista.</span></td><td>Ejercicio repetido<small>mini-theory/over-specific-for-quiz, near-duplicates/same-exercise</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>21f6<small>Regulares: afirma y niega</small><small>C1</small></td><td>Escribe oraciones en &#x27;past simple&#x27;.</td><td><span class="cambio">Escribe la forma en &#x27;past simple&#x27;.</span></td><td>Ejercicio repetido<small>mini-theory/other-subtopic-content, near-duplicates/same-exercise</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>1f55<small>Respuestas cortas</small><small>C1</small></td><td>Usa $short forms$ si es posible. Escribe la respuesta corta.</td><td><span class="cambio">Completa la oración.</span></td><td>Sacar «Usa short forms»<small>answer-completeness/form-request, quiz-instruction/instruction-breach</small></td><td><span class="pill p-ok">sin problema</span></td></tr>
-<tr><td>1f5d<small>Respuestas cortas</small><small>C2</small></td><td>Usa $short forms$ si es posible. Escribe la respuesta corta.</td><td><span class="cambio">Responde negativamente con una respuesta corta en inglés estándar.</span></td><td>Ejercicio repetido<small>answer-completeness/form-request, near-duplicates/same-exercise, sentence-length/longer-than-goal, translation-sense/same-meaning</small></td><td><span class="pill p-bad">real</span></td></tr>
-<tr><td>25de<small>Respuestas cortas</small><small>C2</small></td><td>Usa $short forms$ si es posible. Escribe la respuesta corta correcta.</td><td><span class="cambio">Escribe la respuesta corta correcta en inglés estándar.</span></td><td>Ejercicio repetido<small>near-duplicates/same-exercise, single-answer/different-valid-answer, spanish-register/tu-register, translation-sense/same-meaning</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>262e<small>Respuestas cortas</small><small>C2</small></td><td>Escribe la respuesta corta.</td><td><span class="cambio">Escribe la respuesta corta en inglés estándar.</span></td><td>Ejercicio repetido<small>a1-didactic/a1-example-quality, lemma-absence/misplaced-word, mini-theory/other-subtopic-content, near-duplicates/same-exercise, sentence-length/longer-than-goal, translation-sense/same-meaning</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>243c<small>Tiempo: $at$, $in$, $on$</small><small>C2</small></td><td>Elige &#x27;at&#x27;, &#x27;in&#x27; u &#x27;on&#x27;, o &#x27;-&#x27; si no hace falta preposición.</td><td><span class="cambio">Elige la preposición correcta.</span></td><td>Calidad de las opciones<small>mini-theory/missing-english-highlight, multiple-choice-quality/irrelevant-distractors, sentence-length/longer-than-goal</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>244c<small>Tiempo: $at$, $in$, $on$</small><small>C1</small></td><td>Elige &#x27;at&#x27;, &#x27;in&#x27; u &#x27;on&#x27;, o &#x27;-&#x27; si no hace falta preposición.</td><td><span class="cambio">Elige la preposición correcta.</span></td><td>Ejercicio repetido<small>mini-theory/other-subtopic-content, multiple-choice-validity/sentence-start-capital, near-duplicates/same-exercise</small></td><td><span class="pill p-bad">real</span></td></tr>
-<tr><td>2c7d<small>Tiempo: $at$, $in$, $on$</small><small>C1</small></td><td>Elige &#x27;in&#x27;, &#x27;on&#x27; o &#x27;at&#x27;. Si no necesitas una preposición, elige &#x27;-&#x27;.</td><td><span class="cambio">Elige la preposición correcta.</span></td><td>Ejercicio repetido<small>mini-theory/other-subtopic-content, near-duplicates/same-exercise</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2c80<small>Tiempo: $at$, $in$, $on$</small><small>C1</small></td><td>Elige &#x27;in&#x27;, &#x27;on&#x27; o &#x27;at&#x27;. Si no necesitas una preposición, elige &#x27;-&#x27;.</td><td><span class="cambio">Elige la preposición correcta.</span></td><td>Ejercicio repetido<small>mini-theory/other-subtopic-content, multiple-choice-validity/another-option-valid, near-duplicates/same-exercise</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2c88<small>Tiempo: $at$, $in$, $on$</small><small>C1</small></td><td>Elige &#x27;in&#x27;, &#x27;on&#x27; o &#x27;at&#x27;. Si no necesitas una preposición, elige &#x27;-&#x27;.</td><td><span class="cambio">Elige la preposición correcta.</span></td><td>Ejercicio repetido<small>near-duplicates/same-exercise</small></td><td><span class="pill p-ok">bien</span></td></tr>
-<tr><td>2c89<small>Tiempo: $at$, $in$, $on$</small><small>C1</small></td><td>Elige &#x27;in&#x27;, &#x27;on&#x27; o &#x27;at&#x27;. Si no necesitas una preposición, elige &#x27;-&#x27;.</td><td><span class="cambio">Elige la preposición correcta.</span></td><td>Ejercicio repetido<small>mini-theory/other-subtopic-content, near-duplicates/same-exercise</small></td><td><span class="pill p-bad">real</span></td></tr>
-</tbody></table></div>
-    </details>
+    <div class="leyenda"><span><i class="sw"></i>mal o grave</span><span><i class="sw s"></i>para revisar</span></div>
+    <p class="pie">Ya están en Correcciones, cada uno en su renglón; un ejercicio puede sumar en más de un juez. Miniteoría tiene además 254 leves.</p>
   </section>
 
   <section>
-    <h2>Mi opinión: se publica sin esos 234</h2>
+    <h2>Un error de un minuto cortó dos mediciones de horas</h2>
     <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">Consigna fija</span><span class="d">El corrector no la toca.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">Sacar 234</span><span class="d">Vuelven a producción.</span></div>
-      <div class="st"><span class="i">3</span><span class="h">Publicar 1.491</span><span class="d">Ninguno con problema real ni peor.</span></div>
-      <div class="st end"><span class="i">4</span><span class="h">Arreglar y seguir</span><span class="d">Rehacerlos; después, medio y leve.</span></div>
+      <div class="st"><span class="i">1</span><span class="h">Consigna arranca</span><span class="eg">21:05 · 6 por minuto</span><span class="d">Mide 773 ejercicios sin un solo error.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">OpenAI se satura</span><span class="eg">23:09 · «model is at capacity»</span><span class="d">Una consulta vuelve sin respuesta, en 3 segundos.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">El juez queda «no disponible»</span><span class="d">Por regla, no se lo consulta más en esa corrida.</span></div>
+      <div class="st end"><span class="i">4</span><span class="h">La corrida corta</span><span class="d">Una sola respuesta cortó igual a las 23:59, con 327 medidos.</span></div>
     </div>
-    <p class="pie">Quedan 66 graves: 46 sin cambiar y 20 cambiados.</p>
+    <p class="pie">La regla de cortar se pensó para la cuota agotada o la sesión vencida. Una saturación pasa sola: Miniteoría arrancó diez minutos después y no tuvo ni un error.</p>
+  </section>
+
+  <section>
+    <h2>Relanzar como está repite 1.613 consultas</h2>
+    <div class="ad">
+      <div class="lado antes"><span class="rot">Relanzar hoy</span>
+        <ol><li>«Volver a medir» pregunta las 4.093 de nuevo, también las 1.613 al día.</li><li>Otra saturación lo corta y empieza de cero.</li></ol>
+        <span class="res">4.093 consultas, unas 10 horas, sin garantía</span></div>
+      <div class="lado despues"><span class="rot">Con los arreglos</span>
+        <ol><li>Pregunta sólo las 2.480 de una versión anterior: 1.315 y 1.165.</li><li>Ante una saturación, espera y sigue con el mismo ejercicio.</li></ol>
+        <span class="res">2.480 consultas, unas 6 horas</span></div>
+    </div>
+    <p class="pie">Repreguntar lo que ya tiene la opinión de la versión de hoy no cambia nada: sólo la versión decide. Los números de opiniones viejas son los del aviso de Correcciones.</p>
+  </section>
+
+  <section>
+    <h2>Completar le daba a Traducción la mitad del tope</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Corrida</th><th style="text-align:right">Ejercicios</th><th style="text-align:right">Planeó</th><th style="text-align:right">Gastó</th><th style="text-align:right">Midió</th></tr></thead>
+      <tbody>
+        <tr><td>Completar, 27/10</td><td class="num">10</td><td class="num">20</td><td class="num">10</td><td class="num"><span class="pill p-warn">5</span></td></tr>
+        <tr><td>Completar, 28/10</td><td class="num">5</td><td class="num">10</td><td class="num">4</td><td class="num"><span class="pill p-warn">2</span></td></tr>
+        <tr><td>Medición suelta, 28/10</td><td class="num">3</td><td class="num">6</td><td class="num">6</td><td class="num"><span class="pill p-ok">3</span></td></tr>
+      </tbody></table></div>
+    <p class="pie">Traducción pregunta dos veces por ejercicio y reparte el tope de a pares; Completar le daba un tope pensado para una pregunta. Con un ejercicio solo, no lo medía nunca.</p>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · ¿La consigna queda fija para el corrector?</span><div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">Sólo con permiso tuyo</span></div><span class="why">Tú y «short forms» los cambia una regla.</span></div>
-      <div class="ask"><span class="q">2 · ¿Saco los 234 y publico los 1.491?</span><div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">Guardar las 51 buenas</span></div><span class="why">Otra consigna cambia lo que se practica.</span></div>
+      <div class="ask"><span class="q">1 · ¿«Volver a medir» salta lo que ya tiene la opinión de hoy?</span>
+        <div class="ops"><span class="op rec">Sí, salta · recomendado</span><span class="op">No, pregunta todo</span></div>
+        <span class="why">Son 1.613 consultas y unas 4 horas menos, y un corte retoma en vez de empezar de cero.</span></div>
+      <div class="ask"><span class="q">2 · ¿Hago los tres arreglos, con sus pruebas, y relanzo lo que falta?</span>
+        <div class="ops"><span class="op rec">Sí, y relanzo · recomendado</span><span class="op">Relanzá ya, como está</span></div>
+        <span class="why">Saturación, «Volver a medir» y Traducción. Sin el de saturación, una corrida de 6 horas puede volver a cortar a la mitad.</span></div>
     </div>
   </section>
 
-  <footer class="pie">Brief 233 · batch analysis read de la tanda C2 (contentVersion 57) · lectura: analysis/revisor-2026-10-26/pasada_c2.py, lectura_c2.py · brief233.py.</footer>
-</div>
+  <footer>
+    <span>Corridas: Completar ui-2026-10-27T18-19-46; Consigna ui-2026-10-28T00-04-57; Una sola ui-2026-10-28T02-18-33; Miniteoría ui-2026-10-28T03-09-01; Traducción ui-2026-10-28T03-44-22 y 03-58-35. El error, en .sentinel/runs/quiz-instruction-validator/20261028T020909. Reglas F-EVCOST-R008/R009 y F-QINST-R007; DefaultContextOpinionService.capWithin y TranslationSenseAnalyzer.shareBudgetInPairs. Cuentas del tablero, Correcciones de la C2, 28/10 01:10; problemas por ejercicio, de las opiniones de estas corridas.</span>
+    <span>brief 234 · docs/briefs/234-la-noche-de-la-c2.html</span>
+  </footer>
 
+</div>
 </body>
 </html>
