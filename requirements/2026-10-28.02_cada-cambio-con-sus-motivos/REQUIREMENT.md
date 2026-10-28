@@ -43,7 +43,9 @@ ejercicio; y reparar la C2.
 > Al crear la corrección siguiente, cada tarea de un cambio heredado se copia al final del plan nuevo, con un número
 > que ese plan no usa, y el cambio pasa a nombrar la copia. La copia dice lo mismo que la original: el ejercicio, el
 > hallazgo que la motivó y lo que cubre. Queda «en la tanda» porque es de un cambio de la tanda, pero no es trabajo
-> nuevo: no entra en las tareas elegidas de la corrección. La corrección anterior conserva su numeración, y las tareas
+> nuevo: no entra en las tareas elegidas de la corrección. La revisión de la corrección, que es lo que leen el tablero y
+> el aviso de aprobación, trae las tareas elegidas y también las que nombran sus cambios vigentes. La corrección anterior
+> conserva su numeración, y las tareas
 > propias del plan nuevo quedan como estaban. Si la anterior heredó sin llevarse sus tareas, el motivo se busca en las
 > correcciones de antes, la más cercana primero.
 
@@ -89,7 +91,7 @@ ejercicio; y reparar la C2.
 
 | Regla | Prueba |
 |---|---|
-| R001 | `CorrectionEvolutionServiceTest`: crear la siguiente copia la tarea del cambio heredado con el número que sigue, con su ejercicio y su hallazgo, en la tanda y fuera de las elegidas; la tarea propia con el mismo número y la anterior no cambian; no queda nada por reparar |
+| R001 | `CorrectionEvolutionServiceTest`: crear la siguiente copia la tarea del cambio heredado con el número que sigue, con su ejercicio y su hallazgo, en la tanda y fuera de las elegidas; la tarea propia con el mismo número y la anterior no cambian; no queda nada por reparar. `DefaultBatchReviewTest`: la revisión trae la tarea que nombra un cambio aunque no sea elegida, y no la de un cambio sacado |
 | R002 | `CurrentAnalysisServiceTest`: la tarea de otro ejercicio no avisa una aprobación, la propia sí. En el tablero, `test/views/hallazgos_vinculados_test.dart`: los motivos de un cambio son los de sus ejercicios, y una tarea de otro ejercicio no entra ni en el veredicto ni en el «Dijo» |
 | R003 | `CorrectionEvolutionServiceTest`: mirar cuenta sin guardar; con otra versión no repara; reparar copia la tarea, muda el desenlace a la copia, deja la otra tarea sin él y no cambia la versión; repararla otra vez no hace nada. Con una operación corriendo, no repara |
 

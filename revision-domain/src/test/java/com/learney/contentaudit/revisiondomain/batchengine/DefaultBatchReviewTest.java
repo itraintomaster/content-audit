@@ -2,7 +2,10 @@ package com.learney.contentaudit.revisiondomain.batchengine;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
 import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
 import com.learney.contentaudit.revisiondomain.RevisionArtifact;
 import com.learney.contentaudit.revisiondomain.RevisionProposal;
@@ -151,6 +154,26 @@ class DefaultBatchReviewTest {
         verify(store, never()).save(any());
         verify(store, never()).saveReview(any());
         verify(artifacts, never()).save(any());
+    }
+
+    @Test @Tag("FEAT-MOTIVO") @Tag("F-MOTIVO-R001")
+    void theReviewCarriesTheTasksItsChangesPointToThoughTheyAreNotChosenWork() {
+        batch.setTaskIds(List.of("chosen"));
+        batch.getChanges().get(0).setTaskIds(List.of("carried"));
+        var dropped = change("dropped", step);
+        dropped.setTaskIds(List.of("of-a-dropped-change"));
+        dropped.setDroppedReason("volvió a pendiente: la reemplazó otra pasada");
+        batch.setChanges(List.of(batch.getChanges().get(0), batch.getChanges().get(1), dropped));
+        var plan = new RefinementPlan();
+        plan.setTasks(List.of(task("chosen"), task("carried"), task("of-a-dropped-change"), task("unrelated")));
+        when(plans.load("plan")).thenReturn(Optional.of(plan));
+        assertEquals(List.of("chosen", "carried"),
+                review.read("batch").tasks().stream().map(RefinementTask::getId).toList());
+        assertEquals(List.of("chosen"), batch.getTaskIds(), "the copies are not chosen work");
+    }
+
+    private static RefinementTask task(String id) {
+        return new RefinementTask(id, AuditTarget.QUIZ, "quiz", "quiz", null, 0, RefinementTaskStatus.IN_BATCH, null);
     }
 
     @Test void doesNotAttributeANonMatchingOrAmbiguousHistoricalCandidate() {

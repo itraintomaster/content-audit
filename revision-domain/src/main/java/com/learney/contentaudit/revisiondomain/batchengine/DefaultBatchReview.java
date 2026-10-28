@@ -150,6 +150,9 @@ final class DefaultBatchReview implements BatchReviewService {
     private BatchReview read(CorrectionBatch batch) {
         List<RevisionProposal> proposals = proposals(batch);
         var taskIds = new HashSet<>(BatchBook.list(batch.getTaskIds()));
+        // F-MOTIVO-R001: the tasks an inherited change carried are its reasons, though they are not chosen work.
+        for (BatchChange change : BatchBook.list(batch.getChanges()))
+            if (change != null && change.getDroppedReason() == null) taskIds.addAll(BatchBook.list(change.getTaskIds()));
         var tasks = plans.load(batch.getPlanId()).map(plan -> BatchBook.list(plan.getTasks()).stream()
                 .filter(task -> taskIds.contains(task.getId()) && !ContentCorrectionTasks.audioOnly(task))
                 .map(ContentCorrectionTasks::content).toList()).orElse(List.of());
