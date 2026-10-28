@@ -467,7 +467,8 @@ que el juez de una sola respuesta había pedido para la oración vieja, a «How 
 
 > Lo que el juez de calidad didáctica A1 encuentra en un ejemplo es un problema que se corrige en la mesa, no sólo
 > contexto para quien propone: se arregla cambiando el ejemplo —enunciado, pista, respuestas u opciones, con su
-> traducción, su oración guardada y su audio detrás—, nunca la consigna del tema ni la miniteoría. Antes de corregir un
+> traducción, su oración guardada y su audio detrás—, nunca la consigna del tema. La miniteoría y la consigna del
+> ejercicio también van detrás: cambian cuando el ejemplo nuevo deja falso lo que dicen. Antes de corregir un
 > ejercicio de A1 que ese juez todavía no vio, se le pide su opinión, con una consulta dentro del tope, leyendo los
 > encabezados de los temas anteriores como los lee el análisis. Un ejercicio de A1 sin otro problema también se puede
 > elegir para eso: si el juez no encuentra nada, no da trabajo. Los demás jueces que corrigen siguen como en
@@ -477,6 +478,11 @@ El 25/10/2026 la tanda A1 tenía 2.402 ejercicios y ninguno con opinión de este
 Así pasaron «Those are the sons' Saturdays.» y «That is the waiters' water.», que pragmatismo y uso nativo aprueban y de
 las que este juez dijo que «exige imaginar un calendario». Para un tema entero se pide la opinión de todos sus
 ejercicios antes de la tanda, con una consulta por ejercicio.
+
+El 28/10/2026, en la prueba de la pasada sobre la C2, «The boy ___ (catch) the bus.» del tema «Cambios ortográficos»
+pasó a «The boy ___ (study) at home.», pero su tarjeta seguía diciendo «$catch$ es irregular» y la mesa lo rechazó: la
+tarea no dejaba tocar la tarjeta. En la pasada había 26 ejercicios así, con un ejemplo de otro caso del tema y sin otra
+tarea sobre la tarjeta.
 
 **Fuente**: brief 223, pregunta 2; José, el 25/10/2026: «Sí, en esos temas».
 

@@ -166,6 +166,11 @@ alcance permitido; no uses una restricción secreta ni cambies el objetivo.
     una situación común y concreta, con la misma estructura, la misma fórmula y
     la misma cantidad de huecos: «These are the pens' mornings.» no se entiende
     sin un contexto; «These are the girls' pens.» practica el mismo posesivo.
+    Si la tarea dice que el ejemplo practica otro caso que el del tema, manda
+    el título (regla 16) aunque cambie la estructura. Cuando el ejemplo nuevo
+    deja falso lo que dicen la tarjeta o la consigna del ejercicio («$catch$
+    es irregular» para «study → studied»), reescribilas también; si siguen
+    siendo verdad, no las toques.
 15. La consigna dice qué hacer, nunca la respuesta ni qué caso de la regla
     aplica: «Completa con el presente simple o continuo», no «Usa el continuo
     porque pasa ahora». Si para que haya una sola respuesta hace falta contexto,

@@ -9,15 +9,17 @@ import java.util.Optional;
 
 /**
  * F-MESA-R024: what the judge of A1 finds in an example is corrected at the panel, changing the example -- its statement,
- * hint, answers or options, with its translation, stored sentence and audio following --, not the instructions of the
- * topic nor its mini theory. A selected exercise it has not opined on is measured before it is corrected.
+ * hint, answers or options, with its translation, stored sentence and audio following --, never the instructions of the
+ * topic. The mini theory and the instructions of the exercise follow too: in the C2 of A1 (28/10) «The boy ___ (catch)
+ * the bus.» in «Cambios ortográficos» became «study → studied», and its card still said «$catch$ es irregular». A selected
+ * exercise it has not opined on is measured before it is corrected.
  */
 public final class A1DidacticCorrection implements AnalyzerCorrection {
     static final String TASK_KIND = "A1_DIDACTIC";
 
     private static final List<ExercisePart> PANEL_SCOPE = List.of(ExercisePart.STATEMENT, ExercisePart.HINT,
             ExercisePart.ANSWERS, ExercisePart.OPTIONS, ExercisePart.TRANSLATION, ExercisePart.STORED_SENTENCE,
-            ExercisePart.AUDIO);
+            ExercisePart.AUDIO, ExercisePart.MINI_THEORY, ExercisePart.INSTRUCTIONS);
 
     @Override public String analyzerName() { return EnglishQualityAnalyzerProvider.Kind.A1_DIDACTIC.name; }
     /** It never measured the course: in the topics that are corrected, it measures each exercise first. */

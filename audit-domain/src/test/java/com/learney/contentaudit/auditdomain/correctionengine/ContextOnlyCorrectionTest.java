@@ -80,7 +80,7 @@ class ContextOnlyCorrectionTest {
     }
 
     @Test
-    @DisplayName("should make what the judge of A1 finds in an example an A1_DIDACTIC task on the exercise, corrected at the panel by changing the example and never the instructions nor the mini theory")
+    @DisplayName("should make what the judge of A1 finds in an example an A1_DIDACTIC task on the exercise, corrected at the panel by changing the example, with its card and its instructions following, and never the instructions of the topic")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R024")
     void shouldMakeWhatTheJudgeOfA1FindsInAnExampleATaskCorrectedAtThePanelByChangingTheExample() {
@@ -93,11 +93,13 @@ class ContextOnlyCorrectionTest {
         assertEquals(Optional.of(new AnalyzerPlanBinding("A1_DIDACTIC", List.of(AuditTarget.QUIZ))), a1.planBinding());
         var declaration = corrections.find("a1-didactic").orElseThrow();
         assertFalse(declaration.contextOnly());
+        // The card and the instructions of the exercise follow the example (28/10: «catch → study» kept a card about
+        // «catch» and the panel rejected it every time); the instructions of the topic never.
         assertEquals(List.of(ExercisePart.STATEMENT, ExercisePart.HINT, ExercisePart.ANSWERS, ExercisePart.OPTIONS,
-                ExercisePart.TRANSLATION, ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO),
+                ExercisePart.TRANSLATION, ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO, ExercisePart.MINI_THEORY,
+                ExercisePart.INSTRUCTIONS),
                 declaration.editScope(FindingResolution.PANEL));
-        assertFalse(declaration.editScope(FindingResolution.PANEL).contains(ExercisePart.INSTRUCTIONS));
-        assertFalse(declaration.editScope(FindingResolution.PANEL).contains(ExercisePart.MINI_THEORY));
+        assertFalse(declaration.editScope(FindingResolution.PANEL).contains(ExercisePart.TOPIC_INSTRUCTIONS));
         assertTrue(declaration.editScope(FindingResolution.RULE).isEmpty(), "a rule does not rewrite an example");
     }
 
