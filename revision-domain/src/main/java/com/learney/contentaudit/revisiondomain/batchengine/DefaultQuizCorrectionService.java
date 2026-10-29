@@ -36,6 +36,7 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
     private final Function<CourseEntity, String> courseFingerprint;
     private final String runtime;
     private final CourseElementLocator elementLocator;
+    private DefaultRuleStage rules;
 
     private static ObjectMapper mapper() {
         var times = new com.fasterxml.jackson.databind.module.SimpleModule();
@@ -54,6 +55,12 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
         this.config = config; this.ledger = ledger; this.panels = panels; this.reviews = reviews;
         this.courseFingerprint = courseFingerprint; this.runtime = Objects.toString(runtime, "NOT_RECORDED");
         this.elementLocator = Objects.requireNonNull(elementLocator, "Falta el acceso a las versiones del ejercicio.");
+    }
+
+    /** F-MESA-R032: the rules that fix the selected exercises before the panel, with no query. */
+    DefaultQuizCorrectionService withRules(DefaultRuleStage rules) {
+        this.rules = rules;
+        return this;
     }
 
     @Override public State execute(Request request) {
@@ -145,6 +152,11 @@ final class DefaultQuizCorrectionService implements QuizCorrectionService {
                 run = finish(run, batch, snapshot.noWork().values().stream().anyMatch(v -> v.startsWith("NOT_ATTEMPTED")) ? "PARTIAL" : "DONE", remeasured, null);
                 put(batch, run); batch.setStatus(reservation.idleStatus()); config.getBatchStore().save(batch);
                 return result(batch, run);
+            }
+            // F-MESA-R032: the rules first, without a model; the panel gets what they leave or decline.
+            if (rules != null) {
+                batch = rules.applySelected(batch, snapshot.report(), snapshot.start(), new LinkedHashSet<>(taskIds));
+                config.getBatchStore().save(batch);
             }
             allowance = config.getPanelRunnerFactory().allowance(Math.max(0, request.queryCap() - remeasured),
                     settings != null ? settings.getQueriesAtOnce() : 0);

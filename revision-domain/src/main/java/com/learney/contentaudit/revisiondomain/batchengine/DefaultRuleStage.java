@@ -89,10 +89,20 @@ class DefaultRuleStage implements RuleStage {
 
     @Override
     public CorrectionBatch apply(CorrectionBatch batch, AuditReport start, CourseEntity course) {
+        return applySelected(batch, start, course, null);
+    }
+
+    /**
+     * F-MESA-R032: the same rules over the tasks of a correction of chosen exercises only, before its panel; {@code null}
+     * takes every task of the batch.
+     */
+    CorrectionBatch applySelected(CorrectionBatch batch, AuditReport start, CourseEntity course,
+            Set<String> selectedTaskIds) {
         Map<String, RefinementTask> tasks = tasksOf(batch);
         // The pending tasks by rule of each exercise, in the order of the batch.
         Map<String, List<RefinementTask>> byExercise = new LinkedHashMap<>();
         for (String taskId : BatchBook.list(batch.getTaskIds())) {
+            if (selectedTaskIds != null && !selectedTaskIds.contains(taskId)) continue;
             RefinementTask task = tasks.get(taskId);
             if (ContentCorrectionTasks.audioOnly(task)) continue;
             task = ContentCorrectionTasks.content(task);

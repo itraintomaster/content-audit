@@ -16,6 +16,7 @@ import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 import com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceRuleFix;
 import com.learney.contentaudit.auditdomain.rulefix.RuleFixRequest;
 import com.learney.contentaudit.auditdomain.rulefix.RuleFixResult;
+import com.learney.contentaudit.auditdomain.spanishregister.SpanishRegisterRuleFix;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.KnowledgeEntity;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
@@ -206,6 +207,35 @@ public class DefaultRuleStageTest {
     }
 
 
+    @Test
+    @DisplayName("should run the rules only over the tasks of the chosen exercises when a correction of chosen exercises asks, leaving the rest of the batch as it was")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R032")
+    public void shouldRunTheRulesOnlyOverTheTasksOfTheChosenExercises() {
+        // F-MESA-R032: «I ___ a lot of vegetables.» has its card in vos and a missing hint; a correction that chose only
+        // the card writes it in tú by the table and leaves the hint as it was.
+        CourseEntity course = TandaFixture.course();
+        TandaFixture.exercise(course, MesaFixture.VEGETABLES).setMiniTheory("Usá $love$ para decir que algo te gusta mucho.");
+        Finding vos = MesaFixture.finding("spanish-register", "tu-register", MesaFixture.VEGETABLES, FindingSeverity.MEDIUM,
+                FindingResolution.RULE, "miniteoria", "la miniteoría va de tú y dice «Usá», de vos");
+        Rules rules = new Rules(course, List.of(vos, MesaFixture.missingHint()),
+                TandaFixture.task("t-vos", vos, MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                TandaFixture.task("t-pista", MesaFixture.missingHint(), MesaFixture.AFIRMATIVAS, CefrLevel.A1));
+        rules.fixes = List.of(new HintCoherenceRuleFix(noIrregularForms()), new SpanishRegisterRuleFix());
+
+        CorrectionBatch batch = rules.applySelected(Set.of("t-vos"), "t-vos", "t-pista");
+
+        assertEquals(1, batch.getChanges().size());
+        BatchChange change = batch.getChanges().get(0);
+        assertEquals("spanish-register", change.getRuleId());
+        assertEquals("Usa $love$ para decir que algo te gusta mucho.",
+                change.getSteps().get(0).getAfter().getQuiz().getMiniTheory());
+        assertEquals(List.of(ExercisePart.MINI_THEORY), change.getSteps().get(0).getParts());
+        assertEquals(BatchTaskOutcomeKind.RESOLVED_BY_RULE, BatchBook.kind(batch, "t-vos"));
+        assertTrue(BatchBook.outcome(batch, "t-pista").isEmpty(), "the task not chosen waits as it was");
+        assertTrue(batch.getPanelDecisions().isEmpty(), "no panel opened");
+    }
+
     private static final String HAPPY = "67fab6d59930102295343102";
 
     /** The rule stage over the course in memory: the real fixes of the hint and of data-coherence, the real gate. */
@@ -232,9 +262,13 @@ public class DefaultRuleStageTest {
         }
 
         CorrectionBatch apply(String... taskIds) {
+            return applySelected(null, taskIds);
+        }
+
+        CorrectionBatch applySelected(Set<String> selected, String... taskIds) {
             DefaultBatchChangeLedger ledger = new DefaultBatchChangeLedger(artifacts, TandaFixture.locator());
             return new DefaultRuleStage(fixes, meter, new DefaultGateFactory().changeGate(), ledger, batches)
-                    .withPlans(plans).apply(TandaFixture.batch("tanda-a1", taskIds), start, course);
+                    .withPlans(plans).applySelected(TandaFixture.batch("tanda-a1", taskIds), start, course, selected);
         }
     }
 

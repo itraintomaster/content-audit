@@ -898,7 +898,8 @@ class Main {
                 new AnswerCompletenessRuleFix(correctorMatcher),
                 new MultipleChoiceValidityRuleFix(),
                 new DataCoherenceRuleFix(quizSentenceConverter),
-                new GrammarRuleFix());
+                new GrammarRuleFix(),
+                new com.learney.contentaudit.auditdomain.spanishregister.SpanishRegisterRuleFix());  // F-MESA-R032
         TrayDecisionStore trayDecisionStore = new FileSystemTrayDecisionStore(baseDir);
         // E · FEAT-RONDA2 (hook E-09): the batch is asked of its factory on first use; its collaborators are
         // put together in the block of E after the commands of F. reject and batch read it from here.

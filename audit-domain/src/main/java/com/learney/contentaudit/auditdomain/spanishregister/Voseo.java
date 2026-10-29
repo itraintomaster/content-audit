@@ -20,6 +20,10 @@ import java.util.regex.Pattern;
  * opens -- at the start, after «.», «,», «;», «:» or «y» --, not after an English example or a parenthesis, where a card
  * translates it: «$I heard a funny noise.$ = Escuché un ruido raro.». And the imperative with a pronoun and no accent
  * («agregalo», «fijate», «preguntate»), which in «tú» carries one («agrégalo», «fíjate»).
+ *
+ * <p>The pronoun «vos» is «vos» too («respondes sobre vos»). A form the table of {@link Tuteo} knows is «vos» though it
+ * ends like a future («esperás», «cerrá», «separá»), and an English subject written without its marks opens a clause as
+ * a marked one does: «Con he usá $was$».
  */
 public final class Voseo {
     /** An English term between the native marks: the student reads it in English, so it is not Spanish. */
@@ -52,6 +56,10 @@ public final class Voseo {
     /** Words after which a clause opens, as a mark does: «… y agregalo», «Con $he$ usá …». */
     private static final Set<String> OPENS = Set.of("y", "e", "o", "u", "luego", "después", "primero", "entonces",
             "ahora", "siempre", "también");
+    /** An English subject a card writes without its marks: «con I, he, she, it usá $was not$». */
+    private static final Set<String> ENGLISH_SUBJECTS = Set.of("i", "you", "he", "she", "it", "we", "they");
+    /** The pronoun of «vos», which in «tú» is «tú», «ti» or «contigo». */
+    static final String PRONOUN = "vos";
 
     private Voseo() {
     }
@@ -74,10 +82,17 @@ public final class Voseo {
                 continue;
             }
             boolean imperative = instructs && IMPERATIVE.matcher(word).matches() && (word.endsWith("á") ? opens : clause);
-            if (WITH_PRONOUN.contains(word)
-                    || !NOT_A_VERB.contains(word) && !FUTURE.matcher(word).matches()
+            boolean future = FUTURE.matcher(word).matches() && !Tuteo.knows(word);
+            if (WITH_PRONOUN.contains(word) || PRONOUN.equals(word)
+                    || !NOT_A_VERB.contains(word) && !future
                     && (PRESENT.matcher(word).matches() || imperative)) {
                 found.add(token);
+            }
+            if (ENGLISH_SUBJECTS.contains(word)) {
+                // As after an English term between marks: an «á» opens there, an «é» or «í» may be its translation.
+                opens = true;
+                clause = false;
+                continue;
             }
             opens = OPENS.contains(word);
             clause = opens;

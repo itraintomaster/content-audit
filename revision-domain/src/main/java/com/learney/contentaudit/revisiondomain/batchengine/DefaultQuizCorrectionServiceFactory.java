@@ -20,6 +20,11 @@ public final class DefaultQuizCorrectionServiceFactory {
                 .withPlans(config.getRefinementPlanStore());
         var reviews = new DefaultBatchReviewServiceFactory().create(config.getBatchStore(), config.getArtifactStore(),
                 config.getRefinementPlanStore(), config.getReviewCache());
-        return new DefaultQuizCorrectionService(config, ledger, panels, reviews, fingerprint, correctorRuntime, locator);
+        // F-MESA-R032: what a rule fixes is fixed before the panel, with no query.
+        var rules = new DefaultRuleStage(config.getRuleFixes(), config.getTopicMeter(),
+                new com.learney.contentaudit.revisiondomain.nonregressionengine.DefaultGateFactory().changeGate(), ledger,
+                config.getBatchStore()).withPlans(config.getRefinementPlanStore());
+        return new DefaultQuizCorrectionService(config, ledger, panels, reviews, fingerprint, correctorRuntime, locator)
+                .withRules(rules);
     }
 }

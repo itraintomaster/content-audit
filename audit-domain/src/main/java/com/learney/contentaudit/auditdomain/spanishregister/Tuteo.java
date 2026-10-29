@@ -16,10 +16,19 @@ import java.util.regex.Pattern;
  * table does not know stays, and an English term between «$» is never touched.
  *
  * <p>The table holds the forms of the 699 published exercises and of the first correction of A1 (25/10/2026), and the
- * common verbs of the instructions and the cards.
+ * common verbs of the instructions and the cards. The pronoun «vos» goes by where it stands: «contigo» after «con»,
+ * «ti» after another preposition («respondes sobre ti») and «tú» elsewhere («(tú pagas)»).
  */
 public final class Tuteo {
     private static final Pattern ENGLISH = Pattern.compile("\\$[^$]*\\$");
+
+    private static final Pattern WITH_YOU = Pattern.compile("(?<!\\p{L})([Cc])on vos(?!\\p{L})");
+
+    private static final Pattern AFTER_PREPOSITION = Pattern.compile(
+            "(?<!\\p{L})(a|ante|de|desde|en|hacia|para|por|sin|sobre|tras) vos(?!\\p{L})",
+            Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
+
+    private static final Pattern SUBJECT = Pattern.compile("(?<!\\p{L})([Vv])os(?!\\p{L})");
 
     private static final Map<String, String> TU = new HashMap<>();
 
@@ -80,30 +89,40 @@ public final class Tuteo {
         }
     }
 
+    /** Whether the table writes this word of «vos» in «tú»: {@link Voseo} reads «esperás» as «vos», not as a future. */
+    static boolean knows(String word) {
+        return word != null && TU.containsKey(word.toLowerCase(Locale.ROOT));
+    }
+
     /** The text with each word in «vos» the table knows written in «tú»; the rest of the text as it was. */
     public static String of(String text, boolean instructs) {
         if (text == null || text.isBlank()) {
             return text;
         }
         Map<String, String> replacements = new HashMap<>();
+        boolean pronoun = false;
         for (String word : Voseo.in(text, instructs)) {
+            if (Voseo.PRONOUN.equals(word.toLowerCase(Locale.ROOT))) {
+                pronoun = true;
+                continue;
+            }
             String tu = TU.get(word.toLowerCase(Locale.ROOT));
             if (tu != null) {
                 replacements.put(word, Character.isUpperCase(word.charAt(0))
                         ? Character.toUpperCase(tu.charAt(0)) + tu.substring(1) : tu);
             }
         }
-        if (replacements.isEmpty()) {
+        if (replacements.isEmpty() && !pronoun) {
             return text;
         }
         StringBuilder result = new StringBuilder();
         Matcher english = ENGLISH.matcher(text);
         int from = 0;
         while (english.find()) {
-            result.append(inTu(text.substring(from, english.start()), replacements)).append(english.group());
+            result.append(inTu(text.substring(from, english.start()), replacements, pronoun)).append(english.group());
             from = english.end();
         }
-        return result.append(inTu(text.substring(from), replacements)).toString();
+        return result.append(inTu(text.substring(from), replacements, pronoun)).toString();
     }
 
     /**
@@ -132,11 +151,16 @@ public final class Tuteo {
         }
     }
 
-    private static String inTu(String spanish, Map<String, String> replacements) {
+    private static String inTu(String spanish, Map<String, String> replacements, boolean pronoun) {
         String result = spanish;
         for (Map.Entry<String, String> entry : replacements.entrySet()) {
             result = result.replaceAll("(?<!\\p{L})" + Pattern.quote(entry.getKey()) + "(?!\\p{L})",
                     Matcher.quoteReplacement(entry.getValue()));
+        }
+        if (pronoun) {
+            result = WITH_YOU.matcher(result).replaceAll(m -> m.group(1).equals("C") ? "Contigo" : "contigo");
+            result = AFTER_PREPOSITION.matcher(result).replaceAll("$1 ti");
+            result = SUBJECT.matcher(result).replaceAll(m -> m.group(1).equals("V") ? "Tú" : "tú");
         }
         return result;
     }

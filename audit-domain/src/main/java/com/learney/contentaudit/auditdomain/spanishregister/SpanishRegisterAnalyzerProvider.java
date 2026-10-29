@@ -40,7 +40,7 @@ public class SpanishRegisterAnalyzerProvider implements AnalyzerProvider {
                 "0 textos de vos: todo lo que lee el alumno va de tú",
                 AnalyzerFamily.ERRORS,
                 List.of(AuditTarget.QUIZ),
-                List.of(FindingResolution.PANEL),
+                List.of(FindingResolution.RULE, FindingResolution.PANEL),
                 AnalysisCost.INSTANT,
                 "Texto de vos", List.of(),
                 "Consignas, miniteorías y traducciones escritas de vos («Usá», «podés», «agregalo») donde el curso habla de"

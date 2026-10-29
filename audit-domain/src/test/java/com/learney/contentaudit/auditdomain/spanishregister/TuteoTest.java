@@ -43,6 +43,23 @@ public class TuteoTest {
     }
 
     @Test
+    @DisplayName("should write the pronoun vos as ti after a preposition, contigo after con and tú elsewhere, and the forms that end like a future")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R027")
+    public void shouldWriteThePronounVosByWhereItStandsAndTheFormsThatEndLikeAFuture() {
+        // F-MESA-R027: the cards of production (29/9) and of the C2 of A1 (28/10/2026).
+        assertEquals("Cuando te preguntan $Can you…?$ (¿Puedes…?), respondes sobre ti con $I$.",
+                Tuteo.of("Cuando te preguntan $Can you…?$ (¿Puedes…?), respondes sobre vos con $I$.", true));
+        assertEquals("Piden permiso con $I$: la respuesta es sobre ti, $you can$ / $you can't$.",
+                Tuteo.of("Piden permiso con $I$: la respuesta es sobre vos, $you can$ / $you can't$.", true));
+        assertEquals("$rent from$ es alquilarle A alguien (tú pagas).",
+                Tuteo.of("$rent from$ es alquilarle A alguien (vos pagás).", true));
+        assertEquals("Practica contigo y para ti. Tú decides.", Tuteo.of("Practicá con vos y para vos. Vos decidís.", true));
+        assertEquals("Usa $wait for$ para decir a quién esperas.", Tuteo.of("Usá $wait for$ para decir a quién esperás.", true));
+        assertEquals("Con he usa $was$: Was he fat?", Tuteo.of("Con he usá $was$: Was he fat?", true));
+    }
+
+    @Test
     @DisplayName("should tell a text that only went from vos to tú from one that changed something else")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R027")

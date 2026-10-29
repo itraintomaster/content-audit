@@ -405,7 +405,10 @@ corrija bien».
 > Antes de medir un candidato, y sin gastar consultas, la mesa lo rechaza si escribe de vos lo que cambia de lo que el
 > alumno lee en español: la consigna del ejercicio o del tema, la traducción o la miniteoría. Invariantes:
 > 1. de vos son el presente («podés», «decidís», «necesitás»), el imperativo con el acento al final donde empieza una
->    frase («Usá», «añadí», «Creá», «poné») y el imperativo con pronombre sin tilde («agregalo», «fijate»);
+>    frase («Usá», «añadí», «Creá», «poné»), el imperativo con pronombre sin tilde («agregalo», «fijate») y el pronombre
+>    «vos» («respondes sobre vos»). Una forma que la tabla de [F-MESA-R027](#F-MESA-R027) conoce es de vos aunque
+>    termine como un futuro («esperás», «separá»), y un sujeto en inglés escrito sin marcas abre la frase como uno
+>    marcado («Con he usá $was$»);
 > 2. no lo son el pasado ni el futuro («Escribí tres oraciones», «dibujará», «sabrás») ni las palabras que sólo terminan
 >    igual («más», «inglés», «cortés», «después», «país», «está»); el imperativo con acento se busca sólo en la consigna
 >    y la miniteoría, porque en una traducción «Escribí» es el pasado; y el que termina en «é» o «í», que se escribe como
@@ -491,8 +494,9 @@ tarea sobre la tarjeta.
 **Severity**: major | **Validation**: VALIDATED
 
 > Un analizador de errores lee la consigna, la miniteoría y la traducción de cada ejercicio y marca cada una que tenga
-> palabras de vos, con la misma lectura que [F-MESA-R021](#F-MESA-R021): hallazgo *medio* para la *mesa*, que la vuelve
-> a escribir de tú sin tocar el inglés del ejercicio. Un ejercicio con alguna tiene puntaje 0; sin ninguna, 1.
+> palabras de vos, con la misma lectura que [F-MESA-R021](#F-MESA-R021): hallazgo *medio*, que se vuelve a escribir de
+> tú sin tocar el inglés del ejercicio, por regla si la tabla deja de tú todas sus palabras
+> ([F-MESA-R032](#F-MESA-R032)) y en la *mesa* si no. Un ejercicio con alguna tiene puntaje 0; sin ninguna, 1.
 
 [F-MESA-R021](#F-MESA-R021) sólo frena el vos que escribe quien propone; un texto viejo que no toca queda como estaba. El
 25/10/2026 la primera corrección había dejado de vos 392 de las 537 tarjetas que escribió y 40 de las 2.102 consignas
@@ -536,7 +540,9 @@ intentos sin que ninguno pudiera aceptarse.
 > En cada ejercicio que la mesa propone cambiar, la consigna, la miniteoría y la traducción que quien propone deja
 > como estaban se escriben de tú: cada palabra de vos que reconoce [F-MESA-R021](#F-MESA-R021) y que está en la tabla
 > del curso pasa a la forma de tú, con su tilde («Creá… y agregalo» → «Crea… y agrégalo», «Poné» → «Pon», «podés» →
-> «puedes»). El inglés entre «$» no se toca y una palabra que la tabla no tiene queda como estaba. Invariantes:
+> «puedes»). El pronombre va según dónde está: «contigo» después de «con», «ti» después de otra preposición
+> («respondes sobre ti») y «tú» en lo demás («(tú pagas)»). El inglés entre «$» no se toca y una palabra que la tabla no
+> tiene queda como estaba. Invariantes:
 > 1. el cambio que se guarda en la tanda es el mismo que la mesa midió;
 > 2. un texto que sólo pasó a tú no es un cambio que las tareas del ejercicio tengan que permitir, ni vos que haya
 >    escrito quien propone;
@@ -654,6 +660,26 @@ es de otro tema: para `…221d`, «The boy ___ (catch) the bus.» en «Cambios o
 mismo ejercicio tres veces, porque la guía le pedía que el verbo nuevo siguiera irregular. Por eso manda el título.
 
 **Fuente**: brief 232; José, 28/10/2026: «arreglá … los defectos del 232».
+
+<a id="F-MESA-R032"></a>
+### Rule[F-MESA-R032] - Lo de vos que la tabla sabe pasar a tú se corrige por regla
+**Severity**: major | **Validation**: VALIDATED
+
+> Un texto de vos —la consigna, la miniteoría o la traducción del ejercicio— que la tabla de
+> [F-MESA-R027](#F-MESA-R027) deja entero de tú se corrige por regla, sin la mesa y sin consultar modelos, como los
+> arreglos de [F-TANDA-R004](#F-TANDA-R004); si le queda una palabra que la tabla no conoce, va a la mesa. Al volver a
+> corregir ejercicios elegidos, las reglas corren primero sobre sus tareas y la mesa recibe lo que dejan o declinan.
+> Invariantes:
+> 1. el cambio pasa la compuerta medido sin consultas y queda en la tanda marcado con su regla;
+> 2. sólo cambia el texto del hallazgo: el inglés entre `$`, los otros textos y lo que el alumno oye quedan como estaban;
+> 3. una tarea de un ejercicio que no se eligió no se toca;
+> 4. con tope 0, la pasada corre las reglas y no consulta nada.
+
+El 28/10/2026, 325 ejercicios de la C2 de A1 tenían de vos sólo la consigna, la tarjeta o la traducción: 353 textos, y
+la tabla los deja todos de tú. Por la mesa costaban unas 5.000 consultas. Los jueces que leen el texto que cambió
+tienen que volver a opinar sobre el texto nuevo, como después de cualquier cambio.
+
+**Fuente**: brief 241, pregunta 2; José, el 28/10/2026: «Pasá los 317 de vos a tú con la regla gratis».
 
 ## Contexto
 

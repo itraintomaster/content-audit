@@ -28,10 +28,10 @@ import org.junit.jupiter.api.Test;
 
 class SpanishRegisterAnalyzerTest {
     @Test
-    @DisplayName("should send to the panel as medium each text of an exercise the student reads in vos, naming its words, as «Creá un adverbio… y agregalo» of «Adverbios de modo»")
+    @DisplayName("should mark as medium each text of an exercise the student reads in vos, naming its words, as «Creá un adverbio… y agregalo» of «Adverbios de modo»")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R025")
-    void shouldSendToThePanelAsMediumEachTextOfAnExerciseTheStudentReadsInVos() {
+    void shouldMarkAsMediumEachTextOfAnExerciseTheStudentReadsInVos() {
         // F-MESA-R025: the texts in vos the first correction left in «Adverbios de modo» and «Pedidos» of A1.
         AuditNode node = analyze(quiz("Creá un adverbio a partir del adjetivo y agregalo a la oración.",
                 "Para formar el adverbio, añadí $-ly$ al adjetivo.", "¿Me prestás tu libro?"));
@@ -40,7 +40,6 @@ class SpanishRegisterAnalyzerTest {
         for (FindingDraft finding : findings) {
             assertEquals("tu-register", finding.getRule());
             assertEquals(FindingSeverity.MEDIUM, finding.getSeverity());
-            assertEquals(FindingResolution.PANEL, finding.getResolution());
         }
         assertEquals("«Creá», «agregalo»", part(findings.get(0), "De vos"));
         assertEquals("«añadí»", part(findings.get(1), "De vos"));
@@ -48,6 +47,18 @@ class SpanishRegisterAnalyzerTest {
         assertTrue(findings.get(0).getEvidence().getObservation().startsWith("la consigna va de tú y dice «Creá»"),
                 findings.get(0).getEvidence().getObservation());
         assertEquals(0.0, node.getScores().get("spanish-register"));
+    }
+
+    @Test
+    @DisplayName("should send a text in vos to the rule when the table leaves it wholly in tú, and to the panel when a word stays")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R032")
+    void shouldSendATextInVosToTheRuleWhenTheTableLeavesItInTuAndToThePanelOtherwise() {
+        // F-MESA-R032: «usá» and «agregalo» are in the table; «zarpás» is not, and that card needs the panel.
+        List<FindingDraft> findings = found(analyze(quiz("Creá un adverbio a partir del adjetivo y agregalo a la oración.",
+                "Si zarpás temprano, usá $early$.", "¿Me prestás tu libro?")));
+        assertEquals(List.of(FindingResolution.RULE, FindingResolution.PANEL, FindingResolution.RULE),
+                findings.stream().map(FindingDraft::getResolution).toList());
     }
 
     @Test
@@ -63,18 +74,19 @@ class SpanishRegisterAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should describe spanish-register as an errors analyzer of exercises, instant, resolved at the panel through SPANISH_REGISTER tasks that may only touch the instructions, the mini theory and the translation")
+    @DisplayName("should describe spanish-register as an errors analyzer of exercises, instant, resolved by rule or at the panel through SPANISH_REGISTER tasks that may only touch the instructions, the mini theory and the translation")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R025")
+    @Tag("F-MESA-R032")
     void shouldDescribeSpanishRegisterAndLetItsFixTouchOnlyWhatTheStudentReadsInSpanish() {
-        // F-MESA-R025: a text in vos is written again in tú at the panel, never the English of the exercise.
+        // F-MESA-R025 and R032: a text in vos is written again in tú, by rule or at the panel, never the English.
         SpanishRegisterAnalyzerProvider provider = new SpanishRegisterAnalyzerProvider();
         var card = provider.describe();
         assertEquals("spanish-register", provider.analyzerName());
         assertEquals("¿Lo que lee el alumno en español va de tú?", card.getQuestion());
         assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
         assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());
-        assertEquals(List.of(FindingResolution.PANEL), card.getResolutions());
+        assertEquals(List.of(FindingResolution.RULE, FindingResolution.PANEL), card.getResolutions());
         assertEquals(AnalysisCost.INSTANT, card.getCost());
         assertEquals(Optional.of(new AnalyzerPlanBinding("SPANISH_REGISTER", List.of(AuditTarget.QUIZ))),
                 provider.planBinding());
@@ -82,7 +94,8 @@ class SpanishRegisterAnalyzerTest {
         assertEquals("spanish-register", correction.analyzerName());
         assertEquals(List.of(ExercisePart.INSTRUCTIONS, ExercisePart.MINI_THEORY, ExercisePart.TRANSLATION),
                 correction.editScope(FindingResolution.PANEL));
-        assertTrue(correction.editScope(FindingResolution.RULE).isEmpty());
+        assertEquals(correction.editScope(FindingResolution.PANEL), correction.editScope(FindingResolution.RULE));
+        assertTrue(correction.editScope(FindingResolution.RANK_ONLY).isEmpty());
         assertFalse(correction.contextOnly());
     }
 

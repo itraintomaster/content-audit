@@ -500,6 +500,41 @@ class QuizCorrectionServiceTest {
         assertEquals(before, batch.getAnalyzers() == null ? List.of() : batch.getAnalyzers(), "the batch keeps its analyzers");
     }
 
+    @Tag("F-MESA-R032")
+    @Test void theRulesFixTheChosenExercisesBeforeThePanelWithoutAQuery() {
+        // F-MESA-R032: the card of the exercise is in vos and the table knows its words; with a cap of 0 the correction
+        // writes it in tú by rule, as a change of the batch, and the panel gets nothing of it.
+        TandaFixture.exercise(course, quiz).setMiniTheory("Usá $love$ con $I$.");
+        Finding vos = new Finding("spanish-register", "tu-register", new FindingNodeRef(AuditTarget.QUIZ, quiz, quiz),
+                FindingSeverity.MEDIUM, new FindingEvidence(List.of(new EvidencePart("Miniteoría", "Usá $love$ con $I$.")),
+                        "la miniteoría va de tú y dice «Usá», de vos", List.of()), FindingResolution.RULE, null,
+                new FindingIdentity("spanish-register|tu-register|" + quiz + "|miniteoria", "miniteoria"));
+        sourceTasks.clear();
+        sourceTasks.add(TandaFixture.task("vos", vos, knowledge, CefrLevel.A1));
+        report = TandaFixture.report(course, List.of(vos), Map.of(), List.of());
+        config.setArtifactStore(new TandaFixture.Artifacts());
+        config.setRuleFixes(List.of(new com.learney.contentaudit.auditdomain.spanishregister.SpanishRegisterRuleFix()));
+        config.setTopicMeter(new TandaFixture.Meter());
+        PanelRunner panelRunner = mock(PanelRunner.class);
+        config.setPanelRunner(panelRunner);
+        when(allowance.spent()).thenReturn(0);
+        var actual = new DefaultQuizCorrectionServiceFactory().create(config, c -> "course-fingerprint", "codex-cli/model/medium");
+
+        var state = actual.execute(estimate(List.of(quiz), false));
+        var result = actual.execute(new Request("correct", "batch", "tuteo", 5, state.fingerprint(), 0, List.of(quiz), false,
+                "test"));
+
+        assertEquals("DONE", result.status());
+        assertEquals(0, result.spent());
+        assertEquals(1, batch.getChanges().size());
+        assertEquals(BatchChangeOrigin.RULE, batch.getChanges().get(0).getOrigin());
+        assertEquals("Usa $love$ con $I$.", batch.getChanges().get(0).getSteps().get(0).getAfter().getQuiz().getMiniTheory());
+        String task = batch.getSelectiveRuns().get(0).taskIds().get(0);
+        assertEquals(BatchTaskOutcomeKind.RESOLVED_BY_RULE, BatchBook.kind(batch, task));
+        verify(runner).allowance(eq(0), anyInt());
+        verifyNoInteractions(panelRunner);
+    }
+
     @Tag("F-MESA-R026")
     @Test void anExerciseWhoseOnlyProblemIsTheSentenceProductionKeepsWaitsForPublishingWithoutATask() {
         // F-MESA-R026: «Does he need water? Yes, he ___ .» has its tree right and production keeps «He does.»; no

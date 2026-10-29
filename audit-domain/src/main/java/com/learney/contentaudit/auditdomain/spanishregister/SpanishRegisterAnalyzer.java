@@ -17,8 +17,10 @@ import java.util.function.Function;
 
 /**
  * F-MESA-R025: does what the student reads in Spanish go in «tú»? An errors analyzer over the instructions, the mini
- * theory and the translation of every exercise: each one with words in «vos» is a medium finding for the panel, which
- * writes it again in «tú». With one the exercise scores 0, with none 1.
+ * theory and the translation of every exercise: each one with words in «vos» is a medium finding, which the panel
+ * writes again in «tú». With one the exercise scores 0, with none 1.
+ *
+ * <p>F-MESA-R032: a text the table of {@link Tuteo} leaves wholly in «tú» is fixed by rule, without the panel.
  */
 class SpanishRegisterAnalyzer implements ContentAnalyzer {
 
@@ -54,7 +56,9 @@ class SpanishRegisterAnalyzer implements ContentAnalyzer {
                 continue;
             }
             String said = "«" + String.join("», «", words) + "»";
-            drafts.add(new FindingDraft(RULE_TU, field.marker(), FindingSeverity.MEDIUM, FindingResolution.PANEL,
+            boolean byRule = Voseo.in(Tuteo.of(text, field.instructs()), field.instructs()).isEmpty();
+            drafts.add(new FindingDraft(RULE_TU, field.marker(), FindingSeverity.MEDIUM,
+                    byRule ? FindingResolution.RULE : FindingResolution.PANEL,
                     new FindingEvidence(List.of(new EvidencePart(field.label(), text), new EvidencePart("De vos", said)),
                             "la " + field.label().toLowerCase() + " va de tú y dice " + said + ", de vos: «" + text
                                     + "». Se escribe de tú, como las consignas del curso.", List.of())));
