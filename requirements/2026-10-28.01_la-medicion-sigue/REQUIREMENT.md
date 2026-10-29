@@ -67,6 +67,18 @@ el tope de Completar contando las consultas de cada juez.
 > el inglés y otra desde la traducción. Por eso recibe dos consultas por ejercicio y mide todos los ejercicios que
 > planeó. La corrida nunca gasta más que su tope.
 
+<a id="F-SIGUE-R004"></a>
+### Rule[F-SIGUE-R004] - Una saturación tampoco corta la corrección
+**Severity**: critical | **Validation**: VALIDATED
+
+> Cuando el corrector pide una propuesta y el proveedor contesta que el modelo está saturado, el corrector espera y
+> vuelve a pedir la misma propuesta, con el mismo intento, igual que un juez
+> ([F-SIGUE-R001](#F-SIGUE-R001)): 30 segundos, después 1, 2, 4, 8 y 15 minutos. En cuanto contesta, la corrección
+> sigue como si nada. Si después de la última espera sigue saturado, recién ahí la propuesta queda no disponible, con
+> el motivo «modelo saturado», y la corrida corta como antes, sin gastar el intento
+> ([F-MESA-R010](../2026-09-30.22_la-mesa-por-tema/REQUIREMENT.md#F-MESA-R010)). La cuota agotada y las otras fallas
+> del servicio siguen cortando en la primera vez.
+
 ## Contexto
 
 - **Por qué esperar y no cortar**: el corte por falla del servicio se pensó para la cuota agotada o la sesión vencida,
@@ -81,6 +93,10 @@ el tope de Completar contando las consultas de cada juez.
   pasaba la mitad.
 - **Fuera de alcance**: esperar ante el límite de solicitudes o la cuota agotada. Esos siguen cortando y dicen qué
   hacer.
+- **La corrección también**: la noche del 28/10/2026, el tramo 2 de la pasada dentro de la C2 de A1 (481 ejercicios,
+  tope 8.000) cortó a las 23:46 por un solo «Selected model is at capacity» del corrector. Había intentado 319
+  ejercicios con 4.989 consultas, y los 162 que quedaban terminaron sin intentar. José había pedido la pasada entera
+  (28/10/2026: «lanzá la pasada sobre los 570 dentro de la C2»).
 
 ## Cómo se prueba
 
@@ -89,6 +105,7 @@ el tope de Completar contando las consultas de cada juez.
 | R001 | `DefaultJudgeProviderReadinessProbeTest`: «model is at capacity» y «overloaded» se leen como modelo saturado, y la cuota o el límite de solicitudes, no. `AgentJudgeTest` y `QuizInstructionAgentJudgeTest`: una saturación espera y vuelve a preguntar el mismo ejercicio, y la respuesta siguiente se emite; saturado en todas las esperas queda no disponible con «modelo saturado»; una sesión vencida no espera |
 | R002 | `DefaultEvaluationSessionTest`: refrescar conserva sin consultar la opinión de la versión de hoy, y de una equivalente; pregunta la de una versión anterior y la que falta, de a uno y en tanda. `DefaultJudgeRuntimeTest` y `QuizInstructionAnalyzerTest`: un análisis forzado que pide conservar lo de hoy refresca en vez de forzar, y una medición cortada sigue donde quedó. `TranslationSenseAnalyzerTest`: cada juez del par pregunta sólo lo que no tiene su opinión de hoy. `SelectiveCorrectionServiceTest`: volver a medir un estado lo pide; la opinión de los dos estados no |
 | R003 | `ContextOpinionServiceTest`: un juez con dos evaluadores recibe las dos consultas por ejercicio y mide todo lo que planeó; con un tope que no alcanza, no gasta de más |
+| R004 | `AgentPanelProposerTest`: una saturación espera y vuelve a pedir la misma propuesta con el mismo intento, y lee la respuesta siguiente; saturado en todas las esperas queda no disponible con «modelo saturado»; la cuota agotada y el servicio caído no esperan |
 
 ## References
 

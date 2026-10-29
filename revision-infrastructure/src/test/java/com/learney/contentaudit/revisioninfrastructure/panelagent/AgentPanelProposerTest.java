@@ -3,6 +3,7 @@ package com.learney.contentaudit.revisioninfrastructure.panelagent;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.agentruntimeinfrastructure.SaturationWaits;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.auditdomain.correction.ExercisePart;
@@ -31,6 +32,7 @@ import com.learney.contentaudit.revisioninfrastructure.lagen.LagenConfig;
 import com.sentinel.agents.framework.state.RunState;
 import com.sentinel.agents.framework.state.RunStatus;
 import java.nio.file.Path;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -266,6 +268,92 @@ public class AgentPanelProposerTest {
         assertEquals("el servicio del modelo falló: claude-cli: connection refused", proposal.getUnavailableReason());
     }
 
+
+    /** What codex-cli answered at 23:46 of the 28/10/2026, when the second tranche of the C2 stopped. */
+    private static final String SATURATED = "[ERROR] llm_call failed: codex CLI exited with 1: OpenAI Codex v0.164.0\n"
+            + "model: gpt-6.1-sol\nprovider: openai\nERROR: Selected model is at capacity. Please try a different model.";
+
+    private static RunState halted(String reason) {
+        return RunState.empty().withRunStatus(RunStatus.HALTED).withTerminationReason(reason);
+    }
+
+    @Test
+    @DisplayName("should wait for a saturated model and ask the same attempt again, and read the answer that comes after as if nothing had happened")
+    @Tag("FEAT-SIGUE")
+    @Tag("F-SIGUE-R004")
+    void shouldWaitForASaturatedModelAndAskTheSameAttemptAgain() {
+        // F-SIGUE-R004: the second tranche of the C2 stopped at 23:46 of the 28/10 with one «at capacity», and the 162
+        // exercises left were not attempted. Now the corrector waits 30 s, 1 min… and asks the same attempt again.
+        List<Map<String, String>> sent = new ArrayList<>();
+        List<RunState> answers = new ArrayList<>(List.of(halted(SATURATED), halted(SATURATED),
+                RunState.empty().withRunStatus(RunStatus.COMPLETED)));
+        List<Duration> slept = new ArrayList<>();
+        PanelProposal read = new PanelProposal(new ArrayList<>(), "panel-proposer", true, null);
+        AgentPanelProposer proposer = new AgentPanelProposer((agent, inputs, model) -> {
+            sent.add(inputs);
+            return answers.remove(0);
+        }, (state, request) -> read, null, config(), Path.of("/proyecto"),
+                new SaturationWaits(SaturationWaits.STANDARD, slept::add));
+
+        PanelProposal proposal = proposer.propose(request(2, List.of()));
+
+        assertTrue(proposal == read, "the saturation passed: the answer is read, as if nothing had happened");
+        assertEquals(3, sent.size(), "asked twice into the saturation and once more");
+        assertEquals(List.of("2", "2", "2"), sent.stream().map(inputs -> inputs.get("attempt")).toList(),
+                "the same attempt, never a new one");
+        assertEquals(sent.get(0), sent.get(2), "the same request");
+        assertEquals(List.of(Duration.ofSeconds(30), Duration.ofMinutes(1)), slept);
+    }
+
+    @Test
+    @DisplayName("should answer unavailable as a saturated model only after every wait, about half an hour")
+    @Tag("FEAT-SIGUE")
+    @Tag("F-SIGUE-R004")
+    void shouldAnswerUnavailableAsASaturatedModelOnlyAfterEveryWait() {
+        // F-SIGUE-R004: a saturation that outlasts every wait is unavailable, as before, and says so.
+        List<Duration> slept = new ArrayList<>();
+        int[] calls = {0};
+        AgentPanelProposer proposer = new AgentPanelProposer((agent, inputs, model) -> {
+            calls[0]++;
+            return halted(SATURATED);
+        }, (state, request) -> {
+            throw new AssertionError("nothing to read");
+        }, null, config(), Path.of("/proyecto"), new SaturationWaits(SaturationWaits.STANDARD, slept::add));
+
+        PanelProposal proposal = proposer.propose(request(1, List.of()));
+
+        assertFalse(proposal.isAvailable());
+        assertTrue(proposal.getUnavailableReason().startsWith("modelo saturado: el agente se detuvo: "),
+                proposal.getUnavailableReason());
+        assertEquals(SaturationWaits.STANDARD, slept, "every wait, in order: 30 s, 1, 2, 4, 8 and 15 min");
+        assertEquals(7, calls[0], "once and once more after each wait");
+    }
+
+    @Test
+    @DisplayName("should not wait for a spent quota or another failure of the service, which stop the run at once as before")
+    @Tag("FEAT-SIGUE")
+    @Tag("F-SIGUE-R004")
+    void shouldNotWaitForASpentQuotaOrAnotherFailureOfTheService() {
+        // F-SIGUE-R004: only a saturation passes by itself; a spent quota or an unreachable service do not.
+        List<Duration> slept = new ArrayList<>();
+        for (RuntimeException thrown : List.of(new IllegalStateException("codex: You've hit your usage limit"),
+                new IllegalStateException("claude-cli: connection refused"))) {
+            int[] calls = {0};
+            AgentPanelProposer proposer = new AgentPanelProposer((agent, inputs, model) -> {
+                calls[0]++;
+                throw thrown;
+            }, (state, request) -> {
+                throw new AssertionError("nothing to read");
+            }, null, config(), Path.of("/proyecto"), new SaturationWaits(SaturationWaits.STANDARD, slept::add));
+
+            PanelProposal proposal = proposer.propose(request(1, List.of()));
+
+            assertFalse(proposal.isAvailable());
+            assertEquals("el servicio del modelo falló: " + thrown.getMessage(), proposal.getUnavailableReason());
+            assertEquals(1, calls[0], "asked once");
+        }
+        assertTrue(slept.isEmpty(), "no wait");
+    }
 
     private static LagenConfig config() {
         return new LagenConfig("claude-cli", "sonnet", null, null, null, null, null, null, 3);

@@ -18,7 +18,7 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluatorVersionEquivalen
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadiness;
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeUnavailabilityCause;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig;
-import com.learney.contentaudit.quizinstructioninfrastructure.SaturationWaits;
+import com.learney.contentaudit.agentruntimeinfrastructure.SaturationWaits;
 import com.sentinel.agents.framework.state.ArtifactPointer;
 import com.sentinel.agents.framework.state.RunState;
 import dev.langchain4j.model.chat.ChatModel;

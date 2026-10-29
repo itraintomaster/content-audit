@@ -1,7 +1,8 @@
-package com.learney.contentaudit.quizinstructioninfrastructure;
+package com.learney.contentaudit.agentruntimeinfrastructure;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -10,7 +11,8 @@ import java.util.function.Supplier;
  * F-SIGUE-R001: how a judge waits for a saturated model before it gives up on it. A saturation
  * («model is at capacity») passes by itself, unlike an exhausted quota or an expired session, so
  * the same exercise is asked again after each wait; only when the model is still saturated after
- * the last one does the judge become unavailable, as any other service failure.
+ * the last one does the judge become unavailable, as any other service failure. F-SIGUE-R004: the
+ * corrector waits the same way before it gives up on a proposal.
  */
 public final class SaturationWaits {
 
@@ -31,6 +33,12 @@ public final class SaturationWaits {
     public SaturationWaits(List<Duration> waits, Sleeper sleeper) {
         this.waits = List.copyOf(Objects.requireNonNull(waits, "waits"));
         this.sleeper = Objects.requireNonNull(sleeper, "sleeper");
+    }
+
+    /** F-SIGUE-R004: whether a failure says the model is saturated, as the judges read it («at capacity», «overloaded»). */
+    public static boolean saturated(String failure) {
+        String text = failure != null ? failure.toLowerCase(Locale.ROOT) : "";
+        return text.contains("at capacity") || text.contains("overloaded");
     }
 
     public static SaturationWaits standard() {

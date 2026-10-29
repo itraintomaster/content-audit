@@ -3,6 +3,7 @@ package com.learney.contentaudit.revisioninfrastructure.panelagent;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.learney.contentaudit.agentruntimeinfrastructure.SaturationWaits;
 import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 import com.learney.contentaudit.auditdomain.finding.EvidencePart;
 import com.learney.contentaudit.auditdomain.finding.Finding;
@@ -31,7 +32,8 @@ import javax.annotation.processing.Generated;
  * own rejected candidates. It never gets a verdict on a candidate that is not its own, because the request has none.
  *
  * <p>A failure of the model service is an unavailable proposal, never an exception: the panel trips its allowance and
- * spends no attempt (F-MESA-R010 inv. 2).
+ * spends no attempt (F-MESA-R010 inv. 2). A saturated model is waited for first, and the same attempt asked again
+ * (F-SIGUE-R004): only a saturation that outlasts every wait is unavailable, as «modelo saturado».
  *
  * <p><strong>Adapter↔graph contract (inputs):</strong> {@code batchId}, {@code level}, {@code knowledgeId},
  * {@code quizId} (empty for a task of the whole topic), {@code attempt}, {@code twoFixes} («true»/«false»),
@@ -53,6 +55,8 @@ class AgentPanelProposer implements PanelProposer {
 
     private final Path projectRoot;
 
+    private final SaturationWaits saturationWaits;
+
     /** The declarative graph lives at {@code .sentinel/agents/panel-proposer/}. */
     static final String AGENT_NAME = "panel-proposer";
 
@@ -61,36 +65,59 @@ class AgentPanelProposer implements PanelProposer {
     public AgentPanelProposer(PanelAgentRuntimeLauncher agentRuntimeLauncher,
             PanelAgentProposalParser proposalParser, ChatModel chatModel, LagenConfig config,
             Path projectRoot) {
+        this(agentRuntimeLauncher, proposalParser, chatModel, config, projectRoot, SaturationWaits.standard());
+    }
+
+    AgentPanelProposer(PanelAgentRuntimeLauncher agentRuntimeLauncher,
+            PanelAgentProposalParser proposalParser, ChatModel chatModel, LagenConfig config,
+            Path projectRoot, SaturationWaits saturationWaits) {
         this.agentRuntimeLauncher = agentRuntimeLauncher;
         this.proposalParser = proposalParser;
         this.chatModel = chatModel;
         this.config = config;
         this.projectRoot = projectRoot;
+        this.saturationWaits = saturationWaits;
     }
 
     @Override
     public PanelProposal propose(PanelRequest request) {
         Map<String, String> inputs = inputs(request);
         inputs.put("project_root", projectRoot != null ? projectRoot.toAbsolutePath().toString() : "");
-        RunState runState;
-        try {
-            runState = agentRuntimeLauncher.launch(AGENT_NAME, inputs, chatModel);
-        } catch (Exception e) {
-            return unavailable("el servicio del modelo falló: " + (e.getMessage() != null ? e.getMessage()
-                    : e.getClass().getSimpleName()));
-        }
-        if (runState == null) {
-            return unavailable("el agente no devolvió nada");
-        }
-        if (runState.isHaltedRun()) {
-            return unavailable("el agente se detuvo: " + runState.terminationReason());
+        // F-SIGUE-R004: a saturated model is waited for and the same attempt asked again.
+        Launch launch = saturationWaits.consult(() -> launchOnce(inputs), Launch::saturated);
+        if (launch.failure() != null) {
+            return unavailable(launch.saturated() ? "modelo saturado: " + launch.failure() : launch.failure());
         }
         try {
-            return proposalParser.parse(runState, request);
+            return proposalParser.parse(launch.state(), request);
         } catch (RuntimeException e) {
             // A malformed answer is a rejected attempt, not a failure of the service.
             return new PanelProposal(new ArrayList<>(), AGENT_NAME, true, null);
         }
+    }
+
+    /** One run of the agent: its state, or why the model service gave none. */
+    private record Launch(RunState state, String failure) {
+        boolean saturated() {
+            return failure != null && SaturationWaits.saturated(failure);
+        }
+    }
+
+    private Launch launchOnce(Map<String, String> inputs) {
+        RunState runState;
+        try {
+            runState = agentRuntimeLauncher.launch(AGENT_NAME, new LinkedHashMap<>(inputs), chatModel);
+        } catch (Exception e) {
+            return new Launch(null, "el servicio del modelo falló: " + (e.getMessage() != null ? e.getMessage()
+                    : e.getClass().getSimpleName()));
+        }
+        if (runState == null) {
+            return new Launch(null, "el agente no devolvió nada");
+        }
+        if (runState.isHaltedRun()) {
+            return new Launch(null, "el agente se detuvo: " + runState.terminationReason());
+        }
+        return new Launch(runState, null);
     }
 
     private static PanelProposal unavailable(String reason) {
