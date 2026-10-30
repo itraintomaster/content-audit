@@ -176,6 +176,23 @@ José, el 27/10/2026, con Completar corriendo: «La UI parece estancada». La co
 desde hace 63 min» mientras No regala la respuesta guardaba 8 opiniones por minuto: el contador sólo conocía cuatro
 jueces.
 
+<a id="F-OPINA-R011"></a>
+### Rule[F-OPINA-R011] - Leer el análisis vigente no crece con las corridas guardadas
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> 1. Leer el análisis vigente de una corrección tarda menos de un minuto aunque la corrección junte decenas de corridas
+>    guardadas, miles de tareas y cientos de cambios aprobados.
+> 2. Los motivos de cada cambio aprobado (las tareas que nombra y que hablan de su ejercicio) se buscan una vez por
+>    lectura, no una vez por corrida suelta y estado.
+> 3. Un plan que nombran varias corridas se lee una vez: sus tareas son los mismos motivos cada vez.
+> 4. La lectura contesta lo mismo que antes: los avisos de aprobaciones, el encaje de cada corrida y las cuentas no
+>    cambian.
+
+El 29/10/2026, después de Completar, la C2 de A1 tardaba entre 304 y 336 s en leerse y el tablero no la abría: con 74
+corridas guardadas y 151 cambios aprobados, cada aviso de aprobaciones recorría 264 mil tareas (las de la revisión y
+las de los planes de 29 corridas: el de la C2, de 13.388 tareas, sumado 19 veces), 147 veces por lectura, para no
+encontrar ningún aviso. El brief 244 tiene las mediciones.
+
 ## Journeys
 
 ```yaml
@@ -260,6 +277,7 @@ navegador, con un servidor de mentira y el store de verdad. Cada prueba nombra s
 | [R008](#F-OPINA-R008) | Integrar avisa «análisis», desde el tablero y desde la terminal; el diálogo escribe una vez y relee ya; el aviso relee análisis y opiniones en cada pestaña; sin canal propio | `test/tablero_html/novedades_test.dart`, `html/test/estado-analisis.test.js`, `html/test/estado-avisos.test.js`, `html/test/arquitectura.test.js` |
 | [R009](#F-OPINA-R009) | Sin relectura cada 5 s; el aviso de la tanda relee las opiniones una vez y no el análisis; cuando una opinión empieza, termina o queda cortada se releen sólo las opiniones; lo que guarda content-audit al avanzar o terminar avisa la tanda, el análisis y las corridas | `html/test/estado-analisis.test.js`, `html/test/estado-opiniones.test.js`, `test/tablero_html/novedades_test.dart` |
 | [R010](#F-OPINA-R010) | Los ocho jueces de un Completar real cuentan lo que guardan; ninguno con opiniones queda en «todavía no comenzó» ni el resumen dice que no avanza; un juez sin contador lo dice; No regala y Calidad de distractores se clasifican | `analysis/test_monitor_opinion_activity.py` |
+| [R011](#F-OPINA-R011) | Un plan que nombran tres corridas se lee una vez y sus tareas siguen avisando la aprobación que motivaron; 150 aprobaciones, 60 corridas y un plan de 8.000 tareas por corrida se leen en menos de 10 s; la lectura de la C2 da el mismo JSON antes y después | `CurrentAnalysisServiceTest` («aPlanNamedBySeveralRunsIsReadOnce…», «readingDoesNotGrowWithApprovalsTimesTasksTimesRuns»); la comparación sobre la copia de la campaña está en el brief 244 |
 
 ## References
 

@@ -163,10 +163,12 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         CorrectionBatch baseOwner = baseOwner(batch);
         if (!baseOwner.getId().equals(batch.getId())) reports.put("base", report(baseOwner, "base", baseCourse));
         var review = reviews.read(batch.getId());
-        var items = review.items();
         var tasks = new ArrayList<>(BatchBook.list(review.tasks()));
-        for (var run : BatchBook.list(batch.getSelectiveRuns())) if (run.planId() != null)
+        // Several runs name the batch's own plan: it is read once, since its tasks are the same reasons each time.
+        var plans = new HashSet<String>();
+        for (var run : BatchBook.list(batch.getSelectiveRuns())) if (run.planId() != null && plans.add(run.planId()))
             config.getRefinementPlanStore().load(run.planId()).ifPresent(p -> tasks.addAll(BatchBook.list(p.getTasks())));
+        var approvals = approvals(review.items(), tasks);
         var states = new ArrayList<State>();
         for (var entry : reports.entrySet()) {
             String state = entry.getKey(); AuditReport report = entry.getValue();
@@ -203,10 +205,10 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                     }
                 }
             });
-            var warnings = new LinkedHashSet<>(approvalWarnings(items, tasks, raw.get(state), report, QUALITY));
+            var warnings = new LinkedHashSet<>(approvalWarnings(approvals, raw.get(state), report, QUALITY));
             // A replacement keeps the earlier measurement as history, so the warning survives a reread/restart.
             for (var e : history) if (state.equals(e.state()) && !"remove".equals(e.action()) && sources.containsKey(e.runId()))
-                warnings.addAll(approvalWarnings(items, tasks, sources.get(e.runId()), report, e.analyzer()));
+                warnings.addAll(approvalWarnings(approvals, sources.get(e.runId()), report, e.analyzer()));
             states.add(new State(state, "base".equals(state) ? "La base" : "Corrección " + BatchBook.correctionRevision(batch),
                     courseFingerprint.apply("base".equals(state) ? baseCourse : current), digest("current-" + state, report.getRoot()),
                     studentViews, provenance, List.copyOf(warnings), comparable(reports.get("base"), report),
@@ -223,7 +225,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                     && DefaultAnalysisComposer.hasStoredOpinion(n, run.analyzer())).count();
             int errors = (int) sourceNodes.values().stream().filter(n -> n.getTarget() == AuditTarget.QUIZ && error(n, run.analyzer())).count();
             var fits = new ArrayList<Fit>();
-            for (var entry : reports.entrySet()) fits.add(fit(entry.getKey(), run, source, entry.getValue(), items, tasks));
+            for (var entry : reports.entrySet()) fits.add(fit(entry.getKey(), run, source, entry.getValue(), approvals));
             // The configured judge version is not evidence that a reused result came from that version.
             var versions = sourceNodes.values().stream().filter(n -> n.getTarget() == AuditTarget.QUIZ)
                     .map(n -> DefaultAnalysisComposer.version(n, run.analyzer(), source)).filter(Objects::nonNull).distinct().sorted().toList();
@@ -508,15 +510,16 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         return composer.contentOnly(composer.compose(annotated, supplements));
     }
 
-    private Fit fit(String state, SelectiveCorrection.Run run, AuditReport source, AuditReport current, List<BatchReview.Item> items, List<com.learney.contentaudit.refinerdomain.RefinementTask> tasks) {
+    private Fit fit(String state, SelectiveCorrection.Run run, AuditReport source, AuditReport current, List<Approval> approvals) {
         var from = DefaultAnalysisComposer.index(source.getRoot()); var to = DefaultAnalysisComposer.index(current.getRoot());
         var ids = new ArrayList<String>(); var lost = new ArrayList<String>(); var gained = new ArrayList<String>();
         int reached = 0, replaces = 0, selected = 0, toToday = 0, toOtherVersion = 0, changesResults = 0, repeats = 0, notToday = 0;
         // F-MEDJ-R002: today's judge is the one F-ALDIA marks against; the run's verdict carries the run's runtime once integrated.
         var today = todaysJudge(run.analyzer());
         var runRuntime = JudgeFreshnessReference.runtimeOf(run.runtime());
+        Set<String> asked = "complete-opinions".equals(run.action()) ? new HashSet<>(BatchBook.list(run.quizIds())) : null;
         for (var node : to.values()) if (DefaultAnalysisComposer.eligible(node, run.analyzer())) {
-            if ("complete-opinions".equals(run.action()) && !run.quizIds().contains(node.getEntity().getId())) continue;
+            if (asked != null && !asked.contains(node.getEntity().getId())) continue;
             AuditableQuiz q = (AuditableQuiz) node.getEntity();
             reached++;
             AuditNode old = from.get(q.getId());
@@ -555,7 +558,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                         && DefaultAnalysisComposer.hasStoredOpinion(n, run.analyzer()))
                 .map(n -> DefaultAnalysisComposer.version(n, run.analyzer(), current)).filter(Objects::nonNull).distinct().sorted().toList();
         return new Fit(state, reached, ids.size(), reached - ids.size(), replaces, selected, ids, lost, gained,
-                approvalWarnings(items, tasks, current, preview, run.analyzer()), ids.isEmpty() ? "Midió otro contenido o no dejó veredictos utilizables." : null,
+                approvalWarnings(approvals, current, preview, run.analyzer()), ids.isEmpty() ? "Midió otro contenido o no dejó veredictos utilizables." : null,
                 compatibleErrors, currentErrors, resultErrors, currentVersions,
                 ids.size() - selected - replaces, toToday, toOtherVersion, changesResults, repeats,
                 today.isEmpty() || ids.isEmpty() ? null : notToday == 0,
@@ -572,25 +575,43 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         return today.map(judge -> judge.isOfToday(version, runtime)).orElse(false);
     }
 
-    private static List<String> approvalWarnings(List<BatchReview.Item> items, List<com.learney.contentaudit.refinerdomain.RefinementTask> tasks, AuditReport before, AuditReport after, String analyzer) {
-        var old = DefaultAnalysisComposer.index(before.getRoot()); var now = DefaultAnalysisComposer.index(after.getRoot());
-        var warnings = new LinkedHashSet<String>();
+    /** An approved change of one exercise and the findings of the tasks that were its reason (F-MOTIVO-R002). */
+    private record Approval(String changeId, String quizId, List<com.learney.contentaudit.auditdomain.finding.Finding> reasons) {}
+
+    /**
+     * The approvals of a reading, each with its reasons, found once per reading: the tasks are looked up by id instead
+     * of walking every task of every plan for each approval, as many times as there are runs and states.
+     */
+    private static List<Approval> approvals(List<BatchReview.Item> items, List<com.learney.contentaudit.refinerdomain.RefinementTask> tasks) {
+        var byId = new HashMap<String, List<com.learney.contentaudit.refinerdomain.RefinementTask>>();
+        for (var t : BatchBook.list(tasks)) byId.computeIfAbsent(t.getId(), k -> new ArrayList<>()).add(t);
+        var result = new ArrayList<Approval>();
         for (var item : items) if (item.status() == BatchReviewDecision.Status.APPROVED && item.step() != null) {
             // F-MOTIVO-R002: a task of another exercise is never the reason of this one's change.
             Set<String> quiz = item.step().getQuizId() == null ? Set.of() : Set.of(item.step().getQuizId());
-            var reasons = BatchBook.list(tasks).stream().filter(t -> BatchBook.list(item.taskIds()).contains(t.getId())
-                    && InheritedTasks.belongs(t, quiz, null)).toList();
-            boolean originatedHere = reasons.stream().anyMatch(t -> t.getOrigin() != null && t.getOrigin().getFinding() != null
-                    && analyzer.equals(t.getOrigin().getFinding().getAnalyzer()));
+            var reasons = new ArrayList<com.learney.contentaudit.auditdomain.finding.Finding>();
+            for (String id : new LinkedHashSet<>(BatchBook.list(item.taskIds())))
+                for (var t : byId.getOrDefault(id, List.of()))
+                    if (InheritedTasks.belongs(t, quiz, null) && t.getOrigin() != null && t.getOrigin().getFinding() != null)
+                        reasons.add(t.getOrigin().getFinding());
+            result.add(new Approval(item.changeId(), item.step().getQuizId(), List.copyOf(reasons)));
+        }
+        return List.copyOf(result);
+    }
+
+    private static List<String> approvalWarnings(List<Approval> approvals, AuditReport before, AuditReport after, String analyzer) {
+        if (approvals.isEmpty()) return List.of();
+        var old = DefaultAnalysisComposer.index(before.getRoot()); var now = DefaultAnalysisComposer.index(after.getRoot());
+        var warnings = new LinkedHashSet<String>();
+        for (var approval : approvals) {
+            boolean originatedHere = approval.reasons().stream().anyMatch(f -> analyzer.equals(f.getAnalyzer()));
             if (!originatedHere) continue;
-            String id = item.step().getQuizId(); var a = old.get(id); var b = now.get(id);
+            String id = approval.quizId(); var a = old.get(id); var b = now.get(id);
             if (a == null || b == null || !DefaultAnalysisComposer.evaluated(b, analyzer)) continue;
             var oldMarks = marks(a, analyzer); var newMarks = marks(b, analyzer);
-            boolean disappeared = reasons.stream()
-                    .filter(t -> t.getOrigin() != null && t.getOrigin().getFinding() != null)
-                    .map(t -> t.getOrigin().getFinding()).filter(f -> analyzer.equals(f.getAnalyzer()))
+            boolean disappeared = approval.reasons().stream().filter(f -> analyzer.equals(f.getAnalyzer()))
                     .map(DefaultCurrentAnalysisService::mark).anyMatch(k -> oldMarks.contains(k) && !newMarks.contains(k));
-            if (disappeared) warnings.add(item.changeId());
+            if (disappeared) warnings.add(approval.changeId());
         }
         return List.copyOf(warnings);
     }

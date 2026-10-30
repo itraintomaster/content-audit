@@ -610,6 +610,81 @@ class CurrentAnalysisServiceTest {
         assertEquals(List.of("own-change"), state.approvalWarnings());
     }
 
+    /** A run of the batch that names the plan where its tasks live, as the corrections do. */
+    void runWithPlan(String id, boolean error, String version, String planId) {
+        saved.put(id, report(true, error, version));
+        var runs = new ArrayList<>(BatchBook.list(batch.getSelectiveRuns()));
+        runs.add(new SelectiveCorrection.Run(id, "analyze", NAME, null, 1, 6, "content", "configured-version",
+                "codex-cli / model / medium", id, planId, List.of(), List.of(), 1, 1, 1, 1, 1, 0,
+                "DONE", "human", Instant.EPOCH, Instant.EPOCH, null, false, 6, "content", null));
+        batch.setSelectiveRuns(runs);
+    }
+    /** A task of CHILD whose reason is the mark the quality judge leaves on it. */
+    static com.learney.contentaudit.refinerdomain.RefinementTask qualityTask(String id) {
+        var task = new com.learney.contentaudit.refinerdomain.RefinementTask(); task.setId(id);
+        task.setNodeTarget(AuditTarget.QUIZ); task.setNodeId(TandaFixture.CHILD);
+        var origin = new com.learney.contentaudit.refinerdomain.TaskOrigin();
+        var finding = new Finding(); finding.setAnalyzer(NAME); finding.setRule("answer-cue"); origin.setFinding(finding);
+        task.setOrigin(origin);
+        return task;
+    }
+    static BatchReview.Item approved(String changeId, String taskId) {
+        var step = new BatchChangeStep(); step.setQuizId(TandaFixture.CHILD);
+        return new BatchReview.Item(changeId, step, null, null, "panel", null,
+                BatchReviewDecision.Status.APPROVED, "human", Instant.EPOCH, List.of(taskId), null);
+    }
+
+    @Tag("FEAT-OPINA") @Tag("F-OPINA-R011")
+    @Test void aPlanNamedBySeveralRunsIsReadOnceAndItsTasksStillWarnTheirApprovals() {
+        // The C2 of 29/10 named its own plan from 19 of its 74 runs: each named the same tasks again.
+        var plans = mock(com.learney.contentaudit.refinerdomain.RefinementPlanStore.class);
+        var plan = new com.learney.contentaudit.refinerdomain.RefinementPlan();
+        plan.setTasks(List.of(qualityTask("task-001")));
+        when(plans.load("batch-plan")).thenReturn(Optional.of(plan));
+        config.setRefinementPlanStore(plans);
+        when(reviews.read("batch")).thenReturn(new BatchReview("batch", 1, 6, null, List.of(), List.of(),
+                List.of(approved("quality-change", "task-001"), approved("unrelated-change", "task-002")), List.of(), List.of()));
+        service.execute(select("integrate", "r1", "s1", null));
+        for (String id : List.of("r2", "r3", "r4")) runWithPlan(id, false, "v2", "batch-plan");
+        service.execute(select("replace", "r2", "s2", null));
+        clearInvocations(plans);
+
+        var view = read();
+
+        var state = view.states().stream().filter(x -> x.id().equals("correction")).findFirst().orElseThrow();
+        assertEquals(List.of("quality-change"), state.approvalWarnings());
+        var r3 = view.looseRuns().stream().filter(r -> r.id().equals("r3")).findFirst().orElseThrow();
+        assertEquals(List.of(), r3.fits().stream().filter(f -> f.state().equals("correction")).findFirst().orElseThrow().approvalWarnings());
+        var r1 = view.looseRuns().stream().filter(r -> r.id().equals("r1")).findFirst().orElseThrow();
+        assertEquals(List.of(), r1.fits().stream().filter(f -> f.state().equals("correction")).findFirst().orElseThrow().approvalWarnings());
+        verify(plans, times(1)).load("batch-plan");
+    }
+
+    @Tag("FEAT-OPINA") @Tag("F-OPINA-R011")
+    @Test void readingDoesNotGrowWithApprovalsTimesTasksTimesRuns() {
+        // At the C2's scale -- 151 approvals, a plan per run with its tasks numbered again from task-00000, 60 runs --
+        // the reading walked every task of every plan for each approval, once per run and state: about 5 minutes.
+        var tasks = new ArrayList<com.learney.contentaudit.refinerdomain.RefinementTask>();
+        for (int i = 0; i < 8_000; i++) tasks.add(qualityTask(String.format("task-%05d", i)));
+        var plans = mock(com.learney.contentaudit.refinerdomain.RefinementPlanStore.class);
+        when(plans.load(anyString())).thenAnswer(i -> {
+            var plan = new com.learney.contentaudit.refinerdomain.RefinementPlan(); plan.setTasks(tasks); return Optional.of(plan);
+        });
+        config.setRefinementPlanStore(plans);
+        var items = new ArrayList<BatchReview.Item>();
+        for (int i = 0; i < 150; i++) items.add(approved("change-" + i, String.format("task-%05d", i)));
+        when(reviews.read("batch")).thenReturn(new BatchReview("batch", 1, 6, null, List.of(), List.of(), items, List.of(), List.of()));
+        service.execute(select("integrate", "r1", "s1", null));
+        for (int i = 2; i <= 60; i++) runWithPlan("r" + i, false, "v2", "plan-of-r" + i);
+        service.execute(select("replace", "r2", "s2", null));
+
+        var view = assertTimeoutPreemptively(java.time.Duration.ofSeconds(10), this::read);
+
+        var state = view.states().stream().filter(x -> x.id().equals("correction")).findFirst().orElseThrow();
+        assertEquals(150, state.approvalWarnings().size());
+        assertEquals(60, view.looseRuns().size());
+    }
+
     @Test void aPartialReplacementKeepsThePreviousVerdictAndVersionOutsideItsMeasuredSlice() {
         var old = report(true, true, "v1");
         var index = DefaultAnalysisComposer.index(old.getRoot());
