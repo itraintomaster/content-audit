@@ -2,7 +2,7 @@
 feature:
   id: FEAT-LEVE
   code: F-LEVE
-  name: Lo leve se ve pero no frena - una observación leve no saca al ejercicio de «Todos los jueces lo aprueban»
+  name: Lo leve se ve pero no frena - una observación leve de un analizador no saca al ejercicio de «Todos los jueces lo aprueban»
   priority: major
 ---
 
@@ -10,8 +10,9 @@ feature:
 
 ## TL;DR
 
-**Qué**: Una observación leve de un juez o de un analizador ya no deja al ejercicio afuera de «Todos los jueces lo
-aprueban». Se sigue viendo, en el ejercicio y en la lista.
+**Qué**: Una observación leve de un analizador ya no deja al ejercicio afuera de «Todos los jueces lo aprueban». Se
+sigue viendo, en el ejercicio y en la lista. Desde el 31/10/2026, la de un juez al día sí lo saca
+([F-TODOS-R001](../2026-10-31.01_todos-quiere-decir-todos/REQUIREMENT.md#F-TODOS-R001)).
 
 **Por qué**: El 28/10/2026, en la C2 de A1, 1.078 de los 1.825 ejercicios con un problema tenían sólo observaciones
 leves. En 941 la observación era de la miniteoría, cuya propia regla llama leve a una tarjeta «verdadera y suficiente»
@@ -36,14 +37,14 @@ Que la tarjeta use las palabras del ejercicio no le regala nada.
 ### Rule[F-LEVE-R001] - Una observación leve no frena
 **Severity**: major | **Validation**: VALIDATED
 
-> Un ejercicio entra en el recorrido sin problemas detectados aunque tenga observaciones leves de un juez o de un
-> analizador, mientras no tenga ninguna de gravedad media, alta o bloqueante. Las demás condiciones de
+> Un ejercicio entra en el recorrido sin problemas detectados aunque tenga observaciones leves de un analizador que no
+> es juez, mientras no tenga ninguna de gravedad media, alta o bloqueante. La observación leve de un juez al día lo deja
+> afuera ([F-TODOS-R001](../2026-10-31.01_todos-quiere-decir-todos/REQUIREMENT.md#F-TODOS-R001)). Las demás condiciones de
 > [F-NADIE-R001](../2026-10-20.01_nadie-le-ve-problemas/REQUIREMENT.md#F-NADIE-R001) siguen igual: los analizadores
 > evaluados por completo, al menos un juez al día y el contenido de hoy.
 >
-> El juez que dejó una observación leve cuenta con la marca que manda ContentAudit:
-> - si opinó con su versión de hoy, lo aprueba;
-> - si opinó con una versión anterior, sigue sin contar, y el ejercicio queda en «Faltan opiniones».
+> El juez que dejó una observación leve con una versión anterior sigue sin contar, y el ejercicio queda en «Faltan
+> opiniones»: con la versión de hoy puede no observar nada.
 >
 > Un analizador que dejó una observación leve no figura entre los que lo evaluaron «sin observaciones».
 
@@ -65,8 +66,9 @@ Que la tarjeta use las palabras del ejercicio no le regala nada.
 **Severity**: major | **Validation**: VALIDATED
 
 > Cuando el ejercicio de un cambio que dan por bueno no entra en «Todos los jueces lo aprueban», la línea debajo del
-> chip ([F-DICE-R002](../2026-10-28.03_cada-aviso-dice-que-paso/REQUIREMENT.md#F-DICE-R002)) nombra sólo a quien le ve un
-> problema medio, alto o bloqueante. Una observación leve no se nombra como motivo.
+> chip ([F-DICE-R002](../2026-10-28.03_cada-aviso-dice-que-paso/REQUIREMENT.md#F-DICE-R002)) no nombra como motivo la
+> observación leve de un analizador que no es juez. La de un juez sí se nombra
+> ([F-TODOS-R003](../2026-10-31.01_todos-quiere-decir-todos/REQUIREMENT.md#F-TODOS-R003)).
 
 <a id="F-LEVE-R004"></a>
 ### Rule[F-LEVE-R004] - Lo que arregla publicar tampoco frena
@@ -102,9 +104,9 @@ solo. El brief 239 los contó como «oraciones desfasadas» que había que arreg
 
 | Regla | Prueba |
 |---|---|
-| R001 | `test/tablero_html/correcciones/nadie_le_ve_problemas_test.dart`: entra con una observación leve de un juez y de un analizador, y trae quién la dejó y lo que observó. Lo deja afuera una media, una alta o una bloqueante. Con lo leve de un juez de antes, queda en «Faltan opiniones». El analizador con lo leve no está entre los «sin observaciones» |
+| R001 | `test/tablero_html/correcciones/nadie_le_ve_problemas_test.dart`: entra con una observación leve de un analizador, y trae quién la dejó y lo que observó. Lo deja afuera una media, una alta o una bloqueante. Con lo leve de un juez de antes, queda en «Faltan opiniones». El analizador con lo leve no está entre los «sin observaciones» |
 | R002 | `html/test/lo-leve-no-frena.test.js`: el bloque del ejercicio muestra cada observación leve con quién la dejó, sin los `$`, y dice que no frena, también sin cambios. La fila del juez dice «algo leve». La nota de cada lista cuenta los que tienen algo leve, y no aparece si no hay ninguno |
-| R003 | `html/test/lo-leve-no-frena.test.js`: el «resuelto» no nombra lo leve como motivo |
+| R003 | `html/test/lo-leve-no-frena.test.js`: el «resuelto» no nombra lo leve de un analizador como motivo |
 | R004 | `test/tablero_html/correcciones/nadie_le_ve_problemas_test.dart`: entra con la oración de producción, trae la de producción y no la cuenta como leve; la del árbol, o la de producción con otro hallazgo medio, lo deja afuera. `html/test/lo-leve-no-frena.test.js`: el bloque dice «Se arregla al publicar» con la oración, y el «resuelto» no la nombra |
 
 ## References

@@ -80,7 +80,7 @@ aprobando», con un botón para devolverlos de una vez.
 **Severity**: major | **Validation**: VALIDATED
 
 > Con «Vos lo aprobás» elegido, arriba de la lista se ve cuántos ejercicios son y por qué no están preparados:
-> cuántos tienen un problema que ve un juez o un analizador, y cuántos tienen una opinión que falta, una abstención o
+> cuántos tienen un problema que ve un juez, el revisor o un analizador, y cuántos tienen una opinión que falta, una abstención o
 > una opinión de otra versión. Al lado, el botón «Volver a sin revisar los N».
 >
 > Tocarlo pide confirmación: cuántos son, cuántos con cambios y cuántos sin cambios, y que los cambios y las opiniones
