@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Opiniones al día</title>
+<title>Todos quiere decir todos</title>
 <meta name="atril:agente" content="claude">
 <meta name="atril:hilo" content="a1">
 <!--
@@ -355,6 +355,25 @@
   .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
   .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
   .cat-i>.n b{color:var(--fg-2)}
+  /* ============ lo que pediste: el contexto del pedido, arriba del título (SKILL.md §6) ============ */
+  .pedido{margin:4px 0 16px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
+  .pedido>summary{list-style:none;cursor:pointer;display:flex;gap:12px;align-items:baseline;padding:11px 14px}
+  .pedido>summary::-webkit-details-marker{display:none}
+  .pedido>summary::after{content:"";flex:none;margin-left:auto;align-self:center;width:7px;height:7px;
+    border-right:1.6px solid var(--fg-3);border-bottom:1.6px solid var(--fg-3);transform:rotate(45deg);transition:transform .15s}
+  .pedido[open]>summary::after{transform:rotate(-135deg)}
+  .pedido .k{flex:none;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3)}
+  .pedido .q{font-size:15px;color:var(--fg);line-height:1.45}
+  .pedido-c{padding:2px 14px 14px;border-top:1px solid var(--line-soft)}
+  .pedido dl{display:grid;grid-template-columns:150px 1fr;gap:10px 16px;margin:12px 0 0}
+  .pedido dt{font-size:12.5px;font-weight:650;color:var(--fg-3);padding-top:2px}
+  .pedido dd{margin:0;font-size:15px;line-height:1.5;color:var(--fg-2)}
+  .pedido dd ol,.pedido dd ul{margin:0;padding-left:18px}
+  .pedido dd li{margin:0 0 4px}
+  .pedido .dib{margin:14px 0 0}
+  .pedido .de{margin:12px 0 0;font-size:12.5px;color:var(--fg-3)}
+  @media (max-width:640px){.pedido>summary{flex-direction:column;gap:4px}.pedido dl{grid-template-columns:1fr;gap:2px}.pedido dd{margin-bottom:8px}}
+
 </style>
 </head>
 <body>
@@ -362,79 +381,93 @@
 
   <header>
     <div class="kicker">
-      <span class="num">243</span>
+      <span class="num">245</span>
       <span class="badge">Resumen · Decisión</span>
-      <span class="meta">Tanda A1 · C2 · 29/10/2026</span>
+      <span class="meta">Tanda A1 · C2 · 1/11/2026</span>
     </div>
-    <h1>Las opiniones están al día, y la C2 vuelve a abrir</h1>
-    <p class="sub">Lo que pediste: las 2.602 opiniones que faltaban, con tope 2.700.</p>
+    <details class="pedido">
+      <summary><span class="k">Lo que pediste</span><span class="q">Que no entre en «Todos los jueces lo aprueban» un ejercicio con un error de un juez o que el revisor marca mal.</span></summary>
+      <div class="pedido-c">
+        <dl>
+          <dt>Qué estabas mirando</dt><dd>El ejercicio terminado en 2ce8 de Verbos de movimiento, dentro de «Todos los jueces lo aprueban», con «Miniteoría con error: error encontrado».</dd>
+          <dt>Qué pediste</dt><dd>Que esa lista diga la verdad: si un juez encontró algo, no lo aprueban todos.</dd>
+          <dt>A qué te referías</dt><dd><ol><li>Un error de un juez, aunque sea leve como el de la miniteoría, lo saca.</li><li>El revisor también es un juez: si lo marca mal, lo saca.</li></ol></dd>
+        </dl>
+        <p class="de">La conversación del 31/10, con la captura de Correcciones.</p>
+      </div>
+    </details>
+    <h1>«Todos los jueces lo aprueban» ahora quiere decir todos</h1>
+    <p class="sub">Un juez con algo leve o el revisor con «Mal» sacan al ejercicio.</p>
   </header>
 
-  <div class="lede"><p><strong>De las 2.602 opiniones que faltaban queda 1, y 1.557 ejercicios quedaron con todos los jueces a favor.</strong> Costó 1.229 consultas, la mitad de lo que estimé.</p></div>
+  <div class="lede"><p><strong>Un juez que anota algo, aunque sea leve, o el revisor con «Mal», ahora sacan al ejercicio: la lista bajó de 1.582 a 665.</strong> Queda decidir si «Dudoso» también lo saca.</p></div>
 
   <section>
-    <h2>Casi el doble en «Todos los jueces lo aprueban»</h2>
-    <div class="hb">
-      <div class="r"><span class="t">Todos los jueces lo aprueban<small>antes de Completar: 863</small></span><span class="tr"><span class="f g" style="width:100.0%"></span></span><span class="n">1.557</span></div>
-      <div class="r"><span class="t">Faltan opiniones<small>antes: 908; ahora casi todo abstenciones</small></span><span class="tr"><span class="f w" style="width:14.1%"></span></span><span class="n">219</span></div>
-      <div class="r"><span class="t">Preparados para entregar<small>ya los aprobaste; antes: 178</small></span><span class="tr"><span class="f " style="width:12.8%"></span></span><span class="n">199</span></div>
-    </div>
-    <p class="pie">Contado como lo cuenta Correcciones. En «Faltan opiniones» quedan sobre todo jueces que se abstuvieron, y 40 opiniones de una versión anterior.</p>
-  </section>
-
-  <section>
-    <h2>Costó 1.229 consultas, no las 2.660 que te dije</h2>
-    <div class="kpis">
-      <div class="kpi dest"><div class="n">1.229<small>de 2.700</small></div><div class="l">consultas gastadas</div></div>
-      <div class="kpi"><div class="n">761</div><div class="l">opiniones que ya estaban guardadas para ese mismo contenido</div></div>
-      <div class="kpi"><div class="n">17</div><div class="l">consultas de Miniteoría para 685 ejercicios: pregunta una vez por tema</div></div>
-    </div>
-    <p class="pie">En el 242 conté una consulta por par. Primero una prueba de 3: tres opiniones de Calidad didáctica A1, leídas a mano.</p>
-  </section>
-
-  <section>
-    <h2>Lo que dijeron los jueces: casi todo a favor</h2>
-    <div class="hb">
-      <div class="r"><span class="t">Calidad didáctica A1<small>40 mal · 26 para revisar</small></span><span class="tr"><span class="f g" style="width:86.5%"></span></span><span class="n">346</span></div>
-      <div class="r"><span class="t">Naturalidad<small>1 mal · 13 no aplica</small></span><span class="tr"><span class="f g" style="width:100.0%"></span></span><span class="n">400</span></div>
-      <div class="r"><span class="t">No regala la respuesta</span><span class="tr"><span class="f g" style="width:16.2%"></span></span><span class="n">65</span></div>
-      <div class="r"><span class="t">Pragmatismo<small>9 no aplica</small></span><span class="tr"><span class="f g" style="width:14.0%"></span></span><span class="n">56</span></div>
-      <div class="r"><span class="t">Calidad de las opciones</span><span class="tr"><span class="f g" style="width:4.8%"></span></span><span class="n">19</span></div>
-    </div>
-    <p class="pie">Opiniones nuevas a favor, por juez. Los 40 que Calidad didáctica A1 da por malos salen de «Todos los jueces lo aprueban».</p>
-  </section>
-
-  <section>
-    <h2>El tablero no abría la C2; ya abre</h2>
+    <h2>Así quedan las cuatro listas</h2>
     <div class="ad">
-      <div class="lado antes"><span class="rot">Al terminar Completar</span>
-        <ol><li>Leer el análisis de la C2 tardó 304 y 336 s.</li><li>El tablero lo cortaba a los 5 minutos.</li></ol>
-        <span class="res">Correcciones no abría la C2</span></div>
-      <div class="lado despues"><span class="rot">Ahora</span>
-        <ol><li>El análisis tiene su propio límite: 15 minutos.</li><li>Lo leído queda guardado hasta el próximo cambio.</li></ol>
-        <span class="res">Abre; tardó 324 s la primera vez</span></div>
+      <figure class="captura"><img src="245-todos-quiere-decir-todos/filtros.jpg" alt="Los cuatro filtros de Correcciones: Todos los jueces lo aprueban 665, Vos lo aprobás 11, Preparados para entregar 188, Faltan opiniones 101" width="287" height="163"><figcaption>Correcciones de la C2, hoy.</figcaption></figure>
+      <div class="kpis">
+        <div class="kpi dest"><div class="n">665<small>antes 1.582</small></div><div class="l">Todos los jueces lo aprueban</div></div>
+        <div class="kpi"><div class="n">188</div><div class="l">Preparados para entregar</div></div>
+        <div class="kpi"><div class="n">11</div><div class="l">Vos lo aprobás: aprobados por vos, con un problema</div></div>
+      </div>
     </div>
-    <div class="call c-warn"><b>Queda lento:</b> después de cada cambio en la tanda, la primera vez tarda unos 5 minutos. Conviene acelerar ese cálculo.</div>
+    <div class="call c-warn"><b>Al abrir:</b> los primeros 3 segundos dice 685, hasta que llegan las marcas del revisor.</div>
+  </section>
+
+  <section>
+    <h2>El caso que encontraste: dos objeciones que no frenaban</h2>
+    <div class="ex">
+      <div class="cons">Verbos de movimiento · opción múltiple · ejercicio terminado en 2ce8 · consigna: «Elige 'in' o 'to'.»</div>
+      <span class="rotulo antes">En producción</span>
+      <div class="en">The tourists disembarked<span class="gap"></span>the west of Italy.</div>
+      <div class="ans">Opciones: <b>in</b> (correcta) · to<span class="lista">Traducción: «Los turistas desembarcaron en el oeste de Italia.»<br>Miniteoría: «Arrive y disembark son la excepción: van con <i>in</i>, no <i>to</i>, aunque haya llegada.»</span></div>
+      <span class="rotulo despues">Con la corrección</span>
+      <div class="en">The children got off the boat and stayed<span class="gap"></span>Italy.</div>
+      <div class="ans">Opciones: <b>in</b> (correcta) · to<span class="lista">Traducción: «Los niños bajaron del barco y se quedaron en Italia.»<br>Miniteoría: «Con <i>stay</i>, usamos <i>in</i> para indicar dónde alguien se queda: <i>stayed in Italy</i> significa “se quedaron en Italia”.»</span></div>
+      <div class="mark"><span class="x">✕</span><span>Revisor: perdió el verbo de movimiento; ahora practica <i>stay in</i>. <span class="sev a">mal</span></span></div>
+      <div class="mark"><span class="x">✕</span><span>Miniteoría: fija «Italy», un detalle que no cambia la regla. <span class="sev l">leve</span></span></div>
+      <div class="mark ok"><span class="x">✓</span><span>Largo: 11 palabras, A1 pide 3 a 8. Es un analizador: no frena. <span class="sev l">leve</span></span></div>
+      <div class="ft"><span>Antes estaba en la lista</span><span>ahora no</span></div>
+    </div>
+    <p class="pie">Cualquiera de las dos objeciones lo saca ahora. El largo de la oración no: no es un juez, es una regla fija.</p>
+  </section>
+
+  <section>
+    <h2>Salieron 928, casi todos por la miniteoría</h2>
+    <div class="hb">
+      <div class="r"><span class="t">Miniteoría con algo leve</span><span class="tr"><span class="f w" style="width:100.0%"></span></span><span class="n">809</span></div>
+      <div class="r"><span class="t">Calidad didáctica A1 con algo leve</span><span class="tr"><span class="f w" style="width:17.4%"></span></span><span class="n">141</span></div>
+      <div class="r"><span class="t">Revisor: «Mal»<small>36 también con algo leve</small></span><span class="tr"><span class="f b" style="width:6.9%"></span></span><span class="n">56</span></div>
+      <div class="r"><span class="t">Casi duplicados con algo leve<small>lo decide un modelo por pares: es juez</small></span><span class="tr"><span class="f w" style="width:6.3%"></span></span><span class="n">51</span></div>
+      <div class="r"><span class="t">Otros tres jueces con algo leve</span><span class="tr"><span class="f w" style="width:0.7%"></span></span><span class="n">6</span></div>
+    </div>
+    <p class="pie">De 1.781 ejercicios con todos los jueces al día quedan 853 (665 + 188). Uno puede estar en más de una barra.</p>
+  </section>
+
+  <section>
+    <h2>Qué cambia y qué no</h2>
+    <div class="cambia">
+      <div class="si"><div class="ptl">Cambia</div><ul><li>Algo leve de un juez lo saca de las tres listas.</li><li>«Mal» del revisor también, aunque sea de una versión anterior.</li><li>Si ya lo aprobaste, queda en «Vos lo aprobás».</li><li>El «resuelto» nombra al juez o dice «el revisor lo marca mal».</li></ul></div>
+      <div class="no"><div class="ptl">No cambia</div><ul><li>Lo leve de un analizador, como el largo, no frena.</li><li>«Dudoso», «Heredado» y «Sin marca» no lo sacan.</li><li>Aprobar, rechazar y publicar funcionan igual.</li></ul></div>
+    </div>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Vuelvo a medir las 40 opiniones de una versión anterior?</span>
-        <div class="ops"><span class="op rec">Sí, 54 consultas · recomendado</span><span class="op">Así quedan</span></div>
-        <span class="why">Son de Consigna y Una sola respuesta. «Completar» no las toma: ya tienen opinión, pero vieja.</span></div>
-      <div class="ask"><span class="q">2 · Del 242: ¿rechazás las 2 versiones que aceptan cualquier preposición?</span>
-        <div class="ops"><span class="op rec">Sí, las 2 · recomendado</span><span class="op">Las miro</span></div>
-        <span class="why">«scared ___ the dark» acepta in; «talked ___ her nationality», regarding.</span></div>
-      <div class="ask"><span class="q">3 · Del 242: ¿paso a tú los 26 que aprobaste con vos?</span>
+      <div class="ask"><span class="q">1 · ¿«Dudoso» del revisor también lo saca?</span>
+        <div class="ops"><span class="op rec">No: los miro con el filtro · recomendado</span><span class="op">Sí, también</span></div>
+        <span class="why">Son 43 de los 853; quedarían 810. Con «Según el revisor: Dudoso» los ves primero.</span></div>
+      <div class="ask"><span class="q">2 · Del 242: ¿paso a tú los 26 que aprobaste con vos?</span>
         <div class="ops"><span class="op rec">Sí, gratis · recomendado</span><span class="op">Quedan así</span></div>
         <span class="why">Al cambiar, vuelven a tu lista para aprobar.</span></div>
     </div>
   </section>
 
   <footer>
-    <span>Completar de la C2 de A1 (contenido v65): prueba ui-2026-10-29T13-54-14 (tope 3; …1e8d, 1e8e, 1e92 de Calidad didáctica A1, SUITABLE) y resto ui-2026-10-29T15-34-50 (1.229 de 1.229, terminó 18:36). Estimación: 1.232 consultas para 2.602 pares de 993 ejercicios, 761 reutilizadas; mini-theory por tema (17 temas). Faltan (/api/opiniones del 7800): 2.602 → 1 (naturalness); deAntes 40 cambios (quiz-instruction y single-answer de versiones del 5 y 6/10); estimación de «Volver a medir»: 28 + 26. Filtros contados con la regla de selectores.js (todos los jueces «hoy») sobre bien.quizzes y las decisiones de /api/decisiones: v65 863 / 908 / 178 (+21 «vos lo aprobás»); ahora 1.557 / 219 / 199. Tablero: «batch analysis read» tardó 336 s a mano y 304 s en el 7800 (504); ittm ce292a64b, limiteDelAnalisis de 15 min, 1.584 pruebas del tablero verdes; 7800 reiniciado 23:46 con ittm ce292a64b y ca e5a946f68; la lectura siguiente tardó 324 s. Motor codex-cli gpt-6.1-sol, esfuerzo medio.</span>
-    <span>brief 243 · docs/briefs/243-las-opiniones-al-dia-y-la-c2-abre.html</span>
+    <span>FEAT-TODOS (requirements/2026-10-31.01_todos-quiere-decir-todos, R001 a R003); F-LEVE-R001/R003, F-NADIE-R001 y F-DICE-R003 ajustadas. ittm 92ea1414c: nadie_le_ve_problemas.dart deja afuera lo LOW de un juez al día o declarado por cobertura (near-duplicates); selectores.js cruza /api/marcas («mal», también estado «anterior»); 1.586 pruebas de Dart del tablero y 2.820 de la página, en verde; las nuevas fallan sin el cambio. ca 5057d4684 (sólo requisitos; herramienta.version anotada). 7800 reiniciado con ittm 92ea1414c y ca 5057d4684. Conteos: /api/opiniones (978 en bien, 873 con todos los jueces «hoy», 0 con algo leve de un juez) + /api/marcas (1.922 marcas: 80 mal, 227 dudoso, 74 heredado); antes 1.781 con todos «hoy», 908 con LOW de un juez, 56 mal, 36 ambos. Pantalla leída en el pane: 665 · 11 · 188 · 101 a los 4,2 s (685 · 11 · 188 · 105 antes de llegar las marcas). 2ce8 = 67fab6d59930102295342ce8, revisor cb2111fe.</span>
+    <span>brief 245 · docs/briefs/245-todos-quiere-decir-todos.html</span>
   </footer>
 
 </div>
