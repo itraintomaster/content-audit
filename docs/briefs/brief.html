@@ -3,7 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>246 · Dos veredictos para el mismo ejercicio</title>
+<title>247 · Los estados de cada evaluador</title>
+<meta name="atril:conversacion" content="claude:7aeb7923-ce6d-404e-87c0-0be9207254b5">
+<meta name="atril:agente" content="claude">
+<meta name="atril:hilo" content="a1">
 <!--
   TEMPLATE DE BRIEF · visual-brief
   1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
@@ -388,6 +391,13 @@
   }
 
 figure.dg{margin:0 0 16px;overflow-x:auto}figure.dg>svg{display:block;width:100%;height:auto;margin:0 auto}
+  .grp{margin:18px 0 6px;font-size:12px;font-weight:650;letter-spacing:.04em;color:var(--fg-2)}
+  .heat span small{display:block;font-size:10.5px;color:var(--fg-3)}
+  .heat .rl small{display:block;font:11px/1.3 ui-monospace,monospace;color:var(--fg-3)}
+  .tw td small{display:block;color:var(--fg-3);font-size:11.5px}
+  .tw tr.decide td{background:var(--warn-soft)}
+  .tw tr.sep td{background:var(--line-soft);font-weight:650;font-size:12px;color:var(--fg-2)}
+  .tw code{font-size:11.5px}
 </style>
 </head>
 <body>
@@ -395,166 +405,170 @@ figure.dg{margin:0 0 16px;overflow-x:auto}figure.dg>svg{display:block;width:100%
 
   <header>
     <div class="kicker">
-      <span class="num">246</span>
-      <span class="badge">Diagnóstico · Decisión</span>
+      <span class="num">247</span>
+      <span class="badge">Diagnóstico técnico · Decisión</span>
       <span class="meta">Tanda A1 · C2 · 1/11/2026</span>
     </div>
     <details class="pedido">
-      <summary><span class="k">Lo que pediste</span><span class="q">Que revise cómo se decide «Todos los jueces lo aprueban» y por qué sigue entrando un ejercicio con un error, antes de arreglarlo.</span></summary>
+      <summary><span class="k">Lo que pediste</span><span class="q">Que quede claro, con detalle técnico, qué estados tiene cada juez y cada analizador y cómo deciden si un ejercicio entra en «Todos lo aprueban».</span></summary>
       <div class="pedido-c">
         <dl>
-          <dt>Qué estabas mirando</dt><dd>El ejercicio terminado en 24a7 de Verbos de movimiento, dentro de «Todos los jueces lo aprueban», con «Oraciones con el largo de su nivel: error nuevo» en rojo.</dd>
-          <dt>Qué pediste</dt><dd>Analizar cómo está hecha la decisión y dónde está lo desprolijo. Arreglarlo viene después, cuando sepamos cómo hacerlo bien.</dd>
-          <dt>A qué te referías</dt><dd><ol><li>Por qué me equivoco tanto con esta lista.</li><li>Que la decisión sea una sola y consistente.</li></ol></dd>
+          <dt>Qué estabas mirando</dt><dd>El brief 246, cuyo diagrama no se entendía y no alcanzaba para decidir.</dd>
+          <dt>Qué pediste</dt><dd>Si hay un manejo general de estados, que lo haga explícito; si no, el flujo de estados de jueces y analizadores que decide la lista.</dd>
+          <dt>A qué te referías</dt><dd><ol><li>Qué estados puede tener cada evaluador en un ejercicio.</li><li>Cómo esos estados llevan a «Todos lo aprueban» o no.</li><li>Lo necesario para tomar una decisión.</li></ol></dd>
         </dl>
-        <p class="de">La conversación del 1/11, con la captura de Correcciones.</p>
+        <p class="de">La conversación del 1/11, sobre el brief 246.</p>
       </div>
     </details>
-    <h1>La lista y el ejercicio se contradicen en 296 de 665</h1>
-    <p class="sub">Tres lugares deciden si un ejercicio tiene un problema, cada uno con sus reglas.</p>
+    <h1>Jueces y analizadores: sus estados y cómo deciden la lista</h1>
+    <p class="sub">El inventario, las dos cascadas de hoy y una regla general para decidir.</p>
   </header>
 
-  <div class="lede"><p><strong>Dos cálculos juzgan el mismo ejercicio con reglas distintas: 296 de los 665 de la lista están también en «Empeoró» o «No consta arreglado».</strong> Propongo un solo veredicto por ejercicio, con 4 decisiones tuyas.</p></div>
+  <div class="lede"><p><strong>No hay un manejo general: jueces, analizadores y revisor tienen estados distintos, y la lista y «Según los jueces» los leen con cascadas distintas.</strong> Propongo cuatro estados para todos y seis decisiones tuyas.</p></div>
 
   <div class="saber">
     <h2>Lo que tenés que saber</h2>
     <dl>
-      <div><dt>Juez y analizador</dt><dd>Un juez es un modelo que opina, como el de la miniteoría. Un analizador es una regla fija y gratis, como contar las palabras de la oración.</dd></div>
-      <div><dt>Veredicto del cambio</dt><dd>«Según los jueces» compara el ejercicio antes y después de corregirlo: «Lo dan por bueno», «No consta arreglado» o «Empeoró».</dd></div>
-      <div><dt>La lista</dt><dd>«Todos los jueces lo aprueban» mira sólo cómo quedó el ejercicio hoy.</dd></div>
+      <div><dt>Evaluador</dt><dd>Lo que opina de un ejercicio: 10 jueces, Casi duplicados y 9 analizadores. Aparte, el revisor marca los 1.922 que cambió la C2.</dd></div>
+      <div><dt>Juez</dt><dd>Un modelo pago de la lista de jueces de la tanda. Casi duplicados también es un modelo pago, pero no está en la lista: a veces cuenta como juez y a veces no.</dd></div>
+      <div><dt>Analizador</dt><dd>Una regla fija y gratis, como contar palabras. Los del catálogo que miran temas o el curso no cuentan acá.</dd></div>
     </dl>
   </div>
 
   <section>
-    <h2>…24a7 está en la lista y dice «error nuevo»</h2>
-    <div class="map">
-      <div class="ex">
-        <svg class="cap" viewBox="0 0 1131 790" role="img" aria-label="Correcciones con el ejercicio 24a7 abierto y cuatro marcas">
-          <image href="246-dos-veredictos/caso.png" width="1131" height="790"/>
-          <rect class="aro" x="5" y="360" width="228" height="34" rx="17"/>
-          <rect class="aro" x="446" y="316" width="525" height="28" rx="8"/>
-          <rect class="aro" x="140" y="325" width="114" height="26" rx="13"/>
-          <rect class="aro" x="5" y="703" width="262" height="42" rx="8"/>
-          <g class="mk" transform="translate(252 377)"><circle r="15"/><text font-size="18">1</text></g>
-          <g class="mk" transform="translate(426 330)"><circle r="15"/><text font-size="18">2</text></g>
-          <g class="mk" transform="translate(273 338)"><circle r="15"/><text font-size="18">3</text></g>
-          <g class="mk" transform="translate(276 724)"><circle r="15"/><text font-size="18">4</text></g>
-        </svg>
-      </div>
-      <div class="who">
-        <div><b>1</b><span><strong>La lista, 665 ejercicios</strong><br><small>…24a7 está adentro</small></span></div>
-        <div><b>2</b><span><strong>«Largo: error nuevo», en rojo</strong><br><small>9 palabras; A1 pide hasta 8</small></span></div>
-        <div><b>3</b><span><strong>«Empeoró 328»</strong><br><small>el mismo ejercicio cuenta acá</small></span></div>
-        <div><b>4</b><span><strong>La nota de la lista</strong><br><small>«observaciones leves… no frenan»</small></span></div>
-      </div>
-    </div>
-    <p class="pie">Las cuatro hablan del mismo hallazgo leve del largo. La nota y la lista dicen que no frena; la línea roja y «Empeoró», que es un error.</p>
+    <h2>En la C2, el estado de cada evaluador en los 2.402 ejercicios</h2>
+<div class="grp">Jueces · modelo pago, en la lista de jueces</div>
+<div class="heat" style="--cols:6"><span class="h"></span><span class="h">No aplica</span><span class="h">Aprueba</span><span class="h">Leve</span><span class="h">Medio o más</span><span class="h">Se abstuvo</span><span class="h">Falta</span>
+<span class="rl">Consigna que no se cumple<small>quiz-instruction</small></span><span class="h0">—</span><span class="h0">2.399</span><span class="h0">—</span><span class="h1">3</span><span class="h0">—</span><span class="h0">—</span>
+<span class="rl">Opción múltiple mal armada<small>multiple-choice-validity</small></span><span class="h0">1.691</span><span class="h0">705</span><span class="h1">2</span><span class="h1">4</span><span class="h0">—</span><span class="h0">—</span>
+<span class="rl">Traducción que no corresponde<small>translation-sense</small></span><span class="h0">—</span><span class="h0">2.383</span><span class="h1">6</span><span class="h1">13</span><span class="h0">—</span><span class="h0">—</span>
+<span class="rl">Más de una respuesta válida<small>single-answer</small></span><span class="h0">711</span><span class="h0">1.609</span><span class="h0">—</span><span class="h1">82</span><span class="h0">—</span><span class="h0">—</span>
+<span class="rl">Miniteoría con error<small>mini-theory</small></span><span class="h0">—</span><span class="h0">1.346</span><span class="h3">992</span><span class="h1">64</span><span class="h0">—</span><span class="h0">—</span>
+<span class="rl">Naturalidad idiomática<small>naturalness</small></span><span class="h0">—</span><span class="h0">2.326</span><span class="h0">—</span><span class="h1">3</span><span class="h1">73</span><span class="h0">—</span>
+<span class="rl">Calidad de distractores<small>multiple-choice-quality</small></span><span class="h0">1.691</span><span class="h0">707</span><span class="h1">1</span><span class="h1">3</span><span class="h0">—</span><span class="h0">—</span>
+<span class="rl">Pragmatismo comunicativo<small>pragmatism</small></span><span class="h0">—</span><span class="h0">2.327</span><span class="h0">—</span><span class="h0">—</span><span class="h1">75</span><span class="h0">—</span>
+<span class="rl">Calidad didáctica A1<small>a1-didactic</small></span><span class="h0">—</span><span class="h0">2.091</span><span class="h2">176</span><span class="h1">4</span><span class="h2">131</span><span class="h0">—</span>
+<span class="rl">No regala la respuesta<small>answer-giveaway</small></span><span class="h0">—</span><span class="h0">2.324</span><span class="h0">—</span><span class="h1">78</span><span class="h0">—</span><span class="h0">—</span>
+</div>
+<div class="grp">Casi duplicados · modelo pago, fuera de la lista de jueces</div>
+<div class="heat" style="--cols:6"><span class="h"></span><span class="h">No aplica</span><span class="h">Aprueba</span><span class="h">Leve</span><span class="h">Medio o más</span><span class="h">Se abstuvo</span><span class="h">Falta</span>
+<span class="rl">Ejercicio casi repetido<small>near-duplicates</small></span><span class="h0">—</span><span class="h0">2.325</span><span class="h1">77</span><span class="h0">—</span><span class="h0">—</span><span class="h0">—</span>
+</div>
+<div class="grp">Analizadores · regla fija, gratis</div>
+<div class="heat" style="--cols:6"><span class="h"></span><span class="h">No aplica</span><span class="h">Aprueba</span><span class="h">Leve</span><span class="h">Medio o más</span><span class="h">Se abstuvo</span><span class="h">Falta</span>
+<span class="rl">Oraciones con el largo de su nivel<small>sentence-length</small></span><span class="h0">—</span><span class="h0">2.238</span><span class="h2">164</span><span class="h0">—</span><span class="h0">—</span><span class="h0">—</span>
+<span class="rl">Exige una forma o rechaza una respuesta válida<small>answer-completeness</small></span><span class="h0">711</span><span class="h0">1.636</span><span class="h1">55</span><span class="h0">—</span><span class="h0">—</span><span class="h0">—</span>
+<span class="rl">Ejercicio repetido igual<small>exact-duplicates</small></span><span class="h0">—</span><span class="h0">2.396</span><span class="h1">6</span><span class="h0">—</span><span class="h0">—</span><span class="h0">—</span>
+<span class="rl">Respuesta u oración que no coincide<small>data-coherence</small></span><span class="h0">—</span><span class="h0">2.286</span><span class="h0">—</span><span class="h1">116<small>prod.</small></span><span class="h0">—</span><span class="h0">—</span>
+<span class="rl">Pista que falta, confunde o regala la respuesta<small>hint-coherence</small></span><span class="h0">711</span><span class="h0">1.687</span><span class="h0">—</span><span class="h1">4</span><span class="h0">—</span><span class="h0">—</span>
+<span class="rl">Vocabulario del nivel presente<small>lemma-absence</small></span><span class="h0">—</span><span class="h0">2.190</span><span class="h0">—</span><span class="h2">212</span><span class="h0">—</span><span class="h0">—</span>
+<span class="rl">Error de gramática<small>grammar</small></span><span class="h0">—</span><span class="h0">2.402</span><span class="h0">—</span><span class="h0">—</span><span class="h0">—</span><span class="h0">—</span>
+<span class="rl">Palabra de otro nivel<small>off-level-words</small></span><span class="h0">—</span><span class="h0">2.402</span><span class="h0">—</span><span class="h0">—</span><span class="h0">—</span><span class="h0">—</span>
+<span class="rl">Texto de vos<small>spanish-register</small></span><span class="h0">—</span><span class="h0">—</span><span class="h0">—</span><span class="h0">—</span><span class="h0">—</span><span class="h3">2.402</span>
+</div>    <p class="pie">Ningún juez tiene opiniones de antes ni sin pedir. El texto de vos no está en el análisis de la C2.</p>
   </section>
 
   <section>
-    <h2>Tres lugares deciden, cada uno con sus reglas</h2>
-<figure class="dg">
-<script type="text/x-d2">
-direction: down
-analisis: "El análisis de hoy\nantes y después" {class: paso}
-cambio: "Veredicto del cambio\ncuenta todo lo nuevo" {class: aviso}
-lista: "Servidor: la lista\nsaltea tres cosas" {class: aviso}
-pagina: "Página: suma el\n«Mal» del revisor" {class: aviso}
-motivo: "Página: «No entra porque…»\nrecalcula el motivo" {class: aviso}
-roja: "«Empeoró» y\nla línea roja" {class: malo}
-todos: "«Todos los jueces\nlo aprueban»" {class: malo}
-analisis -> cambio -> roja
-analisis -> lista -> pagina -> todos
-analisis -> motivo
-</script>
-<svg role="img" class="dg-svg" style="max-width:777px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-d2-version="v0.9.0" preserveAspectRatio="xMinYMin meet" viewBox="0 0 706 574"><svg class="d2-354854559 d2-svg" width="706" height="574" viewBox="7 7 706 574"><rect x="7" y="7" width="706" height="574" rx="0" fill="#a00005" class=" fill-N7" stroke-width="0"  fill-opacity="0"/><style type="text/css"><![CDATA[
-.d2-354854559 .text {
-	font-family: "d2-354854559-font-regular";
-}
-@font-face {
-	font-family: d2-354854559-font-regular;
-	src: url("data:application/font-woff;base64,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");
-}]]></style><style type="text/css"><![CDATA[.shape {
-  shape-rendering: geometricPrecision;
-  stroke-linejoin: round;
-}
-.connection {
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.blend {
-  mix-blend-mode: multiply;
-  opacity: 0.5;
-}
-
-		.d2-354854559 .fill-N7{fill:var(--dg-surface);}
-		.d2-354854559 .stroke-B2{stroke:var(--dg-fg-3);}.appendix text.text{fill:var(--dg-fg)}.md{--color-fg-default:var(--dg-fg);--color-fg-muted:var(--dg-fg-2);--color-fg-subtle:var(--dg-fg-3);--color-canvas-default:var(--dg-surface);--color-canvas-subtle:var(--dg-bg);--color-border-default:var(--dg-line);--color-border-muted:var(--dg-fg-3);--color-neutral-muted:var(--dg-bg);--color-accent-fg:var(--dg-fg-3);--color-accent-emphasis:var(--dg-fg-3);--color-attention-subtle:var(--dg-fg-2);--color-danger-fg:red;}.light-code{display: block}.dark-code{display: none}]]></style><g class="YW5hbGlzaXM= paso"><g class="shape" ><rect x="242" y="12" width="181" height="86" rx="10" stroke="#a00004" fill="#a00006" style="stroke-width:1;" /></g><text x="332.5" y="52.5" fill="#a00001" class="text" style="text-anchor:middle;font-size:18px"><tspan x="332.5" dy="0">El análisis de hoy</tspan><tspan x="332.5" dy="20.5">antes y después</tspan></text></g><g class="Y2FtYmlv aviso"><g class="shape" ><rect x="12" y="178" width="213" height="86" rx="10" stroke="#a00021" fill="#a00022" style="stroke-width:1;" /></g><text x="118.5" y="218.5" fill="#a00001" class="text" style="text-anchor:middle;font-size:18px"><tspan x="118.5" dy="0">Veredicto del cambio</tspan><tspan x="118.5" dy="20.5">cuenta todo lo nuevo</tspan></text></g><g class="bGlzdGE= aviso"><g class="shape" ><rect x="245" y="178" width="176" height="86" rx="10" stroke="#a00021" fill="#a00022" style="stroke-width:1;" /></g><text x="333" y="218.5" fill="#a00001" class="text" style="text-anchor:middle;font-size:18px"><tspan x="333" dy="0">Servidor: la lista</tspan><tspan x="333" dy="20.5">saltea tres cosas</tspan></text></g><g class="cGFnaW5h aviso"><g class="shape" ><rect x="243" y="334" width="180" height="86" rx="10" stroke="#a00021" fill="#a00022" style="stroke-width:1;" /></g><text x="333" y="374.5" fill="#a00001" class="text" style="text-anchor:middle;font-size:18px"><tspan x="333" dy="0">Página: suma el</tspan><tspan x="333" dy="20.5">«Mal» del revisor</tspan></text></g><g class="bW90aXZv aviso"><g class="shape" ><rect x="441" y="178" width="267" height="86" rx="10" stroke="#a00021" fill="#a00022" style="stroke-width:1;" /></g><text x="574.5" y="218.5" fill="#a00001" class="text" style="text-anchor:middle;font-size:18px"><tspan x="574.5" dy="0">Página: «No entra porque…»</tspan><tspan x="574.5" dy="20.5">recalcula el motivo</tspan></text></g><g class="cm9qYQ== malo"><g class="shape" ><rect x="44" y="334" width="148" height="86" rx="10" stroke="#a00041" fill="#a00042" style="stroke-width:1;" /></g><text x="118" y="374.5" fill="#a00001" class="text" style="text-anchor:middle;font-size:18px"><tspan x="118" dy="0">«Empeoró» y</tspan><tspan x="118" dy="20.5">la línea roja</tspan></text></g><g class="dG9kb3M= malo"><g class="shape" ><rect x="241" y="490" width="183" height="86" rx="10" stroke="#a00041" fill="#a00042" style="stroke-width:1;" /></g><text x="332.5" y="530.5" fill="#a00001" class="text" style="text-anchor:middle;font-size:18px"><tspan x="332.5" dy="0">«Todos los jueces</tspan><tspan x="332.5" dy="20.5">lo aprueban»</tspan></text></g><g class="KGFuYWxpc2lzIC0mZ3Q7IGNhbWJpbylbMF0="><marker id="mk-d2-354854559-1883452432" markerWidth="10" markerHeight="12" refX="7" refY="6" viewBox="0 0 10 12" orient="auto" markerUnits="userSpaceOnUse"> <polygon points="0,0 10,6 0,12" fill="#a00003" class="connection" stroke-width="2" /> </marker><path d="M 287.75 99.5 L 287.75 128 S 287.75 138 277.75 138 L 128.5 138 S 118.5 138 118.5 148 L 118.5 174.5" stroke="#a00003" fill="none" class="connection" style="stroke-width:2;" marker-end="url(#mk-d2-354854559-1883452432)" mask="url(#d2-354854559)" /></g><g class="KGNhbWJpbyAtJmd0OyByb2phKVswXQ=="><path d="M 118.5 265.5 L 118.5 330.5" stroke="#a00003" fill="none" class="connection" style="stroke-width:2;" marker-end="url(#mk-d2-354854559-1883452432)" mask="url(#d2-354854559)" /></g><g class="KGFuYWxpc2lzIC0mZ3Q7IGxpc3RhKVswXQ=="><path d="M 333 99.5 L 333 174.5" stroke="#a00003" fill="none" class="connection" style="stroke-width:2;" marker-end="url(#mk-d2-354854559-1883452432)" mask="url(#d2-354854559)" /></g><g class="KGxpc3RhIC0mZ3Q7IHBhZ2luYSlbMF0="><path d="M 333 265.5 L 333 330.5" stroke="#a00003" fill="none" class="connection" style="stroke-width:2;" marker-end="url(#mk-d2-354854559-1883452432)" mask="url(#d2-354854559)" /></g><g class="KHBhZ2luYSAtJmd0OyB0b2RvcylbMF0="><path d="M 333 421.5 L 333 486.5" stroke="#a00003" fill="none" class="connection" style="stroke-width:2;" marker-end="url(#mk-d2-354854559-1883452432)" mask="url(#d2-354854559)" /></g><g class="KGFuYWxpc2lzIC0mZ3Q7IG1vdGl2bylbMF0="><path d="M 378.25 99.5 L 378.25 128 S 378.25 138 388.25 138 L 564.5 138 S 574.5 138 574.5 148 L 574.5 174.5" stroke="#a00003" fill="none" class="connection" style="stroke-width:2;" marker-end="url(#mk-d2-354854559-1883452432)" mask="url(#d2-354854559)" /></g><mask id="d2-354854559" maskUnits="userSpaceOnUse" x="7" y="7" width="706" height="574">
-<rect x="7" y="7" width="706" height="574" fill="white"></rect>
-
-</mask></svg><style>.dg-svg{--dg-fg:var(--fg,var(--ed-fg,#1c1a17));--dg-fg-2:var(--fg-2,var(--ed-fg-2,#57524b));--dg-fg-3:var(--fg-3,var(--ed-fg-3,#8b847a));--dg-line:var(--line,var(--ed-line,#e6e2db));--dg-surface:var(--bg-elev,var(--ed-paper,#ffffff));--dg-bg:var(--bg,var(--ed-bg,#fbfaf8));--dg-ok:var(--ok,var(--app-ok,#2f6b46));--dg-ok-soft:var(--ok-soft,var(--app-ok-2,#e9f4ed));--dg-warn:var(--warn,var(--app-warn,#8a6314));--dg-warn-soft:var(--warn-soft,var(--app-warn-2,#fbf2dd));--dg-accent:var(--accent,var(--ed-accent,#b4531f));--dg-accent-soft:var(--accent-soft,var(--ed-accent-soft,#fdf1e7));--dg-bad:var(--bad,var(--app-bad,#a3342c));--dg-bad-soft:var(--bad-soft,var(--app-bad-2,#fbecea));--dg-info:var(--info,var(--app-info,#2a5b8f));--dg-info-soft:var(--info-soft,var(--app-info-2,#e9f1f9))}[fill="#a00001"]{fill:var(--dg-fg)}[stroke="#a00001"]{stroke:var(--dg-fg)}[fill="#a00002"]{fill:var(--dg-fg-2)}[stroke="#a00002"]{stroke:var(--dg-fg-2)}[fill="#a00003"]{fill:var(--dg-fg-3)}[stroke="#a00003"]{stroke:var(--dg-fg-3)}[fill="#a00004"]{fill:var(--dg-line)}[stroke="#a00004"]{stroke:var(--dg-line)}[fill="#a00005"]{fill:var(--dg-surface)}[stroke="#a00005"]{stroke:var(--dg-surface)}[fill="#a00006"]{fill:var(--dg-bg)}[stroke="#a00006"]{stroke:var(--dg-bg)}[fill="#a00011"]{fill:var(--dg-ok)}[stroke="#a00011"]{stroke:var(--dg-ok)}[fill="#a00012"]{fill:var(--dg-ok-soft)}[stroke="#a00012"]{stroke:var(--dg-ok-soft)}[fill="#a00021"]{fill:var(--dg-warn)}[stroke="#a00021"]{stroke:var(--dg-warn)}[fill="#a00022"]{fill:var(--dg-warn-soft)}[stroke="#a00022"]{stroke:var(--dg-warn-soft)}[fill="#a00031"]{fill:var(--dg-accent)}[stroke="#a00031"]{stroke:var(--dg-accent)}[fill="#a00032"]{fill:var(--dg-accent-soft)}[stroke="#a00032"]{stroke:var(--dg-accent-soft)}[fill="#a00041"]{fill:var(--dg-bad)}[stroke="#a00041"]{stroke:var(--dg-bad)}[fill="#a00042"]{fill:var(--dg-bad-soft)}[stroke="#a00042"]{stroke:var(--dg-bad-soft)}[fill="#a00051"]{fill:var(--dg-info)}[stroke="#a00051"]{stroke:var(--dg-info)}[fill="#a00052"]{fill:var(--dg-info-soft)}[stroke="#a00052"]{stroke:var(--dg-info-soft)}</style></svg>
-</figure>
-    <p class="pie">Los tres leen la misma medición. Ninguno le pregunta a otro: cada uno tiene su copia de las reglas.</p>
-  </section>
-
-  <section>
-    <h2>Cada regla nueva entró en un solo lugar</h2>
+    <h2>La lista decide en siete pasos, y trata distinto a cada grupo</h2>
     <div class="tw"><table>
-      <thead><tr><th>Regla</th><th>En la lista</th><th>En «Empeoró» y la línea roja</th></tr></thead>
+      <thead><tr><th>#</th><th>Pregunta</th><th>A quién mira</th><th>Si es sí</th></tr></thead>
       <tbody>
-        <tr><td>Lo leve de un analizador no frena · 28/10</td><td><span class="pill p-ok">no frena</span></td><td><span class="pill p-bad">«error nuevo»</span></td></tr>
-        <tr><td>La oración guardada en producción no frena · 28/10</td><td><span class="pill p-ok">no frena</span></td><td><span class="pill p-bad">«error nuevo»</span></td></tr>
-        <tr><td>Lo leve de un juez frena · 31/10</td><td><span class="pill p-ok">frena</span></td><td><span class="pill p-ok">frena</span></td></tr>
-        <tr><td>«Mal» del revisor frena · 31/10</td><td><span class="pill p-warn">sólo la página, 3 s después</span></td><td><span class="pill p-bad">no lo mira</span></td></tr>
-        <tr><td>Un analizador que no volvió a medir</td><td><span class="pill p-bad">lo saltea</span></td><td><span class="pill p-warn">«no consta arreglado»</span></td></tr>
+        <tr><td>1</td><td>¿Alguien dejó algo medio, alto o bloqueante?</td><td>Jueces y analizadores, al día o de antes<small>salvo la oración guardada en producción</small></td><td><span class="pill p-bad">afuera</span></td></tr>
+        <tr><td>2</td><td>¿Un analizador quedó sin evaluar o a medias?</td><td>Sólo analizadores y Casi duplicados<small>los ausentes del análisis no se miran</small></td><td><span class="pill p-bad">afuera, ni «Faltan opiniones»</span></td></tr>
+        <tr><td>3</td><td>¿Ningún juez opinó con la versión de hoy?</td><td>Sólo jueces<small>cada uno queda al día, de antes, se abstuvo o falta</small></td><td><span class="pill p-bad">afuera</span></td></tr>
+        <tr><td>4</td><td>¿Un juez al día dejó algo leve?</td><td>Jueces y Casi duplicados<small>lo leve de un analizador no se mira</small></td><td><span class="pill p-bad">afuera</span></td></tr>
+        <tr><td>5</td><td>¿Lo medido no es el contenido de hoy?</td><td>El ejercicio</td><td><span class="pill p-bad">afuera</span></td></tr>
+        <tr><td>6</td><td>¿El revisor lo marca «Mal»?</td><td>El revisor<small>sólo en la página, cuando llegan sus marcas</small></td><td><span class="pill p-bad">afuera</span></td></tr>
+        <tr><td>7</td><td>¿Todos los jueces del paso 3 están al día?</td><td>Sólo jueces<small>una abstención no es «al día»</small></td><td><span class="pill p-ok">«Todos lo aprueban»</span><small>si no: «Faltan opiniones»</small></td></tr>
       </tbody></table></div>
-    <div class="call c-warn"><b>Por qué se me escapó:</b> arreglé cada caso en el lugar donde apareció y probé tu caso, no que ningún ejercicio de la lista muestre algo en rojo.</div>
-    <p class="pie">«La arregla publicar» además está escrita dos veces con criterios distintos: una mira la marca del hallazgo; la otra, el rótulo de la oración.</p>
+    <p class="pie">«Afuera»: ninguna de las cuatro listas, o «Vos lo aprobás» si lo aprobaste. Los pasos 1 a 5 son del servidor; el 6 y el 7, de la página.</p>
   </section>
 
   <section>
-    <h2>Pega en 296 de los 665, por cuatro causas</h2>
-    <div class="hb">
-      <div class="r"><span class="t">Texto de vos sin volver a medir<small>«What ___ (you / eat) now?»: pasó a tú y nadie lo confirmó</small></span><span class="tr"><span class="f" style="width:100%"></span></span><span class="n">147</span></div>
-      <div class="r"><span class="t">Oración guardada en producción<small>«I ___ (be) at the farm yesterday.»: la arregla publicar</small></span><span class="tr"><span class="f" style="width:55.8%"></span></span><span class="n">82</span></div>
-      <div class="r"><span class="t">Largo de la oración, leve<small>«When did you fly from London ___ Australia?»: 9 de 8</small></span><span class="tr"><span class="f" style="width:36.1%"></span></span><span class="n">53</span></div>
-      <div class="r"><span class="t">Exige una forma, leve<small>«We are not eating.»: la consigna pide la forma contraída</small></span><span class="tr"><span class="f" style="width:9.5%"></span></span><span class="n">14</span></div>
-      <div class="r"><span class="t">Largo sin confirmar<small>sin hallazgo hoy</small></span><span class="tr"><span class="f s" style="width:1.4%"></span></span><span class="n">2</span></div>
-    </div>
-    <p class="pie">Suman 298 porque 2 ejercicios tienen dos causas. Los otros 369 de la lista no se contradicen.</p>
+    <h2>«Según los jueces» decide en otros siete, sin grupos</h2>
+    <div class="tw"><table>
+      <thead><tr><th>#</th><th>Pregunta, por cada cambio</th><th>A quién mira</th><th>Si es sí</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>¿Lo medido es otro contenido?</td><td>El ejercicio</td><td><span class="pill p-idle">«Otro contenido»</span></td></tr>
+        <tr><td>2</td><td>¿No hay medición del después?</td><td>—</td><td><span class="pill p-warn">«Falta medir»</span></td></tr>
+        <tr><td>3</td><td>¿Alguien tiene un hallazgo que antes no estaba?</td><td>Todos igual, cualquier gravedad<small>también la oración de producción</small></td><td><span class="pill p-bad">«Empeoró»</span></td></tr>
+        <tr><td>4</td><td>¿Alguien que no pidió el cambio sigue observando algo?</td><td>Todos igual, cualquier gravedad</td><td><span class="pill p-warn">«No consta arreglado»</span></td></tr>
+        <tr><td>5</td><td>¿El que lo pidió no midió, o midió con una versión de antes?</td><td>El que pidió el cambio</td><td><span class="pill p-warn">«Falta medir»</span></td></tr>
+        <tr><td>6</td><td>¿El motivo no figura arreglado?</td><td>El que pidió el cambio<small>si no está en el análisis, nunca figura</small></td><td><span class="pill p-warn">«No consta arreglado»</span></td></tr>
+        <tr><td>7</td><td>¿Otro no midió o es de antes?</td><td>Los demás<small>una abstención no se mira</small></td><td><span class="pill p-warn">«Falta medir»</span><small>si no: «Lo dan por bueno»</small></td></tr>
+      </tbody></table></div>
+    <p class="pie">La línea roja sale de acá: un leve del largo es «error nuevo». Y 86 cambios con una abstención dicen «Lo dan por bueno» mientras la lista dice «Faltan opiniones».</p>
   </section>
 
   <section>
-    <h2>Cómo hacerlo bien: un veredicto por ejercicio</h2>
-    <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">Vos decidís qué frena</span><span class="eg">largo 9 de 8 → frena</span><span class="d">Cada observación frena, no frena o falta medir.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">El servidor lo calcula una vez</span><span class="eg">…24a7: largo, leve, frena</span><span class="d">Con el revisor adentro y una sola copia de cada regla.</span></div>
-      <div class="st"><span class="i">3</span><span class="h">Todo lee ese cálculo</span><span class="eg">lista · «Empeoró» · línea roja</span><span class="d">Lo que no frena se ve en gris, nunca como «error nuevo».</span></div>
-      <div class="st end"><span class="i">4</span><span class="h">Una prueba lo cuida</span><span class="d">Ningún ejercicio de la lista puede mostrar algo en rojo.</span></div>
-    </div>
-    <p class="pie">Si la lista y el ejercicio salen del mismo cálculo, no pueden contradecirse. Las cuatro preguntas de abajo arman la tabla del paso 1.</p>
+    <h2>Cada estado de hoy y a cuál de los cuatro lo llevo</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Estado de hoy</th><th>Casos en la C2</th><th>Hoy en la lista</th><th>Hoy en «Según los jueces»</th><th>Propuesta</th></tr></thead>
+      <tbody>
+        <tr class="sep"><td colspan="5">Jueces y Casi duplicados</td></tr>
+        <tr><td>No aplica al tipo de ejercicio</td><td class="num">4.093</td><td>no se mira</td><td>no se mira</td><td><span class="pill p-idle">no aplica</span></td></tr>
+        <tr><td>Al día, sin nada</td><td class="num">20.542</td><td>aprueba</td><td>aprueba</td><td><span class="pill p-ok">aprueba</span></td></tr>
+        <tr><td>Al día, medio o más</td><td class="num">254</td><td>afuera</td><td>«Empeoró» o «No consta»</td><td><span class="pill p-bad">objeta</span></td></tr>
+        <tr><td>Al día, leve<small>decidido el 31/10</small></td><td class="num">1.254</td><td>afuera</td><td>«Empeoró» o «No consta»</td><td><span class="pill p-bad">objeta</span></td></tr>
+        <tr><td>De antes, o sin opinar</td><td class="num">0</td><td>«Faltan opiniones»<small>si de antes dijo algo medio: afuera</small></td><td>«Falta medir»</td><td><span class="pill p-warn">falta</span></td></tr>
+        <tr class="decide"><td>Se abstuvo: «no aplica»<small>Pragmatismo 75, Naturalidad 71</small></td><td class="num">146</td><td>«Faltan opiniones»</td><td>no se mira</td><td><span class="pill p-idle">no aplica</span> · decisión 4</td></tr>
+        <tr class="decide"><td>Se abstuvo: «revisar»<small>Calidad didáctica 131, Naturalidad 2</small></td><td class="num">133</td><td>«Faltan opiniones»</td><td>no se mira</td><td><span class="pill p-warn">falta</span> · decisión 5</td></tr>
+        <tr class="sep"><td colspan="5">Analizadores</td></tr>
+        <tr><td>No aplica, o no lo alcanza</td><td class="num">1.422</td><td>no se mira</td><td>no se mira</td><td><span class="pill p-idle">no aplica</span></td></tr>
+        <tr><td>Evaluado, sin nada</td><td class="num">17.237</td><td>aprueba</td><td>aprueba</td><td><span class="pill p-ok">aprueba</span></td></tr>
+        <tr><td>Evaluado, medio o más</td><td class="num">216</td><td>afuera</td><td>«Empeoró» o «No consta»</td><td><span class="pill p-bad">objeta</span></td></tr>
+        <tr class="decide"><td>Evaluado, leve<small>largo 164, exige una forma 55, repetido 6</small></td><td class="num">225</td><td>no frena</td><td>«Empeoró» o «No consta»</td><td><span class="pill p-bad">objeta</span> · decisión 1</td></tr>
+        <tr class="decide"><td>Oración guardada en producción</td><td class="num">116</td><td>no frena</td><td>«Empeoró»</td><td><span class="pill p-ok">aprueba</span>, con aviso gris · decisión 2</td></tr>
+        <tr><td>Sin evaluar o a medias</td><td class="num">0</td><td>afuera de todo</td><td>«Falta medir»</td><td><span class="pill p-warn">falta</span></td></tr>
+        <tr class="decide"><td>Ausente del análisis<small>texto de vos</small></td><td class="num">2.402</td><td>no se mira</td><td>«No consta arreglado» si lo pidió</td><td><span class="pill p-warn">falta</span>, y lo mido · decisión 3</td></tr>
+        <tr class="sep"><td colspan="5">Revisor, sobre los 1.922 cambiados</td></tr>
+        <tr><td>Bien</td><td class="num">1.541</td><td>no cuenta</td><td>no se mira</td><td><span class="pill p-ok">aprueba</span></td></tr>
+        <tr><td>Mal, de hoy o de antes<small>decidido el 31/10</small></td><td class="num">80</td><td>afuera, sólo en la página</td><td>no se mira</td><td><span class="pill p-bad">objeta</span></td></tr>
+        <tr class="decide"><td>Dudoso o Heredado</td><td class="num">301</td><td>no cuenta</td><td>no se mira</td><td><span class="pill p-ok">aprueba</span> · decisión 6</td></tr>
+        <tr><td>Ejercicio sin cambios</td><td class="num">480</td><td>no cuenta</td><td>no se mira</td><td><span class="pill p-idle">no aplica</span></td></tr>
+      </tbody></table></div>
+    <p class="pie">Un caso es un evaluador en un ejercicio. Las filas marcadas se contradicen o no tienen regla: las decidís abajo. Casi duplicados pasa a ser juez en todo.</p>
+  </section>
+
+  <section>
+    <h2>La regla general: cuatro estados y una cuenta</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Si en el ejercicio</th><th>Queda en</th><th>Y el cambio dice</th></tr></thead>
+      <tbody>
+        <tr><td>algún evaluador <span class="pill p-bad">objeta</span></td><td>afuera; si lo aprobaste, «Vos lo aprobás»</td><td>«Empeoró» si antes no objetaba; «No consta arreglado» si es el que lo pidió</td></tr>
+        <tr><td>nadie objeta y alguno <span class="pill p-warn">falta</span></td><td>«Faltan opiniones»</td><td>«Falta medir»</td></tr>
+        <tr><td>todos <span class="pill p-ok">aprueban</span> o <span class="pill p-idle">no aplican</span>, con al menos un juez que aprueba</td><td>«Todos lo aprueban»; si lo aprobaste, «Preparados»</td><td>«Lo dan por bueno»</td></tr>
+      </tbody></table></div>
+    <p class="pie">El servidor calcula una vez el estado de cada evaluador. La lista, «Según los jueces» y la línea roja leen eso: lo que aprueba nunca sale como «error nuevo».</p>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Lo leve de un analizador frena? (largo, «exige una forma»)</span>
-        <div class="ops"><span class="op rec">Sí, frena · recomendado</span><span class="op">No, se ve en gris</span></div>
-        <span class="why">Es «todos quiere decir todos». Saca 75 de los 665.</span></div>
-      <div class="ask"><span class="q">2 · ¿La oración guardada en producción deja de ser «error nuevo»?</span>
-        <div class="ops"><span class="op rec">Sí: «se arregla al publicar» · recomendado</span><span class="op">No, frena</span></div>
-        <span class="why">No es un error del ejercicio: publicar la reemplaza. Explica 190 de los 328 «Empeoró».</span></div>
-      <div class="ask"><span class="q">3 · Lo que no volvió a medir, ¿va a «Faltan opiniones»?</span>
-        <div class="ops"><span class="op rec">Sí, y mido el texto de vos · recomendado</span><span class="op">No, se saltea</span></div>
-        <span class="why">El texto de vos es una regla fija: medirlo es gratis. Son 147.</span></div>
-      <div class="ask"><span class="q">4 · Pendiente del 245: ¿«Dudoso» del revisor frena?</span>
-        <div class="ops"><span class="op rec">No, lo miro con el filtro · recomendado</span><span class="op">Sí, también</span></div>
-        <span class="why">Son 43: 33 en la lista y 10 preparados.</span></div>
+      <div class="ask"><span class="q">1 · Lo leve de un analizador: ¿objeta?</span>
+        <div class="ops"><span class="op rec">Sí, objeta · recomendado</span><span class="op">No: aprueba, con aviso gris</span></div>
+        <span class="why">«Todos quiere decir todos». Saca 75 de «Todos» y 19 de «Faltan opiniones».</span></div>
+      <div class="ask"><span class="q">2 · La oración guardada en producción: ¿aprueba?</span>
+        <div class="ops"><span class="op rec">Sí, con aviso gris · recomendado</span><span class="op">No, objeta</span></div>
+        <span class="why">Publicar la reemplaza. Hoy es 190 de los 328 «Empeoró».</span></div>
+      <div class="ask"><span class="q">3 · El texto de vos, ausente del análisis: ¿falta?</span>
+        <div class="ops"><span class="op rec">Sí, y lo mido gratis · recomendado</span><span class="op">No aplica</span></div>
+        <span class="why">Es una regla fija. Hasta medirlo, todo iría a «Faltan opiniones».</span></div>
+      <div class="ask"><span class="q">4 · La abstención «no aplica»: ¿no aplica?</span>
+        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">No, falta</span></div>
+        <span class="why">El juez dice que no le corresponde. Pasan 47 de «Faltan opiniones» a «Todos».</span></div>
+      <div class="ask"><span class="q">5 · La abstención «revisar»: ¿falta?</span>
+        <div class="ops"><span class="op rec">Sí, falta · recomendado</span><span class="op">No, objeta</span></div>
+        <span class="why">Pide que lo mire una persona. Son 54 en «Faltan opiniones».</span></div>
+      <div class="ask"><span class="q">6 · «Dudoso» o «Heredado» del revisor: ¿aprueba?</span>
+        <div class="ops"><span class="op rec">Sí, con su filtro · recomendado</span><span class="op">No, objeta</span></div>
+        <span class="why">No es un «Mal». Son 43 en las listas.</span></div>
     </div>
   </section>
 
   <footer>
-    <span>Nada cambió todavía: sólo lectura. Lista: ittm nadie_le_ve_problemas.dart (estado «correction» del análisis vigente; saltea LOW de analizadores, data-coherence/saved-sentence con marca «produccion» y analizadores con reached 0 o ausentes). Veredicto del cambio: opinion_de_los_jueces.dart + opinion_en_contexto.dart (medicionesDelDespues compara «base» y «correction»; cualquier hallazgo nuevo → peor, persistente de otro analizador o motivo sin arreglar → noconsta). Página: selectores.js indices cruza /api/marcas («mal»); vistas/nadie.js quienLeVeUnProblema y loArreglaPublicar recalculan el motivo (publicar por rótulo «producción», el servidor por la marca). spanish-register (INSTANT) no está en ningún estado del análisis de la C2. Conteos: /api/opiniones + /api/decisiones + /api/marcas replican 665 · 188 · 101 · 11; cruce con cambios[].v y batch analysis read (sin modelos). 24a7 = 67fab6d599301022953424a7; ejemplos 207e, 2284, 24b3, 2065. Captura: la de José, 1/11.</span>
-    <span>brief 246 · docs/briefs/246-dos-veredictos.html</span>
+    <span>Nada cambió: sólo lectura. Fuente: content-audit batch analysis read de la C2 (estado «correction»: 2.402 ejercicios, judges, digest.judgeCoverages, verdictMarks, inapplicableAnalyzers, missingOpinions vacío) + get analyzers (20 con target QUIZ; knowledge-title-length, knowledge-instructions-length, coca-buckets-distribution, lemma-recurrence y lemma-count no miran ejercicios). Lista: ittm nadie_le_ve_problemas.dart (_loQueDijeron, pasos 1 a 5) + selectores.js indices y opinion.js todosLosJuecesAprueban (pasos 6 y 7). Según los jueces: opinion_de_los_jueces.dart _opinar + lectura_del_despues.dart afterJudgeReadings (medicionesDelDespues compara «base» y «correction»). Casos = evaluador × ejercicio. Abstenciones: a1-didactic REVIEW 131, pragmatism NOT_APPLICABLE 75, naturalness NOT_APPLICABLE 71 y REVIEW 2. «Faltan opiniones» 101 = 54 con «revisar» + 47 sólo con «no aplica». Dudoso/Heredado en listas: 33 en «Todos» + 10 preparados.</span>
+    <span>brief 247 · docs/briefs/247-estados-de-cada-evaluador.html</span>
   </footer>
 
 </div>
