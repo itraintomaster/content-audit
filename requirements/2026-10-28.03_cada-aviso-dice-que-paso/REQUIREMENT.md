@@ -94,6 +94,18 @@ aprobando», con un botón para devolverlos de una vez.
 > no se guardó, cuántos. No se deshace con «Deshacer»: para volver a aprobar uno, se aprueba de nuevo. Con la
 > corrección publicada o fija, el botón está apagado.
 
+<a id="F-DICE-R004"></a>
+### Rule[F-DICE-R004] - El ejercicio va primero
+**Severity**: major | **Validation**: VALIDATED
+
+> En Correcciones, debajo de la cabecera del ejercicio abierto se ve primero el ejercicio: la consigna, el ejercicio, las
+> opciones, la traducción y la miniteoría. El recuadro de la pasada va debajo del ejercicio: con qué se compara, qué
+> cambió, la leyenda y el aviso de la pasada ([F-DICE-R001](#F-DICE-R001)). Vale con cambios y sin cambios, y en las
+> tres vistas.
+>
+> José, el 1/11/2026: el recuadro de la pasada le tapaba el ejercicio cuando ocupaba toda la pantalla; «poné ese panel
+> más arriba, que sea lo más importante para ver».
+
 ## Contexto
 
 - **Las dos listas**: «Lo dan por bueno» es un veredicto de un cambio: el juez que lo pidió ya no ve el problema y
@@ -112,6 +124,7 @@ aprobando», con un botón para devolverlos de una vez.
 | R001 | `comparacion-versiones.test.js`: con la pasada que gastó su tope, el aviso dice la fecha, «paró al llegar a su tope: gastó 5.500 de 5.500 consultas» y si el ejercicio quedó con un cambio; los otros estados dicen su causa; «Pasada interrumpida» no aparece. `pasadas.test.js`: el estado «Paró en su tope» y la cabecera con la causa. En el tablero, `test/tablero_html/vista_de_la_tanda_test.dart`: la pasada lleva lo gastado, el tope, la fecha y el motivo, y un cambio con una tarea de otro ejercicio no cuenta como cambio de la pasada |
 | R002 | `resuelto-dice-donde.test.js`: preparado, en «Todos los jueces lo aprueban», con una abstención, con un analizador que le ve un problema, sin opiniones al día y sin análisis vigente |
 | R003 | `volver-a-sin-revisar.test.js`: el bloque sólo en «Vos lo aprobás», con la cuenta y el porqué; confirmar manda «sin revisar» a los cambios y a las revisiones de los ejercicios sin cambios, no toca lo preparado y da un aviso; «Todavía no» y Esc no mandan nada; apagado con la corrección publicada |
+| R004 | `comparacion-versiones.test.js`: con cambios y sin cambios, en Marcas, Lado a lado y Como el alumno, el ejercicio está antes que el recuadro de la pasada |
 
 ## References
 
