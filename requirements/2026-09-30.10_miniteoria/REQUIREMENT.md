@@ -218,11 +218,17 @@ focalizadas y sencillamente explicadas para el alumno.
 > nombra todas sus personas, como «is va con he, she, it»—, el defecto es sólo de dirección didáctica: el juez la
 > clasifica como `DIDACTIC_DIRECTION`, gravedad baja, tras descartar los defectos de verdad y alcance del caso.
 >
-> Si la tarjeta nombra las formas entre las que se elige según el sujeto —«was o were», una lista de contracciones— y
-> no dice cuál lleva el sujeto del quiz, deja abierta esa elección aunque explique bien el orden de la pregunta o la
-> negación: el juez la clasifica como `INSUFFICIENT_FOR_QUIZ`, gravedad alta. Alcanza con partir del sujeto: «con they
-> se usa were». Si la tarjeta ya nombra la forma exacta que pide el quiz —he's en una lista de contracciones cuando el
-> quiz pide he's—, esa parte está explicada.
+> Si el alumno escribe o elige una forma que cambia con el sujeto y la tarjeta nombra las formas entre las que se elige
+> —«was o were», una lista de contracciones— sin decir cuál lleva el sujeto del quiz, deja abierta esa elección aunque
+> explique bien el orden de la pregunta o la negación: el juez la clasifica como `INSUFFICIENT_FOR_QUIZ`, gravedad alta.
+> Alcanza con partir del sujeto: «con they se usa were». Si la tarjeta ya nombra una forma que por sí misma identifica al
+> sujeto —he's en una lista de contracciones cuando el quiz pide he's—, esa parte está explicada; que la forma pedida
+> figure entre alternativas separadas por barra o por «o» no la identifica. Si el alumno no elige esa forma, nombrarla
+> no deja nada abierto.
+>
+> Esta exigencia se limita a la forma de un verbo que cambia con el sujeto. Lo que la tarjeta plantea no cambia lo que el
+> quiz practica: si la tarjeta presenta varias ramas —otro tiempo, otra polaridad— y el enunciado del quiz ya fija una,
+> las demás siguen siendo contenido de otro subtema ([F-MINIT-R002](#F-MINIT-R002)).
 
 <details><summary>Dirección, generalización y criterios de aceptación</summary>
 
@@ -261,6 +267,9 @@ se conserva su motivo propio y la gravedad que corresponda según [F-MINIT-R004]
 | ___ (they / be) near the tower last night? · Were they | Para preguntar, were va antes del sujeto: con they se usa were. | Aprobada si cumple las demás reglas del caso. |
 | ___ (He is) near the tower. · He's | I'm, you're, he's para afirmar. | No es insuficiente: ya nombra he's. |
 | ___ (We are) waiting. · We're | I'm, he's + -ing. | Rechazada por insuficiente (alta): no nombra la contracción de we. |
+| ___ (they / be) near the tower? · Were they | Para preguntar: was/were + sujeto. | Rechazada por insuficiente (alta): were figura entre alternativas, pero no dice que va con they. |
+| Were they near the tower? · Yes, they were. / No, they weren't. (elige la respuesta) | Para preguntar: was/were + sujeto. | No es insuficiente por was/were: el alumno no elige esa forma. |
+| ___ (yesterday / walk) to the tower. · walked | Para lo terminado se usa el pasado; para lo habitual, el presente. | La rama del presente es de otro subtema: el enunciado ya fija el pasado. |
 
 **Criterio de aceptación del examen**: los casos invertidos «am va con I» e «is va con it» quedan como rechazos
 obligatorios del examen permanente, con origen en `PRB-fbaeac6f` y la confirmación del operador. Los controles sanos
@@ -279,6 +288,10 @@ Decisión de José, 2/11/2026, en el brief 254: una tarjeta de was/were tiene qu
 lo diga»). El juez del 2/11 ya marcaba 24 de esas tarjetas, pero de rebote; esta regla lo escribe. En el mismo brief
 aparecieron tres marcas equivocadas: tarjetas de contracciones que ya nombraban la forma pedida. Tras esa misma decisión,
 José pidió sacar la corrección cuanto antes, con las pruebas y los exámenes que hagan falta.
+
+Examen del 2/11 (versión 23de05be, 58 de 62): la primera redacción decía que todo lo que la tarjeta plantea pasaba a ser
+focal, y el juez dejó de ver como otro subtema la rama que el enunciado ya fijaba; además exigía was/were aun cuando el
+alumno no elige esa forma. Esta redacción acota las dos cosas sin aflojar la decisión de José.
 
 </details>
 
