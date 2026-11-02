@@ -24,6 +24,8 @@ import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryProblem;
 import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryVerdict;
 import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
 import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
 import com.learney.contentaudit.coursedomain.SentenceMode;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
@@ -303,6 +305,30 @@ public class DefaultMiniTheoryDistributorTest {
         assertFalse(evidence.contains("q-affirmation"), "no evidence or related node is copied from its sister quiz");
         assertEquals(List.of(), finding.getEvidence().getRelatedNodes(), "the finding belongs to one quiz only");
         assertEquals(FindingResolution.PANEL, finding.getResolution());
+    }
+
+    @Test
+    @DisplayName("should give its finding to a multiple-choice quiz whose sentence cannot be built, named by its label")
+    @Tag("FEAT-MINIT")
+    @Tag("F-MINIT-R003")
+    public void shouldGiveItsFindingToAMultipleChoiceQuizWhoseSentenceCannotBeBuiltNamedByItsLabel() {
+        // A multiple-choice quiz needs exactly one gap to build its sentence; this one has none. The judge still
+        // judged it, so the problem must not be lost and leave the topic unevaluated.
+        AuditableQuiz noGap = new AuditableQuiz(List.of(), "q-no-gap", "Elegir el verbo", "", "Traducción.",
+                List.of(), null, "Elegí.", List.of(text("They near the tower.")),
+                new MultipleChoiceEntity("SINGLE", List.of(new MultipleChoiceItemEntity("i1", 1.0, "were"),
+                        new MultipleChoiceItemEntity("i2", 0.0, "was"))), "Para preguntar, was o were van antes.", null);
+        MiniTheoryAssessment problem = assessment("q-no-gap", false, MiniTheoryProblem.INSUFFICIENT_FOR_QUIZ,
+                FindingSeverity.HIGH, null, "No dice cuál lleva they.");
+
+        MiniTheoryQuizOutcome outcome = distributor(STUDENT_VIEW).distribute(new MiniTheoryVerdict(List.of(problem),
+                "Una."), topic("A1", "k-no-gap", "Elegir el verbo", List.of(noGap)), false).get(0);
+
+        assertFinding(outcome, "insufficient-for-quiz", FindingSeverity.HIGH, 0.3);
+        List<EvidencePart> examined = outcome.getFindings().get(0).getEvidence().getExamined();
+        EvidencePart quiz = examined.get(examined.size() - 1);
+        assertEquals("Quiz", quiz.getLabel());
+        assertEquals("Elegir el verbo", quiz.getText());
     }
 
     private static void assertFinding(MiniTheoryQuizOutcome outcome, String rule, FindingSeverity severity, double score) {

@@ -90,6 +90,9 @@ cuando el alumno las ve.
 > `mini-theory` y para «algún error» ([F-HALL-R008](#F-HALL-R008)). La identidad combina el quiz y su miniteoría: que el
 > mismo texto aparezca en otros quizzes no propaga el hallazgo ni obliga a darles el mismo veredicto. El puntaje está en
 > cada quiz y sube por la agregación genérica.
+>
+> Un quiz cuya oración no se puede armar —una opción múltiple sin hueco— igual recibe el hallazgo que el juez le dio; la
+> evidencia lo nombra por su título. Que no se pueda mostrar la oración no deja el tema sin evaluar.
 
 José, 5/10 ([DOUBT-MINIT-GRANULARIDAD](#DOUBT-MINIT-GRANULARIDAD)): «miniteoría es por quiz» y debe ser «la corrección
 específica del caso». Esto reemplaza el agrupamiento anterior por texto compartido y deja sin efecto el alcance opcional

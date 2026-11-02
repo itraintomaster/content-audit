@@ -191,9 +191,15 @@ class DefaultMiniTheoryDistributor implements MiniTheoryDistributor {
     }
 
     private String asSeen(AuditableQuiz quiz, SentenceMode mode) {
-        String sentence = studentViewRenderer.finishedSentence(quiz, mode);
+        String sentence;
+        try {
+            sentence = studentViewRenderer.finishedSentence(quiz, mode);
+        } catch (RuntimeException unbuildable) {
+            // A multiple-choice quiz without its gap has no sentence; the finding still belongs to it (F-MINIT-R003).
+            return name(quiz);
+        }
         if (isBlank(sentence)) {
-            sentence = !isBlank(quiz.getLabel()) ? quiz.getLabel() : String.valueOf(quiz.getId());
+            sentence = name(quiz);
         }
         if (quiz.getMultipleChoice() == null) {
             return sentence.strip();
@@ -210,6 +216,10 @@ class DefaultMiniTheoryDistributor implements MiniTheoryDistributor {
         }
         return options.isEmpty() ? sentence.strip()
                 : sentence.strip() + " (opciones: " + String.join(", ", options) + ")";
+    }
+
+    private static String name(AuditableQuiz quiz) {
+        return !isBlank(quiz.getLabel()) ? quiz.getLabel() : String.valueOf(quiz.getId());
     }
 
     private static SentenceMode sentenceModeOf(AuditNode knowledgeNode) {
