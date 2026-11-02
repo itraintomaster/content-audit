@@ -126,16 +126,20 @@ public class DefaultMiniTheoryDistributorTest {
     void inverseAgreementFindingsPreserveBothLocalRewritesWithoutRejectingSubjectFirstControls() {
         var topic = topic("A1", "k-direction", "Concordancia", List.of(
                 cloze("q-am", "I", "am", "near the copper tower.", "$am$ va con $I$."),
-                cloze("q-it", "It", "is", "near the copper tower.", "$is$ va con $it$."),
+                cloze("q-it", "It", "is", "near the copper tower.", "$is$ va con $he$, $she$, $it$."),
                 cloze("q-i-control", "I", "am", "near the copper tower.", "Con $I$ se usa $am$."),
-                cloze("q-it-control", "It", "is", "near the copper tower.", "$it$ lleva $is$.")));
+                cloze("q-it-control", "It", "is", "near the copper tower.", "$it$ lleva $is$."),
+                cloze("q-she", "She", "is", "from London.", "$is$ va con $she$.")));
         var verdict = new MiniTheoryVerdict(List.of(
                 assessment("q-am", false, MiniTheoryProblem.DIDACTIC_DIRECTION, FindingSeverity.LOW,
                         "Con I se usa am en el presente afirmativo.", "La relación es compatible, pero parte de la forma y debe partir del sujeto."),
                 assessment("q-it", false, MiniTheoryProblem.DIDACTIC_DIRECTION, FindingSeverity.LOW,
-                        "It lleva is en el presente afirmativo.", "La explicación debe partir de it para elegir is."),
+                        "It lleva is en el presente afirmativo.", "Nombra todas las personas de is; debe partir de it para elegir is."),
                 assessment("q-i-control", true, null, null, null, "Parte del sujeto."),
-                assessment("q-it-control", true, null, null, null, "Parte del sujeto.")), "Veredicto simulado; no consulta un modelo.");
+                assessment("q-it-control", true, null, null, null, "Parte del sujeto."),
+                assessment("q-she", false, MiniTheoryProblem.OVERSTATED_FOR_QUIZ, FindingSeverity.MEDIUM,
+                        "He is from London: is también va con he y con it. Con she se usa is.",
+                        "Leída como regla general, enseña que is es la forma de she.")), "Veredicto simulado; no consulta un modelo.");
         var outcomes = distributor(STUDENT_VIEW).distribute(verdict, topic, false);
         for (int i = 0; i < 2; i++) {
             var finding = outcomes.get(i).getFindings().get(0);
@@ -152,7 +156,14 @@ public class DefaultMiniTheoryDistributorTest {
             assertEquals(1.0, outcomes.get(i).getScore(), 1e-9);
         }
         assertTrue(outcomes.get(0).getFindings().get(0).getMarker().contains("$am$ va con $I$"));
-        assertTrue(outcomes.get(1).getFindings().get(0).getMarker().contains("$is$ va con $it$"));
+        assertTrue(outcomes.get(1).getFindings().get(0).getMarker().contains("$is$ va con $he$, $she$, $it$"));
+        // José, 2/11: «is va con she» does not stay true as a general rule; it fails from medium up, with the subject-first
+        // rewrite and a common subject of is as evidence.
+        assertFinding(outcomes.get(4), "overstated-for-quiz", FindingSeverity.MEDIUM, 0.6);
+        var she = outcomes.get(4).getFindings().get(0);
+        assertEquals(FindingResolution.PANEL, she.getResolution());
+        assertTrue(she.getEvidence().getExamined().stream().anyMatch(e -> e.getText().contains("Con she se usa is")));
+        assertTrue(she.getMarker().contains("$is$ va con $she$"));
     }
 
     @Test

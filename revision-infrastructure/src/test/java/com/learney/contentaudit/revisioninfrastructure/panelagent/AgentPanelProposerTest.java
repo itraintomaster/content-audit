@@ -405,6 +405,27 @@ public class AgentPanelProposerTest {
                 "it no longer asks every wrong option to be wrong by agreement");
     }
 
+    @Test
+    @org.junit.jupiter.api.DisplayName("should ask for an agreement card that starts from the subject, so that read as a general rule it stays true")
+    @Tag("F-MINIT-R010")
+    void asksForAnAgreementCardThatStaysTrueWhenReadAsAGeneralRule() throws Exception {
+        // José, 2/11: the C2 wrote «$is$ va con she.» for «She is from London.»; is also goes with he and it. The card
+        // stays focal: «con she se usa is» is true always, without listing the other persons of is.
+        java.nio.file.Path root = java.nio.file.Path.of("").toAbsolutePath();
+        while (root != null && !java.nio.file.Files.isDirectory(root.resolve(".sentinel/agents/panel-proposer"))) {
+            root = root.getParent();
+        }
+        assertTrue(root != null, "the proposer definition must be available to the test");
+        String prompt = java.nio.file.Files.readString(root.resolve(".sentinel/agents/panel-proposer/nodes/generate.md"));
+        for (String rule : List.of(
+                "En concordancia, explicá desde\nel sujeto hacia su forma verbal: «con $she$ se usa $is$», «$she$ lleva $is$».",
+                "leída como regla general tiene que seguir siendo\ncierta.",
+                "no hace falta nombrar las demás personas que usan esa forma.")) {
+            assertTrue(prompt.contains(rule), "the prompt says: " + rule);
+        }
+        assertFalse(prompt.contains("$is$ va con $she$"), "it asks in positive, it does not show the inverted card");
+    }
+
     static PanelRequest request(int attempt, List<CandidateRejection> rejections) {
         String quiz = "67fab6d59930102295341ecd";
         Finding translation = new Finding("translation-sense", "same-meaning", new FindingNodeRef(AuditTarget.QUIZ, quiz, quiz),

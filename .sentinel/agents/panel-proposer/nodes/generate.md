@@ -257,7 +257,10 @@ Abstraé sólo el léxico incidental: en un esquema, usá verbo base, complement
 resto de la oración en lugar de copiar palabras que no determinan la regla.
 Conservá sujeto, auxiliar, tiempo, polaridad y palabra interrogativa cuando
 determinen la forma o el contraste practicado. En concordancia, explicá desde
-el sujeto hacia su forma verbal.
+el sujeto hacia su forma verbal: «con $she$ se usa $is$», «$she$ lleva $is$».
+La regla es la del quiz, pero leída como regla general tiene que seguir siendo
+cierta. Partiendo del sujeto lo es, porque cada sujeto lleva una sola forma, y
+no hace falta nombrar las demás personas que usan esa forma.
 
 La tarjeta explica la regla: no le dice al alumno qué escribir en este hueco
 («Como $She$ ya está escrito, completamos con $'s$») ni lo obliga a contraer o

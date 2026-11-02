@@ -27,6 +27,9 @@
     "No audites la verdad",
     "un universal explícito o inequívoco",
     "asociación parcial se presenta sin delimitar",
+    "leé la regla del caso como regla general",
+    "una forma sirve para varias personas",
+    "aunque el quiz practique un solo sujeto",
     "distinguí la dirección de la explicación",
     "no uses respuestas esperadas ni ejemplos de un corpus de examen",
     "La precedencia terminal completa es",
@@ -110,6 +113,12 @@
     "topic": "Concordancia en escenas inventadas de cobre",
     "instructions": "Elegí la forma o palabra para el caso indicado.",
     "quizzes": "quizId: q-am-inverse\nminiTheory: $am$ va con $I$.\nprompt: I ___ near the copper tower.\nanswers: am\n\nquizId: q-it-inverse\nminiTheory: $is$ va con $it$.\nprompt: It ___ near the copper tower.\nanswers: is\n\nquizId: q-i-forward\nminiTheory: $I$ lleva $am$.\nprompt: I ___ near the copper tower.\nanswers: am\n\nquizId: q-it-forward\nminiTheory: Con $it$ se usa $is$.\nprompt: It ___ near the copper tower.\nanswers: is\n\nquizId: q-i-causal\nminiTheory: Se usa $am$ porque el sujeto es $I$.\nprompt: I ___ near the copper tower.\nanswers: am\n\nquizId: q-it-exclusive\nminiTheory: $is$ sólo va con $it$.\nprompt: It ___ near the copper tower.\nanswers: is\n\nquizId: q-i-past\nminiTheory: $I$ lleva $was$ en el pasado afirmativo.\nprompt: I ___ near the copper tower yesterday.\nanswers: was\n\nquizId: q-i-negative\nminiTheory: En presente negativo, $I$ lleva $am not$.\nprompt: I ___ ready.\nanswers: am not\n\nquizId: q-lexical\nminiTheory: $Bark$ nombra el sonido de un perro.\nprompt: Choose the sound of a dog: ___.\nanswers: bark"
+  },
+  "agreement-read-as-a-general-rule": {
+    "cefrLevel": "A1",
+    "topic": "Concordancia de be en escenas inventadas de cobre",
+    "instructions": "Completá con am, is o are.",
+    "quizzes": "quizId: q-she-form-first\nminiTheory: $is$ va con $she$.\nprompt: She ___ near the copper tower.\nanswers: is\n\nquizId: q-they-form-first\nminiTheory: $are$ va con $they$.\nprompt: They ___ near the copper tower.\nanswers: are\n\nquizId: q-he-does-form-first\nminiTheory: En preguntas, $does$ va con $he$.\nprompt: ___ he work near the copper tower?\nanswers: Does\n\nquizId: q-she-subject-first\nminiTheory: Con $she$ se usa $is$.\nprompt: She ___ near the copper tower.\nanswers: is\n\nquizId: q-is-every-person\nminiTheory: $is$ va con $he$, $she$, $it$.\nprompt: She ___ near the copper tower.\nanswers: is\n\nquizId: q-am-only-subject\nminiTheory: $am$ va con $I$.\nprompt: I ___ near the copper tower.\nanswers: am"
   }
   },
   "cases": [
@@ -539,10 +548,10 @@
           {
             "quizId": "q-it-inverse",
             "holds": false,
-            "problem": "DIDACTIC_DIRECTION",
-            "severity": "LOW",
-            "counterexample": "It lleva is en el presente afirmativo.",
-            "explanation": "La asociación es compatible, pero no enseña sujeto hacia forma. No afirma sólo ni requiere inventarle una falsedad."
+            "problem": "OVERSTATED_FOR_QUIZ",
+            "severity": "MEDIUM",
+            "counterexample": "He is near the copper tower: is también va con he. La tarjeta local puede decir it lleva is.",
+            "explanation": "Leída como regla general, da a is sólo una de sus personas; partir del sujeto la vuelve cierta sin nombrar las demás."
           },
           {
             "quizId": "q-i-forward",
@@ -623,10 +632,10 @@
           {
             "quizId": "q-it-inverse",
             "holds": false,
-            "problem": "DIDACTIC_DIRECTION",
-            "severity": "LOW",
-            "counterexample": "It lleva is en el presente afirmativo.",
-            "explanation": "La asociación es compatible, pero no enseña sujeto hacia forma. No afirma sólo ni requiere inventarle una falsedad."
+            "problem": "OVERSTATED_FOR_QUIZ",
+            "severity": "MEDIUM",
+            "counterexample": "He is near the copper tower: is también va con he. La tarjeta local puede decir it lleva is.",
+            "explanation": "Leída como regla general, da a is sólo una de sus personas; partir del sujeto la vuelve cierta sin nombrar las demás."
           },
           {
             "quizId": "q-i-forward",
@@ -690,6 +699,129 @@
         "route": "failed",
         "errorContains": [
           "LOW"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "agreement-that-does-not-generalize-is-overstated",
+      "inputs": "agreement-read-as-a-general-rule",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-she-form-first",
+            "holds": false,
+            "problem": "OVERSTATED_FOR_QUIZ",
+            "severity": "MEDIUM",
+            "counterexample": "He is near the copper tower: is también va con he y con it. Con she se usa is.",
+            "explanation": "Leída como regla general, enseña que is es la forma de she; partir del sujeto es cierto siempre y sigue siendo focal."
+          },
+          {
+            "quizId": "q-they-form-first",
+            "holds": false,
+            "problem": "OVERSTATED_FOR_QUIZ",
+            "severity": "MEDIUM",
+            "counterexample": "We are near the copper tower: are también va con we y con you. Con they se usa are.",
+            "explanation": "Da a are sólo una de sus personas; la corrección invierte la dirección sin nombrar las demás."
+          },
+          {
+            "quizId": "q-he-does-form-first",
+            "holds": false,
+            "problem": "OVERSTATED_FOR_QUIZ",
+            "severity": "MEDIUM",
+            "counterexample": "Does she work near the copper tower?: does también va con she y con it. En preguntas, con he se usa does.",
+            "explanation": "Conserva la pregunta, pero da a does sólo una de sus personas."
+          },
+          {
+            "quizId": "q-she-subject-first",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Parte del sujeto: es focal y, generalizada, sigue siendo cierta."
+          },
+          {
+            "quizId": "q-is-every-person",
+            "holds": false,
+            "problem": "DIDACTIC_DIRECTION",
+            "severity": "LOW",
+            "counterexample": "Con she se usa is en presente afirmativo.",
+            "explanation": "Nombra todas las personas de is, así que generalizada es cierta; el defecto es sólo partir de la forma."
+          },
+          {
+            "quizId": "q-am-only-subject",
+            "holds": false,
+            "problem": "DIDACTIC_DIRECTION",
+            "severity": "LOW",
+            "counterexample": "Con I se usa am en presente afirmativo.",
+            "explanation": "am sólo va con I: la generalización es cierta y el defecto es sólo de dirección."
+          }
+        ]
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "agreement-that-does-not-generalize-rejects-low",
+      "inputs": "agreement-read-as-a-general-rule",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-she-form-first",
+            "holds": false,
+            "problem": "OVERSTATED_FOR_QUIZ",
+            "severity": "LOW",
+            "counterexample": "He is near the copper tower: is también va con he y con it. Con she se usa is.",
+            "explanation": "Leída como regla general, enseña que is es la forma de she; partir del sujeto es cierto siempre y sigue siendo focal."
+          },
+          {
+            "quizId": "q-they-form-first",
+            "holds": false,
+            "problem": "OVERSTATED_FOR_QUIZ",
+            "severity": "MEDIUM",
+            "counterexample": "We are near the copper tower: are también va con we y con you. Con they se usa are.",
+            "explanation": "Da a are sólo una de sus personas; la corrección invierte la dirección sin nombrar las demás."
+          },
+          {
+            "quizId": "q-he-does-form-first",
+            "holds": false,
+            "problem": "OVERSTATED_FOR_QUIZ",
+            "severity": "MEDIUM",
+            "counterexample": "Does she work near the copper tower?: does también va con she y con it. En preguntas, con he se usa does.",
+            "explanation": "Conserva la pregunta, pero da a does sólo una de sus personas."
+          },
+          {
+            "quizId": "q-she-subject-first",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Parte del sujeto: es focal y, generalizada, sigue siendo cierta."
+          },
+          {
+            "quizId": "q-is-every-person",
+            "holds": false,
+            "problem": "DIDACTIC_DIRECTION",
+            "severity": "LOW",
+            "counterexample": "Con she se usa is en presente afirmativo.",
+            "explanation": "Nombra todas las personas de is, así que generalizada es cierta; el defecto es sólo partir de la forma."
+          },
+          {
+            "quizId": "q-am-only-subject",
+            "holds": false,
+            "problem": "DIDACTIC_DIRECTION",
+            "severity": "LOW",
+            "counterexample": "Con I se usa am en presente afirmativo.",
+            "explanation": "am sólo va con I: la generalización es cierta y el defecto es sólo de dirección."
+          }
+        ]
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "MEDIUM"
         ],
         "schemaRejects": true
       }

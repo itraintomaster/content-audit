@@ -72,8 +72,14 @@ public class JacksonMiniTheoryVerdictReaderTest {
         assertEquals("DIDACTIC_DIRECTION", verdict.getAssessments().get(0).getProblem().name());
         assertEquals(FindingSeverity.LOW, verdict.getAssessments().get(0).getSeverity());
         var it = new JacksonMiniTheoryVerdictReader().read(verdictWith(assessment.replace("q-am", "q-is")
-                .replace("Con I se usa am", "It lleva is").replace("am con I", "is con it")));
+                .replace("Con I se usa am", "It lleva is").replace("am con I", "is con he, she, it")));
         assertEquals("DIDACTIC_DIRECTION", it.getAssessments().get(0).getProblem().name());
+        // José, 2/11: «is va con she» does not stay true as a general rule; it is read as overstated, medium.
+        String she = "\"quizId\":\"q-she\",\"holds\":false,\"problem\":\"OVERSTATED_FOR_QUIZ\","
+                + "\"severity\":\"MEDIUM\",\"counterexample\":\"He is from London. Con she se usa is.\","
+                + "\"explanation\":\"Leída como regla general, enseña que is es la forma de she.\"";
+        assertEquals(FindingSeverity.MEDIUM, new JacksonMiniTheoryVerdictReader().read(verdictWith(she)).getAssessments().get(0).getSeverity());
+        assertUnreadable(verdictWith(she.replace("\"MEDIUM\"", "\"LOW\"")));
         assertUnreadable(verdictWith(assessment.replace("\"LOW\"", "\"HIGH\"")));
         for (String id : List.of("q-i-directed", "q-it-directed")) {
             var healthy = new JacksonMiniTheoryVerdictReader().read(verdictWith("\"quizId\":\"" + id

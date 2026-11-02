@@ -142,13 +142,20 @@ enseña una restricción que esa palabra o construcción no tiene. No hace falta
 aparezcan «siempre», «sólo» o «únicamente» para que esa formulación sea engañosa.
 
 En una regla de concordancia, distinguí la dirección de la explicación y el
-alcance que se afirma. Una asociación desnuda entre una forma y un sujeto no
-significa por sí sola «esa forma sólo admite ese sujeto»: no inventes una
-restricción exclusiva para poder refutarla. Si la tarjeta sí afirma esa exclusión
-explícita o inequívocamente y un sujeto común la refuta, corresponde el defecto
-de alcance de este paso. Si sólo invierte la dirección didáctica, seguí al paso 7.
-Una aplicación al ejemplo o una descripción verdadera de compatibilidad no
-exagera su alcance por el mero orden de sus palabras.
+alcance que se afirma, y leé la regla del caso como regla general: la tarjeta
+es focal, pero lo que enseña tiene que seguir siendo cierto fuera de este quiz.
+Cada sujeto lleva una sola forma, pero una forma sirve para varias personas.
+Partir del sujeto generaliza bien: «con $she$ se usa $is$» es cierto siempre.
+Partir de la forma y darle sólo una parte de sus personas no: «$is$ va con
+$she$» enseña que $is$ es la forma de $she$, y el alumno que después encuentra
+$he$ o $it$ cree que $is$ no les corresponde. Esa correspondencia parcial es el
+defecto de alcance de este paso aunque el quiz practique un solo sujeto y aunque
+la tarjeta no diga «sólo». Un sujeto común de la misma forma que la tarjeta no
+nombra la refuta; la corrección invierte la dirección y no necesita nombrar las
+demás personas. Si la tarjeta parte de la forma pero su generalización es
+cierta —la forma es de un solo sujeto, como «$am$ va con $I$», o nombra todas
+sus personas en la construcción practicada, como «$is$ va con $he$, $she$,
+$it$»—, no enseña un alcance falso: seguí al paso 7.
 
 Un contraejemplo debe refutar la afirmación que realmente se hizo, manteniendo sus condiciones.
 Si la tarjeta dice que un indicio no basta para acreditar un rasgo, no la refuta una oración que añade explícitamente ese rasgo por otra vía.
@@ -162,7 +169,8 @@ Si no aplica ningún defecto anterior y la decisión focal es la concordancia,
 la explicación debe partir del sujeto o de la categoría que determina la forma
 verbal, bajo el tiempo y la construcción practicados. Cuando la tarjeta presenta
 la forma verbal como punto de partida y le asigna el sujeto, devolvé
-`DIDACTIC_DIRECTION` con severidad `LOW`.
+`DIDACTIC_DIRECTION` con severidad `LOW`. Llegás acá sólo si esa asignación
+generaliza bien; si le daba una parte de sus personas, el paso 6 ya la cerró.
 
 Es un criterio editorial sobre cómo explicar la elección, incluso cuando la
 compatibilidad inversa sea verdadera o biunívoca. No exige inventar otro sujeto
@@ -366,14 +374,16 @@ terminal aplicable. La severidad está fijada y nunca puede ser `BLOCKING`:
 - `OVERSTATED_FOR_QUIZ` → `MEDIUM`: sin contenido hermano, contiene la corrección
   local pero enseña un alcance excesivo: un universal explícito o inequívoco, o
   una correspondencia parcial formulada como regla sin delimitar, queda refutado
-  por un uso común de la misma palabra o construcción.
+  por un uso común de la misma palabra o construcción. En concordancia incluye
+  la forma presentada con sólo una parte de sus personas («$is$ va con $she$»).
 - `OTHER_SUBTOPIC_CONTENT` → `LOW`: explica correctamente el caso, pero además
   agrega cualquier contenido que pertenece sólo a otro subtema. Si ese contenido
   reemplaza la explicación necesaria, usá `INSUFFICIENT_FOR_QUIZ`.
 - `DIDACTIC_DIRECTION` → `LOW`: sin falsedad, insuficiencia ni alcance engañoso,
   presenta la forma verbal como punto de partida para asignarle un sujeto,
-  cuando la explicación debe partir del sujeto para elegir su forma. Puede ser
-  compatible e incluso biunívoca; su defecto es la dirección didáctica.
+  cuando la explicación debe partir del sujeto para elegir su forma. Generalizada
+  es cierta, porque es biunívoca o nombra todas las personas de esa forma; su
+  defecto es sólo la dirección didáctica.
 - `OVER_SPECIFIC_FOR_QUIZ` → `LOW`: la regla local es verdadera y suficiente,
   pero fija léxico incidental en una receta del ítem que se puede abstraer sin
   perder el contraste focal. No se usa sólo porque el texto sea largo.

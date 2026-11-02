@@ -63,6 +63,10 @@ cuando el alumno las ve.
 > como parte de ese caso una regla que corresponde a otro subtema. No falla por omitir variantes que su propio quiz no
 > practica ni porque otro quiz del tema requiera una explicación distinta.
 >
+> Focal no quiere decir parcial: la regla del caso, leída como regla general, tiene que seguir siendo cierta. No hace
+> falta escribir la regla completa del tema, pero lo que se escribe no puede afirmar algo que en general no es así. En
+> concordancia esto decide la dirección ([F-MINIT-R010](#F-MINIT-R010)).
+>
 > Por cada problema da la gravedad y una evidencia que cumple [F-HALL-R003](#F-HALL-R003): el texto de la miniteoría, lo
 > que tiene de falso, insuficiente o ajeno al caso, y el quiz involucrado. Que una miniteoría pida una forma no es un
 > problema de este juez: lo marca el paquete A ([F-JEXAM-R012](#F-JEXAM-R012)).
@@ -96,14 +100,16 @@ específica del caso». Esto reemplaza el agrupamiento anterior por texto compar
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
 > La gravedad es **alta** si la regla es falsa para el caso del quiz o no explica su corrección, **media** si exagera dentro
-> de ese caso («siempre» o «nunca» donde hay excepciones comunes) y **baja** si agrega contenido verdadero pero propio de
+> de ese caso («siempre» o «nunca» donde hay excepciones comunes) o si, leída como regla general, deja de ser cierta
+> ([F-MINIT-R010](#F-MINIT-R010)), y **baja** si agrega contenido verdadero pero propio de
 > otro subtema que ese quiz no practica. Nunca es
 > bloqueante: la miniteoría se ve después de contestar. El puntaje de cada quiz es 1 sin hallazgo y, si no, 0,3, 0,6
 > u 0,8 según el más grave [ASSUMPTION]; el del tema, el nivel y el curso sube por la agregación genérica.
 
 Usa las definiciones de [F-HALL-R002](#F-HALL-R002). El 077 puso en A1 y A2 43 altas, 41 medias y 28 bajas.
-Los defectos editoriales específicos de [F-MINIT-R008](#F-MINIT-R008), [F-MINIT-R009](#F-MINIT-R009) y
-[F-MINIT-R010](#F-MINIT-R010) tienen gravedad baja cuando no hay otro defecto de mayor gravedad.
+Los defectos editoriales específicos de [F-MINIT-R008](#F-MINIT-R008), [F-MINIT-R009](#F-MINIT-R009) y la dirección
+de [F-MINIT-R010](#F-MINIT-R010) tienen gravedad baja cuando no hay otro defecto de mayor gravedad. La concordancia que
+no se generaliza bien de [F-MINIT-R010](#F-MINIT-R010) es media.
 
 <a id="F-MINIT-R005"></a>
 ### Rule[F-MINIT-R005] - Reuso, tope, fallas y cobertura, contando temas
@@ -193,51 +199,68 @@ Pedido del operador, 19/10/2026: evitar exceso de conceptos teóricos; las minit
 focalizadas y sencillamente explicadas para el alumno.
 
 <a id="F-MINIT-R010"></a>
-### Rule[F-MINIT-R010] - La explicación de concordancia parte del sujeto y lleva a su forma verbal
+### Rule[F-MINIT-R010] - La concordancia se explica desde el sujeto, de modo que generalizada siga siendo cierta
 **Severity**: major | **Validation**: VALIDATED
 
 > Cuando la miniteoría explica qué forma verbal corresponde al sujeto dado en el quiz, parte de ese sujeto y lleva a
-> la forma que debe usar el alumno. El juez marca la explicación invertida —«am va con I», «is va con it»— incluso si
-> la correspondencia es verdadera o exclusiva: es un defecto de dirección didáctica, no necesariamente una falsedad
-> gramatical. Si éste es el defecto, la clasifica como `DIDACTIC_DIRECTION`, gravedad baja, tras descartar los defectos
-> de verdad y alcance del caso.
+> la forma que debe usar el alumno: «con she se usa is», «she lleva is». Es focal y, leída como regla general, sigue
+> siendo cierta, porque cada sujeto lleva una sola forma.
+>
+> Si en cambio parte de la forma y le da sólo una parte de las personas que la usan —«is va con she», «are va con they»,
+> «does va con he»—, generalizada deja de ser cierta: is también va con he e it, y el alumno que después encuentra he
+> cree que is no le corresponde. El juez la clasifica como `OVERSTATED_FOR_QUIZ`, gravedad media, aunque el quiz
+> practique un solo sujeto y aunque la tarjeta no diga «sólo».
+>
+> Si parte de la forma pero la generalización es cierta —la forma es de un solo sujeto, como «am va con I», o la tarjeta
+> nombra todas sus personas, como «is va con he, she, it»—, el defecto es sólo de dirección didáctica: el juez la
+> clasifica como `DIDACTIC_DIRECTION`, gravedad baja, tras descartar los defectos de verdad y alcance del caso.
 
-<details><summary>Dirección y criterios de aceptación</summary>
+<details><summary>Dirección, generalización y criterios de aceptación</summary>
 
 La tarjeta debe ayudar al alumno a pasar del dato que tiene —el sujeto del ejercicio— a la elección que debe hacer
 —la forma verbal—. Se aceptan formulaciones equivalentes, como «I lleva am», «Con I se usa am», «I va con am» o
 «En presente afirmativo, con it se usa is». No se exige una frase literal ni un verbo explicativo determinado.
 
-Este criterio editorial no se satisface sólo porque la tarjeta permita acertar entre las opciones. Por eso la
-correspondencia exclusiva entre I y am no justifica aprobar «am va con I». Tampoco se elimina el defecto porque una
-relación de compatibilidad, leída aisladamente, sea cierta.
+La corrección de una concordancia que no se generaliza bien invierte la dirección; no agrega las demás personas. La
+tarjeta sigue siendo focal ([F-MINIT-R002](#F-MINIT-R002)): «con she se usa is» alcanza para el quiz de she y es cierta
+siempre. Nombrar la tabla entera del verbo sigue siendo contenido de otro subtema.
+
+Este criterio no se satisface sólo porque la tarjeta permita acertar entre las opciones. Por eso la correspondencia
+exclusiva entre I y am no justifica aprobar «am va con I», y que is vaya con she no justifica «is va con she».
 
 La dirección correcta no exime a la tarjeta de explicar el caso concreto según [F-MINIT-R002](#F-MINIT-R002): debe
 conservar el tiempo, la afirmación o negación y la función que practica ese quiz. Una tarjeta de afirmación no reemplaza
 la explicación de una pregunta ni la de una negación. Las explicaciones sanas de esos subcasos siguen siendo válidas;
 no se reescriben ni rechazan por no enseñar otros subcasos.
 
-La evidencia identifica la relación invertida y propone orientarla desde el sujeto hacia la forma que corresponde,
-sin acusarla de falsa por esa inversión. Si además hay una falsedad, una restricción engañosa u otro defecto, se
-conserva su motivo propio y la gravedad que corresponda según [F-MINIT-R004](#F-MINIT-R004).
-«is va con it» no dice por sí sola «is sólo va con it»: no se inventa una exclusividad para justificar otro defecto.
-Una restricción explícita o inequívoca, como «is sólo va con it», sí se juzga por su propio contenido.
+La evidencia de una concordancia que no se generaliza bien da un sujeto común de la misma forma que el quiz no nombra
+(«He is from London.») y propone la redacción que parte del sujeto. La de dirección identifica la relación invertida y
+propone orientarla desde el sujeto, sin acusarla de falsa por esa inversión. Si además hay una falsedad u otro defecto,
+se conserva su motivo propio y la gravedad que corresponda según [F-MINIT-R004](#F-MINIT-R004).
 
 | Quiz | Miniteoría | Resultado esperado por este criterio |
 |---|---|---|
-| I ___ hot. · am / are / is | am va con I. | Rechazada por dirección invertida, aun siendo una correspondencia exclusiva. |
+| I ___ hot. · am / are / is | am va con I. | Rechazada por dirección invertida (baja): am sólo va con I, la generalización es cierta. |
 | I ___ hot. · am / are / is | I lleva am. | Aprobada si cumple las demás reglas del caso. |
 | I ___ hot. · am / are / is | Con I se usa am. | Aprobada si cumple las demás reglas del caso; no se impone una frase única. |
-| It ___ under the chair. · am / are / is | is va con it. | Rechazada por dirección invertida. |
+| It ___ under the chair. · am / are / is | is va con it. | Rechazada por alcance (media): is también va con he y she. |
 | It ___ under the chair. · am / are / is | En presente afirmativo, it lleva is. | Aprobada si cumple las demás reglas del caso. |
+| She ___ from London. · am / are / is | is va con she. | Rechazada por alcance (media): is también va con he e it. |
+| She ___ from London. · am / are / is | Con she se usa is. | Aprobada: focal y cierta generalizada. |
+| She ___ from London. · am / are / is | is va con he, she, it. | Rechazada por dirección invertida (baja): nombra todas las personas de is. |
 
-**Criterio de aceptación del examen**: los dos casos invertidos «am va con I» e «is va con it» quedan como rechazos
+**Criterio de aceptación del examen**: los casos invertidos «am va con I» e «is va con it» quedan como rechazos
 obligatorios del examen permanente, con origen en `PRB-fbaeac6f` y la confirmación del operador. Los controles sanos
 conservan su procedencia real: un control propuesto por el asistente no se convierte por eso en «Está bien» confirmado
 por el operador ([F-JEXAM-R017](#F-JEXAM-R017)).
 
 Pedido explícito del operador, 21/10/2026: corregir también al juez para que detecte estas explicaciones invertidas,
 incluido el caso I/am, y conservar los casos en el examen para las versiones siguientes.
+
+Aclaración de José, 2/11/2026, ante «She is from London.» con la miniteoría «is va con she»: la miniteoría no escribe
+la regla completa del tema sino la del quiz, pero tiene que ser generalizable; no puede afirmar algo que en general no es
+así. «is va con she» es incorrecto porque is va con she, he e it; «she va con is» es correcto. Reemplaza lo que esta
+regla decía el 21/10, que «is va con it» no afirmaba una exclusividad.
 
 </details>
 
@@ -321,7 +344,7 @@ de una fórmula específica; la propuesta observada había eliminado el selector
 |---|---|
 | Pregunta | ¿La tarjeta explica correctamente el caso concreto de este quiz, sin traer reglas de otros subtemas? |
 | Lee | cada quiz con su miniteoría, consigna efectiva, enunciado, pista y respuestas u opciones; nivel, nombre y consigna del tema como contexto |
-| Reglas | es falsa para el caso · no alcanza para resolverlo · trae contenido de otro subtema · invierte la explicación de sujeto a forma verbal |
+| Reglas | es falsa para el caso · no alcanza para resolverlo · trae contenido de otro subtema · generalizada deja de ser cierta · invierte la explicación de sujeto a forma verbal |
 | Meta y familia | 0 quizzes con error · errores |
 | Evalúa y resuelve | puede consultar por tema, pero decide y corrige por quiz |
 | Costo | modelo pago: una consulta por tema |
@@ -355,7 +378,7 @@ journeys:
           - when: "No tiene veredicto y no queda tope"
             then: sin_evaluar
       - id: leer
-        action: "El veredicto dice, por cada quiz, si su miniteoría explica de forma cierta, suficiente y específica el caso que ese quiz practica, con la dirección didáctica adecuada"
+        action: "El veredicto dice, por cada quiz, si su miniteoría explica de forma cierta, suficiente y específica el caso que ese quiz practica, sin dejar de ser cierta generalizada y con la dirección didáctica adecuada"
         gate: [F-MINIT-R002, F-MINIT-R010]
         outcomes:
           - when: "Todas están bien"

@@ -71,7 +71,20 @@ class MiniTheoryRewriterAdapterTest {
         }, "test; prompt=" + MiniTheoryRewriterAdapter.PROMPT_VERSION);
 
         adapter.rewrite(new RewriteInput("Resaltá el inglés clave.", "quiz", null, null, List.of()));
-        assertEquals("mini-feedback-v5", MiniTheoryRewriterAdapter.PROMPT_VERSION);
+        assertEquals("mini-feedback-v6", MiniTheoryRewriterAdapter.PROMPT_VERSION);
+    }
+
+    @Test
+    @Tag("F-MINIT-R010")
+    void asksForAnAgreementCardThatStaysTrueWhenReadAsAGeneralRule() {
+        // José, 2/11: «is va con she» is wrong because is also goes with he and it; «she va con is» is right. The card
+        // stays focal: it starts from the subject and does not list the other persons of that form.
+        String guide = MiniTheoryRewriterAdapter.GUIDE;
+        assertTrue(guide.contains("Explicá desde el sujeto hacia el verbo"));
+        assertTrue(guide.contains("«con $she$ se usa $is$»"));
+        assertTrue(guide.contains("leída como regla general tiene que seguir siendo cierta"));
+        assertTrue(guide.contains("sin nombrar las demás personas de esa forma"));
+        assertFalse(guide.contains("$is$ va con $she$"), "the guide asks in positive, it does not show the inverted card");
     }
 
     @Test
