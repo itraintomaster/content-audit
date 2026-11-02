@@ -145,7 +145,10 @@ los renglones.
 >
 > - ningún ejercicio de «Todos los jueces lo aprueban» o «Preparados para entregar» tiene un evaluador que **no supera**
 >   ni un renglón en rojo;
-> - un renglón está en rojo si y sólo si su evaluador **no supera**; lo leve que supera se ve en ámbar.
+> - un evaluador que **supera** o **no aplica** nunca deja un renglón en rojo: lo que vio se ve en ámbar, como lo leve.
+>   El rojo es de uno que **no supera** o de uno al que le **falta** la opinión de hoy (la dio con una versión anterior,
+>   o sus dos jueces no coinciden);
+> - un renglón dice que el error es nuevo sólo si su evaluador empeoró (R006).
 >
 > Si el análisis todavía no trae los estados, la pantalla sigue con su cuenta de antes.
 
@@ -173,10 +176,10 @@ los renglones.
 | R002 | `EvaluatorContractTest`: lo leve supera; lo que sólo ordena con gravedad media no supera; la oración de producción no frena; sin gravedad frena |
 | R003 | `EvaluatorContractTest`: el desacuerdo queda en falta y con otra observación media no supera; un analizador pago sin juez de hoy cuenta cualquier versión y la vista lo avisa |
 | R004 | `EvaluatorContractTest`: las seis filas de la tabla, la marca de una versión anterior, y que leer las marcas no gasta consultas |
-| R005 | `EvaluatorContractTest`: el recorrido con un no supera, con un falta y con todos superan o no aplican |
+| R005 | `EvaluatorContractTest`: el recorrido con un no supera, con un falta y con todos superan o no aplican; en ittm, `contrato_de_evaluadores_test.dart` (la lista es la del contrato) y `contrato-de-evaluadores.test.js` (la pantalla pone cada ejercicio donde dice el contrato) |
 | R006 | `EvaluatorContractTest`: empeoró desde supera y desde no aplica, no desde falta ni desde no supera; «Mal» empeoró y «Heredado» no; los otros tres veredictos siguen al recorrido; `CurrentAnalysisServiceTest`: el ejercicio que la tanda no cambió no tiene veredicto |
 | R007 | `CurrentAnalysisServiceTest`: el analizador instantáneo que la tanda no tenía se mide en la base y en la corrección, y no se mide el que ya tenía ni uno pago |
-| R008 | En ittm, la prueba de la invariante sobre la C2 entera y las pruebas de la lista, el chip y los renglones |
+| R008 | En ittm, `contrato_de_evaluadores_test.dart`: el chip de cada veredicto, el color y el «nuevo» de cada renglón, la invariante (lo que dan por bueno es justo «Todos», sin un no supera ni un renglón en rojo) y la cuenta de antes sin contrato; `contrato-de-evaluadores.test.js`: sin contrato cuenta como antes y el revisor se nombra sin examen. La invariante sobre la C2 entera se verifica con su lectura real (brief 251) |
 
 ## References
 
