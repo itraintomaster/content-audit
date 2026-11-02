@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>249 · Cuatro decisiones antes del contrato</title>
+<title>250 · Cómo construir el contrato</title>
 <meta name="atril:conversacion" content="claude:7aeb7923-ce6d-404e-87c0-0be9207254b5">
 <meta name="atril:agente" content="claude">
 <meta name="atril:hilo" content="a1">
@@ -405,133 +405,102 @@ figure.dg{margin:0 0 16px;overflow-x:auto}figure.dg>svg{display:block;width:100%
 
   <header>
     <div class="kicker">
-      <span class="num">249</span>
+      <span class="num">250</span>
       <span class="badge">Diseño · Decisión</span>
       <span class="meta">Tanda A1 · C2 · 1/11/2026</span>
     </div>
     <details class="pedido">
-      <summary><span class="k">Lo que pediste</span><span class="q">Hacer el contrato único del 248 con /feature-dev, después del cambio corto de lo leve en ámbar.</span></summary>
+      <summary><span class="k">Lo que pediste</span><span class="q">Seguir con el diseño del contrato, con las cuatro recomendaciones del brief 249.</span></summary>
       <div class="pedido-c">
         <dl>
-          <dt>Qué estabas mirando</dt><dd>El brief 248 y el 24a7 con «error nuevo» en rojo por algo leve.</dd>
-          <dt>Qué pediste</dt><dd>Partir en dos: primero el cambio de pantalla, después el desarrollo largo con /feature-dev. Ya dijiste que lo de gravedad baja no frena.</dd>
-          <dt>A qué te referías</dt><dd><ol><li>Que todos los evaluadores cumplan el mismo contrato.</li><li>Que la decisión esté en un solo lugar.</li><li>Que antes de diseñar se pregunte lo que no está definido.</li></ol></dd>
+          <dt>Qué estabas mirando</dt><dd>El brief 249, con las cuatro decisiones sobre «sólo ordena», las abstenciones y el revisor.</dd>
+          <dt>Qué pediste</dt><dd>«Sí, las cuatro recomendaciones del brief 249. Seguí con el diseño.»</dd>
+          <dt>A qué te referías</dt><dd><ol><li>Que tres arquitectos propongan cómo construirlo y elijas uno.</li><li>Que todavía no se escriba código.</li></ol></dd>
         </dl>
-        <p class="de">La conversación del 1/11, después del brief 248.</p>
+        <p class="de">La conversación del 1/11, sobre el brief 249.</p>
       </div>
     </details>
-    <h1>El contrato entra en los 21 evaluadores: faltan cuatro decisiones</h1>
-    <p class="sub">Lo que encontraron los tres agentes que leyeron content-audit y el tablero, y lo que no está definido.</p>
+    <h1>Cómo construir el contrato: recomiendo el camino por fases, con red</h1>
+    <p class="sub">Las tres propuestas de los arquitectos y dos decisiones nuevas que aparecieron al diseñar.</p>
   </header>
 
-  <div class="lede"><p><strong>El contrato entra en los 21 evaluadores sin casos especiales, pero quedan cuatro decisiones.</strong> Con mis recomendaciones, «Todos los jueces lo aprueban» queda en 1.580 ejercicios y «Empeoró» en 135.</p></div>
+  <div class="lede"><p><strong>Recomiendo construirlo por fases: content-audit calcula primero sin que nada cambie, después el tablero lo adopta y al final se borran las copias.</strong> Antes necesito dos decisiones nuevas.</p></div>
 
   <div class="saber">
     <h2>Lo que tenés que saber</h2>
     <dl>
-      <div><dt>«Sólo ordena»</dt><dd>Un hallazgo que el evaluador anota pero no cuenta como error suyo. Hoy la lista lo cuenta igual.</dd></div>
-      <div><dt>Marcas del revisor</dt><dd>«Mal»: el cambio empeoró. «Heredado»: anota un problema que ya estaba en producción. «Dudoso»: mejoró algo y empeoró otra cosa.</dd></div>
+      <div><dt>Modo sombra</dt><dd>Content-audit calcula los estados y los publica, pero el tablero todavía no los usa. Sirve para comparar con la simulación antes de cambiar la pantalla.</dd></div>
+      <div><dt>Red</dt><dd>Si el contrato no llega, el tablero vuelve a las reglas de hoy hasta que se borran.</dd></div>
     </dl>
   </div>
 
   <section>
-    <h2>Con el contrato, la lista y «Empeoró» salen del mismo estado</h2>
-    <div class="kpis">
-      <div class="kpi dest"><div class="n">1.580<small>de 2.402</small></div><div class="l">en «Todos los jueces lo aprueban», contra 665 hoy</div></div>
-      <div class="kpi"><div class="n">135</div><div class="l">ejercicios en «Empeoró»; hoy son 328 cambios, contados de otra forma</div></div>
-      <div class="kpi"><div class="n">1<small>lugar</small></div><div class="l">decide todo; hoy deciden 3, con 12 copias de las reglas</div></div>
+    <h2>Tres maneras de construirlo; recomiendo la del medio</h2>
+    <div class="opts">
+      <div class="opt"><div class="oh"><span class="ol">A</span><b>Cambio mínimo</b></div>
+        <ul><li class="si">El más chico: unas 1.200 líneas.</li><li class="no">«Aplica a» sigue escrito a mano.</li><li class="no">El cambio de pantalla entra de golpe.</li></ul></div>
+      <div class="opt rec"><div class="oh"><span class="ol">B</span><b>Por fases, con red</b><span class="pill p-ok">recomiendo</span></div>
+        <ul><li class="si">Cada fase se ve y se vuelve atrás sola.</li><li class="si">Los números se comparan antes de tocar la pantalla.</li><li class="no">«Aplica a» pasa a la ficha en una fase aparte.</li></ul></div>
+      <div class="opt"><div class="oh"><span class="ol">C</span><b>Contrato en la ficha</b></div>
+        <ul><li class="si">Cada evaluador declara sus tres datos en su ficha.</li><li class="no">El más grande: toca los 20 evaluadores.</li><li class="no">Toca código que usan todos los análisis.</li></ul></div>
     </div>
-    <p class="pie">Los 135: el revisor marca «Mal» en 80, «No regala la respuesta» encuentra algo nuevo en 56, la pista en 4 y la naturalidad en 1.</p>
+    <p class="pie">Las tres calculan lo mismo en content-audit y borran las copias del tablero. Cambia el riesgo de romper la pantalla mientras se construye.</p>
   </section>
 
   <section>
-    <h2>Cada caso especial de hoy queda en un paso del contrato</h2>
-    <div class="tw"><table>
-      <thead><tr><th>Caso especial de hoy</th><th>En el contrato</th></tr></thead>
-      <tbody>
-        <tr><td>Lo leve frena o no según quién lo diga</td><td>Paso 5: umbral «media» para todos</td></tr>
-        <tr><td>«Empeoró» cuenta cualquier gravedad</td><td>Un evaluador pasó a <span class="pill p-bad">no supera</span></td></tr>
-        <tr><td>«Aplica a» escrito en cuatro lugares</td><td>Paso 1: un dato de la ficha</td></tr>
-        <tr><td>«Casi duplicados» es medio juez, sin versión</td><td>Paso 3: un juez con su versión aprobada</td></tr>
-        <tr><td>El texto de vos no está medido en la C2</td><td>Se mide gratis, en la base y en la corrección</td></tr>
-        <tr><td>Analizador sin evaluar, ejercicio editado</td><td>Paso 2: <span class="pill p-warn">falta</span></td></tr>
-        <tr><td>La abstención frena la lista y el cambio la ignora</td><td>Paso 4, igual para los dos</td></tr>
-        <tr><td>La oración de producción, con dos criterios</td><td>El hallazgo dice «lo arregla publicar»</td></tr>
-        <tr><td>El «Mal» del revisor llega 3 s después</td><td>El revisor, un evaluador más</td></tr>
-        <tr><td>«Sólo ordena», «Heredado», «Dudoso»</td><td>Lo que tenés que decidir</td></tr>
-      </tbody></table></div>
-    <p class="pie">El orden para leerlo: hoy tres lugares tienen cada uno su copia de estas reglas. Con el contrato, cada regla es un paso o un dato de la ficha.</p>
-  </section>
-
-  <section>
-    <h2>«Sólo ordena» quiere decir dos cosas distintas</h2>
-    <div class="grid g2">
-      <div class="ex">
-        <div class="cons">Contraste inicial · ejercicio 2069 · «Más de una respuesta válida»</div>
-        <div class="cons">Consigna: Escribe las oraciones en 'present simple' o 'present continuous'.</div>
-        <div class="en">She<span class="gap"></span>(live) there all year.</div>
-        <div class="ans">Acepta: <b>lives</b> · Traducción: <i>Ella vive allí todo el año.</i></div>
-        <div class="mark"><span class="x">✕</span><span>La consigna ofrece «is living» y el corrector la rechaza. <span class="sev a">alta</span></span></div>
-        <div class="ft"><span>Dice que lo arregla «Exige una forma»</span><span>no marca ninguno de los 66</span></div>
-      </div>
-      <div class="ex">
-        <div class="cons">Afirmativas regulares · ejercicio 1ed4 · «Traducción que no corresponde»</div>
-        <div class="cons">Consigna: Escribe la forma afirmativa en presente simple.</div>
-        <div class="en">It<span class="gap"></span>(get) cold here.</div>
-        <div class="ans">Acepta: <b>gets</b> · Traducción: <i>Aquí hace frío.</i></div>
-        <div class="mark warn"><span class="x">?</span><span>Desde el inglés cumple; desde la traducción no: «gets cold» es empezar a hacer frío.</span></div>
-        <div class="ft"><span>Los dos jueces no coinciden</span><span>14 ejercicios</span></div>
-      </div>
-    </div>
-    <p class="pie">Si «sólo ordena» no cuenta, 56 de los 66 como el primero entran en «Todos». El segundo es un empate: falta desempatarlo, no es un error.</p>
-  </section>
-
-  <section>
-    <h2>«Heredado» anota un problema que sigue en el ejercicio</h2>
-    <div class="tw"><table>
-      <thead><tr><th>Marca</th><th>Qué anota</th><th>Cuántos</th><th>Estado que propongo</th></tr></thead>
-      <tbody>
-        <tr><td>Bien</td><td>Nada</td><td>1.541</td><td><span class="pill p-ok">supera</span></td></tr>
-        <tr><td>Mal</td><td>Un problema nuevo</td><td>80</td><td><span class="pill p-bad">no supera</span><small>y es «Empeoró»</small></td></tr>
-        <tr class="decide"><td>Heredado</td><td>Un problema que ya estaba<small>el 1ed4: la traducción describe un estado y el inglés, un cambio</small></td><td>74</td><td><span class="pill p-bad">no supera</span><small>pero no es «Empeoró»: ya estaba</small></td></tr>
-        <tr class="decide"><td>Dudoso</td><td>Algo mejor y algo peor<small>el 1eae: la miniteoría perdió la regla general de las preguntas wh</small></td><td>227</td><td><span class="pill p-ok">supera</span><small>y se ve en ámbar, como lo leve</small></td></tr>
-      </tbody></table></div>
-    <p class="pie">Cambio la recomendación del 248, que hacía superar a los dos. Con «Heredado» que no supera, «Todos» pasa de 1.607 a 1.580.</p>
-  </section>
-
-  <section>
-    <h2>Cómo lo armo, si estás de acuerdo</h2>
+    <h2>El camino por fases, con lo que ves en cada una</h2>
     <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">Mide lo gratis que falta</span><span class="d">El texto de vos, en la base y en la corrección.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">Calcula cada estado</span><span class="d">Content-audit, en la misma lectura del análisis, con el motivo.</span></div>
-      <div class="st"><span class="i">3</span><span class="h">Recorre la lista</span><span class="d">La lista y «Empeoró», con las mismas reglas.</span></div>
-      <div class="st"><span class="i">4</span><span class="h">El tablero dibuja</span><span class="d">Renglones, chip y motivo salen del estado; se borran las copias.</span></div>
-      <div class="st end"><span class="i">5</span><span class="h">Prueba sobre la C2</span><span class="d">Ningún ejercicio de «Todos» con algo que no supera ni un renglón rojo.</span></div>
+      <div class="st"><span class="i">1</span><span class="h">En sombra</span><span class="d">Content-audit calcula; se compara con 1.580 y 135. La pantalla no cambia.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">El texto de vos</span><span class="d">Se mide gratis en la base y la corrección.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">La lista</span><span class="d">«Todos» sale del contrato; ningún ejercicio con renglón rojo.</span></div>
+      <div class="st"><span class="i">4</span><span class="h">El veredicto</span><span class="d">Chip y renglones del mismo estado: 296 contradicciones a 0.</span></div>
+      <div class="st end"><span class="i">5</span><span class="h">Borrar las copias</span><span class="d">Después de unos días de uso, con la prueba sobre la C2.</span></div>
     </div>
-    <p class="pie">No toca el cierre, Publicar, los resúmenes ni la app de Flutter. Antes de escribir código, tres agentes proponen cómo hacerlo y elegís uno.</p>
+    <p class="pie">Después, en otra fase, «aplica a» pasa a ser un dato de la ficha. No se tocan el cierre, Publicar, los resúmenes ni Flutter.</p>
+  </section>
+
+  <section>
+    <h2>Decisión nueva 1: «Lo dan por bueno» sólo si está en «Todos»</h2>
+    <div class="ad">
+      <div class="lado antes"><span class="rot">Con la regla del 248</span>
+        <ol><li>«No consta» mira sólo al juez que pidió el cambio.</li><li>Si otro evaluador sigue objetando, el cambio igual sale «Lo dan por bueno».</li></ol>
+        <span class="res">257 cambios «Lo dan por bueno» en «Con un problema»</span></div>
+      <div class="lado despues"><span class="rot">Con la regla nueva</span>
+        <ol><li>«Lo dan por bueno» = el ejercicio está en «Todos».</li><li>«No consta arreglado» = sigue con un problema que ya estaba.</li></ol>
+        <span class="res">0 contradicciones; «No consta» pasa de 17 a 292</span></div>
+    </div>
+    <p class="pie">Con la regla nueva el veredicto es la lista más una cosa: si el problema es nuevo («Empeoró») o ya estaba («No consta arreglado»).</p>
+  </section>
+
+  <section>
+    <h2>Decisión nueva 2: «Ejercicio casi repetido» no tiene versión aprobada hoy</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Versión</th><th>Examen</th><th>Qué midió</th></tr></thead>
+      <tbody>
+        <tr><td>La del 7/10</td><td><span class="pill p-ok">aprobada</span></td><td>La base de la C2</td></tr>
+        <tr class="decide"><td>La de hoy, por pares</td><td><span class="pill p-idle">sin rendir</span></td><td>La corrección no guarda con cuál midió</td></tr>
+      </tbody></table></div>
+    <p class="pie">Con «sólo la aprobada», queda en «falta» en los 2.402 ejercicios y «Todos» baja a 0. Sólo emite hallazgos leves: nunca saca a nadie de la lista.</p>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · La consigna ofrece una respuesta que el corrector rechaza: ¿cuenta?</span>
-        <div class="ops"><span class="op rec">Sí, por su gravedad · recomendado</span><span class="op">No cuenta</span></div>
-        <span class="why">El que debería arreglarlo no marca ninguno de los 66 ejercicios.</span></div>
-      <div class="ask"><span class="q">2 · Los dos jueces de traducción no coinciden: ¿qué es?</span>
-        <div class="ops"><span class="op rec">Falta, hasta desempatar · recomendado</span><span class="op">No supera</span></div>
-        <span class="why">Son 14. Hoy frenan como si fuera un error.</span></div>
-      <div class="ask"><span class="q">3 · ¿«No aplica» no aplica, y «revisar» y «falta contexto» faltan?</span>
-        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">Otra cosa</span></div>
-        <span class="why">«Falta contexto» no aparece en la C2. «Revisar» deja 101 en «Faltan opiniones».</span></div>
-      <div class="ask"><span class="q">4 · ¿«Heredado» no supera y «Dudoso» supera en ámbar?</span>
-        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">Los dos superan</span><span class="op">Ninguno supera</span></div>
-        <span class="why">«Heredado» deja un problema conocido. «Dudoso» anota lo que el juez de la miniteoría llama leve.</span></div>
+      <div class="ask"><span class="q">1 · ¿Cómo lo construyo?</span>
+        <div class="ops"><span class="op">A · Cambio mínimo</span><span class="op rec">B · Por fases, con red · recomendado</span><span class="op">C · Contrato en la ficha</span></div>
+        <span class="why">Cada fase se puede ver en la pantalla y volver atrás sola.</span></div>
+      <div class="ask"><span class="q">2 · ¿«Lo dan por bueno» sólo si el ejercicio está en «Todos»?</span>
+        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">No, como el 248</span></div>
+        <span class="why">Es la única forma de que el veredicto nunca contradiga a la lista.</span></div>
+      <div class="ask"><span class="q">3 · «Casi repetido»: ¿cuenta cualquier versión hasta que rinda examen?</span>
+        <div class="ops"><span class="op rec">Sí, con un aviso · recomendado</span><span class="op">No: examinarlo antes (pago)</span></div>
+        <span class="why">No cambia ninguna lista: sólo emite hallazgos leves. El examen se pide aparte.</span></div>
     </div>
   </section>
 
   <footer>
-    <span>Diseño, sin código del contrato todavía. Exploración: tres agentes leyeron content-audit (análisis vigente, «lo que falta opinar» de F-OPINA-R001 como patrón, catálogo, revisor) y el tablero (nadie_le_ve_problemas.dart, opinion_de_los_jueces.dart, lectura_del_despues.dart, selectores.js, nadie.js). Conteos con scratchpad/todos2/contrato2.py sobre el análisis vigente bajado el 1/11 a las 11:00: 2.402 ejercicios del estado «correction», 20 evaluadores del catálogo con QUIZ más el revisor, umbral «media», data-coherence/saved-sentence «produccion» fuera, texto de vos sin medir. Variantes: «sólo ordena» cuenta 1.608; no cuenta 1.673; cuenta y desacuerdo = falta 1.607; más Heredado no supera 1.580 (192 preparados, 515 con un problema, 108 faltan, 7 vos lo aprobás); Dudoso y Heredado faltan 1.437. «Sólo ordena» en la C2: single-answer offered-alternative 96 hallazgos en 66 ejercicios (ninguno con answer-completeness), translation-sense judges-disagree 14. «Empeoró»: ejercicios cambiados (1.922) con un evaluador que pasó de supera o no aplica a no supera. Las 12 copias: las 9 del brief 248 más «quién falta», «jueces del ejercicio» y las de Flutter/estadísticas.</span>
-    <span>brief 249 · docs/briefs/249-cuatro-decisiones-antes-del-contrato.html</span>
+    <span>Diseño, sin código. Propuestas: A cambio mínimo (~1.200 líneas; el tablero, ~50 menos), B equilibrio pragmático (~2.400 en content-audit; el tablero, ~700 netas menos), C arquitectura limpia (~3.700 en content-audit y ~1.300 en el tablero; toca los 20 providers). La recomendada toma de A dos piezas: el contrato viaja en View y no en State, porque una prueba de CurrentAnalysisServiceTest exige que los estados sean iguales a los del resumen que usa Evolución; y el servidor arma las formas que la página ya lee. De C toma los cinco pasos escritos una vez, con una pieza por clase de evaluador (juez, regla gratis, revisor). Decido yo, salvo que digas otra cosa: el desacuerdo de traducción junto a un hallazgo medio del mismo juez es no supera; un cambiado sin marca del revisor es falta; una medición en curso se ve «midiendo» pero no cambia el veredicto; el veredicto es por ejercicio. Conteos con contrato2.py sobre los 1.922 ejercicios cambiados de la C2: regla del 248 → 135 Empeoró, 1.674 Lo dan por bueno (257 con un problema), 96 Falta medir, 17 No consta; regla nueva → 135, 1.417, 78, 292. Casi repetido: exam status, versión aprobada juez-04c290f901e3 (7/10); la de hoy juez-729229ed1d8d NOT_TAKEN; provenance de la corrección sin judgeVersion en los 2.402; 77 hallazgos, todos LOW.</span>
+    <span>brief 250 · docs/briefs/250-como-construir-el-contrato.html</span>
   </footer>
 
 </div>
