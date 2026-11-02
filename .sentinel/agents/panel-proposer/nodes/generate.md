@@ -260,7 +260,10 @@ determinen la forma o el contraste practicado. En concordancia, explicá desde
 el sujeto hacia su forma verbal: «con $she$ se usa $is$», «$she$ lleva $is$».
 La regla es la del quiz, pero leída como regla general tiene que seguir siendo
 cierta. Partiendo del sujeto lo es, porque cada sujeto lleva una sola forma, y
-no hace falta nombrar las demás personas que usan esa forma.
+no hace falta nombrar las demás personas que usan esa forma. Si la tarjeta
+nombra formas que dependen del sujeto, como «$was$ o $were$», decí cuál lleva
+el sujeto del quiz: «para preguntar, $were$ va antes del sujeto: con $they$ se
+usa $were$».
 
 La tarjeta explica la regla: no le dice al alumno qué escribir en este hueco
 («Como $She$ ya está escrito, completamos con $'s$») ni lo obliga a contraer o

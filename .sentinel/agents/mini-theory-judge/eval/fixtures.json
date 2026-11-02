@@ -55,7 +55,10 @@
     "No deduzcas la categoría del verbo",
     "manteniendo sus condiciones",
     "una forma verbal conjugada que señala la ruta focal",
-    "una interpretación semántica coherente"
+    "una interpretación semántica coherente",
+    "esa elección queda planteada y la tarjeta tiene que resolverla para el sujeto",
+    "y no dice cuál lleva el sujeto de este",
+    "esa parte está explicada: no la marques insuficiente por no repetir la"
   ],
   "why": "Regresión offline con microcasos inventados para las fronteras abstractas del juez: identidad por quizId, suficiencia focal, forma frente a función, universales, atomización, respuestas operativas, taxonomía y prioridad; además cubre el contrato del gate, la cobertura exacta y las severidades fijas.",
   "inputs": {
@@ -119,6 +122,12 @@
     "topic": "Concordancia de be en escenas inventadas de cobre",
     "instructions": "Completá con am, is o are.",
     "quizzes": "quizId: q-she-form-first\nminiTheory: $is$ va con $she$.\nprompt: She ___ near the copper tower.\nanswers: is\n\nquizId: q-they-form-first\nminiTheory: $are$ va con $they$.\nprompt: They ___ near the copper tower.\nanswers: are\n\nquizId: q-he-does-form-first\nminiTheory: En preguntas, $does$ va con $he$.\nprompt: ___ he work near the copper tower?\nanswers: Does\n\nquizId: q-she-subject-first\nminiTheory: Con $she$ se usa $is$.\nprompt: She ___ near the copper tower.\nanswers: is\n\nquizId: q-is-every-person\nminiTheory: $is$ va con $he$, $she$, $it$.\nprompt: She ___ near the copper tower.\nanswers: is\n\nquizId: q-am-only-subject\nminiTheory: $am$ va con $I$.\nprompt: I ___ near the copper tower.\nanswers: am"
+  },
+  "a-form-the-card-leaves-open": {
+    "cefrLevel": "A1",
+    "topic": "Be en preguntas y contracciones, en escenas inventadas de cobre",
+    "instructions": "Escribí la forma de be que corresponde.",
+    "quizzes": "quizId: q-were-order-only\nminiTheory: Para preguntar, $was$ o $were$ van antes del sujeto.\nprompt: ___ (they / be) near the copper tower last night?\nanswers: Were they\n\nquizId: q-were-subject-first\nminiTheory: Para preguntar, $were$ va antes del sujeto: con $they$ se usa $were$.\nprompt: ___ (they / be) near the copper tower last night?\nanswers: Were they\n\nquizId: q-contraction-named\nminiTheory: $I'm$, $you're$, $he's$ para afirmar.\nprompt: ___ (He is) near the copper tower.\nanswers: He's\n\nquizId: q-contraction-not-named\nminiTheory: $I'm$, $he's$ + -ing para lo que pasa ahora.\nprompt: ___ (We are) waiting near the copper tower.\nanswers: We're"
   }
   },
   "cases": [
@@ -822,6 +831,97 @@
         "route": "failed",
         "errorContains": [
           "MEDIUM"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "a-form-the-card-leaves-open-is-insufficient",
+      "inputs": "a-form-the-card-leaves-open",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-were-order-only",
+            "holds": false,
+            "problem": "INSUFFICIENT_FOR_QUIZ",
+            "severity": "HIGH",
+            "counterexample": "Con they se usa were: Were they near the copper tower last night?",
+            "explanation": "Explica el orden de la pregunta y nombra was o were, pero no dice cuál lleva they."
+          },
+          {
+            "quizId": "q-were-subject-first",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Explica el orden y dice qué forma lleva they, partiendo del sujeto."
+          },
+          {
+            "quizId": "q-contraction-named",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "La tarjeta ya nombra he's, la forma exacta que pide el quiz."
+          },
+          {
+            "quizId": "q-contraction-not-named",
+            "holds": false,
+            "problem": "INSUFFICIENT_FOR_QUIZ",
+            "severity": "HIGH",
+            "counterexample": "Con we, we are se contrae we're: We're waiting near the copper tower.",
+            "explanation": "Nombra I'm y he's, pero no la contracción de we, que es la que pide el quiz."
+          }
+        ]
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "a-form-the-card-leaves-open-rejects-medium",
+      "inputs": "a-form-the-card-leaves-open",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-were-order-only",
+            "holds": false,
+            "problem": "INSUFFICIENT_FOR_QUIZ",
+            "severity": "MEDIUM",
+            "counterexample": "Con they se usa were: Were they near the copper tower last night?",
+            "explanation": "Explica el orden de la pregunta y nombra was o were, pero no dice cuál lleva they."
+          },
+          {
+            "quizId": "q-were-subject-first",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Explica el orden y dice qué forma lleva they, partiendo del sujeto."
+          },
+          {
+            "quizId": "q-contraction-named",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "La tarjeta ya nombra he's, la forma exacta que pide el quiz."
+          },
+          {
+            "quizId": "q-contraction-not-named",
+            "holds": false,
+            "problem": "INSUFFICIENT_FOR_QUIZ",
+            "severity": "HIGH",
+            "counterexample": "Con we, we are se contrae we're: We're waiting near the copper tower.",
+            "explanation": "Nombra I'm y he's, pero no la contracción de we, que es la que pide el quiz."
+          }
+        ]
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "HIGH"
         ],
         "schemaRejects": true
       }

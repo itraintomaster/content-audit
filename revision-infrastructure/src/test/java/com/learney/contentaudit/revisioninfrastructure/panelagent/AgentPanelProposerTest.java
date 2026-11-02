@@ -426,6 +426,23 @@ public class AgentPanelProposerTest {
         assertFalse(prompt.contains("$is$ va con $she$"), "it asks in positive, it does not show the inverted card");
     }
 
+    @Test
+    @Tag("F-MINIT-R010")
+    void asksTheCardToSayWhichFormItsSubjectTakesWhenItNamesSeveral() throws Exception {
+        // José, 2/11 (brief 254): a was/were card says which one goes with the quiz's subject, starting from it.
+        java.nio.file.Path root = java.nio.file.Path.of("").toAbsolutePath();
+        while (root != null && !java.nio.file.Files.isDirectory(root.resolve(".sentinel/agents/panel-proposer"))) {
+            root = root.getParent();
+        }
+        assertTrue(root != null, "the proposer definition must be available to the test");
+        String prompt = java.nio.file.Files.readString(root.resolve(".sentinel/agents/panel-proposer/nodes/generate.md"));
+        for (String rule : List.of(
+                "Si la tarjeta\nnombra formas que dependen del sujeto, como «$was$ o $were$», decí cuál lleva\nel sujeto del quiz",
+                "«para preguntar, $were$ va antes del sujeto: con $they$ se\nusa $were$»")) {
+            assertTrue(prompt.contains(rule), "the prompt says: " + rule);
+        }
+    }
+
     static PanelRequest request(int attempt, List<CandidateRejection> rejections) {
         String quiz = "67fab6d59930102295341ecd";
         Finding translation = new Finding("translation-sense", "same-meaning", new FindingNodeRef(AuditTarget.QUIZ, quiz, quiz),

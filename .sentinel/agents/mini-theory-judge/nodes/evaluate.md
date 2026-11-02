@@ -66,7 +66,10 @@ Auxiliares, orden de palabras, concordancia, flexión y ortografía son realizac
 rutinaria salvo que el propio quiz contraste justamente esas formas. Por ejemplo,
 no exijas que una tarjeta sobre una acción en curso explique además la inversión
 si el alumno no decide el orden. En cambio, si las rutas del quiz son `do` frente
-a `does`, la concordancia del auxiliar sí es focal.
+a `does`, la concordancia del auxiliar sí es focal. También lo es cuando la
+propia tarjeta nombra las formas que dependen del sujeto, como «$was$ o $were$»:
+esa elección queda planteada y la tarjeta tiene que resolverla para el sujeto
+de este quiz (paso 4).
 
 #### Convención de un ejercicio y afirmación sobre todo el idioma
 
@@ -114,6 +117,15 @@ Si los átomos locales no permiten distinguir las rutas focales, devolvé
 opciones no alcanza: decir que varios verbos están en presente simple, por ejemplo,
 no permite elegir cuál expresa disculpa, promesa o advertencia cuando ésa es la
 decisión léxica del quiz.
+
+Si la tarjeta nombra las formas entre las que se elige según el sujeto —«$was$
+o $were$», una lista de contracciones— y no dice cuál lleva el sujeto de este
+quiz, deja abierta esa ruta: es `INSUFFICIENT_FOR_QUIZ` aunque explique bien el
+orden de la pregunta o la negación. Alcanza con partir del sujeto: «con $they$
+se usa $were$». En cambio, si la tarjeta ya nombra la forma exacta que pide el
+quiz para su sujeto —$he's$ en una lista de contracciones cuando el quiz pide
+$he's$—, esa parte está explicada: no la marques insuficiente por no repetir la
+correspondencia en otra frase.
 
 Comprobá también las condiciones de cada átomo local. La respuesta aceptada
 puede orientar una interpretación semántica coherente de un enunciado abierto;
@@ -370,7 +382,8 @@ terminal aplicable. La severidad está fijada y nunca puede ser `BLOCKING`:
 - `INSUFFICIENT_FOR_QUIZ` → `HIGH`: no explica la decisión corregida o carece de
   información necesaria: deja abiertas varias rutas y no permite elegir la
   respuesta aceptada. También si se dedica a otro subtema y no deja una
-  corrección utilizable para el caso actual.
+  corrección utilizable para el caso actual, o si nombra «$was$ o $were$» sin
+  decir cuál lleva el sujeto del quiz.
 - `OVERSTATED_FOR_QUIZ` → `MEDIUM`: sin contenido hermano, contiene la corrección
   local pero enseña un alcance excesivo: un universal explícito o inequívoco, o
   una correspondencia parcial formulada como regla sin delimitar, queda refutado

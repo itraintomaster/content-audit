@@ -71,7 +71,7 @@ class MiniTheoryRewriterAdapterTest {
         }, "test; prompt=" + MiniTheoryRewriterAdapter.PROMPT_VERSION);
 
         adapter.rewrite(new RewriteInput("Resaltá el inglés clave.", "quiz", null, null, List.of()));
-        assertEquals("mini-feedback-v6", MiniTheoryRewriterAdapter.PROMPT_VERSION);
+        assertEquals("mini-feedback-v7", MiniTheoryRewriterAdapter.PROMPT_VERSION);
     }
 
     @Test
@@ -85,6 +85,16 @@ class MiniTheoryRewriterAdapterTest {
         assertTrue(guide.contains("leída como regla general tiene que seguir siendo cierta"));
         assertTrue(guide.contains("sin nombrar las demás personas de esa forma"));
         assertFalse(guide.contains("$is$ va con $she$"), "the guide asks in positive, it does not show the inverted card");
+    }
+
+    @Test
+    @Tag("F-MINIT-R010")
+    void asksTheCardToSayWhichFormItsSubjectTakesWhenItNamesSeveral() {
+        // José, 2/11 (brief 254): a was/were card says which one goes with the quiz's subject. «Para preguntar, was o
+        // were van antes del sujeto» explains the order but leaves the form open.
+        String guide = MiniTheoryRewriterAdapter.GUIDE;
+        assertTrue(guide.contains("Si la tarjeta nombra formas que dependen del sujeto, como $was$ o $were$"));
+        assertTrue(guide.contains("decí cuál lleva el sujeto\ndel quiz: «con $they$ se usa $were$»."));
     }
 
     @Test

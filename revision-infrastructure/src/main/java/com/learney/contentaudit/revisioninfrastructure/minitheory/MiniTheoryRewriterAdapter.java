@@ -7,13 +7,15 @@ import java.io.IOException;
 import java.util.function.UnaryOperator;
 
 final class MiniTheoryRewriterAdapter implements MiniTheoryRewriter {
-    static final String PROMPT_VERSION = "mini-feedback-v6";
+    static final String PROMPT_VERSION = "mini-feedback-v7";
     static final String GUIDE = """
             Reescribí ÚNICAMENTE la miniteoría del quiz indicado. No cambies oraciones, traducción ni instrucciones.
             El operador indica feedback pedagógico. Aplicalo leyendo el contexto completo del ejercicio.
             Explicá desde el sujeto hacia el verbo, indicando el tiempo cuando haga falta: «con $she$ se usa $is$».
             La regla es la del quiz, pero leída como regla general tiene que seguir siendo cierta; partiendo
             del sujeto lo es, porque cada sujeto lleva una sola forma, sin nombrar las demás personas de esa forma.
+            Si la tarjeta nombra formas que dependen del sujeto, como $was$ o $were$, decí cuál lleva el sujeto
+            del quiz: «con $they$ se usa $were$».
             La tarjeta explica la decisión de este quiz mediante una regla breve reutilizable.
             Evitá estrictamente el metalenguaje gramatical abstracto y la jerga teórica (por ejemplo:
             «adjetivo atributivo/predicativo», «estilo indirecto», «verbo de estado/estativo/copulativo»).

@@ -214,6 +214,12 @@ focalizadas y sencillamente explicadas para el alumno.
 > Si parte de la forma pero la generalización es cierta —la forma es de un solo sujeto, como «am va con I», o la tarjeta
 > nombra todas sus personas, como «is va con he, she, it»—, el defecto es sólo de dirección didáctica: el juez la
 > clasifica como `DIDACTIC_DIRECTION`, gravedad baja, tras descartar los defectos de verdad y alcance del caso.
+>
+> Si la tarjeta nombra las formas entre las que se elige según el sujeto —«was o were», una lista de contracciones— y
+> no dice cuál lleva el sujeto del quiz, deja abierta esa elección aunque explique bien el orden de la pregunta o la
+> negación: el juez la clasifica como `INSUFFICIENT_FOR_QUIZ`, gravedad alta. Alcanza con partir del sujeto: «con they
+> se usa were». Si la tarjeta ya nombra la forma exacta que pide el quiz —he's en una lista de contracciones cuando el
+> quiz pide he's—, esa parte está explicada.
 
 <details><summary>Dirección, generalización y criterios de aceptación</summary>
 
@@ -248,6 +254,10 @@ se conserva su motivo propio y la gravedad que corresponda según [F-MINIT-R004]
 | She ___ from London. · am / are / is | is va con she. | Rechazada por alcance (media): is también va con he e it. |
 | She ___ from London. · am / are / is | Con she se usa is. | Aprobada: focal y cierta generalizada. |
 | She ___ from London. · am / are / is | is va con he, she, it. | Rechazada por dirección invertida (baja): nombra todas las personas de is. |
+| ___ (they / be) near the tower last night? · Were they | Para preguntar, was o were van antes del sujeto. | Rechazada por insuficiente (alta): no dice que con they va were. |
+| ___ (they / be) near the tower last night? · Were they | Para preguntar, were va antes del sujeto: con they se usa were. | Aprobada si cumple las demás reglas del caso. |
+| ___ (He is) near the tower. · He's | I'm, you're, he's para afirmar. | No es insuficiente: ya nombra he's. |
+| ___ (We are) waiting. · We're | I'm, he's + -ing. | Rechazada por insuficiente (alta): no nombra la contracción de we. |
 
 **Criterio de aceptación del examen**: los casos invertidos «am va con I» e «is va con it» quedan como rechazos
 obligatorios del examen permanente, con origen en `PRB-fbaeac6f` y la confirmación del operador. Los controles sanos
@@ -261,6 +271,11 @@ Aclaración de José, 2/11/2026, ante «She is from London.» con la miniteoría
 la regla completa del tema sino la del quiz, pero tiene que ser generalizable; no puede afirmar algo que en general no es
 así. «is va con she» es incorrecto porque is va con she, he e it; «she va con is» es correcto. Reemplaza lo que esta
 regla decía el 21/10, que «is va con it» no afirmaba una exclusividad.
+
+Decisión de José, 2/11/2026, en el brief 254: una tarjeta de was/were tiene que decir cuál va con el sujeto («Sí, que
+lo diga»). El juez del 2/11 ya marcaba 24 de esas tarjetas, pero de rebote; esta regla lo escribe. En el mismo brief
+aparecieron tres marcas equivocadas: tarjetas de contracciones que ya nombraban la forma pedida. Tras esa misma decisión,
+José pidió sacar la corrección cuanto antes, con las pruebas y los exámenes que hagan falta.
 
 </details>
 
