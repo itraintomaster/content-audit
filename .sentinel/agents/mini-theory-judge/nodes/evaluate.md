@@ -73,7 +73,7 @@ este quiz (paso 4). Esa excepción se limita a la forma de un verbo que cambia
 con el sujeto. Fuera de eso, lo que la tarjeta plantea no cambia el contraste
 focal: lo fijan el enunciado, su etiqueta y la respuesta aceptada. Si la
 tarjeta presenta varias ramas —otro tiempo, otra polaridad, otra construcción—
-y el quiz ya fija una, las demás son átomos hermanos (paso 5) aunque la
+y el quiz ya fija una, las demás son átomos hermanos (paso 6) aunque la
 tarjeta las plantee como un contraste.
 
 #### Convención de un ejercicio y afirmación sobre todo el idioma
@@ -144,17 +144,10 @@ esa condición cuando el prompt no la aporta. Usar la forma marcada no demuestra
 que exista ese indicio. Si falta el requisito de la distinción focal, esa rama
 no explica la corrección y el contenido hermano no rebaja la insuficiencia.
 
-### 5. Local suficiente + cualquier átomo hermano → `OTHER_SUBTOPIC_CONTENT` y fin
+### 5. Alcance local engañoso → `OVERSTATED_FOR_QUIZ`
 
-Si la decisión local ya quedó bien explicada y existe al menos un átomo hermano,
-devolvé `OTHER_SUBTOPIC_CONTENT`. Es terminal aunque el átomo hermano contenga
-`siempre`, `nunca`, `sólo`, `todos` u otro universal. No audites la verdad, las
-excepciones ni el alcance del contenido hermano: alcanza con que esté fuera del
-contraste focal.
-
-### 6. Sin contenido hermano, alcance local engañoso → `OVERSTATED_FOR_QUIZ`
-
-Sólo si no hay ningún átomo hermano, usá `OVERSTATED_FOR_QUIZ` cuando un átomo
+Mirá sólo los átomos locales; el contenido hermano no se audita (paso 6). Haya o
+no átomos hermanos, usá `OVERSTATED_FOR_QUIZ` cuando un átomo
 local contiene un universal explícito o inequívoco cuyo alcance queda refutado por
 un uso común de la misma palabra o construcción. También corresponde cuando una
 asociación parcial se presenta sin delimitar como una regla de correspondencia y
@@ -175,13 +168,21 @@ nombra la refuta; la corrección invierte la dirección y no necesita nombrar la
 demás personas. Si la tarjeta parte de la forma pero su generalización es
 cierta —la forma es de un solo sujeto, como «$am$ va con $I$», o nombra todas
 sus personas en la construcción practicada, como «$is$ va con $he$, $she$,
-$it$»—, no enseña un alcance falso: seguí al paso 7.
+$it$»—, no enseña un alcance falso: seguí al paso 6.
 
 Un contraejemplo debe refutar la afirmación que realmente se hizo, manteniendo sus condiciones.
 Si la tarjeta dice que un indicio no basta para acreditar un rasgo, no la refuta una oración que añade explícitamente ese rasgo por otra vía.
 Agregar información que cambia la decisión no demuestra una excepción a la
 misma regla local. Distinguí «este indicio no acredita el rasgo» de «este indicio
 prohíbe que el rasgo exista»: sólo la segunda es una prohibición universal.
+
+### 6. Local suficiente y bien delimitado + cualquier átomo hermano → `OTHER_SUBTOPIC_CONTENT` y fin
+
+Si la decisión local ya quedó bien explicada, sin el alcance engañoso del paso 5,
+y existe al menos un átomo hermano, devolvé `OTHER_SUBTOPIC_CONTENT`. Es terminal
+aunque el átomo hermano contenga `siempre`, `nunca`, `sólo`, `todos` u otro
+universal. No audites la verdad, las excepciones ni el alcance del contenido
+hermano: alcanza con que esté fuera del contraste focal.
 
 ### 7. Concordancia explicada desde la forma hacia el sujeto → `DIDACTIC_DIRECTION`
 
@@ -190,7 +191,7 @@ la explicación debe partir del sujeto o de la categoría que determina la forma
 verbal, bajo el tiempo y la construcción practicados. Cuando la tarjeta presenta
 la forma verbal como punto de partida y le asigna el sujeto, devolvé
 `DIDACTIC_DIRECTION` con severidad `LOW`. Llegás acá sólo si esa asignación
-generaliza bien; si le daba una parte de sus personas, el paso 6 ya la cerró.
+generaliza bien; si le daba una parte de sus personas, el paso 5 ya la cerró.
 
 Es un criterio editorial sobre cómo explicar la elección, incluso cuando la
 compatibilidad inversa sea verdadera o biunívoca. No exige inventar otro sujeto
@@ -317,8 +318,8 @@ gravedad; cualquier redacción correctiva que propongas debe respetar también l
 Devolvé `holds: true`.
 
 La precedencia terminal completa es:
-`FALSE_RULE` / `INSUFFICIENT_FOR_QUIZ` → `OTHER_SUBTOPIC_CONTENT` →
-`OVERSTATED_FOR_QUIZ` → `DIDACTIC_DIRECTION` → `OVER_SPECIFIC_FOR_QUIZ` → `THEORETICAL_JARGON` → `MISSING_ENGLISH_HIGHLIGHT` → sano. Dentro del primer nivel, usá `FALSE_RULE` cuando
+`FALSE_RULE` / `INSUFFICIENT_FOR_QUIZ` → `OVERSTATED_FOR_QUIZ` →
+`OTHER_SUBTOPIC_CONTENT` → `DIDACTIC_DIRECTION` → `OVER_SPECIFIC_FOR_QUIZ` → `THEORETICAL_JARGON` → `MISSING_ENGLISH_HIGHLIGHT` → sano. Dentro del primer nivel, usá `FALSE_RULE` cuando
 hay dirección o clasificación local falsa; usá `INSUFFICIENT_FOR_QUIZ` cuando
 falta la distinción necesaria.
 
@@ -358,12 +359,13 @@ focal depende sólo de uno.
 
 La única evidencia externa permitida es un uso común de la misma palabra o
 construcción para refutar el alcance **local** explícito, inequívoco o restringido
-engañosamente por una regla de correspondencia en el paso 6. Un sujeto compatible
+engañosamente por una regla de correspondencia en el paso 5. Un sujeto compatible
 con la misma forma sirve para mostrar esa restricción; no audites su quiz ni
 conviertas esa evidencia en contenido obligatorio de la tarjeta corregida.
 No uses conocimiento externo para exigir variantes, excepciones ni
 subtemas que el quiz no practica. Nunca busques contraejemplos para un átomo
-hermano: el paso 5 ya cerró el caso como `OTHER_SUBTOPIC_CONTENT`.
+hermano: el paso 5 mira sólo los átomos locales y el paso 6 cierra el caso como
+`OTHER_SUBTOPIC_CONTENT`.
 
 ## Resultado sano
 
@@ -392,14 +394,15 @@ terminal aplicable. La severidad está fijada y nunca puede ser `BLOCKING`:
   respuesta aceptada. También si se dedica a otro subtema y no deja una
   corrección utilizable para el caso actual, o si el alumno elige entre «$was$
   o $were$» y la tarjeta los nombra sin decir cuál lleva el sujeto del quiz.
-- `OVERSTATED_FOR_QUIZ` → `MEDIUM`: sin contenido hermano, contiene la corrección
+- `OVERSTATED_FOR_QUIZ` → `MEDIUM`: haya o no contenido hermano, contiene la corrección
   local pero enseña un alcance excesivo: un universal explícito o inequívoco, o
   una correspondencia parcial formulada como regla sin delimitar, queda refutado
   por un uso común de la misma palabra o construcción. En concordancia incluye
   la forma presentada con sólo una parte de sus personas («$is$ va con $she$»).
-- `OTHER_SUBTOPIC_CONTENT` → `LOW`: explica correctamente el caso, pero además
-  agrega cualquier contenido que pertenece sólo a otro subtema. Si ese contenido
-  reemplaza la explicación necesaria, usá `INSUFFICIENT_FOR_QUIZ`.
+- `OTHER_SUBTOPIC_CONTENT` → `LOW`: explica correctamente el caso sin exagerar su
+  alcance, pero además agrega cualquier contenido que pertenece sólo a otro
+  subtema. Si ese contenido reemplaza la explicación necesaria, usá
+  `INSUFFICIENT_FOR_QUIZ`.
 - `DIDACTIC_DIRECTION` → `LOW`: sin falsedad, insuficiencia ni alcance engañoso,
   presenta la forma verbal como punto de partida para asignarle un sujeto,
   cuando la explicación debe partir del sujeto para elegir su forma. Generalizada
@@ -418,7 +421,7 @@ terminal aplicable. La severidad está fijada y nunca puede ser `BLOCKING`:
 El `counterexample` muestra evidencia breve aplicada al propio quiz: una
 completación correcta, una formulación que desmienta la regla o la decisión no
 explicada. Nunca uses otro quiz. La única excepción externa es el uso común
-admitido por el paso 6 para refutar un alcance local engañoso; no sirve para exigir
+admitido por el paso 5 para refutar un alcance local engañoso; no sirve para exigir
 cobertura adicional. La `explanation` dice en castellano qué coincide o no con
 el caso.
 
