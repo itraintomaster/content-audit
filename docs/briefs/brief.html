@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>248 · Un contrato para todos los evaluadores</title>
+<title>249 · Cuatro decisiones antes del contrato</title>
 <meta name="atril:conversacion" content="claude:7aeb7923-ce6d-404e-87c0-0be9207254b5">
 <meta name="atril:agente" content="claude">
 <meta name="atril:hilo" content="a1">
@@ -405,172 +405,133 @@ figure.dg{margin:0 0 16px;overflow-x:auto}figure.dg>svg{display:block;width:100%
 
   <header>
     <div class="kicker">
-      <span class="num">248</span>
+      <span class="num">249</span>
       <span class="badge">Diseño · Decisión</span>
       <span class="meta">Tanda A1 · C2 · 1/11/2026</span>
     </div>
     <details class="pedido">
-      <summary><span class="k">Lo que pediste</span><span class="q">La máquina de estados que decide «Todos lo aprueban», centralizada: recorrer jueces y analizadores, todos con el mismo contrato.</span></summary>
+      <summary><span class="k">Lo que pediste</span><span class="q">Hacer el contrato único del 248 con /feature-dev, después del cambio corto de lo leve en ámbar.</span></summary>
       <div class="pedido-c">
         <dl>
-          <dt>Qué estabas mirando</dt><dd>El brief 247, que listaba estados y cascadas pero no dejaba claro si había un contrato común.</dd>
-          <dt>Qué pediste</dt><dd>Ver la máquina de estados que se usa. Que cada evaluador pueda ser distinto, pero con la semántica definida y la decisión en un solo lugar.</dd>
-          <dt>A qué te referías</dt><dd><ol><li>Si hoy se decide recorriendo una lista con un contrato común.</li><li>Qué quiere decir «leve»: ¿nunca importa, o depende del evaluador?</li><li>Que todo dé bien quiera decir «Todos lo aprueban», y nada más.</li></ol></dd>
+          <dt>Qué estabas mirando</dt><dd>El brief 248 y el 24a7 con «error nuevo» en rojo por algo leve.</dd>
+          <dt>Qué pediste</dt><dd>Partir en dos: primero el cambio de pantalla, después el desarrollo largo con /feature-dev. Ya dijiste que lo de gravedad baja no frena.</dd>
+          <dt>A qué te referías</dt><dd><ol><li>Que todos los evaluadores cumplan el mismo contrato.</li><li>Que la decisión esté en un solo lugar.</li><li>Que antes de diseñar se pregunte lo que no está definido.</li></ol></dd>
         </dl>
-        <p class="de">La conversación del 1/11, sobre el brief 247.</p>
+        <p class="de">La conversación del 1/11, después del brief 248.</p>
       </div>
     </details>
-    <h1>Un contrato para todos los evaluadores: cuatro estados y un recorrido</h1>
-    <p class="sub">Qué hay hoy, la máquina que propongo, el recorrido central y la semántica de «baja».</p>
+    <h1>El contrato entra en los 21 evaluadores: faltan cuatro decisiones</h1>
+    <p class="sub">Lo que encontraron los tres agentes que leyeron content-audit y el tablero, y lo que no está definido.</p>
   </header>
 
-  <div class="lede"><p><strong>Hoy no hay una máquina de estados: hay tres cascadas a mano con nueve casos especiales.</strong> Propongo un contrato único: cada evaluador dice no aplica, falta, supera o no supera, y se recorre la lista.</p></div>
+  <div class="lede"><p><strong>El contrato entra en los 21 evaluadores sin casos especiales, pero quedan cuatro decisiones.</strong> Con mis recomendaciones, «Todos los jueces lo aprueban» queda en 1.580 ejercicios y «Empeoró» en 135.</p></div>
 
   <div class="saber">
     <h2>Lo que tenés que saber</h2>
     <dl>
-      <div><dt>Evaluador</dt><dd>Lo que opina de un ejercicio: 10 jueces, Casi duplicados, 9 analizadores y el revisor.</dd></div>
-      <div><dt>Gravedad, ya definida el 30/9</dt><dd>Bloqueante: no se puede acertar. Alta: marca mal una respuesta o enseña algo falso. Media: se entiende, pero está mal. Baja: se puede mejorar.</dd></div>
+      <div><dt>«Sólo ordena»</dt><dd>Un hallazgo que el evaluador anota pero no cuenta como error suyo. Hoy la lista lo cuenta igual.</dd></div>
+      <div><dt>Marcas del revisor</dt><dd>«Mal»: el cambio empeoró. «Heredado»: anota un problema que ya estaba en producción. «Dudoso»: mejoró algo y empeoró otra cosa.</dd></div>
     </dl>
   </div>
 
   <section>
-    <h2>Hoy no se recorre una lista: hay nueve casos especiales</h2>
-    <div class="tw"><table>
-      <thead><tr><th>#</th><th>Caso especial de hoy</th><th>Dónde está escrito</th><th>En el contrato</th></tr></thead>
-      <tbody>
-        <tr><td>1</td><td>Lo leve de un analizador no frena</td><td>Servidor, la lista</td><td>el umbral del evaluador</td></tr>
-        <tr><td>2</td><td>Lo leve de un juez frena</td><td>Servidor, la lista</td><td>el umbral del evaluador</td></tr>
-        <tr><td>3</td><td>«Empeoró» cuenta cualquier gravedad</td><td>Servidor, el cambio</td><td>sólo pasar a <span class="pill p-bad">no supera</span></td></tr>
-        <tr><td>4</td><td>Casi duplicados: juez para lo leve, analizador para lo demás</td><td>Servidor, la lista</td><td>un evaluador más</td></tr>
-        <tr><td>5</td><td>La oración guardada en producción no frena<small>con dos criterios distintos</small></td><td>Servidor y página</td><td>no es un hallazgo del ejercicio</td></tr>
-        <tr><td>6</td><td>Analizador sin evaluar: afuera de todas las listas</td><td>Servidor, la lista</td><td><span class="pill p-warn">falta</span></td></tr>
-        <tr><td>7</td><td>Analizador ausente del análisis: se saltea<small>el texto de vos</small></td><td>Servidor, la lista</td><td><span class="pill p-warn">falta</span></td></tr>
-        <tr><td>8</td><td>Abstención: «Faltan opiniones» en la lista, ignorada en el cambio</td><td>Página y servidor</td><td><span class="pill p-idle">no aplica</span> o <span class="pill p-warn">falta</span>, según cuál</td></tr>
-        <tr><td>9</td><td>«Mal» del revisor</td><td>Sólo la página, 3 s después</td><td>un evaluador más</td></tr>
-      </tbody></table></div>
-    <p class="pie">Cada caso se agregó donde apareció un ejercicio mal clasificado. Por eso la lista, «Empeoró» y la línea roja se contradicen.</p>
-  </section>
-
-  <section>
-    <h2>La máquina: cada evaluador está en uno de cuatro estados</h2>
-<figure class="dg">
-<script type="text/x-d2">
-direction: down
-falta: "FALTA\naplica y no tiene una respuesta válida para hoy" {class: aviso}
-noaplica: "NO APLICA\nno mira este ejercicio" {class: tenue}
-supera: "SUPERA\nnada llega a su umbral" {class: nuevo}
-nosupera: "NO SUPERA\nalgo llega a su umbral" {class: malo}
-falta -> supera: "mide"
-falta -> nosupera: "mide"
-falta -> noaplica: "se abstiene: «no aplica»"
-supera -> falta: "cambia el ejercicio\no la versión del evaluador" {class: punteada}
-nosupera -> falta: "cambia el ejercicio\no la versión del evaluador" {class: punteada}
-</script>
-<svg role="img" class="dg-svg" style="max-width:782px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-d2-version="v0.9.0" preserveAspectRatio="xMinYMin meet" viewBox="0 0 711 429"><svg class="d2-2416108948 d2-svg" width="711" height="429" viewBox="7 7 711 429"><rect x="7" y="7" width="711" height="429" rx="0" fill="#a00005" class=" fill-N7" stroke-width="0"  fill-opacity="0"/><style type="text/css"><![CDATA[
-.d2-2416108948 .text {
-	font-family: "d2-2416108948-font-regular";
-}
-@font-face {
-	font-family: d2-2416108948-font-regular;
-	src: url("data:application/font-woff;base64,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");
-}
-.d2-2416108948 .text-italic {
-	font-family: "d2-2416108948-font-italic";
-}
-@font-face {
-	font-family: d2-2416108948-font-italic;
-	src: url("data:application/font-woff;base64,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");
-}]]></style><style type="text/css"><![CDATA[.shape {
-  shape-rendering: geometricPrecision;
-  stroke-linejoin: round;
-}
-.connection {
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.blend {
-  mix-blend-mode: multiply;
-  opacity: 0.5;
-}
-
-		.d2-2416108948 .fill-N7{fill:var(--dg-surface);}
-		.d2-2416108948 .stroke-B2{stroke:var(--dg-fg-3);}.appendix text.text{fill:var(--dg-fg)}.md{--color-fg-default:var(--dg-fg);--color-fg-muted:var(--dg-fg-2);--color-fg-subtle:var(--dg-fg-3);--color-canvas-default:var(--dg-surface);--color-canvas-subtle:var(--dg-bg);--color-border-default:var(--dg-line);--color-border-muted:var(--dg-fg-3);--color-neutral-muted:var(--dg-bg);--color-accent-fg:var(--dg-fg-3);--color-accent-emphasis:var(--dg-fg-3);--color-attention-subtle:var(--dg-fg-2);--color-danger-fg:red;}.light-code{display: block}.dark-code{display: none}]]></style><g class="ZmFsdGE= aviso"><g class="shape" ><rect x="99" y="12" width="417" height="86" rx="10" stroke="#a00021" fill="#a00022" style="stroke-width:1;" /></g><text x="307.5" y="52.5" fill="#a00001" class="text" style="text-anchor:middle;font-size:18px"><tspan x="307.5" dy="0">FALTA</tspan><tspan x="307.5" dy="20.5">aplica y no tiene una respuesta válida para hoy</tspan></text></g><g class="bm9hcGxpY2E= tenue"><g class="shape" ><rect x="499" y="345" width="214" height="86" rx="10" stroke="#a00003" fill="#a00006" style="stroke-width:1;stroke-dasharray:4.000000,4.000000;" /></g><text x="606" y="385.5" fill="#a00002" class="text" style="text-anchor:middle;font-size:18px"><tspan x="606" dy="0">NO APLICA</tspan><tspan x="606" dy="20.5">no mira este ejercicio</tspan></text></g><g class="c3VwZXJh nuevo"><g class="shape" ><rect x="12" y="345" width="223" height="86" rx="10" stroke="#a00011" fill="#a00012" style="stroke-width:1;" /></g><text x="123.5" y="385.5" fill="#a00001" class="text" style="text-anchor:middle;font-size:18px"><tspan x="123.5" dy="0">SUPERA</tspan><tspan x="123.5" dy="20.5">nada llega a su umbral</tspan></text></g><g class="bm9zdXBlcmE= malo"><g class="shape" ><rect x="255" y="345" width="218" height="86" rx="10" stroke="#a00041" fill="#a00042" style="stroke-width:1;" /></g><text x="364" y="385.5" fill="#a00001" class="text" style="text-anchor:middle;font-size:18px"><tspan x="364" dy="0">NO SUPERA</tspan><tspan x="364" dy="20.5">algo llega a su umbral</tspan></text></g><g class="KGZhbHRhIC0mZ3Q7IHN1cGVyYSlbMF0="><marker id="mk-d2-2416108948-1883452432" markerWidth="10" markerHeight="12" refX="7" refY="6" viewBox="0 0 10 12" orient="auto" markerUnits="userSpaceOnUse"> <polygon points="0,0 10,6 0,12" fill="#a00003" class="connection" stroke-width="2" /> </marker><path d="M 169 99.5 L 169 128 S 169 138 159 138 L 77.5 138 S 67.5 138 67.5 148 L 67.5 341.5" stroke="#a00003" fill="none" class="connection" style="stroke-width:2;" marker-end="url(#mk-d2-2416108948-1883452432)" mask="url(#d2-2416108948)" /><text x="68" y="176" fill="#a00002" class="text-italic" style="text-anchor:middle;font-size:16px">mide</text></g><g class="KGZhbHRhIC0mZ3Q7IG5vc3VwZXJhKVswXQ=="><path d="M 327.665985 99.5 L 327.665985 341.5" stroke="#a00003" fill="none" class="connection" style="stroke-width:2;" marker-end="url(#mk-d2-2416108948-1883452432)" mask="url(#d2-2416108948)" /><text x="328" y="227" fill="#a00002" class="text-italic" style="text-anchor:middle;font-size:16px">mide</text></g><g class="KGZhbHRhIC0mZ3Q7IG5vYXBsaWNhKVswXQ=="><path d="M 447 99.5 L 447 128 S 447 138 457 138 L 596.333008 138 S 606.333008 138 606.333008 148 L 606.333008 341.5" stroke="#a00003" fill="none" class="connection" style="stroke-width:2;" marker-end="url(#mk-d2-2416108948-1883452432)" mask="url(#d2-2416108948)" /><text x="606" y="147" fill="#a00002" class="text-italic" style="text-anchor:middle;font-size:16px">se abstiene: «no aplica»</text></g><g class="KHN1cGVyYSAtJmd0OyBmYWx0YSlbMF0= punteada"><path d="M 179.5 343.5 L 179.5 198 S 179.5 188 189.5 188 L 228.5 188 S 238.5 188 238.5 178 L 238.5 101.5" stroke="#a00003" fill="none" class="connection" style="stroke-width:2;stroke-dasharray:8.000000,7.892511;" marker-end="url(#mk-d2-2416108948-1883452432)" mask="url(#d2-2416108948)" /><text x="180" y="190" fill="#a00002" class="text-italic" style="text-anchor:middle;font-size:16px"><tspan x="180" dy="0">cambia el ejercicio</tspan><tspan x="180" dy="18.5">o la versión del evaluador</tspan></text></g><g class="KG5vc3VwZXJhIC0mZ3Q7IGZhbHRhKVswXQ== punteada"><path d="M 420 343.5 L 420 101.5" stroke="#a00003" fill="none" class="connection" style="stroke-width:2;stroke-dasharray:8.000000,7.892511;" marker-end="url(#mk-d2-2416108948-1883452432)" mask="url(#d2-2416108948)" /><text x="420" y="219" fill="#a00002" class="text-italic" style="text-anchor:middle;font-size:16px"><tspan x="420" dy="0">cambia el ejercicio</tspan><tspan x="420" dy="18.5">o la versión del evaluador</tspan></text></g><mask id="d2-2416108948" maskUnits="userSpaceOnUse" x="7" y="7" width="711" height="429">
-<rect x="7" y="7" width="711" height="429" fill="white"></rect>
-<rect x="49" y="160" width="38" height="21" fill="black"></rect>
-<rect x="309" y="211" width="38" height="21" fill="black"></rect>
-<rect x="526" y="131" width="160" height="21" fill="black"></rect>
-<rect x="93" y="174" width="174" height="37" fill="black"></rect>
-<rect x="333" y="203" width="174" height="37" fill="black"></rect>
-</mask></svg><style>.dg-svg{--dg-fg:var(--fg,var(--ed-fg,#1c1a17));--dg-fg-2:var(--fg-2,var(--ed-fg-2,#57524b));--dg-fg-3:var(--fg-3,var(--ed-fg-3,#8b847a));--dg-line:var(--line,var(--ed-line,#e6e2db));--dg-surface:var(--bg-elev,var(--ed-paper,#ffffff));--dg-bg:var(--bg,var(--ed-bg,#fbfaf8));--dg-ok:var(--ok,var(--app-ok,#2f6b46));--dg-ok-soft:var(--ok-soft,var(--app-ok-2,#e9f4ed));--dg-warn:var(--warn,var(--app-warn,#8a6314));--dg-warn-soft:var(--warn-soft,var(--app-warn-2,#fbf2dd));--dg-accent:var(--accent,var(--ed-accent,#b4531f));--dg-accent-soft:var(--accent-soft,var(--ed-accent-soft,#fdf1e7));--dg-bad:var(--bad,var(--app-bad,#a3342c));--dg-bad-soft:var(--bad-soft,var(--app-bad-2,#fbecea));--dg-info:var(--info,var(--app-info,#2a5b8f));--dg-info-soft:var(--info-soft,var(--app-info-2,#e9f1f9))}[fill="#a00001"]{fill:var(--dg-fg)}[stroke="#a00001"]{stroke:var(--dg-fg)}[fill="#a00002"]{fill:var(--dg-fg-2)}[stroke="#a00002"]{stroke:var(--dg-fg-2)}[fill="#a00003"]{fill:var(--dg-fg-3)}[stroke="#a00003"]{stroke:var(--dg-fg-3)}[fill="#a00004"]{fill:var(--dg-line)}[stroke="#a00004"]{stroke:var(--dg-line)}[fill="#a00005"]{fill:var(--dg-surface)}[stroke="#a00005"]{stroke:var(--dg-surface)}[fill="#a00006"]{fill:var(--dg-bg)}[stroke="#a00006"]{stroke:var(--dg-bg)}[fill="#a00011"]{fill:var(--dg-ok)}[stroke="#a00011"]{stroke:var(--dg-ok)}[fill="#a00012"]{fill:var(--dg-ok-soft)}[stroke="#a00012"]{stroke:var(--dg-ok-soft)}[fill="#a00021"]{fill:var(--dg-warn)}[stroke="#a00021"]{stroke:var(--dg-warn)}[fill="#a00022"]{fill:var(--dg-warn-soft)}[stroke="#a00022"]{stroke:var(--dg-warn-soft)}[fill="#a00031"]{fill:var(--dg-accent)}[stroke="#a00031"]{stroke:var(--dg-accent)}[fill="#a00032"]{fill:var(--dg-accent-soft)}[stroke="#a00032"]{stroke:var(--dg-accent-soft)}[fill="#a00041"]{fill:var(--dg-bad)}[stroke="#a00041"]{stroke:var(--dg-bad)}[fill="#a00042"]{fill:var(--dg-bad-soft)}[stroke="#a00042"]{stroke:var(--dg-bad-soft)}[fill="#a00051"]{fill:var(--dg-info)}[stroke="#a00051"]{stroke:var(--dg-info)}[fill="#a00052"]{fill:var(--dg-info-soft)}[stroke="#a00052"]{stroke:var(--dg-info-soft)}</style></svg>
-</figure>
-    <p class="pie">Todo ejercicio empieza en «falta» para cada evaluador que lo mira. Una abstención «revisar» lo deja en «falta» hasta que lo mire una persona.</p>
-  </section>
-
-  <section>
-    <h2>Cada evaluador calcula su estado igual; cambian tres datos de su ficha</h2>
-    <div class="tw"><table>
-      <thead><tr><th>#</th><th>Pregunta</th><th>Dato de la ficha</th><th>Resultado</th></tr></thead>
-      <tbody>
-        <tr><td>1</td><td>¿Mira este tipo de ejercicio?</td><td><b>Aplica a</b><small>los tipos de ejercicio que mira</small></td><td>no → <span class="pill p-idle">no aplica</span></td></tr>
-        <tr><td>2</td><td>¿Tiene una respuesta para el contenido de hoy?</td><td>—</td><td>no → <span class="pill p-warn">falta</span></td></tr>
-        <tr><td>3</td><td>¿Es de su versión vigente y está completa?</td><td><b>Versión vigente</b><small>juez: la aprobada · regla fija: la del código · revisor: cualquiera</small></td><td>no → <span class="pill p-warn">falta</span></td></tr>
-        <tr><td>4</td><td>¿Se abstuvo?</td><td>—</td><td>«no aplica» → <span class="pill p-idle">no aplica</span><small>«revisar» → falta</small></td></tr>
-        <tr><td>5</td><td>¿Algún hallazgo del ejercicio llega a su umbral?</td><td><b>Umbral</b><small>la gravedad desde la que no supera</small></td><td>sí → <span class="pill p-bad">no supera</span><small>no → supera</small></td></tr>
-      </tbody></table></div>
-    <p class="pie">El revisor entra igual: «Mal» llega al umbral; «Bien», «Dudoso» y «Heredado», no. La oración de producción es de la copia publicada, no del ejercicio: no entra en el paso 5.</p>
-  </section>
-
-  <section>
-    <h2>El recorrido central: diez líneas, en content-audit</h2>
-<pre><code>para cada ejercicio:
-  estados = [ e.estadoEn(ejercicio) para cada evaluador e ]    # 20 del catálogo + el revisor
-  si alguno es NO_SUPERA     → «Con un problema»     (si lo aprobaste: «Vos lo aprobás»)
-  si no, si alguno es FALTA  → «Faltan opiniones»
-  si no                      → «Todos lo aprueban»   (si lo aprobaste: «Preparados»)
-
-para cada cambio, con los estados de antes y de después del mismo ejercicio:
-  si alguno pasó de SUPERA o NO_APLICA a NO_SUPERA  → «Empeoró»
-  si no, si el que lo pidió sigue en NO_SUPERA       → «No consta arreglado»
-  si no, si alguno está en FALTA                     → «Falta medir»
-  si no                                              → «Lo dan por bueno»</code></pre>
-    <p class="pie">Content-audit ya tiene todo: el catálogo, las versiones, las respuestas y las marcas. Calcula los estados una vez; el tablero sólo cuenta y dibuja.</p>
-  </section>
-
-  <section>
-    <h2>La semántica de «baja» decide cuántos entran</h2>
-    <div class="hb">
-      <div class="r"><span class="t">Miniteoría con error</span><span class="tr"><span class="f" style="width:100%"></span></span><span class="n">805</span></div>
-      <div class="r"><span class="t">Calidad didáctica A1</span><span class="tr"><span class="f" style="width:16.1%"></span></span><span class="n">130</span></div>
-      <div class="r"><span class="t">Oraciones con el largo de su nivel</span><span class="tr"><span class="f" style="width:14.0%"></span></span><span class="n">113</span></div>
-      <div class="r"><span class="t">Ejercicio casi repetido</span><span class="tr"><span class="f" style="width:7.5%"></span></span><span class="n">60</span></div>
-      <div class="r"><span class="t">Exige una forma</span><span class="tr"><span class="f" style="width:4.3%"></span></span><span class="n">35</span></div>
-      <div class="r"><span class="t">Otros cuatro</span><span class="tr"><span class="f s" style="width:1.5%"></span></span><span class="n">12</span></div>
+    <h2>Con el contrato, la lista y «Empeoró» salen del mismo estado</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">1.580<small>de 2.402</small></div><div class="l">en «Todos los jueces lo aprueban», contra 665 hoy</div></div>
+      <div class="kpi"><div class="n">135</div><div class="l">ejercicios en «Empeoró»; hoy son 328 cambios, contados de otra forma</div></div>
+      <div class="kpi"><div class="n">1<small>lugar</small></div><div class="l">decide todo; hoy deciden 3, con 12 copias de las reglas</div></div>
     </div>
-    <p class="pie">Con umbral «media» para todos entran 1.608. Cada barra es cuántos salen si sólo ese evaluador frena desde «baja». Todos desde «baja»: 629.</p>
+    <p class="pie">Los 135: el revisor marca «Mal» en 80, «No regala la respuesta» encuentra algo nuevo en 56, la pista en 4 y la naturalidad en 1.</p>
+  </section>
+
+  <section>
+    <h2>Cada caso especial de hoy queda en un paso del contrato</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Caso especial de hoy</th><th>En el contrato</th></tr></thead>
+      <tbody>
+        <tr><td>Lo leve frena o no según quién lo diga</td><td>Paso 5: umbral «media» para todos</td></tr>
+        <tr><td>«Empeoró» cuenta cualquier gravedad</td><td>Un evaluador pasó a <span class="pill p-bad">no supera</span></td></tr>
+        <tr><td>«Aplica a» escrito en cuatro lugares</td><td>Paso 1: un dato de la ficha</td></tr>
+        <tr><td>«Casi duplicados» es medio juez, sin versión</td><td>Paso 3: un juez con su versión aprobada</td></tr>
+        <tr><td>El texto de vos no está medido en la C2</td><td>Se mide gratis, en la base y en la corrección</td></tr>
+        <tr><td>Analizador sin evaluar, ejercicio editado</td><td>Paso 2: <span class="pill p-warn">falta</span></td></tr>
+        <tr><td>La abstención frena la lista y el cambio la ignora</td><td>Paso 4, igual para los dos</td></tr>
+        <tr><td>La oración de producción, con dos criterios</td><td>El hallazgo dice «lo arregla publicar»</td></tr>
+        <tr><td>El «Mal» del revisor llega 3 s después</td><td>El revisor, un evaluador más</td></tr>
+        <tr><td>«Sólo ordena», «Heredado», «Dudoso»</td><td>Lo que tenés que decidir</td></tr>
+      </tbody></table></div>
+    <p class="pie">El orden para leerlo: hoy tres lugares tienen cada uno su copia de estas reglas. Con el contrato, cada regla es un paso o un dato de la ficha.</p>
+  </section>
+
+  <section>
+    <h2>«Sólo ordena» quiere decir dos cosas distintas</h2>
+    <div class="grid g2">
+      <div class="ex">
+        <div class="cons">Contraste inicial · ejercicio 2069 · «Más de una respuesta válida»</div>
+        <div class="cons">Consigna: Escribe las oraciones en 'present simple' o 'present continuous'.</div>
+        <div class="en">She<span class="gap"></span>(live) there all year.</div>
+        <div class="ans">Acepta: <b>lives</b> · Traducción: <i>Ella vive allí todo el año.</i></div>
+        <div class="mark"><span class="x">✕</span><span>La consigna ofrece «is living» y el corrector la rechaza. <span class="sev a">alta</span></span></div>
+        <div class="ft"><span>Dice que lo arregla «Exige una forma»</span><span>no marca ninguno de los 66</span></div>
+      </div>
+      <div class="ex">
+        <div class="cons">Afirmativas regulares · ejercicio 1ed4 · «Traducción que no corresponde»</div>
+        <div class="cons">Consigna: Escribe la forma afirmativa en presente simple.</div>
+        <div class="en">It<span class="gap"></span>(get) cold here.</div>
+        <div class="ans">Acepta: <b>gets</b> · Traducción: <i>Aquí hace frío.</i></div>
+        <div class="mark warn"><span class="x">?</span><span>Desde el inglés cumple; desde la traducción no: «gets cold» es empezar a hacer frío.</span></div>
+        <div class="ft"><span>Los dos jueces no coinciden</span><span>14 ejercicios</span></div>
+      </div>
+    </div>
+    <p class="pie">Si «sólo ordena» no cuenta, 56 de los 66 como el primero entran en «Todos». El segundo es un empate: falta desempatarlo, no es un error.</p>
+  </section>
+
+  <section>
+    <h2>«Heredado» anota un problema que sigue en el ejercicio</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Marca</th><th>Qué anota</th><th>Cuántos</th><th>Estado que propongo</th></tr></thead>
+      <tbody>
+        <tr><td>Bien</td><td>Nada</td><td>1.541</td><td><span class="pill p-ok">supera</span></td></tr>
+        <tr><td>Mal</td><td>Un problema nuevo</td><td>80</td><td><span class="pill p-bad">no supera</span><small>y es «Empeoró»</small></td></tr>
+        <tr class="decide"><td>Heredado</td><td>Un problema que ya estaba<small>el 1ed4: la traducción describe un estado y el inglés, un cambio</small></td><td>74</td><td><span class="pill p-bad">no supera</span><small>pero no es «Empeoró»: ya estaba</small></td></tr>
+        <tr class="decide"><td>Dudoso</td><td>Algo mejor y algo peor<small>el 1eae: la miniteoría perdió la regla general de las preguntas wh</small></td><td>227</td><td><span class="pill p-ok">supera</span><small>y se ve en ámbar, como lo leve</small></td></tr>
+      </tbody></table></div>
+    <p class="pie">Cambio la recomendación del 248, que hacía superar a los dos. Con «Heredado» que no supera, «Todos» pasa de 1.607 a 1.580.</p>
+  </section>
+
+  <section>
+    <h2>Cómo lo armo, si estás de acuerdo</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">Mide lo gratis que falta</span><span class="d">El texto de vos, en la base y en la corrección.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Calcula cada estado</span><span class="d">Content-audit, en la misma lectura del análisis, con el motivo.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">Recorre la lista</span><span class="d">La lista y «Empeoró», con las mismas reglas.</span></div>
+      <div class="st"><span class="i">4</span><span class="h">El tablero dibuja</span><span class="d">Renglones, chip y motivo salen del estado; se borran las copias.</span></div>
+      <div class="st end"><span class="i">5</span><span class="h">Prueba sobre la C2</span><span class="d">Ningún ejercicio de «Todos» con algo que no supera ni un renglón rojo.</span></div>
+    </div>
+    <p class="pie">No toca el cierre, Publicar, los resúmenes ni la app de Flutter. Antes de escribir código, tres agentes proponen cómo hacerlo y elegís uno.</p>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · El umbral general: ¿«media»?</span>
-        <div class="ops"><span class="op rec">Sí: «baja» se puede mejorar · recomendado</span><span class="op">No: «baja» también</span></div>
-        <span class="why">Es la definición del 30/9. Lo bajo se ve en gris y nunca es «error nuevo».</span></div>
-      <div class="ask"><span class="q">2 · ¿Algún evaluador frena desde «baja»?</span>
-        <div class="ops"><span class="op rec">Ninguno · recomendado</span><span class="op">Miniteoría</span><span class="op">Otro</span></div>
-        <span class="why">Si un juez llama «baja» a algo que está mal, se recalibra el juez. El 2ce8 igual queda afuera por el «Mal» del revisor.</span></div>
-      <div class="ask"><span class="q">3 · Abstenciones: «no aplica» no aplica y «revisar» falta</span>
+      <div class="ask"><span class="q">1 · La consigna ofrece una respuesta que el corrector rechaza: ¿cuenta?</span>
+        <div class="ops"><span class="op rec">Sí, por su gravedad · recomendado</span><span class="op">No cuenta</span></div>
+        <span class="why">El que debería arreglarlo no marca ninguno de los 66 ejercicios.</span></div>
+      <div class="ask"><span class="q">2 · Los dos jueces de traducción no coinciden: ¿qué es?</span>
+        <div class="ops"><span class="op rec">Falta, hasta desempatar · recomendado</span><span class="op">No supera</span></div>
+        <span class="why">Son 14. Hoy frenan como si fuera un error.</span></div>
+      <div class="ask"><span class="q">3 · ¿«No aplica» no aplica, y «revisar» y «falta contexto» faltan?</span>
         <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">Otra cosa</span></div>
-        <span class="why">Hoy las dos dejan el ejercicio en «Faltan opiniones» y el cambio las ignora.</span></div>
-      <div class="ask"><span class="q">4 · «Dudoso» y «Heredado» del revisor: ¿superan?</span>
-        <div class="ops"><span class="op rec">Sí, con su filtro · recomendado</span><span class="op">No superan</span></div>
-        <span class="why">No son un «Mal». Son 43 en las listas.</span></div>
+        <span class="why">«Falta contexto» no aparece en la C2. «Revisar» deja 101 en «Faltan opiniones».</span></div>
+      <div class="ask"><span class="q">4 · ¿«Heredado» no supera y «Dudoso» supera en ámbar?</span>
+        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">Los dos superan</span><span class="op">Ninguno supera</span></div>
+        <span class="why">«Heredado» deja un problema conocido. «Dudoso» anota lo que el juez de la miniteoría llama leve.</span></div>
     </div>
   </section>
 
   <footer>
-    <span>Diseño, sin código todavía. Hoy: nadie_le_ve_problemas.dart (lista), opinion_de_los_jueces.dart + lectura_del_despues.dart (cambio), selectores.js y vistas/nadie.js (página). Gravedad: F-HALL-R002 (requirements/2026-09-30.02_contrato-del-hallazgo). Conteos sobre los 2.402 ejercicios del estado «correction» de la C2, con el contrato aplicado: abstención NOT_APPLICABLE = no aplica, REVIEW = falta; revisor Mal = no supera, Bien/Dudoso/Heredado = supera, ejercicio sin cambios = no aplica; data-coherence/saved-sentence con marca «produccion» fuera del paso 5; spanish-register (ausente del análisis) sin contar, porque falta medirlo. Umbral «media» para todos: 1.608 «Todos» + 199 preparados; jueces desde «baja» y reglas desde «media» (lo de hoy): 712 + 188; todos desde «baja»: 629 + 188. Otros cuatro: repetido igual 6, traducción 3, opción múltiple 2, distractores 1. 2ce8 = 67fab6d59930102295342ce8; 24a7 entra con umbral «media».</span>
-    <span>brief 248 · docs/briefs/248-un-contrato-para-todos-los-evaluadores.html</span>
+    <span>Diseño, sin código del contrato todavía. Exploración: tres agentes leyeron content-audit (análisis vigente, «lo que falta opinar» de F-OPINA-R001 como patrón, catálogo, revisor) y el tablero (nadie_le_ve_problemas.dart, opinion_de_los_jueces.dart, lectura_del_despues.dart, selectores.js, nadie.js). Conteos con scratchpad/todos2/contrato2.py sobre el análisis vigente bajado el 1/11 a las 11:00: 2.402 ejercicios del estado «correction», 20 evaluadores del catálogo con QUIZ más el revisor, umbral «media», data-coherence/saved-sentence «produccion» fuera, texto de vos sin medir. Variantes: «sólo ordena» cuenta 1.608; no cuenta 1.673; cuenta y desacuerdo = falta 1.607; más Heredado no supera 1.580 (192 preparados, 515 con un problema, 108 faltan, 7 vos lo aprobás); Dudoso y Heredado faltan 1.437. «Sólo ordena» en la C2: single-answer offered-alternative 96 hallazgos en 66 ejercicios (ninguno con answer-completeness), translation-sense judges-disagree 14. «Empeoró»: ejercicios cambiados (1.922) con un evaluador que pasó de supera o no aplica a no supera. Las 12 copias: las 9 del brief 248 más «quién falta», «jueces del ejercicio» y las de Flutter/estadísticas.</span>
+    <span>brief 249 · docs/briefs/249-cuatro-decisiones-antes-del-contrato.html</span>
   </footer>
 
 </div>
