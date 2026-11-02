@@ -3,26 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Focal pero generalizable</title>
+<title>El juez nuevo, medido</title>
 <meta name="atril:conversacion" content="claude:7aeb7923-ce6d-404e-87c0-0be9207254b5">
 <meta name="atril:agente" content="claude">
 <meta name="atril:hilo" content="a1">
-<!--
-  TEMPLATE DE BRIEF · visual-brief
-  1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
-  2. Por cada sección: un título que dice la conclusión, UN dibujo copiado del
-     catálogo del final y un pie de dos renglones. Primero el dibujo; el texto lo rotula.
-     Si habla de una pantalla: primero DÓNDE (la captura con marcas, .map), después EL
-     PROBLEMA como un caso de uso (la foto de hoy + .mark), después CÓMO QUEDA (la maqueta
-     .mq con números y su leyenda). Si ya está hecho, los dos lados del .ad son capturas.
-     Las fotos, con capturar.mjs, en docs/briefs/NNN-slug/ (SKILL.md §4).
-  3. BORRAR el catálogo entero (la section de clase cat, al final) y las secciones que no se usan.
-  4. Verificar: node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
-     y mirarlo: node ~/.claude/skills/visual-brief/assets/diapos.mjs <el brief> <scratchpad>/d (+ --tema=dark, --celular)
-  Oraciones enteras, nunca telegrama (SKILL.md §5). Topes: lede ≤ 2 frases y 35 palabras · ≤ 6 secciones · pie ≤ 30 · párrafo ≤ 40 ·
-  prosa total ≤ 400 (sin tablas ni gráficos). Cada componente trae el suyo en el catálogo.
-  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
--->
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -405,105 +389,135 @@ figure.dg{margin:0 0 16px;overflow-x:auto}figure.dg>svg{display:block;width:100%
 
   <header>
     <div class="kicker">
-      <span class="num">253</span>
-      <span class="badge">Cambio hecho · Para decidir</span>
+      <span class="num">254</span>
+      <span class="badge">Medido · Para decidir</span>
       <span class="meta">Miniteoría · 2/11/2026</span>
     </div>
     <details class="pedido">
-      <summary><span class="k">Lo que pediste</span><span class="q">Que la miniteoría sea focal, pero que generalizada siga siendo cierta.</span></summary>
+      <summary><span class="k">Lo que pediste</span><span class="q">«Sí, medí las dos»: la C2 y la base con el juez de miniteoría nuevo.</span></summary>
       <div class="pedido-c">
         <dl>
-          <dt>Qué estabas mirando</dt><dd>El brief 252: «is va con she» pasa por bueno en la Corrección 2.</dd>
-          <dt>Qué pediste</dt><dd>«Is va con she es incorrecto porque is va con she, it. Lo que sí es correcto es que she va con is.»</dd>
-          <dt>A qué te referías</dt><dd>No hace falta la tabla entera del tema; sí que lo escrito no afirme algo que en general no es así.</dd>
+          <dt>Qué estabas mirando</dt><dd>El brief 253: el juez nuevo ya aprobó su examen (62 de 62).</dd>
+          <dt>Qué pediste</dt><dd>Volver a medir la Corrección 2 y la base con ese juez.</dd>
+          <dt>Para qué</dt><dd>Que los 17 «is va con she» salgan de «Todos los jueces lo aprueban».</dd>
         </dl>
-        <p class="de">De la conversación del 2/11, después del brief 252.</p>
+        <p class="de">De la conversación del 2/11, después del brief 253.</p>
       </div>
     </details>
-    <h1>La miniteoría es focal, pero generalizada tiene que seguir siendo cierta</h1>
-    <p class="sub">Qué cambié en la regla, el juez y el corrector, cuántos ejercicios toca y qué falta para que cuente.</p>
+    <h1>Los 17 salieron de «Todos»; el juez nuevo marca 48 más</h1>
+    <p class="sub">Qué midió el juez de miniteoría nuevo en la Corrección 2, qué cambió además de lo pedido y qué quedó sin integrar.</p>
   </header>
 
-  <div class="lede"><p><strong>«She va con is» aprueba; «is va con she» ya no supera.</strong> En la Corrección 2 son 17 ejercicios, no 93; falta que el juez nuevo rinda su examen.</p></div>
+  <div class="lede"><p><strong>Los 17 «is/are va con …» ya no superan.</strong> El juez nuevo además marca 48 tarjetas que antes pasaban, algunas con razón y tres por error: hay que decidir el criterio antes de corregir.</p></div>
 
   <div class="saber">
     <h2>Lo que tenés que saber</h2>
     <dl>
-      <div><dt>Generalizar</dt><dd>Leer la regla del ejercicio como si valiera para cualquier oración.</dd></div>
-      <div><dt>Media</dt><dd>Frena: el ejercicio sale de «Todos los jueces lo aprueban» y va a corregirse.</dd></div>
+      <div><dt>Marca</dt><dd>Lo que el juez encuentra mal en una tarjeta; media o grave saca al ejercicio de «Todos».</dd></div>
+      <div><dt>Integrar</dt><dd>Hacer que una medición nueva reemplace a la anterior en lo que muestra el tablero.</dd></div>
     </dl>
   </div>
 
   <section>
-    <h2>Lo que decide es la dirección, no cuántos sujetos nombra</h2>
-    <div class="tw"><table>
-      <thead><tr><th>Miniteoría, para «She ___ from London.»</th><th>Generalizada</th><th>El juez nuevo</th></tr></thead>
-      <tbody>
-      <tr><td>Con she se usa <i>is</i>.</td><td>cierta: she siempre lleva is</td><td><span class="pill p-ok">aprueba</span></td></tr>
-      <tr><td><i>is</i> va con she.</td><td>falsa: is también va con he e it</td><td><span class="sev m">media</span> no supera</td></tr>
-      <tr><td><i>is</i> va con he, she, it.</td><td>cierta, pero arranca desde is</td><td><span class="sev l">leve</span> dirección</td></tr>
-      <tr><td><i>am</i> va con I.</td><td>cierta: am sólo va con I</td><td><span class="sev l">leve</span> dirección</td></tr>
-      <tr><td>La tabla entera: am, is y are</td><td>cierta, pero no es focal</td><td><span class="sev l">leve</span> otro subtema</td></tr>
-      </tbody></table></div>
-    <p class="pie">En el 252 propuse que un solo sujeto no supere. Tu criterio es mejor: «con he agregá -s» es focal y es cierta.</p>
-  </section>
-
-  <section>
-    <h2>Cambié la regla en cuatro lugares, sin gastar nada</h2>
-    <div class="cambia">
-      <div class="si"><div class="ptl">Cambia</div><ul>
-        <li>Requisito: focal no quiere decir parcial; lo del 21/10 queda reemplazado.</li>
-        <li>Juez: la forma con parte de sus personas es alcance falso, media.</li>
-        <li>Corrector y reescritor: «escribí desde el sujeto: con she se usa is».</li>
-        <li>Pruebas: 26 casos del juez sin modelo y 4 pruebas nuevas o cambiadas.</li>
-      </ul></div>
-      <div class="no"><div class="ptl">No cambia</div><ul>
-        <li>No hace falta nombrar las demás personas.</li>
-        <li>«am va con I» sigue leve.</li>
-        <li>El revisor: sigue como está.</li>
-      </ul></div>
+    <h2>La C2 tiene 38 ejercicios menos en «Todos»</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">17<small>de 17</small></div><div class="l">«is/are va con …» marcados: los 17 salieron de «Todos»</div></div>
+      <div class="kpi"><div class="n">1.540<small>antes 1.578</small></div><div class="l">en «Todos los jueces lo aprueban»</div></div>
+      <div class="kpi"><div class="n">+48 −11</div><div class="l">tarjetas que antes pasaban y ahora no, y al revés</div></div>
     </div>
-    <p class="pie">Está en una rama, sin juntar: juntarlo cambia la versión del juez de miniteoría.</p>
+    <p class="pie">Midió 2.402 ejercicios en 2 h 22 min, con 164 consultas. «Faltan opiniones» sigue en 108: no quedó nada sin medir.</p>
   </section>
 
   <section>
-    <h2>En la Corrección 2 pasa en 17 ejercicios, no en 93</h2>
+    <h2>Los 17 fallan como se pidió: el juez propone partir del sujeto</h2>
+    <div class="ex">
+      <div class="cons">Afirmativas con be · «Elige la forma afirmativa del verbo 'be' en presente simple.»</div>
+      <div class="en">She<span class="gap"></span>from London.</div>
+      <div class="ans">Opciones: am · are · <b>is</b> (correcta)</div>
+      <div class="ans">En producción: <i>am va con I. is va con he, she, it. are va con you, we, they.</i><br>En la C2: <i>is va con she.</i></div>
+      <div class="mark"><span class="x">✕</span><span>«is» también va con he e it: exagera <span class="sev m">media</span></span></div>
+      <div class="mark ok"><span class="x">✓</span><span>Propone: «En presente afirmativo, con she se usa is».</span></div>
+    </div>
+    <p class="pie">Los 17 tienen la misma marca. Las 14 que generalizan bien, como «am va con I», quedan leves.</p>
+  </section>
+
+  <section>
+    <h2>Además marca 48 tarjetas que antes pasaban</h2>
     <div class="hb">
-      <div class="r"><span class="t">Un solo sujeto<small>los 93 del brief 252</small></span><span class="tr"><span class="f" style="width:100%"></span></span><span class="n">93</span></div>
-      <div class="r"><span class="t">Parten del sujeto<small>«con he agregá -s»: siguen bien</small></span><span class="tr"><span class="f g" style="width:78%"></span></span><span class="n">73</span></div>
-      <div class="r"><span class="t">«am va con I»<small>generalizada es cierta: leve</small></span><span class="tr"><span class="f" style="width:3%"></span></span><span class="n">3</span></div>
-      <div class="r"><span class="t">«is» o «are» con parte de sus personas<small>no superan: van a corregirse</small></span><span class="tr"><span class="f w" style="width:18%"></span></span><span class="n">17</span></div>
+      <div class="r"><span class="t">«was o were» sin decir cuál lleva el sujeto<small>vos aprobaste 7 de estas</small></span><span class="tr"><span class="f b" style="width:100%"></span></span><span class="n">24</span></div>
+      <div class="r"><span class="t">Posición de adverbios<small>«van al final», «antes del verbo»</small></span><span class="tr"><span class="f b" style="width:46%"></span></span><span class="n">11</span></div>
+      <div class="r"><span class="t">Contracciones<small>falta la del sujeto (4) o ya está (3)</small></span><span class="tr"><span class="f b" style="width:29%"></span></span><span class="n">7</span></div>
+      <div class="r"><span class="t">Otras<small>say, -ing, will, start, a/an</small></span><span class="tr"><span class="f b" style="width:25%"></span></span><span class="n">6</span></div>
+      <div class="r"><span class="t">Dejan de marcar<small>«La -s va sólo con he, she, it» y 10 más</small></span><span class="tr"><span class="f g" style="width:46%"></span></span><span class="n">11</span></div>
     </div>
-    <p class="pie">Los 17 están hoy en «Todos» y el revisor los da por bien. En producción no hay ninguno.</p>
-    <div class="call c-warn"><b>Lo que no sé:</b> los busqué con un patrón de texto y leí los 17; otra redacción puede habérseme escapado.</div>
+    <p class="pie">Comparé sólo las 2.106 tarjetas que no cambiaron desde la medición anterior. Las 24 de was/were dan igual todas: no es azar, es el juez nuevo.</p>
   </section>
 
   <section>
-    <h2>Para que cuente, el juez nuevo tiene que rendir su examen</h2>
-    <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">Junto el cambio</span><span class="d">La Miniteoría queda sin examen y sus opiniones de la C2, de antes.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">Rinde el examen</span><span class="eg">≈ 42 consultas</span><span class="d">Lo que costó la última vez.</span></div>
-      <div class="st"><span class="i">3</span><span class="h">Vuelve a medir la C2</span><span class="eg">hasta 81 consultas</span><span class="d">Una por tema.</span></div>
-      <div class="st end"><span class="i">4</span><span class="h">Se corrigen los 17</span><span class="d">Desde el sujeto, con la mesa.</span></div>
+    <h2>Algunas tienen razón, otras son discutibles y tres son error</h2>
+    <div class="grid g2">
+      <div class="ex">
+        <div class="cons">Frecuencia · «Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.»</div>
+        <div class="en">He plays football. (never) → He never plays football.</div>
+        <div class="ans">Tarjeta: <i>Los adverbios cortos como always o never van antes del verbo, no al final.</i></div>
+        <div class="mark"><span class="x">✕</span><span>Con be van después: «He is never late». <span class="sev m">media</span></span></div>
+        <div class="mark ok"><span class="x">✓</span><span>Tiene razón: generalizada, falla con be. Es tu regla.</span></div>
+      </div>
+      <div class="ex">
+        <div class="cons">Be: formas mixtas · «Escribe oraciones en pasado simple con el verbo 'be'.»</div>
+        <div class="en"><span class="gap"></span>(we / be) at home yesterday? → Were we</div>
+        <div class="ans">Tarjeta: <i>Para preguntar, was o were van antes del sujeto, no did.</i></div>
+        <div class="mark"><span class="x">✕</span><span>Explica el orden, no que con we va were. <span class="sev a">grave</span></span></div>
+        <div class="mark warn"><span class="x">!</span><span>Discutible: explica medio ejercicio, y vos lo aprobaste.</span></div>
+      </div>
+      <div class="ex">
+        <div class="cons">Contracciones · «Escribe la short form de lo que está entre paréntesis.»</div>
+        <div class="en"><span class="gap"></span>(He is) at home. → He's</div>
+        <div class="ans">Tarjeta: <i>I'm, you're, he's</i> (con puntos suspensivos) <i>para afirmar. don't y doesn't para negar.</i></div>
+        <div class="mark"><span class="x">✕</span><span>No dice cuál contrae «He is». <span class="sev a">grave</span></span></div>
+        <div class="mark warn"><span class="x">!</span><span>Se equivoca: la tarjeta nombra he's. Igual en dos con I'm.</span></div>
+      </div>
+      <div class="ex">
+        <div class="cons">Frecuencia · «Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.»</div>
+        <div class="en">I eat pizza. (every month) → I eat pizza every month.</div>
+        <div class="ans">Tarjeta: <i>Las frases largas como every month o twice a week van al final.</i></div>
+        <div class="mark"><span class="x">✕</span><span>También van al principio: «Every month, I eat pizza». <span class="sev m">media</span></span></div>
+        <div class="mark warn"><span class="x">!</span><span>Cierto en general; alcanzaría con «suelen ir al final».</span></div>
+      </div>
     </div>
-    <p class="pie">Entre el paso 1 y el 3, la C2 casi no tiene ejercicios en «Todos»: a todos les falta la opinión de la Miniteoría de hoy.</p>
+    <p class="pie">El revisor da por bien los cuatro. Parece efecto de la regla del 253: el juez lee cada tarjeta como regla general, no sólo en concordancia.</p>
+  </section>
+
+  <section>
+    <h2>La medición de la base quedó guardada, pero no se puede integrar</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">«Las dos», desde la C2</span><span class="d">Mide la C2 y la base en la misma corrida.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">La C2 se integra</span><span class="d">Hecho: 1.056 marcas pasan a 1.075.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">La base, desde la C2</span><span class="d">Rechazada: «La base es compartida».</span></div>
+      <div class="st end"><span class="i">4</span><span class="h">La base, desde la base</span><span class="d">No la ve: la corrida es de la C2.</span></div>
+    </div>
+    <p class="pie">Las 81 consultas de la base no se pierden, quedan guardadas. Sin integrarlas, «Empeoró» compara la C2 de hoy con una base medida por el juez de antes.</p>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Junto el juez nuevo y rindo su examen?</span>
-        <div class="ops"><span class="op rec">Sí, juntá y rendí · recomendado</span><span class="op">Juntá; el examen lo rindo yo</span><span class="op">Esperá</span></div>
-        <span class="why">Sin examen no puede medir, y hasta volver a medir la C2 queda sin «Todos».</span></div>
-      <div class="ask"><span class="q">2 · Con el examen aprobado, ¿mido la C2 y corrijo los 17?</span>
-        <div class="ops"><span class="op rec">Sí, en seguida · recomendado</span><span class="op">Te aviso y decidís</span></div>
-        <span class="why">Son hasta 81 consultas para medir; corregir 17 es poco.</span></div>
+      <div class="ask"><span class="q">1 · ¿Una tarjeta de was/were tiene que decir cuál va con el sujeto?</span>
+        <div class="ops"><span class="op rec">Sí, que lo diga · recomendado</span><span class="op">No, alcanza el orden</span></div>
+        <span class="why">El alumno la lee después de responder: hoy explica el orden y no por qué «were».</span></div>
+      <div class="ask"><span class="q">2 · ¿Afino el juez para que no marque una forma que la tarjeta ya nombra?</span>
+        <div class="ops"><span class="op rec">Sí, afinalo · recomendado</span><span class="op">Dejalo así</span></div>
+        <span class="why">Son 3 errores claros. Afinarlo pide otro examen (≈ 42) y volver a medir la C2 (≈ 83).</span></div>
+      <div class="ask"><span class="q">3 · ¿Arreglo que la base medida desde la C2 se pueda integrar?</span>
+        <div class="ops"><span class="op rec">Sí, arreglalo · recomendado</span><span class="op">No hace falta</span></div>
+        <span class="why">Es código, sin consultas, y aprovecha las 81 ya pagadas.</span></div>
     </div>
+    <p class="pie">Con eso decidido corrijo los 17 y las que confirmes, con una estimación gratis antes de gastar.</p>
   </section>
 
   <footer>
-    <span>Requisito F-MINIT-R002, R004 y R010 · juez mini-theory-judge/nodes/evaluate.md, pasos 6 y 7 · corrector panel-proposer/nodes/generate.md y MiniTheoryRewriterAdapter (mini-feedback-v6) · examen: 42 consultas en el brief 182 · conteo sobre /api/cambios de la C2, cadena por ejercicio.</span>
-    <span>brief 253 · docs/briefs/253-focal-pero-generalizable.html</span>
+    <span>Juez mini-theory 89358b76 contra a650b291 · auditorías 2026-11-02T19-34-12 (C2, integrada) y 20-46-40 (base, suelta) · comparación sobre 2.106 de 2.402 tarjetas sin cambios · la base: DefaultCurrentAnalysisService, «La base es compartida» · la ficha de la corrida dice «Analizar sólo distractores» aunque es Miniteoría (etiqueta del tablero).</span>
+    <span>brief 254 · docs/briefs/254-el-juez-nuevo-medido.html</span>
   </footer>
 
 </div>
