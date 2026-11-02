@@ -1522,6 +1522,15 @@ class Main {
                         sentenceLengthConfig);
         Supplier<com.learney.contentaudit.revisiondomain.panel.PanelRunner> panelRunner = memoized(
                 () -> panelRunnerFactory.create(panelConfig.get()));
+        // FEAT-MARCA: marks only with --budget, and never changes a decision. F-CONTR-R004: the analysis reads it too.
+        Supplier<com.learney.contentaudit.revisiondomain.changereview.ChangeReviewService> changeReviewService = memoized(() ->
+                new com.learney.contentaudit.revisiondomain.changereviewengine.DefaultChangeReviewServiceFactory().create(
+                        new com.learney.contentaudit.revisiondomain.batchengine.DefaultBatchReviewServiceFactory().create(
+                                batchStore, revisionArtifactStore, refinementPlanStore,
+                                new com.learney.contentaudit.auditinfrastructure.FileSystemBatchReviewCache(baseDir)),
+                        evaluationSessionFactory, changeReviewer,
+                        new com.learney.contentaudit.revisioninfrastructure.changereview.JacksonChangeReviewVerdictReader(),
+                        studentViewRenderer));
         Supplier<com.learney.contentaudit.revisiondomain.batch.BatchServiceConfig> batchConfig = memoized(() -> {
             if (batchCourse == null) {
                 throw new IllegalStateException("Falta la ruta del curso: CONTENT_AUDIT_CONTENT_FOLDER o .env.");
@@ -1548,6 +1557,7 @@ class Main {
             config.setJudgeFreshnessCatalog(judgeFreshnessCatalog);
             // F-CORTE-R001 and R006: a cut measurement is counted with the verdicts its judge left saved.
             config.setEvaluationTimeline(evaluationLedger);
+            config.setChangeReviewService(changeReviewService.get());
             config.setCurrentAnalysisService(new com.learney.contentaudit.revisiondomain.batchengine.DefaultCurrentAnalysisServiceFactory().create(
                     config, new com.learney.contentaudit.auditdomain.analysis.DefaultAnalysisComposer(analyzerCatalog,
                     scoreAggregator, new DefaultContextNumbersCalculator(),
@@ -1605,15 +1615,7 @@ class Main {
                 new com.learney.contentaudit.revisiondomain.batchengine.DefaultContextOpinionServiceFactory().create(
                         batchConfig.get(), new com.learney.contentaudit.auditinfrastructure.minitheory.FileSystemMiniTheoryWorkspaceStore(baseDir)::fingerprint,
                         com.learney.contentaudit.revisioninfrastructure.preliminary.FileSystemPreliminaryOpinionSourceFactory.create(courseRepository)))));
-        // FEAT-MARCA: marks only with --budget, and never changes a decision.
-        batchCommand.addSubcommand("mark", new ChangeReviewCmd(memoized(() ->
-                new com.learney.contentaudit.revisiondomain.changereviewengine.DefaultChangeReviewServiceFactory().create(
-                        new com.learney.contentaudit.revisiondomain.batchengine.DefaultBatchReviewServiceFactory().create(
-                                batchStore, revisionArtifactStore, refinementPlanStore,
-                                new com.learney.contentaudit.auditinfrastructure.FileSystemBatchReviewCache(baseDir)),
-                        evaluationSessionFactory, changeReviewer,
-                        new com.learney.contentaudit.revisioninfrastructure.changereview.JacksonChangeReviewVerdictReader(),
-                        studentViewRenderer))));
+        batchCommand.addSubcommand("mark", new ChangeReviewCmd(changeReviewService));
         cmd.addSubcommand("batch", batchCommand);            // E · FEAT-TANDA
         cmd.addSubcommand("problem", new ProblemCmd(baseDir, problemProject, System.out));
         cmd.addSubcommand("tray", new picocli.CommandLine(new TrayCmd(trayService, quizSentenceConverter, batchStore))); // E · BANDEJA

@@ -138,12 +138,21 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         return view(batch,history,true);
     }
     private View view(CorrectionBatch batch, List<AnalysisSelection> history, boolean includeLoose) {
+        // F-CONTR-R004: the reviewer's marks are read while the states are composed; they do not depend on them.
+        var marks = includeLoose && config.getChangeReviewService() != null ? java.util.concurrent.CompletableFuture.supplyAsync(
+                () -> config.getChangeReviewService().review(new com.learney.contentaudit.revisiondomain.changereview.ChangeReview.Request(
+                        batch.getId(), List.of(), null, null))) : null;
         CourseEntity start = BatchCourses.start(batch, config.getCourseRepository().load(config.getCoursePath()), config.getBatchStore());
         CourseEntity current = cut(ledger.composedCourse(batch, start), batch.getLevel());
         CourseEntity baseCourse = cut(start, batch.getLevel());
         var raw = new LinkedHashMap<String, AuditReport>();
-        raw.put("base", primary(batch, "base", baseCourse));
-        raw.put("correction", primary(batch, "correction", current));
+        CorrectionBatch baseOwner = baseOwner(batch);
+        boolean ownBase = baseOwner.getId().equals(batch.getId());
+        // F-CONTR-R007: what the instant analyzers of errors the batch lacks find, measured for free in both states.
+        // A shared base is measured once, below, with the batch that owns it.
+        AuditReport base = primary(batch, "base", baseCourse);
+        raw.put("base", ownBase ? InstantAnalyzers.theBatchLacks(config, batch, baseCourse, base) : base);
+        raw.put("correction", InstantAnalyzers.theBatchLacks(config, batch, current, primary(batch, "correction", current)));
         Map<String, AuditReport> sources = new HashMap<>();
         Set<String> requiredSources = new HashSet<>();
         if (!includeLoose) {
@@ -160,8 +169,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         sources.forEach((id, report) -> sourceIndexes.put(id, DefaultAnalysisComposer.index(report.getRoot())));
         var reports = new LinkedHashMap<String, AuditReport>();
         raw.forEach((state, report) -> reports.put(state, compose(batch, state, report, history, sources)));
-        CorrectionBatch baseOwner = baseOwner(batch);
-        if (!baseOwner.getId().equals(batch.getId())) reports.put("base", report(baseOwner, "base", baseCourse));
+        if (!ownBase) reports.put("base", report(baseOwner, "base", baseCourse, true));
         var review = reviews.read(batch.getId());
         var tasks = new ArrayList<>(BatchBook.list(review.tasks()));
         // Several runs name the batch's own plan: it is read once, since its tasks are the same reasons each time.
@@ -170,6 +178,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
             config.getRefinementPlanStore().load(run.planId()).ifPresent(p -> tasks.addAll(BatchBook.list(p.getTasks())));
         var approvals = approvals(review.items(), tasks);
         var states = new ArrayList<State>();
+        var readings = new HashMap<String, EvaluatorContract.Reading>();
         for (var entry : reports.entrySet()) {
             String state = entry.getKey(); AuditReport report = entry.getValue();
             var index = DefaultAnalysisComposer.index(report.getRoot());
@@ -214,6 +223,10 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                     studentViews, provenance, List.copyOf(warnings), comparable(reports.get("base"), report),
                     "base".equals(state) ? "A0" : BatchBook.list(batch.getClosings()).isEmpty() ? null : "A" + batch.getClosings().size(),
                     inapplicable(batch, index), judges, verdictMarks, MissingOpinions.of(report, composer.supportedAnalyzers())));
+            var exercises = new LinkedHashMap<String, AuditNode>();
+            index.forEach((id, node) -> { if (node.getTarget() == AuditTarget.QUIZ) exercises.put(id, node); });
+            readings.put(state, new EvaluatorContract.Reading(exercises, judges.stream().map(JudgeFreshnessCount::judgeName)
+                    .collect(java.util.stream.Collectors.toSet()), verdictMarks, EvaluatorContract.measured(exercises.values())));
         }
         var loose = new ArrayList<LooseRun>();
         if (includeLoose) for (var run : BatchBook.list(batch.getSelectiveRuns())) {
@@ -234,12 +247,48 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                     run.spent(), evaluated, errors, fits, config.getAnalyzerCatalog() == null ? run.analyzer()
                             : config.getAnalyzerCatalog().find(run.analyzer()).map(AnalyzerDescriptor::getDisplayName).orElse(run.analyzer()), activityId(batch,run)));
         }
-        return new View(batch.getId(), batch.getContentVersion(), history.size(), states, loose, includeLoose ? List.copyOf(history) : List.of(), composer.supportedAnalyzers().stream().sorted().toList());
+        var contract = marks == null ? Contract.NONE : contract(marks, readings);
+        return new View(batch.getId(), batch.getContentVersion(), history.size(), states, loose, includeLoose ? List.copyOf(history) : List.of(),
+                composer.supportedAnalyzers().stream().sorted().toList(), contract.evaluators(), contract.evaluations());
+    }
+
+    private record Contract(List<Evaluator> evaluators, Map<String, Evaluation> evaluations) {
+        static final Contract NONE = new Contract(List.of(), Map.of());
+    }
+    /**
+     * F-CONTR: every evaluator of exercises of the catalog and the reviewer, in the correction and, for what the batch
+     * changed, in production. Without the reviewer's marks there is no contract: a contract without one of its
+     * evaluators would decide the list wrong, so the screen keeps its own count (R008).
+     */
+    private Contract contract(java.util.concurrent.CompletableFuture<com.learney.contentaudit.revisiondomain.changereview.ChangeReview.Result> marks,
+            Map<String, EvaluatorContract.Reading> readings) {
+        if (config.getAnalyzerCatalog() == null) return Contract.NONE;
+        var reviewed = new LinkedHashMap<String, com.learney.contentaudit.revisiondomain.changereview.ChangeReview.Row>();
+        try {
+            // F-CONTR-R004: without a budget the reviewer is not consulted.
+            for (var row : marks.join().rows()) reviewed.put(row.quizId(), row);
+        } catch (RuntimeException unreadable) {
+            return Contract.NONE;
+        }
+        var evaluators = new ArrayList<Evaluator>();
+        for (var card : BatchBook.list(config.getAnalyzerCatalog().list()))
+            if (BatchBook.list(card.getEvaluatedTargets()).contains(AuditTarget.QUIZ))
+                // F-CONTR-R003: a paid evaluator without a judge of today counts any version, and the screen says so.
+                evaluators.add(new Evaluator(card.getName(), card.getDisplayName(), card.getCost() != com.learney.contentaudit.auditdomain.finding.AnalysisCost.INSTANT
+                        && todaysJudge(card.getName()).isEmpty() ? "Cuenta cualquier versión hasta que su versión de hoy rinda examen." : null));
+        var evaluations = EvaluatorContract.evaluate(evaluators.stream().map(Evaluator::name).toList(),
+                readings.get("base"), readings.get("correction"), reviewed);
+        evaluators.add(new Evaluator(EvaluatorContract.REVIEWER, "El revisor", null));
+        return new Contract(List.copyOf(evaluators), evaluations);
     }
 
     @Override public AuditReport report(CorrectionBatch batch, String state, CourseEntity course) {
+        return report(batch, state, course, false);
+    }
+    /** {@code instant}: F-CONTR-R007, also what the instant analyzers of errors the batch lacks find. */
+    private AuditReport report(CorrectionBatch batch, String state, CourseEntity course, boolean instant) {
         CorrectionBatch owner = "base".equals(state) ? baseOwner(batch) : batch;
-        if (!owner.getId().equals(batch.getId())) return report(owner, state, course);
+        if (!owner.getId().equals(batch.getId())) return report(owner, state, course, instant);
         var sources = new HashMap<String, AuditReport>();
         var history = config.getBatchStore().analysisSelections(batch.getId());
         Set<String> removed = new HashSet<>();
@@ -249,7 +298,8 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                 && !removed.contains(selection.operationId())) required.add(selection.runId());
         for (var run : BatchBook.list(batch.getSelectiveRuns())) if (run.auditId() != null && required.contains(run.id()))
             config.getAuditReportStore().load(run.auditId()).ifPresent(r -> sources.put(run.id(), composer.contentOnly(r)));
-        return compose(batch, state, primary(batch, state, course),history,sources);
+        AuditReport primary = primary(batch, state, course);
+        return compose(batch, state, instant ? InstantAnalyzers.theBatchLacks(config, batch, course, primary) : primary, history, sources);
     }
 
     private CorrectionBatch baseOwner(CorrectionBatch batch) {

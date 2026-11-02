@@ -28,8 +28,37 @@ public interface CurrentAnalysisService {
     record Request(String action, String batchId, String state, String runId, String operationId,
             String removesOperationId, Integer expectedRevision, Integer contentVersion,
             String contentFingerprint, String reviewer) {}
+    /**
+     * {@code evaluators} and {@code evaluations}: F-CONTR, where each evaluator leaves each exercise and what that
+     * decides; only the full reading carries them, the comparison leaves both empty.
+     */
     record View(String batchId, int contentVersion, int revision, List<State> states,
-            List<LooseRun> looseRuns, List<AnalysisSelection> history, List<String> supportedAnalyzers) {}
+            List<LooseRun> looseRuns, List<AnalysisSelection> history, List<String> supportedAnalyzers,
+            List<Evaluator> evaluators, Map<String, Evaluation> evaluations) {
+        public View {
+            evaluators = evaluators == null ? List.of() : evaluators;
+            evaluations = evaluations == null ? Map.of() : evaluations;
+        }
+        public View(String batchId, int contentVersion, int revision, List<State> states,
+                List<LooseRun> looseRuns, List<AnalysisSelection> history, List<String> supportedAnalyzers) {
+            this(batchId, contentVersion, revision, states, looseRuns, history, supportedAnalyzers, List.of(), Map.of());
+        }
+    }
+    /** F-CONTR-R001: the four states an evaluator leaves an exercise in. */
+    enum Standing { NOT_APPLICABLE, MISSING, PASSES, FAILS }
+    /** F-CONTR-R001: an evaluator's state on an exercise and the step that decided it, as a short code. */
+    record Assessment(Standing standing, String cause) {}
+    /** F-CONTR-R005: the list the exercise goes to, before your approval splits it. */
+    enum Route { ALL_PASS, OPINIONS_MISSING, HAS_A_PROBLEM }
+    /** F-CONTR-R006: the verdict of a change, one per changed exercise. */
+    enum ChangeVerdict { WORSENED, NOT_SHOWN_FIXED, NOT_MEASURED, CONSIDERED_GOOD }
+    /**
+     * F-CONTR: an exercise of the correction. {@code now} is every evaluator's state in the correction and {@code before}
+     * in production, only for an exercise the batch changed; {@code change} is null when it did not change it.
+     */
+    record Evaluation(Route route, ChangeVerdict change, Map<String, Assessment> now, Map<String, Assessment> before) {}
+    /** F-CONTR-R003: an evaluator of exercises; {@code notice} says what the screen warns about it, or null. */
+    record Evaluator(String name, String displayName, String notice) {}
     /** {@code missingOpinions}: F-OPINA-R001, per judge the exercises it applies to and has not opined on. */
     record State(String id, String label, String fingerprint, AuditDigest digest,
             Map<String, QuizStudentView> studentViews, Map<String, Map<String, Object>> provenance,

@@ -53,6 +53,12 @@ public class BatchServiceConfig {
     public com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCatalog getJudgeFreshnessCatalog() { return judgeFreshnessCatalog; }
     public void setJudgeFreshnessCatalog(com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCatalog catalog) { judgeFreshnessCatalog = catalog; }
 
+    /** F-CONTR-R004: the reviewer's marks, read without consulting it; null leaves the reviewer out of the contract. */
+    private com.learney.contentaudit.revisiondomain.changereview.ChangeReviewService changeReviewService;
+
+    public com.learney.contentaudit.revisiondomain.changereview.ChangeReviewService getChangeReviewService() { return changeReviewService; }
+    public void setChangeReviewService(com.learney.contentaudit.revisiondomain.changereview.ChangeReviewService service) { changeReviewService = service; }
+
     /** F-CORTE-R001 and R006: when each verdict was saved, to count what a cut measurement left; null counts nothing. */
     private com.learney.contentaudit.evaluationledgerdomain.EvaluationTimeline evaluationTimeline;
 

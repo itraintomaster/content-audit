@@ -1086,4 +1086,116 @@ class CurrentAnalysisServiceTest {
         assertNull(savedSeed.getRoot().getMetadata().get("analysisProjection"));
     }
 
+
+    // F-CONTR: the contract travels in the full reading only.
+    static com.learney.contentaudit.revisiondomain.changereview.ChangeReview.Result marked(
+            com.learney.contentaudit.revisiondomain.changereview.ChangeReview.Mark mark) {
+        var problems = mark == com.learney.contentaudit.revisiondomain.changereview.ChangeReview.Mark.GOOD ? List.<com.learney.contentaudit.revisiondomain.changereview.ChangeReview.Problem>of()
+                : List.of(new com.learney.contentaudit.revisiondomain.changereview.ChangeReview.Problem(
+                        com.learney.contentaudit.revisiondomain.changereview.ChangeReview.Where.EXERCISE, "ahora", "algo"));
+        var verdict = new com.learney.contentaudit.revisiondomain.changereview.ChangeReview.Verdict(TandaFixture.CHILD, mark, problems, "razón");
+        return new com.learney.contentaudit.revisiondomain.changereview.ChangeReview.Result("batch", "v", "codex-cli", 1, 1, 0, 0, null, null,
+                List.of(new com.learney.contentaudit.revisiondomain.changereview.ChangeReview.Row(TandaFixture.CHILD, "tema",
+                        com.learney.contentaudit.revisiondomain.changereview.ChangeReview.State.MARKED, verdict, "v", null, "antes", "ahora")));
+    }
+
+    @Tag("F-CONTR-R004") @Tag("F-CONTR-R006")
+    @Test void theFullReadingCarriesTheContractAndReadsTheReviewerWithoutABudget() {
+        var reviewer = mock(com.learney.contentaudit.revisiondomain.changereview.ChangeReviewService.class);
+        when(reviewer.review(any())).thenReturn(marked(com.learney.contentaudit.revisiondomain.changereview.ChangeReview.Mark.WORSE));
+        config.setChangeReviewService(reviewer);
+
+        var view = read();
+
+        verify(reviewer).review(argThat(r -> "batch".equals(r.batchId()) && r.budget() == null && r.quizIds().isEmpty()));
+        var changed = view.evaluations().get(TandaFixture.CHILD);
+        assertEquals(new CurrentAnalysisService.Assessment(CurrentAnalysisService.Standing.FAILS, "worse"),
+                changed.now().get(EvaluatorContract.REVIEWER));
+        assertEquals(CurrentAnalysisService.ChangeVerdict.WORSENED, changed.change());
+        assertTrue(changed.before().containsKey(NAME), "production, for what the batch changed");
+        var unchanged = view.evaluations().get(TandaFixture.RESIDE);
+        assertNull(unchanged.change(), "an exercise the batch did not change has no verdict");
+        assertTrue(unchanged.before().isEmpty());
+        assertEquals(List.of(NAME, EvaluatorContract.REVIEWER), view.evaluators().stream().map(CurrentAnalysisService.Evaluator::name).toList());
+        var comparison = service.comparisonView(batch);
+        assertTrue(comparison.evaluations().isEmpty() && comparison.evaluators().isEmpty(), "the comparison does not carry it");
+        verify(reviewer, times(1)).review(any());
+    }
+
+    @Tag("F-CONTR-R003")
+    @Test void aPaidEvaluatorWithoutAJudgeOfTodayIsCountedWithANotice() {
+        var reviewer = mock(com.learney.contentaudit.revisiondomain.changereview.ChangeReviewService.class);
+        when(reviewer.review(any())).thenReturn(marked(com.learney.contentaudit.revisiondomain.changereview.ChangeReview.Mark.GOOD));
+        config.setChangeReviewService(reviewer);
+        run("clean", false, "v1");
+        service.execute(select("integrate", "clean", "op-1", null));
+
+        var view = read();
+
+        var quality = view.evaluators().stream().filter(e -> NAME.equals(e.name())).findFirst().orElseThrow();
+        assertNotNull(quality.notice(), "the screen says any version counts until today's takes its exam");
+        assertEquals(CurrentAnalysisService.Standing.PASSES, view.evaluations().get(TandaFixture.CHILD).now().get(NAME).standing());
+        assertNull(view.evaluators().stream().filter(e -> EvaluatorContract.REVIEWER.equals(e.name())).findFirst().orElseThrow().notice());
+    }
+
+    @Tag("F-CONTR-R008")
+    @Test void withoutTheReviewersMarksThereIsNoContractAndTheReadingStillWorks() {
+        assertTrue(read().evaluations().isEmpty(), "no reviewer, no contract");
+        var reviewer = mock(com.learney.contentaudit.revisiondomain.changereview.ChangeReviewService.class);
+        when(reviewer.review(any())).thenThrow(new IllegalStateException("no se puede leer"));
+        config.setChangeReviewService(reviewer);
+        var view = read();
+        assertTrue(view.evaluations().isEmpty() && view.evaluators().isEmpty(), "the screen keeps its own count");
+        assertFalse(view.states().isEmpty());
+    }
+
+    @Tag("F-CONTR-R007")
+    @Test void theInstantAnalyzerTheBatchLacksIsMeasuredForFreeInBothStates() {
+        var vos = new Finding(); vos.setAnalyzer("spanish-register"); vos.setRule("tu-register"); vos.setSeverity(FindingSeverity.MEDIUM);
+        vos.setResolution(FindingResolution.RULE); vos.setNode(new FindingNodeRef(AuditTarget.QUIZ, TandaFixture.CHILD, "quiz"));
+        when(catalog.list()).thenReturn(List.of(provider.describe(), instant("spanish-register"), instant("sentence-length"),
+                paid("quiz-instruction")));
+        var corrections = mock(AnalyzerCorrectionCatalog.class);
+        when(corrections.find(any())).thenReturn(Optional.of(new com.learney.contentaudit.auditdomain.spanishregister.SpanishRegisterCorrection()));
+        config.setCorrectionCatalog(corrections);
+        var asked = new ArrayList<AnalyzerRunSelection>();
+        when(engine.runAudit(any(), any())).thenAnswer(i -> {
+            AnalyzerRunSelection selection = i.getArgument(1);
+            asked.add(selection);
+            var r = report(false, false, "v1");
+            if (selection.getAnalyzers().contains("spanish-register")) {
+                var n = DefaultAnalysisComposer.index(r.getRoot()).get(TandaFixture.CHILD);
+                n.getScores().put("spanish-register", 0.); n.getFindings().add(vos);
+            }
+            return r;
+        });
+
+        var view = read();
+
+        for (var state : view.states()) {
+            var child = find(state.digest().getRoot(), TandaFixture.CHILD);
+            assertTrue(child.getFindings().stream().anyMatch(f -> "spanish-register".equals(f.getAnalyzer())), state.id());
+            assertTrue(child.getNumbers().getErrors().getAnalyzers().stream().anyMatch(c -> "spanish-register".equals(c.getAnalyzer())),
+                    "counted like any other analyzer in " + state.id());
+        }
+        var free = asked.stream().filter(s -> s.getAnalyzers().contains("spanish-register")).toList();
+        assertEquals(2, free.size(), "production and the correction");
+        assertTrue(free.stream().allMatch(s -> s.getAnalyzers().equals(List.of("spanish-register"))),
+                "not the one the batch has, nor a paid one");
+        assertTrue(free.stream().allMatch(s -> s.getPolicies().get("spanish-register").getMaxNewEvaluations() == 0), "without a query");
+    }
+    static AnalyzerDescriptor instant(String name) {
+        var card = new AnalyzerDescriptor(); card.setName(name); card.setCost(AnalysisCost.INSTANT);
+        card.setFamily(com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.ERRORS); card.setEvaluatedTargets(List.of(AuditTarget.QUIZ));
+        return card;
+    }
+    static AnalyzerDescriptor paid(String name) {
+        var card = instant(name); card.setCost(AnalysisCost.PAID_MODEL);
+        return card;
+    }
+    static com.learney.contentaudit.auditdomain.contextnumbers.DigestNode find(com.learney.contentaudit.auditdomain.contextnumbers.DigestNode node, String id) {
+        if (id.equals(node.getNodeId())) return node;
+        for (var child : node.getChildren()) { var found = find(child, id); if (found != null) return found; }
+        return null;
+    }
 }
