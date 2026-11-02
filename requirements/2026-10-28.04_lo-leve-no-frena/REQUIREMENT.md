@@ -86,6 +86,22 @@ cambios: la corrección cambió el ejercicio y producción guarda la oración de
 para «I ___ (love) vegetables.» (`…1ecd`). Publicar escribe `form.sentences` desde el árbol, así que el hallazgo se va
 solo. El brief 239 los contó como «oraciones desfasadas» que había que arreglar: 3 eran del árbol.
 
+<a id="F-LEVE-R005"></a>
+### Rule[F-LEVE-R005] - Lo leve se ve como aviso, no como error
+**Severity**: major | **Validation**: VALIDATED
+
+> En el renglón de cada parte del ejercicio, un juez o analizador cuyo hallazgo nuevo es todo de gravedad baja dice
+> «observación leve nueva», en ámbar, no «error nuevo» en rojo. El que encontró algo que no se puede comparar con la base
+> y es todo leve dice «observación leve», no «error encontrado». Lo que dijo una opinión de antes con eso, «dijo: algo
+> leve». Si entre lo que encontró hay algo medio, alto, bloqueante o sin gravedad, sigue siendo un error.
+>
+> En el renglón, lo leve va después de los errores de verdad, y el color del resumen es el del primero: con un error y
+> algo leve, el resumen sale en rojo.
+
+José, el 1/11/2026, sobre `…24a7` en «Todos los jueces lo aprueban» con «Oraciones con el largo de su nivel: error
+nuevo»: «si muestra en rojo y dice "error", parece algo no aceptable. Cuando el problema es bajo, que lo muestre como una
+alerta, no como un error».
+
 ## Contexto
 
 - **Leve** es la gravedad más baja de un hallazgo. En la miniteoría, son leves:
@@ -97,7 +113,9 @@ solo. El brief 239 los contó como «oraciones desfasadas» que había que arreg
 - **Cuándo ve el alumno la miniteoría**: verificado el 28/10/2026 en la app. Viaja dentro de la devolución del ejercicio
   y se dibuja sólo en la hoja de corrección, que se abre después de responder.
 - **Fuera de alcance**:
-  - «Según los jueces» de cada cambio («Lo dan por bueno», «No consta arreglado», «Empeoró») no cambia.
+  - «Según los jueces» de cada cambio («Lo dan por bueno», «No consta arreglado», «Empeoró») no cambia: un cambio cuyo
+    único hallazgo nuevo es leve sigue contándose en «Empeoró» y su chip dice «error nuevo». Lo resuelve el contrato
+    único de los evaluadores (brief 248).
   - Lo leve se sigue pudiendo corregir: sus tareas siguen en el plan.
 
 ## Cómo se prueba
@@ -108,6 +126,7 @@ solo. El brief 239 los contó como «oraciones desfasadas» que había que arreg
 | R002 | `html/test/lo-leve-no-frena.test.js`: el bloque del ejercicio muestra cada observación leve con quién la dejó, sin los `$`, y dice que no frena, también sin cambios. La fila del juez dice «algo leve». La nota de cada lista cuenta los que tienen algo leve, y no aparece si no hay ninguno |
 | R003 | `html/test/lo-leve-no-frena.test.js`: el «resuelto» no nombra lo leve de un analizador como motivo |
 | R004 | `test/tablero_html/correcciones/nadie_le_ve_problemas_test.dart`: entra con la oración de producción, trae la de producción y no la cuenta como leve; la del árbol, o la de producción con otro hallazgo medio, lo deja afuera. `html/test/lo-leve-no-frena.test.js`: el bloque dice «Se arregla al publicar» con la oración, y el «resuelto» no la nombra |
+| R005 | `test/tablero_html/opinion_en_contexto_test.dart`: el error nuevo todo leve sale marcado leve, también el de un analizador que no pidió nada; con uno medio o sin gravedad, no; lo leve va después de un error de verdad. `html/test/lo-leve-no-frena.test.js`: dice «observación leve nueva» y «observación leve» en ámbar, sin «error»; la opinión de antes, «dijo: algo leve»; sin la marca sigue siendo error y el color es el del primero |
 
 ## References
 
