@@ -54,9 +54,12 @@ public interface CurrentAnalysisService {
     enum ChangeVerdict { WORSENED, NOT_SHOWN_FIXED, NOT_MEASURED, CONSIDERED_GOOD }
     /**
      * F-CONTR: an exercise of the correction. {@code now} is every evaluator's state in the correction and {@code before}
-     * in production, only for an exercise the batch changed; {@code change} is null when it did not change it.
+     * in production, only for an exercise the batch changed; {@code change} is null when it did not change it, and
+     * {@code worsened} names the evaluators that went to FAILS (F-CONTR-R006), so the screen reads them instead of
+     * working them out again.
      */
-    record Evaluation(Route route, ChangeVerdict change, Map<String, Assessment> now, Map<String, Assessment> before) {}
+    record Evaluation(Route route, ChangeVerdict change, List<String> worsened, Map<String, Assessment> now,
+            Map<String, Assessment> before) {}
     /** F-CONTR-R003: an evaluator of exercises; {@code notice} says what the screen warns about it, or null. */
     record Evaluator(String name, String displayName, String notice) {}
     /** {@code missingOpinions}: F-OPINA-R001, per judge the exercises it applies to and has not opined on. */

@@ -14,6 +14,7 @@ import com.learney.contentaudit.revisiondomain.batch.CurrentAnalysisService.Rout
 import com.learney.contentaudit.revisiondomain.batch.CurrentAnalysisService.Standing;
 import com.learney.contentaudit.revisiondomain.changereview.ChangeReview;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,17 +35,19 @@ final class EvaluatorContract {
 
     private EvaluatorContract() {}
 
+    /** The mark of a judge's opinion against today's version, as the state counts it (F-ALDIA-R003). */
+    record JudgeMark(JudgeVerdictFreshness freshness, JudgeAbstention abstention) {}
+
     /**
      * One state of the batch as the contract reads it: its exercises, the judges it marks against today's version and
-     * their marks by exercise and judge (as the state shows them), and the analyzers measured anywhere in it.
+     * their marks by exercise and judge, and the analyzers measured anywhere in it.
      */
     record Reading(Map<String, AuditNode> nodes, Set<String> judges,
-            Map<String, Map<String, Map<String, Object>>> marks, Set<String> measured) {}
+            Map<String, Map<String, JudgeMark>> marks, Set<String> measured) {}
 
     /**
      * F-CONTR-R005 and R006: every exercise of {@code now}, with each evaluator's state. {@code reviewed} holds the
-     * reviewer's reading of each exercise the batch changed, or is null when there is no reviewer: then nothing has a
-     * change verdict.
+     * reviewer's reading of each exercise the batch changed: the others have no change verdict.
      */
     static Map<String, Evaluation> evaluate(Collection<String> evaluators, Reading before, Reading now,
             Map<String, ChangeReview.Row> reviewed) {
@@ -52,10 +55,10 @@ final class EvaluatorContract {
         now.nodes().forEach((id, node) -> {
             var current = new LinkedHashMap<String, Assessment>();
             for (String evaluator : evaluators) current.put(evaluator, assess(evaluator, node, now));
-            if (reviewed != null) current.put(REVIEWER, reviewer(reviewed.get(id)));
+            current.put(REVIEWER, reviewer(reviewed.get(id)));
             Route route = route(current.values());
-            if (reviewed == null || !reviewed.containsKey(id)) {
-                result.put(id, new Evaluation(route, null, current, Map.of()));
+            if (!reviewed.containsKey(id)) {
+                result.put(id, new Evaluation(route, null, List.of(), current, Map.of()));
                 return;
             }
             var production = new LinkedHashMap<String, Assessment>();
@@ -64,7 +67,8 @@ final class EvaluatorContract {
             for (String evaluator : evaluators) production.put(evaluator, was == null
                     ? new Assessment(Standing.NOT_APPLICABLE, "not-in-production") : assess(evaluator, was, before));
             production.put(REVIEWER, reviewerInProduction(reviewed.get(id)));
-            result.put(id, new Evaluation(route, change(route, current, production), current, production));
+            List<String> worsened = worsened(current, production);
+            result.put(id, new Evaluation(route, change(route, worsened), worsened, current, production));
         });
         return result;
     }
@@ -77,16 +81,23 @@ final class EvaluatorContract {
     }
 
     /**
-     * F-CONTR-R006: worsened when an evaluator fails now and passed or did not apply in production; otherwise the
-     * route says it, so «Lo dan por bueno» is exactly «Todos los jueces lo aprueban».
+     * F-CONTR-R006: the evaluators that fail now and passed or did not apply in production, which has the same
+     * evaluators. One that was missing there does not prove the change made it worse.
      */
-    static ChangeVerdict change(Route route, Map<String, Assessment> now, Map<String, Assessment> before) {
-        for (var entry : now.entrySet()) {
-            if (entry.getValue().standing() != Standing.FAILS) continue;
-            Assessment was = before.get(entry.getKey());
-            Standing then = was == null ? Standing.NOT_APPLICABLE : was.standing();
-            if (then == Standing.PASSES || then == Standing.NOT_APPLICABLE) return ChangeVerdict.WORSENED;
-        }
+    static List<String> worsened(Map<String, Assessment> now, Map<String, Assessment> before) {
+        return now.entrySet().stream()
+                .filter(e -> e.getValue().standing() == Standing.FAILS)
+                .filter(e -> before.get(e.getKey()).standing() == Standing.PASSES
+                        || before.get(e.getKey()).standing() == Standing.NOT_APPLICABLE)
+                .map(Map.Entry::getKey).toList();
+    }
+
+    /**
+     * F-CONTR-R006: worsened when some evaluator did; otherwise the route says it, so «Lo dan por bueno» is exactly
+     * «Todos los jueces lo aprueban».
+     */
+    static ChangeVerdict change(Route route, List<String> worsened) {
+        if (!worsened.isEmpty()) return ChangeVerdict.WORSENED;
         return switch (route) {
             case HAS_A_PROBLEM -> ChangeVerdict.NOT_SHOWN_FIXED;
             case OPINIONS_MISSING -> ChangeVerdict.NOT_MEASURED;
@@ -100,13 +111,14 @@ final class EvaluatorContract {
         if (!DefaultAnalysisComposer.eligible(node, evaluator)) return new Assessment(Standing.NOT_APPLICABLE, "not-eligible");
         if (reading.judges().contains(evaluator)) {
             // 2, 3 and 4 for a judge with a version of today: the mark of its opinion against that version.
-            Map<String, Object> mark = reading.marks().getOrDefault(node.getEntity().getId(), Map.of()).get(evaluator);
+            JudgeMark mark = reading.marks().getOrDefault(node.getEntity().getId(), Map.of()).get(evaluator);
             if (mark == null) return new Assessment(Standing.MISSING, "no-opinion");
-            if (mark.get("freshness") != JudgeVerdictFreshness.UP_TO_DATE) return new Assessment(Standing.MISSING, "older-version");
-            if (mark.get("abstention") instanceof JudgeAbstention abstention)
-                return abstention == JudgeAbstention.NOT_APPLICABLE ? new Assessment(Standing.NOT_APPLICABLE, "abstained-not-applicable")
-                        : new Assessment(Standing.MISSING, abstention == JudgeAbstention.NEEDS_CONTEXT
-                                ? "abstained-needs-context" : "abstained-review");
+            if (mark.freshness() != JudgeVerdictFreshness.UP_TO_DATE) return new Assessment(Standing.MISSING, "older-version");
+            if (mark.abstention() != null) return switch (mark.abstention()) {
+                case NOT_APPLICABLE -> new Assessment(Standing.NOT_APPLICABLE, "abstained-not-applicable");
+                case NEEDS_CONTEXT -> new Assessment(Standing.MISSING, "abstained-needs-context");
+                case REVIEW -> new Assessment(Standing.MISSING, "abstained-review");
+            };
         } else {
             // 1 and 2 for an analyzer, as the exercise's numbers count it. F-CONTR-R003: without a judge of today any
             // version counts, as it does for an instant analyzer.
@@ -124,7 +136,7 @@ final class EvaluatorContract {
         List<Finding> own = BatchBook.list(node.getFindings()).stream()
                 .filter(f -> evaluator.equals(f.getAnalyzer()) && !DefaultQuizCorrectionService.waitsForPublishing(f)).toList();
         if (own.stream().anyMatch(f -> !DISAGREEMENT.equals(f.getRule()) && serious(f))) return new Assessment(Standing.FAILS, "finding");
-        if (own.stream().anyMatch(f -> DISAGREEMENT.equals(f.getRule()))) return new Assessment(Standing.MISSING, "judges-disagree");
+        if (own.stream().anyMatch(f -> DISAGREEMENT.equals(f.getRule()))) return new Assessment(Standing.MISSING, DISAGREEMENT);
         return new Assessment(Standing.PASSES, own.isEmpty() ? "clean" : "minor");
     }
 
@@ -165,7 +177,7 @@ final class EvaluatorContract {
 
     /** The analyzers a state measured anywhere, as its exercises' numbers name them. */
     static Set<String> measured(Collection<AuditNode> nodes) {
-        var names = new java.util.HashSet<String>();
+        var names = new HashSet<String>();
         for (AuditNode node : nodes) {
             if (node.getNumbers() == null) continue;
             if (node.getNumbers().getErrors() != null)

@@ -32,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class EvaluatorContractTest {
     static final String JUDGE = "naturalness", TRANSLATION = "translation-sense", ANALYZER = "grammar",
             CHOICE = "multiple-choice-validity", COHERENCE = "data-coherence", PAIRS = "near-duplicates";
-    final Map<String, Map<String, Map<String, Object>>> marks = new HashMap<>();
+    final Map<String, Map<String, EvaluatorContract.JudgeMark>> marks = new HashMap<>();
     int ids;
 
     /** An exercise to complete, alone in its topic, with what each analyzer left on it and its numbers counted. */
@@ -62,8 +62,7 @@ class EvaluatorContractTest {
         return f;
     }
     void mark(AuditNode node, String judge, JudgeVerdictFreshness freshness, JudgeAbstention abstention) {
-        var shown = new HashMap<String, Object>(); shown.put("freshness", freshness); shown.put("abstention", abstention);
-        marks.computeIfAbsent(node.getEntity().getId(), k -> new HashMap<>()).put(judge, shown);
+        marks.computeIfAbsent(node.getEntity().getId(), k -> new HashMap<>()).put(judge, new EvaluatorContract.JudgeMark(freshness, abstention));
     }
     EvaluatorContract.Reading reading(AuditNode... nodes) {
         var map = new LinkedHashMap<String, AuditNode>();
@@ -154,8 +153,8 @@ class EvaluatorContractTest {
 
     @Tag("F-CONTR-R003")
     @Test void aPaidEvaluatorWithoutAJudgeOfTodayCountsAnyVersion() {
+        // Casi repetido is not among the judges the state marks against today's version: its opinion counts as it is.
         var pairs = scored(PAIRS, finding(PAIRS, "same-exercise", FindingSeverity.LOW));
-        pairs.getMetadata().put(PAIRS + "Version", "juez-729229ed1d8d");
         assertEquals(a(Standing.PASSES, "minor"), assess(PAIRS, pairs), "no version of today to mark it against");
     }
 
@@ -194,16 +193,23 @@ class EvaluatorContractTest {
     }
 
     @Tag("F-CONTR-R006")
-    @Test void theChangeVerdictFollowsTheSameRoute() {
+    @Test void anEvaluatorWorsenedFromPassesAndFromNotApplicableOnly() {
         var fails = a(Standing.FAILS, "x");
-        Map<String, Assessment> now = Map.of(JUDGE, fails);
-        assertEquals(ChangeVerdict.WORSENED, EvaluatorContract.change(Route.HAS_A_PROBLEM, now, Map.of(JUDGE, a(Standing.PASSES, "x"))));
-        assertEquals(ChangeVerdict.WORSENED, EvaluatorContract.change(Route.HAS_A_PROBLEM, now, Map.of(JUDGE, a(Standing.NOT_APPLICABLE, "x"))));
-        assertEquals(ChangeVerdict.NOT_SHOWN_FIXED, EvaluatorContract.change(Route.HAS_A_PROBLEM, now, Map.of(JUDGE, a(Standing.MISSING, "x"))),
+        Map<String, Assessment> now = Map.of(JUDGE, fails, ANALYZER, a(Standing.PASSES, "x"));
+        Map<String, Assessment> passedThere = Map.of(JUDGE, a(Standing.PASSES, "x"), ANALYZER, a(Standing.PASSES, "x"));
+        assertEquals(List.of(JUDGE), EvaluatorContract.worsened(now, passedThere));
+        assertEquals(List.of(JUDGE), EvaluatorContract.worsened(now, Map.of(JUDGE, a(Standing.NOT_APPLICABLE, "x"), ANALYZER, a(Standing.PASSES, "x"))));
+        assertEquals(List.of(), EvaluatorContract.worsened(now, Map.of(JUDGE, a(Standing.MISSING, "x"), ANALYZER, a(Standing.PASSES, "x"))),
                 "production without an opinion does not prove it got worse");
-        assertEquals(ChangeVerdict.NOT_SHOWN_FIXED, EvaluatorContract.change(Route.HAS_A_PROBLEM, now, Map.of(JUDGE, fails)), "it was already there");
-        assertEquals(ChangeVerdict.NOT_MEASURED, EvaluatorContract.change(Route.OPINIONS_MISSING, Map.of(JUDGE, a(Standing.MISSING, "x")), Map.of()));
-        assertEquals(ChangeVerdict.CONSIDERED_GOOD, EvaluatorContract.change(Route.ALL_PASS, Map.of(JUDGE, a(Standing.PASSES, "x")), Map.of()));
+        assertEquals(List.of(), EvaluatorContract.worsened(now, Map.of(JUDGE, fails, ANALYZER, a(Standing.PASSES, "x"))), "it was already there");
+    }
+
+    @Tag("F-CONTR-R006")
+    @Test void theChangeVerdictFollowsTheSameRoute() {
+        assertEquals(ChangeVerdict.WORSENED, EvaluatorContract.change(Route.HAS_A_PROBLEM, List.of(JUDGE)));
+        assertEquals(ChangeVerdict.NOT_SHOWN_FIXED, EvaluatorContract.change(Route.HAS_A_PROBLEM, List.of()));
+        assertEquals(ChangeVerdict.NOT_MEASURED, EvaluatorContract.change(Route.OPINIONS_MISSING, List.of()));
+        assertEquals(ChangeVerdict.CONSIDERED_GOOD, EvaluatorContract.change(Route.ALL_PASS, List.of()));
     }
 
     @Tag("F-CONTR-R006")
@@ -216,14 +222,15 @@ class EvaluatorContractTest {
         reviewed.put(inherited.getEntity().getId(), row(ChangeReview.State.MARKED, verdict(ChangeReview.Mark.DOUBTFUL, true)));
         var result = EvaluatorContract.evaluate(List.of(ANALYZER), production, now, reviewed);
         assertEquals(ChangeVerdict.WORSENED, result.get(worse.getEntity().getId()).change());
+        assertEquals(List.of(EvaluatorContract.REVIEWER), result.get(worse.getEntity().getId()).worsened(), "the screen reads who worsened");
         assertEquals(Route.HAS_A_PROBLEM, result.get(inherited.getEntity().getId()).route());
         assertEquals(ChangeVerdict.NOT_SHOWN_FIXED, result.get(inherited.getEntity().getId()).change(), "the problem was already in production");
+        assertEquals(List.of(), result.get(inherited.getEntity().getId()).worsened());
         var same = result.get(unchanged.getEntity().getId());
         assertNull(same.change(), "an exercise the batch did not change has no verdict");
         assertTrue(same.before().isEmpty());
         assertEquals(a(Standing.NOT_APPLICABLE, "unchanged"), same.now().get(EvaluatorContract.REVIEWER));
         assertEquals(Route.ALL_PASS, same.route());
-        assertTrue(EvaluatorContract.evaluate(List.of(ANALYZER), production, now, null).values().stream()
-                .allMatch(e -> e.change() == null && !e.now().containsKey(EvaluatorContract.REVIEWER)), "without the reviewer, no verdict");
+        assertEquals(List.of(), same.worsened());
     }
 }

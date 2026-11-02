@@ -1112,6 +1112,7 @@ class CurrentAnalysisServiceTest {
         assertEquals(new CurrentAnalysisService.Assessment(CurrentAnalysisService.Standing.FAILS, "worse"),
                 changed.now().get(EvaluatorContract.REVIEWER));
         assertEquals(CurrentAnalysisService.ChangeVerdict.WORSENED, changed.change());
+        assertEquals(List.of(EvaluatorContract.REVIEWER), changed.worsened(), "who worsened travels with the verdict");
         assertTrue(changed.before().containsKey(NAME), "production, for what the batch changed");
         var unchanged = view.evaluations().get(TandaFixture.RESIDE);
         assertNull(unchanged.change(), "an exercise the batch did not change has no verdict");

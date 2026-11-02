@@ -4,6 +4,7 @@ import com.learney.contentaudit.auditdomain.*;
 import com.learney.contentaudit.auditdomain.analysis.*;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
 import com.learney.contentaudit.auditdomain.contextnumbers.*;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
 import com.learney.contentaudit.auditdomain.judging.JudgeAbstention;
 import com.learney.contentaudit.auditdomain.judging.JudgeFreshnessCount;
 import com.learney.contentaudit.auditdomain.judging.JudgeFreshnessReference;
@@ -14,8 +15,11 @@ import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
 import com.learney.contentaudit.coursedomain.*;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import com.learney.contentaudit.revisiondomain.batch.*;
+import com.learney.contentaudit.revisiondomain.changereview.ChangeReview;
 import java.time.Instant;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 import java.util.function.Function;
 
 /** One composition for every consumer. Reading and changing selections spend no model queries. */
@@ -138,10 +142,11 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         return view(batch,history,true);
     }
     private View view(CorrectionBatch batch, List<AnalysisSelection> history, boolean includeLoose) {
-        // F-CONTR-R004: the reviewer's marks are read while the states are composed; they do not depend on them.
-        var marks = includeLoose && config.getChangeReviewService() != null ? java.util.concurrent.CompletableFuture.supplyAsync(
-                () -> config.getChangeReviewService().review(new com.learney.contentaudit.revisiondomain.changereview.ChangeReview.Request(
-                        batch.getId(), List.of(), null, null))) : null;
+        // F-CONTR-R004: the reviewer's marks are read while the states are composed; they do not depend on them. If they
+        // cannot be read there is no contract, and the screen keeps its own count (R008).
+        CompletableFuture<Map<String, ChangeReview.Row>> reviewed = includeLoose && config.getChangeReviewService() != null
+                && config.getAnalyzerCatalog() != null
+                ? CompletableFuture.supplyAsync(() -> reviewerRows(batch)).exceptionally(unreadable -> null) : null;
         CourseEntity start = BatchCourses.start(batch, config.getCourseRepository().load(config.getCoursePath()), config.getBatchStore());
         CourseEntity current = cut(ledger.composedCourse(batch, start), batch.getLevel());
         CourseEntity baseCourse = cut(start, batch.getLevel());
@@ -185,7 +190,8 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
             var studentViews = new LinkedHashMap<String, QuizStudentView>();
             var provenance = new LinkedHashMap<String, Map<String, Object>>();
             var verdictMarks = new LinkedHashMap<String, Map<String, Map<String, Object>>>();
-            var judges = freshness(report, verdictMarks);
+            var judgeMarks = new HashMap<String, Map<String, EvaluatorContract.JudgeMark>>();
+            var judges = freshness(report, verdictMarks, judgeMarks);
             index.forEach((id, node) -> {
                 if (node.getEntity() instanceof AuditableQuiz quiz) studentViews.put(id, renderer.render(quiz));
                 if (node.getMetadata() != null && node.getMetadata().get(DefaultAnalysisComposer.PROVENANCE) instanceof Map<?, ?> origins) {
@@ -226,7 +232,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
             var exercises = new LinkedHashMap<String, AuditNode>();
             index.forEach((id, node) -> { if (node.getTarget() == AuditTarget.QUIZ) exercises.put(id, node); });
             readings.put(state, new EvaluatorContract.Reading(exercises, judges.stream().map(JudgeFreshnessCount::judgeName)
-                    .collect(java.util.stream.Collectors.toSet()), verdictMarks, EvaluatorContract.measured(exercises.values())));
+                    .collect(Collectors.toSet()), judgeMarks, EvaluatorContract.measured(exercises.values())));
         }
         var loose = new ArrayList<LooseRun>();
         if (includeLoose) for (var run : BatchBook.list(batch.getSelectiveRuns())) {
@@ -247,7 +253,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                     run.spent(), evaluated, errors, fits, config.getAnalyzerCatalog() == null ? run.analyzer()
                             : config.getAnalyzerCatalog().find(run.analyzer()).map(AnalyzerDescriptor::getDisplayName).orElse(run.analyzer()), activityId(batch,run)));
         }
-        var contract = marks == null ? Contract.NONE : contract(marks, readings);
+        var contract = reviewed == null ? Contract.NONE : contract(reviewed.join(), readings);
         return new View(batch.getId(), batch.getContentVersion(), history.size(), states, loose, includeLoose ? List.copyOf(history) : List.of(),
                 composer.supportedAnalyzers().stream().sorted().toList(), contract.evaluators(), contract.evaluations());
     }
@@ -260,26 +266,29 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
      * changed, in production. Without the reviewer's marks there is no contract: a contract without one of its
      * evaluators would decide the list wrong, so the screen keeps its own count (R008).
      */
-    private Contract contract(java.util.concurrent.CompletableFuture<com.learney.contentaudit.revisiondomain.changereview.ChangeReview.Result> marks,
-            Map<String, EvaluatorContract.Reading> readings) {
-        if (config.getAnalyzerCatalog() == null) return Contract.NONE;
-        var reviewed = new LinkedHashMap<String, com.learney.contentaudit.revisiondomain.changereview.ChangeReview.Row>();
-        try {
-            // F-CONTR-R004: without a budget the reviewer is not consulted.
-            for (var row : marks.join().rows()) reviewed.put(row.quizId(), row);
-        } catch (RuntimeException unreadable) {
-            return Contract.NONE;
-        }
+    private Contract contract(Map<String, ChangeReview.Row> reviewed, Map<String, EvaluatorContract.Reading> readings) {
+        if (reviewed == null) return Contract.NONE;
+        var correction = readings.get("correction");
         var evaluators = new ArrayList<Evaluator>();
         for (var card : BatchBook.list(config.getAnalyzerCatalog().list()))
             if (BatchBook.list(card.getEvaluatedTargets()).contains(AuditTarget.QUIZ))
-                // F-CONTR-R003: a paid evaluator without a judge of today counts any version, and the screen says so.
-                evaluators.add(new Evaluator(card.getName(), card.getDisplayName(), card.getCost() != com.learney.contentaudit.auditdomain.finding.AnalysisCost.INSTANT
-                        && todaysJudge(card.getName()).isEmpty() ? "Cuenta cualquier versión hasta que su versión de hoy rinda examen." : null));
+                // F-CONTR-R003: a paid evaluator the correction does not mark against today's version counts any
+                // version (EvaluatorContract.assess), and the screen says so.
+                evaluators.add(new Evaluator(card.getName(), card.getDisplayName(), card.getCost() != AnalysisCost.INSTANT
+                        && !correction.judges().contains(card.getName())
+                        ? "Cuenta cualquier versión hasta que su versión de hoy rinda examen." : null));
         var evaluations = EvaluatorContract.evaluate(evaluators.stream().map(Evaluator::name).toList(),
-                readings.get("base"), readings.get("correction"), reviewed);
+                readings.get("base"), correction, reviewed);
         evaluators.add(new Evaluator(EvaluatorContract.REVIEWER, "El revisor", null));
         return new Contract(List.copyOf(evaluators), evaluations);
+    }
+
+    /** F-CONTR-R004: the reviewer's mark of each exercise the batch changed. Without a budget it is not consulted. */
+    private Map<String, ChangeReview.Row> reviewerRows(CorrectionBatch batch) {
+        var rows = new LinkedHashMap<String, ChangeReview.Row>();
+        for (var row : config.getChangeReviewService().review(new ChangeReview.Request(batch.getId(), List.of(), null, null)).rows())
+            rows.put(row.quizId(), row);
+        return rows;
     }
 
     @Override public AuditReport report(CorrectionBatch batch, String state, CourseEntity course) {
@@ -388,7 +397,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
      * is a verdict: it carries its mark and is counted apart by reason, never as not measured (R003 inv. 6). Reads only.
      */
     private List<JudgeFreshnessCount> freshness(AuditReport report,
-            Map<String, Map<String, Map<String, Object>>> marks) {
+            Map<String, Map<String, Map<String, Object>>> marks, Map<String, Map<String, EvaluatorContract.JudgeMark>> judgeMarks) {
         if (config.getJudgeFreshnessCatalog() == null || !(report.getRoot().getDiagnoses() instanceof CourseDiagnoses d)) return List.of();
         var index = DefaultAnalysisComposer.index(report.getRoot());
         var result = new ArrayList<JudgeFreshnessCount>();
@@ -417,6 +426,8 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                     shown.put("runtimeName", JudgeVersionNamer.runtimeName(runtime));
                     shown.put("abstention", abstention); shown.put("abstentionName", abstention == null ? null : abstention.label());
                     marks.computeIfAbsent(id, k -> new LinkedHashMap<>()).put(judge, shown);
+                    // F-CONTR-R001: the same mark, typed, for the contract.
+                    judgeMarks.computeIfAbsent(id, k -> new HashMap<>()).put(judge, new EvaluatorContract.JudgeMark(mark.freshness(), abstention));
                 }
                 units.merge(unitId, verdict, UnitVerdict::worse);
             }
