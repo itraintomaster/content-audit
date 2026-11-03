@@ -50,9 +50,9 @@ class DefaultMiniTheoryDistributor implements MiniTheoryDistributor {
     /** F-MINIT-R013: the order in which the judge lists the problems of one quiz, the same its gate keeps. */
     static final List<MiniTheoryProblem> WORST_FIRST = List.of(
             MiniTheoryProblem.FALSE_RULE, MiniTheoryProblem.INSUFFICIENT_FOR_QUIZ,
-            MiniTheoryProblem.OVERSTATED_FOR_QUIZ, MiniTheoryProblem.OTHER_SUBTOPIC_CONTENT,
-            MiniTheoryProblem.DIDACTIC_DIRECTION, MiniTheoryProblem.OVER_SPECIFIC_FOR_QUIZ,
-            MiniTheoryProblem.THEORETICAL_JARGON, MiniTheoryProblem.MISSING_ENGLISH_HIGHLIGHT);
+            MiniTheoryProblem.OVERSTATED_FOR_QUIZ, MiniTheoryProblem.THEORETICAL_JARGON,
+            MiniTheoryProblem.OTHER_SUBTOPIC_CONTENT, MiniTheoryProblem.DIDACTIC_DIRECTION,
+            MiniTheoryProblem.OVER_SPECIFIC_FOR_QUIZ, MiniTheoryProblem.MISSING_ENGLISH_HIGHLIGHT);
 
     private final MiniTheoryConfig config;
     private final QuizStudentViewRenderer studentViewRenderer;
@@ -167,8 +167,9 @@ class DefaultMiniTheoryDistributor implements MiniTheoryDistributor {
     static FindingSeverity severityOf(MiniTheoryProblem problem) {
         return switch (problem) {
             case FALSE_RULE, INSUFFICIENT_FOR_QUIZ -> FindingSeverity.HIGH;
-            case OVERSTATED_FOR_QUIZ -> FindingSeverity.MEDIUM;
-            case OTHER_SUBTOPIC_CONTENT, OVER_SPECIFIC_FOR_QUIZ, THEORETICAL_JARGON,
+            // F-MINIT-R009: jargon is medium since 3/11/2026 (José): it keeps the exercise out of «Todos».
+            case OVERSTATED_FOR_QUIZ, THEORETICAL_JARGON -> FindingSeverity.MEDIUM;
+            case OTHER_SUBTOPIC_CONTENT, OVER_SPECIFIC_FOR_QUIZ,
                     DIDACTIC_DIRECTION, MISSING_ENGLISH_HIGHLIGHT -> FindingSeverity.LOW;
         };
     }

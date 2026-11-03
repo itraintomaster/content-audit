@@ -45,11 +45,11 @@
               "then": {"properties": {"severity": {"const": "HIGH"}}}
             },
             {
-              "if": {"properties": {"problem": {"const": "OVERSTATED_FOR_QUIZ"}}},
+              "if": {"properties": {"problem": {"enum": ["OVERSTATED_FOR_QUIZ", "THEORETICAL_JARGON"]}}},
               "then": {"properties": {"severity": {"const": "MEDIUM"}}}
             },
             {
-              "if": {"properties": {"problem": {"enum": ["OTHER_SUBTOPIC_CONTENT", "OVER_SPECIFIC_FOR_QUIZ", "THEORETICAL_JARGON", "DIDACTIC_DIRECTION", "MISSING_ENGLISH_HIGHLIGHT"]}}},
+              "if": {"properties": {"problem": {"enum": ["OTHER_SUBTOPIC_CONTENT", "OVER_SPECIFIC_FOR_QUIZ", "DIDACTIC_DIRECTION", "MISSING_ENGLISH_HIGHLIGHT"]}}},
               "then": {"properties": {"severity": {"const": "LOW"}}}
             }
           ]

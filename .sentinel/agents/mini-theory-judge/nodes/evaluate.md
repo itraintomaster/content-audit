@@ -255,20 +255,22 @@ léxico incidental. Tampoco basta presentar ese léxico como ejemplo cuando no
 aporta ninguna distinción: la tarjeta sigue siendo una receta del ítem.
 
 Probá abstraer mentalmente sólo ese léxico manteniendo la construcción y la
-decisión focal. Si verbo base, complemento o una categoría de concordancia
-expresan la misma regla sin perder información necesaria, corresponde
-`OVER_SPECIFIC_FOR_QUIZ`. Un sujeto nominal que sólo aporta concordancia se
-explica por su categoría gramatical; su nombre no necesita figurar en el esquema.
-Un pronombre puede conservarse cuando fija la forma del auxiliar: no exijas
-enumerar otras personas ni cubrir todo el tema.
+decisión focal. Si «verbo base», «el resto de la oración» o una descripción con
+palabras de todos los días —«una persona o cosa en singular»— expresan la misma
+regla sin perder información necesaria, corresponde `OVER_SPECIFIC_FOR_QUIZ`.
+Un sujeto que sólo decide la forma del verbo no necesita figurar con su nombre
+en el esquema, pero tampoco se reemplaza por una etiqueta gramatical: nunca
+propongas «sujeto nominal», «tercera persona», «complemento» ni «determinante»
+(paso 9). Un pronombre puede conservarse cuando fija la forma del auxiliar: no
+exijas enumerar otras personas ni cubrir todo el tema.
 
 Distinguí léxico incidental de marcadores estructurales. Una palabra o expresión
 interrogativa puede conservarse en la apertura del esquema para mostrar el tipo
 de pregunta y la posición del auxiliar. No la marques únicamente porque ya esté
 dada en el enunciado ni exijas reemplazarla siempre por una etiqueta abstracta.
 Lo mismo vale para auxiliares y otros elementos que hacen visible la construcción.
-Una plantilla que conserva esos marcadores pero abstrae el verbo y los
-complementos incidentales ya permite reutilizar la estructura. El defecto sigue
+Una plantilla que conserva esos marcadores pero abstrae el verbo y las demás
+palabras incidentales ya permite reutilizar la estructura. El defecto sigue
 existiendo cuando la receta fija un verbo principal o un nombre incidental,
 aunque tenga una apertura interrogativa correctamente situada.
 
@@ -290,33 +292,42 @@ ejemplo que aporta una distinción. Este paso detecta léxico incidental fijado
 como parte de una receta, no aplica un límite de palabras ni exige una única
 redacción. La concisión es una recomendación para corregir el defecto encontrado.
 
-### 9. Metalenguaje teórico o jerga gramatical innecesaria → `THEORETICAL_JARGON`
+### 9. Metalenguaje teórico o jerga gramatical → `THEORETICAL_JARGON`
 
 Comprobá si la tarjeta recurre a terminología teórica, etiquetas lingüísticas formales o jerga gramatical abstracta que resulta
 antipedagógica o inaccesible para un alumno de inglés. La miniteoría es una ayuda
 breve para el usuario de la app, no una lección de lingüística teórica.
 
 Corresponde `THEORETICAL_JARGON` cuando la tarjeta se apoya en conceptos teóricos
-en vez de dar una explicación funcional, intuitiva y en lenguaje cotidiano.
-Ejemplos típicos de jerga a penalizar:
+en vez de dar una explicación funcional, intuitiva y en lenguaje cotidiano, aunque
+sea verdadera y suficiente. Es jerga:
 - «adjetivo atributivo» o «adjetivo predicativo» (se debe explicar en lenguaje llano:
   «la cualidad va antes de lo que describe» o «va después del verbo»);
 - «estilo indirecto» o «discurso referido» (se debe explicar funcionalmente:
   «al contar lo que alguien dijo»);
 - «verbo de estado», «verbo estativo» o «verbo copulativo» (se debe explicar funcionalmente:
   «para hablar de gustos o hábitos» o «verbos como be no expresan una acción en curso»);
-- «perífrasis aspectual», «inversión locativa» u otras etiquetas taxonómicas avanzadas.
+- «perífrasis aspectual», «inversión locativa» u otras etiquetas taxonómicas avanzadas;
+- los términos de gramática que el curso no usa, en cualquier forma: «sujeto
+  nominal», «tercera persona», «complemento» y «determinante». Se dicen con
+  palabras de todos los días: «una persona o cosa en singular», «con $he$, $she$
+  o $it$», «el resto de la oración», «sin $the$ ni $a$ delante».
 
-No penalices términos básicos y universales que el alumno necesariamente aprende y
-utiliza en el curso, como «sujeto», «verbo», «sustantivo», «pasado», «presente»,
-«pregunta», «negación», ni la mención directa del tiempo verbal practicado
-(«present simple», «past continuous») cuando sea la instrucción del quiz. El defecto
-radica en usar etiquetas académicas abstractas cuando existe una explicación
-comunicativa directa.
+Una sola aparición alcanza: «Con un sujeto nominal singular se usa $is$» y
+«$Is$ + sujeto + complemento + ?» son jerga aunque el resto de la tarjeta esté
+bien.
 
-Ante jerga teórica, la `explanation` identifica el término teórico y explica cómo
-formularlo de forma intuitiva. El `counterexample` propone la redacción en lenguaje
-llano ceñida al mismo quiz.
+No penalices los términos que el curso ya usa: «sujeto», «verbo», «verbo base»,
+«sustantivo», «contable», «incontable», «adjetivo», «adverbio», «preposición»,
+«pregunta», «negación», «pasado», «presente», ni la mención directa del tiempo
+verbal practicado («present simple», «past continuous») cuando sea la instrucción
+del quiz. El defecto radica en usar etiquetas académicas abstractas cuando existe
+una explicación comunicativa directa.
+
+Ante jerga teórica, la `explanation` identifica el término y explica cómo
+decirlo con palabras de todos los días. El `counterexample` propone la misma
+explicación en lenguaje llano, ceñida al mismo quiz y sin ninguno de los términos
+de esta lista.
 
 ### 10. Inglés citado sin resaltado nativo → `MISSING_ENGLISH_HIGHLIGHT`
 
@@ -324,8 +335,8 @@ Comprobá que las palabras, formas y fragmentos en inglés que la tarjeta cita p
 Incluye pronombres, auxiliares, contracciones, expresiones de varias palabras,
 letras o terminaciones que se enseñan como formas del inglés y transformaciones
 ortográficas. Pueden marcarse fragmentos completos, como `$verbo → forma$`, cuando
-ambos lados son formas inglesas concretas; las etiquetas españolas «verbo base»,
-«sujeto» o «complemento» quedan fuera. No exijas marcas si la tarjeta está enteramente en español
+ambos lados son formas inglesas concretas; las palabras españolas «verbo base»,
+«sujeto» o «el resto de la oración» quedan fuera. No exijas marcas si la tarjeta está enteramente en español
 y explica suficientemente el caso sin citar formas inglesas.
 
 Revisá cada aparición: tener una terminación ya marcada no cubre los pronombres,
@@ -353,8 +364,8 @@ Devolvé un solo elemento con `holds: true`.
 
 Los problemas de un quiz van del más grave al más leve, en este orden:
 `FALSE_RULE`, `INSUFFICIENT_FOR_QUIZ`, `OVERSTATED_FOR_QUIZ`,
-`OTHER_SUBTOPIC_CONTENT`, `DIDACTIC_DIRECTION`, `OVER_SPECIFIC_FOR_QUIZ`,
-`THEORETICAL_JARGON`, `MISSING_ENGLISH_HIGHLIGHT`. Usá `FALSE_RULE` cuando hay
+`THEORETICAL_JARGON`, `OTHER_SUBTOPIC_CONTENT`, `DIDACTIC_DIRECTION`,
+`OVER_SPECIFIC_FOR_QUIZ`, `MISSING_ENGLISH_HIGHLIGHT`. Usá `FALSE_RULE` cuando hay
 dirección o clasificación local falsa; usá `INSUFFICIENT_FOR_QUIZ` cuando falta
 la distinción necesaria.
 
@@ -436,6 +447,10 @@ que ya dice otro. La severidad está fijada y nunca puede ser `BLOCKING`:
   misma palabra o construcción. En concordancia incluye la forma presentada con
   sólo una parte de sus personas («$is$ va con $she$»). Vale también cuando la
   tarjeta tiene además contenido de otro subtema.
+- `THEORETICAL_JARGON` → `MEDIUM`: recurre a metalenguaje gramatical abstracto,
+  etiquetas lingüísticas teóricas o a los términos que el curso no usa («sujeto
+  nominal», «tercera persona», «complemento», «determinante») en vez de
+  explicarse con palabras de todos los días, aunque sea verdadera y suficiente.
 - `OTHER_SUBTOPIC_CONTENT` → `LOW`: agrega contenido que pertenece sólo a otro
   subtema. Si ese contenido reemplaza la explicación necesaria, informá también
   `INSUFFICIENT_FOR_QUIZ`.
@@ -446,9 +461,6 @@ que ya dice otro. La severidad está fijada y nunca puede ser `BLOCKING`:
 - `OVER_SPECIFIC_FOR_QUIZ` → `LOW`: fija léxico incidental en una receta del
   ítem que se puede abstraer sin perder el contraste focal. No se usa sólo
   porque el texto sea largo.
-- `THEORETICAL_JARGON` → `LOW`: recurre a metalenguaje gramatical abstracto o
-  etiquetas lingüísticas teóricas en vez de explicarse en lenguaje funcional y
-  accesible para un estudiante.
 - `MISSING_ENGLISH_HIGHLIGHT` → `LOW`: las palabras o formas inglesas citadas
   carecen total o parcialmente de resaltado nativo `$...$`. La evidencia
   identifica los fragmentos y propone una reparación sólo de formato.
@@ -477,9 +489,10 @@ breve que parte del sujeto y conserva tiempo y polaridad. No inventes una
 incompatibilidad ni un contraejemplo gramatical para justificar este defecto.
 
 Ante sobreespecificación, la `explanation` identifica el fragmento incidental,
-explica por qué no determina la regla y qué papel gramatical se puede abstraer.
-El `counterexample` propone un esquema breve aplicado al mismo quiz, conservando
-las decisiones focales y las variantes pertinentes. No inventes otro quiz ni
+explica por qué no determina la regla y cómo decir su papel con palabras de
+todos los días. El `counterexample` propone un esquema breve aplicado al mismo
+quiz, conservando las decisiones focales y las variantes pertinentes, sin
+ninguno de los términos del paso 9. No inventes otro quiz ni
 copies respuestas esperadas de un examen; deducí el esquema del caso recibido.
 
 Ante jerga teórica, la `explanation` señala la etiqueta o concepto académico y

@@ -128,11 +128,14 @@ public class JacksonMiniTheoryVerdictReader implements MiniTheoryVerdictReader {
         }
         FindingSeverity expected = switch (problem) {
             case FALSE_RULE, INSUFFICIENT_FOR_QUIZ -> FindingSeverity.HIGH;
-            case OVERSTATED_FOR_QUIZ -> FindingSeverity.MEDIUM;
-            case OTHER_SUBTOPIC_CONTENT, OVER_SPECIFIC_FOR_QUIZ, THEORETICAL_JARGON,
+            case OVERSTATED_FOR_QUIZ, THEORETICAL_JARGON -> FindingSeverity.MEDIUM;
+            case OTHER_SUBTOPIC_CONTENT, OVER_SPECIFIC_FOR_QUIZ,
                     DIDACTIC_DIRECTION, MISSING_ENGLISH_HIGHLIGHT -> FindingSeverity.LOW;
         };
-        if (severity != expected) {
+        // F-MINIT-R009: jargon was low until 3/11/2026. A verdict a judge of before saved still reads; its finding
+        // takes today's severity from the problem, not from the verdict.
+        boolean jargonOfBefore = problem == MiniTheoryProblem.THEORETICAL_JARGON && severity == FindingSeverity.LOW;
+        if (severity != expected && !jargonOfBefore) {
             throw new IllegalArgumentException(VERDICT + " ilegible: " + where + " clasifica " + problem
                     + " con " + severity + " y corresponde " + expected);
         }

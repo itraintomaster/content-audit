@@ -110,9 +110,10 @@ específica del caso». Esto reemplaza el agrupamiento anterior por texto compar
 > u 0,8 según el más grave [ASSUMPTION]; el del tema, el nivel y el curso sube por la agregación genérica.
 
 Usa las definiciones de [F-HALL-R002](#F-HALL-R002). El 077 puso en A1 y A2 43 altas, 41 medias y 28 bajas.
-Los defectos editoriales específicos de [F-MINIT-R008](#F-MINIT-R008), [F-MINIT-R009](#F-MINIT-R009) y la dirección
-de [F-MINIT-R010](#F-MINIT-R010) tienen gravedad baja y se informan junto a los demás defectos de la tarjeta
-([F-MINIT-R013](#F-MINIT-R013)). La concordancia que no se generaliza bien de [F-MINIT-R010](#F-MINIT-R010) es media.
+Los defectos editoriales específicos de [F-MINIT-R008](#F-MINIT-R008) y la dirección de [F-MINIT-R010](#F-MINIT-R010)
+tienen gravedad baja y se informan junto a los demás defectos de la tarjeta ([F-MINIT-R013](#F-MINIT-R013)). La
+concordancia que no se generaliza bien de [F-MINIT-R010](#F-MINIT-R010) y la jerga de [F-MINIT-R009](#F-MINIT-R009) son
+medias.
 
 <a id="F-MINIT-R005"></a>
 ### Rule[F-MINIT-R005] - Reuso, tope, fallas y cobertura, contando temas
@@ -166,9 +167,10 @@ que permita modificar uno por arrastre. El tipo de tarea y la mesa son del paque
 > incidentales del quiz como parte de una regla de estructura. El juez la clasifica
 > como `OVER_SPECIFIC_FOR_QUIZ`, gravedad baja, después de descartar los defectos
 > anteriores. La evidencia nombra el detalle incidental y propone cómo abstraer
-> su papel sin perder la decisión focal. Un nombre que sólo determina concordancia
-> se puede expresar por su categoría gramatical; un pronombre que fija el auxiliar
-> puede conservarse. Las palabras necesarias para una elección léxica, colocación,
+> su papel sin perder la decisión focal. Un nombre que sólo determina la forma del
+> verbo se describe con palabras de todos los días —«una persona o cosa en
+> singular»—, nunca con una etiqueta gramatical ([F-MINIT-R009](#F-MINIT-R009));
+> un pronombre que fija el auxiliar puede conservarse. Las palabras necesarias para una elección léxica, colocación,
 > significado, irregularidad o excepción siguen siendo parte de la explicación.
 > Los marcadores estructurales, como una apertura interrogativa que muestra el
 > tipo de pregunta y la posición del auxiliar, pueden mantenerse en un esquema
@@ -185,21 +187,46 @@ Pedido del operador, 13/10/2026: mejorar también al juez para encontrar los cas
 de PRB-f35c962c; las respuestas anteriores gustaron aunque quedaron largas.
 
 <a id="F-MINIT-R009"></a>
-### Rule[F-MINIT-R009] - La miniteoría evita el metalenguaje teórico y la jerga gramatical abstracta
+### Rule[F-MINIT-R009] - La miniteoría habla con palabras de todos los días, sin jerga gramatical
 **Severity**: major | **Validation**: VALIDATED
 
 > La miniteoría es una herramienta de aprendizaje breve para el alumno, no una clase de
-> lingüística. Si la tarjeta es verdadera y suficiente pero recurre a terminología teórica
-> o etiquetas gramaticales abstractas (como «adjetivo atributivo/predicativo», «estilo indirecto»,
-> «verbo de estado/estativo/copulativo» o «perífrasis aspectual») en lugar de una explicación
-> funcional e intuitiva en lenguaje corriente («la cualidad va antes de lo que describe»,
-> «al contar lo que alguien dijo», «para hablar de gustos o hábitos»), el juez la clasifica
-> como `THEORETICAL_JARGON`, gravedad baja, después de descartar sobreespecificación.
-> La evidencia señala el término abstracto y propone una formulación comunicativa en lenguaje
-> llano. El corrector también es instruido para evitar este defecto al generar nuevas propuestas.
+> lingüística. Si la tarjeta recurre a terminología teórica o etiquetas gramaticales abstractas
+> (como «adjetivo atributivo/predicativo», «estilo indirecto», «verbo de estado/estativo/copulativo»
+> o «perífrasis aspectual») en lugar de una explicación funcional e intuitiva en lenguaje corriente
+> («la cualidad va antes de lo que describe», «al contar lo que alguien dijo», «para hablar de
+> gustos o hábitos»), el juez la clasifica como `THEORETICAL_JARGON`, gravedad **media**, aunque
+> sea verdadera y suficiente.
+>
+> También son jerga los términos de gramática que el curso no usa: «sujeto nominal», «tercera
+> persona», «complemento» y «determinante». Se dicen con palabras de todos los días: «una persona o
+> cosa en singular», «con $he$, $she$ o $it$», «el resto de la oración», «sin $the$ ni $a$ delante».
+> Siguen permitidos los que el curso ya usa: sujeto, verbo, verbo base, sustantivo, contable e
+> incontable, adjetivo, adverbio, preposición, pregunta, negación y el nombre de los tiempos.
+>
+> La evidencia señala el término y propone la misma explicación en lenguaje llano. El juez la
+> informa junto a los demás problemas de la tarjeta ([F-MINIT-R013](#F-MINIT-R013)). El corrector
+> no usa estos términos al escribir y, al abstraer las palabras del ejercicio
+> ([F-MINIT-R008](#F-MINIT-R008)), no las reemplaza por una etiqueta gramatical.
+
+| Quiz (inventado) | Miniteoría | Por este criterio |
+|---|---|---|
+| The lamp ___ on the table. · am / are / is | Con un sujeto nominal singular se usa $is$. | Jerga (media). |
+| The lamp ___ on the table. · am / are / is | Con una cosa en singular, como $it$, se usa $is$. | Bien. |
+| ___ (the lamp / be) on the table? · Is the lamp | Para preguntar: $Is$ + sujeto + complemento + ?. | Jerga (media). |
+| ___ (the lamp / be) on the table? · Is the lamp | Para preguntar, $is$ va antes del sujeto: $Is$ + sujeto + el resto + ?. | Bien. |
+| She ___ (read) every night. · reads | En tercera persona singular el verbo lleva $-s$. | Jerga (media). |
+| She ___ (read) every night. · reads | Con $she$, el verbo lleva $-s$: $read → reads$. | Bien. |
 
 Pedido del operador, 19/10/2026: evitar exceso de conceptos teóricos; las miniteorías deben ser
 focalizadas y sencillamente explicadas para el alumno.
+
+Decisión de José, 3/11/2026, después del brief 259. Al ver «Con un sujeto nominal singular…» en «Todos los jueces lo
+aprueban»: «habíamos dicho que no íbamos a poner este tipo de cosas tan complejas técnicas del lenguaje en la
+miniteoría. Pero veo varias. Y no están marcadas de ninguna manera». La corrección había metido esos cuatro términos en
+400 tarjetas de la C2 que producción no tenía, porque [F-MINIT-R008](#F-MINIT-R008) pedía nombrar al sujeto por su
+categoría gramatical. Eligió prohibir los cuatro, conservar los que producción ya usaba y que la jerga frene, como
+problema medio («Sí, como recomendás»).
 
 <a id="F-MINIT-R010"></a>
 ### Rule[F-MINIT-R010] - La concordancia se explica desde el sujeto, de modo que generalizada siga siendo cierta
@@ -416,7 +443,7 @@ y que sólo esos cuatro casos pasen a esperar «otro subtema y exagera», graved
 |---|---|
 | Pregunta | ¿La tarjeta explica correctamente el caso concreto de este quiz, sin traer reglas de otros subtemas? |
 | Lee | cada quiz con su miniteoría, consigna efectiva, enunciado, pista y respuestas u opciones; nivel, nombre y consigna del tema como contexto |
-| Reglas | es falsa para el caso · no alcanza para resolverlo · trae contenido de otro subtema · generalizada deja de ser cierta · invierte la explicación de sujeto a forma verbal |
+| Reglas | es falsa para el caso · no alcanza para resolverlo · trae contenido de otro subtema · generalizada deja de ser cierta · invierte la explicación de sujeto a forma verbal · usa jerga de gramática |
 | Meta y familia | 0 quizzes con error · errores |
 | Evalúa y resuelve | puede consultar por tema, pero decide y corrige por quiz |
 | Costo | modelo pago: una consulta por tema |

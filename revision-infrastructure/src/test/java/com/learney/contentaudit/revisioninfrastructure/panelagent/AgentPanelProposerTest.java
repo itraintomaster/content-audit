@@ -427,6 +427,30 @@ public class AgentPanelProposerTest {
     }
 
     @Test
+    @Tag("F-MINIT-R009")
+    void asksTheMiniTheoryInEverydayWordsNamingOnlyTheGrammarTermsTheCourseAlreadyUses() throws Exception {
+        // José, 3/11 (brief 259): the mesa wrote «Con un sujeto nominal singular…» because this prompt asked to explain
+        // the grammatical category of the subject. It now names what the course uses and the plain way to say the rest.
+        java.nio.file.Path root = java.nio.file.Path.of("").toAbsolutePath();
+        while (root != null && !java.nio.file.Files.isDirectory(root.resolve(".sentinel/agents/panel-proposer"))) {
+            root = root.getParent();
+        }
+        assertTrue(root != null, "the proposer definition must be available to the test");
+        String prompt = java.nio.file.Files.readString(root.resolve(".sentinel/agents/panel-proposer/nodes/generate.md"));
+        for (String rule : List.of(
+                "Si el sujeto sólo\ndecide la forma del verbo, describilo con palabras de todos los días",
+                "«con una cosa en singular, como $it$, se usa $is$»",
+                "De gramática, usá sólo los términos que\nel curso ya usa: sujeto, verbo, verbo base",
+                "«el resto de la oración», «sin $the$ ni $a$ delante»",
+                "Si la\nevidencia marca jerga, reemplazá ese término por su explicación llana")) {
+            assertTrue(prompt.contains(rule), "the prompt says: " + rule);
+        }
+        for (String term : List.of("nominal", "tercera persona", "complemento", "determinante", "categoría gramatical")) {
+            assertFalse(prompt.contains(term), "the prompt does not use or suggest «" + term + "»");
+        }
+    }
+
+    @Test
     @Tag("F-MINIT-R010")
     void asksTheCardToSayWhichFormItsSubjectTakesWhenItNamesSeveral() throws Exception {
         // José, 2/11 (brief 254): a was/were card says which one goes with the quiz's subject, starting from it.

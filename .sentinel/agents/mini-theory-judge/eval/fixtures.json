@@ -50,10 +50,9 @@
     "DIDACTIC_DIRECTION",
     "compatibilidad inversa sea verdadera o biunívoca",
     "no un contraejemplo lógico",
-    "Metalenguaje teórico o jerga gramatical innecesaria",
+    "Metalenguaje teórico o jerga gramatical → `THEORETICAL_JARGON`",
     "La longitud por sí sola no es un defecto",
     "léxico incidental fijado",
-    "su categoría gramatical",
     "Distinguí léxico incidental de marcadores estructurales",
     "ya permite reutilizar la estructura",
     "esa condición cuando el prompt no la aporta",
@@ -77,7 +76,11 @@
     "Si la tarjeta reparte un mismo predicado entre varias palabras",
     "Una tarjeta sana tiene exactamente un elemento",
     "Nunca repitas un mismo\n  `problem` en un quiz",
-    "Los quizzes van en el orden de la entrada"
+    "Los quizzes van en el orden de la entrada",
+    "Una sola aparición alcanza",
+    "pero tampoco se reemplaza por una etiqueta gramatical",
+    "No penalices los términos que el curso ya usa",
+    "`THEORETICAL_JARGON` → `MEDIUM`"
   ],
   "why": "Regresión offline con microcasos inventados para las fronteras abstractas del juez: identidad por quizId, suficiencia focal, forma frente a función, universales, atomización, respuestas operativas, taxonomía y prioridad; además cubre el contrato del gate, la cobertura exacta y las severidades fijas; y que el juez devuelva todos los problemas de cada quiz, seguidos, sin repetir ninguno ni mezclarlos con «está bien» (F-MINIT-R013).",
   "inputs": {
@@ -780,7 +783,7 @@
       }
     },
     {
-      "caseId": "theoretical-jargon-low-and-healthy-neighbor",
+      "caseId": "theoretical-jargon-medium-and-healthy-neighbor",
       "inputs": "shared-text",
       "verdict": {
         "assessments": [
@@ -796,7 +799,7 @@
             "quizId": "q-destination",
             "holds": false,
             "problem": "THEORETICAL_JARGON",
-            "severity": "LOW",
+            "severity": "MEDIUM",
             "counterexample": "Al contar lo que alguien dijo, va pasado.",
             "explanation": "Usa terminología de estilo indirecto innecesariamente."
           }
@@ -833,9 +836,103 @@
       "expect": {
         "route": "failed",
         "errorContains": [
-          "LOW"
+          "MEDIUM"
         ],
         "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "theoretical-jargon-low-is-rejected",
+      "inputs": "shared-text",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-source",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "La tarjeta explica la decisión de origen de este quiz sintético."
+          },
+          {
+            "quizId": "q-destination",
+            "holds": false,
+            "problem": "THEORETICAL_JARGON",
+            "severity": "LOW",
+            "counterexample": "Al contar lo que alguien dijo, va pasado.",
+            "explanation": "Usa terminología de estilo indirecto innecesariamente."
+          }
+        ]
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "MEDIUM"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "theoretical-jargon-goes-before-the-low-problems",
+      "inputs": "shared-text",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-source",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "La tarjeta explica la decisión de origen de este quiz sintético."
+          },
+          {
+            "quizId": "q-destination",
+            "holds": false,
+            "problem": "OVER_SPECIFIC_FOR_QUIZ",
+            "severity": "LOW",
+            "counterexample": "Para un punto de destino se usa $lo$.",
+            "explanation": "Fija lum, que no decide la partícula."
+          },
+          {
+            "quizId": "q-destination",
+            "holds": false,
+            "problem": "THEORETICAL_JARGON",
+            "severity": "MEDIUM",
+            "counterexample": "Para un punto de destino se usa $lo$, con cualquier palabra después.",
+            "explanation": "Dice «complemento nominal»: se puede decir con palabras de todos los días."
+          }
+        ]
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "assessments": [
+            {
+              "quizId": "q-source",
+              "holds": true,
+              "problem": null,
+              "severity": null,
+              "counterexample": null,
+              "explanation": "La tarjeta explica la decisión de origen de este quiz sintético."
+            },
+            {
+              "quizId": "q-destination",
+              "holds": false,
+              "problem": "THEORETICAL_JARGON",
+              "severity": "MEDIUM",
+              "counterexample": "Para un punto de destino se usa $lo$, con cualquier palabra después.",
+              "explanation": "Dice «complemento nominal»: se puede decir con palabras de todos los días."
+            },
+            {
+              "quizId": "q-destination",
+              "holds": false,
+              "problem": "OVER_SPECIFIC_FOR_QUIZ",
+              "severity": "LOW",
+              "counterexample": "Para un punto de destino se usa $lo$.",
+              "explanation": "Fija lum, que no decide la partícula."
+            }
+          ]
+        }
       }
     },
     {

@@ -107,20 +107,44 @@ public class DefaultMiniTheoryDistributorTest {
 
     @Test
     @Tag("F-MINIT-R009")
-    void theoreticalJargonFindingKeepsLowSeverityAndItsOwnEvidenceWithoutAffectingHealthySibling() {
+    void theoreticalJargonFindingIsMediumWithItsOwnEvidenceWithoutAffectingHealthySibling() {
         var enough = assessment("q-affirmation", true, null, null, null, "Regla en lenguaje llano.");
         var jargon = assessment("q-question", false, MiniTheoryProblem.THEORETICAL_JARGON,
-                FindingSeverity.LOW, "Al contar lo que alguien dijo, va pasado.", "Usa término de estilo indirecto.");
+                FindingSeverity.MEDIUM, "Con una cosa en singular, como $it$, se usa $is$.",
+                "Dice «sujeto nominal singular»: se puede decir con palabras de todos los días.");
         var outcomes = distributor(STUDENT_VIEW).distribute(
                 new MiniTheoryVerdict(List.of(enough, jargon), "Por quiz."), mixedTopic(), false);
         assertTrue(outcomes.get(0).getFindings().isEmpty());
         assertEquals(1.0, outcomes.get(0).getScore(), 1e-9);
         var finding = outcomes.get(1).getFindings().get(0);
         assertEquals("theoretical-jargon", finding.getRule());
-        assertEquals(FindingSeverity.LOW, finding.getSeverity());
+        assertEquals(FindingSeverity.MEDIUM, finding.getSeverity(), "José, 3/11: jargon keeps the exercise out of «Todos»");
         assertEquals(FindingResolution.PANEL, finding.getResolution());
-        assertEquals(0.8, outcomes.get(1).getScore(), 1e-9);
+        assertEquals(0.6, outcomes.get(1).getScore(), 1e-9);
         assertTrue(finding.getEvidence().getObservation().contains("metalenguaje"));
+    }
+
+    @Test
+    @Tag("F-MINIT-R009")
+    @Tag("F-MINIT-R013")
+    void jargonGoesBeforeTheLowProblemsAndAVerdictThatCalledItLowCountsItAsMedium() {
+        // A judge of before 3/11 saved jargon as low: read again today, it is a medium problem like any other jargon.
+        MiniTheoryAssessment jargonOfBefore = assessment("q-question", false, MiniTheoryProblem.THEORETICAL_JARGON,
+                FindingSeverity.LOW, "Para preguntar: $Do$ + sujeto + verbo base + el resto + ?",
+                "Dice «complemento»: se puede decir «el resto de la oración».");
+        MiniTheoryAssessment other = assessment("q-question", false, MiniTheoryProblem.OTHER_SUBTOPIC_CONTENT,
+                FindingSeverity.LOW, "Con do o does se forman todas", "La afirmación es de otro subtema.");
+
+        MiniTheoryQuizOutcome question = distributor(STUDENT_VIEW).distribute(new MiniTheoryVerdict(List.of(
+                assessment("q-affirmation", true, null, null, null, "Correcta."), other, jargonOfBefore),
+                "Jerga y otro subtema."), mixedTopic(), false).get(1);
+
+        assertEquals(List.of("theoretical-jargon", "other-subtopic-content"),
+                question.getFindings().stream().map(FindingDraft::getRule).toList(), "jargon is the worst of the two");
+        assertEquals(List.of(FindingSeverity.MEDIUM, FindingSeverity.LOW),
+                question.getFindings().stream().map(FindingDraft::getSeverity).toList());
+        assertEquals(0.6, question.getScore(), 1e-9);
+        assertEquals(jargonOfBefore, question.getDiagnosis().getAssessment());
     }
 
     @Test

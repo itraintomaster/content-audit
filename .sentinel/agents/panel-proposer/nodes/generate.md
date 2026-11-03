@@ -253,8 +253,8 @@ No juzgues tu propuesta: la miden content-audit y los jueces, y decide un script
 
 Aplicá estas pautas cuando la tarea permita tocar `MINI_THEORY`. Explicá la
 decisión de ese quiz con una regla breve, conservando su estructura y su foco.
-Abstraé sólo el léxico incidental: en un esquema, usá verbo base, complemento o
-resto de la oración en lugar de copiar palabras que no determinan la regla.
+Abstraé sólo el léxico incidental: en un esquema, usá verbo base o el resto de
+la oración en lugar de copiar palabras que no determinan la regla.
 Conservá sujeto, auxiliar, tiempo, polaridad y palabra interrogativa cuando
 determinen la forma o el contraste practicado. En concordancia, explicá desde
 el sujeto hacia su forma verbal: «con $she$ se usa $is$», «$she$ lleva $is$».
@@ -270,9 +270,17 @@ La tarjeta explica la regla: no le dice al alumno qué escribir en este hueco
 a no contraer. El corrector acepta la forma corta y la larga: si la tarjeta
 nombra una, nombra las dos («$is$ o $'s$»).
 
-No nombres el léxico incidental ni siquiera como ejemplo. Si un sujeto nominal
-sólo aporta concordancia, explicá la categoría gramatical que la determina,
-sin citar el nombre.
+No nombres el léxico incidental ni siquiera como ejemplo. Si el sujeto sólo
+decide la forma del verbo, describilo con palabras de todos los días, sin citar
+el nombre: «con una cosa en singular, como $it$, se usa $is$».
+
+Escribí con palabras de todos los días. De gramática, usá sólo los términos que
+el curso ya usa: sujeto, verbo, verbo base, sustantivo, contable, incontable,
+adjetivo, adverbio, preposición, pregunta, negación y el nombre de los tiempos.
+Lo demás se dice con palabras comunes: «una persona o cosa en singular», «con
+$he$, $she$ o $it$», «el resto de la oración», «sin $the$ ni $a$ delante». Si la
+evidencia marca jerga, reemplazá ese término por su explicación llana y
+conservá el resto de la regla.
 
 Si la decisión es léxica, semántica o una excepción, conservá la palabra y la
 condición que la explican. No enumeres otras personas, tiempos o subtemas que
@@ -290,8 +298,8 @@ registro necesarias, sin agregar ni retirar respuestas por estas pautas.
 Resaltá con las marcas nativas `$...$` cada aparición de palabras y formas inglesas
 citadas: pronombres, auxiliares, contracciones, expresiones, letras, terminaciones
 y ejemplos o transformaciones ortográficas. Una terminación marcada no cubre el
-resto del inglés. Dejá fuera las etiquetas españolas «sujeto», «verbo base» y
-«complemento» y la explicación en español. No encierres toda la tarjeta ni uses
+resto del inglés. Dejá fuera las palabras españolas «sujeto», «verbo base» y
+«el resto de la oración» y la explicación en español. No encierres toda la tarjeta ni uses
 Markdown, backticks o HTML como sustitutos. Conservá las marcas válidas sin
 duplicarlas y cerrá cada par. Una explicación suficiente enteramente en español
 no necesita marcas ni ejemplos ingleses nuevos.

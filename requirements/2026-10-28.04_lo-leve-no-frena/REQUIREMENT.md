@@ -108,8 +108,9 @@ alerta, no como un error».
   - que use las palabras del ejercicio;
   - que agregue otro subtema;
   - que le falte el resaltado del inglés;
-  - que parta de la forma y no del sujeto;
-  - que use jerga.
+  - que parta de la forma y no del sujeto.
+
+  Que use jerga era leve hasta el 3/11/2026; desde entonces es media y frena ([F-MINIT-R009](../2026-09-30.10_miniteoria/REQUIREMENT.md#F-MINIT-R009)).
 - **Cuándo ve el alumno la miniteoría**: verificado el 28/10/2026 en la app. Viaja dentro de la devolución del ejercicio
   y se dibuja sólo en la hoja de corrección, que se abre después de responder.
 - **Fuera de alcance**:

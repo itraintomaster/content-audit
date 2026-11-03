@@ -52,14 +52,17 @@ public class JacksonMiniTheoryVerdictReaderTest {
 
     @Test
     @Tag("F-MINIT-R009")
-    void readsTheoreticalJargonCategoryAtLowSeverityAndRejectsInflatedSeverity() {
+    void readsTheoreticalJargonAtMediumSeverityStillReadsAJudgeOfBeforeThatSaidLowAndRejectsHigh() {
         String assessment = "\"quizId\":\"q-local\",\"holds\":false,\"problem\":\"THEORETICAL_JARGON\","
-                + "\"severity\":\"LOW\",\"counterexample\":\"Al contar lo que alguien dijo, va pasado.\","
-                + "\"explanation\":\"Usa estilo indirecto innecesariamente.\"";
+                + "\"severity\":\"MEDIUM\",\"counterexample\":\"Con una cosa en singular, como $it$, se usa $is$.\","
+                + "\"explanation\":\"Dice «sujeto nominal singular».\"";
         var verdict = new JacksonMiniTheoryVerdictReader().read(verdictWith(assessment));
         assertEquals(MiniTheoryProblem.THEORETICAL_JARGON, verdict.getAssessments().get(0).getProblem());
-        assertEquals(FindingSeverity.LOW, verdict.getAssessments().get(0).getSeverity());
-        assertUnreadable(verdictWith(assessment.replace("\"LOW\"", "\"HIGH\"")));
+        assertEquals(FindingSeverity.MEDIUM, verdict.getAssessments().get(0).getSeverity());
+        // Until 3/11/2026 jargon was low: a verdict saved then still reads instead of leaving its topic unevaluated.
+        var before = new JacksonMiniTheoryVerdictReader().read(verdictWith(assessment.replace("\"MEDIUM\"", "\"LOW\"")));
+        assertEquals(MiniTheoryProblem.THEORETICAL_JARGON, before.getAssessments().get(0).getProblem());
+        assertUnreadable(verdictWith(assessment.replace("\"MEDIUM\"", "\"HIGH\"")));
     }
 
     @Test

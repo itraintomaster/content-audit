@@ -26,7 +26,7 @@ class MiniTheoryRewriterAdapterTest {
             assertTrue(guide.contains("léxica, semántica o una excepción"));
             assertTrue(guide.contains("variantes aceptadas"));
             assertTrue(guide.contains("No nombres el léxico incidental ni siquiera como ejemplo"));
-            assertTrue(guide.contains("sujeto nominal sólo aporta"));
+            assertTrue(guide.contains("Si el sujeto sólo decide la forma del verbo"));
             assertTrue(guide.contains("Usá un único esquema"));
             assertTrue(guide.contains("No amplíes el alcance al abstraer las palabras"));
             assertTrue(guide.indexOf("pautas de abstracción y concisión") < guide.indexOf("LITERALMENTE"));
@@ -53,10 +53,10 @@ class MiniTheoryRewriterAdapterTest {
             assertTrue(guide.contains("cada aparición"));
             assertTrue(guide.contains("palabras y formas inglesas clave"));
             assertTrue(guide.contains("$...$"));
-            assertTrue(guide.contains("$Does$ + sujeto + verbo base + complemento"));
+            assertTrue(guide.contains("$Does$ + sujeto + verbo base + el resto + ?"));
             assertTrue(guide.contains("$he$, $she$, $it$"));
             assertTrue(guide.contains("$ch$, $-es$, $watch -> watches$"));
-            assertTrue(guide.contains("etiquetas españolas"));
+            assertTrue(guide.contains("palabras españolas como sujeto, verbo base y el resto de la oración"));
             assertTrue(guide.contains("No encierres el párrafo completo"));
             assertTrue(guide.contains("Markdown ni HTML como sustitutos"));
             assertTrue(guide.contains("pares cerrados de $...$"));
@@ -71,7 +71,7 @@ class MiniTheoryRewriterAdapterTest {
         }, "test; prompt=" + MiniTheoryRewriterAdapter.PROMPT_VERSION);
 
         adapter.rewrite(new RewriteInput("Resaltá el inglés clave.", "quiz", null, null, List.of()));
-        assertEquals("mini-feedback-v7", MiniTheoryRewriterAdapter.PROMPT_VERSION);
+        assertEquals("mini-feedback-v8", MiniTheoryRewriterAdapter.PROMPT_VERSION);
     }
 
     @Test
@@ -85,6 +85,22 @@ class MiniTheoryRewriterAdapterTest {
         assertTrue(guide.contains("leída como regla general tiene que seguir siendo cierta"));
         assertTrue(guide.contains("sin nombrar las demás personas de esa forma"));
         assertFalse(guide.contains("$is$ va con $she$"), "the guide asks in positive, it does not show the inverted card");
+    }
+
+    @Test
+    @Tag("F-MINIT-R009")
+    void asksForEverydayWordsNamingOnlyTheGrammarTermsTheCourseAlreadyUses() {
+        // José, 3/11 (brief 259): the correction wrote «Con un sujeto nominal singular…» and «+ complemento +» in 400
+        // cards that production never had. The guide names what the course uses and the plain way to say the rest; it
+        // asks in positive, so it does not name the terms it rules out.
+        String guide = MiniTheoryRewriterAdapter.GUIDE;
+        assertTrue(guide.contains("De gramática, usá sólo los términos que el curso ya usa: sujeto, verbo, verbo base"));
+        assertTrue(guide.contains("«una persona o cosa en singular», «con $he$, $she$ o $it$», «el resto de la oración»"));
+        assertTrue(guide.contains("«con una cosa en singular, como $it$, se usa $is$»"));
+        assertTrue(guide.contains("Si la evidencia marca jerga, reemplazá ese término por su explicación llana."));
+        for (String term : List.of("nominal", "tercera persona", "complemento", "determinante", "categoría gramatical")) {
+            assertFalse(guide.contains(term), "the guide does not use or suggest «" + term + "»");
+        }
     }
 
     @Test
