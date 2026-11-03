@@ -3,8 +3,15 @@
   "artifact": "miniTheoryVerdict",
   "gateId": "mini_theory_judge_gate_verdict",
   "emitId": "mini_theory_judge_emit",
-  "dependencies": ["cefrLevel", "topic", "instructions", "quizzes"],
-  "topKeys": ["assessments"],
+  "dependencies": [
+    "cefrLevel",
+    "topic",
+    "instructions",
+    "quizzes"
+  ],
+  "topKeys": [
+    "assessments"
+  ],
   "promptMustMention": [
     "MISSING_ENGLISH_HIGHLIGHT",
     "Si completa supera 300 caracteres",
@@ -32,14 +39,12 @@
     "aunque el quiz practique un solo sujeto",
     "distinguí la dirección de la explicación",
     "no uses respuestas esperadas ni ejemplos de un corpus de examen",
-    "La precedencia terminal completa es",
     "definición operativa del caso",
     "FALSE_RULE",
     "INSUFFICIENT_FOR_QUIZ",
     "OVERSTATED_FOR_QUIZ",
     "OTHER_SUBTOPIC_CONTENT",
     "nunca puede ser `BLOCKING`",
-    "mismo orden",
     "OVER_SPECIFIC_FOR_QUIZ",
     "THEORETICAL_JARGON",
     "DIDACTIC_DIRECTION",
@@ -63,9 +68,18 @@
     "del quiz —$he's$ en una lista de contracciones cuando el quiz pide $he's$—,",
     "separadas por una barra o por «o» no la identifica. Si el alumno no elige esa",
     "forma, su concordancia es realización rutinaria (paso 1) y no abre ninguna ruta.",
-    "esa parte está explicada: no la marques insuficiente por no repetir la"
+    "esa parte está explicada: no la marques insuficiente por no repetir la",
+    "No te\ndetengas en el primero",
+    "Un mismo defecto se informa una sola vez",
+    "Defectos distintos de la misma tarjeta se informan todos",
+    "haya o no átomos hermanos en la tarjeta",
+    "Uso común es un uso frecuente que un alumno de ese nivel va a leer o escuchar",
+    "Si la tarjeta reparte un mismo predicado entre varias palabras",
+    "Una tarjeta sana tiene exactamente un elemento",
+    "Nunca repitas un mismo\n  `problem` en un quiz",
+    "Los quizzes van en el orden de la entrada"
   ],
-  "why": "Regresión offline con microcasos inventados para las fronteras abstractas del juez: identidad por quizId, suficiencia focal, forma frente a función, universales, atomización, respuestas operativas, taxonomía y prioridad; además cubre el contrato del gate, la cobertura exacta y las severidades fijas.",
+  "why": "Regresión offline con microcasos inventados para las fronteras abstractas del juez: identidad por quizId, suficiencia focal, forma frente a función, universales, atomización, respuestas operativas, taxonomía y prioridad; además cubre el contrato del gate, la cobertura exacta y las severidades fijas; y que el juez devuelva todos los problemas de cada quiz, seguidos, sin repetir ninguno ni mezclarlos con «está bien» (F-MINIT-R013).",
   "inputs": {
     "long-english-highlight": {
       "cefrLevel": "A1",
@@ -109,31 +123,36 @@
       "instructions": "Elegí la opción que resuelve el contraste indicado en cada quiz.",
       "quizzes": "quizId: q-performative-lexical\nminiTheory: Promise, warn y apologise se usan en presente simple para actos comunicativos.\nprompt: Elegí el verbo que reconoce pesar: I ___ for the delay.\nanswers: opciones: promise, warn, apologise (correcta)\n\nquizId: q-routine-order\nminiTheory: Right now indica una acción en curso: usá be + verbo en -ing.\nprompt: ___ Nara polishing the cobalt disk right now?\nanswers: Is Nara polishing\n\nquizId: q-does-focal\nminiTheory: Con he, she o it, la pregunta en presente simple usa does; con I, you, we o they usa do.\nprompt: Elegí el auxiliar: ___ the cobalt robot spin every day?\nanswers: opciones: do, does (correcta)\n\nquizId: q-does-undiscriminated\nminiTheory: Las preguntas en presente simple usan un auxiliar y verbo base.\nprompt: Elegí el auxiliar: ___ the cobalt robot spin every day?\nanswers: opciones: do, does (correcta)"
     },
-    "terminal-sibling-before-over": {
+    "subject-first-direction": {
+      "cefrLevel": "A1",
+      "topic": "Concordancia en escenas inventadas de cobre",
+      "instructions": "Elegí la forma o palabra para el caso indicado.",
+      "quizzes": "quizId: q-am-inverse\nminiTheory: $am$ va con $I$.\nprompt: I ___ near the copper tower.\nanswers: am\n\nquizId: q-it-inverse\nminiTheory: $is$ va con $it$.\nprompt: It ___ near the copper tower.\nanswers: is\n\nquizId: q-i-forward\nminiTheory: $I$ lleva $am$.\nprompt: I ___ near the copper tower.\nanswers: am\n\nquizId: q-it-forward\nminiTheory: Con $it$ se usa $is$.\nprompt: It ___ near the copper tower.\nanswers: is\n\nquizId: q-i-causal\nminiTheory: Se usa $am$ porque el sujeto es $I$.\nprompt: I ___ near the copper tower.\nanswers: am\n\nquizId: q-it-exclusive\nminiTheory: $is$ sólo va con $it$.\nprompt: It ___ near the copper tower.\nanswers: is\n\nquizId: q-i-past\nminiTheory: $I$ lleva $was$ en el pasado afirmativo.\nprompt: I ___ near the copper tower yesterday.\nanswers: was\n\nquizId: q-i-negative\nminiTheory: En presente negativo, $I$ lleva $am not$.\nprompt: I ___ ready.\nanswers: am not\n\nquizId: q-lexical\nminiTheory: $Bark$ nombra el sonido de un perro.\nprompt: Choose the sound of a dog: ___.\nanswers: bark"
+    },
+    "agreement-read-as-a-general-rule": {
+      "cefrLevel": "A1",
+      "topic": "Concordancia de be en escenas inventadas de cobre",
+      "instructions": "Completá con am, is o are.",
+      "quizzes": "quizId: q-she-form-first\nminiTheory: $is$ va con $she$.\nprompt: She ___ near the copper tower.\nanswers: is\n\nquizId: q-they-form-first\nminiTheory: $are$ va con $they$.\nprompt: They ___ near the copper tower.\nanswers: are\n\nquizId: q-he-does-form-first\nminiTheory: En preguntas, $does$ va con $he$.\nprompt: ___ he work near the copper tower?\nanswers: Does\n\nquizId: q-she-subject-first\nminiTheory: Con $she$ se usa $is$.\nprompt: She ___ near the copper tower.\nanswers: is\n\nquizId: q-is-every-person\nminiTheory: $is$ va con $he$, $she$, $it$.\nprompt: She ___ near the copper tower.\nanswers: is\n\nquizId: q-am-only-subject\nminiTheory: $am$ va con $I$.\nprompt: I ___ near the copper tower.\nanswers: am"
+    },
+    "a-form-the-card-leaves-open": {
+      "cefrLevel": "A1",
+      "topic": "Be en preguntas y contracciones, en escenas inventadas de cobre",
+      "instructions": "Escribí la forma de be que corresponde.",
+      "quizzes": "quizId: q-were-order-only\nminiTheory: Para preguntar, $was$ o $were$ van antes del sujeto.\nprompt: ___ (they / be) near the copper tower last night?\nanswers: Were they\n\nquizId: q-were-subject-first\nminiTheory: Para preguntar, $were$ va antes del sujeto: con $they$ se usa $were$.\nprompt: ___ (they / be) near the copper tower last night?\nanswers: Were they\n\nquizId: q-contraction-named\nminiTheory: $I'm$, $you're$, $he's$ para afirmar.\nprompt: ___ (He is) near the copper tower.\nanswers: He's\n\nquizId: q-contraction-not-named\nminiTheory: $I'm$, $he's$ + -ing para lo que pasa ahora.\nprompt: ___ (We are) waiting near the copper tower.\nanswers: We're"
+    },
+    "sibling-and-local-scope": {
       "cefrLevel": "A2",
       "topic": "Átomos locales y hermanos sintéticos",
       "instructions": "Completá según el contraste focal de cada quiz.",
       "quizzes": "quizId: q-sibling-universal\nminiTheory: Para una acción en curso ahora, usá be + -ing. Las preguntas habituales nunca usan be.\nprompt: The cobalt fox ___ running now.\nanswers: is\n\nquizId: q-local-universal\nminiTheory: Can siempre expresa capacidad.\nprompt: The cobalt fox ___ solve the maze.\nanswers: can"
+    },
+    "list-card": {
+      "cefrLevel": "A2",
+      "topic": "Frecuencia sintética",
+      "instructions": "Completá con el adverbio en su lugar.",
+      "quizzes": "quizId: q-list-overstated\nminiTheory: $often$ va siempre antes del verbo; $at weekends$, al final de la frase.\nprompt: I ___ (often / walk) near the copper tower.\nanswers: often walk\n\nquizId: q-list-sibling-only\nminiTheory: Con un solo verbo, $usually$ va antes de él; $at weekends$, al final de la frase.\nprompt: She ___ (usually / sing) near the copper tower.\nanswers: usually sings"
     }
-    ,
-  "subject-first-direction": {
-    "cefrLevel": "A1",
-    "topic": "Concordancia en escenas inventadas de cobre",
-    "instructions": "Elegí la forma o palabra para el caso indicado.",
-    "quizzes": "quizId: q-am-inverse\nminiTheory: $am$ va con $I$.\nprompt: I ___ near the copper tower.\nanswers: am\n\nquizId: q-it-inverse\nminiTheory: $is$ va con $it$.\nprompt: It ___ near the copper tower.\nanswers: is\n\nquizId: q-i-forward\nminiTheory: $I$ lleva $am$.\nprompt: I ___ near the copper tower.\nanswers: am\n\nquizId: q-it-forward\nminiTheory: Con $it$ se usa $is$.\nprompt: It ___ near the copper tower.\nanswers: is\n\nquizId: q-i-causal\nminiTheory: Se usa $am$ porque el sujeto es $I$.\nprompt: I ___ near the copper tower.\nanswers: am\n\nquizId: q-it-exclusive\nminiTheory: $is$ sólo va con $it$.\nprompt: It ___ near the copper tower.\nanswers: is\n\nquizId: q-i-past\nminiTheory: $I$ lleva $was$ en el pasado afirmativo.\nprompt: I ___ near the copper tower yesterday.\nanswers: was\n\nquizId: q-i-negative\nminiTheory: En presente negativo, $I$ lleva $am not$.\nprompt: I ___ ready.\nanswers: am not\n\nquizId: q-lexical\nminiTheory: $Bark$ nombra el sonido de un perro.\nprompt: Choose the sound of a dog: ___.\nanswers: bark"
-  },
-  "agreement-read-as-a-general-rule": {
-    "cefrLevel": "A1",
-    "topic": "Concordancia de be en escenas inventadas de cobre",
-    "instructions": "Completá con am, is o are.",
-    "quizzes": "quizId: q-she-form-first\nminiTheory: $is$ va con $she$.\nprompt: She ___ near the copper tower.\nanswers: is\n\nquizId: q-they-form-first\nminiTheory: $are$ va con $they$.\nprompt: They ___ near the copper tower.\nanswers: are\n\nquizId: q-he-does-form-first\nminiTheory: En preguntas, $does$ va con $he$.\nprompt: ___ he work near the copper tower?\nanswers: Does\n\nquizId: q-she-subject-first\nminiTheory: Con $she$ se usa $is$.\nprompt: She ___ near the copper tower.\nanswers: is\n\nquizId: q-is-every-person\nminiTheory: $is$ va con $he$, $she$, $it$.\nprompt: She ___ near the copper tower.\nanswers: is\n\nquizId: q-am-only-subject\nminiTheory: $am$ va con $I$.\nprompt: I ___ near the copper tower.\nanswers: am"
-  },
-  "a-form-the-card-leaves-open": {
-    "cefrLevel": "A1",
-    "topic": "Be en preguntas y contracciones, en escenas inventadas de cobre",
-    "instructions": "Escribí la forma de be que corresponde.",
-    "quizzes": "quizId: q-were-order-only\nminiTheory: Para preguntar, $was$ o $were$ van antes del sujeto.\nprompt: ___ (they / be) near the copper tower last night?\nanswers: Were they\n\nquizId: q-were-subject-first\nminiTheory: Para preguntar, $were$ va antes del sujeto: con $they$ se usa $were$.\nprompt: ___ (they / be) near the copper tower last night?\nanswers: Were they\n\nquizId: q-contraction-named\nminiTheory: $I'm$, $you're$, $he's$ para afirmar.\nprompt: ___ (He is) near the copper tower.\nanswers: He's\n\nquizId: q-contraction-not-named\nminiTheory: $I'm$, $he's$ + -ing para lo que pasa ahora.\nprompt: ___ (We are) waiting near the copper tower.\nanswers: We're"
-  }
   },
   "cases": [
     {
@@ -282,88 +301,260 @@
       "inputs": "shared-text",
       "verdict": {
         "assessments": [
-          {"quizId": "q-source", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "La tarjeta explica la decisión de origen de este quiz sintético."},
-          {"quizId": "q-destination", "holds": false, "problem": "INSUFFICIENT_FOR_QUIZ", "severity": "HIGH", "counterexample": "Para destino, la respuesta operativa es lo; la tarjeta sólo explica origen.", "explanation": "El mismo texto no se propaga: no permite decidir la marca de destino."}
+          {
+            "quizId": "q-source",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "La tarjeta explica la decisión de origen de este quiz sintético."
+          },
+          {
+            "quizId": "q-destination",
+            "holds": false,
+            "problem": "INSUFFICIENT_FOR_QUIZ",
+            "severity": "HIGH",
+            "counterexample": "Para destino, la respuesta operativa es lo; la tarjeta sólo explica origen.",
+            "explanation": "El mismo texto no se propaga: no permite decidir la marca de destino."
+          }
         ]
       },
-      "expect": {"route": "passed", "canonical": "same"}
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
     },
     {
       "caseId": "focal-sufficiency-and-surface-form",
       "inputs": "focal-sufficiency",
       "verdict": {
         "assessments": [
-          {"quizId": "q-focal-enough", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Explica la elección focal de ze; no necesita derivar los demás tokens."},
-          {"quizId": "q-generic", "holds": false, "problem": "INSUFFICIENT_FOR_QUIZ", "severity": "HIGH", "counterexample": "La consigna genérica no distingue ze de otras marcas.", "explanation": "Deja abiertas las rutas y no permite elegir la respuesta aceptada."},
-          {"quizId": "q-category-only", "holds": false, "problem": "INSUFFICIENT_FOR_QUIZ", "severity": "HIGH", "counterexample": "Nombrar la categoría temporal no explica qué marca el evento en curso.", "explanation": "La forma superficial y la categoría no resuelven la función semántica focal."}
+          {
+            "quizId": "q-focal-enough",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Explica la elección focal de ze; no necesita derivar los demás tokens."
+          },
+          {
+            "quizId": "q-generic",
+            "holds": false,
+            "problem": "INSUFFICIENT_FOR_QUIZ",
+            "severity": "HIGH",
+            "counterexample": "La consigna genérica no distingue ze de otras marcas.",
+            "explanation": "Deja abiertas las rutas y no permite elegir la respuesta aceptada."
+          },
+          {
+            "quizId": "q-category-only",
+            "holds": false,
+            "problem": "INSUFFICIENT_FOR_QUIZ",
+            "severity": "HIGH",
+            "counterexample": "Nombrar la categoría temporal no explica qué marca el evento en curso.",
+            "explanation": "La forma superficial y la categoría no resuelven la función semántica focal."
+          }
         ]
       },
-      "expect": {"route": "passed", "canonical": "same"}
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
     },
     {
       "caseId": "universal-scope-and-operational-answer",
       "inputs": "universal-scope",
       "verdict": {
         "assessments": [
-          {"quizId": "q-explicit-universal", "holds": false, "problem": "OVERSTATED_FOR_QUIZ", "severity": "MEDIUM", "counterexample": "Can the titanium fox enter? usa can para pedir permiso.", "explanation": "La aplicación local es correcta, pero siempre excluye otro uso común de la misma construcción."},
-          {"quizId": "q-local-scope", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Sin un universal explícito, no se exige cubrir otros usos de can."},
-          {"quizId": "q-operational-answer", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "La tarjeta explica la respuesta aceptada, que es la definición operativa del quiz."}
+          {
+            "quizId": "q-explicit-universal",
+            "holds": false,
+            "problem": "OVERSTATED_FOR_QUIZ",
+            "severity": "MEDIUM",
+            "counterexample": "Can the titanium fox enter? usa can para pedir permiso.",
+            "explanation": "La aplicación local es correcta, pero siempre excluye otro uso común de la misma construcción."
+          },
+          {
+            "quizId": "q-local-scope",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Sin un universal explícito, no se exige cubrir otros usos de can."
+          },
+          {
+            "quizId": "q-operational-answer",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "La tarjeta explica la respuesta aceptada, que es la definición operativa del quiz."
+          }
         ]
       },
-      "expect": {"route": "passed", "canonical": "same"}
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
     },
     {
       "caseId": "atomization-taxonomy-and-priority",
       "inputs": "atomized-taxonomy",
       "verdict": {
         "assessments": [
-          {"quizId": "q-sibling-extra", "holds": false, "problem": "OTHER_SUBTOPIC_CONTENT", "severity": "LOW", "counterexample": "La regla sobre do + base pertenece sólo al caso hermano de preguntas habituales.", "explanation": "La decisión focal ya está explicada; el agregado hermano no vuelve insuficiente la tarjeta."},
-          {"quizId": "q-sibling-only", "holds": false, "problem": "INSUFFICIENT_FOR_QUIZ", "severity": "HIGH", "counterexample": "La tarjeta sólo explica preguntas y no permite elegir la construcción de acción en curso.", "explanation": "El contenido hermano reemplaza la explicación necesaria del caso focal."},
-          {"quizId": "q-false-direction", "holds": false, "problem": "FALSE_RULE", "severity": "HIGH", "counterexample": "La respuesta operativa de destino es lo, no ri.", "explanation": "La prescripción positiva dirige a una decisión incorrecta."},
-          {"quizId": "q-open-routes", "holds": false, "problem": "INSUFFICIENT_FOR_QUIZ", "severity": "HIGH", "counterexample": "Adecuada no distingue lo de otras partículas posibles.", "explanation": "No prescribe algo falso: deja abiertas varias rutas y no permite elegir."}
+          {
+            "quizId": "q-sibling-extra",
+            "holds": false,
+            "problem": "OTHER_SUBTOPIC_CONTENT",
+            "severity": "LOW",
+            "counterexample": "La regla sobre do + base pertenece sólo al caso hermano de preguntas habituales.",
+            "explanation": "La decisión focal ya está explicada; el agregado hermano no vuelve insuficiente la tarjeta."
+          },
+          {
+            "quizId": "q-sibling-only",
+            "holds": false,
+            "problem": "INSUFFICIENT_FOR_QUIZ",
+            "severity": "HIGH",
+            "counterexample": "La tarjeta sólo explica preguntas y no permite elegir la construcción de acción en curso.",
+            "explanation": "El contenido hermano reemplaza la explicación necesaria del caso focal."
+          },
+          {
+            "quizId": "q-false-direction",
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "La respuesta operativa de destino es lo, no ri.",
+            "explanation": "La prescripción positiva dirige a una decisión incorrecta."
+          },
+          {
+            "quizId": "q-open-routes",
+            "holds": false,
+            "problem": "INSUFFICIENT_FOR_QUIZ",
+            "severity": "HIGH",
+            "counterexample": "Adecuada no distingue lo de otras partículas posibles.",
+            "explanation": "No prescribe algo falso: deja abiertas varias rutas y no permite elegir."
+          }
         ]
       },
-      "expect": {"route": "passed", "canonical": "same"}
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
     },
     {
       "caseId": "focal-versus-routine-boundaries",
       "inputs": "focal-boundaries",
       "verdict": {
         "assessments": [
-          {"quizId": "q-performative-lexical", "holds": false, "problem": "INSUFFICIENT_FOR_QUIZ", "severity": "HIGH", "counterexample": "Que los tres verbos estén en presente simple no permite elegir apologise por su función de disculpa.", "explanation": "La tarjeta nombra una forma compartida, pero no discrimina la decisión léxica focal."},
-          {"quizId": "q-routine-order", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Explica el contraste temporal focal; el orden interrogativo es realización rutinaria en este quiz."},
-          {"quizId": "q-does-focal", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Como el quiz contrasta do y does, la tarjeta explica la concordancia focal del auxiliar."},
-          {"quizId": "q-does-undiscriminated", "holds": false, "problem": "INSUFFICIENT_FOR_QUIZ", "severity": "HIGH", "counterexample": "La regla compartida por do y does no permite elegir does para the cobalt robot.", "explanation": "El auxiliar sí es focal aquí y la tarjeta deja abiertas ambas rutas."}
+          {
+            "quizId": "q-performative-lexical",
+            "holds": false,
+            "problem": "INSUFFICIENT_FOR_QUIZ",
+            "severity": "HIGH",
+            "counterexample": "Que los tres verbos estén en presente simple no permite elegir apologise por su función de disculpa.",
+            "explanation": "La tarjeta nombra una forma compartida, pero no discrimina la decisión léxica focal."
+          },
+          {
+            "quizId": "q-routine-order",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Explica el contraste temporal focal; el orden interrogativo es realización rutinaria en este quiz."
+          },
+          {
+            "quizId": "q-does-focal",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Como el quiz contrasta do y does, la tarjeta explica la concordancia focal del auxiliar."
+          },
+          {
+            "quizId": "q-does-undiscriminated",
+            "holds": false,
+            "problem": "INSUFFICIENT_FOR_QUIZ",
+            "severity": "HIGH",
+            "counterexample": "La regla compartida por do y does no permite elegir does para the cobalt robot.",
+            "explanation": "El auxiliar sí es focal aquí y la tarjeta deja abiertas ambas rutas."
+          }
         ]
       },
-      "expect": {"route": "passed", "canonical": "same"}
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
     },
     {
-      "caseId": "terminal-sibling-precedes-local-overstatement",
-      "inputs": "terminal-sibling-before-over",
+      "caseId": "sibling-and-local-overstatement-each-reported",
+      "inputs": "sibling-and-local-scope",
       "verdict": {
         "assessments": [
-          {"quizId": "q-sibling-universal", "holds": false, "problem": "OTHER_SUBTOPIC_CONTENT", "severity": "LOW", "counterexample": "La afirmación sobre preguntas habituales es un átomo hermano ajeno a la acción en curso de este quiz.", "explanation": "La explicación local ya alcanza; el contenido hermano cierra el árbol sin auditar su universal."},
-          {"quizId": "q-local-universal", "holds": false, "problem": "OVERSTATED_FOR_QUIZ", "severity": "MEDIUM", "counterexample": "Can the cobalt fox enter? usa can para pedir permiso.", "explanation": "Sin contenido hermano, el universal local siempre queda refutado por un uso común de can."}
+          {
+            "quizId": "q-sibling-universal",
+            "holds": false,
+            "problem": "OTHER_SUBTOPIC_CONTENT",
+            "severity": "LOW",
+            "counterexample": "La afirmación sobre preguntas habituales es un átomo hermano ajeno a la acción en curso de este quiz.",
+            "explanation": "La explicación local alcanza; la afirmación sobre preguntas habituales es de otro subtema y no se audita su universal."
+          },
+          {
+            "quizId": "q-local-universal",
+            "holds": false,
+            "problem": "OVERSTATED_FOR_QUIZ",
+            "severity": "MEDIUM",
+            "counterexample": "Can the cobalt fox enter? usa can para pedir permiso.",
+            "explanation": "El universal local siempre queda refutado por un uso común de can."
+          }
         ]
       },
-      "expect": {"route": "passed", "canonical": "same"}
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
     },
     {
       "caseId": "case-insensitive-enums-canonicalized",
       "inputs": "shared-text",
       "verdict": {
         "assessments": [
-          {"quizId": "q-source", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Explica origen."},
-          {"quizId": "q-destination", "holds": false, "problem": "insufficient_for_quiz", "severity": "high", "counterexample": "La respuesta operativa de destino es lo.", "explanation": "La tarjeta sólo explica origen."}
+          {
+            "quizId": "q-source",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Explica origen."
+          },
+          {
+            "quizId": "q-destination",
+            "holds": false,
+            "problem": "insufficient_for_quiz",
+            "severity": "high",
+            "counterexample": "La respuesta operativa de destino es lo.",
+            "explanation": "La tarjeta sólo explica origen."
+          }
         ]
       },
       "expect": {
         "route": "passed",
         "canonical": {
           "assessments": [
-            {"quizId": "q-source", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Explica origen."},
-            {"quizId": "q-destination", "holds": false, "problem": "INSUFFICIENT_FOR_QUIZ", "severity": "HIGH", "counterexample": "La respuesta operativa de destino es lo.", "explanation": "La tarjeta sólo explica origen."}
+            {
+              "quizId": "q-source",
+              "holds": true,
+              "problem": null,
+              "severity": null,
+              "counterexample": null,
+              "explanation": "Explica origen."
+            },
+            {
+              "quizId": "q-destination",
+              "holds": false,
+              "problem": "INSUFFICIENT_FOR_QUIZ",
+              "severity": "HIGH",
+              "counterexample": "La respuesta operativa de destino es lo.",
+              "explanation": "La tarjeta sólo explica origen."
+            }
           ]
         }
       }
@@ -373,60 +564,161 @@
       "inputs": "shared-text",
       "verdict": {
         "assessments": [
-          {"quizId": "q-source", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Correcta."}
+          {
+            "quizId": "q-source",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Correcta."
+          }
         ]
       },
-      "expect": {"route": "failed", "errorContains": ["exactamente"], "schemaRejects": false}
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "exactamente"
+        ],
+        "schemaRejects": false
+      }
     },
     {
       "caseId": "duplicate-quiz",
       "inputs": "shared-text",
       "verdict": {
         "assessments": [
-          {"quizId": "q-source", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Correcta."},
-          {"quizId": "q-source", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Repetida."}
+          {
+            "quizId": "q-source",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Correcta."
+          },
+          {
+            "quizId": "q-source",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Repetida."
+          }
         ]
       },
-      "expect": {"route": "failed", "errorContains": ["exactamente"], "schemaRejects": false}
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "exactamente"
+        ],
+        "schemaRejects": false
+      }
     },
     {
       "caseId": "wrong-severity",
       "inputs": "shared-text",
       "verdict": {
         "assessments": [
-          {"quizId": "q-source", "holds": false, "problem": "FALSE_RULE", "severity": "LOW", "counterexample": "ri marca origen en este sistema inventado.", "explanation": "Severidad deliberadamente inválida."},
-          {"quizId": "q-destination", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Salida sintética del fixture técnico."}
+          {
+            "quizId": "q-source",
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "LOW",
+            "counterexample": "ri marca origen en este sistema inventado.",
+            "explanation": "Severidad deliberadamente inválida."
+          },
+          {
+            "quizId": "q-destination",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Salida sintética del fixture técnico."
+          }
         ]
       },
-      "expect": {"route": "failed", "errorContains": ["exige severity HIGH"], "schemaRejects": true}
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "exige severity HIGH"
+        ],
+        "schemaRejects": true
+      }
     },
     {
       "caseId": "healthy-with-problem",
       "inputs": "shared-text",
       "verdict": {
         "assessments": [
-          {"quizId": "q-source", "holds": true, "problem": "FALSE_RULE", "severity": "HIGH", "counterexample": "ri marca origen.", "explanation": "Invariante deliberadamente contradictoria."},
-          {"quizId": "q-destination", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Salida sintética del fixture técnico."}
+          {
+            "quizId": "q-source",
+            "holds": true,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "ri marca origen.",
+            "explanation": "Invariante deliberadamente contradictoria."
+          },
+          {
+            "quizId": "q-destination",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Salida sintética del fixture técnico."
+          }
         ]
       },
-      "expect": {"route": "failed", "errorContains": ["holds=true"], "schemaRejects": true}
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "holds=true"
+        ],
+        "schemaRejects": true
+      }
     },
     {
       "caseId": "legacy-fields-rejected",
       "inputs": "shared-text",
       "verdict": {
         "assessments": [
-          {"quizId": "q-source", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Correcta.", "exercises": [1]},
-          {"quizId": "q-destination", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Salida sintética del fixture técnico."}
+          {
+            "quizId": "q-source",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Correcta.",
+            "exercises": [
+              1
+            ]
+          },
+          {
+            "quizId": "q-destination",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Salida sintética del fixture técnico."
+          }
         ]
       },
-      "expect": {"route": "failed", "errorContains": ["objeto cerrado"], "schemaRejects": true}
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "objeto cerrado"
+        ],
+        "schemaRejects": true
+      }
     },
     {
       "caseId": "malformed-json",
       "inputs": "shared-text",
       "raw": "esto no es json",
-      "expect": {"route": "failed", "errorContains": ["objeto cerrado"]}
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "objeto cerrado"
+        ]
+      }
     },
     {
       "caseId": "over-specific-low-and-healthy-neighbor",
@@ -929,6 +1221,202 @@
           "HIGH"
         ],
         "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "every-problem-of-a-quiz-reported-and-ordered-by-severity",
+      "inputs": "list-card",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-list-overstated",
+            "holds": false,
+            "problem": "OTHER_SUBTOPIC_CONTENT",
+            "severity": "LOW",
+            "counterexample": "$at weekends$, al final de la frase.",
+            "explanation": "La posición de at weekends es de otro subtema: este quiz no la practica."
+          },
+          {
+            "quizId": "q-list-overstated",
+            "holds": false,
+            "problem": "MISSING_ENGLISH_HIGHLIGHT",
+            "severity": "LOW",
+            "counterexample": "$often$ va antes del verbo; $at weekends$, al final de la frase.",
+            "explanation": "Fixture técnico: un tercer problema distinto del mismo quiz."
+          },
+          {
+            "quizId": "q-list-overstated",
+            "holds": false,
+            "problem": "OVERSTATED_FOR_QUIZ",
+            "severity": "MEDIUM",
+            "counterexample": "I walk near the copper tower quite often.",
+            "explanation": "Lo que la tarjeta dice de often, leído como regla general, lo refuta un uso común al final de la frase."
+          },
+          {
+            "quizId": "q-list-sibling-only",
+            "holds": false,
+            "problem": "OTHER_SUBTOPIC_CONTENT",
+            "severity": "LOW",
+            "counterexample": "$at weekends$, al final de la frase.",
+            "explanation": "Lo que dice de usually es cierto; at weekends es de otro subtema."
+          }
+        ]
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "assessments": [
+            {
+              "quizId": "q-list-overstated",
+              "holds": false,
+              "problem": "OVERSTATED_FOR_QUIZ",
+              "severity": "MEDIUM",
+              "counterexample": "I walk near the copper tower quite often.",
+              "explanation": "Lo que la tarjeta dice de often, leído como regla general, lo refuta un uso común al final de la frase."
+            },
+            {
+              "quizId": "q-list-overstated",
+              "holds": false,
+              "problem": "OTHER_SUBTOPIC_CONTENT",
+              "severity": "LOW",
+              "counterexample": "$at weekends$, al final de la frase.",
+              "explanation": "La posición de at weekends es de otro subtema: este quiz no la practica."
+            },
+            {
+              "quizId": "q-list-overstated",
+              "holds": false,
+              "problem": "MISSING_ENGLISH_HIGHLIGHT",
+              "severity": "LOW",
+              "counterexample": "$often$ va antes del verbo; $at weekends$, al final de la frase.",
+              "explanation": "Fixture técnico: un tercer problema distinto del mismo quiz."
+            },
+            {
+              "quizId": "q-list-sibling-only",
+              "holds": false,
+              "problem": "OTHER_SUBTOPIC_CONTENT",
+              "severity": "LOW",
+              "counterexample": "$at weekends$, al final de la frase.",
+              "explanation": "Lo que dice de usually es cierto; at weekends es de otro subtema."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "caseId": "healthy-mixed-with-a-problem-of-the-same-quiz",
+      "inputs": "shared-text",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-source",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Correcta."
+          },
+          {
+            "quizId": "q-source",
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "ri marca origen.",
+            "explanation": "Fixture técnico contradictorio."
+          },
+          {
+            "quizId": "q-destination",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Correcta."
+          }
+        ]
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "holds=true junto a otros"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "same-problem-twice-in-a-quiz",
+      "inputs": "shared-text",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-source",
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "ri marca origen.",
+            "explanation": "Primera vez."
+          },
+          {
+            "quizId": "q-source",
+            "holds": false,
+            "problem": "false_rule",
+            "severity": "high",
+            "counterexample": "ri marca origen.",
+            "explanation": "Segunda vez, en minúsculas."
+          },
+          {
+            "quizId": "q-destination",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Correcta."
+          }
+        ]
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "repite un problema"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "problems-of-a-quiz-split-apart",
+      "inputs": "shared-text",
+      "verdict": {
+        "assessments": [
+          {
+            "quizId": "q-source",
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "ri marca origen.",
+            "explanation": "Problema uno."
+          },
+          {
+            "quizId": "q-destination",
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "explanation": "Correcta."
+          },
+          {
+            "quizId": "q-source",
+            "holds": false,
+            "problem": "OTHER_SUBTOPIC_CONTENT",
+            "severity": "LOW",
+            "counterexample": "Otro subtema.",
+            "explanation": "Problema dos, separado."
+          }
+        ]
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "seguidos"
+        ],
+        "schemaRejects": false
       }
     }
   ]

@@ -1,7 +1,8 @@
 name: mini-theory-judge
 description: |
   Juez de miniteoría por quiz (FEAT-MINIT). Recibe UN tema entero para ahorrar
-  una consulta, pero emite exactamente un assessment independiente por quizId.
+  una consulta, pero decide cada quizId por separado: un assessment sano o uno
+  por cada problema distinto que encuentra, todos seguidos (F-MINIT-R013).
   Cada tarjeta se contrasta sólo con el prompt, la pista y las respuestas u
   opciones de su propio quiz. Textos iguales nunca comparten ni propagan un
   veredicto (F-MINIT-R001/R003/R007).

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "mini-theory-verdict.schema.json",
   "title": "MiniTheoryVerdict",
-  "description": "Un assessment independiente por quizId; el tema es sólo la unidad de consulta.",
+  "description": "Por quizId, en el orden de la entrada: un assessment sano o uno por cada problema distinto, seguidos (F-MINIT-R013); el tema es sólo la unidad de consulta.",
   "type": "object",
   "additionalProperties": false,
   "required": ["assessments"],

@@ -24,6 +24,10 @@ SEVERITY_FOR = {
     "DIDACTIC_DIRECTION": "LOW",
     "MISSING_ENGLISH_HIGHLIGHT": "LOW",
 }
+PROBLEM_ORDER = [
+    "FALSE_RULE", "INSUFFICIENT_FOR_QUIZ", "OVERSTATED_FOR_QUIZ", "OTHER_SUBTOPIC_CONTENT",
+    "DIDACTIC_DIRECTION", "OVER_SPECIFIC_FOR_QUIZ", "THEORETICAL_JARGON", "MISSING_ENGLISH_HIGHLIGHT",
+]
 
 state = json.loads(sys.argv[1])
 inputs = state.get("inputs", {}) or {}
@@ -187,13 +191,32 @@ for index, raw in enumerate(assessments):
         "explanation": explanation,
     })
 
-actual_ids = [item["quizId"] for item in canonical]
+# F-MINIT-R013: un quiz trae un assessment sano o uno por cada problema distinto,
+# todos seguidos; se canonizan del más grave al más leve.
+groups = []
+for item in canonical:
+    if groups and groups[-1][0] == item["quizId"]:
+        groups[-1][1].append(item)
+    else:
+        groups.append((item["quizId"], [item]))
+actual_ids = [quiz_id for quiz_id, _ in groups]
 if actual_ids != quiz_ids:
-    fail("assessments debe cubrir los quizId exactamente y en orden; entrada=%s salida=%s" % (quiz_ids, actual_ids))
+    fail("assessments debe cubrir los quizId exactamente y en orden, con los de un mismo quiz seguidos; "
+         "entrada=%s salida=%s" % (quiz_ids, actual_ids))
+ordered = []
+for quiz_id, items in groups:
+    if len(items) > 1:
+        if any(item["holds"] for item in items):
+            fail("el quiz %s trae holds=true junto a otros assessments: una tarjeta sana tiene uno solo" % quiz_id)
+        problems = [item["problem"] for item in items]
+        if len(set(problems)) != len(problems):
+            fail("el quiz %s repite un problema: cada problema distinto va una sola vez" % quiz_id)
+        items = sorted(items, key=lambda item: PROBLEM_ORDER.index(item["problem"]))
+    ordered.extend(items)
 
 try:
     validated_path.write_text(
-        json.dumps({"assessments": canonical}, ensure_ascii=False, separators=(",", ":")),
+        json.dumps({"assessments": ordered}, ensure_ascii=False, separators=(",", ":")),
         encoding="utf-8",
     )
 except OSError as exc:

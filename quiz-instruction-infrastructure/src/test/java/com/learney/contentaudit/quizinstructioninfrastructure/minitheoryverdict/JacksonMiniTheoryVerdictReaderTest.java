@@ -235,6 +235,64 @@ public class JacksonMiniTheoryVerdictReaderTest {
         incoherent.forEach(fields -> assertUnreadable(verdictWith(fields)));
     }
 
+    @Test
+    @Tag("FEAT-MINIT")
+    @Tag("F-MINIT-R013")
+    void readsEveryProblemOfAQuizAsItsOwnAssessmentNextToAHealthyQuiz() {
+        MiniTheoryVerdict verdict = new JacksonMiniTheoryVerdictReader().read("""
+                {"assessments": [
+                  {"quizId": "q-list", "holds": false, "problem": "OVERSTATED_FOR_QUIZ", "severity": "MEDIUM",
+                   "counterexample": "I walk near the copper tower quite often.",
+                   "explanation": "Lo que dice de often exagera."},
+                  {"quizId": "q-list", "holds": false, "problem": "OTHER_SUBTOPIC_CONTENT", "severity": "LOW",
+                   "counterexample": "at weekends, al final.", "explanation": "at weekends es de otro subtema."},
+                  {"quizId": "q-healthy", "holds": true, "problem": null, "severity": null,
+                   "counterexample": null, "explanation": "Explica el caso."}
+                ]}
+                """);
+
+        assertEquals(3, verdict.getAssessments().size());
+        assertAssessment(verdict.getAssessments().get(0), "q-list", false, MiniTheoryProblem.OVERSTATED_FOR_QUIZ,
+                FindingSeverity.MEDIUM, "I walk near the copper tower quite often.", "Lo que dice de often exagera.");
+        assertAssessment(verdict.getAssessments().get(1), "q-list", false, MiniTheoryProblem.OTHER_SUBTOPIC_CONTENT,
+                FindingSeverity.LOW, "at weekends, al final.", "at weekends es de otro subtema.");
+        assertAssessment(verdict.getAssessments().get(2), "q-healthy", true, null, null, null, "Explica el caso.");
+    }
+
+    @Test
+    @Tag("FEAT-MINIT")
+    @Tag("F-MINIT-R013")
+    void rejectsAHealthyAssessmentNextToAProblemOfTheSameQuiz() {
+        String healthy = "{" + fields(true, null, null).replace("\"Evidencia.\"", "null") + "}";
+        String problem = "{" + fields(false, "FALSE_RULE", "HIGH") + "}";
+
+        assertUnreadable("{\"assessments\": [" + healthy + "," + problem + "]}");
+        assertUnreadable("{\"assessments\": [" + problem + "," + healthy + "]}");
+    }
+
+    @Test
+    @Tag("FEAT-MINIT")
+    @Tag("F-MINIT-R013")
+    void rejectsTheSameProblemTwiceInAQuiz() {
+        String problem = "{" + fields(false, "OTHER_SUBTOPIC_CONTENT", "LOW") + "}";
+
+        assertUnreadable("{\"assessments\": [" + problem + "," + problem + "]}");
+    }
+
+    @Test
+    @Tag("FEAT-MINIT")
+    @Tag("F-MINIT-R013")
+    void rejectsTheProblemsOfAQuizSplitApart() {
+        String overstated = "{" + fields(false, "OVERSTATED_FOR_QUIZ", "MEDIUM") + "}";
+        String other = "{" + fields(false, "OTHER_SUBTOPIC_CONTENT", "LOW") + "}";
+        String sibling = "{" + fields(true, null, null).replace("\"Evidencia.\"", "null").replace("q-1", "q-2") + "}";
+
+        assertUnreadable("{\"assessments\": [" + overstated + "," + sibling + "," + other + "]}");
+        assertEquals(3, new JacksonMiniTheoryVerdictReader()
+                .read("{\"assessments\": [" + overstated + "," + other + "," + sibling + "]}").getAssessments().size(),
+                "the same problems, together, are read");
+    }
+
     private static String fields(boolean holds, String problem, String severity) {
         return "\"quizId\": \"q-1\", \"holds\": " + holds
                 + ", \"problem\": " + nullable(problem)

@@ -111,8 +111,8 @@ específica del caso». Esto reemplaza el agrupamiento anterior por texto compar
 
 Usa las definiciones de [F-HALL-R002](#F-HALL-R002). El 077 puso en A1 y A2 43 altas, 41 medias y 28 bajas.
 Los defectos editoriales específicos de [F-MINIT-R008](#F-MINIT-R008), [F-MINIT-R009](#F-MINIT-R009) y la dirección
-de [F-MINIT-R010](#F-MINIT-R010) tienen gravedad baja cuando no hay otro defecto de mayor gravedad. La concordancia que
-no se generaliza bien de [F-MINIT-R010](#F-MINIT-R010) es media.
+de [F-MINIT-R010](#F-MINIT-R010) tienen gravedad baja y se informan junto a los demás defectos de la tarjeta
+([F-MINIT-R013](#F-MINIT-R013)). La concordancia que no se generaliza bien de [F-MINIT-R010](#F-MINIT-R010) es media.
 
 <a id="F-MINIT-R005"></a>
 ### Rule[F-MINIT-R005] - Reuso, tope, fallas y cobertura, contando temas
@@ -369,6 +369,47 @@ de una fórmula específica; la propuesta observada había eliminado el selector
 
 </details>
 
+<a id="F-MINIT-R013"></a>
+### Rule[F-MINIT-R013] - El juez devuelve todos los problemas de cada miniteoría
+**Severity**: critical | **Validation**: VALIDATED
+
+> El juez revisa cada miniteoría con todos sus criterios y devuelve todos los problemas que encuentra, no sólo el
+> primero. Cada problema distinto es un hallazgo propio en ese quiz, con su gravedad fija, su evidencia y su explicación
+> ([F-MINIT-R002](#F-MINIT-R002)); el puntaje del quiz sale del más grave ([F-MINIT-R004](#F-MINIT-R004)). Un mismo
+> defecto se informa una sola vez, con el problema que mejor lo describe: una afirmación falsa no es además exagerada, y
+> una concordancia que generalizada deja de ser cierta no es además de dirección. Defectos distintos de la misma tarjeta
+> —una parte de otro subtema y otra que exagera, o una elección sin explicar y además contenido ajeno— se informan
+> todos. Una miniteoría sin problemas tiene un solo veredicto: está bien.
+>
+> El corrector recibe juntos todos los hallazgos de la miniteoría de ese quiz, para responder a la devolución entera y no
+> a lo primero que el juez encontró ([F-MINIT-R007](#F-MINIT-R007)).
+>
+> En el examen ([F-MINIT-R006](#F-MINIT-R006)) un caso con problema coincide con su oro cuando la gravedad más alta es la
+> esperada y los problemas esperados están entre los que el juez devolvió: un problema de más que no sube la gravedad no
+> lo hace fallar. Un caso que el oro da por bueno sigue exigiendo que el juez no encuentre ningún problema.
+
+<details><summary>Ejemplos y decisión</summary>
+
+| Quiz (inventado) | Miniteoría | Antes | Ahora |
+|---|---|---|---|
+| I ___ (often / walk) near the copper tower. · often walk | $often$ va siempre antes del verbo; $at weekends$, al final de la frase. | Otro subtema (baja): el juez se detenía ahí. | Otro subtema (baja) y exagera (media): $I walk there quite often$ es común. El quiz queda en media. |
+| ___ (they / be) near the tower? · Were they | Para preguntar, $was$ o $were$ van antes del sujeto; para negar, se agrega $not$. | No alcanza (alta). | No alcanza (alta) y otro subtema (baja). El quiz queda en alta. |
+| She ___ from London. · is | Con $she$ se usa $is$. | Está bien. | Está bien: un solo veredicto. |
+
+Una tarjeta que reparte una misma idea entre varias palabras —«$often$ antes del verbo; $at weekends$ al final»— tiene
+una parte que es la del quiz (lo que dice de $often$) y partes de otro subtema. La parte del quiz se juzga como
+cualquier explicación del caso: si, leída como regla general, la refuta un uso común, exagera. Uso común es uno que un
+alumno de ese nivel va a leer o escuchar; una palabra rara o la excepción de unas pocas palabras no refutan una regla
+que vale para las habituales.
+
+Decisión de José, 3/11/2026, después del brief 255, ante cuatro casos del examen que esperaban sólo «otro subtema» en
+tarjetas-lista cuya parte del quiz exagera: «Creo que debería haber todas. Y dar una respuesta total, en su devolución,
+para que cuando el corrector ve el feedback pueda reaccionar a toda la devolución y no a lo primero que encontró». Eligió
+que el examen compare por la gravedad más alta y que los problemas esperados estén entre los devueltos («Sí, con (b)»),
+y que sólo esos cuatro casos pasen a esperar «otro subtema y exagera», gravedad media.
+
+</details>
+
 ## Contexto
 
 | Ficha | `mini-theory` |
@@ -420,8 +461,8 @@ journeys:
         action: "Ningún quiz del tema tiene hallazgo de mini-theory y el puntaje de cada uno es 1"
         result: success
       - id: error
-        action: "Sólo el quiz cuyo caso y miniteoría no coinciden recibe el hallazgo, la gravedad y una corrección específica; otros quizzes no cambian por compartir texto o tema"
-        gate: [F-MINIT-R003, F-MINIT-R004, F-MINIT-R007]
+        action: "Sólo el quiz cuyo caso y miniteoría no coinciden recibe un hallazgo por cada problema, con su gravedad, y una corrección específica que responde a todos; otros quizzes no cambian por compartir texto o tema"
+        gate: [F-MINIT-R003, F-MINIT-R004, F-MINIT-R007, F-MINIT-R013]
         result: success
       - id: sin_evaluar
         action: "El tema queda sin evaluar: sus quizzes no tienen puntaje ni hallazgo de mini-theory, y la cobertura los cuenta"

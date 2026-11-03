@@ -14,16 +14,20 @@ import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryProblem;
 import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryVerdict;
 import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryVerdictReader;
 import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import java.util.EnumSet;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import javax.annotation.processing.Generated;
 
 /**
  * Reads the closed quiz-scoped verdict emitted for a topic. Each assessment
  * must identify one quizId and carry a coherent truth/problem/severity tuple.
- * Legacy ordinal and exercise-list fields are rejected instead of silently
- * restoring propagation by shared text.
+ * A quiz brings one assessment that holds, or one per distinct problem, all
+ * together (F-MINIT-R013). Legacy ordinal and exercise-list fields are rejected
+ * instead of silently restoring propagation by shared text.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -67,6 +71,8 @@ public class JacksonMiniTheoryVerdictReader implements MiniTheoryVerdictReader {
             throw new IllegalArgumentException(VERDICT + " ilegible: «assessments» está vacío");
         }
         Set<String> quizIds = new LinkedHashSet<>();
+        Map<String, Set<MiniTheoryProblem>> problemsByQuiz = new HashMap<>();
+        String previous = null;
         for (int i = 0; i < read.size(); i++) {
             MiniTheoryAssessment assessment = read.get(i);
             if (assessment == null) {
@@ -77,10 +83,26 @@ public class JacksonMiniTheoryVerdictReader implements MiniTheoryVerdictReader {
                 throw new IllegalArgumentException(VERDICT + " ilegible: la evaluación " + (i + 1)
                         + " no trae un quizId no vacío");
             }
-            if (!quizIds.add(quizId)) {
-                throw new IllegalArgumentException(VERDICT + " ilegible: repite el quizId «" + quizId + "»");
-            }
             validateAssessment(assessment, i + 1);
+            if (!quizIds.add(quizId)) {
+                // F-MINIT-R013: another problem of the same quiz, right after the ones before it.
+                if (!quizId.equals(previous)) {
+                    throw new IllegalArgumentException(VERDICT + " ilegible: las evaluaciones del quizId «" + quizId
+                            + "» no están seguidas");
+                }
+                Set<MiniTheoryProblem> problems = problemsByQuiz.get(quizId);
+                if (problems == null || assessment.isHolds()) {
+                    throw new IllegalArgumentException(VERDICT + " ilegible: el quizId «" + quizId
+                            + "» está bien y además trae otra evaluación");
+                }
+                if (!problems.add(assessment.getProblem())) {
+                    throw new IllegalArgumentException(VERDICT + " ilegible: el quizId «" + quizId
+                            + "» repite el problema " + assessment.getProblem());
+                }
+            } else if (!assessment.isHolds()) {
+                problemsByQuiz.put(quizId, EnumSet.of(assessment.getProblem()));
+            }
+            previous = quizId;
         }
         return verdict;
     }

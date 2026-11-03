@@ -331,6 +331,76 @@ public class DefaultMiniTheoryDistributorTest {
         assertEquals("Elegir el verbo", quiz.getText());
     }
 
+    @Test
+    @Tag("FEAT-MINIT")
+    @Tag("F-MINIT-R004")
+    @Tag("F-MINIT-R013")
+    void givesOneFindingPerProblemWorstFirstScoresByTheWorstAndKeepsItInTheDiagnosis() {
+        AuditNode topic = mixedTopic();
+        MiniTheoryAssessment other = assessment("q-question", false, MiniTheoryProblem.OTHER_SUBTOPIC_CONTENT,
+                FindingSeverity.LOW, "Con do o does se forman todas", "La afirmación es de otro subtema.");
+        MiniTheoryAssessment highlight = assessment("q-question", false, MiniTheoryProblem.MISSING_ENGLISH_HIGHLIGHT,
+                FindingSeverity.LOW, "Con $do$ o $does$", "do y does van sin resaltar.");
+        MiniTheoryAssessment overstated = assessment("q-question", false, MiniTheoryProblem.OVERSTATED_FOR_QUIZ,
+                FindingSeverity.MEDIUM, "I am here.", "«todas las oraciones» exagera: be no usa do.");
+
+        List<MiniTheoryQuizOutcome> outcomes = distributor(STUDENT_VIEW).distribute(new MiniTheoryVerdict(List.of(
+                assessment("q-affirmation", true, null, null, null, "Correcta."), other, highlight, overstated),
+                "Todos los problemas."), topic, false);
+
+        MiniTheoryQuizOutcome question = outcomes.get(1);
+        assertEquals(List.of("overstated-for-quiz", "other-subtopic-content", "missing-english-highlight"),
+                question.getFindings().stream().map(FindingDraft::getRule).toList(), "one finding per problem, worst first");
+        assertEquals(List.of(FindingSeverity.MEDIUM, FindingSeverity.LOW, FindingSeverity.LOW),
+                question.getFindings().stream().map(FindingDraft::getSeverity).toList());
+        assertEquals(0.6, question.getScore(), 1e-9, "the score is the worst problem's");
+        assertEquals(overstated, question.getDiagnosis().getAssessment());
+        assertEquals(0.6, question.getDiagnosis().getScore(), 1e-9);
+        assertEquals(List.of(), outcomes.get(0).getFindings(), "the healthy sibling keeps no finding");
+        assertEquals(1.0, outcomes.get(0).getScore(), 1e-9);
+    }
+
+    @Test
+    @Tag("FEAT-MINIT")
+    @Tag("F-MINIT-R013")
+    void eachFindingCarriesOnlyTheEvidenceOfItsOwnProblem() {
+        MiniTheoryAssessment insufficient = assessment("q-question", false, MiniTheoryProblem.INSUFFICIENT_FOR_QUIZ,
+                FindingSeverity.HIGH, "Do you work here?", "No explica el orden de la pregunta.");
+        MiniTheoryAssessment other = assessment("q-question", false, MiniTheoryProblem.OTHER_SUBTOPIC_CONTENT,
+                FindingSeverity.LOW, "todas las oraciones del presente simple", "Habla de la afirmación.");
+
+        List<FindingDraft> findings = distributor(STUDENT_VIEW).distribute(new MiniTheoryVerdict(List.of(
+                assessment("q-affirmation", true, null, null, null, "Correcta."), insufficient, other), "Dos."),
+                mixedTopic(), false).get(1).getFindings();
+
+        String first = evidenceOf(findings.get(0));
+        String second = evidenceOf(findings.get(1));
+        assertTrue(first.contains("No explica el orden de la pregunta.") && !first.contains("Habla de la afirmación."));
+        assertTrue(second.contains("Habla de la afirmación.") && !second.contains("No explica el orden de la pregunta."));
+        assertTrue(first.contains(SHARED) && second.contains(SHARED), "both name the same mini theory");
+    }
+
+    @Test
+    @Tag("FEAT-MINIT")
+    @Tag("F-MINIT-R013")
+    void rejectsAHealthyAssessmentNextToAProblemAndTheSameProblemTwice() {
+        AuditNode topic = mixedTopic();
+        MiniTheoryAssessment affirmation = assessment("q-affirmation", true, null, null, null, "Correcta.");
+        MiniTheoryAssessment healthy = assessment("q-question", true, null, null, null, "Correcta.");
+        MiniTheoryAssessment other = assessment("q-question", false, MiniTheoryProblem.OTHER_SUBTOPIC_CONTENT,
+                FindingSeverity.LOW, null, "Otro subtema.");
+
+        assertThrows(IllegalArgumentException.class, () -> distributor(STUDENT_VIEW).distribute(
+                new MiniTheoryVerdict(List.of(affirmation, healthy, other), "Bien y mal."), topic, false));
+        assertThrows(IllegalArgumentException.class, () -> distributor(STUDENT_VIEW).distribute(
+                new MiniTheoryVerdict(List.of(affirmation, other, other), "El mismo dos veces."), topic, false));
+    }
+
+    private static String evidenceOf(FindingDraft finding) {
+        return finding.getEvidence().getExamined().stream().map(EvidencePart::getText)
+                .reduce("", (left, right) -> left + "\n" + right) + "\n" + finding.getEvidence().getObservation();
+    }
+
     private static void assertFinding(MiniTheoryQuizOutcome outcome, String rule, FindingSeverity severity, double score) {
         assertEquals(1, outcome.getFindings().size());
         assertEquals(rule, outcome.getFindings().get(0).getRule());

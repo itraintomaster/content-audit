@@ -3,10 +3,11 @@ name: evaluate
 kind: llm_call
 label: Judge Each Quiz Mini-Theory
 description: |
-  Juzga todos los quizzes del tema en una consulta, pero produce una decisión
-  independiente por quizId. El gate exige cobertura exacta y coherencia.
+  Juzga todos los quizzes del tema en una consulta, pero decide cada quizId por
+  separado y devuelve todos sus problemas, uno por elemento (F-MINIT-R013). El
+  gate exige cobertura exacta y coherencia.
 budgets:
-  max_tokens: 6000
+  max_tokens: 12000
   max_attempts: 3
 completion:
   produces:
@@ -51,10 +52,28 @@ La identidad del assessment es el `quizId`, no el texto de la tarjeta. Toda
 evidencia de otro quiz queda fuera del assessment actual, incluso cuando ese
 otro quiz tiene la misma miniteoría o parece un caso hermano.
 
-## Árbol de decisión terminal
+## Revisión completa: todos los problemas de cada tarjeta
 
-Aplicá estos pasos en orden. Cuando un paso asigna un resultado, detenete: los
-pasos posteriores ya no pueden reemplazarlo.
+Hacé los pasos 1 y 2 y después revisá la tarjeta con cada criterio de los pasos
+3 a 10, todos, aunque uno anterior ya haya encontrado un problema. No te
+detengas en el primero: el corrector va a leer tu devolución entera y tiene que
+poder arreglar la tarjeta de una vez. Cada criterio que se cumple es un problema
+de ese quiz y va en su propio elemento de la salida. El paso 11 vale sólo si
+ningún criterio se cumple.
+
+Un mismo defecto se informa una sola vez, con el criterio que mejor lo describe:
+
+- una afirmación local falsa es `FALSE_RULE`; no la informes además como
+  exagerada, de dirección ni insuficiente por esa misma afirmación;
+- una concordancia que parte de la forma es `OVERSTATED_FOR_QUIZ` si,
+  generalizada, deja de ser cierta, y `DIDACTIC_DIRECTION` si sigue siendo
+  cierta; nunca las dos por la misma afirmación;
+- un átomo hermano es `OTHER_SUBTOPIC_CONTENT` y nada más: no audites su verdad
+  ni su alcance con los otros criterios.
+
+Defectos distintos de la misma tarjeta se informan todos: una parte de otro
+subtema y otra local que exagera; una elección sin explicar y además contenido
+ajeno; una receta del ítem y además inglés sin resaltar.
 
 ### 1. Derivá el contraste focal
 
@@ -103,10 +122,10 @@ Descomponé `miniTheory` en afirmaciones mínimas y clasificá cada una como:
 
 No mezcles los átomos ni juzgues la tarjeta como un bloque global.
 
-### 3. Dirección local falsa → `FALSE_RULE` y fin
+### 3. Dirección local falsa → `FALSE_RULE`
 
 Si un átomo local prescribe una respuesta incorrecta o clasifica mal la categoría,
-construcción o función semántica focal, devolvé `FALSE_RULE`. Es terminal.
+construcción o función semántica focal, es `FALSE_RULE`.
 
 Cuando la tarjeta usa una categoría léxica para excluir una construcción, esa
 clasificación es local y debe ser verdadera. No deduzcas la categoría del verbo
@@ -115,10 +134,10 @@ disposición general no demuestra que el verbo pertenezca a una clase que prohí
 otras construcciones. Una clasificación local falsa no queda sana por coincidir
 casualmente con la forma aceptada ni se rebaja por tener contenido hermano.
 
-### 4. Decisión local no discriminada → `INSUFFICIENT_FOR_QUIZ` y fin
+### 4. Decisión local no discriminada → `INSUFFICIENT_FOR_QUIZ`
 
-Si los átomos locales no permiten distinguir las rutas focales, devolvé
-`INSUFFICIENT_FOR_QUIZ`. Es terminal. Nombrar un rasgo compartido por todas las
+Si los átomos locales no permiten distinguir las rutas focales, es
+`INSUFFICIENT_FOR_QUIZ`. Nombrar un rasgo compartido por todas las
 opciones no alcanza: decir que varios verbos están en presente simple, por ejemplo,
 no permite elegir cuál expresa disculpa, promesa o advertencia cuando ésa es la
 decisión léxica del quiz.
@@ -144,22 +163,38 @@ esa condición cuando el prompt no la aporta. Usar la forma marcada no demuestra
 que exista ese indicio. Si falta el requisito de la distinción focal, esa rama
 no explica la corrección y el contenido hermano no rebaja la insuficiencia.
 
-### 5. Local suficiente + cualquier átomo hermano → `OTHER_SUBTOPIC_CONTENT` y fin
+### 5. Cualquier átomo hermano → `OTHER_SUBTOPIC_CONTENT`
 
-Si la decisión local ya quedó bien explicada y existe al menos un átomo hermano,
-devolvé `OTHER_SUBTOPIC_CONTENT`. Es terminal aunque el átomo hermano contenga
-`siempre`, `nunca`, `sólo`, `todos` u otro universal. No audites la verdad, las
-excepciones ni el alcance del contenido hermano: alcanza con que esté fuera del
-contraste focal.
+Si existe al menos un átomo hermano, es `OTHER_SUBTOPIC_CONTENT`, aunque ese
+átomo contenga `siempre`, `nunca`, `sólo`, `todos` u otro universal.
+No audites la verdad, las excepciones ni el alcance del contenido hermano:
+alcanza con que esté fuera del contraste focal. Si además la parte local no explica el caso,
+también es `INSUFFICIENT_FOR_QUIZ` (paso 4). Lo que la tarjeta dice de la
+palabra o la construcción de este quiz sigue siendo local y se revisa en los
+demás pasos, aunque esté en la misma oración que un átomo hermano.
 
-### 6. Sin contenido hermano, alcance local engañoso → `OVERSTATED_FOR_QUIZ`
+### 6. Alcance local engañoso → `OVERSTATED_FOR_QUIZ`
 
-Sólo si no hay ningún átomo hermano, usá `OVERSTATED_FOR_QUIZ` cuando un átomo
-local contiene un universal explícito o inequívoco cuyo alcance queda refutado por
-un uso común de la misma palabra o construcción. También corresponde cuando una
-asociación parcial se presenta sin delimitar como una regla de correspondencia y
-enseña una restricción que esa palabra o construcción no tiene. No hace falta que
-aparezcan «siempre», «sólo» o «únicamente» para que esa formulación sea engañosa.
+Es `OVERSTATED_FOR_QUIZ` cuando un átomo local contiene un universal explícito o
+inequívoco cuyo alcance queda refutado por un uso común de la misma palabra o
+construcción, haya o no átomos hermanos en la tarjeta. También corresponde cuando
+una asociación parcial se presenta sin delimitar como una regla de
+correspondencia y enseña una restricción que esa palabra o construcción no
+tiene. No hace falta que aparezcan «siempre», «sólo» o «únicamente» para que esa
+formulación sea engañosa.
+
+Uso común es un uso frecuente que un alumno de ese nivel va a leer o escuchar.
+Una palabra rara, un registro técnico o la pronunciación excepcional de unas
+pocas palabras no refutan una regla que vale para las palabras habituales: ahí
+la regla no exagera.
+
+Si la tarjeta reparte un mismo predicado entre varias palabras o formas —«$X$
+va al principio; $Y$, al final», «$A$ para esto, $B$ para aquello»—, el átomo
+local es ese predicado aplicado a la palabra o forma de este quiz, y lo que dice
+de las demás son átomos hermanos (paso 5). Juzgá el átomo local como cualquier
+otro: si, leído como regla general de esa palabra o forma, lo refuta un uso
+común, exagera; si es cierto, no exagera, aunque la tarjeta tenga además
+contenido hermano.
 
 En una regla de concordancia, distinguí la dirección de la explicación y el
 alcance que se afirma, y leé la regla del caso como regla general: la tarjeta
@@ -175,7 +210,8 @@ nombra la refuta; la corrección invierte la dirección y no necesita nombrar la
 demás personas. Si la tarjeta parte de la forma pero su generalización es
 cierta —la forma es de un solo sujeto, como «$am$ va con $I$», o nombra todas
 sus personas en la construcción practicada, como «$is$ va con $he$, $she$,
-$it$»—, no enseña un alcance falso: seguí al paso 7.
+$it$»—, no enseña un alcance falso: no exagera y su dirección se revisa en el
+paso 7.
 
 Un contraejemplo debe refutar la afirmación que realmente se hizo, manteniendo sus condiciones.
 Si la tarjeta dice que un indicio no basta para acreditar un rasgo, no la refuta una oración que añade explícitamente ese rasgo por otra vía.
@@ -185,12 +221,12 @@ prohíbe que el rasgo exista»: sólo la segunda es una prohibición universal.
 
 ### 7. Concordancia explicada desde la forma hacia el sujeto → `DIDACTIC_DIRECTION`
 
-Si no aplica ningún defecto anterior y la decisión focal es la concordancia,
-la explicación debe partir del sujeto o de la categoría que determina la forma
-verbal, bajo el tiempo y la construcción practicados. Cuando la tarjeta presenta
-la forma verbal como punto de partida y le asigna el sujeto, devolvé
-`DIDACTIC_DIRECTION` con severidad `LOW`. Llegás acá sólo si esa asignación
-generaliza bien; si le daba una parte de sus personas, el paso 6 ya la cerró.
+Si la decisión focal es la concordancia, la explicación debe partir del sujeto
+o de la categoría que determina la forma verbal, bajo el tiempo y la
+construcción practicados. Cuando la tarjeta presenta la forma verbal como punto
+de partida y le asigna el sujeto, es `DIDACTIC_DIRECTION` con severidad `LOW`.
+Vale sólo si esa asignación generaliza bien: si le da una parte de sus personas,
+es el defecto del paso 6 y no se informa también acá.
 
 Es un criterio editorial sobre cómo explicar la elección, incluso cuando la
 compatibilidad inversa sea verdadera o biunívoca. No exige inventar otro sujeto
@@ -210,8 +246,8 @@ cuando la concordancia no es el contraste focal.
 
 ### 8. Regla correcta convertida en receta lexical → `OVER_SPECIFIC_FOR_QUIZ`
 
-Si no aplica ningún defecto anterior, comprobá si la tarjeta enseña una estructura
-mediante palabras incidentales de la respuesta. Especifica de más cuando formula
+Comprobá si la tarjeta enseña una estructura mediante palabras incidentales de
+la respuesta. Especifica de más cuando formula
 la regla como una combinación del sujeto o verbo literal del quiz, o copia la
 oración terminada, aunque esas palabras no determinen la decisión pedagógica.
 Nombrar después una propiedad general no basta si el esquema sigue fijado al
@@ -256,8 +292,7 @@ redacción. La concisión es una recomendación para corregir el defecto encontr
 
 ### 9. Metalenguaje teórico o jerga gramatical innecesaria → `THEORETICAL_JARGON`
 
-Si no aplica ningún defecto anterior, comprobá si la tarjeta recurre a terminología
-teórica, etiquetas lingüísticas formales o jerga gramatical abstracta que resulta
+Comprobá si la tarjeta recurre a terminología teórica, etiquetas lingüísticas formales o jerga gramatical abstracta que resulta
 antipedagógica o inaccesible para un alumno de inglés. La miniteoría es una ayuda
 breve para el usuario de la app, no una lección de lingüística teórica.
 
@@ -285,8 +320,7 @@ llano ceñida al mismo quiz.
 
 ### 10. Inglés citado sin resaltado nativo → `MISSING_ENGLISH_HIGHLIGHT`
 
-Si no aplica ningún defecto anterior, comprobá que las palabras, formas y fragmentos
-en inglés que la tarjeta cita para enseñar la decisión estén delimitados con `$...$`.
+Comprobá que las palabras, formas y fragmentos en inglés que la tarjeta cita para enseñar la decisión estén delimitados con `$...$`.
 Incluye pronombres, auxiliares, contracciones, expresiones de varias palabras,
 letras o terminaciones que se enseñan como formas del inglés y transformaciones
 ortográficas. Pueden marcarse fragmentos completos, como `$verbo → forma$`, cuando
@@ -309,18 +343,20 @@ cambiar su regla, ejemplos ni alcance. Si completa supera 300 caracteres, mostr�
 un fragmento literal con sus marcas corregidas dentro de ese límite; la
 `explanation` identifica también las demás apariciones por corregir. El límite
 de la evidencia no autoriza recortar la tarjeta real. Es una reparación de presentación, no un
-contraejemplo gramatical. Si existe un defecto anterior, conservá su categoría y
-gravedad; cualquier redacción correctiva que propongas debe respetar también las marcas.
+contraejemplo gramatical. Este problema no reemplaza a los demás: se informa
+junto a ellos, y cualquier redacción correctiva que propongas en otro problema
+debe respetar también las marcas.
 
-### 11. Si nada anterior aplica → sano
+### 11. Si ningún criterio se cumple → sano
 
-Devolvé `holds: true`.
+Devolvé un solo elemento con `holds: true`.
 
-La precedencia terminal completa es:
-`FALSE_RULE` / `INSUFFICIENT_FOR_QUIZ` → `OTHER_SUBTOPIC_CONTENT` →
-`OVERSTATED_FOR_QUIZ` → `DIDACTIC_DIRECTION` → `OVER_SPECIFIC_FOR_QUIZ` → `THEORETICAL_JARGON` → `MISSING_ENGLISH_HIGHLIGHT` → sano. Dentro del primer nivel, usá `FALSE_RULE` cuando
-hay dirección o clasificación local falsa; usá `INSUFFICIENT_FOR_QUIZ` cuando
-falta la distinción necesaria.
+Los problemas de un quiz van del más grave al más leve, en este orden:
+`FALSE_RULE`, `INSUFFICIENT_FOR_QUIZ`, `OVERSTATED_FOR_QUIZ`,
+`OTHER_SUBTOPIC_CONTENT`, `DIDACTIC_DIRECTION`, `OVER_SPECIFIC_FOR_QUIZ`,
+`THEORETICAL_JARGON`, `MISSING_ENGLISH_HIGHLIGHT`. Usá `FALSE_RULE` cuando hay
+dirección o clasificación local falsa; usá `INSUFFICIENT_FOR_QUIZ` cuando falta
+la distinción necesaria.
 
 Tomá las respuestas aceptadas y la opción marcada como correcta como la
 definición operativa del caso. No audites traducción, audio, naturalidad general,
@@ -363,14 +399,14 @@ con la misma forma sirve para mostrar esa restricción; no audites su quiz ni
 conviertas esa evidencia en contenido obligatorio de la tarjeta corregida.
 No uses conocimiento externo para exigir variantes, excepciones ni
 subtemas que el quiz no practica. Nunca busques contraejemplos para un átomo
-hermano: el paso 5 ya cerró el caso como `OTHER_SUBTOPIC_CONTENT`.
+hermano: sólo cuenta como `OTHER_SUBTOPIC_CONTENT` (paso 5).
 
 ## Resultado sano
 
 Usá `holds: true` cuando la miniteoría sea verdadera, suficiente y específica
 para su quiz, resalta con `$...$` el inglés que cita y, si explica concordancia,
-enseña la relación sujeto → forma.
-Entonces `problem`, `severity` y `counterexample` son `null`.
+enseña la relación sujeto → forma. Es el único elemento de ese quiz y
+`problem`, `severity` y `counterexample` son `null`.
 
 No inventes un defecto por omitir formas o usos que no aparecen en ese quiz, por
 no explicar otros quizzes del tema, por simplificar algo que no cambia la
@@ -380,8 +416,10 @@ delimitar no queda sana sólo porque coincida con la respuesta de este quiz.
 
 ## Problemas y severidades
 
-Con `holds: false`, elegí el único problema que corresponde al primer paso
-terminal aplicable. La severidad está fijada y nunca puede ser `BLOCKING`:
+Cada problema que encontraste va en su propio elemento, con `holds: false`, su
+`problem`, su `severity`, su `counterexample` y su `explanation`. La explicación
+y la evidencia de cada elemento tratan sólo de su problema: no repitas en uno lo
+que ya dice otro. La severidad está fijada y nunca puede ser `BLOCKING`:
 
 - `FALSE_RULE` → `HIGH`: afirma algo falso para la forma, función o palabras de
   este quiz. Corresponde si su prescripción positiva conduce a una decisión
@@ -392,28 +430,28 @@ terminal aplicable. La severidad está fijada y nunca puede ser `BLOCKING`:
   respuesta aceptada. También si se dedica a otro subtema y no deja una
   corrección utilizable para el caso actual, o si el alumno elige entre «$was$
   o $were$» y la tarjeta los nombra sin decir cuál lleva el sujeto del quiz.
-- `OVERSTATED_FOR_QUIZ` → `MEDIUM`: sin contenido hermano, contiene la corrección
-  local pero enseña un alcance excesivo: un universal explícito o inequívoco, o
-  una correspondencia parcial formulada como regla sin delimitar, queda refutado
-  por un uso común de la misma palabra o construcción. En concordancia incluye
-  la forma presentada con sólo una parte de sus personas («$is$ va con $she$»).
-- `OTHER_SUBTOPIC_CONTENT` → `LOW`: explica correctamente el caso, pero además
-  agrega cualquier contenido que pertenece sólo a otro subtema. Si ese contenido
-  reemplaza la explicación necesaria, usá `INSUFFICIENT_FOR_QUIZ`.
-- `DIDACTIC_DIRECTION` → `LOW`: sin falsedad, insuficiencia ni alcance engañoso,
-  presenta la forma verbal como punto de partida para asignarle un sujeto,
-  cuando la explicación debe partir del sujeto para elegir su forma. Generalizada
-  es cierta, porque es biunívoca o nombra todas las personas de esa forma; su
-  defecto es sólo la dirección didáctica.
-- `OVER_SPECIFIC_FOR_QUIZ` → `LOW`: la regla local es verdadera y suficiente,
-  pero fija léxico incidental en una receta del ítem que se puede abstraer sin
-  perder el contraste focal. No se usa sólo porque el texto sea largo.
-- `THEORETICAL_JARGON` → `LOW`: la regla local es verdadera, suficiente y específica,
-  pero recurre a metalenguaje gramatical abstracto o etiquetas lingüísticas teóricas
-  en vez de explicarse en lenguaje funcional y accesible para un estudiante.
-- `MISSING_ENGLISH_HIGHLIGHT` → `LOW`: sin defectos anteriores, las palabras o
-  formas inglesas citadas carecen total o parcialmente de resaltado nativo `$...$`.
-  La evidencia identifica los fragmentos y propone una reparación sólo de formato.
+- `OVERSTATED_FOR_QUIZ` → `MEDIUM`: una afirmación local enseña un alcance
+  excesivo: un universal explícito o inequívoco, o una correspondencia parcial
+  formulada como regla sin delimitar, queda refutado por un uso común de la
+  misma palabra o construcción. En concordancia incluye la forma presentada con
+  sólo una parte de sus personas («$is$ va con $she$»). Vale también cuando la
+  tarjeta tiene además contenido de otro subtema.
+- `OTHER_SUBTOPIC_CONTENT` → `LOW`: agrega contenido que pertenece sólo a otro
+  subtema. Si ese contenido reemplaza la explicación necesaria, informá también
+  `INSUFFICIENT_FOR_QUIZ`.
+- `DIDACTIC_DIRECTION` → `LOW`: presenta la forma verbal como punto de partida
+  para asignarle un sujeto, cuando la explicación debe partir del sujeto para
+  elegir su forma. Generalizada es cierta, porque es biunívoca o nombra todas
+  las personas de esa forma; su defecto es sólo la dirección didáctica.
+- `OVER_SPECIFIC_FOR_QUIZ` → `LOW`: fija léxico incidental en una receta del
+  ítem que se puede abstraer sin perder el contraste focal. No se usa sólo
+  porque el texto sea largo.
+- `THEORETICAL_JARGON` → `LOW`: recurre a metalenguaje gramatical abstracto o
+  etiquetas lingüísticas teóricas en vez de explicarse en lenguaje funcional y
+  accesible para un estudiante.
+- `MISSING_ENGLISH_HIGHLIGHT` → `LOW`: las palabras o formas inglesas citadas
+  carecen total o parcialmente de resaltado nativo `$...$`. La evidencia
+  identifica los fragmentos y propone una reparación sólo de formato.
 
 El `counterexample` muestra evidencia breve aplicada al propio quiz: una
 completación correcta, una formulación que desmienta la regla o la decisión no
@@ -428,7 +466,7 @@ local precisa sin ampliar a otros subtemas. El `counterexample` muestra un uso c
 que refuta esa restricción. Esa evidencia debe permitir al corrector entender el
 defecto; no uses respuestas esperadas ni ejemplos de un corpus de examen.
 
-Al proponer una corrección de concordancia, cualquiera sea el problema elegido,
+Al proponer una corrección de concordancia, en cualquiera de los problemas,
 orientá la redacción sujeto → forma y mantené las condiciones del quiz. Una
 restricción exclusiva engañosa se refuta con un uso común, pero la propuesta
 local de corrección también debe recuperar esa dirección.
@@ -465,19 +503,38 @@ fences ni prosa adicional:
 {
   "assessments": [
     {
-      "quizId": "id exacto",
+      "quizId": "id del primer quiz",
       "holds": true,
       "problem": null,
       "severity": null,
       "counterexample": null,
       "explanation": "Explicación breve en castellano, ceñida a este quiz."
+    },
+    {
+      "quizId": "id del segundo quiz",
+      "holds": false,
+      "problem": "OVERSTATED_FOR_QUIZ",
+      "severity": "MEDIUM",
+      "counterexample": "Uso común que refuta la parte local.",
+      "explanation": "Qué exagera la parte de la tarjeta que explica este quiz."
+    },
+    {
+      "quizId": "id del segundo quiz",
+      "holds": false,
+      "problem": "OTHER_SUBTOPIC_CONTENT",
+      "severity": "LOW",
+      "counterexample": "El fragmento ajeno a este caso.",
+      "explanation": "Qué parte de la tarjeta es de otro subtema."
     }
   ]
 }
 ```
 
-- Exactamente un elemento por quiz, en el mismo orden; ningún id omitido,
-  inventado o repetido.
+- Los quizzes van en el orden de la entrada; ningún id omitido ni inventado.
+- Una tarjeta sana tiene exactamente un elemento, con `holds: true`.
+- Una tarjeta con problemas tiene un elemento por problema, todos seguidos y
+  con `holds: false`, del más grave al más leve. Nunca repitas un mismo
+  `problem` en un quiz ni mezcles `holds: true` con problemas.
 - `problem`: `FALSE_RULE`, `INSUFFICIENT_FOR_QUIZ`,
   `OVERSTATED_FOR_QUIZ`, `OTHER_SUBTOPIC_CONTENT`, `OVER_SPECIFIC_FOR_QUIZ`,
   `THEORETICAL_JARGON`, `DIDACTIC_DIRECTION`, `MISSING_ENGLISH_HIGHLIGHT` o `null`.
@@ -494,4 +551,5 @@ Consigna del tema: {instructions}
 Quizzes del tema, cada uno con identidad y evidencia propia:
 {quizzes}
 
-Juzgá cada quiz por separado y devolvé sólo el objeto JSON.
+Juzgá cada quiz por separado, informá todos sus problemas y devolvé sólo el
+objeto JSON.
