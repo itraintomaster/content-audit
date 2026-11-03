@@ -133,9 +133,20 @@ public class FileSystemBatchStore implements BatchStore {
     private List<Path> lineageFiles = List.of();
     private Map<String, String> lineageParents = Map.of();
     @Override public synchronized boolean hasSuccessor(String batchId) {
+        return lineageParents().containsValue(batchId);
+    }
+
+    /** F-MEDJ-R012: finds the next version by the lineage headers and reads only that file, not every batch. */
+    @Override public synchronized Optional<CorrectionBatch> successor(String batchId) {
+        return lineageParents().entrySet().stream().filter(e -> e.getValue().equals(batchId)).map(Map.Entry::getKey)
+                .sorted().findFirst().map(name -> read(dir().resolve(name)));
+    }
+
+    /** The parent of every batch file that has one, by file name. */
+    private Map<String, String> lineageParents() {
         try {
             List<Path> files;
-            if (!Files.isDirectory(dir())) return false;
+            if (!Files.isDirectory(dir())) return Map.of();
             try (Stream<Path> stream = Files.list(dir())) {
                 files = stream.filter(f -> f.getFileName().toString().endsWith(SUFFIX)).sorted().toList();
             }
@@ -147,7 +158,7 @@ public class FileSystemBatchStore implements BatchStore {
                 }
                 lineageParents = Map.copyOf(parents); lineageFiles = files;
             }
-            return lineageParents.containsValue(batchId);
+            return lineageParents;
         } catch (IOException e) { throw new java.io.UncheckedIOException(e); }
     }
 

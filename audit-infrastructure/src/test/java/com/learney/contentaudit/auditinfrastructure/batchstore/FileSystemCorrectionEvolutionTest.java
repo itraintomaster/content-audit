@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -104,6 +105,17 @@ class FileSystemCorrectionEvolutionTest {
         assertArrayEquals(before, Files.readAllBytes(file("c1")));
         assertFalse(Files.exists(file("c2")));
         assertFalse(store.hasSuccessor("c1"));
+    }
+
+    @Test @Tag("FEAT-MEDJ") @Tag("F-MEDJ-R012")
+    void theNextVersionIsFoundByTheLineageHeadersReadingOnlyItsFile() throws IOException {
+        var store = new FileSystemBatchStore(root);
+        var first = batch("c1", 1); store.save(first);
+        store.commitSuccessor("c1", 4, "sealed", 0, child(first, "c2"));
+        Files.writeString(file("unreadable"), "{\"status\":\"NOT_A_STATUS\"}");
+        assertThrows(UncheckedIOException.class, store::list, "reading every batch would fail");
+        assertEquals("c2", store.successor("c1").orElseThrow().getId());
+        assertTrue(store.successor("c2").isEmpty());
     }
 
     @Test void malformedLineageFailsFastInsteadOfHanging() throws IOException {

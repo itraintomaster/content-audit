@@ -23,6 +23,11 @@ public interface BatchStore {
         return list().stream().anyMatch(b -> b.getEvolution() != null
                 && batchId.equals(b.getEvolution().parentBatchId()));
     }
+    /** The next version of a correction, if it has one: the chain shares its base (F-MEDJ-R012). */
+    default Optional<CorrectionBatch> successor(String batchId) {
+        return list().stream().filter(b -> b.getEvolution() != null
+                && batchId.equals(b.getEvolution().parentBatchId())).findFirst();
+    }
     default void requireEditableContent(CorrectionBatch batch) {
         if (hasSuccessor(batch.getId())) throw new IllegalStateException(
                 "Esta corrección tiene una siguiente versión: su contenido está conservado. Elegí la última para corregir; podés reanalizar ésta.");

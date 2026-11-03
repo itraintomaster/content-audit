@@ -147,8 +147,113 @@ class CurrentAnalysisServiceTest {
         base = childView.states().stream().filter(s -> "base".equals(s.id())).findFirst().orElseThrow();
         var remaining = base.digest().getRoot().getNumbers().getErrors();
         assertEquals(0,remaining == null ? 0 : remaining.getWithAnyError());
-        assertThrows(IllegalArgumentException.class,() -> service.execute(new CurrentAnalysisService.Request(
-                "integrate","child","base","r1","wrong-base",null,0,1,"content","human")));
+        // F-MEDJ-R012: from the successor only measurements of the base are offered in it; r1 measured the predecessor.
+        int revision = childView.revision();
+        assertEquals("Elegí una corrida con resultados guardados.", assertThrows(IllegalArgumentException.class,() -> service.execute(
+                new CurrentAnalysisService.Request("integrate","child","base","r1","wrong-base",null,revision,1,"content","human"))).getMessage());
+    }
+
+    /** A successor of the batch that measured the base: its run with an error, inside a «both» measurement. */
+    CorrectionBatch successorThatMeasuredTheBase() {
+        var child = TandaFixture.batch("child"); child.setCorrectionRevision(2); child.setContentVersion(1);
+        child.setEvolution(new CorrectionEvolution.Lineage("batch",6,0,"next","content",course,course,List.of()));
+        saved.put("child-base", report(true, true, "v1"));
+        child.setSelectiveRuns(new ArrayList<>(List.of(
+                new SelectiveCorrection.Run("child-both", "reanalyze-both", NAME, null, 2, 1, "content", "configured-version",
+                        "codex-cli / model / medium", null, null, List.of(), List.of(), 1, 1, 1, 1, 1, 0,
+                        "DONE", "human", Instant.EPOCH, Instant.EPOCH, null, false, 1, "content", null),
+                new SelectiveCorrection.Run("child-base", "reanalyze-base", NAME, "child-both", 2, 1, "content", "configured-version",
+                        "codex-cli / model / medium", "child-base", null, List.of(), List.of(), 1, 1, 1, 1, 1, 0,
+                        "DONE", "human", Instant.EPOCH, Instant.EPOCH, null, false, 1, "content", null))));
+        when(store.load("child")).thenReturn(Optional.of(child));
+        when(store.successor("batch")).thenReturn(Optional.of(child));
+        when(reviews.read("child")).thenReturn(new BatchReview("child",2,1,null,List.of(),List.of(),List.of(),List.of(),List.of()));
+        return child;
+    }
+    CurrentAnalysisService.View readBatch(String batchId) {
+        return service.execute(new CurrentAnalysisService.Request("read", batchId, null, null, null, null, null, null, null, null));
+    }
+    static int baseErrors(CurrentAnalysisService.View view) {
+        var errors = view.states().stream().filter(s -> "base".equals(s.id())).findFirst().orElseThrow()
+                .digest().getRoot().getNumbers().getErrors();
+        return errors == null ? 0 : errors.getWithAnyError();
+    }
+    static CurrentAnalysisService.LooseRun loose(CurrentAnalysisService.View view, String id) {
+        return view.looseRuns().stream().filter(r -> r.id().equals(id)).findFirst().orElseThrow();
+    }
+
+    @Test @Tag("FEAT-MEDJ") @Tag("F-MEDJ-R012")
+    void aMeasurementOfTheBaseMadeByASuccessorIsIntegratedFromItAndKeptOnceInTheOwnerOfTheBase() {
+        successorThatMeasuredTheBase();
+        var before = readBatch("child");
+        var fit = loose(before, "child-base").fits().stream().filter(f -> "base".equals(f.state())).findFirst().orElseThrow();
+        assertEquals(1, fit.compatible()); assertEquals(0, fit.selected());
+        assertEquals(0, baseErrors(before));
+
+        var integrated = service.execute(new CurrentAnalysisService.Request("integrate", "child", "base", "child-base",
+                "from-child", null, before.revision(), 1, "content", "human"));
+        assertEquals(1, history.size(), "the selection is kept once");
+        var kept = history.get(0);
+        assertEquals("batch", kept.batchId(), "in the batch that owns the base");
+        assertEquals("base", kept.state()); assertEquals(0, kept.expectedRevision()); assertEquals(6, kept.contentVersion());
+        verify(store, never()).saveAnalysisSelection(argThat(s -> "child".equals(s.batchId())));
+        assertEquals(1, baseErrors(integrated)); assertEquals(1, baseErrors(readBatch("batch")), "the base is the same from both");
+
+        // Its history and its revision carry what was integrated in the base.
+        assertEquals(1, integrated.revision());
+        assertEquals(List.of("from-child"), integrated.history().stream().map(AnalysisSelection::operationId).toList());
+        assertThrows(IllegalStateException.class, () -> service.execute(new CurrentAnalysisService.Request("remove", "child",
+                "base", "child-base", "stale", "from-child", before.revision(), 1, "content", "human")), "a confirmation read before");
+
+        var removed = service.execute(new CurrentAnalysisService.Request("remove", "child", "base", "child-base",
+                "remove-from-child", "from-child", integrated.revision(), 1, "content", "human"));
+        assertEquals(0, baseErrors(removed));
+        assertEquals(List.of("batch", "batch"), history.stream().map(AnalysisSelection::batchId).toList());
+        verify(repository, never()).save(any(), any()); verify(store, never()).save(any());
+        verify(engine, atLeastOnce()).runAudit(any(), argThat(s -> s.getPolicies().values().stream().allMatch(p -> p.getMaxNewEvaluations() == 0)));
+    }
+
+    @Test @Tag("FEAT-MEDJ") @Tag("F-MEDJ-R012")
+    void theOwnerOfTheBaseShowsTheSuccessorsMeasurementOnlyInTheBaseAndRemovesIt() {
+        successorThatMeasuredTheBase();
+        var view = readBatch("batch");
+        var run = loose(view, "child-base");
+        assertEquals(List.of("base"), run.fits().stream().map(CurrentAnalysisService.Fit::state).toList());
+        assertEquals("child-both", run.activityId(), "its activity is the one of the correction that measured it");
+        assertEquals(2, loose(view, "r1").fits().size(), "the owner's own runs still fit both states");
+        assertTrue(readBatch("child").looseRuns().stream().noneMatch(r -> r.id().equals("r1")),
+                "a run of the owner that did not measure the base is not the successor's");
+
+        var integrated = service.execute(new CurrentAnalysisService.Request("integrate", "batch", "base", "child-base",
+                "from-owner", null, view.revision(), 6, "content", "human"));
+        assertEquals(1, baseErrors(integrated));
+        var origin = (Map<?, ?>) integrated.states().stream().filter(s -> "base".equals(s.id())).findFirst().orElseThrow()
+                .provenance().get(TandaFixture.CHILD).get(NAME);
+        assertEquals("child-both", origin.get("activityId"));
+        var child = readBatch("child");
+        assertEquals(1, baseErrors(child)); assertEquals(1, child.revision());
+        assertEquals(1, baseErrors(service.comparisonView(batch)), "the comparison composes it too");
+
+        var removed = service.execute(new CurrentAnalysisService.Request("remove", "batch", "base", "child-base",
+                "remove-from-owner", "from-owner", integrated.revision(), 6, "content", "human"));
+        assertEquals(0, baseErrors(removed)); assertEquals(0, baseErrors(readBatch("child")));
+    }
+
+    @Test @Tag("FEAT-MEDJ") @Tag("F-MEDJ-R012")
+    void aSharedBaseIsNotWrittenWhileItsOwnerIsHeldOrPublishedAndAReadingDoesNotReadABatchTwice() {
+        successorThatMeasuredTheBase();
+        clearInvocations(store);
+        var view = readBatch("child");
+        verify(store, times(1)).load("batch"); verify(store, never()).successor("batch"); verify(store, never()).list();
+        batch.setStatus(BatchStatus.RUNNING);
+        assertEquals("La tanda está tomada por otra operación: integrá cuando termine.", assertThrows(IllegalArgumentException.class,
+                () -> service.execute(new CurrentAnalysisService.Request("integrate", "child", "base", "child-base", "held",
+                        null, view.revision(), 1, "content", "human"))).getMessage());
+        batch.setStatus(BatchStatus.PUBLISHED);
+        assertEquals("La tanda está publicada: su análisis ya no cambia.", assertThrows(IllegalArgumentException.class,
+                () -> service.execute(new CurrentAnalysisService.Request("integrate", "child", "base", "child-base", "published",
+                        null, view.revision(), 1, "content", "human"))).getMessage());
+        assertTrue(history.isEmpty());
     }
     @Test void frozenOpenPredecessorCanIntegrateAndRemoveAnalysisWithoutChangingItsContent() {
         batch.setStatus(BatchStatus.OPEN);
