@@ -105,25 +105,14 @@ específica del caso». Esto reemplaza el agrupamiento anterior por texto compar
 > La gravedad es **alta** si la regla es falsa para el caso del quiz o no explica su corrección, **media** si exagera dentro
 > de ese caso («siempre» o «nunca» donde hay excepciones comunes) o si, leída como regla general, deja de ser cierta
 > ([F-MINIT-R010](#F-MINIT-R010)), y **baja** si agrega contenido verdadero pero propio de
-> otro subtema que ese quiz no practica. El contenido de otro subtema no tapa una exageración: si la parte que
-> corresponde al quiz exagera, la gravedad es media aunque la tarjeta traiga además contenido de otro subtema. Nunca es
+> otro subtema que ese quiz no practica. Nunca es
 > bloqueante: la miniteoría se ve después de contestar. El puntaje de cada quiz es 1 sin hallazgo y, si no, 0,3, 0,6
 > u 0,8 según el más grave [ASSUMPTION]; el del tema, el nivel y el curso sube por la agregación genérica.
-
-| Quiz | Miniteoría | Resultado esperado |
-|---|---|---|
-| ___ you open the copper gate? · Can | Can para pedir de confianza, Could para pedir con cortesía. | Media: la parte de Can enseña que Can no sirve para pedir con cortesía. La rama de Could no la rebaja a baja. |
-| ___ I open the copper gate? · Could | Can para pedir de confianza, Could para pedir con cortesía. | Baja si la parte de Could es cierta: la rama de Can es de otro subtema y no se audita. |
 
 Usa las definiciones de [F-HALL-R002](#F-HALL-R002). El 077 puso en A1 y A2 43 altas, 41 medias y 28 bajas.
 Los defectos editoriales específicos de [F-MINIT-R008](#F-MINIT-R008), [F-MINIT-R009](#F-MINIT-R009) y la dirección
 de [F-MINIT-R010](#F-MINIT-R010) tienen gravedad baja cuando no hay otro defecto de mayor gravedad. La concordancia que
 no se generaliza bien de [F-MINIT-R010](#F-MINIT-R010) es media.
-
-Medición de la C2 del 2/11 (juez 22d8dd2d): 23 tarjetas que el juez anterior marcaba como exageradas —Can/Could para
-pedir, «las frases largas como every month van al final»— quedaron como contenido de otro subtema, de gravedad baja. El
-juez se detenía en el contenido de otro subtema antes de mirar el alcance de la parte del quiz, y así una gravedad baja
-tapaba una media. Desde la versión siguiente mira primero el alcance de la parte del quiz.
 
 <a id="F-MINIT-R005"></a>
 ### Rule[F-MINIT-R005] - Reuso, tope, fallas y cobertura, contando temas
