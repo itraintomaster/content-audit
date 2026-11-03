@@ -77,14 +77,17 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                 && config.getBatchStore().list().isEmpty())
             return new View(null, 0, 0, List.of(), List.of(), List.of(), composer.supportedAnalyzers().stream().sorted().toList());
         CorrectionBatch batch = batch(request.batchId());
-        if ("base".equals(request.state()) && !List.of("read", "preview").contains(action)
-                && !baseOwner(batch).getId().equals(batch.getId()))
-            throw new IllegalArgumentException("La base es compartida: elegí la base original para integrar o retirar análisis.");
+        CorrectionBatch owner = baseOwner(batch);
+        // F-MEDJ-R012: the base is the chain's. What is integrated in it is kept once, with the batch that owns it,
+        // from whichever correction it is asked.
+        CorrectionBatch keeper = "base".equals(request.state()) ? owner : batch;
         List<AnalysisSelection> history = config.getBatchStore().analysisSelections(batch.getId());
+        List<AnalysisSelection> kept = keeper.getId().equals(batch.getId()) ? history
+                : config.getBatchStore().analysisSelections(keeper.getId());
         boolean writes = !List.of("read", "preview").contains(action);
         if (writes) {
             requireId(request.operationId());
-            var duplicate = history.stream().filter(x -> request.operationId().equals(x.operationId())).findFirst();
+            var duplicate = kept.stream().filter(x -> request.operationId().equals(x.operationId())).findFirst();
             if (duplicate.isPresent()) {
                 var previous = duplicate.get();
                 if (!Objects.equals(previous.action(), action) || !Objects.equals(previous.runId(), request.runId())
@@ -92,18 +95,20 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                         || !Objects.equals(previous.removesOperationId(), request.removesOperationId())
                         || !Objects.equals(previous.reviewer(), request.reviewer()))
                     throw new IllegalArgumentException("La identidad de operación ya pertenece a otro pedido.");
-                return view(batch, history);
+                return view(batch, owner, history, true);
             }
         }
-        View view = view(batch, history);
+        View view = view(batch, owner, history, true);
         if (!writes) return view;
         // F-ABIER-R004: integrating changes no exercise, so an open batch integrates like a closed one.
-        if (batch.getStatus() == BatchStatus.PUBLISHED)
-            throw new IllegalArgumentException("La tanda está publicada: su análisis ya no cambia.");
-        if (batch.getStatus() != BatchStatus.CLOSED && batch.getStatus() != BatchStatus.OPEN)
-            throw new IllegalArgumentException("La tanda está tomada por otra operación: integrá cuando termine.");
+        for (CorrectionBatch held : new LinkedHashSet<>(List.of(batch, keeper))) {
+            if (held.getStatus() == BatchStatus.PUBLISHED)
+                throw new IllegalArgumentException("La tanda está publicada: su análisis ya no cambia.");
+            if (held.getStatus() != BatchStatus.CLOSED && held.getStatus() != BatchStatus.OPEN)
+                throw new IllegalArgumentException("La tanda está tomada por otra operación: integrá cuando termine.");
+        }
         if (request.reviewer() == null || request.reviewer().isBlank()) throw new IllegalArgumentException("Falta quién confirma.");
-        if (request.expectedRevision() == null || request.expectedRevision() != history.size()
+        if (request.expectedRevision() == null || request.expectedRevision() != view.revision()
                 || request.contentVersion() == null || request.contentVersion() != batch.getContentVersion())
             throw new IllegalStateException("La selección o el contenido cambió: volvé a leer.");
         State state = view.states().stream().filter(s -> s.id().equals(request.state())).findFirst()
@@ -113,10 +118,10 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         String runId = request.runId(), analyzer;
         List<String> ids;
         if ("remove".equals(action)) {
-            AnalysisSelection removed = history.stream().filter(e -> e.operationId().equals(request.removesOperationId())
+            AnalysisSelection removed = kept.stream().filter(e -> e.operationId().equals(request.removesOperationId())
                     && e.state().equals(request.state()) && !"remove".equals(e.action())).findFirst()
                     .orElseThrow(() -> new IllegalArgumentException("Elegí una integración de este estado."));
-            if (history.stream().anyMatch(e -> removed.operationId().equals(e.removesOperationId())))
+            if (kept.stream().anyMatch(e -> removed.operationId().equals(e.removesOperationId())))
                 throw new IllegalArgumentException("Esa integración ya fue retirada.");
             runId = removed.runId(); analyzer = removed.analyzer(); ids = removed.nodeIds();
         } else {
@@ -129,19 +134,20 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
             if (fit.selected() == fit.compatible()) throw new IllegalArgumentException("Esta corrida ya está integrada en todo su alcance compatible.");
             analyzer = run.analyzer(); ids = fit.nodeIds();
         }
-        config.getBatchStore().saveAnalysisSelection(new AnalysisSelection(request.operationId(), batch.getId(),
-                request.state(), action, runId, request.removesOperationId(), analyzer, ids, history.size(),
-                batch.getContentVersion(), state.fingerprint(), request.reviewer().trim(), Instant.now()));
-        return view(batch, config.getBatchStore().analysisSelections(batch.getId()));
+        config.getBatchStore().saveAnalysisSelection(new AnalysisSelection(request.operationId(), keeper.getId(),
+                request.state(), action, runId, request.removesOperationId(), analyzer, ids, kept.size(),
+                keeper.getContentVersion(), state.fingerprint(), request.reviewer().trim(), Instant.now()));
+        return view(batch, owner, config.getBatchStore().analysisSelections(batch.getId()), true);
     }
 
     @Override public View comparisonView(CorrectionBatch batch) {
-        return view(batch,config.getBatchStore().analysisSelections(batch.getId()),false);
+        return view(batch,baseOwner(batch),config.getBatchStore().analysisSelections(batch.getId()),false);
     }
-    private View view(CorrectionBatch batch, List<AnalysisSelection> history) {
-        return view(batch,history,true);
-    }
-    private View view(CorrectionBatch batch, List<AnalysisSelection> history, boolean includeLoose) {
+    /**
+     * {@code history} is the batch's own. A batch that shares its base also reads the base's selections, from the
+     * batch that keeps them: they are part of its history and of its revision (F-MEDJ-R012).
+     */
+    private View view(CorrectionBatch batch, CorrectionBatch baseOwner, List<AnalysisSelection> history, boolean includeLoose) {
         // F-CONTR-R004: the reviewer's marks are read while the states are composed; they do not depend on them. If they
         // cannot be read there is no contract, and the screen keeps its own count (R008).
         CompletableFuture<Map<String, ChangeReview.Row>> reviewed = includeLoose && config.getChangeReviewService() != null
@@ -151,30 +157,38 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         CourseEntity current = cut(ledger.composedCourse(batch, start), batch.getLevel());
         CourseEntity baseCourse = cut(start, batch.getLevel());
         var raw = new LinkedHashMap<String, AuditReport>();
-        CorrectionBatch baseOwner = baseOwner(batch);
         boolean ownBase = baseOwner.getId().equals(batch.getId());
         // F-CONTR-R007: what the instant analyzers of errors the batch lacks find, measured for free in both states.
         // A shared base is measured once, below, with the batch that owns it.
         AuditReport base = primary(batch, "base", baseCourse);
         raw.put("base", ownBase ? InstantAnalyzers.theBatchLacks(config, batch, baseCourse, base) : base);
         raw.put("correction", InstantAnalyzers.theBatchLacks(config, batch, current, primary(batch, "correction", current)));
+        var baseHistory = ownBase ? List.<AnalysisSelection>of() : config.getBatchStore().analysisSelections(baseOwner.getId())
+                .stream().filter(e -> "base".equals(e.state())).toList();
+        var shown = new ArrayList<>(history); shown.addAll(baseHistory);
         Map<String, AuditReport> sources = new HashMap<>();
         Set<String> requiredSources = new HashSet<>();
         if (!includeLoose) {
-            for (var selection : history) if (!"remove".equals(selection.action())) requiredSources.add(selection.runId());
+            for (var selection : shown) if (!"remove".equals(selection.action())) requiredSources.add(selection.runId());
             for (AuditReport report : raw.values()) for (AuditNode node : DefaultAnalysisComposer.index(report.getRoot()).values())
                 if (node.getMetadata() != null && node.getMetadata().get(DefaultAnalysisComposer.PROVENANCE) instanceof Map<?,?> origins)
                     for (Object origin : origins.values()) if (origin instanceof Map<?,?> map && map.get("runId") instanceof String id)
                         requiredSources.add(id);
         }
-        for (var run : BatchBook.list(batch.getSelectiveRuns()))
+        // F-MEDJ-R012: the measurements of the base are the chain's; a loose reading shows them from any correction, and
+        // the owner of the base composes what was integrated in it from another one.
+        Set<String> integrated = new HashSet<>();
+        if (ownBase) for (var selection : history) if (!"remove".equals(selection.action())) integrated.add(selection.runId());
+        var runs = runs(batch, baseOwner, batch, integrated, includeLoose);
+        for (var recorded : runs.values()) { var run = recorded.run();
             if (run.auditId() != null && (includeLoose || requiredSources.contains(run.id())))
                 config.getAuditReportStore().load(run.auditId()).ifPresent(r -> sources.put(run.id(), composer.contentOnly(r)));
+        }
         var sourceIndexes = new HashMap<String, Map<String, AuditNode>>();
         sources.forEach((id, report) -> sourceIndexes.put(id, DefaultAnalysisComposer.index(report.getRoot())));
         var reports = new LinkedHashMap<String, AuditReport>();
-        raw.forEach((state, report) -> reports.put(state, compose(batch, state, report, history, sources)));
-        if (!ownBase) reports.put("base", report(baseOwner, "base", baseCourse, true));
+        raw.forEach((state, report) -> reports.put(state, !ownBase && "base".equals(state)
+                ? report(baseOwner, "base", baseCourse, true, batch) : compose(batch, state, report, history, runs, sources)));
         var review = reviews.read(batch.getId());
         var tasks = new ArrayList<>(BatchBook.list(review.tasks()));
         // Several runs name the batch's own plan: it is read once, since its tasks are the same reasons each time.
@@ -200,9 +214,11 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                         var origin = new LinkedHashMap<String, Object>();
                         if (v instanceof Map<?,?> o) o.forEach((key, val) -> origin.put(key.toString(), val));
                         var sourceIndex = sourceIndexes.get(origin.get("runId"));
-                        BatchBook.list(batch.getSelectiveRuns()).stream()
-                                .filter(r -> r.id().equals(origin.get("runId"))).findFirst()
-                                .ifPresent(r -> { origin.put("contentVersion", r.contentVersion()); origin.put("activityId", activityId(batch,r)); });
+                        var recorded = runs.get(origin.get("runId"));
+                        if (recorded != null) {
+                            origin.put("contentVersion", recorded.run().contentVersion());
+                            origin.put("activityId", activityId(recorded.batch(), recorded.run()));
+                        }
                         var savedNode = sourceIndex == null ? node : sourceIndex.get(id);
                         if (savedNode != null && savedNode.getEntity() instanceof AuditableQuiz quiz)
                             origin.put("studentView", renderer.render(quiz));
@@ -222,7 +238,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
             });
             var warnings = new LinkedHashSet<>(approvalWarnings(approvals, raw.get(state), report, QUALITY));
             // A replacement keeps the earlier measurement as history, so the warning survives a reread/restart.
-            for (var e : history) if (state.equals(e.state()) && !"remove".equals(e.action()) && sources.containsKey(e.runId()))
+            for (var e : shown) if (state.equals(e.state()) && !"remove".equals(e.action()) && sources.containsKey(e.runId()))
                 warnings.addAll(approvalWarnings(approvals, sources.get(e.runId()), report, e.analyzer()));
             states.add(new State(state, "base".equals(state) ? "La base" : "Corrección " + BatchBook.correctionRevision(batch),
                     courseFingerprint.apply("base".equals(state) ? baseCourse : current), digest("current-" + state, report.getRoot()),
@@ -235,7 +251,8 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                     .collect(Collectors.toSet()), judgeMarks, EvaluatorContract.measured(exercises.values())));
         }
         var loose = new ArrayList<LooseRun>();
-        if (includeLoose) for (var run : BatchBook.list(batch.getSelectiveRuns())) {
+        if (includeLoose) for (var recorded : runs.values()) {
+            var run = recorded.run();
             if ("reanalyze-both".equals(run.action())) continue; // Coordination record; its two measurements have their own sources.
             AuditReport source = sources.get(run.id());
             if (source == null || !List.of("DONE", "PARTIAL").contains(run.status()) || !composer.supportedAnalyzers().contains(run.analyzer())) continue;
@@ -244,17 +261,20 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                     && DefaultAnalysisComposer.hasStoredOpinion(n, run.analyzer())).count();
             int errors = (int) sourceNodes.values().stream().filter(n -> n.getTarget() == AuditTarget.QUIZ && error(n, run.analyzer())).count();
             var fits = new ArrayList<Fit>();
-            for (var entry : reports.entrySet()) fits.add(fit(entry.getKey(), run, source, entry.getValue(), approvals));
+            // F-MEDJ-R012: a measurement of the base made from another correction of the chain fits only the base.
+            boolean ours = recorded.batch().getId().equals(batch.getId());
+            for (var entry : reports.entrySet()) if (ours || "base".equals(entry.getKey()))
+                fits.add(fit(entry.getKey(), run, source, entry.getValue(), approvals));
             // The configured judge version is not evidence that a reused result came from that version.
             var versions = sourceNodes.values().stream().filter(n -> n.getTarget() == AuditTarget.QUIZ)
                     .map(n -> DefaultAnalysisComposer.version(n, run.analyzer(), source)).filter(Objects::nonNull).distinct().sorted().toList();
             loose.add(new LooseRun(run.id(), run.analyzer(), run.auditId(), run.status(), run.contentVersion(), run.runtime(),
                     String.join(", ", versions), run.finishedAt() != null ? run.finishedAt() : run.createdAt(),
                     run.spent(), evaluated, errors, fits, config.getAnalyzerCatalog() == null ? run.analyzer()
-                            : config.getAnalyzerCatalog().find(run.analyzer()).map(AnalyzerDescriptor::getDisplayName).orElse(run.analyzer()), activityId(batch,run)));
+                            : config.getAnalyzerCatalog().find(run.analyzer()).map(AnalyzerDescriptor::getDisplayName).orElse(run.analyzer()), activityId(recorded.batch(),run)));
         }
         var contract = reviewed == null ? Contract.NONE : contract(reviewed.join(), readings);
-        return new View(batch.getId(), batch.getContentVersion(), history.size(), states, loose, includeLoose ? List.copyOf(history) : List.of(),
+        return new View(batch.getId(), batch.getContentVersion(), shown.size(), states, loose, includeLoose ? List.copyOf(shown) : List.of(),
                 composer.supportedAnalyzers().stream().sorted().toList(), contract.evaluators(), contract.evaluations());
     }
 
@@ -292,12 +312,15 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
     }
 
     @Override public AuditReport report(CorrectionBatch batch, String state, CourseEntity course) {
-        return report(batch, state, course, false);
+        return report(batch, state, course, false, null);
     }
-    /** {@code instant}: F-CONTR-R007, also what the instant analyzers of errors the batch lacks find. */
-    private AuditReport report(CorrectionBatch batch, String state, CourseEntity course, boolean instant) {
+    /**
+     * {@code instant}: F-CONTR-R007, also what the instant analyzers of errors the batch lacks find. {@code known}: a
+     * batch of the chain already read, so finding the runs of a shared base does not read it again.
+     */
+    private AuditReport report(CorrectionBatch batch, String state, CourseEntity course, boolean instant, CorrectionBatch known) {
         CorrectionBatch owner = "base".equals(state) ? baseOwner(batch) : batch;
-        if (!owner.getId().equals(batch.getId())) return report(owner, state, course, instant);
+        if (!owner.getId().equals(batch.getId())) return report(owner, state, course, instant, batch);
         var sources = new HashMap<String, AuditReport>();
         var history = config.getBatchStore().analysisSelections(batch.getId());
         Set<String> removed = new HashSet<>();
@@ -305,10 +328,46 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         Set<String> required = new HashSet<>();
         for (var selection : history) if (state.equals(selection.state()) && !"remove".equals(selection.action())
                 && !removed.contains(selection.operationId())) required.add(selection.runId());
-        for (var run : BatchBook.list(batch.getSelectiveRuns())) if (run.auditId() != null && required.contains(run.id()))
-            config.getAuditReportStore().load(run.auditId()).ifPresent(r -> sources.put(run.id(), composer.contentOnly(r)));
+        var runs = runs(batch, batch, known, required, false);
+        for (var recorded : runs.values()) { var run = recorded.run();
+            if (run.auditId() != null && required.contains(run.id()))
+                config.getAuditReportStore().load(run.auditId()).ifPresent(r -> sources.put(run.id(), composer.contentOnly(r)));
+        }
         AuditReport primary = primary(batch, state, course);
-        return compose(batch, state, instant ? InstantAnalyzers.theBatchLacks(config, batch, course, primary) : primary, history, sources);
+        return compose(batch, state, instant ? InstantAnalyzers.theBatchLacks(config, batch, course, primary) : primary, history, runs, sources);
+    }
+
+    /** A recorded run and the batch that recorded it. */
+    private record Recorded(CorrectionBatch batch, SelectiveCorrection.Run run) {}
+
+    /**
+     * F-MEDJ-R012: the runs a reading of {@code batch} can show or compose: its own and, from the other batches of the
+     * chain that shares its base, the ones that measured the base. The other batches are read only for a loose
+     * reading or when {@code required} names a run that is not the batch's own; {@code known} is not read again.
+     */
+    private Map<String, Recorded> runs(CorrectionBatch batch, CorrectionBatch owner, CorrectionBatch known,
+            Set<String> required, boolean wholeChain) {
+        var result = new LinkedHashMap<String, Recorded>();
+        for (var run : BatchBook.list(batch.getSelectiveRuns())) result.putIfAbsent(run.id(), new Recorded(batch, run));
+        if (!wholeChain && result.keySet().containsAll(required)) return result;
+        for (var other : chain(owner, known)) if (!other.getId().equals(batch.getId()))
+            for (var run : BatchBook.list(other.getSelectiveRuns()))
+                if (run.action() != null && run.action().endsWith("-base")) result.putIfAbsent(run.id(), new Recorded(other, run));
+        return result;
+    }
+
+    /** The batch that owns the base and each next version after it, in order. */
+    private List<CorrectionBatch> chain(CorrectionBatch owner, CorrectionBatch known) {
+        var chain = new ArrayList<CorrectionBatch>(List.of(owner));
+        Set<String> seen = new HashSet<>(Set.of(owner.getId()));
+        for (CorrectionBatch at = owner; ; ) {
+            String id = at.getId();
+            CorrectionBatch next = known != null && known.getEvolution() != null && id.equals(known.getEvolution().parentBatchId())
+                    ? known : config.getBatchStore().successor(id).orElse(null);
+            if (next == null) return chain;
+            if (!seen.add(next.getId())) throw new IllegalStateException("El linaje de las correcciones contiene un ciclo.");
+            chain.add(next); at = next;
+        }
     }
 
     private CorrectionBatch baseOwner(CorrectionBatch batch) {
@@ -539,12 +598,13 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
     }
 
     private AuditReport compose(CorrectionBatch batch, String state, AuditReport primary,
-            List<AnalysisSelection> history, Map<String, AuditReport> sources) {
+            List<AnalysisSelection> history, Map<String, Recorded> runs, Map<String, AuditReport> sources) {
         var supplements = new ArrayList<AnalysisSupplement>();
         Set<String> removed = new HashSet<>();
         for (var e : history) if ("remove".equals(e.action())) removed.add(e.removesOperationId());
         for (var e : history) if (state.equals(e.state()) && !"remove".equals(e.action()) && !removed.contains(e.operationId())) {
-            var run = BatchBook.list(batch.getSelectiveRuns()).stream().filter(r -> r.id().equals(e.runId())).findFirst().orElse(null);
+            var recorded = runs.get(e.runId());
+            var run = recorded == null ? null : recorded.run();
             AuditReport report = sources.get(e.runId());
             if (run == null || report == null) throw new IllegalStateException("Falta la corrida integrada " + e.runId());
             supplements.add(new AnalysisSupplement(run.id(), run.auditId(), e.analyzer(), run.runtime(),

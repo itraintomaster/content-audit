@@ -337,6 +337,65 @@ recargar.
 
 </details>
 
+<a id="F-MEDJ-R012"></a>
+### Rule[F-MEDJ-R012] - La Base se integra desde cualquier corrección, y queda una sola vez
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+> La Base es la misma para todas las correcciones de una cadena
+> ([F-TANDA-R007](../2026-09-30.24_tandas-por-nivel/REQUIREMENT.md#F-TANDA-R007)). Una medición de la Base, la haga la
+> corrección que la haga, se integra, se reemplaza o se quita desde cualquier corrección de la cadena y desde la Base.
+> Lo que se integra en La base se guarda una sola vez, en la corrección dueña de la Base: la primera de la cadena.
+>
+> Invariantes:
+> 1. una medición de la Base que hizo una corrección aparece entre las mediciones sueltas de todas las correcciones de
+>    la cadena y de la Base. En la corrección que la hizo encaja en sus dos estados, como hasta ahora; en las demás
+>    encaja sólo en La base;
+> 2. integrarla, reemplazarla o quitarla desde una corrección que no es la dueña escribe en la selección de la dueña.
+>    La Base cambia igual vista desde cualquier corrección, y la corrección que lo pidió no guarda nada suyo;
+> 3. la historia de una corrección que comparte la Base trae también lo que se integró y se quitó en La base, y su
+>    revisión lo cuenta: si la Base cambió desde otra corrección, confirmar pide volver a leer;
+> 4. si la corrección que lo pide o la dueña están publicadas u ocupadas por otra operación, se rechaza con las frases
+>    de [F-ABIER-R004](../2026-10-27.01_medir-con-la-tanda-abierta/REQUIREMENT.md#F-ABIER-R004);
+> 5. desde la Base del tablero, integrar y quitar mandan la versión del contenido de la dueña: lo que la ficha ofrece,
+>    content-audit lo acepta;
+> 6. integrar no consulta ni cambia ningún ejercicio, y leer una corrección no lee de nuevo las que ya leyó.
+
+<details><summary>Detail</summary>
+
+El 2/11 José volvió a medir la Miniteoría con «Las dos…» desde la C2 de A1. La medición de la C2 se integró. La de la
+Base, `ui-2026-11-02T18-24-25.421114Z-batch-selective-base` (81 consultas pagas), no: desde la C2, content-audit
+contestaba «La base es compartida: elegí la base original para integrar o retirar análisis.», y desde la Base la
+medición no aparecía, porque la había guardado la C2. La ficha decía «La corrida ya no está en el análisis vigente». Sin
+integrarla, «Empeoró» comparaba la C2 con una Base medida por un juez anterior.
+
+La selección queda en la dueña porque la Base es una sola: si cada corrección guardara la suya, la Base dejaría de ser
+la misma vista desde cada una.
+
+**Criterio**: con la Base de A1 compartida por la C1 y la C2, la medición de la Base hecha desde la C2 se integra desde
+la C2. La selección queda en la C1 y la Base de las dos cuenta sus veredictos. Desde la Base, la misma medición aparece,
+encaja sólo en La base y se puede quitar.
+
+</details>
+
+<a id="F-MEDJ-R013"></a>
+### Rule[F-MEDJ-R013] - Ejecuciones nombra una medición por su juez
+**Severity**: minor | **Validation**: AUTO_VALIDATED
+
+> En Ejecuciones, el detalle de una medición dice qué clase de corrida es según su juez. Dice «Analizar sólo
+> distractores» sólo si el juez es Calidad de distractores. Con cualquier otro juez, o sin juez conocido, dice
+> «Analizar un juez», como el diálogo de lanzar.
+
+<details><summary>Detail</summary>
+
+Todas las mediciones de un juez se lanzan con la misma clase, `distractores`, que nació cuando el único juez que se
+medía así era el de distractores. La medición de Miniteoría del 2/11 decía «Análisis selectivo · Analizar sólo
+distractores».
+
+**Criterio**: la medición `ui-2026-11-02T18-24-25.421114Z-batch-selective`, con juez «Miniteoría con error», dice
+«Análisis selectivo · Analizar un juez». Una de Calidad de distractores sigue diciendo «Analizar sólo distractores».
+
+</details>
+
 ## Contexto
 
 | Pieza | Hoy | Con esto |
@@ -349,6 +408,8 @@ recargar.
 | Leyenda | «encaja en» | sin ese trazo |
 | Detalle de una medición en Ejecuciones (20/10) | «Integra la selección actual.» con un solo estado integrado | «Integrada en La base · falta integrarla en Corrección 1 (…)», en un aviso |
 | Reemplazar con otra medición corriendo (20/10) | «…falló (código 2, 21 s): Error: La tanda debe estar cerrada.» al tocar el botón | «La tanda está ocupada: la medición de Miniteoría con error (…) va en 119 de hasta 160…», con el botón apagado hasta que termina |
+| Integrar en La base la medición que hizo la C2 (2/11) | Desde la C2, «La base es compartida…»; desde la Base, «La corrida ya no está en el análisis vigente» | Se integra desde la C2 o desde la Base, y queda una vez, en la C1 |
+| Cabecera de una medición de Miniteoría en Ejecuciones (2/11) | «Análisis selectivo · Analizar sólo distractores» | «Análisis selectivo · Analizar un juez» |
 
 ## Alcance
 
@@ -356,7 +417,8 @@ recargar.
   elegido en la ficha; sacar las tarjetas y flechas del dibujo; desde el 20/10, que el detalle de una medición en
   Ejecuciones diga en qué estado falta integrarla ([F-MEDJ-R010](#F-MEDJ-R010)); desde el 20/10 también, que la
   confirmación de integrar, reemplazar o quitar diga si otra medición ocupa la tanda y espere
-  ([F-MEDJ-R011](#F-MEDJ-R011)).
+  ([F-MEDJ-R011](#F-MEDJ-R011)); desde el 2/11, que una medición de la Base se integre desde cualquier corrección de la
+  cadena ([F-MEDJ-R012](#F-MEDJ-R012)) y que Ejecuciones nombre la medición por su juez ([F-MEDJ-R013](#F-MEDJ-R013)).
 - **Afuera**: cómo se integra (la ficha y lo que confirma no cambian); medir de nuevo, que sigue en el diálogo de
   [F-TALDIA-R004](../2026-10-18.02_jueces-al-dia-en-el-tablero/REQUIREMENT.md#F-TALDIA-R004); el resto de Ejecuciones;
   Analizadores y Estadísticas, que siguen abriendo la ficha como hoy.
@@ -430,6 +492,8 @@ modelo.
 | R009 | Sin la partición no se ofrece nada. Mostrar el carril no consulta |
 | R010 | Con las cifras del 20/10, el detalle dice «Integrada en La base · falta integrarla en Corrección 1 (2.377 sin contar, 279 con error).» en un aviso y destaca el botón. Integrada en los dos estados no avisa y el botón queda en segundo plano. A medias, sin integrar en ninguno, sólo repite y no encaja se nombran. Sin la partición, falta lo que no está seleccionado. Con dos mediciones, sólo se destaca la que falta. El detalle trae el nombre de cada estado |
 | R011 | Con la Miniteoría del 20/10 corriendo en la tanda (119 de hasta 160), la confirmación de reemplazar dice la frase de la regla arriba del botón, el botón está apagado y tocarlo no escribe nada; el avance sigue a lo que corre; al terminar, el aviso dice que ya se puede y el botón se prende solo. No la ocupan otra tanda, una terminada, una huérfana ni lo que todavía no se sabe; estancada sigue ocupándola. Sin juez se nombra por el título y nada del servidor entra como HTML. El CLI que rechaza con «La tanda debe estar cerrada» llega como 409 `TANDA_OCUPADA` con la tanda y la frase de esperar, sin el comando ni el código; integrar y quitar dicen lo suyo; otra falla sigue igual; la lectura guardada no cambia. La pantalla muestra ese rechazo en el aviso, pregunta enseguida qué corre y, al saberlo, nombra la medición. En `/api/actividad`, la medición trae su juez, sacado del título; sin «analizar» no se inventa |
+| R012 | `CurrentAnalysisServiceTest`: la medición de la Base que hizo la C2 se integra desde la C2 y la selección queda en la C1, con su revisión y su versión del contenido; la Base de las dos la cuenta; la C2 no guarda nada suyo; la historia y la revisión de la C2 traen lo de La base y una confirmación leída antes se rechaza; desde la C1 la misma medición aparece, encaja sólo en La base y se quita; con la dueña ocupada o publicada se rechaza, y leer la C2 no vuelve a leer la C1. `FileSystemCorrectionEvolutionTest`: la siguiente versión se encuentra leyendo sólo su archivo. En ittm, `test/tablero_html/analisis_vigente_test.dart`: desde la Base, integrar manda la versión del contenido de la dueña |
+| R013 | En ittm, `html/test/ejecuciones-vistas.test.js`: la cabecera de una medición de Miniteoría dice «Analizar un juez», la de Calidad de distractores «Analizar sólo distractores», y sin juez «Analizar un juez» |
 
 ## References
 
