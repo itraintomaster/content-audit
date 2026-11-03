@@ -113,6 +113,10 @@ los renglones.
 >
 > Tu aprobación los reparte como hoy: aprobado y sin problema, «Preparados para entregar»; aprobado y con un problema,
 > «Vos lo aprobás».
+>
+> El contrato es del contenido de hoy: una medición guardada de otro contenido —el ejercicio se volvió a corregir
+> después— no saca al ejercicio de la lista ni cambia el veredicto de su cambio (R006). En la C2 del 3/11 escondía 744
+> ejercicios que el contrato daba por buenos (brief 257).
 
 <a id="F-CONTR-R006"></a>
 ### Rule[F-CONTR-R006] - El veredicto del cambio sale del mismo recorrido
