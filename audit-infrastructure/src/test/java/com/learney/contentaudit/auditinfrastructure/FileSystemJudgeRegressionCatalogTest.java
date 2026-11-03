@@ -5,6 +5,7 @@ import com.learney.contentaudit.auditdomain.judging.*;
 import java.nio.file.*;
 import java.time.*;
 import java.util.*;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import static org.junit.jupiter.api.Assertions.*;
@@ -146,5 +147,83 @@ class FileSystemJudgeRegressionCatalogTest {
         assertEquals("Tema original", context.get("topicName"));
         var quiz = (Map<?, ?>) ((Map<?, ?>) catalog.suite("mini-theory").cases().get(0).snapshot().get("after")).get("quiz");
         assertEquals("Elige be.", quiz.get("instructions"));
+    }
+
+    final Instant rectifiedAt = Instant.parse("2026-11-03T17:30:00Z");
+    JudgeRegressionCase rectifyGood(FileSystemJudgeRegressionCatalog catalog) {
+        String id = catalog.suite("mini-theory").cases().get(0).id();
+        return catalog.rectify(id, true, "Usa jerga: «tercera persona»", "F-MINIT-R009", "José", "Sí, retirala",
+                "Claude", rectifiedAt);
+    }
+    @Tag("F-JEXAM-R021")
+    @Test void aNewRuleOfJoseRectifiesTheExpectationAndKeepsTheFormerReferenceAsHistory() {
+        var catalog = new FileSystemJudgeRegressionCatalog(course);
+        var confirmed = problem(Status.WORKING, List.of(example("good", Use.GOOD)));
+        catalog.confirm(confirmed);
+        var before = catalog.suite("mini-theory");
+        var former = before.cases().get(0);
+        assertFalse(former.expectedDetected());
+
+        var replacement = rectifyGood(catalog);
+
+        var after = catalog.suite("mini-theory");
+        assertEquals(List.of(replacement), after.cases(), "Only the rectified expectation is required from now on.");
+        assertNotEquals(before.fingerprint(), after.fingerprint(), "Rectifying makes another edition of the exam.");
+        assertTrue(replacement.expectedDetected());
+        assertEquals("Usa jerga: «tercera persona»", replacement.expectedReason());
+        assertEquals(former.snapshot(), replacement.snapshot(), "The frozen exercise the judge sees does not change.");
+        assertEquals(former.problemId(), replacement.problemId());
+        assertEquals(former.problemCaseId(), replacement.problemCaseId());
+        assertEquals("Rectificada el 3/11/2026 por F-MINIT-R009: decisión de José («Sí, retirala»), registrada por Claude. "
+                + "Antes esperaba «está bien» (" + former.id() + ").", replacement.expectedSource());
+        assertTrue(catalog.sync().contains(former), "The former reference stays as history.");
+        var history = catalog.rectifications("mini-theory");
+        assertEquals(1, history.size());
+        assertEquals(former.id(), history.get(0).previousId());
+        assertEquals(replacement.id(), history.get(0).replacementId());
+        assertEquals("José", history.get(0).decidedBy());
+        assertEquals(after, new FileSystemJudgeRegressionCatalog(course).suite("mini-theory"), "It survives a restart.");
+
+        catalog.confirm(confirmed);
+        assertEquals(after, catalog.suite("mini-theory"), "The problem still says «Está bien»: it brings nothing new.");
+    }
+    @Tag("F-JEXAM-R021")
+    @Test void aRectificationNeedsTheRuleJosesWordsAndAnotherExpectation() {
+        var catalog = new FileSystemJudgeRegressionCatalog(course);
+        catalog.confirm(problem(Status.WORKING, List.of(example("good", Use.GOOD))));
+        var before = catalog.suite("mini-theory");
+        String id = before.cases().get(0).id();
+        assertThrows(IllegalArgumentException.class, () -> catalog.rectify(id, true, "Usa jerga", "", "José", "Sí", null, rectifiedAt));
+        assertThrows(IllegalArgumentException.class, () -> catalog.rectify(id, true, "Usa jerga", "la regla nueva", "José", "Sí", null, rectifiedAt));
+        assertThrows(IllegalArgumentException.class, () -> catalog.rectify(id, true, "Usa jerga", "F-MINIT-R009", " ", "Sí", null, rectifiedAt));
+        assertThrows(IllegalArgumentException.class, () -> catalog.rectify(id, true, "Usa jerga", "F-MINIT-R009", "José", "", null, rectifiedAt));
+        assertThrows(IllegalArgumentException.class, () -> catalog.rectify(id, true, " ", "F-MINIT-R009", "José", "Sí", null, rectifiedAt));
+        var same = assertThrows(IllegalArgumentException.class,
+                () -> catalog.rectify(id, false, "Está bien", "F-MINIT-R009", "José", "Sí", null, rectifiedAt));
+        assertTrue(same.getMessage().contains("ya espera eso"));
+        assertThrows(IllegalArgumentException.class, () -> catalog.rectify("REG-missing", true, "Usa jerga", "F-MINIT-R009", "José", "Sí", null, rectifiedAt));
+        assertEquals(before, catalog.suite("mini-theory"), "A refused rectification changes nothing.");
+
+        var replacement = rectifyGood(catalog);
+        var twice = assertThrows(IllegalArgumentException.class,
+                () -> catalog.rectify(id, true, "Usa jerga", "F-MINIT-R009", "José", "Sí", null, rectifiedAt));
+        assertTrue(twice.getMessage().contains(replacement.id()), "It names the reference that is current.");
+    }
+    @Tag("F-JEXAM-R021")
+    @Test void theRectifiedExpectationGuardsTheContentAndLeavesOtherJudgesUntouched() {
+        var catalog = new FileSystemJudgeRegressionCatalog(course);
+        catalog.confirm(problem(Status.WORKING, List.of(example("good", Use.GOOD))));
+        var other = new ContentProblem("PRB-natural", "No suena natural", "Suena natural", List.of(), List.of("miniTheory"),
+                Status.WORKING, 0, List.of(example("bad", Use.EXAM)), List.of(), Map.of("judgeName", "naturalness"), at, at);
+        catalog.confirm(other);
+        var naturalness = catalog.suite("naturalness");
+
+        var replacement = rectifyGood(catalog);
+
+        assertEquals(naturalness, catalog.suite("naturalness"), "Another judge keeps its edition.");
+        var again = new ContentProblem("PRB-again", "Otra vez sano", "Está bien", List.of(), List.of("miniTheory"),
+                Status.WORKING, 0, List.of(example("good", Use.GOOD)), List.of(), Map.of("judgeName", "mini-theory"), at, at);
+        var rejected = assertThrows(IllegalArgumentException.class, () -> catalog.confirm(again));
+        assertTrue(rejected.getMessage().contains(replacement.id()), "The same content is now expected to fail.");
     }
 }

@@ -112,6 +112,35 @@ class PermanentExamCmdTest {
         Result changedPhoto = prepare(nested, dest);
         assertEquals(2, changedPhoto.code()); assertTrue(changedPhoto.err().contains("otra edición"), changedPhoto.err());
     }
+    @org.junit.jupiter.api.Tag("F-JEXAM-R021")
+    @Test void rectifyChangesWhatTheExamRequiresAndListsTheFormerReference() throws Exception {
+        Path source = source(); confirm(source);
+        JsonNode before = json.readTree(run("exam", "regressions", "mini-theory", "--course", source.toString()).out())
+                .path("judges").get(0);
+        String former = before.path("cases").get(0).path("id").asText();
+        assertTrue(before.path("cases").get(0).path("expectedDetected").asBoolean());
+
+        Result missing = run("exam", "rectify", former, "--course", source.toString(), "--expect", "passes",
+                "--reason", "Ya no es un problema", "--rule", "F-MINIT-R009", "--decided-by", "José");
+        assertEquals(2, missing.code()); assertTrue(missing.err().contains("palabras"), missing.err());
+
+        Result r = run("exam", "rectify", former, "--course", source.toString(), "--expect", "passes",
+                "--reason", "Ya no es un problema", "--rule", "F-MINIT-R009", "--decided-by", "José",
+                "--words", "Sí, retirala", "--recorded-by", "Claude");
+        assertEquals(0, r.code(), r.err());
+        JsonNode result = json.readTree(r.out());
+        assertEquals(former, result.path("rectified").asText());
+        assertFalse(result.path("reference").path("expectedDetected").asBoolean());
+
+        JsonNode after = json.readTree(run("exam", "regressions", "mini-theory", "--course", source.toString()).out())
+                .path("judges").get(0);
+        assertEquals(1, after.path("cases").size());
+        assertEquals(result.path("reference").path("id").asText(), after.path("cases").get(0).path("id").asText());
+        assertEquals(result.path("suiteVersion").asText(), after.path("suiteVersion").asText());
+        assertNotEquals(before.path("suiteVersion").asText(), after.path("suiteVersion").asText());
+        assertEquals(former, after.path("rectifications").get(0).path("previousId").asText());
+        assertEquals("Sí, retirala", after.path("rectifications").get(0).path("words").asText());
+    }
     @Test void readingEmptyCatalogDoesNotNeedAConfiguredModel() throws Exception {
         Path source = source();
         Result r = run("exam", "regressions", "mini-theory", "--course", source.toString());

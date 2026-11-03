@@ -294,7 +294,7 @@ histórica y todos los casos incorporados hasta esa edición, no sólo los del p
 Repetir la entrega, renovar el pedido o volver a abrir el problema no duplica el mismo caso. Resolver, archivar o
 retirar el problema de la lista de trabajo no saca sus casos del examen. Editar después el curso o la ficha no cambia
 el contenido ya incorporado; una rectificación explícita del caso o de su referencia esperada deja una nueva edición y
-conserva el antecedente.
+conserva el antecedente ([F-JEXAM-R021](#F-JEXAM-R021)).
 
 Si el caso carece del ejercicio congelado, de un resultado esperado o de su procedencia, la entrega dice qué falta y
 no lo cuenta como incorporado ni permite dar por completo el examen de ese problema. Nunca omite silenciosamente el
@@ -444,6 +444,40 @@ adicional requieren una nueva decisión; no quedan cubiertos por esta excepción
 
 </details>
 
+<a id="F-JEXAM-R021"></a>
+### Rule[F-JEXAM-R021] - Una regla nueva de José rectifica lo que espera un caso permanente
+**Severity**: critical | **Validation**: VALIDATED
+
+> Cuando José cambia una regla y un caso permanente queda esperando lo contrario, puede rectificar su referencia: el
+> caso pasa a esperar el resultado que pide la regla nueva. La referencia anterior se conserva como antecedente y el
+> examen deja de exigirla.
+
+<details><summary>Detail</summary>
+
+La rectificación nombra la regla nueva, quién la decidió y sus palabras, y lo que el juez tiene que contestar ahora.
+Sin la regla, sin la decisión o sin un cambio de resultado no se rectifica nada. La decide José; si la registra otro a
+su pedido, queda dicho quién la registró. Rectificar no consulta a ningún juez.
+
+El ejercicio congelado no cambia: el juez ve lo mismo que antes, y sólo cambian el resultado esperado, su motivo y su
+fuente. La fuente dice la fecha, la regla, la decisión y qué esperaba antes. El caso conserva su problema de origen
+([F-JEXAM-R019](#F-JEXAM-R019)).
+
+Rectificar crea otra edición del examen ([F-JEXAM-R018](#F-JEXAM-R018)): toda versión del juez vuelve a rendir los
+casos permanentes, y las aprobaciones, promociones o excepciones anteriores no cubren la edición nueva. Las ediciones
+de los otros jueces no cambian.
+
+La referencia rectificada no vuelve a exigirse ni impide guardar el resultado nuevo para ese contenido. La vigente sí:
+reclasificar después el mismo contenido al revés se rechaza, como en [F-JEXAM-R016](#F-JEXAM-R016). Una referencia ya
+rectificada no se rectifica de nuevo; se rectifica la vigente.
+
+**Criterio de aceptación**: el 3/11/2026, `REG-c2c1c1a75b42c3386e19abb4` («___ (he / know) the guy?», de
+`PRB-f35c962c`, «Especifica de más») esperaba «está bien». Su tarjeta dice «tercera persona», que
+[F-MINIT-R009](../2026-09-30.10_miniteoria/REQUIREMENT.md#F-MINIT-R009) prohíbe desde ese día, y el juez de Miniteoría
+`8d0371e8` la marcó como jerga media. José: «Sí, retirala». Desde entonces el caso espera «tiene un problema» por jerga,
+la referencia anterior queda como antecedente y el examen de Miniteoría es otra edición.
+
+</details>
+
 ## Contexto
 
 El examen nació para medir lo que cada juez deja pasar y lo que marca de más. Su base fija permitía comparar versiones,
@@ -456,6 +490,10 @@ la exigencia crece en ediciones sucesivas, según [F-JEXAM-R016](#F-JEXAM-R016) 
 El 22/10 José autorizó habilitar el juez de Miniteoría con una excepción documentada para «watch», conservando 61/62 y
 la discrepancia visible. [F-JEXAM-R020](#F-JEXAM-R020) permite esa decisión acotada sin alterar el criterio automático
 de aprobación ni extenderla a otros casos o mediciones.
+
+El 3/11 José prohibió «tercera persona» en la miniteoría y un caso permanente de Miniteoría, guardado antes como «está
+bien», quedó esperando lo contrario. No había cómo cambiarlo: el registro sólo sumaba casos y rechazaba el resultado
+opuesto para el mismo contenido. [F-JEXAM-R021](#F-JEXAM-R021) le da a José ese camino, con su decisión anotada.
 
 Juzgar el curso entero con los cinco son unas 41.700 consultas: 220 horas de a una al ritmo medido. Después de una tanda
 se paga sólo lo que cambió: cuatro consultas por ejercicio tocado y una por tema.

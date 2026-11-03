@@ -32,12 +32,18 @@ final class PermanentExamCmd implements Callable<Integer> {
     @Option(names = "--gold") Path baseGold;
     @Option(names = "--out") Path destination;
     @Option(names = {"-f", "--format"}, defaultValue = "json") String format;
+    @Option(names = "--expect", description = "rectify: lo que pasa a esperar, problem o passes.") String expect;
+    @Option(names = "--reason", description = "rectify: qué tiene que contestar el juez con la regla nueva.") String reason;
+    @Option(names = "--rule", description = "rectify: la regla nueva, como F-MINIT-R009.") String rule;
+    @Option(names = "--decided-by", description = "rectify: quién decidió; sólo José cambia una referencia.") String decidedBy;
+    @Option(names = "--words", description = "rectify: las palabras de la decisión.") String words;
+    @Option(names = "--recorded-by", description = "rectify: quién la registra, si no es quien decidió.") String recordedBy;
 
     PermanentExamCmd(Path project, PrintStream output) { this.project = project; this.output = output; }
 
     static Integer execute(List<String> args, Path project, PrintStream output, PrintStream errors) {
         if (args.size() < 2 || !args.get(0).equals("exam")
-                || !Set.of("regressions", "prepare").contains(args.get(1))) return null;
+                || !Set.of("regressions", "prepare", "rectify").contains(args.get(1))) return null;
         var cli = new CommandLine(new PermanentExamCmd(project, output));
         cli.setOut(new PrintWriter(output, true)); cli.setErr(new PrintWriter(errors, true));
         cli.setExecutionExceptionHandler((error, command, parsed) -> {
@@ -92,9 +98,26 @@ final class PermanentExamCmd implements Callable<Integer> {
                 var suite = catalog.suite(name);
                 var entry = new LinkedHashMap<String, Object>();
                 entry.put("judgeName", name); entry.put("suiteVersion", suite.fingerprint());
-                entry.put("cases", suite.cases()); judges.add(entry);
+                entry.put("cases", suite.cases());
+                var history = catalog.rectifications(name);
+                if (!history.isEmpty()) entry.put("rectifications", history);
+                judges.add(entry);
             }
             output.println(CommandJson.writeCompact(Map.of("judges", judges)));
+        } else if (action.equals("rectify")) {
+            // F-JEXAM-R021: José's new rule changes what a permanent case expects; no judge is queried.
+            if (judge == null || expect == null) throw new IllegalArgumentException("exam rectify <REG-…> --expect problem|passes "
+                    + "--reason <qué contesta el juez> --rule <F-…-R…> --decided-by <quién> --words <sus palabras>");
+            boolean detected = switch (expect) {
+                case "problem" -> true;
+                case "passes" -> false;
+                default -> throw new IllegalArgumentException("--expect: problem o passes.");
+            };
+            var replacement = catalog.rectify(judge, detected, reason, rule, decidedBy, words, recordedBy, java.time.Instant.now());
+            var result = new LinkedHashMap<String, Object>();
+            result.put("rectified", judge); result.put("reference", replacement);
+            result.put("suiteVersion", catalog.suite(replacement.judgeName()).fingerprint());
+            output.println(CommandJson.writeCompact(result));
         } else {
             if (judge == null || photo == null || baseCases == null || baseGold == null || destination == null)
                 throw new IllegalArgumentException("exam prepare <juez> --course <curso> --photo <foto histórica> "

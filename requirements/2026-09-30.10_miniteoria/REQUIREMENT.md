@@ -228,6 +228,10 @@ miniteoría. Pero veo varias. Y no están marcadas de ninguna manera». La corre
 categoría gramatical. Eligió prohibir los cuatro, conservar los que producción ya usaba y que la jerga frene, como
 problema medio («Sí, como recomendás»).
 
+Ese mismo día, un caso permanente del examen (`REG-c2c1c1a75b42c3386e19abb4`, de «Especifica de más») esperaba «está
+bien» para una tarjeta con «tercera persona». José lo rectificó por esta regla: ahora espera la jerga
+([F-JEXAM-R021](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R021), brief 260, «Sí, retirala»).
+
 <a id="F-MINIT-R010"></a>
 ### Rule[F-MINIT-R010] - La concordancia se explica desde el sujeto, de modo que generalizada siga siendo cierta
 **Severity**: major | **Validation**: VALIDATED

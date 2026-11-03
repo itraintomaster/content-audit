@@ -7,6 +7,7 @@ import com.learney.contentaudit.revisiondomain.problems.*;
 import java.nio.file.Path;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
+import java.time.Instant;
 import java.util.*;
 
 /** An additive catalog under the course, independent of transient campaigns and judge versions. */
@@ -20,38 +21,106 @@ public final class FileSystemJudgeRegressionCatalog implements JudgeRegressionCa
         file = problems.directory().getParent().resolve("judge-regressions/catalog.json");
         this.course = problems.directory().getParent().getParent();
     }
-    public record Catalog(List<JudgeRegressionCase> cases) {
-        public Catalog { cases = List.copyOf(cases); }
+    /**
+     * F-JEXAM-R021: José's new rule changed what a permanent case expects. The former reference stays in
+     * {@code cases} as history; only its replacement is required. Kept apart from the cases so that the
+     * suites of the other judges keep their fingerprint.
+     */
+    public record Rectification(String previousId, String replacementId, String judgeName, String rule,
+            String decidedBy, String words, String recordedBy, Instant decidedAt) {}
+    public record Catalog(List<JudgeRegressionCase> cases, List<Rectification> rectifications) {
+        public Catalog {
+            cases = List.copyOf(cases);
+            rectifications = rectifications == null ? List.of() : List.copyOf(rectifications);
+        }
     }
-    public List<JudgeRegressionCase> sync() {
+    /** Every reference ever confirmed, the rectified ones included. */
+    public List<JudgeRegressionCase> sync() { return synced().cases(); }
+    private Catalog synced() {
         return problems.exclusive(() -> {
-            var cases = new ArrayList<>(read());
-            for (var problem : problems.list()) merge(cases, problem);
-            writeIfChanged(cases);
-            return List.copyOf(cases);
+            var catalog = read();
+            var cases = new ArrayList<>(catalog.cases());
+            for (var problem : problems.list()) merge(cases, rectified(catalog), problem);
+            var merged = new Catalog(cases, catalog.rectifications());
+            writeIfChanged(merged);
+            return merged;
         });
     }
     /** Called with the same course lock as a problem save; labels survive removal/reopening. */
     public void confirm(ContentProblem problem) {
         problems.exclusive(() -> {
-            var cases = new ArrayList<>(read());
-            merge(cases, problem); writeIfChanged(cases); return null;
+            var catalog = read();
+            var cases = new ArrayList<>(catalog.cases());
+            merge(cases, rectified(catalog), problem);
+            writeIfChanged(new Catalog(cases, catalog.rectifications())); return null;
         });
     }
     public List<String> judgeNames() { return sync().stream().map(JudgeRegressionCase::judgeName).distinct().sorted().toList(); }
     @Override public JudgeRegressionSuite suite(String judgeName) {
-        var cases = sync().stream().filter(c -> c.judgeName().equals(judgeName))
+        var catalog = synced();
+        var history = rectified(catalog);
+        var cases = catalog.cases().stream().filter(c -> c.judgeName().equals(judgeName) && !history.contains(c.id()))
                 .sorted(Comparator.comparing(JudgeRegressionCase::id)).toList();
         return cases.isEmpty() ? JudgeRegressionSuite.empty()
                 : new JudgeRegressionSuite(digest(canonical(cases)), cases);
     }
-    private List<JudgeRegressionCase> read() {
-        return JsonFiles.read(mapper, file, Catalog.class).map(Catalog::cases).orElse(List.of());
+    public List<Rectification> rectifications(String judgeName) {
+        return synced().rectifications().stream().filter(r -> r.judgeName().equals(judgeName)).toList();
     }
-    private void writeIfChanged(List<JudgeRegressionCase> cases) {
-        if (!cases.equals(read())) JsonFiles.writeAtomically(mapper, file, new Catalog(cases));
+    /**
+     * F-JEXAM-R021: a new rule of José turns a permanent reference around. The frozen exercise does not change;
+     * the expectation, its reason and its source do, and the former reference is kept as history.
+     */
+    public JudgeRegressionCase rectify(String id, boolean expectedDetected, String reason, String rule,
+            String decidedBy, String words, String recordedBy, Instant at) {
+        String why = required(reason, "Decí qué tiene que contestar el juez con la regla nueva.");
+        if (rule == null || !rule.matches("F-[A-Z0-9]+-R\\d{3}"))
+            throw new IllegalArgumentException("Nombrá la regla nueva que cambia lo esperado, como F-MINIT-R009.");
+        String who = required(decidedBy, "Decí quién decidió el cambio: sólo José cambia una referencia.");
+        String said = required(words, "Citá las palabras con las que José lo decidió.");
+        String by = recordedBy == null || recordedBy.isBlank() ? who : recordedBy.strip();
+        Objects.requireNonNull(at);
+        return problems.exclusive(() -> {
+            var catalog = synced();
+            var prior = catalog.cases().stream().filter(c -> c.id().equals(id)).findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException("No existe la referencia permanente " + id + "."));
+            var done = catalog.rectifications().stream().filter(r -> r.previousId().equals(id)).findFirst();
+            if (done.isPresent()) throw new IllegalArgumentException("La referencia " + id + " ya se rectificó: la vigente es "
+                    + done.get().replacementId() + ".");
+            if (prior.expectedDetected() == expectedDetected) throw new IllegalArgumentException("La referencia " + id
+                    + " ya espera eso: rectificar es cambiar el resultado esperado.");
+            String date = java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy")
+                    .format(at.atZone(java.time.ZoneId.of("America/Argentina/Buenos_Aires")));
+            String source = "Rectificada el " + date + " por " + rule + ": decisión de " + who + " («" + said + "»)"
+                    + (by.equals(who) ? "" : ", registrada por " + by) + ". Antes esperaba "
+                    + (prior.expectedDetected() ? "«tiene un problema»" : "«está bien»") + " (" + prior.id() + ").";
+            String newId = "REG-" + digest(prior.id() + "\nrectificada\n" + expectedDetected + "\n" + why + "\n" + rule)
+                    .substring(7, 31);
+            var replacement = new JudgeRegressionCase(newId, prior.judgeName(), prior.problemId(), prior.problemTitle(),
+                    prior.problemCaseId(), prior.quizId(), expectedDetected, why, source, prior.snapshot(), at);
+            var cases = new ArrayList<>(catalog.cases()); cases.add(replacement);
+            var rectifications = new ArrayList<>(catalog.rectifications());
+            rectifications.add(new Rectification(prior.id(), newId, prior.judgeName(), rule, who, said, by, at));
+            writeIfChanged(new Catalog(cases, rectifications));
+            return replacement;
+        });
     }
-    private void merge(List<JudgeRegressionCase> stored, ContentProblem problem) {
+    private static String required(String value, String message) {
+        if (value == null || value.isBlank()) throw new IllegalArgumentException(message);
+        return value.strip();
+    }
+    private static Set<String> rectified(Catalog catalog) {
+        var ids = new HashSet<String>();
+        for (var r : catalog.rectifications()) ids.add(r.previousId());
+        return ids;
+    }
+    private Catalog read() {
+        return JsonFiles.read(mapper, file, Catalog.class).orElse(new Catalog(List.of(), List.of()));
+    }
+    private void writeIfChanged(Catalog catalog) {
+        if (!catalog.equals(read())) JsonFiles.writeAtomically(mapper, file, catalog);
+    }
+    private void merge(List<JudgeRegressionCase> stored, Set<String> rectified, ContentProblem problem) {
         if (problem.status() == ContentProblem.Status.COLLECTING || problem.criterion().isBlank()) return;
         var judges = judgesOf(problem);
         // Editing a case invalidates its delivery. Preserve its previously established owner
@@ -68,7 +137,14 @@ public final class FileSystemJudgeRegressionCatalog implements JudgeRegressionCa
             String reason = c.expected().isBlank() ? problem.criterion() : c.expected();
             boolean detected = c.use() == ContentProblem.Use.EXAM;
             for (String judge : judges) {
-                for (var prior : stored) if (prior.judgeName().equals(judge)
+                // Include content and expectation in the identity: a later correction adds a new
+                // reference instead of silently rewriting a previously mandatory case.
+                String identity = problem.id() + "\n" + c.id() + "\n" + judge + "\n" + detected
+                        + "\n" + reason + "\n" + canonical(c.snapshot().get("after"));
+                String id = "REG-" + digest(identity).substring(7, 31);
+                // Already incorporated, maybe rectified since (F-JEXAM-R021): the case brings nothing new.
+                if (stored.stream().anyMatch(v -> v.id().equals(id))) continue;
+                for (var prior : stored) if (prior.judgeName().equals(judge) && !rectified.contains(prior.id())
                         && prior.expectedDetected() != detected
                         && canonical(prior.snapshot().get("after")).equals(canonical(c.snapshot().get("after")))) {
                     throw new IllegalArgumentException("El caso " + c.id() + " de " + problem.id()
@@ -76,12 +152,6 @@ public final class FileSystemJudgeRegressionCatalog implements JudgeRegressionCa
                             + " («" + prior.problemTitle() + "»): el mismo contenido ya tiene el resultado esperado opuesto. "
                             + "Revisá la referencia esperada antes de reclasificar ese contenido; no se guardó el cambio.");
                 }
-                // Include content and expectation in the identity: a later correction adds a new
-                // reference instead of silently rewriting a previously mandatory case.
-                String identity = problem.id() + "\n" + c.id() + "\n" + judge + "\n" + detected
-                        + "\n" + reason + "\n" + canonical(c.snapshot().get("after"));
-                String id = "REG-" + digest(identity).substring(7, 31);
-                if (stored.stream().anyMatch(v -> v.id().equals(id))) continue;
                 var snapshot = new LinkedHashMap<String, Object>(c.snapshot());
                 if (!snapshot.containsKey("examContext")) snapshot.put("examContext", contextOf(c));
                 stored.add(new JudgeRegressionCase(id, judge, problem.id(), problem.title(), c.id(), c.quizId(),
