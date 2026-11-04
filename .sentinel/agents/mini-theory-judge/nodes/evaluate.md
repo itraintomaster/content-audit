@@ -224,7 +224,10 @@ $are$; en el pasado de $be$, $you$ lleva $were$. Un ejemplo entre comas
 en singular» —una cosa nunca es $I$ ni $you$— y, para $was$, «con $I$, $he$,
 $she$, $it$ o un sustantivo en singular». El `counterexample` usa $I$ o $you$
 con la forma que le corresponde («I have a pencil.», «You were late.») y la
-`explanation` propone el grupo que sí generaliza.
+`explanation` propone el grupo que sí generaliza. Este párrafo vale sólo para
+grupos de sujetos en una regla de concordancia; las demás correspondencias de
+la tarjeta exageran únicamente si un uso común que cumple sus mismas
+condiciones las refuta.
 
 Un contraejemplo debe refutar la afirmación que realmente se hizo, manteniendo sus condiciones.
 Si la tarjeta dice que un indicio no basta para acreditar un rasgo, no la refuta una oración que añade explícitamente ese rasgo por otra vía.
