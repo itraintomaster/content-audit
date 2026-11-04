@@ -272,13 +272,17 @@ nombra una, nombra las dos («$is$ o $'s$»).
 
 No nombres el léxico incidental ni siquiera como ejemplo. Si el sujeto sólo
 decide la forma del verbo, describilo con palabras de todos los días, sin citar
-el nombre: «con una cosa en singular, como $it$, se usa $is$».
+el nombre: «con una cosa en singular, como $it$, se usa $is$». Nombrá un grupo
+de sujetos que lleve siempre esa forma, con $I$ y $you$ afuera: «con $he$, $she$
+o $it$», «con un sustantivo en singular», «con el nombre de una persona», «con
+una cosa en singular»; para $was$, «con $I$, $he$, $she$, $it$ o un sustantivo
+en singular».
 
 Escribí con palabras de todos los días. De gramática, usá sólo los términos que
 el curso ya usa: sujeto, verbo, verbo base, sustantivo, contable, incontable,
 adjetivo, adverbio, preposición, pregunta, negación y el nombre de los tiempos.
-Lo demás se dice con palabras comunes: «una persona o cosa en singular», «con
-$he$, $she$ o $it$», «el resto de la oración», «sin $the$ ni $a$ delante». Si la
+Lo demás se dice con palabras comunes: «con $he$, $she$ o $it$», «con un
+sustantivo en singular», «el resto de la oración», «sin $the$ ni $a$ delante». Si la
 evidencia marca jerga, reemplazá ese término por su explicación llana y
 conservá el resto de la regla.
 

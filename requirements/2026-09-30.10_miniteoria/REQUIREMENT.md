@@ -199,8 +199,9 @@ de PRB-f35c962c; las respuestas anteriores gustaron aunque quedaron largas.
 > sea verdadera y suficiente.
 >
 > También son jerga los términos de gramática que el curso no usa: «sujeto nominal», «tercera
-> persona», «complemento» y «determinante». Se dicen con palabras de todos los días: «una persona o
-> cosa en singular», «con $he$, $she$ o $it$», «el resto de la oración», «sin $the$ ni $a$ delante».
+> persona», «complemento» y «determinante». Se dicen con palabras de todos los días: «con $he$, $she$
+> o $it$», «con un sustantivo en singular», «el resto de la oración», «sin $the$ ni $a$ delante». El
+> grupo que reemplaza a «tercera persona» deja afuera a $I$ y $you$ ([F-MINIT-R010](#F-MINIT-R010)).
 > Siguen permitidos los que el curso ya usa: sujeto, verbo, verbo base, sustantivo, contable e
 > incontable, adjetivo, adverbio, preposición, pregunta, negación y el nombre de los tiempos.
 >
@@ -228,6 +229,11 @@ miniteoría. Pero veo varias. Y no están marcadas de ninguna manera». La corre
 categoría gramatical. Eligió prohibir los cuatro, conservar los que producción ya usaba y que la jerga frene, como
 problema medio («Sí, como recomendás»).
 
+Esta regla, el 3/11, sugería «una persona o cosa en singular» en lugar de «tercera persona». La corrección de las 400
+tarjetas la copió: «Con una persona o cosa en singular, como $he$, la forma es $has$», falsa para $I$ y $you$. La
+sugerencia se cambió por grupos que dejan afuera a $I$ y $you$, y el juez marca el grupo que no los deja afuera
+([F-MINIT-R010](#F-MINIT-R010)).
+
 Ese mismo día, un caso permanente del examen (`REG-c2c1c1a75b42c3386e19abb4`, de «Especifica de más») esperaba «está
 bien» para una tarjeta con «tercera persona». José lo rectificó por esta regla: ahora espera la jerga
 ([F-JEXAM-R021](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R021), brief 260, «Sí, retirala»).
@@ -244,6 +250,12 @@ bien» para una tarjeta con «tercera persona». José lo rectificó por esta re
 > «does va con he»—, generalizada deja de ser cierta: is también va con he e it, y el alumno que después encuentra he
 > cree que is no le corresponde. El juez la clasifica como `OVERSTATED_FOR_QUIZ`, gravedad media, aunque el quiz
 > practique un solo sujeto y aunque la tarjeta no diga «sólo».
+>
+> Si parte de un grupo de sujetos en vez de un sujeto, el grupo contiene sólo sujetos que llevan esa forma. «Con una
+> persona o cosa en singular, como he, se usa has» no lo cumple: I y you también son una persona en singular y llevan
+> have; en el pasado de be, you lleva were. El ejemplo («como he») no achica el grupo. El juez la clasifica como
+> `OVERSTATED_FOR_QUIZ`, gravedad media. Cumplen «con he, she o it», «con un sustantivo en singular», «con el nombre de
+> una persona», «con una cosa en singular» y, para was, «con I, he, she, it o un sustantivo en singular».
 >
 > Si parte de la forma pero la generalización es cierta —la forma es de un solo sujeto, como «am va con I», o la tarjeta
 > nombra todas sus personas, como «is va con he, she, it»—, el defecto es sólo de dirección didáctica: el juez la
@@ -301,6 +313,11 @@ se conserva su motivo propio y la gravedad que corresponda según [F-MINIT-R004]
 | ___ (they / be) near the tower? · Were they | Para preguntar: was/were + sujeto. | Rechazada por insuficiente (alta): were figura entre alternativas, pero no dice que va con they. |
 | Were they near the tower? · Yes, they were. / No, they weren't. (elige la respuesta) | Para preguntar: was/were + sujeto. | No es insuficiente por was/were: el alumno no elige esa forma. |
 | ___ (yesterday / walk) to the tower. · walked | Para lo terminado se usa el pasado; para lo habitual, el presente. | La rama del presente es de otro subtema: el enunciado ya fija el pasado. |
+| He ___ (have) a pencil. · has | Con una persona o cosa en singular, como he, la forma es has. | Rechazada por alcance (media): I y you también son una persona en singular y llevan have. |
+| He ___ (have) a pencil. · has | Con he, she, it o un sustantivo en singular, la forma es has. | Aprobada si cumple las demás reglas del caso. |
+| ___ (the film / be) good? · Was the film | Con una persona o cosa en singular, el pasado de be es was. | Rechazada por alcance (media): con you va were. |
+| ___ (the film / be) good? · Was the film | Con un sustantivo en singular, el pasado de be es was. | Aprobada si cumple las demás reglas del caso. |
+| The lamp ___ on the table. · am / are / is | Con una cosa en singular, como it, se usa is. | Aprobada: una cosa nunca es I ni you. |
 
 **Criterio de aceptación del examen**: los casos invertidos «am va con I» e «is va con it» quedan como rechazos
 obligatorios del examen permanente, con origen en `PRB-fbaeac6f` y la confirmación del operador. Los controles sanos
@@ -319,6 +336,12 @@ Decisión de José, 2/11/2026, en el brief 254: una tarjeta de was/were tiene qu
 lo diga»). El juez del 2/11 ya marcaba 24 de esas tarjetas, pero de rebote; esta regla lo escribe. En el mismo brief
 aparecieron tres marcas equivocadas: tarjetas de contracciones que ya nombraban la forma pedida. Tras esa misma decisión,
 José pidió sacar la corrección cuanto antes, con las pruebas y los exámenes que hagan falta.
+
+Aplicación del 3/11/2026 a un grupo de sujetos: la regla de jerga ([F-MINIT-R009](#F-MINIT-R009)) sugirió «una persona
+o cosa en singular» para reemplazar «tercera persona», y la corrección de las 400 tarjetas la copió («con una persona o
+cosa en singular, como he, la forma es has»). El revisor la marcó peor que producción en 2 tarjetas; el juez no la veía.
+No es un criterio nuevo: es la misma exigencia de José del 2/11, que la regla generalizada siga siendo cierta, aplicada
+al grupo que nombra la tarjeta.
 
 Examen del 2/11 (versión 23de05be, 58 de 62): la primera redacción decía que todo lo que la tarjeta plantea pasaba a ser
 focal, y el juez dejó de ver como otro subtema la rama que el enunciado ya fijaba; además exigía was/were aun cuando el

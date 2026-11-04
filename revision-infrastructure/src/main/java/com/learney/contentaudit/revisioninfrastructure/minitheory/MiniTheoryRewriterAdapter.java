@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.function.UnaryOperator;
 
 final class MiniTheoryRewriterAdapter implements MiniTheoryRewriter {
-    static final String PROMPT_VERSION = "mini-feedback-v8";
+    static final String PROMPT_VERSION = "mini-feedback-v9";
     static final String GUIDE = """
             Reescribí ÚNICAMENTE la miniteoría del quiz indicado. No cambies oraciones, traducción ni instrucciones.
             El operador indica feedback pedagógico. Aplicalo leyendo el contexto completo del ejercicio.
@@ -24,13 +24,16 @@ final class MiniTheoryRewriterAdapter implements MiniTheoryRewriter {
             «para hablar de gustos o hábitos».
             De gramática, usá sólo los términos que el curso ya usa: sujeto, verbo, verbo base, sustantivo, contable,
             incontable, adjetivo, adverbio, preposición, pregunta, negación y el nombre de los tiempos. Lo demás se dice
-            con palabras comunes: «una persona o cosa en singular», «con $he$, $she$ o $it$», «el resto de la oración»,
+            con palabras comunes: «con $he$, $she$ o $it$», «con un sustantivo en singular», «el resto de la oración»,
             «sin $the$ ni $a$ delante». Si la evidencia marca jerga, reemplazá ese término por su explicación llana.
             Abstraé sólo el léxico incidental: en un esquema, usá verbo base o el resto de la oración
             en lugar de copiar las palabras que no determinan la regla. Conservá el sujeto, auxiliar, tiempo,
             polaridad y palabra interrogativa cuando determinen la forma o el contraste practicado.
             No nombres el léxico incidental ni siquiera como ejemplo. Si el sujeto sólo decide la forma del verbo,
             describilo con palabras de todos los días, sin citar el nombre: «con una cosa en singular, como $it$, se usa $is$».
+            Nombrá un grupo de sujetos que lleve siempre esa forma, con $I$ y $you$ afuera: «con $he$, $she$ o $it$»,
+            «con un sustantivo en singular», «con el nombre de una persona», «con una cosa en singular»; para $was$,
+            «con $I$, $he$, $she$, $it$ o un sustantivo en singular».
             Si la decisión es léxica, semántica o una excepción, conservá la palabra y la condición que la explican.
             No conviertas una regla de este caso en una teoría de todo el tema ni enumeres subtemas ajenos.
             Usá un único esquema y agregá sólo aclaraciones indispensables que el esquema no expresa.

@@ -213,6 +213,19 @@ sus personas en la construcción practicada, como «$is$ va con $he$, $she$,
 $it$»—, no enseña un alcance falso: no exagera y su dirección se revisa en el
 paso 7.
 
+Lo mismo vale cuando la tarjeta parte de un grupo de sujetos en vez de un
+sujeto: el grupo tiene que contener sólo sujetos que llevan esa forma.
+«Con una persona o cosa en singular se usa $has$», «si el sujeto es singular,
+va $does$» o «cuando el sujeto nombra una sola persona, usamos $is$» exageran:
+$I$ y $you$ también son una persona en singular y llevan $have$, $do$, $am$ o
+$are$; en el pasado de $be$, $you$ lleva $were$. Un ejemplo entre comas
+—«como $she$»— no achica el grupo. Generalizan bien «con $he$, $she$ o $it$»,
+«con un sustantivo en singular», «con el nombre de una persona», «con una cosa
+en singular» —una cosa nunca es $I$ ni $you$— y, para $was$, «con $I$, $he$,
+$she$, $it$ o un sustantivo en singular». El `counterexample` usa $I$ o $you$
+con la forma que le corresponde («I have a pencil.», «You were late.») y la
+`explanation` propone el grupo que sí generaliza.
+
 Un contraejemplo debe refutar la afirmación que realmente se hizo, manteniendo sus condiciones.
 Si la tarjeta dice que un indicio no basta para acreditar un rasgo, no la refuta una oración que añade explícitamente ese rasgo por otra vía.
 Agregar información que cambia la decisión no demuestra una excepción a la
@@ -256,7 +269,7 @@ aporta ninguna distinción: la tarjeta sigue siendo una receta del ítem.
 
 Probá abstraer mentalmente sólo ese léxico manteniendo la construcción y la
 decisión focal. Si «verbo base», «el resto de la oración» o una descripción con
-palabras de todos los días —«una persona o cosa en singular»— expresan la misma
+palabras de todos los días —«un sustantivo en singular»— expresan la misma
 regla sin perder información necesaria, corresponde `OVER_SPECIFIC_FOR_QUIZ`.
 Un sujeto que sólo decide la forma del verbo no necesita figurar con su nombre
 en el esquema, pero tampoco se reemplaza por una etiqueta gramatical: nunca
@@ -310,8 +323,9 @@ sea verdadera y suficiente. Es jerga:
 - «perífrasis aspectual», «inversión locativa» u otras etiquetas taxonómicas avanzadas;
 - los términos de gramática que el curso no usa, en cualquier forma: «sujeto
   nominal», «tercera persona», «complemento» y «determinante». Se dicen con
-  palabras de todos los días: «una persona o cosa en singular», «con $he$, $she$
-  o $it$», «el resto de la oración», «sin $the$ ni $a$ delante».
+  palabras de todos los días: «con $he$, $she$ o $it$», «con un sustantivo en
+  singular», «el resto de la oración», «sin $the$ ni $a$ delante». El grupo que
+  reemplaza a «tercera persona» tiene que dejar afuera a $I$ y $you$ (paso 6).
 
 Una sola aparición alcanza: «Con un sujeto nominal singular se usa $is$» y
 «$Is$ + sujeto + complemento + ?» son jerga aunque el resto de la tarjeta esté

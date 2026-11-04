@@ -452,6 +452,27 @@ public class AgentPanelProposerTest {
 
     @Test
     @Tag("F-MINIT-R010")
+    void asksForAGroupOfSubjectsThatAlwaysTakesTheFormLeavingIAndYouOut() throws Exception {
+        // 3/11, after the jargon pass: this prompt suggested «una persona o cosa en singular» instead of «tercera
+        // persona», and the mesa wrote «Con una persona o cosa en singular, como $he$, la forma es $has$», false for I
+        // and you. It asks in positive for a group that keeps the rule true and does not show the wrong one.
+        java.nio.file.Path root = java.nio.file.Path.of("").toAbsolutePath();
+        while (root != null && !java.nio.file.Files.isDirectory(root.resolve(".sentinel/agents/panel-proposer"))) {
+            root = root.getParent();
+        }
+        assertTrue(root != null, "the proposer definition must be available to the test");
+        String prompt = java.nio.file.Files.readString(root.resolve(".sentinel/agents/panel-proposer/nodes/generate.md"));
+        for (String rule : List.of(
+                "Nombrá un grupo\nde sujetos que lleve siempre esa forma, con $I$ y $you$ afuera",
+                "«con un sustantivo en singular», «con el nombre de una persona»",
+                "para $was$, «con $I$, $he$, $she$, $it$ o un sustantivo\nen singular»")) {
+            assertTrue(prompt.contains(rule), "the prompt says: " + rule);
+        }
+        assertFalse(prompt.contains("persona o cosa en singular"), "the prompt does not suggest a group that includes I and you");
+    }
+
+    @Test
+    @Tag("F-MINIT-R010")
     void asksTheCardToSayWhichFormItsSubjectTakesWhenItNamesSeveral() throws Exception {
         // José, 2/11 (brief 254): a was/were card says which one goes with the quiz's subject, starting from it.
         java.nio.file.Path root = java.nio.file.Path.of("").toAbsolutePath();

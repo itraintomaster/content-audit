@@ -71,7 +71,7 @@ class MiniTheoryRewriterAdapterTest {
         }, "test; prompt=" + MiniTheoryRewriterAdapter.PROMPT_VERSION);
 
         adapter.rewrite(new RewriteInput("Resaltá el inglés clave.", "quiz", null, null, List.of()));
-        assertEquals("mini-feedback-v8", MiniTheoryRewriterAdapter.PROMPT_VERSION);
+        assertEquals("mini-feedback-v9", MiniTheoryRewriterAdapter.PROMPT_VERSION);
     }
 
     @Test
@@ -95,12 +95,26 @@ class MiniTheoryRewriterAdapterTest {
         // asks in positive, so it does not name the terms it rules out.
         String guide = MiniTheoryRewriterAdapter.GUIDE;
         assertTrue(guide.contains("De gramática, usá sólo los términos que el curso ya usa: sujeto, verbo, verbo base"));
-        assertTrue(guide.contains("«una persona o cosa en singular», «con $he$, $she$ o $it$», «el resto de la oración»"));
+        assertTrue(guide.contains("«con $he$, $she$ o $it$», «con un sustantivo en singular», «el resto de la oración»"));
         assertTrue(guide.contains("«con una cosa en singular, como $it$, se usa $is$»"));
         assertTrue(guide.contains("Si la evidencia marca jerga, reemplazá ese término por su explicación llana."));
         for (String term : List.of("nominal", "tercera persona", "complemento", "determinante", "categoría gramatical")) {
             assertFalse(guide.contains(term), "the guide does not use or suggest «" + term + "»");
         }
+    }
+
+    @Test
+    @Tag("F-MINIT-R010")
+    void asksForAGroupOfSubjectsThatAlwaysTakesTheFormLeavingIAndYouOut() {
+        // 3/11, after the jargon pass: the plain words this guide suggested for «tercera persona», «una persona o cosa
+        // en singular», left «Con una persona o cosa en singular, como $he$, la forma es $has$» in the C2, false for I
+        // and you. The guide asks in positive for a group that keeps the rule true and does not show the wrong one.
+        String guide = MiniTheoryRewriterAdapter.GUIDE;
+        assertTrue(guide.contains("Nombrá un grupo de sujetos que lleve siempre esa forma, con $I$ y $you$ afuera"));
+        assertTrue(guide.contains("«con $he$, $she$ o $it$»,\n"));
+        assertTrue(guide.contains("para $was$,\n"));
+        assertTrue(guide.contains("«con $I$, $he$, $she$, $it$ o un sustantivo en singular»"));
+        assertFalse(guide.contains("persona o cosa en singular"), "the guide does not suggest a group that includes I and you");
     }
 
     @Test
