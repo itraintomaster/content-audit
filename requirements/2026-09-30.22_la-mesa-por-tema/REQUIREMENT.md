@@ -689,7 +689,10 @@ tienen que volver a opinar sobre el texto nuevo, como después de cualquier camb
 > 1. si fuera de la tarjeta no le queda ningún problema medio o grave, la mesa trabaja sólo la tarjeta. Las tareas
 >    leves que dejan tocar otras partes —el largo, un casi duplicado, la calidad didáctica leve, un pedido de forma— no
 >    se intentan: quedan a la vista con su hallazgo y el motivo dice «el problema está en la tarjeta: la mesa toca sólo
->    la tarjeta». La gravedad de una tarea es la de su hallazgo más grave al empezar ([F-MESA-R029](#F-MESA-R029));
+>    la tarjeta». La gravedad de una tarea es la de su hallazgo más grave al empezar ([F-MESA-R029](#F-MESA-R029)).
+>    Cuando todas las tareas que quedan son de la tarjeta, quien propone entrega sólo candidatos de la tarjeta: uno que
+>    cambia otra parte —la oración, la pista, las respuestas, la traducción, la consigna— le vuelve antes de medirse,
+>    sin gastar un intento de la mesa;
 > 2. si fuera de la tarjeta queda un problema medio o grave, quien propone entrega, además del ejercicio entero, un
 >    candidato que cambia sólo la tarjeta, escrita para el ejercicio como está. Cada candidato se mide por su cuenta: si
 >    el ejercicio entero no pasa, la tarjeta sola puede ganar y es el punto de partida del intento siguiente
@@ -704,6 +707,11 @@ pistas marcaba que faltaba la pista, y con el ejercicio se iba también la tarje
 pedido leve de formas largas le abría la consigna. Y en la pasada de la jerga, una tarea leve de otra parte reescribió
 ejercicios cuyo problema era la tarjeta: `…2512` por un casi duplicado y `…22c0` por la calidad didáctica, y el
 revisor los pasó a peor que producción; `…2ce6` perdió media oración por el largo.
+
+En la recorrección del mismo 4/11 (79 ejercicios, casi todos con el problema sólo en la tarjeta), quien propone
+reescribió igual el ejercicio 18 veces, en 12 ejercicios, y la mesa lo rechazó por tocar lo que sus tareas no
+permitían. `…2548` («She sang (sweet). ___») gastó así sus tres intentos y siguió con la tarjeta exagerada, aunque la
+tarjeta de su candidato, «La mayoría de los adjetivos forman el adverbio añadiendo $-ly$», no tenía problema.
 
 **Fuente**: brief 261, pregunta 3; José, el 4/11/2026: «Sí, las tres».
 

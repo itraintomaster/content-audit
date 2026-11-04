@@ -212,6 +212,11 @@ alcance permitido; no uses una restricción secreta ni cambies el objetivo.
     como está hoy, sin contar con lo que cambia el otro candidato. Ese candidato
     resuelve las tareas de la tarjeta; las otras quedan para el del ejercicio entero.
     La mesa mide cada uno por su cuenta.
+19. Si todas las tareas de `tasks` tienen `mayTouch` igual a `["MINI_THEORY"]`, el
+    problema está en la tarjeta: entregá sólo candidatos `MINI_THEORY`, con la tarjeta
+    nueva escrita para el ejercicio como está hoy. No cambies la oración, la pista, las
+    respuestas, las opciones, la traducción ni la consigna, aunque veas algo para
+    mejorar: un candidato de otro tipo vuelve sin medirse.
 
 ## Arreglar la frase y su explicación juntas
 

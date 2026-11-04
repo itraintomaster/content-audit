@@ -151,6 +151,18 @@ if str(inputs.get("cardApart", "")).strip().lower() == "true" and not any(
         and candidate["miniTheory"].strip() for candidate in proposal["candidates"]):
     fail("cardApart es true: falta el candidato MINI_THEORY que cambia sólo la tarjeta, con su miniTheory")
 
+# F-MESA-R033 inv. 1: when every task of the exercise may touch only its card, only the card is proposed.
+tasks = parse_json_value(inputs.get("tasks"))
+if (str(inputs.get("quizId", "")).strip() and not parse_json_value(inputs.get("conversion"))
+        and isinstance(tasks, list) and tasks and all(
+            isinstance(task, dict) and task.get("origin") != "EXPLICIT_DIDACTIC_REPAIR"
+            and task.get("mayTouch") == ["MINI_THEORY"] for task in tasks)):
+    for index, candidate in enumerate(proposal["candidates"]):
+        if candidate.get("kind") != "MINI_THEORY" or not (
+                isinstance(candidate.get("miniTheory"), str) and candidate["miniTheory"].strip()):
+            fail("candidates[%d]: las tareas sólo dejan tocar la tarjeta: entregá sólo candidatos MINI_THEORY, "
+                 "con su miniTheory" % index)
+
 validated_path.write_text(json.dumps(proposal, ensure_ascii=False) + "\n", encoding="utf-8")
 print(json.dumps({"route": "passed", "detail": "propuesta bien formada"}, ensure_ascii=False))
 PY
