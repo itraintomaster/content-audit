@@ -675,6 +675,23 @@ class CurrentAnalysisServiceTest {
         assertFalse(state.comparableAnalyzers().get(TandaFixture.CHILD).contains(NAME));
     }
 
+    @Tag("FEAT-OPINA") @Tag("F-OPINA-R012")
+    @Test void theExerciseOfAStateIsTheOneOfItsContentAndWhatAJudgeReadStaysWithThatJudge() {
+        // 25b2 in the C2 of A1: the judge measured the exercise before its mini-theory was corrected, and the
+        // correction does not change what that judge reads, so its opinion is still integrated.
+        TandaFixture.exercise(course, TandaFixture.CHILD).setMiniTheory("Con un sustantivo en singular usamos $is$.");
+        ((AuditableQuiz) DefaultAnalysisComposer.index(saved.get("r1").getRoot()).get(TandaFixture.CHILD).getEntity())
+                .setMiniTheory("Con un sujeto nominal singular usamos $is$.");
+        service.execute(select("integrate", "r1", "s1", null));
+        for (var view : List.of(read(), service.comparisonView(batch))) {
+            var state = view.states().stream().filter(x -> x.id().equals("correction")).findFirst().orElseThrow();
+            assertEquals("Con un sustantivo en singular usamos $is$.", state.studentViews().get(TandaFixture.CHILD).getMiniTheory());
+            var origin = (Map<?,?>) state.provenance().get(TandaFixture.CHILD).get(NAME);
+            assertEquals("Con un sujeto nominal singular usamos $is$.",
+                    ((com.learney.contentaudit.auditdomain.studentview.QuizStudentView) origin.get("studentView")).getMiniTheory());
+        }
+    }
+
     @Test void aRemovedMarkWarnsOnlyApprovalsThatActuallyCameFromThatJudge() {
         var task = new com.learney.contentaudit.refinerdomain.RefinementTask(); task.setId("quality-task");
         var origin = new com.learney.contentaudit.refinerdomain.TaskOrigin();

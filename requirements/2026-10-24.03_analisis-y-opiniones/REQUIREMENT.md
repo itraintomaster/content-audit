@@ -193,6 +193,36 @@ corridas guardadas y 151 cambios aprobados, cada aviso de aprobaciones recorría
 las de los planes de 29 corridas: el de la C2, de 13.388 tareas, sumado 19 veces), 147 veces por lectura, para no
 encontrar ningún aviso. El brief 244 tiene las mediciones.
 
+<a id="F-OPINA-R012"></a>
+### Rule[F-OPINA-R012] - El ejercicio de un estado es el de su contenido
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> 1. El análisis vigente da cada ejercicio de un estado (la base o la corrección) como lo ve el alumno en el contenido
+>    de ese estado, con todas sus partes: consigna, enunciado, pistas, opciones, traducción y miniteoría.
+> 2. Lo que leyó cada juez va con ese juez. Si lo midió sobre una versión anterior del ejercicio, esa versión se da
+>    sólo en lo que midió ese juez, nunca en lugar del ejercicio del estado.
+> 3. Lo mismo vale para cada versión de Evolución: cada una muestra su propio contenido.
+
+El 4/11/2026, después de tres pasadas de recorrección de la miniteoría de la C2 de A1 (brief 261), la ficha del
+ejercicio 25b2 seguía diciendo «Con un sujeto nominal singular usamos $is$», aunque la versión 75 dice «Con un
+sustantivo en singular usamos $is$». Calidad didáctica A1 lo había medido sobre la versión 68, y su opinión sigue
+integrada porque la miniteoría no entra en lo que ese juez lee. El análisis vigente daba lo que había leído la última
+medición que nombraba al ejercicio, no el ejercicio de hoy. Brief 262.
+
+<a id="F-OPINA-R013"></a>
+### Rule[F-OPINA-R013] - La ficha dice de cuándo es el ejercicio que muestra
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> 1. En Estadísticas, la ficha de un ejercicio del análisis vigente muestra el ejercicio de hoy bajo «Como lo ve el
+>    alumno hoy», salvo con la lente de un juez que guardó lo que leyó.
+> 2. Con la lente de ese juez muestra lo que leyó, bajo «Como lo leyó» y su nombre. Si leyó una versión anterior, lo
+>    dice: «Leyó una versión anterior del ejercicio: el de hoy se ve con la lente Calidad».
+> 3. Debajo sigue lo que midió cada juez: la corrida, su versión y la versión del contenido que leyó.
+> 4. La ficha de un análisis guardado, que no es el vigente, sigue como estaba.
+
+Antes la ficha decía siempre «Como lo leyó el juez», aunque cada juez pudo leer otra versión y la lente Calidad no es
+ningún juez. Brief 262.
+
 ## Journeys
 
 ```yaml
@@ -278,6 +308,8 @@ navegador, con un servidor de mentira y el store de verdad. Cada prueba nombra s
 | [R009](#F-OPINA-R009) | Sin relectura cada 5 s; el aviso de la tanda relee las opiniones una vez y no el análisis; cuando una opinión empieza, termina o queda cortada se releen sólo las opiniones; lo que guarda content-audit al avanzar o terminar avisa la tanda, el análisis y las corridas | `html/test/estado-analisis.test.js`, `html/test/estado-opiniones.test.js`, `test/tablero_html/novedades_test.dart` |
 | [R010](#F-OPINA-R010) | Los ocho jueces de un Completar real cuentan lo que guardan; ninguno con opiniones queda en «todavía no comenzó» ni el resumen dice que no avanza; un juez sin contador lo dice; No regala y Calidad de distractores se clasifican | `analysis/test_monitor_opinion_activity.py` |
 | [R011](#F-OPINA-R011) | Un plan que nombran tres corridas se lee una vez y sus tareas siguen avisando la aprobación que motivaron; 150 aprobaciones, 60 corridas y un plan de 8.000 tareas por corrida se leen en menos de 10 s; la lectura de la C2 da el mismo JSON antes y después | `CurrentAnalysisServiceTest` («aPlanNamedBySeveralRunsIsReadOnce…», «readingDoesNotGrowWithApprovalsTimesTasksTimesRuns»); la comparación sobre la copia de la campaña está en el brief 244 |
+| [R012](#F-OPINA-R012) | Un juez que midió la miniteoría de antes, integrado: el estado da la de hoy y el origen del juez la que leyó, en la lectura y en la de Evolución | `CurrentAnalysisServiceTest` («theExerciseOfAStateIsTheOneOfItsContentAndWhatAJudgeReadStaysWithThatJudge») |
+| [R013](#F-OPINA-R013) | Lente Calidad: «Como lo ve el alumno hoy» con la miniteoría de hoy; lente del juez: «Como lo leyó» con la de antes y el aviso; si leyó la de hoy, sin aviso; un análisis guardado, sin rótulo | `html/test/estadisticas-vistas.test.js` (tablero) |
 
 ## References
 

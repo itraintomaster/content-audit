@@ -62,7 +62,11 @@ public interface CurrentAnalysisService {
             Map<String, Assessment> before) {}
     /** F-CONTR-R003: an evaluator of exercises; {@code notice} says what the screen warns about it, or null. */
     record Evaluator(String name, String displayName, String notice) {}
-    /** {@code missingOpinions}: F-OPINA-R001, per judge the exercises it applies to and has not opined on. */
+    /**
+     * {@code studentViews}: F-OPINA-R012, each exercise as the student sees it in this state's content; what a judge
+     * read is the {@code studentView} of its provenance. {@code missingOpinions}: F-OPINA-R001, per judge the exercises
+     * it applies to and has not opined on.
+     */
     record State(String id, String label, String fingerprint, AuditDigest digest,
             Map<String, QuizStudentView> studentViews, Map<String, Map<String, Object>> provenance,
             List<String> approvalWarnings, Map<String, List<String>> comparableAnalyzers, String analysisCode,

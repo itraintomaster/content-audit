@@ -207,6 +207,8 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
             var judgeMarks = new HashMap<String, Map<String, EvaluatorContract.JudgeMark>>();
             var judges = freshness(report, verdictMarks, judgeMarks);
             index.forEach((id, node) -> {
+                // F-OPINA-R012: the exercise of the state is the one of its content. What a measurement read, maybe an
+                // earlier version, goes only with its judge, in its provenance.
                 if (node.getEntity() instanceof AuditableQuiz quiz) studentViews.put(id, renderer.render(quiz));
                 if (node.getMetadata() != null && node.getMetadata().get(DefaultAnalysisComposer.PROVENANCE) instanceof Map<?, ?> origins) {
                     var value = new LinkedHashMap<String, Object>();
@@ -225,15 +227,6 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                         value.put(k.toString(), origin);
                     });
                     provenance.put(id, value);
-                    // Show the exact saved quiz that this measurement read, not a quiz fetched from the active base.
-                    for (Object origin : origins.values()) if (origin instanceof Map<?,?> o && o.get("runId") instanceof String runId) {
-                        AuditReport source = sources.get(runId);
-                        if (source != null) {
-                            var sourceNode = sourceIndexes.get(runId).get(id);
-                            if (sourceNode != null && sourceNode.getEntity() instanceof AuditableQuiz quiz)
-                                studentViews.put(id, renderer.render(quiz));
-                        }
-                    }
                 }
             });
             var warnings = new LinkedHashSet<>(approvalWarnings(approvals, raw.get(state), report, QUALITY));
