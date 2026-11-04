@@ -50,6 +50,11 @@ public class PanelRequest {
     public String getTopicInstructions() { return topicInstructions; }
     public void setTopicInstructions(String topicInstructions) { this.topicInstructions = topicInstructions; }
 
+    /** F-MESA-R033 inv. 2: also a candidate of only the card, for an exercise with tasks of the card and of other parts. */
+    private boolean cardApart;
+    public boolean isCardApart() { return cardApart; }
+    public void setCardApart(boolean cardApart) { this.cardApart = cardApart; }
+
     public PanelRequest() {
     }
 

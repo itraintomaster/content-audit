@@ -65,6 +65,8 @@ import javax.annotation.processing.Generated;
  *   <li>R010 inv. 2: once the allowance trips, no query starts, and what is left without a decision ends as not
  *       attempted, with no attempt spent.</li>
  *   <li>F-TAREA-R006: a task whose analyzer declares no edit scope is never attempted.</li>
+ *   <li>F-MESA-R033: with the problem in the card, only the card is worked; with a problem in another part too, the
+ *       card alone is also asked for and measured on its own.</li>
  * </ul>
  */
 @Generated(
@@ -283,6 +285,16 @@ class DefaultTopicPanel implements TopicPanel {
         if (holding.isEmpty() && !conversion) {
             return new Unit(current, false, false);
         }
+        // F-MESA-R033 inv. 1: with the problem in the card, what is light in another part is not tried.
+        List<ErrorTaskBrief> aside = quizId == null || conversion ? List.of() : TheCard.lightOutside(holding, before);
+        if (!aside.isEmpty()) {
+            emit.accept(decision(knowledgeId, unitQuizIds, aside, PanelOutcomeKind.NO_WINNER, attemptsUsed,
+                    List.of(new CandidateRejection(attemptsUsed, null, new ArrayList<>(List.of(TheCard.ONLY_THE_CARD)))), 0));
+            holding.removeAll(aside);
+            // What they would let touch is no longer allowed either.
+            work = without(work, aside);
+            now = with(work, current);
+        }
         // F-MESA-R029: a change that only shortens is not accepted, so an exercise left with only the length is not tried.
         if (!conversion && holding.stream().allMatch(DefaultPanelDecisionScript::ofTheLength)) {
             emit.accept(decision(knowledgeId, unitQuizIds, holding, PanelOutcomeKind.NO_WINNER, attemptsUsed,
@@ -322,6 +334,8 @@ class DefaultTopicPanel implements TopicPanel {
             request.setTopicTitle(progress.topic.getLabel());
             request.setTopicInstructions(progress.topic.getInstructions());
             request.setDidacticReference(work.getDidacticReferences().get(quizId));
+            // F-MESA-R033 inv. 2: the card alone too, measured on its own, when other parts have their own tasks.
+            request.setCardApart(quizId != null && !conversion && TheCard.apart(progress.open));
             PanelProposal proposal;
             try {
                 proposal = proposer.propose(request);
@@ -686,6 +700,18 @@ class DefaultTopicPanel implements TopicPanel {
         current.setNewEvaluationSubjectIds(work.getNewEvaluationSubjectIds());
         current.setDidacticReferences(work.getDidacticReferences());
         return current;
+    }
+
+    /** The work without the given tasks: they are neither worked nor allowed to open what they would touch. */
+    private static TopicWork without(TopicWork work, List<ErrorTaskBrief> aside) {
+        List<ErrorTaskBrief> briefs = new ArrayList<>(work.getBriefs() != null ? work.getBriefs() : List.of());
+        briefs.removeAll(aside);
+        TopicWork kept = new TopicWork(work.getBatchId(), work.getLevel(), work.getMilestoneId(), work.getTopicId(),
+                work.getKnowledge(), work.getSentenceMode(), briefs, work.getWordLights(), work.getConversion(),
+                work.getAttemptsUsed(), work.getCarriedRejections());
+        kept.setNewEvaluationSubjectIds(work.getNewEvaluationSubjectIds());
+        kept.setDidacticReferences(work.getDidacticReferences());
+        return kept;
     }
 
     private static boolean holds(ErrorTaskBrief brief, Set<String> present, Set<UnevaluatedMark> pending) {

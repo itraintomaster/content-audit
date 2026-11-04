@@ -67,6 +67,12 @@ class DefaultCandidateScreen implements CandidateScreen {
         KnowledgeEntity topic = work.getKnowledge();
         if (candidate.getKind() == PanelCandidateKind.MINI_THEORY) {
             violations.addAll(miniTheory(work, quizId, candidate));
+            // F-TAREA-R006 with F-MESA-R033: the card alone, too, only when a task of the exercise lets touch it.
+            Set<ExercisePart> allowed = allowedParts(work, quizId);
+            if (!allowed.isEmpty() && !allowed.contains(ExercisePart.MINI_THEORY)
+                    && !allowed.contains(ExercisePart.WHOLE_EXERCISE)) {
+                violations.add("cambia " + name(ExercisePart.MINI_THEORY) + " y sus tareas no lo permiten");
+            }
             // F-MESA-R021: the new mini theory goes in «tú».
             SpanishRegister.violation("la miniteoría", candidate.getMiniTheoryText()).ifPresent(violations::add);
             TopicState.quiz(topic, quizId).ifPresent(q -> violations.addAll(DidacticContracts.violations(

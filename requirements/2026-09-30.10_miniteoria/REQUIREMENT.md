@@ -464,6 +464,35 @@ y que sólo esos cuatro casos pasen a esperar «otro subtema y exagera», graved
 
 </details>
 
+<a id="F-MINIT-R014"></a>
+### Rule[F-MINIT-R014] - La tarjeta enseña la regla con su alcance, no la ciñe al ejercicio
+**Severity**: major | **Validation**: VALIDATED
+
+> La tarjeta enseña una regla que le sirve al alumno también en el ejercicio siguiente. Una regla del idioma —cómo se
+> forma una palabra, qué forma lleva un sujeto, dónde va una palabra— se lee como regla general aunque la tarjeta la ciña
+> a este ejercicio: «Para formar el adverbio de este ejercicio, añade $-ly$ al adjetivo entre paréntesis» enseña que todo
+> adjetivo suma $-ly$, y $fast$ o $hard$ lo refutan. «De este ejercicio» no achica la regla, como un ejemplo entre comas no
+> achica un grupo de sujetos ([F-MINIT-R010](#F-MINIT-R010)). El juez la clasifica como `OVERSTATED_FOR_QUIZ`, gravedad
+> media, y propone la regla con su alcance real.
+>
+> Una regla que declara su alcance —«la mayoría de los adjetivos suman $-ly$», «normalmente», «casi siempre»— no exagera
+> por las excepciones que ese alcance deja afuera; si la palabra del quiz es una de ellas, la tarjeta la nombra
+> ([F-MINIT-R002](#F-MINIT-R002)). Siguen siendo del ejercicio, y no se marcan:
+> 1. la convención que fija el propio ejercicio con su etiqueta o su fórmula visible, como `Polite request:`;
+> 2. el indicio de la oración que decide el caso: «en esta oración, $now$ dice que pasa ahora».
+>
+> Quien corrige escribe la regla con su alcance —«la mayoría de los adjetivos suman $-ly$: $clear$ → $clearly$»— y, para
+> mostrar qué decide en el quiz, señala el indicio de la oración.
+
+El 4/11/2026, en la C2 de A1, el corrector había resuelto tarjetas que el juez marcaba exageradas ciñéndolas al
+ejercicio. En `…2efb` la de producción, «Adjetivo + $-ly$: $slow$ → $slowly$. $good$ → $well$, y $high$ no cambia.»,
+exageraba porque $hard$ tampoco cambia, y quedó «Para formar el adverbio de este ejercicio, añade $-ly$ al adjetivo
+entre paréntesis». El juez la aprobó y el revisor la dio peor: la regla pasó a ser una orden. Les pasaba a `…2ef6` y
+`…2f00`. La C2 tiene 94 tarjetas con «este ejercicio», 16 con «entre paréntesis» y 98 con «esta oración»; producción,
+ninguna.
+
+**Fuente**: brief 261, pregunta 2; José, el 4/11/2026: «Sí, las tres».
+
 ## Contexto
 
 | Ficha | `mini-theory` |

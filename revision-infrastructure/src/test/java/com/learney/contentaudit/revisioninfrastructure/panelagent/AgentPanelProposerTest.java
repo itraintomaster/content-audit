@@ -230,12 +230,13 @@ public class AgentPanelProposerTest {
 
         Map<String, String> inputs = sent.get();
         // F-MESA-R031: the title and the instructions of the topic go too.
-        assertEquals(List.of("batchId", "level", "knowledgeId", "quizId", "attempt", "twoFixes", "topicView", "topic", "tasks",
+        assertEquals(List.of("batchId", "level", "knowledgeId", "quizId", "attempt", "twoFixes", "cardApart", "topicView", "topic", "tasks",
                 "wordLights", "conversion", "previousRejections", "didacticReference", "project_root"),
                 new ArrayList<>(inputs.keySet()), "nothing else");
         assertEquals("A1", inputs.get("level"));
         assertEquals("2", inputs.get("attempt"));
         assertEquals("true", inputs.get("twoFixes"));
+        assertEquals("false", inputs.get("cardApart"), "F-MESA-R033: the card goes apart only when the panel asks");
         assertTrue(inputs.get("topicView").contains("I ___ a lot of vegetables."), "the topic as the student sees it");
         assertTrue(inputs.get("tasks").contains("«Me gustan mucho las verduras.» no dice «I love a lot of vegetables.»"),
                 "the findings with their evidence");
@@ -472,6 +473,27 @@ public class AgentPanelProposerTest {
     }
 
     @Test
+    @Tag("F-MINIT-R014")
+    void asksForTheRuleWithItsRealScopeAndTheCueOfTheSentence() throws Exception {
+        // 4/11, brief 261: the mesa had cut rules down to the exercise to dodge their exceptions; the reviewer marked
+        // them worse. The prompt asks in positive for the rule with its scope and the cue of the sentence.
+        java.nio.file.Path root = java.nio.file.Path.of("").toAbsolutePath();
+        while (root != null && !java.nio.file.Files.isDirectory(root.resolve(".sentinel/agents/panel-proposer"))) {
+            root = root.getParent();
+        }
+        assertTrue(root != null, "the proposer definition must be available to the test");
+        String prompt = java.nio.file.Files.readString(root.resolve(".sentinel/agents/panel-proposer/nodes/generate.md"));
+        for (String rule : List.of(
+                "La tarjeta enseña una regla que le sirve al alumno también en el ejercicio\nsiguiente, con su alcance real",
+                "«la mayoría de los adjetivos suman $-ly$:\n$clear$ → $clearly$»",
+                "decí su alcance con «la mayoría», «normalmente» o «casi siempre»",
+                "señalá el indicio de la oración: «$now$ dice que pasa ahora»")) {
+            assertTrue(prompt.contains(rule), "the prompt says: " + rule);
+        }
+        assertFalse(prompt.contains("de este ejercicio, añade"), "the prompt does not show the rule cut down to the exercise");
+    }
+
+    @Test
     @Tag("F-MINIT-R010")
     void asksTheCardToSayWhichFormItsSubjectTakesWhenItNamesSeveral() throws Exception {
         // José, 2/11 (brief 254): a was/were card says which one goes with the quiz's subject, starting from it.
@@ -486,6 +508,26 @@ public class AgentPanelProposerTest {
                 "«para preguntar, $were$ va antes del sujeto: con $they$ se\nusa $were$»")) {
             assertTrue(prompt.contains(rule), "the prompt says: " + rule);
         }
+    }
+
+    @Test
+    @DisplayName("should tell the agent to bring the card alone too when the panel asks for it")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R033")
+    public void shouldTellTheAgentToBringTheCardAloneTooWhenThePanelAsksForIt() {
+        AtomicReference<Map<String, String>> sent = new AtomicReference<>();
+        PanelAgentRuntimeLauncher launcher = (agent, inputs, model) -> {
+            sent.set(inputs);
+            return RunState.empty().withRunStatus(RunStatus.COMPLETED);
+        };
+        AgentPanelProposer proposer = new AgentPanelProposer(launcher, (state, request) -> new PanelProposal(new ArrayList<>(),
+                "panel-proposer", true, null), null, config(), Path.of("/proyecto"));
+        PanelRequest request = request(1, List.of());
+        request.setCardApart(true);
+
+        proposer.propose(request);
+
+        assertEquals("true", sent.get().get("cardApart"));
     }
 
     static PanelRequest request(int attempt, List<CandidateRejection> rejections) {

@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.function.UnaryOperator;
 
 final class MiniTheoryRewriterAdapter implements MiniTheoryRewriter {
-    static final String PROMPT_VERSION = "mini-feedback-v9";
+    static final String PROMPT_VERSION = "mini-feedback-v10";
     static final String GUIDE = """
             Reescribí ÚNICAMENTE la miniteoría del quiz indicado. No cambies oraciones, traducción ni instrucciones.
             El operador indica feedback pedagógico. Aplicalo leyendo el contexto completo del ejercicio.
@@ -17,6 +17,11 @@ final class MiniTheoryRewriterAdapter implements MiniTheoryRewriter {
             Si la tarjeta nombra formas que dependen del sujeto, como $was$ o $were$, decí cuál lleva el sujeto
             del quiz: «con $they$ se usa $were$».
             La tarjeta explica la decisión de este quiz mediante una regla breve reutilizable.
+            Esa regla le sirve al alumno también en el ejercicio siguiente, con su alcance real:
+            «la mayoría de los adjetivos suman $-ly$: $clear$ → $clearly$». Si la regla tiene excepciones comunes
+            que el quiz no practica, decí su alcance con «la mayoría», «normalmente» o «casi siempre»; si la palabra
+            del quiz es una de ellas, nombrala. Para mostrar qué decide en el quiz, señalá el indicio de la oración:
+            «$now$ dice que pasa ahora».
             Evitá estrictamente el metalenguaje gramatical abstracto y la jerga teórica (por ejemplo:
             «adjetivo atributivo/predicativo», «estilo indirecto», «verbo de estado/estativo/copulativo»).
             Explicá en lenguaje cotidiano, intuitivo y funcional accesible para un alumno de inglés:

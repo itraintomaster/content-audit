@@ -681,6 +681,32 @@ tienen que volver a opinar sobre el texto nuevo, como después de cualquier camb
 
 **Fuente**: brief 241, pregunta 2; José, el 28/10/2026: «Pasá los 317 de vos a tú con la regla gratis».
 
+<a id="F-MESA-R033"></a>
+### Rule[F-MESA-R033] - Con el problema en la tarjeta, la mesa toca sólo la tarjeta
+**Severity**: major | **Validation**: VALIDATED
+
+> Una tarea de la tarjeta es la que sólo deja tocar la miniteoría de su ejercicio. Cuando un ejercicio tiene una:
+> 1. si fuera de la tarjeta no le queda ningún problema medio o grave, la mesa trabaja sólo la tarjeta. Las tareas
+>    leves que dejan tocar otras partes —el largo, un casi duplicado, la calidad didáctica leve, un pedido de forma— no
+>    se intentan: quedan a la vista con su hallazgo y el motivo dice «el problema está en la tarjeta: la mesa toca sólo
+>    la tarjeta». La gravedad de una tarea es la de su hallazgo más grave al empezar ([F-MESA-R029](#F-MESA-R029));
+> 2. si fuera de la tarjeta queda un problema medio o grave, quien propone entrega, además del ejercicio entero, un
+>    candidato que cambia sólo la tarjeta, escrita para el ejercicio como está. Cada candidato se mide por su cuenta: si
+>    el ejercicio entero no pasa, la tarjeta sola puede ganar y es el punto de partida del intento siguiente
+>    ([F-MESA-R007](#F-MESA-R007)), que trabaja lo que quedó abierto;
+> 3. la tarjeta del tema entero, una conversión que pidió José y un contrato didáctico que se restaura siguen como
+>    estaban.
+
+El 4/11/2026, en la C2 de A1, tres tarjetas siguieron sin arreglo después de dos pasadas porque la mesa las trabajaba
+junto con el resto del ejercicio. En `…26d3` y `…26d6` («Be going to: he / order some water?») la tarjeta no decía
+cómo armar la pregunta, y la consigna, además, regalaba «Be going to:». Cada candidato sacaba esa parte, el de las
+pistas marcaba que faltaba la pista, y con el ejercicio se iba también la tarjeta, que nadie objetaba. En `…1ffe` el
+pedido leve de formas largas le abría la consigna. Y en la pasada de la jerga, una tarea leve de otra parte reescribió
+ejercicios cuyo problema era la tarjeta: `…2512` por un casi duplicado y `…22c0` por la calidad didáctica, y el
+revisor los pasó a peor que producción; `…2ce6` perdió media oración por el largo.
+
+**Fuente**: brief 261, pregunta 3; José, el 4/11/2026: «Sí, las tres».
+
 ## Contexto
 
 **Por qué una mesa por tema.** El 077 revisó los 11.287 ejercicios con revisores por lote y verificadores que intentaron

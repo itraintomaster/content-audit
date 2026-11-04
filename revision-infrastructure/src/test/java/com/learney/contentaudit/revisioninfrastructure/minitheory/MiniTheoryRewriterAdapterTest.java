@@ -71,7 +71,7 @@ class MiniTheoryRewriterAdapterTest {
         }, "test; prompt=" + MiniTheoryRewriterAdapter.PROMPT_VERSION);
 
         adapter.rewrite(new RewriteInput("Resaltá el inglés clave.", "quiz", null, null, List.of()));
-        assertEquals("mini-feedback-v9", MiniTheoryRewriterAdapter.PROMPT_VERSION);
+        assertEquals("mini-feedback-v10", MiniTheoryRewriterAdapter.PROMPT_VERSION);
     }
 
     @Test
@@ -115,6 +115,20 @@ class MiniTheoryRewriterAdapterTest {
         assertTrue(guide.contains("para $was$,\n"));
         assertTrue(guide.contains("«con $I$, $he$, $she$, $it$ o un sustantivo en singular»"));
         assertFalse(guide.contains("persona o cosa en singular"), "the guide does not suggest a group that includes I and you");
+    }
+
+    @Test
+    @Tag("F-MINIT-R014")
+    void asksForTheRuleWithItsRealScopeAndTheCueOfTheSentence() {
+        // 4/11, brief 261: the corrector had cut rules down to the exercise to dodge their exceptions, «Para formar el
+        // adverbio de este ejercicio, añade $-ly$ al adjetivo entre paréntesis». The guide asks in positive for the rule
+        // with its scope, and for the cue of the sentence to show what decides, without showing the cut-down rule.
+        String guide = MiniTheoryRewriterAdapter.GUIDE;
+        assertTrue(guide.contains("Esa regla le sirve al alumno también en el ejercicio siguiente, con su alcance real:"));
+        assertTrue(guide.contains("«la mayoría de los adjetivos suman $-ly$: $clear$ → $clearly$»"));
+        assertTrue(guide.contains("decí su alcance con «la mayoría», «normalmente» o «casi siempre»"));
+        assertTrue(guide.contains("señalá el indicio de la oración:"));
+        assertFalse(guide.contains("de este ejercicio, añade"), "the guide does not show the rule cut down to the exercise");
     }
 
     @Test

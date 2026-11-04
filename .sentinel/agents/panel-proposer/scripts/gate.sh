@@ -145,6 +145,12 @@ for index, candidate in enumerate(proposal["candidates"]):
     if candidate.get("kind") not in KINDS:
         fail("candidates[%d].kind no es uno de %s" % (index, sorted(KINDS)))
 
+# F-MESA-R033 inv. 2: with tasks of the card and of other parts, the card alone comes too.
+if str(inputs.get("cardApart", "")).strip().lower() == "true" and not any(
+        candidate.get("kind") == "MINI_THEORY" and isinstance(candidate.get("miniTheory"), str)
+        and candidate["miniTheory"].strip() for candidate in proposal["candidates"]):
+    fail("cardApart es true: falta el candidato MINI_THEORY que cambia sólo la tarjeta, con su miniTheory")
+
 validated_path.write_text(json.dumps(proposal, ensure_ascii=False) + "\n", encoding="utf-8")
 print(json.dumps({"route": "passed", "detail": "propuesta bien formada"}, ensure_ascii=False))
 PY

@@ -714,6 +714,114 @@ public class DefaultTopicPanelTest {
     }
 
 
+    @Test
+    @DisplayName("should work only the card of «I ___ (read) a book now.» when its only heavy problem is in the card, leaving its light length untried with the reason")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R033")
+    public void shouldWorkOnlyTheCardWhenTheOnlyMediumOrHeavyProblemIsInTheCardAndLeaveTheLightLengthUntriedWithItsReason() {
+        // F-MESA-R033 inv. 1: the card has a heavy task and the length a light one. The panel works only the card: the
+        // length is not tried, and a candidate that also shortens the sentence is screened out, since nothing lets touch it.
+        KnowledgeEntity topic = contraste();
+        String q1 = stateVerbExercises().get(0);
+        Finding length = lightLength(q1);
+        QuizTemplateEntity shorter = withParts(exercise(topic, q1), text("I"), cloze("am reading"), text("(read) now."));
+        shorter.setMiniTheory(NEW_STATE_VERBS);
+        RecordingProposer proposer = new RecordingProposer(script(q1, proposal(
+                candidate(PanelCandidateKind.WHOLE_EXERCISE, shorter),
+                new PanelCandidate(PanelCandidateKind.MINI_THEORY, null, NEW_STATE_VERBS, null, "más clara"))));
+        RecordingSink sink = new RecordingSink();
+        RulesMeter meter = miniTheoryMeter(q1).rule("sentence-length", (t, quiz) -> quiz.getId().equals(q1)
+                ? List.of(length) : RulesMeter.none());
+
+        panel(proposer, meter).run(work(topic, List.of(brief("t-mini", miniTheoryFinding(q1)),
+                brief("t-length", length, SENTENCE))), settings(), allowance(null, 4), sink);
+
+        PanelRequest request = proposer.requests.get(0);
+        assertEquals(List.of("t-mini"), taskIdsOf(request.getBriefs()), "only the card is worked");
+        assertFalse(request.isCardApart(), "no other part is left to change");
+        PanelDecision aside = decisionOf(sink, "t-length");
+        assertEquals(PanelOutcomeKind.NO_WINNER, aside.getOutcome());
+        assertEquals(0, aside.getAttempts(), "not tried");
+        assertEquals(List.of(TheCard.ONLY_THE_CARD), aside.getRejections().get(0).getReasons());
+        PanelDecision card = decisionOf(sink, "t-mini");
+        assertEquals(PanelOutcomeKind.ACCEPTED, card.getOutcome());
+        assertEquals(PanelCandidateKind.MINI_THEORY, card.getAccepted().getKind(), "the shorter sentence is screened out");
+    }
+
+    @Test
+    @DisplayName("should also ask the card alone for «I ___ (read) a book now.», whose translation has a heavy problem too, and keep the card alone when the whole exercise does not pass")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R033")
+    public void shouldAskTheCardApartWhenAnotherPartHasAHeavyProblemAndKeepTheCardAloneWhenTheWholeExerciseDoesNotPass() {
+        // F-MESA-R033 inv. 2: the card and the translation have heavy tasks; the light length is still worked, since the
+        // problem is not only in the card. The whole exercise brings a new error of single-answer; the card alone resolves
+        // its task and is kept, and the next attempt works what is left from it, without asking the card apart again.
+        KnowledgeEntity topic = contraste();
+        String q1 = stateVerbExercises().get(0);
+        Finding translation = finding("translation-sense", "same-meaning", q1, FindingSeverity.HIGH,
+                FindingResolution.PANEL, null, "la traducción no dice lo mismo que el inglés");
+        Finding another = finding("single-answer", "different-valid-answer", q1, FindingSeverity.BLOCKING,
+                FindingResolution.PANEL, null, "otra respuesta también vale");
+        Finding length = lightLength(q1);
+        QuizTemplateEntity whole = withTranslation(exercise(topic, q1), "Estoy leyendo un libro ahora.");
+        whole.setMiniTheory(NEW_STATE_VERBS);
+        RecordingProposer proposer = new RecordingProposer(script(q1, proposal(
+                candidate(PanelCandidateKind.WHOLE_EXERCISE, whole),
+                new PanelCandidate(PanelCandidateKind.MINI_THEORY, null, NEW_STATE_VERBS, null, "la tarjeta sola"))));
+        RecordingSink sink = new RecordingSink();
+        RulesMeter meter = miniTheoryMeter(q1)
+                .rule("translation-sense", (t, quiz) -> quiz.getId().equals(q1) && quiz.getTranslation() == null
+                        ? List.of(translation) : RulesMeter.none())
+                .rule("single-answer", (t, quiz) -> quiz.getId().equals(q1) && quiz.getTranslation() != null
+                        ? List.of(another) : RulesMeter.none())
+                .rule("sentence-length", (t, quiz) -> quiz.getId().equals(q1) ? List.of(length) : RulesMeter.none());
+
+        panel(proposer, meter).run(work(topic, List.of(brief("t-mini", miniTheoryFinding(q1)),
+                brief("t-translation", translation), brief("t-length", length, SENTENCE))), settings(),
+                allowance(null, 4), sink);
+
+        assertTrue(proposer.requests.get(0).isCardApart(), "the card and other parts have tasks of their own");
+        assertEquals(List.of("t-mini", "t-translation", "t-length"), taskIdsOf(proposer.requests.get(0).getBriefs()),
+                "with a heavy problem outside the card, the light length is worked too");
+        assertFalse(proposer.requests.get(1).isCardApart(), "the card is resolved: only the other parts are left");
+        PanelDecision decision = sink.only();
+        assertEquals(PanelOutcomeKind.ACCEPTED, decision.getOutcome());
+        assertEquals(List.of("t-mini"), decision.getResolvedTaskIds());
+        assertEquals(PanelCandidateKind.MINI_THEORY, decision.getAccepted().getKind());
+        assertEquals(NEW_STATE_VERBS, decision.getAccepted().getMiniTheoryText());
+        assertTrue(String.join(" ", decision.getRejections().get(0).getReasons()).contains("punto de partida"),
+                decision.getRejections().toString());
+    }
+
+    @Test
+    @DisplayName("should screen out a candidate of only the card for an exercise none of whose tasks lets touch the card")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R033")
+    @Tag("F-TAREA-R006")
+    public void shouldScreenOutACandidateOfOnlyTheCardWhenNoTaskOfTheExerciseLetsTouchTheCard() {
+        // F-TAREA-R006 with F-MESA-R033: the card alone is a change of the card, so it needs a task that lets touch it.
+        KnowledgeEntity topic = afirmativas();
+        TopicWork work = work(topic, List.of(brief("t-length", lightLength(VEGETABLES), SENTENCE)));
+
+        List<String> violations = new DefaultCandidateScreen(corrections()).screen(work, VEGETABLES,
+                new PanelCandidate(PanelCandidateKind.MINI_THEORY, null, "Con $I$ se usa el verbo base.", null, "r"));
+
+        assertEquals(List.of("cambia la miniteoría y sus tareas no lo permiten"), violations);
+    }
+
+    private static final List<ExercisePart> SENTENCE = List.of(ExercisePart.STATEMENT, ExercisePart.ANSWERS,
+            ExercisePart.TRANSLATION, ExercisePart.STORED_SENTENCE);
+
+    static Finding lightLength(String quizId) {
+        return finding("sentence-length", "longer-than-goal", quizId, FindingSeverity.LOW, FindingResolution.PANEL, null,
+                "Largo: 10 tokens, A1 de 3 a 8");
+    }
+
+    static PanelDecision decisionOf(RecordingSink sink, String taskId) {
+        return sink.decisions.stream().filter(d -> d.getTaskIds().equals(List.of(taskId))).findFirst()
+                .orElseThrow(() -> new AssertionError("no decision for " + taskId + " in " + sink.decisions));
+    }
+
     /** The exercises of the topic written as the course keeps them, in a file of a directory of its own. */
     static Path written(KnowledgeEntity topic) {
         try {

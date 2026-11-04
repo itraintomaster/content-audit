@@ -188,6 +188,25 @@ Una palabra rara, un registro técnico o la pronunciación excepcional de unas
 pocas palabras no refutan una regla que vale para las palabras habituales: ahí
 la regla no exagera.
 
+Una regla que declara su alcance —«la mayoría de los adjetivos suman $-ly$»,
+«normalmente», «casi siempre»— no exagera por las excepciones que ese alcance
+deja afuera. Si la palabra del quiz es una de esas excepciones, la tarjeta
+tiene que nombrarla (paso 4).
+
+Una regla del idioma —cómo se forma una palabra, qué forma lleva un sujeto,
+dónde va una palabra— se lee como regla general aunque la tarjeta la ciña a
+este ejercicio: «Para formar el adverbio de este ejercicio, añade $-ly$ al
+adjetivo entre paréntesis» enseña que todo adjetivo suma $-ly$, y $fast$ o
+$hard$ lo refutan. «De este ejercicio» no achica la regla, como un ejemplo
+entre comas no achica un grupo de sujetos: juzgá la regla sin esa restricción.
+Si lo que queda lo refuta un uso común, es `OVERSTATED_FOR_QUIZ`; la
+`explanation` propone la regla con su alcance real («la mayoría de los
+adjetivos suman $-ly$»), sin ceñirla al ejercicio. Si lo que queda es cierto,
+la restricción no es un defecto. Siguen siendo del ejercicio, y no se marcan,
+la convención que fija el propio ejercicio con su etiqueta o su fórmula
+visible, como `Polite request:` (paso 1), y el indicio de la oración que decide
+el caso: «en esta oración, $now$ dice que pasa ahora».
+
 Si la tarjeta reparte un mismo predicado entre varias palabras o formas —«$X$
 va al principio; $Y$, al final», «$A$ para esto, $B$ para aquello»—, el átomo
 local es ese predicado aplicado a la palabra o forma de este quiz, y lo que dice

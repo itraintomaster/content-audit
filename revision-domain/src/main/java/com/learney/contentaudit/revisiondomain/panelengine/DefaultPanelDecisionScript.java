@@ -457,6 +457,15 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
         return Math.min(heaviest, FindingSeverity.values().length - 1);
     }
 
+    /** F-MESA-R033: whether a task is light where it starts -- its heaviest finding is low, or it is of the length. */
+    static boolean light(ErrorTaskBrief brief, UnitMeasurement start) {
+        if (brief == null || brief.getFinding() == null || brief.getFinding().getSeverity() == null) {
+            return false;
+        }
+        return ofTheLength(brief) || heaviest(brief, present(start != null ? start : new UnitMeasurement()))
+                >= severityRank(FindingSeverity.LOW);
+    }
+
     /** How far a length is from its range: 0 inside it. */
     static int distance(LengthDeclaration length) {
         if (length.getTokens() < length.getTargetMin()) {

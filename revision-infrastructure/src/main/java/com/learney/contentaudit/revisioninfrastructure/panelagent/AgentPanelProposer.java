@@ -37,6 +37,7 @@ import javax.annotation.processing.Generated;
  *
  * <p><strong>Adapter↔graph contract (inputs):</strong> {@code batchId}, {@code level}, {@code knowledgeId},
  * {@code quizId} (empty for a task of the whole topic), {@code attempt}, {@code twoFixes} («true»/«false»),
+ * {@code cardApart} («true»/«false», F-MESA-R033),
  * {@code topicView}, {@code topic} (its title and instructions, F-MESA-R031), {@code tasks}, {@code wordLights},
  * {@code conversion} and {@code previousRejections}, each a JSON text, and {@code project_root}.
  */
@@ -136,6 +137,7 @@ class AgentPanelProposer implements PanelProposer {
         inputs.put("quizId", orEmpty(request.getQuizId()));
         inputs.put("attempt", String.valueOf(request.getAttempt()));
         inputs.put("twoFixes", String.valueOf(request.isTwoFixes()));
+        inputs.put("cardApart", String.valueOf(request.isCardApart()));
         inputs.put("topicView", json(topicView(request.getTopicView(), request.getTopicQuizIds())));
         inputs.put("topic", json(topic(request)));
         inputs.put("tasks", json(tasks(request.getBriefs())));

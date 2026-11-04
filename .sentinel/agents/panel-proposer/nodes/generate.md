@@ -206,6 +206,12 @@ alcance permitido; no uses una restricción secreta ni cambies el objetivo.
     vale» en variedades coloquiales: esa tarea no se resuelve aceptándola. Si
     el ejercicio de hoy acepta una y una tarea te deja tocar las respuestas,
     sacala. La mesa rechaza sin medir el candidato que acepta una.
+18. Si `cardApart` es `true`, el ejercicio tiene tareas de la tarjeta —las que sólo
+    dejan tocar `MINI_THEORY`— y tareas de otras partes. Además del ejercicio entero,
+    entregá un candidato `MINI_THEORY` con la tarjeta nueva escrita para el ejercicio
+    como está hoy, sin contar con lo que cambia el otro candidato. Ese candidato
+    resuelve las tareas de la tarjeta; las otras quedan para el del ejercicio entero.
+    La mesa mide cada uno por su cuenta.
 
 ## Arreglar la frase y su explicación juntas
 
@@ -264,6 +270,13 @@ no hace falta nombrar las demás personas que usan esa forma. Si la tarjeta
 nombra formas que dependen del sujeto, como «$was$ o $were$», decí cuál lleva
 el sujeto del quiz: «para preguntar, $were$ va antes del sujeto: con $they$ se
 usa $were$».
+
+La tarjeta enseña una regla que le sirve al alumno también en el ejercicio
+siguiente, con su alcance real: «la mayoría de los adjetivos suman $-ly$:
+$clear$ → $clearly$». Si la regla tiene excepciones comunes que el quiz no
+practica, decí su alcance con «la mayoría», «normalmente» o «casi siempre»; si
+la palabra del quiz es una de ellas, nombrala. Para mostrar qué decide en el
+quiz, señalá el indicio de la oración: «$now$ dice que pasa ahora».
 
 La tarjeta explica la regla: no le dice al alumno qué escribir en este hueco
 («Como $She$ ya está escrito, completamos con $'s$») ni lo obliga a contraer o
@@ -342,7 +355,7 @@ MULTIPLE_CHOICE_CONVERSION. En una opción múltiple, `options` lleva
 # User prompt template
 
 Tanda: {batchId} · Nivel: {level} · Tema: {knowledgeId} · Ejercicio: {quizId}
-Intento: {attempt} · Dos arreglos: {twoFixes}
+Intento: {attempt} · Dos arreglos: {twoFixes} · Tarjeta aparte: {cardApart}
 
 Qué practica el tema (su título y su consigna):
 {topic}

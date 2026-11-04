@@ -42,6 +42,7 @@ dependencies:
   - quizId              # vacío para una tarea del tema entero (la miniteoría)
   - attempt
   - twoFixes            # "true": entregar uno que cambia sólo la traducción y otro que cambia el inglés
+  - cardApart           # "true": entregar además uno que cambia sólo la tarjeta del ejercicio como está (F-MESA-R033)
   - topicView           # JSON: el tema como lo ve el alumno, con lo ya aceptado en la tanda
   - topic               # JSON: el título y la consigna del tema, que dicen qué caso de la regla practica (F-MESA-R031)
   - tasks               # JSON: las tareas del ejercicio, su hallazgo, evidencia y lo que pueden tocar
