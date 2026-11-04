@@ -217,7 +217,8 @@ medición que nombraba al ejercicio, no el ejercicio de hoy. Brief 262.
 >    alumno hoy», salvo con la lente de un juez que guardó lo que leyó.
 > 2. Con la lente de ese juez muestra lo que leyó, bajo «Como lo leyó» y su nombre. Si leyó una versión anterior, lo
 >    dice: «Leyó una versión anterior del ejercicio: el de hoy se ve con la lente Calidad».
-> 3. Debajo sigue lo que midió cada juez: la corrida, su versión y la versión del contenido que leyó.
+> 3. Lo que midió cada juez (la corrida, su versión y la versión del contenido que leyó) va aparte, arriba, bajo «Lo
+>    que midió cada juez»; el rótulo del punto 1 o 2 va justo encima del ejercicio.
 > 4. La ficha de un análisis guardado, que no es el vigente, sigue como estaba.
 
 Antes la ficha decía siempre «Como lo leyó el juez», aunque cada juez pudo leer otra versión y la lente Calidad no es
