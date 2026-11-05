@@ -127,6 +127,22 @@ ese ejercicio y que no tenga una lista de jueces vieja.
 > El 5/11/2026 la Base de la C2 tenía sólo A1 y «Hoy», los cuatro niveles. El renglón del curso de «Distribución COCA»
 > daba 100,0 → 72,5 y rompía su piso, aunque la C2 no toca nada fuera de A1.
 
+<a id="F-MIDIO-R008"></a>
+### Rule[F-MIDIO-R008] - El curso de una corrección de un nivel se mide entero
+**Severity**: critical | **Validation**: VALIDATED
+
+> Lo que un analizador de vocabulario mide del curso —el largo de las oraciones, el vocabulario del nivel presente, la
+> frecuencia de las palabras— se mide sobre el curso entero en la Base, en el Inicio y en «Hoy»: el nivel de la
+> corrección como lo tiene cada lado, y los otros niveles como los tiene el Inicio, porque la corrección no los toca.
+> Se mide sin consultas, con las reglas de hoy. El nivel de la corrección se sigue leyendo solo, y los errores y los
+> jueces se siguen comparando en el nivel (R007).
+>
+> Si el Inicio no tiene los otros niveles, el curso queda como el nivel.
+>
+> El 5/11/2026, el renglón del curso de «Vocabulario del nivel presente» medía sólo A1 contra la lista de palabras de A1
+> a B2. Bajaba de 39,38 a 38,41 y rompía su piso porque la C2 sacó de A1 palabras de A2, que siguen en A2: en el curso
+> entero, A1 ganó palabras de su lista y A2 quedó casi igual (brief 271).
+
 ## Contexto
 
 - **La Base, el Inicio y «Hoy»**: la Base es producción; el Inicio, de dónde arrancó la corrección; «Hoy», el curso con
@@ -147,10 +163,11 @@ ese ejercicio y que no tenga una lista de jueces vieja.
 | R005 | `CurrentAnalysisServiceTest`: un juez que la Base no midió queda en «Hoy» sin par y fuera de «algún error». `DefaultBatchComparatorTest`: su renglón tiene el valor de «Hoy», sin par ni piso |
 | R006 | `CurrentAnalysisServiceTest`: un instantáneo que la Base y el Inicio midieron con otras reglas se vuelve a medir con las de hoy, cada uno sobre su contenido y sin consultas; un juez comparado ejercicio por ejercicio lleva la medida de hoy |
 | R007 | `CurrentAnalysisServiceTest`: la corrección de A1 se compara en A1: la Base, el Inicio y «Hoy» tienen sólo A1, y el curso que recibió no se recorta |
+| R008 | `CurrentAnalysisServiceTest`: el analizador de vocabulario mide el curso entero en la Base, el Inicio y «Hoy», cada uno con su A1 y con el A2 del Inicio; el nivel conserva su número y la comparación sigue leyendo A1 |
 
 ## References
 
-- Briefs 267 y 269 (docs/briefs).
+- Briefs 267, 269 y 271 (docs/briefs).
 - [F-HOY](../2026-11-05.01_comparar-con-lo-analizado-hoy/REQUIREMENT.md): «Hoy», la comparación sin cerrar.
 - [F-MEDJ](../2026-10-19.01_mediciones-por-juez/REQUIREMENT.md): la Base que se integra desde cualquier
   corrección.

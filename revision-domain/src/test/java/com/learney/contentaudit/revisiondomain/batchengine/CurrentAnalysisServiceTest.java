@@ -1430,6 +1430,59 @@ class CurrentAnalysisServiceTest {
         assertEquals(2, course.getRoot().getMilestones().size(), "the course it was given is not cut");
     }
 
+    @Tag("FEAT-MIDIO") @Tag("F-MIDIO-R008")
+    @Test void theCourseOfALevelCorrectionIsMeasuredWholeByTheVocabularyAnalyzersOnEachSide() {
+        var vocabulary = instant("lemma-absence");
+        vocabulary.setFamily(com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.VOCABULARY);
+        when(catalog.list()).thenReturn(List.of(provider.describe(), vocabulary));
+        var wholeCourses = new ArrayList<AuditableCourse>();
+        when(engine.runAudit(any(), any())).thenAnswer(i -> {
+            AuditableCourse measuredCourse = i.getArgument(0);
+            boolean whole = measuredCourse != null && measuredCourse.getMilestones().size() > 1;
+            if (whole) wholeCourses.add(measuredCourse);
+            var r = report(true, true, "v1");
+            r.getRoot().getScores().put("lemma-absence", whole ? .5 : .9);
+            r.getRoot().getScores().put("lemma-absence/A2", whole ? .4 : 0.);
+            r.getRoot().getChildren().get(0).getScores().put("lemma-absence", .7);
+            return r;
+        });
+        for (var side : List.of(batch.getBaselineAuditId(), TandaFixture.START_AUDIT)) {
+            var r = report(true, false, "v1");
+            ((AuditableQuiz) child(r).getEntity()).setLabel("Contenido de " + side);
+            ((AuditableQuiz) DefaultAnalysisComposer.index(r.getRoot()).get(TandaFixture.PAST).getEntity()).setLabel("A2 de " + side);
+            saved.put(side, r);
+        }
+
+        var reports = service.comparisonReports(batch, course, course);
+
+        for (var side : List.of(reports.baseline(), reports.approved(), reports.projected())) {
+            assertEquals(.5, side.getRoot().getScores().get("lemma-absence"), "the course is measured whole");
+            assertEquals(.4, side.getRoot().getScores().get("lemma-absence/A2"), "and so are its parts");
+            assertTrue(side.getRoot().getNumbers().getAnalyzerScores().stream()
+                    .anyMatch(s -> "lemma-absence".equals(s.getAnalyzer()) && s.getScore() == .5), "its row reads the whole course");
+            assertEquals(.7, side.getRoot().getChildren().get(0).getScores().get("lemma-absence"), "the level keeps its own");
+        }
+        for (var side : List.of(reports.baseline(), reports.approved()))
+            assertEquals(List.of("A1"), side.getRoot().getChildren().stream().map(n -> n.getEntity().getLabel()).toList(),
+                    "the comparison still reads the level (R007)");
+        assertEquals(3, wholeCourses.size(), "the base, the start and today, each once");
+        for (var whole : wholeCourses) {
+            assertEquals(List.of("A1", "A2"), whole.getMilestones().stream().map(AuditableMilestone::getLabel).toList());
+            assertEquals(List.of("A2 de " + TandaFixture.START_AUDIT), quizLabels(whole, "A2"), "the other levels, as the start has them");
+        }
+        var levelLabels = wholeCourses.stream().flatMap(c -> quizLabels(c, "A1").stream()).toList();
+        assertEquals(3, levelLabels.size());
+        assertTrue(levelLabels.containsAll(List.of("Contenido de " + batch.getBaselineAuditId(), "Contenido de " + TandaFixture.START_AUDIT)),
+                "the level, as each side has it: " + levelLabels);
+        verify(config.getCourseMapper(), never()).map(argThat(c -> c.getRoot().getMilestones().size() > 1));
+    }
+    static List<String> quizLabels(AuditableCourse course, String level) {
+        return course.getMilestones().stream().filter(m -> level.equals(m.getLabel())).flatMap(m -> m.getTopics().stream())
+                .flatMap(t -> t.getKnowledge().stream()).flatMap(k -> k.getQuizzes().stream())
+                .filter(q -> TandaFixture.CHILD.equals(q.getId()) || TandaFixture.PAST.equals(q.getId()))
+                .map(AuditableQuiz::getLabel).toList();
+    }
+
     @Tag("FEAT-MIDIO") @Tag("F-MIDIO-R006")
     @Test void anInstantAnalyzerTheBaseAndTheStartMeasuredWithOtherRulesIsMeasuredAgainWithTodaysOnTheirOwnContent() {
         when(catalog.list()).thenReturn(List.of(provider.describe(), instant("spanish-register")));

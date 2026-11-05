@@ -2,6 +2,7 @@ package com.learney.contentaudit.revisiondomain.batchengine;
 
 import com.learney.contentaudit.auditdomain.*;
 import com.learney.contentaudit.auditdomain.analysis.*;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
 import com.learney.contentaudit.auditdomain.contextnumbers.*;
 import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
@@ -380,14 +381,16 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         AuditReport baseline = report(batch, "base", start);
         // F-MIDIO-R004: today also with what the instant analyzers of errors the batch lacks find, measured for free.
         AuditReport projected = report(batch, "correction", composed, true, null);
-        AuditReport approved = Objects.equals(batch.getStartAuditId(), batch.getBaselineAuditId()) ? baseline
-                : composer.compose(scopedSeed(config.getAuditReportStore().load(batch.getStartAuditId())
-                        .orElseThrow(() -> new IllegalStateException("Falta el análisis de inicio de la tanda.")),start), List.of());
+        AuditReport startReport = Objects.equals(batch.getStartAuditId(), batch.getBaselineAuditId()) ? null
+                : config.getAuditReportStore().load(batch.getStartAuditId())
+                        .orElseThrow(() -> new IllegalStateException("Falta el análisis de inicio de la tanda."));
+        AuditReport approved = startReport == null ? baseline : composer.compose(scopedSeed(startReport, start), List.of());
         // F-MIDIO-R006: the instant analyzers today ran are measured again, for free and with today's rules, on what the
         // base and the start have: a level the batch did not touch gives the same on both sides.
         List<String> instant = instantAnalyzersOf(projected);
         measureAsToday(baseline, instant);
         if (approved != baseline) measureAsToday(approved, instant);
+        if (batch.getLevel() != null) measureCourseWhole(batch.getLevel(), instant, startReport, baseline, approved, projected);
         var a = DefaultAnalysisComposer.index(baseline.getRoot());
         var startIndex = DefaultAnalysisComposer.index(approved.getRoot());
         var b = DefaultAnalysisComposer.index(projected.getRoot());
@@ -490,6 +493,45 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         measures.removeIf(m -> names.contains(m.getAnalyzer()));
         for (var measure : BatchBook.list(fresh.getRoot().getMeasures())) if (names.contains(measure.getAnalyzer())) measures.add(measure);
         report.getRoot().setMeasures(measures);
+    }
+    /**
+     * F-MIDIO-R008: the course of a level's correction is measured whole. Each instant analyzer of vocabulary measures
+     * again, for free, the course with the level as each side has it and the other levels as the start has them -- the
+     * correction does not touch them --, and what it finds for the course replaces what it found on the level alone.
+     * Without a start that has the other levels, the course stays the level.
+     */
+    private void measureCourseWhole(CefrLevel level, List<String> instant, AuditReport start, AuditReport... sides) {
+        if (start == null || config.getAuditEngine() == null || config.getAnalyzerCatalog() == null) return;
+        Set<String> vocabulary = new HashSet<>();
+        for (var card : BatchBook.list(config.getAnalyzerCatalog().list()))
+            if (card.getFamily() == AnalyzerFamily.VOCABULARY) vocabulary.add(card.getName());
+        List<String> names = instant.stream().filter(vocabulary::contains).toList();
+        AuditableCourse others = MeasuredCourse.of(start, Map.of());
+        if (names.isEmpty() || others == null
+                || others.getMilestones().stream().allMatch(m -> level.name().equalsIgnoreCase(m.getLabel()))) return;
+        var policies = new LinkedHashMap<String, EvaluationRunPolicy>();
+        for (String name : names) policies.put(name, new EvaluationRunPolicy(0, false, null, null, EvaluationRunPurpose.READING, 1));
+        Set<AuditReport> measured = Collections.newSetFromMap(new IdentityHashMap<>());
+        for (AuditReport side : sides) {
+            if (!measured.add(side)) continue;
+            AuditableCourse own = MeasuredCourse.of(side, Map.of());
+            if (own == null) continue;
+            var levels = new ArrayList<AuditableMilestone>();
+            for (var milestone : others.getMilestones())
+                if (!level.name().equalsIgnoreCase(milestone.getLabel())) levels.add(milestone);
+                else for (var mine : own.getMilestones()) if (level.name().equalsIgnoreCase(mine.getLabel())) levels.add(mine);
+            AuditReport fresh = config.getAuditEngine().runAudit(new AuditableCourse(levels), new AnalyzerRunSelection(names, policies));
+            if (fresh == null || fresh.getRoot() == null) continue;
+            AuditNode to = side.getRoot(), from = fresh.getRoot();
+            for (String name : names) {
+                to.getScores().keySet().removeIf(key -> key.equals(name) || key.startsWith(name + "/"));
+                from.getScores().forEach((key, score) -> {
+                    if (score != null && (key.equals(name) || key.startsWith(name + "/"))) to.getScores().put(key, score);
+                });
+                to.getFindings().removeIf(f -> name.equals(f.getAnalyzer()));
+                for (var finding : from.getFindings()) if (name.equals(finding.getAnalyzer())) to.getFindings().add(finding);
+            }
+        }
     }
     /** F-MIDIO-R006: each judge's measure at the root of {@code others} is today's, once only opinions measured alike remain. */
     private void alignJudgeMeasures(AuditReport today, AuditReport... others) {
