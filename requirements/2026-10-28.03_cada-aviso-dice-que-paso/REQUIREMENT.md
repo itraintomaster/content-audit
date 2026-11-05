@@ -106,6 +106,23 @@ aprobando», con un botón para devolverlos de una vez.
 > José, el 1/11/2026: el recuadro de la pasada le tapaba el ejercicio cuando ocupaba toda la pantalla; «poné ese panel
 > más arriba, que sea lo más importante para ver».
 
+<a id="F-DICE-R005"></a>
+### Rule[F-DICE-R005] - Al revisar, el ejercicio marca todo lo que se aprueba
+**Severity**: major | **Validation**: VALIDATED
+
+> Al revisar un ejercicio en Correcciones, sus marcas comparan con el original de la corrección: cada parte que cambió
+> alguna de sus correcciones —la consigna, el ejercicio, las opciones, la traducción o la miniteoría— se ve tachada y
+> con lo nuevo, sea de la última pasada o de una anterior. Es lo que José aprueba con «Aprobar las N».
+>
+> Con una pasada elegida en «Filtrar por pasada», la comparación empieza en lo de antes de esa pasada, para ver lo que
+> hizo ella. Al quitar la pasada, vuelve al original. El recuadro de la pasada sigue dejando elegir cualquiera de las
+> dos.
+>
+> José, el 4/11/2026, en «Am I (I / be) wrong?»: la regla automática le había sacado a la consigna «Usa $short forms$ si
+> es posible.» en una pasada anterior, y sólo se veía marcada la miniteoría de la última. «La mini-teoría siempre
+> aparece cuál fue la corrección, pero en la consigna o en la quiz a veces no aparece. Eso hace que no sepa a simple
+> vista qué cambió ni por qué».
+
 ## Contexto
 
 - **Las dos listas**: «Lo dan por bueno» es un veredicto de un cambio: el juez que lo pidió ya no ve el problema y
@@ -125,6 +142,7 @@ aprobando», con un botón para devolverlos de una vez.
 | R002 | `resuelto-dice-donde.test.js`: preparado, en «Todos los jueces lo aprueban», con una abstención, con un analizador que le ve un problema, sin opiniones al día y sin análisis vigente |
 | R003 | `volver-a-sin-revisar.test.js`: el bloque sólo en «Vos lo aprobás», con la cuenta y el porqué; confirmar manda «sin revisar» a los cambios y a las revisiones de los ejercicios sin cambios, no toca lo preparado y da un aviso; «Todavía no» y Esc no mandan nada; apagado con la corrección publicada |
 | R004 | `comparacion-versiones.test.js`: con cambios y sin cambios, en Marcas, Lado a lado y Como el alumno, el ejercicio está antes que el recuadro de la pasada |
+| R005 | `comparacion-versiones.test.js`: al revisar, con la traducción cambiada en una pasada anterior y la miniteoría en la última, las dos filas se marcan y el recuadro dice «Original de esta corrección»; con una pasada elegida compara con lo de antes de ella, y al quitarla vuelve al original |
 
 ## References
 
