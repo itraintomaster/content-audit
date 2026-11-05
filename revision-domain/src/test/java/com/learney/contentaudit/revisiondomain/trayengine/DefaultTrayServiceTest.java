@@ -13,6 +13,8 @@ import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 import com.learney.contentaudit.auditdomain.finding.Finding;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
 import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
@@ -309,6 +311,53 @@ public class DefaultTrayServiceTest {
     }
 
     @Test
+    @DisplayName("should keep the options of a multiple choice exercise when José writes its fix, his answer saying which one is right")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R003")
+    public void shouldKeepTheOptionsOfAMultipleChoiceExerciseWhenJoseWritesItsFix() {
+        // R003, 5/11: «A: Can you and your brother write on the board? B: Yes, ___.» chooses among six options. José's
+        // shorter line, read alone, was a blank to write without them.
+        BandejaFixture.Bandeja bandeja = opened();
+        QuizTemplateEntity exercise = TandaFixture.exercise(bandeja.course, BandejaFixture.TEA);
+        exercise.setForm(choosing(exercise.getForm(), "drink", "drinks", "drank"));
+        bandeja.panels.assess = (work, candidate) -> new PanelDecision(MesaFixture.AFIRMATIVAS, List.of(BandejaFixture.TEA),
+                List.of("t-tea"), PanelOutcomeKind.NO_WINNER, null, null, List.of(), 1, List.of(), candidate, null,
+                List.of(), 4);
+
+        bandeja.tray.answer(new TrayResponse(TEA_ITEM, TrayAnswer.WRITE_FIX, null, null, null,
+                writtenFix(exercise, "drinks"), null, "José"));
+
+        FormEntity measured = bandeja.panels.assessed.get(0).getQuiz().getForm();
+        assertEquals(exercise.getForm().getKind(), measured.getKind(), "still multiple choice");
+        assertEquals(List.of("drink", "drinks", "drank"), measured.getMultipleChoice().getItems().stream()
+                .map(MultipleChoiceItemEntity::getLabel).toList(), "its options, in their order");
+        assertEquals(List.of(0.0, 1.0, 0.0), measured.getMultipleChoice().getItems().stream()
+                .map(MultipleChoiceItemEntity::getIncidence).toList(), "the one José wrote is the right one");
+        assertEquals("SINGLE", measured.getMultipleChoice().getSelection(), "one is chosen, as before");
+        assertEquals("", measured.getSentenceParts().get(1).getText(), "a blank like its siblings");
+        assertNull(measured.getSentenceParts().get(1).getOptions(), "the blank answers through the options");
+        assertEquals("tea every morning.", measured.getSentenceParts().get(2).getText(), "his text");
+    }
+
+    @Test
+    @DisplayName("should not measure a fix of a multiple choice exercise whose answer is not one of its options, and say which ones it has")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R003")
+    public void shouldNotMeasureAFixOfAMultipleChoiceExerciseWhoseAnswerIsNotOneOfItsOptions() {
+        BandejaFixture.Bandeja bandeja = opened();
+        QuizTemplateEntity exercise = TandaFixture.exercise(bandeja.course, BandejaFixture.TEA);
+        exercise.setForm(choosing(exercise.getForm(), "drink", "drinks", "drank"));
+
+        IllegalArgumentException refused = assertThrows(IllegalArgumentException.class, () -> bandeja.tray.answer(
+                new TrayResponse(TEA_ITEM, TrayAnswer.WRITE_FIX, null, null, null, writtenFix(exercise, "has"), null,
+                        "José")));
+
+        assertTrue(refused.getMessage().contains("drink · drinks · drank"), refused.getMessage());
+        assertTrue(refused.getMessage().contains("«has»"), refused.getMessage());
+        assertTrue(bandeja.panels.assessed.isEmpty(), "nothing measured, no query spent");
+    }
+
+    @Test
     @DisplayName("should take into the batch a fix of José that improves the exercise without resolving its task, leaving the task «mejoró, sigue abierta» with its measure")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R007")
@@ -595,6 +644,29 @@ public class DefaultTrayServiceTest {
     private static final String TEA_ITEM = "sin-ganador-" + BandejaFixture.TEA;
 
     private static final String RULE_ITEM = "muestra-hint-coherence";
+
+    /** The form of the exercise choosing among {@code labels}, the first one right, as the course keeps it. */
+    private static FormEntity choosing(FormEntity form, String... labels) {
+        List<SentencePartEntity> parts = new ArrayList<>();
+        for (SentencePartEntity part : form.getSentenceParts()) {
+            parts.add(part.getKind() == SentencePartKind.CLOZE
+                    ? new SentencePartEntity(SentencePartKind.CLOZE, "", null) : part);
+        }
+        List<MultipleChoiceItemEntity> items = new ArrayList<>();
+        for (int i = 0; i < labels.length; i++) {
+            items.add(new MultipleChoiceItemEntity(labels[i], i == 0 ? 1.0 : 0.0, labels[i]));
+        }
+        return new FormEntity("MULTIPLE_CHOICE", 1.0, "", "", parts, new MultipleChoiceEntity("SINGLE", items), null);
+    }
+
+    /** «She ____ [answer] tea every morning.» as the tray reads José's line: the notation alone, with no form kind. */
+    private static PanelCandidate writtenFix(QuizTemplateEntity exercise, String answer) {
+        QuizTemplateEntity written = withParts(exercise, text("She"),
+                new SentencePartEntity(SentencePartKind.CLOZE, null, new ArrayList<>(List.of(answer))),
+                text("tea every morning."));
+        written.setForm(new FormEntity(null, 0.0, null, null, written.getForm().getSentenceParts(), null, null));
+        return new PanelCandidate(PanelCandidateKind.WHOLE_EXERCISE, written, null, null, "arreglo de José");
+    }
 
     /** The tray with its blind sample answered and closed: the rest of the batch shows. */
     private static BandejaFixture.Bandeja opened() {

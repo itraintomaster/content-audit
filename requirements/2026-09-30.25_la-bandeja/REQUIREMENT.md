@@ -88,6 +88,14 @@ cada hueco— queda como lo tiene el ejercicio, y una parte nueva nace como sus 
 ([F-RPRES-R006](../2026-07-29.01_preservacion-del-contenido-no-revisado/REQUIREMENT.md#F-RPRES-R006)). Asi la mide la
 mesa, asi vuelve a José si no pasa y asi entra a la tanda si la aprueba.
 
+Un ejercicio de opcion multiple conserva sus opciones: su orden, sus nombres y como se elige quedan como los tiene el
+ejercicio, y lo que José escribe entre corchetes dice cual de ellas es la correcta. Si lo que escribio no es una de sus
+opciones, el arreglo no se mide y José ve las opciones que tiene el ejercicio.
+
+**Evidencia 5/11/2026.** Para que «A: Can you and your brother write on the board? B: Yes, ___.» midiera el largo de A1,
+José pidio acortarla a mano (brief 273). Su linea, leida sola, era un hueco para escribir: el ejercicio habria entrado sin
+sus seis opciones.
+
 **Evidencia 4/11/2026.** El arreglo de José para «He sang (sad). ___» entro a la C2 con el formulario sin clase, con
 incidencia 0 y con el hueco sin texto: el unico de los 3.782 huecos de cambios de la C2, y de los 14.406 de produccion,
 que no tenia texto vacio presente.
