@@ -540,6 +540,8 @@ class DefaultBatchService implements BatchService {
         if (place.isEmpty() || place.get().quiz() == null) {
             throw new IllegalArgumentException("El ejercicio " + quizId + " no está en el curso de la tanda.");
         }
+        // What his line does not say stays as the exercise has it: so the panel measures it, so it goes back to him.
+        adjustment.setCandidate(JosesFix.restedOn(adjustment.getCandidate(), place.get().quiz()));
         AuditReport start = start(batch);
         Map<String, RefinementTask> tasks = refinementPlanStore.load(batch.getPlanId()).map(BatchBook::tasksById)
                 .orElse(Map.of());

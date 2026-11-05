@@ -12,7 +12,10 @@ import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 import com.learney.contentaudit.auditdomain.finding.Finding;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.coursedomain.FormEntity;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
@@ -266,6 +269,43 @@ public class DefaultTrayServiceTest {
         bandeja.tray.answer(new TrayResponse(TEA_ITEM, TrayAnswer.WRITE_FIX, null, null, null, fix, null, "José"));
         assertEquals(BatchTaskOutcomeKind.RESOLVED_BY_PANEL, outcome(bandeja.saved(), "t-tea").getKind(), "a fix that passes");
         assertEquals(BatchChangeOrigin.JOSE, change(bandeja.saved(), "jose-" + BandejaFixture.TEA).getOrigin());
+    }
+
+    @Test
+    @DisplayName("should build the fix José writes on the exercise as it is, keeping the kind, incidence, names and blank text his line does not say")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R003")
+    public void shouldBuildTheFixJosWritesOnTheExerciseAsItIsKeepingWhatHisLineDoesNotSay() {
+        // R003: «I ____ [drink|have] (drink) green tea in the morning.» read alone has no kind, incidence 0, no names and a
+        // blank without text. The panel measures it with the form of the exercise, it goes back to José so, and so it
+        // enters the batch when he approves it.
+        BandejaFixture.Bandeja bandeja = opened();
+        QuizTemplateEntity exercise = TandaFixture.exercise(bandeja.course, BandejaFixture.TEA);
+        QuizTemplateEntity written = withParts(exercise, text("I"),
+                new SentencePartEntity(SentencePartKind.CLOZE, null, new ArrayList<>(List.of("drink|have"))),
+                text("(drink) green tea in the morning."));
+        written.setForm(new FormEntity(null, 0.0, null, null, written.getForm().getSentenceParts(), null, null));
+        PanelCandidate fix = new PanelCandidate(PanelCandidateKind.WHOLE_EXERCISE, written, null, null, "arreglo de José");
+        bandeja.panels.assess = (work, candidate) -> new PanelDecision(MesaFixture.AFIRMATIVAS, List.of(BandejaFixture.TEA),
+                List.of("t-tea"), PanelOutcomeKind.NO_WINNER, null, null, List.of(), 1, List.of(new CandidateRejection(1,
+                PanelCandidateKind.WHOLE_EXERCISE, List.of("«have» sigue encajando"))), candidate, null, List.of(), 4);
+
+        bandeja.tray.answer(new TrayResponse(TEA_ITEM, TrayAnswer.WRITE_FIX, null, null, null, fix, null, "José"));
+
+        FormEntity measured = bandeja.panels.assessed.get(0).getQuiz().getForm();
+        FormEntity form = exercise.getForm();
+        assertEquals(form.getKind(), measured.getKind(), "the kind of the exercise");
+        assertEquals(form.getIncidence(), measured.getIncidence(), "its incidence");
+        assertEquals(form.getLabel(), measured.getLabel(), "its label");
+        assertEquals(form.getName(), measured.getName(), "its name");
+        assertEquals("", measured.getSentenceParts().get(1).getText(), "a blank like its siblings, empty and present");
+        assertEquals(List.of("drink|have"), measured.getSentenceParts().get(1).getOptions(), "the answers of José");
+        assertEquals("(drink) green tea in the morning.", measured.getSentenceParts().get(2).getText(), "his text");
+
+        answer(bandeja, TEA_ITEM, TrayAnswer.APPROVE_CANDIDATE);
+
+        BatchChange change = change(bandeja.saved(), "jose-" + BandejaFixture.TEA);
+        assertEquals(measured, change.getSteps().get(0).getAfter().getQuiz().getForm(), "what enters is what was measured");
     }
 
     @Test

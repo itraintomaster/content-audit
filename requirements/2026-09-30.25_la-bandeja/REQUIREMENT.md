@@ -82,6 +82,16 @@ El archivo de «escribir el arreglo» lleva, en lineas no vacias, la oracion en 
 opcionalmente, la miniteoria local de ese quiz. Esta tercera linea viaja en el mismo candidato porque una respuesta nueva
 puede volver falsa la explicacion anterior; no se propaga a otros quizzes.
 
+La version de José se arma sobre el ejercicio como esta en la tanda: su linea dice las partes del enunciado y las
+respuestas de cada hueco; lo que la notacion no dice —la clase del formulario, su incidencia, sus nombres y el texto de
+cada hueco— queda como lo tiene el ejercicio, y una parte nueva nace como sus hermanas
+([F-RPRES-R006](../2026-07-29.01_preservacion-del-contenido-no-revisado/REQUIREMENT.md#F-RPRES-R006)). Asi la mide la
+mesa, asi vuelve a José si no pasa y asi entra a la tanda si la aprueba.
+
+**Evidencia 4/11/2026.** El arreglo de José para «He sang (sad). ___» entro a la C2 con el formulario sin clase, con
+incidencia 0 y con el hueco sin texto: el unico de los 3.782 huecos de cambios de la C2, y de los 14.406 de produccion,
+que no tenia texto vacio presente.
+
 Mantiene [DOUBT-SIN-CORRECCION](#DOUBT-SIN-CORRECCION) de FEAT-QICOR (José eligió ver el candidato con lo que no cumple
 y decidir él) y el tope de tres intentos de la mesa ([F-MESA-R007](#F-MESA-R007)).
 
