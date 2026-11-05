@@ -48,6 +48,29 @@ class TheCardTest {
     }
 
     @Test
+    @DisplayName("should leave nothing aside while the card has only light problems where it starts, as «She ___ (sport) hats.» on 4/11")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R033")
+    void shouldLeaveNothingAsideWhileTheCardHasOnlyLightProblemsWhereItStarts() {
+        // Inv. 1: the card weighs only with a medium or heavy problem. In the C2 of A1 (4/11), …1ed6 kept two light
+        // problems in its card, and the light tasks that let change «sport» were left aside without being tried.
+        ErrorTaskBrief highlight = brief("t-highlight", finding("mini-theory", "missing-english-highlight", Q,
+                FindingSeverity.LOW));
+        ErrorTaskBrief register = brief("t-register", finding("translation-sense", "level-register", Q,
+                FindingSeverity.LOW));
+        ErrorTaskBrief didactic = brief("t-didactic", finding("a1-didactic", "a1-example-quality", Q,
+                FindingSeverity.LOW), List.of(ExercisePart.STATEMENT, ExercisePart.HINT, ExercisePart.ANSWERS));
+
+        assertEquals(List.of(), TheCard.lightOutside(List.of(highlight, register, didactic), new UnitMeasurement()),
+                "a light card does not outweigh a light problem elsewhere");
+        UnitMeasurement start = new UnitMeasurement();
+        start.setFindings(new ArrayList<>(List.of(finding("mini-theory", "missing-english-highlight", Q,
+                FindingSeverity.MEDIUM))));
+        assertEquals(List.of(register, didactic), TheCard.lightOutside(List.of(highlight, register, didactic), start),
+                "a card that starts medium sets the light ones aside");
+    }
+
+    @Test
     @DisplayName("should take a task light by the heaviest of its findings where it starts, not by how it was found")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R033")

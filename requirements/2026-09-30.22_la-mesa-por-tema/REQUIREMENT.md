@@ -685,17 +685,18 @@ tienen que volver a opinar sobre el texto nuevo, como después de cualquier camb
 ### Rule[F-MESA-R033] - Con el problema en la tarjeta, la mesa toca sólo la tarjeta
 **Severity**: major | **Validation**: VALIDATED
 
-> Una tarea de la tarjeta es la que sólo deja tocar la miniteoría de su ejercicio. Cuando un ejercicio tiene una:
-> 1. si fuera de la tarjeta no le queda ningún problema medio o grave, la mesa trabaja sólo la tarjeta. Las tareas
->    leves que dejan tocar otras partes —el largo, un casi duplicado, la calidad didáctica leve, un pedido de forma— no
->    se intentan: quedan a la vista con su hallazgo y el motivo dice «el problema está en la tarjeta: la mesa toca sólo
->    la tarjeta». La gravedad de una tarea es la de su hallazgo más grave al empezar ([F-MESA-R029](#F-MESA-R029)).
->    Cuando todas las tareas que quedan son de la tarjeta, quien propone entrega sólo candidatos de la tarjeta: uno que
->    cambia otra parte —la oración, la pista, las respuestas, la traducción, la consigna— le vuelve antes de medirse,
->    sin gastar un intento de la mesa;
-> 2. si fuera de la tarjeta queda un problema medio o grave, quien propone entrega, además del ejercicio entero, un
->    candidato que cambia sólo la tarjeta, escrita para el ejercicio como está. Cada candidato se mide por su cuenta: si
->    el ejercicio entero no pasa, la tarjeta sola puede ganar y es el punto de partida del intento siguiente
+> Una tarea de la tarjeta es la que sólo deja tocar la miniteoría de su ejercicio. La gravedad de una tarea es la de su
+> hallazgo más grave al empezar ([F-MESA-R029](#F-MESA-R029)). Cuando un ejercicio tiene una tarea de la tarjeta:
+> 1. si la tarjeta tiene una tarea media o grave y fuera de ella no queda ninguna media o grave, la mesa trabaja sólo
+>    la tarjeta. Las tareas leves que dejan tocar otras partes —el largo, un casi duplicado, la calidad didáctica leve,
+>    un pedido de forma, un registro que no es del nivel— no se intentan: quedan a la vista con su hallazgo y el motivo
+>    dice «el problema está en la tarjeta: la mesa toca sólo la tarjeta». Y siempre que todas las tareas que quedan son
+>    de la tarjeta, quien propone entrega sólo candidatos de la tarjeta: uno que cambia otra parte —la oración, la pista,
+>    las respuestas, la traducción, la consigna— le vuelve antes de medirse, sin gastar un intento de la mesa;
+> 2. si fuera de la tarjeta queda una tarea media o grave, o si las de la tarjeta son todas leves, no se aparta nada:
+>    un problema leve de la tarjeta no pesa más que uno leve de otra parte. Quien propone entrega, además del ejercicio
+>    entero, un candidato que cambia sólo la tarjeta, escrita para el ejercicio como está. Cada candidato se mide por su
+>    cuenta: si el ejercicio entero no pasa, la tarjeta sola puede ganar y es el punto de partida del intento siguiente
 >    ([F-MESA-R007](#F-MESA-R007)), que trabaja lo que quedó abierto;
 > 3. la tarjeta del tema entero, una conversión que pidió José y un contrato didáctico que se restaura siguen como
 >    estaban.
@@ -713,7 +714,15 @@ reescribió igual el ejercicio 18 veces, en 12 ejercicios, y la mesa lo rechazó
 permitían. `…2548` («She sang (sweet). ___») gastó así sus tres intentos y siguió con la tarjeta exagerada, aunque la
 tarjeta de su candidato, «La mayoría de los adjetivos forman el adverbio añadiendo $-ly$», no tenía problema.
 
-**Fuente**: brief 261, pregunta 3; José, el 4/11/2026: «Sí, las tres».
+Esa misma recorrección mostró el otro lado. En `…1ed6` («She ___ (sport) hats.») el juez de traducción y el de
+calidad didáctica pedían, con un hallazgo leve cada uno, cambiar «sport» por un verbo del nivel, y sus tareas dejaban
+tocar la oración, la pista, las respuestas y el audio. Al empezar, el problema medio de la tarjeta ya no estaba, pero
+quedaban dos leves: le faltaban las marcas del inglés y mezclaba otro caso. Con eso, la mesa apartó las dos tareas del
+verbo sin intentarlas y cambió sólo la tarjeta. Lo mismo pasó en `…22b6`, `…22c3` y `…22c5`. Por eso la tarjeta manda
+sólo con un problema medio o grave.
+
+**Fuente**: brief 261, pregunta 3; José, el 4/11/2026: «Sí, las tres». Que la tarjeta mande sólo con un problema medio o
+grave: brief 266, pregunta 1; José, el 5/11/2026: «Sí, con su prueba».
 
 ## Contexto
 

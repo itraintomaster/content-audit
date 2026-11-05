@@ -749,6 +749,47 @@ public class DefaultTopicPanelTest {
     }
 
     @Test
+    @DisplayName("should work the light register of «I ___ (read) a book now.» when its card starts with only a light problem, asking the card apart")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R033")
+    public void shouldWorkTheLightTaskOfAnotherPartWhenTheCardStartsWithOnlyALightProblem() {
+        // F-MESA-R033 inv. 1: as «She ___ (sport) hats.» in the C2 of A1 (4/11). The medium problem of the card no longer
+        // holds where the panel starts and a light one does; the light register, which lets change the verb, is worked
+        // with it, and the card goes apart (inv. 2) instead of setting the register aside.
+        KnowledgeEntity topic = contraste();
+        String q1 = stateVerbExercises().get(0);
+        Finding overstated = finding("mini-theory", "overstated-for-quiz", q1, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, STATE_VERBS, "la miniteoría exagera");
+        Finding highlight = finding("mini-theory", "missing-english-highlight", q1, FindingSeverity.LOW,
+                FindingResolution.PANEL, STATE_VERBS, "la miniteoría no resalta el inglés");
+        Finding register = finding("translation-sense", "level-register", q1, FindingSeverity.LOW,
+                FindingResolution.PANEL, null, "«read» con ese sentido es avanzado para A1");
+        QuizTemplateEntity whole = withParts(exercise(topic, q1), text("I"), cloze("am writing"),
+                text("(write) a letter now."));
+        whole.setMiniTheory(NEW_STATE_VERBS);
+        RecordingProposer proposer = new RecordingProposer(script(q1, proposal(
+                candidate(PanelCandidateKind.WHOLE_EXERCISE, whole),
+                new PanelCandidate(PanelCandidateKind.MINI_THEORY, null, NEW_STATE_VERBS, null, "la tarjeta sola"))));
+        RecordingSink sink = new RecordingSink();
+        RulesMeter meter = new RulesMeter()
+                .rule("mini-theory", (t, quiz) -> quiz.getId().equals(q1) && STATE_VERBS.equals(quiz.getMiniTheory())
+                        ? List.of(highlight) : RulesMeter.none())
+                .rule("translation-sense", (t, quiz) -> quiz.getId().equals(q1) && stored(quiz).contains("reading")
+                        ? List.of(register) : RulesMeter.none());
+
+        panel(proposer, meter).run(work(topic, List.of(brief("t-overstated", overstated),
+                brief("t-highlight", highlight), brief("t-register", register))), settings(), allowance(null, 4), sink);
+
+        PanelRequest request = proposer.requests.get(0);
+        assertEquals(List.of("t-highlight", "t-register"), taskIdsOf(request.getBriefs()),
+                "the light register is worked with the light card");
+        assertTrue(request.isCardApart(), "the card goes apart, measured on its own");
+        assertEquals(PanelOutcomeKind.NO_LONGER_HOLDS, decisionOf(sink, "t-overstated").getOutcome());
+        assertTrue(sink.decisions.stream().flatMap(d -> d.getRejections().stream())
+                .noneMatch(r -> r.getReasons().contains(TheCard.ONLY_THE_CARD)), sink.decisions.toString());
+    }
+
+    @Test
     @DisplayName("should also ask the card alone for «I ___ (read) a book now.», whose translation has a heavy problem too, and keep the card alone when the whole exercise does not pass")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R033")

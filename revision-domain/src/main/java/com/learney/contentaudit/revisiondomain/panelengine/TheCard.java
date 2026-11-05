@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * F-MESA-R033: with the problem in the card, the panel touches only the card. A task of the card is one that may touch
- * only the mini theory of its exercise.
+ * F-MESA-R033: with a medium or heavy problem in the card, the panel touches only the card. A task of the card is one
+ * that may touch only the mini theory of its exercise.
  */
 final class TheCard {
 
@@ -25,11 +25,13 @@ final class TheCard {
     }
 
     /**
-     * Inv. 1: the light tasks of other parts of an exercise that has a task of the card and nothing medium or heavy left
-     * outside it; none otherwise. An explicit repair is never light.
+     * Inv. 1: the light tasks of other parts of an exercise whose card has a medium or heavy task where it starts and
+     * nothing medium or heavy left outside it; none otherwise. A card with only light problems does not outweigh a light
+     * problem elsewhere: that is how «She ___ (sport) hats.» lost the change of its verb (C2 of A1, 4/11). An explicit
+     * repair is never light.
      */
     static List<ErrorTaskBrief> lightOutside(List<ErrorTaskBrief> tasks, UnitMeasurement start) {
-        if (tasks.stream().noneMatch(TheCard::ofTheCard)) {
+        if (tasks.stream().noneMatch(brief -> ofTheCard(brief) && !DefaultPanelDecisionScript.light(brief, start))) {
             return List.of();
         }
         List<ErrorTaskBrief> outside = new ArrayList<>();
