@@ -1898,6 +1898,11 @@ class Main {
             }
 
             @Override
+            public com.learney.contentaudit.revisiondomain.batch.CurrentComparison compareNow(String batchId) {
+                return factory.get().compareNow(batchId);
+            }
+
+            @Override
             public com.learney.contentaudit.revisiondomain.batch.BatchPublication publish(
                     com.learney.contentaudit.revisiondomain.batch.BatchPublishRequest request) {
                 return factory.get().publish(request);

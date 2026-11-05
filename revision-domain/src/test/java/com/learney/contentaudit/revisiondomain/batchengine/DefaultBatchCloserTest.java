@@ -8,7 +8,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.revisiondomain.batch.CurrentAnalysisService;
+import com.learney.contentaudit.revisiondomain.batch.CurrentComparison;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.CefrLevel;
@@ -56,9 +62,11 @@ import com.learney.contentaudit.revisiondomain.projection.ProjectionScope;
 import java.nio.file.Path;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
@@ -391,6 +399,57 @@ public class DefaultBatchCloserTest {
 
     private static BatchChange change(CorrectionBatch batch, String changeId) {
         return batch.getChanges().stream().filter(c -> c.getChangeId().equals(changeId)).findFirst().orElseThrow();
+    }
+
+    @Test
+    @DisplayName("should compare today, from the current analysis, the batch whose gate would return «My grandmother ___ (come) every year.» and say so, without paying, giving it back, drawing a sample, closing or saving")
+    @Tag("FEAT-HOY")
+    @Tag("F-HOY-R001")
+    @Tag("F-HOY-R002")
+    public void shouldCompareTodayFromTheCurrentAnalysisTheBatchWhoseGateWouldReturnMyGrandmotherAndSaySoWithoutPayingGivingItBackDrawingClosingOrSaving() {
+        // R001: today's comparison is the one a closing makes -- the base, the start and the course with everything
+        // proposed, as the current analysis has them --, with what the gate says of it. R002: and nothing else: the
+        // grandmother stays in the batch, the batch stays open, no judge is asked, no sample drawn and nothing saved.
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
+        batch.setStatus(BatchStatus.OPEN);
+        batch.setContentVersion(83);
+        closing.batches.save(batch);
+        int saves = closing.batches.saves;
+        AuditReport base = TandaFixture.report(closing.course, List.of(), Map.of(), List.of());
+        AuditReport start = TandaFixture.report(closing.course, List.of(), Map.of(), List.of());
+        AuditReport today = TandaFixture.report(closing.course, List.of(grandmother()), Map.of(), List.of());
+        CurrentAnalysisService analysis = mock(CurrentAnalysisService.class);
+        when(analysis.comparisonReports(any(), any(), any()))
+                .thenReturn(new CurrentAnalysisService.ComparisonReports(base, start, today));
+        closing.comparator.answer = scope -> TandaFixture.comparison(scope, List.of(
+                outcome(P_COME, MesaFixture.COME, true, List.of(grandmother()), List.of()),
+                outcome(P_VEGETABLES, MesaFixture.VEGETABLES, false, List.of(), List.of())), VerdictKind.FAILS);
+        RecordingJudgePass judges = new RecordingJudgePass();
+        DefaultBatchCloser closer = new DefaultBatchCloser(closing.comparator, new DefaultGateFactory().batchGate(),
+                closing.samples, closing.ledger(), closing.batches, TandaFixture.COURSE_PATH, judges)
+                .withPlans(closing.plans, MesaFixture.corrections()).withCurrentAnalysis(analysis);
+
+        CurrentComparison now = closer.compareNow(batch, closing.course);
+
+        assertSame(today, closing.comparator.suppliedProjection, "the after is the current analysis");
+        assertEquals(1, closing.comparator.scopes.size(), "compared once");
+        assertEquals(Set.of(P_VEGETABLES, P_COME), new HashSet<>(closing.comparator.scopes.get(0).getProposalIds()),
+                "with every proposal of the batch");
+        assertEquals(batch.getId(), now.batchId());
+        assertEquals(83, now.contentVersion());
+        assertEquals(VerdictKind.FAILS, now.comparison().getVerdict().getKind());
+        assertFalse(now.gate().isPasses());
+        assertEquals(List.of(P_COME), now.gate().getReturned().stream().map(r -> r.getProposalId()).toList(),
+                "the gate says the grandmother would go back");
+
+        assertNull(change(batch, "mesa-" + MesaFixture.COME).getDroppedReason(), "nothing is given back");
+        assertEquals(BatchStatus.OPEN, batch.getStatus());
+        assertTrue(batch.getClosings() == null || batch.getClosings().isEmpty());
+        assertNull(batch.getBlindSampleId());
+        assertTrue(closing.samples.drawn.isEmpty());
+        assertTrue(judges.order.isEmpty(), "no judge is asked");
+        assertEquals(saves, closing.batches.saves, "nothing is saved");
     }
 
     @Test

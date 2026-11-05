@@ -45,6 +45,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchStore;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.batch.CurrentComparison;
 import com.learney.contentaudit.revisiondomain.batch.NoOpenBatchException;
 import com.learney.contentaudit.revisiondomain.comparison.GoalBook;
 import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
@@ -421,6 +422,18 @@ class DefaultBatchService implements BatchService {
                 ? batchStore.load(batchId).orElseThrow(() -> new NoOpenBatchException("No hay una tanda " + batchId + "."))
                 : requireOpen();
         return reportBuilder.build(batch);
+    }
+
+    /**
+     * F-HOY-R002: reads the batch as it is, without its lock -- another operation on it does not stop a reading -- and
+     * saves nothing.
+     */
+    @Override
+    public CurrentComparison compareNow(String batchId) {
+        CorrectionBatch batch = batchId != null && !batchId.isBlank()
+                ? batchStore.load(batchId).orElseThrow(() -> new NoOpenBatchException("No hay una tanda " + batchId + "."))
+                : requireOpen();
+        return closer.compareNow(batch, BatchCourses.start(batch, courseRepository.load(coursePath), batchStore));
     }
 
     @Override

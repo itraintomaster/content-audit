@@ -31,6 +31,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskCount;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.batch.CurrentComparison;
 import com.learney.contentaudit.revisiondomain.batch.OutcomeCount;
 import com.learney.contentaudit.revisiondomain.batch.QueriesByRole;
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
@@ -86,6 +87,31 @@ public class BatchCmdTest {
         Run invalid = run(service, "review", "--decision-json", decision.replace("APPROVED", "UNKNOWN"));
         assertEquals(2, invalid.exit());
         assertEquals(1, service.reviewDecisions.size(), "invalid input cannot reach the service");
+    }
+
+    @Test
+    @Tag("FEAT-HOY")
+    @Tag("F-HOY-R002")
+    @DisplayName("should print with 'batch compare <batch>' the comparison of the current analysis in JSON, without running, closing, dropping or deciding anything")
+    public void shouldPrintWithBatchCompareTheComparisonOfTheCurrentAnalysisInJsonWithoutRunningClosingDroppingOrDecidingAnything()
+            throws Exception {
+        Service service = new Service();
+
+        Run run = run(service, "compare", "tanda-A1-c2");
+
+        assertEquals(0, run.exit(), run.err());
+        assertEquals(List.of("tanda-A1-c2"), service.comparedNow);
+        var answer = new ObjectMapper().readTree(run.out());
+        assertEquals("tanda-A1-c2", answer.get("batchId").asText());
+        assertEquals(83, answer.get("contentVersion").asInt());
+        assertEquals("2026-10-07T08-15-39", answer.get("comparison").get("baselineAuditId").asText());
+        assertFalse(answer.get("gate").get("passes").asBoolean());
+        assertEquals("2026-10-01T13:00:00Z", answer.get("computedAt").asText());
+        assertTrue(service.runs.isEmpty());
+        assertTrue(service.closeRequests.isEmpty());
+        assertTrue(service.adjustments.isEmpty());
+        assertTrue(service.reviewDecisions.isEmpty());
+        assertTrue(service.savedReviews.isEmpty());
     }
 
     @Test
@@ -347,6 +373,17 @@ public class BatchCmdTest {
         @Override public BatchReviewSlice saveReview(BatchReviewDecision decision) {
             savedReviews.add(decision);
             return new BatchReviewSlice(decision.batchId(), 1, 1, BatchStatus.OPEN, savedReviews.size(), List.of());
+        }
+
+        final List<String> comparedNow = new ArrayList<>();
+
+        @Override public CurrentComparison compareNow(String batchId) {
+            comparedNow.add(batchId);
+            BatchComparison comparison = new BatchComparison();
+            comparison.setBaselineAuditId("2026-10-07T08-15-39");
+            comparison.setRows(new ArrayList<>());
+            return new CurrentComparison(batchId, 83, CLOSED_AT, comparison, new BatchGateVerdict(false,
+                    VerdictKind.FAILS, List.of(), List.of(), List.of(), List.of(), List.of(), List.of("un piso roto")));
         }
 
         /** What {@code close} hands back as the judges' accounts: the test sets the scenario before calling. */

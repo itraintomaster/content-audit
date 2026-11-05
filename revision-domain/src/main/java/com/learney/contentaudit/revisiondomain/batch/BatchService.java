@@ -36,4 +36,9 @@ public interface BatchService {
     default BatchReviewSlice saveReview(BatchReviewDecision decision) {
         throw new UnsupportedOperationException("La revisión no está disponible.");
     }
+
+    /** F-HOY: the comparison of the batch from its current analysis, without closing it or writing anything. */
+    default CurrentComparison compareNow(String batchId) {
+        throw new UnsupportedOperationException("Comparar con el análisis vigente no está disponible.");
+    }
 }
