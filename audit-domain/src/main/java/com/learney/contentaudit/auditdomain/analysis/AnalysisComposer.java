@@ -13,4 +13,8 @@ public interface AnalysisComposer {
     /** Projects historical reports for correction without changing their recorded measurements. */
     default AuditReport contentOnly(AuditReport report) { return report; }
     String fingerprint(String analyzer, AuditNode node);
+    /** Whether a judge saw of {@code from}, when it measured it, what it would see of {@code to} (F-MIDIO-R003). */
+    default boolean sameInput(String analyzer, AuditNode from, AuditNode to) {
+        return java.util.Objects.equals(fingerprint(analyzer, from), fingerprint(analyzer, to));
+    }
 }

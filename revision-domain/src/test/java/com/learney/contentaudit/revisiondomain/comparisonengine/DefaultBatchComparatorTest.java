@@ -68,6 +68,7 @@ import com.learney.contentaudit.revisiondomain.SealedGoalsStore;
 import com.learney.contentaudit.revisiondomain.blindsample.SampleOutcome;
 import com.learney.contentaudit.revisiondomain.blindsample.SampleOutcomeSource;
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
+import com.learney.contentaudit.revisiondomain.comparison.MeasuredReports;
 import com.learney.contentaudit.revisiondomain.comparison.BatchVerdict;
 import com.learney.contentaudit.revisiondomain.comparison.BetterDirection;
 import com.learney.contentaudit.revisiondomain.comparison.ChangeAttribution;
@@ -100,6 +101,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -1579,6 +1581,12 @@ public class DefaultBatchComparatorTest {
             return this;
         }
 
+        /** The node without the counts of an analyzer: the report did not measure it there. */
+        Foto sinContar(String id, String analyzer) {
+            errorCounts(id).getAnalyzers().removeIf(counts -> analyzer.equals(counts.getAnalyzer()));
+            return this;
+        }
+
         Foto finding(Finding finding) {
             nodes.get(finding.getNode().getNodeId()).getFindings().add(finding);
             return this;
@@ -1793,6 +1801,21 @@ public class DefaultBatchComparatorTest {
 
         BatchComparison compare() {
             return comparator().compare(COURSE, null);
+        }
+
+        /**
+         * F-MIDIO: the comparison over the reports the current analysis reads -- the base, the start, today and today
+         * alone -- with the judges only today measured and the ones the start did not measure as today.
+         */
+        BatchComparison compareMeasured(Foto base, Foto start, Foto today, Foto alone, Set<String> onlyToday,
+                Set<String> startNotComparable, ProjectedChange... changes) {
+            when(baselines.read()).thenReturn(Optional.of(new Baseline(BASELINE, FIXED_AT)));
+            CourseProjection projection = new CourseProjection(AUDIT, PLAN, PLAN, ConsolidatedViewAvailability.AVAILABLE,
+                    null, start.report(), start.report(), today.report(), new ArrayList<>(List.of(changes)),
+                    new ArrayList<>());
+            when(projector.projectWithMeasurements(any(), any(), any(), any())).thenReturn(projection);
+            return comparator().compareMeasured(null, null, new MeasuredReports(base.report(), projection.getApproved(),
+                    projection.getProjected(), alone != null ? alone.report() : null, onlyToday, startNotComparable));
         }
     }
 
@@ -2531,5 +2554,139 @@ public class DefaultBatchComparatorTest {
         assertEquals(VerdictKind.PASSES, elsewhere.getVerdict().getKind(), "R004: it blocks nothing");
         assertFalse(elsewhere.getVerdict().getDetail().contains("juez sin aprobar"),
                 elsewhere.getVerdict().getDetail());
+    }
+
+    // =========================================================================
+    // F-MIDIO: the comparison reads what was measured
+    // =========================================================================
+
+    @Test
+    @DisplayName("should count from the base the floor of a judge the start measured with another version, leave it without a pair in the start and not compare «algún error» against that start")
+    @Tag("FEAT-MIDIO")
+    @Tag("F-MIDIO-R002")
+    public void shouldCountFromTheBaseTheFloorOfAJudgeTheStartMeasuredWithAnotherVersion() {
+        // The start counted 5 errors with an old version; the base 2 and today 3, both with today's.
+        BatchComparison comparison = new Mesa().compareMeasured(
+                Foto.deHoy().errors(A1, INSTRUCTION, 2, 0).anyError(A1, 6, 2, 0),
+                Foto.deHoy().errors(A1, INSTRUCTION, 5, 0).anyError(A1, 6, 5, 0),
+                Foto.deHoy().errors(A1, INSTRUCTION, 3, 0).anyError(A1, 6, 3, 0), null, Set.of(), Set.of(INSTRUCTION));
+
+        ComparisonRow row = row(comparison, INSTRUCTION, A1);
+        assertNull(row.getApproved(), "R002: without a pair in the start");
+        assertEquals(3.0, row.getProjected().getValue(), 1e-9, "R002: today keeps what it measured");
+        assertEquals(GoalReference.BATCH_START, row.getFloor().getReference());
+        assertEquals(GoalStatus.NOT_MET, row.getFloor().getStatus(),
+                "R002: one more than the base, although two fewer than the old start");
+        ComparisonRow anyError = row(comparison, "algún error", A1);
+        assertNull(anyError.getApproved(), "R002: «algún error» counts that judge, so it is not compared against the start");
+        assertEquals(GoalStatus.NOT_MET, anyError.getFloor().getStatus(), "R002: from the base, 2 → 3");
+        assertNotNull(row(comparison, HINT, A1).getApproved(), "another judge is still compared against the start");
+    }
+
+    @Test
+    @DisplayName("should leave open what the base did not measure when the floor of a judge is counted from the base, and undecided without a number of the base or with one that evaluated nothing")
+    @Tag("FEAT-MIDIO")
+    @Tag("F-MIDIO-R002")
+    public void shouldLeaveOpenWhatTheBaseDidNotMeasureWhenTheFloorIsCountedFromTheBase() {
+        Foto start = Foto.deHoy().errors(A1, INSTRUCTION, 5, 0);
+        // Today 2 errors, as the base, and one exercise left unmeasured: it could be the third.
+        BatchComparison open = new Mesa().compareMeasured(Foto.deHoy().errors(A1, INSTRUCTION, 2, 0), start,
+                Foto.deHoy().errors(A1, INSTRUCTION, 2, 1), null, Set.of(), Set.of(INSTRUCTION));
+        assertEquals(GoalStatus.UNDECIDABLE, row(open, INSTRUCTION, A1).getFloor().getStatus(),
+                "R002: from the base every unmeasured exercise is open, changed or not");
+        BatchComparison closed = new Mesa().compareMeasured(Foto.deHoy().errors(A1, INSTRUCTION, 2, 0), start,
+                Foto.deHoy().errors(A1, INSTRUCTION, 2, 0), null, Set.of(), Set.of(INSTRUCTION));
+        assertEquals(GoalStatus.MET, row(closed, INSTRUCTION, A1).getFloor().getStatus(), "R002: all measured, 2 → 2");
+
+        BatchComparison withoutBase = new Mesa().compareMeasured(Foto.deHoy().sinContar(A1, INSTRUCTION), start,
+                Foto.deHoy().errors(A1, INSTRUCTION, 0, 0), null, Set.of(), Set.of(INSTRUCTION));
+        assertNull(row(withoutBase, INSTRUCTION, A1).getBaseline());
+        assertEquals(GoalStatus.UNDECIDABLE, row(withoutBase, INSTRUCTION, A1).getFloor().getStatus(),
+                "R002: the base does not have that number either");
+        BatchComparison nothingEvaluated = new Mesa().compareMeasured(Foto.deHoy().errors(A1, INSTRUCTION, 0, 6), start,
+                Foto.deHoy().errors(A1, INSTRUCTION, 0, 0), null, Set.of(), Set.of(INSTRUCTION));
+        assertEquals(GoalStatus.UNDECIDABLE, row(nothingEvaluated, INSTRUCTION, A1).getFloor().getStatus(),
+                "R002: a number of the base without any exercise evaluated is not a zero");
+    }
+
+    @Test
+    @DisplayName("should count from the base what a change gains of a judge the start measured with another version, where the start read something else: a finding the base had is not new, one it did not have returns the change")
+    @Tag("FEAT-MIDIO")
+    @Tag("F-MIDIO-R002")
+    public void shouldCountFromTheBaseWhatAChangeGainsOfAJudgeTheStartMeasuredWithAnotherVersion() {
+        Finding breach = hallazgo(INSTRUCTION, "instruction-breach", VEGETABLES, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, null, "La consigna pide la forma afirmativa.");
+        // The start's opinions of quiz-instruction were erased: it measured with an old version.
+        Foto start = Foto.deHoy();
+        start.unevaluated(VEGETABLES, INSTRUCTION);
+        BatchComparison had = new Mesa().compareMeasured(Foto.deHoy().finding(breach), start,
+                Foto.deHoy().finding(breach), null, Set.of(), Set.of(INSTRUCTION), cambio(P_VEGETABLES, VEGETABLES));
+        assertFalse(change(had, P_VEGETABLES).isReturns(), "R002: production already had it, it is not new");
+        assertEquals(List.of(breach), change(had, P_VEGETABLES).getPersistentFindings());
+
+        Foto erased = Foto.deHoy();
+        erased.unevaluated(VEGETABLES, INSTRUCTION);
+        BatchComparison gained = new Mesa().compareMeasured(Foto.deHoy(), erased, Foto.deHoy().finding(breach), null,
+                Set.of(), Set.of(INSTRUCTION), cambio(P_VEGETABLES, VEGETABLES));
+        assertTrue(change(gained, P_VEGETABLES).isReturns(), "R002: production did not have it: the change gained it");
+
+        // Where the start read what today reads, it carries today's opinion: the change gains nothing, whatever the base.
+        BatchComparison sameInput = new Mesa().compareMeasured(Foto.deHoy(), Foto.deHoy().finding(breach),
+                Foto.deHoy().finding(breach), null, Set.of(), Set.of(INSTRUCTION), cambio(P_VEGETABLES, VEGETABLES));
+        assertFalse(change(sameInput, P_VEGETABLES).isReturns(), "R002: the start had it, with today's opinion");
+    }
+
+    @Test
+    @DisplayName("should still count against the start the floor of a judge the start measured as today, with only the changed exercises left unmeasured open")
+    @Tag("FEAT-MIDIO")
+    @Tag("F-MIDIO-R002")
+    public void shouldStillCountAgainstTheStartTheFloorOfAJudgeTheStartMeasuredAsToday() {
+        BatchComparison comparison = new Mesa().compareMeasured(Foto.deHoy().errors(A1, INSTRUCTION, 2, 0),
+                Foto.deHoy().errors(A1, INSTRUCTION, 5, 0), Foto.deHoy().errors(A1, INSTRUCTION, 3, 1), null, Set.of(),
+                Set.of());
+        ComparisonRow row = row(comparison, INSTRUCTION, A1);
+        assertEquals(5.0, row.getApproved().getValue(), 1e-9);
+        assertEquals(GoalStatus.MET, row.getFloor().getStatus(),
+                "R002: two fewer than the start, and an exercise the batch did not change cannot gain an error");
+    }
+
+    @Test
+    @DisplayName("should give a row to a judge the batch did not list, from the numbers of each report, though no measure names it")
+    @Tag("FEAT-MIDIO")
+    @Tag("F-MIDIO-R004")
+    public void shouldGiveARowToAJudgeTheBatchDidNotListFromTheNumbersOfEachReport() {
+        // Its counts reached exercises of each report, at the root and in A1; no measure of the root names it.
+        Mesa mesa = new Mesa().baseline(Foto.deHoy().errors(ROOT, "a1-didactic", 2, 0).errors(A1, "a1-didactic", 2, 0));
+        mesa.batch(Foto.deHoy().errors(ROOT, "a1-didactic", 2, 0).errors(A1, "a1-didactic", 2, 0),
+                Foto.deHoy().errors(ROOT, "a1-didactic", 1, 0).errors(A1, "a1-didactic", 1, 0),
+                cambio(P_VEGETABLES, VEGETABLES));
+
+        ComparisonRow row = row(mesa.compare(), "a1-didactic", A1);
+
+        assertEquals(2.0, row.getBaseline().getValue(), 1e-9, "R004: the base");
+        assertEquals(1.0, row.getProjected().getValue(), 1e-9, "R004: and today");
+        assertEquals(-1.0, row.getChange(), 1e-9);
+        assertEquals(AnalyzerFamily.ERRORS, row.getFamily(), "R004: the family its numbers publish");
+    }
+
+    @Test
+    @DisplayName("should show a judge the base never measured with today's value alone: no base, no start, no change and no floor")
+    @Tag("FEAT-MIDIO")
+    @Tag("F-MIDIO-R005")
+    public void shouldShowAJudgeTheBaseNeverMeasuredWithTodaysValueAlone() {
+        BatchComparison comparison = new Mesa().compareMeasured(Foto.deHoy(), Foto.deHoy(), Foto.deHoy(),
+                Foto.deHoy().errors(A1, "pragmatism", 2, 0).errors(ROOT, "pragmatism", 2, 0), Set.of("pragmatism"),
+                Set.of());
+
+        ComparisonRow row = row(comparison, "pragmatism", A1);
+        assertEquals(2.0, row.getProjected().getValue(), 1e-9, "R005: what today measured");
+        assertNull(row.getBaseline(), "R005: without a pair");
+        assertNull(row.getApproved());
+        assertNull(row.getChange(), "R005: not in the difference");
+        assertNull(row.getFloor(), "R005: and no floor");
+        assertEquals(0.0, row(comparison, "algún error", A1).getProjected().getValue(), 1e-9,
+                "R005: «algún error» is today's without it");
+        assertTrue(comparison.getBreaches().isEmpty(), "R005: its two errors break nothing");
+        assertNull(row(comparison, "pragmatism", ROOT).getFloor());
     }
 }

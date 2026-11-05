@@ -92,6 +92,58 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
         return compose(primary, supplements, false);
     }
 
+    /**
+     * F-MIDIO-R003: the outline of the course some judges read depends on how many levels a reading has. It is context,
+     * not the exercise: when the two readings have different levels, the input is compared again over the levels both
+     * have, and anything else that changed still tells them apart.
+     */
+    @Override public boolean sameInput(String analyzer, AuditNode from, AuditNode to) {
+        if (Objects.equals(fingerprint(analyzer, from), fingerprint(analyzer, to))) return true;
+        List<String> fromLevels = levels(from), toLevels = levels(to);
+        if (fromLevels.equals(toLevels)) return false;
+        Set<String> shared = new LinkedHashSet<>(fromLevels); shared.retainAll(toLevels);
+        AuditNode a = within(from, shared), b = within(to, shared);
+        return a != null && b != null && Objects.equals(fingerprint(analyzer, a), fingerprint(analyzer, b));
+    }
+    /** The levels of the reading a node is in, in their order. */
+    private static List<String> levels(AuditNode node) {
+        AuditNode root = node;
+        while (root.getParent() != null) root = root.getParent();
+        var ids = new ArrayList<String>();
+        for (AuditNode level : safe(root.getChildren())) if (level.getEntity() != null) ids.add(level.getEntity().getId());
+        return ids;
+    }
+    /**
+     * The node as a reading with only {@code levels} would have it: its path to the root is copied, and the root keeps
+     * only those levels. Nothing of the original reading changes; null when the node's own level is not one of them.
+     */
+    private static AuditNode within(AuditNode node, Set<String> levels) {
+        var path = new ArrayList<AuditNode>();
+        for (AuditNode at = node; at != null; at = at.getParent()) path.add(0, at);
+        AuditNode parent = null;
+        AuditNode copy = null;
+        for (int i = 0; i < path.size(); i++) {
+            AuditNode original = path.get(i);
+            var children = new ArrayList<AuditNode>();
+            for (AuditNode child : safe(original.getChildren()))
+                if (i > 0 || child.getEntity() != null && levels.contains(child.getEntity().getId())) children.add(child);
+            copy = new AuditNode(original.getEntity(), original.getTarget(), parent, children, original.getScores(),
+                    original.getMetadata(), original.getDiagnoses());
+            copy.setFindings(original.getFindings());
+            copy.setUnevaluatedBy(original.getUnevaluatedBy());
+            copy.setPartiallyEvaluatedBy(original.getPartiallyEvaluatedBy());
+            if (parent != null) {
+                var siblings = parent.getChildren();
+                int at = -1;
+                for (int j = 0; j < siblings.size(); j++) if (siblings.get(j) == original) at = j;
+                if (at < 0) return null;
+                siblings.set(at, copy);
+            }
+            parent = copy;
+        }
+        return copy;
+    }
+
     @Override public AuditReport preserveCompatibleOpinions(AuditReport current, AuditReport previous,
             String previousAuditId) {
         Objects.requireNonNull(current, "Falta el análisis del contenido actual");
@@ -151,7 +203,7 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
             for (String id : supplement.nodeIds()) {
                 AuditNode from = source.get(id), to = target.get(id);
                 if (from == null || to == null || !hasStoredOpinion(from, name)) continue;
-                if (!Objects.equals(fingerprint(name, from), fingerprint(name, to))) continue;
+                if (!sameInput(name, from, to)) continue;
                 applied = true;
                 to.getScores().remove(name);
                 if (from.getScores().get(name) != null) to.getScores().put(name, from.getScores().get(name));

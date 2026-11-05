@@ -453,6 +453,30 @@ public class DefaultBatchCloserTest {
     }
 
     @Test
+    @DisplayName("should look for the changes of the batch in its own plan and apply them on the course it starts from, closing or comparing today")
+    @Tag("FEAT-MIDIO")
+    @Tag("F-MIDIO-R001")
+    public void shouldLookForTheChangesOfTheBatchInItsOwnPlanAndApplyThemOnTheCourseItStartsFrom() {
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
+        batch.setStatus(BatchStatus.OPEN);
+        batch.setPlanId("tanda-c2-plan");
+        closing.batches.save(batch);
+        AuditReport report = TandaFixture.report(closing.course, List.of(), Map.of(), List.of());
+        CurrentAnalysisService analysis = mock(CurrentAnalysisService.class);
+        when(analysis.comparisonReports(any(), any(), any()))
+                .thenReturn(new CurrentAnalysisService.ComparisonReports(report, report, report));
+        DefaultBatchCloser closer = new DefaultBatchCloser(closing.comparator, new DefaultGateFactory().batchGate(),
+                closing.samples, closing.ledger(), closing.batches, TandaFixture.COURSE_PATH, new RecordingJudgePass())
+                .withPlans(closing.plans, MesaFixture.corrections()).withCurrentAnalysis(analysis);
+
+        closer.compareNow(batch, closing.course);
+
+        assertEquals("tanda-c2-plan", closing.comparator.scopes.get(0).getPlanId(), "R001: the plan of the batch");
+        assertEquals(List.of(closing.course), closing.comparator.starts, "R001: on the course it starts from");
+    }
+
+    @Test
     @DisplayName("should close a failed aggregate analysis without attributing every change")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R006")

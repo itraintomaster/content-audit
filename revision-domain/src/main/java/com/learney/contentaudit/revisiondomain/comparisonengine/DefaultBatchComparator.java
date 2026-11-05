@@ -25,6 +25,7 @@ import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 import com.learney.contentaudit.auditdomain.offlevelwords.TaughtWords;
 import com.learney.contentaudit.auditdomain.offlevelwords.TopicTeachingResolver;
+import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.revisiondomain.blindsample.SampleOutcome;
 import com.learney.contentaudit.revisiondomain.blindsample.SampleOutcomeSource;
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparator;
@@ -43,6 +44,7 @@ import com.learney.contentaudit.revisiondomain.comparison.GoalReference;
 import com.learney.contentaudit.revisiondomain.comparison.GoalStatus;
 import com.learney.contentaudit.revisiondomain.comparison.GoalUnit;
 import com.learney.contentaudit.revisiondomain.comparison.MeasureChange;
+import com.learney.contentaudit.revisiondomain.comparison.MeasuredReports;
 import com.learney.contentaudit.revisiondomain.comparison.RowGoalStatus;
 import com.learney.contentaudit.revisiondomain.comparison.RowSubject;
 import com.learney.contentaudit.revisiondomain.comparison.RowValue;
@@ -152,16 +154,18 @@ public class DefaultBatchComparator implements BatchComparator {
     }
 
     private BatchComparison compare(Path coursePath, ProjectionScope scope, boolean attributeBreaches) {
-        return compare(coursePath, scope, attributeBreaches, null, null, null);
+        return compare(coursePath, null, scope, attributeBreaches, null);
     }
 
-    @Override public BatchComparison compareMeasured(Path coursePath, ProjectionScope scope,
-            AuditReport baseline, AuditReport approved, AuditReport projected) {
-        return compare(coursePath, scope, false, baseline, approved, projected);
+    @Override public BatchComparison compareMeasured(CourseEntity start, ProjectionScope scope, MeasuredReports reports) {
+        return compare(null, start, scope, false, reports);
     }
 
-    private BatchComparison compare(Path coursePath, ProjectionScope scope, boolean attributeBreaches,
-            AuditReport measuredBase, AuditReport measuredStart, AuditReport measuredProjected) {
+    private BatchComparison compare(Path coursePath, CourseEntity start, ProjectionScope scope, boolean attributeBreaches,
+            MeasuredReports measured) {
+        AuditReport measuredBase = measured != null ? measured.baseline() : null;
+        AuditReport measuredStart = measured != null ? measured.approved() : null;
+        AuditReport measuredProjected = measured != null ? measured.projected() : null;
         EffectiveGoals goals = goalBook.effective();
         Optional<SealedGoals> sealed = goalBook.sealed();
         BatchComparison comparison = new BatchComparison();
@@ -190,7 +194,7 @@ public class DefaultBatchComparator implements BatchComparator {
         }
 
         CourseProjection projection = measuredProjected == null ? courseProjector.project(coursePath, scope)
-                : courseProjector.projectWithMeasurements(coursePath, scope, measuredStart, measuredProjected);
+                : courseProjector.projectWithMeasurements(start, scope, measuredStart, measuredProjected);
         if (measuredProjected != null) {
             projection.setApproved(measuredStart);
             projection.setProjected(measuredProjected);
@@ -223,6 +227,14 @@ public class DefaultBatchComparator implements BatchComparator {
         comparison.setAppliedProposalIds(applied);
 
         Map<String, AnalyzerFamily> subjects = subjects(baselineReport, projection.getProjected());
+        // F-MIDIO-R005: a judge the base never measured has its row with what today measured, alone.
+        Set<String> onlyToday = measured != null && measured.projectedAlone() != null ? measured.onlyToday() : Set.of();
+        for (String judge : onlyToday) {
+            AnalyzerFamily family = familyOf(judge, subjects, measured.projectedAlone());
+            if (family != null) subjects.putIfAbsent(judge, family);
+        }
+        Set<String> startNotComparable = measured != null ? measured.startNotComparable() : Set.of();
+        Map<String, AuditNode> aloneIndex = onlyToday.isEmpty() ? Map.of() : ReportTree.index(measured.projectedAlone());
         Map<String, AuditNode> baselineIndex = ReportTree.index(baselineReport);
         Map<String, AuditNode> startIndex = ReportTree.index(projection.getApproved());
         Map<String, AuditNode> projectedIndex = ReportTree.index(projection.getProjected());
@@ -260,10 +272,20 @@ public class DefaultBatchComparator implements BatchComparator {
             String id = ReportTree.idOf(node);
             String key = ReportTree.key(node.getTarget(), id);
             for (Map.Entry<String, AnalyzerFamily> subject : subjects.entrySet()) {
-                ComparisonRow row = row(subject.getKey(), subject.getValue(), node, id, baselineIndex.get(key),
-                        startIndex.get(key), remeasuredSubjects.contains(subject.getKey()), remeasuredIndex, key,
-                        changedUnevaluated.getOrDefault(key, Map.of()).getOrDefault(subject.getKey(), 0), goalList,
-                        legend);
+                boolean alone = onlyToday.contains(subject.getKey());
+                AuditNode today = alone ? aloneIndex.get(key) : node;
+                if (today == null) {
+                    continue;
+                }
+                // F-MIDIO-R002: a judge the start measured with another version is not compared against it, nor is
+                // «algún error», which counts it.
+                boolean startCounts = !startNotComparable.contains(subject.getKey())
+                        && !(DefaultGoalBook.ANY_ERROR.equals(subject.getKey()) && !startNotComparable.isEmpty());
+                ComparisonRow row = row(subject.getKey(), subject.getValue(), today, id,
+                        alone ? null : baselineIndex.get(key), alone || !startCounts ? null : startIndex.get(key),
+                        !alone && remeasuredSubjects.contains(subject.getKey()), remeasuredIndex, key,
+                        changedUnevaluated.getOrDefault(key, Map.of()).getOrDefault(subject.getKey(), 0),
+                        alone ? List.of() : goalList, legend);
                 if (row != null) {
                     rows.add(row);
                 }
@@ -272,7 +294,8 @@ public class DefaultBatchComparator implements BatchComparator {
         comparison.setRows(rows);
 
         // R003: what returns.
-        List<ChangeOutcome> outcomes = outcomes(batch, startIndex, projectedIndex, projection, subjects, unapproved);
+        List<ChangeOutcome> outcomes = outcomes(batch, startIndex, projectedIndex, projection, subjects, unapproved,
+                baselineReport, baselineIndex, startNotComparable);
         comparison.setChanges(outcomes);
 
         // R004, R005: the broken floors, and who breaks a level or the course.
@@ -393,14 +416,19 @@ public class DefaultBatchComparator implements BatchComparator {
         return subjects;
     }
 
-    /** The analyzers that ran in a report: its measures or, for a report without them, its published numbers. */
+    /**
+     * The analyzers that ran in a report: its measures and, F-MIDIO-R004, the ones its numbers say reached an exercise --
+     * a judge integrated in a batch opened before it existed has no measure of its own. A report without measures is
+     * read from its published numbers alone.
+     */
     private static List<String> ranIn(AuditReport report) {
         List<String> names = ReportTree.measuredAnalyzers(report);
-        if (!names.isEmpty() || report == null || report.getRoot() == null) {
+        if (report == null || report.getRoot() == null) {
             return names;
         }
+        boolean published = names.isEmpty();
         ContextNumbers numbers = report.getRoot().getNumbers();
-        if (numbers != null && numbers.getAnalyzerScores() != null) {
+        if (published && numbers != null && numbers.getAnalyzerScores() != null) {
             for (AnalyzerScore score : numbers.getAnalyzerScores()) {
                 if (score.getAnalyzer() != null && !names.contains(score.getAnalyzer())) {
                     names.add(score.getAnalyzer());
@@ -409,7 +437,8 @@ public class DefaultBatchComparator implements BatchComparator {
         }
         if (numbers != null && numbers.getErrors() != null && numbers.getErrors().getAnalyzers() != null) {
             for (AnalyzerErrorCounts counts : numbers.getErrors().getAnalyzers()) {
-                if (counts.getAnalyzer() != null && !names.contains(counts.getAnalyzer())) {
+                if (counts.getAnalyzer() != null && !names.contains(counts.getAnalyzer())
+                        && (published || counts.getReached() > 0)) {
                     names.add(counts.getAnalyzer());
                 }
             }
@@ -646,20 +675,32 @@ public class DefaultBatchComparator implements BatchComparator {
         }
         GoalReference reference = goal.getReference() != null ? goal.getReference() : GoalReference.ABSOLUTE;
         ReportTree.Value from;
+        boolean fromBase = reference == GoalReference.BASELINE;
         switch (reference) {
             case BASELINE -> {
                 if (values.measureChanged() && values.remeasured() == null) {
                     return GoalStatus.UNDECIDABLE;
                 }
                 from = values.reference();
-                if (from == null || from.value() == null) {
+                // F-MIDIO-R002: a number without any exercise evaluated is not a zero.
+                if (from == null || from.value() == null || !from.evaluated()) {
                     return GoalStatus.UNDECIDABLE;
                 }
             }
             case BATCH_START -> {
                 from = values.start();
                 if (from == null || from.value() == null) {
-                    return GoalStatus.UNDECIDABLE;
+                    // F-MIDIO-R002: a start not compared for this judge leaves the floor counted from the base, with what
+                    // the base did not measure left open. A start that evaluated nothing of a node the batch did not
+                    // change is still its start: an exercise left as it was cannot gain an error.
+                    if (values.measureChanged() && values.remeasured() == null) {
+                        return GoalStatus.UNDECIDABLE;
+                    }
+                    from = values.reference();
+                    if (from == null || from.value() == null || !from.evaluated()) {
+                        return GoalStatus.UNDECIDABLE;
+                    }
+                    fromBase = true;
                 }
             }
             default -> from = null;
@@ -667,7 +708,7 @@ public class DefaultBatchComparator implements BatchComparator {
         double threshold = goal.getThreshold();
         GoalUnit unit = goal.getUnit() != null ? goal.getUnit()
                 : values.family() == AnalyzerFamily.VOCABULARY ? GoalUnit.POINTS : GoalUnit.EXERCISES;
-        int open = reference == GoalReference.BATCH_START ? values.changedUnevaluated() : projected.notEvaluated();
+        int open = reference == GoalReference.BATCH_START && !fromBase ? values.changedUnevaluated() : projected.notEvaluated();
         switch (unit) {
             case POINTS -> {
                 if (from == null) {
@@ -761,13 +802,14 @@ public class DefaultBatchComparator implements BatchComparator {
      */
     private List<ChangeOutcome> outcomes(List<ProjectedChange> batch, Map<String, AuditNode> startIndex,
             Map<String, AuditNode> projectedIndex, CourseProjection projection, Map<String, AnalyzerFamily> subjects,
-            UnapprovedJudges unapproved) {
+            UnapprovedJudges unapproved, AuditReport baselineReport, Map<String, AuditNode> baselineIndex,
+            Set<String> startNotComparable) {
         List<ChangeOutcome> outcomes = new ArrayList<>();
         if (batch.isEmpty()) {
             return outcomes;
         }
         Set<String> startKeys = new HashSet<>();
-        for (Finding finding : findingsUnder(projection.getApproved().getRoot())) {
+        for (Finding finding : before(projection.getApproved().getRoot(), baselineIndex, startNotComparable)) {
             startKeys.add(identity(finding));
         }
         Map<String, List<Finding>> gainedNaming = new HashMap<>();
@@ -787,7 +829,7 @@ public class DefaultBatchComparator implements BatchComparator {
             String key = ReportTree.key(change.getNodeTarget(), change.getNodeId());
             AuditNode before = startIndex.get(key);
             AuditNode after = projectedIndex.get(key);
-            List<Finding> beforeFindings = findingsUnder(before);
+            List<Finding> beforeFindings = before(before, baselineIndex, startNotComparable);
             List<Finding> afterFindings = findingsUnder(after);
             Set<String> beforeKeys = new HashSet<>();
             for (Finding finding : beforeFindings) {
@@ -846,6 +888,36 @@ public class DefaultBatchComparator implements BatchComparator {
             outcomes.add(outcome);
         }
         return outcomes;
+    }
+
+    /**
+     * F-MIDIO-R002: what the nodes under {@code start} had before. Of a judge the start did not measure as today, a node
+     * keeps the start's opinion where it read what today reads -- today's, so the change gains nothing there -- and takes
+     * the base's where it read something else: what a change gains of that judge is counted from the base, as its floor.
+     */
+    private static List<Finding> before(AuditNode start, Map<String, AuditNode> baselineIndex,
+            Set<String> startNotComparable) {
+        if (startNotComparable.isEmpty()) {
+            return findingsUnder(start);
+        }
+        List<Finding> findings = new ArrayList<>();
+        for (AuditNode node : nodesUnder(start)) {
+            AuditNode base = baselineIndex.get(ReportTree.key(node.getTarget(), ReportTree.idOf(node)));
+            List<String> unevaluated = listOrEmpty(node.getUnevaluatedBy());
+            for (Finding finding : listOrEmpty(node.getFindings())) {
+                if (finding != null && (!startNotComparable.contains(finding.getAnalyzer())
+                        || !unevaluated.contains(finding.getAnalyzer()))) {
+                    findings.add(finding);
+                }
+            }
+            for (Finding finding : base != null ? listOrEmpty(base.getFindings()) : List.<Finding>of()) {
+                if (finding != null && startNotComparable.contains(finding.getAnalyzer())
+                        && unevaluated.contains(finding.getAnalyzer())) {
+                    findings.add(finding);
+                }
+            }
+        }
+        return findings;
     }
 
     /**

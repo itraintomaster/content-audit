@@ -175,7 +175,7 @@ class CorrectionEvolutionServiceTest {
         var report = TandaFixture.report(composed,List.of(),Map.of(),List.of());
         when(analysis.comparisonReports(any(),any(),any())).thenReturn(
                 new CurrentAnalysisService.ComparisonReports(report,report,report));
-        when(comparator.compareMeasured(any(),any(),any(),any(),any())).thenAnswer(i ->
+        when(comparator.compareMeasured(any(),any(),any())).thenAnswer(i ->
                 TandaFixture.passing(i.getArgument(1),List.of()));
         var closer = new DefaultBatchCloser(comparator,
                 new com.learney.contentaudit.revisiondomain.nonregressionengine.DefaultGateFactory().batchGate(),
@@ -183,7 +183,7 @@ class CorrectionEvolutionServiceTest {
         var closed = closer.close(child,base,new BatchCloseRequest(Map.of(),0));
         assertTrue(closed.getClosings().get(0).getGate().isPasses());
         assertEquals("Primera",translation(closed));
-        verify(comparator).compareMeasured(any(),any(),any(),any(),any());
+        verify(comparator).compareMeasured(any(),any(),any());
         verify(comparator,never()).compareSummary(any(),any());
         var foreign = CorrectionEvolution.copyCourse(composed);
         var quizzes = foreign.getRoot().getMilestones().get(0).getTopics().get(0).getKnowledges().get(0).getQuizTemplates();

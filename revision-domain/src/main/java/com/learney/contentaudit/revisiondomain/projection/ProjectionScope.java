@@ -16,6 +16,9 @@ public class ProjectionScope {
 
     private Map<String, Integer> analyzerBudgets;
 
+    /** F-MIDIO-R001: the plan whose proposals the scope names; without it, the active plan's. */
+    private String planId;
+
     public ProjectionScope() {
     }
 
@@ -24,6 +27,12 @@ public class ProjectionScope {
         this.scopeId = scopeId;
         this.proposalIds = proposalIds;
         this.analyzerBudgets = analyzerBudgets;
+    }
+
+    public ProjectionScope(String scopeId, List<String> proposalIds,
+            Map<String, Integer> analyzerBudgets, String planId) {
+        this(scopeId, proposalIds, analyzerBudgets);
+        this.planId = planId;
     }
 
     public String getScopeId() {
@@ -50,6 +59,13 @@ public class ProjectionScope {
         this.analyzerBudgets = analyzerBudgets;
     }
 
+    public String getPlanId() {
+        return this.planId;
+    }
+    public void setPlanId(String planId) {
+        this.planId = planId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -57,11 +73,12 @@ public class ProjectionScope {
         ProjectionScope that = (ProjectionScope) o;
         return Objects.equals(this.scopeId, that.scopeId)
                     && Objects.equals(this.proposalIds, that.proposalIds)
-                    && Objects.equals(this.analyzerBudgets, that.analyzerBudgets);
+                    && Objects.equals(this.analyzerBudgets, that.analyzerBudgets)
+                    && Objects.equals(this.planId, that.planId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(scopeId, proposalIds, analyzerBudgets);
+        return Objects.hash(scopeId, proposalIds, analyzerBudgets, planId);
     }
 }

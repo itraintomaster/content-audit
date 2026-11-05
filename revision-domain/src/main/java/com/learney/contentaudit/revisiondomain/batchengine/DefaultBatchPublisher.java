@@ -343,8 +343,7 @@ class DefaultBatchPublisher implements BatchPublisher {
         BatchComparison comparison = last.getComparison();
         if (currentAnalysis != null) {
             var measured = currentAnalysis.comparisonReports(batch, startCourse, changeLedger.composedCourse(batch, startCourse));
-            comparison = batchComparator.compareMeasured(coursePath, DefaultBatchCloser.scope(batch),
-                    measured.baseline(), measured.approved(), measured.projected());
+            comparison = batchComparator.compareMeasured(startCourse, DefaultBatchCloser.scope(batch), measured.measured());
             var tasks = refinementPlanStore.load(batch.getPlanId()).map(BatchBook::tasksById).orElse(Map.of());
             var currentGate = new com.learney.contentaudit.revisiondomain.nonregressionengine.DefaultGateFactory().batchGate()
                     .evaluate(comparison, DefaultBatchCloser.changedOutside(batch, startCourse,

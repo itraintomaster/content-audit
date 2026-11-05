@@ -1783,9 +1783,10 @@ class Main {
                 return delegate().project(coursePath, scope);
             }
 
-            @Override public CourseProjection projectWithMeasurements(Path coursePath, ProjectionScope scope,
-                    com.learney.contentaudit.auditdomain.AuditReport approved, com.learney.contentaudit.auditdomain.AuditReport projected) {
-                return delegate().projectWithMeasurements(coursePath, scope, approved, projected);
+            @Override public CourseProjection projectWithMeasurements(com.learney.contentaudit.coursedomain.CourseEntity start,
+                    ProjectionScope scope, com.learney.contentaudit.auditdomain.AuditReport approved,
+                    com.learney.contentaudit.auditdomain.AuditReport projected) {
+                return delegate().projectWithMeasurements(start, scope, approved, projected);
             }
         };
     }

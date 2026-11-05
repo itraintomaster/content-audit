@@ -34,7 +34,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
             if (!DefaultAnalysisComposer.eligible(node, analyzer)) continue;
             String id = node.getEntity().getId(); var other = corrected.get(id);
             boolean matches = other != null && DefaultAnalysisComposer.eligible(other, analyzer)
-                    && Objects.equals(composer.fingerprint(analyzer, node), composer.fingerprint(analyzer, other))
+                    && composer.sameInput(analyzer, node, other)
                     && (requiredVersion == null || DefaultAnalysisComposer.evaluated(other, analyzer)
                     && Objects.equals(requiredVersion, DefaultAnalysisComposer.version(other, analyzer, correction)));
             String unit = Set.of("mini-theory", "near-duplicates").contains(analyzer) ? node.ancestor(AuditTarget.KNOWLEDGE)
@@ -375,16 +375,32 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
     }
 
     @Override public ComparisonReports comparisonReports(CorrectionBatch batch, CourseEntity start, CourseEntity composed) {
+        // F-MIDIO-R007: the base, the start and today are read in the level of the correction, as its analysis is.
+        if (batch.getLevel() != null) { start = cut(start, batch.getLevel()); composed = cut(composed, batch.getLevel()); }
         AuditReport baseline = report(batch, "base", start);
-        AuditReport projected = report(batch, "correction", composed);
+        // F-MIDIO-R004: today also with what the instant analyzers of errors the batch lacks find, measured for free.
+        AuditReport projected = report(batch, "correction", composed, true, null);
         AuditReport approved = Objects.equals(batch.getStartAuditId(), batch.getBaselineAuditId()) ? baseline
                 : composer.compose(scopedSeed(config.getAuditReportStore().load(batch.getStartAuditId())
                         .orElseThrow(() -> new IllegalStateException("Falta el análisis de inicio de la tanda.")),start), List.of());
+        // F-MIDIO-R006: the instant analyzers today ran are measured again, for free and with today's rules, on what the
+        // base and the start have: a level the batch did not touch gives the same on both sides.
+        List<String> instant = instantAnalyzersOf(projected);
+        measureAsToday(baseline, instant);
+        if (approved != baseline) measureAsToday(approved, instant);
         var a = DefaultAnalysisComposer.index(baseline.getRoot());
         var startIndex = DefaultAnalysisComposer.index(approved.getRoot());
         var b = DefaultAnalysisComposer.index(projected.getRoot());
+        // F-MIDIO-R005: a judge the base never measured is read from today alone, as it was measured, and is left out of
+        // everything that is compared.
+        Set<String> onlyToday = new TreeSet<>();
+        for (String judge : judgesOfExercises(b)) if (measures(b, judge) && !measures(a, judge)) onlyToday.add(judge);
+        AuditReport alone = onlyToday.isEmpty() ? null : composer.compose(projected, List.of());
+        for (String judge : onlyToday) for (var index : List.of(a, startIndex, b)) for (var n : index.values()) forget(n, judge);
+        Set<String> startNotComparable = new TreeSet<>();
         // Missing ends or mixed criteria never prove an improvement or regression.
         for (String analyzer : composer.supportedAnalyzers()) {
+            if (onlyToday.contains(analyzer)) continue;
             for (var entry : b.entrySet()) if (entry.getValue().getTarget() == AuditTarget.QUIZ
                     && DefaultAnalysisComposer.eligible(entry.getValue(), analyzer)) {
                 var before = a.get(entry.getKey()); var after = entry.getValue();
@@ -397,7 +413,19 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                     invalidate(before, analyzer); invalidate(after, analyzer);
                 }
             }
-            for (var entry : b.entrySet()) if (DefaultAnalysisComposer.eligible(entry.getValue(), analyzer)) {
+            // F-MIDIO-R002: a start that did not measure, with today's version and runtime, every exercise today measured
+            // is not compared for that judge, and today keeps what it measured. When the start is the base, the base
+            // already left only what both measured alike.
+            if (approved != baseline && !startMeasuredAsToday(analyzer, startIndex, b, approved, projected)) {
+                startNotComparable.add(analyzer);
+                // Where the start read what today reads, today's opinion is the start's: a change gains nothing there.
+                for (var entry : startIndex.entrySet()) if (entry.getValue().getTarget() == AuditTarget.QUIZ) {
+                    var n = entry.getValue(); var today = b.get(entry.getKey());
+                    if (today != null && DefaultAnalysisComposer.eligible(n, analyzer) && DefaultAnalysisComposer.evaluated(today, analyzer)
+                            && composer.sameInput(analyzer, n, today)) adopt(n, today, analyzer);
+                    else invalidate(n, analyzer);
+                }
+            } else for (var entry : b.entrySet()) if (DefaultAnalysisComposer.eligible(entry.getValue(), analyzer)) {
                 var before = startIndex.get(entry.getKey()); var after = entry.getValue();
                 if (before == null || !DefaultAnalysisComposer.evaluated(before, analyzer)
                         || !DefaultAnalysisComposer.evaluated(after, analyzer)
@@ -411,8 +439,103 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
             for (var n : a.values()) if (n.getTarget() != AuditTarget.QUIZ) n.getScores().remove(analyzer);
             for (var n : b.values()) if (n.getTarget() != AuditTarget.QUIZ) n.getScores().remove(analyzer);
         }
+        // F-MIDIO-R006: a judge is compared exercise by exercise, on what both sides measured alike; the measure its
+        // report saved at the root does not leave it undecided.
+        alignJudgeMeasures(projected, baseline, approved);
         baseline = composer.compose(baseline, List.of()); projected = composer.compose(projected, List.of());
-        return new ComparisonReports(baseline, composer.compose(approved, List.of()), projected);
+        return new ComparisonReports(baseline, composer.compose(approved, List.of()), projected, alone, onlyToday,
+                startNotComparable);
+    }
+    /** F-MIDIO-R006: the instant analyzers of the catalog that ran in today's reading. */
+    private List<String> instantAnalyzersOf(AuditReport today) {
+        if (config.getAnalyzerCatalog() == null) return List.of();
+        Set<String> ran = new HashSet<>();
+        for (var measure : BatchBook.list(today.getRoot().getMeasures())) ran.add(measure.getAnalyzer());
+        for (var n : DefaultAnalysisComposer.index(today.getRoot()).values()) ran.addAll(n.getScores().keySet());
+        var names = new ArrayList<String>();
+        for (var card : BatchBook.list(config.getAnalyzerCatalog().list()))
+            if (card.getCost() == AnalysisCost.INSTANT && ran.contains(card.getName())) names.add(card.getName());
+        return names;
+    }
+    /**
+     * F-MIDIO-R006: {@code report} with what the instant analyzers find today on its own content -- the course it
+     * measured, rebuilt from its entities --, without a query: their scores, findings, marks and measures replace the
+     * saved ones.
+     */
+    private void measureAsToday(AuditReport report, List<String> names) {
+        if (names.isEmpty() || config.getAuditEngine() == null) return;
+        AuditableCourse course = MeasuredCourse.of(report, Map.of());
+        if (course == null) return;
+        var policies = new LinkedHashMap<String, EvaluationRunPolicy>();
+        for (String name : names) policies.put(name, new EvaluationRunPolicy(0, false, null, null, EvaluationRunPurpose.READING, 1));
+        AuditReport fresh = config.getAuditEngine().runAudit(course, new AnalyzerRunSelection(names, policies));
+        if (fresh == null || fresh.getRoot() == null) return;
+        fresh = composer.contentOnly(fresh);
+        var index = DefaultAnalysisComposer.index(report.getRoot());
+        for (var entry : DefaultAnalysisComposer.index(fresh.getRoot()).entrySet()) {
+            AuditNode to = index.get(entry.getKey()), from = entry.getValue();
+            if (to == null) continue;
+            for (String name : names) {
+                Double score = from.getScores().get(name);
+                if (score != null) to.getScores().put(name, score); else to.getScores().remove(name);
+                to.getFindings().removeIf(f -> name.equals(f.getAnalyzer()));
+                for (var finding : from.getFindings()) if (name.equals(finding.getAnalyzer())) to.getFindings().add(finding);
+                to.getUnevaluatedBy().remove(name);
+                if (BatchBook.list(from.getUnevaluatedBy()).contains(name)) to.getUnevaluatedBy().add(name);
+                to.getPartiallyEvaluatedBy().remove(name);
+                if (BatchBook.list(from.getPartiallyEvaluatedBy()).contains(name)) to.getPartiallyEvaluatedBy().add(name);
+            }
+        }
+        var measures = new ArrayList<>(BatchBook.list(report.getRoot().getMeasures()));
+        measures.removeIf(m -> names.contains(m.getAnalyzer()));
+        for (var measure : BatchBook.list(fresh.getRoot().getMeasures())) if (names.contains(measure.getAnalyzer())) measures.add(measure);
+        report.getRoot().setMeasures(measures);
+    }
+    /** F-MIDIO-R006: each judge's measure at the root of {@code others} is today's, once only opinions measured alike remain. */
+    private void alignJudgeMeasures(AuditReport today, AuditReport... others) {
+        var current = new HashMap<String, com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure>();
+        for (var measure : BatchBook.list(today.getRoot().getMeasures())) current.put(measure.getAnalyzer(), measure);
+        for (AuditReport report : others) {
+            var measures = new ArrayList<com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure>();
+            for (var measure : BatchBook.list(report.getRoot().getMeasures()))
+                measures.add(composer.supportedAnalyzers().contains(measure.getAnalyzer()) && current.containsKey(measure.getAnalyzer())
+                        ? current.get(measure.getAnalyzer()) : measure);
+            report.getRoot().setMeasures(measures);
+        }
+    }
+    /** The judges a reading has for its exercises: the ones with an opinion of their own and every one the composer reads. */
+    private Set<String> judgesOfExercises(Map<String, AuditNode> index) {
+        Set<String> names = new TreeSet<>(composer.supportedAnalyzers());
+        for (var n : index.values()) if (n.getTarget() == AuditTarget.QUIZ)
+            for (String name : n.getScores().keySet()) if (!name.contains("/")) names.add(name);
+        return names;
+    }
+    /** Whether a judge left an opinion -- a score or a saved abstention -- on any exercise of a reading. */
+    private static boolean measures(Map<String, AuditNode> index, String judge) {
+        for (var n : index.values()) if (n.getTarget() == AuditTarget.QUIZ && DefaultAnalysisComposer.hasStoredOpinion(n, judge)) return true;
+        return false;
+    }
+    /** A judge out of a reading: no score, no finding and no unmeasured mark of it remains, so nothing counts it. */
+    private static void forget(AuditNode node, String judge) {
+        node.getScores().remove(judge);
+        node.getFindings().removeIf(f -> judge.equals(f.getAnalyzer()));
+        node.getUnevaluatedBy().remove(judge);
+        node.getPartiallyEvaluatedBy().remove(judge);
+    }
+    /** F-MIDIO-R002: whether the start has, for every exercise today measured, the judge's opinion with today's version and runtime. */
+    private static boolean startMeasuredAsToday(String analyzer, Map<String, AuditNode> start, Map<String, AuditNode> today,
+            AuditReport approved, AuditReport projected) {
+        for (var entry : today.entrySet()) {
+            var after = entry.getValue();
+            if (after.getTarget() != AuditTarget.QUIZ || !DefaultAnalysisComposer.eligible(after, analyzer)
+                    || !DefaultAnalysisComposer.evaluated(after, analyzer)) continue;
+            var before = start.get(entry.getKey());
+            String version = before == null ? null : DefaultAnalysisComposer.version(before, analyzer, approved);
+            if (before == null || !DefaultAnalysisComposer.evaluated(before, analyzer) || version == null
+                    || !Objects.equals(version, DefaultAnalysisComposer.version(after, analyzer, projected))
+                    || !Objects.equals(runtime(before, analyzer, approved), runtime(after, analyzer, projected))) return false;
+        }
+        return true;
     }
     private Map<String, List<String>> comparable(AuditReport before, AuditReport after) {
         var a = DefaultAnalysisComposer.index(before.getRoot());
@@ -521,6 +644,16 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
             return BatchBook.list(d.getJudgeCoverages()).stream().filter(c -> analyzer.equals(c.getJudgeName()) && c.getStanding() != null)
                     .map(c -> Objects.toString(c.getStanding().getRuntimeIdentity(), "")).findFirst().orElse(null);
         return null;
+    }
+    /** F-MIDIO-R002: {@code node} with the opinion of {@code analyzer} that {@code from} has, read on the same input. */
+    private static void adopt(AuditNode node, AuditNode from, String analyzer) {
+        Double score = from.getScores().get(analyzer);
+        if (score != null) node.getScores().put(analyzer, score); else node.getScores().remove(analyzer);
+        node.getFindings().removeIf(f -> analyzer.equals(f.getAnalyzer()));
+        for (var finding : from.getFindings()) if (analyzer.equals(finding.getAnalyzer())) node.getFindings().add(finding);
+        node.getUnevaluatedBy().remove(analyzer);
+        node.getPartiallyEvaluatedBy().remove(analyzer);
+        if (BatchBook.list(from.getPartiallyEvaluatedBy()).contains(analyzer)) node.getPartiallyEvaluatedBy().add(analyzer);
     }
     private static void invalidate(AuditNode node, String analyzer) {
         if (node == null || !DefaultAnalysisComposer.eligible(node, analyzer)) return;
@@ -638,7 +771,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
             reached++;
             AuditNode old = from.get(q.getId());
             if (old == null || !DefaultAnalysisComposer.hasStoredOpinion(old, run.analyzer())
-                    || !Objects.equals(composer.fingerprint(run.analyzer(), old), composer.fingerprint(run.analyzer(), node))) continue;
+                    || !composer.sameInput(run.analyzer(), old, node)) continue;
             ids.add(q.getId());
             String runVersion = DefaultAnalysisComposer.version(old, run.analyzer(), source);
             boolean runIsToday = isOfToday(today, runVersion, runRuntime);

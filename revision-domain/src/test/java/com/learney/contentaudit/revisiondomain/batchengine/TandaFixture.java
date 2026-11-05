@@ -643,10 +643,14 @@ public final class TandaFixture {
     /** F's comparison, written by hand: what each scope gives. */
     public static final class Comparator implements BatchComparator {
         public AuditReport suppliedProjection;
+        /** The course each comparison of an analysis started from (F-MIDIO-R001). */
+        public final List<CourseEntity> starts = new ArrayList<>();
 
-        @Override public BatchComparison compareMeasured(Path path, ProjectionScope scope,
-                AuditReport baseline, AuditReport approved, AuditReport projected) {
-            suppliedProjection = projected; return compare(path, scope);
+        @Override public BatchComparison compareMeasured(CourseEntity start, ProjectionScope scope,
+                com.learney.contentaudit.revisiondomain.comparison.MeasuredReports reports) {
+            suppliedProjection = reports.projected(); starts.add(start);
+            scopes.add(scope);
+            return answer.apply(scope);
         }
         public final List<ProjectionScope> scopes = new ArrayList<>();
 

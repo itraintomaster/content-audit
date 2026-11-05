@@ -74,16 +74,20 @@ class DefaultCourseProjector implements CourseProjector {
 
     @Override
     public CourseProjection project(Path coursePath, ProjectionScope scope) {
-        return project(coursePath, scope, null, null);
+        return project(coursePath, null, scope, null, null);
     }
 
-    @Override public CourseProjection projectWithMeasurements(Path coursePath, ProjectionScope scope,
+    @Override public CourseProjection projectWithMeasurements(CourseEntity start, ProjectionScope scope,
             AuditReport approved, AuditReport projected) {
-        return project(coursePath, scope, approved, projected);
+        return project(null, start, scope, approved, projected);
     }
 
-    private CourseProjection project(Path coursePath, ProjectionScope scope, AuditReport measuredApproved,
-            AuditReport measuredProjected) {
+    /**
+     * {@code start}: F-MIDIO-R001, the course a batch starts from, instead of the course of today at {@code coursePath};
+     * the scope's plan, when it names one, instead of the active plan.
+     */
+    private CourseProjection project(Path coursePath, CourseEntity start, ProjectionScope scope,
+            AuditReport measuredApproved, AuditReport measuredProjected) {
         // The active pair: the projection starts from it (F-PROYU-R006).
         Optional<ActiveAnalysisSelection> selection = activeAnalysisSelectionStore.read();
         if (selection.isEmpty() || selection.get().getAuditId() == null || selection.get().getPlanId() == null) {
@@ -91,11 +95,12 @@ class DefaultCourseProjector implements CourseProjector {
                     "No hay un par activo: set-active --audit <id> --plan <id>");
         }
         String auditId = selection.get().getAuditId();
-        String planId = selection.get().getPlanId();
+        boolean own = scope != null && scope.getPlanId() != null && !scope.getPlanId().isBlank();
+        String planId = own ? scope.getPlanId() : selection.get().getPlanId();
         Optional<RefinementPlan> plan = refinementPlanStore.load(planId);
         if (plan.isEmpty()) {
             return unavailable(auditId, planId, scope, ConsolidatedViewUnavailabilityReason.ACTIVE_PLAN_UNAVAILABLE,
-                    "El plan activo '" + planId + "' no está");
+                    (own ? "El plan de la corrección '" : "El plan activo '") + planId + "' no está");
         }
         Optional<AuditReport> active = auditReportStore.load(auditId);
         if (active.isEmpty()) {
@@ -129,13 +134,14 @@ class DefaultCourseProjector implements CourseProjector {
                     pending.add(proposal);
                 } else {
                     nonApplicable.add(new NonApplicablePending(id, NonApplicablePendingReason.OTHER,
-                            "'" + id + "' no es una propuesta pendiente del plan activo '" + planId + "'"));
+                            "'" + id + "' no es una propuesta pendiente del plan " + (own ? "de la corrección" : "activo")
+                                    + " '" + planId + "'"));
                 }
             }
         }
 
-        CourseEntity course;
-        try {
+        CourseEntity course = start;
+        if (course == null) try {
             course = courseRepository.load(coursePath);
         } catch (RuntimeException e) {
             return unavailable(auditId, planId, scope, ConsolidatedViewUnavailabilityReason.REAGGREGATION_FAILED,

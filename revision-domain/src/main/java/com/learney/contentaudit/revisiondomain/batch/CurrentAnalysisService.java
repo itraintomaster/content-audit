@@ -23,7 +23,17 @@ public interface CurrentAnalysisService {
         throw new UnsupportedOperationException("El servicio no declara el encaje de reanálisis.");
     }
     record ReanalysisScope(java.util.Set<String> sharedQuizIds, java.util.Set<String> baseOnlyQuizIds, int baseOnlyUnits, int sharedUnits) {}
-    record ComparisonReports(AuditReport baseline, AuditReport approved, AuditReport projected) {}
+    /** See {@link com.learney.contentaudit.revisiondomain.comparison.MeasuredReports}, what the comparison reads. */
+    record ComparisonReports(AuditReport baseline, AuditReport approved, AuditReport projected,
+            AuditReport projectedAlone, java.util.Set<String> onlyToday, java.util.Set<String> startNotComparable) {
+        public ComparisonReports(AuditReport baseline, AuditReport approved, AuditReport projected) {
+            this(baseline, approved, projected, null, java.util.Set.of(), java.util.Set.of());
+        }
+        public com.learney.contentaudit.revisiondomain.comparison.MeasuredReports measured() {
+            return new com.learney.contentaudit.revisiondomain.comparison.MeasuredReports(baseline, approved, projected,
+                    projectedAlone, onlyToday, startNotComparable);
+        }
+    }
 
     record Request(String action, String batchId, String state, String runId, String operationId,
             String removesOperationId, Integer expectedRevision, Integer contentVersion,

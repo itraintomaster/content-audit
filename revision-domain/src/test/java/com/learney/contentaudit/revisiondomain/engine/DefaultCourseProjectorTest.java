@@ -371,6 +371,49 @@ public class DefaultCourseProjectorTest {
      * (grandmother is A2) and «coca-buckets-distribution» counts the words of every topic. The engine, the
      * aggregation, the numbers and the findings are the real ones.
      */
+    @Test
+    @DisplayName("should recognize the changes of a batch in its own plan, applied on the course it starts from, though the active plan is another and the course of today lacks the content they start from")
+    @Tag("FEAT-MIDIO")
+    @Tag("F-MIDIO-R001")
+    public void shouldRecognizeTheChangesOfABatchInItsOwnPlanAppliedOnTheCourseItStartsFrom() {
+        // R001: the C2 of 5/11 -- its proposals are in its own plan and start from what the C1 left, «She wears hats.»;
+        // the active plan is the C1's and the course of today still says what production says.
+        Curso.Mesa mesa = new Curso.Mesa(Curso.course());
+        mesa.pending(Curso.VEGETABLES);
+        String plan = "tanda-c2-plan";
+        QuizTemplateEntity caps = Curso.quiz(Curso.HATS, Curso.REGULAR, "She", "wears", "(wear) caps.",
+                "She wears caps.", "Ella usa gorras.");
+        RevisionProposal ownProposal = new RevisionProposal("c2-hats", "task-c2", plan, Curso.AUDIT, DiagnosisKind.LEMMA_ABSENCE,
+                AuditTarget.QUIZ, Curso.HATS, new CourseElementSnapshot(AuditTarget.QUIZ, Curso.HATS, Curso.after(Curso.HATS), null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, Curso.HATS, caps, null), "la C2", "prueba",
+                Instant.parse("2026-11-05T10:00:00Z"), null, List.of(), null);
+        when(mesa.plans.load(plan)).thenReturn(Optional.of(new RefinementPlan(plan, Curso.AUDIT,
+                Instant.parse("2026-10-25T15:38:02Z"), List.of())));
+        when(mesa.artifacts.listByPlan(plan)).thenReturn(List.of(new RevisionArtifact(ownProposal,
+                RevisionVerdict.PENDING_APPROVAL, null, RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, null, null, null, null)));
+        CourseEntity start = Curso.written(Curso.course(), Curso.after(Curso.HATS));
+        AuditReport measured = Curso.analyze(start);
+
+        CourseProjection projection = mesa.projector().projectWithMeasurements(start,
+                new ProjectionScope("tanda-c2", List.of("c2-hats"), Map.of(), plan), measured, measured);
+
+        assertEquals(ConsolidatedViewAvailability.AVAILABLE, projection.getAvailability());
+        assertEquals(List.of("c2-hats"), projection.getChanges().stream().filter(ProjectedChange::isPending)
+                .map(ProjectedChange::getProposalId).toList(), "R001: the change of the batch, from its own plan");
+        assertTrue(projection.getNonApplicablePendings().isEmpty(),
+                "R001: applied on what the batch starts from: " + projection.getNonApplicablePendings());
+        assertEquals(plan, projection.getActivePlanId(), "the plan it read is the batch's");
+        verify(mesa.artifacts, never()).listByPlan(Curso.PLAN);
+        verify(mesa.repository, never()).load(any());
+        assertEquals("She wears hats.", Curso.find(start, Curso.HATS).getSentences().get(0),
+                "the course it starts from is not written");
+
+        CourseProjection elsewhere = mesa.projector().projectWithMeasurements(Curso.course(),
+                new ProjectionScope("tanda-c2", List.of("c2-hats"), Map.of(), plan), measured, measured);
+        assertEquals(List.of("c2-hats"), elsewhere.getNonApplicablePendings().stream()
+                .map(NonApplicablePending::getProposalId).toList(), "on production its content is not the one it starts from");
+    }
+
     static final class Curso {
         static final String AUDIT = "2026-09-30T11-54-02";
         static final String PLAN = "2026-09-30T11-54-12";

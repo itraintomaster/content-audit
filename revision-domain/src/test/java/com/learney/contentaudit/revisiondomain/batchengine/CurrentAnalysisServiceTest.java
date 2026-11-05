@@ -2,6 +2,7 @@ package com.learney.contentaudit.revisiondomain.batchengine;
 
 import com.learney.contentaudit.auditdomain.*;
 import com.learney.contentaudit.auditdomain.analysis.*;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
 import com.learney.contentaudit.auditdomain.choicequality.*;
 import com.learney.contentaudit.auditdomain.finding.*;
@@ -1307,6 +1308,247 @@ class CurrentAnalysisServiceTest {
                 "not the one the batch has, nor a paid one");
         assertTrue(free.stream().allMatch(s -> s.getPolicies().get("spanish-register").getMaxNewEvaluations() == 0), "without a query");
     }
+    /**
+     * F-MIDIO: the reports a comparison reads over the whole course, with the base measured as today, the start with
+     * {@code startVersion} on {@code startRuntime}, and today with an error.
+     */
+    CurrentAnalysisService.ComparisonReports compared(String startVersion, String startRuntime) {
+        return compared(startVersion, startRuntime, null);
+    }
+    /** The same, with the start's exercise asking {@code startInstruction}: what its judge read was not today's. */
+    CurrentAnalysisService.ComparisonReports compared(String startVersion, String startRuntime, String startInstruction) {
+        saved.put(batch.getBaselineAuditId(), report(true, false, "v1"));
+        var start = report(true, false, startVersion);
+        if (startInstruction != null) ((AuditableQuiz) child(start).getEntity()).setInstructions(startInstruction);
+        if (startRuntime != null) child(start).getMetadata().put(DefaultAnalysisComposer.PROVENANCE,
+                Map.of(NAME, Map.of("runtime", startRuntime)));
+        saved.put(TandaFixture.START_AUDIT, start);
+        when(engine.runAudit(any(), any())).thenAnswer(i -> report(true, true, "v1"));
+        return service.comparisonReports(batch, course, course);
+    }
+    static AuditNode child(AuditReport report) { return DefaultAnalysisComposer.index(report.getRoot()).get(TandaFixture.CHILD); }
+    static int anyError(AuditReport report) {
+        var errors = report.getRoot().getNumbers().getErrors();
+        return errors == null ? 0 : errors.getWithAnyError();
+    }
+
+    @Tag("FEAT-MIDIO") @Tag("F-MIDIO-R002")
+    @Test void aStartMeasuredWithAnotherVersionOrRuntimeOfAJudgeIsNotComparedForItAndTodayKeepsWhatItMeasured() {
+        for (var start : List.of(new String[] {"v0", null}, new String[] {"v1", "otro motor"})) {
+            var reports = compared(start[0], start[1]);
+            String which = start[0] + " / " + start[1];
+            assertEquals(Set.of(NAME), reports.startNotComparable(), "the judge has no pair in the start: " + which);
+            assertEquals(.3, child(reports.approved()).getScores().get(NAME),
+                    "it read what today reads: today's opinion is the start's, not its old one: " + which);
+            assertEquals(.3, child(reports.projected()).getScores().get(NAME), "today keeps what it measured: " + which);
+            assertEquals(1, anyError(reports.projected()), "and counts it in «algún error»: " + which);
+            assertEquals(1., child(reports.baseline()).getScores().get(NAME), "the base, measured alike, is still its pair: " + which);
+        }
+        var otherInput = compared("v0", null, "Otra consigna.");
+        assertEquals(Set.of(NAME), otherInput.startNotComparable());
+        assertFalse(DefaultAnalysisComposer.evaluated(child(otherInput.approved()), NAME),
+                "it read another exercise: its old opinion does not count, nor today's");
+        assertEquals(.3, child(otherInput.projected()).getScores().get(NAME), "today keeps what it measured");
+    }
+
+    @Tag("FEAT-MIDIO") @Tag("F-MIDIO-R002")
+    @Test void aStartMeasuredWithTodaysVersionAndRuntimeIsComparedAsAlways() {
+        var reports = compared("v1", null);
+        assertTrue(reports.startNotComparable().isEmpty());
+        assertEquals(1., child(reports.approved()).getScores().get(NAME), "the start keeps its opinion");
+        assertEquals(.3, child(reports.projected()).getScores().get(NAME));
+    }
+
+    @Tag("FEAT-MIDIO") @Tag("F-MIDIO-R005")
+    @Test void aJudgeTheBaseNeverMeasuredIsReadFromTodayAloneAndLeftOutOfEverythingCompared() {
+        saved.put(batch.getBaselineAuditId(), report(false, false, "v1"));
+        saved.put(TandaFixture.START_AUDIT, report(false, false, "v1"));
+        when(engine.runAudit(any(), any())).thenAnswer(i -> report(true, true, "v1"));
+
+        var reports = service.comparisonReports(batch, course, course);
+
+        assertEquals(Set.of(NAME), reports.onlyToday());
+        var today = child(reports.projected());
+        assertFalse(today.getScores().containsKey(NAME), "out of what is compared");
+        assertTrue(today.getFindings().stream().noneMatch(f -> NAME.equals(f.getAnalyzer())));
+        assertFalse(today.getUnevaluatedBy().contains(NAME), "and not left as unmeasured: it is just not there");
+        assertEquals(0, anyError(reports.projected()), "out of «algún error»");
+        assertEquals(.3, child(reports.projectedAlone()).getScores().get(NAME), "today alone, as it was measured");
+        assertEquals(1, anyError(reports.projectedAlone()));
+        assertTrue(reports.startNotComparable().isEmpty(), "nor compared against the start");
+    }
+
+    @Tag("FEAT-MIDIO") @Tag("F-MIDIO-R004")
+    @Test void theInstantAnalyzerTheBatchLacksIsMeasuredForFreeInTodayOfTheComparison() {
+        var vos = new Finding(); vos.setAnalyzer("spanish-register"); vos.setRule("tu-register"); vos.setSeverity(FindingSeverity.MEDIUM);
+        vos.setResolution(FindingResolution.RULE); vos.setNode(new FindingNodeRef(AuditTarget.QUIZ, TandaFixture.CHILD, "quiz"));
+        when(catalog.list()).thenReturn(List.of(provider.describe(), instant("spanish-register"), paid("quiz-instruction")));
+        var corrections = mock(AnalyzerCorrectionCatalog.class);
+        when(corrections.find(any())).thenReturn(Optional.of(new com.learney.contentaudit.auditdomain.spanishregister.SpanishRegisterCorrection()));
+        config.setCorrectionCatalog(corrections);
+        var asked = new ArrayList<AnalyzerRunSelection>();
+        when(engine.runAudit(any(), any())).thenAnswer(i -> {
+            AnalyzerRunSelection selection = i.getArgument(1);
+            asked.add(selection);
+            var r = report(false, false, "v1");
+            if (selection.getAnalyzers().contains("spanish-register")) {
+                child(r).getScores().put("spanish-register", 0.); child(r).getFindings().add(vos);
+            }
+            return r;
+        });
+        saved.put(TandaFixture.START_AUDIT, report(false, false, "v1"));
+
+        var reports = service.comparisonReports(batch, course, course);
+
+        assertTrue(child(reports.projected()).getFindings().stream().anyMatch(f -> "spanish-register".equals(f.getAnalyzer())),
+                "today has what it finds");
+        assertTrue(reports.projected().getRoot().getNumbers().getErrors().getAnalyzers().stream()
+                .anyMatch(c -> "spanish-register".equals(c.getAnalyzer()) && c.getWithError() == 1), "counted like any other");
+        assertTrue(reports.onlyToday().isEmpty(), "with its pair: the base is measured with it too (R006)");
+        var free = asked.stream().filter(s -> s.getAnalyzers().contains("spanish-register")).toList();
+        assertFalse(free.isEmpty());
+        for (var selection : free) {
+            assertEquals(List.of("spanish-register"), selection.getAnalyzers(), "not the one the batch has, nor a paid one");
+            assertEquals(0, selection.getPolicies().get("spanish-register").getMaxNewEvaluations(), "without a query");
+        }
+    }
+
+    @Tag("FEAT-MIDIO") @Tag("F-MIDIO-R007")
+    @Test void theComparisonReadsTheLevelOfTheCorrection() {
+        saved.put(TandaFixture.START_AUDIT, report(true, false, "v1"));
+        assertEquals(2, course.getRoot().getMilestones().size(), "the course has A1 and A2");
+
+        var reports = service.comparisonReports(batch, course, course);
+
+        for (var side : List.of(reports.baseline(), reports.approved()))
+            assertEquals(List.of("A1"), side.getRoot().getChildren().stream().map(n -> n.getEntity().getLabel()).toList(),
+                    "the A1 batch is compared in A1, its course is A1");
+        assertNull(DefaultAnalysisComposer.index(reports.approved().getRoot()).get(TandaFixture.PAST), "no exercise of A2");
+        verify(config.getCourseMapper(), atLeastOnce()).map(argThat(c -> c.getRoot().getMilestones().stream()
+                .map(MilestoneEntity::getLabel).toList().equals(List.of("A1"))));
+        verify(config.getCourseMapper(), never()).map(argThat(c -> c.getRoot().getMilestones().size() > 1));
+        assertEquals(2, course.getRoot().getMilestones().size(), "the course it was given is not cut");
+    }
+
+    @Tag("FEAT-MIDIO") @Tag("F-MIDIO-R006")
+    @Test void anInstantAnalyzerTheBaseAndTheStartMeasuredWithOtherRulesIsMeasuredAgainWithTodaysOnTheirOwnContent() {
+        when(catalog.list()).thenReturn(List.of(provider.describe(), instant("spanish-register")));
+        var old = new Finding(); old.setAnalyzer("spanish-register"); old.setRule("tu-register"); old.setSeverity(FindingSeverity.MEDIUM);
+        old.setResolution(FindingResolution.RULE); old.setNode(new FindingNodeRef(AuditTarget.QUIZ, TandaFixture.CHILD, "quiz"));
+        var courses = new ArrayList<AuditableCourse>();
+        when(engine.runAudit(any(), any())).thenAnswer(i -> {
+            courses.add(i.getArgument(0));
+            var r = report(false, false, "v1");
+            child(r).getScores().put("spanish-register", 1.);
+            r.getRoot().setMeasures(new ArrayList<>(List.of(new AnalyzerMeasure("spanish-register", "reglas de hoy", Map.of()))));
+            return r;
+        });
+        for (var side : List.of(batch.getBaselineAuditId(), TandaFixture.START_AUDIT)) {
+            var r = report(false, false, "v1");
+            ((AuditableQuiz) child(r).getEntity()).setLabel("Contenido de " + side);
+            child(r).getScores().put("spanish-register", 0.); child(r).getFindings().add(old);
+            r.getRoot().setMeasures(new ArrayList<>(List.of(new AnalyzerMeasure("spanish-register", "reglas viejas", Map.of()))));
+            saved.put(side, r);
+        }
+
+        var reports = service.comparisonReports(batch, course, course);
+
+        for (var side : List.of(reports.baseline(), reports.approved())) {
+            assertEquals(1., child(side).getScores().get("spanish-register"), "what today's rules find");
+            assertTrue(child(side).getFindings().stream().noneMatch(f -> "spanish-register".equals(f.getAnalyzer())),
+                    "the old rules' finding is gone");
+            assertEquals("reglas de hoy", side.getRoot().getMeasures().stream()
+                    .filter(m -> "spanish-register".equals(m.getAnalyzer())).findFirst().orElseThrow().getFingerprint());
+        }
+        var measured = courses.stream().flatMap(c -> c.getMilestones().stream()).flatMap(m -> m.getTopics().stream())
+                .flatMap(t -> t.getKnowledge().stream()).flatMap(k -> k.getQuizzes().stream())
+                .map(AuditableQuiz::getLabel).filter(l -> l != null && l.startsWith("Contenido de ")).toList();
+        assertEquals(Set.of("Contenido de " + batch.getBaselineAuditId(), "Contenido de " + TandaFixture.START_AUDIT),
+                Set.copyOf(measured), "each on its own content");
+    }
+
+    @Tag("FEAT-MIDIO") @Tag("F-MIDIO-R006")
+    @Test void aJudgeComparedExerciseByExerciseIsNotLeftUndecidedByTheMeasureItsReportSavedAtTheRoot() {
+        var base = report(true, false, "v1");
+        base.getRoot().setMeasures(new ArrayList<>(List.of(new AnalyzerMeasure(NAME, "medida vieja", Map.of()))));
+        saved.put(batch.getBaselineAuditId(), base);
+        saved.put(TandaFixture.START_AUDIT, report(true, false, "v1"));
+        when(engine.runAudit(any(), any())).thenAnswer(i -> {
+            var r = report(true, true, "v1");
+            r.getRoot().setMeasures(new ArrayList<>(List.of(new AnalyzerMeasure(NAME, "medida de hoy", Map.of()))));
+            return r;
+        });
+
+        var reports = service.comparisonReports(batch, course, course);
+
+        assertEquals(1., child(reports.baseline()).getScores().get(NAME), "its opinion, of today's version, is compared");
+        assertEquals("medida de hoy", reports.baseline().getRoot().getMeasures().stream()
+                .filter(m -> NAME.equals(m.getAnalyzer())).findFirst().orElseThrow().getFingerprint(),
+                "the base carries today's measure of the judge");
+    }
+
+    /**
+     * F-MIDIO-R003: a run of {@code analyzer} that measured the course cut to A1, with a saved opinion on the exercise
+     * and {@code change} applied to what its judge read. Returns the source, kept as the run's analysis.
+     */
+    private AuditReport measuredOnA1(String analyzer, java.util.function.Consumer<AuditNode> change) {
+        var source = report(false, false, "v1");
+        source.getRoot().getChildren().removeIf(m -> "m-a2".equals(m.getEntity().getId()));
+        var node = child(source);
+        node.getUnevaluatedBy().add(analyzer);
+        node.getMetadata().put(analyzer + "InputContract", "english-quality-input-v2");
+        node.getMetadata().put(analyzer + "Version", "saved-version");
+        node.getMetadata().put(analyzer + "Verdict", "naturalness".equals(analyzer)
+                ? Map.of("assessments", List.of(Map.of("status", "NOT_APPLICABLE"))) : Map.of("status", "REVIEW"));
+        change.accept(node);
+        saved.put("one-level", source);
+        batch.setSelectiveRuns(List.of(new SelectiveCorrection.Run("one-level", "analyze", analyzer, null, 1, 6, "content",
+                "saved-version", "codex-cli / model / medium", "one-level", null, List.of(), List.of(), 0, 0, 0, 1, 0, 1,
+                "PARTIAL", "human", Instant.EPOCH, Instant.EPOCH, null, false, 6, "content", null)));
+        return source;
+    }
+    private int compatibleWithTheCorrection() {
+        return read().looseRuns().get(0).fits().stream().filter(f -> "correction".equals(f.state())).findFirst().orElseThrow().compatible();
+    }
+
+    @Tag("FEAT-MIDIO") @Tag("F-MIDIO-R003")
+    @ParameterizedTest @ValueSource(strings = {"a1-didactic", "naturalness"})
+    void anOpinionMeasuredOnACourseOfOneLevelHoldsInTheReadingOfTheWholeCourse(String analyzer) {
+        var source = measuredOnA1(analyzer, node -> {});
+        var whole = child(TandaFixture.report(course, List.of(), Map.of(), List.of()));
+        assertNotEquals(composer.fingerprint(analyzer, child(source)), composer.fingerprint(analyzer, whole),
+                "the outline of the course it read had one level");
+        assertTrue(composer.sameInput(analyzer, child(source), whole), "over the levels both have, it read the same");
+
+        assertEquals(1, compatibleWithTheCorrection(), "it integrates");
+        service.execute(select("integrate", "one-level", "one-level-op", null));
+        assertTrue(DefaultAnalysisComposer.hasStoredOpinion(child(service.report(batch, "correction", course)), analyzer),
+                "the reading of the whole course keeps it");
+        saved.put(TandaFixture.START_AUDIT, report(false, false, "v1"));
+        var reports = service.comparisonReports(batch, course, course);
+        var today = reports.onlyToday().contains(analyzer) ? reports.projectedAlone() : reports.projected();
+        assertTrue(DefaultAnalysisComposer.hasStoredOpinion(child(today), analyzer), "and so does the comparison");
+    }
+
+    @Tag("FEAT-MIDIO") @Tag("F-MIDIO-R003")
+    @ParameterizedTest @ValueSource(strings = {"prior learning", "topic"})
+    void anOpinionMeasuredOnOneLevelStillDoesNotHoldWhenWhatTheJudgeReadChanged(String what) {
+        var source = measuredOnA1("a1-didactic", node -> {
+            var topic = node.ancestor(AuditTarget.TOPIC).orElseThrow();
+            if ("topic".equals(what)) {
+                ((AuditableTopic) topic.getEntity()).setLabel("Otro tema");
+                return;
+            }
+            var knowledge = new AuditableKnowledge();
+            knowledge.setId("different-prior-learning"); knowledge.setLabel("Afirmativas con be");
+            topic.getChildren().add(0, new AuditNode(knowledge, AuditTarget.KNOWLEDGE, topic,
+                    new ArrayList<>(), new LinkedHashMap<>(), new LinkedHashMap<>(), null));
+        });
+        var whole = child(TandaFixture.report(course, List.of(), Map.of(), List.of()));
+        assertFalse(composer.sameInput("a1-didactic", child(source), whole), what);
+        assertEquals(0, compatibleWithTheCorrection(), what);
+    }
+
     static AnalyzerDescriptor instant(String name) {
         var card = new AnalyzerDescriptor(); card.setName(name); card.setCost(AnalysisCost.INSTANT);
         card.setFamily(com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.ERRORS); card.setEvaluatedTargets(List.of(AuditTarget.QUIZ));

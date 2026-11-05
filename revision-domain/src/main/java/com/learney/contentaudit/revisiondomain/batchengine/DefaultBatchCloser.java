@@ -138,8 +138,7 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
             if (currentAnalysis != null) {
                 var measured = currentAnalysis.comparisonReports(batch, startCourse,
                         changeLedger.composedCourse(batch, startCourse));
-                comparison = batchComparator.compareMeasured(coursePath, scope,
-                        measured.baseline(), measured.approved(), measured.projected());
+                comparison = batchComparator.compareMeasured(startCourse, scope, measured.measured());
             } else comparison = batchComparator.compareSummary(coursePath, scope);
             List<String> outside = changedOutside(batch, startCourse, tasks);
             BatchGateVerdict verdict = batchGate.evaluate(comparison, outside, exceptions(batch));
@@ -191,8 +190,7 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
                 ? plans.load(batch.getPlanId()).map(BatchBook::tasksById).orElse(Map.of()) : Map.of();
         CourseEntity composed = changeLedger.composedCourse(batch, startCourse);
         var measured = currentAnalysis.comparisonReports(batch, startCourse, composed);
-        BatchComparison comparison = batchComparator.compareMeasured(coursePath, scope(batch),
-                measured.baseline(), measured.approved(), measured.projected());
+        BatchComparison comparison = batchComparator.compareMeasured(startCourse, scope(batch), measured.measured());
         BatchGateVerdict gate = batchGate.evaluate(comparison,
                 changedOutside(batch, startCourse, composed, tasks, batchStore), exceptions(batch));
         return new CurrentComparison(batch.getId(), batch.getContentVersion(), Instant.now(), comparison, gate);
@@ -200,7 +198,7 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
 
     // -------------------------------------------------------------------------
 
-    /** The scope of the batch: its pending proposals, one per exercise, and no other. */
+    /** The scope of the batch: its pending proposals, one per exercise, and no other, in its plan. */
     static ProjectionScope scope(CorrectionBatch batch) {
         List<String> proposals = new ArrayList<>();
         for (BatchProposalRef ref : BatchBook.list(batch.getQuizProposals())) {
@@ -208,7 +206,8 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
                 proposals.add(ref.getProposalId());
             }
         }
-        return new ProjectionScope(batch.getId(), proposals, new LinkedHashMap<>());
+        // F-MIDIO-R001: its proposals are in its own plan, not in the active one.
+        return new ProjectionScope(batch.getId(), proposals, new LinkedHashMap<>(), batch.getPlanId());
     }
 
     /**
