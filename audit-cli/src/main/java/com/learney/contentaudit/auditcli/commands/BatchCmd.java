@@ -70,7 +70,8 @@ import picocli.CommandLine.Parameters;
                 + "  batch close [--budget juez=N[,juez=N…]] [--cap N]%n"
                 + "  batch drop (--change <id> | --rule <rule>) [--reason <text>]%n"
                 + "  batch report [<batchId>] [-f text|json]%n%n"
-                + "  batch review [<batchId>] [--decision-json <json> [--changed-only]] [-f json]%n%n"
+                + "  batch review [<batchId>] [--decision-json <json> [--changed-only]] [-f json]%n"
+                + "  batch compare [<batchId>]%n%n"
                 + "Without --cap, batch run applies the rules only, which query no model; the panels open only under a"
                 + " cap of queries. Without --budget nor --cap, batch close pays no judge: it says how many queries each"
                 + " one still misses. Publishing is the single OK of the tray: content-audit tray publish.",
@@ -93,10 +94,10 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
     private final BatchService batchService;
 
     // A nested command supplies its own action. Bare batch is still rejected by call().
-    @Parameters(index = "0", arity = "0..1", description = "open, estimate, run, close, drop, report or review")
+    @Parameters(index = "0", arity = "0..1", description = "open, estimate, run, close, drop, report, review or compare")
     private String action;
 
-    @Parameters(index = "1", arity = "0..1", description = "The level (open) or the batch (report)")
+    @Parameters(index = "1", arity = "0..1", description = "The level (open) or the batch (report, review, compare)")
     private String target;
 
     @Option(names = "--topics-at-once", description = "Topics at the panel at once (default 4)")
@@ -470,12 +471,24 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
             case "drop" -> dropFromBatch(changeId, ruleId, reason);
             case "report" -> reportBatch(target, format);
             case "review" -> reviewBatch();
+            case "compare" -> compareBatchNow();
             default -> {
-                System.err.println("Error: batch no conoce '" + action + "'. Usá open, estimate, run, close, drop o"
-                        + " report o review.");
+                System.err.println("Error: batch no conoce '" + action + "'. Usá open, estimate, run, close, drop,"
+                        + " report, review o compare.");
                 yield 2;
             }
         };
+    }
+
+    /** F-HOY-R002: the comparison of the current analysis, in JSON; it closes, pays and writes nothing. */
+    private Integer compareBatchNow() {
+        try {
+            System.out.println(CommandJson.writeCompact(batchService.compareNow(target)));
+            return 0;
+        } catch (NoOpenBatchException e) {
+            System.err.println("Error: " + e.getMessage());
+            return 1;
+        }
     }
 
     private Integer reviewBatch() {

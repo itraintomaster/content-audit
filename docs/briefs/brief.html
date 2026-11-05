@@ -3,10 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>265 · La C2 está lista para revisar</title>
-<meta name="atril:conversacion" content="claude:7aeb7923-ce6d-404e-87c0-0be9207254b5">
-<meta name="atril:agente" content="claude">
-<meta name="atril:hilo" content="a1">
+<title>267 · Comparar ya muestra la C2</title>
+<!--
+  TEMPLATE DE BRIEF · visual-brief
+  1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
+  2. Por cada sección: un título que dice la conclusión, UN dibujo copiado del
+     catálogo del final y un pie de dos renglones. Primero el dibujo; el texto lo rotula.
+     Si habla de una pantalla: primero DÓNDE (la captura con marcas, .map), después EL
+     PROBLEMA como un caso de uso (la foto de hoy + .mark), después CÓMO QUEDA (la maqueta
+     .mq con números y su leyenda). Si ya está hecho, los dos lados del .ad son capturas.
+     Las fotos, con capturar.mjs, en docs/briefs/NNN-slug/ (SKILL.md §4).
+  3. BORRAR el catálogo entero (la section de clase cat, al final) y las secciones que no se usan.
+  4. Verificar: node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
+     y mirarlo: node ~/.claude/skills/visual-brief/assets/diapos.mjs <el brief> <scratchpad>/d (+ --tema=dark, --celular)
+  Oraciones enteras, nunca telegrama (SKILL.md §5). Topes: lede ≤ 2 frases y 35 palabras · ≤ 6 secciones · pie ≤ 30 · párrafo ≤ 40 ·
+  prosa total ≤ 400 (sin tablas ni gráficos). Cada componente trae el suyo en el catálogo.
+  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
+-->
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -374,15 +387,7 @@
     .map.alta .cap{width:min(55%,220px);margin:0 auto}
   }
 
-  /* ============ CATÁLOGO · se borra entero al generar ============ */
-  .cat{margin-top:64px;padding-top:22px;border-top:3px solid var(--bad)}
-  .cat .adv{font-size:13px;color:var(--bad);font-weight:600;margin:0 0 20px}
-  .cat-g{display:grid;gap:16px}
-  .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
-  .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
-  .cat-i>.n b{color:var(--fg-2)}
 figure.dg{margin:0 0 16px;overflow-x:auto}figure.dg>svg{display:block;width:100%;height:auto;margin:0 auto}
-  .ex .tj{font-size:13.5px;line-height:1.45;color:var(--fg)} /* la tarjeta citada tal cual, con sus «…» */
 </style>
 </head>
 <body>
@@ -390,128 +395,126 @@ figure.dg{margin:0 0 16px;overflow-x:auto}figure.dg>svg{display:block;width:100%
 
   <header>
     <div class="kicker">
-      <span class="num">265</span>
-      <span class="badge">Resumen · Para decidir</span>
-      <span class="meta">Miniteoría · 4/11/2026</span>
+      <span class="num">267</span>
+      <span class="badge">Resumen · Diagnóstico · Para decidir</span>
+      <span class="meta">Comparar · C2 de A1 · 5/11/2026</span>
     </div>
     <details class="pedido">
-      <summary><span class="k">Lo que pediste</span><span class="q">«Sí, las tres» al brief 261, y dejar la C2 lista para que esta noche empieces a revisar.</span></summary>
+      <summary><span class="k">Lo que pediste</span><span class="q">Querías comparar la C2 con lo que ya analizaste, y Comparar decía que la tanda A1 no tenía una medición.</span></summary>
       <div class="pedido-c">
         <dl>
-          <dt>Qué estabas mirando</dt><dd>El brief 261: 9 tarjetas con problema, 6 de ellas aprobadas por vos.</dd>
-          <dt>Qué decidiste</dt><dd>Sacarles la aprobación a esos 6, que la tarjeta enseñe la regla con su alcance y que el corrector toque sólo la tarjeta cuando el problema está ahí.</dd>
+          <dt>Qué estabas mirando</dt><dd>Comparar, tanda A1, Corrección 2. Decía «La tanda A1 todavía no tiene una medición», con todas las opiniones de la C2 al día.</dd>
+          <dt>Qué pediste</dt><dd>Poder comparar con lo analizado, sin cerrar la tanda y sin trampa.</dd>
+          <dt>A qué te referías</dt><dd><ol>
+            <li>Ver la C2 contra producción, juez por juez y nivel por nivel.</li>
+            <li>Usar las opiniones guardadas, sin pagar de nuevo.</li>
+            <li>Saber si la C2 pasaría la compuerta.</li>
+          </ol></dd>
         </dl>
-        <p class="de">De la conversación del 4/11: «empieza a hacer lo tuyo apenas termine esto… dejarlo listo para que yo pueda revisar».</p>
+        <p class="de">De tu mensaje del 5/11 a la noche. Comparar sólo leía los cierres, y la C2 nunca se cerró.</p>
       </div>
     </details>
-    <h1>La C2 está lista para revisar</h1>
-    <p class="sub">La miniteoría bajó de 82 problemas a 2, tocando sólo la tarjeta.</p>
+    <h1>Comparar ya muestra la C2, y destapó dos fallas</h1>
+    <p class="sub">Qué es «Hoy», qué dice de la C2 en A1 y qué arreglar antes de cerrarla.</p>
   </header>
 
-  <div class="lede"><p><strong>Con el juez nuevo había 82 tarjetas con problema; quedan 2, y 76 de los 77 ejercicios corregidos cambiaron sólo la tarjeta.</strong> Antes de revisar, decidí dos respuestas que cambian el sentido.</p></div>
+  <div class="lede"><p><strong>Comparar suma «Hoy»: la C2 según su análisis vigente, sin cerrarla ni consultar jueces.</strong> Destapó dos fallas que un cierre de la C2 también tendría: no ve sus cambios y borra tres jueces.</p></div>
 
   <div class="saber">
     <h2>Lo que tenés que saber</h2>
     <dl>
-      <div><dt>Tarjeta con alcance</dt><dd>La regla dice a cuántos casos vale: «la mayoría», «normalmente».</dd></div>
-      <div><dt>Revisor</dt><dd>Compara el ejercicio corregido con producción: mejor o peor.</dd></div>
-      <div><dt>Pasada</dt><dd>Una vuelta del corrector.</dd></div>
+      <div><dt>«Hoy»</dt><dd>El curso con todo lo que la C2 propone, medido con las opiniones guardadas. Es lo que compara un cierre, sin pagar, devolver ni cerrar.</dd></div>
+      <div><dt>Base e Inicio</dt><dd>La Base es producción. El Inicio es de dónde arrancó la C2: el cierre de la C1 del 25/10, medido con los jueces de entonces.</dd></div>
+      <div><dt>Piso de errores</dt><dd>Lo que exige la compuerta: ningún juez encuentra más errores que en el Inicio, contando como error lo cambiado que quedó sin medir.</dd></div>
     </dl>
   </div>
 
   <section>
-    <h2>La C2 tiene 2 tarjetas con problema; producción, 1.167</h2>
+    <h2>«Hoy» se elige arriba y abre contra la Base</h2>
+    <div class="map">
+      <div class="ex">
+        <svg class="cap" viewBox="0 0 1280 800" role="img" aria-label="Comparar en el tablero, con Hoy elegido contra la Base en A1">
+          <image href="267-comparar-hoy/pantalla.jpg" width="1280" height="800"/>
+          <rect class="aro" x="84" y="168" width="1172" height="54" rx="12"/>
+          <rect class="aro" x="692" y="237" width="563" height="290" rx="12"/>
+          <g class="mk" transform="translate(343 146)"><circle r="22"/><text font-size="25">1</text></g>
+          <g class="mk" transform="translate(479 146)"><circle r="22"/><text font-size="25">2</text></g>
+          <g class="mk" transform="translate(1226 270)"><circle r="22"/><text font-size="25">3</text></g>
+        </svg>
+      </div>
+      <div class="who">
+        <div><b>1</b><span><strong>Hoy</strong><br><small>la C2 según su análisis vigente</small></span></div>
+        <div><b>2</b><span><strong>Base</strong><br><small>producción</small></span></div>
+        <div><b>3</b><span><strong>Diferencia</strong><br><small>+5,6 puntos en los 10 ejes que miden los dos</small></span></div>
+      </div>
+    </div>
+    <p class="pie">La primera lectura tarda un minuto y queda guardada hasta que la tanda cambia. Abajo, «Si cerraras hoy» dice que no pasaría y que no es un cierre.</p>
+  </section>
+
+  <section>
+    <h2>En A1, la C2 baja casi todos los errores; uno sube</h2>
     <div class="kpis">
-      <div class="kpi dest"><div class="n">2<small>eran 82</small></div><div class="l">miniteorías con problema medio o grave en la C2</div></div>
-      <div class="kpi dest"><div class="n">76<small>de 77</small></div><div class="l">ejercicios corregidos hoy que cambiaron sólo la tarjeta</div></div>
-      <div class="kpi"><div class="n">0</div><div class="l">problemas nuevos de los jueces en lo corregido; el revisor da peor uno</div></div>
-      <div class="kpi"><div class="n">1.792<small>de 2.402</small></div><div class="l">«Todos los jueces lo aprueban»; eran 1.739 al medir con el juez nuevo</div></div>
+      <div class="kpi"><div class="n">554 → 42</div><div class="l">exigen una forma o rechazan una respuesta válida</div></div>
+      <div class="kpi"><div class="n">101 → 2</div><div class="l">opciones múltiples mal armadas</div></div>
+      <div class="kpi"><div class="n">63 → 0</div><div class="l">traducciones que no corresponden</div></div>
+      <div class="kpi dest"><div class="n">0 → 127</div><div class="l">respuestas u oraciones que no coinciden; el Inicio tenía 30</div></div>
     </div>
-    <p class="pie">Dos pasadas, 361 consultas por suscripción. De los 77, 53 pasan todo; antes de corregirlos pasaban 4.</p>
+    <p class="pie">Ejercicios de A1 con el problema, de producción a hoy. La compuerta marca 13 pisos rotos: 4 son de estas 127. No las investigué.</p>
   </section>
 
   <section>
-    <h2>La tarjeta ahora dice hasta dónde vale la regla</h2>
+    <h2>Falla 1: la comparación no ve ningún cambio de la C2</h2>
     <div class="ad">
-      <div class="ex">
-        <div class="cons">Afirmativas regulares · ejercicio 1ec5</div>
-        <div class="en">He<span class="gap"></span>(leave) the bedroom.</div>
-        <div class="ans">Respuesta: <b>leaves</b></div>
-        <span class="rotulo antes">Esta mañana</span>
-        <div class="tj">Con he, she, it el verbo lleva <i>-s</i>.</div>
-        <div class="mark"><span class="x">✕</span><span>Exagera: <i>He watches television.</i> <span class="sev m">media</span></span></div>
-        <span class="rotulo despues">Hoy</span>
-        <div class="tj">Con <i>he</i>, en presente simple afirmativo, normalmente se añade <i>-s</i> al verbo base.</div>
-        <div class="mark ok"><span class="x">✓</span><span>El juez y el revisor lo dan por bueno.</span></div>
-      </div>
-      <div class="ex">
-        <div class="cons">Adverbios de modo · ejercicio 2eff</div>
-        <div class="en">She dances. (bad)<span class="gap"></span></div>
-        <div class="ans">Respuesta: <b>She dances badly.</b></div>
-        <span class="rotulo antes">Esta mañana</span>
-        <div class="tj">Para formar el adverbio de este ejercicio, añade <i>-ly</i> al adjetivo entre paréntesis.</div>
-        <div class="mark"><span class="x">✕</span><span>«De este ejercicio» no achica la regla: <i>fast</i> → <i>fast</i>. <span class="sev m">media</span></span></div>
-        <span class="rotulo despues">Hoy</span>
-        <div class="tj">La mayoría de los adjetivos forman el adverbio añadiendo <i>-ly</i>.</div>
-        <div class="mark ok"><span class="x">✓</span><span>El juez y el revisor lo dan por bueno.</span></div>
-      </div>
+      <div class="lado antes"><span class="rot">Hoy</span>
+        <ol><li>Busca las 2.112 propuestas de la C2 en el plan de la C1.</li><li>No encuentra ninguna.</li><li>Compara los cursos sin saber qué cambio hizo qué.</li></ol>
+        <span class="res">0 de 2.112 cambios reconocidos</span></div>
+      <div class="lado despues"><span class="rot">Con el arreglo</span>
+        <ol><li>Las busca en el plan de la C2.</li><li>Reconoce cada cambio y lo que le pasó.</li><li>La compuerta puede devolver los que rompen un piso.</li></ol>
+        <span class="res">2.112 cambios, cada uno con su veredicto</span></div>
     </div>
-    <p class="pie">Igual en 21 tarjetas de <i>-s</i>, 13 de <i>-ed</i>, 23 de adverbios con <i>-ly</i> y 5 imperativos, que ahora «normalmente no llevan sujeto».</p>
+    <p class="pie">Un cierre hoy no devolvería nada. Y sin cambios no hay nada «cambiado sin medir»: cinco jueces sin medir dan su piso por cumplido.</p>
   </section>
 
   <section>
-    <h2>Dos de los tres trabados salieron tocando sólo la tarjeta</h2>
-    <div class="ad">
-      <div class="ex">
-        <div class="cons">Con short forms · ejercicio 26d3</div>
-        <div class="en">Be going to: he / order some water?<span class="gap"></span></div>
-        <div class="ans">Respuesta: <b>Is he going to order some water?</b></div>
-        <span class="rotulo antes">En producción, dos pasadas sin arreglo</span>
-        <div class="tj"><i>will</i> + verbo base. <i>be going to</i> + verbo base, y el que se conjuga es <i>be</i>.</div>
-        <div class="mark"><span class="x">✕</span><span>No dice qué va con <i>he</i> ni cómo se arma la pregunta. <span class="sev a">alta</span></span></div>
-        <span class="rotulo despues">Hoy</span>
-        <div class="tj">Con <i>he</i>, se usa <i>is</i>. Pregunta con <i>be going to</i>: <i>Is he going to</i> + verbo base + el resto de la oración + signo de pregunta.</div>
-        <div class="mark ok"><span class="x">✓</span><span>La oración, la pista y la consigna quedaron como estaban.</span></div>
-      </div>
-    </div>
-    <p class="pie">Igual 26d6. A los dos les queda «Be going to:», que regala la decisión. 1ffe tiene su tarjeta lista, pero la frena un empate de traducción.</p>
-  </section>
-
-  <section>
-    <h2>El corrector igual quería reescribir: ahora lo frena antes</h2>
-    <div class="hb">
-      <div class="r"><span class="t">Intentos que cambiaban la oración o las respuestas<small>la mesa los rechazó</small></span><span class="tr"><span class="f b" style="width:100%"></span></span><span class="n">22</span></div>
-      <div class="r"><span class="t">Ejercicios que lo intentaron<small>de 84 corregidos en las dos pasadas</small></span><span class="tr"><span class="f w" style="width:64%"></span></span><span class="n">14</span></div>
-      <div class="r"><span class="t">Intentos que perdió 2548<small>«She sang (sweet)»: de 6</small></span><span class="tr"><span class="f w" style="width:23%"></span></span><span class="n">5</span></div>
-    </div>
-    <p class="pie">Con el arreglo de hoy, si todas las tareas son de la tarjeta, el control del corrector devuelve esa propuesta antes de gastar una medición.</p>
-  </section>
-
-  <section>
-    <h2>Quedan 2 tarjetas y 2 respuestas para vos</h2>
-    <div class="tw"><table>
-      <tr><th>Ejercicio</th><th>Qué pasa</th><th>Qué hace falta</th></tr>
-      <tr><td>2544 · He sang (sad). ___</td><td>Hoy se agregó «Sadly, he sang.»: puede leerse «lamentablemente cantó». El revisor lo da peor.</td><td>Tu decisión (pregunta 1)</td></tr>
-      <tr><td>2efb · She spoke. (clear) ___</td><td>Acepta «She clearly spoke.», que se lee «evidentemente habló». Viene de una pasada anterior.</td><td>Tu decisión (pregunta 1)</td></tr>
-      <tr><td>1ffe · He ___ (get) the newspaper.</td><td>Los jueces de traducción empatan con «Él está buscando el periódico».</td><td>Desempatarlo en la bandeja</td></tr>
-      <tr><td>22e7 · start + -ing o to</td><td>La tarjeta no alcanza.</td><td>Lo aprobaste sin cambios</td></tr>
-    </table></div>
-    <div class="call c-warn"><b>El juez no es estable:</b> al volver a medir un tema, 5 ejercicios que nadie tocó ganaron un problema. La segunda pasada arregló 4; en el quinto, y en 2578, el juez ya no lo vio.</div>
+    <h2>Falla 2: un Inicio viejo borra tres jueces de «Hoy»</h2>
+    <figure class="dg">
+      <svg viewBox="0 0 760 200" role="img" aria-label="Base y Hoy midieron la miniteoría con el mismo juez; el Inicio con uno viejo, y eso borra el valor de Hoy">
+        <rect class="box box-ok" x="10" y="20" width="200" height="74" rx="10"/>
+        <text class="lbl" x="110" y="50" text-anchor="middle">Base · producción</text>
+        <text class="lbl-s" x="110" y="72" text-anchor="middle">miniteoría con el juez de hoy</text>
+        <rect class="box box-a" x="280" y="20" width="200" height="74" rx="10"/>
+        <text class="lbl" x="380" y="50" text-anchor="middle">Hoy · la C2</text>
+        <text class="lbl-s" x="380" y="72" text-anchor="middle">miniteoría con el juez de hoy</text>
+        <rect class="box box-bad" x="550" y="20" width="200" height="74" rx="10"/>
+        <text class="lbl" x="650" y="50" text-anchor="middle">Inicio · cierre de la C1</text>
+        <text class="lbl-s" x="650" y="72" text-anchor="middle">miniteoría con el juez del 25/10</text>
+        <line class="arrow" x1="210" y1="57" x2="280" y2="57"/>
+        <text class="lbl-s" x="245" y="114" text-anchor="middle">se comparan</text>
+        <line class="arrow" x1="480" y1="57" x2="550" y2="57"/>
+        <text class="lbl-s" x="515" y="114" text-anchor="middle">no se comparan</text>
+        <path class="arrow" d="M515 122 V160 H380 V100"/>
+        <rect class="box box-bad" x="250" y="150" width="260" height="40" rx="10"/>
+        <text class="lbl" x="380" y="175" text-anchor="middle">… y se borra el valor de «Hoy»</text>
+      </svg>
+    </figure>
+    <p class="pie">Pasa con miniteoría, una sola respuesta y consigna: contra la Base salen «sin par». El control contra el Inicio es del 12/10, cuando Inicio y Base eran lo mismo.</p>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Saco «Sadly, he sang.» y «She clearly spoke.» de las respuestas?</span>
-        <div class="ops"><span class="op rec">Sí, sacalas · recomendado</span><span class="op">Quedan</span></div>
-        <span class="why">Con el adverbio adelante cambian el sentido y dejan de practicar «cómo se hace». La traducción dice otra cosa.</span></div>
+      <div class="ask"><span class="q">1 · ¿Arreglo las dos fallas antes de que cierres la C2?</span>
+        <div class="ops"><span class="op rec">Sí, las dos · recomendado</span><span class="op">Sólo la primera</span></div>
+        <span class="why">Sin la primera, un cierre no devuelve nada; sin la segunda, tres jueces no se comparan.</span></div>
+      <div class="ask"><span class="q">2 · Si el Inicio midió con otro juez, ¿contra qué va ese piso?</span>
+        <div class="ops"><span class="op rec">Contra la Base · recomendado</span><span class="op">Medir el Inicio con el juez de hoy</span><span class="op">Sin decidir: no pasa</span></div>
+        <span class="why">La Base es producción y ya está medida con el juez de hoy. Medir el Inicio hay que construirlo y gasta consultas.</span></div>
     </div>
-    <div class="call c-info"><b>Para revisar:</b> 1.792 que todos los jueces aprueban; 500 con algún problema (200 de vocabulario, 163 del revisor, 80 de respuesta única, 72 que regalan la respuesta); 110 con opiniones que faltan, casi todas abstenciones de Calidad didáctica.</div>
   </section>
 
   <footer>
-    <span>Juez de miniteoría cd486ffc (examen 60/62, registrado 4/11) · ca 598f52aa3 (F-MESA-R033 y F-MINIT-R014) y 1ec622f77 (F-MESA-R033: el control de quien propone devuelve un candidato que no es MINI_THEORY cuando todas las tareas tienen mayTouch = [MINI_THEORY]; PanelProposerAgentGateTest 4/4) · aprobaciones sacadas 4/11 11:06: ítems de 1ff6 y 22aa, quizApprovals de 22a4, 22a5, 22a9 y 2eee · medición ui-2026-11-04T14-15-17 (C2 9→82, producción 1.111→1.167) · pasadas ui-2026-11-04T18-51-55 (79 ejercicios, 343 consultas: 72 cambiaron, 71 sólo la tarjeta, 2544 también las respuestas; decisiones 119 resueltas, 28 sin ganador, 16 ya no valían, 1 empate) y 20-17-21 (7, 18 consultas: 5 cambiaron sólo la tarjeta, 2578 y 257d ya no valían) · fuera: 22e7, 2234 y 21e7 por tus aprobaciones · opiniones 19-58-26 (2) · marcas del revisor 20-07-38 (72) y 20-23-21 (5): de los 77, 69 bien, 1 dudoso, 2 peor y 5 peor heredado · análisis revisión 101, contenido v77: ALL_PASS 1.792, HAS_A_PROBLEM 500, OPINIONS_MISSING 110 (102 abstenciones de Calidad didáctica y 8 empates de traducción) · 266 tarjetas de la C2 todavía hablan «de este ejercicio» y el juez no les ve problema · rechazos por alcance: «cambia las respuestas / el enunciado y sus tareas no lo permiten».</span>
-    <span>brief 265 · docs/briefs/265-la-c2-esta-lista-para-revisar.html</span>
+    <span>«Hoy» = <code>batch compare</code> (ca 650c81e59; tablero ittm 31ce771c4 y 03f800789, F-HOY). C2 = tanda-A1-c2-1f1d898f-3ba9-3fcc-bc91-a104f79e53ca, contenido v85, leída el 5/11 00:49. Falla 1: el proyector busca en el plan activo 2026-10-07T08-43-58 («no es una propuesta pendiente del plan activo», 2.112 de 2.112); el plan de la C2 es tanda-A1-c2-…-plan. Falla 2: DefaultCurrentAnalysisService.comparisonReports, segundo control (7918f12eb, 12/10) invalida el proyectado cuando el inicio (auditoría 2026-10-25T15-38-02) midió con otra versión; Base y C2: consigna 32ccb01c, single-answer 94a30557, mini-theory cd486ffc, mismo motor. Pisos de errores con referencia BATCH_START; abiertos = cambiados sin medir, 0 sin cambios.</span>
+    <span>brief 267 · docs/briefs/267-comparar-hoy.html</span>
   </footer>
 
 </div>

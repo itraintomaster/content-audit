@@ -23,6 +23,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchStore;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.batch.CurrentComparison;
 import com.learney.contentaudit.revisiondomain.blindsample.BlindSample;
 import com.learney.contentaudit.revisiondomain.blindsample.BlindSampleService;
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparator;
@@ -174,6 +175,27 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
             }
             return batch;
         }
+    }
+
+    /**
+     * F-HOY-R001, R002: one round of {@link #close} and nothing else -- the comparison of the current analysis and the
+     * verdict of the gate on it. No judge is paid, nothing is given back, no sample is drawn, the batch keeps its status
+     * and nothing is saved.
+     */
+    @Override
+    public CurrentComparison compareNow(CorrectionBatch batch, CourseEntity startCourse) {
+        if (currentAnalysis == null) {
+            throw new IllegalStateException("Sin análisis vigente no hay con qué comparar hoy.");
+        }
+        Map<String, RefinementTask> tasks = plans != null && batch.getPlanId() != null
+                ? plans.load(batch.getPlanId()).map(BatchBook::tasksById).orElse(Map.of()) : Map.of();
+        CourseEntity composed = changeLedger.composedCourse(batch, startCourse);
+        var measured = currentAnalysis.comparisonReports(batch, startCourse, composed);
+        BatchComparison comparison = batchComparator.compareMeasured(coursePath, scope(batch),
+                measured.baseline(), measured.approved(), measured.projected());
+        BatchGateVerdict gate = batchGate.evaluate(comparison,
+                changedOutside(batch, startCourse, composed, tasks, batchStore), exceptions(batch));
+        return new CurrentComparison(batch.getId(), batch.getContentVersion(), Instant.now(), comparison, gate);
     }
 
     // -------------------------------------------------------------------------

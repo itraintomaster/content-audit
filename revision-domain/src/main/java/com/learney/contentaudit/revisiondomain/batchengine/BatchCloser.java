@@ -3,6 +3,7 @@ package com.learney.contentaudit.revisiondomain.batchengine;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.batch.CurrentComparison;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -12,4 +13,9 @@ import javax.annotation.processing.Generated;
 interface BatchCloser {
     CorrectionBatch close(CorrectionBatch batch, CourseEntity startCourse,
             BatchCloseRequest request);
+
+    /** F-HOY: what closing would compare and what its gate would say, from the current analysis, changing nothing. */
+    default CurrentComparison compareNow(CorrectionBatch batch, CourseEntity startCourse) {
+        throw new UnsupportedOperationException("Comparar con el análisis vigente no está disponible.");
+    }
 }
