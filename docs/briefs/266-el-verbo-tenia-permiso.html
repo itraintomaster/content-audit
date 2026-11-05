@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>266 · El verbo se podía cambiar</title>
+<meta name="atril:imagen" content="266-el-verbo-tenia-permiso/muro.jpg">
+<meta name="atril:conversacion" content="claude:31231bdd-6953-486e-acb3-6abea0d2228b">
+<meta name="atril:agente" content="claude">
+<meta name="atril:hilo" content="a1">
+<style>
+  /* ============ tokens: claro y, abajo, oscuro ============ */
+  :root{
+    --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
+    --fg:#1c1a17; --fg-2:#57524b; --fg-3:#8b847a;
+    --accent:#b4531f; --accent-soft:#fdf1e7;
+    --ok:#2f6b46; --ok-soft:#e9f4ed;
+    --warn:#8a6314; --warn-soft:#fbf2dd;
+    --bad:#a3342c; --bad-soft:#fbecea;
+    --info:#2a5b8f; --info-soft:#e9f1f9;
+    --radius:10px; --shadow:0 1px 2px rgba(28,26,23,.05), 0 8px 24px -16px rgba(28,26,23,.25);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#131211; --bg-elev:#1b1a18; --line:#302d29; --line-soft:#252320;
+      --fg:#efece7; --fg-2:#a8a29a; --fg-3:#7b756c;
+      --accent:#e08b4f; --accent-soft:#2a1f16;
+      --ok:#7fc79c; --ok-soft:#16241c;
+      --warn:#e0b657; --warn-soft:#272013;
+      --bad:#e58b82; --bad-soft:#2a1917;
+      --info:#8ab6e5; --info-soft:#141f2b;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.6 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+    font-feature-settings:"kern","liga","cv05";
+    padding:40px 24px 80px;
+  }
+  .wrap{max-width:940px;margin:0 auto}
+  code,kbd,pre,.mono{font-family:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace}
+  a{color:var(--accent)}
+  code,a{overflow-wrap:anywhere}   /* una ruta o un link largo desborda el celular: 15 de 76 briefs viejos */
+
+  /* ============ encabezado ============ */
+  header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
+  .kicker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .kicker .num{font:700 12px ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.04em;color:var(--fg-3);
+    background:var(--line-soft);padding:3px 8px;border-radius:6px;font-variant-numeric:tabular-nums}
+  .badge{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;background:var(--accent-soft);color:var(--accent);
+    border:1px solid color-mix(in srgb,var(--accent) 22%,transparent)}
+  .meta{font-size:12.5px;color:var(--fg-3)}
+  h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2;margin:0;letter-spacing:-.02em;font-weight:650}
+  .sub{margin:10px 0 0;color:var(--fg-2);font-size:16px;max-width:62ch}
+
+  /* ============ lo que pediste: el contexto del pedido, arriba del título (SKILL.md §6) ============ */
+  .pedido{margin:4px 0 16px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
+  .pedido>summary{list-style:none;cursor:pointer;display:flex;gap:12px;align-items:baseline;padding:11px 14px}
+  .pedido>summary::-webkit-details-marker{display:none}
+  .pedido>summary::after{content:"";flex:none;margin-left:auto;align-self:center;width:7px;height:7px;
+    border-right:1.6px solid var(--fg-3);border-bottom:1.6px solid var(--fg-3);transform:rotate(45deg);transition:transform .15s}
+  .pedido[open]>summary::after{transform:rotate(-135deg)}
+  .pedido .k{flex:none;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3)}
+  .pedido .q{font-size:15px;color:var(--fg);line-height:1.45}
+  .pedido-c{padding:2px 14px 14px;border-top:1px solid var(--line-soft)}
+  .pedido dl{display:grid;grid-template-columns:150px 1fr;gap:10px 16px;margin:12px 0 0}
+  .pedido dt{font-size:12.5px;font-weight:650;color:var(--fg-3);padding-top:2px}
+  .pedido dd{margin:0;font-size:15px;line-height:1.5;color:var(--fg-2)}
+  .pedido dd ol,.pedido dd ul{margin:0;padding-left:18px}
+  .pedido dd li{margin:0 0 4px}
+  .pedido .dib{margin:14px 0 0}
+  .pedido .de{margin:12px 0 0;font-size:12.5px;color:var(--fg-3)}
+  @media (max-width:640px){.pedido>summary{flex-direction:column;gap:4px}.pedido dl{grid-template-columns:1fr;gap:2px}.pedido dd{margin-bottom:8px}}
+
+  /* ============ el lede: la conclusión, dos renglones ============ */
+  .lede{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:var(--radius);padding:16px 18px;margin:0 0 34px;box-shadow:var(--shadow)}
+  .lede p{margin:0;font-size:17.5px;line-height:1.5;max-width:68ch}
+  .lede strong{font-weight:650}
+
+  /* ============ lo que tenés que saber: los conceptos, antes del detalle (SKILL.md §6) ============ */
+  .saber{margin:-14px 0 34px}
+  .saber>h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);margin:0 0 10px}
+  .saber dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:0}
+  .saber dl>div{border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;background:var(--bg-elev)}
+  .saber dt{font-weight:650;font-size:15px;margin:0 0 4px}
+  .saber dd{margin:0;font-size:14.5px;line-height:1.5;color:var(--fg-2)}
+
+  /* ============ sección: título = conclusión · un dibujo · un pie ============ */
+  section{margin:0 0 38px}
+  h2{font-size:19px;line-height:1.3;font-weight:650;letter-spacing:-.01em;margin:0 0 14px;max-width:60ch}
+  p{margin:0 0 12px}
+  .pie{font-size:13.5px;line-height:1.5;color:var(--fg-2);margin:10px 0 0;max-width:78ch}
+  .grid{display:grid;gap:12px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;
+    box-shadow:var(--shadow);min-width:0}
+  .ptl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-3);font-weight:700;margin:0 0 10px}
+
+  /* ============ KPIs: el número grande, su comparación abajo ============ */
+  .kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+  .kpi{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:32px;font-weight:700;letter-spacing:-.025em;line-height:1.05;font-variant-numeric:tabular-nums}
+  .kpi .n small{font-size:.48em;font-weight:600;color:var(--fg-3);margin-left:.3em;letter-spacing:0}
+  .kpi .l{font-size:13px;color:var(--fg-2);line-height:1.4;margin-top:6px}
+  .kpi.dest .n{color:var(--accent)}
+
+  /* ============ barras horizontales con etiqueta ============ */
+  .hb{display:grid;gap:10px}
+  .hb .r{display:grid;grid-template-columns:minmax(110px,38%) minmax(0,1fr) auto;gap:12px;align-items:center;font-size:13.5px}
+  .hb .t{color:var(--fg-2);line-height:1.3;min-width:0}
+  .hb .t small{display:block;color:var(--fg-3);font-size:12px}
+  .hb .tr{position:relative;height:10px;border-radius:99px;background:var(--line-soft)}
+  .hb .f{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent)}
+  .hb .f.g{background:var(--ok)} .hb .f.b{background:var(--bad)} .hb .f.w{background:var(--warn)}
+  .hb .f.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .hb .meta{position:absolute;top:-4px;bottom:-4px;width:2px;border-radius:1px;background:var(--fg)}
+  .hb .n{font-weight:650;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--fg-2);margin-top:12px}
+  .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--accent)}
+  .sw.g{background:var(--ok)} .sw.b{background:var(--bad)} .sw.w{background:var(--warn)}
+  .sw.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .sw.m{width:2px;height:13px;border-radius:0;background:var(--fg);vertical-align:-2px}
+
+  /* ============ flujo en pasos ============ */
+  .flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:16px}
+  .flow .st{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:12px 13px;display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow);min-width:0}
+  .flow .st:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:8px;height:8px;z-index:1;
+    border-top:2px solid var(--fg-3);border-right:2px solid var(--fg-3);transform:translateY(-50%) rotate(45deg)}
+  .flow .i{font:700 12px/24px ui-monospace,monospace;width:24px;height:24px;border-radius:7px;text-align:center;
+    background:var(--accent-soft);color:var(--accent)}
+  .flow .h{font-weight:650;font-size:14px;line-height:1.25}
+  .flow .eg{font:italic 14px/1.3 ui-serif,Georgia,serif;color:var(--fg)}
+  .flow .d{font-size:12.5px;line-height:1.4;color:var(--fg-2)}
+  .flow .st.end{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+
+  /* ============ antes y después ============ */
+  .ad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}
+  .ad .lado{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:13px 15px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow);min-width:0}
+  .ad .antes{border-top:3px solid var(--bad)} .ad .despues{border-top:3px solid var(--ok)}
+  .ad .rot{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+  .ad .antes .rot{color:var(--bad)} .ad .despues .rot{color:var(--ok)}
+  .ad .despues::before{content:"→";position:absolute;left:-24px;top:50%;transform:translateY(-50%);
+    font-size:19px;color:var(--fg-3)}
+  .ad ol{margin:0;padding-left:20px;font-size:13.5px;line-height:1.45;color:var(--fg-2);display:grid;gap:3px}
+  .ad .res{font-weight:650;font-size:14.5px;border-top:1px dashed var(--line);padding-top:7px;margin-top:auto}
+  .ad .antes .res{color:var(--bad)} .ad .despues .res{color:var(--ok)}
+
+  /* ============ mapa de calor ============ */
+  .heat{display:grid;grid-template-columns:minmax(110px,1.6fr) repeat(var(--cols,4),minmax(0,1fr));gap:4px;font-size:12.5px}
+  .heat span{padding:7px 4px;border-radius:6px;text-align:center;font-variant-numeric:tabular-nums;background:var(--line-soft)}
+  .heat .h{background:none;color:var(--fg-3);font-size:11.5px;font-weight:600}
+  .heat .rl{background:none;text-align:left;color:var(--fg-2)}
+  .heat .h0{color:var(--fg-3)}
+  .heat .h1{background:color-mix(in srgb,var(--warn) 16%,var(--bg-elev))}
+  .heat .h2{background:color-mix(in srgb,var(--warn) 34%,var(--bg-elev))}
+  .heat .h3{background:color-mix(in srgb,var(--bad) 32%,var(--bg-elev))}
+
+  /* ============ tarjetas de decisión: la recomendada, marcada ============ */
+  .opts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+  .opt{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
+    box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;min-width:0}
+  .opt.rec{border:1.5px solid var(--accent);box-shadow:0 0 0 3px var(--accent-soft),var(--shadow)}
+  .opt .oh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14.5px}
+  .opt .ol{font:700 13px/26px ui-monospace,monospace;width:26px;height:26px;border-radius:7px;text-align:center;
+    background:var(--line-soft);flex:none}
+  .opt.rec .ol{background:var(--accent);color:var(--bg-elev)}
+  .opt p{font-size:13px;color:var(--fg-2);margin:0}
+  .opt ul{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-size:13px}
+  .opt li::before{font-weight:800;margin-right:6px}
+  .opt li.si::before{content:"✓";color:var(--ok)} .opt li.no::before{content:"✕";color:var(--bad)}
+
+  /* ============ ejemplo real ============ */
+  .ex{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
+    display:grid;gap:7px;box-shadow:var(--shadow);min-width:0}
+  .ex .cons{font-size:12px;color:var(--fg-3)}
+  .ex .en{font:italic 18px/1.35 ui-serif,Georgia,serif}
+  .ex .gap{display:inline-block;min-width:48px;border-bottom:2px solid var(--fg-3);margin:0 4px}
+  .ex .ans{font-size:13.5px;color:var(--fg-2)} .ex .ans b{color:var(--fg)}
+  .ex .rotulo{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3)}
+  .ex .rotulo.antes{color:var(--bad)} .ex .rotulo.despues{color:var(--ok)}
+  .ex .ans .lista{display:block;font-size:13px;line-height:1.5;color:var(--fg-2);margin-top:2px}
+  .ex .cuenta{font-size:13px;color:var(--fg-2);border-top:1px dashed var(--line);padding-top:7px}
+  .ex .cuenta i,.ex .ans i{font-family:ui-serif,Georgia,serif} .ex .cuenta .mal{color:var(--bad)}
+  .ex .ft{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--fg-3);
+    border-top:1px dashed var(--line);padding-top:7px}
+  .mark{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;line-height:1.45;background:var(--bad-soft);
+    border-radius:8px;padding:8px 10px}
+  .mark .x{color:var(--bad);font-weight:800}
+  .mark.ok{background:var(--ok-soft)} .mark.ok .x{color:var(--ok)}
+  .mark.warn{background:var(--warn-soft)} .mark.warn .x{color:var(--warn)}
+  .sev{font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;white-space:nowrap}
+  .sev.b{background:var(--bad);color:var(--bg-elev)} .sev.a{background:var(--bad-soft);color:var(--bad)}
+  .sev.m{background:var(--warn-soft);color:var(--warn)} .sev.l{background:var(--line-soft);color:var(--fg-2)}
+
+  /* ============ preguntas, con la recomendación ============ */
+  .asks{display:grid;gap:10px}
+  .ask{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);
+    padding:12px 15px;display:grid;gap:8px;box-shadow:var(--shadow)}
+  .ask .q{font-size:15px;font-weight:650;line-height:1.35}
+  .ask .ops{display:flex;gap:6px;flex-wrap:wrap}
+  .ask .op{font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--bg)}
+  .ask .op.rec{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .ask .why{font-size:13px;color:var(--fg-2);line-height:1.45}
+  /* ya contestada: .ask.hecha, la opción elegida .op.elegida y .dicho con qué se decidió */
+  .ask.hecha{border-left-color:var(--ok);box-shadow:none;background:transparent}
+  .ask.hecha .q,.ask.hecha .why{color:var(--fg-2)}
+  .ask.hecha .op:not(.elegida){opacity:.45}
+  .ask .op.elegida{border-color:var(--ok);background:var(--ok-soft);color:var(--ok);font-weight:650}
+  .ask .op.elegida::before{content:"✓ "}
+  .ask .dicho{font-size:13px;color:var(--ok);font-weight:600}
+  .opts.hecha .opt:not(.elegida){opacity:.45}
+  .opt.elegida{border:1.5px solid var(--ok);box-shadow:0 0 0 3px var(--ok-soft)}
+
+  /* ============ qué cambia y qué no ============ */
+  .cambia{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .cambia>div{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 15px;box-shadow:var(--shadow)}
+  .cambia ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13.5px;line-height:1.45}
+  .cambia li{position:relative;padding-left:22px}
+  .cambia li::before{position:absolute;left:0;top:0;font-weight:800}
+  .cambia .si li::before{content:"✓";color:var(--ok)}
+  .cambia .no li::before{content:"=";color:var(--fg-3)}
+
+  /* ============ captura real, con su pie ============ */
+  .captura{margin:0;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:10px;
+    box-shadow:var(--shadow);min-width:0}
+  .captura img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft)}
+  .captura.cel img{max-width:300px;margin:0 auto}
+  .captura figcaption{font-size:12.5px;color:var(--fg-3);margin-top:8px}
+
+  /* ============ dónde estamos: la captura real, con lo que cambia rodeado y numerado ============
+     El viewBox del svg.cap es el tamaño de la foto: las marcas van en sus píxeles (capturar.mjs --medir). */
+  .map{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);box-shadow:var(--shadow);border-radius:var(--radius)}
+  .map.alta{grid-template-columns:minmax(0,200px) minmax(0,1fr)}       /* una página más alta que la pantalla */
+  .map .ex{border-radius:var(--radius) 0 0 var(--radius);padding:10px;align-content:center;box-shadow:none}
+  .map .who{display:grid;gap:9px;align-content:center;padding:14px 16px;background:var(--bg);border:1px solid var(--line);
+    border-left:0;border-radius:0 var(--radius) var(--radius) 0}
+  .map .who div{display:flex;gap:9px;align-items:center;font-size:13.5px;line-height:1.35}
+  .map .who b{font:800 11.5px/22px ui-monospace,monospace;width:22px;height:22px;border-radius:6px;text-align:center;
+    background:var(--accent);color:var(--bg-elev);flex:none}
+  .map .who b.gris{background:var(--line);color:var(--fg-3)}       /* lo que se ve pero no cambia */
+  .map .who small{color:var(--fg-3);font-size:12px}
+  .map .who .ptl{margin:0}
+  .cap{display:block;width:100%;height:auto}
+  .cap .mk circle{fill:var(--accent);stroke:var(--bg-elev);stroke-width:4}
+  .cap .mk text{fill:var(--bg-elev);font-weight:800;font-family:ui-monospace,monospace;text-anchor:middle;dominant-baseline:central}
+  .cap .mk.gris circle{fill:var(--fg-3)}
+  .cap .aro{fill:none;stroke:var(--accent);stroke-width:4}         /* rodea lo que cambia */
+  .cap .tapa{fill:var(--bg-elev);opacity:.74}                       /* atenúa lo que no */
+  .cap .raya{stroke:var(--fg-3);stroke-width:2;stroke-dasharray:9 9}  /* dónde termina cada pantalla */
+
+  /* ============ hoy → con X: la foto de hoy con el problema; la maqueta de cómo queda, con su leyenda ============ */
+  .ad.asim{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+  .hoy{display:block;max-width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft);align-self:flex-start}
+  .franja{display:flex;gap:12px;align-items:flex-end}               /* una página alta, al lado de su marca */
+  .franja .cap{width:34%;flex:none} .franja .mark{flex:1}
+  .nb{display:inline-flex;align-items:center;justify-content:center;flex:none;width:1.75em;height:1.75em;border-radius:99px;
+    background:var(--accent);color:var(--bg-elev);font:800 .74em/1 ui-monospace,monospace}
+  ol.leg{list-style:none;margin:0;padding:0;display:grid;gap:5px;font-size:13.5px;line-height:1.45;color:var(--fg-2)}
+  .leg li{display:flex;gap:8px;align-items:baseline} .leg .nb{font-size:11px}
+  /* la maqueta: .mq es su propio contenedor y la letra (en .mi) escala con su ancho, así que una
+     maqueta más ancha NO entra más. Si no entra: menos filas, o .mq.denso. El kit entero, con cada
+     pieza a la vista, está en el catálogo de presentacion.html. */
+  /* ESTILO DEL PRODUCTO (maquetar.md): si el producto existe, acá se redefinen, sólo para la
+     maqueta, sus tokens: --bg-elev --bg --line --line-soft --fg --fg-2 --fg-3 --accent --accent-soft
+     --ok/--warn/--bad (+ -soft), la letra (--mq-font) y el radio de sus controles (--mq-r). También
+     su modo oscuro, si lo tiene. Sin esto la maqueta sale con el estilo del brief, que no es el de la app.
+  .mq{--mq-font:"Nunito",system-ui,sans-serif; --mq-r:.75em; --accent:#…; …} */
+  .mq{container-type:inline-size;background:var(--bg-elev);border:1px solid var(--line);border-radius:10px;overflow:hidden;
+    box-shadow:var(--shadow)}
+  .mi{font-size:max(10.5px,2.75cqi);font-family:var(--mq-font,inherit);line-height:1.35;padding:3cqi 3.2cqi;display:flex;flex-direction:column;gap:2.2cqi;color:var(--fg)}
+  .mq.denso .mi{font-size:max(10px,2.45cqi);gap:1.7cqi;padding:2.6cqi 2.8cqi}
+  .mi .fila{display:flex;gap:.55em;align-items:center;min-width:0} .mi .fila.env{flex-wrap:wrap;row-gap:.4em}
+  .mi .crece{flex:1;min-width:0}
+  .mi .vt{display:flex;flex-direction:column;gap:.25em;min-width:0}
+  .mi .in{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:var(--mq-r,.5em);padding:.45em .7em;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mi .sel{background:var(--bg);border:1px solid var(--line);border-radius:var(--mq-r,.5em);padding:.45em .6em;white-space:nowrap;flex:none}
+  .mi .bt{background:var(--accent);color:var(--bg-elev);border-radius:var(--mq-r,.5em);padding:.45em .85em;font-weight:700;white-space:nowrap;flex:none}
+  .mi .bt.gh{background:var(--bg-elev);color:var(--fg);border:1px solid var(--line);font-weight:600}
+  .mi .chp{display:inline-flex;align-items:center;gap:.35em;border:1px solid var(--line);background:var(--bg);border-radius:99px;
+    padding:.18em .7em;font-size:.86em;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  .mi .chp.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .mi .chp.no{color:var(--fg-3);text-decoration:line-through}
+  .mi .chp.ok{border-color:var(--ok);background:var(--ok-soft);color:var(--ok);font-weight:650}
+  .mi .chp.fal{border-color:var(--warn);background:var(--warn-soft);color:var(--warn);font-weight:650}
+  .mi .rt{font-size:.72em;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--fg-3)}
+  .mi .tt{font-weight:700;font-size:1.1em;letter-spacing:-.01em} .mi .ts{font-weight:700;font-size:1.15em;letter-spacing:-.01em}
+  .mi .s{font-size:.84em;color:var(--fg-3)} .mi .neg{font-weight:700}
+  .mi .bien{color:var(--ok);font-weight:800} .mi .mal{color:var(--bad);font-weight:800}
+  .mi .corta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .mi .th{width:5.2em;aspect-ratio:16/9;border-radius:.35em;object-fit:cover;flex:none;display:block}
+  .mi .th.ch{width:3.6em} .mi .th.gr{width:60%}
+  .mi .hr{height:1px;background:var(--line-soft)} .mi .apagado{opacity:.4}
+  .mi .expl{background:var(--bg);border:1px solid var(--line-soft);border-radius:var(--mq-r,.5em);padding:.5em .7em;font-size:.86em;color:var(--fg-2)}
+  .mi .aviso{display:flex;gap:.5em;align-items:center;border-radius:var(--mq-r,.5em);padding:.45em .7em;font-weight:650;
+    background:var(--bad-soft);color:var(--bad)}
+  .mi .aviso.ok{background:var(--ok-soft);color:var(--ok)}
+  .mi .campo{border:1.5px solid var(--accent);border-radius:.6em;padding:.6em .8em;background:var(--bg-elev);display:flex;flex-direction:column;gap:.3em}
+  .mi .hueco{border:1px dashed var(--warn);border-radius:.4em;height:1.7em;background:var(--warn-soft)}
+  .mi .av{width:2.1em;height:2.1em;border-radius:99px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;
+    font-size:.8em;background:var(--accent-soft);color:var(--accent);flex:none}
+  .mi .fase{display:grid;grid-template-columns:1.5em 1fr auto;gap:.25em .55em;align-items:center}
+  .mi .fase .ic{font-weight:800;text-align:center}
+  .mi .fase.hecha .ic{color:var(--ok)} .mi .fase.va .ic{color:var(--accent)} .mi .fase.falta{color:var(--fg-3)}
+  .mi .riel{grid-column:2/4;height:.42em;border-radius:99px;background:var(--line-soft);overflow:hidden}
+  .mi .riel i{display:block;height:100%;width:var(--hecho,40%);background:var(--accent);border-radius:99px}
+  .mi .dos{display:grid;grid-template-columns:1.15fr 1fr;border:1px solid var(--line-soft);border-radius:.6em;overflow:hidden}
+  .mi .dos>div{padding:.75em;display:flex;flex-direction:column;gap:.55em;min-width:0}
+  .mi .lat{background:var(--bg);border-left:1px solid var(--line)}
+  .mi .item{display:flex;gap:.5em;align-items:center;padding:.3em;border-radius:.4em;min-width:0}
+  .mi .item.on{background:var(--accent-soft);box-shadow:inset 0 0 0 1.5px var(--accent)}
+
+  /* ============ pills de estado ============ */
+  .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}
+  .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
+  .p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)}
+  .p-bad{background:var(--bad-soft);color:var(--bad)} .p-info{background:var(--info-soft);color:var(--info)}
+  .p-idle{background:var(--line-soft);color:var(--fg-3)}
+
+  /* ============ tabla chica (≤ 6 filas; si es más, es un gráfico) ============ */
+  .tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}
+  th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);
+    font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:ui-monospace,monospace;font-size:13px}
+
+  /* ============ diagrama (los de cajas y flechas van con diagrama.mjs, §11) ============ */
+  .diagram{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
+    overflow-x:auto;box-shadow:var(--shadow)}
+  .diagram svg{display:block;max-width:100%;height:auto;margin:0 auto}
+  svg .box{fill:var(--bg);stroke:var(--line)}
+  svg .box-a{fill:var(--accent-soft);stroke:var(--accent)}
+  svg .box-ok{fill:var(--ok-soft);stroke:var(--ok)}
+  svg .box-bad{fill:var(--bad-soft);stroke:var(--bad)}
+  svg .lbl{fill:var(--fg);font:13px ui-sans-serif,system-ui,sans-serif}
+  svg .lbl-s{fill:var(--fg-3);font:11px ui-sans-serif,system-ui,sans-serif}
+  svg .arrow{stroke:var(--fg-3);fill:none;stroke-width:1.2}
+
+  /* ============ comandos · aviso de lo que no sé ============ */
+  pre{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;
+    overflow-x:auto;font-size:13px;line-height:1.55;margin:0}
+  pre code{color:var(--fg)}
+  .call{border-radius:var(--radius);padding:10px 13px;font-size:13.5px;border:1px solid;margin:12px 0 0}
+  .c-warn{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 28%,transparent)}
+  .c-bad{background:var(--bad-soft);border-color:color-mix(in srgb,var(--bad) 28%,transparent)}
+  .c-info{background:var(--info-soft);border-color:color-mix(in srgb,var(--info) 28%,transparent)}
+  .call b:first-child{margin-right:4px}
+
+  footer{border-top:1px solid var(--line);margin-top:36px;padding-top:14px;font-size:12.5px;color:var(--fg-3);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  /* ============ celular ============ */
+  @media (max-width:640px){
+    body{padding:24px 16px 60px}
+    h2{font-size:17px}
+    .flow{grid-auto-flow:row}
+    .flow .st:not(:last-child)::after{right:auto;left:22px;top:auto;bottom:-11px;transform:rotate(135deg)}
+    .ad{grid-template-columns:minmax(0,1fr);gap:28px}
+    .ad .despues::before{content:"↓";left:50%;top:-25px;transform:translateX(-50%)}
+    .hb .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) auto;gap:8px}
+    .heat{grid-template-columns:minmax(80px,1.3fr) repeat(var(--cols,4),minmax(0,1fr));font-size:11.5px}
+    .kpi .n{font-size:28px}
+    .map,.map.alta,.ad.asim{grid-template-columns:minmax(0,1fr)}
+    .map .ex{border-radius:var(--radius) var(--radius) 0 0}
+    .map .who{border-left:1px solid var(--line);border-top:0;border-radius:0 0 var(--radius) var(--radius)}
+    .map.alta .cap{width:min(55%,220px);margin:0 auto}
+  }
+
+  /* ============ CATÁLOGO · se borra entero al generar ============ */
+  .cat{margin-top:64px;padding-top:22px;border-top:3px solid var(--bad)}
+  .cat .adv{font-size:13px;color:var(--bad);font-weight:600;margin:0 0 20px}
+  .cat-g{display:grid;gap:16px}
+  .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
+  .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
+  .cat-i>.n b{color:var(--fg-2)}
+figure.dg{margin:0 0 16px;overflow-x:auto}figure.dg>svg{display:block;width:100%;height:auto;margin:0 auto}
+  .ex .tj{font-size:13.5px;line-height:1.45;color:var(--fg)} /* la tarjeta citada tal cual, con sus «…» */
+  /* brief 266: tablas de casos y lo que se despliega */
+  details.mas{margin-top:14px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
+  details.mas>summary{cursor:pointer;padding:10px 13px;font-size:13.5px;font-weight:600;color:var(--fg-2)}
+  details.mas[open]>summary{border-bottom:1px solid var(--line)}
+  details.mas .tw{border:0;border-radius:0}
+  .tw td{vertical-align:top}
+  .t-id{font-size:11.5px;color:var(--fg-3)}
+  .t-cons{font-size:12.5px;color:var(--fg-2)}
+  .t-en{font:italic 15px/1.35 ui-serif,Georgia,serif;margin:2px 0}
+  .t-en .gap{display:inline-block;min-width:36px;border-bottom:2px solid var(--fg-3);margin:0 3px}
+  .t-ans{font-size:12.5px;color:var(--fg-2)} .t-ans b{color:var(--fg);font-weight:600}
+  .t-tr{font-size:12.5px;color:var(--fg-3)}
+  .t-j{font-size:12.5px;margin-top:4px} .t-j:first-child{margin-top:0}
+  .t-txt{font-size:12.5px;line-height:1.45;color:var(--fg-2)}
+  table.casos td:first-child{min-width:230px} table.casos td:nth-child(2){min-width:300px}
+  .ad>.ex{align-self:start}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">
+      <span class="num">266</span>
+      <span class="badge">Diagnóstico · Para decidir</span>
+      <span class="meta">Correcciones A1 · 4/11/2026</span>
+    </div>
+    <details class="pedido">
+      <summary><span class="k">Lo que pediste</span><span class="q">Querías saber por qué la C2 no cambió «sport» en «She ___ (sport) hats.», si parecía fácil poner un verbo del nivel.</span></summary>
+      <div class="pedido-c">
+        <dl>
+          <dt>Qué estabas mirando</dt><dd>Correcciones, tanda A1 · Corrección 2 · versión 83. Las tres correcciones del ejercicio cambian la traducción y la tarjeta, y el juez de traducción dice que «sport» no es de A1 y que va «wear».</dd>
+          <dt>Qué pediste</dt><dd>Entender por qué ninguna pasada cambió el verbo, separar lo que es diseño de lo que es error, y no tocar código ni recorregir sin preguntarte.</dd>
+          <dt>A qué te referías</dt><dd><ol>
+            <li>Qué podía tocar cada tarea del ejercicio, y de dónde salió ese permiso.</li>
+            <li>Por qué no se cambió el verbo, si un juez lo pidió con todas las letras.</li>
+            <li>Cuántos ejercicios de la C2 están igual.</li>
+            <li>Qué hace falta para arreglarlo bien.</li>
+          </ol></dd>
+        </dl>
+        <p class="de">De tu pregunta del 4/11 a la noche, mirando el tablero. La explicación de la mesa decía que sus tareas sólo le dejaban editar la tarjeta.</p>
+      </div>
+    </details>
+    <h1>El verbo se podía cambiar; lo frenó la regla de la tarjeta</h1>
+    <p class="sub">Qué pasó en cada pasada, cuántos ejercicios de la C2 están igual y cómo se arregla.</p>
+  </header>
+
+  <div class="lede"><p><strong>Dos tareas podían cambiar «sport» por «wear», pero la mesa no las intentó: la regla de la tarjeta las apartó por un problema leve de la tarjeta.</strong> Propongo que actúe sólo con uno medio o alto.</p></div>
+
+  <div class="saber">
+    <h2>Lo que tenés que saber</h2>
+    <dl>
+      <div><dt>La mesa</dt><dd>Es el corrector: un modelo propone el ejercicio corregido y los jueces lo miden. Gana si arregla lo pedido sin empeorar nada.</dd></div>
+      <div><dt>Tarea y permiso</dt><dd>Cada problema de un juez es una tarea, y la tarea dice qué partes se pueden tocar: oración, pista, respuestas, traducción, tarjeta o audio.</dd></div>
+      <div><dt>La regla de la tarjeta</dt><dd>La aprobaste el 4/11, en el brief 261: si la tarjeta tiene un problema y afuera todo es leve, la mesa corrige sólo la tarjeta.</dd></div>
+    </dl>
+  </div>
+
+  <section>
+    <h2>La C2 cambió la traducción y la tarjeta, pero dejó «sport»</h2>
+    <div class="ad">
+      <div class="ex">
+        <div class="cons">Present Simple · Afirmativas regulares · A1 · ejercicio 1ed6</div>
+        <span class="rotulo antes">En producción</span>
+        <div class="ans">Consigna: Escribe la forma afirmativa en presente simple.</div>
+        <div class="en">She<span class="gap"></span>(sport) hats.</div>
+        <div class="ans">Respuesta: <b>sports</b></div>
+        <div class="ans">Traducción: Ella luce sombreros.</div>
+        <div class="ans">Tarjeta: Con he, she, it el verbo lleva <i>-s</i>. Con I, you, we, they va en forma base.</div>
+      </div>
+      <div class="ex">
+        <div class="cons">El mismo ejercicio en la C2, versión 83</div>
+        <span class="rotulo despues">Hoy</span>
+        <div class="ans">Consigna: la misma.</div>
+        <div class="en">She<span class="gap"></span>(sport) hats.</div>
+        <div class="ans">Respuesta: <b>sports</b></div>
+        <div class="ans">Traducción: Ella lleva puestos sombreros.</div>
+        <div class="ans">Tarjeta: Con <i>she</i>, en presente simple afirmativo, normalmente se añade <i>-s</i> al verbo base.</div>
+        <div class="mark"><span class="x">✕</span><span>Traducción: «sport» como «llevar puesto» es avanzado; en A1 va «wear». <span class="sev l">leve</span></span></div>
+        <div class="mark"><span class="x">✕</span><span>Calidad didáctica: pide un verbo de sentido directo que practique la <i>-s</i>. <span class="sev l">leve</span></span></div>
+        <div class="mark ok"><span class="x">✓</span><span>Miniteoría: la tarjeta quedó resuelta.</span></div>
+      </div>
+    </div>
+    <p class="pie">Dos correcciones cambiaron la traducción en la C1, la primera corrección (7 y 9/10), y una cambió la tarjeta (4/11). Ninguna tocó el inglés.</p>
+  </section>
+
+  <section>
+    <h2>En tres momentos, tres cosas distintas dejaron el verbo como estaba</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Cuándo</th><th>Qué pasó</th><th>Por qué</th><th>¿Diseño o error?</th></tr></thead>
+      <tbody>
+        <tr><td>7/10 · C1</td><td>La mesa aceptó «Ella lleva sombreros.» con una sola consulta: la de quien propone.</td><td>El juez de traducción no midió la propuesta. Al medir el curso, volvió a marcar «sport».</td><td><span class="pill p-idle">Así era la mesa</span> Ya no pasa: desde el 9/10 los jueces miden cada propuesta.</td></tr>
+        <tr><td>9/10 · C1</td><td>Quien propone sugirió cambiar el inglés, y la mesa lo rechazó: «cambia la pista y sus tareas no lo permiten». Ganó «Ella lleva puestos sombreros.», que el juez dio por buena en la mesa y volvió a marcar al medir el curso.</td><td>El permiso del juez de traducción no incluía la pista, y cambiar el verbo cambia «(sport)».</td><td><span class="pill p-bad">Error</span> Arreglado el 18/10: desde entonces ese juez deja tocar la pista y la tarjeta.</td></tr>
+        <tr><td>25/10 al 3/11 · C2</td><td>Ninguna pasada tomó el ejercicio, y sus dos tareas quedaron pendientes.</td><td>Las pasadas eligieron otros ejercicios.</td><td><span class="pill p-idle">Diseño</span> Qué se recorrige lo elige cada pasada.</td></tr>
+        <tr><td>4/11 · C2</td><td>Entró en la recorrección de las tarjetas con cinco tareas: tres de la tarjeta, la de traducción y la de calidad didáctica. La mesa cambió sólo la tarjeta.</td><td>Al empezar, el problema medio de la tarjeta ya no estaba y quedaban dos leves: le faltaban las marcas del inglés y mezclaba otro caso. Con eso, la regla de la tarjeta apartó las dos tareas del verbo.</td><td><span class="pill p-bad">Error</span> Tu sí del brief 261 era para cuando el problema está en la tarjeta; la regla escrita y el código la aplican también con uno leve.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="pie">La mesa explicó que sus tareas sólo le dejaban la tarjeta. Es cierto para las que recibió: las otras dos ya estaban apartadas.</p>
+  </section>
+
+  <section>
+    <h2>La regla se aplicó por dos problemas leves de la tarjeta</h2>
+    <div class="ad">
+      <div class="lado antes"><span class="rot">Hoy</span>
+        <ol>
+          <li>Al empezar, la mesa ve dos problemas leves en la tarjeta.</li>
+          <li>Como afuera todo es leve, aparta las dos tareas del verbo.</li>
+          <li>Corrige sólo la tarjeta.</li>
+        </ol>
+        <span class="res">«sport» queda igual.</span></div>
+      <div class="lado despues"><span class="rot">Con el arreglo</span>
+        <ol>
+          <li>Al empezar, la mesa ve los mismos dos problemas leves.</li>
+          <li>Como son leves, no aparta nada.</li>
+          <li>Pide el ejercicio entero y la tarjeta sola, y los jueces miden las dos.</li>
+        </ol>
+        <span class="res">Puede ganar «She wears hats.».</span></div>
+    </div>
+    <p class="pie">Con un problema medio o alto en la tarjeta, todo sigue como decidiste el 4/11.</p>
+    <details class="mas"><summary>Los 7 que apartó la regla el 4/11</summary>
+      <div class="tw"><table>
+        <thead><tr><th>Ejercicio, hoy</th><th>La tarjeta, al empezar</th><th>Lo que apartó</th><th>Hoy</th><th>Con el arreglo</th></tr></thead>
+        <tbody>
+<tr><td><div class="t-id">Afirmativas regulares · ejercicio 1ed6</div><div class="t-cons">Escribe la forma afirmativa en presente simple.</div><div class="t-en">She <span class="gap"></span> (sport) hats.</div><div class="t-ans">Respuesta: <b>sports</b></div><div class="t-tr">Ella lleva puestos sombreros.</div></td><td>Dos leves: le faltan las marcas del inglés y mezcla otro caso. El problema medio ya no estaba.</td><td>Calidad didáctica y traducción, las dos leves</td><td>Los dos jueces lo siguen marcando</td><td><span class="pill p-ok">Se intenta</span></td></tr>
+<tr><td><div class="t-id">Oraciones imperativas · ejercicio 22c3</div><div class="t-cons">Transforma estas oraciones a imperativo.</div><div class="t-en">You shouldn&#x27;t be on the table. <span class="gap"></span></div><div class="t-ans">Respuestas: <b>Don&#x27;t be on the table. · Do not be on the table.</b></div><div class="t-tr">No estés sobre la mesa.</div></td><td>Uno leve: mezcla otro caso. El problema medio ya no estaba.</td><td>Calidad didáctica, leve</td><td>Lo sigue marcando</td><td><span class="pill p-ok">Se intenta</span></td></tr>
+<tr><td><div class="t-id">Oraciones imperativas · ejercicio 22b6</div><div class="t-cons">Transforma estas oraciones a imperativo.</div><div class="t-en">You shouldn&#x27;t get up. <span class="gap"></span></div><div class="t-ans">Respuestas: <b>Don&#x27;t get up. · Do not get up.</b></div><div class="t-tr">No te levantes.</div></td><td>Uno leve: mezcla otro caso. El problema medio ya no estaba.</td><td>Calidad didáctica, leve</td><td>Ya no lo marca</td><td><span class="pill p-ok">Se intenta</span></td></tr>
+<tr><td><div class="t-id">Oraciones imperativas · ejercicio 22c5</div><div class="t-cons">Transforma estas oraciones a imperativo.</div><div class="t-en">You shouldn&#x27;t run in the café. <span class="gap"></span></div><div class="t-ans">Respuestas: <b>Don&#x27;t run in the café. · Do not run in the café.</b></div><div class="t-tr">No corras en el café.</div></td><td>Uno leve: mezcla otro caso. El problema medio ya no estaba.</td><td>Calidad didáctica, leve</td><td>Ya no lo marca</td><td><span class="pill p-ok">Se intenta</span></td></tr>
+<tr><td><div class="t-id">Afirmativas · ejercicio 1ffe</div><div class="t-cons">Usa <i>long forms</i>. Escribe oraciones afirmativas en &#x27;present continuous&#x27;.</div><div class="t-en">He <span class="gap"></span> (get) the newspaper.</div><div class="t-ans">Respuesta: <b>is getting</b></div><div class="t-tr">Él está buscando el periódico.</div></td><td>Uno alto: la tarjeta no alcanza para resolver el ejercicio.</td><td>El pedido de forma larga, leve</td><td>Ya no lo marca</td><td><span class="pill p-idle">Igual que hoy</span></td></tr>
+<tr><td><div class="t-id"><i>Before</i> y <i>after</i> · ejercicio 246c</div><div class="t-cons">Transforma las oraciones para que incluyan la forma &#x27;verb-ing&#x27;.</div><div class="t-en">The dog ran after it saw the cat. <span class="gap"></span></div><div class="t-ans">Respuestas: <b>The dog ran after seeing the cat. · The dog ran after having seen the cat. · After seeing the cat, the dog ran. · After having seen the cat, the dog ran. · The dog, after seeing the cat, ran. · The dog, after having seen the cat, ran.</b></div><div class="t-tr">El perro corrió después de ver al gato.</div></td><td>Uno medio: usa jerga.</td><td>Calidad didáctica, leve</td><td>Marca un problema nuevo</td><td><span class="pill p-idle">Igual que hoy</span></td></tr>
+<tr><td><div class="t-id">Adverbios de modo · ejercicio 2efb</div><div class="t-cons">Crea un adverbio a partir del adjetivo y agrégalo a la oración.</div><div class="t-en">She spoke. (clear) <span class="gap"></span></div><div class="t-ans">Respuesta: <b>She spoke clearly.</b></div><div class="t-tr">Ella habló con claridad.</div></td><td>Uno medio: exagera la regla.</td><td>Calidad didáctica, leve</td><td>Lo arreglaste vos desde la bandeja</td><td><span class="pill p-idle">Igual que hoy</span></td></tr>
+        </tbody>
+      </table></div>
+    </details>
+  </section>
+
+  <section>
+    <h2>En 65 ejercicios, un juez pide cambiar el inglés y sigue igual</h2>
+    <div class="hb">
+      <div class="r"><span class="t">Ninguna pasada los tomó<small>41 marcados el 27/10 y 2 después de su última pasada: no tienen tarea</small></span><span class="tr"><span class="f w" style="width:100%"></span></span><span class="n">43</span></div>
+      <div class="r"><span class="t">La pasada del tuteo no tenía consultas</span><span class="tr"><span class="f w" style="width:16%"></span></span><span class="n">7</span></div>
+      <div class="r"><span class="t">El juez no lo vio cuando la mesa empezó</span><span class="tr"><span class="f w" style="width:9%"></span></span><span class="n">4</span></div>
+      <div class="r"><span class="t">La regla de la tarjeta apartó la tarea<small>«She sports hats.» y «Don't be on the table.»</small></span><span class="tr"><span class="f b" style="width:5%"></span></span><span class="n">2</span></div>
+      <div class="r"><span class="t">La mesa lo intentó y nada convenció</span><span class="tr"><span class="f s" style="width:21%"></span></span><span class="n">9</span></div>
+    </div>
+    <div class="leyenda"><span><i class="sw w"></i>nadie lo intentó</span><span><i class="sw b"></i>lo frenó la regla</span><span><i class="sw s"></i>se intentó</span></div>
+    <p class="pie">A ninguno le faltó permiso, y en 56 nadie intentó el pedido. 60 son de Calidad didáctica, todos leves menos uno.</p>
+    <details class="mas"><summary>Los 65, uno por uno</summary>
+      <div class="tw"><table class="casos">
+        <thead><tr><th>Ejercicio, hoy</th><th>Lo que pide el juez</th><th>Por qué no cambió</th></tr></thead>
+        <tbody>
+<tr><td><div class="t-id">Afirmativas regulares · ejercicio 1ed6</div><div class="t-cons">Escribe la forma afirmativa en presente simple.</div><div class="t-en">She <span class="gap"></span> (sport) hats.</div><div class="t-ans">Respuesta: <b>sports</b></div><div class="t-tr">Ella lleva puestos sombreros.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La oración permite practicar la terminación -s, pero sport con el sentido de llevar o lucir ropa añade una acepción especial que no aparece documentada como enseñada. Es inglés válido, aunque poco transparente como ejemplo inicial de presente simple. Propuesta: Sustituir el verbo indicado y la respuesta modelo por un verbo de significado directo que conserve la práctica de la terminación -s. No tratar la oración original como una respuesta incorrecta.</div><div class="t-j"><b>Traducción que no corresponde</b> <span class="sev l">leve</span></div><div class="t-txt">El registro no es del nivel: «sport» con el sentido de llevar puesta una prenda es un uso avanzado para A1; en este nivel corresponde el verbo habitual «wear».</div></td><td>La regla de la tarjeta apartó la tarea el 4/11, sin intentarla.</td></tr>
+<tr><td><div class="t-id">Oraciones imperativas · ejercicio 22c3</div><div class="t-cons">Transforma estas oraciones a imperativo.</div><div class="t-en">You shouldn&#x27;t be on the table. <span class="gap"></span></div><div class="t-ans">Respuestas: <b>Don&#x27;t be on the table. · Do not be on the table.</b></div><div class="t-tr">No estés sobre la mesa.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">Las respuestas practican el imperativo negativo con be, pero transformar la frase inicial exige interpretar shouldn&#x27;t. Su enseñanza previa no está documentada y Modal Verbs aparece después en la secuencia suministrada. Ambas respuestas pueden conservarse como válidas. Propuesta: Sustituir la frase con shouldn&#x27;t por una consigna directa que indique el verbo y la polaridad, conservando ambas respuestas aceptadas.</div></td><td>La regla de la tarjeta apartó la tarea el 4/11, sin intentarla.</td></tr>
+<tr><td><div class="t-id">Preguntas sí/no · ejercicio 1efa</div><div class="t-cons">Formula preguntas en presente simple.</div><div class="t-en"><span class="gap"></span> (they / drink) at home?</div><div class="t-ans">Respuesta: <b>Do they drink</b></div><div class="t-tr">¿Beben en casa?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La pregunta practica correctamente «Do + they + verbo base», pero «drink» sin objeto puede entenderse como beber alcohol. Es una lectura válida que introduce un sentido léxico innecesario para practicar la estructura. Propuesta: Añadir «water» después del espacio en el enunciado y actualizar la respuesta modelo para explicitar qué beben. Conservar la pregunta original como inglés válido.</div></td><td>Entró en la pasada del tuteo del 29/10, que no tenía consultas; ninguna pasada la volvió a tomar.</td></tr>
+<tr><td><div class="t-id"><i>Be</i> o <i>do</i>: armar preguntas · ejercicio 1f99</div><div class="t-cons">Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es &#x27;be&#x27;, debes usar &#x27;am / is / are&#x27; y si el verbo no es &#x27;be&#x27;, debes usar &#x27;do / does&#x27;.</div><div class="t-en">The animals are in the wrong sea. <span class="gap"></span></div><div class="t-ans">Respuesta: <b>Are the animals in the wrong sea?</b></div><div class="t-tr">¿Los animales están en el mar equivocado?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La pregunta practica correctamente la inversión con «are», ya documentada en la secuencia. Sin embargo, «the wrong sea» exige interpretar qué mar les corresponde a los animales, sin contexto que establezca ese criterio. Esa interpretación es innecesaria para practicar la elección entre «be» y «do». Propuesta: Sustituir la ubicación por una relación directa, conservando el sujeto y la transformación de afirmación a pregunta con «are». La respuesta original sigue siendo válida en un contexto adecuado.</div></td><td>Entró en la pasada del tuteo del 29/10, que no tenía consultas; ninguna pasada la volvió a tomar.</td></tr>
+<tr><td><div class="t-id">Todas las formas · ejercicio 1fa9</div><div class="t-cons">Escribe oraciones en presente simple.</div><div class="t-en">You <span class="gap"></span> (need) a new life.</div><div class="t-ans">Respuesta: <b>need</b></div><div class="t-tr">Necesitas una nueva vida.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La conjugación de «need» permite practicar el objetivo, pero «a new life» exige interpretar un cambio general de vida sin contexto. Un objeto concreto permite concentrarse en el presente simple. La respuesta aceptada sigue siendo válida. Propuesta: Sustituir «a new life» por un objeto cotidiano en el enunciado y en la respuesta aceptada, conservando el hueco para «need».</div></td><td>Entró en la pasada del tuteo del 29/10, que no tenía consultas; ninguna pasada la volvió a tomar.</td></tr>
+<tr><td><div class="t-id">Todas las formas · ejercicio 1fab</div><div class="t-cons">Escribe oraciones en presente simple.</div><div class="t-en">They <span class="gap"></span> (not / drink).</div><div class="t-ans">Respuesta: <b>don&#x27;t drink</b></div><div class="t-tr">Ellos no beben.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La oración permite practicar correctamente la negación con don&#x27;t, pero drink sin complemento suele interpretarse como beber alcohol. Ese sentido implícito añade una interpretación evitable al ejercicio de conjugación. Propuesta: Añadir un complemento explícito al enunciado y a la respuesta aceptada para practicar la misma negación con un significado directo. La respuesta actual sigue siendo inglés válido.</div></td><td>Entró en la pasada del tuteo del 29/10, que no tenía consultas; ninguna pasada la volvió a tomar.</td></tr>
+<tr><td><div class="t-id">Elegir la forma natural · ejercicio 2180</div><div class="t-cons">¿Es más natural usar &#x27;will&#x27; o &#x27;going to&#x27;? Escribe oraciones.</div><div class="t-en">Have we run out of milk? I <span class="gap"></span> (buy) some.</div><div class="t-ans">Respuestas: <b>&#x27;ll buy · will buy</b></div><div class="t-tr">¿Nos hemos quedado sin leche? Compraré un poco.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La respuesta con will permite practicar una decisión inmediata, pero la pregunta introductoria usa present perfect («Have we run out … ?»), cuya enseñanza previa no está documentada. Esa estructura añade una carga evitable para interpretar el contexto. Ambas respuestas aceptadas siguen siendo válidas. Propuesta: Sustituir la pregunta introductoria por un contexto en presente simple y conservar las respuestas con I&#x27;ll y I will.</div></td><td>Entró en la pasada del tuteo del 29/10, que no tenía consultas; ninguna pasada la volvió a tomar.</td></tr>
+<tr><td><div class="t-id">Verbos y sus preposiciones · ejercicio 24cf</div><div class="t-cons">Completa con la preposición correcta.</div><div class="t-en">Could you pay <span class="gap"></span> the lunch?</div><div class="t-ans">Respuesta: <b>for</b></div><div class="t-tr">¿Podrías pagar el almuerzo?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La oración ilustra correctamente pay for, pero añade una petición cortés con Could you, cuyo aprendizaje no está documentado entre las lecciones previas. El esquema sitúa Modal Verbs después de Prepositions. Una afirmación en presente simple permite practicar la misma preposición con una estructura ya trabajada. Propuesta: Cambiar el enunciado a «I pay ___ lunch.» y conservar for como respuesta. La petición original sigue siendo válida en inglés.</div></td><td>Entró en la pasada del tuteo del 29/10, que no tenía consultas; ninguna pasada la volvió a tomar.</td></tr>
+<tr><td><div class="t-id">Adverbios de modo · ejercicio 2ef4</div><div class="t-cons">Crea un adverbio a partir del adjetivo y agrégalo a la oración.</div><div class="t-en">The birds flew. (high) <span class="gap"></span></div><div class="t-ans">Respuesta: <b>The birds flew high.</b></div><div class="t-tr">Los pájaros volaron alto.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La oración es válida, pero high indica la altura del vuelo, no claramente el modo de realizar la acción. Además, conserva la forma del adjetivo, por lo que resulta menos transparente como ejemplo inicial de formación de adverbios de modo. El pasado simple sí figura en la progresión previa. Propuesta: Usar un ejemplo con un adverbio de modo claramente derivado en -ly: «The birds sang. (beautiful) ___». Conservar high como respuesta válida si se practica explícitamente su uso adverbial sin cambio de forma.</div></td><td>Entró en la pasada del tuteo del 29/10, que no tenía consultas; ninguna pasada la volvió a tomar.</td></tr>
+<tr><td><div class="t-id">Preguntas sí/no · ejercicio 2020</div><div class="t-cons">Formula preguntas de sí/no en &#x27;present continuous&#x27;.</div><div class="t-en"><span class="gap"></span> (he / use) a wall?</div><div class="t-ans">Respuesta: <b>Is he using</b></div><div class="t-tr">¿Él está usando una pared?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La pregunta permite practicar la estructura indicada, pero sin contexto «usar una pared» exige imaginar para qué se utiliza. Un objeto con una función más directa reduce esa interpretación adicional. Propuesta: Cambiar «a wall» por «a computer» y conservar la consigna y la conjugación solicitada.</div></td><td>Cuando la mesa lo midió al empezar, el juez no vio el problema; al medir el curso lo volvió a ver.</td></tr>
+<tr><td><div class="t-id">Estado vs. acción · ejercicio 20fa</div><div class="t-cons">Escribe las oraciones en &#x27;present simple&#x27; o &#x27;present continuous&#x27;. Todas las oraciones hablan sobre el presente.</div><div class="t-en">He <span class="gap"></span> (write) a letter these days.</div><div class="t-ans">Respuesta: <b>is writing</b></div><div class="t-tr">Él está escribiendo una carta estos días.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La oración es válida, pero «these days» exige interpretar la escritura de una sola carta como una actividad que se prolonga durante estos días. Una referencia al momento actual permite practicar el contraste entre estado y acción de forma más directa. Propuesta: Sustituir «these days» por «right now» en el enunciado y actualizar la respuesta modelo, sin tratar la oración original como un error del estudiante.</div></td><td>Cuando la mesa lo midió al empezar, el juez no vio el problema; al medir el curso lo volvió a ver.</td></tr>
+<tr><td><div class="t-id"><i>Many</i> o <i>many of</i> · ejercicio 23d1</div><div class="t-cons">Elige &#x27;many&#x27; o &#x27;many of&#x27;.</div><div class="t-en">Do the cats eat <span class="gap"></span> fish?</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">¿Los gatos comen muchos peces?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La respuesta es válida si «fish» designa peces contables. Sin embargo, con «eat» también aparece la lectura de pescado como alimento incontable. Esta distinción añade una interpretación evitable al contraste entre «many» y «many of». Propuesta: Usar un sustantivo con plural explícito y lectura contable transparente, conservando la respuesta original como inglés válido.</div></td><td>Cuando la mesa lo midió al empezar, el juez no vio el problema; al medir el curso lo volvió a ver.</td></tr>
+<tr><td><div class="t-id">Con <i>short forms</i> · ejercicio 26d6</div><div class="t-cons">Crea oraciones usando &#x27;will&#x27; o &#x27;be going to&#x27;.</div><div class="t-en">Be going to: your parents / watch a film? <span class="gap"></span></div><div class="t-ans">Respuesta: <b>Are your parents going to watch a film?</b></div><div class="t-tr">¿Tus padres van a ver una película?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La pregunta es clara y permite practicar «be going to», pero no ofrece una contracción que permita practicar el objetivo específico «Con short forms». La respuesta aceptada sigue siendo válida. Propuesta: Para practicar contracciones, cambiar la consigna a «Be going to, negativa con contracción: your parents / not watch a film» y ajustar la respuesta aceptada.</div></td><td>Cuando la mesa lo midió al empezar, el juez no vio el problema; al medir el curso lo volvió a ver.</td></tr>
+<tr><td><div class="t-id">Predicciones y decisiones · ejercicio 2146</div><div class="t-cons">Completa la oración.</div><div class="t-en">He says he <span class="gap"></span> (not / drink) juice.</div><div class="t-ans">Respuesta: <b>won&#x27;t drink</b></div><div class="t-tr">Dice que no beberá zumo.</div></td><td><div class="t-j"><b>Más de una respuesta válida</b> <span class="sev m">media</span></div><div class="t-txt">«isn&#x27;t going to drink» también vale y el corrector la rechaza: «He says he isn&#x27;t going to drink juice» expresa naturalmente una decisión futura y respeta la pista negativa. Es menos esperable que «won&#x27;t drink» para anunciar decisiones, pero la consigna no exige usar «will».</div></td><td>El juez lo marcó después de la última pasada que tomó el ejercicio: todavía no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Adverbios de modo · ejercicio 2f04</div><div class="t-cons">Crea un adverbio a partir del adjetivo y agrégalo a la oración.</div><div class="t-en">They guessed the answer. (exact) <span class="gap"></span></div><div class="t-ans">Respuesta: <b>They guessed the answer exactly.</b></div><div class="t-tr">Ellos adivinaron la respuesta exactamente.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La formación exact → exactly es clara, pero el ejemplo obliga a interpretar qué precisión tiene la respuesta adivinada. Una acción de reproducción permite entender directamente el aporte de exactly y concentrarse en formar el adverbio. El pasado simple figura en la progresión previa. Propuesta: Conservar exact → exactly y sustituir la oración base por una acción cuya precisión resulte transparente.</div></td><td>El juez lo marcó después de la última pasada que tomó el ejercicio: todavía no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Palabras <i>wh</i> · ejercicio 2032</div><div class="t-cons">Formula preguntas &#x27;wh&#x27; en &#x27;present continuous&#x27;.</div><div class="t-en">When <span class="gap"></span> (he / work)?</div><div class="t-ans">Respuesta: <b>is he working</b></div><div class="t-tr">¿Cuándo está trabajando él?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La pregunta es válida y practica la inversión, pero «when» invita a interpretar un horario o plan de trabajo sin contexto que lo sitúe. Esa interpretación añade una carga evitable al practicar la formación de preguntas en presente continuo. Propuesta: Usar «Where ___ (he / work)?» para practicar la misma estructura con una interpretación directa de actividad actual. Conservar la pregunta original como válida en un contexto de horarios.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Palabras <i>wh</i> · ejercicio 2033</div><div class="t-cons">Formula preguntas &#x27;wh&#x27; en &#x27;present continuous&#x27;.</div><div class="t-en">How <span class="gap"></span> (she / do)?</div><div class="t-ans">Respuesta: <b>is she doing</b></div><div class="t-tr">¿Cómo le está yendo a ella?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La pregunta practica correctamente la inversión y la forma en -ing, pero do significa aquí «estar/encontrarse» o «irle a alguien», según el contexto. Ese sentido no está explicitado y añade una interpretación evitable al objetivo gramatical. Propuesta: Conservar la respuesta aceptada y añadir un contexto breve con una glosa que aclare que se pregunta cómo le va.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Palabras <i>wh</i> · ejercicio 2037</div><div class="t-cons">Formula preguntas &#x27;wh&#x27; en &#x27;present continuous&#x27;.</div><div class="t-en">When <span class="gap"></span> (I / cook)?</div><div class="t-ans">Respuesta: <b>am I cooking</b></div><div class="t-tr">¿Cuándo estoy cocinando?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La pregunta ilustra correctamente la formación interrogativa, pero «when» invita a interpretar un horario o una tarea programada que el ejercicio no presenta. Una pregunta sobre lo que se está cocinando permite practicar el mismo objetivo con una relación temporal más directa. Propuesta: Cambiar «When» por «What» en el enunciado y actualizar la respuesta aceptada, conservando la práctica de preguntas wh en presente continuo.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Preguntas con <i>will</i> · ejercicio 2134</div><div class="t-cons">Formula preguntas cerradas (yes/no) y preguntas abiertas (&#x27;wh&#x27; questions) utilizando &#x27;will&#x27;.</div><div class="t-en">How much <span class="gap"></span> (it / make)?</div><div class="t-ans">Respuesta: <b>will it make</b></div><div class="t-tr">¿Cuánto ganará?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La pregunta practica correctamente el orden con will, pero falta una pista que aclare qué cantidad se pregunta: dinero obtenido o cantidad producida. Un contexto breve permite concentrarse en la estructura sin resolver esa interpretación adicional. Propuesta: Añadir un contexto breve que explicite qué se produce y mantener la respuesta aceptada.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Intenciones y planes · ejercicio 217d</div><div class="t-cons">Escribe oraciones con &#x27;going to&#x27; (estos son ejemplos del uso de &#x27;going to&#x27; para planes e intenciones).</div><div class="t-en">They <span class="gap"></span> (run) the business.</div><div class="t-ans">Respuestas: <b>&#x27;re going to run · are going to run</b></div><div class="t-tr">Ellos van a dirigir el negocio.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">Ambas variantes ilustran correctamente un plan con going to. Sin embargo, run the business usa run con el sentido de «gestionar un negocio», que añade una interpretación léxica no explicitada y prescindible para practicar el objetivo. Propuesta: Explicitar que run a business significa «gestionar un negocio» o usar run con su sentido físico en el ejemplo modelo. Conservar ambas formas, contraída y completa, como respuestas válidas.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Preguntas: verbos regulares · ejercicio 21f8</div><div class="t-cons">Escribe oraciones en &#x27;past simple&#x27;.</div><div class="t-en">What <span class="gap"></span> (you / make)?</div><div class="t-ans">Respuesta: <b>did you make</b></div><div class="t-tr">¿Qué hiciste?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La pregunta permite practicar did + sujeto + verbo base sin exigir conocer el pasado irregular made. Sin embargo, make es irregular y no ejemplifica la selección de verbos regulares anunciada en la lección. Propuesta: Sustituir make por un verbo regular en la consigna y en la respuesta modelo; conservar la pregunta original como una respuesta válida en una práctica de alcance general.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Preguntas: verbos regulares · ejercicio 21fb</div><div class="t-cons">Escribe oraciones en &#x27;past simple&#x27;.</div><div class="t-en"><span class="gap"></span> (they / have) breakfast?</div><div class="t-ans">Respuesta: <b>Did they have</b></div><div class="t-tr">¿Ellos desayunaron?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La pregunta practica correctamente did + sujeto + verbo base y tiene un significado claro. Sin embargo, have es irregular y no ejemplifica la categoría de verbos regulares anunciada en el título, aunque esa diferencia no cambie la formación de esta pregunta. Propuesta: Usar un verbo regular en la consigna y en el ejemplo modelo para ajustarlos al título. La respuesta actual sigue siendo inglés válido.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Preguntas: verbos regulares · ejercicio 2203</div><div class="t-cons">Escribe oraciones en &#x27;past simple&#x27;.</div><div class="t-en"><span class="gap"></span> (you / speak) to him?</div><div class="t-ans">Respuesta: <b>Did you speak</b></div><div class="t-tr">¿Hablaste con él?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La pregunta practica correctamente did + sujeto + verbo base, pero speak es irregular y no corresponde al foco declarado en verbos regulares. No exige aprender su pasado irregular, porque después de did se usa la forma base. Propuesta: Cambiar la pista a (you / talk) y actualizar la respuesta aceptada para mantener el foco en verbos regulares.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Preguntas: verbos regulares · ejercicio 2207</div><div class="t-cons">Escribe oraciones en &#x27;past simple&#x27;.</div><div class="t-en">Why <span class="gap"></span> (the bus / leave)?</div><div class="t-ans">Respuesta: <b>did the bus leave</b></div><div class="t-tr">¿Por qué se fue el autobús?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La pregunta permite practicar did + sujeto + verbo base sin carga adicional, pero leave es irregular y no ejemplifica la categoría de verbos regulares declarada en el título. La respuesta aceptada sigue siendo válida. Propuesta: Cambiar el verbo indicado de leave a stop y actualizar la respuesta modelo para mantener el ejercicio dentro de los verbos regulares.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Verbos irregulares 1 · ejercicio 227a</div><div class="t-cons">Escribe oraciones en &#x27;past simple&#x27;.</div><div class="t-en">We <span class="gap"></span> (remember) to close the door.</div><div class="t-ans">Respuesta: <b>remembered</b></div><div class="t-tr">Recordamos cerrar la puerta.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La oración es válida y permite practicar el pasado simple, pero «remembered» es regular y no ejemplifica los verbos irregulares declarados como objetivo de esta lección. Propuesta: Sustituir el ejercicio por uno con un verbo irregular y una relación directa entre acción y objeto: «We ___ (take) the bus.», con respuesta «took».</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Verbos irregulares 1 · ejercicio 2285</div><div class="t-cons">Escribe oraciones en &#x27;past simple&#x27;.</div><div class="t-en">We first <span class="gap"></span> (visit) Paris.</div><div class="t-ans">Respuesta: <b>visited</b></div><div class="t-tr">Primero visitamos París.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La oración permite practicar el pasado simple y es clara, pero «visit → visited» es regular: repasa contenido anterior sin ilustrar el foco declarado en verbos irregulares. Propuesta: Sustituir el enunciado por «We ___ (go) to Paris.» y aceptar «went» para practicar un pasado irregular.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Gerundio o infinitivo · ejercicio 22eb</div><div class="t-cons">Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o &#x27;to + infinitive&#x27;.</div><div class="t-en">I have started <span class="gap"></span> (play).</div><div class="t-ans">Respuesta: <b>playing</b></div><div class="t-tr">He empezado a jugar.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">El ejemplo practica start + gerundio, pero incorpora present perfect, cuya enseñanza no está documentada en la progresión suministrada. Puede practicarse el mismo patrón con past simple, que sí figura entre los contenidos previos. Propuesta: Cambiar el enunciado a «I started ___ (play)» para reducir la carga incidental. Admitir tanto «playing» como «to play», ya que ambas formas son válidas después de start.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id"><i>A</i> o <i>some</i> · ejercicio 2332</div><div class="t-cons">Elige &#x27;a&#x27; o &#x27;some&#x27;.</div><div class="t-en">Could I have <span class="gap"></span> water?</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">¿Podría tomar un poco de agua?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La elección de «some» con «water» practica el objetivo, pero la petición cortés «Could I have … ?» introduce una construcción no documentada en el aprendizaje previo; el bloque de verbos modales aparece después en la secuencia. La respuesta aceptada es válida y puede conservarse. Propuesta: Usar una afirmación con presente simple ya trabajado para concentrar el ejemplo en la elección entre «a» y «some».</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id"><i>A</i> o <i>some</i> · ejercicio 233d</div><div class="t-cons">Elige &#x27;a&#x27; o &#x27;some&#x27;.</div><div class="t-en">Could you give me <span class="gap"></span> sugar?</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">¿Podrías darme un poco de azúcar?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La elección de «some» con «sugar» es clara y la petición es válida, pero «Could you … ?» introduce una petición modal no documentada entre los aprendizajes previos; el bloque de modales aparece después en la secuencia. Se puede practicar el mismo contraste con una estructura ya trabajada. Propuesta: Usar como ejemplo principal una afirmación en presente simple para centrar la práctica en «a» frente a «some». Conservar la petición como variante válida si se enseña previamente esa fórmula.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id"><i>A</i> o <i>an</i> · ejercicio 2345</div><div class="t-cons">Elige &#x27;a&#x27; o &#x27;an&#x27;.</div><div class="t-en"><span class="gap"></span> dark boy</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">Un chico moreno</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La elección de a ante dark permite practicar el objetivo, pero dark aplicado a una persona requiere interpretar qué rasgo describe, sin contexto que lo aclare. Un objeto con un color explícito conserva la práctica y facilita la comprensión. Propuesta: Sustituir el ejemplo por una frase nominal de significado directo, manteniendo un adjetivo entre el artículo y el sustantivo.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id"><i>A</i> o <i>an</i> · ejercicio 234c</div><div class="t-cons">Elige &#x27;a&#x27; o &#x27;an&#x27;.</div><div class="t-en"><span class="gap"></span> open ear</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">Una oreja abierta</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La elección de «an» ante «open» permite practicar el objetivo, pero «an open ear» introduce el sentido figurado de disposición a escuchar sin contexto que lo aclare. Esa interpretación añade una carga innecesaria al ejercicio de artículos. Propuesta: Conservar la respuesta válida y sustituir el ejemplo del ejercicio por una frase de significado directo que practique «an» ante sonido vocálico.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id"><i>A</i> o <i>an</i> · ejercicio 234e</div><div class="t-cons">Elige &#x27;a&#x27; o &#x27;an&#x27;.</div><div class="t-en"><span class="gap"></span> October example</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">Un ejemplo de octubre</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La elección de «an» ante el sonido inicial de «October» es clara, pero la relación entre octubre y el ejemplo queda sin explicar. Esa interpretación adicional es evitable en un ejercicio breve de artículos. Propuesta: Sustituir el grupo nominal por uno de significado directo, manteniendo la elección entre «a» y «an».</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Señalar objetos · ejercicio 237d</div><div class="t-cons">Elige &#x27;this&#x27;, &#x27;that&#x27;, &#x27;these&#x27; o &#x27;those&#x27;.</div><div class="t-en">Could you carry <span class="gap"></span> bags, please? (I am holding the bags when I say this.)</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">¿Podrías llevar estas bolsas, por favor?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">El plural «bags» y la indicación de que el hablante sostiene las bolsas permiten elegir «these» con claridad. Sin embargo, la petición con «Could you … ?» añade una estructura sin cobertura previa documentada; Modal Verbs aparece después de Determiners en el programa. Propuesta: Conservar la referencia cercana y plural, pero usar una oración con «be», ya documentado, para centrar la práctica en el demostrativo. La petición original sigue siendo una respuesta válida en inglés.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id"><i>A little</i> vs <i>a few</i> · ejercicio 23ad</div><div class="t-cons">Elige &#x27;a little&#x27; o &#x27;a few&#x27;.</div><div class="t-en">Could we hear <span class="gap"></span> conversation?</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">¿Podríamos escuchar un poco de conversación?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La frase permite practicar «a little» con «conversation» como actividad incontable, pero incorpora una pregunta con «could» cuyo uso no está documentado en los aprendizajes previos; los modales aparecen después en la secuencia. Una estructura ya presentada permitiría concentrarse en el determinante. Propuesta: Usar una pregunta con present simple y un sustantivo claramente incontable como ejemplo principal. Conservar la frase original como inglés válido, sin penalizarla como respuesta del alumno.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id"><i>A little</i> vs <i>a few</i> · ejercicio 23ae</div><div class="t-cons">Elige &#x27;a little&#x27; o &#x27;a few&#x27;.</div><div class="t-en">Could you show me <span class="gap"></span> desks?</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">¿Podrías mostrarme unos escritorios?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">El plural contable «desks» permite practicar claramente «a few». Sin embargo, la petición cortés «Could you show me … ?» añade un uso modal cuya enseñanza previa no está documentada; el bloque de verbos modales aparece después de determinantes en la progresión suministrada. Propuesta: Usar una oración con una estructura previamente documentada para centrar la práctica en la elección del cuantificador. Conservar la frase original como inglés válido.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id"><i>A little</i> vs <i>a few</i> · ejercicio 23af</div><div class="t-cons">Elige &#x27;a little&#x27; o &#x27;a few&#x27;.</div><div class="t-en">Could you give me <span class="gap"></span> soup?</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">¿Podrías darme un poco de sopa?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La elección de «a little» con «soup» ilustra el objetivo, pero la petición con «Could you … ?» añade un uso modal no documentado entre los aprendizajes previos. El bloque de verbos modales aparece después en la secuencia suministrada. Propuesta: Usar una oración con «be», ya documentado, para concentrar la práctica en la cantidad con un sustantivo incontable. Conservar la petición original como respuesta válida si se utiliza en un contexto donde esa fórmula ya se haya enseñado.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id"><i>A little</i> vs <i>a few</i> · ejercicio 23b5</div><div class="t-cons">Elige &#x27;a little&#x27; o &#x27;a few&#x27;.</div><div class="t-en">Could you wait <span class="gap"></span> seconds?</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">¿Podrías esperar unos segundos?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">«Seconds» permite practicar claramente «a few» con un sustantivo contable plural. Sin embargo, la petición cortés con «Could you … ?» añade una estructura no documentada entre los aprendizajes previos; el bloque de modales aparece después en la secuencia. Un imperativo, ya incluido entre los temas previos, permite mantener el objetivo con menor carga incidental. Propuesta: Usar un imperativo como ejemplo principal, manteniendo el espacio y las opciones «a little» y «a few».</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id"><i>Much</i> o <i>many</i> · ejercicio 23bc</div><div class="t-cons">Elige &#x27;much&#x27; o &#x27;many&#x27;.</div><div class="t-en">Do the students have <span class="gap"></span> reading?</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">¿Tienen mucha lectura los estudiantes?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La pregunta permite practicar «much» con un incontable, pero «have reading» requiere interpretar «reading» como lectura asignada o pendiente. Ese sentido no está explicitado y añade una dificultad léxica evitable al contraste entre contables e incontables. La respuesta aceptada sigue siendo válida. Propuesta: Usar un sustantivo concreto cuyo sentido incontable resulte directo, conservando la pregunta y las opciones «much» y «many».</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id"><i>Many</i> o <i>many of</i> · ejercicio 23cd</div><div class="t-cons">Elige &#x27;many&#x27; o &#x27;many of&#x27;.</div><div class="t-en">He likes watches and he buys <span class="gap"></span> .</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">Le gustan los relojes y compra muchos.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La respuesta es válida y «many» recupera claramente «watches», pero su uso aislado en esta afirmación resulta más formal que el modelo neutral buscado. Explicitar el sustantivo en una negativa permite practicar la elección sin esa carga adicional. Propuesta: Cambiar el enunciado a «He doesn&#x27;t buy ___ watches.», conservando las opciones «many» y «many of» y aceptando «many». Mantener la oración original como una variante válida, sin tratarla como un error del alumno.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id"><i>Many</i> o <i>many of</i> · ejercicio 23d0</div><div class="t-cons">Elige &#x27;many&#x27; o &#x27;many of&#x27;.</div><div class="t-en">A: Do you have any cookies? B: Yes, <span class="gap"></span> .</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">A: ¿Tienes galletas? B: Sí, muchas.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La respuesta «Yes, many» es válida y su referente está claro, pero resulta más marcada como modelo conversacional neutro. Una oración negativa con el sustantivo explícito permite practicar la elección sin añadir ese matiz de registro. Propuesta: Conservar la validez de la respuesta original y cambiar el ejemplo modelo por una oración negativa con «cookies» después del hueco, manteniendo las opciones «many» y «many of».</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id"><i>Many</i> o <i>many of</i> · ejercicio 23d5</div><div class="t-cons">Elige &#x27;many&#x27; o &#x27;many of&#x27;.</div><div class="t-en">Sodas? Yes, I drink <span class="gap"></span> .</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">¿Refrescos? Sí, tomo muchos.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La respuesta es válida y el antecedente de «many» está claro, pero su uso aislado en esta afirmación resulta más formal que el modelo neutral solicitado. Una pregunta con el sustantivo explícito permite practicar la elección entre «many» y «many of» de forma más directa. Propuesta: Cambiar el enunciado a «Do you drink ___ sodas?» y conservar las opciones «many» y «many of», con «many» como respuesta. La variante original sigue siendo inglés válido.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id"><i>Many</i> o <i>many of</i> · ejercicio 23d6</div><div class="t-cons">Elige &#x27;many&#x27; o &#x27;many of&#x27;.</div><div class="t-en">He has three cars but wants <span class="gap"></span> !</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">Tiene tres coches, ¡pero quiere muchos!</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">«Many» puede sustituir a «many cars», pero este uso aislado en una afirmativa resulta más marcado que su uso delante de un sustantivo. Para practicar la elección entre «many» y «many of», conviene mostrar explícitamente el grupo nominal. Tener o querer muchos coches no constituye un problema didáctico. Propuesta: Conservar la respuesta actual como inglés válido y cambiar el ejemplo principal por uno con el sustantivo expreso, manteniendo las opciones «many» y «many of».</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id"><i>Many</i> o <i>many of</i> · ejercicio 23d8</div><div class="t-cons">Elige &#x27;many&#x27; o &#x27;many of&#x27;.</div><div class="t-en">You like films, don&#x27;t you? Do you watch <span class="gap"></span> ?</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">Te gustan las películas, ¿verdad? ¿Ves muchas?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">El antecedente «films» permite interpretar «many» sin repetir el sustantivo y practicar el objetivo. Sin embargo, la coletilla «don&#x27;t you?» añade una estructura que no aparece documentada en la progresión y no es necesaria para resolver el ejercicio. Propuesta: Quitar la coletilla «don&#x27;t you?» del contexto inicial y conservar «many» como respuesta aceptada.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id"><i>Many</i> o <i>many of</i> · ejercicio 23d9</div><div class="t-cons">Elige &#x27;many&#x27; o &#x27;many of&#x27;.</div><div class="t-en">A: Do they have any dogs? B: Yes, <span class="gap"></span> .</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">A: ¿Tienen perros? B: Sí, muchos.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La respuesta es válida, pero usa «many» de forma independiente, recuperando «dogs» de la pregunta. Esa elipsis añade una interpretación innecesaria y muestra menos directamente el contraste entre «many + sustantivo» y «many of + grupo delimitado». Propuesta: Usar un sustantivo explícito después del hueco para centrar la práctica en la elección del determinante. Conservar la respuesta original como válida si se mantiene el diálogo.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Tiempo: <i>at</i>, <i>in</i>, <i>on</i> · ejercicio 2457</div><div class="t-cons">Elige &#x27;at&#x27;, &#x27;in&#x27; u &#x27;on&#x27;, o &#x27;-&#x27; si no hace falta preposición.</div><div class="t-en"><span class="gap"></span> 3 am, I was singing!</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">¡A las 3 de la mañana, estaba cantando!</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La hora permite practicar claramente «at», pero «was singing» introduce el pasado continuo, cuya enseñanza no está documentada en la progresión suministrada. Conocer el presente continuo y el pasado de «be» no demuestra haber aprendido esa combinación. Propuesta: Sustituir la oración por una rutina en presente simple, ya documentado, conservando el hueco ante una hora.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Verbos y sus preposiciones · ejercicio 24d7</div><div class="t-cons">Completa con la preposición correcta.</div><div class="t-en">The house goes <span class="gap"></span> Peter.</div><div class="t-ans">Respuesta: <b>to</b></div><div class="t-tr">La casa pasa a Peter.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La oración es válida, pero «goes to» expresa aquí que Peter recibe la casa, por ejemplo en un reparto. Ese sentido de asignación no está documentado en el aprendizaje previo y, sin contexto, añade una interpretación innecesaria a la práctica de la preposición. Propuesta: Usar como modelo un ejemplo de movimiento con una relación directa entre verbo y destino. Conservar la oración original como variante válida si se enseña explícitamente el sentido de asignación.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id"><i>A</i> o <i>an</i> · ejercicio 2a07</div><div class="t-cons">Elige &#x27;a&#x27; o &#x27;an&#x27;.</div><div class="t-en">Would you eat <span class="gap"></span> orange?</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">¿Te comerías una naranja?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La elección de «an» es clara, pero la pregunta con «would» introduce una interpretación hipotética innecesaria para practicar el artículo. Su aprendizaje no está documentado entre las lecciones previas y Modal Verbs aparece después en la secuencia. Propuesta: Usar una oración con una estructura previamente documentada, como «be», conservando «orange» para practicar «an». La respuesta original sigue siendo inglés válido.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id"><i>A</i> o <i>an</i> · ejercicio 2a0d</div><div class="t-cons">Elige &#x27;a&#x27; o &#x27;an&#x27;.</div><div class="t-en">He could not pick <span class="gap"></span> college.</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">Él no pudo elegir una universidad.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La elección de «a» ante «college» es clara, pero «could not» añade una estructura modal cuya enseñanza previa no está documentada; Modal Verbs aparece después de Nouns en la secuencia suministrada. La oración es válida, pero esa carga adicional es evitable para practicar el artículo. Propuesta: Usar una oración en presente simple, ya documentado, conservando «college» y el hueco para el artículo.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">El posesivo · ejercicio 2a40</div><div class="t-cons">Cambia la oración para que incluya &#x27;s o s&#x27;. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys&#x27; shoes.</div><div class="t-en">These are the <span class="gap"></span> (toilets that belong to the women).</div><div class="t-ans">Respuesta: <b>women&#x27;s toilets</b></div><div class="t-tr">Estos son los baños de mujeres.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La forma women&#x27;s ilustra correctamente el posesivo de un plural irregular. Sin embargo, women&#x27;s toilets suele identificar baños destinados a mujeres, mientras que la pista expresa pertenencia. Esa diferencia añade una interpretación evitable en una práctica inicial del posesivo. Propuesta: Usar un objeto cuya relación de pertenencia sea directa y conservar women&#x27;s como forma objetivo. La respuesta actual sigue siendo inglés válido.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Señalar objetos · ejercicio 2ad0</div><div class="t-cons">Elige &#x27;this&#x27;, &#x27;that&#x27;, &#x27;these&#x27; o &#x27;those&#x27;.</div><div class="t-en">Could you help me with <span class="gap"></span> boxes? (I&#x27;m holding the boxes).</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">¿Podrías ayudarme con estas cajas?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La indicación de que el hablante sostiene las cajas permite elegir «these». Sin embargo, la petición con «Could you» añade un uso modal no documentado entre los aprendizajes previos; Modal Verbs figura después de Determiners. Conviene simplificar el enunciado para concentrar la práctica en el demostrativo. La puntuación final «?.» corresponde a FORMAT. Propuesta: Usar una oración con «be», ya documentado, conservando la pista de proximidad. Derivar la corrección de «?.» a FORMAT como un único defecto de puntuación.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Señalar objetos · ejercicio 2ad3</div><div class="t-cons">Elige &#x27;this&#x27;, &#x27;that&#x27;, &#x27;these&#x27; o &#x27;those&#x27;.</div><div class="t-en">I&#x27;d prefer <span class="gap"></span> puzzles, please (the puzzles are near you).</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">Preferiría esos rompecabezas, por favor.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">El plural y la referencia «near you» permiten practicar «those». Sin embargo, «I&#x27;d prefer» añade una fórmula de preferencia con «would» cuya enseñanza previa no está documentada y que no es necesaria para practicar los demostrativos. La respuesta aceptada es válida. Propuesta: Simplificar el marco de la oración para concentrar la práctica en el demostrativo plural, manteniendo la indicación de ubicación.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Cortesía con <i>would like</i> · ejercicio 2dee</div><div class="t-cons">Transforma estas oraciones en peticiones más educadas utilizando &#x27;would like&#x27;.</div><div class="t-en">Do you want a glass of juice? <span class="gap"></span></div><div class="t-ans">Respuesta: <b>Would you like a glass of juice?</b></div><div class="t-tr">¿Te gustaría un vaso de jugo?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La respuesta permite practicar «would like» con vocabulario cotidiano, pero expresa un ofrecimiento cortés, mientras que la consigna pide formular peticiones. Esa diferencia puede confundir la función comunicativa enseñada. Propuesta: Ajustar la consigna a «Transforma estas preguntas en ofrecimientos más educados utilizando &#x27;would like&#x27;» y conservar la respuesta aceptada.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Cortesía con <i>would like</i> · ejercicio 2df1</div><div class="t-cons">Transforma estas oraciones en peticiones más educadas utilizando &#x27;would like&#x27;.</div><div class="t-en">Do you want a slice of cake? <span class="gap"></span></div><div class="t-ans">Respuesta: <b>Would you like a slice of cake?</b></div><div class="t-tr">¿Te gustaría una porción de pastel?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La respuesta es un ofrecimiento cortés, no una petición como indica la consigna. El ejemplo permite practicar «would like» sin una carga adicional relevante, pero conviene distinguir esas funciones para no confundir al estudiante. Propuesta: Ajustar la consigna a «Transforma estas preguntas en ofrecimientos más educados utilizando &#x27;would like&#x27;» y conservar la respuesta aceptada.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Cortesía con <i>would like</i> · ejercicio 2df2</div><div class="t-cons">Transforma estas oraciones en peticiones más educadas utilizando &#x27;would like&#x27;.</div><div class="t-en">Do you want some tea? <span class="gap"></span></div><div class="t-ans">Respuesta: <b>Would you like some tea?</b></div><div class="t-tr">¿Te gustaría un poco de té?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La respuesta es una oferta cortés, no una petición. Es un ejemplo claro de «would like» para A1, pero la consigna etiqueta incorrectamente la función que se practica. No presenta una carga incidental relevante. Propuesta: Cambiar la consigna a «Transforma estas preguntas en ofrecimientos más educados utilizando &#x27;would like&#x27;». Conservar la respuesta aceptada.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Cortesía con <i>would like</i> · ejercicio 2df4</div><div class="t-cons">Transforma estas oraciones en peticiones más educadas utilizando &#x27;would like&#x27;.</div><div class="t-en">Do you want some bread? <span class="gap"></span></div><div class="t-ans">Respuesta: <b>Would you like some bread?</b></div><div class="t-tr">¿Te gustaría un poco de pan?</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La respuesta es un ofrecimiento cortés de pan, mientras que la consigna pide formular peticiones. La transformación permite practicar «would like» sin una carga adicional relevante, pero conviene ajustar la función comunicativa indicada. Propuesta: Cambiar la consigna a «Transforma estas preguntas en ofrecimientos más educados utilizando &#x27;would like&#x27;». Conservar la respuesta aceptada.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">¿<i>Good</i> o <i>well</i>? · ejercicio 2ef0</div><div class="t-cons">Elige &#x27;well&#x27; o &#x27;good&#x27;.</div><div class="t-en">They describe the case <span class="gap"></span> (good / well).</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">Ellos describen bien el caso.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La oración permite practicar «well» como modificador de «describe», pero «the case» introduce un referente abstracto cuyo sentido queda abierto entre un caso, una situación o un asunto judicial. Un objeto concreto haría más transparente el ejemplo sin cambiar el objetivo. Propuesta: Sustituir «the case» por «the picture» en el enunciado y en la respuesta aceptada; conservar las opciones «good» y «well». La respuesta actual sigue siendo válida.</div></td><td>Ninguna pasada de la C2 tomó el ejercicio: el juez lo marcó el 27/10 y no tiene tarea.</td></tr>
+<tr><td><div class="t-id">Oraciones imperativas · ejercicio 22b6</div><div class="t-cons">Transforma estas oraciones a imperativo.</div><div class="t-en">You shouldn&#x27;t get up. <span class="gap"></span></div><div class="t-ans">Respuestas: <b>Don&#x27;t get up. · Do not get up.</b></div><div class="t-tr">No te levantes.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">Ambas respuestas ilustran correctamente el imperativo negativo. La carga adicional está en la consigna de partida: interpretar shouldn&#x27;t requiere una estructura modal sin cobertura previa documentada, y Modal Verbs figura después de Verb Patterns en la progresión suministrada. Propuesta: Sustituir la oración de partida por una negativa en presente simple, ya documentado, para concentrar la transformación en el imperativo. Mantener ambas respuestas aceptadas.</div></td><td>La mesa lo intentó tres veces y ninguna propuesta convenció a los jueces.</td></tr>
+<tr><td><div class="t-id">Oraciones imperativas · ejercicio 22c5</div><div class="t-cons">Transforma estas oraciones a imperativo.</div><div class="t-en">You shouldn&#x27;t run in the café. <span class="gap"></span></div><div class="t-ans">Respuestas: <b>Don&#x27;t run in the café. · Do not run in the café.</b></div><div class="t-tr">No corras en el café.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">Las dos respuestas aceptadas ilustran correctamente el imperativo negativo y deben conservarse. La oración de partida exige interpretar «shouldn&#x27;t» como consejo o prohibición antes de transformarla; ese uso no está documentado en el aprendizaje previo y Modal Verbs aparece después en la secuencia suministrada. Propuesta: Sustituir la oración de partida por una consigna directa en español que pida expresar una prohibición mediante un imperativo negativo, conservando ambas respuestas aceptadas.</div></td><td>La mesa lo intentó tres veces y ninguna propuesta convenció a los jueces.</td></tr>
+<tr><td><div class="t-id">Verbos de movimiento · ejercicio 24ad</div><div class="t-cons">Elige &#x27;in&#x27; o &#x27;to&#x27;, o &#x27;-&#x27; si no hace falta preposición.</div><div class="t-en">She is going to take a plane <span class="gap"></span> her parents&#x27; house.</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">Ella va a tomar un avión a casa de sus padres.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La oración permite practicar «to» como destino, pero combina un viaje en avión con una casa como destino final y exige interpretar un trayecto más amplio. Un destino geográfico haría más directa la relación entre movimiento y preposición. «Going to» y el posesivo cuentan con antecedentes en la progresión suministrada. Propuesta: Mantener la estructura y las opciones, pero sustituir la casa por una ciudad para presentar un destino transparente del viaje en avión.</div></td><td>La mesa lo intentó tres veces y ninguna propuesta convenció a los jueces.</td></tr>
+<tr><td><div class="t-id">Después de adjetivos · ejercicio 24c0</div><div class="t-cons">Completa con la preposición correcta.</div><div class="t-en">I&#x27;m great <span class="gap"></span> sports.</div><div class="t-ans">Respuesta: <b>at</b></div><div class="t-tr">Soy muy bueno en los deportes.</div></td><td><div class="t-j"><b>Más de una respuesta válida</b> <span class="sev m">media</span></div><div class="t-txt">«in» también vale y el corrector la rechaza: «I&#x27;m great in sports» es natural para expresar que uno se destaca en el ámbito deportivo, aunque «great at sports» es la combinación más habitual para hablar de habilidad.</div></td><td>La mesa lo intentó tres veces y ninguna propuesta convenció a los jueces.</td></tr>
+<tr><td><div class="t-id">Verbos y sus preposiciones · ejercicio 24da</div><div class="t-cons">Completa con la preposición correcta.</div><div class="t-en">Could you say that <span class="gap"></span> me?</div><div class="t-ans">Respuesta: <b>to</b></div><div class="t-tr">¿Podrías decirme eso?</div></td><td><div class="t-j"><b>Más de una respuesta válida</b> <span class="sev m">media</span></div><div class="t-txt">«for» también vale y el corrector la rechaza: «Could you say that for me?» es un pedido natural para que alguien diga eso en beneficio del hablante. El enunciado permite esa lectura, aunque «to» es más esperable al practicar la preposición que introduce al destinatario de «say».</div></td><td>La mesa lo intentó tres veces y ninguna propuesta convenció a los jueces.</td></tr>
+<tr><td><div class="t-id">Adverbios de modo · ejercicio 2540</div><div class="t-cons">Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.</div><div class="t-en">The man spoke (slow). <span class="gap"></span></div><div class="t-ans">Respuesta: <b>The man spoke slowly.</b></div><div class="t-tr">El hombre habló lentamente.</div></td><td><div class="t-j"><b>Más de una respuesta válida</b> <span class="sev m">media</span></div><div class="t-txt">«Slowly, the man spoke.» también vale y el corrector la rechaza: El adverbio «slowly» puede encabezar la oración sin cambiar lo que se afirma; esta posición es natural, aunque tiene un tono más narrativo y resulta menos esperable.</div><div class="t-j"><b>Más de una respuesta válida</b> <span class="sev m">media</span></div><div class="t-txt">«The man slowly spoke.» también vale y el corrector la rechaza: «Slowly» también puede colocarse antes de «spoke» y describir cómo habló el hombre; es natural, aunque menos habitual que la posición final en esta oración.</div></td><td>La mesa lo intentó tres veces y ninguna propuesta convenció a los jueces.</td></tr>
+<tr><td><div class="t-id">Adverbios de modo · ejercicio 2546</div><div class="t-cons">Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.</div><div class="t-en">She closed the door (slow). <span class="gap"></span></div><div class="t-ans">Respuesta: <b>She closed the door slowly.</b></div><div class="t-tr">Ella cerró la puerta lentamente.</div></td><td><div class="t-j"><b>Más de una respuesta válida</b> <span class="sev a">alta</span></div><div class="t-txt">«She slowly closed the door.» también vale y el corrector la rechaza: «Slowly» antes de «closed» es una posición igual de natural y esperable para el adverbio de modo; conserva el significado y la consigna no fija su ubicación.</div><div class="t-j"><b>Más de una respuesta válida</b> <span class="sev m">media</span></div><div class="t-txt">«Slowly, she closed the door.» también vale y el corrector la rechaza: El adverbio al principio conserva el significado y resulta natural, aunque esta posición es más narrativa y enfática, y por eso menos esperable.</div></td><td>La mesa lo intentó tres veces y ninguna propuesta convenció a los jueces.</td></tr>
+<tr><td><div class="t-id">Adverbios de modo · ejercicio 2550</div><div class="t-cons">Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.</div><div class="t-en">Anna spoke (early). <span class="gap"></span></div><div class="t-ans">Respuesta: <b>Anna spoke early.</b></div><div class="t-tr">Anna habló temprano.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev a">alta</span></div><div class="t-txt">«Early» indica cuándo habló Anna, no cómo lo hizo. La oración aceptada es válida, pero no ejemplifica los adverbios de modo declarados como objetivo. Cambiar únicamente la respuesta no resuelve el desajuste porque también debe cambiar la palabra entre paréntesis. Propuesta: Sustituir el estímulo «early» por un adjetivo que permita practicar claramente la formación de un adverbio de modo y actualizar la respuesta aceptada.</div></td><td>La mesa lo intentó tres veces y ninguna propuesta convenció a los jueces.</td></tr>
+<tr><td><div class="t-id">Verbos de movimiento · ejercicio 2cd9</div><div class="t-cons">Elige &#x27;in&#x27; o &#x27;to&#x27;.</div><div class="t-en">She is <span class="gap"></span> Spain.</div><div class="t-ans">Respuesta: <b></b></div><div class="t-tr">Ella está en España.</div></td><td><div class="t-j"><b>Calidad didáctica A1</b> <span class="sev l">leve</span></div><div class="t-txt">La oración es clara y permite practicar ubicación con «in», pero no presenta movimiento. Puede servir como contraste dentro de esta lección si se acompaña de un ejemplo de destino con «to». Propuesta: Conservar la oración como ejemplo de ubicación y añadir un ejercicio paralelo con un verbo de movimiento para mostrar el contraste entre ubicación y destino.</div></td><td>La mesa lo intentó tres veces y ninguna propuesta convenció a los jueces.</td></tr>
+        </tbody>
+      </table></div>
+    </details>
+    <div class="call c-info"><b>No cuento</b> lo que se arregla en otra parte: consignas que ofrecen o regalan la respuesta, empates de traducción y casi repetidos.</div>
+  </section>
+
+  <section>
+    <h2>Para poner «wear» hay que cambiar cinco partes en una propuesta</h2>
+    <div class="ad">
+      <div class="ex">
+        <span class="rotulo antes">Hoy</span>
+        <div class="en">She<span class="gap"></span>(sport) hats.</div>
+        <div class="ans">Pista: <b>(sport)</b> · Respuesta: <b>sports</b></div>
+        <div class="ans">Oración guardada: She sports hats.</div>
+        <div class="ans">Traducción: Ella lleva puestos sombreros.</div>
+        <div class="ans">Audio: dice «She sports hats.»</div>
+      </div>
+      <div class="ex">
+        <span class="rotulo despues">Con «wear»</span>
+        <div class="en">She<span class="gap"></span>(wear) hats.</div>
+        <div class="ans">Pista: <b>(wear)</b> · Respuesta: <b>wears</b></div>
+        <div class="ans">Oración guardada: She wears hats.</div>
+        <div class="ans">Traducción: Ella usa sombreros, o la que elija la mesa.</div>
+        <div class="ans">Audio: hay que grabarlo de nuevo.</div>
+        <div class="mark ok"><span class="x">✓</span><span>La tarjeta sigue valiendo: <i>wear</i> también suma <i>-s</i>.</span></div>
+      </div>
+    </div>
+    <p class="pie">Las dos tareas del ejercicio dejan tocar esas cinco partes desde el 18/10.</p>
+  </section>
+
+  <section>
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask"><span class="q">1 · ¿La regla de la tarjeta manda sólo con un problema medio o alto?</span>
+        <div class="ops"><span class="op rec">Sí, con su prueba · recomendado</span><span class="op">Queda como está</span></div>
+        <span class="why">En 4 de los 7 apartados el problema medio ya no estaba; con el arreglo, «sport» habría tenido su intento.</span></div>
+      <div class="ask"><span class="q">2 · ¿Recorrijo los ejercicios cuyo pedido nadie intentó?</span>
+        <div class="ops"><span class="op rec">Los 9 · recomendado</span><span class="op">Los 56</span><span class="op">Sólo «She sports hats.»</span></div>
+        <span class="why">Los 9 son los de la regla y del tuteo: unas 150 consultas, después del arreglo; los 56, unas 900.</span></div>
+      <div class="ask"><span class="q">3 · ¿Que Correcciones diga cuándo la mesa no intentó una tarea?</span>
+        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">No hace falta</span></div>
+        <span class="why">Hoy dice «no consta arreglado», como si lo hubiera intentado; por eso pareció que faltaba permiso.</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>quizId 67fab6d59930102295341ed6 · C2 = tanda-A1-c2-1f1d898f-3ba9-3fcc-bc91-a104f79e53ca, análisis rev. 107, contenido v83 · recorrección ui-2026-11-04T18-51-55.801507Z-batch-recorrect: tareas -0 (a1-didactic a1-example-quality LOW) y -154 (translation-sense level-register LOW) → NO_WINNER, 0 intentos, «el problema está en la tarjeta: la mesa toca sólo la tarjeta» (F-MESA-R033 inv. 1, TheCard.lightOutside, ca 598f52aa3); -40 (missing-english-highlight LOW) y -41 (other-subtopic-content LOW) → mesa-…1ed6-3; -42 (overstated-for-quiz MEDIUM) → NO_LONGER_HOLDS · permiso de mesa (editScope PANEL): translation-sense = TRANSLATION, STATEMENT, HINT, ANSWERS, MINI_THEORY, STORED_SENTENCE, AUDIO desde ca59a0a7d (18/10; antes sin HINT ni MINI_THEORY); a1-didactic = STATEMENT, HINT, ANSWERS, OPTIONS, TRANSLATION, STORED_SENTENCE, AUDIO, MINI_THEORY, INSTRUCTIONS · C1 tanda-A1-20261007T084434Z, task-2567: 7/10 ACCEPTED TRANSLATION_ONLY con queriesSpent 1 y notCompared translation-sense; 9/10, intento 2: TRANSLATION_ONLY «no resuelve ninguna tarea del ejercicio» y ENGLISH_CHANGE «cambia la pista y sus tareas no lo permiten»; intento 3 ACCEPTED TRANSLATION_ONLY; desenlace PENDING «el curso recalculado todavía la marca» · cuenta: 2.112 ejercicios con correcciones desde GET /api/opiniones (estado noconsta, error o peor de a1-didactic, translation-sense sin judges-disagree o single-answer different-valid-answer, con sentenceParts, oración guardada y opciones iguales al original) → 21; 290 sin correcciones desde el último afterFindings de a1-didactic en los opinionRuns de la tanda → 44, que cuadra con withError 160 del análisis vigente contra 116 en los corregidos · lo que no cuento: single-answer offered-alternative (marked 65), answer-giveaway (withError 72), translation-sense judges-disagree (marked 13), near-duplicates (withError 59) · contenido de cada caso: audit-2026-11-05T01-12-52 (v83); en los textos de los jueces, el « … » es de ellos · tuteo: regla-tuteo-resto-2026-10-29T02-57-20Z, tope 0 · costo: mediana de 16 consultas por decisión de mesa con a1-didactic en la C2 (193 decisiones, máximo 55) · arreglo propuesto: TheCard.lightOutside exige una tarea de la tarjeta que no sea leve al empezar (DefaultPanelDecisionScript.light) y F-MESA-R033 inv. 1 lo dice; pruebas: TheCardTest (tarjeta leve + calidad didáctica leve → no aparta nada; tarjeta alta → aparta como hoy) y DefaultTopicPanelTest (tarjeta media que ya no vale + tarjeta leve + calidad didáctica leve → quien propone recibe la de calidad didáctica, con la tarjeta aparte, y no hay rechazo «toca sólo la tarjeta») · aviso del tablero: el motivo vive en panelDecisions[].rejections y no llega a /api/cambios ni a /api/opiniones.</span>
+    <span>brief 266 · docs/briefs/266-el-verbo-tenia-permiso.html</span>
+  </footer>
+
+</div>
+</body>
+</html>
