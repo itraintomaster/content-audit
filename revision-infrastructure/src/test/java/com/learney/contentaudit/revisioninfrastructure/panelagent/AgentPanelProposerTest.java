@@ -439,10 +439,13 @@ public class AgentPanelProposerTest {
                 "cada parte de una contracción cuenta aparte («You're» son 2)",
                 "que escribas queda dentro de la meta o, como mucho, dos palabras más allá;",
                 "rechaza el candidato que la aleja más, aunque resuelva su tarea.",
-                "ponelo con las menos palabras que alcancen")) {
+                "ponelo con las menos palabras del nivel que alcancen",
+                "«Is ___ my book there with you?» (8)")) {
             assertTrue(prompt.replaceAll("\\s+", " ").contains(rule), "the prompt says: " + rule);
         }
         assertFalse(prompt.contains("aunque la oración pase de la meta"), "it no longer invites going past the goal");
+        // In the re-correction of 5/11 the mesa rejected «over there»: «over» is a word of A2.
+        assertFalse(prompt.replaceAll("\\s+", " ").contains("«over there»"), "its example uses only words of the level");
     }
 
     @Test

@@ -144,8 +144,9 @@ alcance permitido; no uses una restricción secreta ni cambies el objetivo.
     que escribas queda dentro de la meta o, como mucho, dos palabras más allá;
     si la oración ya estaba fuera, crece dos palabras como mucho. La mesa
     rechaza el candidato que la aleja más, aunque resuelva su tarea. Cuando otra
-    tarea pide contexto, ponelo con las menos palabras que alcancen: «over
-    there» antes que «at the other end of the room». Contá las palabras de la
+    tarea pide contexto, ponelo con las menos palabras del nivel que alcancen:
+    «Is ___ my book there with you?» (8) antes que «You're at the other end of
+    the room with my book. Can you give me ___?» (13). Contá las palabras de la
     oración que entregás antes de darla.
     La tarea del largo es leve: pesa menos que una oración bien escrita y que
     lo que pide la consigna. Acortá sólo si la oración no pierde nada de lo que
