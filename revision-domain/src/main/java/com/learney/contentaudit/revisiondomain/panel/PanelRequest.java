@@ -4,6 +4,7 @@ import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
 import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBrief;
 import com.learney.contentaudit.refinerdomain.topicwords.TopicWordLights;
+import com.learney.contentaudit.revisiondomain.nonregression.LengthDeclaration;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
@@ -54,6 +55,11 @@ public class PanelRequest {
     private boolean cardApart;
     public boolean isCardApart() { return cardApart; }
     public void setCardApart(boolean cardApart) { this.cardApart = cardApart; }
+
+    /** F-MESA-R029 point 5: the length of each sentence it may touch and the goal of its level, with or without a length task. */
+    private List<LengthDeclaration> lengths = List.of();
+    public List<LengthDeclaration> getLengths() { return lengths; }
+    public void setLengths(List<LengthDeclaration> lengths) { this.lengths = lengths != null ? lengths : List.of(); }
 
     public PanelRequest() {
     }

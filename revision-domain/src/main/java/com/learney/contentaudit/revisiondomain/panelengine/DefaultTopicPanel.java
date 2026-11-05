@@ -14,6 +14,7 @@ import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBrief;
 import com.learney.contentaudit.revisiondomain.nonregression.ChangeGate;
 import com.learney.contentaudit.revisiondomain.nonregression.ChangeGateVerdict;
 import com.learney.contentaudit.revisiondomain.nonregression.ChangeProbe;
+import com.learney.contentaudit.revisiondomain.nonregression.LengthDeclaration;
 import com.learney.contentaudit.revisiondomain.nonregression.UnitMeasurement;
 import com.learney.contentaudit.revisiondomain.nonregression.UnevaluatedMark;
 import com.learney.contentaudit.revisiondomain.panel.CandidateRejection;
@@ -336,6 +337,8 @@ class DefaultTopicPanel implements TopicPanel {
             request.setDidacticReference(work.getDidacticReferences().get(quizId));
             // F-MESA-R033 inv. 2: the card alone too, measured on its own, when other parts have their own tasks.
             request.setCardApart(quizId != null && !conversion && TheCard.apart(progress.open));
+            // F-MESA-R029 point 5: the goal of the length always reaches the proposer, not only with a length task.
+            request.setLengths(lengths(progress.measurement, quizId));
             PanelProposal proposal;
             try {
                 proposal = proposer.propose(request);
@@ -646,6 +649,20 @@ class DefaultTopicPanel implements TopicPanel {
             scope.add(ExercisePart.AUDIO);
         }
         return scope;
+    }
+
+    /** The sentence of the exercise as measured now; for a task of the topic, every sentence of it. */
+    private static List<LengthDeclaration> lengths(UnitMeasurement measurement, String quizId) {
+        if (measurement == null || measurement.getLengths() == null) {
+            return List.of();
+        }
+        List<LengthDeclaration> lengths = new ArrayList<>();
+        for (LengthDeclaration length : measurement.getLengths()) {
+            if (length != null && (quizId == null || quizId.equals(length.getQuizId()))) {
+                lengths.add(length);
+            }
+        }
+        return lengths;
     }
 
     private boolean twoFixes(List<ErrorTaskBrief> tasks) {

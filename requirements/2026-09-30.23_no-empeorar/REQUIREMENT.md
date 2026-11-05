@@ -80,12 +80,15 @@ no suma ninguna y queda.
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
 > Un cambio que deja el ejercicio fuera del rango de largo de su nivel no se rechaza por eso: la decisión declara el largo
-> medido y el rango, y el cambio cuenta en el largo del nivel al cerrar la tanda ([F-NOEMP-R006](#F-NOEMP-R006)). Un
-> hallazgo nuevo de largo nunca devuelve un cambio, ni en la mesa ni al cerrar la tanda.
+> medido y el rango, y el cambio cuenta en el largo del nivel al cerrar la tanda ([F-NOEMP-R006](#F-NOEMP-R006)). En la
+> mesa, el candidato que aleja el largo más de dos palabras de su rango no se acepta ([F-MESA-R006](#F-MESA-R006),
+> cond. 3). Un hallazgo nuevo de largo nunca devuelve un cambio ya aceptado al cerrar la tanda.
 
 Mantiene [F-QICOR-R011](#F-QICOR-R011) y la decisión de José del 11/8: «es más importante que el ejercicio esté bien
 escrito que si entra o no en el rango». La última oración es la reconciliación con el paquete F del 30/9: un cambio vuelve
-por palabras de otro nivel y por errores, nunca por el largo ([DOUBT-NO-EMPEORAR](#DOUBT-NO-EMPEORAR)).
+por palabras de otro nivel y por errores, nunca por el largo ([DOUBT-NO-EMPEORAR](#DOUBT-NO-EMPEORAR)). El tope de dos
+palabras en la mesa es la decisión de José del 5/11/2026 (brief 272, «Arreglar el corrector»): cuatro oraciones de A1
+crecieron hasta siete palabras más allá de la meta resolviendo su tarea y rompieron el piso del largo del nivel.
 
 <a id="F-NOEMP-R004"></a>
 ### Rule[F-NOEMP-R004] - Lo que se escucha sigue al ejercicio, y cambia sólo declarado

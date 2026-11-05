@@ -14,6 +14,7 @@ import com.learney.contentaudit.revisiondomain.panel.CandidateRejection;
 import com.learney.contentaudit.revisiondomain.panel.ConversionOrder;
 import com.learney.contentaudit.revisiondomain.panel.PanelProposal;
 import com.learney.contentaudit.revisiondomain.panel.PanelProposer;
+import com.learney.contentaudit.revisiondomain.nonregression.LengthDeclaration;
 import com.learney.contentaudit.revisiondomain.panel.PanelRequest;
 import com.learney.contentaudit.revisioninfrastructure.lagen.LagenConfig;
 import com.sentinel.agents.framework.state.RunState;
@@ -145,6 +146,7 @@ class AgentPanelProposer implements PanelProposer {
         inputs.put("conversion", json(conversion(request.getConversion())));
         inputs.put("previousRejections", json(rejections(request.getPreviousRejections())));
         inputs.put("didacticReference", json(didacticReference(request)));
+        inputs.put("lengths", json(lengths(request.getLengths())));
         return inputs;
     }
 
@@ -154,6 +156,16 @@ class AgentPanelProposer implements PanelProposer {
         node.put("title", request.getTopicTitle());
         node.put("instructions", request.getTopicInstructions());
         return node;
+    }
+
+    /** F-MESA-R029 point 5: how long each sentence measures today and the goal of its level, as the mesa counts them. */
+    private static ArrayNode lengths(List<LengthDeclaration> lengths) {
+        ArrayNode array = JSON.createArrayNode();
+        for (LengthDeclaration length : lengths != null ? lengths : List.<LengthDeclaration>of()) {
+            array.addObject().put("quizId", length.getQuizId()).put("tokens", length.getTokens())
+                    .put("min", length.getTargetMin()).put("max", length.getTargetMax());
+        }
+        return array;
     }
 
     private static ObjectNode didacticReference(PanelRequest request) {

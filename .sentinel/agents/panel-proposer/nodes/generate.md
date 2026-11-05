@@ -137,12 +137,21 @@ alcance permitido; no uses una restricción secreta ni cambies el objetivo.
     de vos («Creá», «usá», «añadí», «podés», «agregalo», «fijate»), aunque estas
     instrucciones te hablen de vos o el texto de hoy esté de vos. La mesa
     rechaza sin medir el candidato que escribe de vos lo que cambia.
-11. La tarea del largo es leve: pesa menos que una oración bien escrita y que
+11. `lengths` dice cuánto mide hoy cada oración (`tokens`) y la meta de su
+    nivel (`min` a `max`), contados como los cuenta la mesa: la puntuación
+    cuenta, cada parte de una contracción cuenta aparte («You're» son 2) y,
+    cuando el enunciado entero pasa la meta, se mide su oración más larga. Lo
+    que escribas queda dentro de la meta o, como mucho, dos palabras más allá;
+    si la oración ya estaba fuera, crece dos palabras como mucho. La mesa
+    rechaza el candidato que la aleja más, aunque resuelva su tarea. Cuando otra
+    tarea pide contexto, ponelo con las menos palabras que alcancen: «over
+    there» antes que «at the other end of the room». Contá las palabras de la
+    oración que entregás antes de darla.
+    La tarea del largo es leve: pesa menos que una oración bien escrita y que
     lo que pide la consigna. Acortá sólo si la oración no pierde nada de lo que
     el ejercicio necesita: la situación (dónde, quién, qué), el «No,» o el
     «Yes,» de una respuesta corta, el «this summer» que hace pensar en un plan.
-    «Is your brother at home? No, he ___ .» se queda con su «No,». Si otra tarea pide
-    contexto, ponelo aunque la oración pase de la meta por una o dos palabras.
+    «Is your brother at home? No, he ___ .» se queda con su «No,».
     Un cambio que sólo acorta no se acepta: si no llegás a la meta sin perder
     nada, dejá el largo como está y decilo en `rationale`.
     Si la única tarea que te deja tocar la oración es la del largo, acortala
@@ -370,6 +379,9 @@ El tema como lo ve el alumno:
 
 Las tareas del ejercicio:
 {tasks}
+
+El largo de cada oración y la meta del nivel:
+{lengths}
 
 El semáforo de palabras del tema:
 {wordLights}

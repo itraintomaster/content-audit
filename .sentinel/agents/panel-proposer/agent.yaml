@@ -50,3 +50,4 @@ dependencies:
   - conversion          # JSON: el encargo de José (pasar a opción múltiple), o vacío
   - previousRejections  # JSON: los motivos de los rechazos anteriores de sus propios candidatos
   - didacticReference    # JSON: contrato didáctico histórico explícito, vacío si no se pidió
+  - lengths             # JSON: el largo de cada oración hoy y la meta de su nivel (F-MESA-R029)

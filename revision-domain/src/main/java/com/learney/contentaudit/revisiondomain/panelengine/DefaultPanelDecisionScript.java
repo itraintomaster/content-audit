@@ -27,8 +27,8 @@ import javax.annotation.processing.Generated;
  * F-MESA-R006: the decision is not a model's, it comes only from the measurements and the verdicts, each candidate
  * against its starting point. A candidate is accepted when it resolves or improves at least one task of the exercise --
  * none of the task's findings is marked any more, or one is gone or lighter and none heavier, or its length is closer to
- * the range -- and worsens nothing: the change gate passes and no finding it had gets heavier; one that resolves nothing
- * also takes no length more than two words farther from its range. Among several, the one that resolves the heaviest
+ * the range -- and worsens nothing: the change gate passes, no finding it had gets heavier and no length goes more than
+ * two words farther from its range, though it resolves its tasks. Among several, the one that resolves the heaviest
  * tasks wins; then the one that leaves fewer findings by severity; then the one that does not change what is heard;
  * then the one with its lengths closer to the range; then the first. A candidate on which the two judges of a criterion disagree -- the
  * tie rule its analyzer declares -- is neither accepted nor rejected: it goes to José (F-MESA-R008). A conversion José
@@ -120,8 +120,8 @@ class DefaultPanelDecisionScript implements PanelDecisionScript {
                 reasons.add(label + ": sube de gravedad " + String.join("; ", heavier) + still(progress));
                 continue;
             }
-            List<String> farther = conversion || progress.resolvesOwn() ? List.of()
-                    : farther(start, candidate.getMeasurement());
+            // F-MESA-R029 point 4: the cap holds even when the candidate resolves its task; a conversion has none.
+            List<String> farther = conversion ? List.of() : farther(start, candidate.getMeasurement());
             if (!farther.isEmpty()) {
                 reasons.add(label + ": " + done(progress) + ", pero aleja el largo del rango: "
                         + String.join("; ", farther) + still(progress));

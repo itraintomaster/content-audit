@@ -99,17 +99,40 @@ public class AdvanceDecisionTest {
     }
 
     @Test
-    @DisplayName("should still accept a candidate that resolves its task although its length goes out of range, 5 → 12")
+    @DisplayName("should reject a candidate that resolves its task but takes the length three words beyond the goal, 8 → 11, and accept it two beyond, 8 → 10")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R006")
+    @Tag("F-MESA-R029")
+    @Tag("F-NOEMP-R003")
+    public void shouldRejectAFixThatResolvesItsTaskButTakesTheLengthMoreThanTwoWordsFarther() {
+        // F-MESA-R029 point 4 (José, 5/11, brief 272): in the C2 of A1, …2510 went from 8 to 12 resolving its task, and
+        // the cap of two words did not hold because it resolved. Now it holds for every candidate.
+        UnitMeasurement original = measured(List.of(come(FindingSeverity.BLOCKING)), 8, "He comes every year.");
+        ScoredCandidate two = scored(measured(List.of(), 10, "He comes every year."), original);
+        ScoredCandidate three = scored(measured(List.of(), 11, "He comes every year."), original);
+
+        ScriptDecision accepted = script().decide(List.of(comeTask()), original, List.of(two));
+        ScriptDecision rejected = script().decide(List.of(comeTask()), original, List.of(three));
+
+        assertEquals(PanelOutcomeKind.ACCEPTED, accepted.getOutcome(), accepted.getReasons().toString());
+        assertEquals(List.of("t-come"), accepted.getResolvedTaskIds());
+        assertEquals(PanelOutcomeKind.NO_WINNER, rejected.getOutcome());
+        assertTrue(rejected.getReasons().get(0).contains("resuelve t-come, pero aleja el largo del rango: 8 → 11 (meta 3 a 8)"),
+                rejected.getReasons().toString());
+    }
+
+    @Test
+    @DisplayName("should still accept a fix that resolves its task with the length out of range when it goes no more than two words farther, 12 → 14")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R006")
     @Tag("F-NOEMP-R003")
-    public void shouldStillAcceptAFixThatResolvesItsTaskWithTheLengthOutOfRange() {
-        UnitMeasurement original = measured(List.of(come(FindingSeverity.BLOCKING)), 5, "He comes every year.");
-        ScoredCandidate fixed = scored(measured(List.of(), 12, "He comes every year."), original);
+    public void shouldStillAcceptAFixOutOfRangeThatGoesAtMostTwoWordsFarther() {
+        UnitMeasurement original = measured(List.of(come(FindingSeverity.BLOCKING)), 12, "He comes every year.");
+        ScoredCandidate fixed = scored(measured(List.of(), 14, "He comes every year."), original);
 
         ScriptDecision decision = script().decide(List.of(comeTask()), original, List.of(fixed));
 
-        assertEquals(PanelOutcomeKind.ACCEPTED, decision.getOutcome());
+        assertEquals(PanelOutcomeKind.ACCEPTED, decision.getOutcome(), decision.getReasons().toString());
         assertEquals(List.of("t-come"), decision.getResolvedTaskIds());
     }
 

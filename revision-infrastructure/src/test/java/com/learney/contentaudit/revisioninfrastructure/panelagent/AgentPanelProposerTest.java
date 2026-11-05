@@ -229,9 +229,9 @@ public class AgentPanelProposerTest {
                 List.of("F-NOEMP-R001: error nuevo de translation-sense (natural)")))));
 
         Map<String, String> inputs = sent.get();
-        // F-MESA-R031: the title and the instructions of the topic go too.
+        // F-MESA-R031: the title and the instructions of the topic go too; F-MESA-R029: the length and its goal too.
         assertEquals(List.of("batchId", "level", "knowledgeId", "quizId", "attempt", "twoFixes", "cardApart", "topicView", "topic", "tasks",
-                "wordLights", "conversion", "previousRejections", "didacticReference", "project_root"),
+                "wordLights", "conversion", "previousRejections", "didacticReference", "lengths", "project_root"),
                 new ArrayList<>(inputs.keySet()), "nothing else");
         assertEquals("A1", inputs.get("level"));
         assertEquals("2", inputs.get("attempt"));
@@ -404,6 +404,45 @@ public class AgentPanelProposerTest {
         }
         assertFalse(prompt.contains("—la\n   concordancia, un auxiliar que falta o sobra— en vez de"),
                 "it no longer asks every wrong option to be wrong by agreement");
+    }
+
+    @Test
+    @org.junit.jupiter.api.DisplayName("should give the proposer the length of the sentence and the goal of its level with no length task, and the prompt should ask to stay within two words of the goal")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R029")
+    void givesTheProposerTheLengthAndItsGoalAndThePromptKeepsItWithinTwoWords() throws Exception {
+        // F-MESA-R029 point 5 (José, 5/11, brief 272): in the C2 of A1, …238e went from 6 to 13 words to resolve another
+        // task; the proposer saw the goal only with a task of the length.
+        PanelRequest request = request(1, List.of());
+        request.setLengths(List.of(new com.learney.contentaudit.revisiondomain.nonregression.LengthDeclaration(
+                "67fab6d59930102295341ecd", 7, 3, 8, true)));
+
+        com.fasterxml.jackson.databind.JsonNode lengths = new com.fasterxml.jackson.databind.ObjectMapper()
+                .readTree(AgentPanelProposer.inputs(request).get("lengths"));
+        assertEquals(1, lengths.size());
+        assertEquals("67fab6d59930102295341ecd", lengths.get(0).path("quizId").asText());
+        assertEquals(7, lengths.get(0).path("tokens").asInt());
+        assertEquals(3, lengths.get(0).path("min").asInt());
+        assertEquals(8, lengths.get(0).path("max").asInt());
+
+        java.nio.file.Path root = java.nio.file.Path.of("").toAbsolutePath();
+        while (root != null && !java.nio.file.Files.isDirectory(root.resolve(".sentinel/agents/panel-proposer"))) {
+            root = root.getParent();
+        }
+        assertTrue(root != null, "the proposer definition must be available to the test");
+        java.nio.file.Path agent = root.resolve(".sentinel/agents/panel-proposer");
+        String prompt = java.nio.file.Files.readString(agent.resolve("nodes/generate.md"));
+        String yaml = java.nio.file.Files.readString(agent.resolve("agent.yaml"));
+        assertTrue(yaml.contains("  - lengths "), "the graph declares the input");
+        assertTrue(prompt.contains("{lengths}"), "the user prompt renders it");
+        for (String rule : List.of(
+                "cada parte de una contracción cuenta aparte («You're» son 2)",
+                "que escribas queda dentro de la meta o, como mucho, dos palabras más allá;",
+                "rechaza el candidato que la aleja más, aunque resuelva su tarea.",
+                "ponelo con las menos palabras que alcancen")) {
+            assertTrue(prompt.replaceAll("\\s+", " ").contains(rule), "the prompt says: " + rule);
+        }
+        assertFalse(prompt.contains("aunque la oración pase de la meta"), "it no longer invites going past the goal");
     }
 
     @Test

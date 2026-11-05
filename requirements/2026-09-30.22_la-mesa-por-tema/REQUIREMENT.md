@@ -125,8 +125,8 @@ consultas, las que estimó el paquete C.
 > 1. resuelve o mejora al menos una tarea del ejercicio que no es del largo ([F-MESA-R029](#F-MESA-R029));
 > 2. no empeora nada del ejercicio ([F-NOEMP-R001](#F-NOEMP-R001) a [F-NOEMP-R004](#F-NOEMP-R004)) y ningún hallazgo que
 >    ya tenía sube de gravedad;
-> 3. si no resuelve ninguna tarea, tampoco aleja el largo de ningún ejercicio más de dos palabras de su rango
->    ([F-MESA-R029](#F-MESA-R029));
+> 3. no aleja el largo de ningún ejercicio más de dos palabras de su rango, aunque resuelva sus tareas
+>    ([F-MESA-R029](#F-MESA-R029)); una conversión que pidió José no tiene ese tope;
 > 4. conserva el objetivo, la fórmula y los selectores didácticos del ejercicio ([F-MESA-R016](#F-MESA-R016)).
 >
 > Un hallazgo cuyo juez no evaluó el candidato no cuenta como desaparecido. Si se aceptan varios, gana el que resuelve
@@ -142,9 +142,11 @@ comparativa de [F-QICOR-R013](#F-QICOR-R013), que sigue valiendo en `revise-inst
 
 Hasta el 25/10 la condición 1 pedía resolver una tarea entera, y la mesa tiraba lo que mejoraba sin terminar: en C2, C3 y
 C4 la cámara (`…2de8`, A1) bajó de 18 a 10, 11 y 9 de largo, con meta de 3 a 8, sin sumar un error, y las tres
-propuestas se descartaron; cada pasada volvió a partir de 18 (brief 214). La condición 3 deja en pie, para los arreglos
-enteros, la decisión de José del 11/8 de que el largo no frena ([F-NOEMP-R003](#F-NOEMP-R003)); para un avance sí frena,
-para no cambiar un problema por otro ([DOUBT-AVANCE-PARCIAL](#DOUBT-AVANCE-PARCIAL)).
+propuestas se descartaron; cada pasada volvió a partir de 18 (brief 214). Hasta el 5/11 la condición 3 valía sólo para un avance,
+para no cambiar un problema por otro ([DOUBT-AVANCE-PARCIAL](#DOUBT-AVANCE-PARCIAL)): un arreglo entero alargaba sin
+tope, y en la C2 cuatro oraciones de A1 pasaron de 8 a 12, de 6 a 13, de 6 a 13 y de 5 a 15 resolviendo su tarea
+(brief 272). Desde el 5/11 vale para todo candidato ([F-MESA-R029](#F-MESA-R029)). Al cerrar la tanda el largo sigue
+sin devolver un cambio ([F-NOEMP-R003](#F-NOEMP-R003)).
 
 <a id="F-MESA-R007"></a>
 ### Rule[F-MESA-R007] - Tres intentos, cada uno desde el mejor; hasta cinco mientras mejore
@@ -585,11 +587,13 @@ ejercicios de vos de la C2 que no iban a la mesa también van.
 > 3. Entre candidatos aceptados gana el que resuelve las tareas más graves —la gravedad de una tarea es la de su hallazgo
 >    más grave al empezar—; después, el que deja menos hallazgos por gravedad. En las dos cuentas el largo no entra:
 >    sólo desempata al final.
-> 4. Un candidato que mejora otra tarea puede alejar el largo hasta dos palabras de su rango; más, no (cond. 3 de
->    [F-MESA-R006](#F-MESA-R006)).
-> 5. Quien propone lee la tarea del largo como leve: acorta sólo si la oración no pierde nada de lo que el ejercicio
->    necesita, pone el contexto que otra tarea pide aunque pase de la meta, y si no puede acortar sin perder, deja el
->    largo y lo dice.
+> 4. Un candidato puede alejar el largo hasta dos palabras de su rango; más, no, aunque resuelva o mejore otra tarea
+>    (cond. 3 de [F-MESA-R006](#F-MESA-R006)). Entre una oración que pasa la meta por dos palabras y una que la pasa por
+>    siete, queda la primera.
+> 5. Quien propone recibe siempre el largo de cada oración del ejercicio y la meta de su nivel, aunque no tenga una
+>    tarea del largo. Lee la tarea del largo como leve: acorta sólo si la oración no pierde nada de lo que el ejercicio
+>    necesita; el contexto que otra tarea pide lo pone con las menos palabras que alcancen, hasta dos más allá de la
+>    meta; y si no puede acortar sin perder, deja el largo y lo dice.
 >
 > La regla vale para los tres analizadores del largo: el de las oraciones, el de los títulos y el de las consignas de los
 > temas. [F-MESA-R022](#F-MESA-R022) sigue valiendo: cuando el largo es lo único que deja tocar la oración, sólo se sacan
@@ -602,7 +606,12 @@ conservó; en `…2185` la única tarea era el largo y se fue «this summer», l
 tarea del largo contaba como cualquier otra para elegir ganador. Con la regla, en la C2 34 de los 1.985 ejercicios
 corregibles quedan sin corregir porque sólo tienen el largo.
 
-**Fuente**: brief 226, pregunta 1; José, el 26/10/2026: «Esto es un eval algorítmico (no un llm) … debería pesar mucho
+Hasta el 5/11 quien propone recibía la meta sólo con una tarea del largo abierta o con un rechazo que la nombrara, y un
+candidato que resolvía su tarea podía alejar el largo sin tope. En la C2 de A1 cuatro oraciones crecieron para resolver
+otra tarea: `…2510` de 8 a 12 («A: Could you and your brother write on the board? B: Yes, ___.»), `…2ad5` de 6 a 13, `…238e` de 6 a 13 y
+`…237e` de 5 a 15. Con ellas el largo de A1 bajó medio punto y rompió su piso al comparar la tanda (brief 272).
+
+**Fuente**: José, el 5/11/2026, brief 272: «Arreglar el corrector» (puntos 4 y 5). Brief 226, pregunta 1; José, el 26/10/2026: «Esto es un eval algorítmico (no un llm) … debería pesar mucho
 menos que la oración bien escrita o respetando el enunciado … tendría que haber quedado la opción que se pasaba un poco
 del largo» y «Sí: hacé el largo leve».
 

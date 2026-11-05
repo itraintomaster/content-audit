@@ -273,6 +273,31 @@ public class AdvancingAttemptsTest {
         assertEquals(List.of("t-palabras"), decision.getResolvedTaskIds());
     }
 
+    @Test
+    @DisplayName("should give the proposer the length of the camera and the goal of A1 with no length task open, 13 and then 11 from the starting point, 3 to 8")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R029")
+    public void shouldGiveTheProposerTheLengthAndItsGoalWithNoLengthTask() {
+        // F-MESA-R029 point 5 (José, 5/11, brief 272): in the C2 the proposer saw the goal only with a length task, and
+        // four sentences of A1 grew up to seven words beyond it to resolve another task.
+        RecordingProposer proposer = new RecordingProposer(script(
+                CAMERA, says("Sorry, it's not okay to use a camera here. You"),  // 3 marked words, 11 words
+                CAMERA, says("It's not okay to use a camera. You"),
+                CAMERA, says("Not okay to use a camera. You")));
+        RecordingSink sink = new RecordingSink();
+
+        panel(proposer, wordsMeter()).run(work(camera(), List.of(wordsTask())), settings(), allowance(50, 4), sink);
+
+        var first = proposer.requests.get(0).getLengths();
+        assertEquals(1, first.size(), first.toString());
+        assertEquals(CAMERA, first.get(0).getQuizId());
+        assertEquals(13, first.get(0).getTokens());
+        assertEquals(3, first.get(0).getTargetMin());
+        assertEquals(8, first.get(0).getTargetMax());
+        assertEquals(11, proposer.requests.get(1).getLengths().get(0).getTokens(),
+                "each attempt sees the length of its starting point");
+    }
+
     // -------------------------------------------------------------------------
 
     /** «Sorry, but it's really not okay to use a camera here. You ___ (can't).»: 13 words, 3 to 8 in A1. */
