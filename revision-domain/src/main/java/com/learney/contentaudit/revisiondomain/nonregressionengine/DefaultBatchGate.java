@@ -1,5 +1,6 @@
 package com.learney.contentaudit.revisiondomain.nonregressionengine;
 
+import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.finding.Finding;
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
@@ -35,8 +36,9 @@ import javax.annotation.processing.Generated;
  *   (R003);</li>
  *   <li>R005 inv. 2 and 3: a count of exercises -- with an error of an analyzer, with «algún error», blocking, with red
  *   words -- that goes up against the start of the batch breaks its floor;</li>
- *   <li>R006: a number of vocabulary more than 0.5 points below the fixed baseline breaks its floor; the tolerance is
- *   spent by the sum of every batch, since the baseline does not move; exactly 0.5 passes;</li>
+ *   <li>R006: a number of vocabulary of a level or of the course more than 0.5 points below the fixed baseline breaks
+ *   its floor -- the ones of a topic or a theme are shown and have none --; the tolerance is spent by the sum of every
+ *   batch, since the baseline does not move; exactly 0.5 passes;</li>
  *   <li>R007: a node that changed outside the batch stops it, named;</li>
  *   <li>R008: for a broken floor it returns the changes the comparison ranks as worsening it most, from the first on,
  *   until the sum of their effects brings it back within;</li>
@@ -56,6 +58,9 @@ import javax.annotation.processing.Generated;
 class DefaultBatchGate implements BatchGate {
 
     private static final double EPSILON = 1e-9;
+
+    /** R006: the nodes the floor of vocabulary holds in. */
+    private static final Set<AuditTarget> LEVEL_OR_COURSE = Set.of(AuditTarget.MILESTONE, AuditTarget.COURSE);
 
     @Override
     public BatchGateVerdict evaluate(BatchComparison comparison, List<String> changedOutsideScope,
@@ -170,7 +175,7 @@ class DefaultBatchGate implements BatchGate {
             }
             return null;
         }
-        if (row.getFamily() == AnalyzerFamily.VOCABULARY) {
+        if (row.getFamily() == AnalyzerFamily.VOCABULARY && LEVEL_OR_COURSE.contains(row.getNodeTarget())) {
             RowValue base = row.getBaseline();
             if (base == null || base.getValue() == null) {
                 return null;

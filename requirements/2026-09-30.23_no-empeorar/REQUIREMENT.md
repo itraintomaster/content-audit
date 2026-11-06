@@ -164,6 +164,10 @@ Es el piso por defecto de vocabulario de [F-METAS-R005](#F-METAS-R005) y la tole
 puede bajar más de medio punto en ningún nivel»); José confirmó el valor y que sea acumulado el 30/9
 ([DOUBT-NO-EMPEORAR](#DOUBT-NO-EMPEORAR)).
 
+Un topic o un tema muestran sus números de vocabulario, pero no tienen este piso. Hasta el 5/11/2026 la compuerta lo
+aplicaba también a ellos, aunque la comparación no les ponía piso: en la C2 de A1 frenaba en 36 temas y topics, como
+el largo de «Expresar habilidad» de 87 a 62, con el largo de A1 dentro de su tolerancia.
+
 <details><summary>Cuánto es medio punto (medido sobre la base del 29/9)</summary>
 
 El puntaje de largo de un nivel promedia temas, sus temas promedian ejercicios; un ejercicio fuera del rango por un

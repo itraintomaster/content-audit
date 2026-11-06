@@ -258,6 +258,29 @@ public class DefaultBatchGateTest {
     }
 
     @Test
+    @DisplayName("should hold the floor of vocabulary only in each level and in the course, and not break it for a theme or a topic below its baseline, as the length of «Expresar habilidad» from 87 to 62")
+    @Tag("FEAT-NOEMP")
+    @Tag("F-NOEMP-R006")
+    public void shouldHoldTheFloorOfVocabularyOnlyInEachLevelAndInTheCourseAndNotBreakItForAThemeOrATopicBelowItsBaselineAsTheLengthOfExpresarHabilidadFrom87To62(
+            ) {
+        // R006: «en cada nivel y en el curso». The comparison shows the numbers of every topic and theme, without a floor.
+        ComparisonRow theme = nodeRow("sentence-length", AuditTarget.KNOWLEDGE, "k-habilidad", "Expresar habilidad", 0.87,
+                0.62);
+        ComparisonRow topic = nodeRow("vocabulario", AuditTarget.TOPIC, "t-modal", "Modal Verbs", 0.748, 0.739);
+        ComparisonRow level = nodeRow("sentence-length", AuditTarget.MILESTONE, "m-a1", "A1", 0.9763, 0.9708);
+
+        BatchGateVerdict verdict = gate().evaluate(comparison(List.of(), List.of(theme, topic, level), List.of()),
+                List.of(), List.of());
+
+        assertFalse(verdict.isPasses(), "the level is 0.55 points below its baseline");
+        assertEquals(1, verdict.getReasons().size(), "only the level: " + verdict.getReasons());
+        assertTrue(verdict.getReasons().get(0).contains("sentence-length en A1"), verdict.getReasons().toString());
+        BatchGateVerdict themeAndTopic = gate().evaluate(comparison(List.of(), List.of(theme, topic), List.of()),
+                List.of(), List.of());
+        assertTrue(themeAndTopic.isPasses(), "a theme and a topic have no floor of vocabulary: " + themeAndTopic.getReasons());
+    }
+
+    @Test
     @DisplayName("should not pass when a node outside the batch changed, as an exercise of «Contraste inicial» in the batch of the vegetables, and name that node")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R007")
@@ -430,6 +453,14 @@ public class DefaultBatchGateTest {
         return new ComparisonRow(subject, AnalyzerFamily.VOCABULARY, nodeId.equals("root") ? AuditTarget.COURSE
                 : AuditTarget.MILESTONE, nodeId, label, new RowValue(baseline, null, 0, true), null, new RowValue(start, null, 0, true),
                 new RowValue(projected, null, 0, true), projected - baseline, GoalUnit.POINTS, null, null, null, null, null, null, null);
+    }
+
+    private static ComparisonRow nodeRow(String subject, AuditTarget target, String nodeId, String label, double baseline,
+            double projected) {
+        return new ComparisonRow(subject, AnalyzerFamily.VOCABULARY, target, nodeId, label,
+                new RowValue(baseline, null, 0, true), null, new RowValue(baseline, null, 0, true),
+                new RowValue(projected, null, 0, true), projected - baseline, GoalUnit.POINTS, null, null, null, null, null,
+                null, null);
     }
 
     private static FloorBreach breach(ComparisonRow row, ChangeAttribution... attributions) {
