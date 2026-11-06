@@ -275,6 +275,11 @@ opacos ([F-CDIFF-R020](#F-CDIFF-R020)), compara listas por identidad declarada (
 estables ([F-CDIFF-R023](#F-CDIFF-R023)). No es la huella del libro de evaluaciones ([F-EVCOST-R001](#F-EVCOST-R001)), que
 identifica un veredicto por su contenido: ésta identifica un problema en un nodo, para compararlo entre fotos.
 
+**Criterio** (medido el 6/11/2026): Didáctica A1 da un veredicto por ejercicio, así que su hallazgo no marca nada más; las
+respuestas aceptadas que leyó van en la evidencia. En la C2 de A1, 13 cambios volvían con el mismo error que producción
+porque la marca era la respuesta aceptada: «How about reading a book?» aceptaba «Let's read a book» en producción y
+«Let's read a book.» en la C2, y el juez decía lo mismo de las dos. Naturalidad sí marca cada oración.
+
 <a id="F-HALL-R015"></a>
 ### Rule[F-HALL-R015] - Analizar no escribe nada sobre el curso
 **Severity**: critical | **Validation**: AUTO_VALIDATED

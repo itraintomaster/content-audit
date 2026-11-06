@@ -85,7 +85,7 @@ final class EnglishQualityAnalyzer implements ContentAnalyzer {
                     increment(a.status().name());
                     if(a.status()!=NativeUsageVerdict.Status.NOT_APPLICABLE) applicable=true;
                     if(a.status()==NativeUsageVerdict.Status.REVIEW) pending=true;
-                    if(a.status()==NativeUsageVerdict.Status.FAIL) { fail=true; drafts.add(finding("unidiomatic-formulation",a.sentence(),a.severity(),a.reason(),subject)); }
+                    if(a.status()==NativeUsageVerdict.Status.FAIL) { fail=true; drafts.add(finding("unidiomatic-formulation",a.sentence(),a.sentence(),a.severity(),a.reason(),subject)); }
                 }
                 score = !applicable || (pending && !fail) ? null : fail ? 0.0 : 1.0;
             } else {
@@ -95,9 +95,10 @@ final class EnglishQualityAnalyzer implements ContentAnalyzer {
                 increment(v.status().name()); pending=v.status()==A1DidacticVerdict.Status.REVIEW;
                 boolean ownDefect = v.issue()!=null && (v.status()==A1DidacticVerdict.Status.IMPROVE || v.status()==A1DidacticVerdict.Status.REWRITE_REQUIRED);
                 score = pending || v.status()==A1DidacticVerdict.Status.NOT_APPLICABLE ? null : ownDefect ? 0.0 : 1.0;
-                // Handoffs are evidence, not a second finding for another checker's defect.
+                // Handoffs are evidence, not a second finding for another checker's defect. F-HALL-R014: one verdict per
+                // exercise, so the finding marks nothing else; the accepted answers it read are evidence, not identity.
                 if(ownDefect)
-                    drafts.add(finding("a1-example-quality",v.affectedSentences().isEmpty()
+                    drafts.add(finding("a1-example-quality",null,v.affectedSentences().isEmpty()
                                     ? subject.getContent().get("exercise") : String.join(" | ",v.affectedSentences()),
                             v.status()==A1DidacticVerdict.Status.REWRITE_REQUIRED?FindingSeverity.HIGH:FindingSeverity.LOW,v.reason()+" Propuesta: "+v.proposedAction(),subject));
             }
@@ -118,11 +119,11 @@ final class EnglishQualityAnalyzer implements ContentAnalyzer {
             return !pending;
         } catch(RuntimeException invalid) { increment("OUTPUT_UNUSABLE"); n.getMetadata().put(getName()+"OutputIssue",invalid.getMessage()); return false; }
     }
-    private FindingDraft finding(String rule,String marker,FindingSeverity severity,String reason,EvaluationSubject subject) {
+    private FindingDraft finding(String rule,String marker,String example,FindingSeverity severity,String reason,EvaluationSubject subject) {
         var examined = List.of(
                 new EvidencePart("Consigna visible",subject.getContent().get("instructions")),
                 new EvidencePart("Enunciado visible",subject.getContent().get("exercise")),
-                new EvidencePart("Variante o ejemplo",marker)).stream()
+                new EvidencePart("Variante o ejemplo",example)).stream()
                 .filter(part -> part.getText()!=null && !part.getText().isBlank()).toList();
         return new FindingDraft(rule,marker,severity,FindingResolution.PANEL,new FindingEvidence(examined,reason,List.of()));
     }

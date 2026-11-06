@@ -10,6 +10,7 @@ import com.learney.contentaudit.coursedomain.*;
 import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
 import com.learney.contentaudit.evaluationledgerdomain.*;
 import java.util.*;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -147,7 +148,35 @@ class EnglishQualityTest {
         assertEquals(0.0,n.getScores().get("a1-didactic"));
         assertSame(verdict,n.getMetadata().get("a1-didacticVerdict"));
         assertTrue(verdict.affectedSentences().isEmpty());
-        assertEquals(builder.build(n).getContent().get("exercise"),n.getFindings().get(0).getIdentity().getMarker());
+        assertNull(n.getFindings().get(0).getIdentity().getMarker());
+        assertTrue(n.getFindings().get(0).getEvidence().getExamined().stream().anyMatch(part ->
+                "Variante o ejemplo".equals(part.getLabel()) && builder.build(n).getContent().get("exercise").equals(part.getText())));
+    }
+    @Tag("F-HALL-R014")
+    @Test void theSameDidacticDefectKeepsItsIdentityWhenTheAcceptedAnswersChange() {
+        // C2 de A1, «Oraciones con let's»: producción acepta «Let's read a book», la C2 «Let's read a book.»; el juez
+        // dice lo mismo de las dos. Un veredicto por ejercicio: el error es el mismo.
+        String before=didacticIdentity("Let's read a book"), after=didacticIdentity("Let's read a book.");
+        assertEquals("a1-didactic|a1-example-quality|q",before);
+        assertEquals(before,after);
+        // Naturalidad sí marca cada oración: dos oraciones son dos hallazgos.
+        assertNotEquals(naturalnessIdentity("I wrong."),naturalnessIdentity("I wrongs."));
+    }
+    String didacticIdentity(String accepted) {
+        var n=node("q","A1",accepted);var reader=mock(EnglishQualityVerdictReader.class);
+        when(reader.readDidactic(anyString())).thenReturn(new A1DidacticVerdict("q",A1DidacticVerdict.Status.REWRITE_REQUIRED,"let's",List.of(accepted),
+                A1DidacticVerdict.Issue.INCIDENTAL_STRUCTURE,"«How about + -ing» no se vio",null,List.of(),"Cambiar la oración de partida",null));
+        var f=fixture(EnglishQualityAnalyzerProvider.Kind.A1_DIDACTIC,List.of(n),reader);f.analyzer.onQuiz(n);f.analyzer.onCourseComplete(f.root);
+        collect(f.analyzer,n,EnglishQualityAnalyzerProvider.Kind.A1_DIDACTIC);
+        assertTrue(n.getFindings().get(0).getEvidence().getExamined().stream().anyMatch(part -> accepted.equals(part.getText())));
+        return n.getFindings().get(0).getIdentity().getKey();
+    }
+    String naturalnessIdentity(String sentence) {
+        var n=node("q","A1",sentence);var reader=mock(EnglishQualityVerdictReader.class);
+        when(reader.readNaturalness(anyString())).thenReturn(new NativeUsageVerdict(List.of(a(sentence,NativeUsageVerdict.Status.FAIL)),"R"));
+        var f=fixture(EnglishQualityAnalyzerProvider.Kind.NATURALNESS,List.of(n),reader);f.analyzer.onQuiz(n);f.analyzer.onCourseComplete(f.root);
+        collect(f.analyzer,n,EnglishQualityAnalyzerProvider.Kind.NATURALNESS);
+        return n.getFindings().get(0).getIdentity().getKey();
     }
     @Test void findingOmitsAbsentOptionalInstructionWithoutDiscardingDefect() {
         var n=node("q","A1","I eat.");((AuditableQuiz)n.getEntity()).setInstructions("");
