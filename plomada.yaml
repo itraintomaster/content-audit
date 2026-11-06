@@ -6,6 +6,10 @@ topes:
   lineas: 100
   crap: 10
 excluir: []
+# la etapa 2: cada módulo de Maven tiene su ficha (<módulo>/MODULO.md), con lo que dice
+# sentinel.yaml. Los límites y los ciclos nuevos se anotan sin frenar
+modulos:
+  freno: anotar
 lenguajes:
   java:
     fuentes: ['*/src/main/java/**/*.java']
