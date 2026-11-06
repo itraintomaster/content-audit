@@ -389,6 +389,7 @@ class DefaultBatchService implements BatchService {
                 }
             }
             case TASK_FROM_TIE -> batch = taskFromTie(batch, adjustment, course);
+            case JOSES_FIX -> batch = writeJosesFix(batch, adjustment, course);
             case APPROVE_RULE_SAMPLE -> {
                 // recorded as José's decision: the changes of the rule may be published
             }
@@ -537,6 +538,27 @@ class DefaultBatchService implements BatchService {
             }
         }
         return verdict;
+    }
+
+    /**
+     * F-BANDEJA-R010: José's fix of an exercise the tray does not ask him about. Rested on the exercise as in R003, it
+     * enters as his change -- not as his exception: the judges and the reviewer measure it as any change, and the closing
+     * gives it back if it gains a problem. The panel does not judge it: it judges a candidate by the tasks it resolves,
+     * and the exercise may have none, as one that «acepta otra respuesta».
+     */
+    private CorrectionBatch writeJosesFix(CorrectionBatch batch, BatchAdjustment adjustment, CourseEntity course) {
+        String quizId = adjustment.getQuizId();
+        Optional<BatchBook.Place> place = BatchBook.place(changeLedger.composedCourse(batch, course), quizId);
+        if (place.isEmpty() || place.get().quiz() == null) {
+            throw new IllegalArgumentException("El ejercicio " + quizId + " no está en el curso de la tanda.");
+        }
+        adjustment.setCandidate(JosesFix.restedOn(adjustment.getCandidate(), place.get().quiz()));
+        int changes = BatchBook.list(batch.getChanges()).size();
+        batch = accept(batch, adjustment, course, null, "arreglo de José");
+        if (BatchBook.list(batch.getChanges()).size() == changes) {
+            throw new IllegalArgumentException("El arreglo deja el ejercicio " + quizId + " como está.");
+        }
+        return batch;
     }
 
     /**

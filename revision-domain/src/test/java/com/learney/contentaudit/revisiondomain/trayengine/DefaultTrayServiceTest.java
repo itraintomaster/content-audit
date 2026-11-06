@@ -358,6 +358,72 @@ public class DefaultTrayServiceTest {
     }
 
     @Test
+    @DisplayName("should take José's fix of an exercise the tray does not ask about into the batch as his change, rested on the exercise and without the panel")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R010")
+    public void shouldTakeJosesFixOfAnExerciseTheTrayDoesNotAskAboutIntoTheBatchAsHisChangeRestedOnTheExerciseAndWithoutThePanel(
+            ) {
+        // R010, 5/11: «She ___ (dance) tonight.» accepts «won't dance» too; no task of the panel covers it, and José
+        // accepts both answers.
+        BandejaFixture.Bandeja bandeja = opened();
+        QuizTemplateEntity exercise = asTheBatchHas(bandeja, BandejaFixture.WORK);
+        assertTrue(bandeja.tray.view().getItems().stream().noneMatch(i -> BandejaFixture.WORK.equals(i.getQuizId())),
+                "the tray does not ask about it");
+
+        bandeja.tray.write(BandejaFixture.WORK, answering(exercise, "works|doesn't work"), "acepta las dos", "José");
+
+        BatchChange change = change(bandeja.saved(), "jose-" + BandejaFixture.WORK);
+        assertEquals(BatchChangeOrigin.JOSE, change.getOrigin(), "his change");
+        assertFalse(change.isJoseException(), "not his exception: the closing counts what it gains");
+        FormEntity entered = change.getSteps().get(0).getAfter().getQuiz().getForm();
+        FormEntity before = exercise.getForm();
+        assertEquals(before.getKind(), entered.getKind(), "the class of the form, as the exercise has it");
+        assertEquals(before.getIncidence(), entered.getIncidence(), "its incidence");
+        int blank = clozeIndex(before);
+        assertEquals(before.getSentenceParts().get(blank).getText(), entered.getSentenceParts().get(blank).getText(),
+                "the text of the blank, as the exercise has it");
+        assertEquals(List.of("works|doesn't work"), entered.getSentenceParts().get(blank).getOptions(), "both answers");
+        assertTrue(bandeja.panels.assessed.isEmpty(), "the panel does not judge it: it has no task to resolve");
+    }
+
+    @Test
+    @DisplayName("should send José's fix of an exercise the tray already asks about to its item, and leave the batch as it was")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R010")
+    public void shouldSendJosesFixOfAnExerciseTheTrayAlreadyAsksAboutToItsItemAndLeaveTheBatchAsItWas() {
+        BandejaFixture.Bandeja bandeja = opened();
+        QuizTemplateEntity exercise = TandaFixture.exercise(bandeja.course, BandejaFixture.TEA);
+        int changes = bandeja.saved().getChanges().size();
+
+        IllegalArgumentException refused = assertThrows(IllegalArgumentException.class, () -> bandeja.tray.write(
+                BandejaFixture.TEA, writtenFix(exercise, "drinks"), null, "José"));
+
+        assertTrue(refused.getMessage().contains("«" + TEA_ITEM + "»"), refused.getMessage());
+        assertEquals(changes, bandeja.saved().getChanges().size(), "no change");
+    }
+
+    @Test
+    @DisplayName("should not change the batch with José's fix of an exercise out of its course, nor with one that leaves the exercise as it is, and say why")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R010")
+    public void shouldNotChangeTheBatchWithJosesFixOfAnExerciseOutOfItsCourseNorWithOneThatLeavesTheExerciseAsItIsAndSayWhy(
+            ) {
+        BandejaFixture.Bandeja bandeja = opened();
+        QuizTemplateEntity exercise = asTheBatchHas(bandeja, BandejaFixture.WORK);
+        String answers = exercise.getForm().getSentenceParts().get(clozeIndex(exercise.getForm())).getOptions().get(0);
+        int changes = bandeja.saved().getChanges().size();
+
+        IllegalArgumentException outside = assertThrows(IllegalArgumentException.class, () -> bandeja.tray.write(
+                "67fab6d5993010229534ffff", answering(exercise, "works"), null, "José"));
+        IllegalArgumentException same = assertThrows(IllegalArgumentException.class, () -> bandeja.tray.write(
+                BandejaFixture.WORK, answering(exercise, answers), null, "José"));
+
+        assertTrue(outside.getMessage().contains("no está en el curso de la tanda"), outside.getMessage());
+        assertTrue(same.getMessage().contains("como está"), same.getMessage());
+        assertEquals(changes, bandeja.saved().getChanges().size(), "no change");
+    }
+
+    @Test
     @DisplayName("should take into the batch a fix of José that improves the exercise without resolving its task, leaving the task «mejoró, sigue abierta» with its measure")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R007")
@@ -666,6 +732,36 @@ public class DefaultTrayServiceTest {
                 text("tea every morning."));
         written.setForm(new FormEntity(null, 0.0, null, null, written.getForm().getSentenceParts(), null, null));
         return new PanelCandidate(PanelCandidateKind.WHOLE_EXERCISE, written, null, null, "arreglo de José");
+    }
+
+    /**
+     * José's line for {@code exercise}: its parts as he writes them in the notation of the course -- each blank without
+     * text and with {@code answers}, a form without class nor incidence --, its translation.
+     */
+    private static PanelCandidate answering(QuizTemplateEntity exercise, String answers) {
+        List<SentencePartEntity> parts = new ArrayList<>();
+        for (SentencePartEntity part : exercise.getForm().getSentenceParts()) {
+            parts.add(part.getKind() == SentencePartKind.CLOZE
+                    ? new SentencePartEntity(SentencePartKind.CLOZE, null, new ArrayList<>(List.of(answers)))
+                    : new SentencePartEntity(SentencePartKind.TEXT, part.getText(), null));
+        }
+        QuizTemplateEntity written = withParts(exercise, parts.toArray(SentencePartEntity[]::new));
+        written.setForm(new FormEntity(null, 0.0, null, null, written.getForm().getSentenceParts(), null, null));
+        return new PanelCandidate(PanelCandidateKind.WHOLE_EXERCISE, written, null, null, "arreglo de José");
+    }
+
+    /** WORK as the batch has it: its hint, as the rule of the hint left it. */
+    private static QuizTemplateEntity asTheBatchHas(BandejaFixture.Bandeja bandeja, String quizId) {
+        return change(bandeja.saved(), "regla-hint-coherence-" + quizId).getSteps().get(0).getAfter().getQuiz();
+    }
+
+    private static int clozeIndex(FormEntity form) {
+        for (int i = 0; i < form.getSentenceParts().size(); i++) {
+            if (form.getSentenceParts().get(i).getKind() == SentencePartKind.CLOZE) {
+                return i;
+            }
+        }
+        throw new AssertionError("the exercise has no blank");
     }
 
     /** The tray with its blind sample answered and closed: the rest of the batch shows. */

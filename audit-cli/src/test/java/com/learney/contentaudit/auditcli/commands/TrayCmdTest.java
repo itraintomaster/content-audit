@@ -98,6 +98,32 @@ public class TrayCmdTest {
     }
 
     @Test
+    @DisplayName("should read with 'tray write' José's fix of an exercise the tray does not ask about, over that exercise, and pass it with his note")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R010")
+    public void shouldReadWithTrayWriteJosesFixOfAnExerciseTheTrayDoesNotAskAboutOverThatExerciseAndPassItWithHisNote(
+            ) {
+        // R010: «She ___ (dance) tonight.» is in no item of the tray; José accepts both answers.
+        Bandeja bandeja = new Bandeja();
+        Path file = write(workdir.resolve("arreglo-dance.txt"),
+                "She ____ ['ll dance|won't dance] (dance) tonight.\n"
+                        + "Ella bailará esta noche.\n");
+
+        Run run = run(bandeja, "write", DANCE, "--fix", file.toString(), "--note", "acepta las dos");
+
+        assertEquals(0, run.exit(), run.err());
+        assertEquals(List.of(DANCE + "|acepta las dos|José"), bandeja.written.stream()
+                .map(w -> w.quizId() + "|" + w.note() + "|" + w.decidedBy()).toList());
+        PanelCandidate fix = bandeja.written.get(0).fix();
+        assertEquals(DANCE, fix.getQuiz().getId(), "over the exercise he names");
+        assertEquals(List.of("'ll dance|won't dance"), fix.getQuiz().getForm().getSentenceParts().get(1).getOptions(),
+                "both answers, with «|»");
+        assertEquals("Ella bailará esta noche.", fix.getQuiz().getTranslation());
+        assertTrue(bandeja.answers.isEmpty(), "no item of the tray is answered");
+        assertTrue(run.out().contains("entró como cambio suyo"), run.out());
+    }
+
+    @Test
     @DisplayName("should publish the open batch with 'tray publish' as José's single OK")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R008")
@@ -117,6 +143,8 @@ public class TrayCmdTest {
     private static final String COME = "67fab6d59930102295341ec6";
 
     private static final String TEA = "67fab6d59930102295341ec9";
+
+    private static final String DANCE = "67fab6d59930102295342114";
 
     @TempDir
     Path workdir;
@@ -154,6 +182,11 @@ public class TrayCmdTest {
 
         final List<String> published = new ArrayList<>();
 
+        record Written(String quizId, PanelCandidate fix, String note, String decidedBy) {
+        }
+
+        final List<Written> written = new ArrayList<>();
+
         final Tray tray = new Tray("tanda-A1-20261001T120000Z", false, new ArrayList<>(List.of(
                 new TrayItem("desempate-" + COME, TrayItemKind.TIE_ON_CANDIDATE, FindingSeverity.HIGH, null, COME,
                         "Los dos jueces de translation-sense no coinciden sobre el candidato de la mesa: ¿pasa?",
@@ -186,6 +219,12 @@ public class TrayCmdTest {
         @Override
         public Tray answer(TrayResponse response) {
             answers.add(response);
+            return tray;
+        }
+
+        @Override
+        public Tray write(String quizId, PanelCandidate fix, String note, String decidedBy) {
+            written.add(new Written(quizId, fix, note, decidedBy));
             return tray;
         }
 

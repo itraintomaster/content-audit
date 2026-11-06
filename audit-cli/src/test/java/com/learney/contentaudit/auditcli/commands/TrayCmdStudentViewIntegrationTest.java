@@ -11,6 +11,7 @@ import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSente
 import com.learney.contentaudit.revisiondomain.batch.BatchPublication;
 import com.learney.contentaudit.revisiondomain.blindsample.BlindPairView;
 import com.learney.contentaudit.revisiondomain.blindsample.StudentSide;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
 import com.learney.contentaudit.revisiondomain.tray.Tray;
 import com.learney.contentaudit.revisiondomain.tray.TrayAnswer;
 import com.learney.contentaudit.revisiondomain.tray.TrayItem;
@@ -128,6 +129,11 @@ class TrayCmdStudentViewIntegrationTest {
 
         @Override
         public Tray answer(TrayResponse response) {
+            throw new UnsupportedOperationException("only shown");
+        }
+
+        @Override
+        public Tray write(String quizId, PanelCandidate fix, String note, String decidedBy) {
             throw new UnsupportedOperationException("only shown");
         }
 

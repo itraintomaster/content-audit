@@ -58,10 +58,12 @@ import picocli.CommandLine.Parameters;
         description = "The tray of the open batch (F-BANDEJA).%n%n"
                 + "  tray show [-f text|json]%n"
                 + "  tray answer <item> <answer> [--pair N] [--change <id>] [--fix <file>] [--note <text>]%n"
+                + "  tray write <exercise> --fix <file> [--note <text>]%n"
                 + "  tray publish [--note <text>]%n%n"
                 + "Answers: IS_ERROR, NOT_ERROR, PASSES, DOES_NOT_PASS, KEEP_ORIGINAL, APPROVE_CANDIDATE, WRITE_FIX,"
                 + " RULE_OK, DROP_CHANGE, DROP_RULE; a pair of the blind sample takes A, B, iguales or ambos with --pair."
-                + "%nThe fix of WRITE_FIX is a file: exercise, translation and optional quiz-local mini theory, one per line.",
+                + "%nThe fix of WRITE_FIX is a file: exercise, translation and optional quiz-local mini theory, one per line."
+                + "%nwrite takes the same file for an exercise the tray does not ask about; it enters as José's change.",
         mixinStandardHelpOptions = true,
         footer = {
                 "",
@@ -70,6 +72,7 @@ import picocli.CommandLine.Parameters;
                 "  content-audit tray answer ciega-muestra-1 B --pair 1",
                 "  content-audit tray answer desempate-curso-67fab6d59930102295341ec8 NOT_ERROR",
                 "  content-audit tray answer sin-ganador-67fab6d59930102295341ec9 WRITE_FIX --fix arreglo.txt",
+                "  content-audit tray write 67fab6d59930102295342114 --fix arreglo.txt --note \"acepta las dos\"",
                 "  content-audit tray answer muestra-hint-coherence RULE_OK",
                 "  content-audit tray publish --note \"primera tanda de A1\"",
         }
@@ -82,10 +85,10 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
     /** De dónde se lee la lista de publicación de la tanda para nombrarla al publicar (F-PUBPROD-R001); puede faltar. */
     private final BatchStore publications;
 
-    @Parameters(index = "0", description = "show, answer or publish")
+    @Parameters(index = "0", description = "show, answer, write or publish")
     private String action;
 
-    @Parameters(index = "1", arity = "0..1", description = "The item of the tray (answer)")
+    @Parameters(index = "1", arity = "0..1", description = "The item of the tray (answer) or the exercise (write)")
     private String itemId;
 
     @Parameters(index = "2", arity = "0..1", description = "The answer (answer)")
@@ -289,7 +292,7 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
     @Override
     public Integer call() {
         if (action == null) {
-            System.err.println("Error: tray necesita show, answer o publish. Ver content-audit tray --help.");
+            System.err.println("Error: tray necesita show, answer, write o publish. Ver content-audit tray --help.");
             return 2;
         }
         try {
@@ -304,9 +307,10 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
         return switch (action) {
             case "show" -> showTray(format);
             case "answer" -> answerTray(itemId, answer, pairIndex, changeId, fixFile, note);
+            case "write" -> writeFix(itemId, fixFile, note);
             case "publish" -> publishTray(note);
             default -> {
-                System.err.println("Error: tray no conoce '" + action + "'. Usá show, answer o publish.");
+                System.err.println("Error: tray no conoce '" + action + "'. Usá show, answer, write o publish.");
                 yield 2;
             }
         };
@@ -336,13 +340,40 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
             if (fixFile == null || fixFile.isBlank()) {
                 throw new IllegalArgumentException("WRITE_FIX necesita --fix <archivo> con el arreglo");
             }
-            fix = fix(itemId, Path.of(fixFile));
+            fix = fix(TrayBookView.quizOf(trayService.view(), itemId), Path.of(fixFile));
         }
         return new TrayResponse(itemId, kind, null, null, changeId, fix, note, JOSE);
     }
 
+    /**
+     * F-BANDEJA-R010: José's fix of an exercise the tray does not ask him about, from the same file as WRITE_FIX; it
+     * enters as his change.
+     */
+    private Integer writeFix(String quizId, String fixFile, String note) {
+        if (quizId == null || quizId.isBlank() || fixFile == null || fixFile.isBlank()) {
+            System.err.println("Error: tray write <ejercicio> --fix <archivo>. El archivo es como el de WRITE_FIX.");
+            return 2;
+        }
+        Tray tray;
+        try {
+            tray = trayService.write(quizId, fix(quizId, Path.of(fixFile)), note, JOSE);
+        } catch (IllegalArgumentException | IOException e) {
+            System.err.println("Error: " + e.getMessage());
+            return 2;
+        } catch (NoOpenBatchException e) {
+            System.err.println("Error: " + e.getMessage());
+            return 1;
+        }
+        if (CommandJson.isJson(format)) {
+            System.out.println(CommandJson.write(tray));
+            return 0;
+        }
+        System.out.println("Arreglo de José en " + quizId + ": entró como cambio suyo; lo miden los jueces.");
+        return 0;
+    }
+
     /** José's fix: course notation, translation, and optionally its quiz-local mini theory, one per nonblank line. */
-    private PanelCandidate fix(String itemId, Path file) throws IOException {
+    private PanelCandidate fix(String quizId, Path file) throws IOException {
         List<String> lines = new ArrayList<>();
         for (String line : Files.readAllLines(file, StandardCharsets.UTF_8)) {
             if (!line.isBlank()) {
@@ -352,7 +383,6 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
         if (lines.isEmpty()) {
             throw new IllegalArgumentException("el archivo " + file + " no trae el arreglo");
         }
-        String quizId = TrayBookView.quizOf(trayService.view(), itemId);
         FormEntity form = quizSentenceConverter.parse(lines.get(0));
         QuizTemplateEntity quiz = new QuizTemplateEntity();
         quiz.setId(quizId);

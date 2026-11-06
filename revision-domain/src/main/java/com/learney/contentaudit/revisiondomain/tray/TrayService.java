@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.tray;
 
 import com.learney.contentaudit.revisiondomain.batch.BatchPublication;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -11,6 +12,12 @@ public interface TrayService {
     Tray view();
 
     Tray answer(TrayResponse response);
+
+    /**
+     * F-BANDEJA-R010: José's fix of an exercise of the batch the tray does not ask him about, in his words; it enters as
+     * his change.
+     */
+    Tray write(String quizId, PanelCandidate fix, String note, String decidedBy);
 
     BatchPublication publish(String approvedBy, String note);
 }

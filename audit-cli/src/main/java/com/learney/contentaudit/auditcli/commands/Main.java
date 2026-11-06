@@ -1927,6 +1927,12 @@ class Main {
             }
 
             @Override
+            public com.learney.contentaudit.revisiondomain.tray.Tray write(String quizId,
+                    com.learney.contentaudit.revisiondomain.panel.PanelCandidate fix, String note, String decidedBy) {
+                return factory.get().write(quizId, fix, note, decidedBy);
+            }
+
+            @Override
             public com.learney.contentaudit.revisiondomain.batch.BatchPublication publish(String approvedBy, String note) {
                 return factory.get().publish(approvedBy, note);
             }

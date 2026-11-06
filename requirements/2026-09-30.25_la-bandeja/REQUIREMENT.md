@@ -179,6 +179,25 @@ Es la mitad visible de la decisión del orquestador del 1/10: lo pendiente de re
 `…399b`) con «I learned myself to drive a car.», la bandeja de la tanda siguiente lo muestra al final, sin pregunta, hasta
 que el registro de grabaciones tiene ese texto.
 
+<a id="F-BANDEJA-R010"></a>
+### Rule[F-BANDEJA-R010] - José escribe el arreglo de un ejercicio que la bandeja no le pregunta
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> José puede escribir el arreglo de cualquier ejercicio de la tanda, aunque la bandeja no lo tenga. Su versión se arma
+> sobre el ejercicio como en [F-BANDEJA-R003](#F-BANDEJA-R003) y entra a la tanda como cambio suyo, no como excepción:
+> la miden los jueces y el revisor como cualquier cambio, y el cierre la devuelve si gana un problema
+> ([F-NOEMP-R005](#F-NOEMP-R005)). Invariantes:
+> 1. un ejercicio por el que la bandeja ya pregunta se contesta en su cosa de la bandeja, no por acá;
+> 2. un ejercicio que no está en el curso de la tanda, o un arreglo que lo deja como está, no cambia nada y José ve por
+>    qué.
+
+La mesa juzga un candidato por las tareas que resuelve, y un problema que sólo ordena no tiene tarea: desde que el cierre
+sigue al contrato ([F-CONTR-R002](../2026-11-02.01_un-contrato-para-todos-los-evaluadores/REQUIREMENT.md#F-CONTR-R002)),
+«acepta otra respuesta» de gravedad alta frena el cierre y ninguna corrección lo arregla sola. **Criterio**: en la C2 de
+A1, «She ___ (dance) tonight.» acepta «'ll dance» y el juez dice que también vale «won't dance»; José decidió el 5/11/2026
+aceptar las dos (brief 276). Su línea «She ____ ['ll dance|won't dance] (dance) tonight.» entra como cambio suyo, con el
+hueco, la pista y la clase del formulario del ejercicio.
+
 ## Contexto
 
 **Qué llega a la bandeja de A1** (estimado con los casos de `escribir/`): unos 28 ejercicios sin ganador (el 10 % de los

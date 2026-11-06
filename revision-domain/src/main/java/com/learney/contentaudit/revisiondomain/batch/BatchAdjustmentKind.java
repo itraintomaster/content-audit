@@ -21,5 +21,8 @@ public enum BatchAdjustmentKind {
 
     DROP_RULE,
 
-    APPROVE_RULE_SAMPLE
+    APPROVE_RULE_SAMPLE,
+
+    /** F-BANDEJA-R010: José's fix of an exercise the tray does not ask him about, as his change. */
+    JOSES_FIX
 }

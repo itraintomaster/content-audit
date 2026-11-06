@@ -30,6 +30,7 @@ import com.learney.contentaudit.revisiondomain.panel.PanelRunnerFactory;
 import com.learney.contentaudit.revisiondomain.tray.Tray;
 import com.learney.contentaudit.revisiondomain.tray.TrayAnswer;
 import com.learney.contentaudit.revisiondomain.tray.TrayItem;
+import com.learney.contentaudit.revisiondomain.tray.TrayItemKind;
 import com.learney.contentaudit.revisiondomain.tray.TrayResponse;
 import com.learney.contentaudit.revisiondomain.tray.TrayService;
 import com.learney.contentaudit.revisiondomain.tray.UnexpectedTrayAnswerException;
@@ -136,6 +137,27 @@ class DefaultTrayService implements TrayService {
                 // never answered: recording is José's work outside content-audit
             }
         }
+        return view();
+    }
+
+    @Override
+    public Tray write(String quizId, PanelCandidate fix, String note, String decidedBy) {
+        if (quizId == null || quizId.isBlank() || fix == null) {
+            throw new IllegalArgumentException("«escribir el arreglo» necesita el ejercicio y el arreglo de José.");
+        }
+        CorrectionBatch batch = open();
+        Tray tray = assembler.assemble(batch, pairs(batch), blindClosed(batch), courseRepository.load(coursePath));
+        // R010 inv. 1: what the tray asks him about is answered there.
+        Optional<TrayItem> asked = TrayBook.list(tray.getItems()).stream()
+                .filter(item -> item.getKind() != TrayItemKind.PENDING_RERECORDING && quizId.equals(item.getQuizId()))
+                .findFirst();
+        if (asked.isPresent()) {
+            throw new IllegalArgumentException("La bandeja ya pregunta por el ejercicio " + quizId + ": contestá «"
+                    + asked.get().getItemId() + "».");
+        }
+        String who = decidedBy != null && !decidedBy.isBlank() ? decidedBy : JOSE;
+        batchService.adjust(adjustment(BatchAdjustmentKind.JOSES_FIX, quizId, List.of(), null, null, fix, null,
+                note != null ? note : "arreglo de José", who));
         return view();
     }
 
