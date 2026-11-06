@@ -99,9 +99,11 @@ fila dice «no se puede decidir»; con los 30 juzgados y ninguno con error, «cu
 **Severity**: critical | **Validation**: VALIDATED
 
 > Un nodo que la tanda cambió vuelve si en la proyección tiene un hallazgo que no tenía al inicio de la tanda y que cuenta:
-> uno de la familia de errores, salvo los que sólo ordenan, o uno de vocabulario de gravedad media o más —una palabra de
-> otro nivel o fuera del catálogo, salvo la que el tema enseña—. Un hallazgo de largo nunca devuelve un cambio. También
-> vuelve si otro nodo gana un hallazgo que cuenta y lo nombra como relacionado. La comparación lo lista con ese hallazgo
+> uno de la familia de errores de gravedad media o más, o sin gravedad conocida, o uno de vocabulario de gravedad media o
+> más —una palabra de otro nivel o fuera del catálogo, salvo la que el tema enseña—. Es la regla con la que un evaluador
+> supera o no ([F-CONTR-R002](../2026-11-02.01_un-contrato-para-todos-los-evaluadores/REQUIREMENT.md#F-CONTR-R002)): lo
+> leve no devuelve un cambio, lo que sólo ordena cuenta por su gravedad y la oración que guarda producción nunca
+> cuenta. Un hallazgo de largo nunca devuelve un cambio. También vuelve si otro nodo gana un hallazgo que cuenta y lo nombra como relacionado. La comparación lo lista con ese hallazgo
 > como motivo; un hallazgo que desaparece cuenta como arreglado.
 
 <details><summary>Detail</summary>
@@ -114,12 +116,19 @@ Un cambio que sólo deja su oración fuera del largo del nivel —como «He isn'
 en A1— no vuelve: el largo se declara y cuenta sólo en el piso del nivel. Un ejercicio que un analizador no evaluó en la proyección queda «sin decidir» para ese
 analizador, no «no vuelve».
 
+Hasta el 5/11/2026 contaba todo hallazgo de errores que no sólo ordenara, cualquiera fuera su gravedad. En la C2 de A1,
+cerrar habría devuelto 556 cambios, 552 sólo por algo leve: 537 de ellos también arreglaban algo, como «___ below you?»,
+que pasó a «___ (I / use) your book?» con pista y en presente continuo y volvía porque el juez de miniteoría marcó como
+leve que una «e» no estaba resaltada. Con el contrato vuelven los que ganan algo de gravedad media, y los que ahora
+«aceptan otra respuesta» (brief 275).
+
 Generaliza a toda la tanda y a todos los analizadores la no-regresión léxica de [F-LASAG-R007](#F-LASAG-R007), que sólo
 cuidaba las palabras de un candidato. José eligió el 30/9 que un cambio vuelva también por un hallazgo de vocabulario
 («grandmother», a un nivel de distancia, no es error: [DOUBT-VUELVE-VOCABULARIO](#DOUBT-VUELVE-VOCABULARIO)); y decidió el
 11/8 que el largo no rechaza una corrección, que es lo que el paquete E mantiene en su compuerta (F-NOEMP-R003). La
 gravedad es la del hallazgo: palabra de otro nivel o fuera del catálogo, media; el resto del vocabulario, baja
-(DOUBT-GRAVEDAD-EXISTENTES de FEAT-HALL). La palabra que el tema enseña —en su título o en las respuestas de sus
+(DOUBT-GRAVEDAD-EXISTENTES de FEAT-HALL). José decidió el 5/11/2026 que el cierre siga al contrato de los evaluadores
+(brief 275: «Sí, al contrato»). La palabra que el tema enseña —en su título o en las respuestas de sus
 ejercicios— nunca es roja (F-SEMAF-R004 del paquete D, que José aceptó): si una corrección la usa, no vuelve, como no
 vuelve en la mesa del paquete E (F-NOEMP-R002).
 

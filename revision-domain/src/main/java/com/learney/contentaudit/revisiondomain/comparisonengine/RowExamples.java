@@ -155,8 +155,8 @@ final class RowExamples {
         }
         AnalyzerFamily family = families.get(analyzer);
         if (family == AnalyzerFamily.ERRORS) {
-            return finding.getResolution() == FindingResolution.RANK_ONLY ? List.of()
-                    : List.of(analyzer, DefaultGoalBook.ANY_ERROR);
+            // F-NOEMP-R005: the example of a row of errors is a finding the row counts.
+            return ClosingErrors.counts(finding) ? List.of(analyzer, DefaultGoalBook.ANY_ERROR) : List.of();
         }
         if (family == AnalyzerFamily.VOCABULARY) {
             return List.of(analyzer, DefaultGoalBook.VOCABULARY);

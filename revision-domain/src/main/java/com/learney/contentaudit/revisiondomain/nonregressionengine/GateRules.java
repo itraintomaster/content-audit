@@ -9,7 +9,8 @@ import java.util.Set;
 
 /**
  * What counts for the two gates, in one place. A finding counts as an error (F-HALL-R008) when it does not only rank and
- * its analyzer is not one of the seven of vocabulary; a vocabulary finding of medium severity or more is a red word --
+ * its analyzer is not one of the seven of vocabulary -- at closing, by the contract of the evaluators instead
+ * ({@link #countsAtClosing}); a vocabulary finding of medium severity or more is a red word --
  * a word of another level or out of the catalog, the one of the light of the topic (F-NOEMP-R002, F-METAS-R003) --; a
  * length is declared and never returns a change (F-NOEMP-R003, José 11/8). The audio that no longer matches an exercise
  * listed for re-recording is the mark {@code audio} of data-coherence -- not a shared key, a missing one or a recording
@@ -32,9 +33,20 @@ final class GateRules {
     private GateRules() {
     }
 
+    /** For the gate of a change of the mesa: every finding of the errors family that does more than rank. */
     static boolean countsAsError(Finding finding) {
         return finding != null && finding.getAnalyzer() != null && !VOCABULARY.contains(finding.getAnalyzer())
                 && finding.getResolution() != null && finding.getResolution() != FindingResolution.RANK_ONLY;
+    }
+
+    /**
+     * For the gate of the batch, at closing (F-NOEMP-R005, José 5/11, brief 275): the contract of the evaluators
+     * (F-CONTR-R002) -- a finding of the errors family from medium severity up, or without a known one; what only ranks
+     * counts by its severity. The audio and the sentence production keeps are listed apart after this, as before.
+     */
+    static boolean countsAtClosing(Finding finding) {
+        return finding != null && finding.getAnalyzer() != null && !VOCABULARY.contains(finding.getAnalyzer())
+                && (finding.getSeverity() == null || finding.getSeverity().ordinal() <= FindingSeverity.MEDIUM.ordinal());
     }
 
     static boolean isRedWord(Finding finding) {

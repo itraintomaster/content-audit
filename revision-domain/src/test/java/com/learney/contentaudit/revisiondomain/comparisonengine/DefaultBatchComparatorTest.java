@@ -492,6 +492,145 @@ public class DefaultBatchComparatorTest {
     }
 
     @Test
+    @DisplayName("should not return a change that gains only a low finding of the errors family, as the e of the mini-theory not highlighted, and return one that gains a medium one, though both do more than rank")
+    @Tag("FEAT-METAS")
+    @Tag("F-METAS-R003")
+    @Tag("FEAT-CONTR")
+    @Tag("F-CONTR-R002")
+    public void shouldNotReturnAChangeThatGainsOnlyALowFindingOfTheErrorsFamilyAsTheEOfTheMiniTheoryNotHighlightedAndReturnOneThatGainsAMediumOneThoughBothDoMoreThanRank(
+            ) {
+        Finding light = hallazgo(HINT, "missing-english-highlight", OURSELVES, FindingSeverity.LOW,
+                FindingResolution.PANEL, null, "La «e» no está resaltada");
+        Finding medium = hallazgo(INSTRUCTION, "instruction-breach", VEGETABLES, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, null, "La consigna pide otra forma");
+        Mesa mesa = new Mesa().baseline(Foto.deHoy());
+        mesa.batch(Foto.deHoy(), Foto.deHoy().finding(light).finding(medium), cambio(P_OURSELVES, OURSELVES),
+                cambio(P_VEGETABLES, VEGETABLES));
+
+        BatchComparison comparison = mesa.compare();
+
+        ChangeOutcome ourselves = change(comparison, P_OURSELVES);
+        assertFalse(ourselves.isReturns(), "R002: what is light does not stop the evaluator, so it does not return a change");
+        assertTrue(ourselves.getNewFindings().isEmpty(), "R003: nor is it the reason of one");
+        assertTrue(ourselves.getAfterFindings().contains(light), "it is still seen with the change, as a warning");
+        assertTrue(change(comparison, P_VEGETABLES).isReturns(), "R002: from medium severity up it stops");
+        assertEquals(List.of(medium), change(comparison, P_VEGETABLES).getNewFindings());
+    }
+
+    @Test
+    @DisplayName("should return a change that gains a finding that only ranks when its severity is medium, as «acepta otra respuesta» of single-answer, and count its exercise as with an error, though the published numbers do not")
+    @Tag("FEAT-METAS")
+    @Tag("F-METAS-R003")
+    @Tag("FEAT-NOEMP")
+    @Tag("F-NOEMP-R005")
+    @Tag("FEAT-CONTR")
+    @Tag("F-CONTR-R002")
+    public void shouldReturnAChangeThatGainsAFindingThatOnlyRanksWhenItsSeverityIsMediumAsAceptaOtraRespuestaOfSingleanswerAndCountItsExerciseAsWithAnErrorThoughThePublishedNumbersDoNot(
+            ) {
+        Finding alternative = hallazgo(SINGLE_ANSWER, "offered-alternative", OURSELVES, FindingSeverity.MEDIUM,
+                FindingResolution.RANK_ONLY, null, "Acepta también «We know us.»");
+        Finding lowAlternative = hallazgo(SINGLE_ANSWER, "offered-alternative", HATS, FindingSeverity.LOW,
+                FindingResolution.RANK_ONLY, null, "Acepta también «She wear hats.», poco probable");
+        // The engine does not count what only ranks: the published numbers have no exercise with an error.
+        Mesa mesa = new Mesa().catalog(CARDS_WITH_JUDGES).baseline(hoy(SINGLE_ANSWER));
+        mesa.batch(hoy(SINGLE_ANSWER), hoy(SINGLE_ANSWER).finding(alternative).judged(OURSELVES, SINGLE_ANSWER)
+                .finding(lowAlternative).judged(HATS, SINGLE_ANSWER), cambio(P_OURSELVES, OURSELVES),
+                cambio(P_HATS, HATS));
+
+        BatchComparison comparison = mesa.compare();
+
+        assertTrue(change(comparison, P_OURSELVES).isReturns(), "R002: what only ranks counts by its severity");
+        assertEquals(List.of(alternative), change(comparison, P_OURSELVES).getNewFindings());
+        assertFalse(change(comparison, P_HATS).isReturns(), "R002: the same rule, light, does not stop");
+        ComparisonRow single = row(comparison, SINGLE_ANSWER, A1);
+        assertEquals(1.0, single.getProjected().getValue(), 1e-9, "R005: the exercise counts with an error at closing");
+        assertEquals(GoalStatus.NOT_MET, single.getFloor().getStatus(), "R005 inv. 2: one more than at the start");
+        assertEquals(1.0, row(comparison, "algún error", A1).getProjected().getValue(), 1e-9,
+                "R005 inv. 2: and with «algún error»");
+    }
+
+    @Test
+    @DisplayName("should return a change that gains a finding of the errors family without a known severity")
+    @Tag("FEAT-METAS")
+    @Tag("F-METAS-R003")
+    @Tag("FEAT-CONTR")
+    @Tag("F-CONTR-R002")
+    public void shouldReturnAChangeThatGainsAFindingOfTheErrorsFamilyWithoutAKnownSeverity() {
+        Finding unknown = hallazgo(HINT, "hint-mismatch", HATS, null, FindingResolution.PANEL, null,
+                "La pista no corresponde a la respuesta");
+        Mesa mesa = new Mesa().baseline(Foto.deHoy());
+        mesa.batch(Foto.deHoy(), Foto.deHoy().finding(unknown), cambio(P_HATS, HATS));
+
+        ChangeOutcome hats = mesa.compare().getChanges().get(0);
+
+        assertTrue(hats.isReturns(), "R002: a finding without a known severity counts");
+        assertEquals(List.of(unknown), hats.getNewFindings());
+    }
+
+    @Test
+    @DisplayName("should never count the sentence production keeps, though data-coherence marks it as high: its change does not return and its exercise does not count with an error")
+    @Tag("FEAT-METAS")
+    @Tag("F-METAS-R003")
+    @Tag("FEAT-NOEMP")
+    @Tag("F-NOEMP-R005")
+    @Tag("FEAT-CONTR")
+    @Tag("F-CONTR-R002")
+    public void shouldNeverCountTheSentenceProductionKeepsThoughDatacoherenceMarksItAsHighItsChangeDoesNotReturnAndItsExerciseDoesNotCountWithAnError(
+            ) {
+        Finding production = hallazgo(DATA_COHERENCE, "saved-sentence", VEGETABLES, FindingSeverity.HIGH,
+                FindingResolution.PANEL, "produccion", "producción: «I love a lot of vegetables.»; hoy: «I love vegetables.»");
+        List<AnalyzerDescriptor> cards = new ArrayList<>(CARDS);
+        cards.add(card(DATA_COHERENCE, AnalyzerFamily.ERRORS, FindingResolution.PANEL));
+        Foto projected = hoy(DATA_COHERENCE).finding(production).countedWithError(VEGETABLES, DATA_COHERENCE);
+        Mesa mesa = new Mesa().catalog(cards).baseline(hoy(DATA_COHERENCE));
+        mesa.batch(hoy(DATA_COHERENCE), projected, cambio(P_VEGETABLES, VEGETABLES));
+
+        BatchComparison comparison = mesa.compare();
+
+        ChangeOutcome vegetables = change(comparison, P_VEGETABLES);
+        assertFalse(vegetables.isReturns(), "R002: the sentence production keeps is not the exercise's");
+        assertTrue(vegetables.getNewFindings().isEmpty());
+        for (String node : NODES_ABOVE_VEGETABLES) {
+            assertEquals(0.0, row(comparison, DATA_COHERENCE, node).getProjected().getValue(), 1e-9,
+                    "R005: no exercise with an error of data-coherence in " + node);
+            assertEquals(0.0, row(comparison, "algún error", node).getProjected().getValue(), 1e-9,
+                    "R005: nor with «algún error» in " + node);
+        }
+    }
+
+    @Test
+    @DisplayName("should count the rows of errors at closing by the contract, so an exercise whose only finding is low is not with an error and the floor holds, while the published numbers the Mapa shows still count it")
+    @Tag("FEAT-NOEMP")
+    @Tag("F-NOEMP-R005")
+    @Tag("FEAT-METAS")
+    @Tag("F-METAS-R003")
+    @Tag("FEAT-CONTR")
+    @Tag("F-CONTR-R002")
+    public void shouldCountTheRowsOfErrorsAtClosingByTheContractSoAnExerciseWhoseOnlyFindingIsLowIsNotWithAnErrorAndTheFloorHoldsWhileThePublishedNumbersTheMapaShowsStillCountIt(
+            ) {
+        Finding light = hallazgo(HINT, "hint-too-long", VEGETABLES, FindingSeverity.LOW, FindingResolution.PANEL, null,
+                "La pista podría ser más corta");
+        // The engine counts what does more than rank: the exercise is with an error of hint-coherence in every node above it.
+        Foto projected = Foto.deHoy().finding(light).countedWithError(VEGETABLES, HINT);
+        Mesa mesa = new Mesa().baseline(Foto.deHoy());
+        mesa.batch(Foto.deHoy(), projected, cambio(P_VEGETABLES, VEGETABLES));
+
+        BatchComparison comparison = mesa.compare();
+
+        for (String node : NODES_ABOVE_VEGETABLES) {
+            ComparisonRow hint = row(comparison, HINT, node);
+            assertEquals(0.0, hint.getProjected().getValue(), 1e-9, "R005: what is light does not count in " + node);
+            assertEquals(GoalStatus.MET, hint.getFloor().getStatus(), "R005 inv. 2: the floor holds in " + node);
+            ComparisonRow any = row(comparison, "algún error", node);
+            assertEquals(0.0, any.getProjected().getValue(), 1e-9, "R005: nor with «algún error» in " + node);
+            assertEquals(GoalStatus.MET, any.getFloor().getStatus());
+        }
+        assertFalse(change(comparison, P_VEGETABLES).isReturns());
+        assertEquals(1, projected.nodes.get(A1).getNumbers().getErrors().getWithAnyError(),
+                "the numbers the report publishes, the ones of the Mapa, are not touched");
+    }
+
+    @Test
     @DisplayName("should return a change when another node gains a finding that counts and names it as related in its evidence, as a duplicate does")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R003")
@@ -1064,6 +1203,7 @@ public class DefaultBatchComparatorTest {
     static final String SENTENCE_LENGTH = "sentence-length";
     static final String HINT = "hint-coherence";
     static final String INSTRUCTION = "quiz-instruction";
+    static final String DATA_COHERENCE = "data-coherence";
     static final String DUPLICATES = "exact-duplicates";
     static final String NATURALNESS = "naturalness";
     static final String BANDS_OF_29_9 = "lemma-count · bandas 1 · 2 · 4 · 8";
@@ -1590,6 +1730,37 @@ public class DefaultBatchComparatorTest {
         Foto finding(Finding finding) {
             nodes.get(finding.getNode().getNodeId()).getFindings().add(finding);
             return this;
+        }
+
+        /**
+         * The engine counted the exercise with an error of the analyzer, as it counts what does more than rank: one more
+         * with that error and with «algún error» in the published numbers of every node above it, and the analyzer read
+         * it. For an exercise without another error.
+         */
+        Foto countedWithError(String quizId, String analyzer) {
+            AuditNode quiz = nodes.get(quizId);
+            for (Map.Entry<String, AuditNode> entry : nodes.entrySet()) {
+                if (!isAbove(entry.getValue(), quiz)) {
+                    continue;
+                }
+                ErrorCounts errors = errorCounts(entry.getKey());
+                AnalyzerErrorCounts counts = errors.getAnalyzers().stream()
+                        .filter(c -> analyzer.equals(c.getAnalyzer())).findFirst().orElse(null);
+                errors(entry.getKey(), analyzer, (counts != null ? counts.getWithError() : 0) + 1,
+                        counts != null ? counts.getNotEvaluated() : 0);
+                anyError(entry.getKey(), errors.getQuizzes(), errors.getWithAnyError() + 1,
+                        errors.getNotFullyEvaluated());
+            }
+            return judged(quizId, analyzer);
+        }
+
+        private static boolean isAbove(AuditNode node, AuditNode quiz) {
+            for (AuditNode above = quiz.getParent(); above != null; above = above.getParent()) {
+                if (above == node) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         Foto unevaluated(String id, String analyzer) {

@@ -245,6 +245,7 @@ public class DefaultBatchComparator implements BatchComparator {
         comparison.setMeasureChanges(measureChanges);
         Set<String> remeasuredSubjects = new HashSet<>();
         Map<String, AuditNode> remeasuredIndex = null;
+        AuditReport remeasured = null;
         if (!measureChanges.isEmpty()) {
             for (MeasureChange change : measureChanges) {
                 remeasuredSubjects.add(change.getAnalyzer());
@@ -252,9 +253,12 @@ public class DefaultBatchComparator implements BatchComparator {
                 remeasuredSubjects.add(family == AnalyzerFamily.ERRORS ? DefaultGoalBook.ANY_ERROR
                         : DefaultGoalBook.VOCABULARY);
             }
-            AuditReport remeasured = measuredProjected != null ? null : remeasure(baselineReport, scope);
+            remeasured = measuredProjected != null ? null : remeasure(baselineReport, scope);
             remeasuredIndex = remeasured != null ? ReportTree.index(remeasured) : null;
         }
+        // F-NOEMP-R005 (5/11): the exercises with an error of every photo, counted by the contract.
+        ClosingErrors closing = ClosingErrors.of(analyzerCatalog, baselineReport, projection.getApproved(),
+                projection.getProjected(), remeasured, onlyToday.isEmpty() ? null : measured.projectedAlone());
 
         // R001, R002: the rows, with their goals -- and, F-FILAS, the name, the direction, the verdict, the
         // explanation and the example each one shows.
@@ -285,7 +289,7 @@ public class DefaultBatchComparator implements BatchComparator {
                         alone ? null : baselineIndex.get(key), alone || !startCounts ? null : startIndex.get(key),
                         !alone && remeasuredSubjects.contains(subject.getKey()), remeasuredIndex, key,
                         changedUnevaluated.getOrDefault(key, Map.of()).getOrDefault(subject.getKey(), 0),
-                        alone ? List.of() : goalList, legend);
+                        alone ? List.of() : goalList, legend, closing);
                 if (row != null) {
                     rows.add(row);
                 }
@@ -523,15 +527,15 @@ public class DefaultBatchComparator implements BatchComparator {
 
     private ComparisonRow row(String subject, AnalyzerFamily family, AuditNode node, String id, AuditNode baselineNode,
             AuditNode startNode, boolean measureChanged, Map<String, AuditNode> remeasuredIndex, String key,
-            int changedUnevaluated, List<Goal> goals, Legend legend) {
-        ReportTree.Value baseline = ReportTree.value(baselineNode, subject, family);
-        ReportTree.Value start = ReportTree.value(startNode, subject, family);
-        ReportTree.Value projected = ReportTree.value(node, subject, family);
+            int changedUnevaluated, List<Goal> goals, Legend legend, ClosingErrors closing) {
+        ReportTree.Value baseline = closing.value(baselineNode, subject, family);
+        ReportTree.Value start = closing.value(startNode, subject, family);
+        ReportTree.Value projected = closing.value(node, subject, family);
         if (baseline == null && start == null && projected == null) {
             return null;
         }
         ReportTree.Value remeasured = measureChanged && remeasuredIndex != null
-                ? ReportTree.value(remeasuredIndex.get(key), subject, family) : null;
+                ? closing.value(remeasuredIndex.get(key), subject, family) : null;
         Values values = new Values(family, baseline, remeasured, start, projected, measureChanged,
                 changedUnevaluated);
         GoalUnit unit = family == AnalyzerFamily.VOCABULARY ? GoalUnit.POINTS : GoalUnit.EXERCISES;
@@ -921,15 +925,16 @@ public class DefaultBatchComparator implements BatchComparator {
     }
 
     /**
-     * A finding counts if it is of the errors family and does more than order, or of the vocabulary family with
-     * medium severity or more -- a word of another level or out of the catalog -- that is not the length and not
+     * A finding counts if it is of the errors family and stops the closing by the contract (F-NOEMP-R005, José 5/11:
+     * medium or more, what only ranks by its severity, never the sentence production keeps), or of the vocabulary family
+     * with medium severity or more -- a word of another level or out of the catalog -- that is not the length and not
      * a word the topic teaches (F-SEMAF-R004, through the same resolver as the table of E).
      */
     private boolean counts(Finding finding, Map<String, AuditNode> projectedIndex, Map<String, AnalyzerFamily> subjects,
             Map<String, TaughtWords> taught) {
         AnalyzerFamily family = familyOf(finding.getAnalyzer(), subjects, null);
         if (family == AnalyzerFamily.ERRORS) {
-            return finding.getResolution() != FindingResolution.RANK_ONLY;
+            return ClosingErrors.counts(finding);
         }
         if (family != AnalyzerFamily.VOCABULARY) {
             return false;

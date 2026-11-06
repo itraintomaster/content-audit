@@ -134,8 +134,19 @@ vocabulario, con la línea base fijada antes de la primera tanda, que no se muev
 >    bloqueantes ([F-HALL-R008](#F-HALL-R008));
 > 3. en ningún nivel sube la cantidad de ejercicios con palabras rojas.
 >
+> Cuenta como error lo que hace que un evaluador no supere
+> ([F-CONTR-R002](../2026-11-02.01_un-contrato-para-todos-los-evaluadores/REQUIREMENT.md#F-CONTR-R002)): un hallazgo de
+> la familia de errores de gravedad media o más, o sin gravedad conocida. Lo leve no cuenta, lo que sólo ordena cuenta
+> por su gravedad y la oración que guarda producción no cuenta. Con esa misma regla se cuentan los ejercicios con error
+> de la invariante 2: un ejercicio tiene error de un analizador si tiene un hallazgo suyo que cuenta. Los números que
+> muestran el Mapa y las Estadísticas siguen contando todo lo que no sólo ordena.
+>
 > Hay dos excepciones, que el informe lista aparte: el audio que no coincide en un ejercicio listado para regrabar
 > ([F-NOEMP-R004](#F-NOEMP-R004)) y lo que José aprobó en la bandeja sabiendo que no pasaba ([F-BANDEJA-R003](#F-BANDEJA-R003)).
+
+José decidió el 5/11/2026 que el cierre siga al contrato que ya usaba el tablero (brief 275: «Sí, al contrato»). Hasta
+entonces contaba todo lo que no sólo ordenaba: en la C2 de A1, 552 de los 556 cambios que habría devuelto volvían sólo
+por algo leve, y cuatro pisos estaban rotos por hallazgos leves.
 
 La invariante 1 es la que manda y es [F-METAS-R003](#F-METAS-R003) sin el largo ([F-NOEMP-R003](#F-NOEMP-R003)); las otras
 dos son los números que José lee en el tablero. Mide lo que la mesa no ve sola: un duplicado entre dos ejercicios del

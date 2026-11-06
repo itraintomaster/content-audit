@@ -169,7 +169,9 @@ los renglones.
   propia regla lo que ahora decide el contrato.
 - **Por fases (brief 250)**: primero content-audit calcula los estados sin que cambie la pantalla y se comparan con la
   simulación; después el tablero los lee; las copias de las reglas del tablero se borran después de unos días de uso.
-- **Fuera de alcance**: el cierre, Publicar, los resúmenes, Evolución y la app. Que «aplica a» sea un dato de la ficha
+- **Fuera de alcance**: Publicar, los resúmenes, Evolución y la app. El cierre quedó afuera hasta el 5/11/2026, cuando
+  José decidió que siga a R002 (brief 275): lo cuentan [F-NOEMP-R005](../2026-09-30.23_no-empeorar/REQUIREMENT.md#F-NOEMP-R005)
+  y [F-METAS-R003](../2026-09-30.27_antes-y-despues-con-metas/REQUIREMENT.md#F-METAS-R003). Que «aplica a» sea un dato de la ficha
   del evaluador queda para otra fase.
 
 ## Cómo se prueba

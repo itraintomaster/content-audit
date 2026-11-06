@@ -30,8 +30,9 @@ import javax.annotation.processing.Generated;
  * The gate of the batch (FEAT-NOEMP, groups B and C). It does not compare: it reads the comparison of its projection
  * that package F publishes, and applies on it the floors of «no empeorar» again, so a change of F cannot skip them:
  * <ul>
- *   <li>R005 inv. 1: a change whose node gains a finding that counts as an error, or a red word, returns
- *   ({@code NEW_ERROR}, {@code NEW_RED_WORD}); a new length finding never does and is declared (R003);</li>
+ *   <li>R005 inv. 1: a change whose node gains a finding that counts as an error by the contract of the evaluators, or
+ *   a red word, returns ({@code NEW_ERROR}, {@code NEW_RED_WORD}); a new length finding never does and is declared
+ *   (R003);</li>
  *   <li>R005 inv. 2 and 3: a count of exercises -- with an error of an analyzer, with «algún error», blocking, with red
  *   words -- that goes up against the start of the batch breaks its floor;</li>
  *   <li>R006: a number of vocabulary more than 0.5 points below the fixed baseline breaks its floor; the tolerance is
@@ -85,7 +86,7 @@ class DefaultBatchGate implements BatchGate {
                     declaredLength.add(finding);
                     continue;
                 }
-                boolean error = GateRules.countsAsError(finding);
+                boolean error = GateRules.countsAtClosing(finding);
                 boolean red = GateRules.isRedWord(finding);
                 if (!error && !red) {
                     continue;

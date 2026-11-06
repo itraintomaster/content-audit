@@ -96,6 +96,35 @@ public class DefaultBatchGateTest {
     }
 
     @Test
+    @DisplayName("should return at closing a change that gains a finding of medium severity or one without a known severity, also when it only ranks as «acepta otra respuesta», and not one that gains only a low finding")
+    @Tag("FEAT-NOEMP")
+    @Tag("F-NOEMP-R005")
+    @Tag("FEAT-CONTR")
+    @Tag("F-CONTR-R002")
+    public void shouldReturnAtClosingAChangeThatGainsAFindingOfMediumSeverityOrOneWithoutAKnownSeverityAlsoWhenItOnlyRanksAsAceptaOtraRespuestaAndNotOneThatGainsOnlyALowFinding(
+            ) {
+        // R005 inv. 1 by the contract of the evaluators (José, 5/11): what is light does not stop; what only ranks counts by
+        // its severity; a finding without a known severity counts.
+        Finding light = finding("mini-theory", "missing-english-highlight", VEGETABLES, FindingSeverity.LOW,
+                FindingResolution.PANEL, null, "la «e» no está resaltada");
+        Finding alternative = finding("single-answer", "offered-alternative", COME, FindingSeverity.MEDIUM,
+                FindingResolution.RANK_ONLY, null, "acepta también «comes»");
+        Finding unknown = finding("grammar", "english-error", FRUIT, null, FindingResolution.PANEL, null,
+                "falta el artículo");
+        BatchComparison comparison = comparison(List.of(change("prop-light", VEGETABLES, light),
+                change("prop-alternative", COME, alternative), change("prop-unknown", FRUIT, unknown)), List.of(),
+                List.of());
+
+        BatchGateVerdict verdict = gate().evaluate(comparison, List.of(), List.of());
+
+        assertFalse(verdict.isPasses());
+        assertEquals(List.of("prop-alternative", "prop-unknown"),
+                verdict.getReturned().stream().map(ReturnedChange::getProposalId).toList(),
+                "only the medium one that ranks and the one without severity: " + verdict.getReturned());
+        assertTrue(verdict.getReturned().stream().allMatch(back -> back.getCause() == ReturnCause.NEW_ERROR));
+    }
+
+    @Test
     @DisplayName("should not pass when the exercises with an error of some analyzer, with some error or blocking go up in a node, even if no changed exercise gained a finding, as a duplicate between two changed exercises of a topic")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R005")
