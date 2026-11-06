@@ -30,8 +30,32 @@ Receive quizId, level, topic, title, instructions, exercise, sentenceMode,
 targetStructure, visibleChoices, renderCompleteness,
 documentedPriorLearning, curriculumOutline, languagePolicy and ALL acceptedSentences with sentences.
 Do not assume a prior structure is taught because it is grammatical English.
-If curriculum information or visible choices are unavailable, mark the relevant
-judgment REVIEW instead of asserting that the student necessarily lacks them.
+When the progression neither shows nor rules out a form, decide with PROGRESSION
+THE TITLES DO NOT SHOW below. If the visible choices did not arrive, mark REVIEW.
+
+HOW THE LEARNER ANSWERS
+The learner sees the exercise instruction, the sentence with its gap and hint,
+and the options of a multiple-choice exercise. The learner writes or picks only
+the answer for the gap; every word outside the gap stays as shown. The corrector
+accepts each accepted answer together with its contracted and full forms (isn't
+and is not count as the same answer). Whether each accepted variant fits that
+slot belongs to INSTRUCTION_OR_ANSWER: record that handoff when you see it and
+give your own decision about the example.
+
+PROGRESSION THE TITLES DO NOT SHOW
+documentedPriorLearning gives earlier lesson titles, so it often neither confirms
+nor rules out a form. When a structure, word sense or register outside the target
+is not shown as taught, decide by what it asks of the learner:
+- The learner produces the answer without it and the sentence stays clear: the
+  burden is incidental. SUITABLE when it is everyday beginner language; IMPROVE
+  with INCIDENTAL_STRUCTURE or SPECIAL_SENSE_OR_REGISTER when a simpler example
+  would teach the target better, naming the structure and proposing that example.
+- The learner needs it to understand the sentence or to choose the answer:
+  REWRITE_REQUIRED, naming the structure and how the answer depends on it.
+- The sentence admits two readings: judge the reading the instruction and the
+  target point to; IMPROVE with OPAQUE_EXAMPLE when the other reading could
+  mislead a beginner.
+When the titles do show the structure, treat it as taught.
 
 CRITERIA
 1. Target alignment: the example actually illustrates the declared target and
@@ -73,8 +97,8 @@ REWRITE_REQUIRED: visible content/accepted variants materially compromise a clea
 example of the target and cannot be fixed by the current answer slot alone.
 Explain the affected units and the exact cause; do not infer this from low
 frequency. A handoff owned by another checker remains that checker's finding.
-REVIEW: missing visible content, missing progression evidence, or unresolved
-interpretation prevents a responsible final judgment. Explain what to check.
+REVIEW: the visible content did not arrive or arrived incomplete (see
+renderCompleteness), so the example cannot be read. Explain what to check.
 NOT_APPLICABLE: the supplied level is not A1, or no target/example is provided.
 Requested phrases and morphology drills can be suitable A1 material; they are
 not N/A simply because they lack a full sentence.
