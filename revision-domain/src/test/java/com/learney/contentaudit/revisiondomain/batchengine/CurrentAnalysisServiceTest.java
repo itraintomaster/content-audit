@@ -1390,6 +1390,47 @@ class CurrentAnalysisServiceTest {
     }
 
     @Tag("FEAT-MIDIO") @Tag("F-MIDIO-R002")
+    @Test void anExerciseTheJudgeDoesNotReadInTheBaseKeepsTodaysOpinionAndOneItReadsWithoutAnOpinionDoesNot() {
+        // 5/11: the C2 turned «He swims ___» into multiple choice; production had it to write, and the comparison left
+        // today's opinion of «Opción múltiple mal armada» out, with nothing in the base to pair it with.
+        for (boolean read : List.of(false, true)) {
+            saved.put(batch.getBaselineAuditId(), readingAnotherExercise(read));
+            saved.put(TandaFixture.START_AUDIT, readingAnotherExercise(read));
+            when(engine.runAudit(any(), any())).thenAnswer(i -> report(true, true, "v1"));
+
+            var reports = service.comparisonReports(batch, course, course);
+
+            if (!read) {
+                assertEquals(.3, child(reports.projected()).getScores().get(NAME),
+                        "today keeps what it measured: the base had none of its errors there");
+                assertFalse(child(reports.baseline()).getUnevaluatedBy().contains(NAME), "nothing of it is left open");
+                assertTrue(reports.startNotComparable().isEmpty(), "the start did not read it either");
+            } else {
+                assertFalse(DefaultAnalysisComposer.evaluated(child(reports.projected()), NAME),
+                        "an exercise the base read without an opinion still has no pair");
+            }
+        }
+    }
+    /**
+     * A reading where the judge measured another exercise -- the second, of multiple choice -- and the first is of
+     * multiple choice without an opinion when {@code read}, or to write.
+     */
+    AuditReport readingAnotherExercise(boolean read) {
+        var r = report(false, false, "v1");
+        var index = DefaultAnalysisComposer.index(r.getRoot());
+        var first = (AuditableQuiz) index.get(TandaFixture.CHILD).getEntity();
+        var second = index.get(TandaFixture.RESIDE);
+        ((AuditableQuiz) second.getEntity()).setMultipleChoice(first.getMultipleChoice());
+        second.getScores().put(NAME, 1.);
+        second.setDiagnoses(new DefaultQuizDiagnoses());
+        ((DefaultQuizDiagnoses) second.getDiagnoses()).setChoiceQualityDiagnosis(new ChoiceQualityDiagnosis(
+                new ChoiceQualityVerdict(ChoiceQualityVerdict.Status.PASS, "Be", false, List.of(), "Medido."), "v1", true));
+        if (read) index.get(TandaFixture.CHILD).getUnevaluatedBy().add(NAME);
+        else first.setMultipleChoice(null);
+        return r;
+    }
+
+    @Tag("FEAT-MIDIO") @Tag("F-MIDIO-R002")
     @Test void aStartMeasuredWithTodaysVersionAndRuntimeIsComparedAsAlways() {
         var reports = compared("v1", null);
         assertTrue(reports.startNotComparable().isEmpty());

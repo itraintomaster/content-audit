@@ -538,7 +538,7 @@ public class DefaultBatchComparator implements BatchComparator {
         ReportTree.Value remeasured = measureChanged && remeasuredIndex != null
                 ? closing.value(remeasuredIndex.get(key), subject, family) : null;
         Values values = new Values(family, baseline, remeasured, start, projected, measureChanged,
-                changedUnevaluated);
+                changedUnevaluated, baselineNode != null && readsNothing(subject, family, baselineNode));
         GoalUnit unit = family == AnalyzerFamily.VOCABULARY ? GoalUnit.POINTS : GoalUnit.EXERCISES;
         ReportTree.Value reference = values.reference();
         Double change = reference != null && reference.value() != null && projected != null
@@ -565,7 +565,8 @@ public class DefaultBatchComparator implements BatchComparator {
     /**
      * F-MIDIO-R002: a judge of exercises that reads none of the node today -- «más de una respuesta válida» in a topic of
      * only multiple choice: none of its exercises is one it judges, and it left no mark on them or on the node -- has
-     * nothing there that could gain an error: its floor holds, whatever the base measured.
+     * nothing there that could gain an error: its floor holds, whatever the base measured. Read on the base, the same
+     * says its zero is a true one: no exercise there could have one of its errors.
      */
     private static boolean readsNothing(String subject, AnalyzerFamily family, AuditNode node) {
         if (family != AnalyzerFamily.ERRORS || DefaultGoalBook.ANY_ERROR.equals(subject) || marksUnder(node, subject)) {
@@ -591,9 +592,13 @@ public class DefaultBatchComparator implements BatchComparator {
         return false;
     }
 
-    /** The numbers a goal is decided on: the three photos, the baseline measured again and what stays open. */
+    /**
+     * The numbers a goal is decided on: the three photos, the baseline measured again, what stays open and whether the
+     * judge read none of the node in the base -- its zero is then a true one.
+     */
     record Values(AnalyzerFamily family, ReportTree.Value baseline, ReportTree.Value remeasured,
-            ReportTree.Value start, ReportTree.Value projected, boolean measureChanged, int changedUnevaluated) {
+            ReportTree.Value start, ReportTree.Value projected, boolean measureChanged, int changedUnevaluated,
+            boolean baseReadsNothing) {
         /** The baseline the batch is counted from: measured again when its measure changed. */
         ReportTree.Value reference() {
             return measureChanged ? remeasured : baseline;
@@ -716,8 +721,8 @@ public class DefaultBatchComparator implements BatchComparator {
                     return GoalStatus.UNDECIDABLE;
                 }
                 from = values.reference();
-                // F-MIDIO-R002: a number without any exercise evaluated is not a zero.
-                if (from == null || from.value() == null || !from.evaluated()) {
+                // F-MIDIO-R002: a number without any exercise evaluated is not a zero, unless the judge read none there.
+                if (from == null || from.value() == null || !from.evaluated() && !values.baseReadsNothing()) {
                     return GoalStatus.UNDECIDABLE;
                 }
             }
@@ -731,7 +736,7 @@ public class DefaultBatchComparator implements BatchComparator {
                         return GoalStatus.UNDECIDABLE;
                     }
                     from = values.reference();
-                    if (from == null || from.value() == null || !from.evaluated()) {
+                    if (from == null || from.value() == null || !from.evaluated() && !values.baseReadsNothing()) {
                         return GoalStatus.UNDECIDABLE;
                     }
                     fromBase = true;

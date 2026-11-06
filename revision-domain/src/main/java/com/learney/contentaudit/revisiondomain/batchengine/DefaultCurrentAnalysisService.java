@@ -408,6 +408,9 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
             for (var entry : b.entrySet()) if (entry.getValue().getTarget() == AuditTarget.QUIZ
                     && DefaultAnalysisComposer.eligible(entry.getValue(), analyzer)) {
                 var before = a.get(entry.getKey()); var after = entry.getValue();
+                // F-MIDIO-R002: an exercise the judge does not read in the base -- one the correction turned into
+                // multiple choice -- has none of its errors there; today's opinion is counted against that zero.
+                if (before != null && !DefaultAnalysisComposer.eligible(before, analyzer)) continue;
                 String oldVersion = before == null ? null : DefaultAnalysisComposer.version(before, analyzer, baseline);
                 String newVersion = DefaultAnalysisComposer.version(after, analyzer, projected);
                 if (before == null || !DefaultAnalysisComposer.evaluated(before, analyzer)
@@ -430,6 +433,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                 }
             } else for (var entry : b.entrySet()) if (DefaultAnalysisComposer.eligible(entry.getValue(), analyzer)) {
                 var before = startIndex.get(entry.getKey()); var after = entry.getValue();
+                if (before != null && !DefaultAnalysisComposer.eligible(before, analyzer)) continue;
                 if (before == null || !DefaultAnalysisComposer.evaluated(before, analyzer)
                         || !DefaultAnalysisComposer.evaluated(after, analyzer)
                         || !sameVersion(DefaultAnalysisComposer.version(before, analyzer, approved),
@@ -572,6 +576,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
             if (after.getTarget() != AuditTarget.QUIZ || !DefaultAnalysisComposer.eligible(after, analyzer)
                     || !DefaultAnalysisComposer.evaluated(after, analyzer)) continue;
             var before = start.get(entry.getKey());
+            if (before != null && !DefaultAnalysisComposer.eligible(before, analyzer)) continue;
             String version = before == null ? null : DefaultAnalysisComposer.version(before, analyzer, approved);
             if (before == null || !DefaultAnalysisComposer.evaluated(before, analyzer)
                     || !sameVersion(version, DefaultAnalysisComposer.version(after, analyzer, projected), same)

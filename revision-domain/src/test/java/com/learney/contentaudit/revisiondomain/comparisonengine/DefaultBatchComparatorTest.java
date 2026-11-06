@@ -2822,6 +2822,37 @@ public class DefaultBatchComparatorTest {
     }
 
     @Test
+    @DisplayName("should count as a zero the base of a judge in a topic where the base read no exercise of it, against today's opinion of the exercise the correction turned into multiple choice")
+    @Tag("FEAT-MIDIO")
+    @Tag("F-MIDIO-R002")
+    public void shouldCountAsAZeroTheBaseOfAJudgeInATopicWhereTheBaseReadNoExerciseOfIt() {
+        // 5/11: the C2 turned «He swims ___» into multiple choice; production had no exercise of multiple choice in
+        // «Adjetivo o adverbio», and the floor of «Opción múltiple mal armada» there was left undecided.
+        for (int withError : List.of(0, 1)) {
+            Foto today = hoy(MULTIPLE_CHOICE_VALIDITY).errors(WITH_BE, MULTIPLE_CHOICE_VALIDITY, withError, 0);
+            today.opcionMultiple(SHE_IS_ENGLISH);
+            BatchComparison comparison = new Mesa().catalog(CARDS_WITH_JUDGES).compareMeasured(
+                    hoy(MULTIPLE_CHOICE_VALIDITY).nadaQueLeer(WITH_BE, MULTIPLE_CHOICE_VALIDITY),
+                    hoy(MULTIPLE_CHOICE_VALIDITY).nadaQueLeer(WITH_BE, MULTIPLE_CHOICE_VALIDITY), today, null, Set.of(),
+                    Set.of(MULTIPLE_CHOICE_VALIDITY));
+
+            assertEquals(withError == 0 ? GoalStatus.MET : GoalStatus.NOT_MET,
+                    row(comparison, MULTIPLE_CHOICE_VALIDITY, WITH_BE).getFloor().getStatus(),
+                    "R002: the base had no exercise the judge reads there, so none of its errors: " + withError);
+        }
+
+        Foto base = hoy(MULTIPLE_CHOICE_VALIDITY).nadaQueLeer(WITH_BE, MULTIPLE_CHOICE_VALIDITY);
+        base.opcionMultiple(SHE_IS_ENGLISH);
+        Foto today = hoy(MULTIPLE_CHOICE_VALIDITY).errors(WITH_BE, MULTIPLE_CHOICE_VALIDITY, 0, 0);
+        today.opcionMultiple(SHE_IS_ENGLISH);
+        BatchComparison read = new Mesa().catalog(CARDS_WITH_JUDGES).compareMeasured(base,
+                hoy(MULTIPLE_CHOICE_VALIDITY), today, null, Set.of(),
+                Set.of(MULTIPLE_CHOICE_VALIDITY));
+        assertEquals(GoalStatus.UNDECIDABLE, row(read, MULTIPLE_CHOICE_VALIDITY, WITH_BE).getFloor().getStatus(),
+                "R002: a base that read an exercise of it and evaluated none is still not a zero");
+    }
+
+    @Test
     @DisplayName("should count from the base what a change gains of a judge the start measured with another version, where the start read something else: a finding the base had is not new, one it did not have returns the change")
     @Tag("FEAT-MIDIO")
     @Tag("F-MIDIO-R002")

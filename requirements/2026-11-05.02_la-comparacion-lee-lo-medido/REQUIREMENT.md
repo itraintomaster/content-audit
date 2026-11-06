@@ -78,6 +78,13 @@ ese ejercicio y que no tenga una lista de jueces vieja.
 > Un tema donde hoy el juez no lee ningún ejercicio —ninguno es de los que juzga y no dejó marca en ninguno— no tiene
 > dónde ganar un error: su piso se cumple, mida lo que mida la Base. El 5/11/2026, «Más de una respuesta válida», que
 > no juzga los de opción múltiple, dejaba sin decidir 24 temas de la C2 que sólo tienen ejercicios de opción múltiple.
+>
+> Lo mismo del otro lado. Un ejercicio que el juez no lee en la Base —en producción era para escribir y la corrección
+> lo pasó a opción múltiple— no tenía ahí ningún error de ese juez: lo que el juez dice hoy de él se compara contra ese
+> cero, también frente al Inicio si el Inicio tampoco lo leía. Un tema donde la Base no tenía ningún ejercicio que el
+> juez lea tiene un cero de verdad. Un tema donde la Base leyó alguno y no lo evaluó sigue sin ser un cero. El
+> 5/11/2026, «He swims ___», que la C2 pasó a opción múltiple, dejaba sin decidir el piso de «Opción múltiple mal
+> armada» en «Adjetivo o adverbio», donde producción no tenía ninguno de opción múltiple.
 
 <a id="F-MIDIO-R003"></a>
 ### Rule[F-MIDIO-R003] - Una opinión vale aunque la comparación lea más niveles que el juez
@@ -175,7 +182,7 @@ ese ejercicio y que no tenga una lista de jueces vieja.
 | Regla | Prueba |
 |---|---|
 | R001 | `DefaultCourseProjectorTest`: con el plan de la corrección y su curso de partida, reconoce los cambios aunque el plan activo sea otro y el curso de hoy no tenga el contenido del que parten. `DefaultBatchCloserTest`: el alcance de la comparación nombra el plan de la corrección y la comparación recibe el curso de partida |
-| R002 | `CurrentAnalysisServiceTest`: un Inicio con otra versión deja ese juez sin par en el Inicio y con su valor en «Hoy»; con la misma versión no cambia nada. `DefaultBatchComparatorTest`: el piso desde el Inicio se cuenta desde la Base, con lo no medido abierto; sin Base queda sin decidir; una Base sin ningún ejercicio evaluado no es cero; «algún error» no se compara contra ese Inicio; donde el juez lee lo mismo que en el Inicio el cambio no gana nada; donde lee otra cosa, un error que la Base ya tenía no devuelve el cambio y uno que no tenía sí; un tema donde hoy el juez no lee ningún ejercicio cumple su piso, y uno donde lee alguno con una Base sin evaluar sigue sin decidir. `CurrentAnalysisServiceTest`: donde el Inicio leyó lo mismo lleva la opinión de hoy, y donde leyó otra cosa no lleva ninguna |
+| R002 | `CurrentAnalysisServiceTest`: un Inicio con otra versión deja ese juez sin par en el Inicio y con su valor en «Hoy»; con la misma versión no cambia nada. `DefaultBatchComparatorTest`: el piso desde el Inicio se cuenta desde la Base, con lo no medido abierto; sin Base queda sin decidir; una Base sin ningún ejercicio evaluado no es cero; «algún error» no se compara contra ese Inicio; donde el juez lee lo mismo que en el Inicio el cambio no gana nada; donde lee otra cosa, un error que la Base ya tenía no devuelve el cambio y uno que no tenía sí; un tema donde hoy el juez no lee ningún ejercicio cumple su piso, y uno donde lee alguno con una Base sin evaluar sigue sin decidir; un tema donde la Base no leía ningún ejercicio del juez se cuenta desde cero, y cumple o rompe su piso según lo que dice hoy del que pasó a opción múltiple, mientras que uno donde la Base leyó alguno sin evaluarlo sigue sin decidir. `CurrentAnalysisServiceTest`: donde el Inicio leyó lo mismo lleva la opinión de hoy, y donde leyó otra cosa no lleva ninguna; un ejercicio que la Base y el Inicio no leían conserva la opinión de hoy, y uno que la Base leyó sin opinión no |
 | R003 | `CurrentAnalysisServiceTest`: una opinión medida en un curso de un nivel vale en la lectura del curso entero; otro tema o lo aprendido antes la invalida igual |
 | R004 | `DefaultBatchComparatorTest`: un juez que la corrección no tenía anotado tiene su renglón. `CurrentAnalysisServiceTest`: un instantáneo que la corrección no tenía se mide en «Hoy» de la comparación, y tiene par |
 | R005 | `CurrentAnalysisServiceTest`: un juez que la Base no midió queda en «Hoy» sin par y fuera de «algún error». `DefaultBatchComparatorTest`: su renglón tiene el valor de «Hoy», sin par ni piso |
