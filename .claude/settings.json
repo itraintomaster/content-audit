@@ -1,5 +1,30 @@
 {
-  "env" : {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS" : "1"
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -x \"$HOME/.local/bin/plomada-gancho\" ] && exec \"$HOME/.local/bin/plomada-gancho\" || exit 0",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -x \"$HOME/.local/bin/plomada-gancho\" ] && exec \"$HOME/.local/bin/plomada-gancho\" || exit 0",
+            "timeout": 60
+          }
+        ]
+      }
+    ]
   }
 }

@@ -1,0 +1,18 @@
+# plomada.yaml — qué mide Plomada en este proyecto y con qué topes.
+# Lo viejo no frena; lo que se toque no puede empeorar. Ver la skill «plomada».
+base: origin/main
+topes:
+  caminos: 10
+  lineas: 100
+  crap: 10
+excluir: []
+lenguajes:
+  java:
+    fuentes: ['*/src/main/java/**/*.java']
+    pruebas: ['*/src/test/java/**/*Test.java']
+    # donde tienen que llegar los tests: lo de acá que ninguno recorre cuenta como 0 %.
+    # Los adaptadores (*-infrastructure) y la CLI no: muchos se prueban con las
+    # herramientas de verdad (-Dgroups=herramienta-real), que no corren en cada turno.
+    cobertura: ['*-domain/src/main/java/**', 'audit-application/src/main/java/**']
+    # Maven corre sólo los módulos del cambio; el más grande tarda unos 13 s
+    segundos: 50
