@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>278 · Didáctica nueva decide todo</title>
+<meta name="atril:cambio" content="La versión nueva de Didáctica A1 decide los 224 «revisar»; falta que la promuevas">
+<meta name="atril:conversacion" content="claude:7aeb7923-ce6d-404e-87c0-0be9207254b5">
+<meta name="atril:agente" content="claude">
+<meta name="atril:hilo" content="a1">
+<style>
+  /* ============ tokens: claro y, abajo, oscuro ============ */
+  :root{
+    --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
+    --fg:#1c1a17; --fg-2:#57524b; --fg-3:#8b847a;
+    --accent:#b4531f; --accent-soft:#fdf1e7;
+    --ok:#2f6b46; --ok-soft:#e9f4ed;
+    --warn:#8a6314; --warn-soft:#fbf2dd;
+    --bad:#a3342c; --bad-soft:#fbecea;
+    --info:#2a5b8f; --info-soft:#e9f1f9;
+    --radius:10px; --shadow:0 1px 2px rgba(28,26,23,.05), 0 8px 24px -16px rgba(28,26,23,.25);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#131211; --bg-elev:#1b1a18; --line:#302d29; --line-soft:#252320;
+      --fg:#efece7; --fg-2:#a8a29a; --fg-3:#7b756c;
+      --accent:#e08b4f; --accent-soft:#2a1f16;
+      --ok:#7fc79c; --ok-soft:#16241c;
+      --warn:#e0b657; --warn-soft:#272013;
+      --bad:#e58b82; --bad-soft:#2a1917;
+      --info:#8ab6e5; --info-soft:#141f2b;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.6 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+    font-feature-settings:"kern","liga","cv05";
+    padding:40px 24px 80px;
+  }
+  .wrap{max-width:940px;margin:0 auto}
+  code,kbd,pre,.mono{font-family:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace}
+  a{color:var(--accent)}
+  code,a{overflow-wrap:anywhere}   /* una ruta o un link largo desborda el celular: 15 de 76 briefs viejos */
+
+  /* ============ encabezado ============ */
+  header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
+  .kicker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .kicker .num{font:700 12px ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.04em;color:var(--fg-3);
+    background:var(--line-soft);padding:3px 8px;border-radius:6px;font-variant-numeric:tabular-nums}
+  .badge{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;background:var(--accent-soft);color:var(--accent);
+    border:1px solid color-mix(in srgb,var(--accent) 22%,transparent)}
+  .meta{font-size:12.5px;color:var(--fg-3)}
+  h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2;margin:0;letter-spacing:-.02em;font-weight:650}
+  .sub{margin:10px 0 0;color:var(--fg-2);font-size:16px;max-width:62ch}
+
+  /* ============ lo que pediste: el contexto del pedido, arriba del título (SKILL.md §6) ============ */
+  .pedido{margin:4px 0 16px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
+  .pedido>summary{list-style:none;cursor:pointer;display:flex;gap:12px;align-items:baseline;padding:11px 14px}
+  .pedido>summary::-webkit-details-marker{display:none}
+  .pedido>summary::after{content:"";flex:none;margin-left:auto;align-self:center;width:7px;height:7px;
+    border-right:1.6px solid var(--fg-3);border-bottom:1.6px solid var(--fg-3);transform:rotate(45deg);transition:transform .15s}
+  .pedido[open]>summary::after{transform:rotate(-135deg)}
+  .pedido .k{flex:none;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3)}
+  .pedido .q{font-size:15px;color:var(--fg);line-height:1.45}
+  .pedido-c{padding:2px 14px 14px;border-top:1px solid var(--line-soft)}
+  .pedido dl{display:grid;grid-template-columns:150px 1fr;gap:10px 16px;margin:12px 0 0}
+  .pedido dt{font-size:12.5px;font-weight:650;color:var(--fg-3);padding-top:2px}
+  .pedido dd{margin:0;font-size:15px;line-height:1.5;color:var(--fg-2)}
+  .pedido dd ol,.pedido dd ul{margin:0;padding-left:18px}
+  .pedido dd li{margin:0 0 4px}
+  .pedido .dib{margin:14px 0 0}
+  .pedido .de{margin:12px 0 0;font-size:12.5px;color:var(--fg-3)}
+  @media (max-width:640px){.pedido>summary{flex-direction:column;gap:4px}.pedido dl{grid-template-columns:1fr;gap:2px}.pedido dd{margin-bottom:8px}}
+
+  /* ============ el lede: la conclusión, dos renglones ============ */
+  .lede{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:var(--radius);padding:16px 18px;margin:0 0 34px;box-shadow:var(--shadow)}
+  .lede p{margin:0;font-size:17.5px;line-height:1.5;max-width:68ch}
+  .lede strong{font-weight:650}
+
+  /* ============ lo que tenés que saber: los conceptos, antes del detalle (SKILL.md §6) ============ */
+  .saber{margin:-14px 0 34px}
+  .saber>h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);margin:0 0 10px}
+  .saber dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:0}
+  .saber dl>div{border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;background:var(--bg-elev)}
+  .saber dt{font-weight:650;font-size:15px;margin:0 0 4px}
+  .saber dd{margin:0;font-size:14.5px;line-height:1.5;color:var(--fg-2)}
+
+  /* ============ sección: título = conclusión · un dibujo · un pie ============ */
+  section{margin:0 0 38px}
+  h2{font-size:19px;line-height:1.3;font-weight:650;letter-spacing:-.01em;margin:0 0 14px;max-width:60ch}
+  p{margin:0 0 12px}
+  .pie{font-size:13.5px;line-height:1.5;color:var(--fg-2);margin:10px 0 0;max-width:78ch}
+  .grid{display:grid;gap:12px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;
+    box-shadow:var(--shadow);min-width:0}
+  .ptl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-3);font-weight:700;margin:0 0 10px}
+
+  /* ============ KPIs: el número grande, su comparación abajo ============ */
+  .kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+  .kpi{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:32px;font-weight:700;letter-spacing:-.025em;line-height:1.05;font-variant-numeric:tabular-nums}
+  .kpi .n small{font-size:.48em;font-weight:600;color:var(--fg-3);margin-left:.3em;letter-spacing:0}
+  .kpi .l{font-size:13px;color:var(--fg-2);line-height:1.4;margin-top:6px}
+  .kpi.dest .n{color:var(--accent)}
+
+  /* ============ barras horizontales con etiqueta ============ */
+  .hb{display:grid;gap:10px}
+  .hb .r{display:grid;grid-template-columns:minmax(110px,38%) minmax(0,1fr) auto;gap:12px;align-items:center;font-size:13.5px}
+  .hb .t{color:var(--fg-2);line-height:1.3;min-width:0}
+  .hb .t small{display:block;color:var(--fg-3);font-size:12px}
+  .hb .tr{position:relative;height:10px;border-radius:99px;background:var(--line-soft)}
+  .hb .f{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent)}
+  .hb .f.g{background:var(--ok)} .hb .f.b{background:var(--bad)} .hb .f.w{background:var(--warn)}
+  .hb .f.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .hb .meta{position:absolute;top:-4px;bottom:-4px;width:2px;border-radius:1px;background:var(--fg)}
+  .hb .n{font-weight:650;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--fg-2);margin-top:12px}
+  .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--accent)}
+  .sw.g{background:var(--ok)} .sw.b{background:var(--bad)} .sw.w{background:var(--warn)}
+  .sw.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .sw.m{width:2px;height:13px;border-radius:0;background:var(--fg);vertical-align:-2px}
+
+  /* ============ flujo en pasos ============ */
+  .flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:16px}
+  .flow .st{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:12px 13px;display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow);min-width:0}
+  .flow .st:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:8px;height:8px;z-index:1;
+    border-top:2px solid var(--fg-3);border-right:2px solid var(--fg-3);transform:translateY(-50%) rotate(45deg)}
+  .flow .i{font:700 12px/24px ui-monospace,monospace;width:24px;height:24px;border-radius:7px;text-align:center;
+    background:var(--accent-soft);color:var(--accent)}
+  .flow .h{font-weight:650;font-size:14px;line-height:1.25}
+  .flow .eg{font:italic 14px/1.3 ui-serif,Georgia,serif;color:var(--fg)}
+  .flow .d{font-size:12.5px;line-height:1.4;color:var(--fg-2)}
+  .flow .st.end{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+
+  /* ============ antes y después ============ */
+  .ad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}
+  .ad .lado{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:13px 15px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow);min-width:0}
+  .ad .antes{border-top:3px solid var(--bad)} .ad .despues{border-top:3px solid var(--ok)}
+  .ad .rot{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+  .ad .antes .rot{color:var(--bad)} .ad .despues .rot{color:var(--ok)}
+  .ad .despues::before{content:"→";position:absolute;left:-24px;top:50%;transform:translateY(-50%);
+    font-size:19px;color:var(--fg-3)}
+  .ad ol{margin:0;padding-left:20px;font-size:13.5px;line-height:1.45;color:var(--fg-2);display:grid;gap:3px}
+  .ad .res{font-weight:650;font-size:14.5px;border-top:1px dashed var(--line);padding-top:7px;margin-top:auto}
+  .ad .antes .res{color:var(--bad)} .ad .despues .res{color:var(--ok)}
+
+  /* ============ mapa de calor ============ */
+  .heat{display:grid;grid-template-columns:minmax(110px,1.6fr) repeat(var(--cols,4),minmax(0,1fr));gap:4px;font-size:12.5px}
+  .heat span{padding:7px 4px;border-radius:6px;text-align:center;font-variant-numeric:tabular-nums;background:var(--line-soft)}
+  .heat .h{background:none;color:var(--fg-3);font-size:11.5px;font-weight:600}
+  .heat .rl{background:none;text-align:left;color:var(--fg-2)}
+  .heat .h0{color:var(--fg-3)}
+  .heat .h1{background:color-mix(in srgb,var(--warn) 16%,var(--bg-elev))}
+  .heat .h2{background:color-mix(in srgb,var(--warn) 34%,var(--bg-elev))}
+  .heat .h3{background:color-mix(in srgb,var(--bad) 32%,var(--bg-elev))}
+
+  /* ============ tarjetas de decisión: la recomendada, marcada ============ */
+  .opts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+  .opt{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
+    box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;min-width:0}
+  .opt.rec{border:1.5px solid var(--accent);box-shadow:0 0 0 3px var(--accent-soft),var(--shadow)}
+  .opt .oh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14.5px}
+  .opt .ol{font:700 13px/26px ui-monospace,monospace;width:26px;height:26px;border-radius:7px;text-align:center;
+    background:var(--line-soft);flex:none}
+  .opt.rec .ol{background:var(--accent);color:var(--bg-elev)}
+  .opt p{font-size:13px;color:var(--fg-2);margin:0}
+  .opt ul{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-size:13px}
+  .opt li::before{font-weight:800;margin-right:6px}
+  .opt li.si::before{content:"✓";color:var(--ok)} .opt li.no::before{content:"✕";color:var(--bad)}
+
+  /* ============ ejemplo real ============ */
+  .ex{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
+    display:grid;gap:7px;box-shadow:var(--shadow);min-width:0}
+  .ex .cons{font-size:12px;color:var(--fg-3)}
+  .ex .en{font:italic 18px/1.35 ui-serif,Georgia,serif}
+  .ex .gap{display:inline-block;min-width:48px;border-bottom:2px solid var(--fg-3);margin:0 4px}
+  .ex .ans{font-size:13.5px;color:var(--fg-2)} .ex .ans b{color:var(--fg)}
+  .ex .rotulo{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3)}
+  .ex .rotulo.antes{color:var(--bad)} .ex .rotulo.despues{color:var(--ok)}
+  .ex .ans .lista{display:block;font-size:13px;line-height:1.5;color:var(--fg-2);margin-top:2px}
+  .ex .cuenta{font-size:13px;color:var(--fg-2);border-top:1px dashed var(--line);padding-top:7px}
+  .ex .cuenta i,.ex .ans i{font-family:ui-serif,Georgia,serif} .ex .cuenta .mal{color:var(--bad)}
+  .ex .ft{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--fg-3);
+    border-top:1px dashed var(--line);padding-top:7px}
+  .mark{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;line-height:1.45;background:var(--bad-soft);
+    border-radius:8px;padding:8px 10px}
+  .mark .x{color:var(--bad);font-weight:800}
+  .mark.ok{background:var(--ok-soft)} .mark.ok .x{color:var(--ok)}
+  .mark.warn{background:var(--warn-soft)} .mark.warn .x{color:var(--warn)}
+  .sev{font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;white-space:nowrap}
+  .sev.b{background:var(--bad);color:var(--bg-elev)} .sev.a{background:var(--bad-soft);color:var(--bad)}
+  .sev.m{background:var(--warn-soft);color:var(--warn)} .sev.l{background:var(--line-soft);color:var(--fg-2)}
+
+  /* ============ preguntas, con la recomendación ============ */
+  .asks{display:grid;gap:10px}
+  .ask{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);
+    padding:12px 15px;display:grid;gap:8px;box-shadow:var(--shadow)}
+  .ask .q{font-size:15px;font-weight:650;line-height:1.35}
+  .ask .ops{display:flex;gap:6px;flex-wrap:wrap}
+  .ask .op{font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--bg)}
+  .ask .op.rec{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .ask .why{font-size:13px;color:var(--fg-2);line-height:1.45}
+  /* ya contestada: .ask.hecha, la opción elegida .op.elegida y .dicho con qué se decidió */
+  .ask.hecha{border-left-color:var(--ok);box-shadow:none;background:transparent}
+  .ask.hecha .q,.ask.hecha .why{color:var(--fg-2)}
+  .ask.hecha .op:not(.elegida){opacity:.45}
+  .ask .op.elegida{border-color:var(--ok);background:var(--ok-soft);color:var(--ok);font-weight:650}
+  .ask .op.elegida::before{content:"✓ "}
+  .ask .dicho{font-size:13px;color:var(--ok);font-weight:600}
+  .opts.hecha .opt:not(.elegida){opacity:.45}
+  .opt.elegida{border:1.5px solid var(--ok);box-shadow:0 0 0 3px var(--ok-soft)}
+
+  /* ============ qué cambia y qué no ============ */
+  .cambia{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .cambia>div{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 15px;box-shadow:var(--shadow)}
+  .cambia ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13.5px;line-height:1.45}
+  .cambia li{position:relative;padding-left:22px}
+  .cambia li::before{position:absolute;left:0;top:0;font-weight:800}
+  .cambia .si li::before{content:"✓";color:var(--ok)}
+  .cambia .no li::before{content:"=";color:var(--fg-3)}
+
+  /* ============ captura real, con su pie ============ */
+  .captura{margin:0;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:10px;
+    box-shadow:var(--shadow);min-width:0}
+  .captura img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft)}
+  .captura.cel img{max-width:300px;margin:0 auto}
+  .captura figcaption{font-size:12.5px;color:var(--fg-3);margin-top:8px}
+
+  /* ============ dónde estamos: la captura real, con lo que cambia rodeado y numerado ============
+     El viewBox del svg.cap es el tamaño de la foto: las marcas van en sus píxeles (capturar.mjs --medir). */
+  .map{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);box-shadow:var(--shadow);border-radius:var(--radius)}
+  .map.alta{grid-template-columns:minmax(0,200px) minmax(0,1fr)}       /* una página más alta que la pantalla */
+  .map .ex{border-radius:var(--radius) 0 0 var(--radius);padding:10px;align-content:center;box-shadow:none}
+  .map .who{display:grid;gap:9px;align-content:center;padding:14px 16px;background:var(--bg);border:1px solid var(--line);
+    border-left:0;border-radius:0 var(--radius) var(--radius) 0}
+  .map .who div{display:flex;gap:9px;align-items:center;font-size:13.5px;line-height:1.35}
+  .map .who b{font:800 11.5px/22px ui-monospace,monospace;width:22px;height:22px;border-radius:6px;text-align:center;
+    background:var(--accent);color:var(--bg-elev);flex:none}
+  .map .who b.gris{background:var(--line);color:var(--fg-3)}       /* lo que se ve pero no cambia */
+  .map .who small{color:var(--fg-3);font-size:12px}
+  .map .who .ptl{margin:0}
+  .cap{display:block;width:100%;height:auto}
+  .cap .mk circle{fill:var(--accent);stroke:var(--bg-elev);stroke-width:4}
+  .cap .mk text{fill:var(--bg-elev);font-weight:800;font-family:ui-monospace,monospace;text-anchor:middle;dominant-baseline:central}
+  .cap .mk.gris circle{fill:var(--fg-3)}
+  .cap .aro{fill:none;stroke:var(--accent);stroke-width:4}         /* rodea lo que cambia */
+  .cap .tapa{fill:var(--bg-elev);opacity:.74}                       /* atenúa lo que no */
+  .cap .raya{stroke:var(--fg-3);stroke-width:2;stroke-dasharray:9 9}  /* dónde termina cada pantalla */
+
+  /* ============ hoy → con X: la foto de hoy con el problema; la maqueta de cómo queda, con su leyenda ============ */
+  .ad.asim{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+  .hoy{display:block;max-width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft);align-self:flex-start}
+  .franja{display:flex;gap:12px;align-items:flex-end}               /* una página alta, al lado de su marca */
+  .franja .cap{width:34%;flex:none} .franja .mark{flex:1}
+  .nb{display:inline-flex;align-items:center;justify-content:center;flex:none;width:1.75em;height:1.75em;border-radius:99px;
+    background:var(--accent);color:var(--bg-elev);font:800 .74em/1 ui-monospace,monospace}
+  ol.leg{list-style:none;margin:0;padding:0;display:grid;gap:5px;font-size:13.5px;line-height:1.45;color:var(--fg-2)}
+  .leg li{display:flex;gap:8px;align-items:baseline} .leg .nb{font-size:11px}
+  /* la maqueta: .mq es su propio contenedor y la letra (en .mi) escala con su ancho, así que una
+     maqueta más ancha NO entra más. Si no entra: menos filas, o .mq.denso. El kit entero, con cada
+     pieza a la vista, está en el catálogo de presentacion.html. */
+  /* ESTILO DEL PRODUCTO (maquetar.md): si el producto existe, acá se redefinen, sólo para la
+     maqueta, sus tokens: --bg-elev --bg --line --line-soft --fg --fg-2 --fg-3 --accent --accent-soft
+     --ok/--warn/--bad (+ -soft), la letra (--mq-font) y el radio de sus controles (--mq-r). También
+     su modo oscuro, si lo tiene. Sin esto la maqueta sale con el estilo del brief, que no es el de la app.
+  .mq{--mq-font:"Nunito",system-ui,sans-serif; --mq-r:.75em; --accent:#…; …} */
+  .mq{container-type:inline-size;background:var(--bg-elev);border:1px solid var(--line);border-radius:10px;overflow:hidden;
+    box-shadow:var(--shadow)}
+  .mi{font-size:max(10.5px,2.75cqi);font-family:var(--mq-font,inherit);line-height:1.35;padding:3cqi 3.2cqi;display:flex;flex-direction:column;gap:2.2cqi;color:var(--fg)}
+  .mq.denso .mi{font-size:max(10px,2.45cqi);gap:1.7cqi;padding:2.6cqi 2.8cqi}
+  .mi .fila{display:flex;gap:.55em;align-items:center;min-width:0} .mi .fila.env{flex-wrap:wrap;row-gap:.4em}
+  .mi .crece{flex:1;min-width:0}
+  .mi .vt{display:flex;flex-direction:column;gap:.25em;min-width:0}
+  .mi .in{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:var(--mq-r,.5em);padding:.45em .7em;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mi .sel{background:var(--bg);border:1px solid var(--line);border-radius:var(--mq-r,.5em);padding:.45em .6em;white-space:nowrap;flex:none}
+  .mi .bt{background:var(--accent);color:var(--bg-elev);border-radius:var(--mq-r,.5em);padding:.45em .85em;font-weight:700;white-space:nowrap;flex:none}
+  .mi .bt.gh{background:var(--bg-elev);color:var(--fg);border:1px solid var(--line);font-weight:600}
+  .mi .chp{display:inline-flex;align-items:center;gap:.35em;border:1px solid var(--line);background:var(--bg);border-radius:99px;
+    padding:.18em .7em;font-size:.86em;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  .mi .chp.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .mi .chp.no{color:var(--fg-3);text-decoration:line-through}
+  .mi .chp.ok{border-color:var(--ok);background:var(--ok-soft);color:var(--ok);font-weight:650}
+  .mi .chp.fal{border-color:var(--warn);background:var(--warn-soft);color:var(--warn);font-weight:650}
+  .mi .rt{font-size:.72em;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--fg-3)}
+  .mi .tt{font-weight:700;font-size:1.1em;letter-spacing:-.01em} .mi .ts{font-weight:700;font-size:1.15em;letter-spacing:-.01em}
+  .mi .s{font-size:.84em;color:var(--fg-3)} .mi .neg{font-weight:700}
+  .mi .bien{color:var(--ok);font-weight:800} .mi .mal{color:var(--bad);font-weight:800}
+  .mi .corta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .mi .th{width:5.2em;aspect-ratio:16/9;border-radius:.35em;object-fit:cover;flex:none;display:block}
+  .mi .th.ch{width:3.6em} .mi .th.gr{width:60%}
+  .mi .hr{height:1px;background:var(--line-soft)} .mi .apagado{opacity:.4}
+  .mi .expl{background:var(--bg);border:1px solid var(--line-soft);border-radius:var(--mq-r,.5em);padding:.5em .7em;font-size:.86em;color:var(--fg-2)}
+  .mi .aviso{display:flex;gap:.5em;align-items:center;border-radius:var(--mq-r,.5em);padding:.45em .7em;font-weight:650;
+    background:var(--bad-soft);color:var(--bad)}
+  .mi .aviso.ok{background:var(--ok-soft);color:var(--ok)}
+  .mi .campo{border:1.5px solid var(--accent);border-radius:.6em;padding:.6em .8em;background:var(--bg-elev);display:flex;flex-direction:column;gap:.3em}
+  .mi .hueco{border:1px dashed var(--warn);border-radius:.4em;height:1.7em;background:var(--warn-soft)}
+  .mi .av{width:2.1em;height:2.1em;border-radius:99px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;
+    font-size:.8em;background:var(--accent-soft);color:var(--accent);flex:none}
+  .mi .fase{display:grid;grid-template-columns:1.5em 1fr auto;gap:.25em .55em;align-items:center}
+  .mi .fase .ic{font-weight:800;text-align:center}
+  .mi .fase.hecha .ic{color:var(--ok)} .mi .fase.va .ic{color:var(--accent)} .mi .fase.falta{color:var(--fg-3)}
+  .mi .riel{grid-column:2/4;height:.42em;border-radius:99px;background:var(--line-soft);overflow:hidden}
+  .mi .riel i{display:block;height:100%;width:var(--hecho,40%);background:var(--accent);border-radius:99px}
+  .mi .dos{display:grid;grid-template-columns:1.15fr 1fr;border:1px solid var(--line-soft);border-radius:.6em;overflow:hidden}
+  .mi .dos>div{padding:.75em;display:flex;flex-direction:column;gap:.55em;min-width:0}
+  .mi .lat{background:var(--bg);border-left:1px solid var(--line)}
+  .mi .item{display:flex;gap:.5em;align-items:center;padding:.3em;border-radius:.4em;min-width:0}
+  .mi .item.on{background:var(--accent-soft);box-shadow:inset 0 0 0 1.5px var(--accent)}
+
+  /* ============ pills de estado ============ */
+  .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}
+  .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
+  .p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)}
+  .p-bad{background:var(--bad-soft);color:var(--bad)} .p-info{background:var(--info-soft);color:var(--info)}
+  .p-idle{background:var(--line-soft);color:var(--fg-3)}
+
+  /* ============ tabla chica (≤ 6 filas; si es más, es un gráfico) ============ */
+  .tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}
+  th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);
+    font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:ui-monospace,monospace;font-size:13px}
+
+  /* ============ diagrama (los de cajas y flechas van con diagrama.mjs, §11) ============ */
+  .diagram{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
+    overflow-x:auto;box-shadow:var(--shadow)}
+  .diagram svg{display:block;max-width:100%;height:auto;margin:0 auto}
+  svg .box{fill:var(--bg);stroke:var(--line)}
+  svg .box-a{fill:var(--accent-soft);stroke:var(--accent)}
+  svg .box-ok{fill:var(--ok-soft);stroke:var(--ok)}
+  svg .box-bad{fill:var(--bad-soft);stroke:var(--bad)}
+  svg .lbl{fill:var(--fg);font:13px ui-sans-serif,system-ui,sans-serif}
+  svg .lbl-s{fill:var(--fg-3);font:11px ui-sans-serif,system-ui,sans-serif}
+  svg .arrow{stroke:var(--fg-3);fill:none;stroke-width:1.2}
+
+  /* ============ comandos · aviso de lo que no sé ============ */
+  pre{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;
+    overflow-x:auto;font-size:13px;line-height:1.55;margin:0}
+  pre code{color:var(--fg)}
+  .call{border-radius:var(--radius);padding:10px 13px;font-size:13.5px;border:1px solid;margin:12px 0 0}
+  .c-warn{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 28%,transparent)}
+  .c-bad{background:var(--bad-soft);border-color:color-mix(in srgb,var(--bad) 28%,transparent)}
+  .c-info{background:var(--info-soft);border-color:color-mix(in srgb,var(--info) 28%,transparent)}
+  .call b:first-child{margin-right:4px}
+
+  footer{border-top:1px solid var(--line);margin-top:36px;padding-top:14px;font-size:12.5px;color:var(--fg-3);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  /* ============ celular ============ */
+  @media (max-width:640px){
+    body{padding:24px 16px 60px}
+    h2{font-size:17px}
+    .flow{grid-auto-flow:row}
+    .flow .st:not(:last-child)::after{right:auto;left:22px;top:auto;bottom:-11px;transform:rotate(135deg)}
+    .ad{grid-template-columns:minmax(0,1fr);gap:28px}
+    .ad .despues::before{content:"↓";left:50%;top:-25px;transform:translateX(-50%)}
+    .hb .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) auto;gap:8px}
+    .heat{grid-template-columns:minmax(80px,1.3fr) repeat(var(--cols,4),minmax(0,1fr));font-size:11.5px}
+    .kpi .n{font-size:28px}
+    .map,.map.alta,.ad.asim{grid-template-columns:minmax(0,1fr)}
+    .map .ex{border-radius:var(--radius) var(--radius) 0 0}
+    .map .who{border-left:1px solid var(--line);border-top:0;border-radius:0 0 var(--radius) var(--radius)}
+    .map.alta .cap{width:min(55%,220px);margin:0 auto}
+  }
+
+figure.dg{margin:0 0 16px;overflow-x:auto}figure.dg>svg{display:block;width:100%;height:auto;margin:0 auto}
+  .todos{margin-top:12px}
+  .todos>summary{cursor:pointer;font-size:13.5px;font-weight:600;color:var(--accent);list-style:none}
+  .todos>summary::-webkit-details-marker{display:none}
+  .todos>summary::before{content:"▸ ";color:var(--fg-3)}
+  .todos[open]>summary::before{content:"▾ "}
+  .todos .tw{margin-top:10px}
+  .todos td{font-size:13px;line-height:1.45;vertical-align:top}
+  .todos td i{font-family:ui-serif,Georgia,serif;font-size:14.5px}
+  .todos .cons{font-size:12px;color:var(--fg-3)}
+  .todos .gap{display:inline-block;min-width:34px;border-bottom:2px solid var(--fg-3);margin:0 3px}
+  td.c,th.c{text-align:center;font-variant-numeric:tabular-nums}
+  pre.cmd{white-space:pre-wrap;word-break:break-all}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">
+      <span class="num">278</span>
+      <span class="badge">Hecho · 3 decisiones</span>
+      <span class="meta">Publicar la C2 · C2 de A1 · 6/11/2026</span>
+    </div>
+    <details class="pedido">
+      <summary><span class="k">Lo que pediste</span><span class="q">Recalibrar Didáctica A1 y dejar corriendo de noche lo que hiciera falta.</span></summary>
+      <div class="pedido-c">
+        <dl>
+          <dt>Qué estabas mirando</dt><dd>El brief 277: el «revisar» de Didáctica A1 frenaba la publicación.</dd>
+          <dt>Qué dijiste</dt><dd>«Recalibrar el juez» y «si tenés que correr de nuevo cosas y demás, correlas».</dd>
+          <dt>A qué te referías</dt><dd>Darle al juez lo que le faltaba para decidir, probarlo y dejar lista la medición.</dd>
+        </dl>
+        <p class="de">Tu respuesta a la pregunta 1 del brief 277, la noche del 5/11.</p>
+      </div>
+    </details>
+    <h1>Didáctica A1 nueva decide todo; falta que la promuevas</h1>
+    <p class="sub">La base de naturalidad y de distractores quedó medida. Arreglé un quinto defecto de la comparación.</p>
+  </header>
+
+  <div class="lede"><p><strong>La versión nueva de Didáctica A1 decide los 224 «revisar»: 118 están bien, 43 para mejorar y 63 para reescribir.</strong> Si la promovés, la mido en la base y en la C2: unas 3.650 consultas.</p></div>
+
+  <div class="saber">
+    <h2>Lo que tenés que saber</h2>
+    <dl>
+      <div><dt>«Revisar»</dt><dd>El juez no opina: dice que le falta un dato para decidir.</dd></div>
+      <div><dt>Promover</dt><dd>Aprobar una versión del juez para que pueda medir el curso. Lo hacés vos.</dd></div>
+      <div><dt>Piso sin decidir</dt><dd>Un tema donde falta un número para saber si la C2 lo empeoró. Publicar exige cero.</dd></div>
+    </dl>
+  </div>
+
+  <section>
+    <h2>Decide todo lo que la vieja dejaba en «revisar»</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Los «revisar» de</th><th>Versión</th><th class="c">Bien</th><th class="c">Mejorar</th><th class="c">Reescribir</th><th class="c">Revisar</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="2">La C2 · 133</td><td>Nueva</td><td class="c">68</td><td class="c">25</td><td class="c">40</td><td class="c"><span class="pill p-ok">0</span></td></tr>
+        <tr><td>Vieja, otra vez</td><td class="c">21</td><td class="c">27</td><td class="c">1</td><td class="c"><span class="pill p-bad">84</span></td></tr>
+        <tr><td rowspan="2">Producción · 91</td><td>Nueva</td><td class="c">50</td><td class="c">18</td><td class="c">23</td><td class="c"><span class="pill p-ok">0</span></td></tr>
+        <tr><td>Vieja, otra vez</td><td class="c">12</td><td class="c">19</td><td class="c">1</td><td class="c"><span class="pill p-bad">59</span></td></tr>
+      </tbody></table></div>
+    <p class="pie">Preguntarle de nuevo a la vieja deja 143 de 224 en «revisar». Las dos leyeron exactamente lo que lee el curso: 334 de 334 consultas con la misma entrada.</p>
+  </section>
+
+  <section>
+    <h2>Los 63 para reescribir piden algo que el alumno no vio</h2>
+    <div class="hb">
+      <div class="r"><span class="t">«How about + -ing» para llegar a «let's»</span><span class="tr"><span class="f b" style="width:100%"></span></span><span class="n">29</span></div>
+      <div class="r"><span class="t">«should» en la oración de partida</span><span class="tr"><span class="f b" style="width:34%"></span></span><span class="n">10</span></div>
+      <div class="r"><span class="t">Coletilla («can't she?»)</span><span class="tr"><span class="f b" style="width:17%"></span></span><span class="n">5</span></div>
+      <div class="r"><span class="t">Presente continuo con sentido futuro</span><span class="tr"><span class="f b" style="width:14%"></span></span><span class="n">4</span></div>
+      <div class="r"><span class="t">«There + be» o un verbo de estado</span><span class="tr"><span class="f b" style="width:21%"></span></span><span class="n">6</span></div>
+      <div class="r"><span class="t">Otra estructura</span><span class="tr"><span class="f s" style="width:31%"></span></span><span class="n">9</span></div>
+    </div>
+    <div class="ex">
+      <span class="cons">Oraciones con let's · Crea oraciones utilizando "let's".</span>
+      <span class="en">How about reading a book? <span class="gap"></span></span>
+      <span class="ans"><b>Acepta:</b> Let's read a book. · <b>Juez:</b> para reformularla, el alumno tiene que entender «How about + -ing» como una propuesta, y eso no consta como enseñado.</span>
+    </div>
+    <div class="ex">
+      <span class="cons">Oraciones imperativas · Transforma estas oraciones a imperativo.</span>
+      <span class="en">You shouldn't take your money. <span class="gap"></span></span>
+      <span class="ans"><b>Acepta:</b> Don't take your money. · <b>Juez:</b> hay que entender «shouldn't» como consejo, y los modales vienen después en el curso.</span>
+    </div>
+    <p class="pie">El alumno ve la traducción recién al responder, así que no le aclara la oración. Producción tiene los mismos: no rompen pisos, pero son trabajo para una próxima corrección.</p>
+    <details class="todos"><summary>Los 63, cada uno entero</summary>
+      <div class="tw"><table>
+        <thead><tr><th>Qué le falta</th><th>Dónde</th><th>El ejercicio</th><th>Por qué, según el juez nuevo</th></tr></thead>
+        <tbody>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>C2</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about going home? <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s go home.</span></td><td>La respuesta ilustra correctamente «let&#x27;s + verbo base», pero la reformulación exige interpretar «How about + -ing» como una propuesta equivalente. Esa estructura no figura en el aprendizaje previo documentado y resulta necesaria para comprender la transformación solicitada.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>C2</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about going now?  <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s go now.</span></td><td>Para reformular la pregunta, el alumno necesita comprender «How about + -ing» como propuesta y su equivalencia con «let&#x27;s». Esa estructura no aparece en los aprendizajes previos documentados y es necesaria para resolver el ejercicio, no incidental.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>C2</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about going to Italy next year? <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s go to Italy next year.</span></td><td>La reformulación exige interpretar «How about + -ing» como una propuesta para conservar su significado al usar «let&#x27;s». Los títulos previos no documentan esa construcción y comprenderla es necesario para resolver el ejercicio; no es una carga incidental. La respuesta aceptada ilustra correctamente el objetivo.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>C2</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about going to bed now? <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s go to bed now.</span></td><td>La reformulación exige interpretar «How about + -ing» como una propuesta y convertirla en «let&#x27;s + verbo base». La progresión documentada no muestra esa estructura; comprenderla es necesario para resolver el ejercicio, por lo que añade una carga fuera del objetivo.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>C2</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about going walking?  <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s go walking.</span></td><td>Para reformular la propuesta, el alumno necesita interpretar «How about + -ing» como una sugerencia equivalente a «let&#x27;s». Esa estructura no aparece en el aprendizaje previo documentado y es necesaria para comprender la consigna de origen; no es una carga incidental que pueda ignorarse al responder.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>C2</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about having some tea? <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s have some tea.</span></td><td>Para reformular la frase, el alumno necesita interpretar «How about + -ing» como una sugerencia equivalente a «let&#x27;s». Esa estructura no aparece en el aprendizaje previo documentado y es necesaria para comprender la consigna de transformación; la respuesta aceptada sí ilustra correctamente el objetivo.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>C2</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about not going dancing?  <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s not go dancing. · Don&#x27;t let&#x27;s go dancing.</span></td><td>Para reformular la consigna, el alumno necesita interpretar «How about not + -ing» como una sugerencia negativa. Esa estructura no aparece documentada en el aprendizaje previo y es necesaria para decidir la respuesta; cambiar solamente lo escrito en el espacio no elimina esa carga. «Don&#x27;t let&#x27;s» puede conservarse como variante válida sin ser el modelo principal.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>C2</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about not going on Friday?  <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s not go on Friday. · Don&#x27;t let&#x27;s go on Friday.</span></td><td>Para reformular la propuesta, el alumno necesita interpretar «How about not + gerundio» como una sugerencia negativa. Ese patrón no figura en el aprendizaje previo documentado y resulta necesario para entender qué debe expresar con «let&#x27;s».</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>C2</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about not going to Tesco today?  <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s not go to Tesco today. · Don&#x27;t let&#x27;s go to Tesco today.</span></td><td>Para reformular la propuesta y conservar su sentido negativo, el alumno necesita interpretar «How about not + gerundio», una estructura que los títulos previos no muestran como enseñada. Esa comprensión es necesaria para resolver el ejercicio, no incidental. «Let&#x27;s not» sirve como modelo neutro; «Don&#x27;t let&#x27;s» puede conservarse como variante válida con una nota de registro.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>C2</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about not going to the park?  <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s not go to the park. · Don&#x27;t let&#x27;s go to the park.</span></td><td>La reformulación exige interpretar «How about not + -ing» como una sugerencia negativa para producir «let&#x27;s not». Esa estructura no aparece documentada en el aprendizaje previo y es necesaria para resolver el ejercicio. «Don&#x27;t let&#x27;s» puede conservarse como variante válida con una nota de uso; no necesita ser el modelo principal.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>C2</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about not having lunch now?  <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s not have lunch now. · Don&#x27;t let&#x27;s have lunch now.</span></td><td>La reformulación exige interpretar «How about + not + gerundio» como una sugerencia negativa para conservar su significado con let&#x27;s. Esa estructura no aparece documentada en los títulos previos y es necesaria para resolver el ejercicio, no incidental. «Don&#x27;t let&#x27;s» puede conservarse como variante válida con una nota de uso; «Let&#x27;s not» sirve como modelo neutral.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>C2</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about not making pizza tonight?  <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s not make pizza tonight. · Don&#x27;t let&#x27;s make pizza tonight.</span></td><td>La reformulación exige comprender «How about not + -ing» como propuesta negativa para conservar su significado al usar «let&#x27;s». Esa estructura no aparece en el aprendizaje previo documentado y es necesaria para resolver el ejercicio; no es una carga incidental. La variante «Don&#x27;t let&#x27;s» puede seguir aceptándose, con una nota de registro, sin convertirse en el modelo principal.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>C2</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about not taking the bus?  <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s not take the bus. · Don&#x27;t let&#x27;s take the bus.</span></td><td>Para reformular la propuesta y conservar su negación, el alumno necesita interpretar «How about not + -ing», una estructura que los títulos previos no documentan. Esa interpretación es necesaria para responder, no incidental. «Don&#x27;t let&#x27;s» puede conservarse como variante válida con una nota de registro, sin presentarla como modelo neutral.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>C2</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about reading a book?  <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s read a book.</span></td><td>Para reformular la propuesta, el alumno necesita interpretar «How about + -ing» como una sugerencia. Esa estructura no figura en el aprendizaje previo documentado y resulta necesaria para comprender la consigna de partida; no es una carga incidental de la respuesta.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>C2</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about seeing Mary? <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s see Mary.</span></td><td>Para reformular la pregunta, el alumno necesita interpretar «How about + -ing» como una sugerencia y reconocer su equivalencia con «let&#x27;s + verbo base». Esa estructura no figura en los títulos previos y es necesaria para entender la consigna de partida; no es una carga incidental.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>C2</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about staying here? <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s stay here.</span></td><td>Para reformular la frase, el alumno necesita interpretar «How about + -ing» como una sugerencia y conservar ese significado con «let&#x27;s». Los títulos previos no documentan esta construcción; haber estudiado el presente continuo no confirma ese aprendizaje. La respuesta aceptada sí ilustra correctamente el objetivo.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>C2</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about talking later? <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s talk later.</span></td><td>La respuesta practica correctamente let&#x27;s + verbo base, pero para reformular la consigna el alumno necesita interpretar How about + -ing como sugerencia. Esa estructura no figura en el aprendizaje previo documentado y es necesaria para comprender la transformación solicitada.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>Producción</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about going home? <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s go home.</span></td><td>La respuesta ilustra correctamente «let&#x27;s + verbo base», pero la reformulación exige interpretar «How about + -ing» como una propuesta equivalente. Esa estructura no figura en el aprendizaje previo documentado y resulta necesaria para comprender la transformación solicitada.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>Producción</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about going to bed now? <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s go to bed now.</span></td><td>La reformulación exige interpretar «How about + -ing» como una propuesta y convertirla en «let&#x27;s + verbo base». La progresión documentada no muestra esa estructura; comprenderla es necesario para resolver el ejercicio, por lo que añade una carga fuera del objetivo.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>Producción</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about having some tea? <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s have some tea.</span></td><td>Para reformular la frase, el alumno necesita interpretar «How about + -ing» como una sugerencia equivalente a «let&#x27;s». Esa estructura no aparece en el aprendizaje previo documentado y es necesaria para comprender la consigna de transformación; la respuesta aceptada sí ilustra correctamente el objetivo.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>Producción</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about not going dancing? <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s not go dancing.</span></td><td>Para reformular la propuesta, el alumno necesita comprender «How about not + -ing» y conservar su sentido negativo. Esa estructura no figura en el aprendizaje previo documentado y es necesaria para resolver el ejercicio, no meramente incidental. La respuesta aceptada ilustra correctamente «let&#x27;s not + verbo».</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>Producción</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about not going to Tesco today? <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s not go to Tesco today.</span></td><td>La reformulación exige interpretar «How about not + -ing» como una sugerencia negativa para producir «Let&#x27;s not + verbo». Los títulos previos no documentan esa estructura y comprenderla es necesario para resolver el ejercicio; no constituye una carga incidental.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>Producción</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about not going to the park? <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s not go to the park.</span></td><td>Para reformular la propuesta, el alumno necesita interpretar «How about not + -ing» y conservar su sentido negativo en «Let&#x27;s not + verbo». Los títulos previos no documentan esa estructura de sugerencia; conocer el presente continuo no acredita este uso de -ing. La respuesta aceptada sí ilustra correctamente el objetivo.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>Producción</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about not having lunch now? <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s not have lunch now.</span></td><td>Para reformular la propuesta, el alumno necesita comprender «How about + not + gerundio», una estructura que no figura en los aprendizajes previos documentados. Esa comprensión es necesaria para conservar la intención y la negación al producir «Let&#x27;s not + verbo».</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>Producción</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about not making pizza tonight? <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s not make pizza tonight.</span></td><td>La respuesta practica correctamente «let&#x27;s not + verbo», pero para reformular la consigna el alumno necesita interpretar «How about not + gerundio» como una propuesta negativa. Los títulos previos no muestran esa estructura y su comprensión es necesaria para producir la respuesta, no incidental.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>Producción</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about not taking the bus? <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s not take the bus.</span></td><td>Para reformular la consigna, el alumno necesita interpretar «How about not + -ing» como una propuesta negativa. Esa estructura no figura en el aprendizaje previo documentado y comprenderla es necesario para producir «Let&#x27;s not», por lo que la carga adicional no es incidental. La respuesta aceptada es válida para el objetivo.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>Producción</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about not working at home today? <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s not work at home today.</span></td><td>La reformulación exige interpretar «How about not + -ing» como una sugerencia negativa antes de producir «Let&#x27;s not + verbo». Esa estructura no figura en los aprendizajes previos documentados; conocer el presente continuo no demuestra conocer este uso de -ing. La carga adicional está en la consigna de origen, aunque la respuesta aceptada ilustra correctamente el objetivo.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>Producción</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about seeing Mary? <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s see Mary.</span></td><td>Para reformular la pregunta, el alumno necesita interpretar «How about + -ing» como una sugerencia y reconocer su equivalencia con «let&#x27;s + verbo base». Esa estructura no figura en los títulos previos y es necesaria para entender la consigna de partida; no es una carga incidental.</td></tr>
+<tr><td>«How about + -ing» para llegar a «let's»</td><td>Producción</td><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about staying here? <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s stay here.</span></td><td>Para reformular la frase, el alumno necesita interpretar «How about + -ing» como una sugerencia y conservar ese significado con «let&#x27;s». Los títulos previos no documentan esta construcción; haber estudiado el presente continuo no confirma ese aprendizaje. La respuesta aceptada sí ilustra correctamente el objetivo.</td></tr>
+<tr><td>«should» en la oración de partida</td><td>C2</td><td><span class="cons">Oraciones imperativas · Transforma estas oraciones a imperativo.</span><br><i>You should be more interesting. <span class="gap"></span></i><br><span class="cons">Acepta: Be more interesting.</span></td><td>La transformación exige interpretar should be como consejo y convertirlo en una orden con be. Los títulos previos no documentan should y el temario sitúa Modal Verbs después de esta unidad. Esa estructura interviene directamente en la interpretación de la oración de partida.</td></tr>
+<tr><td>«should» en la oración de partida</td><td>C2</td><td><span class="cons">Oraciones imperativas · Transforma estas oraciones a imperativo.</span><br><i>You should look up. <span class="gap"></span></i><br><span class="cons">Acepta: Look up.</span></td><td>La oración de partida usa should para expresar consejo, un uso que los títulos previos no documentan. Para transformar ese consejo en una orden, el alumno debe interpretar una estructura adicional al imperativo. La dificultad está en la consigna de partida; «Look up.» es un imperativo claro.</td></tr>
+<tr><td>«should» en la oración de partida</td><td>C2</td><td><span class="cons">Oraciones imperativas · Transforma estas oraciones a imperativo.</span><br><i>You shouldn&#x27;t ask such a question. <span class="gap"></span></i><br><span class="cons">Acepta: Don&#x27;t ask such a question. / Do not ask such a question.</span></td><td>La consigna exige comprender «shouldn&#x27;t» como consejo negativo para transformarlo en una prohibición. Este modal no figura en el aprendizaje previo documentado y Modal Verbs aparece después de Verb Patterns. La carga adicional está en la oración de partida; ambas respuestas aceptadas son válidas.</td></tr>
+<tr><td>«should» en la oración de partida</td><td>C2</td><td><span class="cons">Oraciones imperativas · Transforma estas oraciones a imperativo.</span><br><i>You shouldn&#x27;t drink too much beer. <span class="gap"></span> </i><br><span class="cons">Acepta: Don&#x27;t drink too much beer. / Do not drink too much beer.</span></td><td>La consigna exige interpretar «shouldn&#x27;t» como consejo negativo para convertirlo en una prohibición. Ese uso modal no aparece en los aprendizajes previos documentados y es necesario para resolver la transformación; no es incidental. Las dos respuestas aceptadas son válidas.</td></tr>
+<tr><td>«should» en la oración de partida</td><td>C2</td><td><span class="cons">Oraciones imperativas · Transforma estas oraciones a imperativo.</span><br><i>You shouldn&#x27;t take your money. <span class="gap"></span></i><br><span class="cons">Acepta: Don&#x27;t take your money. / Do not take your money.</span></td><td>La consigna exige interpretar «shouldn&#x27;t» como consejo negativo para transformarlo en una orden negativa. Ese uso modal no figura en el aprendizaje previo documentado y resulta necesario para resolver la transformación; no es una carga incidental prescindible. Ambas respuestas aceptadas son válidas.</td></tr>
+<tr><td>«should» en la oración de partida</td><td>Producción</td><td><span class="cons">Oraciones imperativas · Transforma estas oraciones a imperativo.</span><br><i>You should be more interesting. <span class="gap"></span></i><br><span class="cons">Acepta: Be more interesting.</span></td><td>La transformación exige interpretar should be como consejo y convertirlo en una orden con be. Los títulos previos no documentan should y el temario sitúa Modal Verbs después de esta unidad. Esa estructura interviene directamente en la interpretación de la oración de partida.</td></tr>
+<tr><td>«should» en la oración de partida</td><td>Producción</td><td><span class="cons">Oraciones imperativas · Transforma estas oraciones a imperativo.</span><br><i>You should look up. <span class="gap"></span></i><br><span class="cons">Acepta: Look up.</span></td><td>La oración de partida usa should para expresar consejo, un uso que los títulos previos no documentan. Para transformar ese consejo en una orden, el alumno debe interpretar una estructura adicional al imperativo. La dificultad está en la consigna de partida; «Look up.» es un imperativo claro.</td></tr>
+<tr><td>«should» en la oración de partida</td><td>Producción</td><td><span class="cons">Oraciones imperativas · Transforma estas oraciones a imperativo.</span><br><i>You shouldn&#x27;t ask such a question. <span class="gap"></span></i><br><span class="cons">Acepta: Don&#x27;t ask such a question. / Do not ask such a question.</span></td><td>La consigna exige comprender «shouldn&#x27;t» como consejo negativo para transformarlo en una prohibición. Este modal no figura en el aprendizaje previo documentado y Modal Verbs aparece después de Verb Patterns. La carga adicional está en la oración de partida; ambas respuestas aceptadas son válidas.</td></tr>
+<tr><td>«should» en la oración de partida</td><td>Producción</td><td><span class="cons">Oraciones imperativas · Transforma estas oraciones a imperativo.</span><br><i>You shouldn&#x27;t drink too much beer. <span class="gap"></span> </i><br><span class="cons">Acepta: Don&#x27;t drink too much beer. / Do not drink too much beer.</span></td><td>La consigna exige interpretar «shouldn&#x27;t» como consejo negativo para convertirlo en una prohibición. Ese uso modal no aparece en los aprendizajes previos documentados y es necesario para resolver la transformación; no es incidental. Las dos respuestas aceptadas son válidas.</td></tr>
+<tr><td>«should» en la oración de partida</td><td>Producción</td><td><span class="cons">Oraciones imperativas · Transforma estas oraciones a imperativo.</span><br><i>You shouldn&#x27;t take your money. <span class="gap"></span></i><br><span class="cons">Acepta: Don&#x27;t take your money. / Do not take your money.</span></td><td>La consigna exige interpretar «shouldn&#x27;t» como consejo negativo para transformarlo en una orden negativa. Ese uso modal no figura en el aprendizaje previo documentado y resulta necesario para resolver la transformación; no es una carga incidental prescindible. Ambas respuestas aceptadas son válidas.</td></tr>
+<tr><td>Coletilla («can't she?»)</td><td>C2</td><td><span class="cons">Expresar habilidad · Elige &#x27;can&#x27;, &#x27;can&#x27;t&#x27;, &#x27;could&#x27; o &#x27;couldn&#x27;t&#x27;.</span><br><i>She  <span class="gap"></span>  speak Chinese, can&#x27;t she? (now)</i><br><span class="cons">Opciones: can (correcta) · can&#x27;t · could · couldn&#x27;t</span></td><td>La coletilla interrogativa «can&#x27;t she?» exige conocer la relación de polaridad entre la afirmación y la coletilla para elegir «can» frente a «can&#x27;t». «Now» solo orienta al presente. Las lecciones previas no documentan las question tags, por lo que la elección depende de una estructura adicional al objetivo. Cambiar únicamente la respuesta del hueco no elimina esa carga.</td></tr>
+<tr><td>Coletilla («can't she?»)</td><td>C2</td><td><span class="cons">Expresar habilidad · Elige &#x27;can&#x27;, &#x27;can&#x27;t&#x27;, &#x27;could&#x27; o &#x27;couldn&#x27;t&#x27;.</span><br><i>The students  <span class="gap"></span>  do their homework, can&#x27;t they? (now)</i><br><span class="cons">Opciones: can (correcta) · can&#x27;t · could · couldn&#x27;t</span></td><td>La coletilla interrogativa «can&#x27;t they?» exige conocer la relación de polaridad entre la oración y la coletilla para elegir «can» frente a «can&#x27;t». Esta estructura no figura en el aprendizaje previo documentado. La pista «now» sitúa la habilidad en el presente, pero no permite decidir por sí sola entre afirmación y negación.</td></tr>
+<tr><td>Coletilla («can't she?»)</td><td>C2</td><td><span class="cons">Expresar habilidad · Elige &#x27;can&#x27;, &#x27;can&#x27;t&#x27;, &#x27;could&#x27; o &#x27;couldn&#x27;t&#x27;.</span><br><i>They <span class="gap"></span> (not) finish the test now, can they?</i><br><span class="cons">Opciones: can · can&#x27;t (correcta) · could · couldn&#x27;t</span></td><td>La coletilla «can they?» introduce una question tag cuya enseñanza no consta en la progresión. Para elegir entre «can&#x27;t» y «couldn&#x27;t», el alumno debe reconocer la concordancia del modal con esa coletilla; «now» por sí solo no excluye una lectura hipotética con «couldn&#x27;t». La elección depende así de una estructura adicional al objetivo declarado.</td></tr>
+<tr><td>Coletilla («can't she?»)</td><td>C2</td><td><span class="cons">Expresar habilidad · Elige &#x27;can&#x27;, &#x27;can&#x27;t&#x27;, &#x27;could&#x27; o &#x27;couldn&#x27;t&#x27;.</span><br><i>You  <span class="gap"></span>  understand people, can&#x27;t you? (now)</i><br><span class="cons">Opciones: can (correcta) · can&#x27;t · could · couldn&#x27;t</span></td><td>Para elegir entre &#x27;can&#x27; y &#x27;can&#x27;t&#x27;, el alumno necesita interpretar la coletilla interrogativa &#x27;can&#x27;t you?&#x27; y su relación con la afirmación principal. Esta estructura no aparece en el aprendizaje previo documentado. La pista &#x27;now&#x27; distingue presente de pasado, pero no determina la polaridad.</td></tr>
+<tr><td>Coletilla («can't she?»)</td><td>C2</td><td><span class="cons">Expresar habilidad · Completa la pregunta final de confirmación con la opción correcta.</span><br><i>You could ride a horse last month,  <span class="gap"></span>  you?</i><br><span class="cons">Opciones: can · can&#x27;t · couldn&#x27;t you · couldn&#x27;t (correcta)</span></td><td>Para elegir «couldn&#x27;t», el alumno necesita aplicar la estructura de las question tags: repetir el modal y cambiar la polaridad de la afirmación. Esa estructura no aparece en el aprendizaje previo documentado y determina la respuesta; no es una carga incidental para practicar habilidad con «could».</td></tr>
+<tr><td>Presente continuo con sentido futuro</td><td>C2</td><td><span class="cons">Contraste inicial · Escribe las oraciones en &#x27;present simple&#x27; o &#x27;present continuous&#x27;.</span><br><i>He  <span class="gap"></span>  (leave) soon. His taxi is outside.</i><br><span class="cons">Acepta: is leaving · &#x27;s leaving</span></td><td>Para elegir el tiempo, el alumno debe interpretar el present continuous con referencia futura: la salida ocurrirá pronto, no se presenta como una acción en curso. Los títulos previos no documentan ese uso. El taxi aporta contexto, pero la elección sigue dependiendo de ese significado adicional al contraste inicial entre rutinas y acciones actuales.</td></tr>
+<tr><td>Presente continuo con sentido futuro</td><td>C2</td><td><span class="cons">Elegir la forma natural · Elige &#x27;will&#x27; (&#x27;ll) para decisiones espontáneas o &#x27;be going to&#x27; para planes preestablecidos.</span><br><i>He  <span class="gap"></span>  home. His taxi is coming at 6.</i><br><span class="cons">Opciones: will go · &#x27;s going go · &#x27;s going to go (correcta) · &#x27;re going to go</span></td><td>La pista «His taxi is coming at 6» exige interpretar el presente continuo como un acuerdo futuro para reconocer el plan preestablecido y elegir «going to». Los títulos previos documentan el presente continuo para acciones actuales, pero no su uso futuro; aquí ese uso es necesario para resolver el ejercicio.</td></tr>
+<tr><td>Presente continuo con sentido futuro</td><td>C2</td><td><span class="cons">Palabras $wh$ · Formula preguntas &#x27;wh&#x27; en &#x27;present continuous&#x27;.</span><br><i>When <span class="gap"></span> (it / start)?</i><br><span class="cons">Acepta: is it starting</span></td><td>La pregunta requiere interpretar el present continuous como referencia a un inicio futuro previsto. Ese uso no aparece documentado en la progresión y resulta necesario para entender la pregunta; la instrucción permite formar la respuesta, pero no aclara ese significado.</td></tr>
+<tr><td>Presente continuo con sentido futuro</td><td>Producción</td><td><span class="cons">Palabras $wh$ · Formula preguntas &#x27;wh&#x27; en &#x27;present continuous&#x27;.</span><br><i>When <span class="gap"></span> (it / start)?</i><br><span class="cons">Acepta: is it starting</span></td><td>La pregunta requiere interpretar el present continuous como referencia a un inicio futuro previsto. Ese uso no aparece documentado en la progresión y resulta necesario para entender la pregunta; la instrucción permite formar la respuesta, pero no aclara ese significado.</td></tr>
+<tr><td>Verbo de estado antes de que se enseñe</td><td>C2</td><td><span class="cons">Contraste inicial · Escribe las oraciones en &#x27;present simple&#x27; o &#x27;present continuous&#x27;.</span><br><i>He <span class="gap"></span> (not / need) help.</i><br><span class="cons">Acepta: doesn&#x27;t need / does not need</span></td><td>Para elegir present simple sin una pista temporal, el alumno necesita saber que need expresa un estado y normalmente no se usa en continuo. Los títulos previos no documentan ese contraste entre verbos de estado y de acción; esta distinción determina la respuesta.</td></tr>
+<tr><td>Verbo de estado antes de que se enseñe</td><td>C2</td><td><span class="cons">Contraste inicial · Escribe las oraciones en &#x27;present simple&#x27; o &#x27;present continuous&#x27;.</span><br><i>You  <span class="gap"></span>  (not / seem) happy.</i><br><span class="cons">Acepta: don&#x27;t seem · do not seem</span></td><td>Para elegir el presente simple, el alumno necesita saber que «seem» expresa un estado y normalmente no se usa en presente continuo, incluso al describir el momento actual. Ese contraste entre verbos de estado y de acción no aparece documentado en el aprendizaje previo; la frase tampoco ofrece una pista de rutina que permita resolverla con lo ya aprendido.</td></tr>
+<tr><td>Verbo de estado antes de que se enseñe</td><td>Producción</td><td><span class="cons">Contraste inicial · Escribe las oraciones en &#x27;present simple&#x27; o &#x27;present continuous&#x27;.</span><br><i>He <span class="gap"></span> (not / need) help.</i><br><span class="cons">Acepta: doesn&#x27;t need / does not need</span></td><td>Para elegir present simple sin una pista temporal, el alumno necesita saber que need expresa un estado y normalmente no se usa en continuo. Los títulos previos no documentan ese contraste entre verbos de estado y de acción; esta distinción determina la respuesta.</td></tr>
+<tr><td>«There + be»</td><td>C2</td><td><span class="cons">Oraciones más naturales · Reescribe la pregunta para que suene natural, conservando su significado. Conserva todas las palabras originales y añade solo una palabra; puedes cambiar el orden.</span><br><i>Is any water in the cup?  <span class="gap"></span></i><br><span class="cons">Acepta: Is there any water in the cup? / In the cup, is there any water?</span></td><td>Para resolver la reescritura hay que conocer la construcción existencial «there is» y su pregunta «Is there … ?». Los títulos previos no muestran esa construcción y el objetivo genérico no la introduce explícitamente. Es indispensable para producir la palabra añadida, por lo que no constituye una carga incidental.</td></tr>
+<tr><td>«There + be»</td><td>C2</td><td><span class="cons">$Be$: afirmar y negar · Elige la forma del verbo &#x27;be&#x27; en pasado simple, afirmativa o negativa.</span><br><i>There  <span class="gap"></span>  (be) a game at school.</i><br><span class="cons">Opciones: was (correcta) · be · were · were not</span></td><td>La construcción existencial «there be» no figura en el aprendizaje previo documentado. El alumno necesita interpretar «there» como parte de esa construcción y reconocer que «a game» determina la concordancia para elegir «was»; esto añade una estructura necesaria para resolver el ejercicio al objetivo de practicar el pasado de «be».</td></tr>
+<tr><td>«There + be»</td><td>C2</td><td><span class="cons">$Be$: formas mixtas · Escribe oraciones en pasado simple con el verbo &#x27;be&#x27;.</span><br><i>There  <span class="gap"></span>  (be) two teachers in the room.</i><br><span class="cons">Acepta: were</span></td><td>La construcción existencial «there be» no aparece documentada en los títulos previos. Para elegir «were», el alumno debe reconocer que la concordancia depende de «two teachers», situado después del verbo, y comprender el valor existencial de «there». Esto añade una estructura necesaria para resolver el ejercicio al objetivo de conjugar «be» en pasado.</td></tr>
+<tr><td>Otra estructura</td><td>C2</td><td><span class="cons">$It&#x27;s$ como sujeto · Crea una oración utilizando $it&#x27;s$ y todas las palabras dadas.</span><br><i>(ten / past / a quarter)  <span class="gap"></span></i><br><span class="cons">Acepta: It&#x27;s a quarter past ten.</span></td><td>Para ordenar las palabras, el alumno necesita conocer la expresión horaria «a quarter past ten»: el sentido de «quarter» como quince minutos y el uso de «past» para indicar minutos después de la hora. Los títulos previos no documentan ese aprendizaje y las palabras dadas no lo explican. Este conocimiento es necesario para producir la respuesta, además de practicar «it&#x27;s» como sujeto.</td></tr>
+<tr><td>Otra estructura</td><td>C2</td><td><span class="cons">Gerundio o infinitivo · Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o &#x27;to + infinitive&#x27;.</span><br><i>Do you have <span class="gap"></span> (work) today?</i><br><span class="cons">Acepta: to work</span></td><td>Para elegir «to work», el alumno necesita reconocer «have to» como expresión de obligación, cuyo aprendizaje previo no está documentado. Ese significado determina la respuesta y añade una estructura al objetivo de practicar gerundio o infinitivo.</td></tr>
+<tr><td>Otra estructura</td><td>C2</td><td><span class="cons">Expresar habilidad · Elige &#x27;can&#x27;, &#x27;can&#x27;t&#x27;, &#x27;could&#x27; o &#x27;couldn&#x27;t&#x27;.</span><br><i>He <span class="gap"></span> (not) use a computer until he was an adult.</i><br><span class="cons">Opciones: can · can&#x27;t · could · couldn&#x27;t (correcta)</span></td><td>La subordinada temporal «until he was an adult» aporta la referencia pasada necesaria para elegir «couldn&#x27;t» e interpretar hasta cuándo duró la falta de habilidad. Los títulos previos no confirman el uso de «until» con una oración; «Rangos temporales» no acredita esa construcción.</td></tr>
+<tr><td>Otra estructura</td><td>C2</td><td><span class="cons">$Be$: formas cortas · Elige la forma del verbo &#x27;be&#x27; en pasado simple, afirmativa o negativa.</span><br><i>The dogs  <span class="gap"></span>  (be) in the house. I saw them there.</i><br><span class="cons">Opciones: was · wasn&#x27;t · were (correcta) · weren&#x27;t</span></td><td>Para elegir «were» y descartar «weren&#x27;t», el alumno necesita comprender «I saw them there». Esa pista exige reconocer «saw» como pasado irregular de «see», una forma que la progresión suministrada no documenta antes de este ejercicio sobre «be».</td></tr>
+<tr><td>Otra estructura</td><td>C2</td><td><span class="cons">Contable o incontable · Elige la opción correcta para completar la oración.</span><br><i>There  <span class="gap"></span>  a computer.</i><br><span class="cons">Opciones: is (correcta) · are · am</span></td><td>Las opciones «is», «are» y «am» evalúan la elección de una forma de be. «A computer» ya presenta el sustantivo como contable singular, por lo que el alumno no necesita distinguir entre contable e incontable para responder.</td></tr>
+<tr><td>Otra estructura</td><td>Producción</td><td><span class="cons">Gerundio o infinitivo · Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o &#x27;to + infinitive&#x27;.</span><br><i>Do you have <span class="gap"></span> (work) today?</i><br><span class="cons">Acepta: to work</span></td><td>Para elegir «to work», el alumno necesita reconocer «have to» como expresión de obligación, cuyo aprendizaje previo no está documentado. Ese significado determina la respuesta y añade una estructura al objetivo de practicar gerundio o infinitivo.</td></tr>
+<tr><td>Otra estructura</td><td>Producción</td><td><span class="cons">Expresar habilidad · Elige &#x27;can&#x27;, &#x27;can&#x27;t&#x27;, &#x27;could&#x27; o &#x27;couldn&#x27;t&#x27;.</span><br><i>He <span class="gap"></span> (not) use a computer until he was an adult.</i><br><span class="cons">Opciones: can · can&#x27;t · could · couldn&#x27;t (correcta)</span></td><td>La subordinada temporal «until he was an adult» aporta la referencia pasada necesaria para elegir «couldn&#x27;t» e interpretar hasta cuándo duró la falta de habilidad. Los títulos previos no confirman el uso de «until» con una oración; «Rangos temporales» no acredita esa construcción.</td></tr>
+<tr><td>Otra estructura</td><td>Producción</td><td><span class="cons">Preguntas $wh$ con $be$ · Formula una pregunta &#x27;wh&#x27; en presente simple usando el verbo &#x27;be&#x27;.</span><br><i>How many <span class="gap"></span> ? (It)</i><br><span class="cons">Acepta: is it</span></td><td>No se indica qué se cuenta ni cómo «It» representa esa cantidad. El alumno necesita reconstruir una interpretación adicional para entender la pregunta; completar el hueco no resuelve esa falta de contexto. La valoración de la naturalidad de la oración aceptada corresponde a NATURALNESS.</td></tr>
+<tr><td>Otra estructura</td><td>Producción</td><td><span class="cons">Adjetivo o adverbio · Elegí la palabra correcta.</span><br><i>The colorful birds looked <span class="gap"></span> (happy / happily) in the garden.</i><br><span class="cons">Acepta: happy</span></td><td>Para elegir «happy», el alumno necesita interpretar «looked» como «parecían» y reconocer que lleva un adjetivo que describe al sujeto. Los títulos previos no documentan este uso de «look». La elección depende de ese sentido, además de distinguir adjetivo y adverbio.</td></tr>
+        </tbody></table></div>
+    </details>
+  </section>
+
+  <section>
+    <h2>En lo que ya estaba decidido cambia poco, y siempre igual</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">165<small>de 172</small></div><div class="l">bloquean igual con la nueva; la vieja otra vez, 171</div></div>
+      <div class="kpi"><div class="n">376<small>de 396</small></div><div class="l">bloquean igual al preguntarle otra vez a la nueva, y ninguno vuelve a «revisar»</div></div>
+      <div class="kpi"><div class="n">34<small>de 70</small></div><div class="l">«mejorar» pasan a «bien»; la vieja otra vez, 9. Lo leve no frena</div></div>
+    </div>
+    <p class="pie">Contra la vieja cambian cinco imperativos con «shouldn't», «disembark» y «get → got». Preguntada otra vez, la nueva duda en «There + be» y en «should» sin negar.</p>
+    <details class="todos"><summary>Los 8 que cambian de color, cada uno entero</summary>
+      <div class="tw"><table>
+        <thead><tr><th>El ejercicio</th><th>Vieja → nueva</th><th>Por qué, según el juez nuevo</th></tr></thead>
+        <tbody>
+<tr><td><span class="cons">Señalar objetos · Elige &#x27;this&#x27;, &#x27;that&#x27;, &#x27;these&#x27; o &#x27;those&#x27;.</span><br><i><span class="gap"></span>  film on the TV at the other end of the room was great. (we watched the film last night.)</i><br><span class="cons">Opciones: That (correcta) · These · This · Those</span></td><td><span class="pill p-ok">bien</span> → <span class="pill p-warn">mejorar</span></td><td>La distancia indicada sitúa el televisor, mientras que el sustantivo que se señala es una película vista anoche. Esa combinación mezcla referencia espacial y referencia a una experiencia pasada, lo que puede distraer del contraste entre demostrativos. El pasado simple ya está documentado y no supone una carga adicional.</td></tr>
+<tr><td><span class="cons">Oraciones imperativas · Transforma estas oraciones a imperativo.</span><br><i>You shouldn&#x27;t get up. <span class="gap"></span></i><br><span class="cons">Acepta: Don&#x27;t get up. / Do not get up.</span></td><td><span class="pill p-warn">mejorar</span> → <span class="pill p-bad">reescribir</span></td><td>Para transformar la oración, el alumno necesita interpretar «shouldn&#x27;t» como consejo negativo y convertirlo en un imperativo negativo. Los títulos previos no muestran este modal y el temario sitúa Modal Verbs después de Verb Patterns. La estructura adicional es necesaria para resolver la consigna; ambas respuestas aceptadas son válidas.</td></tr>
+<tr><td><span class="cons">Verbos de movimiento · Elige &#x27;in&#x27; o &#x27;to&#x27;.</span><br><i>He is going to disembark  <span class="gap"></span>  Brazil.</i><br><span class="cons">Opciones: in (correcta) · to</span></td><td><span class="pill p-warn">mejorar</span> → <span class="pill p-bad">reescribir</span></td><td>Para elegir «in», el alumno necesita entender que «disembark» significa desembarcar y que Brasil indica dónde ocurre esa acción. Este verbo de registro especializado no aparece como vocabulario enseñado explícitamente; su significado y construcción condicionan la respuesta y añaden una dificultad ajena al contraste básico entre ubicación y destino. «Going to» sí está documentado como aprendizaje previo.</td></tr>
+<tr><td><span class="cons">Oraciones imperativas · Transforma estas oraciones a imperativo.</span><br><i>You shouldn&#x27;t run in the café. <span class="gap"></span></i><br><span class="cons">Acepta: Don&#x27;t run in the café. / Do not run in the café.</span></td><td><span class="pill p-warn">mejorar</span> → <span class="pill p-bad">reescribir</span></td><td>Para transformar la oración, el alumno necesita interpretar shouldn&#x27;t como consejo negativo y conservar esa orientación al formar el imperativo. El modal should no figura en los aprendizajes previos documentados; su comprensión es necesaria para resolver la consigna, no incidental. Ambas respuestas aceptadas son válidas.</td></tr>
+<tr><td><span class="cons">Oraciones con $let&#x27;s$ · Crea oraciones utilizando &quot;let&#x27;s&quot;.</span><br><i>How about not working at home today?  <span class="gap"></span></i><br><span class="cons">Acepta: Let&#x27;s not work at home today. · Don&#x27;t let&#x27;s work at home today.</span></td><td><span class="pill p-warn">mejorar</span> → <span class="pill p-bad">reescribir</span></td><td>La reformulación exige comprender «How about + not + -ing» como propuesta negativa para conservar su sentido con «let&#x27;s». Los títulos previos no documentan esa estructura y aquí es necesaria para resolver el ejercicio; no es una carga incidental. «Don&#x27;t let&#x27;s» puede conservarse como variante válida con una nota de registro, usando «Let&#x27;s not» como modelo neutral.</td></tr>
+<tr><td><span class="cons">Oraciones imperativas · Transforma estas oraciones a imperativo.</span><br><i>You shouldn&#x27;t take the wrong train. <span class="gap"></span> </i><br><span class="cons">Acepta: Don&#x27;t take the wrong train. / Do not take the wrong train.</span></td><td><span class="pill p-warn">mejorar</span> → <span class="pill p-bad">reescribir</span></td><td>La consigna exige interpretar shouldn&#x27;t como consejo negativo para transformarlo en una prohibición. Ese uso modal no figura en los aprendizajes previos documentados y resulta necesario para decidir la forma del imperativo; Modal Verbs aparece después en el programa. Ambas respuestas aceptadas son válidas; la dificultad está en la oración de partida.</td></tr>
+<tr><td><span class="cons">Cambios ortográficos · Escribe la forma en &#x27;past simple&#x27;.</span><br><i>I <span class="gap"></span> (get) the balloon.</i><br><span class="cons">Acepta: got</span></td><td><span class="pill p-warn">mejorar</span> → <span class="pill p-bad">reescribir</span></td><td>La transformación get → got es una forma irregular, no un cambio ortográfico de la terminación del pasado regular. El ejercicio pide recordar esa irregularidad y no permite practicar el objetivo declarado.</td></tr>
+<tr><td><span class="cons">Cambios ortográficos · Escribe la forma en &#x27;past simple&#x27;.</span><br><i>We <span class="gap"></span> (learn) vocabulary all morning.</i><br><span class="cons">Acepta: learnt</span></td><td><span class="pill p-bad">reescribir</span> → <span class="pill p-warn">mejorar</span></td><td>La oración es clara y «learnt» es una forma válida, pero es una variante irregular de «learn» y no ejemplifica una regla de cambio ortográfico de los verbos regulares.</td></tr>
+        </tbody></table></div>
+    </details>
+  </section>
+
+  <section>
+    <h2>Esta noche: base medida y el «no aplica» ya no traba</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Renglones sin decidir</th><th class="c">Ayer</th><th class="c">Base medida</th><th class="c">Con el arreglo</th></tr></thead>
+      <tbody>
+        <tr><td>Calidad de distractores</td><td class="c">31</td><td class="c"><span class="pill p-ok">0</span></td><td class="c"><span class="pill p-ok">0</span></td></tr>
+        <tr><td>Naturalidad</td><td class="c">78</td><td class="c">14</td><td class="c"><span class="pill p-warn">8</span></td></tr>
+        <tr><td>Didáctica A1</td><td class="c">87</td><td class="c">87</td><td class="c"><span class="pill p-bad">87</span></td></tr>
+        <tr><td>«Algún error»</td><td class="c">30</td><td class="c">30</td><td class="c">28</td></tr>
+      </tbody></table></div>
+    <p class="pie">En el 277 te dije que el «no aplica» ya no abría pisos: valía para las listas del tablero, no para la comparación. 92 ejercicios de producción quedaban afuera; ahora cuentan.</p>
+  </section>
+
+  <section>
+    <h2>Quedan tres ejercicios para corregir</h2>
+    <div class="ex">
+      <span class="cons">Some y any · Elige 'some' o 'any'. · opción múltiple desde la C1</span>
+      <span class="en">Do you have <span class="gap"></span> DVDs at home?</span>
+      <span class="ans"><b>Opciones:</b> any (correcta) · a. Falta «some», que es lo que la consigna pide elegir. <b>Propuesta:</b> any · some.</span>
+    </div>
+    <div class="ex">
+      <span class="cons">Oraciones imperativas · Transforma estas oraciones a imperativo.</span>
+      <span class="en">You should take the salt to the soup. <span class="gap"></span></span>
+      <span class="ans"><b>Acepta:</b> Take the salt to the soup. · «take» es llevar; para la sopa es «add». <b>Propuesta:</b> You should add salt to the soup. → Add salt to the soup.</span>
+    </div>
+    <div class="ex">
+      <span class="cons">¿Good o well? · la C2 no lo cambió</span>
+      <span class="en">She understands <span class="gap"></span> (good / well) Spanish.</span>
+      <span class="ans"><b>Acepta:</b> good. · Lo natural es «She understands Spanish well». <b>Propuesta:</b> She understands Spanish <span class="gap"></span> (good / well). → well.</span>
+    </div>
+    <p class="pie">El primero rompe un piso de distractores y ninguna vuelta atrás lo arregla, porque el error viene de la C1. Los otros dos dejan a naturalidad en «revisar» en producción y en la C2.</p>
+  </section>
+
+  <section>
+    <h2>Qué necesito de vos</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">Junto la guía nueva</span><span class="d">yo, gratis</span></div>
+      <div class="st"><span class="i">2</span><span class="h">La promovés</span><span class="d">vos, con el comando de abajo</span></div>
+      <div class="st"><span class="i">3</span><span class="h">Mido base y C2</span><span class="d">yo · ~3.650 consultas · ~7,5 h</span></div>
+      <div class="st end"><span class="i">4</span><span class="h">Integro y comparo</span><span class="d">gratis</span></div>
+    </div>
+<pre class="cmd">env -C /Users/josecullen/projects/learney/content-audit ./audit-cli.sh --workdir .content-audit/campaigns/a1-v11 promote-judge a1-didactic --expected-version 250b2141804036a842611e489d5d1f10e89093fa1559f87838f953c002bb263d --reviewer José --evidence analysis/a1-didactic-recalibracion-2026-11-06/piloto.json --reason "José acepta la versión que decide lo que los títulos no muestran, tras revisar el piloto del brief 278."</pre>
+    <div class="asks">
+      <div class="ask"><span class="q">1 · ¿Promovés la versión nueva de Didáctica A1?</span>
+        <div class="ops"><span class="op rec">Sí, juntá la guía · recomendado</span><span class="op">Antes, cambiar algo</span></div>
+        <span class="why">Decide los 224. Si me decís si «There + be», «should» y «How about» se dan por enseñados, se lo agrego a la guía antes de medir y deja de dudar.</span></div>
+      <div class="ask"><span class="q">2 · ¿Un ejercicio que hoy está bien deja de abrir el piso aunque producción lo dejó en «revisar»?</span>
+        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">No</span></div>
+        <span class="why">No puede sumar errores. Sin esto, los «revisar» de producción dejan esos temas sin decidir para siempre, porque producción no cambia.</span></div>
+      <div class="ask"><span class="q">3 · ¿Corrijo los tres ejercicios con esas propuestas?</span>
+        <div class="ops"><span class="op rec">Sí, con esas · recomendado</span><span class="op">Los escribo yo</span></div>
+        <span class="why">Son correcciones de contenido; sin ellas no se puede publicar.</span></div>
+    </div>
+    <div class="call c-warn"><b>Sigue abierta</b> la pregunta 2 del brief 277: la pista para los 3 de «Con short forms».</div>
+  </section>
+
+  <footer>
+    <span>Guía nueva de a1-didactic-judge (nodes/evaluate.md, sin commitear en el worktree iterative-correction): HOW THE LEARNER ANSWERS y PROGRESSION THE TITLES DO NOT SHOW; REVIEW sólo si no llegó el contenido; versión 250b2141, vigente 8398c438 (promovida 14/10). Piloto por exam run con fotos congeladas de la tanda v93 (base y hoy, 2.402 ejercicios cada una), workdirs aparte, sin tocar la campaña: casos = 133 REVIEW de hoy + 112 de control; 91 REVIEW de la base + 60 de control. Nueva 334 consultas; vieja otra vez 335, mismas huellas que la campaña (334/334); nueva otra vez 334 consultas. Base esta noche desde el 7800: naturalness ui-2026-11-06T02-18-52 (759) y multiple-choice-quality ui-2026-11-06T03-52-51 (236), integradas como replace en la base (1.617 y 466 opiniones de versiones anteriores). F-MIDIO-R010 (ca 194fbbebf, en main): DefaultAnalysisComposer.notApplicable; comparisonReports empareja un NOT_APPLICABLE cerrado; readsNothing lo cuenta como no leído. batch compare con R010: 123 renglones sin decidir (naturalness 8, a1-didactic 87, algún error 28), 10 metas; 5 pisos rotos, 14 cambios vuelven. 2394: multiple-choice-quality answer-cue HIGH persistente desde el Inicio, base sin leerlo (cloze en producción). Naturalidad «revisar»: base 1ea4, 1eae, 25ec (la C2 los arregló), 22b4 y 2eed (iguales). Pruebas: audit-domain 1.402, revision-domain 1.255, revision-infrastructure 76, audit-cli 703 con las 3 fallas viejas. Costo de medir: 3.659 entradas distintas de naturalidad entre base y C2, a ~485 por hora.</span>
+    <span>brief 278 · docs/briefs/278-didactica-nueva-decide-todo.html</span>
+  </footer>
+
+</div>
+</body>
+</html>
