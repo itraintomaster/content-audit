@@ -74,6 +74,10 @@ ese ejercicio y que no tenga una lista de jueces vieja.
 > Un número de la Base sin ningún ejercicio evaluado no es un cero: el piso queda sin decidir. Contra el Inicio sigue
 > valiendo lo de siempre: un ejercicio que la corrección no cambió no puede ganar un error, así que sólo lo cambiado
 > que quedó sin medir queda abierto.
+>
+> Un tema donde hoy el juez no lee ningún ejercicio —ninguno es de los que juzga y no dejó marca en ninguno— no tiene
+> dónde ganar un error: su piso se cumple, mida lo que mida la Base. El 5/11/2026, «Más de una respuesta válida», que
+> no juzga los de opción múltiple, dejaba sin decidir 24 temas de la C2 que sólo tienen ejercicios de opción múltiple.
 
 <a id="F-MIDIO-R003"></a>
 ### Rule[F-MIDIO-R003] - Una opinión vale aunque la comparación lea más niveles que el juez
@@ -143,6 +147,20 @@ ese ejercicio y que no tenga una lista de jueces vieja.
 > a B2. Bajaba de 39,38 a 38,41 y rompía su piso porque la C2 sacó de A1 palabras de A2, que siguen en A2: en el curso
 > entero, A1 ganó palabras de su lista y A2 quedó casi igual (brief 271).
 
+<a id="F-MIDIO-R009"></a>
+### Rule[F-MIDIO-R009] - Dos versiones que son la misma se comparan
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+> Una opinión de la Base o del Inicio se compara con la de «Hoy» cuando las dos son de la versión de hoy del juez o de
+> una que el juez de hoy declara la misma ([F-ALDIA-R002](../2026-10-18.01_jueces-al-dia/REQUIREMENT.md#F-ALDIA-R002)).
+> Una versión que el juez de hoy no nombra sigue sin par, como siempre. Lo mismo vale para la versión de una medición:
+> si leyó veredictos de dos versiones que el juez declara la misma, la medición es de la versión de hoy.
+>
+> El 5/11/2026 la C2 de A1 dejaba 30 pisos sin decidir. Una parte venía de acá: «Traducción que no corresponde» midió
+> producción con la versión que todavía contaba sus pruebas, que es la de hoy, y 637 ejercicios quedaban fuera de la
+> comparación; «Opción múltiple mal armada», 190; «Calidad de distractores», 94; y «Ejercicio casi repetido», que en su
+> medición leyó veredictos de las dos versiones, quedaba sin versión en los 2.402.
+
 ## Contexto
 
 - **La Base, el Inicio y «Hoy»**: la Base es producción; el Inicio, de dónde arrancó la corrección; «Hoy», el curso con
@@ -157,13 +175,14 @@ ese ejercicio y que no tenga una lista de jueces vieja.
 | Regla | Prueba |
 |---|---|
 | R001 | `DefaultCourseProjectorTest`: con el plan de la corrección y su curso de partida, reconoce los cambios aunque el plan activo sea otro y el curso de hoy no tenga el contenido del que parten. `DefaultBatchCloserTest`: el alcance de la comparación nombra el plan de la corrección y la comparación recibe el curso de partida |
-| R002 | `CurrentAnalysisServiceTest`: un Inicio con otra versión deja ese juez sin par en el Inicio y con su valor en «Hoy»; con la misma versión no cambia nada. `DefaultBatchComparatorTest`: el piso desde el Inicio se cuenta desde la Base, con lo no medido abierto; sin Base queda sin decidir; una Base sin ningún ejercicio evaluado no es cero; «algún error» no se compara contra ese Inicio; donde el juez lee lo mismo que en el Inicio el cambio no gana nada; donde lee otra cosa, un error que la Base ya tenía no devuelve el cambio y uno que no tenía sí. `CurrentAnalysisServiceTest`: donde el Inicio leyó lo mismo lleva la opinión de hoy, y donde leyó otra cosa no lleva ninguna |
+| R002 | `CurrentAnalysisServiceTest`: un Inicio con otra versión deja ese juez sin par en el Inicio y con su valor en «Hoy»; con la misma versión no cambia nada. `DefaultBatchComparatorTest`: el piso desde el Inicio se cuenta desde la Base, con lo no medido abierto; sin Base queda sin decidir; una Base sin ningún ejercicio evaluado no es cero; «algún error» no se compara contra ese Inicio; donde el juez lee lo mismo que en el Inicio el cambio no gana nada; donde lee otra cosa, un error que la Base ya tenía no devuelve el cambio y uno que no tenía sí; un tema donde hoy el juez no lee ningún ejercicio cumple su piso, y uno donde lee alguno con una Base sin evaluar sigue sin decidir. `CurrentAnalysisServiceTest`: donde el Inicio leyó lo mismo lleva la opinión de hoy, y donde leyó otra cosa no lleva ninguna |
 | R003 | `CurrentAnalysisServiceTest`: una opinión medida en un curso de un nivel vale en la lectura del curso entero; otro tema o lo aprendido antes la invalida igual |
 | R004 | `DefaultBatchComparatorTest`: un juez que la corrección no tenía anotado tiene su renglón. `CurrentAnalysisServiceTest`: un instantáneo que la corrección no tenía se mide en «Hoy» de la comparación, y tiene par |
 | R005 | `CurrentAnalysisServiceTest`: un juez que la Base no midió queda en «Hoy» sin par y fuera de «algún error». `DefaultBatchComparatorTest`: su renglón tiene el valor de «Hoy», sin par ni piso |
 | R006 | `CurrentAnalysisServiceTest`: un instantáneo que la Base y el Inicio midieron con otras reglas se vuelve a medir con las de hoy, cada uno sobre su contenido y sin consultas; un juez comparado ejercicio por ejercicio lleva la medida de hoy |
 | R007 | `CurrentAnalysisServiceTest`: la corrección de A1 se compara en A1: la Base, el Inicio y «Hoy» tienen sólo A1, y el curso que recibió no se recorta |
 | R008 | `CurrentAnalysisServiceTest`: el analizador de vocabulario mide el curso entero en la Base, el Inicio y «Hoy», cada uno con su A1 y con el A2 del Inicio; el nivel conserva su número y la comparación sigue leyendo A1 |
+| R009 | `CurrentAnalysisServiceTest`: una opinión de la Base y del Inicio con una versión que el juez de hoy declara la misma conserva su par; con una que no nombra, no. `RunVersionOfAJudgeTest`: una medición con veredictos de dos versiones que el juez declara la misma es de la versión de hoy; si una no la nombra, no tiene versión |
 
 ## References
 

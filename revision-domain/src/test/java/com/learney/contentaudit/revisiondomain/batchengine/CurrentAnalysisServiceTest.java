@@ -1351,6 +1351,44 @@ class CurrentAnalysisServiceTest {
         assertEquals(.3, child(otherInput.projected()).getScores().get(NAME), "today keeps what it measured");
     }
 
+    /** {@code report} with today's judge naming {@code same} as its version (F-ALDIA-R002). */
+    static AuditReport declaring(AuditReport report, Set<String> same) {
+        var standing = new JudgeExamStanding(); standing.setConsultsOnCourse(true); standing.setJudgeVersion("v1");
+        standing.setCompatibleJudgeVersions(same);
+        var coverage = new JudgeCoverageDiagnosis(); coverage.setJudgeName(NAME); coverage.setUnit(AuditTarget.QUIZ);
+        coverage.setStanding(standing);
+        ((com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses) report.getRoot().getDiagnoses())
+                .setJudgeCoverages(List.of(coverage));
+        return report;
+    }
+
+    @Tag("FEAT-MIDIO") @Tag("F-MIDIO-R009")
+    @Test void anOpinionOfAVersionTodaysJudgeNamesAsItsOwnIsComparedAsTodaysAndOneOfAnotherVersionIsNot() {
+        // 5/11: «Traducción que no corresponde» measured production with 0ff707d2…, the version that still counted its
+        // tests; today's 840385d9… is that same version (F-ALDIA-R002), and 637 exercises were left out of the comparison.
+        for (boolean named : List.of(true, false)) {
+            Set<String> same = named ? Set.of("v0", "v1") : Set.of("v1");
+            saved.put(batch.getBaselineAuditId(), declaring(report(true, false, "v0"), Set.of("v0")));
+            saved.put(TandaFixture.START_AUDIT, declaring(report(true, false, "v0"), Set.of("v0")));
+            saved.put("r1", declaring(report(true, true, "v1"), same));
+            when(engine.runAudit(any(), any())).thenAnswer(i -> declaring(report(true, true, "v1"), same));
+
+            var reports = service.comparisonReports(batch, course, course);
+
+            if (named) {
+                assertEquals(1., child(reports.baseline()).getScores().get(NAME), "the base keeps its pair");
+                assertTrue(reports.startNotComparable().isEmpty(), "the start is measured as today");
+                assertEquals(1., child(reports.approved()).getScores().get(NAME), "the start keeps its opinion");
+                assertEquals(.3, child(reports.projected()).getScores().get(NAME), "today keeps what it measured");
+            } else {
+                assertFalse(DefaultAnalysisComposer.evaluated(child(reports.baseline()), NAME),
+                        "another version has no pair in the base");
+                assertFalse(DefaultAnalysisComposer.evaluated(child(reports.projected()), NAME),
+                        "nor today, against it");
+            }
+        }
+    }
+
     @Tag("FEAT-MIDIO") @Tag("F-MIDIO-R002")
     @Test void aStartMeasuredWithTodaysVersionAndRuntimeIsComparedAsAlways() {
         var reports = compared("v1", null);

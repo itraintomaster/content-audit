@@ -12,6 +12,7 @@ import com.learney.contentaudit.auditdomain.Baseline;
 import com.learney.contentaudit.auditdomain.BaselineStore;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.auditdomain.QuizStudentViewRenderer;
+import com.learney.contentaudit.auditdomain.analysis.DefaultAnalysisComposer;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
@@ -551,7 +552,7 @@ public class DefaultBatchComparator implements BatchComparator {
         Goal floor = goalFor(goals, GoalKind.FLOOR, subject, node.getTarget(), id);
         if (floor != null) {
             row.setFloor(new RowGoalStatus(floor.getId(), floor.getThreshold(), floor.getUnit(), floor.getReference(),
-                    status(floor, values)));
+                    readsNothing(subject, family, node) ? GoalStatus.MET : status(floor, values)));
         }
         Goal progress = goalFor(goals, GoalKind.PROGRESS, subject, node.getTarget(), id);
         if (progress != null) {
@@ -559,6 +560,35 @@ public class DefaultBatchComparator implements BatchComparator {
                     progress.getReference(), status(progress, values)));
         }
         return row;
+    }
+
+    /**
+     * F-MIDIO-R002: a judge of exercises that reads none of the node today -- «más de una respuesta válida» in a topic of
+     * only multiple choice: none of its exercises is one it judges, and it left no mark on them or on the node -- has
+     * nothing there that could gain an error: its floor holds, whatever the base measured.
+     */
+    private static boolean readsNothing(String subject, AnalyzerFamily family, AuditNode node) {
+        if (family != AnalyzerFamily.ERRORS || DefaultGoalBook.ANY_ERROR.equals(subject) || marksUnder(node, subject)) {
+            return false;
+        }
+        List<AuditNode> quizzes = quizzesUnder(node);
+        return !quizzes.isEmpty() && quizzes.stream().noneMatch(quiz -> DefaultAnalysisComposer.eligible(quiz, subject));
+    }
+
+    /** Whether the judge left a mark -- a score, a «not evaluated» or an evaluation in part -- on the node or below it. */
+    private static boolean marksUnder(AuditNode node, String judge) {
+        if (node.getTarget() != AuditTarget.COURSE && node.getTarget() != AuditTarget.MILESTONE
+                && (node.getScores() != null && node.getScores().containsKey(judge)
+                        || listOrEmpty(node.getUnevaluatedBy()).contains(judge)
+                        || listOrEmpty(node.getPartiallyEvaluatedBy()).contains(judge))) {
+            return true;
+        }
+        for (AuditNode child : listOrEmpty(node.getChildren())) {
+            if (child != null && marksUnder(child, judge)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /** The numbers a goal is decided on: the three photos, the baseline measured again and what stays open. */

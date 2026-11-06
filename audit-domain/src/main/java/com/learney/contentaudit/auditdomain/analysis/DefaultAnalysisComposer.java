@@ -426,10 +426,20 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
         Object versions = node.getMetadata() == null ? null : node.getMetadata().get("verdictVersions");
         if (versions instanceof Map<?,?> map && map.get(analyzer) instanceof String version) return version;
         if (source.getRoot().getDiagnoses() instanceof CourseDiagnoses d) {
-            var versionsInRun = safe(d.getJudgeCoverages()).stream().filter(c -> analyzer.equals(c.getJudgeName()))
+            var coverages = safe(d.getJudgeCoverages()).stream().filter(c -> analyzer.equals(c.getJudgeName())).toList();
+            var versionsInRun = coverages.stream()
                     .flatMap(c -> safe(c.getVersions()).stream()).filter(v -> v.getVerdictCount() > 0)
                     .map(JudgeVersionStanding::getJudgeVersion).filter(Objects::nonNull).distinct().toList();
             if (versionsInRun.size() == 1) return versionsInRun.get(0);
+            // F-ALDIA-R002: the versions the run's judge names as its own are one version, its own.
+            for (var coverage : coverages) {
+                var standing = coverage.getStanding();
+                if (versionsInRun.isEmpty() || standing == null || standing.getJudgeVersion() == null) continue;
+                var same = new HashSet<String>(standing.getCompatibleJudgeVersions() != null
+                        ? standing.getCompatibleJudgeVersions() : Set.of());
+                same.add(standing.getJudgeVersion());
+                if (same.containsAll(versionsInRun)) return standing.getJudgeVersion();
+            }
         }
         return null;
     }

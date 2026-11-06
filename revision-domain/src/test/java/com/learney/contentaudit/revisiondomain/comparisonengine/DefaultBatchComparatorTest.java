@@ -1721,6 +1721,26 @@ public class DefaultBatchComparatorTest {
             return this;
         }
 
+        /** The node with nothing for an analyzer to read: it reached no exercise there. */
+        Foto nadaQueLeer(String id, String analyzer) {
+            ErrorCounts errors = errorCounts(id);
+            List<AnalyzerErrorCounts> analyzers = new ArrayList<>();
+            for (AnalyzerErrorCounts counts : errors.getAnalyzers()) {
+                if (!analyzer.equals(counts.getAnalyzer())) {
+                    analyzers.add(counts);
+                }
+            }
+            analyzers.add(new AnalyzerErrorCounts(analyzer, 0, 0, 0, 0, 0.0, 0, 0));
+            errors.setAnalyzers(analyzers);
+            return this;
+        }
+
+        /** The exercise as one of multiple choice. */
+        Foto opcionMultiple(String quizId) {
+            entity(quizId).setMultipleChoice(new com.learney.contentaudit.coursedomain.MultipleChoiceEntity());
+            return this;
+        }
+
         /** The node without the counts of an analyzer: the report did not measure it there. */
         Foto sinContar(String id, String analyzer) {
             errorCounts(id).getAnalyzers().removeIf(counts -> analyzer.equals(counts.getAnalyzer()));
@@ -2778,6 +2798,27 @@ public class DefaultBatchComparatorTest {
                 Foto.deHoy().errors(A1, INSTRUCTION, 0, 0), null, Set.of(), Set.of(INSTRUCTION));
         assertEquals(GoalStatus.UNDECIDABLE, row(nothingEvaluated, INSTRUCTION, A1).getFloor().getStatus(),
                 "R002: a number of the base without any exercise evaluated is not a zero");
+    }
+
+    @Test
+    @DisplayName("should hold the floor of a judge in a topic where today it reads no exercise, though the base evaluated none there, and leave undecided one where it reads some")
+    @Tag("FEAT-MIDIO")
+    @Tag("F-MIDIO-R002")
+    public void shouldHoldTheFloorOfAJudgeInATopicWhereTodayItReadsNoExercise() {
+        // 5/11: «Más de una respuesta válida» reads no exercise of multiple choice; 24 topics of the C2 have only those,
+        // and their floor was left undecided because the base evaluated none there either.
+        Foto start = Foto.deHoy().errors(WITH_BE, HINT, 1, 0).errors(REGULAR, HINT, 1, 0);
+        Foto today = Foto.deHoy().nadaQueLeer(WITH_BE, HINT).errors(REGULAR, HINT, 0, 0);
+        today.opcionMultiple(SHE_IS_ENGLISH).opcionMultiple(LIVING_ROOM);
+
+        BatchComparison comparison = new Mesa().compareMeasured(
+                Foto.deHoy().nadaQueLeer(WITH_BE, HINT).errors(REGULAR, HINT, 0, 4), start, today, null, Set.of(),
+                Set.of(HINT));
+
+        assertEquals(GoalStatus.MET, row(comparison, HINT, WITH_BE).getFloor().getStatus(),
+                "R002: today the judge reads no exercise of the topic: nothing there can gain an error");
+        assertEquals(GoalStatus.UNDECIDABLE, row(comparison, HINT, REGULAR).getFloor().getStatus(),
+                "R002: where it reads some, a base that evaluated none is still not a zero");
     }
 
     @Test

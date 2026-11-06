@@ -404,14 +404,14 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         // Missing ends or mixed criteria never prove an improvement or regression.
         for (String analyzer : composer.supportedAnalyzers()) {
             if (onlyToday.contains(analyzer)) continue;
+            Set<String> same = versionsOfToday(analyzer, projected);
             for (var entry : b.entrySet()) if (entry.getValue().getTarget() == AuditTarget.QUIZ
                     && DefaultAnalysisComposer.eligible(entry.getValue(), analyzer)) {
                 var before = a.get(entry.getKey()); var after = entry.getValue();
                 String oldVersion = before == null ? null : DefaultAnalysisComposer.version(before, analyzer, baseline);
                 String newVersion = DefaultAnalysisComposer.version(after, analyzer, projected);
                 if (before == null || !DefaultAnalysisComposer.evaluated(before, analyzer)
-                        || !DefaultAnalysisComposer.evaluated(after, analyzer) || oldVersion == null || newVersion == null
-                        || !Objects.equals(oldVersion, newVersion)
+                        || !DefaultAnalysisComposer.evaluated(after, analyzer) || !sameVersion(oldVersion, newVersion, same)
                         || !Objects.equals(runtime(before, analyzer, baseline), runtime(after, analyzer, projected))) {
                     invalidate(before, analyzer); invalidate(after, analyzer);
                 }
@@ -419,7 +419,7 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
             // F-MIDIO-R002: a start that did not measure, with today's version and runtime, every exercise today measured
             // is not compared for that judge, and today keeps what it measured. When the start is the base, the base
             // already left only what both measured alike.
-            if (approved != baseline && !startMeasuredAsToday(analyzer, startIndex, b, approved, projected)) {
+            if (approved != baseline && !startMeasuredAsToday(analyzer, startIndex, b, approved, projected, same)) {
                 startNotComparable.add(analyzer);
                 // Where the start read what today reads, today's opinion is the start's: a change gains nothing there.
                 for (var entry : startIndex.entrySet()) if (entry.getValue().getTarget() == AuditTarget.QUIZ) {
@@ -432,8 +432,8 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                 var before = startIndex.get(entry.getKey()); var after = entry.getValue();
                 if (before == null || !DefaultAnalysisComposer.evaluated(before, analyzer)
                         || !DefaultAnalysisComposer.evaluated(after, analyzer)
-                        || DefaultAnalysisComposer.version(before, analyzer, approved) == null
-                        || !Objects.equals(DefaultAnalysisComposer.version(before, analyzer, approved), DefaultAnalysisComposer.version(after, analyzer, projected))
+                        || !sameVersion(DefaultAnalysisComposer.version(before, analyzer, approved),
+                                DefaultAnalysisComposer.version(after, analyzer, projected), same)
                         || !Objects.equals(runtime(before, analyzer, approved), runtime(after, analyzer, projected))) {
                     invalidate(before, analyzer); invalidate(after, analyzer);
                 }
@@ -566,30 +566,50 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
     }
     /** F-MIDIO-R002: whether the start has, for every exercise today measured, the judge's opinion with today's version and runtime. */
     private static boolean startMeasuredAsToday(String analyzer, Map<String, AuditNode> start, Map<String, AuditNode> today,
-            AuditReport approved, AuditReport projected) {
+            AuditReport approved, AuditReport projected, Set<String> same) {
         for (var entry : today.entrySet()) {
             var after = entry.getValue();
             if (after.getTarget() != AuditTarget.QUIZ || !DefaultAnalysisComposer.eligible(after, analyzer)
                     || !DefaultAnalysisComposer.evaluated(after, analyzer)) continue;
             var before = start.get(entry.getKey());
             String version = before == null ? null : DefaultAnalysisComposer.version(before, analyzer, approved);
-            if (before == null || !DefaultAnalysisComposer.evaluated(before, analyzer) || version == null
-                    || !Objects.equals(version, DefaultAnalysisComposer.version(after, analyzer, projected))
+            if (before == null || !DefaultAnalysisComposer.evaluated(before, analyzer)
+                    || !sameVersion(version, DefaultAnalysisComposer.version(after, analyzer, projected), same)
                     || !Objects.equals(runtime(before, analyzer, approved), runtime(after, analyzer, projected))) return false;
         }
         return true;
     }
+    /**
+     * F-ALDIA-R002 in the comparison: the versions that are today's version of {@code analyzer}, as today's photo names
+     * them -- its version and the ones it declares the same, as the version a judge left counted for its tests.
+     */
+    static Set<String> versionsOfToday(String analyzer, AuditReport today) {
+        Set<String> same = new HashSet<>();
+        if (today != null && today.getRoot() != null && today.getRoot().getDiagnoses() instanceof CourseDiagnoses d)
+            for (var coverage : BatchBook.list(d.getJudgeCoverages())) if (coverage != null && analyzer.equals(coverage.getJudgeName())
+                    && coverage.getStanding() != null) {
+                if (coverage.getStanding().getJudgeVersion() != null) same.add(coverage.getStanding().getJudgeVersion());
+                if (coverage.getStanding().getCompatibleJudgeVersions() != null)
+                    same.addAll(coverage.getStanding().getCompatibleJudgeVersions());
+            }
+        return same;
+    }
+    /** Two opinions of a judge are of one version when both name it: the same, or two that today's judge names as its. */
+    static boolean sameVersion(String one, String other, Set<String> same) {
+        return one != null && other != null && (one.equals(other) || same.contains(one) && same.contains(other));
+    }
     private Map<String, List<String>> comparable(AuditReport before, AuditReport after) {
         var a = DefaultAnalysisComposer.index(before.getRoot());
         var result = new LinkedHashMap<String, List<String>>();
+        var sameByJudge = new HashMap<String, Set<String>>();
         for (var n : DefaultAnalysisComposer.index(after.getRoot()).values()) if (n.getTarget() == AuditTarget.QUIZ) {
             var old = a.get(n.getEntity().getId());
             var names = new ArrayList<String>();
             if (old != null) for (String name : n.getScores().keySet()) {
                 if (!DefaultAnalysisComposer.evaluated(n, name) || !DefaultAnalysisComposer.evaluated(old, name)) continue;
                 if (!composer.supportedAnalyzers().contains(name) || (
-                        DefaultAnalysisComposer.version(old, name, before) != null
-                        && Objects.equals(DefaultAnalysisComposer.version(old, name, before), DefaultAnalysisComposer.version(n, name, after))
+                        sameVersion(DefaultAnalysisComposer.version(old, name, before), DefaultAnalysisComposer.version(n, name, after),
+                                sameByJudge.computeIfAbsent(name, judge -> versionsOfToday(judge, after)))
                         && runtime(old, name, before) != null
                         && Objects.equals(runtime(old, name, before), runtime(n, name, after)))) names.add(name);
             }
