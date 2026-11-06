@@ -566,14 +566,16 @@ public class DefaultBatchComparator implements BatchComparator {
      * F-MIDIO-R002: a judge of exercises that reads none of the node today -- «más de una respuesta válida» in a topic of
      * only multiple choice: none of its exercises is one it judges, and it left no mark on them or on the node -- has
      * nothing there that could gain an error: its floor holds, whatever the base measured. Read on the base, the same
-     * says its zero is a true one: no exercise there could have one of its errors.
+     * says its zero is a true one: no exercise there could have one of its errors. An exercise where the judge said its
+     * criterion does not apply is one it reads nothing of (F-MIDIO-R010).
      */
     private static boolean readsNothing(String subject, AnalyzerFamily family, AuditNode node) {
         if (family != AnalyzerFamily.ERRORS || DefaultGoalBook.ANY_ERROR.equals(subject) || marksUnder(node, subject)) {
             return false;
         }
         List<AuditNode> quizzes = quizzesUnder(node);
-        return !quizzes.isEmpty() && quizzes.stream().noneMatch(quiz -> DefaultAnalysisComposer.eligible(quiz, subject));
+        return !quizzes.isEmpty() && quizzes.stream().noneMatch(quiz -> DefaultAnalysisComposer.eligible(quiz, subject)
+                && !DefaultAnalysisComposer.notApplicable(quiz, subject));
     }
 
     /** Whether the judge left a mark -- a score, a «not evaluated» or an evaluation in part -- on the node or below it. */

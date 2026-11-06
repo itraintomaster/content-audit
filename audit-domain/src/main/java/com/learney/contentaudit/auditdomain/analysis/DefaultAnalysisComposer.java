@@ -373,6 +373,16 @@ public final class DefaultAnalysisComposer implements AnalysisComposer {
         return evaluated(node, analyzer) || structuredVerdict(node, analyzer);
     }
     /**
+     * F-MIDIO-R010: whether the judge closed the exercise saying its criterion does not apply -- a «no aplica» left
+     * without a score and without anything pending, so none of its errors is there. One left unevaluated, of another
+     * version or read on another input, is not.
+     */
+    public static boolean notApplicable(AuditNode node, String analyzer) {
+        return node != null && !safe(node.getUnevaluatedBy()).contains(analyzer)
+                && !safe(node.getPartiallyEvaluatedBy()).contains(analyzer)
+                && abstention(node, analyzer).filter(JudgeAbstention.NOT_APPLICABLE::equals).isPresent();
+    }
+    /**
      * F-ALDIA-R003 inv. 6: why a saved verdict carries no score -- the judge said it does not apply, that it lacks
      * context or that it needs a review --, or empty when it scored or there is no verdict. A verdict without a score
      * and without a known reason is left for review.

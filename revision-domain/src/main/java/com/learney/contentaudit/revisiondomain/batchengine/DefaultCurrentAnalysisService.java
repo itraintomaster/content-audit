@@ -413,8 +413,8 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                 if (before != null && !DefaultAnalysisComposer.eligible(before, analyzer)) continue;
                 String oldVersion = before == null ? null : DefaultAnalysisComposer.version(before, analyzer, baseline);
                 String newVersion = DefaultAnalysisComposer.version(after, analyzer, projected);
-                if (before == null || !DefaultAnalysisComposer.evaluated(before, analyzer)
-                        || !DefaultAnalysisComposer.evaluated(after, analyzer) || !sameVersion(oldVersion, newVersion, same)
+                if (before == null || !measured(before, analyzer) || !measured(after, analyzer)
+                        || !sameVersion(oldVersion, newVersion, same)
                         || !Objects.equals(runtime(before, analyzer, baseline), runtime(after, analyzer, projected))) {
                     invalidate(before, analyzer); invalidate(after, analyzer);
                 }
@@ -427,15 +427,14 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                 // Where the start read what today reads, today's opinion is the start's: a change gains nothing there.
                 for (var entry : startIndex.entrySet()) if (entry.getValue().getTarget() == AuditTarget.QUIZ) {
                     var n = entry.getValue(); var today = b.get(entry.getKey());
-                    if (today != null && DefaultAnalysisComposer.eligible(n, analyzer) && DefaultAnalysisComposer.evaluated(today, analyzer)
+                    if (today != null && DefaultAnalysisComposer.eligible(n, analyzer) && measured(today, analyzer)
                             && composer.sameInput(analyzer, n, today)) adopt(n, today, analyzer);
                     else invalidate(n, analyzer);
                 }
             } else for (var entry : b.entrySet()) if (DefaultAnalysisComposer.eligible(entry.getValue(), analyzer)) {
                 var before = startIndex.get(entry.getKey()); var after = entry.getValue();
                 if (before != null && !DefaultAnalysisComposer.eligible(before, analyzer)) continue;
-                if (before == null || !DefaultAnalysisComposer.evaluated(before, analyzer)
-                        || !DefaultAnalysisComposer.evaluated(after, analyzer)
+                if (before == null || !measured(before, analyzer) || !measured(after, analyzer)
                         || !sameVersion(DefaultAnalysisComposer.version(before, analyzer, approved),
                                 DefaultAnalysisComposer.version(after, analyzer, projected), same)
                         || !Objects.equals(runtime(before, analyzer, approved), runtime(after, analyzer, projected))) {
@@ -568,17 +567,24 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         node.getUnevaluatedBy().remove(judge);
         node.getPartiallyEvaluatedBy().remove(judge);
     }
+    /**
+     * F-MIDIO-R010: what the judge measured of the exercise -- a score, or a «no aplica» it closed: none of its errors is
+     * there --; a «revisar» or a missing context is not measured.
+     */
+    private static boolean measured(AuditNode node, String analyzer) {
+        return DefaultAnalysisComposer.evaluated(node, analyzer) || DefaultAnalysisComposer.notApplicable(node, analyzer);
+    }
     /** F-MIDIO-R002: whether the start has, for every exercise today measured, the judge's opinion with today's version and runtime. */
     private static boolean startMeasuredAsToday(String analyzer, Map<String, AuditNode> start, Map<String, AuditNode> today,
             AuditReport approved, AuditReport projected, Set<String> same) {
         for (var entry : today.entrySet()) {
             var after = entry.getValue();
             if (after.getTarget() != AuditTarget.QUIZ || !DefaultAnalysisComposer.eligible(after, analyzer)
-                    || !DefaultAnalysisComposer.evaluated(after, analyzer)) continue;
+                    || !measured(after, analyzer)) continue;
             var before = start.get(entry.getKey());
             if (before != null && !DefaultAnalysisComposer.eligible(before, analyzer)) continue;
             String version = before == null ? null : DefaultAnalysisComposer.version(before, analyzer, approved);
-            if (before == null || !DefaultAnalysisComposer.evaluated(before, analyzer)
+            if (before == null || !measured(before, analyzer)
                     || !sameVersion(version, DefaultAnalysisComposer.version(after, analyzer, projected), same)
                     || !Objects.equals(runtime(before, analyzer, approved), runtime(after, analyzer, projected))) return false;
         }

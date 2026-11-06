@@ -1430,6 +1430,61 @@ class CurrentAnalysisServiceTest {
         return r;
     }
 
+    @Tag("FEAT-MIDIO") @Tag("F-MIDIO-R010")
+    @Test void aNotApplicableOfTheJudgeIsAnOpinionThatKeepsItsPairAndAReviewIsNot() {
+        // 6/11: with the base of «Naturalidad» measured whole, 92 exercises of production where the judge said its
+        // criterion does not apply left the floors of 14 topics of the C2 undecided.
+        for (String base : List.of("NOT_APPLICABLE", "REVIEW")) for (String today : List.of("NOT_APPLICABLE", "FAIL")) {
+            saved.put(batch.getBaselineAuditId(), naturalness(base, "v1"));
+            saved.put(TandaFixture.START_AUDIT, naturalness(base, "v1"));
+            when(engine.runAudit(any(), any())).thenAnswer(i -> naturalness(today, "v1"));
+
+            var reports = service.comparisonReports(batch, course, course);
+
+            var before = child(reports.baseline()); var after = child(reports.projected());
+            long said = after.getFindings().stream().filter(f -> "naturalness".equals(f.getAnalyzer())).count();
+            if ("NOT_APPLICABLE".equals(base)) {
+                assertFalse(before.getUnevaluatedBy().contains("naturalness"), today + ": the base measured it, without errors");
+                assertFalse(after.getUnevaluatedBy().contains("naturalness"), today + ": today has its pair");
+                assertEquals("FAIL".equals(today) ? 1 : 0, said, today + ": today keeps what it said");
+            } else {
+                assertTrue(before.getUnevaluatedBy().contains("naturalness"), today + ": a «revisar» is still not measured");
+                assertTrue(after.getUnevaluatedBy().contains("naturalness"), today + ": today has no pair against it");
+            }
+        }
+
+        saved.put(batch.getBaselineAuditId(), naturalness("NOT_APPLICABLE", "v0"));
+        saved.put(TandaFixture.START_AUDIT, naturalness("NOT_APPLICABLE", "v0"));
+        when(engine.runAudit(any(), any())).thenAnswer(i -> naturalness("NOT_APPLICABLE", "v1"));
+        var other = service.comparisonReports(batch, course, course);
+        assertTrue(child(other.baseline()).getUnevaluatedBy().contains("naturalness"),
+                "a «no aplica» of a version today does not name has no pair, as any opinion");
+    }
+    /**
+     * A reading where «Naturalidad», by {@code version}, left on the child {@code status} -- PASS, FAIL, NOT_APPLICABLE
+     * or REVIEW --, closed as its analyzer closes it: a «no aplica» without a score and with nothing pending.
+     */
+    AuditReport naturalness(String status, String version) {
+        var r = report(false, false, "v1");
+        var n = child(r);
+        n.getMetadata().put("naturalnessInputContract", com.learney.contentaudit.auditdomain.englishquality.EnglishQualitySubjectBuilder.CONTRACT);
+        n.getMetadata().put("naturalnessVersion", version);
+        n.getMetadata().put("naturalnessVerdict", Map.of("assessments", List.of(Map.of("status", status))));
+        switch (status) {
+            case "PASS" -> n.getScores().put("naturalness", 1.);
+            case "FAIL" -> {
+                n.getScores().put("naturalness", 0.);
+                var f = new Finding(); f.setAnalyzer("naturalness"); f.setRule("unidiomatic-formulation");
+                f.setSeverity(FindingSeverity.MEDIUM); f.setResolution(FindingResolution.PANEL);
+                f.setNode(new FindingNodeRef(AuditTarget.QUIZ, TandaFixture.CHILD, "quiz"));
+                n.getFindings().add(f);
+            }
+            case "REVIEW" -> n.getUnevaluatedBy().add("naturalness");
+            default -> { }
+        }
+        return r;
+    }
+
     @Tag("FEAT-MIDIO") @Tag("F-MIDIO-R002")
     @Test void aStartMeasuredWithTodaysVersionAndRuntimeIsComparedAsAlways() {
         var reports = compared("v1", null);

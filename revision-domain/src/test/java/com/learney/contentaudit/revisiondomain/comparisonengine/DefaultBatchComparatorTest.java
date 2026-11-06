@@ -1735,6 +1735,22 @@ public class DefaultBatchComparatorTest {
             return this;
         }
 
+        /**
+         * Every exercise below the node with the «no aplica» of «Naturalidad», closed as its analyzer closes it: a saved
+         * verdict without a score and with nothing pending (F-MIDIO-R010).
+         */
+        Foto noAplica(String id) {
+            for (AuditNode quiz : nodes.values()) {
+                if (quiz.getTarget() == AuditTarget.QUIZ && isAbove(nodes.get(id), quiz)) {
+                    quiz.getMetadata().put(NATURALNESS + "InputContract",
+                            com.learney.contentaudit.auditdomain.englishquality.EnglishQualitySubjectBuilder.CONTRACT);
+                    quiz.getMetadata().put(NATURALNESS + "Verdict",
+                            Map.of("assessments", List.of(Map.of("status", "NOT_APPLICABLE"))));
+                }
+            }
+            return this;
+        }
+
         /** The exercise as one of multiple choice. */
         Foto opcionMultiple(String quizId) {
             entity(quizId).setMultipleChoice(new com.learney.contentaudit.coursedomain.MultipleChoiceEntity());
@@ -2850,6 +2866,41 @@ public class DefaultBatchComparatorTest {
                 Set.of(MULTIPLE_CHOICE_VALIDITY));
         assertEquals(GoalStatus.UNDECIDABLE, row(read, MULTIPLE_CHOICE_VALIDITY, WITH_BE).getFloor().getStatus(),
                 "R002: a base that read an exercise of it and evaluated none is still not a zero");
+    }
+
+    @Test
+    @DisplayName("should count as a zero the base of a judge in a topic where it said its criterion does not apply to every exercise, and hold the floor where today says the same, while one it left to review stays undecided")
+    @Tag("FEAT-MIDIO")
+    @Tag("F-MIDIO-R010")
+    public void shouldCountAsAZeroTheBaseOfAJudgeThatSaidItsCriterionDoesNotApplyThere() {
+        // 6/11: with the base of «Naturalidad» measured whole, 92 exercises of production where the judge said its
+        // criterion does not apply -- every exercise of «Doble consonante y e» -- left the floors of 14 topics undecided.
+        for (int withError : List.of(0, 1)) {
+            Foto today = hoy(NATURALNESS).errors(WITH_BE, NATURALNESS, withError, 0);
+            BatchComparison comparison = new Mesa().catalog(CARDS_WITH_JUDGES).compareMeasured(
+                    hoy(NATURALNESS).nadaQueLeer(WITH_BE, NATURALNESS).noAplica(WITH_BE),
+                    hoy(NATURALNESS).nadaQueLeer(WITH_BE, NATURALNESS).noAplica(WITH_BE), today, null, Set.of(),
+                    Set.of(NATURALNESS));
+
+            assertEquals(withError == 0 ? GoalStatus.MET : GoalStatus.NOT_MET,
+                    row(comparison, NATURALNESS, WITH_BE).getFloor().getStatus(),
+                    "R010: where the base said «no aplica» there is none of its errors: " + withError);
+        }
+
+        BatchComparison same = new Mesa().catalog(CARDS_WITH_JUDGES).compareMeasured(
+                hoy(NATURALNESS).nadaQueLeer(WITH_BE, NATURALNESS).noAplica(WITH_BE),
+                hoy(NATURALNESS).nadaQueLeer(WITH_BE, NATURALNESS).noAplica(WITH_BE),
+                hoy(NATURALNESS).nadaQueLeer(WITH_BE, NATURALNESS).noAplica(WITH_BE), null, Set.of(), Set.of(NATURALNESS));
+        assertEquals(GoalStatus.MET, row(same, NATURALNESS, WITH_BE).getFloor().getStatus(),
+                "R010: «no aplica» on both sides holds the floor");
+
+        Foto review = hoy(NATURALNESS).nadaQueLeer(WITH_BE, NATURALNESS).noAplica(WITH_BE)
+                .unevaluated(SHE_IS_ENGLISH, NATURALNESS);
+        BatchComparison pending = new Mesa().catalog(CARDS_WITH_JUDGES).compareMeasured(review,
+                hoy(NATURALNESS).nadaQueLeer(WITH_BE, NATURALNESS).noAplica(WITH_BE),
+                hoy(NATURALNESS).errors(WITH_BE, NATURALNESS, 0, 0), null, Set.of(), Set.of(NATURALNESS));
+        assertEquals(GoalStatus.UNDECIDABLE, row(pending, NATURALNESS, WITH_BE).getFloor().getStatus(),
+                "R010: an exercise of the base left to review is not a zero");
     }
 
     @Test

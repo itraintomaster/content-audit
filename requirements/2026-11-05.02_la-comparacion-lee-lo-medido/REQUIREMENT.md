@@ -168,6 +168,24 @@ ese ejercicio y que no tenga una lista de jueces vieja.
 > comparación; «Opción múltiple mal armada», 190; «Calidad de distractores», 94; y «Ejercicio casi repetido», que en su
 > medición leyó veredictos de las dos versiones, quedaba sin versión en los 2.402.
 
+<a id="F-MIDIO-R010"></a>
+### Rule[F-MIDIO-R010] - Un «no aplica» es una opinión medida
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+> Cuando un juez se abstiene diciendo que su criterio no aplica al ejercicio, ese ejercicio está medido: no tiene
+> ningún error de ese juez ([F-CONTR-R001](../2026-11-02.01_un-contrato-para-todos-los-evaluadores/REQUIREMENT.md)).
+> La comparación lo empareja como cualquier opinión, con la misma versión y el mismo motor de los dos lados: un «no
+> aplica» de la Base contra un error de «Hoy» cuenta ese error, y un «no aplica» de los dos lados no cambia nada. Un
+> tema donde el juez dijo «no aplica» en todos sus ejercicios tiene en la Base un cero cierto, y en «Hoy» cumple su
+> piso, como uno donde el juez no lee ninguno (R002).
+>
+> «Revisar» y «falta contexto» siguen sin medir: dejan el piso abierto hasta que el juez decida. Un «no aplica» de una
+> versión que el juez de hoy no nombra sigue sin par.
+>
+> El 6/11/2026, con la Base de «Naturalidad» medida entera, la C2 de A1 dejaba sin decidir 14 renglones de ese juez: 92
+> ejercicios de producción donde el juez dijo «no aplica» —todos los de «Doble consonante y e»— se descartaban de los
+> dos lados, como si no se hubieran medido.
+
 ## Contexto
 
 - **La Base, el Inicio y «Hoy»**: la Base es producción; el Inicio, de dónde arrancó la corrección; «Hoy», el curso con
@@ -190,6 +208,7 @@ ese ejercicio y que no tenga una lista de jueces vieja.
 | R007 | `CurrentAnalysisServiceTest`: la corrección de A1 se compara en A1: la Base, el Inicio y «Hoy» tienen sólo A1, y el curso que recibió no se recorta |
 | R008 | `CurrentAnalysisServiceTest`: el analizador de vocabulario mide el curso entero en la Base, el Inicio y «Hoy», cada uno con su A1 y con el A2 del Inicio; el nivel conserva su número y la comparación sigue leyendo A1 |
 | R009 | `CurrentAnalysisServiceTest`: una opinión de la Base y del Inicio con una versión que el juez de hoy declara la misma conserva su par; con una que no nombra, no. `RunVersionOfAJudgeTest`: una medición con veredictos de dos versiones que el juez declara la misma es de la versión de hoy; si una no la nombra, no tiene versión |
+| R010 | `CurrentAnalysisServiceTest`: un «no aplica» de la Base conserva su par con el «no aplica» y con el error de «Hoy», que se cuenta; un «revisar» de la Base no tiene par; un «no aplica» de otra versión tampoco. `DefaultBatchComparatorTest`: un tema donde la Base dijo «no aplica» en todos sus ejercicios se cuenta desde cero y cumple o rompe su piso según «Hoy»; con «no aplica» de los dos lados cumple; con un ejercicio de la Base para revisar sigue sin decidir |
 
 ## References
 
