@@ -133,11 +133,24 @@ final class EvaluatorContract {
         }
         // 5. From medium up. F-CONTR-R002: the production sentence is not the exercise's; F-CONTR-R003: a disagreement
         // waits for the tiebreak unless the same evaluator already fails it for something else.
-        List<Finding> own = BatchBook.list(node.getFindings()).stream()
-                .filter(f -> evaluator.equals(f.getAnalyzer()) && !DefaultQuizCorrectionService.waitsForPublishing(f)).toList();
+        List<Finding> own = own(node, evaluator);
         if (own.stream().anyMatch(f -> !DISAGREEMENT.equals(f.getRule()) && serious(f))) return new Assessment(Standing.FAILS, "finding");
         if (own.stream().anyMatch(f -> DISAGREEMENT.equals(f.getRule()))) return new Assessment(Standing.MISSING, DISAGREEMENT);
         return new Assessment(Standing.PASSES, own.isEmpty() ? "clean" : "minor");
+    }
+
+    /**
+     * F-CONTR-R001 step 5 alone: none of the evaluator's findings on the exercise stops it or waits for the tiebreak of
+     * its two judges -- what it opined there is fine.
+     */
+    static boolean nothingStops(AuditNode node, String evaluator) {
+        return own(node, evaluator).stream().noneMatch(f -> DISAGREEMENT.equals(f.getRule()) || serious(f));
+    }
+
+    /** The evaluator's findings on the exercise; F-CONTR-R002: the production sentence is not the exercise's. */
+    private static List<Finding> own(AuditNode node, String evaluator) {
+        return BatchBook.list(node.getFindings()).stream()
+                .filter(f -> evaluator.equals(f.getAnalyzer()) && !DefaultQuizCorrectionService.waitsForPublishing(f)).toList();
     }
 
     /** F-CONTR-R004: the reviewer's mark on the exercise the batch changed; an exercise it did not change is not its. */

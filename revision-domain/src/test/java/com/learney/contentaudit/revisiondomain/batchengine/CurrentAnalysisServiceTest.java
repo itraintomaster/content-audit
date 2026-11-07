@@ -1460,6 +1460,54 @@ class CurrentAnalysisServiceTest {
         assertTrue(child(other.baseline()).getUnevaluatedBy().contains("naturalness"),
                 "a «no aplica» of a version today does not name has no pair, as any opinion");
     }
+    @Tag("FEAT-MIDIO") @Tag("F-MIDIO-R011")
+    @Test void anExerciseTheBaseDidNotMeasureKeepsTodaysOpinionWhenTodayFindsNothingThatStopsItAndStaysOpenOtherwise() {
+        // 7/11: production left «revisar» on «I can't find ___ (her / hers) child.»; the C2 rewrote it and Didáctica A1
+        // found it fine, and «Adjetivo o pronombre» stayed undecided all the same, as five more topics of the C2.
+        when(catalog.list()).thenReturn(List.of(provider.describe(), paid("naturalness")));
+        for (String today : List.of("PASS", "NOT_APPLICABLE", "FAIL", "REVIEW")) {
+            saved.put(batch.getBaselineAuditId(), naturalness("REVIEW", "v1"));
+            saved.put(TandaFixture.START_AUDIT, naturalness("REVIEW", "v1"));
+            when(engine.runAudit(any(), any())).thenAnswer(i -> naturalness(today, "v1"));
+
+            var reports = service.comparisonReports(batch, course, course);
+
+            boolean fine = "PASS".equals(today) || "NOT_APPLICABLE".equals(today);
+            assertTrue(child(reports.baseline()).getUnevaluatedBy().contains("naturalness"),
+                    today + ": the base still has no pair, so nothing proves an improvement");
+            assertEquals(!fine, child(reports.projected()).getUnevaluatedBy().contains("naturalness"),
+                    today + ": today keeps only an opinion with nothing that stops the exercise");
+            assertEquals(fine ? 0 : 1, notEvaluated(child(reports.projected()), "naturalness"), today + ": what stays open");
+            assertFalse(reports.startNotComparable().contains("naturalness"),
+                    today + ": nor does it change whether the start is compared");
+        }
+
+        // Only a judge of errors: one today's catalog does not know as such has no errors to have gained or not.
+        when(catalog.list()).thenReturn(List.of(provider.describe()));
+        when(engine.runAudit(any(), any())).thenAnswer(i -> naturalness("PASS", "v1"));
+        assertTrue(child(service.comparisonReports(batch, course, course).projected()).getUnevaluatedBy().contains("naturalness"),
+                "a judge the catalog does not know stays open");
+
+        // An opinion of a version today's judge does not name is not today's: it stays open, as always.
+        for (boolean named : List.of(true, false)) {
+            Set<String> same = named ? Set.of("v0", "v1") : Set.of("v1");
+            saved.put(batch.getBaselineAuditId(), readingAnotherExercise(true));
+            saved.put(TandaFixture.START_AUDIT, readingAnotherExercise(true));
+            saved.put("r1", declaring(report(true, false, "v0"), same));
+            when(engine.runAudit(any(), any())).thenAnswer(i -> declaring(report(true, false, "v0"), same));
+
+            var reports = service.comparisonReports(batch, course, course);
+
+            assertEquals(named, DefaultAnalysisComposer.evaluated(child(reports.projected()), NAME),
+                    named ? "a version today's judge names as its own is today's" : "another version is not today's");
+        }
+    }
+    /** What a judge left open of a node: the exercises it reads there and did not evaluate. */
+    static int notEvaluated(AuditNode node, String judge) {
+        var errors = node.getNumbers() == null ? null : node.getNumbers().getErrors();
+        return errors == null ? 0 : BatchBook.list(errors.getAnalyzers()).stream()
+                .filter(c -> judge.equals(c.getAnalyzer())).mapToInt(c -> c.getNotEvaluated()).sum();
+    }
     /**
      * A reading where «Naturalidad», by {@code version}, left on the child {@code status} -- PASS, FAIL, NOT_APPLICABLE
      * or REVIEW --, closed as its analyzer closes it: a «no aplica» without a score and with nothing pending.

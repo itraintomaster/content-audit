@@ -401,10 +401,12 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         AuditReport alone = onlyToday.isEmpty() ? null : composer.compose(projected, List.of());
         for (String judge : onlyToday) for (var index : List.of(a, startIndex, b)) for (var n : index.values()) forget(n, judge);
         Set<String> startNotComparable = new TreeSet<>();
+        Set<String> ofErrors = judgesOfErrors();
         // Missing ends or mixed criteria never prove an improvement or regression.
         for (String analyzer : composer.supportedAnalyzers()) {
             if (onlyToday.contains(analyzer)) continue;
             Set<String> same = versionsOfToday(analyzer, projected);
+            Set<String> fineWithoutPair = new HashSet<>();
             for (var entry : b.entrySet()) if (entry.getValue().getTarget() == AuditTarget.QUIZ
                     && DefaultAnalysisComposer.eligible(entry.getValue(), analyzer)) {
                 var before = a.get(entry.getKey()); var after = entry.getValue();
@@ -416,13 +418,16 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                 if (before == null || !measured(before, analyzer) || !measured(after, analyzer)
                         || !sameVersion(oldVersion, newVersion, same)
                         || !Objects.equals(runtime(before, analyzer, baseline), runtime(after, analyzer, projected))) {
-                    invalidate(before, analyzer); invalidate(after, analyzer);
+                    invalidate(before, analyzer);
+                    if (fineToday(after, analyzer, projected, same, ofErrors)) fineWithoutPair.add(entry.getKey());
+                    else invalidate(after, analyzer);
                 }
             }
             // F-MIDIO-R002: a start that did not measure, with today's version and runtime, every exercise today measured
             // is not compared for that judge, and today keeps what it measured. When the start is the base, the base
             // already left only what both measured alike.
-            if (approved != baseline && !startMeasuredAsToday(analyzer, startIndex, b, approved, projected, same)) {
+            if (approved != baseline
+                    && !startMeasuredAsToday(analyzer, startIndex, b, approved, projected, same, fineWithoutPair)) {
                 startNotComparable.add(analyzer);
                 // Where the start read what today reads, today's opinion is the start's: a change gains nothing there.
                 for (var entry : startIndex.entrySet()) if (entry.getValue().getTarget() == AuditTarget.QUIZ) {
@@ -438,7 +443,8 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                         || !sameVersion(DefaultAnalysisComposer.version(before, analyzer, approved),
                                 DefaultAnalysisComposer.version(after, analyzer, projected), same)
                         || !Objects.equals(runtime(before, analyzer, approved), runtime(after, analyzer, projected))) {
-                    invalidate(before, analyzer); invalidate(after, analyzer);
+                    invalidate(before, analyzer);
+                    if (!fineToday(after, analyzer, projected, same, ofErrors)) invalidate(after, analyzer);
                 }
             }
             for (var n : startIndex.values()) if (n.getTarget() != AuditTarget.QUIZ) n.getScores().remove(analyzer);
@@ -574,13 +580,16 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
     private static boolean measured(AuditNode node, String analyzer) {
         return DefaultAnalysisComposer.evaluated(node, analyzer) || DefaultAnalysisComposer.notApplicable(node, analyzer);
     }
-    /** F-MIDIO-R002: whether the start has, for every exercise today measured, the judge's opinion with today's version and runtime. */
+    /**
+     * F-MIDIO-R002: whether the start has, for every exercise today measured, the judge's opinion with today's version and
+     * runtime. What today keeps without a pair in the base (R011) does not decide it: it was left out as unmeasured.
+     */
     private static boolean startMeasuredAsToday(String analyzer, Map<String, AuditNode> start, Map<String, AuditNode> today,
-            AuditReport approved, AuditReport projected, Set<String> same) {
+            AuditReport approved, AuditReport projected, Set<String> same, Set<String> fineWithoutPair) {
         for (var entry : today.entrySet()) {
             var after = entry.getValue();
             if (after.getTarget() != AuditTarget.QUIZ || !DefaultAnalysisComposer.eligible(after, analyzer)
-                    || !measured(after, analyzer)) continue;
+                    || !measured(after, analyzer) || fineWithoutPair.contains(entry.getKey())) continue;
             var before = start.get(entry.getKey());
             if (before != null && !DefaultAnalysisComposer.eligible(before, analyzer)) continue;
             String version = before == null ? null : DefaultAnalysisComposer.version(before, analyzer, approved);
@@ -604,6 +613,25 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
                     same.addAll(coverage.getStanding().getCompatibleJudgeVersions());
             }
         return same;
+    }
+    /**
+     * F-MIDIO-R011 (José, 7/11/2026, brief 280): an exercise a judge of errors measured today, with today's version, and
+     * found nothing on that stops it cannot have gained one of its errors, whatever the other side read of it -- a
+     * «revisar», another version, nothing --: today keeps that opinion and the exercise does not stay open. The other
+     * side still has no pair there, so it proves no improvement. F-CONTR-R003: without a version of today, any counts.
+     */
+    private static boolean fineToday(AuditNode after, String analyzer, AuditReport projected, Set<String> same,
+            Set<String> ofErrors) {
+        if (!ofErrors.contains(analyzer) || !measured(after, analyzer)) return false;
+        if (!same.isEmpty() && !same.contains(DefaultAnalysisComposer.version(after, analyzer, projected))) return false;
+        return EvaluatorContract.nothingStops(after, analyzer);
+    }
+    /** The analyzers of the errors family in today's catalog. */
+    private Set<String> judgesOfErrors() {
+        Set<String> names = new HashSet<>();
+        if (config.getAnalyzerCatalog() != null) for (var card : BatchBook.list(config.getAnalyzerCatalog().list()))
+            if (card != null && card.getFamily() == AnalyzerFamily.ERRORS) names.add(card.getName());
+        return names;
     }
     /** Two opinions of a judge are of one version when both name it: the same, or two that today's judge names as its. */
     static boolean sameVersion(String one, String other, Set<String> same) {

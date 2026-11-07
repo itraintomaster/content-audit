@@ -179,12 +179,32 @@ ese ejercicio y que no tenga una lista de jueces vieja.
 > tema donde el juez dijo «no aplica» en todos sus ejercicios tiene en la Base un cero cierto, y en «Hoy» cumple su
 > piso, como uno donde el juez no lee ninguno (R002).
 >
-> «Revisar» y «falta contexto» siguen sin medir: dejan el piso abierto hasta que el juez decida. Un «no aplica» de una
-> versión que el juez de hoy no nombra sigue sin par.
+> «Revisar» y «falta contexto» siguen sin medir: dejan el piso abierto hasta que el juez decida, salvo donde «Hoy» lo
+> midió sin nada que frene el ejercicio (R011). Un «no aplica» de una versión que el juez de hoy no nombra sigue sin par.
 >
 > El 6/11/2026, con la Base de «Naturalidad» medida entera, la C2 de A1 dejaba sin decidir 14 renglones de ese juez: 92
 > ejercicios de producción donde el juez dijo «no aplica» —todos los de «Doble consonante y e»— se descartaban de los
 > dos lados, como si no se hubieran medido.
+
+<a id="F-MIDIO-R011"></a>
+### Rule[F-MIDIO-R011] - Lo que hoy está bien no deja abierto el piso
+**Severity**: critical | **Validation**: VALIDATED
+
+> Un ejercicio que el otro lado —la Base o el Inicio— no midió de un juez de errores (el juez dijo «revisar», le faltó
+> contexto, lo midió una versión que el juez de hoy no nombra o no lo midió) y que «Hoy» midió con la versión de hoy
+> sin nada que lo frene —ningún error de gravedad media para arriba y ningún desacuerdo esperando su desempate
+> ([F-CONTR-R001](../2026-11-02.01_un-contrato-para-todos-los-evaluadores/REQUIREMENT.md))— no deja abierto el piso:
+> no pudo haber ganado un error de ese juez, tuviera lo que tuviera en producción. «Hoy» conserva esa opinión.
+>
+> El otro lado sigue sin par en ese ejercicio, así que no prueba ninguna mejora: el número de la Base no lo cuenta.
+> Tampoco decide si el Inicio se compara (R002): antes quedaba afuera como no medido.
+>
+> Sigue abierto lo que hoy tiene un error, lo que hoy tampoco se midió y lo que hoy midió una versión que el juez no
+> nombra. Un juez que el catálogo de hoy no tiene como juez de errores no entra en esta regla.
+>
+> Decisión de José del 7/11/2026 (brief 280, pregunta 4: «Sí»). La C2 de A1 tenía 6 renglones sin decidir por esto:
+> producción dejó «revisar» en «I can't find ___ (her / hers) child.» y otros seis ejercicios que la C2 reescribió, y
+> Didáctica A1 y Naturalidad los encontraban bien en la C2.
 
 ## Contexto
 
@@ -209,6 +229,7 @@ ese ejercicio y que no tenga una lista de jueces vieja.
 | R008 | `CurrentAnalysisServiceTest`: el analizador de vocabulario mide el curso entero en la Base, el Inicio y «Hoy», cada uno con su A1 y con el A2 del Inicio; el nivel conserva su número y la comparación sigue leyendo A1 |
 | R009 | `CurrentAnalysisServiceTest`: una opinión de la Base y del Inicio con una versión que el juez de hoy declara la misma conserva su par; con una que no nombra, no. `RunVersionOfAJudgeTest`: una medición con veredictos de dos versiones que el juez declara la misma es de la versión de hoy; si una no la nombra, no tiene versión |
 | R010 | `CurrentAnalysisServiceTest`: un «no aplica» de la Base conserva su par con el «no aplica» y con el error de «Hoy», que se cuenta; un «revisar» de la Base no tiene par; un «no aplica» de otra versión tampoco. `DefaultBatchComparatorTest`: un tema donde la Base dijo «no aplica» en todos sus ejercicios se cuenta desde cero y cumple o rompe su piso según «Hoy»; con «no aplica» de los dos lados cumple; con un ejercicio de la Base para revisar sigue sin decidir |
+| R011 | `CurrentAnalysisServiceTest`: frente a un «revisar» de la Base y del Inicio, «Hoy» conserva su opinión cuando dice «bien» o «no aplica» —el ejercicio no queda abierto, la Base sigue sin par y el Inicio se sigue comparando— y la descarta cuando dice un error o «revisar»; un juez que el catálogo no tiene como juez de errores sigue abierto; una opinión de una versión que el juez de hoy nombra se conserva, y una que no nombra, no |
 
 ## References
 
