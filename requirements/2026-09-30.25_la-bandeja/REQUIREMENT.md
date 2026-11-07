@@ -92,6 +92,12 @@ Un ejercicio de opcion multiple conserva sus opciones: su orden, sus nombres y c
 ejercicio, y lo que José escribe entre corchetes dice cual de ellas es la correcta. Si lo que escribio no es una de sus
 opciones, el arreglo no se mide y José ve las opciones que tiene el ejercicio.
 
+**Criterio** (7/11/2026, brief 280): José puede escribir las opciones de un ejercicio de opcion multiple en una linea
+«Opciones: a · b» del archivo, en cualquier lugar. Entonces el arreglo tiene esas opciones, en ese orden; una que el
+ejercicio ya tenia conserva su identidad, y lo que José escribe entre corchetes sigue diciendo cual es la correcta. Un
+arreglo con opciones para un ejercicio que no es de opcion multiple no se mide. En la C2 de A1, «Do you have ___ DVDs at
+home?» ofrecia «any · a», y en una pregunta «some» tambien vale: el arreglo pasa a negativa y vuelve a ofrecer «some».
+
 **Evidencia 5/11/2026.** Para que «A: Can you and your brother write on the board? B: Yes, ___.» midiera el largo de A1,
 José pidio acortarla a mano (brief 273). Su linea, leida sola, era un hueco para escribir: el ejercicio habria entrado sin
 sus seis opciones.

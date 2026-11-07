@@ -7,6 +7,8 @@ import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
 import com.learney.contentaudit.auditdomain.studentview.StudentGapView;
 import com.learney.contentaudit.auditdomain.studentview.StudentOptionView;
 import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceConverter;
 import com.learney.contentaudit.revisiondomain.batch.BatchNotPublishableException;
@@ -62,7 +64,8 @@ import picocli.CommandLine.Parameters;
                 + "  tray publish [--note <text>]%n%n"
                 + "Answers: IS_ERROR, NOT_ERROR, PASSES, DOES_NOT_PASS, KEEP_ORIGINAL, APPROVE_CANDIDATE, WRITE_FIX,"
                 + " RULE_OK, DROP_CHANGE, DROP_RULE; a pair of the blind sample takes A, B, iguales or ambos with --pair."
-                + "%nThe fix of WRITE_FIX is a file: exercise, translation and optional quiz-local mini theory, one per line."
+                + "%nThe fix of WRITE_FIX is a file: exercise, translation and optional quiz-local mini theory, one per line;"
+                + "%na line «Opciones: a · b» gives the options of a multiple choice exercise."
                 + "%nwrite takes the same file for an exercise the tray does not ask about; it enters as José's change.",
         mixinStandardHelpOptions = true,
         footer = {
@@ -78,6 +81,9 @@ import picocli.CommandLine.Parameters;
         }
 )
 final class TrayCmd implements TrayCommand, Callable<Integer> {
+    /** The line of José's fix that names the options of a multiple choice exercise. */
+    private static final String OPTIONS = "opciones:";
+
     private final TrayService trayService;
 
     private final QuizSentenceConverter quizSentenceConverter;
@@ -372,11 +378,21 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
         return 0;
     }
 
-    /** José's fix: course notation, translation, and optionally its quiz-local mini theory, one per nonblank line. */
+    /**
+     * José's fix: course notation, translation, and optionally its quiz-local mini theory, one per nonblank line. A line
+     * «Opciones: a · b» anywhere gives the options of a multiple choice exercise (F-BANDEJA-R003).
+     */
     private PanelCandidate fix(String quizId, Path file) throws IOException {
         List<String> lines = new ArrayList<>();
+        List<String> options = new ArrayList<>();
         for (String line : Files.readAllLines(file, StandardCharsets.UTF_8)) {
-            if (!line.isBlank()) {
+            if (line.strip().toLowerCase(Locale.ROOT).startsWith(OPTIONS)) {
+                for (String option : line.strip().substring(OPTIONS.length()).split("[·|]")) {
+                    if (!option.isBlank()) {
+                        options.add(option.strip());
+                    }
+                }
+            } else if (!line.isBlank()) {
                 lines.add(line.strip());
             }
         }
@@ -393,6 +409,10 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
         }
         if (lines.size() > 2) {
             quiz.setMiniTheory(lines.get(2));
+        }
+        if (!options.isEmpty()) {
+            form.setMultipleChoice(new MultipleChoiceEntity(null, options.stream()
+                    .map(label -> new MultipleChoiceItemEntity(label, 0.0, label)).toList()));
         }
         return new PanelCandidate(PanelCandidateKind.WHOLE_EXERCISE, quiz, null, null, "arreglo de José");
     }

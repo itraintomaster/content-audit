@@ -168,6 +168,29 @@ public class TrayCmdTest {
         }
     }
 
+    @Test
+    @DisplayName("should read the options José writes for a multiple choice exercise from a line «Opciones:» of his fix")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R003")
+    public void shouldReadTheOptionsJoseWritesForAMultipleChoiceExerciseFromAnOptionsLineOfHisFix() {
+        // R003, 7/11: «Do you have ___ DVDs at home?» offers «any · a»; José's fix brings back «some» in a negative.
+        Bandeja bandeja = new Bandeja();
+        Path file = write(workdir.resolve("arreglo-dvds.txt"),
+                "I don't have ____ [any] DVDs at home.\n"
+                        + "Opciones: any · some\n"
+                        + "No tengo ningún DVD en casa.\n");
+
+        Run run = run(bandeja, "write", DANCE, "--fix", file.toString(), "--note", "con some");
+
+        assertEquals(0, run.exit(), run.err());
+        PanelCandidate fix = bandeja.written.get(0).fix();
+        assertEquals(List.of("any", "some"), fix.getQuiz().getForm().getMultipleChoice().getItems().stream()
+                .map(item -> item.getLabel()).toList(), "his options, in his order");
+        assertEquals(List.of("any"), fix.getQuiz().getForm().getSentenceParts().get(1).getOptions(), "the right one");
+        assertEquals("No tengo ningún DVD en casa.", fix.getQuiz().getTranslation(), "the options line is not the translation");
+        assertEquals(null, fix.getQuiz().getMiniTheory(), "nor a mini theory");
+    }
+
     private static Path write(Path file, String content) {
         try {
             return Files.writeString(file, content, StandardCharsets.UTF_8);

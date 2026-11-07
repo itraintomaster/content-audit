@@ -17,7 +17,8 @@ import java.util.List;
  * F-BANDEJA-R003: el arreglo que escribe José se arma sobre el ejercicio como está en la tanda. Su línea dice las partes
  * del enunciado y las respuestas de cada hueco; la clase del formulario, su incidencia, sus nombres y el texto de cada
  * hueco quedan como los tiene el ejercicio, y un hueco nuevo nace como sus hermanos (F-RPRES-R006). Un ejercicio de
- * opción múltiple conserva sus opciones: lo que José escribe en el hueco dice cuál de ellas es la correcta.
+ * opción múltiple conserva sus opciones, salvo que José escriba las suyas: lo que José escribe en el hueco dice cuál de
+ * ellas es la correcta.
  */
 final class JosesFix {
 
@@ -27,10 +28,11 @@ final class JosesFix {
     }
 
     /**
-     * El arreglo sobre {@code exercise}. En uno de opción múltiple, la respuesta escrita tiene que ser una de sus opciones.
+     * El arreglo sobre {@code exercise}. En uno de opción múltiple, las opciones son las que José escribió o, si no
+     * escribió ninguna, las del ejercicio, y la respuesta escrita tiene que ser una de ellas.
      *
      * @throws IllegalArgumentException si la respuesta del arreglo de un ejercicio de opción múltiple no es una de sus
-     *         opciones
+     *         opciones, o si el arreglo trae opciones y el ejercicio no es de opción múltiple
      */
     static PanelCandidate restedOn(PanelCandidate fix, QuizTemplateEntity exercise) {
         if (fix == null || fix.getQuiz() == null || fix.getQuiz().getForm() == null || exercise == null
@@ -38,6 +40,11 @@ final class JosesFix {
             return fix;
         }
         boolean choice = FormEntities.formKind(exercise.getForm()) == FormKind.MULTIPLE_CHOICE;
+        List<String> offered = offered(fix.getQuiz().getForm().getMultipleChoice());
+        if (!choice && offered != null) {
+            throw new IllegalArgumentException("El ejercicio no es de opción múltiple: el arreglo no puede traer opciones («"
+                    + String.join("», «", offered) + "»).");
+        }
         List<SentencePartEntity> base = exercise.getForm().getSentenceParts() != null
                 ? exercise.getForm().getSentenceParts() : List.of();
         List<SentencePartEntity> parts = new ArrayList<>();
@@ -59,7 +66,7 @@ final class JosesFix {
         FormEntity form = FormEntities.copyOf(exercise.getForm());
         form.setSentenceParts(parts);
         if (choice) {
-            form.setMultipleChoice(marked(exercise.getForm().getMultipleChoice(), answers));
+            form.setMultipleChoice(marked(exercise.getForm().getMultipleChoice(), offered, answers));
         }
         QuizTemplateEntity quiz = JSON.convertValue(fix.getQuiz(), QuizTemplateEntity.class);
         quiz.setForm(form);
@@ -67,10 +74,16 @@ final class JosesFix {
                 fix.getRationale());
     }
 
-    /** Las opciones del ejercicio, en su orden y con sus nombres: la que José escribió, correcta; las demás, no. */
-    private static MultipleChoiceEntity marked(MultipleChoiceEntity options, List<String> answers) {
-        List<MultipleChoiceItemEntity> items = options != null && options.getItems() != null ? options.getItems()
+    /**
+     * Las opciones del arreglo, en su orden y con sus nombres -- las de José si escribió alguna, si no las del ejercicio --:
+     * la que José escribió en el hueco, correcta; las demás, no. Una opción que el ejercicio ya tenía conserva su id.
+     */
+    private static MultipleChoiceEntity marked(MultipleChoiceEntity options, List<String> offered, List<String> answers) {
+        List<MultipleChoiceItemEntity> own = options != null && options.getItems() != null ? options.getItems()
                 : List.of();
+        List<MultipleChoiceItemEntity> items = offered == null ? own : offered.stream()
+                .map(label -> own.stream().filter(item -> item != null && label.equals(item.getLabel())).findFirst()
+                        .orElse(new MultipleChoiceItemEntity(label, 0.0, label))).toList();
         String answer = answers.size() == 1 ? answers.get(0).strip() : null;
         if (answer == null || items.stream().noneMatch(item -> item != null && answer.equals(item.getLabel()))) {
             throw new IllegalArgumentException("El ejercicio es de opción múltiple: entre corchetes va cuál de sus opciones"
@@ -83,7 +96,15 @@ final class JosesFix {
             marked.add(item == null ? null : new MultipleChoiceItemEntity(item.getId(),
                     answer.equals(item.getLabel()) ? 1.0 : 0.0, item.getLabel()));
         }
-        return new MultipleChoiceEntity(options.getSelection(), marked);
+        return new MultipleChoiceEntity(options != null ? options.getSelection() : null, marked);
+    }
+
+    /** Las opciones que José escribió en su arreglo, o null si no escribió ninguna. */
+    private static List<String> offered(MultipleChoiceEntity written) {
+        List<String> labels = written == null || written.getItems() == null ? List.of() : written.getItems().stream()
+                .filter(item -> item != null && item.getLabel() != null && !item.getLabel().isBlank())
+                .map(item -> item.getLabel().strip()).toList();
+        return labels.isEmpty() ? null : labels;
     }
 
     /** El texto del hueco en la misma posición del ejercicio; si ahí no hay hueco, el de su primer hueco; si no, vacío. */

@@ -358,6 +358,54 @@ public class DefaultTrayServiceTest {
     }
 
     @Test
+    @DisplayName("should take the options José writes for a multiple choice exercise, his answer saying which one is right")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R003")
+    public void shouldTakeTheOptionsJoseWritesForAMultipleChoiceExercise() {
+        // R003, 7/11 (brief 280): «Do you have ___ DVDs at home?» offers «any · a», and in a question «some» also works.
+        // José's fix goes negative and brings «some» back: his options replace the exercise's.
+        BandejaFixture.Bandeja bandeja = opened();
+        QuizTemplateEntity exercise = TandaFixture.exercise(bandeja.course, BandejaFixture.TEA);
+        exercise.setForm(choosing(exercise.getForm(), "drink", "drinks", "drank"));
+        exercise.getForm().getMultipleChoice().getItems().forEach(item -> item.setId("id-" + item.getLabel()));
+        bandeja.panels.assess = (work, candidate) -> new PanelDecision(MesaFixture.AFIRMATIVAS, List.of(BandejaFixture.TEA),
+                List.of("t-tea"), PanelOutcomeKind.NO_WINNER, null, null, List.of(), 1, List.of(), candidate, null,
+                List.of(), 4);
+        PanelCandidate fix = writtenFix(exercise, "drinks");
+        fix.getQuiz().getForm().setMultipleChoice(new MultipleChoiceEntity(null, List.of(
+                new MultipleChoiceItemEntity("drinks", 0.0, "drinks"), new MultipleChoiceItemEntity("has", 0.0, "has"))));
+
+        bandeja.tray.answer(new TrayResponse(TEA_ITEM, TrayAnswer.WRITE_FIX, null, null, null, fix, null, "José"));
+
+        MultipleChoiceEntity measured = bandeja.panels.assessed.get(0).getQuiz().getForm().getMultipleChoice();
+        assertEquals(List.of("drinks", "has"), measured.getItems().stream().map(MultipleChoiceItemEntity::getLabel).toList(),
+                "his options, in his order");
+        assertEquals(List.of(1.0, 0.0), measured.getItems().stream().map(MultipleChoiceItemEntity::getIncidence).toList(),
+                "the one he wrote in the blank is the right one");
+        assertEquals(List.of("id-drinks", "has"), measured.getItems().stream().map(MultipleChoiceItemEntity::getId).toList(),
+                "an option the exercise had keeps its id");
+        assertEquals("SINGLE", measured.getSelection(), "one is chosen, as before");
+    }
+
+    @Test
+    @DisplayName("should not measure a fix that brings options for an exercise that is not multiple choice")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R003")
+    public void shouldNotMeasureAFixThatBringsOptionsForAnExerciseThatIsNotMultipleChoice() {
+        BandejaFixture.Bandeja bandeja = opened();
+        QuizTemplateEntity exercise = TandaFixture.exercise(bandeja.course, BandejaFixture.TEA);
+        PanelCandidate fix = writtenFix(exercise, "drinks");
+        fix.getQuiz().getForm().setMultipleChoice(new MultipleChoiceEntity(null, List.of(
+                new MultipleChoiceItemEntity("drinks", 0.0, "drinks"), new MultipleChoiceItemEntity("has", 0.0, "has"))));
+
+        IllegalArgumentException refused = assertThrows(IllegalArgumentException.class, () -> bandeja.tray.answer(
+                new TrayResponse(TEA_ITEM, TrayAnswer.WRITE_FIX, null, null, null, fix, null, "José")));
+
+        assertTrue(refused.getMessage().contains("no es de opción múltiple"), refused.getMessage());
+        assertTrue(bandeja.panels.assessed.isEmpty(), "nothing measured, no query spent");
+    }
+
+    @Test
     @DisplayName("should take José's fix of an exercise the tray does not ask about into the batch as his change, rested on the exercise and without the panel")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R010")
