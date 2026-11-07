@@ -195,6 +195,11 @@ propuestas de las verduras, ningún número de vocabulario de A1 ni del curso se
 Mantiene [F-RPRES-R003](#F-RPRES-R003) a escala de la tanda, con sus dos excepciones: el título ([F-RPRES-R004](#F-RPRES-R004))
 y la miniteoría del tema ([F-MESA-R012](#F-MESA-R012)).
 
+**Criterio** (6/11/2026): el arreglo que José escribe por la bandeja sobre un ejercicio sin tarea
+([F-BANDEJA-R010](../2026-09-30.25_la-bandeja/REQUIREMENT.md#F-BANDEJA-R010)) es un cambio aceptado de la tanda, no
+uno de fuera. En la C2 de A1, «I don't see ___ (her / hers) child.» lo corrigió José sin tarea y el cierre lo daba por
+cambiado fuera de la tanda; un cambio de la mesa sobre un ejercicio sin tarea sigue frenando.
+
 ### Grupo C — Qué pasa si frena
 
 <a id="F-NOEMP-R008"></a>

@@ -200,6 +200,35 @@ public class DefaultBatchCloserTest {
     }
 
     @Test
+    @DisplayName("should count José's own fix of an exercise without a task as a change of the batch")
+    @Tag("FEAT-NOEMP")
+    @Tag("F-NOEMP-R007")
+    @Tag("F-BANDEJA-R010")
+    public void shouldCountJosesOwnFixOfAnExerciseWithoutATaskAsAChangeOfTheBatch() {
+        // José wrote by the tray the fix of «___ a child? (He)», which no task of the batch holds: it is a change of the
+        // batch, not one outside it. The same exercise of «My grandmother ___ (come) every year.» changed by the mesa
+        // without a task of this batch is still outside.
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batch("t-respuesta");
+        QuizTemplateEntity child = TandaFixture.edited(TandaFixture.exercise(closing.course, TandaFixture.CHILD),
+                q -> q.setTranslation("¿Él es un niño?"));
+        closing.ledger().record(batch, TandaFixture.change("jose-" + TandaFixture.CHILD, BatchChangeOrigin.JOSE, null,
+                List.of(), TandaFixture.step(child, ExercisePart.TRANSLATION)), closing.course);
+        QuizTemplateEntity come = withParts(TandaFixture.exercise(closing.course, MesaFixture.COME), text("My grandmother"),
+                cloze("comes"), text("every year."));
+        closing.record(batch, "mesa-" + MesaFixture.COME, List.of(), TandaFixture.step(come, ExercisePart.STATEMENT));
+
+        closing.closer().close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
+
+        assertEquals(List.of(List.of(MesaFixture.COME)), closing.outsides,
+                "José's fix is in the batch; the mesa's change without a task is not");
+        CourseEntity tampered = closing.ledger().composedCourse(batch, closing.course);
+        TandaFixture.exercise(tampered, TandaFixture.CHILD).setTranslation("¿Es un chico?");
+        assertTrue(DefaultBatchCloser.changedOutside(batch, closing.course, tampered, Map.of()).contains(TandaFixture.CHILD),
+                "only what José wrote is his: anything else on that exercise is still outside");
+    }
+
+    @Test
     @DisplayName("should ask F for the blind sample of its scope once the gate passes, and keep its id")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R006")

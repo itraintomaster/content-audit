@@ -13,6 +13,7 @@ import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
+import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
 import com.learney.contentaudit.revisiondomain.batch.BatchJudgeAccount;
@@ -406,7 +407,7 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
 
     /**
      * F-NOEMP-R007: the nodes the composed course changed that the batch may not touch -- every exercise of its tasks,
-     * of the topics of its tasks of the whole topic and of its conversions, and those topics.
+     * of the topics of its tasks of the whole topic and of its conversions, those topics, and the exercises José fixed.
      */
     private List<String> changedOutside(CorrectionBatch batch, CourseEntity startCourse, Map<String, RefinementTask> tasks) {
         CourseEntity composed = changeLedger.composedCourse(batch, startCourse);
@@ -444,10 +445,13 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
         // some of those steps: compare against that surviving subset, not just the predecessor's final snapshot.
         // Every newly changed node still needs a task or conversion in this correction.
         Map<String, Object> inherited = inheritedContents(batch, startCourse, batches);
+        // F-BANDEJA-R010: José's own fix of an exercise without a task is a change of the batch, exactly as he wrote it.
+        Map<String, Object> joses = josesContents(batch, startCourse, batches);
         allowed.addAll(topics);
         for (Map.Entry<String, Object> entry : after.entrySet()) {
             if (!Objects.equals(before.get(entry.getKey()), entry.getValue()) && !allowed.contains(entry.getKey())
-                    && !Objects.equals(inherited.get(entry.getKey()), entry.getValue())) {
+                    && !Objects.equals(inherited.get(entry.getKey()), entry.getValue())
+                    && !Objects.equals(joses.get(entry.getKey()), entry.getValue())) {
                 outside.add(entry.getKey());
             }
         }
@@ -458,16 +462,37 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
         if (batch.getEvolution() == null) return Map.of();
         CorrectionBatch parent = batches == null ? null : batches.load(batch.getEvolution().parentBatchId()).orElse(null);
         if (parent == null) return contents(batch.getEvolution().sourceCourse(), new HashSet<>());
+        return composedContents(surviving(batch, parent), base);
+    }
+
+    /** The changes of the batch inherited from its parent exactly as the parent accepted them. */
+    private static List<BatchChange> surviving(CorrectionBatch batch, CorrectionBatch parent) {
         Map<String, BatchChange> original = new LinkedHashMap<>();
         for (BatchChange change : BatchBook.list(parent.getChanges()))
             if (change != null && change.getDroppedReason() == null) original.put(change.getChangeId(), change);
-        List<BatchChange> surviving = BatchBook.list(batch.getChanges()).stream()
+        return BatchBook.list(batch.getChanges()).stream()
                 .filter(c -> c != null && c.getDroppedReason() == null && original.containsKey(c.getChangeId())
                         && Objects.equals(original.get(c.getChangeId()).getSteps(), c.getSteps())).toList();
-        CorrectionBatch trusted = new CorrectionBatch(); trusted.setChanges(surviving);
-        CourseEntity inherited = new DefaultBatchChangeLedger(null,
+    }
+
+    /** F-BANDEJA-R010: the course as José's own fixes leave it, over the inherited work the batch keeps. */
+    private static Map<String, Object> josesContents(CorrectionBatch batch, CourseEntity base, BatchStore batches) {
+        CorrectionBatch parent = batch.getEvolution() == null || batches == null ? null
+                : batches.load(batch.getEvolution().parentBatchId()).orElse(null);
+        Set<String> inherited = new HashSet<>();
+        if (parent != null) surviving(batch, parent).forEach(c -> inherited.add(c.getChangeId()));
+        List<BatchChange> own = BatchBook.list(batch.getChanges()).stream()
+                .filter(c -> c != null && c.getDroppedReason() == null
+                        && (c.getOrigin() == BatchChangeOrigin.JOSE || inherited.contains(c.getChangeId()))).toList();
+        if (own.stream().noneMatch(c -> c.getOrigin() == BatchChangeOrigin.JOSE)) return Map.of();
+        return composedContents(own, base);
+    }
+
+    private static Map<String, Object> composedContents(List<BatchChange> changes, CourseEntity base) {
+        CorrectionBatch trusted = new CorrectionBatch(); trusted.setChanges(changes);
+        CourseEntity composed = new DefaultBatchChangeLedger(null,
                 new com.learney.contentaudit.revisiondomain.engine.DefaultCourseElementLocator()).composedCourse(trusted, base);
-        return contents(inherited, new HashSet<>());
+        return contents(composed, new HashSet<>());
     }
 
     /** What each node of the course holds, to tell what changed; the exercises of the given topics are allowed too. */
