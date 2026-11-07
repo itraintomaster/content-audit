@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>280 · Corregí 39 de los 42</title>
+<meta name="atril:conversacion" content="claude:7aeb7923-ce6d-404e-87c0-0be9207254b5">
+<meta name="atril:agente" content="claude">
+<meta name="atril:hilo" content="a1">
+<style>
+  /* ============ tokens: claro y, abajo, oscuro ============ */
+  :root{
+    --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
+    --fg:#1c1a17; --fg-2:#57524b; --fg-3:#8b847a;
+    --accent:#b4531f; --accent-soft:#fdf1e7;
+    --ok:#2f6b46; --ok-soft:#e9f4ed;
+    --warn:#8a6314; --warn-soft:#fbf2dd;
+    --bad:#a3342c; --bad-soft:#fbecea;
+    --info:#2a5b8f; --info-soft:#e9f1f9;
+    --radius:10px; --shadow:0 1px 2px rgba(28,26,23,.05), 0 8px 24px -16px rgba(28,26,23,.25);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#131211; --bg-elev:#1b1a18; --line:#302d29; --line-soft:#252320;
+      --fg:#efece7; --fg-2:#a8a29a; --fg-3:#7b756c;
+      --accent:#e08b4f; --accent-soft:#2a1f16;
+      --ok:#7fc79c; --ok-soft:#16241c;
+      --warn:#e0b657; --warn-soft:#272013;
+      --bad:#e58b82; --bad-soft:#2a1917;
+      --info:#8ab6e5; --info-soft:#141f2b;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.6 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+    font-feature-settings:"kern","liga","cv05";
+    padding:40px 24px 80px;
+  }
+  .wrap{max-width:940px;margin:0 auto}
+  code,kbd,pre,.mono{font-family:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace}
+  a{color:var(--accent)}
+  code,a{overflow-wrap:anywhere}   /* una ruta o un link largo desborda el celular: 15 de 76 briefs viejos */
+
+  /* ============ encabezado ============ */
+  header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
+  .kicker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .kicker .num{font:700 12px ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.04em;color:var(--fg-3);
+    background:var(--line-soft);padding:3px 8px;border-radius:6px;font-variant-numeric:tabular-nums}
+  .badge{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;background:var(--accent-soft);color:var(--accent);
+    border:1px solid color-mix(in srgb,var(--accent) 22%,transparent)}
+  .meta{font-size:12.5px;color:var(--fg-3)}
+  h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2;margin:0;letter-spacing:-.02em;font-weight:650}
+  .sub{margin:10px 0 0;color:var(--fg-2);font-size:16px;max-width:62ch}
+
+  /* ============ lo que pediste: el contexto del pedido, arriba del título (SKILL.md §6) ============ */
+  .pedido{margin:4px 0 16px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
+  .pedido>summary{list-style:none;cursor:pointer;display:flex;gap:12px;align-items:baseline;padding:11px 14px}
+  .pedido>summary::-webkit-details-marker{display:none}
+  .pedido>summary::after{content:"";flex:none;margin-left:auto;align-self:center;width:7px;height:7px;
+    border-right:1.6px solid var(--fg-3);border-bottom:1.6px solid var(--fg-3);transform:rotate(45deg);transition:transform .15s}
+  .pedido[open]>summary::after{transform:rotate(-135deg)}
+  .pedido .k{flex:none;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3)}
+  .pedido .q{font-size:15px;color:var(--fg);line-height:1.45}
+  .pedido-c{padding:2px 14px 14px;border-top:1px solid var(--line-soft)}
+  .pedido dl{display:grid;grid-template-columns:150px 1fr;gap:10px 16px;margin:12px 0 0}
+  .pedido dt{font-size:12.5px;font-weight:650;color:var(--fg-3);padding-top:2px}
+  .pedido dd{margin:0;font-size:15px;line-height:1.5;color:var(--fg-2)}
+  .pedido dd ol,.pedido dd ul{margin:0;padding-left:18px}
+  .pedido dd li{margin:0 0 4px}
+  .pedido .dib{margin:14px 0 0}
+  .pedido .de{margin:12px 0 0;font-size:12.5px;color:var(--fg-3)}
+  @media (max-width:640px){.pedido>summary{flex-direction:column;gap:4px}.pedido dl{grid-template-columns:1fr;gap:2px}.pedido dd{margin-bottom:8px}}
+
+  /* ============ el lede: la conclusión, dos renglones ============ */
+  .lede{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:var(--radius);padding:16px 18px;margin:0 0 34px;box-shadow:var(--shadow)}
+  .lede p{margin:0;font-size:17.5px;line-height:1.5;max-width:68ch}
+  .lede strong{font-weight:650}
+
+  /* ============ lo que tenés que saber: los conceptos, antes del detalle (SKILL.md §6) ============ */
+  .saber{margin:-14px 0 34px}
+  .saber>h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);margin:0 0 10px}
+  .saber dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:0}
+  .saber dl>div{border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;background:var(--bg-elev)}
+  .saber dt{font-weight:650;font-size:15px;margin:0 0 4px}
+  .saber dd{margin:0;font-size:14.5px;line-height:1.5;color:var(--fg-2)}
+
+  /* ============ sección: título = conclusión · un dibujo · un pie ============ */
+  section{margin:0 0 38px}
+  h2{font-size:19px;line-height:1.3;font-weight:650;letter-spacing:-.01em;margin:0 0 14px;max-width:60ch}
+  p{margin:0 0 12px}
+  .pie{font-size:13.5px;line-height:1.5;color:var(--fg-2);margin:10px 0 0;max-width:78ch}
+  .grid{display:grid;gap:12px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;
+    box-shadow:var(--shadow);min-width:0}
+  .ptl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-3);font-weight:700;margin:0 0 10px}
+
+  /* ============ KPIs: el número grande, su comparación abajo ============ */
+  .kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+  .kpi{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:32px;font-weight:700;letter-spacing:-.025em;line-height:1.05;font-variant-numeric:tabular-nums}
+  .kpi .n small{font-size:.48em;font-weight:600;color:var(--fg-3);margin-left:.3em;letter-spacing:0}
+  .kpi .l{font-size:13px;color:var(--fg-2);line-height:1.4;margin-top:6px}
+  .kpi.dest .n{color:var(--accent)}
+
+  /* ============ barras horizontales con etiqueta ============ */
+  .hb{display:grid;gap:10px}
+  .hb .r{display:grid;grid-template-columns:minmax(110px,38%) minmax(0,1fr) auto;gap:12px;align-items:center;font-size:13.5px}
+  .hb .t{color:var(--fg-2);line-height:1.3;min-width:0}
+  .hb .t small{display:block;color:var(--fg-3);font-size:12px}
+  .hb .tr{position:relative;height:10px;border-radius:99px;background:var(--line-soft)}
+  .hb .f{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent)}
+  .hb .f.g{background:var(--ok)} .hb .f.b{background:var(--bad)} .hb .f.w{background:var(--warn)}
+  .hb .f.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .hb .meta{position:absolute;top:-4px;bottom:-4px;width:2px;border-radius:1px;background:var(--fg)}
+  .hb .n{font-weight:650;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--fg-2);margin-top:12px}
+  .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--accent)}
+  .sw.g{background:var(--ok)} .sw.b{background:var(--bad)} .sw.w{background:var(--warn)}
+  .sw.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .sw.m{width:2px;height:13px;border-radius:0;background:var(--fg);vertical-align:-2px}
+
+  /* ============ flujo en pasos ============ */
+  .flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:16px}
+  .flow .st{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:12px 13px;display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow);min-width:0}
+  .flow .st:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:8px;height:8px;z-index:1;
+    border-top:2px solid var(--fg-3);border-right:2px solid var(--fg-3);transform:translateY(-50%) rotate(45deg)}
+  .flow .i{font:700 12px/24px ui-monospace,monospace;width:24px;height:24px;border-radius:7px;text-align:center;
+    background:var(--accent-soft);color:var(--accent)}
+  .flow .h{font-weight:650;font-size:14px;line-height:1.25}
+  .flow .eg{font:italic 14px/1.3 ui-serif,Georgia,serif;color:var(--fg)}
+  .flow .d{font-size:12.5px;line-height:1.4;color:var(--fg-2)}
+  .flow .st.end{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+
+  /* ============ antes y después ============ */
+  .ad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}
+  .ad .lado{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:13px 15px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow);min-width:0}
+  .ad .antes{border-top:3px solid var(--bad)} .ad .despues{border-top:3px solid var(--ok)}
+  .ad .rot{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+  .ad .antes .rot{color:var(--bad)} .ad .despues .rot{color:var(--ok)}
+  .ad .despues::before{content:"→";position:absolute;left:-24px;top:50%;transform:translateY(-50%);
+    font-size:19px;color:var(--fg-3)}
+  .ad ol{margin:0;padding-left:20px;font-size:13.5px;line-height:1.45;color:var(--fg-2);display:grid;gap:3px}
+  .ad .res{font-weight:650;font-size:14.5px;border-top:1px dashed var(--line);padding-top:7px;margin-top:auto}
+  .ad .antes .res{color:var(--bad)} .ad .despues .res{color:var(--ok)}
+
+  /* ============ mapa de calor ============ */
+  .heat{display:grid;grid-template-columns:minmax(110px,1.6fr) repeat(var(--cols,4),minmax(0,1fr));gap:4px;font-size:12.5px}
+  .heat span{padding:7px 4px;border-radius:6px;text-align:center;font-variant-numeric:tabular-nums;background:var(--line-soft)}
+  .heat .h{background:none;color:var(--fg-3);font-size:11.5px;font-weight:600}
+  .heat .rl{background:none;text-align:left;color:var(--fg-2)}
+  .heat .h0{color:var(--fg-3)}
+  .heat .h1{background:color-mix(in srgb,var(--warn) 16%,var(--bg-elev))}
+  .heat .h2{background:color-mix(in srgb,var(--warn) 34%,var(--bg-elev))}
+  .heat .h3{background:color-mix(in srgb,var(--bad) 32%,var(--bg-elev))}
+
+  /* ============ tarjetas de decisión: la recomendada, marcada ============ */
+  .opts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+  .opt{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
+    box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;min-width:0}
+  .opt.rec{border:1.5px solid var(--accent);box-shadow:0 0 0 3px var(--accent-soft),var(--shadow)}
+  .opt .oh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14.5px}
+  .opt .ol{font:700 13px/26px ui-monospace,monospace;width:26px;height:26px;border-radius:7px;text-align:center;
+    background:var(--line-soft);flex:none}
+  .opt.rec .ol{background:var(--accent);color:var(--bg-elev)}
+  .opt p{font-size:13px;color:var(--fg-2);margin:0}
+  .opt ul{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-size:13px}
+  .opt li::before{font-weight:800;margin-right:6px}
+  .opt li.si::before{content:"✓";color:var(--ok)} .opt li.no::before{content:"✕";color:var(--bad)}
+
+  /* ============ ejemplo real ============ */
+  .ex{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
+    display:grid;gap:7px;box-shadow:var(--shadow);min-width:0}
+  .ex .cons{font-size:12px;color:var(--fg-3)}
+  .ex .en{font:italic 18px/1.35 ui-serif,Georgia,serif}
+  .ex .gap{display:inline-block;min-width:48px;border-bottom:2px solid var(--fg-3);margin:0 4px}
+  .ex .ans{font-size:13.5px;color:var(--fg-2)} .ex .ans b{color:var(--fg)}
+  .ex .rotulo{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3)}
+  .ex .rotulo.antes{color:var(--bad)} .ex .rotulo.despues{color:var(--ok)}
+  .ex .ans .lista{display:block;font-size:13px;line-height:1.5;color:var(--fg-2);margin-top:2px}
+  .ex .cuenta{font-size:13px;color:var(--fg-2);border-top:1px dashed var(--line);padding-top:7px}
+  .ex .cuenta i,.ex .ans i{font-family:ui-serif,Georgia,serif} .ex .cuenta .mal{color:var(--bad)}
+  .ex .ft{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--fg-3);
+    border-top:1px dashed var(--line);padding-top:7px}
+  .mark{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;line-height:1.45;background:var(--bad-soft);
+    border-radius:8px;padding:8px 10px}
+  .mark .x{color:var(--bad);font-weight:800}
+  .mark.ok{background:var(--ok-soft)} .mark.ok .x{color:var(--ok)}
+  .mark.warn{background:var(--warn-soft)} .mark.warn .x{color:var(--warn)}
+  .sev{font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;white-space:nowrap}
+  .sev.b{background:var(--bad);color:var(--bg-elev)} .sev.a{background:var(--bad-soft);color:var(--bad)}
+  .sev.m{background:var(--warn-soft);color:var(--warn)} .sev.l{background:var(--line-soft);color:var(--fg-2)}
+
+  /* ============ preguntas, con la recomendación ============ */
+  .asks{display:grid;gap:10px}
+  .ask{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);
+    padding:12px 15px;display:grid;gap:8px;box-shadow:var(--shadow)}
+  .ask .q{font-size:15px;font-weight:650;line-height:1.35}
+  .ask .ops{display:flex;gap:6px;flex-wrap:wrap}
+  .ask .op{font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--bg)}
+  .ask .op.rec{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .ask .why{font-size:13px;color:var(--fg-2);line-height:1.45}
+  /* ya contestada: .ask.hecha, la opción elegida .op.elegida y .dicho con qué se decidió */
+  .ask.hecha{border-left-color:var(--ok);box-shadow:none;background:transparent}
+  .ask.hecha .q,.ask.hecha .why{color:var(--fg-2)}
+  .ask.hecha .op:not(.elegida){opacity:.45}
+  .ask .op.elegida{border-color:var(--ok);background:var(--ok-soft);color:var(--ok);font-weight:650}
+  .ask .op.elegida::before{content:"✓ "}
+  .ask .dicho{font-size:13px;color:var(--ok);font-weight:600}
+  .opts.hecha .opt:not(.elegida){opacity:.45}
+  .opt.elegida{border:1.5px solid var(--ok);box-shadow:0 0 0 3px var(--ok-soft)}
+
+  /* ============ qué cambia y qué no ============ */
+  .cambia{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .cambia>div{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 15px;box-shadow:var(--shadow)}
+  .cambia ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13.5px;line-height:1.45}
+  .cambia li{position:relative;padding-left:22px}
+  .cambia li::before{position:absolute;left:0;top:0;font-weight:800}
+  .cambia .si li::before{content:"✓";color:var(--ok)}
+  .cambia .no li::before{content:"=";color:var(--fg-3)}
+
+  /* ============ captura real, con su pie ============ */
+  .captura{margin:0;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:10px;
+    box-shadow:var(--shadow);min-width:0}
+  .captura img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft)}
+  .captura.cel img{max-width:300px;margin:0 auto}
+  .captura figcaption{font-size:12.5px;color:var(--fg-3);margin-top:8px}
+
+  /* ============ dónde estamos: la captura real, con lo que cambia rodeado y numerado ============
+     El viewBox del svg.cap es el tamaño de la foto: las marcas van en sus píxeles (capturar.mjs --medir). */
+  .map{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);box-shadow:var(--shadow);border-radius:var(--radius)}
+  .map.alta{grid-template-columns:minmax(0,200px) minmax(0,1fr)}       /* una página más alta que la pantalla */
+  .map .ex{border-radius:var(--radius) 0 0 var(--radius);padding:10px;align-content:center;box-shadow:none}
+  .map .who{display:grid;gap:9px;align-content:center;padding:14px 16px;background:var(--bg);border:1px solid var(--line);
+    border-left:0;border-radius:0 var(--radius) var(--radius) 0}
+  .map .who div{display:flex;gap:9px;align-items:center;font-size:13.5px;line-height:1.35}
+  .map .who b{font:800 11.5px/22px ui-monospace,monospace;width:22px;height:22px;border-radius:6px;text-align:center;
+    background:var(--accent);color:var(--bg-elev);flex:none}
+  .map .who b.gris{background:var(--line);color:var(--fg-3)}       /* lo que se ve pero no cambia */
+  .map .who small{color:var(--fg-3);font-size:12px}
+  .map .who .ptl{margin:0}
+  .cap{display:block;width:100%;height:auto}
+  .cap .mk circle{fill:var(--accent);stroke:var(--bg-elev);stroke-width:4}
+  .cap .mk text{fill:var(--bg-elev);font-weight:800;font-family:ui-monospace,monospace;text-anchor:middle;dominant-baseline:central}
+  .cap .mk.gris circle{fill:var(--fg-3)}
+  .cap .aro{fill:none;stroke:var(--accent);stroke-width:4}         /* rodea lo que cambia */
+  .cap .tapa{fill:var(--bg-elev);opacity:.74}                       /* atenúa lo que no */
+  .cap .raya{stroke:var(--fg-3);stroke-width:2;stroke-dasharray:9 9}  /* dónde termina cada pantalla */
+
+  /* ============ hoy → con X: la foto de hoy con el problema; la maqueta de cómo queda, con su leyenda ============ */
+  .ad.asim{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+  .hoy{display:block;max-width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft);align-self:flex-start}
+  .franja{display:flex;gap:12px;align-items:flex-end}               /* una página alta, al lado de su marca */
+  .franja .cap{width:34%;flex:none} .franja .mark{flex:1}
+  .nb{display:inline-flex;align-items:center;justify-content:center;flex:none;width:1.75em;height:1.75em;border-radius:99px;
+    background:var(--accent);color:var(--bg-elev);font:800 .74em/1 ui-monospace,monospace}
+  ol.leg{list-style:none;margin:0;padding:0;display:grid;gap:5px;font-size:13.5px;line-height:1.45;color:var(--fg-2)}
+  .leg li{display:flex;gap:8px;align-items:baseline} .leg .nb{font-size:11px}
+  /* la maqueta: .mq es su propio contenedor y la letra (en .mi) escala con su ancho, así que una
+     maqueta más ancha NO entra más. Si no entra: menos filas, o .mq.denso. El kit entero, con cada
+     pieza a la vista, está en el catálogo de presentacion.html. */
+  /* ESTILO DEL PRODUCTO (maquetar.md): si el producto existe, acá se redefinen, sólo para la
+     maqueta, sus tokens: --bg-elev --bg --line --line-soft --fg --fg-2 --fg-3 --accent --accent-soft
+     --ok/--warn/--bad (+ -soft), la letra (--mq-font) y el radio de sus controles (--mq-r). También
+     su modo oscuro, si lo tiene. Sin esto la maqueta sale con el estilo del brief, que no es el de la app.
+  .mq{--mq-font:"Nunito",system-ui,sans-serif; --mq-r:.75em; --accent:#…; …} */
+  .mq{container-type:inline-size;background:var(--bg-elev);border:1px solid var(--line);border-radius:10px;overflow:hidden;
+    box-shadow:var(--shadow)}
+  .mi{font-size:max(10.5px,2.75cqi);font-family:var(--mq-font,inherit);line-height:1.35;padding:3cqi 3.2cqi;display:flex;flex-direction:column;gap:2.2cqi;color:var(--fg)}
+  .mq.denso .mi{font-size:max(10px,2.45cqi);gap:1.7cqi;padding:2.6cqi 2.8cqi}
+  .mi .fila{display:flex;gap:.55em;align-items:center;min-width:0} .mi .fila.env{flex-wrap:wrap;row-gap:.4em}
+  .mi .crece{flex:1;min-width:0}
+  .mi .vt{display:flex;flex-direction:column;gap:.25em;min-width:0}
+  .mi .in{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:var(--mq-r,.5em);padding:.45em .7em;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mi .sel{background:var(--bg);border:1px solid var(--line);border-radius:var(--mq-r,.5em);padding:.45em .6em;white-space:nowrap;flex:none}
+  .mi .bt{background:var(--accent);color:var(--bg-elev);border-radius:var(--mq-r,.5em);padding:.45em .85em;font-weight:700;white-space:nowrap;flex:none}
+  .mi .bt.gh{background:var(--bg-elev);color:var(--fg);border:1px solid var(--line);font-weight:600}
+  .mi .chp{display:inline-flex;align-items:center;gap:.35em;border:1px solid var(--line);background:var(--bg);border-radius:99px;
+    padding:.18em .7em;font-size:.86em;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  .mi .chp.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .mi .chp.no{color:var(--fg-3);text-decoration:line-through}
+  .mi .chp.ok{border-color:var(--ok);background:var(--ok-soft);color:var(--ok);font-weight:650}
+  .mi .chp.fal{border-color:var(--warn);background:var(--warn-soft);color:var(--warn);font-weight:650}
+  .mi .rt{font-size:.72em;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--fg-3)}
+  .mi .tt{font-weight:700;font-size:1.1em;letter-spacing:-.01em} .mi .ts{font-weight:700;font-size:1.15em;letter-spacing:-.01em}
+  .mi .s{font-size:.84em;color:var(--fg-3)} .mi .neg{font-weight:700}
+  .mi .bien{color:var(--ok);font-weight:800} .mi .mal{color:var(--bad);font-weight:800}
+  .mi .corta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .mi .th{width:5.2em;aspect-ratio:16/9;border-radius:.35em;object-fit:cover;flex:none;display:block}
+  .mi .th.ch{width:3.6em} .mi .th.gr{width:60%}
+  .mi .hr{height:1px;background:var(--line-soft)} .mi .apagado{opacity:.4}
+  .mi .expl{background:var(--bg);border:1px solid var(--line-soft);border-radius:var(--mq-r,.5em);padding:.5em .7em;font-size:.86em;color:var(--fg-2)}
+  .mi .aviso{display:flex;gap:.5em;align-items:center;border-radius:var(--mq-r,.5em);padding:.45em .7em;font-weight:650;
+    background:var(--bad-soft);color:var(--bad)}
+  .mi .aviso.ok{background:var(--ok-soft);color:var(--ok)}
+  .mi .campo{border:1.5px solid var(--accent);border-radius:.6em;padding:.6em .8em;background:var(--bg-elev);display:flex;flex-direction:column;gap:.3em}
+  .mi .hueco{border:1px dashed var(--warn);border-radius:.4em;height:1.7em;background:var(--warn-soft)}
+  .mi .av{width:2.1em;height:2.1em;border-radius:99px;display:inline-flex;align-items:center;justify-content:center;font-weight:800;
+    font-size:.8em;background:var(--accent-soft);color:var(--accent);flex:none}
+  .mi .fase{display:grid;grid-template-columns:1.5em 1fr auto;gap:.25em .55em;align-items:center}
+  .mi .fase .ic{font-weight:800;text-align:center}
+  .mi .fase.hecha .ic{color:var(--ok)} .mi .fase.va .ic{color:var(--accent)} .mi .fase.falta{color:var(--fg-3)}
+  .mi .riel{grid-column:2/4;height:.42em;border-radius:99px;background:var(--line-soft);overflow:hidden}
+  .mi .riel i{display:block;height:100%;width:var(--hecho,40%);background:var(--accent);border-radius:99px}
+  .mi .dos{display:grid;grid-template-columns:1.15fr 1fr;border:1px solid var(--line-soft);border-radius:.6em;overflow:hidden}
+  .mi .dos>div{padding:.75em;display:flex;flex-direction:column;gap:.55em;min-width:0}
+  .mi .lat{background:var(--bg);border-left:1px solid var(--line)}
+  .mi .item{display:flex;gap:.5em;align-items:center;padding:.3em;border-radius:.4em;min-width:0}
+  .mi .item.on{background:var(--accent-soft);box-shadow:inset 0 0 0 1.5px var(--accent)}
+
+  /* ============ pills de estado ============ */
+  .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}
+  .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
+  .p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)}
+  .p-bad{background:var(--bad-soft);color:var(--bad)} .p-info{background:var(--info-soft);color:var(--info)}
+  .p-idle{background:var(--line-soft);color:var(--fg-3)}
+
+  /* ============ tabla chica (≤ 6 filas; si es más, es un gráfico) ============ */
+  .tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}
+  th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);
+    font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:ui-monospace,monospace;font-size:13px}
+
+  /* ============ diagrama (los de cajas y flechas van con diagrama.mjs, §11) ============ */
+  .diagram{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
+    overflow-x:auto;box-shadow:var(--shadow)}
+  .diagram svg{display:block;max-width:100%;height:auto;margin:0 auto}
+  svg .box{fill:var(--bg);stroke:var(--line)}
+  svg .box-a{fill:var(--accent-soft);stroke:var(--accent)}
+  svg .box-ok{fill:var(--ok-soft);stroke:var(--ok)}
+  svg .box-bad{fill:var(--bad-soft);stroke:var(--bad)}
+  svg .lbl{fill:var(--fg);font:13px ui-sans-serif,system-ui,sans-serif}
+  svg .lbl-s{fill:var(--fg-3);font:11px ui-sans-serif,system-ui,sans-serif}
+  svg .arrow{stroke:var(--fg-3);fill:none;stroke-width:1.2}
+
+  /* ============ comandos · aviso de lo que no sé ============ */
+  pre{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;
+    overflow-x:auto;font-size:13px;line-height:1.55;margin:0}
+  pre code{color:var(--fg)}
+  .call{border-radius:var(--radius);padding:10px 13px;font-size:13.5px;border:1px solid;margin:12px 0 0}
+  .c-warn{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 28%,transparent)}
+  .c-bad{background:var(--bad-soft);border-color:color-mix(in srgb,var(--bad) 28%,transparent)}
+  .c-info{background:var(--info-soft);border-color:color-mix(in srgb,var(--info) 28%,transparent)}
+  .call b:first-child{margin-right:4px}
+
+  footer{border-top:1px solid var(--line);margin-top:36px;padding-top:14px;font-size:12.5px;color:var(--fg-3);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  /* ============ celular ============ */
+  @media (max-width:640px){
+    body{padding:24px 16px 60px}
+    h2{font-size:17px}
+    .flow{grid-auto-flow:row}
+    .flow .st:not(:last-child)::after{right:auto;left:22px;top:auto;bottom:-11px;transform:rotate(135deg)}
+    .ad{grid-template-columns:minmax(0,1fr);gap:28px}
+    .ad .despues::before{content:"↓";left:50%;top:-25px;transform:translateX(-50%)}
+    .hb .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) auto;gap:8px}
+    .heat{grid-template-columns:minmax(80px,1.3fr) repeat(var(--cols,4),minmax(0,1fr));font-size:11.5px}
+    .kpi .n{font-size:28px}
+    .map,.map.alta,.ad.asim{grid-template-columns:minmax(0,1fr)}
+    .map .ex{border-radius:var(--radius) var(--radius) 0 0}
+    .map .who{border-left:1px solid var(--line);border-top:0;border-radius:0 0 var(--radius) var(--radius)}
+    .map.alta .cap{width:min(55%,220px);margin:0 auto}
+  }
+
+figure.dg{margin:0 0 16px;overflow-x:auto}figure.dg>svg{display:block;width:100%;height:auto;margin:0 auto}
+  .todos{margin-top:12px}
+  .todos>summary{cursor:pointer;font-size:13.5px;font-weight:600;color:var(--accent);list-style:none}
+  .todos>summary::-webkit-details-marker{display:none}
+  .todos>summary::before{content:"▸ ";color:var(--fg-3)}
+  .todos[open]>summary::before{content:"▾ "}
+  .todos .tw{margin-top:10px}
+  .todos td{font-size:13px;line-height:1.45;vertical-align:top}
+  .todos td i{font-family:ui-serif,Georgia,serif;font-size:14.5px}
+  .todos .cons{font-size:12px;color:var(--fg-3)}
+  .todos .gap,.tw .gap{display:inline-block;min-width:34px;border-bottom:2px solid var(--fg-3);margin:0 3px}
+  td.c,th.c{text-align:center;font-variant-numeric:tabular-nums}
+  pre.cmd{white-space:pre-wrap;word-break:break-all}
+  /* el contexto de una pregunta: qué se quiere lograr, el caso, qué se decide, el dibujo y los caminos.
+     Va DESPUÉS de .q y .ops: Atril lee la pregunta y sus opciones de los primeros renglones. */
+  .ask .ctx{display:grid;gap:8px;margin-top:4px;padding-top:12px;border-top:1px dashed var(--line);font-size:13.5px;line-height:1.5;color:var(--fg-2)}
+  .ask .ctx p{margin:0}
+  .ask .ctx .ctx-k{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);margin-top:6px}
+  .ask .ctx .ex,.ask .ctx figure{margin:2px 0}
+  .ask .caminos{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+  .ask .cam{border:1px solid var(--line);border-radius:var(--radius);padding:10px 12px;background:var(--bg);display:grid;gap:4px;align-content:start}
+  .ask .cam b{font-size:13.5px;color:var(--fg)}
+  .ask .cam.rec{border-color:var(--accent);background:var(--accent-soft)}
+  .ask .cam.rec b::after{content:" · recomendado";font-weight:600;color:var(--accent)}
+  .ask .cam.elegida{border-color:var(--ok);background:var(--ok-soft)}
+  .ask .cam.elegida b::after{content:" · decidido";color:var(--ok)}
+  .ask.hecha .ctx{opacity:.85}
+  /* arriba, un renglón que avisa que al final hay preguntas */
+  .para-vos{margin:14px 0 0;padding:9px 13px;border-radius:var(--radius);background:var(--accent-soft);color:var(--accent);font-size:13.5px;font-weight:600}
+  .todos .teo{font-size:12px;color:var(--fg-2)}
+  .todos td{min-width:150px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">
+      <span class="num">280</span>
+      <span class="badge">Hecho · 4 decisiones</span>
+      <span class="meta">Publicar la C2 · C2 de A1 · 6/11/2026</span>
+    </div>
+    <details class="pedido">
+      <summary><span class="k">Lo que pediste</span><span class="q">Corregir los 42 ejercicios que frenaban por Didáctica A1.</span></summary>
+      <div class="pedido-c">
+        <dl>
+          <dt>Qué estabas mirando</dt><dd>El brief 279: 25 ejercicios pedían algo que el alumno no vio y 13 volvían con el mismo error que producción.</dd>
+          <dt>Qué dijiste</dt><dd>«Sí, los 42».</dd>
+          <dt>A qué te referías</dt><dd>38 con el corrector y 4 a mano con las propuestas del 278; medir lo corregido y comparar.</dd>
+        </dl>
+        <p class="de">Tu respuesta a la pregunta 1 del brief 279, el 6/11 a la tarde.</p>
+      </div>
+    </details>
+    <h1>Corregí 39 de los 42 y Didáctica ya no frena nada</h1>
+    <p class="sub">Corregí con el corrector y a mano, arreglé dos defectos que tiraban o frenaban correcciones, medí con todos los jueces y comparé.</p>
+  </header>
+
+  <div class="lede"><p><strong>Ningún cambio vuelve ya por Didáctica y los pisos rotos bajaron de 7 a 5.</strong> Para publicar faltan 4 respuestas tuyas; la clave es 2394, el piso que el cierre no arregla solo.</p></div>
+
+  <p class="para-vos">Hay 4 preguntas para vos al final, cada una con su contexto. <a href="#decidir">Ir a las preguntas ↓</a></p>
+
+  <div class="saber">
+    <h2>Lo que tenés que saber</h2>
+    <dl>
+      <div><dt>Piso roto</dt><dd>Un tema donde la C2 tiene más ejercicios con error que al empezar. Publicar exige cero.</dd></div>
+      <div><dt>Vuelve</dt><dd>Un cambio de la C2 que suma un error: al cerrar, ese ejercicio queda como estaba.</dd></div>
+      <div><dt>La mesa</dt><dd>Donde el corrector prueba cada arreglo con los jueces antes de aceptarlo.</dd></div>
+    </dl>
+  </div>
+
+  <section>
+    <h2>Didáctica dice «bien» en 41 de los 42</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">39<small>de 42</small></div><div class="l">corregidos: 38 con el corrector y 23f7 a mano</div></div>
+      <div class="kpi"><div class="n">0<small>eran 27</small></div><div class="l">cambios que vuelven por Didáctica al cerrar</div></div>
+      <div class="kpi"><div class="n">5<small>eran 7</small></div><div class="l">pisos rotos; al cerrar sólo quedan los 2 de 2394</div></div>
+      <div class="kpi"><div class="n">1.300</div><div class="l">consultas: 1.252 del corrector y unas 45 de los jueces</div></div>
+    </div>
+    <p class="pie">Faltan 2394, 22b4 y 2eed, que esperan tu respuesta. Corregí además 4 cambios que volvían por otros jueces; 2146 y 254d no tuvieron arreglo y van a la bandeja.</p>
+  </section>
+
+  <section>
+    <h2>La mesa juzgaba sin el temario y tiraba correcciones</h2>
+    <div class="ex"><span class="cons">El posesivo · Cambia la oración para que incluya 's o s'. · producción y la C2 antes de corregir</span>
+      <span class="en">These are the <span class="gap"></span> (bikes that belong to the boys).</span>
+      <span class="ans"><b>Acepta:</b> boys' bikes. Didáctica: la pista usa una oración relativa, que el curso no enseñó.</span></div>
+    <div class="ad">
+      <div class="lado antes"><span class="rot">Antes</span>
+        <ol><li>En el curso, Didáctica lee los temas anteriores y dice «reescribir».</li><li>En la mesa le llegaba el tema solo, sin el temario.</li><li>Ahí decía «bien», y la tarea se tiraba sin corregir.</li></ol>
+        <span class="res">8 de los 42 se tiraban</span></div>
+      <div class="lado despues"><span class="rot">Ahora</span>
+        <ol><li>La mesa le da el temario, igual que el análisis.</li><li>Didáctica dice lo mismo en la mesa y en el curso.</li><li>El corrector reescribe la pista.</li></ol>
+        <span class="res">Ahora pide «(The bikes belong to the boys)»</span></div>
+    </div>
+    <p class="pie">Además, el cierre contaba tu arreglo a mano de 23f7 como un cambio de fuera de la tanda y lo frenaba. Ya lo cuenta como tuyo.</p>
+  </section>
+
+  <section>
+    <h2>Los 42, grupo por grupo</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Qué tenía</th><th class="c">Ejercicios</th><th class="c">Corregidos</th><th class="c">Didáctica dice «bien» hoy</th><th class="c">En producción</th></tr></thead>
+      <tbody>
+        <tr><td>Coletilla («can't she?»)</td><td class="c">9</td><td class="c">9</td><td class="c">9</td><td class="c">9</td></tr>
+        <tr><td>«There + be»</td><td class="c">5</td><td class="c">5</td><td class="c">5</td><td class="c">5</td></tr>
+        <tr><td>Le habían sacado la pista o el ejemplo</td><td class="c">4</td><td class="c">4</td><td class="c">4</td><td class="c">3</td></tr>
+        <tr><td>Otra estructura que no vio</td><td class="c">4</td><td class="c">4</td><td class="c">4</td><td class="c">4</td></tr>
+        <tr><td>«I want you to» + verbo</td><td class="c">3</td><td class="c">3</td><td class="c">3</td><td class="c">3</td></tr>
+        <tr><td>«How about + -ing» en «let's»</td><td class="c">10</td><td class="c">10</td><td class="c">10</td><td class="c">0</td></tr>
+        <tr><td>Otros que volvían con el error de producción</td><td class="c">3</td><td class="c">3</td><td class="c">3</td><td class="c">0</td></tr>
+        <tr><td>A mano, con las propuestas del 278</td><td class="c">4</td><td class="c">1</td><td class="c">3</td><td class="c">2</td></tr>
+      <tr><td><b>Total</b></td><td class="c"><b>42</b></td><td class="c"><b>39</b></td><td class="c"><b>41</b></td><td class="c"><b>26</b></td></tr>
+      </tbody></table></div>
+    <p class="pie">Los 13 de «let's» y los otros que volvían ya no tienen el error de producción. 22b4 dice «bien» sin corregir; 2eed, «mejorar».</p>
+    <details class="todos"><summary>Los 42, cada uno entero: producción, antes de corregir y hoy</summary>
+      <div class="tw"><table>
+        <thead><tr><th>Qué tenía</th><th>Producción</th><th>Antes de corregir</th><th>Hoy</th><th>Didáctica hoy</th></tr></thead>
+        <tbody>
+<tr><td>Coletilla («can't she?»)<br><span class="cons">24e3 · corrector</span></td><td><span class="cons">Expresar habilidad</span><br><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>Now she <span class="gap"></span> dance.</i><br><span class="cons">Opciones: can (correcta) · can't · could · couldn't</span><br><span class="cons">«Ahora ella puede bailar.»</span><br><span class="teo">Ahora → can. Antes → could. Futuro → will be able to.</span></td><td><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>Now she <span class="gap"></span> dance, can't she?</i><br><span class="cons">Opciones: can (correcta) · can't · could · couldn't</span><br><span class="cons">«Ahora ella puede bailar, ¿verdad?»</span></td><td><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>She dances well now. She <span class="gap"></span> dance.</i><br><span class="cons">Opciones: can (correcta) · can't · could · couldn't</span><br><span class="cons">«Ella baila bien ahora. Ella puede bailar.»</span><br><span class="teo">Para expresar habilidad actual: sujeto + can + verbo base.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La primera oración expresa una habilidad actual y «now» orienta a elegir «can». El presente simple está documentado previamente y «dances well» aporta un contexto cotidiano claro, sin una carga adicional material.</span></td></tr>
+<tr><td>Coletilla («can't she?»)<br><span class="cons">24e4 · corrector</span></td><td><span class="cons">Expresar habilidad</span><br><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>My brother <span class="gap"></span> ride a horse when he was six.</i><br><span class="cons">Opciones: can · can't · could (correcta) · couldn't</span><br><span class="cons">«Mi hermano podía montar a caballo cuando tenía seis años.»</span><br><span class="teo">Ahora → can. Antes → could. Futuro → will be able to.</span></td><td><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>My brother <span class="gap"></span> ride a horse when he was six, couldn't he?</i><br><span class="cons">Opciones: can · can't · could (correcta) · couldn't</span><br><span class="cons">«Mi hermano podía montar a caballo cuando tenía seis años, ¿verdad?»</span></td><td><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>My brother was six. He <span class="gap"></span> ride a horse. It was easy for him.</i><br><span class="cons">Opciones: can · can't · could (correcta) · couldn't</span><br><span class="cons">«Mi hermano tenía seis años. Podía montar a caballo. Le resultaba fácil.»</span><br><span class="teo">Para expresar habilidad afirmativa en el pasado: sujeto + could + verbo base.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">«My brother was six» sitúa la habilidad en el pasado y «It was easy for him» indica capacidad afirmativa, por lo que permite elegir «could». El pasado de «be» está documentado en el aprendizaje previo y el ejemplo no exige estructuras adicionales que dificulten practicar el objetivo.</span></td></tr>
+<tr><td>Coletilla («can't she?»)<br><span class="cons">24e5 · corrector</span></td><td><span class="cons">Expresar habilidad</span><br><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>She <span class="gap"></span> speak Chinese. (now)</i><br><span class="cons">Opciones: can (correcta) · can't · could · couldn't</span><br><span class="cons">«Ella puede hablar chino.»</span><br><span class="teo">Ahora → can. Antes → could. Futuro → will be able to.</span></td><td><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>She <span class="gap"></span> speak Chinese, can't she? (now)</i><br><span class="cons">Opciones: can (correcta) · can't · could · couldn't</span><br><span class="cons">«Ella puede hablar chino, ¿verdad?»</span></td><td><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>She speaks Chinese well now. She <span class="gap"></span> speak Chinese.</i><br><span class="cons">Opciones: can (correcta) · can't · could · couldn't</span><br><span class="cons">«Ella habla chino bien ahora. Ella puede hablar chino.»</span><br><span class="teo">Para expresar habilidad actual: sujeto + can + verbo base. Now indica que hablamos de ahora.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La primera oración expresa una habilidad actual y «now» orienta claramente a elegir «can». El presente simple está documentado y «well» aporta un significado cotidiano que no exige aprender otra estructura para resolver el hueco.</span></td></tr>
+<tr><td>Coletilla («can't she?»)<br><span class="cons">24e6 · corrector</span></td><td><span class="cons">Expresar habilidad</span><br><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>She <span class="gap"></span> play football really well. (now)</i><br><span class="cons">Opciones: can (correcta) · can't · could · couldn't</span><br><span class="cons">«Ella puede jugar al fútbol muy bien.»</span><br><span class="teo">Ahora → can. Antes → could. Futuro → will be able to.</span></td><td><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>She <span class="gap"></span> play football really well, can't she? (now)</i><br><span class="cons">Opciones: can (correcta) · can't · could · couldn't</span><br><span class="cons">«Ella puede jugar al fútbol muy bien, ¿verdad?»</span></td><td><span class="cons">Elige la opción correcta.</span><br><i>Football is easy for her now. She <span class="gap"></span> play well.</i><br><span class="cons">Opciones: can (correcta) · can't · doesn't can · is can</span><br><span class="cons">«El fútbol le resulta fácil ahora. Ella puede jugar bien.»</span><br><span class="teo">Para expresar habilidad actual afirmativa: sujeto + can + verbo base. Now indica que hablamos de ahora. No se añade do ni be a can.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">El contexto indica que jugar al fútbol le resulta fácil y permite elegir «can» para expresar habilidad. La construcción «can + play» practica directamente el objetivo; «well» tiene un significado cotidiano y no añade una dificultad material para resolver el ejercicio.</span></td></tr>
+<tr><td>Coletilla («can't she?»)<br><span class="cons">24e7 · corrector</span></td><td><span class="cons">Expresar habilidad</span><br><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>You <span class="gap"></span> understand people. (now)</i><br><span class="cons">Opciones: can (correcta) · can't · could · couldn't</span><br><span class="cons">«Puedes entender a la gente.»</span><br><span class="teo">Ahora → can. Antes → could. Futuro → will be able to.</span></td><td><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>You <span class="gap"></span> understand people, can't you? (now)</i><br><span class="cons">Opciones: can (correcta) · can't · could · couldn't</span><br><span class="cons">«Puedes entender a la gente, ¿verdad?»</span></td><td><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>You understand people well now. You <span class="gap"></span> understand them.</i><br><span class="cons">Opciones: can (correcta) · can't · could · couldn't</span><br><span class="cons">«Entiendes bien a la gente ahora. Puedes entenderla.»</span><br><span class="teo">Para expresar habilidad actual: sujeto + can + verbo base. Now indica que hablamos de ahora.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">El contexto afirma una capacidad actual: «now» sitúa la habilidad en el presente y «understand people well» orienta hacia «can». El presente simple y los pronombres están documentados en el aprendizaje previo; no se necesita ninguna estructura adicional para elegir la respuesta.</span></td></tr>
+<tr><td>Coletilla («can't she?»)<br><span class="cons">24e8 · corrector</span></td><td><span class="cons">Expresar habilidad</span><br><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>She <span class="gap"></span> make very nice cakes. (now)</i><br><span class="cons">Opciones: can (correcta) · can't · could · couldn't</span><br><span class="cons">«Ella puede hacer pasteles muy buenos.»</span><br><span class="teo">Ahora → can. Antes → could. Futuro → will be able to.</span></td><td><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>She <span class="gap"></span> make very nice cakes, can't she? (now)</i><br><span class="cons">Opciones: can (correcta) · can't · could · couldn't</span><br><span class="cons">«Ella puede hacer pasteles muy buenos, ¿verdad?»</span></td><td><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>She makes very nice cakes now. She <span class="gap"></span> make cakes.</i><br><span class="cons">Opciones: can (correcta) · can't · could · couldn't</span><br><span class="cons">«Ella hace pasteles muy buenos ahora. Ella puede hacer pasteles.»</span><br><span class="teo">Para expresar habilidad actual afirmativa: sujeto + can + verbo base. Now indica que hablamos de ahora.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">El contexto indica una habilidad actual: hace pasteles muy buenos y «now» sitúa esa habilidad en el presente. Permite elegir «can» con vocabulario cotidiano y una estructura de presente simple documentada previamente.</span></td></tr>
+<tr><td>Coletilla («can't she?»)<br><span class="cons">24ec · corrector</span></td><td><span class="cons">Expresar habilidad</span><br><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>They <span class="gap"></span> (not) finish the test.</i><br><span class="cons">Opciones: can · can't (correcta) · could · couldn't</span><br><span class="cons">«Ellos no pueden terminar el examen.»</span><br><span class="teo">Ahora → can. Antes → could. Futuro → will be able to.</span></td><td><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>They <span class="gap"></span> (not) finish the test now, can they?</i><br><span class="cons">Opciones: can · can't (correcta) · could · couldn't</span><br><span class="cons">«Ellos no pueden terminar el examen ahora, ¿verdad?»</span></td><td><span class="cons">Elige la opción correcta.</span><br><i>They don't understand the test. They <span class="gap"></span> finish it now.</i><br><span class="cons">Opciones: can · can't (correcta) · don't can · aren't can</span><br><span class="cons">«Ellos no entienden el examen. No pueden terminarlo ahora.»</span><br><span class="teo">Para expresar falta de habilidad actual: sujeto + can't + verbo base. La negación de can se forma sin do ni be.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">El contexto de no entender el examen permite elegir «can't» para expresar incapacidad actual para terminarlo. La negación en presente simple está documentada y el ejemplo no exige estructuras adicionales ajenas al objetivo.</span></td></tr>
+<tr><td>Coletilla («can't she?»)<br><span class="cons">24f6 · corrector</span></td><td><span class="cons">Expresar habilidad</span><br><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>The students <span class="gap"></span> do their homework. (now)</i><br><span class="cons">Opciones: can (correcta) · can't · could · couldn't</span><br><span class="cons">«Los estudiantes pueden hacer sus deberes.»</span><br><span class="teo">Ahora → can. Antes → could. Futuro → will be able to.</span></td><td><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>The students <span class="gap"></span> do their homework, can't they? (now)</i><br><span class="cons">Opciones: can (correcta) · can't · could · couldn't</span><br><span class="cons">«Los estudiantes pueden hacer sus deberes, ¿verdad?»</span></td><td><span class="cons">Elige la opción correcta.</span><br><i>The students do homework well now. They <span class="gap"></span> do it.</i><br><span class="cons">Opciones: can (correcta) · can't · don't can · aren't can</span><br><span class="cons">«Los estudiantes hacen bien los deberes ahora. Pueden hacerlos.»</span><br><span class="teo">Para expresar habilidad actual afirmativa: sujeto + can + verbo base. Now indica que hablamos de ahora. No se añade do ni be a can.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">El contexto indica que los estudiantes hacen bien la tarea y permite elegir «can» para expresar habilidad. La referencia «do it» es clara y el presente simple está documentado entre los aprendizajes previos; «well» y «now» aportan contexto cotidiano sin añadir una carga material.</span></td></tr>
+<tr><td>Coletilla («can't she?»)<br><span class="cons">24f3 · corrector</span></td><td><span class="cons">Expresar habilidad</span><br><span class="cons">Elige 'can', 'can't', 'could' o 'couldn't'.</span><br><i>She <span class="gap"></span> (not) walk when she was a baby!</i><br><span class="cons">Opciones: can · can't · could · couldn't (correcta)</span><br><span class="cons">«¡Ella no podía caminar cuando era bebé!»</span><br><span class="teo">Ahora → can. Antes → could. Futuro → will be able to.</span></td><td><span class="cons">Completa la pregunta final de confirmación con la opción correcta.</span><br><i>You could ride a horse last month, <span class="gap"></span> you?</i><br><span class="cons">Opciones: can · can't · couldn't you · couldn't (correcta)</span><br><span class="cons">«Podías montar a caballo el mes pasado, ¿verdad?»</span></td><td><span class="cons">Elige la opción correcta.</span><br><i>We <span class="gap"></span> understand our teacher as children. We understood every word.</i><br><span class="cons">Opciones: can · can't · could (correcta) · couldn't</span><br><span class="cons">«Podíamos entender a nuestro profesor cuando éramos niños. Entendíamos cada palabra.»</span><br><span class="teo">Para expresar habilidad afirmativa en el pasado: sujeto + could + verbo base. As children sitúa la habilidad en el pasado.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">El contexto «as children» sitúa la habilidad en el pasado y «We understood every word» confirma que era afirmativa, permitiendo elegir «could». El pasado simple está documentado como aprendizaje previo y el vocabulario no añade una carga material al objetivo.</span></td></tr>
+<tr><td>«There + be»<br><span class="cons">21a2 · corrector</span></td><td><span class="cons">Be: afirmar y negar</span><br><span class="cons">Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.</span><br><i>They <span class="gap"></span> (be) at the house.</i><br><span class="cons">Opciones: was · was not · were (correcta) · were not</span><br><span class="cons">«Ellos estaban en la casa.»</span><br><span class="teo">was con I, he, she, it. were con you, we, they. El not va detrás.</span></td><td><span class="cons">Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.</span><br><i>There <span class="gap"></span> (be) a game at school.</i><br><span class="cons">Opciones: was (correcta) · be · were · were not</span><br><span class="cons">«Había un partido en la escuela.»</span></td><td><span class="cons">Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.</span><br><i>The game <span class="gap"></span> (be) different.</i><br><span class="cons">Opciones: was (correcta) · be · were · were not</span><br><span class="cons">«El partido fue diferente.»</span><br><span class="teo">Con un sustantivo en singular, la afirmación en pasado simple con be se forma así: sujeto + was + el resto de la oración.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">El sujeto singular «The game» permite elegir «was» entre las opciones visibles y practicar la afirmativa de «be» en pasado. «Different» expresa una descripción sencilla; no hace falta especificar la comparación para resolver este ejercicio de conjugación.</span></td></tr>
+<tr><td>«There + be»<br><span class="cons">21a5 · corrector</span></td><td><span class="cons">Be: afirmar y negar</span><br><span class="cons">Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.</span><br><i>You <span class="gap"></span> (not / be) students.</i><br><span class="cons">Opciones: was · was not · were · were not (correcta)</span><br><span class="cons">«Ustedes no eran estudiantes.»</span><br><span class="teo">was con I, he, she, it. were con you, we, they. El not va detrás.</span></td><td><span class="cons">Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.</span><br><i>There <span class="gap"></span> (be) two teachers at school.</i><br><span class="cons">Opciones: was · was not · were (correcta) · be</span><br><span class="cons">«Había dos maestros en la escuela.»</span></td><td><span class="cons">Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.</span><br><i>The two teachers <span class="gap"></span> (be) at school.</i><br><span class="cons">Opciones: was · was not · were (correcta) · be</span><br><span class="cons">«Los dos maestros estaban en la escuela.»</span><br><span class="teo">Con un sustantivo en plural, la afirmación en pasado simple con be se forma así: sujeto + were + el resto de la oración.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">El sujeto plural «The two teachers» permite elegir «were» entre las opciones visibles y practicar la concordancia de «be» en pasado. La ubicación «at school» es clara y no añade una carga incidental relevante.</span></td></tr>
+<tr><td>«There + be»<br><span class="cons">230b · corrector</span></td><td><span class="cons">Contable o incontable</span><br><span class="cons">¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?</span><br><i>the past <span class="gap"></span></i><br><span class="cons">Opciones: plural countable · singular countable · uncountable (correcta)</span><br><span class="cons">«el pasado incontable»</span><br><span class="teo">The past no tiene plural: es incontable, como work o time.</span></td><td><span class="cons">Elige la opción correcta para completar la oración.</span><br><i>There <span class="gap"></span> two glasses.</i><br><span class="cons">Opciones: are (correcta) · is · am</span><br><span class="cons">«Hay dos vasos.»</span></td><td><span class="cons">Elige la opción correcta para completar la oración.</span><br><i>There are two <span class="gap"></span> .</i><br><span class="cons">Opciones: glasses (correcta) · glass · rice</span><br><span class="cons">«Hay dos vasos.»</span><br><span class="teo">Con un número mayor que uno usamos un sustantivo contable en plural. Los sustantivos incontables no se cuentan directamente con números.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">El numeral «two» permite elegir «glasses» como sustantivo contable plural frente a «glass» y «rice». El plural está documentado como aprendizaje previo y la estructura «There are» es incidental: no hace falta dominarla para resolver el hueco.</span></td></tr>
+<tr><td>«There + be»<br><span class="cons">230c · corrector</span></td><td><span class="cons">Contable o incontable</span><br><span class="cons">¿El sustantivo es 'singular countable', 'plural countable' o 'uncountable'?</span><br><i>water <span class="gap"></span></i><br><span class="cons">Opciones: plural countable · singular countable · uncountable (correcta)</span><br><span class="cons">«agua incontable»</span><br><span class="teo">Si podés contarlo, es contable. water, work, food y music no tienen plural.</span></td><td><span class="cons">Elige la opción correcta para completar la oración.</span><br><i>There <span class="gap"></span> a computer.</i><br><span class="cons">Opciones: is (correcta) · are · am</span><br><span class="cons">«Hay una computadora.»</span></td><td><span class="cons">Elige la opción correcta para completar la oración.</span><br><i>I need <span class="gap"></span> for work.</i><br><span class="cons">Opciones: a computer (correcta) · many computer · much computer</span><br><span class="cons">«Necesito una computadora para el trabajo.»</span><br><span class="teo">Computer es contable. Para hablar de uno sin especificar cuál, usamos a + sustantivo contable singular. Many acompaña sustantivos contables en plural; much acompaña sustantivos incontables.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La oración permite reconocer computer como sustantivo contable singular y elegir a computer entre las opciones visibles. El presente simple está documentado y for work aporta un contexto cotidiano claro, sin carga adicional material.</span></td></tr>
+<tr><td>«There + be»<br><span class="cons">2414 · corrector</span></td><td><span class="cons">Oraciones más naturales</span><br><span class="cons">Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.</span><br><i>Are any people in the room? <span class="gap"></span></i><br><span class="cons">Acepta: Are there any people in the room?</span><br><span class="cons">«¿Hay gente en la habitación?»</span><br><span class="teo">En pregunta, there va pegado justo después de is o are: Is there? Are there?</span></td><td><span class="cons">Reescribe la pregunta para que suene natural, conservando su significado y usando la estructura del tema. Conserva todas las palabras originales y añade solo una palabra; puedes cambiar el orden.</span><br><i>Are any people in the room? <span class="gap"></span></i><br><span class="cons">Acepta: Are there any people in the room? · In the room, are there any people?</span><br><span class="cons">«¿Hay gente en la habitación?»</span></td><td><span class="cons">En este tema practicas cómo expresar «hay» en inglés. Reescribe la pregunta usando la estructura del tema y conservando su significado. Conserva todas las palabras originales y añade solo una palabra; puedes cambiar el orden.</span><br><i>Are any people in the room? <span class="gap"></span></i><br><span class="cons">Acepta: Are there any people in the room? · In the room, are there any people?</span><br><span class="cons">«¿Hay gente en la habitación?»</span><br><span class="teo">There are expresa «hay» con un sustantivo plural. Para preguntar si hay personas o cosas: Are there + sustantivo plural + el resto de la oración + ?</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La instrucción identifica la estructura existencial y permite resolver la reescritura añadiendo «there». Ambas respuestas conservan las palabras originales y el significado previsto. Las preguntas con «be» y el uso de «any» figuran en el aprendizaje previo; el contexto de personas en una habitación es claro y cotidiano.</span></td></tr>
+<tr><td>Le habían sacado la pista o el ejemplo<br><span class="cons">206d · corrector</span></td><td><span class="cons">Contraste inicial</span><br><span class="cons">Escribe las oraciones en 'present simple' o 'present continuous'.</span><br><i>You <span class="gap"></span> (not / seem) happy. (present simple)</i><br><span class="cons">Acepta: don't seem / do not seem</span><br><span class="cons">«No pareces feliz.»</span><br><span class="teo">Los verbos de estado (need, seem, have de posesión) no llevan -ing, ni aunque sea ahora.</span></td><td><span class="cons">Escribe las oraciones en 'present simple' o 'present continuous'.</span><br><i>You <span class="gap"></span> (not / seem) happy.</i><br><span class="cons">Acepta: don't seem · do not seem</span><br><span class="cons">«No pareces feliz.»</span></td><td><span class="cons">Escribe las oraciones en 'present simple' o 'present continuous'.</span><br><i>You <span class="gap"></span> (not / work) on Sundays.</i><br><span class="cons">Acepta: don't work · do not work</span><br><span class="cons">«No trabajas los domingos.»</span><br><span class="teo">On Sundays indica una costumbre. Para negarla en presente simple con you: you + (don't o do not) + verbo base + el resto de la oración.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">«On Sundays» señala una rutina y permite elegir el present simple negativo con los aprendizajes previos documentados. Ambas variantes aceptadas ilustran claramente el objetivo, sin una carga incidental relevante.</span></td></tr>
+<tr><td>Le habían sacado la pista o el ejemplo<br><span class="cons">2080 · corrector</span></td><td><span class="cons">Contraste inicial</span><br><span class="cons">Escribe las oraciones en 'present simple' o 'present continuous'.</span><br><i>We <span class="gap"></span> (not / want) lunch. (present simple)</i><br><span class="cons">Acepta: don't want / do not want</span><br><span class="cons">«No queremos almorzar.»</span><br><span class="teo">Be, want, enjoy y otros verbos de estado no llevan continuo: siempre simple.</span></td><td><span class="cons">Escribe las oraciones en 'present simple' o 'present continuous'.</span><br><i>We <span class="gap"></span> (not / want) lunch.</i><br><span class="cons">Acepta: don't want · do not want</span><br><span class="cons">«No queremos almorzar.»</span></td><td><span class="cons">Escribe las oraciones en 'present simple' o 'present continuous'.</span><br><i>We <span class="gap"></span> (not / drink) coffee every morning.</i><br><span class="cons">Acepta: don't drink · do not drink</span><br><span class="cons">«No bebemos café todas las mañanas.»</span><br><span class="teo">Every morning indica una costumbre. Para negarla en presente simple con we: we + (don't o do not) + verbo base + el resto de la oración.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">«Every morning» presenta una rutina y orienta al presente simple en el contraste solicitado. La negación con «do not / don't» está documentada en el aprendizaje previo, y el vocabulario cotidiano permite completar el hueco sin estructuras adicionales.</span></td></tr>
+<tr><td>Le habían sacado la pista o el ejemplo<br><span class="cons">2089 · corrector</span></td><td><span class="cons">Contraste inicial</span><br><span class="cons">Escribe las oraciones en 'present simple' o 'present continuous'.</span><br><i>He <span class="gap"></span> (leave) soon. (present continuous)</i><br><span class="cons">Acepta: is leaving / 's leaving</span><br><span class="cons">«Él se va pronto.»</span><br><span class="teo">Buscá la pista: every day pide simple, now pide continuo.</span></td><td><span class="cons">Escribe las oraciones en 'present simple' o 'present continuous'.</span><br><i>He <span class="gap"></span> (leave) soon. His taxi is outside.</i><br><span class="cons">Acepta: is leaving · 's leaving</span><br><span class="cons">«Él se va pronto. Su taxi está afuera.»</span></td><td><span class="cons">Escribe las oraciones en 'present simple' o 'present continuous'.</span><br><i>Look! He <span class="gap"></span> (leave) now. His taxi is outside.</i><br><span class="cons">Acepta: is leaving · 's leaving</span><br><span class="cons">«¡Mira! Él se está yendo ahora. Su taxi está afuera.»</span><br><span class="teo">Look! y now indican una acción en curso. Usa el presente continuo: he + (is o 's) + verbo en -ing + el resto de la oración. Si el verbo termina en e muda, elimínala antes de añadir -ing.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">«Look!» y «now» señalan una acción en curso, y el taxi afuera aporta un contexto cotidiano claro. El alumno puede elegir y formar «is leaving» con lo ya documentado, sin necesitar estructuras adicionales.</span></td></tr>
+<tr><td>Le habían sacado la pista o el ejemplo<br><span class="cons">2a3b · corrector</span></td><td><span class="cons">El posesivo</span><br><span class="cons">Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.</span><br><i>These are the <span class="gap"></span> (bikes that belong to the boys).</i><br><span class="cons">Acepta: boys' bikes</span><br><span class="cons">«Estas son las bicicletas de los chicos.»</span><br><span class="teo">Singular → 's. Plural terminado en s → sólo ': the boys' bikes.</span></td><td><span class="cons">Cambia la oración para que incluya 's o s'.</span><br><i>These are the <span class="gap"></span> (bikes that belong to the boys).</i><br><span class="cons">Acepta: boys' bikes</span><br><span class="cons">«Estas son las bicicletas de los chicos.»</span></td><td><span class="cons">Cambia la oración para que incluya 's o s'.</span><br><i>These are the <span class="gap"></span> (The bikes belong to the boys).</i><br><span class="cons">Acepta: boys' bikes</span><br><span class="cons">«Estas son las bicicletas de los chicos.»</span><br><span class="teo">Con un poseedor plural terminado en s, añade solo un apóstrofo al final y después escribe lo que le pertenece.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La pista expresa claramente quiénes poseen las bicicletas y permite practicar el posesivo plural boys' con vocabulario cotidiano. El plural regular está documentado en el aprendizaje previo y la respuesta encaja en el hueco conservando el artículo visible.</span></td></tr>
+<tr><td>Otra estructura que no vio<br><span class="cons">21ae · corrector</span></td><td><span class="cons">Be: formas cortas</span><br><span class="cons">Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.</span><br><i>The dogs <span class="gap"></span> (be) in the house.</i><br><span class="cons">Opciones: was · wasn't · were (correcta) · weren't</span><br><span class="cons">«Los perros estaban en la casa.»</span><br><span class="teo">Las cortas son del negativo: wasn't y weren't. El afirmativo no se contrae.</span></td><td><span class="cons">Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.</span><br><i>The dogs <span class="gap"></span> (be) in the house. I saw them there.</i><br><span class="cons">Opciones: was · wasn't · were (correcta) · weren't</span><br><span class="cons">«Los perros estaban en la casa. Los vi allí.»</span></td><td><span class="cons">Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.</span><br><i>The dogs <span class="gap"></span> (be) in the house.</i><br><span class="cons">Opciones: was · wasn't · were (correcta) · is</span><br><span class="cons">«Los perros estaban en la casa.»</span><br><span class="teo">Con un sujeto plural, la forma afirmativa de be en pasado simple es were.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La instrucción permite una forma afirmativa o negativa. «Were» practica la concordancia de «be» en pasado con el sujeto plural «the dogs»; las opciones visibles permiten elegirla y la ubicación es clara, sin estructuras adicionales que dificulten la respuesta.</span></td></tr>
+<tr><td>Otra estructura que no vio<br><span class="cons">22cb · corrector</span></td><td><span class="cons">Oraciones con let's</span><br><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about Monday? <span class="gap"></span></i><br><span class="cons">Acepta: Let's go on Monday.</span><br><span class="cons">«¿Qué tal el lunes? Vayamos el lunes.»</span><br><span class="teo">Let's + verbo sin to. Para negar, Let's not + verbo.</span></td><td><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about going now? <span class="gap"></span></i><br><span class="cons">Acepta: Let's go now.</span><br><span class="cons">«Vayamos ahora.»</span></td><td><span class="cons">Reescribe la oración como una propuesta con "let's". Conserva el resto de la oración sin añadir información.</span><br><i>Go now. <span class="gap"></span></i><br><span class="cons">Acepta: Let's go now.</span><br><span class="cons">«Vayamos ahora.»</span><br><span class="teo">Para hacer una propuesta afirmativa: Let's + verbo base + el resto de la oración.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La transformación de «Go now.» en «Let's go now.» practica directamente una propuesta con let's y conserva el resto de la oración. El imperativo está documentado como aprendizaje previo y el ejemplo no exige interpretaciones ni estructuras adicionales.</span></td></tr>
+<tr><td>Otra estructura que no vio<br><span class="cons">241b · corrector</span></td><td><span class="cons">It's como sujeto</span><br><span class="cons">Usa short forms si es posible. Crea oraciones utilizando 'it's'.</span><br><i>(a quarter past ten) <span class="gap"></span></i><br><span class="cons">Acepta: It's a quarter past ten.</span><br><span class="cons">«Son las diez y cuarto.»</span><br><span class="teo">Hora, clima, fecha y distancia arrancan con It's: It's a quarter past ten.</span></td><td><span class="cons">Crea una oración utilizando it's y todas las palabras dadas.</span><br><i>(ten / past / a quarter) <span class="gap"></span></i><br><span class="cons">Acepta: It's a quarter past ten.</span><br><span class="cons">«Son las diez y cuarto.»</span></td><td><span class="cons">Crea una oración utilizando it's y todas las palabras dadas.</span><br><i>(ten / o'clock) <span class="gap"></span></i><br><span class="cons">Acepta: It's ten o'clock.</span><br><span class="cons">«Son las diez.»</span><br><span class="teo">Para decir la hora, usamos It is o It's + expresión de hora.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La oración muestra de forma clara el uso de «it's» para decir la hora. Las palabras dadas permiten construir el ejemplo sin contexto adicional ni estructuras ajenas al objetivo.</span></td></tr>
+<tr><td>Otra estructura que no vio<br><span class="cons">21b5 · corrector</span></td><td><span class="cons">Be: formas cortas</span><br><span class="cons">Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.</span><br><i>You <span class="gap"></span> (be) at home.</i><br><span class="cons">Opciones: was · wasn't · were (correcta) · weren't</span><br><span class="cons">«Tú estabas en casa.»</span><br><span class="teo">Las cortas son del negativo: wasn't y weren't. El afirmativo no se contrae.</span></td><td><span class="cons">Elige la forma del verbo 'be' en pasado simple, afirmativa o negativa.</span><br><i><span class="gap"></span> (be) the car ready last night?</i><br><span class="cons">Opciones: Was (correcta) · Were · Am · Be</span><br><span class="cons">«¿Estaba listo el coche anoche?»</span></td><td><span class="cons">Elige la forma de be en pasado simple; usa una forma corta si puedes.</span><br><i>The beach <span class="gap"></span> (not / be) very close.</i><br><span class="cons">Opciones: was · wasn't (correcta) · were · weren't</span><br><span class="cons">«La playa no estaba muy cerca.»</span><br><span class="teo">Con un sustantivo en singular, el negativo de be en pasado simple es was not o wasn't.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">El sujeto singular «The beach» y la indicación «not / be» permiten elegir «wasn't» y practicar la contracción negativa de be en pasado. «Very close» expresa cercanía de forma clara y cotidiana, sin exigir estructuras adicionales para resolver el ejercicio.</span></td></tr>
+<tr><td>«I want you to» + verbo<br><span class="cons">2dd3 · corrector</span></td><td><span class="cons">Pedidos: formal o informal</span><br><span class="cons">Transforma las oraciones para que incluyan 'could' o 'can'.</span><br><i>Normal request: I want you to order pizza. <span class="gap"></span></i><br><span class="cons">Acepta: Can you order pizza?</span><br><span class="cons">«¿Puedes pedir pizza?»</span><br><span class="teo">Can para el pedido normal, Could para el cortés. Después, verbo base.</span></td><td><span class="cons">Transforma las oraciones para que incluyan 'could' o 'can'.</span><br><i>Normal request: I want you to buy pizza. <span class="gap"></span></i><br><span class="cons">Acepta: Can you buy pizza?</span><br><span class="cons">«¿Puedes comprar pizza?»</span></td><td><span class="cons">Transforma las oraciones para que incluyan 'could' o 'can'.</span><br><i>Normal request: Buy pizza. <span class="gap"></span></i><br><span class="cons">Acepta: Can you buy pizza?</span><br><span class="cons">«¿Puedes comprar pizza?»</span><br><span class="teo">En este ejercicio, la etiqueta Normal request indica usar Can para formular el pedido.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La transformación de «Buy pizza» en «Can you buy pizza?» permite practicar un pedido con can usando vocabulario cotidiano y un imperativo ya documentado. No exige estructuras adicionales. Corresponde a INSTRUCTION_OR_ANSWER revisar si también debe aceptarse «Could you buy pizza?», porque la consigna permite ambos modales y «Normal request» no distingue claramente cuál usar.</span></td></tr>
+<tr><td>«I want you to» + verbo<br><span class="cons">2dda · corrector</span></td><td><span class="cons">Pedidos: formal o informal</span><br><span class="cons">Transforma las oraciones para que incluyan 'could' o 'can'.</span><br><i>Polite request: I want you to get me some tea. <span class="gap"></span></i><br><span class="cons">Acepta: Could you bring me some tea?</span><br><span class="cons">«¿Podrías traerme un poco de té?»</span><br><span class="teo">Can para el pedido normal, Could para el cortés. Después, verbo base.</span></td><td><span class="cons">Transforma las oraciones para que incluyan 'could' o 'can'.</span><br><i>Polite request: I want you to get me some tea. <span class="gap"></span></i><br><span class="cons">Acepta: Could you get me some tea? · Could you get some tea for me?</span><br><span class="cons">«¿Podrías traerme un poco de té?»</span></td><td><span class="cons">Transforma las oraciones para que incluyan 'could' o 'can'.</span><br><i>Polite request: Get me some tea. <span class="gap"></span></i><br><span class="cons">Acepta: Could you get me some tea? · Could you get some tea for me?</span><br><span class="cons">«¿Podrías traerme un poco de té?»</span><br><span class="teo">Para formular un pedido cortés: Could you + verbo base + el resto de la oración + ? .</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La indicación de pedido cortés permite practicar «Could you … ?» al transformar un imperativo ya trabajado. Ambas variantes aceptadas expresan un pedido cotidiano y claro, sin exigir interpretaciones ni estructuras adicionales que dificulten el objetivo.</span></td></tr>
+<tr><td>«I want you to» + verbo<br><span class="cons">2de1 · corrector</span></td><td><span class="cons">Pedidos: formal o informal</span><br><span class="cons">Transforma las oraciones para que incluyan 'could' o 'can'.</span><br><i>Polite request: I want you to give me some money. <span class="gap"></span></i><br><span class="cons">Acepta: Could you lend me some money?</span><br><span class="cons">«¿Podrías prestarme algo de dinero?»</span><br><span class="teo">Can para el pedido normal, Could para el cortés. Después, verbo base.</span></td><td><span class="cons">Transforma las oraciones para que incluyan 'could' o 'can'.</span><br><i>Polite request: I want you to give me some money. <span class="gap"></span></i><br><span class="cons">Acepta: Could you give me some money? · Could you give some money to me?</span><br><span class="cons">«¿Podrías darme algo de dinero?»</span></td><td><span class="cons">Transforma las oraciones para que incluyan 'could' o 'can'.</span><br><i>Polite request: Give me some money. <span class="gap"></span></i><br><span class="cons">Acepta: Could you give me some money? · Could you give some money to me?</span><br><span class="cons">«¿Podrías darme algo de dinero?»</span><br><span class="teo">En este ejercicio, Polite request indica que se practica el pedido cortés con Could.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La indicación «Polite request» orienta claramente a transformar el imperativo en un pedido con «could». Ambas variantes permiten practicar ese objetivo con vocabulario cotidiano y un significado directo, sin una carga adicional material.</span></td></tr>
+<tr><td>«How about + -ing» en «let's»<br><span class="cons">22c7 · corrector</span></td><td><span class="cons">Oraciones con let's</span><br><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about reading a book? <span class="gap"></span></i><br><span class="cons">Acepta: Let's read a book</span><br><span class="cons">«¿Qué tal si leemos un libro? Leamos un libro.»</span><br><span class="teo">Let's + verbo sin to. Para negar, Let's not + verbo.</span></td><td><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about reading a book? <span class="gap"></span></i><br><span class="cons">Acepta: Let's read a book.</span><br><span class="cons">«Leamos un libro.»</span></td><td><span class="cons">Reescribe la oración como una propuesta con "let's". Conserva el resto de la oración sin añadir información.</span><br><i>Read a book. <span class="gap"></span></i><br><span class="cons">Acepta: Let's read a book.</span><br><span class="cons">«Leamos un libro.»</span><br><span class="teo">Para hacer una propuesta afirmativa: Let's + verbo base + el resto de la oración.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La consigna permite transformar directamente el imperativo, ya trabajado, en una propuesta con «let's» seguido del verbo en forma base. El ejemplo conserva el resto de la oración y usa vocabulario cotidiano sin exigir interpretaciones adicionales.</span></td></tr>
+<tr><td>«How about + -ing» en «let's»<br><span class="cons">22ca · corrector</span></td><td><span class="cons">Oraciones con let's</span><br><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about not working at home today? <span class="gap"></span></i><br><span class="cons">Acepta: Let's not work at home today.</span><br><span class="cons">«No trabajemos en casa hoy.»</span><br><span class="teo">Let's + verbo sin to. Para negar, Let's not + verbo.</span></td><td><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about not working at home today? <span class="gap"></span></i><br><span class="cons">Acepta: Let's not work at home today. · Don't let's work at home today.</span><br><span class="cons">«No trabajemos en casa hoy.»</span></td><td><span class="cons">Reescribe la oración como una propuesta con "let's". Conserva el resto de la oración sin añadir información.</span><br><i>Don't work at home today. <span class="gap"></span></i><br><span class="cons">Acepta: Let's not work at home today. · Don't let's work at home today.</span><br><span class="cons">«No trabajemos en casa hoy.»</span><br><span class="teo">Para hacer una propuesta negativa: Let's not + verbo base + el resto de la oración. La variante Don't let's también es válida en inglés británico informal, aunque es menos habitual.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La transformación permite practicar una propuesta negativa con «Let's not» conservando el contenido original. El imperativo negativo está cubierto por la lección previa de imperativos y el vocabulario no añade una carga material. «Don't let's» puede mantenerse como variante británica válida, aunque «Let's not» es el modelo neutro preferible.</span></td></tr>
+<tr><td>«How about + -ing» en «let's»<br><span class="cons">22cc · corrector</span></td><td><span class="cons">Oraciones con let's</span><br><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about not going to Tesco today? <span class="gap"></span></i><br><span class="cons">Acepta: Let's not go to Tesco today.</span><br><span class="cons">«No vayamos a Tesco hoy.»</span><br><span class="teo">Let's + verbo sin to. Para negar, Let's not + verbo.</span></td><td><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about not going to Tesco today? <span class="gap"></span></i><br><span class="cons">Acepta: Let's not go to Tesco today. · Don't let's go to Tesco today.</span><br><span class="cons">«No vayamos a Tesco hoy.»</span></td><td><span class="cons">Reescribe la oración como una propuesta con "let's" en inglés estándar. Conserva el resto de la oración sin añadir información.</span><br><i>Do not go to Tesco today. <span class="gap"></span></i><br><span class="cons">Acepta: Let's not go to Tesco today. · Don't let's go to Tesco today.</span><br><span class="cons">«No vayamos a Tesco hoy.»</span><br><span class="teo">Para una propuesta negativa: Let's not + verbo base + el resto de la oración. En inglés británico informal también se admite Don't let's en lugar de Let's not.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La transformación practica directamente una propuesta negativa con let's y conserva el resto de la oración. El imperativo de partida está documentado como aprendizaje previo y la situación es clara. Let's not es el modelo neutro; Don't let's puede mantenerse como variante británica válida sin exigir que el alumno la produzca.</span></td></tr>
+<tr><td>«How about + -ing» en «let's»<br><span class="cons">22cd · corrector</span></td><td><span class="cons">Oraciones con let's</span><br><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about not going dancing? <span class="gap"></span></i><br><span class="cons">Acepta: Let's not go dancing.</span><br><span class="cons">«No vayamos a bailar.»</span><br><span class="teo">Let's + verbo sin to. Para negar, Let's not + verbo.</span></td><td><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about not going dancing? <span class="gap"></span></i><br><span class="cons">Acepta: Let's not go dancing. · Don't let's go dancing.</span><br><span class="cons">«No vayamos a bailar.»</span></td><td><span class="cons">Expresa la idea como una propuesta con "let's" en inglés estándar, sin añadir información.</span><br><i>No ir a bailar. (go dancing) <span class="gap"></span></i><br><span class="cons">Acepta: Let's not go dancing. · Don't let's go dancing.</span><br><span class="cons">«No vayamos a bailar.»</span><br><span class="teo">Para una propuesta negativa: Let's not + verbo base + el resto de la oración. En inglés británico informal también se admite Don't let's en lugar de Let's not.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La consigna y la pista «go dancing» permiten producir directamente «Let's not go dancing», sin interpretaciones adicionales. «Don't let's go dancing» puede conservarse como variante británica válida; la primera forma es el modelo neutro adecuado.</span></td></tr>
+<tr><td>«How about + -ing» en «let's»<br><span class="cons">22d0 · corrector</span></td><td><span class="cons">Oraciones con let's</span><br><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about not going to the park? <span class="gap"></span></i><br><span class="cons">Acepta: Let's not go to the park.</span><br><span class="cons">«No vayamos al parque.»</span><br><span class="teo">Let's + verbo sin to. Para negar, Let's not + verbo.</span></td><td><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about not going to the park? <span class="gap"></span></i><br><span class="cons">Acepta: Let's not go to the park. · Don't let's go to the park.</span><br><span class="cons">«No vayamos al parque.»</span></td><td><span class="cons">Expresa la idea como una propuesta con "let's", sin añadir información.</span><br><i>No ir al parque. (go / park) <span class="gap"></span></i><br><span class="cons">Acepta: Let's not go to the park. · Don't let's go to the park.</span><br><span class="cons">«No vayamos al parque.»</span><br><span class="teo">Para una propuesta negativa: Let's not + verbo base + el resto de la oración. En inglés británico informal también se admite Don't let's en lugar de Let's not.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La consigna permite practicar directamente una propuesta negativa con «Let's not + verbo» mediante una acción cotidiana y sin estructuras adicionales necesarias. «Don't let's» puede conservarse como variante válida, menos habitual y principalmente británica, sin desplazar «Let's not» como modelo neutro.</span></td></tr>
+<tr><td>«How about + -ing» en «let's»<br><span class="cons">22d2 · corrector</span></td><td><span class="cons">Oraciones con let's</span><br><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about not taking the bus? <span class="gap"></span></i><br><span class="cons">Acepta: Let's not take the bus.</span><br><span class="cons">«No tomemos el autobús.»</span><br><span class="teo">Let's + verbo sin to. Para negar, Let's not + verbo.</span></td><td><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about not taking the bus? <span class="gap"></span></i><br><span class="cons">Acepta: Let's not take the bus. · Don't let's take the bus.</span><br><span class="cons">«No tomemos el autobús.»</span></td><td><span class="cons">Expresa la idea como una propuesta con "let's", sin añadir información.</span><br><i>No tomar el autobús. (take / bus) <span class="gap"></span></i><br><span class="cons">Acepta: Let's not take the bus. · Don't let's take the bus.</span><br><span class="cons">«No tomemos el autobús.»</span><br><span class="teo">Para una propuesta negativa: Let's not + verbo base + el resto de la oración. En inglés británico informal también se admite Don't let's en lugar de Let's not.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La consigna permite producir «Let's not take the bus.» directamente, sin información adicional ni estructuras ajenas al objetivo. «Don't let's take the bus.» puede mantenerse como variante británica válida menos habitual, sin desplazar la primera como modelo neutro.</span></td></tr>
+<tr><td>«How about + -ing» en «let's»<br><span class="cons">22d3 · corrector</span></td><td><span class="cons">Oraciones con let's</span><br><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about not having lunch now? <span class="gap"></span></i><br><span class="cons">Acepta: Let's not have lunch now.</span><br><span class="cons">«No almorcemos ahora.»</span><br><span class="teo">Let's + verbo sin to. Para negar, Let's not + verbo.</span></td><td><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about not having lunch now? <span class="gap"></span></i><br><span class="cons">Acepta: Let's not have lunch now. · Don't let's have lunch now.</span><br><span class="cons">«No almorcemos ahora.»</span></td><td><span class="cons">Expresa la idea como una propuesta con "let's" en inglés estándar, sin añadir información.</span><br><i>No almorzar ahora. (have lunch / now) <span class="gap"></span></i><br><span class="cons">Acepta: Let's not have lunch now. · Don't let's have lunch now.</span><br><span class="cons">«No almorcemos ahora.»</span><br><span class="teo">Para una propuesta negativa: Let's not + verbo base + el resto de la oración. En inglés británico informal también se admite Don't let's en lugar de Let's not.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La consigna y las pistas permiten producir «Let's not have lunch now.» como propuesta negativa, sin añadir información ni necesitar estructuras ajenas al objetivo. «Don't let's have lunch now.» puede conservarse como variante válida del inglés británico, menos habitual como modelo neutro; no es necesario producirla para resolver el ejercicio.</span></td></tr>
+<tr><td>«How about + -ing» en «let's»<br><span class="cons">22d6 · corrector</span></td><td><span class="cons">Oraciones con let's</span><br><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about not making pizza tonight? <span class="gap"></span></i><br><span class="cons">Acepta: Let's not make pizza tonight.</span><br><span class="cons">«No hagamos pizza esta noche.»</span><br><span class="teo">Let's + verbo sin to. Para negar, Let's not + verbo.</span></td><td><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about not making pizza tonight? <span class="gap"></span></i><br><span class="cons">Acepta: Let's not make pizza tonight. · Don't let's make pizza tonight.</span><br><span class="cons">«No hagamos pizza esta noche.»</span></td><td><span class="cons">Reescribe la oración como una propuesta con "let's" en inglés estándar. Conserva el resto de la oración sin añadir información.</span><br><i>Don't make pizza tonight. <span class="gap"></span></i><br><span class="cons">Acepta: Let's not make pizza tonight. · Don't let's make pizza tonight.</span><br><span class="cons">«No hagamos pizza esta noche.»</span><br><span class="teo">Para una propuesta negativa: Let's not + verbo base + el resto de la oración. En inglés británico informal también se admite Don't let's en lugar de Let's not.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La consigna permite transformar un imperativo negativo, ya trabajado, en una propuesta negativa con let's usando vocabulario cotidiano. Let's not es el modelo neutro; Don't let's puede mantenerse como variante británica válida, sin exigir que el alumno la produzca.</span></td></tr>
+<tr><td>«How about + -ing» en «let's»<br><span class="cons">22d7 · corrector</span></td><td><span class="cons">Oraciones con let's</span><br><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about going for a walk? <span class="gap"></span></i><br><span class="cons">Acepta: Let's go for a walk.</span><br><span class="cons">«Vamos a salir a caminar.»</span><br><span class="teo">Let's + verbo sin to. Para negar, Let's not + verbo.</span></td><td><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about going walking? <span class="gap"></span></i><br><span class="cons">Acepta: Let's go walking.</span><br><span class="cons">«Salgamos a caminar.»</span></td><td><span class="cons">Reescribe la oración como una propuesta con "let's". Conserva el resto de la oración sin añadir información.</span><br><i>Go walking. <span class="gap"></span></i><br><span class="cons">Acepta: Let's go walking.</span><br><span class="cons">«Salgamos a caminar.»</span><br><span class="teo">Para una propuesta afirmativa: Let's + verbo base + el resto de la oración.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La transformación permite practicar let's seguido del verbo en forma base y conservar el resto de la oración. La expresión cotidiana go walking ya aparece en el enunciado y no exige dominar ese patrón para producir la propuesta.</span></td></tr>
+<tr><td>«How about + -ing» en «let's»<br><span class="cons">22d8 · corrector</span></td><td><span class="cons">Oraciones con let's</span><br><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about not going on Friday? <span class="gap"></span></i><br><span class="cons">Acepta: Let's not go on Friday.</span><br><span class="cons">«No vayamos el viernes.»</span><br><span class="teo">Let's + verbo sin to. Para negar, Let's not + verbo.</span></td><td><span class="cons">Crea oraciones utilizando "let's".</span><br><i>How about not going on Friday? <span class="gap"></span></i><br><span class="cons">Acepta: Let's not go on Friday. · Don't let's go on Friday.</span><br><span class="cons">«No vayamos el viernes.»</span></td><td><span class="cons">Expresa la idea como una propuesta con "let's" en inglés estándar, sin añadir información.</span><br><i>No ir el viernes. (go / Friday) <span class="gap"></span></i><br><span class="cons">Acepta: Let's not go on Friday. · Let's not go Friday. · Don't let's go on Friday. · Don't let's go Friday.</span><br><span class="cons">«No vayamos el viernes.»</span><br><span class="teo">Para una propuesta negativa: Let's not + verbo base + el resto de la oración. En inglés británico informal también se admite Don't let's en lugar de Let's not. Con los días de la semana, en inglés estadounidense también puede omitirse on.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La consigna permite practicar una propuesta negativa con «let's not + verbo» mediante vocabulario cotidiano y sin interpretaciones adicionales. «Let's not go on Friday» es un modelo claro; las variantes con «Don't let's» pueden conservarse como alternativas válidas sin presentarlas como modelo principal.</span></td></tr>
+<tr><td>Otros que volvían con el error de producción<br><span class="cons">2dd2 · corrector</span></td><td><span class="cons">Pedidos: formal o informal</span><br><span class="cons">Transforma las oraciones para que incluyan 'could' o 'can'.</span><br><i>Normal request: I want you to repeat that once more. <span class="gap"></span></i><br><span class="cons">Acepta: Can you say that again?</span><br><span class="cons">«¿Puedes repetir eso?»</span><br><span class="teo">Can para el pedido normal, Could para el cortés. Después, verbo base.</span></td><td><span class="cons">Transforma las oraciones para que incluyan 'could' o 'can'.</span><br><i>Normal request: I want you to say that again. <span class="gap"></span></i><br><span class="cons">Acepta: Can you say that again?</span><br><span class="cons">«¿Puedes repetir eso?»</span></td><td><span class="cons">Transforma las oraciones para que incluyan 'could' o 'can'.</span><br><i>Normal request: Say that again. <span class="gap"></span></i><br><span class="cons">Acepta: Can you say that again?</span><br><span class="cons">«¿Puedes repetir eso?»</span><br><span class="teo">En este ejercicio, la etiqueta Normal request indica usar Can para formular el pedido.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La transformación de «Say that again» en «Can you say that again?» practica directamente un pedido con can. El imperativo está documentado como aprendizaje previo y la referencia «that» es cotidiana y clara para pedir una repetición, sin añadir estructuras ajenas al objetivo.</span></td></tr>
+<tr><td>Otros que volvían con el error de producción<br><span class="cons">26f8 · corrector</span></td><td><span class="cons">Elegir la forma natural</span><br><span class="cons">Elige 'will' ('ll) para decisiones espontáneas o 'be going to' para planes preestablecidos.</span><br><i>He <span class="gap"></span> arrive at 6. He told me this morning.</i><br><span class="cons">Opciones: 'll · 're going to · 's going to (correcta) · are going to</span><br><span class="cons">«Él va a llegar a las 6. Me lo dijo esta mañana.»</span><br><span class="teo">Lo decidís en el momento → will. Ya estaba planeado → going to.</span></td><td><span class="cons">Elige 'will' ('ll) para decisiones espontáneas o 'be going to' para planes preestablecidos.</span><br><i>He <span class="gap"></span> home. His taxi is coming at 6.</i><br><span class="cons">Opciones: will go · 's going go · 's going to go (correcta) · 're going to go</span><br><span class="cons">«Él va a ir a casa. Su taxi viene a las 6.»</span></td><td><span class="cons">Elige 'will' ('ll) para decisiones espontáneas o 'be going to' para planes preestablecidos.</span><br><i>He wants to go home. His bag is ready. He <span class="gap"></span> home tonight.</i><br><span class="cons">Opciones: will go · 's going go · 's going to go (correcta) · 're going to go</span><br><span class="cons">«Él quiere ir a casa. Su bolso está listo. Él va a ir a casa esta noche.»</span><br><span class="teo">Para un plan previo con he: he is going to + verbo base. Puedes contraer he is como he's. Para una decisión del momento, usa will seguido del verbo base.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La bolsa preparada aporta una pista clara de un plan previo y permite elegir 'going to', ya trabajado en la secuencia. 'Wants to go' es lenguaje cotidiano incidental: no es necesario producir ni analizar esa estructura para resolver el ejercicio.</span></td></tr>
+<tr><td>Otros que volvían con el error de producción<br><span class="cons">2cdf · corrector</span></td><td><span class="cons">Verbos de movimiento</span><br><span class="cons">Elige 'in' o 'to'.</span><br><i>He is going to disembark <span class="gap"></span> the south of Brazil tomorrow.</i><br><span class="cons">Opciones: in (correcta) · to</span><br><span class="cons">«Él va a desembarcar en el sur de Brasil mañana.»</span><br><span class="teo">Arrive y disembark son la excepción: van con in, no to, aunque haya llegada.</span></td><td><span class="cons">Elige 'in' o 'to'.</span><br><i>He is going to disembark <span class="gap"></span> Brazil.</i><br><span class="cons">Opciones: in (correcta) · to</span><br><span class="cons">«Él va a desembarcar en Brasil.»</span></td><td><span class="cons">Elige 'in' o 'to'.</span><br><i>He is swimming <span class="gap"></span> the pool.</i><br><span class="cons">Opciones: in (correcta) · to</span><br><span class="cons">«Él está nadando en la piscina.»</span><br><span class="teo">Con swim, usamos in para indicar el lugar donde nadamos.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">El ejemplo permite practicar «in» para situar una actividad dentro de la piscina, frente a «to» para indicar un destino. El presente continuo y las preposiciones de lugar aparecen en el aprendizaje previo; no hay una carga adicional material para el objetivo.</span></td></tr>
+<tr><td>A mano, con las propuestas del 278<br><span class="cons">23f7 · a mano</span></td><td><span class="cons">Adjetivo o pronombre</span><br><span class="cons">Selecciona el posesivo correcto.</span><br><i>I can't find (her / hers) <span class="gap"></span> child.</i><br><span class="cons">Acepta: her</span><br><span class="cons">«No encuentro a su hijo.»</span><br><span class="teo">my, your, her van pegados al sustantivo. mine, yours, hers van solos.</span></td><td>—</td><td><span class="cons">Selecciona el posesivo correcto.</span><br><i>I don't see <span class="gap"></span> (her / hers) child.</i><br><span class="cons">Acepta: her</span><br><span class="cons">«No veo a su hijo.»</span><br><span class="teo">her va delante de un sustantivo: her child significa «su hijo». hers va solo, sin un sustantivo después. Aquí corresponde her porque después viene child.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La presencia de «child» después del hueco permite practicar claramente el posesivo adjetivo «her» frente al pronombre «hers». La negación en presente simple figura en el aprendizaje previo y el significado es cotidiano y directo.</span></td></tr>
+<tr><td>A mano, con las propuestas del 278<br><span class="cons">2394 · pendiente</span></td><td><span class="cons">Some y any</span><br><span class="cons">Elige 'some' o 'any'.</span><br><i>Do you have <span class="gap"></span> DVDs at home?</i><br><span class="cons">Opciones: any (correcta) · some</span><br><span class="cons">«¿Tienes algún DVD en casa?»</span><br><span class="teo">some en las afirmativas. any en las negativas y en las preguntas.</span></td><td>—</td><td><span class="cons">Elige 'some' o 'any'.</span><br><i>Do you have <span class="gap"></span> DVDs at home?</i><br><span class="cons">Opciones: any (correcta) · a</span><br><span class="cons">«¿Tienes algún DVD en casa?»</span><br><span class="teo">Usamos any en preguntas para saber si hay alguna cantidad de algo. Aquí preguntamos si tienes algún DVD en casa.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La pregunta permite practicar «any» con un sustantivo contable plural y una estructura interrogativa ya documentada, sin carga incidental material. La discrepancia entre la instrucción («some» o «any») y las opciones visibles («any», «a») corresponde a INSTRUCTION_OR_ANSWER.</span></td></tr>
+<tr><td>A mano, con las propuestas del 278<br><span class="cons">22b4 · pendiente</span></td><td><span class="cons">Oraciones imperativas</span><br><span class="cons">Transforma estas oraciones a imperativo.</span><br><i>You should take the salt to the soup. <span class="gap"></span></i><br><span class="cons">Acepta: Take the salt to the soup.</span><br><span class="cons">«Lleva la sal a la sopa.»</span><br><span class="teo">El imperativo es el verbo solo, sin sujeto. Para negar, Don't + verbo base.</span></td><td>—</td><td><span class="cons">Transforma estas oraciones a imperativo.</span><br><i>You should take the salt to the soup. <span class="gap"></span></i><br><span class="cons">Acepta: Take the salt to the soup.</span><br><span class="cons">«Lleva la sal hasta donde está la sopa.»</span><br><span class="teo">El imperativo afirmativo usa el verbo base y normalmente no lleva sujeto.</span></td><td><span class="pill p-ok">bien</span><br><span class="cons">La transformación permite practicar el imperativo conservando el verbo base y eliminando «You should». No exige interpretar «should» para elegir entre respuestas. La formulación «take the salt to the soup» requiere revisión de naturalidad, que corresponde a NATURALNESS y no constituye un defecto didáctico adicional.</span></td></tr>
+<tr><td>A mano, con las propuestas del 278<br><span class="cons">2eed · pendiente</span></td><td><span class="cons">¿Good o well?</span><br><span class="cons">Elige 'well' o 'good'.</span><br><i>She understands <span class="gap"></span> (good / well) Spanish.</i><br><span class="cons">Opciones: good (correcta) · well</span><br><span class="cons">«Ella entiende bien el español.»</span><br><span class="teo">good describe la cosa. well describe cómo se hace algo.</span></td><td>—</td><td><span class="cons">Elige 'well' o 'good'.</span><br><i>She understands <span class="gap"></span> (good / well) Spanish.</i><br><span class="cons">Opciones: good (correcta) · well</span><br><span class="cons">«Ella entiende el español de buena calidad.»</span><br><span class="teo">good describe la cosa. well describe cómo se hace algo.</span></td><td><span class="pill p-warn">mejorar</span><br><span class="cons">Good modifica Spanish: ella entiende español de buena calidad. La frase puede confundir a quien interprete que se describe lo bien que ella entiende el idioma, lectura que exigiría well en otra posición. El ejemplo es válido, pero esa distinción de significado distrae del contraste básico entre adjetivo y adverbio.</span></td></tr>
+        </tbody></table></div>
+    </details>
+  </section>
+
+  <section>
+    <h2>Quedan 5 pisos rotos; al cerrar sólo quedan los de 2394</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Tema</th><th>Ejercicio hoy</th><th>Qué le pasa</th><th>Cómo se destraba</th></tr></thead>
+      <tbody>
+        <tr><td>Afirmativas y negativas</td><td><span class="cons">210b</span><br><i>They <span class="gap"></span> (use) my camera on Sunday.</i><br><span class="cons">Acepta: will use</span></td><td>La consigna ofrece la negativa y la rechaza.</td><td>Vuelve al cerrar, o pregunta 3.</td></tr>
+        <tr><td>Con short forms</td><td><span class="cons">26cb</span><br><i>En su lista de tareas para mañana, pintar la casa está tachado. <span class="gap"></span> (they / not / paint the house)</i><br><span class="cons">Acepta: They aren't going to paint the house. · They're not going to paint the house.</span></td><td>La consigna ofrece «will» y lo rechaza.</td><td>Vuelve al cerrar, o pregunta 3.</td></tr>
+        <tr><td>Predicciones y decisiones</td><td><span class="cons">2146</span><br><i>He says he <span class="gap"></span> (not / drink) juice.</i><br><span class="cons">Acepta: won't drink</span></td><td>«isn't going to drink» también vale; el corrector no lo arregló en 3 intentos.</td><td>Vuelve al cerrar, o lo decidís en la bandeja.</td></tr>
+        <tr><td>Verbos y sus preposiciones</td><td><span class="cons">24d8</span><br><i>Who does this pen go <span class="gap"></span>? (Situación: estás repartiendo bolígrafos entre los niños.)</i><br><span class="cons">Acepta: to · with</span></td><td>«go with» no dice quién recibe el bolígrafo.</td><td>Vuelve al cerrar, o pregunta 2.</td></tr>
+        <tr><td>Some y any (2 renglones)</td><td><span class="cons">2394</span><br><i>Do you have <span class="gap"></span> DVDs at home?</i><br><span class="cons">Opciones: any (correcta) · a</span></td><td>«a» con un plural se descarta solo.</td><td>Sólo con la pregunta 1.</td></tr>
+      </tbody></table></div>
+    <p class="pie">Al cerrar, cada cambio que suma un error vuelve y el cierre compara de nuevo. El cambio de 2394 no vuelve, y sus dos pisos quedan rotos.</p>
+  </section>
+
+  <section id="decidir">
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask"><span class="q">1 · ¿Dejo que tu arreglo a mano cambie las opciones de un ejercicio de opción múltiple?</span>
+        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">No</span></div>
+        <span class="why">2394 necesita volver a ofrecer «some», y hoy un arreglo a mano conserva las opciones que tiene el ejercicio.</span>
+        <div class="ctx">
+          <p class="ctx-k">Qué se quiere lograr</p><p>Que «Some y any» no tenga un error que al empezar no tenía. Es el único piso que el cierre no arregla solo.</p>
+          <p class="ctx-k">El caso</p>
+          <div class="ex"><span class="cons">Some y any · Elige 'some' o 'any'. · hoy</span>
+            <span class="en">Do you have <span class="gap"></span> DVDs at home?</span>
+            <span class="ans"><b>Opciones:</b> any (correcta) · a. El juez: «a» con un plural se descarta solo. Antes tenía «some», pero en una pregunta «some» también vale, y por eso se la sacaron.</span></div>
+          <p class="ctx-k">Qué hay que decidir</p><p>Si tu arreglo puede traer sus propias opciones. Con eso escribo la propuesta del 278 en negativa, donde sólo vale «any»: «I don't have ___ DVDs at home.», con any (correcta) · some, y «No tengo ningún DVD en casa.».</p>
+          <p class="ctx-k">Los caminos</p>
+          <div class="caminos">
+            <div class="cam rec"><b>Sí</b><span>Una regla nueva con su prueba; después los jueces miden 2394.</span><span>Unas 25 consultas.</span></div>
+            <div class="cam"><b>No</b><span>El piso de «Some y any» sigue roto y no se puede publicar. Busco otra salida.</span><span>Nada por ahora.</span></div>
+          </div>
+        </div></div>
+
+      <div class="ask"><span class="q">2 · ¿Escribo a mano los arreglos de 22b4, 2eed y 24d8?</span>
+        <div class="ops"><span class="op rec">Sí, los tres · recomendado</span><span class="op">No</span></div>
+        <span class="why">En 22b4 y 2eed los dos jueces de traducción no coinciden y la bandeja te pregunta a vos; en 24d8 la C2 agregó «go with», que no suena natural.</span>
+        <div class="ctx">
+          <p class="ctx-k">Qué se quiere lograr</p><p>Que estos tres no queden sin decidir ni vuelvan al cerrar.</p>
+          <p class="ctx-k">Los casos</p>
+          <div class="ex"><span class="cons">Oraciones imperativas · Transforma estas oraciones a imperativo. · hoy → propuesta del 278</span>
+            <span class="en">You should take the salt to the soup. <span class="gap"></span></span>
+            <span class="ans"><b>Acepta:</b> Take the salt to the soup. → «You should add salt to the soup.», acepta «Add salt to the soup.», «Añade sal a la sopa.». «Take» es llevar; a la sopa, la sal se le agrega.</span></div>
+          <div class="ex"><span class="cons">¿Good o well? · Elige 'well' o 'good'. · hoy → propuesta del 278</span>
+            <span class="en">She understands <span class="gap"></span> (good / well) Spanish.</span>
+            <span class="ans"><b>Opciones:</b> good (correcta) · well, «Ella entiende el español de buena calidad.» → «She understands Spanish ___ (good / well).», well (correcta), «Ella entiende bien el español.».</span></div>
+          <div class="ex"><span class="cons">Verbos y sus preposiciones · Completa con la preposición correcta. · hoy → mi propuesta</span>
+            <span class="en">Who does this pen go <span class="gap"></span>? (Situación: estás repartiendo bolígrafos entre los niños.)</span>
+            <span class="ans"><b>Acepta:</b> to · with → sólo «to». El juez de naturalidad: «go with» no dice quién recibe el bolígrafo.</span></div>
+          <p class="ctx-k">Qué hay que decidir</p><p>Si contesto «es un error» en los dos desempates y escribo los tres arreglos en tu nombre, como hice con 23f7.</p>
+          <p class="ctx-k">Los caminos</p>
+          <div class="caminos">
+            <div class="cam rec"><b>Sí, los tres</b><span>Los jueces los miden y comparo de nuevo.</span><span>Unas 75 consultas.</span></div>
+            <div class="cam"><b>No</b><span>22b4 y 2eed siguen sin decidir, y 24d8 vuelve al cerrar sin lo que la C2 le mejoró.</span><span>Nada.</span></div>
+          </div>
+        </div></div>
+
+      <div class="ask"><span class="q">3 · ¿Qué hago con los 8 que aceptan una sola respuesta cuando la consigna ofrece dos?</span>
+        <div class="ops"><span class="op rec">Como recomiendo en cada uno · recomendado</span><span class="op">Que vuelvan al cerrar</span></div>
+        <span class="why">Es lo que contestaste para «She ___ (dance) tonight»: si no acepto la otra respuesta, vuelven y pierden lo que la C2 les mejoró.</span>
+        <div class="ctx">
+          <p class="ctx-k">Qué se quiere lograr</p><p>Que ningún ejercicio rechace una respuesta que su consigna le ofrece al alumno.</p>
+          <p class="ctx-k">El caso</p>
+          <div class="ex"><span class="cons">Afirmativas y negativas · Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. · hoy</span>
+            <span class="en">They <span class="gap"></span> (use) my camera on Sunday.</span>
+            <span class="ans"><b>Acepta:</b> will use. El juez: «They won't use my camera on Sunday» también es natural, y la consigna ofrece la negativa.</span></div>
+          <p class="ctx-k">Qué hay que decidir</p><p>Cuáles aceptan la otra respuesta. Recomiendo aceptarla en los 6 donde las dos formas son inglés estándar, y dejar volver 2edc y 2ee7, donde la otra es coloquial: «real expensive», «slept good».</p>
+          <details class="todos"><summary>Los 8, con mi recomendación</summary>
+            <div class="tw"><table>
+              <thead><tr><th>Hoy</th><th>La otra respuesta</th><th>Recomiendo</th></tr></thead>
+              <tbody>
+<tr><td><span class="cons">210b · Afirmativas y negativas · Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'.</span><br><i>They <span class="gap"></span> (use) my camera on Sunday.</i><br><span class="cons">Acepta: will use</span></td><td>won't use</td><td><span class="pill p-ok">aceptar las dos</span><br><span class="cons">la traducción dice «usarán»: si el alumno la ve antes de contestar, mejor una pista</span></td></tr>
+<tr><td><span class="cons">26cb · Con short forms · Crea una oración usando 'will' o 'be going to'; contrae si puedes.</span><br><i>En su lista de tareas para mañana, pintar la casa está tachado. <span class="gap"></span> (they / not / paint the house)</i><br><span class="cons">Acepta: They aren't going to paint the house. · They're not going to paint the house.</span></td><td>They won't paint the house.</td><td><span class="pill p-ok">aceptar las dos</span><br><span class="cons">la tarea tachada de mañana admite las dos</span></td></tr>
+<tr><td><span class="cons">20ae · Contraste inicial · Escribe las oraciones en 'present simple' o 'present continuous'.</span><br><i>Look! It <span class="gap"></span> (work) now.</i><br><span class="cons">Acepta: is working · 's working</span></td><td>works</td><td><span class="pill p-ok">aceptar las dos</span><br><span class="cons">«Look!» y «now» no obligan al continuo</span></td></tr>
+<tr><td><span class="cons">2069 · Contraste inicial · Escribe las oraciones en 'present simple' o 'present continuous'.</span><br><i>She <span class="gap"></span> (live) there all year.</i><br><span class="cons">Acepta: lives</span></td><td>is living</td><td><span class="pill p-ok">aceptar las dos</span><br><span class="cons">«all year» no obliga a la residencia permanente</span></td></tr>
+<tr><td><span class="cons">2075 · Contraste inicial · Escribe las oraciones en 'present simple' o 'present continuous'.</span><br><i>Where <span class="gap"></span> (he / live) all year?</i><br><span class="cons">Acepta: does he live</span></td><td>is he living</td><td><span class="pill p-ok">aceptar las dos</span><br><span class="cons">igual que 2069</span></td></tr>
+<tr><td><span class="cons">2184 · Elegir la forma natural · ¿Es más natural usar 'will' o 'going to'? Escribe oraciones.</span><br><i>A: I have a test tomorrow. My books are ready. B: What <span class="gap"></span> (you / study) today?</i><br><span class="cons">Acepta: are you going to study</span></td><td>will you study</td><td><span class="pill p-ok">aceptar las dos</span><br><span class="cons">el contexto sugiere el plan, pero «will» es natural</span></td></tr>
+<tr><td><span class="cons">2edc · Adjetivo o adverbio · Elige la palabra correcta.</span><br><i>The car is <span class="gap"></span> expensive (real / really).</i><br><span class="cons">Acepta: really</span></td><td>real</td><td><span class="pill p-warn">que vuelva</span><br><span class="cons">«real expensive» es coloquial</span></td></tr>
+<tr><td><span class="cons">2ee7 · Adjetivo o adverbio · Elige la palabra correcta.</span><br><i>We slept <span class="gap"></span> (good / well) last night.</i><br><span class="cons">Acepta: well</span></td><td>good</td><td><span class="pill p-warn">que vuelva</span><br><span class="cons">«slept good» no es estándar</span></td></tr>
+              </tbody></table></div>
+          </details>
+          <p class="ctx-k">Los caminos</p>
+          <div class="caminos">
+            <div class="cam rec"><b>Como recomiendo</b><span>6 aceptan las dos y 2 vuelven. Los jueces miden los 6.</span><span>Unas 40 consultas.</span></div>
+            <div class="cam"><b>Que vuelvan</b><span>Los 8 quedan como al empezar la C2.</span><span>Nada.</span></div>
+          </div>
+        </div></div>
+
+      <div class="ask"><span class="q">4 · ¿Lo que hoy está bien deja de abrir el piso aunque producción dijera «revisar»?</span>
+        <div class="ops"><span class="op rec">Sí · recomendado</span><span class="op">No</span></div>
+        <span class="why">Es la pregunta 2 del 278 y del 279. Publicar exige cero renglones sin decidir, y hoy quedan 6, todos por ejercicios que en producción quedaron en «revisar».</span>
+        <div class="ctx">
+          <p class="ctx-k">Qué se quiere lograr</p><p>Que un tema no quede sin decidir para siempre porque producción, que no cambia, tiene un «revisar».</p>
+          <p class="ctx-k">El caso</p>
+          <div class="ex"><span class="cons">Adjetivo o pronombre · Selecciona el posesivo correcto. · producción: «I can't find (her / hers) ___ child.», Didáctica dice «revisar»</span>
+            <span class="en">I don't see <span class="gap"></span> (her / hers) child.</span>
+            <span class="ans"><b>Acepta:</b> her. Hoy Didáctica dice «bien», pero como en producción no opinó, el tema queda sin decidir.</span></div>
+          <p class="ctx-k">Los caminos</p>
+          <div class="caminos">
+            <div class="cam rec"><b>Sí</b><span>Los 6 renglones bajan a los de 22b4 y 2eed, que se cierran con la pregunta 2.</span><span>Una regla nueva con su prueba, gratis.</span></div>
+            <div class="cam"><b>No</b><span>Esos renglones siguen sin decidir mientras producción no cambie, y no se puede publicar.</span><span>Nada.</span></div>
+          </div>
+        </div></div>
+    </div>
+
+  </section>
+
+  <footer>
+    <span>Mesa con temario: F-MESA-R005 (ca 32fcce911): TopicWork.curriculum = el curso del nivel de la tanda; 8 tareas se descartaban con NO_LONGER_HOLDS (2a3b: huella 74909f6d en el curso con REWRITE_REQUIRED y 1442d44f en la mesa con SUITABLE). Cierre: F-NOEMP-R007 (ca 6415d3acf): los cambios de José se comparan por contenido; 23f7 ya no sale como cambiado fuera de la tanda. Corrector: 8 pasadas, 1.252 consultas (ui-2026-11-06T21-51-58 … ui-2026-11-07T02-17-41, esta última 69 para 2ce5, 2cde, 26f5, 26f8 aceptados y 2146, 254d NO_WINNER). Jueces: medición del 7/11 sin forzar más refrescos desde el registro (refrescar 282 y 285); consigna: 21ae tenía un veredicto de 533462b9 reusado por huella, medido de nuevo forzado conservando lo de hoy (1 consulta, ui-2026-11-07T02-02-32); casi duplicados de 2bca, 2bd8, 2bd9 y 2bda por batch opinion (0 consultas). batch compare final (compare-285, v102): FAILS, 5 pisos en 7 renglones (210b, 26cb, 2146, 24d8 vuelven; 2394 sin atribución), 12 cambios vuelven (8 offered-alternative RANK_ONLY, 2146 y 254d different-valid-answer, 24d8 naturalness, 2544 excepción de José), compuerta devuelve 11; 6 pisos sin decidir: naturalness REVIEW en producción 1ea4, 1eae, 25ec, 22b4, 2eed (22b4 y 2eed también en la C2) y a1-didactic REVIEW en producción 23f1, 23f7. Didáctica A1 250b2141 en los 42: hoy 41 SUITABLE y 2eed IMPROVE; producción 26 SUITABLE, 13 REWRITE_REQUIRED, 2 IMPROVE, 1 REVIEW. Datos: scratchpad a1d-278/datos280.json.</span>
+    <span>brief 280 · docs/briefs/280-corregi-39-de-los-42.html</span>
+  </footer>
+
+</div>
+</body>
+</html>
