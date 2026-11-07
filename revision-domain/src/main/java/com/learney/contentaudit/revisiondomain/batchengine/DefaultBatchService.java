@@ -571,7 +571,8 @@ class DefaultBatchService implements BatchService {
             throw new IllegalStateException("La tanda no tiene la mesa para medir y juzgar el arreglo de José.");
         }
         String quizId = adjustment.getQuizId();
-        Optional<BatchBook.Place> place = BatchBook.place(changeLedger.composedCourse(batch, course), quizId);
+        CourseEntity composed = changeLedger.composedCourse(batch, course);
+        Optional<BatchBook.Place> place = BatchBook.place(composed, quizId);
         if (place.isEmpty() || place.get().quiz() == null) {
             throw new IllegalArgumentException("El ejercicio " + quizId + " no está en el curso de la tanda.");
         }
@@ -592,6 +593,7 @@ class DefaultBatchService implements BatchService {
         TopicWork work = new TopicWork(batch.getId(), batch.getLevel(), place.get().milestone().getId(),
                 place.get().topic().getId(), knowledge, knowledge.getSentenceMode(), briefs, null, null, new HashMap<>(),
                 new ArrayList<>());
+        work.setCurriculum(DefaultCurrentAnalysisService.curriculum(composed, batch.getLevel()));
         BatchSettings settings = batch.getSettings();
         QueryAllowance allowance = panelRunnerFactory.allowance(QUERIES_FOR_A_FIX,
                 settings != null && settings.getQueriesAtOnce() > 0 ? settings.getQueriesAtOnce() : DEFAULT_AT_ONCE);

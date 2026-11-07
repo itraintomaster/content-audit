@@ -8,8 +8,14 @@ import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.englishquality.EnglishQualitySubjectBuilder;
 import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finishedsentence.DefaultFinishedSentenceReader;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
+import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.KnowledgeEntity;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.revisiondomain.panel.TopicWork;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.revisiondomain.nonregression.RedWord;
 import com.learney.contentaudit.revisiondomain.nonregression.UnevaluatedMark;
@@ -406,6 +412,33 @@ public class CatalogTopicMeterTest {
         assertEquals(3, allowance.spent(), "the other three");
         assertTrue(measured.getUnevaluated().stream().anyMatch(m -> m.getNodeId().equals(VEGETABLES)
                 && m.getAnalyzer().equals("single-answer")), "not evaluated by it");
+    }
+
+    @Test
+    @DisplayName("should give a judge of the curriculum the topics before the exercise as the analysis gives them: «He ___ (come) every year.» reads «Contraste inicial» before it")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R005")
+    public void shouldGiveAJudgeOfTheCurriculumTheTopicsBeforeTheExerciseAsTheAnalysisGivesThem() {
+        // F-MESA-R005: on 6/11/2026 Didáctica A1 read «There ___ (be) a game at school.» in the mesa without the topics
+        // before it, said «bien» and the task to correct what it says in the course was dropped. In the mesa the judge
+        // reads above the exercise what it reads in the course, and the other topics bring no exercise with them.
+        MeterBench bench = new MeterBench();
+        KnowledgeEntity topic = afirmativas();
+        CourseEntity course = MeterBench.course("m-a1", CefrLevel.A1, contraste(), topic);
+        TopicWork work = work(topic, List.of());
+        work.setCurriculum(course);
+
+        bench.meter().measure(work, topic, MeterBench.ALL, allowance(null, 4));
+        AuditNode inTheMesa = quizNode(bench.lastReport, COME);
+        AuditNode inTheCourse = quizNode(bench.analyze(course, MeterBench.ALL), COME);
+
+        EnglishQualitySubjectBuilder builder = new EnglishQualitySubjectBuilder(
+                new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()), new DefaultFinishedSentenceReader());
+        Map<String, String> read = builder.build(inTheMesa).getContent();
+        assertTrue(read.get("documentedPriorLearning").contains("Contraste inicial"), "the topic before it");
+        assertEquals(builder.build(inTheCourse).getContent(), read, "what it reads in the course");
+        assertTrue(bench.consultations.stream().noneMatch(c -> c.contains("(read) a book now")),
+                "no exercise of the other topics reaches a judge");
     }
 
     @Test

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.panel;
 
 import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.KnowledgeEntity;
 import com.learney.contentaudit.coursedomain.SentenceMode;
 import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBrief;
@@ -46,6 +47,14 @@ public class TopicWork {
     public void setDidacticReferences(Map<String, DidacticReference> references) {
         didacticReferences = references == null ? Map.of() : Map.copyOf(references);
     }
+
+    /**
+     * F-MESA-R005: the course of the level as the analysis reads it, every topic with its headers and without exercises --
+     * what a judge of the curriculum reads above an exercise. Null measures the topic alone.
+     */
+    private CourseEntity curriculum;
+    public CourseEntity getCurriculum() { return curriculum; }
+    public void setCurriculum(CourseEntity curriculum) { this.curriculum = curriculum; }
 
     public TopicWork() {
     }

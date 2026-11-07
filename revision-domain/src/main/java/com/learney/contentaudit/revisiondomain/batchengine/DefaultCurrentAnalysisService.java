@@ -972,6 +972,10 @@ final class DefaultCurrentAnalysisService implements CurrentAnalysisService {
         return BatchBook.list(batch.getSelectiveRuns()).stream().anyMatch(r -> Objects.equals(r.id(),run.sourceRunId())
                 && "reanalyze-both".equals(r.action())) ? run.sourceRunId() : run.id();
     }
+    /** F-MESA-R005: the course of the batch's level as the analysis reads it; the mesa keeps its headers. */
+    static CourseEntity curriculum(CourseEntity course, CefrLevel level) {
+        return course == null || course.getRoot() == null ? null : level != null ? cut(course, level) : course;
+    }
     static CourseEntity cut(CourseEntity course, CefrLevel level) {
         var result = new CourseEntity(course.getId(), course.getTitle(), course.getKnowledgeIds(), null, course.getSlug());
         var root = new RootNodeEntity(); root.setId(course.getRoot().getId()); root.setLabel(course.getRoot().getLabel());

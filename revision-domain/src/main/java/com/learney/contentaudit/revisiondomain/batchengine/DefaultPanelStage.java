@@ -144,6 +144,7 @@ class DefaultPanelStage implements PanelStage {
         }
 
         List<TopicWork> works = new ArrayList<>();
+        CourseEntity curriculum = DefaultCurrentAnalysisService.curriculum(composed, batch.getLevel());
         for (Map.Entry<String, List<RefinementTask>> entry : byTopic.entrySet()) {
             Optional<BatchBook.Place> place = BatchBook.place(composed, entry.getKey());
             if (place.isEmpty()) {
@@ -153,7 +154,7 @@ class DefaultPanelStage implements PanelStage {
                 }
                 continue;
             }
-            works.add(work(batch, start, place.get(), entry.getValue(), selectedTaskIds != null));
+            works.add(work(batch, start, place.get(), entry.getValue(), selectedTaskIds != null, curriculum));
         }
         if (works.isEmpty()) {
             return batch;
@@ -198,7 +199,7 @@ class DefaultPanelStage implements PanelStage {
     // -------------------------------------------------------------------------
 
     private TopicWork work(CorrectionBatch batch, AuditReport start, BatchBook.Place place, List<RefinementTask> tasks,
-            boolean selective) {
+            boolean selective, CourseEntity curriculum) {
         KnowledgeEntity knowledge = place.knowledge();
         Map<String, DidacticReference> references = new LinkedHashMap<>();
         Map<String, DidacticReference> repairTasks = new LinkedHashMap<>();
@@ -282,6 +283,7 @@ class DefaultPanelStage implements PanelStage {
         TopicWork work = new TopicWork(batch.getId(), batch.getLevel(), place.milestone().getId(), place.topic().getId(), knowledge,
                 knowledge.getSentenceMode(), briefs, lights, conversion, attemptsUsed, carried);
         work.setDidacticReferences(references);
+        work.setCurriculum(curriculum);
         if (selective) {
             Set<String> selectedQuizzes = new LinkedHashSet<>();
             for (RefinementTask task : tasks) selectedQuizzes.addAll(BatchBook.quizzesOf(task));

@@ -158,8 +158,17 @@ class CatalogTopicMeter implements TopicMeter {
     // The run
     // -------------------------------------------------------------------------
 
-    /** The course cut down to the path level → topic → topic, with the topic as the batch leaves it. */
+    /**
+     * The course cut down to the path level → topic → topic, with the topic as the batch leaves it. With the curriculum of
+     * the work, the other topics of the level stay as their headers, without exercises: a judge of the curriculum reads
+     * above the exercise the topics before it as the analysis gives them, so it judges what it would judge in the course
+     * and its verdict is found by the same fingerprint (F-MESA-R005).
+     */
     static CourseEntity cut(TopicWork work, KnowledgeEntity topic) {
+        CourseEntity withHeaders = withHeaders(work.getCurriculum(), topic);
+        if (withHeaders != null) {
+            return withHeaders;
+        }
         String topicLabel = null;
         for (QuizTemplateEntity quiz : topic.getQuizTemplates() != null ? topic.getQuizTemplates()
                 : List.<QuizTemplateEntity>of()) {
@@ -176,6 +185,48 @@ class CatalogTopicMeter implements TopicMeter {
         RootNodeEntity root = new RootNodeEntity("root", null, NodeKind.ROOT, "Curso", null,
                 new ArrayList<>(List.of(milestone)));
         return new CourseEntity("recorte-" + topic.getId(), "recorte", null, root, null);
+    }
+
+    /** The curriculum with the topic in its place and every other topic without its exercises; null when it is not there. */
+    private static CourseEntity withHeaders(CourseEntity curriculum, KnowledgeEntity topic) {
+        if (curriculum == null || curriculum.getRoot() == null || topic.getId() == null) {
+            return null;
+        }
+        boolean found = false;
+        List<MilestoneEntity> milestones = new ArrayList<>();
+        for (MilestoneEntity milestone : listOf(curriculum.getRoot().getMilestones())) {
+            List<TopicEntity> groups = new ArrayList<>();
+            for (TopicEntity group : listOf(milestone.getTopics())) {
+                List<KnowledgeEntity> knowledges = new ArrayList<>();
+                for (KnowledgeEntity knowledge : listOf(group.getKnowledges())) {
+                    if (knowledge == null) {
+                        continue;
+                    }
+                    boolean here = topic.getId().equals(knowledge.getId());
+                    found |= here;
+                    knowledges.add(here ? topic : new KnowledgeEntity(knowledge.getId(), knowledge.getCode(),
+                            knowledge.getKind(), knowledge.getLabel(), knowledge.getOldId(), knowledge.getParentId(),
+                            knowledge.isIsRule(), knowledge.getInstructions(), knowledge.getOrder(), knowledge.getSlug(),
+                            new ArrayList<>(), knowledge.getSentenceMode()));
+                }
+                groups.add(new TopicEntity(group.getId(), group.getCode(), group.getKind(), group.getLabel(),
+                        group.getOldId(), group.getParentId(), group.getChildren(), group.getRuleIds(), group.getOrder(),
+                        group.getSlug(), knowledges));
+            }
+            milestones.add(new MilestoneEntity(milestone.getId(), milestone.getCode(), milestone.getKind(),
+                    milestone.getLabel(), milestone.getOldId(), milestone.getParentId(), milestone.getChildren(),
+                    milestone.getOrder(), milestone.getSlug(), groups));
+        }
+        if (!found) {
+            return null;
+        }
+        RootNodeEntity root = curriculum.getRoot();
+        return new CourseEntity("recorte-" + topic.getId(), "recorte", null, new RootNodeEntity(root.getId(),
+                root.getCode(), root.getKind(), root.getLabel(), root.getChildren(), milestones), null);
+    }
+
+    private static <T> List<T> listOf(List<T> list) {
+        return list != null ? list : List.of();
     }
 
     /** One run of the engine: every analyzer of the selection with the given budget of new queries, 0 by default. */

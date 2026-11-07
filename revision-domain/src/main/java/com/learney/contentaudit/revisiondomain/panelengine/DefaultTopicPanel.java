@@ -716,6 +716,7 @@ class DefaultTopicPanel implements TopicPanel {
                 work.getAttemptsUsed(), work.getCarriedRejections());
         current.setNewEvaluationSubjectIds(work.getNewEvaluationSubjectIds());
         current.setDidacticReferences(work.getDidacticReferences());
+        current.setCurriculum(work.getCurriculum());
         return current;
     }
 
@@ -728,6 +729,7 @@ class DefaultTopicPanel implements TopicPanel {
                 work.getAttemptsUsed(), work.getCarriedRejections());
         kept.setNewEvaluationSubjectIds(work.getNewEvaluationSubjectIds());
         kept.setDidacticReferences(work.getDidacticReferences());
+        kept.setCurriculum(work.getCurriculum());
         return kept;
     }
 

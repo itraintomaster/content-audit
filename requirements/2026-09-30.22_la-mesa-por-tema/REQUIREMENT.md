@@ -113,6 +113,13 @@ que lee cada juez ([F-TRSEN-R001](#F-TRSEN-R001), [F-UNICA-R001](#F-UNICA-R001),
 traducción y sentido; si cambia el inglés de un CLOZE, también el de una sola respuesta y el de consigna: cuatro
 consultas, las que estimó el paquete C.
 
+**Criterio** (6/11/2026): lo que un juez lee en el curso incluye lo que está arriba del ejercicio. Didáctica A1 y
+naturalidad leen los temas que el alumno vio antes y el temario del nivel; en la mesa los leen igual, como los da el
+análisis del nivel de la tanda, y los otros temas no traen ningún ejercicio. En la C2, la mesa medía el tema solo:
+Didáctica leía «There ___ (be) a game at school.» sin los temas anteriores, decía «bien», y la tarea de corregir lo
+que dice en el curso («there + be» no se vio) se descartaba sin intentarla. Así se descartaron las de 8 ejercicios, y
+los veredictos de la mesa no se reusaban en el curso. Vale también para el arreglo que se escribe en la bandeja.
+
 <a id="F-MESA-R006"></a>
 ### Rule[F-MESA-R006] - Decide un script: queda mejor que el punto de partida y no empeora nada
 **Severity**: critical | **Validation**: AUTO_VALIDATED

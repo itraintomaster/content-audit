@@ -108,6 +108,26 @@ public class DefaultPanelStageTest {
                 .run(legacy.batch("t-respuesta"), legacy.start, legacy.course, new Turns(2));
         assertNull(legacy.panels.works.get(0).getNewEvaluationSubjectIds());
     }
+    @Test
+    @DisplayName("should give the mesa the topics of the batch's level as the analysis reads them, for the judges of the curriculum")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R005")
+    public void shouldGiveTheMesaTheTopicsOfTheBatchLevelAsTheAnalysisReadsThem() {
+        // F-MESA-R005: the A1 batch measures «Afirmativas regulares» with every A1 topic above its exercises, as the
+        // analysis reads them, and without the A2 ones the analysis of A1 does not read.
+        Stage s = new Stage(); var b = s.batch("t-respuesta");
+        s.panels.spendOnePerDecision = false;
+        new DefaultPanelStage(s.panels, TandaFixture.briefer(), MesaFixture.corrections(), null, s.ledger(), s.store)
+                .withPlans(s.plans).runSelected(b, s.start, s.course, new Turns(2), java.util.Set.of("t-respuesta"),
+                        List.of("a1-didactic"));
+        CourseEntity curriculum = s.panels.works.get(0).getCurriculum();
+        assertEquals(List.of("A1"), curriculum.getRoot().getMilestones().stream().map(m -> m.getLabel()).toList());
+        assertEquals(List.of(MesaFixture.AFIRMATIVAS, MesaFixture.CONTRASTE, MesaFixture.CONTRACCIONES,
+                        TandaFixture.CHILD_TOPIC, TandaFixture.RESIDE_TOPIC),
+                curriculum.getRoot().getMilestones().get(0).getTopics().stream()
+                        .flatMap(t -> t.getKnowledges().stream()).map(k -> k.getId()).toList());
+    }
+
     @Test void selectiveStageRejectsForeignDecisionsBeforeRecordingAnything() {
         Stage s = new Stage(); var b = s.batch("t-nino", "t-pista");
         s.panels.spendOnePerDecision = false;

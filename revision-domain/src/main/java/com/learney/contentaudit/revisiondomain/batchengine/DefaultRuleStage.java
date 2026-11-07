@@ -216,6 +216,7 @@ class DefaultRuleStage implements RuleStage {
         TopicWork work = new TopicWork(batch.getId(), batch.getLevel(), where.milestone().getId(), where.topic().getId(),
                 topicBefore, topicBefore.getSentenceMode(), new ArrayList<>(), null, null, new HashMap<>(),
                 new ArrayList<>());
+        work.setCurriculum(DefaultCurrentAnalysisService.curriculum(current, batch.getLevel()));
         BatchBook.NoQueries noQueries = new BatchBook.NoQueries(NO_QUERIES);
         UnitMeasurement measuredBefore = topicMeter.measure(work, topicBefore, batch.getAnalyzers(), noQueries);
         UnitMeasurement measuredAfter = topicMeter.measure(work, topicAfter, batch.getAnalyzers(), noQueries);
