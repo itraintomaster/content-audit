@@ -11,7 +11,6 @@ import com.learney.contentaudit.coursedomain.TopicEntity;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
-import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
@@ -285,7 +284,7 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
     static List<String> exceptions(CorrectionBatch batch) {
         List<String> exceptions = new ArrayList<>();
         for (BatchAdjustment adjustment : BatchBook.list(batch.getAdjustments())) {
-            if (adjustment != null && adjustment.getKind() == BatchAdjustmentKind.ACCEPT_AS_EXCEPTION
+            if (adjustment != null && DefaultBatchService.exception(adjustment.getKind())
                     && adjustment.getQuizId() != null) {
                 exceptions.add(DefaultBatchChangeLedger.proposalIdOf(batch, adjustment.getQuizId()));
             }

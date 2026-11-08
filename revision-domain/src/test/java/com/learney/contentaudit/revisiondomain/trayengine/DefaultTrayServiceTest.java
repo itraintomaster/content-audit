@@ -435,6 +435,47 @@ public class DefaultTrayServiceTest {
     }
 
     @Test
+    @DisplayName("should take José's fix written as his exception into the batch as his exception, rested on the exercise and without the panel")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R011")
+    public void shouldTakeJosesFixWrittenAsHisExceptionIntoTheBatchAsHisExceptionRestedOnTheExerciseAndWithoutThePanel() {
+        // R011, 8/11: the closing gave «We slept ___ (good / well) last night.» back to production; José keeps the version
+        // of the C2 as his exception, although a judge says «slept good» is valid too.
+        BandejaFixture.Bandeja bandeja = opened();
+        QuizTemplateEntity exercise = asTheBatchHas(bandeja, BandejaFixture.WORK);
+
+        bandeja.tray.writeAsException(BandejaFixture.WORK, answering(exercise, "works|doesn't work"), null, "José");
+
+        BatchChange change = change(bandeja.saved(), "jose-" + BandejaFixture.WORK);
+        assertEquals(BatchChangeOrigin.JOSE, change.getOrigin(), "his change");
+        assertTrue(change.isJoseException(), "his exception: the closing does not return it");
+        List<BatchAdjustment> adjustments = bandeja.saved().getAdjustments();
+        BatchAdjustment written = adjustments.get(adjustments.size() - 1);
+        assertEquals(BatchAdjustmentKind.JOSES_EXCEPTION, written.getKind());
+        assertEquals("arreglo de José como excepción", written.getReason(), "what it is, without a note of his");
+        FormEntity entered = change.getSteps().get(0).getAfter().getQuiz().getForm();
+        assertEquals(exercise.getForm().getKind(), entered.getKind(), "rested on the exercise: the class of its form");
+        assertEquals(List.of("works|doesn't work"), entered.getSentenceParts().get(clozeIndex(exercise.getForm())).getOptions());
+        assertTrue(bandeja.panels.assessed.isEmpty(), "the panel does not judge it");
+    }
+
+    @Test
+    @DisplayName("should send José's exception of an exercise the tray already asks about to its item, and leave the batch as it was")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R011")
+    public void shouldSendJosesExceptionOfAnExerciseTheTrayAlreadyAsksAboutToItsItemAndLeaveTheBatchAsItWas() {
+        BandejaFixture.Bandeja bandeja = opened();
+        QuizTemplateEntity exercise = TandaFixture.exercise(bandeja.course, BandejaFixture.TEA);
+        int changes = bandeja.saved().getChanges().size();
+
+        IllegalArgumentException refused = assertThrows(IllegalArgumentException.class, () -> bandeja.tray.writeAsException(
+                BandejaFixture.TEA, writtenFix(exercise, "drinks"), null, "José"));
+
+        assertTrue(refused.getMessage().contains("«" + TEA_ITEM + "»"), refused.getMessage());
+        assertEquals(changes, bandeja.saved().getChanges().size(), "no change");
+    }
+
+    @Test
     @DisplayName("should send José's fix of an exercise the tray already asks about to its item, and leave the batch as it was")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R010")

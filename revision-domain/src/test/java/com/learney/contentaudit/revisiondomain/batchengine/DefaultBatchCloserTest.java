@@ -36,6 +36,8 @@ import com.learney.contentaudit.revisiondomain.batch.BatchChange;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
 import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
 import com.learney.contentaudit.revisiondomain.batch.BatchJudgeAccount;
 import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
@@ -282,6 +284,35 @@ public class DefaultBatchCloserTest {
         assertEquals(3, vegetables.getAttempts());
         assertTrue(vegetables.getDetail().startsWith("F-NOEMP-R005: " + MesaFixture.VEGETABLES + " gana un error nuevo de"
                 + " exact-duplicates"), vegetables.getDetail());
+    }
+
+    @Test
+    @DisplayName("should not return the change José wrote as his exception and list it apart, while the gate returns the others")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R011")
+    public void shouldNotReturnTheChangeJoseWroteAsHisExceptionAndListItApartWhileTheGateReturnsTheOthers() {
+        // R011, 8/11: the closing had given «We slept ___ (good / well) last night.» back to production; José wrote the
+        // version of the C2 again as his exception. The gate still finds both changes worse: it returns the grandmother
+        // and keeps José's exception, listed apart.
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
+        batch.setAdjustments(new ArrayList<>(List.of(new BatchAdjustment(BatchAdjustmentKind.JOSES_EXCEPTION,
+                MesaFixture.VEGETABLES, List.of(), null, null, null, null, "arreglo de José como excepción", "José",
+                Instant.now()))));
+        Finding duplicate = MesaFixture.finding("exact-duplicates", "same-exercise", MesaFixture.VEGETABLES,
+                FindingSeverity.HIGH, FindingResolution.RULE, null, "queda igual a «I love vegetables.» de B1");
+        closing.comparator.answer = scope -> TandaFixture.comparison(scope, List.of(
+                        outcome(P_COME, MesaFixture.COME, true, List.of(grandmother()), List.of()),
+                        outcome(P_VEGETABLES, MesaFixture.VEGETABLES, true, List.of(duplicate), List.of())).stream()
+                .filter(o -> scope.getProposalIds().contains(o.getProposalId())).toList(), VerdictKind.FAILS);
+
+        batch = closing.closer().close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
+
+        BatchClosing closed = batch.getClosings().get(0);
+        assertEquals(List.of("mesa-" + MesaFixture.COME), closed.getReturnedChangeIds(), "only the grandmother returns");
+        assertTrue(BatchBook.list(closed.getGate().getListedExceptions()).stream()
+                        .anyMatch(e -> e.startsWith("excepción de José: " + P_VEGETABLES)),
+                "his exception, listed apart: " + closed.getGate().getListedExceptions());
     }
 
     @Test

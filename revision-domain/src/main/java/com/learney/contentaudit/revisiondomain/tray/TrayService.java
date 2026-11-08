@@ -19,5 +19,11 @@ public interface TrayService {
      */
     Tray write(String quizId, PanelCandidate fix, String note, String decidedBy);
 
+    /**
+     * F-BANDEJA-R011: the same fix written as José's exception -- it enters although the judges stop it, and the closing
+     * does not return it.
+     */
+    Tray writeAsException(String quizId, PanelCandidate fix, String note, String decidedBy);
+
     BatchPublication publish(String approvedBy, String note);
 }

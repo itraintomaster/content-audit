@@ -389,7 +389,7 @@ class DefaultBatchService implements BatchService {
                 }
             }
             case TASK_FROM_TIE -> batch = taskFromTie(batch, adjustment, course);
-            case JOSES_FIX -> batch = writeJosesFix(batch, adjustment, course);
+            case JOSES_FIX, JOSES_EXCEPTION -> batch = writeJosesFix(batch, adjustment, course);
             case APPROVE_RULE_SAMPLE -> {
                 // recorded as José's decision: the changes of the rule may be published
             }
@@ -516,12 +516,17 @@ class DefaultBatchService implements BatchService {
         String changeId = BatchBook.freeChangeId(batch, "jose-" + adjustment.getQuizId());
         batch = changeLedger.record(batch, new BatchChange(changeId, BatchChangeOrigin.JOSE, null,
                 knowledgeOfQuiz(course, adjustment.getQuizId()), BatchBook.copy(adjustment.getTaskIds()), steps, verdict,
-                adjustment.getKind() == BatchAdjustmentKind.ACCEPT_AS_EXCEPTION, Instant.now(), null), course);
+                exception(adjustment.getKind()), Instant.now(), null), course);
         for (String taskId : BatchBook.list(adjustment.getTaskIds())) {
             int attempts = BatchBook.outcome(batch, taskId).map(BatchTaskOutcome::getAttempts).orElse(0);
             BatchBook.setOutcome(batch, taskId, BatchTaskOutcomeKind.RESOLVED_BY_PANEL, changeId, attempts, detail);
         }
         return batch;
+    }
+
+    /** José's exception: a candidate he approved knowing it did not pass, or his fix written as one (F-BANDEJA-R011). */
+    static boolean exception(BatchAdjustmentKind kind) {
+        return kind == BatchAdjustmentKind.ACCEPT_AS_EXCEPTION || kind == BatchAdjustmentKind.JOSES_EXCEPTION;
     }
 
     /** The verdict of the gate the panel gave a candidate of the exercise: the accepted one, or the one José saw. */

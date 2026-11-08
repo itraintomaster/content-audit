@@ -190,9 +190,9 @@ que el registro de grabaciones tiene ese texto.
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
 > José puede escribir el arreglo de cualquier ejercicio de la tanda, aunque la bandeja no lo tenga. Su versión se arma
-> sobre el ejercicio como en [F-BANDEJA-R003](#F-BANDEJA-R003) y entra a la tanda como cambio suyo, no como excepción:
-> la miden los jueces y el revisor como cualquier cambio, y el cierre la devuelve si gana un problema
-> ([F-NOEMP-R005](#F-NOEMP-R005)). Invariantes:
+> sobre el ejercicio como en [F-BANDEJA-R003](#F-BANDEJA-R003) y entra a la tanda como cambio suyo, no como excepción
+> —salvo que la escriba como excepción ([F-BANDEJA-R011](#F-BANDEJA-R011))—: la miden los jueces y el revisor como
+> cualquier cambio, y el cierre la devuelve si gana un problema ([F-NOEMP-R005](#F-NOEMP-R005)). Invariantes:
 > 1. un ejercicio por el que la bandeja ya pregunta se contesta en su cosa de la bandeja, no por acá;
 > 2. un ejercicio que no está en el curso de la tanda, o un arreglo que lo deja como está, no cambia nada y José ve por
 >    qué.
@@ -203,6 +203,21 @@ sigue al contrato ([F-CONTR-R002](../2026-11-02.01_un-contrato-para-todos-los-ev
 A1, «She ___ (dance) tonight.» acepta «'ll dance» y el juez dice que también vale «won't dance»; José decidió el 5/11/2026
 aceptar las dos (brief 276). Su línea «She ____ ['ll dance|won't dance] (dance) tonight.» entra como cambio suyo, con el
 hueco, la pista y la clase del formulario del ejercicio.
+
+<a id="F-BANDEJA-R011"></a>
+### Rule[F-BANDEJA-R011] - José escribe su arreglo como excepción
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> José puede escribir el arreglo de un ejercicio que la bandeja no le pregunta como excepción suya, igual que cuando
+> aprueba el mejor candidato de un ejercicio sin ganador ([F-BANDEJA-R003](#F-BANDEJA-R003)): entra aunque los jueces lo
+> frenen, lo miden igual, y el cierre no lo devuelve: lo lista aparte ([F-NOEMP-R005](#F-NOEMP-R005)). Se arma sobre el
+> ejercicio como en [F-BANDEJA-R010](#F-BANDEJA-R010) y vale lo mismo que ahí: un ejercicio por el que la bandeja ya
+> pregunta se contesta en su cosa de la bandeja.
+
+Hace falta porque lo que el cierre devuelve vuelve a la mesa con intentos, no a la bandeja: José no tiene dónde aprobarlo.
+**Criterio**: en la C2 de A1 el cierre del 7/11/2026 devolvió «We slept ___ (good / well) last night.» y «You should put
+salt in the soup. ___» a producción, donde tienen problemas que el inicio de la tanda no tenía. José decidió el 8/11
+dejarlos con la versión de la C2 como excepción suya (brief 282): la compuerta ya no los devuelve.
 
 ## Contexto
 

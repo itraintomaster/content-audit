@@ -138,6 +138,11 @@ class TrayCmdStudentViewIntegrationTest {
         }
 
         @Override
+        public Tray writeAsException(String quizId, PanelCandidate fix, String note, String decidedBy) {
+            throw new UnsupportedOperationException("only shown");
+        }
+
+        @Override
         public BatchPublication publish(String approvedBy, String note) {
             throw new UnsupportedOperationException("only shown");
         }

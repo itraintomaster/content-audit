@@ -142,6 +142,16 @@ class DefaultTrayService implements TrayService {
 
     @Override
     public Tray write(String quizId, PanelCandidate fix, String note, String decidedBy) {
+        return write(quizId, fix, note, decidedBy, BatchAdjustmentKind.JOSES_FIX, "arreglo de José");
+    }
+
+    @Override
+    public Tray writeAsException(String quizId, PanelCandidate fix, String note, String decidedBy) {
+        return write(quizId, fix, note, decidedBy, BatchAdjustmentKind.JOSES_EXCEPTION, "arreglo de José como excepción");
+    }
+
+    private Tray write(String quizId, PanelCandidate fix, String note, String decidedBy, BatchAdjustmentKind kind,
+            String what) {
         if (quizId == null || quizId.isBlank() || fix == null) {
             throw new IllegalArgumentException("«escribir el arreglo» necesita el ejercicio y el arreglo de José.");
         }
@@ -156,8 +166,7 @@ class DefaultTrayService implements TrayService {
                     + asked.get().getItemId() + "».");
         }
         String who = decidedBy != null && !decidedBy.isBlank() ? decidedBy : JOSE;
-        batchService.adjust(adjustment(BatchAdjustmentKind.JOSES_FIX, quizId, List.of(), null, null, fix, null,
-                note != null ? note : "arreglo de José", who));
+        batchService.adjust(adjustment(kind, quizId, List.of(), null, null, fix, null, note != null ? note : what, who));
         return view();
     }
 

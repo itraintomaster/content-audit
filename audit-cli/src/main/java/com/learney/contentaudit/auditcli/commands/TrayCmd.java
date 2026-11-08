@@ -60,13 +60,14 @@ import picocli.CommandLine.Parameters;
         description = "The tray of the open batch (F-BANDEJA).%n%n"
                 + "  tray show [-f text|json]%n"
                 + "  tray answer <item> <answer> [--pair N] [--change <id>] [--fix <file>] [--note <text>]%n"
-                + "  tray write <exercise> --fix <file> [--note <text>]%n"
+                + "  tray write <exercise> --fix <file> [--note <text>] [--exception]%n"
                 + "  tray publish [--note <text>]%n%n"
                 + "Answers: IS_ERROR, NOT_ERROR, PASSES, DOES_NOT_PASS, KEEP_ORIGINAL, APPROVE_CANDIDATE, WRITE_FIX,"
                 + " RULE_OK, DROP_CHANGE, DROP_RULE; a pair of the blind sample takes A, B, iguales or ambos with --pair."
                 + "%nThe fix of WRITE_FIX is a file: exercise, translation and optional quiz-local mini theory, one per line;"
                 + "%na line «Opciones: a · b» gives the options of a multiple choice exercise."
-                + "%nwrite takes the same file for an exercise the tray does not ask about; it enters as José's change.",
+                + "%nwrite takes the same file for an exercise the tray does not ask about; it enters as José's change,"
+                + "%nor with --exception as his exception, which the closing does not return.",
         mixinStandardHelpOptions = true,
         footer = {
                 "",
@@ -111,6 +112,9 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
 
     @Option(names = "--note", description = "A note of José")
     private String note;
+
+    @Option(names = "--exception", description = "With write: José's fix enters as his exception (F-BANDEJA-R011)")
+    private boolean exception;
 
     @Option(names = {"-f", "--format"}, description = "Output format: text or json (default: ${DEFAULT-VALUE})",
             defaultValue = "text")
@@ -313,7 +317,7 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
         return switch (action) {
             case "show" -> showTray(format);
             case "answer" -> answerTray(itemId, answer, pairIndex, changeId, fixFile, note);
-            case "write" -> writeFix(itemId, fixFile, note);
+            case "write" -> writeFix(itemId, fixFile, note, exception);
             case "publish" -> publishTray(note);
             default -> {
                 System.err.println("Error: tray no conoce '" + action + "'. Usá show, answer, write o publish.");
@@ -353,16 +357,18 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
 
     /**
      * F-BANDEJA-R010: José's fix of an exercise the tray does not ask him about, from the same file as WRITE_FIX; it
-     * enters as his change.
+     * enters as his change -- or, R011, as his exception.
      */
-    private Integer writeFix(String quizId, String fixFile, String note) {
+    private Integer writeFix(String quizId, String fixFile, String note, boolean asException) {
         if (quizId == null || quizId.isBlank() || fixFile == null || fixFile.isBlank()) {
             System.err.println("Error: tray write <ejercicio> --fix <archivo>. El archivo es como el de WRITE_FIX.");
             return 2;
         }
         Tray tray;
         try {
-            tray = trayService.write(quizId, fix(quizId, Path.of(fixFile)), note, JOSE);
+            PanelCandidate fix = fix(quizId, Path.of(fixFile));
+            tray = asException ? trayService.writeAsException(quizId, fix, note, JOSE)
+                    : trayService.write(quizId, fix, note, JOSE);
         } catch (IllegalArgumentException | IOException e) {
             System.err.println("Error: " + e.getMessage());
             return 2;
@@ -374,7 +380,9 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
             System.out.println(CommandJson.write(tray));
             return 0;
         }
-        System.out.println("Arreglo de José en " + quizId + ": entró como cambio suyo; lo miden los jueces.");
+        System.out.println("Arreglo de José en " + quizId + (asException
+                ? ": entró como excepción suya; lo miden los jueces y el cierre no lo devuelve."
+                : ": entró como cambio suyo; lo miden los jueces."));
         return 0;
     }
 

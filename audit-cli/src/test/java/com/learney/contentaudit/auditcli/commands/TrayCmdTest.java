@@ -124,6 +124,26 @@ public class TrayCmdTest {
     }
 
     @Test
+    @DisplayName("should pass with 'tray write --exception' José's fix as his exception, and say the closing does not return it")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R011")
+    public void shouldPassWithTrayWriteExceptionJosesFixAsHisExceptionAndSayTheClosingDoesNotReturnIt() {
+        // R011: José keeps «She ___ (dance) tonight.» as his exception.
+        Bandeja bandeja = new Bandeja();
+        Path file = write(workdir.resolve("arreglo-dance-excepcion.txt"),
+                "She ____ ['ll dance] (dance) tonight.\n"
+                        + "Ella bailará esta noche.\n");
+
+        Run run = run(bandeja, "write", DANCE, "--fix", file.toString(), "--exception");
+
+        assertEquals(0, run.exit(), run.err());
+        assertEquals(List.of(DANCE + "|José|true"), bandeja.written.stream()
+                .map(w -> w.quizId() + "|" + w.decidedBy() + "|" + w.exception()).toList(), "as his exception");
+        assertTrue(run.out().contains("entró como excepción suya; lo miden los jueces y el cierre no lo devuelve"),
+                run.out());
+    }
+
+    @Test
     @DisplayName("should publish the open batch with 'tray publish' as José's single OK")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R008")
@@ -205,7 +225,7 @@ public class TrayCmdTest {
 
         final List<String> published = new ArrayList<>();
 
-        record Written(String quizId, PanelCandidate fix, String note, String decidedBy) {
+        record Written(String quizId, PanelCandidate fix, String note, String decidedBy, boolean exception) {
         }
 
         final List<Written> written = new ArrayList<>();
@@ -247,7 +267,13 @@ public class TrayCmdTest {
 
         @Override
         public Tray write(String quizId, PanelCandidate fix, String note, String decidedBy) {
-            written.add(new Written(quizId, fix, note, decidedBy));
+            written.add(new Written(quizId, fix, note, decidedBy, false));
+            return tray;
+        }
+
+        @Override
+        public Tray writeAsException(String quizId, PanelCandidate fix, String note, String decidedBy) {
+            written.add(new Written(quizId, fix, note, decidedBy, true));
             return tray;
         }
 
