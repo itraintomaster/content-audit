@@ -163,8 +163,9 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
             batch.setAnalysisSeedAuditId(null);
             batch.setAnalysisSeedContentVersion(0);
             if (verdict.isPasses() && blindSampleService != null && batch.getBlindSampleId() == null) {
-                // one sample per batch: closing again with José's decisions keeps the one he answers
-                BlindSample sample = blindSampleService.draw(coursePath, scope, null);
+                // one sample per batch: closing again with José's decisions keeps the one he answers; it is drawn on
+                // the comparison the gate passed, not on another (F-CIEGA-R001)
+                BlindSample sample = blindSampleService.draw(coursePath, scope, null, comparison);
                 batch.setBlindSampleId(sample != null ? sample.getSampleId() : null);
             }
             settle(batch, comparison, tasks);

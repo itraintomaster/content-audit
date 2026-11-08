@@ -53,6 +53,10 @@ después (con la propuesta).
 Se sortea entre lo que se publicaría: lo que ya vuelve no necesita a nadie. **Criterio**: pedir dos veces la muestra de
 la misma tanda con la misma semilla da los mismos 100 cambios; con otra semilla, otros.
 
+**Criterio** (8/11/2026, brief 282): al cerrar una tanda, lo que vuelve es lo que dice la comparación con que su compuerta
+acaba de pasar; el sorteo no vuelve a comparar la tanda. En la C2 de A1 la compuerta pasó y el sorteo la comparó otra
+vez, cambio por cambio: 15 de 2.109 en 20 minutos, unas 47 horas para todos.
+
 <a id="F-CIEGA-R002"></a>
 ### Rule[F-CIEGA-R002] - Cada par se ve como lo ve el alumno, sin pistas de cuál es cuál
 **Severity**: critical | **Validation**: AUTO_VALIDATED

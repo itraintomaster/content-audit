@@ -117,6 +117,25 @@ public class DefaultBlindSampleServiceTest {
     }
 
     @Test
+    @DisplayName("should draw the sample of a closing among the changes the comparison its gate passed does not return, without comparing again")
+    @Tag("FEAT-CIEGA")
+    @Tag("F-CIEGA-R001")
+    public void shouldDrawTheSampleOfAClosingAmongTheChangesTheComparisonItsGatePassedDoesNotReturnWithoutComparingAgain() {
+        // R001, 8/11: the C2 of A1 passed its gate and the draw compared its 2.109 changes again, one by one, 80 s each.
+        Tanda tanda = new Tanda().lasCuatro();
+        BatchComparison passed = tanda.comparison();
+        for (ChangeOutcome outcome : passed.getChanges()) {
+            outcome.setReturns(Tanda.P_HATS.equals(outcome.getProposalId()));
+        }
+
+        BlindSample sample = tanda.service().draw(Tanda.COURSE, null, 11L, passed);
+
+        assertEquals(Set.of(Tanda.P_GRANDMOTHER, Tanda.P_OURSELVES, Tanda.P_VEGETABLES), new HashSet<>(proposals(sample)),
+                "R001: what returns is what the comparison of the closing says");
+        verify(tanda.comparator, never()).compare(any(), any());
+    }
+
+    @Test
     @DisplayName("should take every change when the batch has fewer than the 100 pairs of the goal")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R001")

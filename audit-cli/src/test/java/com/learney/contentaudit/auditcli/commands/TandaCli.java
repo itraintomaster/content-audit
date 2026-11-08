@@ -604,6 +604,11 @@ final class TandaCli {
         }
 
         @Override
+        public BlindSample draw(Path coursePath, ProjectionScope scope, Long seed, BatchComparison comparison) {
+            return draw(coursePath, scope, seed);
+        }
+
+        @Override
         public List<BlindPairView> pairs(String sampleId) {
             return List.of(new BlindPairView(1, new StudentSide(null, null), new StudentSide(null, null)),
                     new BlindPairView(2, new StudentSide(null, null), new StudentSide(null, null)));

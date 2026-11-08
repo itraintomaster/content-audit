@@ -256,6 +256,23 @@ public class DefaultBatchCloserTest {
     }
 
     @Test
+    @DisplayName("should hand F the comparison its gate passed, so the blind sample does not compare the batch again")
+    @Tag("FEAT-CIEGA")
+    @Tag("F-CIEGA-R001")
+    public void shouldHandFTheComparisonItsGatePassedSoTheBlindSampleDoesNotCompareTheBatchAgain() {
+        // R001, 8/11: the C2 of A1 passed its gate; drawing its sample compared it again, change by change, for hours.
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
+
+        batch = closing.closer().close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
+
+        List<BatchClosing> closings = batch.getClosings();
+        assertEquals(1, closing.samples.compared.size(), "one sample, drawn on a comparison");
+        assertSame(closings.get(closings.size() - 1).getComparison(), closing.samples.compared.get(0),
+                "the comparison of the closing, the one its gate passed");
+    }
+
+    @Test
     @DisplayName("should spend one attempt of each change the gate returns and send its topic back to the panel with the reason, and end as returned without attempts, for the tray, a change that has none left")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R006")

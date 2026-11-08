@@ -1,5 +1,6 @@
 package com.learney.contentaudit.revisiondomain.blindsample;
 
+import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
 import com.learney.contentaudit.revisiondomain.projection.ProjectionScope;
 import java.nio.file.Path;
 import java.util.List;
@@ -12,6 +13,12 @@ import javax.annotation.processing.Generated;
 )
 public interface BlindSampleService {
     BlindSample draw(Path coursePath, ProjectionScope scope, Long seed);
+
+    /**
+     * F-CIEGA-R001: the sample of a closing, drawn among the changes {@code comparison} -- the one its gate passed -- does
+     * not return, without comparing the batch again.
+     */
+    BlindSample draw(Path coursePath, ProjectionScope scope, Long seed, BatchComparison comparison);
 
     List<BlindPairView> pairs(String sampleId);
 

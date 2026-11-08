@@ -278,6 +278,13 @@ public final class BandejaFixture {
         }
 
         @Override
+        public BlindSample draw(java.nio.file.Path coursePath,
+                com.learney.contentaudit.revisiondomain.projection.ProjectionScope scope, Long seed,
+                com.learney.contentaudit.revisiondomain.comparison.BatchComparison comparison) {
+            return draw(coursePath, scope, seed);
+        }
+
+        @Override
         public List<BlindPairView> pairs(String sampleId) {
             return pairs;
         }

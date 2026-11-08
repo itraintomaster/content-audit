@@ -41,6 +41,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
+import java.util.function.Supplier;
 import javax.annotation.processing.Generated;
 
 /**
@@ -89,6 +90,16 @@ public class DefaultBlindSampleService implements BlindSampleService {
 
     @Override
     public BlindSample draw(Path coursePath, ProjectionScope scope, Long seed) {
+        return draw(coursePath, scope, seed, () -> batchComparator.compare(coursePath, scope));
+    }
+
+    @Override
+    public BlindSample draw(Path coursePath, ProjectionScope scope, Long seed, BatchComparison comparison) {
+        return draw(coursePath, scope, seed, () -> comparison);
+    }
+
+    /** F-CIEGA-R001: the draw among the changes that do not return, as {@code comparison} says. */
+    private BlindSample draw(Path coursePath, ProjectionScope scope, Long seed, Supplier<BatchComparison> comparing) {
         CourseProjection projection = courseProjector.project(coursePath, scope);
         if (projection.getAvailability() != ConsolidatedViewAvailability.AVAILABLE
                 || projection.getApproved() == null || projection.getProjected() == null) {
@@ -97,7 +108,7 @@ public class DefaultBlindSampleService implements BlindSampleService {
             throw new IllegalStateException("No se puede sortear la muestra ciega: " + detail);
         }
         Set<String> returning = new HashSet<>();
-        BatchComparison comparison = batchComparator.compare(coursePath, scope);
+        BatchComparison comparison = comparing.get();
         if (comparison != null && comparison.getChanges() != null) {
             for (ChangeOutcome outcome : comparison.getChanges()) {
                 if (outcome != null && outcome.isReturns()) {

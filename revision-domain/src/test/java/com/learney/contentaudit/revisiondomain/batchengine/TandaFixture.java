@@ -682,9 +682,17 @@ public final class TandaFixture {
         return comparison;
     }
 
-    /** F's blind sample: the scope it was drawn on. */
+    /** F's blind sample: the scope it was drawn on, and the comparison of the closing that drew it. */
     public static final class Samples implements BlindSampleService {
         public final List<ProjectionScope> drawn = new ArrayList<>();
+
+        public final List<BatchComparison> compared = new ArrayList<>();
+
+        @Override
+        public BlindSample draw(Path coursePath, ProjectionScope scope, Long seed, BatchComparison comparison) {
+            compared.add(comparison);
+            return draw(coursePath, scope, seed);
+        }
 
         @Override
         public BlindSample draw(Path coursePath, ProjectionScope scope, Long seed) {
