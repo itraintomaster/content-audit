@@ -211,6 +211,43 @@ public class TrayCmdTest {
         assertEquals(null, fix.getQuiz().getMiniTheory(), "nor a mini theory");
     }
 
+    @Test
+    @DisplayName("should read the instructions José writes for the exercise from a line «Consigna:» of his fix")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R003")
+    public void shouldReadTheInstructionsJoseWritesForTheExerciseFromAnInstructionsLineOfHisFix() {
+        // R003, 8/11: «We slept ___ (good / well) last night.» goes back with the C2's «Elige», not production's «Elegí».
+        Bandeja bandeja = new Bandeja();
+        Path file = write(workdir.resolve("arreglo-well.txt"),
+                "We slept ____ [well] (good / well) last night.\n"
+                        + "Anoche dormimos bien.\n"
+                        + "Consigna: Elige la palabra correcta.\n"
+                        + "Usa $well$ para decir cómo dormimos.\n");
+
+        Run run = run(bandeja, "write", DANCE, "--fix", file.toString(), "--exception");
+
+        assertEquals(0, run.exit(), run.err());
+        PanelCandidate fix = bandeja.written.get(0).fix();
+        assertEquals("Elige la palabra correcta.", fix.getQuiz().getInstructions(), "his instructions");
+        assertEquals("Anoche dormimos bien.", fix.getQuiz().getTranslation(), "the instructions line is not the translation");
+        assertEquals("Usa $well$ para decir cómo dormimos.", fix.getQuiz().getMiniTheory(), "nor the mini theory");
+    }
+
+    @Test
+    @DisplayName("should leave the instructions to the exercise when José's fix brings no line «Consigna:»")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R003")
+    public void shouldLeaveTheInstructionsToTheExerciseWhenJosesFixBringsNoInstructionsLine() {
+        Bandeja bandeja = new Bandeja();
+        Path file = write(workdir.resolve("arreglo-sin-consigna.txt"),
+                "We slept ____ [well] (good / well) last night.\nAnoche dormimos bien.\n");
+
+        Run run = run(bandeja, "write", DANCE, "--fix", file.toString());
+
+        assertEquals(0, run.exit(), run.err());
+        assertEquals(null, bandeja.written.get(0).fix().getQuiz().getInstructions(), "the exercise keeps its own");
+    }
+
     private static Path write(Path file, String content) {
         try {
             return Files.writeString(file, content, StandardCharsets.UTF_8);

@@ -98,6 +98,11 @@ ejercicio ya tenia conserva su identidad, y lo que José escribe entre corchetes
 arreglo con opciones para un ejercicio que no es de opcion multiple no se mide. En la C2 de A1, «Do you have ___ DVDs at
 home?» ofrecia «any · a», y en una pregunta «some» tambien vale: el arreglo pasa a negativa y vuelve a ofrecer «some».
 
+**Criterio** (8/11/2026, brief 282): José puede escribir la consigna del ejercicio en una linea «Consigna: ...» del
+archivo, en cualquier lugar. Entonces el arreglo tiene esa consigna; sin esa linea, la consigna queda como la tiene el
+ejercicio. En la C2 de A1, el cierre devolvio «We slept ___ (good / well) last night.» a produccion, con su «Elegí la
+palabra correcta.»; José la quiso de vuelta como estaba en la C2, con «Elige».
+
 **Evidencia 5/11/2026.** Para que «A: Can you and your brother write on the board? B: Yes, ___.» midiera el largo de A1,
 José pidio acortarla a mano (brief 273). Su linea, leida sola, era un hueco para escribir: el ejercicio habria entrado sin
 sus seis opciones.

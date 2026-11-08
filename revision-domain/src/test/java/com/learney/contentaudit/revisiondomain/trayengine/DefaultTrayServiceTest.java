@@ -460,6 +460,42 @@ public class DefaultTrayServiceTest {
     }
 
     @Test
+    @DisplayName("should take the instructions José writes in his fix into the exercise of the batch")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R003")
+    public void shouldTakeTheInstructionsJoseWritesInHisFixIntoTheExerciseOfTheBatch() {
+        // R003, 8/11: «We slept ___ (good / well) last night.» went back to production's «Elegí»; José's fix brings «Elige».
+        BandejaFixture.Bandeja bandeja = opened();
+        QuizTemplateEntity exercise = asTheBatchHas(bandeja, BandejaFixture.WORK);
+        PanelCandidate fix = answering(exercise, "works|doesn't work");
+        fix.getQuiz().setInstructions("Elige la forma correcta del verbo.");
+
+        bandeja.tray.writeAsException(BandejaFixture.WORK, fix, null, "José");
+
+        QuizTemplateEntity entered = change(bandeja.saved(), "jose-" + BandejaFixture.WORK).getSteps().get(0).getAfter()
+                .getQuiz();
+        assertEquals("Elige la forma correcta del verbo.", entered.getInstructions(), "his instructions");
+    }
+
+    @Test
+    @DisplayName("should leave the exercise its instructions when José's fix brings none")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R003")
+    public void shouldLeaveTheExerciseItsInstructionsWhenJosesFixBringsNone() {
+        BandejaFixture.Bandeja bandeja = opened();
+        QuizTemplateEntity exercise = asTheBatchHas(bandeja, BandejaFixture.WORK);
+        assertTrue(exercise.getInstructions() != null && !exercise.getInstructions().isBlank(), "the exercise has its own");
+        PanelCandidate fix = answering(exercise, "works|doesn't work");
+        fix.getQuiz().setInstructions(null);
+
+        bandeja.tray.writeAsException(BandejaFixture.WORK, fix, null, "José");
+
+        QuizTemplateEntity entered = change(bandeja.saved(), "jose-" + BandejaFixture.WORK).getSteps().get(0).getAfter()
+                .getQuiz();
+        assertEquals(exercise.getInstructions(), entered.getInstructions(), "the exercise keeps its own");
+    }
+
+    @Test
     @DisplayName("should send José's exception of an exercise the tray already asks about to its item, and leave the batch as it was")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R011")

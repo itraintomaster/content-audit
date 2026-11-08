@@ -65,7 +65,8 @@ import picocli.CommandLine.Parameters;
                 + "Answers: IS_ERROR, NOT_ERROR, PASSES, DOES_NOT_PASS, KEEP_ORIGINAL, APPROVE_CANDIDATE, WRITE_FIX,"
                 + " RULE_OK, DROP_CHANGE, DROP_RULE; a pair of the blind sample takes A, B, iguales or ambos with --pair."
                 + "%nThe fix of WRITE_FIX is a file: exercise, translation and optional quiz-local mini theory, one per line;"
-                + "%na line «Opciones: a · b» gives the options of a multiple choice exercise."
+                + "%na line «Opciones: a · b» gives the options of a multiple choice exercise, and one «Consigna: ...» its"
+                + "%ninstructions."
                 + "%nwrite takes the same file for an exercise the tray does not ask about; it enters as José's change,"
                 + "%nor with --exception as his exception, which the closing does not return.",
         mixinStandardHelpOptions = true,
@@ -84,6 +85,9 @@ import picocli.CommandLine.Parameters;
 final class TrayCmd implements TrayCommand, Callable<Integer> {
     /** The line of José's fix that names the options of a multiple choice exercise. */
     private static final String OPTIONS = "opciones:";
+
+    /** The line of José's fix that gives the instructions of the exercise. */
+    private static final String INSTRUCTIONS = "consigna:";
 
     private final TrayService trayService;
 
@@ -388,13 +392,17 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
 
     /**
      * José's fix: course notation, translation, and optionally its quiz-local mini theory, one per nonblank line. A line
-     * «Opciones: a · b» anywhere gives the options of a multiple choice exercise (F-BANDEJA-R003).
+     * «Opciones: a · b» anywhere gives the options of a multiple choice exercise, and one «Consigna: ...» its instructions;
+     * without it the exercise keeps its own (F-BANDEJA-R003).
      */
     private PanelCandidate fix(String quizId, Path file) throws IOException {
         List<String> lines = new ArrayList<>();
         List<String> options = new ArrayList<>();
+        String instructions = null;
         for (String line : Files.readAllLines(file, StandardCharsets.UTF_8)) {
-            if (line.strip().toLowerCase(Locale.ROOT).startsWith(OPTIONS)) {
+            if (line.strip().toLowerCase(Locale.ROOT).startsWith(INSTRUCTIONS)) {
+                instructions = line.strip().substring(INSTRUCTIONS.length()).strip();
+            } else if (line.strip().toLowerCase(Locale.ROOT).startsWith(OPTIONS)) {
                 for (String option : line.strip().substring(OPTIONS.length()).split("[·|]")) {
                     if (!option.isBlank()) {
                         options.add(option.strip());
@@ -417,6 +425,9 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
         }
         if (lines.size() > 2) {
             quiz.setMiniTheory(lines.get(2));
+        }
+        if (instructions != null && !instructions.isBlank()) {
+            quiz.setInstructions(instructions);
         }
         if (!options.isEmpty()) {
             form.setMultipleChoice(new MultipleChoiceEntity(null, options.stream()
