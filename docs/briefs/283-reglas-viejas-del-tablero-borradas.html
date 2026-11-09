@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>283 · Reglas viejas borradas</title>
+<meta name="atril:conversacion" content="claude:7fab69ae-0a06-4aeb-9def-ab1c132aa42a">
+<meta name="atril:agente" content="claude">
+<meta name="atril:hilo" content="a1">
+<style>
+  :root{--bg:#fbfaf8;--bg-elev:#fff;--line:#e6e2db;--fg:#1c1a17;--fg-2:#57524b;--fg-3:#8b847a;--accent:#b4531f;--accent-soft:#fdf1e7;--ok:#2f6b46;--ok-soft:#e9f4ed;--warn:#8a6314;--warn-soft:#fbf2dd}
+  @media (prefers-color-scheme: dark){:root{--bg:#131211;--bg-elev:#1b1a18;--line:#302d29;--fg:#efece7;--fg-2:#a8a29a;--fg-3:#7b756c;--accent:#e08b4f;--accent-soft:#2a1f16;--ok:#7fc79c;--ok-soft:#16241c;--warn:#e0b657;--warn-soft:#272013}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 ui-sans-serif,-apple-system,system-ui,sans-serif;padding:40px 24px 80px}
+  .wrap{max-width:860px;margin:0 auto} code{font-family:ui-monospace,Menlo,monospace;overflow-wrap:anywhere}
+  h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2;margin:6px 0 8px} h2{font-size:19px;margin:30px 0 10px}
+  .num{font:700 12px ui-monospace,monospace;color:var(--fg-3)} .sub{color:var(--fg-2)}
+  .card{background:var(--bg-elev);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:12px 0}
+  .ok{background:var(--ok-soft);border-color:var(--ok)} .warn{background:var(--warn-soft);border-color:var(--warn)}
+  table{border-collapse:collapse;width:100%;font-size:15px} th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--fg-3);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+</style>
+</head>
+<body><div class="wrap">
+<span class="num">283</span>
+<h1>El tablero ya no guarda copias de las reglas del contrato</h1>
+<p class="sub">Pasó la semana sin contradicciones, así que borré lo viejo. Está subido a ittm <code>master</code>, pero el 7800 todavía no lo muestra.</p>
+
+<div class="card ok"><b>Antes de borrar:</b> la C2 entera dio <b>0 contradicciones</b> entre el contrato y las cuentas viejas (<code>verificar_contrato.py</code> y <code>contar_contrato.py</code>, sobre la misma lectura). Sin eso no se borraba nada.</div>
+
+<h2>Qué se borró</h2>
+<table>
+<tr><th>Dónde</th><th>Qué había</th></tr>
+<tr><td><code>nadie_le_ve_problemas.dart</code></td><td>La rama sin contrato (<code>_loQueDijeron</code>): ahora siempre lee el contrato; sin él no hay lista.</td></tr>
+<tr><td><code>opinion_de_los_jueces.dart</code></td><td>Lo posterior a <code>if (conContrato)</code> en <code>_opinar</code>, y <code>_arreglado</code>: sin contrato el cambio queda en «Falta medir».</td></tr>
+<tr><td><code>opinion.js</code></td><td>La rama sin <code>r</code> de <code>todosLosJuecesAprueban</code>: ahora es <code>e?.r === 'todos'</code>.</td></tr>
+<tr><td><code>selectores.js</code></td><td>El cruce con el «Mal» del revisor: el contrato ya lo deja fuera de la lista.</td></tr>
+<tr><td><code>vistas/nadie.js</code></td><td>El «Mal» recalculado dentro de un ejercicio que entra; el texto «el revisor lo marca Mal» pasó al bloque de «Vos lo aprobás», que es donde de verdad aparece.</td></tr>
+</table>
+<p>Las pruebas que cubrían la cuenta vieja se pasaron al contrato o se borraron con su regla. F-CONTR-R008 quedó reescrita en el REQUIREMENT.md.</p>
+
+<h2>Qué dejé a propósito</h2>
+<div class="card warn">
+<ul>
+<li><b>El motivo de un ejercicio que NO entra</b> («No entra en Todos…: un juez le ve un problema» y «el revisor lo marca mal»), en <code>nadie.js</code>. El contrato no trae un motivo para esos ejercicios; borrarlo dejaba el cartel diciendo «ningún juez opinó», que es falso. Si querés sacarlo, primero hay que pedirle al contrato que lo mande.</li>
+<li><b>El cálculo viejo de <code>opinion_en_contexto.dart</code></b>: lo usan también los renglones sueltos de las corridas.</li>
+</ul></div>
+
+<h2>Verificación</h2>
+<table>
+<tr><th>Qué</th><th>Resultado</th></tr>
+<tr><td>Dart <code>test/tablero_html</code></td><td>1.580 en verde</td></tr>
+<tr><td>JS <code>npm test</code></td><td>2.845 en verde</td></tr>
+<tr><td>Pre-commit de ittm</td><td>verde</td></tr>
+</table>
+
+<h2>Lo que falta</h2>
+<div class="card warn"><b>El 7800 no se reinició.</b> Corre desde el checkout principal de ittm, que hoy está en la rama <code>feat/tutor-tope-fortaleza-25</code> y no en <code>master</code>; no lo toqué porque no es mío. Mientras siga ahí, el 7800 muestra el código viejo aunque master ya tenga el borrado. Cuando ese checkout vuelva a <code>master</code> (commit <code>cbaa324d9</code> de ittm), hay que reiniciar el 7800 (no había ninguna medición paga corriendo) y volver a correr los dos scripts: tienen que dar 0.</div>
+</div></body></html>
