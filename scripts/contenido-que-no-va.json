@@ -1,0 +1,387 @@
+{
+ "que": "Reemplazo del contenido que no va en el curso (brief 284 de content-audit, 11/11/2026).",
+ "antes_de": "respaldo de producción del 29/9 (mongo-buckups/2026-09-29-revision-de-ejercicios), salvo 1e82, que toma la miniteoría de la C2 de A1",
+ "ejercicios": [
+  {
+   "_id": "67fab6d59930102295343d05",
+   "corto": "3d05",
+   "kind": "MULTIPLE_CHOICE",
+   "grupo": "ahora",
+   "audio": "B1.17.10.19",
+   "dice": "The man washed the car with a sponge.",
+   "cambios": [
+    {
+     "campo": "form.sentenceParts.0.text",
+     "antes": "The man attacked his wife",
+     "despues": "The man washed the car"
+    },
+    {
+     "campo": "form.sentenceParts.2.text",
+     "antes": "a gun.",
+     "despues": "a sponge."
+    },
+    {
+     "campo": "translation",
+     "antes": "El hombre atacó a su esposa con una pistola.",
+     "despues": "El hombre lavó el coche con una esponja."
+    }
+   ]
+  },
+  {
+   "_id": "67fab6d59930102295343d7a",
+   "corto": "3d7a",
+   "kind": "CLOZE",
+   "grupo": "ahora",
+   "audio": "B1.17.17.06",
+   "dice": "This is a photo of a girl and her cat.",
+   "cambios": [
+    {
+     "campo": "form.sentenceParts.0.text",
+     "antes": "This is the murder",
+     "despues": "This is a photo"
+    },
+    {
+     "campo": "form.sentences",
+     "antes": [
+      "This is the murder of a girl and her cat."
+     ],
+     "despues": [
+      "This is a photo of a girl and her cat."
+     ]
+    },
+    {
+     "campo": "translation",
+     "antes": "Este es el asesinato de una niña y su gato.",
+     "despues": "Esta es una foto de una niña y su gato."
+    }
+   ]
+  },
+  {
+   "_id": "67fab6d599301022953448e5",
+   "corto": "48e5",
+   "kind": "CLOZE",
+   "grupo": "ahora",
+   "audio": "B2.13.10.10",
+   "dice": "She is my main contact from the local art club.",
+   "cambios": [
+    {
+     "campo": "form.sentenceParts.0.text",
+     "antes": "She is my girlfriend from the local art club. (dead)",
+     "despues": "She is my contact from the local art club. (main)"
+    },
+    {
+     "campo": "form.sentenceParts.1.options",
+     "antes": [
+      "She is my dead girlfriend from the local art club."
+     ],
+     "despues": [
+      "She is my main contact from the local art club."
+     ]
+    },
+    {
+     "campo": "form.sentences",
+     "antes": [
+      "She is my dead girlfriend from the local art club."
+     ],
+     "despues": [
+      "She is my main contact from the local art club."
+     ]
+    },
+    {
+     "campo": "translation",
+     "antes": "Ella es mi novia muerta del club de arte local.",
+     "despues": "Ella es mi contacto principal del club de arte local."
+    },
+    {
+     "campo": "miniTheory",
+     "antes": "$dead$ va antes del sustantivo: my dead girlfriend, no my girlfriend dead.",
+     "despues": "$main$ sólo va antes del sustantivo: my main contact. No se dice my contact is main."
+    }
+   ]
+  },
+  {
+   "_id": "67fab6d599301022953438ac",
+   "corto": "38ac",
+   "kind": "MULTIPLE_CHOICE",
+   "grupo": "ahora",
+   "audio": "B1.12.02.06",
+   "dice": "The engineer who we work well with wasn't at work.",
+   "cambios": [
+    {
+     "campo": "form.sentenceParts.0.text",
+     "antes": "The former murderer who we work well with wasn't at work.",
+     "despues": "The engineer who we work well with wasn't at work."
+    },
+    {
+     "campo": "translation",
+     "antes": "El exasesino con quien trabajamos bien no estaba en el trabajo.",
+     "despues": "El ingeniero con quien trabajamos bien no estaba en el trabajo."
+    }
+   ]
+  },
+  {
+   "_id": "67fab6d5993010229534390f",
+   "corto": "390f",
+   "kind": "MULTIPLE_CHOICE",
+   "grupo": "ahora",
+   "audio": "B1.12.07.05",
+   "dice": "Did you see the ladies whom Lucy visits?",
+   "cambios": [
+    {
+     "campo": "form.sentenceParts.2.text",
+     "antes": "Martin injures?",
+     "despues": "Lucy visits?"
+    },
+    {
+     "campo": "translation",
+     "antes": "¿Viste a las señoras a las que Martin lastima?",
+     "despues": "¿Viste a las señoras a las que Lucy visita?"
+    }
+   ]
+  },
+  {
+   "_id": "67fab6d59930102295342853",
+   "corto": "2853",
+   "kind": "CLOZE",
+   "grupo": "ahora",
+   "audio": "A2.04.04.08",
+   "dice": "She has hit the target.",
+   "cambios": [
+    {
+     "campo": "form.sentenceParts.2.text",
+     "antes": "(hit) him.",
+     "despues": "(hit) the target."
+    },
+    {
+     "campo": "translation",
+     "antes": "Ella le ha pegado.",
+     "despues": "Ella ha dado en el blanco."
+    }
+   ]
+  },
+  {
+   "_id": "67fab6d599301022953428b4",
+   "corto": "28b4",
+   "kind": "CLOZE",
+   "grupo": "ahora",
+   "audio": "A2.04.08.09",
+   "dice": "Tom has hit the ball with his racket.",
+   "cambios": [
+    {
+     "campo": "form.sentenceParts.2.text",
+     "antes": "(hit) his brother.",
+     "despues": "(hit) the ball with his racket."
+    },
+    {
+     "campo": "translation",
+     "antes": "Tom ha golpeado a su hermano.",
+     "despues": "Tom ha golpeado la pelota con su raqueta."
+    }
+   ]
+  },
+  {
+   "_id": "67fab6d59930102295342fe7",
+   "corto": "2fe7",
+   "kind": "CLOZE",
+   "grupo": "ahora",
+   "audio": "B1.01.05.06",
+   "dice": "She hit the nail with a hammer.",
+   "cambios": [
+    {
+     "campo": "form.sentenceParts.2.text",
+     "antes": "(hit) the dog.",
+     "despues": "(hit) the nail with a hammer."
+    },
+    {
+     "campo": "translation",
+     "antes": "Ella golpeó al perro.",
+     "despues": "Ella golpeó el clavo con un martillo."
+    }
+   ]
+  },
+  {
+   "_id": "67fab6d59930102295342870",
+   "corto": "2870",
+   "kind": "CLOZE",
+   "grupo": "ahora",
+   "audio": "A2.04.05.13",
+   "dice": "She has not hit the target.",
+   "cambios": [
+    {
+     "campo": "form.sentenceParts.2.text",
+     "antes": "(not / hit) the dog.",
+     "despues": "(not / hit) the target."
+    },
+    {
+     "campo": "translation",
+     "antes": "Ella no ha golpeado al perro.",
+     "despues": "Ella no ha dado en el blanco."
+    }
+   ]
+  },
+  {
+   "_id": "67fab6d599301022953429b7",
+   "corto": "29b7",
+   "kind": "CLOZE",
+   "grupo": "ahora",
+   "audio": "A2.05.09.12",
+   "dice": "They remembered buying a car.",
+   "cambios": [
+    {
+     "campo": "form.sentenceParts.1.options",
+     "antes": [
+      "stealing"
+     ],
+     "despues": [
+      "buying"
+     ]
+    },
+    {
+     "campo": "form.sentenceParts.2.text",
+     "antes": "(steal) a car.",
+     "despues": "(buy) a car."
+    },
+    {
+     "campo": "form.sentences",
+     "antes": [
+      "They remembered stealing a car."
+     ],
+     "despues": [
+      "They remembered buying a car."
+     ]
+    },
+    {
+     "campo": "translation",
+     "antes": "Recordaron haber robado un coche.",
+     "despues": "Recordaron haber comprado un coche."
+    }
+   ]
+  },
+  {
+   "_id": "67fab6d59930102295343952",
+   "corto": "3952",
+   "kind": "MULTIPLE_CHOICE",
+   "grupo": "ahora",
+   "audio": "B1.13.02.02",
+   "dice": "He's already eaten four cookies! Now he's having a fifth one.",
+   "cambios": [
+    {
+     "campo": "form.sentenceParts.0.text",
+     "antes": "He's already finished four glasses of wine! Now he's having a fifth",
+     "despues": "He's already eaten four cookies! Now he's having a fifth"
+    },
+    {
+     "campo": "translation",
+     "antes": "¡Ya se ha terminado cuatro copas de vino! Ahora se está tomando una quinta.",
+     "despues": "¡Ya se ha comido cuatro galletas! Ahora se está comiendo una quinta."
+    }
+   ]
+  },
+  {
+   "_id": "67fab6d59930102295343918",
+   "corto": "3918",
+   "kind": "MULTIPLE_CHOICE",
+   "grupo": "ahora",
+   "audio": "B1.12.07.14",
+   "dice": "We contacted the plumber whom you suggested yesterday.",
+   "cambios": [
+    {
+     "campo": "form.sentenceParts.0.text",
+     "antes": "We contacted the fool",
+     "despues": "We contacted the plumber"
+    },
+    {
+     "campo": "translation",
+     "antes": "Contactamos al tonto que sugeriste ayer.",
+     "despues": "Contactamos al fontanero que sugeriste ayer."
+    }
+   ]
+  },
+  {
+   "_id": "67fab6d5993010229534271d",
+   "corto": "271d",
+   "kind": "CLOZE",
+   "grupo": "ahora",
+   "audio": "A2.02.05.07",
+   "dice": "Look at the sun! It's going to be a hot day.",
+   "cambios": [
+    {
+     "campo": "form.sentenceParts.1.options",
+     "antes": [
+      "'s going to kill|is going to kill"
+     ],
+     "despues": [
+      "'s going to be|is going to be"
+     ]
+    },
+    {
+     "campo": "form.sentenceParts.2.text",
+     "antes": "(kill) everything.",
+     "despues": "(be) a hot day."
+    },
+    {
+     "campo": "form.sentences",
+     "antes": [
+      "Look at the sun! It 's going to kill everything.",
+      "Look at the sun! It is going to kill everything."
+     ],
+     "despues": [
+      "Look at the sun! It 's going to be a hot day.",
+      "Look at the sun! It is going to be a hot day."
+     ]
+    },
+    {
+     "campo": "translation",
+     "antes": "¡Mira el sol! Va a matar todo.",
+     "despues": "¡Mira el sol! Va a ser un día caluroso."
+    }
+   ]
+  },
+  {
+   "_id": "67fab6d59930102295342a6d",
+   "corto": "2a6d",
+   "kind": "MULTIPLE_CHOICE",
+   "grupo": "ahora",
+   "audio": "A2.06.10.14",
+   "dice": "I drank milk. The milk was cold.",
+   "cambios": [
+    {
+     "campo": "form.sentenceParts.2.text",
+     "antes": "blood. The blood was red.",
+     "despues": "milk. The milk was cold."
+    },
+    {
+     "campo": "translation",
+     "antes": "Vi sangre. La sangre era roja.",
+     "despues": "Bebí leche. La leche estaba fría."
+    }
+   ]
+  },
+  {
+   "_id": "67fab6d59930102295341e82",
+   "corto": "1e82",
+   "kind": "MULTIPLE_CHOICE",
+   "grupo": "despues-de-la-c2",
+   "audio": "A1.01.02.16",
+   "dice": "They are not ready.",
+   "cambios": [
+    {
+     "campo": "form.sentenceParts.2.text",
+     "antes": "white.",
+     "despues": "ready."
+    },
+    {
+     "campo": "translation",
+     "antes": "Ellos no son blancos.",
+     "despues": "Ellos no están listos."
+    },
+    {
+     "campo": "miniTheory",
+     "antes": "Con $they$, usamos $are$ para el verbo $be$ en presente simple. Para negar, agregamos $not$ después de $are$: $they are not$. Por ejemplo: $They are not white$ significa «Ellos no son blancos».",
+     "despues": "Con $they$, usamos $are$ para el verbo $be$ en presente simple. Para negar, agregamos $not$ después de $are$: $they are not$. Por ejemplo: $They are not ready$ significa «Ellos no están listos».",
+     "nota": "el «antes» es el que deja la C2 al publicarse"
+    }
+   ]
+  }
+ ]
+}
