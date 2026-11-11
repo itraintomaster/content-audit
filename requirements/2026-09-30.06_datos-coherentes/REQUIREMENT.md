@@ -148,6 +148,27 @@ rules are followed (by the experts).» (`67fab6d599301022953435ee`). Va a la *me
 oración de partida no se traduzca es [ASSUMPTION]: José pidió el 25/10 arreglar las oraciones pegadas, y la traducción
 pegada es la misma falla en la otra copia.
 
+<a id="F-DATOS-R007"></a>
+### Rule[F-DATOS-R007] - La regrabación graba lo que falta con el texto de hoy y lo anota en el registro
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> La regrabación que sigue a publicar una tanda sale de content-audit: graba los audios que la preparación de audios
+> de la tanda da por grabar, cada uno con el primer texto que su ejercicio dice hoy ([F-DATOS-R003](#F-DATOS-R003)), y
+> al terminar anota en el registro lo que grabó. Invariantes:
+> 1. no graba un audio cuyo texto ya está en el registro ni uno que la preparación no pide;
+> 2. lo que José escribe a mano para un audio gana sobre el texto de hoy;
+> 3. un texto que no se puede grabar así —con «/» ([F-DATOS-R002](#F-DATOS-R002)), o que termina en una palabra que pide
+>    otra («to», «from», «the»…) antes de un punto— va a revisión a mano y no se graba; una pregunta sí puede terminar
+>    así («Where are we going to?»);
+> 4. cada audio subido hoy con el tamaño exacto de lo grabado queda en el registro con su texto, la fuente
+>    «regrabacion-<fecha>» y la fecha; lo que no se verificó no se anota y el resto del registro no cambia.
+
+Es lo que decidió José el 30/9 ([DOUBT-DATOS-REGISTRO](#DOUBT-DATOS-REGISTRO)): «la próxima regrabación, que ya sale
+de content-audit, lo actualiza en el mismo paso». Sin anotarla, la bandeja y `data-coherence` seguirían pidiendo los
+mismos audios. **Criterio** (11/11/2026): la C2 de A1 pedía 740 audios; la preparación da por grabar sólo los que el
+registro no tiene; «I heard a funny noise.» se graba así, «water / oranges uncountable» y «She wrote from Monday to.» van
+a revisión a mano, y al subir y verificar, el registro anota cada uno con «regrabacion-<fecha>».
+
 ## Contexto
 
 La propuesta pide que el texto del audio salga «del generador de marzo de 2025 y de la regrabación del 24/8». Son dos

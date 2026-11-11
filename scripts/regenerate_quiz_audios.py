@@ -3,6 +3,10 @@
 
 Flujo (cada paso es un subcomando; el estado vive en --workdir):
 
+  desde-preparacion  toma de content-audit la lista de lo que falta grabar y el texto de
+             hoy de cada audio (F-DATOS-R007): la salida de
+             `content-audit batch audio --request-json '{"action":"read"}'`, guardada en un
+             archivo. Escribe changed_spoken_sentences.json y texto_final.json.
   preflight  compara form.sentences[0] de prod (Atlas, solo lectura) contra db/ HEAD
              para los ids de changed_spoken_sentences.json; solo los que coinciden
              entran al manifest.
@@ -16,6 +20,8 @@ Flujo (cada paso es un subcomando; el estado vive en --workdir):
              listado fresco de S3 (tamano exacto por clave).
   verify     barrido final: cada clave del manifest existe en S3 con Last-Modified
              de hoy y tamano igual al local.
+  registrar  anota en db/grabaciones.json cada audio subido hoy y verificado, con el
+             texto con que se grabo (F-DATOS-R007; DOUBT-DATOS-REGISTRO, opcion A).
 
 La URI de Mongo NO vive en este archivo: se lee en runtime del config del proyecto
 ittm (aws-lambda-handler/cmd/config.yaml).
@@ -197,6 +203,45 @@ def load_head_quizzes():
     return out
 
 
+POR_GRABAR = "PENDING_GENERATION"
+
+
+def desde_preparacion(prep, workdir):
+    """F-DATOS-R007: lo que falta grabar segun la preparacion de audios de la tanda, con el
+    primer texto que el ejercicio dice hoy (el que data-coherence compara con el registro)."""
+    entradas = prep.get("entries")
+    if not isinstance(entradas, list):
+        raise SystemExit("la preparacion no trae entradas: corre `content-audit batch audio` con"
+                         " --request-json '{\"action\":\"read\"}' y guarda su salida")
+    cambiadas, textos, vistas = [], {}, set()
+    for e in entradas:
+        clave = (e.get("audioKey") or "").strip()
+        finales = [t for t in (e.get("finalTexts") or []) if t and t.strip()]
+        if e.get("status") != POR_GRABAR or not clave or not finales or clave in vistas:
+            continue
+        vistas.add(clave)
+        cambiadas.append({"id": e["quizId"], "key": clave})
+        textos[clave] = finales[0]
+    os.makedirs(workdir, exist_ok=True)
+    with open(os.path.join(workdir, "changed_spoken_sentences.json"), "w") as f:
+        json.dump(cambiadas, f, indent=1, ensure_ascii=False)
+    with open(os.path.join(workdir, "texto_final.json"), "w") as f:
+        json.dump(textos, f, indent=1, ensure_ascii=False)
+    return cambiadas
+
+
+def cmd_desde_preparacion(args):
+    with open(args.preparacion, encoding="utf-8") as f:
+        prep = json.load(f)
+    cambiadas = desde_preparacion(prep, args.workdir)
+    entradas = prep.get("entries") or []
+    otros = sum(1 for e in entradas if e.get("status") not in (POR_GRABAR, "TEXT_RECORD_MATCHES"))
+    print(f"tanda {prep.get('batchId')} v{prep.get('contentVersion')}: {len(cambiadas)} por grabar"
+          f" de {len(entradas)} ejercicios")
+    if otros:
+        print(f"  {otros} con otro problema del registro (no se graban aca; los ve data-coherence)")
+
+
 def load_changed_ids(workdir):
     path = os.path.join(workdir, "changed_spoken_sentences.json")
     return [c["id"] for c in json.load(open(path))]
@@ -247,16 +292,13 @@ def cmd_preflight(args):
 SUSPICIOUS = re.compile(r"[$_\[\]|{}<>*#@%^~`()]")
 
 
-def cmd_dryrun(args):
-    head = load_head_quizzes()
-    pre = json.load(open(os.path.join(args.workdir, "preflight_report.json")))
-    ids = pre["ok"]
+CORTADA = re.compile(r"\b(to|from|of|the|a|an|and|with|in|on|at|for|until|till|by|into|about)\s*[.!]$", re.I)
 
-    overrides = {}
-    ov_path = os.path.join(args.workdir, "manual_overrides.json")
-    if os.path.exists(ov_path):
-        overrides = json.load(open(ov_path))
 
+def armar_manifiesto(head, ids, overrides, finales):
+    """El manifest clave->texto, lo que va a revision manual y los lints. Gana lo que Jose
+    escribio a mano (manual_overrides.json); despues, el texto de hoy que dio content-audit
+    (texto_final.json); si no hay, el que sale de la oracion guardada."""
     manifest, manual, lint = [], [], []
     keys_seen = {}
     for qid in ids:
@@ -273,7 +315,10 @@ def cmd_dryrun(args):
         if q["key"] in overrides:
             manifest.append({**row, "text": overrides[q["key"]], "source": "override"})
             continue
-        if "/" in s0:
+        if q["key"] in finales:
+            text = finales[q["key"]]
+            row["source"] = "contenido"
+        elif "/" in s0:
             text = spoken_from_choice_parts(q["parts"])
             row["source"] = "parts"
         else:
@@ -286,10 +331,36 @@ def cmd_dryrun(args):
         if q["mode"] == "REWRITE" and enders >= 2:
             manual.append({**row, "issue": "REWRITE con 2+ oraciones (posible dup estimulo+respuesta)"})
             continue
+        if "/" in text:
+            manual.append({**row, "issue": "lleva «/»: el audio no la dice (F-DATOS-R002)"})
+            continue
+        cortada = CORTADA.search(text.strip())
+        if cortada:
+            manual.append({**row, "issue": f"termina en «{cortada.group(1)}»: ¿respuesta cortada?"})
+            continue
         if SUSPICIOUS.search(text):
             lint.append({**row, "issue": "caracteres sospechosos"})
             continue
         manifest.append(row)
+    return manifest, manual, lint
+
+
+def cmd_dryrun(args):
+    head = load_head_quizzes()
+    pre = json.load(open(os.path.join(args.workdir, "preflight_report.json")))
+    ids = pre["ok"]
+
+    overrides = {}
+    ov_path = os.path.join(args.workdir, "manual_overrides.json")
+    if os.path.exists(ov_path):
+        overrides = json.load(open(ov_path))
+    finales = {}
+    fin_path = os.path.join(args.workdir, "texto_final.json")
+    if os.path.exists(fin_path):
+        with open(fin_path, encoding="utf-8") as f:
+            finales = json.load(f)
+
+    manifest, manual, lint = armar_manifiesto(head, ids, overrides, finales)
 
     # duplicidad de claves contra TODO el curso (no solo el set)
     all_keys = {}
@@ -496,12 +567,69 @@ def cmd_verify(args):
         print("  VIEJA", s)
 
 
+# ---------------------------------------------------------------- registrar
+
+def registro_path():
+    return os.path.join(repo_root(), "db", "grabaciones.json")
+
+
+def registrar_en(workdir, registro, listing, today):
+    """F-DATOS-R007: anota en el registro de grabaciones cada clave del manifest subida hoy con
+    el tamano exacto del mp3 local, con el texto con que se grabo. Lo que no se verifico no se
+    anota; sin nada verificado, el registro no se toca."""
+    with open(os.path.join(workdir, "regen_manifest.json"), encoding="utf-8") as f:
+        manifest = json.load(f)
+    mp3_dir = os.path.join(workdir, "regen", "mp3")
+    anotadas, sin_verificar, textos = [], [], {}
+    for r in manifest:
+        f = r["key"] + ".mp3"
+        local = os.path.join(mp3_dir, f)
+        s3 = listing.get(f)
+        if (os.path.exists(local) and s3 is not None and s3.get("date") == today
+                and s3.get("size") == os.path.getsize(local)):
+            anotadas.append(r["key"])
+            textos[r["key"]] = r["text"]
+        else:
+            sin_verificar.append(r["key"])
+    if not anotadas:
+        return anotadas, sin_verificar
+    with open(registro, encoding="utf-8") as f:
+        datos = json.load(f)
+    grabaciones = datos.get("grabaciones") or {}
+    fuente = f"regrabacion-{today}"
+    for clave, texto in textos.items():
+        grabaciones[clave] = {"texto": texto, "fuente": fuente, "fecha": today}
+    cuenta = {}
+    for g in grabaciones.values():
+        cuenta[g.get("fuente")] = cuenta.get(g.get("fuente"), 0) + 1
+    datos["version"] = f"{today} · " + ", ".join(f"{k} ({n})" for k, n in sorted(cuenta.items()))
+    datos["grabaciones"] = {clave: grabaciones[clave] for clave in sorted(grabaciones)}
+    tmp = registro + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(datos, f, ensure_ascii=False, indent=1)
+        f.write("\n")
+    os.replace(tmp, registro)
+    return anotadas, sin_verificar
+
+
+def cmd_registrar(args):
+    registro = args.registro or registro_path()
+    today = time.strftime("%Y-%m-%d")
+    anotadas, sin_verificar = registrar_en(args.workdir, registro, s3_listing(), today)
+    print(f"anotadas en {registro}: {len(anotadas)} | sin verificar (no se anotan): {len(sin_verificar)}")
+    for k in sin_verificar[:10]:
+        print("  SIN VERIFICAR", k)
+
+
 # ---------------------------------------------------------------- main
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--workdir", required=True, help="directorio de estado (scratchpad)")
     sub = p.add_subparsers(dest="cmd", required=True)
+    pp = sub.add_parser("desde-preparacion")
+    pp.add_argument("--preparacion", required=True,
+                    help="salida de content-audit batch audio --request-json '{\"action\":\"read\"}'")
     sub.add_parser("preflight")
     sub.add_parser("dryrun")
     sub.add_parser("backup")
@@ -512,9 +640,12 @@ def main():
     pu = sub.add_parser("upload")
     pu.add_argument("--keys", help="claves separadas por coma (piloto)")
     sub.add_parser("verify")
+    pr = sub.add_parser("registrar")
+    pr.add_argument("--registro", help="registro de grabaciones (por defecto db/grabaciones.json)")
     args = p.parse_args()
-    {"preflight": cmd_preflight, "dryrun": cmd_dryrun, "backup": cmd_backup,
-     "synth": cmd_synth, "upload": cmd_upload, "verify": cmd_verify}[args.cmd](args)
+    {"desde-preparacion": cmd_desde_preparacion, "preflight": cmd_preflight, "dryrun": cmd_dryrun,
+     "backup": cmd_backup, "synth": cmd_synth, "upload": cmd_upload, "verify": cmd_verify,
+     "registrar": cmd_registrar}[args.cmd](args)
 
 
 if __name__ == "__main__":
