@@ -62,6 +62,23 @@ class ExistingChoiceConversionTest {
                 new MultipleChoiceItemEntity("yours", 1, "yours"), new MultipleChoiceItemEntity("their", 0, "their"))));
         assertFalse(ExistingChoiceConversion.inspect(place(quiz("", "yours"), List.of(sibling, another)), false).eligible());
     }
+    @Test @org.junit.jupiter.api.Tag("F-TAREA-R006")
+    void aStoredSentenceThatKeepsItsContractionApartAsProductionDoesStillMatchesItsAnswer() {
+        // F-TAREA-R006 inv. 4: producción guarda «It 's cold.» (69 de A1 así); el rearmado da «It's cold.». Es la misma
+        // oración: la conversión no se niega por cómo está escrita la contracción, y conserva la guardada.
+        var q = quiz("(was / 's)", "'s");
+        q.getForm().setSentenceParts(new ArrayList<>(List.of(new SentencePartEntity(SentencePartKind.TEXT, "It", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("'s")),
+                new SentencePartEntity(SentencePartKind.TEXT, "(was / 's) cold.", null))));
+        q.setSentences(new ArrayList<>(List.of("It 's cold.")));
+
+        var c = ExistingChoiceConversion.inspect(place(q, List.of()), false);
+
+        assertTrue(c.eligible(), c.reason());
+        assertEquals(List.of("It 's cold."), c.after().getSentences());
+        q.setSentences(new ArrayList<>(List.of("It was cold.")));
+        assertFalse(ExistingChoiceConversion.inspect(place(q, List.of()), false).eligible(), "otra oración, no");
+    }
     @Test void keepsAnExistingChooseInstructionAndNeverInventsOptions() {
         var q = quiz("(your / yours)", "yours"); q.setInstructions("Selecciona el pronombre correcto.");
         assertEquals(q.getInstructions(), ExistingChoiceConversion.inspect(place(q, List.of()), false).after().getInstructions());

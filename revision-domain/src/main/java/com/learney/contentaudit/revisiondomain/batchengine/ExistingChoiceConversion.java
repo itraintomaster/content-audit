@@ -72,7 +72,7 @@ final class ExistingChoiceConversion {
             if (reason == null && !manual && hasBaseHint) reason = "La pista pide producir una forma; sólo se convierte a pedido.";
             if (reason == null && (labels.size() < 2 || labels.size() > 8 || labels.stream().anyMatch(l -> l == null || l.isBlank()))) reason = "Las opciones deben ser entre dos y ocho textos completos.";
             if (reason == null && keys(labels).size() != labels.size()) reason = "La pista repite una opción; corregila antes.";
-            if (reason == null && !StoredSentenceRehydrator.rebuild(q).equals(q.getSentences())) reason = "La oración guardada no coincide con la respuesta actual; corregila antes.";
+            if (reason == null && !StoredSentenceRehydrator.writtenTheSame(StoredSentenceRehydrator.rebuild(q), q.getSentences())) reason = "La oración guardada no coincide con la respuesta actual; corregila antes.";
         }
         QuizTemplateEntity after = null;
         if (reason == null) {

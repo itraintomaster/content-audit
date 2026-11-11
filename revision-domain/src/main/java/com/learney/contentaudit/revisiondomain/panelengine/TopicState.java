@@ -163,7 +163,10 @@ final class TopicState {
                 || isMultipleChoice(old) != isMultipleChoice(rewritten)
                 || !Objects.equals(correctOption(old), correctOption(rewritten));
         if (sentenceInputsMoved) {
-            rewritten.setSentences(StoredSentenceRehydrator.rebuild(rewritten));
+            // F-TAREA-R006 inv. 4: built again, or the one it had, with its other forms, when the new one says the same.
+            List<String> rebuilt = StoredSentenceRehydrator.rebuild(rewritten);
+            rewritten.setSentences(StoredSentenceRehydrator.saysTheSame(rebuilt, old.getSentences())
+                    ? new ArrayList<>(old.getSentences()) : rebuilt);
         } else if (proposed.getSentences() != null) {
             rewritten.setSentences(new ArrayList<>(proposed.getSentences()));
         } else {

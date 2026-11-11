@@ -10,6 +10,7 @@ import com.learney.contentaudit.coursedomain.SentencePartKind;
 import com.learney.contentaudit.coursedomain.SentenceToTransform;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -73,6 +74,23 @@ public final class StoredSentenceRehydrator {
             return false;
         }
         return written(rebuilt.get(0)).equals(written(stored.get(0)));
+    }
+
+    /**
+     * Whether two lists of stored sentences are the same, sentence by sentence, but for how a contraction or a space is
+     * written: «She 's not very happy.» is «She's not very happy.».
+     */
+    public static boolean writtenTheSame(List<String> first, List<String> second) {
+        if (first == null || second == null || first.size() != second.size()) {
+            return Objects.equals(first, second);
+        }
+        for (int i = 0; i < first.size(); i++) {
+            if (first.get(i) == null || second.get(i) == null ? first.get(i) != second.get(i)
+                    : !written(first.get(i)).equals(written(second.get(i)))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private static String written(String sentence) {
