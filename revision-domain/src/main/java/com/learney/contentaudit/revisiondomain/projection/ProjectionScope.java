@@ -19,6 +19,12 @@ public class ProjectionScope {
     /** F-MIDIO-R001: the plan whose proposals the scope names; without it, the active plan's. */
     private String planId;
 
+    /**
+     * F-BANDEJA-R011, F-METAS-R003: the proposals José keeps as his exception. They gain what they gain and do not
+     * return; the verdict lists them apart.
+     */
+    private List<String> exceptionProposalIds;
+
     public ProjectionScope() {
     }
 
@@ -66,6 +72,14 @@ public class ProjectionScope {
         this.planId = planId;
     }
 
+    public List<String> getExceptionProposalIds() {
+        return this.exceptionProposalIds;
+    }
+
+    public void setExceptionProposalIds(List<String> exceptionProposalIds) {
+        this.exceptionProposalIds = exceptionProposalIds;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,11 +88,12 @@ public class ProjectionScope {
         return Objects.equals(this.scopeId, that.scopeId)
                     && Objects.equals(this.proposalIds, that.proposalIds)
                     && Objects.equals(this.analyzerBudgets, that.analyzerBudgets)
-                    && Objects.equals(this.planId, that.planId);
+                    && Objects.equals(this.planId, that.planId)
+                    && Objects.equals(this.exceptionProposalIds, that.exceptionProposalIds);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(scopeId, proposalIds, analyzerBudgets, planId);
+        return Objects.hash(scopeId, proposalIds, analyzerBudgets, planId, exceptionProposalIds);
     }
 }

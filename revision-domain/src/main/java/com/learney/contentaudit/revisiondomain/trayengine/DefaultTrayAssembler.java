@@ -13,7 +13,10 @@ import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.batch.JosesExceptions;
 import com.learney.contentaudit.revisiondomain.blindsample.BlindPairView;
+import com.learney.contentaudit.revisiondomain.comparison.BatchVerdict;
+import com.learney.contentaudit.revisiondomain.comparison.BatchVerdictRule;
 import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
 import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
 import com.learney.contentaudit.revisiondomain.nonregression.ChangeGateVerdict;
@@ -101,10 +104,12 @@ class DefaultTrayAssembler implements TrayAssembler {
                 blockers.add("la compuerta de «no empeorar» no pasa: " + String.join("; ", TrayBook.list(
                         last.getGate().getReasons())));
             }
-            VerdictKind kind = last.getComparison() != null && last.getComparison().getVerdict() != null
-                    ? last.getComparison().getVerdict().getKind() : null;
+            // F-BANDEJA-R011: the verdict of the closing, read with the exceptions José keeps now.
+            BatchVerdict verdict = BatchVerdictRule.withExceptions(last.getComparison(),
+                    JosesExceptions.proposalIdsOf(batch));
+            VerdictKind kind = verdict != null ? verdict.getKind() : null;
             if (kind == VerdictKind.FAILS || kind == VerdictKind.UNDECIDABLE) {
-                String detail = last.getComparison().getVerdict().getDetail();
+                String detail = verdict.getDetail();
                 blockers.add("el veredicto de la comparación es «" + kind + "»" + (detail != null ? ": " + detail : ""));
             }
         }

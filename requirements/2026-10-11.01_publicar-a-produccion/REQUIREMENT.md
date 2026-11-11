@@ -209,6 +209,11 @@ publica, ni desde la bandeja ni desde la tanda, y la negativa dice «no se puede
 dice «no se puede decidir» y termina con 1. Si en cambio el veredicto es «no pasa» con 2 pisos sin decidir, la negativa
 y el cierre dicen «no pasa, y además 2 pisos sin decidir», nunca «no se puede decidir».
 
+El veredicto del último cierre se lee con las excepciones que José tiene hoy ([F-BANDEJA-R011](#F-BANDEJA-R011)): un
+«no pasa» que sólo devolvía excepciones suyas no frena la publicación. **Criterio** (11/11/2026): la C2 de A1, cerrada el
+8/11 con «No pasa: vuelven 3 cambios» —los tres de José— y la muestra ciega en su meta, se publica sin compararla de nuevo
+y su lista dice «pasa».
+
 </details>
 
 <a id="F-PUBPROD-R006"></a>

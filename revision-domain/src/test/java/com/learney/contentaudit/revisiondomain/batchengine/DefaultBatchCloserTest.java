@@ -333,6 +333,30 @@ public class DefaultBatchCloserTest {
     }
 
     @Test
+    @DisplayName("should tell the comparison of a closing which changes José keeps as his exception, so its verdict does not count them as returning")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R011")
+    @Tag("FEAT-METAS")
+    @Tag("F-METAS-R003")
+    public void shouldTellTheComparisonOfAClosingWhichChangesJoseKeepsAsHisExceptionSoItsVerdictDoesNotCountThemAsReturning() {
+        // R011 and F-METAS-R003, 11/11: the gate knew José's exceptions and the comparison did not; the C2 of A1 closed
+        // with its gate passing and its verdict «No pasa» for the same three changes. The comparison of the closing is
+        // asked with them, and the closing keeps the scope it compared.
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
+        batch.setAdjustments(new ArrayList<>(List.of(new BatchAdjustment(BatchAdjustmentKind.JOSES_EXCEPTION,
+                MesaFixture.VEGETABLES, List.of(), null, null, null, null, "arreglo de José como excepción", "José",
+                Instant.now()))));
+
+        batch = closing.closer().close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
+
+        assertEquals(List.of(P_VEGETABLES), closing.comparator.scopes.get(0).getExceptionProposalIds(),
+                "the comparison knows his exception");
+        assertEquals(List.of(P_VEGETABLES), batch.getClosings().get(0).getScope().getExceptionProposalIds(),
+                "and the closing keeps it");
+    }
+
+    @Test
     @DisplayName("should end as pending rerecording, not resolved, a task of the audio whose audio the batch asked to rerecord with what the exercise says, since its finding stays until it is recorded")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R006")

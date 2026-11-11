@@ -45,6 +45,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchStore;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.batch.JosesExceptions;
 import com.learney.contentaudit.revisiondomain.batch.CurrentComparison;
 import com.learney.contentaudit.revisiondomain.batch.NoOpenBatchException;
 import com.learney.contentaudit.revisiondomain.comparison.GoalBook;
@@ -526,7 +527,7 @@ class DefaultBatchService implements BatchService {
 
     /** José's exception: a candidate he approved knowing it did not pass, or his fix written as one (F-BANDEJA-R011). */
     static boolean exception(BatchAdjustmentKind kind) {
-        return kind == BatchAdjustmentKind.ACCEPT_AS_EXCEPTION || kind == BatchAdjustmentKind.JOSES_EXCEPTION;
+        return JosesExceptions.is(kind);
     }
 
     /** The verdict of the gate the panel gave a candidate of the exercise: the accepted one, or the one José saw. */

@@ -96,6 +96,7 @@ import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedView
 import com.learney.contentaudit.revisiondomain.projection.CourseProjection;
 import com.learney.contentaudit.revisiondomain.projection.CourseProjector;
 import com.learney.contentaudit.revisiondomain.projection.ProjectedChange;
+import com.learney.contentaudit.revisiondomain.projection.ProjectionScope;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -1033,6 +1034,40 @@ public class DefaultBatchComparatorTest {
         assertSame(answered, comparison.getVerdict().getSample(), "R008: and the blind sample meets its goal");
         assertTrue(comparison.getVerdict().getReturningProposalIds().isEmpty());
         verify(mesa.samples).outcomeFor(PLAN);
+    }
+
+    @Test
+    @DisplayName("should not return «My grandmother ___ (come) every year.» when José keeps it as his exception: the batch of the four passes and the verdict lists it apart, with its finding")
+    @Tag("FEAT-METAS")
+    @Tag("F-METAS-R003")
+    @Tag("F-METAS-R008")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R011")
+    public void shouldNotReturnMyGrandmotherComeEveryYearWhenJoseKeepsItAsHisExceptionTheBatchOfTheFourPassesAndTheVerdictListsItApart(
+            ) {
+        // R003 and R011, 11/11: the C2 of A1 closed with its gate passing, but its comparison said «No pasa: vuelven 3
+        // cambios» -- the three José keeps as his exception -- and publishing asks for «pasa». An exception gains what it
+        // gains and does not return: the batch of the four, with «grandmother» as José's exception, passes.
+        SampleOutcome answered = new SampleOutcome("muestra-1", PLAN, true, 100, 95, 0, 1, true, "cumple");
+        Mesa mesa = new Mesa().baseline(Foto.del299());
+        mesa.samples(answered);
+        mesa.batch(Foto.del299(), Foto.del299().conLasCuatro(), LAS_CUATRO);
+        ProjectionScope scope = new ProjectionScope(PLAN, null, new LinkedHashMap<>());
+        scope.setExceptionProposalIds(new ArrayList<>(List.of(P_GRANDMOTHER)));
+
+        BatchComparison comparison = mesa.compare(scope);
+
+        ChangeOutcome grandmother = change(comparison, P_GRANDMOTHER);
+        assertFalse(grandmother.isReturns(), "R011: José's exception does not return");
+        assertEquals(1, grandmother.getNewFindings().size(), "R003: it keeps what it gained, for the gate to list it apart");
+        assertEquals(VerdictKind.PASSES, comparison.getVerdict().getKind(), "R008: nothing else returns");
+        assertTrue(comparison.getVerdict().getReturningProposalIds().isEmpty());
+        assertEquals(List.of(P_GRANDMOTHER), comparison.getVerdict().getExceptionProposalIds(), "R011: listed apart");
+        assertEquals("Pasa: se cumplen los pisos, no vuelve ningún cambio y la muestra ciega muestra-1 cumple su meta."
+                + " Por excepción de José, sin volver: 1 cambio (" + P_GRANDMOTHER + ").", comparison.getVerdict().getDetail());
+
+        // Without the exception, the same batch does not pass.
+        assertEquals(VerdictKind.FAILS, mesa.compare().getVerdict().getKind(), "R008: «grandmother» returns");
     }
 
     @Test
@@ -2008,6 +2043,10 @@ public class DefaultBatchComparatorTest {
 
         BatchComparison compare() {
             return comparator().compare(COURSE, null);
+        }
+
+        BatchComparison compare(ProjectionScope scope) {
+            return comparator().compare(COURSE, scope);
         }
 
         /**

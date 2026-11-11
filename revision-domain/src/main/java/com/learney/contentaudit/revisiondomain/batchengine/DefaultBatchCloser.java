@@ -23,6 +23,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchStore;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.batch.JosesExceptions;
 import com.learney.contentaudit.revisiondomain.batch.CurrentComparison;
 import com.learney.contentaudit.revisiondomain.blindsample.BlindSample;
 import com.learney.contentaudit.revisiondomain.blindsample.BlindSampleService;
@@ -208,7 +209,13 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
             }
         }
         // F-MIDIO-R001: its proposals are in its own plan, not in the active one.
-        return new ProjectionScope(batch.getId(), proposals, new LinkedHashMap<>(), batch.getPlanId());
+        ProjectionScope scope = new ProjectionScope(batch.getId(), proposals, new LinkedHashMap<>(), batch.getPlanId());
+        // F-BANDEJA-R011, F-METAS-R003: the comparison does not count José's exceptions as returning.
+        List<String> exceptions = exceptions(batch);
+        if (!exceptions.isEmpty()) {
+            scope.setExceptionProposalIds(exceptions);
+        }
+        return scope;
     }
 
     /**
@@ -283,14 +290,7 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
 
     /** What José approved in the tray knowing it did not pass: its proposals are exceptions of the gate. */
     static List<String> exceptions(CorrectionBatch batch) {
-        List<String> exceptions = new ArrayList<>();
-        for (BatchAdjustment adjustment : BatchBook.list(batch.getAdjustments())) {
-            if (adjustment != null && DefaultBatchService.exception(adjustment.getKind())
-                    && adjustment.getQuizId() != null) {
-                exceptions.add(DefaultBatchChangeLedger.proposalIdOf(batch, adjustment.getQuizId()));
-            }
-        }
-        return exceptions;
+        return JosesExceptions.proposalIdsOf(batch);
     }
 
     /** The changes of the exercise of a returned proposal leave the batch, each task spending an attempt. */

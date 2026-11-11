@@ -23,6 +23,11 @@ import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
 import com.learney.contentaudit.revisiondomain.RevisionArtifact;
 import com.learney.contentaudit.revisiondomain.RevisionVerdict;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.revisiondomain.blindsample.SampleOutcome;
+import com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
@@ -566,6 +571,38 @@ public class PublishingReviewedBatchTest {
                 + refused.getMessage());
         assertTrue(p.comparator.scopes.isEmpty(), "nada cambió desde el cierre: no se compara de nuevo");
         assertNothingWritten(p);
+    }
+
+    @Test
+    @DisplayName("should publish a batch whose last closing said «no pasa» only because José's exceptions returned, without comparing it again")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R005")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R011")
+    public void shouldPublishABatchWhoseLastClosingSaidNoPasaOnlyBecauseJosesExceptionsReturned() {
+        // R005 and F-BANDEJA-R011, 11/11: the C2 of A1 closed on 8/11 with its gate passing and its comparison saying
+        // «No pasa: vuelven 3 cambios», the three José keeps as his exception. Publishing reads that verdict with his
+        // exceptions: with the blind sample in its goal, it passes, and the list says «pasa».
+        Publishing p = new Publishing();
+        CorrectionBatch batch = p.closedBatch();
+        String exception = batch.getId() + "-" + MesaFixture.VEGETABLES;
+        List<BatchAdjustment> adjustments = new ArrayList<>(BatchBook.list(batch.getAdjustments()));
+        adjustments.add(new BatchAdjustment(BatchAdjustmentKind.JOSES_EXCEPTION, MesaFixture.VEGETABLES, List.of(), null,
+                null, null, null, "arreglo de José como excepción", JOSE, Publishing.CLOSED_AT.minusSeconds(60)));
+        batch.setAdjustments(adjustments);
+        BatchComparison closed = batch.getClosings().get(0).getComparison();
+        closed.setChanges(new ArrayList<>(List.of(new ChangeOutcome(exception, AuditTarget.QUIZ, MesaFixture.VEGETABLES,
+                true, List.of(MesaFixture.finding("grammar", "agreement", MesaFixture.VEGETABLES, FindingSeverity.HIGH,
+                        FindingResolution.RULE, null, "concordancia")), List.of(), List.of()))));
+        closed.setVerdict(new BatchVerdict(VerdictKind.FAILS, new ArrayList<>(), new ArrayList<>(List.of(exception)),
+                new SampleOutcome("muestra-1", batch.getId(), true, 100, 95, 0, 1, true, "cumple"),
+                "No pasa: vuelve 1 cambio: " + exception, null));
+
+        p.publisher().publish(batch, new BatchPublishRequest(JOSE, "la C2", List.of()), p.start);
+
+        assertEquals(VerdictKind.PASSES, batch.getPublication().getVerdictKind());
+        assertEquals(VerdictKind.PASSES, manifest(p, batch).verdict().kind());
+        assertTrue(p.comparator.scopes.isEmpty(), "nada cambió desde el cierre: no se compara de nuevo");
     }
 
     @Test

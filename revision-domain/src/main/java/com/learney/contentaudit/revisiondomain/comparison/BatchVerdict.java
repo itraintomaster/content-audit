@@ -22,6 +22,12 @@ public class BatchVerdict {
 
     private UndecidableFloors undecidableFloors;
 
+    /**
+     * F-BANDEJA-R011, F-METAS-R008: the changes that gained something that counts and do not return because José keeps
+     * them as his exception, listed apart; null when there are none.
+     */
+    private List<String> exceptionProposalIds;
+
     public BatchVerdict() {
     }
 
@@ -84,6 +90,14 @@ public class BatchVerdict {
         this.undecidableFloors = undecidableFloors;
     }
 
+    public List<String> getExceptionProposalIds() {
+        return this.exceptionProposalIds;
+    }
+
+    public void setExceptionProposalIds(List<String> exceptionProposalIds) {
+        this.exceptionProposalIds = exceptionProposalIds;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -94,11 +108,13 @@ public class BatchVerdict {
                     && Objects.equals(this.returningProposalIds, that.returningProposalIds)
                     && Objects.equals(this.sample, that.sample)
                     && Objects.equals(this.detail, that.detail)
-                    && Objects.equals(this.undecidableFloors, that.undecidableFloors);
+                    && Objects.equals(this.undecidableFloors, that.undecidableFloors)
+                    && Objects.equals(this.exceptionProposalIds, that.exceptionProposalIds);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(kind, brokenFloorGoalIds, returningProposalIds, sample, detail, undecidableFloors);
+        return Objects.hash(kind, brokenFloorGoalIds, returningProposalIds, sample, detail, undecidableFloors,
+                exceptionProposalIds);
     }
 }

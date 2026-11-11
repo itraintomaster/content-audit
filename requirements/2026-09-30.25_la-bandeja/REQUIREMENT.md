@@ -224,6 +224,13 @@ Hace falta porque lo que el cierre devuelve vuelve a la mesa con intentos, no a 
 salt in the soup. ___» a producción, donde tienen problemas que el inicio de la tanda no tenía. José decidió el 8/11
 dejarlos con la versión de la C2 como excepción suya (brief 282): la compuerta ya no los devuelve.
 
+Que el cierre no la devuelva vale también para el veredicto de la tanda ([F-METAS-R003](#F-METAS-R003)): una excepción de
+José no cuenta entre los cambios que vuelven, ni en la comparación ni al leer un cierre ya guardado, y la bandeja y la
+publicación dicen lo mismo. **Criterio** (11/11/2026): el cierre de la C2 guardado el 8/11 decía «No pasa: vuelven 3
+cambios», los tres de José; la bandeja frenaba la publicación por eso y `tray publish` la rechazaba aunque la muestra
+ciega se respondiera entera. Leído con sus excepciones, ese cierre no frena nada; si además volviera un cambio que no es
+de José, frena y la bandeja nombra sólo ése.
+
 ## Contexto
 
 **Qué llega a la bandeja de A1** (estimado con los casos de `escribir/`): unos 28 ejercicios sin ganador (el 10 % de los

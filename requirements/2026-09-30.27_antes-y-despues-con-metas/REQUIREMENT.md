@@ -104,7 +104,9 @@ fila dice «no se puede decidir»; con los 30 juzgados y ninguno con error, «cu
 > supera o no ([F-CONTR-R002](../2026-11-02.01_un-contrato-para-todos-los-evaluadores/REQUIREMENT.md#F-CONTR-R002)): lo
 > leve no devuelve un cambio, lo que sólo ordena cuenta por su gravedad y la oración que guarda producción nunca
 > cuenta. Un hallazgo de largo nunca devuelve un cambio. También vuelve si otro nodo gana un hallazgo que cuenta y lo nombra como relacionado. La comparación lo lista con ese hallazgo
-> como motivo; un hallazgo que desaparece cuenta como arreglado.
+> como motivo; un hallazgo que desaparece cuenta como arreglado. Un cambio que José deja como excepción suya
+> ([F-BANDEJA-R011](#F-BANDEJA-R011)) no vuelve, gane lo que gane: la comparación conserva lo que ganó y el veredicto lo
+> lista aparte, como la compuerta de «no empeorar» ([F-NOEMP-R005](#F-NOEMP-R005)).
 
 <details><summary>Detail</summary>
 
@@ -131,6 +133,12 @@ gravedad es la del hallazgo: palabra de otro nivel o fuera del catálogo, media;
 (brief 275: «Sí, al contrato»). La palabra que el tema enseña —en su título o en las respuestas de sus
 ejercicios— nunca es roja (F-SEMAF-R004 del paquete D, que José aceptó): si una corrección la usa, no vuelve, como no
 vuelve en la mesa del paquete E (F-NOEMP-R002).
+
+**Criterio** (11/11/2026): la C2 de A1 cerró el 8/11 con la compuerta pasando y el veredicto «No pasa: vuelven 3
+cambios»: los tres que José dejó como excepción suya (…2544, …22b4 y …2ee7), que la compuerta ya no devolvía. Con eso,
+publicar —que pide «pasa»— no podía nunca. Desde el 11/11 la comparación de una tanda sabe cuáles son las excepciones de
+José; en la tanda de las cuatro, con «grandmother» como excepción suya, ningún cambio vuelve, la tanda pasa y el veredicto
+termina con «Por excepción de José, sin volver: 1 cambio (…)».
 
 </details>
 
@@ -232,7 +240,8 @@ puede decidir».
 > El veredicto de la tanda es «pasa» si se cumplen todos sus pisos, no vuelve ningún nodo y su muestra ciega cumple la
 > meta ([F-CIEGA-R004](#F-CIEGA-R004)); «no pasa», con la lista de pisos rotos y de nodos que vuelven, si algo de eso
 > falla; «falta la muestra ciega» si sólo falta responderla; y «no se puede decidir» si ningún piso falla pero alguno no
-> se puede decidir. Las metas de avance no deciden el veredicto.
+> se puede decidir. Las metas de avance no deciden el veredicto. Un veredicto que ya se dio —el de un cierre— se lee con
+> las excepciones que José tiene hoy: lo que devolvía sólo por ellas ya no lo devuelve ([F-BANDEJA-R011](#F-BANDEJA-R011)).
 
 **Criterio**: la tanda de las cuatro propuestas no pasa, con un nodo que vuelve («grandmother»); sin esa propuesta, y con
 la muestra respondida y en meta, pasa. La propuesta v2: «si una tanda empeora un número, no se publica».

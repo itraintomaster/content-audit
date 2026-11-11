@@ -4,6 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
+import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
+import com.learney.contentaudit.revisiondomain.comparison.BatchVerdict;
+import com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome;
 import com.learney.contentaudit.auditdomain.finding.EvidencePart;
 import com.learney.contentaudit.auditdomain.finding.Finding;
 import com.learney.contentaudit.coursedomain.CourseEntity;
@@ -289,6 +297,47 @@ public class DefaultTrayAssemblerTest {
         assertEquals(List.of("la compuerta de «no empeorar» no pasa: F-NOEMP-R007: cambió fuera de la tanda:"
                         + " 6814dafa7d73e7209a13d3c1",
                 "el veredicto de la comparación es «FAILS»: falta la muestra ciega"), stopped.getBlockers());
+    }
+
+    @Test
+    @DisplayName("should not stop publishing on a closing whose verdict fails only because José's exceptions return, and stop it when another change returns")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R011")
+    @Tag("F-BANDEJA-R007")
+    public void shouldNotStopPublishingOnAClosingWhoseVerdictFailsOnlyBecauseJosesExceptionsReturnAndStopItWhenAnotherChangeReturns(
+            ) {
+        // R011, 11/11: the closing of the C2 of A1, saved on 8/11, says «No pasa: vuelven 3 cambios» -- the three José
+        // keeps as his exception, which its gate did not return. The tray reads that closing with the exceptions the
+        // batch has: nothing stops publishing. A change that returns and is not his still stops it, and only it is named.
+        Fixture fixture = new Fixture();
+        String exception = fixture.batch.getId() + "-" + BandejaFixture.FRUIT;
+        String other = fixture.batch.getId() + "-" + BandejaFixture.TEA;
+        fixture.batch.setAdjustments(new ArrayList<>(List.of(new BatchAdjustment(BatchAdjustmentKind.JOSES_EXCEPTION,
+                BandejaFixture.FRUIT, List.of(), null, null, null, null, "arreglo de José como excepción", "José",
+                BandejaFixture.CLOSED_AT.minusSeconds(60)))));
+        Finding gained = MesaFixture.finding("grammar", "agreement", BandejaFixture.FRUIT, FindingSeverity.HIGH,
+                FindingResolution.RULE, null, "concordancia");
+        BatchComparison comparison = TandaFixture.comparison(null, new ArrayList<>(List.of(new ChangeOutcome(exception,
+                AuditTarget.QUIZ, BandejaFixture.FRUIT, true, List.of(gained), List.of(), List.of()))), VerdictKind.FAILS);
+        comparison.setVerdict(new BatchVerdict(VerdictKind.FAILS, new ArrayList<>(), new ArrayList<>(List.of(exception)),
+                null, "No pasa: vuelve 1 cambio: " + exception, null));
+        BatchGateVerdict passing = new BatchGateVerdict(true, VerdictKind.FAILS, List.of(), List.of(), List.of(),
+                List.of("excepción de José: " + exception), List.of(), List.of());
+        fixture.batch.setClosings(new ArrayList<>(List.of(new BatchClosing(BandejaFixture.CLOSED_AT, null, comparison,
+                passing, List.of(), 1, null, null))));
+
+        Tray ready = fixture.assemble(true);
+        assertTrue(ready.isPublishable(), ready.getBlockers().toString());
+        assertTrue(ready.getBlockers().isEmpty());
+
+        comparison.getChanges().add(new ChangeOutcome(other, AuditTarget.QUIZ, BandejaFixture.TEA, true,
+                List.of(gained), List.of(), List.of()));
+        comparison.setVerdict(new BatchVerdict(VerdictKind.FAILS, new ArrayList<>(), new ArrayList<>(List.of(exception,
+                other)), null, "No pasa: vuelven 2 cambios: " + exception + ", " + other, null));
+        Tray stopped = fixture.assemble(true);
+        assertFalse(stopped.isPublishable());
+        assertEquals(List.of("el veredicto de la comparación es «FAILS»: No pasa: vuelve 1 cambio: " + other
+                + " Por excepción de José, sin volver: 1 cambio (" + exception + ")."), stopped.getBlockers());
     }
 
     @Test

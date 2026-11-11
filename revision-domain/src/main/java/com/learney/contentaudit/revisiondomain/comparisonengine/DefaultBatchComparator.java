@@ -32,6 +32,7 @@ import com.learney.contentaudit.revisiondomain.blindsample.SampleOutcomeSource;
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparator;
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
 import com.learney.contentaudit.revisiondomain.comparison.BatchVerdict;
+import com.learney.contentaudit.revisiondomain.comparison.BatchVerdictRule;
 import com.learney.contentaudit.revisiondomain.comparison.BetterDirection;
 import com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome;
 import com.learney.contentaudit.revisiondomain.comparison.ChangeVerdict;
@@ -105,7 +106,6 @@ public class DefaultBatchComparator implements BatchComparator {
 
     private static final double EPSILON = 1e-9;
 
-    private static final int LISTED_IDS = 10;
 
     private final CourseProjector courseProjector;
 
@@ -299,8 +299,11 @@ public class DefaultBatchComparator implements BatchComparator {
         comparison.setRows(rows);
 
         // R003: what returns.
+        // F-BANDEJA-R011: José's exceptions gain what they gain and do not return.
+        Set<String> exceptions = new HashSet<>(scope != null && scope.getExceptionProposalIds() != null
+                ? scope.getExceptionProposalIds() : List.of());
         List<ChangeOutcome> outcomes = outcomes(batch, startIndex, projectedIndex, projection, subjects, unapproved,
-                baselineReport, baselineIndex, startNotComparable);
+                baselineReport, baselineIndex, startNotComparable, exceptions);
         comparison.setChanges(outcomes);
 
         // R004, R005: the broken floors, and who breaks a level or the course.
@@ -328,7 +331,7 @@ public class DefaultBatchComparator implements BatchComparator {
         comparison.setBreaches(breaches);
 
         // R008: the verdict -- and, after it, what the batch leaves pending outside the course, which does not count.
-        BatchVerdict verdict = verdict(rows, breaches, outcomes, projection.getScopeId(), subjects.keySet());
+        BatchVerdict verdict = verdict(rows, breaches, outcomes, projection.getScopeId(), subjects.keySet(), exceptions);
         String pending = PendingCopies.describe(pendingCopies);
         if (pending != null) {
             verdict.setDetail(verdict.getDetail() != null ? verdict.getDetail() + " " + pending : pending);
@@ -844,7 +847,7 @@ public class DefaultBatchComparator implements BatchComparator {
     private List<ChangeOutcome> outcomes(List<ProjectedChange> batch, Map<String, AuditNode> startIndex,
             Map<String, AuditNode> projectedIndex, CourseProjection projection, Map<String, AnalyzerFamily> subjects,
             UnapprovedJudges unapproved, AuditReport baselineReport, Map<String, AuditNode> baselineIndex,
-            Set<String> startNotComparable) {
+            Set<String> startNotComparable, Set<String> exceptions) {
         List<ChangeOutcome> outcomes = new ArrayList<>();
         if (batch.isEmpty()) {
             return outcomes;
@@ -909,7 +912,8 @@ public class DefaultBatchComparator implements BatchComparator {
                 }
             }
             ChangeOutcome outcome = new ChangeOutcome(change.getProposalId(), change.getNodeTarget(), change.getNodeId(),
-                    !gained.isEmpty(), gained, fixed, new ArrayList<>(undecided));
+                    !gained.isEmpty() && !exceptions.contains(change.getProposalId()), gained, fixed,
+                    new ArrayList<>(undecided));
             outcome.setAfterFindings(new ArrayList<>(afterFindings));
             outcome.setPersistentFindings(afterFindings.stream()
                     .filter(finding -> beforeKeys.contains(identity(finding))).toList());
@@ -1060,77 +1064,10 @@ public class DefaultBatchComparator implements BatchComparator {
     // -------------------------------------------------------------------------
 
     private BatchVerdict verdict(List<ComparisonRow> rows, List<FloorBreach> breaches, List<ChangeOutcome> outcomes,
-            String scopeId, Collection<String> rowOrder) {
-        List<String> broken = new ArrayList<>();
-        for (FloorBreach breach : breaches) {
-            if (breach.getGoalId() != null && !broken.contains(breach.getGoalId())) {
-                broken.add(breach.getGoalId());
-            }
-        }
-        List<String> returning = new ArrayList<>();
-        List<String> undecidedChanges = new ArrayList<>();
-        for (ChangeOutcome outcome : outcomes) {
-            if (outcome.isReturns()) {
-                returning.add(outcome.getProposalId());
-            } else if (outcome.getUndecidedAnalyzers() != null && !outcome.getUndecidedAnalyzers().isEmpty()) {
-                undecidedChanges.add(outcome.getProposalId());
-            }
-        }
-        List<String> undecidableFloors = new ArrayList<>();
-        for (ComparisonRow row : rows) {
-            if (row.getFloor() != null && row.getFloor().getStatus() == GoalStatus.UNDECIDABLE
-                    && !undecidableFloors.contains(row.getFloor().getGoalId())) {
-                undecidableFloors.add(row.getFloor().getGoalId());
-            }
-        }
-        UndecidableFloors undecided = undecidableFloors(undecidableFloors, rows, rowOrder);
+            String scopeId, Collection<String> rowOrder, Set<String> exceptions) {
+        UndecidableFloors undecided = undecidableFloors(BatchVerdictRule.undecidableFloorIds(rows), rows, rowOrder);
         SampleOutcome sample = sampleOutcomeSource != null ? sampleOutcomeSource.outcomeFor(scopeId).orElse(null) : null;
-        boolean sampleFails = sample != null && sample.isClosed() && !sample.isMeetsGoal();
-
-        if (!broken.isEmpty() || !returning.isEmpty() || sampleFails) {
-            List<String> parts = new ArrayList<>();
-            if (!returning.isEmpty()) {
-                parts.add((returning.size() == 1 ? "vuelve 1 cambio: " : "vuelven " + returning.size() + " cambios: ")
-                        + listed(returning));
-            }
-            if (!broken.isEmpty()) {
-                parts.add((broken.size() == 1 ? "1 piso roto: " : broken.size() + " pisos rotos: ") + listed(broken));
-            }
-            if (sampleFails) {
-                parts.add("la muestra ciega " + sample.getSampleId() + " no cumple su meta"
-                        + (sample.getDetail() != null && !sample.getDetail().isBlank() ? " (" + sample.getDetail() + ")"
-                                : ""));
-            }
-            return new BatchVerdict(VerdictKind.FAILS, broken, returning, sample, "No pasa: " + String.join("; ", parts),
-                    undecided);
-        }
-        if (!undecidableFloors.isEmpty() || !undecidedChanges.isEmpty()) {
-            List<String> parts = new ArrayList<>();
-            if (!undecidableFloors.isEmpty()) {
-                parts.add((undecidableFloors.size() == 1 ? "1 piso sin decidir: "
-                        : undecidableFloors.size() + " pisos sin decidir: ") + listed(undecidableFloors));
-            }
-            if (!undecidedChanges.isEmpty()) {
-                parts.add((undecidedChanges.size() == 1 ? "1 cambio" : undecidedChanges.size() + " cambios")
-                        + " sin evaluar por algún analizador: " + listed(undecidedChanges));
-            }
-            return new BatchVerdict(VerdictKind.UNDECIDABLE, broken, returning, sample,
-                    "No se puede decidir: ningún piso falla, pero " + String.join("; ", parts), undecided);
-        }
-        if (sample == null) {
-            return new BatchVerdict(VerdictKind.BLIND_SAMPLE_MISSING, broken, returning, null,
-                    "Falta la muestra ciega: los pisos se cumplen y no vuelve ningún cambio, pero no hay muestra de '"
-                            + scopeId + "'.", undecided);
-        }
-        if (!sample.isClosed()) {
-            return new BatchVerdict(VerdictKind.BLIND_SAMPLE_MISSING, broken, returning, sample,
-                    "Falta la muestra ciega: los pisos se cumplen y no vuelve ningún cambio, pero la muestra "
-                            + sample.getSampleId() + " sigue abierta (" + sample.getAnswered() + " pares respondidos).",
-                    undecided);
-        }
-        return new BatchVerdict(VerdictKind.PASSES, broken, returning, sample,
-                "Pasa: se cumplen los pisos, no vuelve ningún cambio y la muestra ciega " + sample.getSampleId()
-                        + " cumple su meta.", undecided);
+        return BatchVerdictRule.decide(rows, breaches, outcomes, exceptions, undecided, sample, scopeId);
     }
 
     /**
@@ -1162,10 +1099,7 @@ public class DefaultBatchComparator implements BatchComparator {
     }
 
     private static String listed(List<String> ids) {
-        if (ids.size() <= LISTED_IDS) {
-            return String.join(", ", ids);
-        }
-        return String.join(", ", ids.subList(0, LISTED_IDS)) + " y " + (ids.size() - LISTED_IDS) + " más";
+        return BatchVerdictRule.listed(ids);
     }
 
     // -------------------------------------------------------------------------

@@ -40,6 +40,7 @@ import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparator;
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
 import com.learney.contentaudit.revisiondomain.comparison.BatchVerdict;
+import com.learney.contentaudit.revisiondomain.comparison.BatchVerdictRule;
 import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
 import com.learney.contentaudit.revisiondomain.comparison.VerdictWording;
 import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
@@ -353,7 +354,8 @@ class DefaultBatchPublisher implements BatchPublisher {
         } else if (dropped || changedSince(batch, last)) {
             comparison = batchComparator.compare(coursePath, DefaultBatchCloser.scope(batch));
         }
-        BatchVerdict verdict = comparison != null ? comparison.getVerdict() : null;
+        // F-BANDEJA-R011: a closing saved before José kept a change as his exception is read with his exceptions.
+        BatchVerdict verdict = BatchVerdictRule.withExceptions(comparison, DefaultBatchCloser.exceptions(batch));
         if (!VerdictWording.publishable(verdict)) {
             throw new BatchNotPublishableException(batch.getId(), "el veredicto de F es "
                     + VerdictWording.quoted(verdict) + ", no «pasa»"
