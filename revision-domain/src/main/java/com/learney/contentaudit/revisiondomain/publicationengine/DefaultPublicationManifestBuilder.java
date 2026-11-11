@@ -60,6 +60,9 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
     /** La etiqueta de una opción: lo único de la opción múltiple que se publica por script. */
     private static final String LABEL = "label";
 
+    /** Lo que una corrección posterior a la conversión puede haber reescrito además del formulario. */
+    private static final List<String> REWRITTEN_WITH_THE_CONVERSION = List.of("translation", "miniTheory");
+
     static final String MULTIPLE_CHOICE_BEYOND_LABEL = "opción múltiple: sólo se publica el texto de cada opción; "
             + "cambiar el enunciado, la oración guardada, cuál es la correcta, la forma de elegir o las opciones no se "
             + "publica por script";
@@ -123,6 +126,15 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
         Map<String, Object> before = projector.project(beforeQuiz, paths), after = projector.project(afterQuiz, paths);
         List<ManifestField> fields = new ArrayList<>();
         for (String path : paths) fields.add(new ManifestField(path, before.get(path), after.get(path)));
+        if (forward) {
+            // F-CONVERSION-R002: si otra corrección lo reescribió después de convertirlo, llega el ejercicio final,
+            // con su traducción y su miniteoría, en la misma comparación y escritura.
+            Map<String, Object> was = projector.project(beforeQuiz, REWRITTEN_WITH_THE_CONVERSION);
+            Map<String, Object> is = projector.project(afterQuiz, REWRITTEN_WITH_THE_CONVERSION);
+            for (String path : REWRITTEN_WITH_THE_CONVERSION) {
+                if (!Objects.equals(was.get(path), is.get(path))) fields.add(new ManifestField(path, was.get(path), is.get(path)));
+            }
+        }
         return Optional.of(new ManifestDocument(ProductionFieldMap.QUIZ_COLLECTION, projector.documentId(afterQuiz),
                 element.after().getNodeId(), new ArrayList<>(element.partsByChange().keySet()), element.proposalId() == null ? List.of() : List.of(element.proposalId()),
                 element.reviewStatus(), fields));

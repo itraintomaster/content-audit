@@ -482,6 +482,37 @@ public class DefaultPublicationManifestBuilderTest {
                 DocumentReviewStatus.APPROVED, parts)))).documents().get(0).fields().size());
     }
 
+    @Test
+    @Tag("FEAT-CONVERSION")
+    @Tag("F-CONVERSION-R002")
+    @Tag("F-CONVERSION-R004")
+    @DisplayName("should carry with a conversion the translation and the mini-theory that a later correction rewrote")
+    void shouldCarryWithAConversionTheTranslationAndTheMiniTheoryThatALaterCorrectionRewrote() {
+        // R002: …2553 se convirtió y la mesa lo reescribió como «He swims ___.» con «Él nada bien.». La lista llevaba el
+        // formulario nuevo con la traducción y la miniteoría de «He closed the door hard.»: producción las mezclaba.
+        var before = quiz("q1", "Él cerró la puerta con fuerza.", "Hard es adjetivo y adverbio.", "He closed the door ",
+                "_hard", " (hard / hardly).");
+        var after = quiz("q1", "Él nada bien.", "Well es el adverbio de good.", "He swims ", "_well", ".");
+        after.setKind("MULTIPLE_CHOICE");
+        after.getForm().setKind("MULTIPLE_CHOICE");
+        after.setClozeOriginal(before);
+        var parts = steps(step("cloze-to-multiple-choice-q1", ExercisePart.FORM_KIND, ExercisePart.OPTIONS,
+                ExercisePart.STATEMENT, ExercisePart.ANSWERS, ExercisePart.INSTRUCTIONS, ExercisePart.STORED_SENTENCE),
+                step("mesa-q1", ExercisePart.STATEMENT, ExercisePart.OPTIONS, ExercisePart.TRANSLATION,
+                        ExercisePart.MINI_THEORY, ExercisePart.STORED_SENTENCE));
+
+        var manifest = builder.build(request(List.of(new PublishedElement(snapshot(before), snapshot(after), "proposal",
+                DocumentReviewStatus.APPROVED, parts))));
+
+        var fields = manifest.documents().get(0).fields();
+        assertEquals(List.of("kind", "form", "instructions", "clozeOriginal", "translation", "miniTheory"),
+                fields.stream().map(ManifestField::path).toList());
+        assertEquals("Él cerró la puerta con fuerza.", fields.get(4).before());
+        assertEquals("Él nada bien.", fields.get(4).after());
+        assertEquals("Well es el adverbio de good.", fields.get(5).after());
+        assertEquals(List.of("cloze-to-multiple-choice-q1", "mesa-q1"), manifest.documents().get(0).changeIds());
+    }
+
     private static QuizTemplateEntity multipleChoice(String id, String selection, String third) {
         return multipleChoice(id, selection, option("at", 1.0, "at"), option("in", 0.0, "in"),
                 option(third, 0.0, third));

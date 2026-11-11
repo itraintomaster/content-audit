@@ -2,12 +2,28 @@
 
 Both directions carry the entire form, kind, instructions and backup. They are one
 compare-and-set operation, never independent field edits or a document replacement.
+
+A conversion alone only loses the choice hint and keeps the stored sentence, the first answer as
+the correct option, the translation and the mini-theory (F-CONVERSION-R003/R004). When another
+approved correction of the batch rewrote the exercise after converting it, the final exercise is
+the one that reaches production (F-CONVERSION-R002): its form may differ from the converted cloze
+as long as it is still a well-formed multiple choice, and its translation and mini-theory travel in
+the same compare-and-set.
 """
 import re
 
 from .store import same_value
 
 PATHS = frozenset(('kind', 'form', 'instructions', 'clozeOriginal'))
+
+# What a later correction may have rewritten besides the form (F-CONVERSION-R002).
+REWRITTEN_PATHS = frozenset(('translation', 'miniTheory'))
+
+
+def rewritten(document):
+    """A conversion another approved correction of the batch changed after converting it."""
+    change_ids = document.get('changeIds')
+    return isinstance(change_ids, list) and len(change_ids) > 1
 
 
 def is_conversion(fields):
@@ -24,7 +40,8 @@ def problem(document):
         return None
     if document.get('collection') != 'quizTemplates' or document.get('reviewStatus') != 'APPROVED':
         return 'La conversión necesita aprobación explícita.'
-    if {f.get('path') for f in fields} != PATHS or len(fields) != len(PATHS):
+    paths = {f.get('path') for f in fields}
+    if not PATHS <= paths or not paths <= PATHS | REWRITTEN_PATHS or len(fields) != len(paths):
         return 'La conversión debe llevar tipo, formulario entero, consigna y cloze original.'
     if any('before' not in f or 'after' not in f for f in fields):
         return 'Falta el antes o el después de la conversión.'
@@ -45,6 +62,9 @@ def problem(document):
         return 'Falta una copia completa del mismo cloze.'
     if not isinstance(backup.get('form'), dict) or backup['form'].get('kind') != 'CLOZE' or backup.get('clozeOriginal') is not None:
         return 'La copia debe ser un cloze sin copias anidadas.'
+    final = kinds[0] == 'CLOZE' and rewritten(document)
+    if paths != PATHS and not final:
+        return 'Una conversión sola conserva la traducción y la miniteoría.'
     cloze = before if kinds[0] == 'CLOZE' else after
     mc = after if kinds[1] == 'MULTIPLE_CHOICE' else before
     if not same_value(backup['form'], cloze):
@@ -55,6 +75,8 @@ def problem(document):
         return 'Restaurar debe conservar la copia original.'
     if kinds[0] == 'CLOZE' and values['clozeOriginal']['before'] is not None:
         return 'Una nueva conversión no puede reemplazar una copia existente.'
+    if final:
+        return _final_problem(cloze, mc)
     if not same_value(cloze.get('sentences'), mc.get('sentences')):
         return 'La oración guardada debe quedar idéntica.'
     for key in set(cloze) | set(mc):
@@ -95,4 +117,30 @@ def problem(document):
             return 'El enunciado contiene una parte desconocida.'
         if not same_value(expected, new):
             return 'La conversión cambia el enunciado además de quitar la pista.'
+    return None
+
+
+def _final_problem(cloze, mc):
+    """The exercise a later correction left: still one gap, between two and eight options, one correct."""
+    for key in set(cloze) | set(mc):
+        if key not in ('kind', 'sentenceParts', 'items', 'selection', 'sentences') and not same_value(cloze.get(key), mc.get(key)):
+            return 'La conversión cambia otro atributo del formulario: %s.' % key
+    sentences = mc.get('sentences')
+    if not isinstance(sentences, list) or not sentences or any(not isinstance(x, str) or not x.strip() for x in sentences):
+        return 'La oración guardada del ejercicio final es inválida.'
+    parts = mc.get('sentenceParts')
+    if not isinstance(parts, list) or any(not isinstance(p, dict) or p.get('kind') not in ('TEXT', 'CLOZE') for p in parts):
+        return 'Las partes del enunciado son inválidas.'
+    gaps = [p for p in parts if p.get('kind') == 'CLOZE']
+    if len(gaps) != 1 or gaps[0].get('options') is not None or any(not isinstance(p.get('text') or '', str) for p in parts):
+        return 'El ejercicio final necesita un solo hueco, sin respuestas escritas.'
+    items = mc.get('items')
+    if mc.get('selection') != 'SINGLE' or not isinstance(items, list) or not 2 <= len(items) <= 8:
+        return 'La conversión necesita un hueco y entre dos y ocho opciones, con selección única.'
+    if any(not isinstance(i, dict) or not isinstance(i.get('label'), str) or not i['label'].strip()
+           or type(i.get('incidence')) not in (int, float) or i['incidence'] not in (0, 1) for i in items):
+        return 'Las opciones deben tener texto y una incidencia de 0 o 1.'
+    labels = [i['label'].strip().replace('’', "'").casefold() for i in items]
+    if len(set(labels)) != len(labels) or sum(1 for i in items if i['incidence'] == 1) != 1:
+        return 'Debe haber una sola correcta y ninguna opción repetida.'
     return None

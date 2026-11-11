@@ -21,7 +21,7 @@ Primera entrega: opciones existentes en el ejercicio o en sus hermanos del mismo
 
 ## F-CONVERSION-R003 — Conservación y recuperación
 
-- Guardar el cloze completo en `clozeOriginal`, incluidos sus atributos no modelados. Mantener oración guardada, traducción, miniteoría y audio.
+- Guardar el cloze completo en `clozeOriginal`, incluidos sus atributos no modelados. Mantener oración guardada, traducción, miniteoría y audio, salvo que otra corrección aprobada de la tanda haya reescrito el ejercicio después de convertirlo (R002).
 - Después de publicar, restaurar crea otra corrección explícita y conserva la copia original.
 - Si otro atributo cambió después de convertir, detener la restauración para no sobrescribirlo.
 
@@ -30,6 +30,7 @@ Primera entrega: opciones existentes en el ejercicio o en sus hermanos del mismo
 - Una transición aprobada publica `kind`, `form`, `instructions` y `clozeOriginal` mediante una sola comparación y escritura por documento.
 - Verificar el antes de todos los campos, incluidos los que no cambian. Conflictos y transiciones parcialmente aplicadas no se pisan.
 - Repetir una publicación ya aplicada no escribe otra vez. Rechazar cambios arbitrarios de tipo, copias incompletas y modificaciones del enunciado ajenas a quitar la pista.
+- Si otra corrección aprobada de la tanda reescribió el ejercicio después de convertirlo, se publica el ejercicio final (R002): su formulario, su oración guardada, su traducción y su miniteoría, en la misma comparación y escritura. Tiene que seguir siendo una opción múltiple bien formada —un solo hueco sin respuestas escritas, de dos a ocho opciones sin repetir, una sola correcta y selección única— con el mismo cloze original. Una conversión sola sigue sin poder cambiar el enunciado, la oración guardada, la traducción ni la miniteoría. Criterio (11/11/2026): la lista de la C2 de A1 llevaba «He swims ___.» con la traducción «Él cerró la puerta con fuerza.», y el paso a producción rechazaba la lista entera porque la oración guardada no quedaba idéntica.
 
 ## Verificación
 

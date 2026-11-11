@@ -37,7 +37,52 @@ def fixture(restore=False):
     return manifest, {'quizTemplates': {fakes.QUIZ_1: current}, 'knowledges': {}, 'quizzes': {}}
 
 
+def rewritten_after_conversion():
+    """F-CONVERSION-R002/R004: …2553 se convirtió y la mesa lo reescribió («He swims ___.» con good / well y «Él nada
+    bien.»). La lista lleva el ejercicio final: el formulario reescrito, con su traducción y su miniteoría."""
+    manifest, docs = fixture()
+    doc = manifest['documents'][0]
+    doc['changeIds'] = ['conversion-q1', 'mesa-q1']
+    form = next(f for f in doc['fields'] if f['path'] == 'form')['after']
+    form['sentenceParts'][0]['text'] = 'Is this bag'
+    form['sentences'] = ['Is this bag mine?']
+    form['items'] = [{'id': 'mine', 'label': 'mine', 'incidence': 1.0},
+                     {'id': 'my', 'label': 'my', 'incidence': 0.0}]
+    doc['fields'] += [{'path': 'translation', 'before': '¿Es tuyo ese bolígrafo?', 'after': '¿Es mía esta bolsa?'},
+                      {'path': 'miniTheory', 'before': 'Teoría.', 'after': 'Teoría de mine.'}]
+    by_path = {p: 1 for p in conversion.PATHS}
+    by_path.update(translation=1, miniTheory=1)
+    manifest['counts'] = {'documents': 1, 'fields': 6, 'byPath': by_path}
+    docs['quizTemplates'][fakes.QUIZ_1].update(translation='¿Es tuyo ese bolígrafo?', miniTheory='Teoría.')
+    return manifest, docs
+
+
 class ValidationTest(unittest.TestCase):
+    def test_a_conversion_another_approved_correction_rewrote_travels_as_the_final_exercise(self):
+        manifest, _ = rewritten_after_conversion()
+        manifest_reader.validate_manifest(manifest)
+        self.assertIsNone(conversion.problem(manifest['documents'][0]))
+
+    def test_a_lone_conversion_still_only_loses_the_hint_and_keeps_its_translation(self):
+        # R003/R004: sin otra corrección aprobada encima, la conversión no reescribe ni trae otra traducción.
+        changes = [lambda d: d.update(changeIds=['conversion-q1']),
+                   lambda d: d['fields'][1]['after']['items'].append({'id': 'mine', 'label': 'mine', 'incidence': 1.0}),
+                   lambda d: d['fields'][1]['after'].update(selection='MULTIPLE'),
+                   lambda d: d['fields'][1]['after']['sentenceParts'].append({'kind': 'CLOZE', 'text': '', 'options': None}),
+                   lambda d: d['fields'].append({'path': 'title', 'before': 'Posesivos', 'after': 'Otro'})]
+        for mutate in changes:
+            manifest, _ = rewritten_after_conversion()
+            mutate(manifest['documents'][0])
+            with self.subTest(mutate=mutate), self.assertRaises(manifest_reader.Refusal):
+                manifest_reader.validate_manifest(manifest)
+        manifest, _ = fixture()
+        manifest['documents'][0]['fields'].append(
+            {'path': 'translation', 'before': '¿Es tuyo ese bolígrafo?', 'after': 'Otra.'})
+        manifest['counts'] = {'documents': 1, 'fields': 5, 'byPath': dict({p: 1 for p in conversion.PATHS},
+                                                                          translation=1)}
+        with self.assertRaises(manifest_reader.Refusal):
+            manifest_reader.validate_manifest(manifest)
+
     def test_both_directions_are_complete_and_explicitly_approved(self):
         for restore in (False, True):
             manifest, _ = fixture(restore)
@@ -101,6 +146,20 @@ class ConversionCycleTest(CliTestCase):
             self.assertFalse(plan.is_clean())
             self.assertEqual([], write_plan.build(manifest, store, skip_drift=True).to_write())
             self.assertEqual([], store.writes)
+
+    def test_a_rewritten_conversion_writes_its_translation_and_mini_theory_in_the_same_compare_and_set(self):
+        manifest, docs = rewritten_after_conversion()
+        self.store = fakes.FakeStore(docs)
+        fakes.write_batch(self.workdir, manifest=manifest)
+        code, out, _ = self.dry_run_then_apply()
+        self.assertEqual(0, code, out)
+        self.assertEqual(1, len(self.store.writes))
+        result = self.store.data['quizTemplates'][fakes.QUIZ_1]
+        self.assertEqual('MULTIPLE_CHOICE', result['kind'])
+        self.assertEqual(['Is this bag mine?'], result['form']['sentences'])
+        self.assertEqual('¿Es mía esta bolsa?', result['translation'])
+        self.assertEqual('Teoría de mine.', result['miniTheory'])
+        self.assertEqual('audio-original', result['answerAudioUrl'])
 
     def test_restoration_keeps_backup_and_original_form(self):
         manifest, docs = fixture(True)
