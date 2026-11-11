@@ -18,6 +18,7 @@ import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
@@ -364,6 +365,77 @@ public class PublishingReviewedBatchTest {
 
         assertMentions(refused, "el veredicto de F es «FAILS», no «pasa»");
         assertFalse(refused.getMessage().contains("Se comparó sin"), refused.getMessage());
+    }
+
+    @Test
+    @DisplayName("should not read every batch of the store again for each exercise it checks when publishing")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R001")
+    @Tag("FEAT-TANDA")
+    @Tag("F-TANDA-R009")
+    public void shouldNotReadEveryBatchOfTheStoreAgainForEachExerciseItChecksWhenPublishing() {
+        // F-TANDA-R009 al publicar: cada ejercicio se mira contra un curso donde nada más se movió. Ese curso se armaba
+        // desde una tanda sin base y la buscaba leyendo todas las tandas, una vez por ejercicio: en la C2 de A1 (11/11),
+        // 2.402 ejercicios por tandas de cientos de MB, horas con la tanda trabada. Se arma desde la base de la tanda.
+        Publishing p = new Publishing();
+        CorrectionBatch batch = p.batch("t-respuesta", "t-traduccion", "t-come");
+        add(p, batch, V1, BatchChangeOrigin.PANEL, null, "t-respuesta", loved(p), ExercisePart.STATEMENT,
+                BatchTaskOutcomeKind.RESOLVED_BY_PANEL);
+        add(p, batch, T, BatchChangeOrigin.RULE, "translation-sense", "t-traduccion", translated(p),
+                ExercisePart.TRANSLATION, BatchTaskOutcomeKind.RESOLVED_BY_RULE);
+        add(p, batch, C, BatchChangeOrigin.PANEL, null, "t-come", comes(p), ExercisePart.STATEMENT,
+                BatchTaskOutcomeKind.RESOLVED_BY_PANEL);
+        p.close(batch);
+        p.batches.lists = 0;
+
+        p.publisher().publish(batch, ok(), p.start);
+
+        assertEquals(BatchStatus.PUBLISHED, batch.getStatus());
+        assertEquals(1, p.batches.lists, "una vez, para ver si la tanda tiene sucesora; no una por ejercicio");
+    }
+
+    @Test
+    @DisplayName("should publish the texts of the statement without spaces at their edges, as production keeps them")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R002")
+    @Tag("FEAT-TANDA")
+    @Tag("F-TANDA-R009")
+    public void shouldPublishTheTextsOfTheStatementWithoutSpacesAtTheirEdgesAsProductionKeepsThem() {
+        // F-PUBPROD-R002 inv. 5: en la C2 de A1 (11/11) la mesa devolvió «(hot / today) » al agregar una respuesta: sólo
+        // declaraba las respuestas, y publicar se negaba por un espacio. Producción no tiene ninguno y la app lo dibuja
+        // como una palabra vacía; los jueces lo leen igual. Las verduras agregan «adore» con espacios al borde de su
+        // enunciado; la abuela cambia el enunciado y lo trae con uno: las dos llegan sin ellos.
+        Publishing p = new Publishing();
+        CorrectionBatch batch = p.batch("t-respuesta", "t-come");
+        add(p, batch, V1, BatchChangeOrigin.PANEL, null, "t-respuesta",
+                withParts(TandaFixture.exercise(p.start, MesaFixture.VEGETABLES), text("I "), cloze("love|adore"),
+                        text(" a lot of vegetables. ")),
+                ExercisePart.ANSWERS, BatchTaskOutcomeKind.RESOLVED_BY_PANEL);
+        add(p, batch, C, BatchChangeOrigin.PANEL, null, "t-come",
+                withParts(TandaFixture.exercise(p.start, MesaFixture.COME), text("My grandmother "), cloze("comes"),
+                        text("(come) every year.")),
+                ExercisePart.STATEMENT, BatchTaskOutcomeKind.RESOLVED_BY_PANEL);
+        p.close(batch);
+
+        p.publisher().publish(batch, ok(), p.start);
+
+        assertEquals(BatchStatus.PUBLISHED, batch.getStatus());
+        CourseEntity written = p.courses.written.get(0);
+        assertEquals(List.of("I", "", "a lot of vegetables."), TandaFixture.exercise(written, MesaFixture.VEGETABLES)
+                .getForm().getSentenceParts().stream().map(SentencePartEntity::getText).toList());
+        assertEquals(List.of("love|adore"), TandaFixture.exercise(written, MesaFixture.VEGETABLES).getForm()
+                .getSentenceParts().get(1).getOptions(), "la respuesta nueva, sí");
+        assertEquals("My grandmother", TandaFixture.exercise(written, MesaFixture.COME).getForm().getSentenceParts()
+                .get(0).getText());
+        PublicationManifest list = manifest(p, batch);
+        for (String node : List.of(MesaFixture.VEGETABLES, MesaFixture.COME)) {
+            Object parts = document(list, node).fields().stream().filter(f -> f.path().equals("form.sentenceParts"))
+                    .findFirst().orElseThrow(() -> new AssertionError("sin las partes de " + node)).after();
+            for (Object part : (List<?>) parts) {
+                String text = String.valueOf(((Map<?, ?>) part).get("text"));
+                assertEquals(text.strip(), text, "sin espacios al borde en la lista: " + json(parts));
+            }
+        }
     }
 
     @Test

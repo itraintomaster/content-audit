@@ -7,10 +7,12 @@ import com.learney.contentaudit.coursedomain.MilestoneEntity;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.RootNodeEntity;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
 import com.learney.contentaudit.coursedomain.TopicEntity;
 import com.learney.contentaudit.revisiondomain.preservation.AttributeState;
 import com.learney.contentaudit.revisiondomain.preservation.PreservationViolation;
 import com.learney.contentaudit.revisiondomain.preservation.ScopedField;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -161,11 +163,18 @@ final class CourseElementFieldDiff {
         List<SentencePartEntity> a = after == null ? Collections.emptyList() : after;
         boolean structureExempt = isExempt("form.sentenceParts[]", null, scope);
 
+        if (structureExempt && (b.size() != a.size() || !kinds(b).equals(kinds(a)))) {
+            // F-TAREA-R006 inv. 2: the composition changed as declared -- a part more, or the gap elsewhere --, so the
+            // parts are no longer compared one by one; the texts and the answers still are, each in their order.
+            diffLeaf(elementId, "form.sentenceParts[].text", "form.sentenceParts[].text", "TEXT", texts(b), texts(a),
+                    scope, out);
+            diffLeaf(elementId, "form.sentenceParts[].options", "form.sentenceParts[].options", "CLOZE", answers(b),
+                    answers(a), scope, out);
+            return;
+        }
         if (b.size() != a.size()) {
-            if (!structureExempt) {
-                out.add(new PreservationViolation(elementId, "form.sentenceParts[]", classify(b), classify(a),
-                        "size=" + b.size(), "size=" + a.size()));
-            }
+            out.add(new PreservationViolation(elementId, "form.sentenceParts[]", classify(b), classify(a),
+                    "size=" + b.size(), "size=" + a.size()));
             return;
         }
 
@@ -180,6 +189,34 @@ final class CourseElementFieldDiff {
             diffLeaf(elementId, "form.sentenceParts[].options", "form.sentenceParts[" + i + "].options", elementKind,
                     pb.getOptions(), pa.getOptions(), scope, out);
         }
+    }
+
+    private static List<String> kinds(List<SentencePartEntity> parts) {
+        List<String> kinds = new ArrayList<>();
+        for (SentencePartEntity part : parts) {
+            kinds.add(part == null || part.getKind() == null ? null : part.getKind().name());
+        }
+        return kinds;
+    }
+
+    private static List<String> texts(List<SentencePartEntity> parts) {
+        List<String> texts = new ArrayList<>();
+        for (SentencePartEntity part : parts) {
+            if (part != null && part.getKind() == SentencePartKind.TEXT) {
+                texts.add(part.getText());
+            }
+        }
+        return texts;
+    }
+
+    private static List<List<String>> answers(List<SentencePartEntity> parts) {
+        List<List<String>> answers = new ArrayList<>();
+        for (SentencePartEntity part : parts) {
+            if (part != null && part.getKind() == SentencePartKind.CLOZE) {
+                answers.add(part.getOptions());
+            }
+        }
+        return answers;
     }
 
     static void diffKnowledgeOwnFields(KnowledgeEntity before, KnowledgeEntity after, Set<ScopedField> scope,

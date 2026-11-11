@@ -300,6 +300,48 @@ class DefaultBatchPublisher implements BatchPublisher {
         return without.isEmpty() ? refusal : BatchVerdictRule.sentence(refusal) + without;
     }
 
+    private static final com.learney.contentaudit.revisiondomain.engine.DefaultCourseElementLocator LOCATOR =
+            new com.learney.contentaudit.revisiondomain.engine.DefaultCourseElementLocator();
+
+    /** Composes a batch over the course it is given, without looking a base up in the store (as the closer does). */
+    private static final DefaultBatchChangeLedger OVER_THE_GIVEN_COURSE = new DefaultBatchChangeLedger(null, LOCATOR);
+
+    /**
+     * F-PUBPROD-R002 inv. 5: the exercises as production keeps them -- the texts of the statement without spaces at their
+     * edges. It is the same exercise: the student and the judges read the parts joined by one space, and the app draws
+     * a space at an edge as an empty word. Production has none; a batch whose panel left one (the C2 of A1 left 1,348)
+     * would carry it there. Each exercise is replaced, never changed in place: the course may share it with the start.
+     */
+    static CourseEntity asProductionKeepsIt(CourseEntity course, java.util.Collection<String> quizIds) {
+        CourseEntity kept = course;
+        for (String quizId : quizIds) {
+            Optional<com.learney.contentaudit.coursedomain.QuizTemplateEntity> quiz = BatchBook.place(kept, quizId)
+                    .map(BatchBook.Place::quiz);
+            if (quiz.isEmpty() || quiz.get().getForm() == null || quiz.get().getForm().getSentenceParts() == null) {
+                continue;
+            }
+            List<com.learney.contentaudit.coursedomain.SentencePartEntity> parts = new ArrayList<>();
+            boolean trimmed = false;
+            for (var part : quiz.get().getForm().getSentenceParts()) {
+                if (part != null && part.getKind() == com.learney.contentaudit.coursedomain.SentencePartKind.TEXT
+                        && part.getText() != null && !part.getText().equals(part.getText().strip())) {
+                    parts.add(new com.learney.contentaudit.coursedomain.SentencePartEntity(part.getKind(),
+                            part.getText().strip(), part.getOptions()));
+                    trimmed = true;
+                } else {
+                    parts.add(part);
+                }
+            }
+            if (trimmed) {
+                var written = BatchBook.copy(quiz.get());
+                written.getForm().setSentenceParts(parts);
+                kept = LOCATOR.replace(kept, new CourseElementSnapshot(
+                        com.learney.contentaudit.auditdomain.AuditTarget.QUIZ, quizId, written, null));
+            }
+        }
+        return kept;
+    }
+
     /** What publishing decided before writing anything but the ledger: the course to write, its list and the counts. */
     private record Prepared(CourseEntity composed, PublicationManifest manifest, ReviewTally tally) {
     }
@@ -374,11 +416,14 @@ class DefaultBatchPublisher implements BatchPublisher {
                     + (verdict != null && verdict.getDetail() != null ? ": " + verdict.getDetail() : ""), exclusions));
         }
 
-        // The course composed with every accepted change left in the batch, and no other, checked exercise by exercise.
-        CourseEntity composed = changeLedger.composedCourse(batch, startCourse);
+        // The course composed with every accepted change left in the batch, and no other, checked exercise by exercise,
+        // each as production keeps it (F-PUBPROD-R002 inv. 5).
+        List<String> quizIds = BatchBook.list(batch.getQuizProposals()).stream().map(BatchProposalRef::getQuizId).toList();
+        CourseEntity composed = asProductionKeepsIt(changeLedger.composedCourse(batch, startCourse), quizIds);
         List<String> violations = new ArrayList<>();
         for (BatchProposalRef ref : BatchBook.list(batch.getQuizProposals())) {
-            violations.addAll(preserved(batch, ref, startCourse, withOnly(batch, ref.getQuizId(), startCourse)));
+            violations.addAll(preserved(batch, ref, startCourse,
+                    asProductionKeepsIt(withOnly(batch, ref.getQuizId(), startCourse), List.of(ref.getQuizId()))));
         }
         if (!violations.isEmpty()) {
             throw new BatchNotPublishableException(batch.getId(), "cambió lo que sus pasos no declaran: "
@@ -684,7 +729,11 @@ class DefaultBatchPublisher implements BatchPublisher {
         view.setId(batch.getId());
         view.setPlanId(batch.getPlanId());
         view.setChanges(mine);
-        return changeLedger.composedCourse(view, startCourse);
+        // Over the start course as given: the ledger of the batch looked the base up reading every batch of the store
+        // -- to end on this same start course, since a batch with a successor is not published -- and a base set on the
+        // view is copied whole each time it is read; either, once per exercise, took hours on the C2 of A1 (2,402
+        // exercises, batches of hundreds of MB).
+        return OVER_THE_GIVEN_COURSE.composedCourse(view, startCourse);
     }
 
     /** F-TANDA-R009: only what the steps of the exercise declare changed in it. */

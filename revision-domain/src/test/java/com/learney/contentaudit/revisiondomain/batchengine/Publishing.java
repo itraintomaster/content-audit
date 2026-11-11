@@ -121,7 +121,7 @@ final class Publishing {
     }
 
     DefaultBatchChangeLedger ledger() {
-        return new DefaultBatchChangeLedger(artifacts, TandaFixture.locator());
+        return new DefaultBatchChangeLedger(artifacts, TandaFixture.locator()).withBatches(batches);
     }
 
     DefaultBatchPublisher publisher() {

@@ -18,6 +18,12 @@ public final class StoredSentenceRehydrator {
 
     private static final Pattern HINT = Pattern.compile("\\([^)]*\\)");
 
+    /**
+     * F-TAREA-R006 inv. 4: a gap whose answer is a contraction («'s», «'ll», «'re», «n't» after «do»…) goes joined to
+     * the word before it, as the student writes it: «It's going to rain soon.», never «It 's». A quote is not one.
+     */
+    private static final Pattern CONTRACTION = Pattern.compile("(?i)\\s+(['\u2019](?:s|re|ve|ll|d|m|t))(?=[\\s,.;:?!]|$)");
+
     private StoredSentenceRehydrator() {
     }
 
@@ -51,9 +57,26 @@ public final class StoredSentenceRehydrator {
                 sentence.append(' ').append(fragment);
             }
         }
-        String canonical = sentence.toString().replaceAll("\\s+", " ")
-                .replaceAll("\\s+([,.;:?!])", "$1").strip();
+        String canonical = CONTRACTION.matcher(sentence.toString().replaceAll("\\s+", " ")
+                .replaceAll("\\s+([,.;:?!])", "$1")).replaceAll("$1").strip();
         return canonical.isEmpty() ? List.of() : List.of(canonical);
+    }
+
+    /**
+     * F-TAREA-R006 inv. 4: whether a sentence built again says what the stored one says -- the same words, a contraction
+     * written apart or together, other spaces --; then the stored one stays, with its other forms («It's going to rain
+     * soon.» and «It is going to rain soon.»), and nothing the fix did not mean to change moves.
+     */
+    public static boolean saysTheSame(List<String> rebuilt, List<String> stored) {
+        if (rebuilt == null || rebuilt.isEmpty() || stored == null || stored.isEmpty() || rebuilt.get(0) == null
+                || stored.get(0) == null) {
+            return false;
+        }
+        return written(rebuilt.get(0)).equals(written(stored.get(0)));
+    }
+
+    private static String written(String sentence) {
+        return CONTRACTION.matcher(sentence.replaceAll("\\s+", " ").strip()).replaceAll("$1");
     }
 
     /**

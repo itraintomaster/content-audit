@@ -232,8 +232,11 @@ final class BatchBook {
     // The fields of an exercise, by part
     // -------------------------------------------------------------------------
 
-    /** The fields of the entity a part names. */
-    enum Field { PARTS, CHOICE, KIND, TRANSLATION, MINI_THEORY, INSTRUCTIONS, SENTENCES, TOPIC_INSTRUCTIONS }
+    /**
+     * The fields of the entity a part names. {@code STORED} is the stored sentence as a part of its own: the parts of the
+     * statement reach the stored sentence only by building it again (F-TAREA-R006 inv. 1).
+     */
+    enum Field { PARTS, CHOICE, KIND, TRANSLATION, MINI_THEORY, INSTRUCTIONS, SENTENCES, STORED, TOPIC_INSTRUCTIONS }
 
     static Set<Field> fields(List<ExercisePart> parts) {
         Set<Field> fields = EnumSet.noneOf(Field.class);
@@ -256,7 +259,10 @@ final class BatchBook {
                 case TRANSLATION -> fields.add(Field.TRANSLATION);
                 case MINI_THEORY -> fields.add(Field.MINI_THEORY);
                 case INSTRUCTIONS -> fields.add(Field.INSTRUCTIONS);
-                case STORED_SENTENCE -> fields.add(Field.SENTENCES);
+                case STORED_SENTENCE -> {
+                    fields.add(Field.SENTENCES);
+                    fields.add(Field.STORED);
+                }
                 case TOPIC_INSTRUCTIONS -> fields.add(Field.TOPIC_INSTRUCTIONS);
                 case WHOLE_EXERCISE -> fields.addAll(EnumSet.complementOf(EnumSet.of(Field.TOPIC_INSTRUCTIONS)));
                 case AUDIO -> {
@@ -323,13 +329,15 @@ final class BatchBook {
         if (fields.contains(Field.INSTRUCTIONS)) {
             result.setInstructions(after.getInstructions());
         }
-        boolean sentenceInputsChanged = fields.contains(Field.PARTS) || fields.contains(Field.CHOICE)
-                || fields.contains(Field.KIND);
+        // F-TAREA-R006 inv. 1: the stored sentence is built again when what it says moved -- the statement without its
+        // hints, the answers, the options or the kind --, never for a hint or a space; else it is the declared one.
+        boolean sentenceInputsChanged = fields.contains(Field.PARTS) && sentenceSourceChanged(current, result)
+                || fields.contains(Field.CHOICE) || fields.contains(Field.KIND);
         if (fields.contains(Field.KIND) && (after.getClozeOriginal() != null || current.getClozeOriginal() != null)) {
             result.setSentences(after.getSentences() == null ? null : new ArrayList<>(after.getSentences()));
         } else if (sentenceInputsChanged) {
-            result.setSentences(StoredSentenceRehydrator.rebuild(result));
-        } else if (fields.contains(Field.SENTENCES)) {
+            result.setSentences(rebuilt(result, current.getSentences()));
+        } else if (fields.contains(Field.STORED)) {
             result.setSentences(after.getSentences() != null ? new ArrayList<>(after.getSentences()) : null);
         }
         return result;
@@ -432,6 +440,54 @@ final class BatchBook {
         return parts;
     }
 
+    /**
+     * F-TAREA-R006 inv. 4: the stored sentence of the exercise as it is now, built again -- or the one it had, with its
+     * other forms, when the new one says the same.
+     */
+    private static List<String> rebuilt(QuizTemplateEntity quiz, List<String> had) {
+        List<String> rebuilt = StoredSentenceRehydrator.rebuild(quiz);
+        return StoredSentenceRehydrator.saysTheSame(rebuilt, had) ? new ArrayList<>(had) : rebuilt;
+    }
+
+    /** Whether what the stored sentence says moved: the statement without its hints, or the answers. */
+    static boolean sentenceSourceChanged(QuizTemplateEntity before, QuizTemplateEntity after) {
+        return !Objects.equals(statement(before), statement(after)) || !Objects.equals(answers(before), answers(after));
+    }
+
+    /**
+     * F-TAREA-R006 inv. 3: the texts of the statement as the candidate leaves them, without spaces at their edges, as
+     * production keeps them -- and, where a text only differs from the one it had in its spaces, the one it had: what a
+     * fix does not declare stays as it was.
+     */
+    private static void keptTexts(QuizTemplateEntity old, QuizTemplateEntity rewritten) {
+        List<SentencePartEntity> before = old.getForm() != null ? list(old.getForm().getSentenceParts()) : List.of();
+        List<SentencePartEntity> parts = list(rewritten.getForm().getSentenceParts());
+        if (parts.isEmpty()) {
+            return;
+        }
+        List<SentencePartEntity> kept = new ArrayList<>();
+        for (int i = 0; i < parts.size(); i++) {
+            SentencePartEntity part = parts.get(i);
+            if (part == null || part.getKind() != com.learney.contentaudit.coursedomain.SentencePartKind.TEXT
+                    || part.getText() == null) {
+                kept.add(part);
+                continue;
+            }
+            String text = part.getText().strip();
+            SentencePartEntity was = i < before.size() ? before.get(i) : null;
+            if (was != null && was.getKind() == com.learney.contentaudit.coursedomain.SentencePartKind.TEXT
+                    && was.getText() != null && spaced(was.getText()).equals(spaced(text))) {
+                text = was.getText();
+            }
+            kept.add(new SentencePartEntity(part.getKind(), text, part.getOptions()));
+        }
+        rewritten.getForm().setSentenceParts(kept);
+    }
+
+    private static String spaced(String text) {
+        return text.replaceAll("\\s+", " ").strip();
+    }
+
     private static List<String> statement(QuizTemplateEntity quiz) {
         List<String> texts = new ArrayList<>();
         for (SentencePartEntity part : quiz.getForm() != null ? list(quiz.getForm().getSentenceParts())
@@ -491,6 +547,7 @@ final class BatchBook {
         QuizTemplateEntity proposed = copy(candidate);
         if (proposed.getForm() != null) {
             rewritten.setForm(proposed.getForm());
+            keptTexts(old, rewritten);
         }
         if (proposed.getKind() != null) {
             rewritten.setKind(proposed.getKind());
@@ -504,15 +561,14 @@ final class BatchBook {
         if (proposed.getMiniTheory() != null) {
             rewritten.setMiniTheory(proposed.getMiniTheory());
         }
-        boolean sentenceInputsMoved = !Objects.equals(old.getForm() != null ? old.getForm().getSentenceParts() : null,
-                rewritten.getForm() != null ? rewritten.getForm().getSentenceParts() : null)
+        boolean sentenceInputsMoved = sentenceSourceChanged(old, rewritten)
                 || !Objects.equals(old.getForm() != null ? old.getForm().getMultipleChoice() : null,
                         rewritten.getForm() != null ? rewritten.getForm().getMultipleChoice() : null)
                 || !Objects.equals(old.getKind(), rewritten.getKind())
                 || !Objects.equals(old.getForm() != null ? old.getForm().getKind() : null,
                         rewritten.getForm() != null ? rewritten.getForm().getKind() : null);
         if (sentenceInputsMoved) {
-            rewritten.setSentences(StoredSentenceRehydrator.rebuild(rewritten));
+            rewritten.setSentences(rebuilt(rewritten, old.getSentences()));
         } else if (proposed.getSentences() != null && !Objects.equals(old.getSentences(), proposed.getSentences())) {
             rewritten.setSentences(new ArrayList<>(proposed.getSentences()));
         }

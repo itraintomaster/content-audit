@@ -687,6 +687,38 @@ public class DefaultPreservationCheckTest {
     }
 
 
+    @Test
+    @DisplayName("should take a statement that moves its gap as a change of its composition and still compare its answers")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R006")
+    public void shouldTakeAStatementThatMovesItsGapAsAChangeOfItsCompositionAndStillCompareItsAnswers() {
+        // F-TAREA-R006 inv. 2: en la C2 de A1 (11/11) la mesa pasó «swim - ___» a «___ (swim)»: cambian el enunciado y
+        // la pista, y con ellos el orden de las partes; la respuesta sigue siendo «swimming». Comparar parte por parte
+        // veía una respuesta donde antes había texto, y publicar se negaba. Cambiar la cantidad de partes tampoco
+        // esconde las respuestas: si cambian sin declararlas, es una violación.
+        Set<ScopedField> statementAndHint = new DefaultCorrectionScope().changeableFields(EnumSet.of(
+                ExercisePart.STATEMENT, ExercisePart.HINT, ExercisePart.MINI_THEORY, ExercisePart.STORED_SENTENCE,
+                ExercisePart.AUDIO), AuditTarget.QUIZ);
+        QuizTemplateEntity before = swim(text("swim -"), cloze("swimming"));
+
+        assertTrue(verifyQuiz(before, swim(cloze("swimming"), text("(swim)")), statementAndHint).isEmpty(),
+                "el hueco se movió y la respuesta es la misma");
+        assertTrue(verifyQuiz(before, swim(text("I like"), cloze("swimming"), text("(swim).")), statementAndHint)
+                .isEmpty(), "una parte más y la misma respuesta");
+        assertEquals(List.of("form.sentenceParts[].options"), verifyQuiz(before,
+                swim(cloze("swam"), text("(swim)")), statementAndHint).stream().map(PreservationViolation::getPath)
+                .toList(), "la respuesta cambió sin declararla");
+        assertEquals(List.of("form.sentenceParts[].options"), verifyQuiz(before,
+                swim(text("I like"), cloze("swam"), text("(swim).")), statementAndHint).stream()
+                .map(PreservationViolation::getPath).toList(), "también con una parte más");
+    }
+
+    /** «swim - ___» (Gerundio) with the given parts; its stored sentence stays. */
+    private static QuizTemplateEntity swim(SentencePartEntity... parts) {
+        return quiz(VEGETABLES, "k-afirmativas", "Afirmativas regulares", List.of("swim - swimming"), "nadar",
+                form("CLOZE", 1.0, "", "", parts));
+    }
+
     private static final String VEGETABLES = "67fab6d59930102295341ecd";
 
     /** «I ___ a lot of vegetables.» with the given text after the gap, answers and translation; its stored sentence stays. */

@@ -124,6 +124,25 @@ bandeja» ([F-TRSEN-R003](#F-TRSEN-R003)).
 Mantiene [F-RPRES-R001](#F-RPRES-R001) y [F-RPRES-R002](#F-RPRES-R002): hoy un tipo sin alcance declarado conserva todo,
 así que su corrección no podría cambiar nada; la regla lo vuelve visible en vez de gastar intentos.
 
+Invariantes (11/11/2026, al publicar la C2 de A1 en una copia):
+1. la pista no es parte de la oración guardada: un arreglo que sólo cambia la pista —o los espacios del enunciado— no
+   vuelve a armar la oración guardada; se arma de nuevo cuando cambian el enunciado sin sus pistas, las respuestas, las
+   opciones o el tipo;
+2. un arreglo que declara el enunciado puede cambiar cuántas partes tiene y en qué orden van; los textos y las respuestas
+   se siguen comparando, cada uno en su orden: una respuesta que cambió sin que el arreglo declare las respuestas sigue
+   siendo algo que no declaró;
+3. lo que el arreglo no declara queda como estaba, también los espacios: un enunciado que la mesa devuelve con un espacio
+   de más en el borde de un texto guarda el texto de antes, y un texto nuevo entra sin espacios en los bordes, como los
+   guarda producción;
+4. cuando la oración guardada se arma de nuevo, una respuesta que es una contracción («'s», «'ll», «'re», «'m»…) va
+   pegada a la palabra de antes: «It's going to rain soon.», nunca «It 's»; y si la oración nueva dice lo mismo que la
+   guardada —las mismas palabras, con la contracción junta o aparte—, queda la guardada, con sus otras formas.
+
+**Criterio**: en la C2 de A1, la regla de la pista pasó «(be)» a «(be / rain)» en «It ___ soon.» y la oración guardada
+quedó «It 's going to rain soon.», sin «It is going to rain soon.»: con la regla queda como estaba. La mesa pasó
+«swim - ___» a «___ (swim)» con la misma respuesta: no es una violación. Y agregó «Today it's hot.» a «(hot / today)
+___» devolviendo «(hot / today) »: el paso guarda «(hot / today)».
+
 <details><summary>Qué puede tocar cada arreglo, según la ronda 1 (ilustración: lo fija el paquete de cada analizador)</summary>
 
 | Analizador | Resolución | Lo que puede tocar |

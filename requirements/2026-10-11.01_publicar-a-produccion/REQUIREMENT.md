@@ -100,7 +100,11 @@ una lista con ese ejercicio —`translation` y `miniTheory`, cada uno con su ant
 >    opción: un cambio de su enunciado, de su oración guardada, de cuál es la correcta, de la forma de elegir, de la
 >    cantidad de opciones o del identificador de una opción no se publica por script; se declara aparte, con cada
 >    cambio que lo tocó, como un cambio de tipo ([F-PUBPROD-R001](#F-PUBPROD-R001), inv. 6), y ese ejercicio no va en
->    la lista; su traducción, su consigna y su miniteoría van como las de cualquier ejercicio.
+>    la lista; su traducción, su consigna y su miniteoría van como las de cualquier ejercicio;
+> 5. los textos del enunciado van sin espacios en los bordes, como los guarda producción, que no tiene ninguno: el alumno
+>    y los jueces leen las partes unidas por un espacio, así que es el mismo ejercicio, pero la app dibuja un espacio en
+>    el borde como una palabra vacía. Lo mismo vale para el curso que se publica y para lo que se compara contra lo que
+>    declaran sus pasos.
 
 <details><summary>Detail</summary>
 
@@ -120,6 +124,9 @@ una lista con ese ejercicio —`translation` y `miniTheory`, cada uno con su ant
 
 Una parte nueva de la tabla de la corrección sin su fila acá frena la publicación ([F-PUBPROD-R001](#F-PUBPROD-R001),
 inv. 5): nada viaja sin lugar declarado.
+
+Un caso del inv. 5: en la C2 de A1 la mesa agregó una respuesta a «(hot / today) ___» y devolvió «(hot / today) »; el
+paso sólo declaraba las respuestas, y publicar se negaba por ese espacio en 154 textos. Ahora llega «(hot / today)».
 
 **Criterio**: un cambio del texto de una opción de un ejercicio de opción múltiple de B2 lleva `form.items` entero,
 con cada incidencia como número (`1.0`, no `{"$numberDouble": "1.0"}`) y sólo esa etiqueta cambiada; un cambio de cuál

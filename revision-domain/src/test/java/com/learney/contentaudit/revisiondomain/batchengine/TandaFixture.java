@@ -316,8 +316,12 @@ public final class TandaFixture {
             return saved.values().stream().filter(b -> b.getStatus() != BatchStatus.PUBLISHED).reduce((a, b) -> b);
         }
 
+        /** Cuántas veces se leyó el depósito entero de tandas. */
+        public int lists;
+
         @Override
         public synchronized List<CorrectionBatch> list() {
+            lists++;
             return new ArrayList<>(saved.values());
         }
 
