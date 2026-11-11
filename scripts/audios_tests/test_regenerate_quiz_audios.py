@@ -23,6 +23,16 @@ def ejercicio(clave, oracion, modo="FILL"):
     return {"key": clave, "mode": modo, "sentences": [oracion], "parts": [], "title": None}
 
 
+def publicacion(documentos=(), sin_lugar=(), tanda="tanda-A1-c2"):
+    """La lista que dejó `tray publish` (batch-publications/<tanda>/manifest.json)."""
+    return {"batchId": tanda, "documents": list(documentos), "unsupported": list(sin_lugar)}
+
+
+def documento(quiz_id, antes, despues):
+    return {"collection": "quizTemplates", "id": quiz_id, "nodeId": quiz_id,
+            "fields": [{"path": "form.sentences", "before": antes, "after": despues}]}
+
+
 class DesdeLaPreparacionTest(unittest.TestCase):
     def setUp(self):
         self.workdir = tempfile.mkdtemp()
@@ -34,7 +44,7 @@ class DesdeLaPreparacionTest(unittest.TestCase):
             entrada("q2", "A1.01.12.03", "TEXT_RECORD_MATCHES", "You aren't at the school."),
             entrada("q3", "A1.01.01.01", "TEXT_RECORD_PROBLEM", "She is English."),
             entrada("q4", "", "PENDING_GENERATION", "No key."),
-        ), self.workdir)
+        ), publicacion(), self.workdir)
 
         with open(os.path.join(self.workdir, "changed_spoken_sentences.json")) as f:
             self.assertEqual([{"id": "q1", "key": "A1.04.13.09"}], json.load(f))
@@ -44,8 +54,56 @@ class DesdeLaPreparacionTest(unittest.TestCase):
 
     def test_F_DATOS_R007_una_preparacion_sin_entradas_no_es_una_lista_vacia_para_grabar(self):
         with self.assertRaises(SystemExit):
-            regen.desde_preparacion({"batchId": "tanda-A1-c2"}, self.workdir)
+            regen.desde_preparacion({"batchId": "tanda-A1-c2"}, publicacion(), self.workdir)
         self.assertFalse(os.path.exists(os.path.join(self.workdir, "changed_spoken_sentences.json")))
+
+    def test_F_DATOS_R007_no_graba_lo_que_la_publicacion_no_llevo_a_produccion(self):
+        # inv. 5: la C2 de A1 daba 458 por grabar; 233 eran de opción múltiple con un cambio que publicar no lleva
+        # («water / oranges uncountable»). Grabarlos pondría en producción un audio de un ejercicio que no está ahí.
+        regen.desde_preparacion(preparacion(
+            entrada("q1", "A1.02.01.04", "PENDING_GENERATION", "You'll play with us."),
+            entrada("q2", "A1.06.03.06", "PENDING_GENERATION", "water / oranges uncountable", "uncountable"),
+            entrada("q3", "A1.01.01.14", "PENDING_GENERATION", "My camera is on the train."),
+        ), publicacion(
+            documentos=[documento("q1", ["Will you play with us?"], ["You'll play with us."])],
+            sin_lugar=[{"changeId": "regla-multiple-choice-validity-q2", "nodeId": "q2", "part": "STATEMENT",
+                        "reason": "opción múltiple"}],
+        ), self.workdir)
+
+        with open(os.path.join(self.workdir, "changed_spoken_sentences.json")) as f:
+            self.assertEqual([{"id": "q1", "key": "A1.02.01.04", "oracion": "You'll play with us."},
+                              {"id": "q3", "key": "A1.01.01.14"}], json.load(f))
+        with open(os.path.join(self.workdir, "texto_final.json")) as f:
+            self.assertNotIn("A1.06.03.06", json.load(f))
+        with open(os.path.join(self.workdir, "sin_publicar.json")) as f:
+            self.assertEqual([{"id": "q2", "key": "A1.06.03.06", "partes": ["STATEMENT"]}], json.load(f))
+
+    def test_F_DATOS_R007_la_lista_de_otra_tanda_no_sirve(self):
+        with self.assertRaises(SystemExit):
+            regen.desde_preparacion(preparacion(entrada("q1", "A1.04.13.09", "PENDING_GENERATION", "Hi.")),
+                                    publicacion(tanda="tanda-A1-c1"), self.workdir)
+        self.assertFalse(os.path.exists(os.path.join(self.workdir, "changed_spoken_sentences.json")))
+
+
+class AntesDeGrabarTest(unittest.TestCase):
+    def test_F_DATOS_R007_produccion_tiene_que_decir_lo_que_dejo_la_publicacion(self):
+        # inv. 5: comparar con la copia de antes de publicar dejaba afuera, después de publicar, los 224 que sí
+        # cambiaron. Producción tiene que tener la oración que dejó la publicación o, si no la tocó, la de antes.
+        head = {"q1": ejercicio("A1.02.01.04", "Will you play with us?"),
+                "q3": ejercicio("A1.01.01.14", "My camera is on the train."),
+                "q4": ejercicio("A1.01.01.15", "Your bag is on the bus.")}
+        cambiadas = [{"id": "q1", "key": "A1.02.01.04", "oracion": "You'll play with us."},
+                     {"id": "q3", "key": "A1.01.01.14"},
+                     {"id": "q4", "key": "A1.01.01.15", "oracion": "Your bag isn't on the bus."},
+                     {"id": "q5", "key": "A1.01.01.16"}]
+        prod = {"q1": "You'll play with us.", "q3": "My camera is on the train.", "q4": "Your bag is on the bus."}
+
+        reporte = regen.comparar_con_produccion(cambiadas, head, prod)
+
+        self.assertEqual(["q1", "q3"], reporte["ok"])
+        self.assertEqual([{"id": "q4", "key": "A1.01.01.15", "prod": "Your bag is on the bus.",
+                           "esperada": "Your bag isn't on the bus."}], reporte["divergent"])
+        self.assertEqual(["q5"], reporte["missing"])
 
 
 class ManifiestoTest(unittest.TestCase):

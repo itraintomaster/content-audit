@@ -7,9 +7,11 @@ Flujo (cada paso es un subcomando; el estado vive en --workdir):
              hoy de cada audio (F-DATOS-R007): la salida de
              `content-audit batch audio --request-json '{"action":"read"}'`, guardada en un
              archivo. Escribe changed_spoken_sentences.json y texto_final.json.
-  preflight  compara form.sentences[0] de prod (Atlas, solo lectura) contra db/ HEAD
-             para los ids de changed_spoken_sentences.json; solo los que coinciden
-             entran al manifest.
+             Va despues de publicar (--publicacion: la lista que dejo tray publish): no
+             graba lo que la publicacion no llevo (sin_publicar.json).
+  preflight  compara form.sentences[0] de prod (Atlas, solo lectura) contra lo que dejo
+             la publicacion (o db/ HEAD si no la toco) para los ids de
+             changed_spoken_sentences.json; solo los que coinciden entran al manifest.
   dryrun     arma el manifest clave->texto locutable (limpieza del placeholder "-"),
              separa los casos de revision manual y corre lints (charset, claves
              duplicadas, texto vacio).
@@ -206,84 +208,123 @@ def load_head_quizzes():
 POR_GRABAR = "PENDING_GENERATION"
 
 
-def desde_preparacion(prep, workdir):
+def desde_preparacion(prep, publicacion, workdir):
     """F-DATOS-R007: lo que falta grabar segun la preparacion de audios de la tanda, con el
-    primer texto que el ejercicio dice hoy (el que data-coherence compara con el registro)."""
+    primer texto que el ejercicio dice hoy (el que data-coherence compara con el registro).
+
+    La regrabacion sigue a publicar: graba solo lo que la publicacion llevo a produccion (inv. 5).
+    Un ejercicio con un cambio que la lista publicada no lleva (`unsupported`, la opcion multiple)
+    no se graba y queda en sin_publicar.json; uno cuya oracion guardada cambio lleva la que dejo
+    la publicacion, para que el preflight compare produccion con eso y no con la copia de antes."""
     entradas = prep.get("entries")
     if not isinstance(entradas, list):
         raise SystemExit("la preparacion no trae entradas: corre `content-audit batch audio` con"
                          " --request-json '{\"action\":\"read\"}' y guarda su salida")
-    cambiadas, textos, vistas = [], {}, set()
+    if publicacion.get("batchId") != prep.get("batchId"):
+        raise SystemExit(f"la lista publicada es de {publicacion.get('batchId')!r} y la preparacion de"
+                         f" {prep.get('batchId')!r}: usa batch-publications/<tanda>/manifest.json de la misma tanda")
+    sin_lugar = {}
+    for u in publicacion.get("unsupported") or []:
+        partes = sin_lugar.setdefault(u.get("nodeId"), [])
+        if u.get("part") not in partes:
+            partes.append(u.get("part"))
+    publicadas = {}
+    for d in publicacion.get("documents") or []:
+        for campo in d.get("fields") or []:
+            if campo.get("path") == "form.sentences":
+                despues = campo.get("after") or []
+                publicadas[d.get("id")] = (despues[0] if isinstance(despues, list) and despues else despues) or ""
+    cambiadas, textos, afuera, vistas = [], {}, [], set()
     for e in entradas:
         clave = (e.get("audioKey") or "").strip()
         finales = [t for t in (e.get("finalTexts") or []) if t and t.strip()]
         if e.get("status") != POR_GRABAR or not clave or not finales or clave in vistas:
             continue
         vistas.add(clave)
-        cambiadas.append({"id": e["quizId"], "key": clave})
+        if e["quizId"] in sin_lugar:
+            afuera.append({"id": e["quizId"], "key": clave, "partes": sin_lugar[e["quizId"]]})
+            continue
+        cambiada = {"id": e["quizId"], "key": clave}
+        if e["quizId"] in publicadas:
+            cambiada["oracion"] = publicadas[e["quizId"]]
+        cambiadas.append(cambiada)
         textos[clave] = finales[0]
     os.makedirs(workdir, exist_ok=True)
     with open(os.path.join(workdir, "changed_spoken_sentences.json"), "w") as f:
         json.dump(cambiadas, f, indent=1, ensure_ascii=False)
     with open(os.path.join(workdir, "texto_final.json"), "w") as f:
         json.dump(textos, f, indent=1, ensure_ascii=False)
-    return cambiadas
+    with open(os.path.join(workdir, "sin_publicar.json"), "w") as f:
+        json.dump(afuera, f, indent=1, ensure_ascii=False)
+    return cambiadas, afuera
 
 
 def cmd_desde_preparacion(args):
     with open(args.preparacion, encoding="utf-8") as f:
         prep = json.load(f)
-    cambiadas = desde_preparacion(prep, args.workdir)
+    with open(args.publicacion, encoding="utf-8") as f:
+        publicacion = json.load(f)
+    cambiadas, afuera = desde_preparacion(prep, publicacion, args.workdir)
     entradas = prep.get("entries") or []
     otros = sum(1 for e in entradas if e.get("status") not in (POR_GRABAR, "TEXT_RECORD_MATCHES"))
     print(f"tanda {prep.get('batchId')} v{prep.get('contentVersion')}: {len(cambiadas)} por grabar"
           f" de {len(entradas)} ejercicios")
+    if afuera:
+        print(f"  {len(afuera)} no se graban: su cambio no llego a produccion (sin_publicar.json)")
     if otros:
         print(f"  {otros} con otro problema del registro (no se graban aca; los ve data-coherence)")
 
 
 def load_changed_ids(workdir):
+    return [c["id"] for c in load_changed(workdir)]
+
+
+def load_changed(workdir):
     path = os.path.join(workdir, "changed_spoken_sentences.json")
-    return [c["id"] for c in json.load(open(path))]
+    return json.load(open(path))
 
 
 # ---------------------------------------------------------------- preflight
+
+def comparar_con_produccion(cambiadas, head, prod):
+    """F-DATOS-R007 inv. 5: produccion tiene que decir lo que dejo la publicacion -- la oracion
+    guardada de la lista publicada o, si la publicacion no la toco, la de db/ HEAD. `prod` es
+    form.sentences[0] de cada ejercicio que existe en produccion."""
+    ok, divergent, missing = [], [], []
+    for c in cambiadas:
+        qid = c["id"]
+        if qid not in prod:
+            missing.append(qid)
+            continue
+        esperada = c["oracion"] if "oracion" in c else (head[qid]["sentences"] or [""])[0]
+        if prod[qid] == esperada:
+            ok.append(qid)
+        else:
+            divergent.append({"id": qid, "key": c["key"], "prod": prod[qid], "esperada": esperada})
+    return {"ok": ok, "divergent": divergent, "missing": missing}
+
 
 def cmd_preflight(args):
     from bson import ObjectId
     from pymongo import MongoClient
 
     head = load_head_quizzes()
-    ids = load_changed_ids(args.workdir)
+    cambiadas = load_changed(args.workdir)
+    ids = [c["id"] for c in cambiadas]
     client = MongoClient(read_mongo_uri(), serverSelectionTimeoutMS=10000)
     col = client["learney"]["quizTemplates"]
 
-    ok, divergent, missing = [], [], []
+    prod = {}
     for i in range(0, len(ids), 200):
         chunk = ids[i : i + 200]
-        docs = {
-            str(d["_id"]): d
-            for d in col.find(
-                {"_id": {"$in": [ObjectId(x) for x in chunk]}},
-                {"form.sentences": 1},
-            )
-        }
-        for qid in chunk:
-            d = docs.get(qid)
-            if d is None:
-                missing.append(qid)
-                continue
-            prod_s = ((d.get("form") or {}).get("sentences") or [""])[0]
-            head_s = (head[qid]["sentences"] or [""])[0]
-            if prod_s == head_s:
-                ok.append(qid)
-            else:
-                divergent.append({"id": qid, "key": head[qid]["key"], "prod": prod_s, "head": head_s})
+        for d in col.find({"_id": {"$in": [ObjectId(x) for x in chunk]}}, {"form.sentences": 1}):
+            prod[str(d["_id"])] = ((d.get("form") or {}).get("sentences") or [""])[0]
         print(f"  {min(i+200, len(ids))}/{len(ids)}", end="\r")
-    report = {"ok": ok, "divergent": divergent, "missing": missing}
+    report = comparar_con_produccion(cambiadas, head, prod)
     out = os.path.join(args.workdir, "preflight_report.json")
     json.dump(report, open(out, "w"), indent=1, ensure_ascii=False)
-    print(f"\nprod==HEAD: {len(ok)} | divergentes: {len(divergent)} | no existen en prod: {len(missing)}")
+    print(f"\nprod==publicado: {len(report['ok'])} | divergentes: {len(report['divergent'])}"
+          f" | no existen en prod: {len(report['missing'])}")
     print(f"reporte: {out}")
 
 
@@ -630,6 +671,8 @@ def main():
     pp = sub.add_parser("desde-preparacion")
     pp.add_argument("--preparacion", required=True,
                     help="salida de content-audit batch audio --request-json '{\"action\":\"read\"}'")
+    pp.add_argument("--publicacion", required=True,
+                    help="lista que dejo tray publish: <campana>/.content-audit/batch-publications/<tanda>/manifest.json")
     sub.add_parser("preflight")
     sub.add_parser("dryrun")
     sub.add_parser("backup")

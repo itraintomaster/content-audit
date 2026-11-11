@@ -162,12 +162,19 @@ pegada es la misma falla en la otra copia.
 >    así («Where are we going to?»);
 > 4. cada audio subido hoy con el tamaño exacto de lo grabado queda en el registro con su texto, la fuente
 >    «regrabacion-<fecha>» y la fecha; lo que no se verificó no se anota y el resto del registro no cambia.
+> 5. graba sólo lo que la publicación llevó a producción: un ejercicio con un cambio que la publicación no lleva (los
+>    de opción múltiple que no se publican por script) no se graba y queda anotado aparte; y antes de grabar, cada
+>    ejercicio de producción tiene que tener la oración guardada que dejó la publicación —o, si la publicación no la
+>    tocó, la que tenía—; si no la tiene, no se graba. La lista publicada tiene que ser de la misma tanda.
 
 Es lo que decidió José el 30/9 ([DOUBT-DATOS-REGISTRO](#DOUBT-DATOS-REGISTRO)): «la próxima regrabación, que ya sale
 de content-audit, lo actualiza en el mismo paso». Sin anotarla, la bandeja y `data-coherence` seguirían pidiendo los
 mismos audios. **Criterio** (11/11/2026): la C2 de A1 pedía 740 audios; la preparación da por grabar sólo los que el
 registro no tiene; «I heard a funny noise.» se graba así, «water / oranges uncountable» y «She wrote from Monday to.» van
 a revisión a mano, y al subir y verificar, el registro anota cada uno con «regrabacion-<fecha>».
+Con la lista publicada (inv. 5), la misma C2 da 225 por grabar: 233 de opción múltiple no llegan a producción y no se
+graban, y 224 llevan la oración nueva. Comparar con la copia de antes de publicar hacía lo contrario: después de
+publicar grababa los 233 que no se publicaron y dejaba afuera los 224 que sí.
 
 ## Contexto
 
