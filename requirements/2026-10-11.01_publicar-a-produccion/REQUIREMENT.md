@@ -146,6 +146,9 @@ declarado aparte; una parte del enunciado sin texto lleva `"text": ""`.
 > 6. si la publicación no termina, nada queda sacado: la tanda y sus propuestas quedan como estaban
 >    ([F-PUBPROD-R010](#F-PUBPROD-R010));
 > 7. sin rechazos, lo que se publica es lo mismo que antes de esta regla.
+> 8. si comparada sin lo que sale al publicar —lo rechazado, las reglas cuya muestra José no aprobó y lo que se
+>    apoyaba en eso— F no da «pasa» o la compuerta no pasa, la negativa nombra con qué se comparó y cómo seguir:
+>    aprobarlo, o sacarlo de la tanda antes y volver a cerrarla, que mide lo que queda.
 
 <details><summary>Detail</summary>
 
@@ -157,6 +160,12 @@ la revisión de Correcciones sirva: hoy se guarda y nadie la lee.
 deja ese ejercicio como estaba, nombra `rule-3` como rechazado, vuelve a comparar y publica con «pasa»; con un rechazo
 de `rule-3` que José dio antes de que saliera un cambio anterior del mismo ejercicio, publicar se niega y nombra
 `rule-3` en `…256f`.
+
+Publicar no paga jueces: lo que sale recién al publicar deja sin medir lo que se apoyaba en ello (la miniteoría se
+juzga por tema), y sin la inv. 8 la negativa decía «no se puede decidir» sin decir por qué. **Criterio** (11/11/2026):
+la C2 de A1 seguía con 12 cambios que José rechazó en la C1 y 8 que la C2 escribió encima; publicar los saca, quedan 147
+ejercicios sin medir por la miniteoría y la negativa nombra esos cambios y dice «aprobalo, o sacalo de la tanda antes
+(content-audit batch drop) y volvé a cerrarla, que mide lo que queda»; sin nada que salga, la negativa es la de siempre.
 
 </details>
 

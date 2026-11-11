@@ -291,6 +291,15 @@ class DefaultBatchPublisher implements BatchPublisher {
         return digest;
     }
 
+    /**
+     * F-PUBPROD-R003 inv. 8: what a refusal adds when publishing compared the batch without what left on publishing --
+     * what it compared without and how to go on --, or nothing when nothing left.
+     */
+    private static String withComparedWithout(String refusal, PublicationExclusions exclusions) {
+        String without = exclusions.comparedWithout();
+        return without.isEmpty() ? refusal : BatchVerdictRule.sentence(refusal) + without;
+    }
+
     /** What publishing decided before writing anything but the ledger: the course to write, its list and the counts. */
     private record Prepared(CourseEntity composed, PublicationManifest manifest, ReviewTally tally) {
     }
@@ -351,17 +360,18 @@ class DefaultBatchPublisher implements BatchPublisher {
             var currentGate = new com.learney.contentaudit.revisiondomain.nonregressionengine.DefaultGateFactory().batchGate()
                     .evaluate(comparison, DefaultBatchCloser.changedOutside(batch, startCourse,
                             changeLedger.composedCourse(batch, startCourse), tasks, batchStore), DefaultBatchCloser.exceptions(batch));
-            if (!currentGate.isPasses()) throw new BatchNotPublishableException(batch.getId(),
-                    "la compuerta sobre el análisis vigente no pasa: " + String.join("; ", BatchBook.list(currentGate.getReasons())));
+            if (!currentGate.isPasses()) throw new BatchNotPublishableException(batch.getId(), withComparedWithout(
+                    "la compuerta sobre el análisis vigente no pasa: " + String.join("; ", BatchBook.list(currentGate.getReasons())),
+                    exclusions));
         } else if (dropped || changedSince(batch, last)) {
             comparison = batchComparator.compare(coursePath, DefaultBatchCloser.scope(batch));
         }
         // F-BANDEJA-R011: a closing saved before José kept a change as his exception is read with his exceptions.
         BatchVerdict verdict = BatchVerdictRule.withExceptions(comparison, DefaultBatchCloser.exceptions(batch));
         if (!VerdictWording.publishable(verdict)) {
-            throw new BatchNotPublishableException(batch.getId(), "el veredicto de F es "
+            throw new BatchNotPublishableException(batch.getId(), withComparedWithout("el veredicto de F es "
                     + VerdictWording.quoted(verdict) + ", no «pasa»"
-                    + (verdict != null && verdict.getDetail() != null ? ": " + verdict.getDetail() : ""));
+                    + (verdict != null && verdict.getDetail() != null ? ": " + verdict.getDetail() : ""), exclusions));
         }
 
         // The course composed with every accepted change left in the batch, and no other, checked exercise by exercise.

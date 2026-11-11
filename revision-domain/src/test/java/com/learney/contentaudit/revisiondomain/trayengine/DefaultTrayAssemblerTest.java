@@ -337,7 +337,7 @@ public class DefaultTrayAssemblerTest {
         Tray stopped = fixture.assemble(true);
         assertFalse(stopped.isPublishable());
         assertEquals(List.of("el veredicto de la comparación es «FAILS»: No pasa: vuelve 1 cambio: " + other
-                + " Por excepción de José, sin volver: 1 cambio (" + exception + ")."), stopped.getBlockers());
+                + ". Por excepción de José, sin volver: 1 cambio (" + exception + ")."), stopped.getBlockers());
     }
 
     @Test

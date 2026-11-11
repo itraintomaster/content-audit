@@ -298,6 +298,75 @@ public class PublishingReviewedBatchTest {
     }
 
     @Test
+    @DisplayName("should name, when the batch compared again without what leaves on publishing cannot be decided, what it compared without and how to go on, leaving nothing out")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R003")
+    @Tag("F-PUBPROD-R005")
+    public void shouldNameWhatLeavesOnPublishingAndHowToGoOnWhenTheBatchComparedAgainWithoutItCannotBeDecided() {
+        // R003 inv. 8: la C2 de A1 (11/11/2026) seguía con doce cambios que José rechazó en la C1; al publicar salían con
+        // ocho que la C2 escribió encima, y lo que quedaba no estaba medido: «no se puede decidir», sin decir por qué.
+        // Acá José rechazó las verduras del panel (V1, con V2 encima) y, en otra vuelta, no aprobó la muestra de
+        // single-answer. Comparada sin eso, F no puede decidir: la negativa nombra con qué se comparó y cómo seguir.
+        Publishing p = new Publishing();
+        CorrectionBatch batch = reviewedAndClosed(p);
+        String before = photo(p, batch);
+        p.comparator.answer = scope -> {
+            BatchComparison comparison = TandaFixture.comparison(scope, List.of(), VerdictKind.UNDECIDABLE);
+            comparison.setVerdict(new BatchVerdict(VerdictKind.UNDECIDABLE, new ArrayList<>(), new ArrayList<>(), null,
+                    "ningún piso falla, pero 1 cambio sin evaluar por algún analizador", null));
+            return comparison;
+        };
+
+        BatchNotPublishableException rejected = refusal(p, batch);
+
+        assertMentions(rejected, "el veredicto de F es «no se puede decidir»");
+        assertMentions(rejected, "1 cambio sin evaluar por algún analizador. Se comparó sin lo que sale al publicar");
+        assertMentions(rejected, "Se comparó sin lo que sale al publicar (lo que rechazaste en la revisión: " + V1
+                + "; lo que se apoyaba en eso: " + V2 + ") y no salió nada: para publicar, aprobalo, o sacalo de la"
+                + " tanda antes (content-audit batch drop) y volvé a cerrarla, que mide lo que queda.");
+        assertNothingWritten(p);
+        assertEquals(before, photo(p, batch), "nada queda sacado");
+
+        // Un detalle que ya termina en punto no lleva otro.
+        p.comparator.answer = scope -> {
+            BatchComparison comparison = TandaFixture.comparison(scope, List.of(), VerdictKind.UNDECIDABLE);
+            comparison.setVerdict(new BatchVerdict(VerdictKind.UNDECIDABLE, new ArrayList<>(), new ArrayList<>(), null,
+                    "ningún piso falla, pero 1 cambio sin evaluar por algún analizador.", null));
+            return comparison;
+        };
+        assertMentions(refusal(p, batch), "algún analizador. Se comparó sin lo que sale al publicar");
+
+        BatchNotPublishableException ruleLeftOut = assertThrows(BatchNotPublishableException.class,
+                () -> p.publisher().publish(batch, new BatchPublishRequest(JOSE, null, List.of("single-answer")),
+                        p.start));
+
+        assertMentions(ruleLeftOut, "Se comparó sin lo que sale al publicar (las reglas cuya muestra no aprobaste:"
+                + " single-answer, 1 cambio; lo que rechazaste en la revisión: " + V1 + ") y no salió nada");
+        assertNothingWritten(p);
+        assertEquals(before, photo(p, batch), "nada queda sacado");
+    }
+
+    @Test
+    @DisplayName("should not say what it compared without when nothing leaves on publishing")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R003")
+    public void shouldNotSayWhatItComparedWithoutWhenNothingLeavesOnPublishing() {
+        // R003 inv. 7: sin nada que salga al publicar, la negativa es la de siempre.
+        Publishing p = new Publishing();
+        CorrectionBatch batch = threeChanges(p);
+        p.close(batch);
+        p.comparator.answer = scope -> TandaFixture.comparison(scope, List.of(), VerdictKind.FAILS);
+        batch.setAdjustments(new ArrayList<>(List.of(new BatchAdjustment(BatchAdjustmentKind.DROP_CHANGE,
+                MesaFixture.COME, List.of(), "mesa-otro", null, null, null, "no", JOSE,
+                Publishing.CLOSED_AT.plusSeconds(60)))));
+
+        BatchNotPublishableException refused = refusal(p, batch);
+
+        assertMentions(refused, "el veredicto de F es «FAILS», no «pasa»");
+        assertFalse(refused.getMessage().contains("Se comparó sin"), refused.getMessage());
+    }
+
+    @Test
     @DisplayName("should refuse naming the change and the exercise when José rejected a content that changed afterwards")
     @Tag("FEAT-PUBPROD")
     @Tag("F-PUBPROD-R003")

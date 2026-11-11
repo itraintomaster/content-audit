@@ -130,10 +130,19 @@ public final class BatchVerdictRule {
                 scopeId);
         if (!excused.isEmpty()) {
             verdict.setExceptionProposalIds(new ArrayList<>(excused));
-            verdict.setDetail(verdict.getDetail() + " Por excepción de José, sin volver: "
+            verdict.setDetail(sentence(verdict.getDetail()) + "Por excepción de José, sin volver: "
                     + (excused.size() == 1 ? "1 cambio (" : excused.size() + " cambios (") + listed(excused) + ").");
         }
         return verdict;
+    }
+
+    /** A detail ready for another sentence after it: closed with its period, and a space. */
+    public static String sentence(String detail) {
+        if (detail == null || detail.isBlank()) {
+            return "";
+        }
+        String trimmed = detail.strip();
+        return trimmed + (trimmed.endsWith(".") ? " " : ". ");
     }
 
     private static BatchVerdict kindAndDetail(List<String> broken, List<String> returning, List<String> undecidedChanges,

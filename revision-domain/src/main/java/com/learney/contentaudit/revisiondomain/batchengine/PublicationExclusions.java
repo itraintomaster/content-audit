@@ -6,6 +6,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
 import com.learney.contentaudit.revisiondomain.batch.BatchReview;
 import com.learney.contentaudit.revisiondomain.batch.BatchReviewDecision;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.comparison.BatchVerdictRule;
 import com.learney.contentaudit.revisiondomain.publication.ExclusionReason;
 import com.learney.contentaudit.revisiondomain.publication.ManifestExcluded;
 import com.learney.contentaudit.revisiondomain.publication.ReviewTally;
@@ -106,6 +107,50 @@ final class PublicationExclusions {
             }
         });
         return new ReviewTally(approved, pending, rejectedSteps.size(), forReview, collateral);
+    }
+
+    /**
+     * F-PUBPROD-R003 inv. 8: con qué se comparó la tanda al sacar lo que sale al publicar —las reglas cuya muestra José
+     * no aprobó, lo que rechazó en la revisión y lo que se apoyaba en eso—, para que una negativa lo nombre; vacío si
+     * al publicar no salió nada.
+     */
+    String comparedWithout() {
+        Map<String, Integer> rules = new LinkedHashMap<>();
+        List<String> rejectedNow = new ArrayList<>();
+        List<String> collateral = new ArrayList<>();
+        excluded.forEach((changeId, reason) -> {
+            switch (reason) {
+                case RULE_EXCLUDED -> rules.merge(ruleOf(changeId), 1, Integer::sum);
+                case REVIEW_REJECTED -> rejectedNow.add(changeId);
+                case COLLATERAL -> collateral.add(changeId);
+                default -> {
+                }
+            }
+        });
+        List<String> parts = new ArrayList<>();
+        if (!rules.isEmpty()) {
+            List<String> named = new ArrayList<>();
+            rules.forEach((rule, n) -> named.add(rule + ", " + n + (n == 1 ? " cambio" : " cambios")));
+            parts.add("las reglas cuya muestra no aprobaste: " + String.join("; ", named));
+        }
+        if (!rejectedNow.isEmpty()) {
+            parts.add("lo que rechazaste en la revisión: " + BatchVerdictRule.listed(rejectedNow));
+        }
+        if (!collateral.isEmpty()) {
+            parts.add("lo que se apoyaba en eso: " + BatchVerdictRule.listed(collateral));
+        }
+        return parts.isEmpty() ? "" : "Se comparó sin lo que sale al publicar (" + String.join("; ", parts)
+                + ") y no salió nada: para publicar, aprobalo, o sacalo de la tanda antes (content-audit batch drop)"
+                + " y volvé a cerrarla, que mide lo que queda.";
+    }
+
+    private String ruleOf(String changeId) {
+        for (BatchChange change : BatchBook.list(batch.getChanges())) {
+            if (change != null && Objects.equals(change.getChangeId(), changeId)) {
+                return change.getRuleId();
+            }
+        }
+        return changeId;
     }
 
     /** Los cambios afuera que nombra la lista, con su motivo, en el orden en que salieron. */
