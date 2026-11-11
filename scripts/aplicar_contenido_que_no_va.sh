@@ -70,7 +70,10 @@ echo "== 6. teoría"
 if [ -z "${SALTEAR_TEORIA:-}" ]; then
   git -C "$ITTM" show "$RAMA_TEORIA:content/theory/$TEORIA.json" \
     | aws s3 cp - "s3://learney/theory/$TEORIA.json" --content-type application/json
-  aws s3 cp "s3://learney/theory/$TEORIA.json" - | grep -c "The children threw snowballs at each other." \
-    | grep -q 1 && echo "   teoría subida y verificada"
+  if aws s3 cp "s3://learney/theory/$TEORIA.json" - | grep -q "The children threw snowballs at each other."; then
+    echo "   teoría subida y verificada"
+  else
+    echo "   OJO: la teoría en S3 no tiene el ejemplo nuevo"; exit 1
+  fi
 fi
 echo "== listo"
