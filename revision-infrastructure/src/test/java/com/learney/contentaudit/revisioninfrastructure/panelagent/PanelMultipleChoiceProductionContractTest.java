@@ -34,9 +34,16 @@ class PanelMultipleChoiceProductionContractTest {
     private static final String QUIZ = "500000000000000000000001";
     private static final String KNOWLEDGE = "400000000000000000000001";
 
+    /**
+     * F-CONVERSION-R003 y F-TAREA-R006 inv. 4: con una oración guardada, o con variantes cuya primera dice lo mismo que
+     * la conversión, la conversión entra y conserva todas las variantes; si la primera dice otra cosa, se rechaza sin
+     * truncarlas.
+     */
     @ParameterizedTest
-    @ValueSource(booleans = {false, true})
-    void parsedConversionKeepsCanonicalDataOrRejectsWithoutTruncatingVariants(boolean multipleVariants, @TempDir Path work)
+    @org.junit.jupiter.api.Tag("F-CONVERSION-R003")
+    @org.junit.jupiter.api.Tag("F-TAREA-R006")
+    @ValueSource(strings = {"una oración", "variantes que dicen lo mismo", "variantes que dicen otra cosa primero"})
+    void parsedConversionKeepsCanonicalDataOrRejectsWithoutTruncatingVariants(String stored, @TempDir Path work)
             throws Exception {
         Path answer = work.resolve("panel.json");
         Files.writeString(answer, """
@@ -65,8 +72,10 @@ class PanelMultipleChoiceProductionContractTest {
         var locator = new DefaultCourseElementLocator();
         var course = course();
         var original = locator.snapshot(course, AuditTarget.QUIZ, QUIZ).orElseThrow().getQuiz();
-        if (multipleVariants) {
+        if (stored.equals("variantes que dicen lo mismo")) {
             original.setSentences(List.of("You don't work at the bank.", "You do not work at the bank."));
+        } else if (stored.equals("variantes que dicen otra cosa primero")) {
+            original.setSentences(List.of("You do not work at the bank.", "You don't work at the bank."));
         }
         var originalSentences = List.copyOf(original.getSentences());
         var vocabulary = mock(PanelVocabularyContext.class);
@@ -82,7 +91,7 @@ class PanelMultipleChoiceProductionContractTest {
         var results = factory.create(config).runTopics(List.of(topicWork), new PanelRunSettings(1, 1, 1, List.of()),
                 factory.allowance(1, 1), decision -> {}, vocabulary);
         var decision = results.get(0).getDecisions().get(0);
-        if (multipleVariants) {
+        if (stored.equals("variantes que dicen otra cosa primero")) {
             assertEquals(PanelOutcomeKind.NO_WINNER, decision.getOutcome());
             assertNull(decision.getAccepted());
             assertTrue(decision.getRejections().stream().flatMap(rejection -> rejection.getReasons().stream())
@@ -104,11 +113,11 @@ class PanelMultipleChoiceProductionContractTest {
         assertEquals("audio", reread.getAnswerAudioUrl());
 
         var json = new ObjectMapper();
-        var stored = json.readTree(work.resolve("course/a1/determiners/much-many/quizzes.json").toFile()).get(0).path("form");
-        assertFalse(stored.has("multipleChoice"));
-        assertEquals("SINGLE", stored.path("selection").asText());
-        assertEquals(List.of("aren't", "don't", "doesn't"), json.convertValue(stored.path("items").findValues("id"), List.class));
-        assertEquals(List.of("You don't work at the bank."), json.convertValue(stored.path("sentences"), List.class));
+        var storedForm = json.readTree(work.resolve("course/a1/determiners/much-many/quizzes.json").toFile()).get(0).path("form");
+        assertFalse(storedForm.has("multipleChoice"));
+        assertEquals("SINGLE", storedForm.path("selection").asText());
+        assertEquals(List.of("aren't", "don't", "doesn't"), json.convertValue(storedForm.path("items").findValues("id"), List.class));
+        assertEquals(originalSentences, json.convertValue(storedForm.path("sentences"), List.class));
         var form = (Map<?, ?>) repository.project(reread, List.of("form")).get("form");
         assertFalse(form.containsKey("multipleChoice"));
         assertEquals(List.of(Map.of("id", "aren't", "label", "aren't", "incidence", 0.0),
