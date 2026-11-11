@@ -111,4 +111,41 @@ class MultipleChoiceConversionServiceTest {
         outcome.setAfterFindings(List.of()); batch.setContentVersion(4);
         assertThrows(IllegalArgumentException.class, () -> ConversionJudgments.requireApproved(batch, item));
     }
+    /**
+     * F-CONVERSION-R002, 11/11/2026: in the C2 of A1 «He closed the door ___ (hard / hardly).» was converted on 23/10 and
+     * the panel rewrote it on 29/10 as «He swims ___.» with good / well. The closing of the current content measured that
+     * version with both judges, and nothing marked it; the approval looked for an opinion on the intermediate version,
+     * which never reaches production, and José could never approve it -- nor publish the batch.
+     */
+    @Test void conversionApprovalReadsTheJudgesOnTheExerciseAsItReachesProductionWhenALaterCorrectionChangedIt() {
+        var place = BatchBook.place(course, "q").orElseThrow();
+        var candidate = ExistingChoiceConversion.inspect(place, false);
+        var mapper = new com.fasterxml.jackson.databind.ObjectMapper().findAndRegisterModules();
+        var before = new CourseElementSnapshot(AuditTarget.QUIZ, "q", candidate.before(), null);
+        var after = new CourseElementSnapshot(AuditTarget.QUIZ, "q", candidate.after(), null);
+        var rewritten = mapper.convertValue(candidate.after(), com.learney.contentaudit.coursedomain.QuizTemplateEntity.class);
+        rewritten.setTranslation("Otra oración, la que escribió la mesa.");
+        var reaching = new CourseElementSnapshot(AuditTarget.QUIZ, "q", rewritten, null);
+        var item = new BatchReview.Item("conversion", new BatchChangeStep("q", List.of(), after), before, after,
+                "CONVERSION", MultipleChoiceConversion.RULE + ":EXERCISE", BatchReviewDecision.Status.PENDING, null, null);
+        var proposal = new RevisionProposal(); proposal.setNodeId("q");
+        proposal.setElementBefore(before); proposal.setElementAfter(reaching);
+        var outcome = new ChangeOutcome(); outcome.setNodeId("q"); outcome.setAfterFindings(List.of());
+        outcome.setEvaluatedAnalyzers(MultipleChoiceConversion.JUDGES);
+        var results = MultipleChoiceConversion.JUDGES.stream().map(j -> new ContextOpinion.Result(j, outcome)).toList();
+        batch.setOpinionRuns(List.of(new ContextOpinion.Run("run", null, 0, 3, "fingerprint", 0, 0, "DONE",
+                Instant.now(), Instant.now(), List.of(), List.of(proposal), results, null)));
+
+        assertDoesNotThrow(() -> ConversionJudgments.requireApproved(batch, item),
+                "the judges approved the exercise as it reaches production, measured on the current content");
+
+        // What reaches production has to be the conversion still: a multiple choice with the same cloze original.
+        var backToCloze = mapper.convertValue(candidate.before(), com.learney.contentaudit.coursedomain.QuizTemplateEntity.class);
+        proposal.setElementAfter(new CourseElementSnapshot(AuditTarget.QUIZ, "q", backToCloze, null));
+        assertThrows(IllegalArgumentException.class, () -> ConversionJudgments.requireApproved(batch, item));
+        proposal.setElementAfter(reaching);
+        // And it has to be the content of today.
+        batch.setContentVersion(4);
+        assertThrows(IllegalArgumentException.class, () -> ConversionJudgments.requireApproved(batch, item));
+    }
 }

@@ -39,6 +39,8 @@ import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.conversion.MultipleChoiceConversion;
+import com.learney.contentaudit.revisiondomain.batch.BatchReviewDecision;
 import com.learney.contentaudit.revisiondomain.batch.OutcomeCount;
 import com.learney.contentaudit.revisiondomain.batchengine.TandaFixture;
 import com.learney.contentaudit.revisiondomain.blindsample.PairAnswer;
@@ -827,6 +829,41 @@ public class DefaultTrayServiceTest {
         assertEquals(List.of(BandejaFixture.vegetablesAudio()), publication.getRerecords(), "pending, for José to record");
     }
 
+
+    @Test
+    @DisplayName("should not let the tray be published while a conversion to multiple choice waits for José's approval, naming its exercise")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R007")
+    @Tag("FEAT-CONVERSION")
+    @Tag("F-CONVERSION-R002")
+    public void shouldNotLetTheTrayBePublishedWhileAConversionToMultipleChoiceWaitsForJosesApprovalNamingItsExercise() {
+        // R007 and F-CONVERSION-R002, 11/11: the C2 of A1 converts «He closed the door ___ (hard / hardly).» to
+        // multiple choice. Publishing refuses a conversion José did not approve, and the tray said it could be
+        // published: José would only have learned it at the end, without knowing which exercise.
+        BandejaFixture.Bandeja bandeja = opened();
+        answer(bandeja, RULE_ITEM, TrayAnswer.RULE_OK);
+        CorrectionBatch batch = bandeja.saved();
+        BatchChange conversion = TandaFixture.change("cloze-to-multiple-choice-" + BandejaFixture.WORK,
+                BatchChangeOrigin.CONVERSION, MultipleChoiceConversion.RULE + ":EXERCISE", List.of(),
+                TandaFixture.step(TandaFixture.exercise(bandeja.course, BandejaFixture.WORK), ExercisePart.FORM_KIND));
+        batch.getChanges().add(conversion);
+        bandeja.batches.save(batch);
+
+        Tray waiting = bandeja.tray.view();
+        assertFalse(waiting.isPublishable());
+        assertTrue(waiting.getBlockers().contains("la conversión a opción múltiple de " + BandejaFixture.WORK
+                + " espera tu aprobación: aprobala o rechazala en la revisión de la tanda"), waiting.getBlockers().toString());
+        BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
+                () -> bandeja.tray.publish("José", null));
+        assertTrue(refused.getMessage().contains("la conversión a opción múltiple de " + BandejaFixture.WORK
+                + " necesita aprobación explícita"), refused.getMessage());
+
+        bandeja.batches.saveReview(new BatchReviewDecision(batch.getId(), List.of(new BatchReviewDecision.Selection(
+                conversion.getChangeId(), conversion.getSteps().get(0))), BatchReviewDecision.Status.APPROVED, "José",
+                Instant.now()));
+        Tray approved = bandeja.tray.view();
+        assertTrue(approved.isPublishable(), approved.getBlockers().toString());
+    }
 
     private static final String FRUIT_TIE = "desempate-curso-" + BandejaFixture.FRUIT;
 

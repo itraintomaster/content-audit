@@ -157,6 +157,13 @@ se decidió, no por el id del ejercicio, que sobrevive a los cambios.
 > la tanda; al publicar, queda en el informe como «sin decidir» y sus tareas siguen abiertas. Una muestra de regla sin
 > responder deja fuera los cambios de esa regla. La muestra ciega sin responder impide publicar: el veredicto de la tanda
 > queda en «falta la muestra ciega» ([F-METAS-R008](#F-METAS-R008)).
+> Una conversión a opción múltiple que José no aprobó ni rechazó también impide publicar
+> ([F-CONVERSION-R002](../conversion-a-opcion-multiple/REQUIREMENT.md)): la bandeja lo dice antes, nombrando el
+> ejercicio, para que la apruebe o la rechace en la revisión de la tanda.
+
+**Criterio** (11/11/2026): la C2 de A1 convierte «He closed the door ___ (hard / hardly).» a opción múltiple. La bandeja
+decía que se podía publicar y `tray publish` la rechazaba con «la conversión necesita aprobación explícita», sin decir
+cuál. Ahora la bandeja frena con «la conversión a opción múltiple de 67fab6d59930102295342553 espera tu aprobación».
 
 <a id="F-BANDEJA-R008"></a>
 ### Rule[F-BANDEJA-R008] - Publicar es un solo OK, y sólo desde la bandeja

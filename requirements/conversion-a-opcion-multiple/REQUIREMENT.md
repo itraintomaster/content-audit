@@ -15,6 +15,7 @@ Primera entrega: opciones existentes en el ejercicio o en sus hermanos del mismo
 
 - Crear una corrección que lleva tipo, formulario y consigna juntos. Mostrar antes/después, procedencia y vista del alumno.
 - La aprobación requiere mediciones completas de validez y distractores para la versión y los contenidos exactos. La ausencia de hallazgos sin medición no alcanza.
+- Esa versión es la que llega a producción. Si otra corrección del mismo ejercicio lo cambió después de convertirlo, los dos jueces aprueban el ejercicio final, medido con el contenido vigente de la tanda, que tiene que seguir siendo de opción múltiple con el mismo cloze original. Criterio (11/11/2026): en la C2 de A1, «He closed the door ___ (hard / hardly).» se convirtió el 23/10 y la mesa lo reescribió el 29/10 como «He swims ___.» con good / well; el cierre vigente midió esa versión con los dos jueces, sin hallazgos. La aprobación buscaba la opinión sobre la versión intermedia, que nunca llega a producción, y José no podía aprobarla ni publicar la tanda.
 - Pedir jueces usa el flujo existente de examen, proveedor efectivo y presupuesto explícito. Detectar y sugerir no consulta modelos.
 - Rechazar o volver a Completar antes de publicar retira toda la conversión.
 

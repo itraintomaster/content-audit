@@ -5,6 +5,8 @@ import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
+import com.learney.contentaudit.revisiondomain.conversion.MultipleChoiceConversion;
+import com.learney.contentaudit.revisiondomain.batch.BatchReviewDecision;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
@@ -37,6 +39,7 @@ import com.learney.contentaudit.revisiondomain.tray.UnexpectedTrayAnswerExceptio
 import java.nio.file.Path;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
@@ -103,7 +106,48 @@ class DefaultTrayService implements TrayService {
     @Override
     public Tray view() {
         CorrectionBatch batch = open();
-        return assembler.assemble(batch, pairs(batch), blindClosed(batch), courseRepository.load(coursePath));
+        return withConversions(batch, assembler.assemble(batch, pairs(batch), blindClosed(batch),
+                courseRepository.load(coursePath)));
+    }
+
+    /**
+     * R007 and F-CONVERSION-R002: publishing refuses a conversion to multiple choice José did not approve, so the tray
+     * says it first, naming the exercise. A conversion he rejected leaves the batch with what goes with it when
+     * publishing, and stops nothing; his last decision on it is the one that counts.
+     */
+    private Tray withConversions(CorrectionBatch batch, Tray tray) {
+        if (tray == null || tray.isBlindSampleOpen() || batchStore == null) {
+            return tray;
+        }
+        List<BatchReviewDecision> decisions = new ArrayList<>(TrayBook.list(batchStore.reviews(batch.getId())));
+        decisions.sort(Comparator.comparing(BatchReviewDecision::decidedAt,
+                Comparator.nullsFirst(Comparator.naturalOrder())));
+        List<String> blockers = new ArrayList<>(TrayBook.list(tray.getBlockers()));
+        for (BatchChange change : TrayBook.list(batch.getChanges())) {
+            if (change == null || change.getDroppedReason() != null || change.getRuleId() == null
+                    || !change.getRuleId().startsWith(MultipleChoiceConversion.RULE + ":")) {
+                continue;
+            }
+            BatchReviewDecision.Status last = null;
+            for (BatchReviewDecision decision : decisions) {
+                if (TrayBook.list(decision.selections()).stream()
+                        .anyMatch(selected -> selected != null && change.getChangeId().equals(selected.changeId()))) {
+                    last = decision.status();
+                }
+            }
+            if (last == BatchReviewDecision.Status.APPROVED || last == BatchReviewDecision.Status.REJECTED) {
+                continue;
+            }
+            String exercise = TrayBook.list(change.getSteps()).stream().filter(Objects::nonNull)
+                    .map(BatchChangeStep::getQuizId).filter(Objects::nonNull).findFirst().orElse(change.getChangeId());
+            blockers.add("la conversión a opción múltiple de " + exercise
+                    + " espera tu aprobación: aprobala o rechazala en la revisión de la tanda");
+        }
+        if (blockers.size() != TrayBook.list(tray.getBlockers()).size()) {
+            tray.setBlockers(blockers);
+            tray.setPublishable(false);
+        }
+        return tray;
     }
 
     @Override

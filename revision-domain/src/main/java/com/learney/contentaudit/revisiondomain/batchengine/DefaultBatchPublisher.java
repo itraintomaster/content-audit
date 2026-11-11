@@ -307,7 +307,9 @@ class DefaultBatchPublisher implements BatchPublisher {
         for (var item : standing.items()) {
             if (ConversionJudgments.conversion(item) && item.status() != BatchReviewDecision.Status.REJECTED) {
                 if (item.status() != BatchReviewDecision.Status.APPROVED)
-                    throw new BatchNotPublishableException(batch.getId(), "la conversión necesita aprobación explícita");
+                    throw new BatchNotPublishableException(batch.getId(), "la conversión a opción múltiple de "
+                            + (item.step() != null ? item.step().getQuizId() : item.changeId())
+                            + " necesita aprobación explícita: aprobala o rechazala en la revisión de la tanda");
                 ConversionJudgments.requireApproved(batch, item);
             }
         }
