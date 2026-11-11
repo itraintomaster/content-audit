@@ -1,0 +1,192 @@
+{
+  "fuente": "Respaldo de producción del 29/9 (db/english-course) y tanda A1 C2; barrido del 11/11/2026",
+  "nota": "El texto nuevo usa ___ para el hueco. Las respuestas y las opciones de opción múltiple no cambian salvo que se indique.",
+  "graves": [
+    {
+      "id": "67fab6d59930102295343d05",
+      "por_que": "Un hombre ataca a su esposa con una pistola.",
+      "nuevo": {
+        "texto": "The man washed the car ___ a sponge.",
+        "traduccion": "El hombre lavó el coche con una esponja."
+      }
+    },
+    {
+      "id": "67fab6d59930102295343d7a",
+      "por_que": "El asesinato de una niña, para practicar una preposición.",
+      "nuevo": {
+        "texto": "This is a photo ___ a girl and her cat.",
+        "traduccion": "Esta es una foto de una niña y su gato."
+      }
+    }
+  ],
+  "medios": [
+    {
+      "id": "67fab6d599301022953448e5",
+      "por_que": "La novia muerta como ejemplo. Y «dead» también va después («The bird is dead»): el ejemplo enseñaba mal el tema.",
+      "nuevo": {
+        "texto": "She is my contact from the local art club. (main) ___",
+        "respuestas": [
+          "She is my main contact from the local art club."
+        ],
+        "traduccion": "Ella es mi contacto principal del club de arte local.",
+        "miniteoria": "$main$ sólo va antes del sustantivo: my main contact. No se dice my contact is main."
+      }
+    },
+    {
+      "id": "67fab6d599301022953438ac",
+      "por_que": "Un exasesino como compañero de trabajo.",
+      "nuevo": {
+        "texto": "The engineer who we work well with wasn't at work. ___",
+        "traduccion": "El ingeniero con quien trabajamos bien no estaba en el trabajo."
+      }
+    },
+    {
+      "id": "67fab6d5993010229534390f",
+      "por_que": "Martin lastima a unas señoras, como algo habitual.",
+      "nuevo": {
+        "texto": "Did you see the ladies ___ Martin visits?",
+        "traduccion": "¿Viste a las señoras a las que Martin visita?"
+      }
+    },
+    {
+      "id": "67fab6d59930102295342853",
+      "por_que": "Ella le pega a él, sin contexto.",
+      "nuevo": {
+        "texto": "She ___ (hit) the target.",
+        "traduccion": "Ella ha dado en el blanco."
+      }
+    },
+    {
+      "id": "67fab6d599301022953428b4",
+      "por_que": "Tom le pega a su hermano.",
+      "nuevo": {
+        "texto": "Tom ___ (hit) the ball with his racket.",
+        "traduccion": "Tom ha golpeado la pelota con su raqueta."
+      }
+    },
+    {
+      "id": "67fab6d59930102295342fe7",
+      "por_que": "Ella le pega al perro.",
+      "nuevo": {
+        "texto": "She ___ (hit) the nail with a hammer.",
+        "traduccion": "Ella golpeó el clavo con un martillo."
+      }
+    },
+    {
+      "id": "67fab6d59930102295342870",
+      "por_que": "Pegarle a un perro, aunque esté negado.",
+      "nuevo": {
+        "texto": "She ___ (not / hit) the target.",
+        "traduccion": "Ella no ha dado en el blanco."
+      }
+    },
+    {
+      "id": "67fab6d599301022953429b7",
+      "por_que": "Se acuerdan de haber robado un coche, como algo normal.",
+      "nuevo": {
+        "texto": "They remembered ___ (buy) a car.",
+        "respuestas": [
+          "buying"
+        ],
+        "traduccion": "Recordaron haber comprado un coche."
+      }
+    },
+    {
+      "id": "67fab6d59930102295343952",
+      "por_que": "Cuatro copas de vino y va por la quinta, como un chiste.",
+      "nuevo": {
+        "texto": "He's already eaten four cookies! Now he's having a fifth ___ .",
+        "traduccion": "¡Ya se ha comido cuatro galletas! Ahora se está comiendo una quinta."
+      }
+    },
+    {
+      "id": "67fab6d59930102295343918",
+      "por_que": "Llama «tonto» a una persona, y repite casi igual otro ejercicio del tema.",
+      "nuevo": {
+        "texto": "We contacted the plumber ___ you suggested yesterday.",
+        "traduccion": "Contactamos al fontanero que sugeriste ayer."
+      }
+    },
+    {
+      "id": "67fab6d59930102295341e82",
+      "por_que": "«Ellos no son blancos» se lee como color de piel.",
+      "nuevo": {
+        "texto": "They ___ ready.",
+        "traduccion": "Ellos no están listos."
+      }
+    },
+    {
+      "id": "67fab6d5993010229534271d",
+      "por_que": "El sol va a matar todo: alarmista y sin sentido.",
+      "nuevo": {
+        "texto": "Look at the sun! It ___ (be) a hot day.",
+        "respuestas": [
+          "'s going to be",
+          "is going to be"
+        ],
+        "traduccion": "¡Mira el sol! Va a ser un día caluroso."
+      }
+    },
+    {
+      "id": "67fab6d59930102295342a6d",
+      "por_que": "Sangre sin necesidad, en un ejercicio de artículos.",
+      "nuevo": {
+        "texto": "I drank ___ milk. The milk was cold.",
+        "traduccion": "Bebí leche. La leche estaba fría."
+      }
+    }
+  ],
+  "teoria": [
+    {
+      "archivo": "ittm/content/theory/b2.15.Verbs_and_Different_Prepositions.json",
+      "fila": "throw at · tirar para golpear",
+      "hoy": "He threw a stone at the dog.",
+      "nuevo": "The children threw snowballs at each other.",
+      "por_que": "Tirarle una piedra a un perro, como ejemplo normal."
+    }
+  ],
+  "leves": [
+    {
+      "id": "67fab6d599301022953428e8",
+      "hoy": "Has he ever won a war?",
+      "nuevo": "Has he ever won a prize?",
+      "trad": "¿Alguna vez ha ganado un premio?"
+    },
+    {
+      "id": "67fab6d59930102295344641",
+      "hoy": "They gave chocolate to the director whose pen they stole.",
+      "nuevo": "They gave chocolate to the director whose pen they borrowed.",
+      "trad": "Le dieron chocolate al director cuya pluma tomaron prestada."
+    },
+    {
+      "id": "67fab6d5993010229534394c",
+      "hoy": "Peter is my former lover. → Peter is a former lover of mine.",
+      "nuevo": "Peter is my former teacher. → Peter is a former teacher of mine.",
+      "trad": "Peter es un antiguo profesor mío."
+    },
+    {
+      "id": "67fab6d5993010229534435c",
+      "hoy": "Someone is going to kiss her. → She is going to be kissed.",
+      "nuevo": "Someone is going to help her. → She is going to be helped.",
+      "trad": "La van a ayudar."
+    },
+    {
+      "id": "67fab6d599301022953444a8",
+      "hoy": "“I drank all the coke” → He admitted drinking all the coke. («toda la coca»)",
+      "nuevo": "“I drank all the juice” → He admitted drinking all the juice.",
+      "trad": "Él admitió haberse bebido todo el jugo."
+    },
+    {
+      "id": "67fab6d59930102295342220",
+      "hoy": "Was he (he / be) fat?",
+      "nuevo": "Was he (he / be) tired?",
+      "trad": "¿Estaba él cansado?"
+    },
+    {
+      "id": "67fab6d59930102295342345",
+      "hoy": "a dark boy · «Un chico moreno»",
+      "nuevo": "a dark room",
+      "trad": "Una habitación oscura"
+    }
+  ]
+}
