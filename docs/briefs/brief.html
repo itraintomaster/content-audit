@@ -3,7 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>285 · Lo que faltaba para publicar la C2</title>
+<title>287 · La opción múltiple ya viaja entera</title>
+<meta name="atril:refs" content="claude/publicar-opcion-multiple 5516f43c1">
+<meta name="atril:dato" content="338 → 0|opciones múltiples afuera de la lista">
+<meta name="atril:padre" content="briefs/285">
 <meta name="atril:conversacion" content="claude:7aeb7923-ce6d-404e-87c0-0be9207254b5">
 <meta name="atril:agente" content="claude">
 <meta name="atril:hilo" content="a1">
@@ -411,214 +414,159 @@ figure.dg{margin:0 0 16px;overflow-x:auto}figure.dg>svg{display:block;width:100%
   .tag.mal{background:var(--bad-soft);color:var(--bad)} .tag.med{background:var(--warn-soft);color:var(--warn)}
   .ex .rotulo{margin-top:6px}
 </style>
+<style>
+  .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--fg-3);margin:0 4px}
+  .casos{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));margin-top:18px}
+  .casos .ex{display:grid;gap:5px}
+  .casos .ex .en{font-size:16.5px}
+  .casos .ex .t{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+  .bien{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:6px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+  .bien li{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:9px 12px;font-size:13.5px;line-height:1.4}
+  .bien li b{display:block;font-size:15px}
+</style>
 </head>
 <body>
 <div class="wrap">
 
   <header>
     <div class="kicker">
-      <span class="num">285</span>
+      <span class="num">287</span>
       <span class="badge">Hecho · te toca a vos</span>
-      <span class="meta">Publicar la C2 · C2 de A1 · 11/11/2026</span>
+      <span class="meta">Publicar la C2 · C2 de A1 · 14/11/2026</span>
     </div>
     <details class="pedido">
-      <summary><span class="k">Lo que pediste</span><span class="q">Validar que, si la revisión queda aprobada, no falte nada de código para mandar la C2 a producción.</span></summary>
+      <summary><span class="k">Lo que pediste</span><span class="q">Que avance con lo que faltaba para publicar la C2.</span></summary>
       <div class="pedido-c">
         <dl>
-          <dt>Qué estabas mirando</dt><dd>La muestra ciega de 100 pares de la C2, que estás respondiendo.</dd>
-          <dt>Qué dijiste</dt><dd>«Entiendo que se tienen que generar los audios de nuevo y demás, pero a nivel código, a nivel desarrollo, no falte nada.»</dd>
-          <dt>A qué te referías</dt><dd>Recorrer de punta a punta lo que sigue a la muestra —publicar, llevar a producción y regrabar— y arreglar lo que lo frene.</dd>
+          <dt>Qué estabas mirando</dt><dd>La muestra ciega de la C2: ibas por la mitad.</dd>
+          <dt>Qué dijiste</dt><dd>«Quisiera que avances, pero no me acuerdo qué estabas haciendo.»</dd>
+          <dt>A qué te referías</dt><dd>Seguir con la pregunta 1 del brief 285: programar que la opción múltiple llegue a producción, en una rama aparte, sin juntarla hasta que digas que sí.</dd>
         </dl>
-        <p class="de">Tu mensaje del 11/11, mientras respondías la muestra.</p>
+        <p class="de">Tu mensaje del 14/11; antes, el pedido del 11/11 de que a nivel código no falte nada.</p>
       </div>
     </details>
-    <h1>Diez arreglos de código; falta tu OK para la opción múltiple</h1>
-    <p class="sub">Recorrí en una copia todo lo que sigue a la muestra, sin tocar producción.</p>
+    <h1>La opción múltiple ya viaja entera; falta tu sí para juntarla</h1>
+    <p class="sub">Lo probé publicando una copia de la C2, sin tocar la tanda real ni producción.</p>
   </header>
 
-  <div class="lede"><p>Arreglé diez fallas que frenaban publicar, llevar a producción o regrabar; las probé en una copia de la C2. Falta una pieza que necesita tu OK: publicar la opción múltiple (338 ejercicios).</p></div>
+  <div class="lede"><p>Los 338 ejercicios de opción múltiple que quedaban afuera ahora viajan, y la lista no deja nada afuera. Está en una rama aparte: falta tu sí para juntarla.</p></div>
 
-  <p class="para-vos">Cuatro decisiones, al final. <a href="#vos">Ir a qué necesito de vos ↓</a></p>
+  <p class="para-vos">Dos decisiones, al final. <a href="#vos">Ir a qué necesito de vos ↓</a></p>
 
   <div class="saber">
     <h2>Lo que tenés que saber</h2>
     <dl>
-      <div><dt>La copia</dt><dd>Un duplicado de la C2 y del curso donde publiqué de verdad. Ni la tanda real ni producción se tocaron.</dd></div>
       <div><dt>La lista</dt><dd>Lo que publicar deja escrito para producción: cada ejercicio con su antes y su después.</dd></div>
-      <div><dt>Sin camino</dt><dd>Un cambio que la lista no lleva. El paso a producción se niega, salvo que pidas seguir sin él.</dd></div>
+      <div><dt>Bien armada</dt><dd>Una opción múltiple como las 2.810 de A1 que hay hoy en producción (abajo, qué tiene que cumplir).</dd></div>
     </dl>
   </div>
 
   <section>
-    <h2>Diez fallas de código, arregladas y probadas</h2>
-    <div class="tw"><table>
-      <thead><tr><th>Qué pasaba</th><th>Qué pasa ahora</th></tr></thead>
-      <tbody>
-        <tr><td><b>Tus excepciones</b> (22b4, 2ee7, 2544) contaban como cambios que vuelven: el veredicto decía «no pasa».</td><td>Quedan aparte, como en el cierre.</td></tr>
-        <tr><td><b>La conversión</b> de «He closed the door <span class="gap"></span> (hard / hardly).» pedía la opinión de una versión que nunca llega a producción: no se podía aprobar.</td><td>Se aprueba como llega; la bandeja avisa que espera.</td></tr>
-        <tr><td><b>Publicar tardaba horas</b>, con la tanda trabada: releía las tandas por cada uno de los 2.402 ejercicios.</td><td>3 min 26 s en la copia.</td></tr>
-        <tr><td><b>La negativa no decía por qué</b>: «147 sin evaluar», cuando la causa eran 12 rechazos tuyos.</td><td>Nombra qué salió y cómo seguir.</td></tr>
-        <tr><td><b>Espacios en los bordes</b> del enunciado: la mesa dejó 1.348 en 820 ejercicios, y la app los dibuja como una palabra vacía.</td><td>Publicar los quita; los pasos nuevos no los guardan.</td></tr>
-        <tr><td><b>Un hueco movido</b>: «swim - <span class="gap"></span>» pasó a «<span class="gap"></span> (swim)», y fallaba el control de lo que un arreglo no declara.</td><td>Se compara como cambio de armado del enunciado.</td></tr>
-        <tr><td><b>La oración guardada</b> se rearmaba al cambiar la pista y perdía su forma larga: «It 's going to rain soon.».</td><td>Cambia sólo si cambia la respuesta, con la contracción pegada. 52 vuelven a la de producción.</td></tr>
-        <tr><td><b>Audios</b>: el script no tomaba de content-audit qué grabar ni anotaba lo grabado.</td><td>Toma la lista y anota cada audio subido.</td></tr>
-        <tr><td><b>Audios después de publicar</b>: iba a grabar 233 de opción múltiple que no se publican y a saltear los 224 que sí.</td><td>Graba sólo lo publicado: 225.</td></tr>
-        <tr><td><b>«He swims <span class="gap"></span>.» en producción</b>: viajaba con la traducción vieja, y el paso a producción rechazaba la lista entera.</td><td>Viaja el ejercicio final, con su traducción y su miniteoría.</td></tr>
-      </tbody></table></div>
-    <p class="pie">Cada una con su prueba, roja antes del arreglo, y su regla en los requisitos. Todo está en main y subido.</p>
-  </section>
-
-  <section>
-    <h2>En la copia, la C2 se publica y la lista pasa</h2>
+    <h2>En la copia, ninguna opción múltiple queda afuera</h2>
     <div class="kpis">
-      <div class="kpi"><div class="n">3:26<small>min</small></div><div class="l">publicar la C2 entera; antes, horas</div></div>
-      <div class="kpi"><div class="n">1.771</div><div class="l">ejercicios y temas en la lista, con 3.637 campos</div></div>
-      <div class="kpi"><div class="n">0</div><div class="l">objeciones del validador del paso a producción, sin conectarse</div></div>
-      <div class="kpi"><div class="n">225</div><div class="l">audios para regrabar, 3 a mano; la bandeja pedía 740</div></div>
+      <div class="kpi dest"><div class="n">0</div><div class="l">cambios afuera de la lista; antes, 763 en 338 ejercicios</div></div>
+      <div class="kpi"><div class="n">2.109</div><div class="l">ejercicios y temas en la lista; antes, 1.771</div></div>
+      <div class="kpi"><div class="n">458</div><div class="l">audios para grabar, ninguno salteado; antes, 225 y 233 salteados</div></div>
+      <div class="kpi"><div class="n">3:43<small>min</small></div><div class="l">publicar la C2 entera</div></div>
     </div>
-    <p class="pie">Lo único que no pude correr es el ensayo contra producción: el control de permisos me frena leerla. Lo corrés vos (abajo).</p>
+    <p class="pie">El validador del paso a producción leyó la lista nueva sin conectarse y no objetó nada.</p>
   </section>
 
   <section>
-    <h2>338 ejercicios de opción múltiple no llegan a producción</h2>
-    <div class="ad">
-      <div class="lado antes">
-        <span class="rot">Producción hoy</span>
-        <div class="ex">
-          <span class="cons"><i>Be</i>: preguntas yes / no · «¿Soy marrón?»</span>
-          <span class="en"><span class="gap"></span> brown? (I)</span>
-          <span class="ans"><b>am i</b> ✓ · are we · are you · is he · is it · is she</span>
-        </div>
-      </div>
-      <div class="lado despues">
-        <span class="rot">Con la C2</span>
-        <div class="ex">
-          <span class="cons"><i>Be</i>: preguntas yes / no · «¿Estoy listo?»</span>
-          <span class="en"><span class="gap"></span> ready? (I)</span>
-          <span class="ans"><b>Am I</b> ✓ · Are I · Is I · I are · I is · Am I am</span>
-        </div>
-      </div>
+    <h2>Viaja entera mientras siga bien armada</h2>
+    <div class="cambia">
+      <div class="si"><div class="ptl">Cambia</div><ul><li>Viajan el enunciado, las opciones, cuál es la correcta y la oración guardada.</li><li>Hasta hoy, sólo el texto de cada opción.</li></ul></div>
+      <div class="no"><div class="ptl">No cambia</div><ul><li>Una opción múltiple mal armada queda afuera, con el motivo.</li><li>El paso a producción la revisa otra vez antes de escribir.</li></ul></div>
     </div>
-    <div class="hb" style="margin-top:18px">
-      <div class="r"><span class="t">La mesa<small>666 cambios</small></span><span class="tr"><span class="f" style="width:100%"></span></span><span class="n">310 ejercicios</span></div>
-      <div class="r"><span class="t">La regla de opción múltiple<small>93 cambios</small></span><span class="tr"><span class="f" style="width:19.4%"></span></span><span class="n">60</span></div>
-      <div class="r"><span class="t">Tus arreglos<small>4 cambios</small></span><span class="tr"><span class="f w" style="width:1%"></span></span><span class="n">2</span></div>
+    <ul class="bien">
+      <li><b>Un hueco</b>sin respuestas escritas</li>
+      <li><b>De 2 a 8 opciones</b>cada una con texto e identificador propios, sin repetir</li>
+      <li><b>Una correcta</b>y se elige una sola</li>
+    </ul>
+    <div class="call c-warn"><p>En 169 cambia la correcta o el identificador: quien tenga abierta la versión vieja puede ver una respuesta mal corregida, una vez. Conviene escribir con poco uso.</p></div>
+  </section>
+
+  <section>
+    <h2>195 cambian sus opciones; en 85 cambia la correcta</h2>
+    <div class="hb">
+      <div class="r"><span class="t">Otros distractores<small>misma correcta</small></span><span class="tr"><span class="f" style="width:100%"></span></span><span class="n">77</span></div>
+      <div class="r"><span class="t">Otra oración, otra correcta<small>que ya era una opción</small></span><span class="tr"><span class="f w" style="width:55.8%"></span></span><span class="n">43</span></div>
+      <div class="r"><span class="t">Otra oración, otra correcta<small>reescrita</small></span><span class="tr"><span class="f w" style="width:54.5%"></span></span><span class="n">42</span></div>
+      <div class="r"><span class="t">Sólo mayúsculas<small>mismas opciones</small></span><span class="tr"><span class="f g" style="width:43.2%"></span></span><span class="n">33</span></div>
     </div>
-    <p class="pie">Hoy, de opción múltiple sólo se publica el texto de cada opción (tu regla del 30/9): estos 338 quedan como en producción. Un ejercicio puede sumar varios orígenes.</p>
+    <div class="casos">
+      <div class="ex"><span class="t">Otros distractores · 2193</span>
+        <span class="en">He <span class="gap"></span> (be) at school.</span>
+        <span class="rotulo antes">Producción</span><span class="ans"><b>was</b> ✓ · was not · were · were not</span>
+        <span class="rotulo despues">Con la C2</span><span class="ans"><b>was</b> ✓ · be · were · were not · «Él estaba en la escuela.»</span></div>
+      <div class="ex"><span class="t">Otra correcta, que ya era opción · 2337</span>
+        <span class="rotulo antes">Producción</span><span class="en">Could you give me <span class="gap"></span> cup of tea?</span><span class="ans"><b>a</b> ✓ · some</span>
+        <span class="rotulo despues">Con la C2</span><span class="en">There are <span class="gap"></span> glasses on the table.</span><span class="ans">a · <b>some</b> ✓ · «Hay algunos vasos sobre la mesa.»</span></div>
+      <div class="ex"><span class="t">Otra correcta, reescrita · 21ab</span>
+        <span class="rotulo antes">Producción</span><span class="en">They <span class="gap"></span> (not / be) very young.</span><span class="ans">was · wasn't · were · <b>weren't</b> ✓</span>
+        <span class="rotulo despues">Con la C2</span><span class="en">Mary and I <span class="gap"></span> (be) at the station last night.</span><span class="ans">was · am · <b>were</b> ✓ · is · «Mary y yo estábamos en la estación anoche.»</span></div>
+      <div class="ex"><span class="t">Sólo mayúsculas · 2380</span>
+        <span class="en"><span class="gap"></span> are my keys. (the other person is holding the keys.)</span>
+        <span class="rotulo antes">Producción</span><span class="ans">that · these · this · <b>those</b> ✓</span>
+        <span class="rotulo despues">Con la C2</span><span class="ans">That · These · This · <b>Those</b> ✓ · «Esas son mis llaves.»</span></div>
+    </div>
+    <p class="pie">Los otros 143 cambian enunciado, consigna u oración, con las mismas opciones. La app muestra el texto y corrige por el identificador, que no cambia si sólo cambia el texto.</p>
+  </section>
+
+  <section>
+    <h2>Se graban 458 audios; 9 van a mano</h2>
+    <div class="ex">
+      <span class="cons">Clasificar sustantivos · 2327 · «Elige la clasificación de los tres sustantivos, en el orden en que aparecen.»</span>
+      <span class="en">water / a bus / cats <span class="gap"></span></span>
+      <span class="ans"><b>uncountable / singular countable / plural countable</b> ✓ · uncountable / plural countable / singular countable · singular countable / uncountable / plural countable</span>
+      <span class="cuenta">Se grabaría: <i class="mal">«water / a bus / cats uncountable / singular countable / plural countable»</i></span>
+    </div>
+    <p class="pie">El ensayo de audios ya los aparta: 6 de clasificar varios sustantivos y los 3 del brief 285. Los de un sustantivo suenan como hoy: «cold water for cats uncountable».</p>
+    <div class="call c-info"><p>La bandeja dice 740 porque cuenta todo texto que cambió; en 287 el audio ya dice el texto final.</p></div>
   </section>
 
   <section id="vos">
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Programo publicar la opción múltiple?</span>
-        <div class="ops"><span class="op rec">Sí, que viajen · recomendado</span><span class="op">No, que queden como en producción</span></div>
-        <span class="why">Son 763 cambios medidos por los jueces, 4 de ellos tuyos, y producción tiene dónde guardarlos.</span>
+      <div class="ask"><span class="q">1 · ¿Junto a main la publicación de opción múltiple?</span>
+        <div class="ops"><span class="op rec">Sí, juntala · recomendado</span><span class="op">No, que queden como en producción</span></div>
+        <span class="why">En la copia viajan los 338 sin dejar nada afuera. De 4.408 pruebas fallan sólo las 3 viejas de audit-cli, como en main.</span>
         <div class="ctx">
-          <p class="ctx-k">Qué se quiere lograr</p><p>Que lo que la C2 mejoró de la opción múltiple llegue al alumno: opciones que prueban lo que el tema enseña, oraciones con sentido, traducciones que corresponden.</p>
-          <p class="ctx-k">Qué cambia de tu regla</p><p>El 30/9 decidiste conservar, medir y bloquear: se mide, pero no se publica por script. Programarlo la da vuelta para lo que los jueces aprueban.</p>
+          <p class="ctx-k">Qué se quiere lograr</p><p>Que lo que la C2 mejoró de la opción múltiple llegue al alumno. Tu regla del 30/9 publicaba sólo el texto de cada opción.</p>
           <p class="ctx-k">Los caminos</p>
           <div class="caminos">
-            <div class="cam rec"><b>Programarlo</b><span>La lista lleva enunciado, opciones y cuál es la correcta; el paso a producción revisa que siga siendo una opción múltiple bien armada.</span><span>Unas horas, con pruebas, mientras terminás la muestra.</span></div>
-            <div class="cam"><b>Publicar sin ellos</b><span>Seguís con <code>--skip-unsupported</code>.</span><span>Los 338 quedan como en producción.</span></div>
+            <div class="cam rec"><b>Juntarla</b><span>La junto, compilo y anoto tu decisión en el requisito.</span><span>Publicás como siempre.</span></div>
+            <div class="cam"><b>No juntarla</b><span>El paso a producción sigue con <code>--skip-unsupported</code>.</span><span>Los 338 quedan como en producción.</span></div>
           </div>
         </div></div>
-      <div class="ask"><span class="q">2 · ¿Mantengo tus 12 rechazos de la C1?</span>
-        <div class="ops"><span class="op rec">Sí, que vuelvan a producción · recomendado</span><span class="op">No, que viaje la versión de la C2</span></div>
-        <span class="why">En 9 de los 11 ejercicios la C2 publicaría la miniteoría que rechazaste; producción tiene la general.</span>
+      <div class="ask"><span class="q">2 · ¿Cómo se graban los 6 de varios sustantivos?</span>
+        <div class="ops"><span class="op rec">Uno por uno · recomendado</span><span class="op">Como sale, con barras</span></div>
+        <span class="why">Con barras, la voz lee «water / a bus / cats uncountable / singular countable / plural countable».</span>
         <div class="ctx">
-          <p class="ctx-k">Qué hay que decidir</p><p>Si estos 11 ejercicios vuelven a como están en producción o viajan como los dejó la C2.</p>
           <p class="ctx-k">Los caminos</p>
           <div class="caminos">
-            <div class="cam rec"><b>Mantenerlos</b><span>Saco los 12 y los 8 cambios de encima, y cierro con jueces: miden los 4 temas.</span><span>Lo hago cuando termines la muestra.</span></div>
-            <div class="cam"><b>Deshacerlos</b><span>Los aprobás en la revisión y viaja la versión de la C2.</span><span>Ya está medida.</span></div>
-          </div>
-          <p class="ctx-k">Los 11 ejercicios</p>
-          <div class="tw"><table>
-            <thead><tr><th>Ejercicio</th><th>Miniteoría en producción</th><th>La que rechazaste (C1)</th><th>La que publicaría la C2</th></tr></thead>
-            <tbody>
-        <tr><td><b>25bf</b> <span class="cons">Todas las formas</span><br><span class="gap"></span> (he / know) the guy?<br><span class="cons">acepta: Does he know</span></td>
-          <td>Con he, she, it el verbo lleva <i>-s</i>. Para negar y preguntar, <i>do</i> / <i>does</i> y verbo base.</td><td>Para preguntar con <i>he</i> y <i>know</i> en presente simple, usá <i>Does</i> + <i>he</i> + <i>know</i> + el resto de la oración + <i>?</i>. Después de <i>Does</i>, el verbo va en forma base, sin <i>-s</i>.</td><td>Para preguntar con <i>he</i> y <i>know</i> en presente simple, usa <i>Does</i> + <i>he</i> + <i>know</i> + el resto de la oración + <i>?</i>. Después de <i>Does</i>, el verbo va en forma base, sin <i>-s</i>.<br><span class="tag mal">lo que rechazaste, con «tú»</span></td></tr>
-        <tr><td><b>25f5</b> <span class="cons">Todas las formas</span><br>The car <span class="gap"></span> (not / be) in the garage.<br><span class="cons">acepta: isn&#x27;t</span></td>
-          <td>Si el verbo es be va solo; el resto pide <i>do</i> / <i>does</i> para negar y preguntar.</td><td>Para negar con <i>be</i> en presente simple, con el sujeto singular <i>the car</i> usá <i>is not</i>. También podés escribir <i>isn&#x27;t</i> o contraer <i>is</i> como <i>&#x27;s</i> y dejar <i>not</i> separado. La forma <i>ain&#x27;t</i> también expresa esta negación en variedades coloquiales del inglés y se acepta aquí.</td><td>Para negar <i>be</i> en presente simple con una cosa en singular, como <i>it</i>, usa <i>is not</i>, <i>isn&#x27;t</i> o <i>&#x27;s not</i>.<br><span class="cons">acepta: isn&#x27;t, is not, &#x27;s not</span><br><span class="tag med">la C2 la reescribió</span></td></tr>
-        <tr><td><b>2601</b> <span class="cons">Todas las formas</span><br>What time <span class="gap"></span> (he / want) to arrive?<br><span class="cons">acepta: does he want</span></td>
-          <td>Mirá el verbo: be no lleva auxiliar; los demás piden <i>do</i> / <i>does</i>.</td><td>Para preguntar con <i>he</i> y <i>want</i> en presente simple, usá <i>What time</i> + <i>does</i> + <i>he</i> + <i>want</i> + el resto de la oración + <i>?</i>. Con <i>he</i>, elegí <i>does</i>; después, <i>want</i> va en forma base, sin <i>-s</i>.</td><td>Para preguntar con <i>he</i> y <i>want</i> en presente simple, usa <i>What time</i> + <i>does</i> + <i>he</i> + <i>want</i> + el resto de la oración + <i>?</i>. Con <i>he</i>, elige <i>does</i>; después, <i>want</i> va en forma base, sin <i>-s</i>.<br><span class="tag mal">lo que rechazaste, con «tú»</span></td></tr>
-        <tr><td><b>260e</b> <span class="cons">Todas las formas</span><br>When <span class="gap"></span> (they / arrive)?<br><span class="cons">acepta: do they arrive</span></td>
-          <td>Mirá el verbo: be no lleva auxiliar; los demás piden <i>do</i> / <i>does</i>.</td><td>Para preguntar cuándo llegan en presente simple, usá <i>When</i> + <i>do</i> + <i>they</i> + <i>arrive</i> + <i>?</i>: <i>When do they arrive?</i>. Con <i>they</i>, elegí <i>do</i> y mantené <i>arrive</i> en forma base.</td><td>Para preguntar cuándo llegan en presente simple, usa <i>When</i> + <i>do</i> + <i>they</i> + <i>arrive</i> + <i>?</i>: <i>When do they arrive?</i>. Con <i>they</i>, elige <i>do</i> y mantén <i>arrive</i> en forma base.<br><span class="tag mal">lo que rechazaste, con «tú»</span></td></tr>
-        <tr><td><b>260f</b> <span class="cons">Todas las formas</span><br><span class="gap"></span> (you / need) help?<br><span class="cons">acepta: Do you need</span></td>
-          <td>Mirá el verbo: be no lleva auxiliar; los demás piden <i>do</i> / <i>does</i>.</td><td>Para preguntar con <i>you</i> y <i>need</i> en presente simple, usá <i>Do</i> + <i>you</i> + <i>need</i> + el resto de la oración + <i>?</i>: <i>Do you need help?</i>. En inglés coloquial también podés preguntar con el orden sujeto + verbo y entonación de pregunta: <i>You need help?</i>. Se aceptan ambas respuestas.</td><td>Para preguntar con <i>you</i> y <i>need</i> en presente simple, usa <i>Do</i> + <i>you</i> + <i>need</i> + el resto de la oración + <i>?</i>: <i>Do you need help?</i>. En inglés coloquial también puedes preguntar con el orden sujeto + verbo y entonación de pregunta: <i>You need help?</i>. Se aceptan ambas respuestas.<br><span class="cons">acepta: Do you need, You need</span><br><span class="tag mal">lo que rechazaste, con «tú»</span></td></tr>
-        <tr><td><b>1f27</b> <span class="cons">Cambios al final</span><br>He <span class="gap"></span> (watch) TV.<br><span class="cons">acepta: watches</span></td>
-          <td>Consonante + y → <i>-ies</i>. Termina en s, sh, ch, x, o → <i>-es</i>. El resto, <i>-s</i>.</td><td>Con he, she, it, los verbos que terminan en ch agregan <i>-es</i> en presente simple: watch → watches.</td><td>Con he, she, it, los verbos que terminan en ch agregan <i>-es</i> en presente simple: watch → watches.<br><span class="tag mal">igual a lo que rechazaste</span></td></tr>
-        <tr><td><b>1f28</b> <span class="cons">Cambios al final</span><br>The student <span class="gap"></span> (study) hard.<br><span class="cons">acepta: studies</span></td>
-          <td>Consonante + y → <i>-ies</i>. Termina en s, sh, ch, x, o → <i>-es</i>. El resto, <i>-s</i>.</td><td>Con he, she, it, si el verbo termina en consonante + y, cambiamos la y por <i>-ies</i> en presente simple: study → studies.</td><td>Con he, she, it, si el verbo termina en consonante + y, cambiamos la y por <i>-ies</i> en presente simple: study → studies.<br><span class="tag mal">igual a lo que rechazaste</span></td></tr>
-        <tr><td><b>24c2</b> <span class="cons">Después de adjetivos</span><br>She&#x27;s sad <span class="gap"></span> her family.<br><span class="cons">acepta: about</span></td>
-          <td>Cada adjetivo pide la suya: <i>sad about</i>, <i>happy about</i>, <i>sorry about</i>.</td><td>Usamos <i>sad about</i> para decir que alguien está triste por algo: <i>She&#x27;s sad about her family</i>.</td><td>Usamos <i>sad about</i> o <i>sad over</i> para expresar tristeza por algo; <i>sad for</i> expresa tristeza por lo que vive otra persona.<br><span class="cons">acepta: about, for, over</span><br><span class="tag med">la C2 la reescribió</span></td></tr>
-        <tr><td><b>24c3</b> <span class="cons">Después de adjetivos</span><br>He is very bad <span class="gap"></span> remembering!<br><span class="cons">acepta: at</span></td>
-          <td>Cada adjetivo pide la suya: <i>great at</i>, <i>bad at</i>.</td><td>Usamos <i>bad at</i> para decir que alguien es malo en una actividad: <i>bad at remembering</i>.</td><td>Usamos <i>bad at</i> para decir que alguien es malo en una actividad: <i>bad at remembering</i>.<br><span class="tag mal">igual a lo que rechazaste</span></td></tr>
-        <tr><td><b>24cb</b> <span class="cons">Después de adjetivos</span><br>Are you excited <span class="gap"></span> the new car?<br><span class="cons">acepta: about</span></td>
-          <td>Cada adjetivo pide la suya: <i>good at</i>, <i>excited about</i>, <i>scared of</i>, <i>nice to</i>.</td><td>Usamos <i>excited about</i> para decir que alguien está emocionado por algo: <i>Are you excited about the new car?</i>.</td><td>Usamos <i>excited about</i> para decir que alguien está emocionado por algo: <i>Are you excited about the new car?</i>.<br><span class="tag mal">igual a lo que rechazaste</span></td></tr>
-        <tr><td><b>24d1</b> <span class="cons">Verbos y sus preposiciones</span><br>Please wait <span class="gap"></span> us.<br><span class="cons">acepta: for</span></td>
-          <td>El verbo se la lleva pegada: <i>wait for</i>, <i>listen to</i>, <i>pay for</i>, <i>talk about</i>.</td><td>Usá <i>wait for</i> para decir a quién esperás: <i>wait for us</i> significa «espéranos».</td><td>Usa <i>wait for</i> para decir a quién esperas: <i>wait for us</i> significa «espéranos».<br><span class="tag mal">lo que rechazaste, con «tú»</span></td></tr>
-            </tbody></table></div>
-        </div></div>
-      <div class="ask"><span class="q">3 · ¿Aprobás la conversión de «He closed the door ___ (hard / hardly).»?</span>
-        <div class="ops"><span class="op rec">Aprobarlos · recomendado</span><span class="op">Rechazarlos</span></div>
-        <span class="why">Sin tu respuesta no se publica. Es la única conversión de la C2, y la mesa la reescribió después.</span>
-        <div class="ctx">
-          <p class="ctx-k">El caso</p>
-          <div class="ex"><span class="cons">Adjetivo o adverbio · Elige entre el adjetivo o el adverbio.</span>
-            <span class="rotulo antes">Producción</span>
-            <span class="en">He closed the door <span class="gap"></span> (hard / hardly).</span>
-            <span class="ans">Se escribe «hard» · «Él cerró la puerta con fuerza.»</span>
-            <span class="rotulo despues">Con la C2</span>
-            <span class="en">He swims <span class="gap"></span>.</span>
-            <span class="ans">Se elige: good · <b>well</b> ✓ · «Él nada bien.»</span></div>
-          <p class="ctx-k">Qué hay que decidir</p><p>Son dos pasos: la conversión a opción múltiple y, después, la reescritura de la mesa con otra oración. Se aprueban o se rechazan juntos.</p>
-          <p class="ctx-k">Los caminos</p>
-          <div class="caminos">
-            <div class="cam rec"><b>Aprobarlos</b><span>Llega «He swims ___.» con good / well, su traducción y su miniteoría.</span><span>Los dos jueces de la conversión ya lo midieron, sin hallazgos.</span></div>
-            <div class="cam"><b>Rechazarlos</b><span>Queda el cloze de producción, con «hard».</span><span>Sale de la tanda; el cierre mide su tema.</span></div>
-          </div>
-          <p class="ctx-k">Dónde</p><p>Correcciones → la revisión de la tanda.</p>
-        </div></div>
-      <div class="ask"><span class="q">4 · Contestá las 6 muestras de reglas antes del último cierre</span>
-        <div class="ops"><span class="op rec">Contestarlas · recomendado</span><span class="op">Dejarlas sin contestar</span></div>
-        <span class="why">Una regla sin aprobar sale al publicar: son 795 cambios, y lo que queda no estaría medido.</span>
-        <div class="ctx">
-          <p class="ctx-k">Qué hay que decidir</p><p>Para cada regla, si sus cambios viajan o salen: completar respuestas (377), registro del español (342), opción múltiple (61), pista (6), gramática (6) y datos (3).</p>
-          <p class="ctx-k">Por qué antes del cierre</p><p>Si sacás una antes, el último cierre mide lo que queda. Si sale recién al publicar, la publicación se niega, como pasó en la copia con los rechazos.</p>
-          <div class="caminos">
-            <div class="cam rec"><b>Contestarlas</b><span>Lo aprobado viaja; lo que no, sale antes del cierre.</span><span>En el tablero.</span></div>
-            <div class="cam"><b>Dejarlas</b><span>Los 795 salen al publicar.</span><span>La publicación se niega hasta volver a cerrar con jueces.</span></div>
+            <div class="cam rec"><b>Uno por uno</b><span>«water: uncountable; a bus: singular countable; cats: plural countable».</span><span>Lo escribo en los 6 antes de grabar.</span></div>
+            <div class="cam"><b>Como sale</b><span>Se graba el texto tal cual.</span><span>Las barras no se leen.</span></div>
           </div>
         </div></div>
     </div>
+    <p class="pie">Siguen abiertas las preguntas 2 a 4 del 285: tus 12 rechazos de la C1, «He swims ___.» y las 6 muestras de reglas.</p>
   </section>
 
   <section>
     <h2>Qué sigue, en orden</h2>
     <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">Terminás la muestra y decidís</span><span class="eg">los 100 pares · las 4 preguntas</span><span class="d">Todo en el tablero.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">Compilo y mido lo que falta</span><span class="eg">52 oraciones · tus rechazos</span><span class="d">Unas 140 consultas; la muestra no cambia.</span></div>
+      <div class="st"><span class="i">1</span><span class="h">Terminás la muestra y decidís</span><span class="eg">estas 2 · las 3 del 285</span><span class="d">Todo en el tablero.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Junto, compilo y mido</span><span class="eg">la rama · lo que falta</span><span class="d">Unas 140 consultas.</span></div>
       <div class="st"><span class="i">3</span><span class="h">Publicás</span><span class="eg">la bandeja · Publicar</span><span class="d">Deja la lista.</span></div>
-      <div class="st"><span class="i">4</span><span class="h">Ensayo y paso a producción</span><span class="eg">primero sin escribir</span><span class="d">Lo corrés vos: a mí me frena el permiso.</span></div>
-      <div class="st end"><span class="i">5</span><span class="h">Regrabar</span><span class="eg">225 audios · 3 a mano</span><span class="d">Al subir, quedan en el registro.</span></div>
+      <div class="st"><span class="i">4</span><span class="h">Ensayo y producción</span><span class="eg">primero sin escribir</span><span class="d">Lo corrés vos.</span></div>
+      <div class="st end"><span class="i">5</span><span class="h">Regrabar</span><span class="eg">458 audios · 9 a mano</span><span class="d">Quedan en el registro.</span></div>
     </div>
-<pre># 4 · ensayo: no escribe. Después, el mismo con --apply y --expect-destination
-URI=$(grep -m1 defaultMongoUri ~/projects/learney/ittm/be/application/serverless/aws-lambda-handler/cmd/config.yaml | sed -E 's/.*&defaultMongoUri //')
-python3 scripts/publish_revisions.py --batch tanda-A1-c2-1f1d898f-3ba9-3fcc-bc91-a104f79e53ca \
-  --workdir .content-audit/campaigns/a1-v11 --uri "$URI"
-
-# 5 · audios: desde lo que publicaste
-python3 scripts/regenerate_quiz_audios.py --workdir &lt;dir&gt; desde-preparacion --preparacion &lt;batch audio read&gt; \
-  --publicacion .content-audit/campaigns/a1-v11/.content-audit/batch-publications/&lt;tanda&gt;/manifest.json
-# después: preflight · dryrun · backup · synth · upload · verify · registrar</pre>
-    <div class="call c-warn"><p>Tres audios van a mano: dos se graban como «You'll play with us.» y «They'll call us soon.». El tercero, «She wrote ___.», está roto en producción: acepta «from Monday to» y «until».</p></div>
-    <div class="call c-info"><p>Sin arreglar, no frenan: la bandeja lista 740 audios en vez de 225, y cada intento de publicar engorda la tanda.</p></div>
   </section>
 
   <footer>
-    <span>Arreglos en main: F-BANDEJA-R011, F-CONVERSION-R002/R004, F-PUBPROD-R002/R003, F-TAREA-R006, F-DATOS-R007 · a5f9f4468…a027ce6b6</span>
-    <span>brief 285 · docs/briefs/285-lo-que-faltaba-para-publicar-la-c2.html</span>
+    <span>Rama claude/publicar-opcion-multiple · 5ca925824, 5516f43c1 · F-PUBPROD-R001 inv. 6, R002 inv. 4 · WellFormedMultipleChoice, multiple_choice.py</span>
+    <span>brief 287 · docs/briefs/287-la-opcion-multiple-ya-viaja-entera.html</span>
   </footer>
 
 </div>
