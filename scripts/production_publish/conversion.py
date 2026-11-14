@@ -12,6 +12,7 @@ the same compare-and-set.
 """
 import re
 
+from . import multiple_choice
 from .store import same_value
 
 PATHS = frozenset(('kind', 'form', 'instructions', 'clozeOriginal'))
@@ -131,16 +132,7 @@ def _final_problem(cloze, mc):
     parts = mc.get('sentenceParts')
     if not isinstance(parts, list) or any(not isinstance(p, dict) or p.get('kind') not in ('TEXT', 'CLOZE') for p in parts):
         return 'Las partes del enunciado son inválidas.'
-    gaps = [p for p in parts if p.get('kind') == 'CLOZE']
-    if len(gaps) != 1 or gaps[0].get('options') is not None or any(not isinstance(p.get('text') or '', str) for p in parts):
-        return 'El ejercicio final necesita un solo hueco, sin respuestas escritas.'
-    items = mc.get('items')
-    if mc.get('selection') != 'SINGLE' or not isinstance(items, list) or not 2 <= len(items) <= 8:
-        return 'La conversión necesita un hueco y entre dos y ocho opciones, con selección única.'
-    if any(not isinstance(i, dict) or not isinstance(i.get('label'), str) or not i['label'].strip()
-           or type(i.get('incidence')) not in (int, float) or i['incidence'] not in (0, 1) for i in items):
-        return 'Las opciones deben tener texto y una incidencia de 0 o 1.'
-    labels = [i['label'].strip().replace('’', "'").casefold() for i in items]
-    if len(set(labels)) != len(labels) or sum(1 for i in items if i['incidence'] == 1) != 1:
-        return 'Debe haber una sola correcta y ninguna opción repetida.'
+    problem = multiple_choice.problem(mc)
+    if problem:
+        return 'El ejercicio final no es una opción múltiple bien armada: %s.' % problem
     return None

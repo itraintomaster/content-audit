@@ -123,7 +123,7 @@ class BuildTest(unittest.TestCase):
 
 
 class MultipleChoiceTest(unittest.TestCase):
-    """De opción múltiple solo viaja la etiqueta de cada opción (F-PUBPROD-R002 inv. 4, TRASPASO §6)."""
+    """De opción múltiple viaja el formulario si queda bien armada: un solo hueco (F-PUBPROD-R002 inv. 4)."""
 
     STATEMENT = {"path": "form.sentenceParts", "before": [{"kind": "TEXT", "text": "I ___ happy."}],
                  "after": [{"kind": "TEXT", "text": "I ___ very happy."}]}
@@ -150,17 +150,31 @@ class MultipleChoiceTest(unittest.TestCase):
         self.assertIsNone(find(plan, "quizTemplates", fakes.QUIZ_3).blocked)
         self.assertIn("quizTemplates/" + fakes.QUIZ_3, [d.key for d in plan.to_write()])
 
-    def test_F_PUBPROD_R002_de_opcion_multiple_otra_ruta_del_formulario_bloquea(self):
+    ONE_GAP = {"path": "form.sentenceParts", "before": [{"kind": "TEXT", "text": "I ___ happy."}],
+               "after": [{"kind": "TEXT", "text": "I", "options": None}, {"kind": "CLOZE", "text": "", "options": None},
+                         {"kind": "TEXT", "text": "very happy.", "options": None}]}
+
+    def test_F_PUBPROD_R002_de_opcion_multiple_el_enunciado_y_la_oracion_viajan(self):
         sentences = {"path": "form.sentences", "before": [], "after": ["I am happy."]}
-        for extra in (self.STATEMENT, sentences):
+        for extra in (self.ONE_GAP, sentences):
             with self.subTest(path=extra["path"]):
                 plan = plan_for(manifest=self.manifest_with_quiz_3(extra))
-                self.assertBlocked(plan, write_plan.BLOCK_MC_BEYOND_LABEL)
+                self.assertIsNone(find(plan, "quizTemplates", fakes.QUIZ_3).blocked)
+
+    def test_F_PUBPROD_R002_de_opcion_multiple_un_enunciado_sin_un_solo_hueco_bloquea(self):
+        two_gaps = copy.deepcopy(self.ONE_GAP)
+        two_gaps["after"].append({"kind": "CLOZE", "text": "", "options": None})
+        written = copy.deepcopy(self.ONE_GAP)
+        written["after"][1]["options"] = ["am"]
+        for extra in (self.STATEMENT, two_gaps, written):
+            with self.subTest(after=extra["after"]):
+                plan = plan_for(manifest=self.manifest_with_quiz_3(extra))
+                self.assertBlocked(plan, write_plan.BLOCK_MC_MALFORMED)
 
     def test_F_PUBPROD_R002_lo_bloqueado_no_se_saltea_con_skip_drift(self):
         # Además de bloqueado tiene deriva (el ejercicio no tiene sentenceParts): igual frena.
         plan = plan_for(skip_drift=True, manifest=self.manifest_with_quiz_3(self.STATEMENT))
-        self.assertBlocked(plan, write_plan.BLOCK_MC_BEYOND_LABEL)
+        self.assertBlocked(plan, write_plan.BLOCK_MC_MALFORMED)
         self.assertFalse(find(plan, "quizTemplates", fakes.QUIZ_3).skipped)
 
     def test_F_PUBPROD_R002_opciones_para_un_ejercicio_que_no_es_de_opcion_multiple_bloquean(self):

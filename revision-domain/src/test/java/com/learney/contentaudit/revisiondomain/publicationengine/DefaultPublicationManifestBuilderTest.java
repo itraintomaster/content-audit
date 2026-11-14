@@ -200,66 +200,111 @@ public class DefaultPublicationManifestBuilderTest {
     }
 
     @Test
-    @DisplayName("should declare apart, and leave out of the list, a change of which option is correct, of the way of choosing, of the number of options or of the identifier of an option")
+    @DisplayName("should carry a multiple choice exercise whose correct option, number of options or identifiers changed, as long as it stays well formed")
     @Tag("FEAT-PUBPROD")
-    @Tag("F-PUBPROD-R001")
     @Tag("F-PUBPROD-R002")
-    public void shouldDeclareApartAChangeOfTheMultipleChoiceBeyondTheTextOfItsOptions() {
+    public void shouldCarryAMultipleChoiceThatStaysWellFormedWhateverOfItsOptionsChanged() {
+        // inv. 4: la C2 de A1 cambió las opciones de «___ brown? (I)» —otra correcta, otras opciones, otros
+        // identificadores—. Mientras quede bien armado, el ejercicio viaja con sus opciones enteras.
         QuizTemplateEntity anotherCorrect = multipleChoice("q1", "SINGLE", option("at", 0.0, "at"),
                 option("in", 1.0, "in"), option("on", 0.0, "on"));
-        QuizTemplateEntity anotherWay = multipleChoice("q2", "MULTIPLE", option("at", 1.0, "at"),
-                option("in", 0.0, "in"), option("on", 0.0, "on"));
-        QuizTemplateEntity oneMore = multipleChoice("q3", "SINGLE", option("at", 1.0, "at"), option("in", 0.0, "in"),
+        QuizTemplateEntity oneMore = multipleChoice("q2", "SINGLE", option("at", 1.0, "at"), option("in", 0.0, "in"),
                 option("on", 0.0, "on"), option("to", 0.0, "to"));
-        QuizTemplateEntity anotherId = multipleChoice("q4", "SINGLE", option("at", 1.0, "at"),
+        QuizTemplateEntity anotherId = multipleChoice("q3", "SINGLE", option("at", 1.0, "at"),
                 option("in", 0.0, "in"), option("to", 0.0, "to"));
         List<PublishedElement> elements = new ArrayList<>();
-        int n = 1;
-        for (QuizTemplateEntity after : List.of(anotherCorrect, anotherWay, oneMore, anotherId)) {
+        for (QuizTemplateEntity after : List.of(anotherCorrect, oneMore, anotherId)) {
             QuizTemplateEntity before = multipleChoice(after.getId(), "SINGLE", option("at", 1.0, "at"),
                     option("in", 0.0, "in"), option("on", 0.0, "on"));
-            elements.add(new PublishedElement(snapshot(before), snapshot(after), "prop-" + n,
-                    DocumentReviewStatus.PENDING, steps(step("task-" + n, ExercisePart.OPTIONS,
-                            ExercisePart.TRANSLATION))));
-            n++;
+            elements.add(new PublishedElement(snapshot(before), snapshot(after), "prop-" + after.getId(),
+                    DocumentReviewStatus.PENDING, steps(step("task-" + after.getId(), ExercisePart.OPTIONS))));
         }
 
         PublicationManifest manifest = builder.build(request(elements));
 
-        assertTrue(manifest.documents().isEmpty(), "ninguno de los cuatro va en la lista: " + manifest.documents());
-        assertEquals(List.of("q1", "q2", "q3", "q4"), manifest.unsupported().stream().map(ManifestUnsupported::nodeId)
-                .toList());
-        for (ManifestUnsupported held : manifest.unsupported()) {
-            assertEquals(ExercisePart.OPTIONS, held.part());
-            assertTrue(held.reason().contains("sólo se publica el texto de cada opción"), held.reason());
-            assertTrue(held.reason().contains("no se publica por script"), held.reason());
+        assertTrue(manifest.unsupported().isEmpty(), manifest.unsupported().toString());
+        assertEquals(List.of("q1", "q2", "q3"), manifest.documents().stream().map(ManifestDocument::id).toList());
+        for (ManifestDocument document : manifest.documents()) {
+            assertEquals(List.of("form.items"), document.fields().stream().map(ManifestField::path).toList());
         }
-        assertEquals(0, manifest.counts().documents());
-        assertEquals(0, manifest.counts().fields());
+        @SuppressWarnings("unchecked")
+        List<Map<String, Object>> items = (List<Map<String, Object>>) manifest.documents().get(0).fields().get(0)
+                .after();
+        assertEquals(List.of(0.0, 1.0, 0.0), items.stream().map(item -> item.get("incidence")).toList());
+        assertEquals(4, ((List<?>) manifest.documents().get(1).fields().get(0).after()).size());
     }
 
     @Test
-    @DisplayName("should carry from a multiple choice exercise only the text of its options among its form, with its translation, instructions and mini theory, and declare apart, counted, any other change of its form")
+    @DisplayName("should declare apart, with what it lacks, a multiple choice exercise that would no longer be well formed")
     @Tag("FEAT-PUBPROD")
     @Tag("F-PUBPROD-R001")
     @Tag("F-PUBPROD-R002")
-    public void shouldCarryFromAMultipleChoiceOnlyTheTextOfItsOptionsAmongItsForm() {
-        // q1: la traducción, la consigna, la miniteoría y el texto de una opción — va.
+    public void shouldDeclareApartAMultipleChoiceThatWouldNoLongerBeWellFormed() {
+        // inv. 4: producción no tiene ninguna opción múltiple con dos correctas, una sola opción, opciones repetidas,
+        // elección de varias o dos huecos; la lista no se la lleva y dice qué le falta.
+        Map<String, QuizTemplateEntity> cases = new LinkedHashMap<>();
+        cases.put("2 correctas", multipleChoice("q1", "SINGLE", option("at", 1.0, "at"), option("in", 1.0, "in"),
+                option("on", 0.0, "on")));
+        cases.put("1 opción", multipleChoice("q2", "SINGLE", option("at", 1.0, "at")));
+        cases.put("repite", multipleChoice("q3", "SINGLE", option("at", 1.0, "at"), option("in", 0.0, "in"),
+                option("in2", 0.0, "In")));
+        cases.put("varias", multipleChoice("q4", "MULTIPLE", option("at", 1.0, "at"), option("in", 0.0, "in"),
+                option("on", 0.0, "on")));
+        QuizTemplateEntity twoGaps = multipleChoice("q5", "SINGLE", "on");
+        twoGaps.getForm().setSentenceParts(List.of(new SentencePartEntity(SentencePartKind.CLOZE, null, null),
+                new SentencePartEntity(SentencePartKind.TEXT, " am ", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, null, null)));
+        cases.put("2 huecos", twoGaps);
+        QuizTemplateEntity noText = multipleChoice("q6", "SINGLE", option("at", 1.0, "at"), option("in", 0.0, " "),
+                option("on", 0.0, "on"));
+        cases.put("sin texto", noText);
+        List<PublishedElement> elements = new ArrayList<>();
+        for (QuizTemplateEntity after : cases.values()) {
+            after.setTranslation("Estoy en casa.");
+            QuizTemplateEntity before = multipleChoice(after.getId(), "SINGLE", "on");
+            elements.add(new PublishedElement(snapshot(before), snapshot(after), "prop-" + after.getId(),
+                    DocumentReviewStatus.PENDING, steps(step("task-" + after.getId(), ExercisePart.OPTIONS,
+                            ExercisePart.STATEMENT, ExercisePart.TRANSLATION))));
+        }
+
+        PublicationManifest manifest = builder.build(request(elements));
+
+        assertTrue(manifest.documents().isEmpty(), "ninguno va, tampoco su traducción: " + manifest.documents());
+        List<String> reasons = manifest.unsupported().stream().map(ManifestUnsupported::reason).toList();
+        assertEquals(List.of("q1", "q2", "q3", "q4", "q5", "q6"), manifest.unsupported().stream()
+                .map(ManifestUnsupported::nodeId).distinct().toList());
+        assertTrue(reasons.get(0).contains("tiene 2 correctas"), reasons.get(0));
+        assertTrue(reasons.stream().anyMatch(r -> r.contains("tiene 1 opción")), reasons.toString());
+        assertTrue(reasons.stream().anyMatch(r -> r.contains("repite la opción «In»")), reasons.toString());
+        assertTrue(reasons.stream().anyMatch(r -> r.contains("elige más de una")), reasons.toString());
+        assertTrue(reasons.stream().anyMatch(r -> r.contains("tiene 2 huecos")), reasons.toString());
+        assertTrue(reasons.stream().anyMatch(r -> r.contains("una opción no tiene texto")), reasons.toString());
+        assertTrue(reasons.stream().allMatch(r -> r.contains("no se publica por script")), reasons.toString());
+        assertEquals(0, manifest.counts().documents());
+    }
+
+    @Test
+    @DisplayName("should carry from a multiple choice exercise its statement and its stored sentence with its translation, instructions and mini theory")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R001")
+    @Tag("F-PUBPROD-R002")
+    public void shouldCarryFromAMultipleChoiceItsStatementAndItsStoredSentenceToo() {
+        // q1: la traducción, la consigna, la miniteoría y el texto de una opción.
         QuizTemplateEntity labelsBefore = multipleChoice("q1", "SINGLE", "on");
         QuizTemplateEntity labelsAfter = multipleChoice("q1", "SINGLE", option("at", 1.0, "at"),
                 option("in", 0.0, "in"), option("on", 0.0, "to"));
         labelsAfter.setTranslation("Estoy en casa.");
         labelsAfter.setInstructions("Elegí la preposición.");
         labelsAfter.setMiniTheory("«at home» va sin artículo.");
-        // q2: el enunciado de la opción múltiple, con el texto de una opción y la traducción — no va.
+        // q2: el enunciado, con el texto de una opción y la traducción (la C2: «___ brown? (I)» → «___ ready? (I)»).
         QuizTemplateEntity statementBefore = multipleChoice("q2", "SINGLE", "on");
         QuizTemplateEntity statementAfter = multipleChoice("q2", "SINGLE", option("at", 1.0, "at"),
                 option("in", 0.0, "in"), option("on", 0.0, "to"));
-        statementAfter.getForm().setSentenceParts(List.of(new SentencePartEntity(SentencePartKind.TEXT, "She is ", null),
+        statementAfter.getForm().setSentenceParts(List.of(new SentencePartEntity(SentencePartKind.TEXT, "She is", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, null, null),
-                new SentencePartEntity(SentencePartKind.TEXT, " home.", null)));
+                new SentencePartEntity(SentencePartKind.TEXT, "home.", null)));
         statementAfter.setTranslation("Ella está en casa.");
-        // q3: la oración guardada de la opción múltiple — no va.
+        // q3: la oración guardada.
         QuizTemplateEntity storedBefore = multipleChoice("q3", "SINGLE", "on");
         QuizTemplateEntity storedAfter = multipleChoice("q3", "SINGLE", "on");
         storedAfter.setSentences(List.of("I am at home."));
@@ -275,18 +320,15 @@ public class DefaultPublicationManifestBuilderTest {
                         DocumentReviewStatus.PENDING, steps(step("task-4", ExercisePart.STORED_SENTENCE,
                                 ExercisePart.TRANSLATION))))));
 
-        assertEquals(List.of("q1"), manifest.documents().stream().map(ManifestDocument::id).toList());
+        assertTrue(manifest.unsupported().isEmpty(), manifest.unsupported().toString());
+        assertEquals(List.of("q1", "q2", "q3"), manifest.documents().stream().map(ManifestDocument::id).toList());
         assertEquals(List.of("translation", "instructions", "miniTheory", "form.items"),
                 manifest.documents().get(0).fields().stream().map(ManifestField::path).toList());
-        assertEquals(List.of(new ManifestUnsupported("task-3", "q2", ExercisePart.STATEMENT,
-                        DefaultPublicationManifestBuilder.MULTIPLE_CHOICE_BEYOND_LABEL),
-                new ManifestUnsupported("task-4", "q3", ExercisePart.STORED_SENTENCE,
-                        DefaultPublicationManifestBuilder.MULTIPLE_CHOICE_BEYOND_LABEL)), manifest.unsupported(),
-                "cada cambio que tocó el formulario más allá del texto de las opciones queda declarado aparte");
-        assertTrue(manifest.unsupported().get(0).reason().contains("el enunciado"), manifest.unsupported().get(0)
-                .reason());
-        assertEquals(1, manifest.counts().documents());
-        assertEquals(4, manifest.counts().fields(), "la traducción de q2 y q3 no viaja sola");
+        assertEquals(List.of("translation", "form.sentenceParts", "form.items"),
+                manifest.documents().get(1).fields().stream().map(ManifestField::path).toList());
+        assertEquals(List.of("form.sentences"),
+                manifest.documents().get(2).fields().stream().map(ManifestField::path).toList());
+        assertEquals(List.of("I am at home."), manifest.documents().get(2).fields().get(0).after());
     }
 
     @Test

@@ -18,7 +18,7 @@ import os
 import re
 
 from .store import same_value
-from . import conversion
+from . import conversion, multiple_choice
 
 SCHEMA = 1
 
@@ -32,7 +32,7 @@ COLLECTIONS = (KNOWLEDGES, QUIZ_TEMPLATES)
 # Una ruta que no esté acá se niega: la tabla es un contrato con el lado Java.
 WRITABLE_PATHS = {
     QUIZ_TEMPLATES: ("form.sentences", "translation", "instructions", "miniTheory",
-                     "form.sentenceParts", "form.items", "kind", "form", "clozeOriginal"),
+                     "form.sentenceParts", "form.items", "form.selection", "kind", "form", "clozeOriginal"),
     KNOWLEDGES: ("instructions",),
 }
 
@@ -271,37 +271,26 @@ def _check_after_type(path, after, where, problems):
             isinstance(p, dict) and isinstance(p.get("text"), str) for p in after)
         expected = "una lista de partes, cada una con su text"
     elif path == "form.items":
-        ok = isinstance(after, list) and all(isinstance(i, dict) for i in after)
+        ok = isinstance(after, list)
         expected = "una lista de opciones"
+    elif path == "form.selection":
+        ok, expected = isinstance(after, str), "un texto"
     else:
         ok, expected = False, "una ruta conocida"
     if not ok:
         problems.append(("BAD_VALUE", "%s: el después de «%s» tiene que ser %s." % (where, path, expected)))
 
 
-def only_labels_change(before, after):
-    """Si dos listas de opciones difieren solo en la etiqueta de cada opción (TRASPASO §6).
-
-    El id es la etiqueta en minúscula del original y la incidencia marca la correcta:
-    cambiarlos, o cambiar la cantidad de opciones, no viaja por script.
-    """
-    if not isinstance(before, list) or not isinstance(after, list) or len(before) != len(after):
-        return False
-    for old, new in zip(before, after):
-        if not isinstance(old, dict) or not isinstance(new, dict):
-            return False
-        if not same_value({k: v for k, v in old.items() if k != "label"},
-                          {k: v for k, v in new.items() if k != "label"}):
-            return False
-    return True
-
-
-def _check_multiple_choice(path, before, after, where, problems):
-    """De las opciones solo se publica la etiqueta (la selección ni siquiera está en la tabla)."""
-    if path == "form.items" and not only_labels_change(before, after):
-        problems.append(("MULTIPLE_CHOICE_BEYOND_LABEL",
-                         "%s: las opciones cambian algo más que su etiqueta (cantidad, id o incidencia); "
-                         "en opción múltiple solo se publica la etiqueta de cada opción." % where))
+def _check_multiple_choice(path, after, where, problems):
+    """Las opciones y la forma de elegir viajan si la opción múltiple queda bien armada (inv. 4)."""
+    problem = None
+    if path == "form.items":
+        problem = multiple_choice.items_problem(after)
+    elif path == "form.selection":
+        problem = multiple_choice.selection_problem(after)
+    if problem:
+        problems.append(("MULTIPLE_CHOICE_MALFORMED",
+                         "%s: la opción múltiple quedaría mal armada: %s." % (where, problem)))
 
 
 def _is_text(value):
@@ -459,7 +448,7 @@ def _field_problems(field, collection, where, seen_paths, problems, atomic_conve
     _walk_keys(after, path, problems, where)
     if not restored_null_instruction:
         _check_after_type(path, after, where, problems)
-    _check_multiple_choice(path, before, after, where, problems)
+    _check_multiple_choice(path, after, where, problems)
     if same_value(before, after) and not (atomic_conversion and path in conversion.PATHS):
         problems.append(("UNCHANGED_FIELD", "%s: «%s» trae el mismo antes y después." % (where, path)))
     return path
