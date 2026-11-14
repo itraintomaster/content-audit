@@ -64,4 +64,26 @@ class WellFormedMultipleChoiceTest {
         assertEquals(Optional.of("repite la opción «I’m»"), WellFormedMultipleChoice.problem(PARTS,
                 items(item("I'm", 1.0, "I'm"), item("I’m", 0.0, "I’m")), "SINGLE"));
     }
+
+    @Test
+    @DisplayName("should say an option lacks its text or its identifier whatever shape it comes in")
+    void shouldSayAnOptionLacksItsTextOrItsIdentifierWhateverShapeItComesIn() {
+        Map<String, Object> withoutId = new java.util.HashMap<>(Map.of("incidence", 0.0, "label", "is"));
+        Map<String, Object> blankId = new java.util.HashMap<>(Map.of("id", " ", "incidence", 0.0, "label", "is"));
+        Map<String, Object> numberLabel = new java.util.HashMap<>(Map.of("id", "is", "incidence", 0.0, "label", 3));
+        List<Object> notAnOption = new ArrayList<>(List.of(item("am", 1.0, "am"), "Is"));
+
+        assertEquals(Optional.of("una opción no tiene texto"), WellFormedMultipleChoice.problem(PARTS, notAnOption,
+                "SINGLE"));
+        assertEquals(Optional.of("una opción no tiene texto"), WellFormedMultipleChoice.problem(PARTS,
+                items(item("am", 1.0, "am"), numberLabel), "SINGLE"));
+        assertEquals(Optional.of("una opción no tiene texto"), WellFormedMultipleChoice.problem(PARTS,
+                items(item("am", 1.0, "am"), item("is", 0.0, " ")), "SINGLE"));
+        assertEquals(Optional.of("la opción «is» no tiene un identificador propio"), WellFormedMultipleChoice.problem(
+                PARTS, items(item("am", 1.0, "am"), withoutId), "SINGLE"));
+        assertEquals(Optional.of("la opción «is» no tiene un identificador propio"), WellFormedMultipleChoice.problem(
+                PARTS, items(item("am", 1.0, "am"), blankId), "SINGLE"));
+        assertEquals(Optional.of("la opción «is» vale texto; cada una vale 0 o 1"), WellFormedMultipleChoice.problem(
+                PARTS, items(item("am", 1.0, "am"), item("is", "texto", "is")), "SINGLE"));
+    }
 }
