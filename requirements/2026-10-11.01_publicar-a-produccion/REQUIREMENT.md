@@ -59,9 +59,9 @@ todavía coincide con el antes y el después del paso ([F-TANDA-R007](#F-TANDA-R
 > 3. si la lista no se puede dejar, no se publica y el curso no se toca;
 > 4. la publicación registra la huella de la lista: una lista que cambió después ya no es la de la tanda;
 > 5. un campo que la tabla de la corrección declara y no tiene lugar en producción frena la publicación y lo nombra;
-> 6. lo que cambió y no se lleva a producción por este camino —un cambio de tipo de ejercicio, o de la opción múltiple
->    más allá del texto de sus opciones ([F-PUBPROD-R002](#F-PUBPROD-R002), inv. 4)— se declara aparte, con el cambio,
->    el ejercicio, la parte y el motivo «no se publica por script», y ese ejercicio no va en la lista.
+> 6. lo que cambió y no se lleva a producción por este camino —un cambio de tipo de ejercicio, o una opción múltiple
+>    que no queda bien armada ([F-PUBPROD-R002](#F-PUBPROD-R002), inv. 4)— se declara aparte, con el cambio, el
+>    ejercicio, la parte y el motivo, y ese ejercicio no va en la lista.
 > 7. la lista dice de qué tanda, plan y nivel sale, cuándo se publicó y quién la aprobó; si falta alguno de esos datos
 >    la lista no se deja —como en el inv. 3— y la negativa nombra lo que falta.
 
@@ -89,18 +89,20 @@ una lista con ese ejercicio —`translation` y `miniTheory`, cada uno con su ant
 
 > Los campos de la lista salen de la misma tabla de partes a campos que decide qué puede cambiar una corrección
 > ([F-TAREA-R006](#F-TAREA-R006)): la oración guardada, la traducción, la consigna, la miniteoría, las partes del
-> enunciado —enteras—, el texto de cada opción de la opción múltiple y la consigna del tema. Invariantes:
+> enunciado —enteras—, las opciones de la opción múltiple y su forma de elegir, y la consigna del tema. Invariantes:
 > 1. nunca el identificador del ejercicio o del tema, ni el tipo de ejercicio, ni el tipo, la incidencia, la etiqueta o
 >    el nombre del formulario;
 > 2. el título de los ejercicios y el nombre del tema no van en la lista: siguen su camino por plan; lo que se oye
 >    tampoco: se regraba ([F-TANDA-R012](#F-TANDA-R012));
 > 3. los valores van como los guarda producción: los números como números, un texto vacío como texto vacío —nunca
 >    ausente— y la oración guardada ausente como una lista vacía;
-> 4. de un ejercicio de opción múltiple —lo dice su propio tipo— sólo se publica, de su formulario, el texto de cada
->    opción: un cambio de su enunciado, de su oración guardada, de cuál es la correcta, de la forma de elegir, de la
->    cantidad de opciones o del identificador de una opción no se publica por script; se declara aparte, con cada
->    cambio que lo tocó, como un cambio de tipo ([F-PUBPROD-R001](#F-PUBPROD-R001), inv. 6), y ese ejercicio no va en
->    la lista; su traducción, su consigna y su miniteoría van como las de cualquier ejercicio;
+> 4. de un ejercicio de opción múltiple —lo dice su propio tipo— se publica lo que cambió de su formulario, como lo
+>    guarda producción: el enunciado, la oración guardada, las opciones —texto, identificador y cuál es la correcta— y la
+>    forma de elegir, siempre que el ejercicio quede bien armado: un solo hueco, sin respuestas escritas; de dos a ocho
+>    opciones, cada una con texto e identificador, sin repetir; una sola correcta, y elección de una sola opción. Si no
+>    queda bien armado, nada de su formulario se publica por script: se declara aparte, con cada cambio que lo tocó y
+>    qué le falta ([F-PUBPROD-R001](#F-PUBPROD-R001), inv. 6), y ese ejercicio no va en la lista. Su traducción, su
+>    consigna y su miniteoría van como las de cualquier ejercicio;
 > 5. los textos del enunciado van sin espacios en los bordes, como los guarda producción, que no tiene ninguno: el alumno
 >    y los jueces leen las partes unidas por un espacio, así que es el mismo ejercicio, pero la app dibuja un espacio en
 >    el borde como una palabra vacía. Lo mismo vale para el curso que se publica y para lo que se compara contra lo que
@@ -114,9 +116,10 @@ una lista con ese ejercicio —`translation` y `miniTheory`, cada uno con su ant
 | la traducción | `translation` |
 | la consigna del ejercicio | `instructions` |
 | la miniteoría | `miniTheory` |
-| las partes del enunciado, su texto y las respuestas de los huecos | `form.sentenceParts`, entero (salvo en la opción múltiple) |
-| el texto de cada opción de la opción múltiple | `form.items`, entero, con sólo la etiqueta de cada opción cambiada |
-| de la opción múltiple: el enunciado, la oración guardada, cuál es la correcta, la forma de elegir, la cantidad o el identificador de las opciones | no se publica por script (inv. 4) |
+| las partes del enunciado, su texto y las respuestas de los huecos | `form.sentenceParts`, entero |
+| las opciones de la opción múltiple: su texto, su identificador y cuál es la correcta | `form.items`, entero |
+| la forma de elegir de la opción múltiple | `form.selection` |
+| una opción múltiple que no queda bien armada | no se publica por script (inv. 4) |
 | la consigna del tema | `instructions` del tema |
 | el nombre del tema, el título de los ejercicios | no va: camino por plan |
 | lo que se oye | no va: regrabación |
@@ -129,10 +132,17 @@ Un caso del inv. 5: en la C2 de A1 la mesa agregó una respuesta a «(hot / toda
 paso sólo declaraba las respuestas, y publicar se negaba por ese espacio en 154 textos. Ahora llega «(hot / today)».
 
 **Criterio**: un cambio del texto de una opción de un ejercicio de opción múltiple de B2 lleva `form.items` entero,
-con cada incidencia como número (`1.0`, no `{"$numberDouble": "1.0"}`) y sólo esa etiqueta cambiada; un cambio de cuál
-es la correcta en ese ejercicio no va en la lista y queda declarado aparte; si en otro ejercicio de opción múltiple
-cambiaron el enunciado y la traducción, ese ejercicio no va —tampoco su traducción— y el cambio del enunciado queda
-declarado aparte; una parte del enunciado sin texto lleva `"text": ""`.
+con cada incidencia como número (`1.0`, no `{"$numberDouble": "1.0"}`); un cambio de cuál es la correcta, del
+enunciado o de la oración guardada viaja igual, mientras el ejercicio siga bien armado; si en otro ejercicio de opción
+múltiple quedaron dos correctas, ese ejercicio no va —tampoco su traducción— y el cambio queda declarado aparte con
+«tiene 2 correctas»; una parte del enunciado sin texto lleva `"text": ""`.
+
+Hasta el 14/11/2026 de la opción múltiple sólo viajaba el texto de cada opción (la decisión de José del 30/9:
+conservar, medir y bloquear). En la C2 de A1 eso dejaba sin camino 763 cambios de 338 ejercicios, medidos por los
+jueces: «___ brown? (I)» con «am i / are we / is he…» pasaba a «___ ready? (I)» con «Am I / Are I / Is I…». Producción
+guarda todo eso en el mismo documento: las 2.810 opciones múltiples de A1 tienen un hueco, una correcta, de dos a seis
+opciones con identificador igual al texto, y elección de una sola. José aprobó que viaje entera el 16/11/2026 (briefs 285
+y 287).
 
 </details>
 

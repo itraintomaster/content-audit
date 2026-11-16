@@ -10,10 +10,11 @@ Un documento con algún campo en DRIFT, o que no existe en la base (MISSING),
 frena toda la corrida salvo `--skip-drift`, que saltea esos documentos enteros
 (nunca un campo suelto: un ejercicio a medio publicar es peor que uno sin publicar).
 
-Un ejercicio de opción múltiple (form.kind MULTIPLE_CHOICE en la base) solo admite
-que la lista le cambie la etiqueta de sus opciones: cualquier otra ruta del
-formulario lo bloquea. Y un ejercicio que no es de opción múltiple no admite que
-la lista le traiga opciones. Un documento bloqueado frena la corrida antes de
+Un ejercicio de opción múltiple (form.kind MULTIPLE_CHOICE en la base) admite que
+la lista le cambie el formulario si queda bien armado: un enunciado con un solo
+hueco, sin respuestas escritas (las opciones y la forma de elegir ya las revisó la
+lectura de la lista). Y un ejercicio que no es de opción múltiple no admite que la
+lista le traiga opciones ni forma de elegir. Un documento bloqueado frena la corrida antes de
 escribir y `--skip-drift` no lo saltea (es el mismo cuidado del camino por plan,
 TRASPASO §6).
 
@@ -28,8 +29,8 @@ no se toca y no frena nada: queda registrada como desfasada. Es lo que
 sincronizaba `sync_quiz_titles` del camino por plan, sin pisar lo que no se sabe.
 """
 
-from . import conversion
-from .manifest_reader import COLLECTIONS, QUIZ_TEMPLATES, only_labels_change
+from . import conversion, multiple_choice
+from .manifest_reader import COLLECTIONS, QUIZ_TEMPLATES
 from .store import MISSING, fingerprint_without, get_path, same_value, short, to_json_safe
 
 APPLY = "APPLY"
@@ -44,7 +45,7 @@ SKIP_MASTER = "MASTER_SKIPPED"      # instancia de un ejercicio salteado
 
 # Por qué se bloquea un documento (no se saltea con --skip-drift).
 MULTIPLE_CHOICE = "MULTIPLE_CHOICE"
-BLOCK_MC_BEYOND_LABEL = "MULTIPLE_CHOICE_BEYOND_LABEL"
+BLOCK_MC_MALFORMED = "MULTIPLE_CHOICE_MALFORMED"
 BLOCK_ITEMS_WITHOUT_MC = "ITEMS_WITHOUT_MULTIPLE_CHOICE"
 
 # F-PUBPROD-R002 inv. 3: la lista lleva la oración guardada ausente como lista vacía.
@@ -277,15 +278,14 @@ def form_block(doc, fields):
         return None
     form_kind = get_path(doc, "form.kind")
     if MULTIPLE_CHOICE in (form_kind, get_path(doc, "kind")):
-        beyond = [f["path"] for f in fields if f["path"].startswith("form.")
-                  and not (f["path"] == "form.items" and only_labels_change(f["before"], f["after"]))]
-        if beyond:
-            return (BLOCK_MC_BEYOND_LABEL,
-                    "es de opción múltiple y la lista le cambia %s; de opción múltiple solo se publica "
-                    "la etiqueta de cada opción" % ", ".join(beyond))
-    if form_kind != MULTIPLE_CHOICE and any(f["path"] == "form.items" for f in fields):
+        problems = [multiple_choice.gap_problem(f["after"]) for f in fields if f["path"] == "form.sentenceParts"]
+        problem = next((p for p in problems if p), None)
+        if problem:
+            return (BLOCK_MC_MALFORMED,
+                    "es de opción múltiple y con la lista quedaría mal armado: %s" % problem)
+    if form_kind != MULTIPLE_CHOICE and any(f["path"] in ("form.items", "form.selection") for f in fields):
         return (BLOCK_ITEMS_WITHOUT_MC,
-                "no es de opción múltiple (form.kind %s) y la lista le trae opciones (form.items)"
+                "no es de opción múltiple (form.kind %s) y la lista le trae opciones o forma de elegir"
                 % short(form_kind))
     return None
 

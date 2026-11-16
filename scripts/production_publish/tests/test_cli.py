@@ -431,7 +431,7 @@ class MultipleChoiceTest(CliTestCase):
         change(manifest)
         fakes.write_batch(self.workdir, manifest)
 
-    def test_F_PUBPROD_R002_un_ejercicio_de_opcion_multiple_con_mas_que_etiquetas_frena_el_ensayo(self):
+    def test_F_PUBPROD_R002_un_ejercicio_de_opcion_multiple_mal_armado_frena_el_ensayo(self):
         def change(m):
             quiz = next(d for d in m["documents"] if d["id"] == fakes.QUIZ_3)
             quiz["fields"].append({"path": "form.sentenceParts", "before": [{"kind": "TEXT", "text": "I ___."}],
@@ -445,7 +445,7 @@ class MultipleChoiceTest(CliTestCase):
                 self.assertEqual(code, 1, out)
                 row = self.rows()[-1]
                 self.assertEqual(row["result"], DRY_RUN_WITH_PROBLEMS)
-                self.assertEqual(row["reason"]["code"], "MULTIPLE_CHOICE_BEYOND_LABEL")
+                self.assertEqual(row["reason"]["code"], "MULTIPLE_CHOICE_MALFORMED")
                 self.assertIn("BLOQUEADO quizTemplates/%s" % fakes.QUIZ_3, out)
                 self.assertIn("no se saltea con --skip-drift", out)
                 code, out, factory = self.run_cli(*(APPLY_ARGS + flags))

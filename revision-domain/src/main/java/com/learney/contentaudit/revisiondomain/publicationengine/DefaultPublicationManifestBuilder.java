@@ -54,18 +54,18 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
 
     private static final String ITEMS = "form.items";
 
-    /** El formulario en producción: de una opción múltiple, sólo el texto de sus opciones se publica por script. */
-    private static final String FORM = "form.";
+    private static final String PARTS = "form.sentenceParts";
 
-    /** La etiqueta de una opción: lo único de la opción múltiple que se publica por script. */
-    private static final String LABEL = "label";
+    /** El formulario en producción: de una opción múltiple viaja entero si queda bien armada (R002 inv. 4). */
+    private static final String FORM = "form.";
 
     /** Lo que una corrección posterior a la conversión puede haber reescrito además del formulario. */
     private static final List<String> REWRITTEN_WITH_THE_CONVERSION = List.of("translation", "miniTheory");
 
-    static final String MULTIPLE_CHOICE_BEYOND_LABEL = "opción múltiple: sólo se publica el texto de cada opción; "
-            + "cambiar el enunciado, la oración guardada, cuál es la correcta, la forma de elegir o las opciones no se "
-            + "publica por script";
+    static final String NOT_WELL_FORMED = "opción múltiple mal armada (%s): no se publica por script";
+
+    static final String CHOICE_WITHOUT_MULTIPLE_CHOICE = "opciones o forma de elegir en un ejercicio que no es de "
+            + "opción múltiple: no se publica por script";
 
     private final CorrectionScope correctionScope;
 
@@ -204,8 +204,7 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
                         collection = write.collection();
                         writePaths.addAll(write.mongoPaths());
                         for (String path : write.mongoPaths()) {
-                            declaredBy.putIfAbsent(path, new ManifestUnsupported(changeId, nodeId, part,
-                                    MULTIPLE_CHOICE_BEYOND_LABEL));
+                            declaredBy.putIfAbsent(path, new ManifestUnsupported(changeId, nodeId, part, null));
                         }
                     } else if (place instanceof ProductionPlace.Unsupported notByScript
                             && changed(element, target, notByScript.detectionPaths())) {
@@ -229,21 +228,22 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
         Map<String, Object> after = project(element.after(), target, ordered);
         boolean multipleChoice = target == AuditTarget.QUIZ && (multipleChoice(element.before())
                 || multipleChoice(element.after()));
+        Optional<String> malformed = multipleChoice ? notWellFormed(element.after()) : Optional.empty();
         List<ManifestField> fields = new ArrayList<>();
         List<ManifestUnsupported> notByScript = new ArrayList<>();
         for (String path : ordered) {
             if (Objects.equals(before.get(path), after.get(path))) {
                 continue;
             }
-            boolean multipleChoicePath = SELECTION.equals(path) || ITEMS.equals(path);
-            if ((multipleChoice && path.startsWith(FORM)) || multipleChoicePath) {
-                if (!ITEMS.equals(path) || !onlyLabelsChanged(before.get(ITEMS), after.get(ITEMS))) {
-                    ManifestUnsupported entry = declaredBy.get(path);
-                    if (!notByScript.contains(entry)) {
-                        notByScript.add(entry);
-                    }
-                    continue;
+            Optional<String> reason = notByScriptReason(path, multipleChoice, malformed);
+            if (reason.isPresent()) {
+                ManifestUnsupported declared = declaredBy.get(path);
+                ManifestUnsupported entry = new ManifestUnsupported(declared.changeId(), declared.nodeId(),
+                        declared.part(), reason.get());
+                if (!notByScript.contains(entry)) {
+                    notByScript.add(entry);
                 }
+                continue;
             }
             fields.add(new ManifestField(path, before.get(path), after.get(path)));
         }
@@ -278,30 +278,25 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
     }
 
     /**
-     * R002 inv. 4: la misma cantidad de opciones y cada opción igual salvo su etiqueta. El identificador de una opción
-     * es la etiqueta original en minúscula y la incidencia marca la correcta: ninguno de los dos viaja por script.
+     * R002 inv. 4: por qué una ruta del formulario que cambió no se publica por script. Las opciones y la forma de
+     * elegir sólo existen en la opción múltiple; de una opción múltiple, el formulario viaja si queda bien armada.
      */
-    private static boolean onlyLabelsChanged(Object itemsBefore, Object itemsAfter) {
-        if (Objects.equals(itemsBefore, itemsAfter)) {
-            return true;
+    private static Optional<String> notByScriptReason(String path, boolean multipleChoice,
+            Optional<String> malformed) {
+        if (!multipleChoice) {
+            return SELECTION.equals(path) || ITEMS.equals(path) ? Optional.of(CHOICE_WITHOUT_MULTIPLE_CHOICE)
+                    : Optional.empty();
         }
-        if (!(itemsBefore instanceof List<?> oldItems) || !(itemsAfter instanceof List<?> newItems)
-                || oldItems.size() != newItems.size()) {
-            return false;
+        return path.startsWith(FORM) ? malformed.map(problem -> NOT_WELL_FORMED.formatted(problem)) : Optional.empty();
+    }
+
+    /** R002 inv. 4: qué le falta al ejercicio, como lo guarda producción, para ser una opción múltiple bien armada. */
+    private Optional<String> notWellFormed(CourseElementSnapshot snapshot) {
+        if (!multipleChoice(snapshot)) {
+            return Optional.of("dejó de ser de opción múltiple");
         }
-        for (int i = 0; i < oldItems.size(); i++) {
-            if (!(oldItems.get(i) instanceof Map<?, ?> oldItem) || !(newItems.get(i) instanceof Map<?, ?> newItem)) {
-                return false;
-            }
-            Map<Object, Object> oldRest = new LinkedHashMap<>(oldItem);
-            Map<Object, Object> newRest = new LinkedHashMap<>(newItem);
-            oldRest.remove(LABEL);
-            newRest.remove(LABEL);
-            if (!oldRest.equals(newRest)) {
-                return false;
-            }
-        }
-        return true;
+        Map<String, Object> form = projector.project(snapshot.getQuiz(), List.of(PARTS, ITEMS, SELECTION));
+        return WellFormedMultipleChoice.problem(form.get(PARTS), form.get(ITEMS), form.get(SELECTION));
     }
 
     private boolean changed(PublishedElement element, AuditTarget target, List<String> paths) {

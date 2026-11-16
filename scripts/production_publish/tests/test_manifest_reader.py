@@ -312,23 +312,39 @@ class ValidateManifestTest(unittest.TestCase):
                 field["after"] = after
                 self.assertRefused("BAD_VALUE", m)
 
-    def test_F_PUBPROD_R002_en_opcion_multiple_solo_viaja_la_etiqueta(self):
+    def test_F_PUBPROD_R002_una_opcion_multiple_viaja_entera_si_queda_bien_armada(self):
+        # inv. 4: otra correcta, otro identificador, una opción más o la forma de elegir de siempre viajan.
+        cambios = (lambda items: (items[0].update(incidence=0.0), items[1].update(incidence=1.0)),
+                   lambda items: items[1].update(id="is."),
+                   lambda items: items.append({"id": "are", "label": "are", "incidence": 0.0}))
+        for cambio in cambios:
+            with self.subTest(cambio=cambio):
+                m = copy.deepcopy(self.manifest)
+                cambio(doc(m, fakes.QUIZ_3)["fields"][0]["after"])
+                manifest_reader.validate_manifest(m)
         m = copy.deepcopy(self.manifest)
-        doc(m, fakes.QUIZ_3)["fields"][0]["after"][1]["incidence"] = 1.0
-        self.assertRefused("MULTIPLE_CHOICE_BEYOND_LABEL", m)
-        m = copy.deepcopy(self.manifest)
-        doc(m, fakes.QUIZ_3)["fields"][0]["after"][1]["id"] = "is."
-        self.assertRefused("MULTIPLE_CHOICE_BEYOND_LABEL", m)
-        m = copy.deepcopy(self.manifest)
-        doc(m, fakes.QUIZ_3)["fields"][0]["after"].append({"id": "are", "label": "are", "incidence": 0.0})
-        self.assertRefused("MULTIPLE_CHOICE_BEYOND_LABEL", m)
-        m = copy.deepcopy(self.manifest)
-        doc(m, fakes.QUIZ_3)["fields"][0]["after"][1] = "Is"
-        self.assertRefused("MULTIPLE_CHOICE_BEYOND_LABEL", m)
-        # La selección (cómo se elige) ni siquiera está en la tabla: el lado Java la manda a unsupported[].
+        doc(m, fakes.QUIZ_3)["fields"].append({"path": "form.selection", "before": None, "after": "SINGLE"})
+        manifest_reader.validate_manifest(recount(m))
+
+    def test_F_PUBPROD_R002_una_opcion_multiple_mal_armada_no_viaja(self):
+        # inv. 4: dos correctas, ninguna, una sola opción, una repetida, una sin texto o sin identificador, una que
+        # vale medio, o elegir más de una: producción no tiene ninguna así.
+        cambios = (lambda items: items[1].update(incidence=1.0),
+                   lambda items: items[0].update(incidence=0.0),
+                   lambda items: items.pop(),
+                   lambda items: items[1].update(label="AM", id="am2"),
+                   lambda items: items[1].update(label=" "),
+                   lambda items: items[1].update(id="am"),
+                   lambda items: items[1].update(incidence=0.5),
+                   lambda items: items.__setitem__(1, "Is"))
+        for cambio in cambios:
+            with self.subTest(cambio=cambio):
+                m = copy.deepcopy(self.manifest)
+                cambio(doc(m, fakes.QUIZ_3)["fields"][0]["after"])
+                self.assertRefused("MULTIPLE_CHOICE_MALFORMED", m)
         m = copy.deepcopy(self.manifest)
         doc(m, fakes.QUIZ_3)["fields"].append({"path": "form.selection", "before": "SINGLE", "after": "MULTI"})
-        self.assertRefused("PATH_NOT_ALLOWED", recount(m))
+        self.assertRefused("MULTIPLE_CHOICE_MALFORMED", recount(m))
 
     def test_F_PUBPROD_R002_lo_sin_lugar_en_produccion_no_enumera_las_partes(self):
         # La parte es un enum del lado Java: una parte nueva (o la de la selección) no rompe la lectura.
