@@ -141,7 +141,8 @@ Hasta el 14/11/2026 de la opción múltiple sólo viajaba el texto de cada opci�
 conservar, medir y bloquear). En la C2 de A1 eso dejaba sin camino 763 cambios de 338 ejercicios, medidos por los
 jueces: «___ brown? (I)» con «am i / are we / is he…» pasaba a «___ ready? (I)» con «Am I / Are I / Is I…». Producción
 guarda todo eso en el mismo documento: las 2.810 opciones múltiples de A1 tienen un hueco, una correcta, de dos a seis
-opciones con identificador igual al texto, y elección de una sola. **Pendiente del sí de José (brief 285).**
+opciones con identificador igual al texto, y elección de una sola. José aprobó que viaje entera el 16/11/2026 (briefs 285
+y 287).
 
 </details>
 
